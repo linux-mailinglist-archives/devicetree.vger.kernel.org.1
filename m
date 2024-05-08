@@ -1,56 +1,80 @@
-Return-Path: <devicetree+bounces-65676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BAD08BF884
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:29:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331038BF8B9
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:38:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 051D32843E4
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:29:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9CBDB1F229E5
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:38:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2576D481C7;
-	Wed,  8 May 2024 08:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18AC36BB51;
+	Wed,  8 May 2024 08:37:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FjgIpiiy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F0045BE3
-	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 08:29:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8406A54672;
+	Wed,  8 May 2024 08:37:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715156975; cv=none; b=G8jhJyJBtQKq1moWomSR8WyQRCqRsZzBjELjLFjVBGJzKiVLSsAXT0l30mhddcYuwRMnTKFqoZl/Uq+gzb8+eXM7FpAJiZoG6WiRL6sWWkDDFxAzggz9H1mkGO+YDgexOU0Nu+UP1sYPdavdZpfoYM+D289Yk9HE+5OZov4xg+A=
+	t=1715157439; cv=none; b=WsAz2fko21tm5czMdZ+l9BDYFZm2c7PZ8RY4yCAZjnc0GJAAJsZB2QDaDB4hJ2UHOqPrCJ5ISQJ1uv8vwmNsK8TOWfdpFJUnBoRAOjC50T7jfmipNtlIbLxBRCdFl4S0uJjvxFidtKLddtwJwEryZEEBE4Gk6eGlrI5kyPNzfQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715156975; c=relaxed/simple;
-	bh=mm+c/N642LvutLNJcJDi4vQqK0YCFW3AbDALd0DP900=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aBhdXU7TJywm5+iVwg2E0CEfRT8Mz/9lc8k2R4Dd+HjNmtLx9cwZEmhDxODF2yWz2lZfIHIdqeJH+8EpLQPmRFFc75AQegtTUE6hOFRdMtNe3VSUcu2SQYHmPIb8olXA+mXRNeGL0okROheinEOc2qJs3zohSzUr8axz8ZF9WeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [112.20.112.218])
-	by gateway (Coremail) with SMTP id _____8Bx9erqNztmwUkJAA--.13039S3;
-	Wed, 08 May 2024 16:29:30 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.112.218])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8CxrlfmNztmvWUVAA--.36694S4;
-	Wed, 08 May 2024 16:29:30 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v1 2/2] LoongArch: dts: Add new supported device nodes to Loongson-2K2000
-Date: Wed,  8 May 2024 16:29:11 +0800
-Message-ID: <d2a7f3d5a0ec68de43d760fbd6e0e4e4bbafbc10.1715156107.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1715156107.git.zhoubinbin@loongson.cn>
-References: <cover.1715156107.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1715157439; c=relaxed/simple;
+	bh=ZluKxCDKvH5ioOgbdfHZITry1LfiTu7c1pdB8iLDQcg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iRaUaJjZvkJ3RKkI8ahQr+ZdJViZ68UYq6195ydMba1kwwn9g0HBWAh6+1Y+nfPepQpNpved6ZdP+2dTTgpH7Q8pwaUoX5Xv4VsiqtKIXLcb3BbUNKPFmOYCYpm3pq/HUNRledSEvC2baY/4e1B4BYigcUnOh8wkBNhvAgEQiKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FjgIpiiy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4486kWQZ027280;
+	Wed, 8 May 2024 08:36:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=qcppdkim1; bh=l/ZPy/NScZS1QnKjOaWM
+	3P4DZKYqM4mnhWvfYuSNg9g=; b=FjgIpiiyNBnKZDuwemXx40J7qUVrdu+BKfjV
+	7UmSF/DbQwn82Z+5nyOxuPwpR/kipT8vS/TkdKvSsQuyThUaC9OOXrCsGH+btBCv
+	pEcZY+v8NUhJ12S/kTf6CkwxaiMJOTb+4+Nq0XxSb8vVfSDcOdONwVNcfFH9TZeA
+	VEcVC83a+nVmBTXL3FCYr/734SD4Hc7n3LBQJf2mGmnHEJ3P9nlo5Z48zHAqjJs9
+	YztJodp2ytxGp+Rtm1E3yBQVkejTqJc7dD8/Ds8SozFzO+oHGMnYsESOYuakTTLS
+	C+9RBUPebga9OrMpe0Ii1RUDo9GabMGXfIU+fy/1yVaik8Xl6Q==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xyspmsata-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 May 2024 08:36:45 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 4488afsS001204;
+	Wed, 8 May 2024 08:36:41 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3xwe3kwch4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 May 2024 08:36:41 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4488ae3Y001173;
+	Wed, 8 May 2024 08:36:41 GMT
+Received: from hu-devc-blr-u22-a.qualcomm.com (hu-mdalam-blr.qualcomm.com [10.131.36.157])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4488aePJ001168
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 May 2024 08:36:40 +0000
+Received: by hu-devc-blr-u22-a.qualcomm.com (Postfix, from userid 466583)
+	id 094C44119C; Wed,  8 May 2024 14:06:40 +0530 (+0530)
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
+        quic_mdalam@quicinc.com
+Subject: [PATCH v5 0/7] Add QPIC SPI NAND driver
+Date: Wed,  8 May 2024 14:06:30 +0530
+Message-Id: <20240508083637.3744003-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,146 +82,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8CxrlfmNztmvWUVAA--.36694S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxXw47Ww1UXr18JF4xCF4rJFc_yoW5Cw4kpa
-	srua17Kr409F1xu345tryUJF1kZFZ5CFnrWanIkFWUCrsIq34qqr48tF93tF18Wr4fX3yj
-	qrn5G34jkF4DZabCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
-	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
-	tVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
-	AKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
-	6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
-	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
-	jxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw2
-	0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
-	67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0epB3UUUUU==
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4HFbH_7SKiWm3_Dx9Y_UA5mywC0q2kOq
+X-Proofpoint-ORIG-GUID: 4HFbH_7SKiWm3_Dx9Y_UA5mywC0q2kOq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-08_04,2024-05-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 phishscore=0 suspectscore=0 mlxscore=0 impostorscore=0
+ spamscore=0 adultscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0
+ mlxlogscore=417 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405080060
 
-By now, more Loongson-2K2000 related drivers are supported, such as
-clock controller and thermal controller.
-Now we add these device nodes to the Loongson-2K2000 dts file.
+v5:
+ * Fixes nandbiterr issue
+ * Added raw_read() and raw_write() API
+ * Added qcom_ prefix to all the common API
+ * Removed register indirection
+ * Following tests for SPI-NAND devices passed
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- .../boot/dts/loongson-2k2000-ref.dts          |  4 ++
- arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 44 +++++++++++++++++--
- 2 files changed, 44 insertions(+), 4 deletions(-)
+   - mtd_oobtest
+   - mtd_pagetest
+   - mtd_readtest
+   - mtd_speedtest
+   - mtd_stresstest
+   - mtd_subpagetest
+   - mtd_nandbiterrs
+   - nandtest
+   - nanddump
+   - nandwrite
+   - nandbiterr -i
+   - mtd erase
+   - mtd write
+   - dd
+   - hexddump
+v4:
+ * In this patch series fixes kernel doc for all the cmmon api
+ * Also fixes dm-binding commit message
+ * Fix qpic_common.c compilation based on config
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-index 74b99bd234cc..52daf41d7af4 100644
---- a/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-+++ b/arch/loongarch/boot/dts/loongson-2k2000-ref.dts
-@@ -39,6 +39,10 @@ linux,cma {
- 	};
- };
- 
-+&clk {
-+	status = "okay";
-+};
-+
- &sata {
- 	status = "okay";
- };
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000.dtsi b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-index 9eab2d02cbe8..4e717f5bad45 100644
---- a/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/loongson,ls2k-clk.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -19,21 +20,22 @@ cpu0: cpu@1 {
- 			compatible = "loongson,la364";
- 			device_type = "cpu";
- 			reg = <0x0>;
--			clocks = <&cpu_clk>;
-+			clocks = <&clk LOONGSON2_NODE_CLK>;
- 		};
- 
- 		cpu1: cpu@2 {
- 			compatible = "loongson,la364";
- 			device_type = "cpu";
- 			reg = <0x1>;
--			clocks = <&cpu_clk>;
-+			clocks = <&clk LOONGSON2_NODE_CLK>;
- 		};
- 	};
- 
--	cpu_clk: cpu-clk {
-+	ref_100m: clock-ref-100m {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		clock-frequency = <1400000000>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "ref_100m";
- 	};
- 
- 	cpuintc: interrupt-controller {
-@@ -42,6 +44,22 @@ cpuintc: interrupt-controller {
- 		interrupt-controller;
- 	};
- 
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tsensor 0>;
-+
-+			trips {
-+				cpu-crit {
-+					temperature = <85000>;
-+					hysteresis = <5000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	bus@10000000 {
- 		compatible = "simple-bus";
- 		ranges = <0x0 0x10000000 0x0 0x10000000 0x0 0x10000000>,
-@@ -58,6 +76,15 @@ isa@18400000 {
- 			ranges = <1 0x0 0x0 0x18400000 0x4000>;
- 		};
- 
-+		clk: clock-controller@10010480 {
-+			compatible = "loongson,ls2k2000-clk";
-+			reg = <0x0 0x10010480 0x0 0x100>;
-+			#clock-cells = <1>;
-+			clocks = <&ref_100m>;
-+			clock-names = "ref_100m";
-+			status = "disabled";
-+		};
-+
- 		pmc: power-management@100d0000 {
- 			compatible = "loongson,ls2k2000-pmc", "loongson,ls2k0500-pmc", "syscon";
- 			reg = <0x0 0x100d0000 0x0 0x58>;
-@@ -80,6 +107,15 @@ syscon-poweroff {
- 			};
- 		};
- 
-+		tsensor: thermal-sensor@1fe01460 {
-+			compatible = "loongson,ls2k2000-thermal";
-+			reg = <0x0 0x1fe01460 0x0 0x30>,
-+			      <0x0 0x1fe0019c 0x0 0x4>;
-+			interrupt-parent = <&liointc>;
-+			interrupts = <7 IRQ_TYPE_LEVEL_HIGH>;
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		liointc: interrupt-controller@1fe01400 {
- 			compatible = "loongson,liointc-1.0";
- 			reg = <0x0 0x1fe01400 0x0 0x64>;
+v3:
+ * In this patch series fixes multiple things like
+   added clock-name, added _alloc_controller api instead
+   of alloc_master, made common apis more generic etc.
+
+ * Addressed all the comment from v2 patch series
+
+v2:
+ * https://lore.kernel.org/linux-arm-msm/20240215134856.1313239-1-quic_mdalam@quicinc.com/
+ * In this series of patchs we have added basic working QPIC SPI NAND
+   driver with READ, WRITE, ERASE etc functionality
+
+ * Addressed all the comments given in RFC [v1] patch
+
+v1:
+ * https://lore.kernel.org/linux-arm-msm/20231031120307.1600689-1-quic_mdalam@quicinc.com/
+ * Initial set of patches for handling QPIC SPI NAND.
+
+Md Sadre Alam (7):
+  spi: dt-bindings: Introduce qcom,spi-qpic-snand
+  mtd: rawnand: qcom: cleanup qcom_nandc driver
+  mtd: rawnand: qcom: Add qcom prefix to common api
+  drivers: mtd: nand: Add qpic_common API file
+  spi: spi-qpic: add driver for QCOM SPI NAND flash Interface
+  arm64: dts: qcom: ipq9574: Add SPI nand support
+  arm64: dts: qcom: ipq9574: Disable eMMC node
+
+ .../bindings/spi/qcom,spi-qpic-snand.yaml     |   83 +
+ .../boot/dts/qcom/ipq9574-rdp-common.dtsi     |   43 +
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |    2 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   27 +
+ drivers/mtd/nand/Kconfig                      |    8 +
+ drivers/mtd/nand/Makefile                     |    1 +
+ drivers/mtd/nand/qpic_common.c                |  741 ++++++++
+ drivers/mtd/nand/raw/qcom_nandc.c             | 1621 +++--------------
+ drivers/spi/Kconfig                           |    8 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-qpic-snand.c                  | 1423 +++++++++++++++
+ include/linux/mtd/nand-qpic-common.h          |  531 ++++++
+ 12 files changed, 3113 insertions(+), 1376 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+ create mode 100644 drivers/mtd/nand/qpic_common.c
+ create mode 100644 drivers/spi/spi-qpic-snand.c
+ create mode 100644 include/linux/mtd/nand-qpic-common.h
+
 -- 
-2.43.0
+2.34.1
 
 
