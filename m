@@ -1,250 +1,143 @@
-Return-Path: <devicetree+bounces-65688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7854E8BF8E4
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:41:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2A08BF906
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 10:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 280F9285833
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:41:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5D75B23166
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 08:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE6573506;
-	Wed,  8 May 2024 08:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51831535AA;
+	Wed,  8 May 2024 08:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="ZloNqAA9"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="E/Lq6AFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-14.smtpout.orange.fr [80.12.242.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B64F73183;
-	Wed,  8 May 2024 08:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B51E79476;
+	Wed,  8 May 2024 08:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715157589; cv=none; b=RtIJJgZMKVqIUPi8xYzQNbp43qqhM3l3n3DZwXLgIUv5sdzLG1bj9hcFyvRomeHm6R3QZ520UcYFMNFLxeEPGrAIVeHOSyUmgjzyD3EK3w7SXh5woIFBXXa7zRblKT+YPxjQi/TbDst888eskviltVgV1prUsf90z/ZWjscCBYw=
+	t=1715158115; cv=none; b=Qx6+w5CTsvOg1izSWmQ3HHGVSv4KbTcvwGpbr6ShN5U87TgSUBo18NEw2QFyJjup0243njBky+H3b13F7jdASjZ7Nw/I5ZhjA01MCCE090AuNghY80EHrKcfByLSC+NYG3CSegcgRKH0ICQoSiqA+Wz5+lk0ud1DJ5Roc7JGLNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715157589; c=relaxed/simple;
-	bh=fpfoyvGAo8rgtxrV0ptJKUnqoFRr6tBhPAvhu2ZfmLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HkQ2sj8H5QSRPERizQ+QFMYWyO5LcPImyB3bbWUrOf7zsqWV3RL5mCRgKAMoa7x4LKGUO1dE3mFZcFo8q3+Va71+5WG+dAkTg/4G5GBWOSy5/dg+JI6WaeneeyozHidDd8c9XMhXTf0GHdEHmmv+UibDq3+/PBb+v1hZVnZmz1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=ZloNqAA9; arc=none smtp.client-ip=80.12.242.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([86.243.17.157])
-	by smtp.orange.fr with ESMTPA
-	id 4cohsbWRTpZiP4cohsPYlD; Wed, 08 May 2024 10:38:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1715157509;
-	bh=ZWKsOUbnWU24pwAjgnk1ET/TShN+k9FGrXZfA6NJA+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=ZloNqAA99SHDCaXuu6P684ZKNm5KaI5rpMJ4QWGSvtzElns8NGSfYYFjWfpW7YH3p
-	 tksmN5/2TaXieWmIcBeUt0BfT/Cl9EQRobLDDYakRId0ukw4vyqZduNFXvDwnV/mH1
-	 ZxxfjgVxGV9JNBtg6urU2ou1CNsohYA1kf+b+dpRyFW/sRS5dcgLi7XdCAHCD/lHd5
-	 JgMPoqjcU6cWAOvrhutxK3KWkWXh3I+APfqm7keOxtKMzr07fKEH++5wLA9RAwYlPj
-	 P+jy1/ztgN4fbX/k0rgmSIRzRJ85Pfm9aqHhI4b1t+HUK4crt7HDdjIaAuQToSIaLB
-	 85mPEocEG1R1A==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Wed, 08 May 2024 10:38:29 +0200
-X-ME-IP: 86.243.17.157
-Message-ID: <39ff586c-24fc-4987-bf5b-c99f0b2ae8f9@wanadoo.fr>
-Date: Wed, 8 May 2024 10:38:23 +0200
+	s=arc-20240116; t=1715158115; c=relaxed/simple;
+	bh=KFMj3U7Obl/qOELPmA1G8lQsydYqYK1yXc1XYG2gwpM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qkQokaU8CnyNK/h7wI4593BfmvCuxUZGFVrfK3r6iyqUs3vtN6bVCW75pD1lFWyCAYXVSs3+Ouj9ShShBFSKaxBXvx4HuASpsgbv1VpwLuBsFGHsACAcvyTd3ce5WFN0EofuoBhAPoEnvigNUYgmv88S51H9hQLx/SPPTz18M1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=E/Lq6AFw; arc=none smtp.client-ip=213.160.72.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
+	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=/zOyVvtd4hHv6CKYy7zMjS3W53YqU2ozpdmDgVx4s6Y=; b=E/Lq6AFw4vjvpx20b7f7bacPYa
+	Q7jIGpOHSFZqz28PYM10ruDXqZ4t9fmlDxsNpFFNw0FTwKB0MWw64tCk8Y7pnfQ0NZM+vbQz80l6c
+	9IFVivOdwvcWD11NfMIrwMrTJmgBLkmu9OZTuBH4mLMGC8rd/me/MyZlHbM34U0nOT/4=;
+Received: from 127.0.0.1
+	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim latest)
+	(envelope-from <christoph.fritz@hexdev.de>)
+	id 1s4cyO-001hNS-1B;
+	Wed, 08 May 2024 10:48:24 +0200
+Message-ID: <663ea6b946a1a18637a1eae9bd8abe43607d9619.camel@hexdev.de>
+Subject: Re: [PATCH v3 03/11] tty: serdev: Add flag buffer aware
+ receive_buf_fp()
+From: Christoph Fritz <christoph.fritz@hexdev.de>
+Reply-To: christoph.fritz@hexdev.de
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Jiri Slaby <jirislaby@kernel.org>, Oliver Hartkopp
+ <socketcan@hartkopp.net>,  Marc Kleine-Budde <mkl@pengutronix.de>, Vincent
+ Mailhol <mailhol.vincent@wanadoo.fr>, "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires
+ <bentiss@kernel.org>,  Sebastian Reichel <sre@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Andreas Lauser
+ <andreas.lauser@mercedes-benz.com>, Jonathan Corbet <corbet@lwn.net>, Pavel
+ Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org,  devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org,  linux-serial@vger.kernel.org
+Date: Wed, 08 May 2024 10:48:23 +0200
+In-Reply-To: <2024050410-gigolo-giddily-97b6@gregkh>
+References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
+	 <20240502182804.145926-4-christoph.fritz@hexdev.de>
+	 <2024050410-gigolo-giddily-97b6@gregkh>
+Organization: hexDEV GmbH
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/3] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
- driver
-To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240508065141.565848-1-ychuang570808@gmail.com>
- <20240508065141.565848-4-ychuang570808@gmail.com>
-Content-Language: en-MW
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20240508065141.565848-4-ychuang570808@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Le 08/05/2024 à 08:51, Jacky Huang a écrit :
-> From: Jacky Huang <ychuang3@nuvoton.com>
+On Sat, 2024-05-04 at 18:00 +0200, Greg Kroah-Hartman wrote:
+> On Thu, May 02, 2024 at 08:27:56PM +0200, Christoph Fritz wrote:
+> > This patch introduces an additional receive buffer callback variation
+> > besides the already existing receive_buf(). This new callback function
+> > also passes the flag buffer (TTY_NORMAL, TTY_BREAK, and friends).
+> > 
+> > If defined, this function gets prioritized and called instead of the
+> > standard receive_buf().
+> > 
+> > An alternative approach could have been to enhance the receive_buf()
+> > function and update all drivers that use it.
 > 
-> Add common pinctrl and GPIO driver for Nuvoton MA35 series SoC, and
-> add support for ma35d1 pinctrl.
+> Please, let's do that instead of adding random letters at the end of a
+> function pointer :)
+
+:) sure
+
 > 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> ---
+> > Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> > ---
+> >  drivers/tty/serdev/serdev-ttyport.c |  2 +-
+> >  include/linux/serdev.h              | 17 ++++++++++++++---
+> >  2 files changed, 15 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/tty/serdev/serdev-ttyport.c b/drivers/tty/serdev/serdev-ttyport.c
+> > index 3d7ae7fa50186..bb47691afdb21 100644
+> > --- a/drivers/tty/serdev/serdev-ttyport.c
+> > +++ b/drivers/tty/serdev/serdev-ttyport.c
+> > @@ -32,7 +32,7 @@ static size_t ttyport_receive_buf(struct tty_port *port, const u8 *cp,
+> >  	if (!test_bit(SERPORT_ACTIVE, &serport->flags))
+> >  		return 0;
+> >  
+> > -	ret = serdev_controller_receive_buf(ctrl, cp, count);
+> > +	ret = serdev_controller_receive_buf(ctrl, cp, fp, count);
+> >  
+> >  	dev_WARN_ONCE(&ctrl->dev, ret > count,
+> >  				"receive_buf returns %zu (count = %zu)\n",
+> > diff --git a/include/linux/serdev.h b/include/linux/serdev.h
+> > index ff78efc1f60df..c6ef5a8988e07 100644
+> > --- a/include/linux/serdev.h
+> > +++ b/include/linux/serdev.h
+> > @@ -23,11 +23,17 @@ struct serdev_device;
+> >   * struct serdev_device_ops - Callback operations for a serdev device
+> >   * @receive_buf:	Function called with data received from device;
+> >   *			returns number of bytes accepted; may sleep.
+> > + * @receive_buf_fp:	Function called with data and flag buffer received
+> > + *			from device; If defined, this function gets called
+> > + *			instead of @receive_buf;
+> > + *			returns number of bytes accepted; may sleep.
+> 
+> I don't remember waht "fp" means here, and you don't document it, so
+> let's just have one recieve_buf() callback please.
 
-...
+OK, that is a great opportunity for me to use Coccinelle. In the
+upcoming revision v4 I'll add the "flag buffer pointer" treewide, then
+named "flags".
 
-> +static int ma35_gpiolib_register(struct platform_device *pdev, struct ma35_pinctrl *npctl)
-> +{
-> +	struct ma35_pin_ctrl *ctrl = npctl->ctrl;
-> +	struct ma35_pin_bank *bank = ctrl->pin_banks;
-> +	int ret;
-> +	int i;
-> +
-> +	for (i = 0; i < ctrl->nr_banks; i++, bank++) {
-> +		if (!bank->valid) {
-> +			dev_warn(&pdev->dev, "%pfw: bank is not valid\n", bank->fwnode);
-> +			continue;
-> +		}
-> +		bank->irqtype = 0;
-> +		bank->irqinten = 0;
-> +		bank->chip.label = bank->name;
-> +		bank->chip.of_gpio_n_cells = 2;
-> +		bank->chip.parent = &pdev->dev;
-> +		bank->chip.request = ma35_gpio_core_to_request;
-> +		bank->chip.direction_input = ma35_gpio_core_direction_in;
-> +		bank->chip.direction_output = ma35_gpio_core_direction_out;
-> +		bank->chip.get = ma35_gpio_core_get;
-> +		bank->chip.set = ma35_gpio_core_set;
-> +		bank->chip.base = -1;
-> +		bank->chip.ngpio = bank->nr_pins;
-> +		bank->chip.can_sleep = false;
-> +
-> +		if (bank->irq > 0) {
-> +			struct gpio_irq_chip *girq;
-> +
-> +			girq = &bank->chip.irq;
-> +			gpio_irq_chip_set_chip(girq, &ma35_gpio_irqchip);
-> +			girq->parent_handler = ma35_irq_demux_intgroup;
-> +			girq->num_parents = 1;
-> +
-> +			girq->parents = devm_kcalloc(&pdev->dev, girq->num_parents,
-> +						     sizeof(*girq->parents), GFP_KERNEL);
-> +			if (!girq->parents) {
-> +				ret = -ENOMEM;
-> +				goto fail;
-> +			}
-> +
-> +			girq->parents[0] = bank->irq;
-> +			girq->default_type = IRQ_TYPE_NONE;
-> +			girq->handler = handle_bad_irq;
-> +		}
-> +
-> +		ret = devm_gpiochip_add_data(&pdev->dev, &bank->chip, bank);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "failed to register gpio_chip %s, error code: %d\n",
-> +				bank->chip.label, ret);
-> +			goto fail;
-> +		}
-> +	}
-> +	return 0;
-> +
-> +fail:
-> +	while (i--) {
-> +		bank--;
-> +		if (!bank->valid)
-> +			continue;
-> +		gpiochip_remove(&bank->chip);
-> +	}
-
-I don't think this is correct. This is to undo the 
-devm_gpiochip_add_data(), right?
-Because of the devm_, no need to explicityl call gpiochip_remove()
-
-(more over, it should have been --i and not i-- in the while)
-
-> +	return ret;
-> +}
-
-...
-
-> +static int ma35_pinconf_set_drive_strength(struct ma35_pinctrl *npctl, unsigned int pin,
-> +					   int strength)
-> +{
-> +	unsigned int port, group_num;
-> +	void __iomem *base;
-> +	int i, ds_val = -1;
-> +	u32 regval;
-> +
-> +	if (ma35_pinconf_get_power_source(npctl, pin) == MVOLT_1800) {
-> +		for (i = 0; i < ARRAY_SIZE(ds_1800mv_tbl); i++) {
-> +			if (ds_1800mv_tbl[i] == strength) {
-> +				ds_val = i;
-> +				break;
-> +			}
-> +		}
-> +	} else {
-> +		for (i = 0; i < ARRAY_SIZE(ds_3300mv_tbl); i++) {
-> +			if (ds_3300mv_tbl[i] == strength) {
-> +				ds_val = i;
-> +				continue;
-
-break; ?
-
-> +			}
-> +		}
-> +	}
-> +	if (ds_val == -1)
-> +		return -EINVAL;
-> +
-> +	ma35_gpio_cla_port(pin, &group_num, &port);
-> +	base = npctl->ctrl->pin_banks[group_num].reg_base;
-> +
-> +	regval = readl(base + MA35_GP_DS_REG(port));
-> +	regval &= ~MA35_GP_DS_MASK(port);
-> +	regval |= field_prep(MA35_GP_DS_MASK(port), ds_val);
-> +
-> +	writel(regval, base + MA35_GP_DS_REG(port));
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int ma35_pinctrl_probe_dt(struct platform_device *pdev, struct ma35_pinctrl *npctl)
-> +{
-> +	struct fwnode_handle *child;
-> +	u32 idx = 0;
-> +	int ret;
-> +
-> +	device_for_each_child_node(&pdev->dev, child) {
-> +		if (fwnode_property_present(child, "gpio-controller"))
-> +			continue;
-> +		npctl->nfunctions++;
-> +		npctl->ngroups += of_get_child_count(to_of_node(child));
-> +	}
-> +
-> +	if (!npctl->nfunctions)
-> +		return -EINVAL;
-> +
-> +	npctl->functions = devm_kcalloc(&pdev->dev, npctl->nfunctions,
-> +					sizeof(*npctl->functions), GFP_KERNEL);
-> +	if (!npctl->functions)
-> +		return -ENOMEM;
-> +
-> +	npctl->groups = devm_kcalloc(&pdev->dev, npctl->ngroups,
-> +				     sizeof(*npctl->groups), GFP_KERNEL);
-> +	if (!npctl->groups)
-> +		return -ENOMEM;
-> +
-> +	device_for_each_child_node(&pdev->dev, child) {
-> +		if (fwnode_property_present(child, "gpio-controller"))
-> +			continue;
-> +
-> +		ret = ma35_pinctrl_parse_functions(to_of_node(child), npctl, idx++);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "failed to parse function\n");
-
-Missing fwnode_handle_put(child); ?
-(or a scoped version of device_for_each_child_node() if it exists)
-
-> +			return ret;
-> +		}
-> +	}
-> +	return 0;
-> +
-
-...
-
-CJ
+thanks
+  -- Christoph
 
