@@ -1,187 +1,130 @@
-Return-Path: <devicetree+bounces-65835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B368C0309
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:25:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95ADA8C0348
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:37:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAE261C21AA5
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 17:25:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF851F22C24
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 17:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9ACB81ADB;
-	Wed,  8 May 2024 17:25:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5CE129A69;
+	Wed,  8 May 2024 17:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hzNqPoyN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u/7axkXU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D1644CE19
-	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 17:25:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE1A38F9A
+	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 17:37:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715189105; cv=none; b=Vu/g/r3SSkrB47KfwFIlZ6Egx0g6dehpnOxb3PmHO551Rx4wjKbbWbON+U31Uyp+C4vFUxozR+16SZQ934CBbizqy33mIxV4eJGJjcfmOLWHpZ2qLJlIfftBIP7JNVfmH1btjKbBA636aVSC7ZYYWfV3vYYCxc6KcsCx1+IkBpo=
+	t=1715189872; cv=none; b=nUpXjcFczaJFOGdBT+9/PvbMK1BW43Khu4VFhCpnd8zhPFEI5dbLhzwhes0kBko9vIf3a5lLy1Tf/jH+JvshQ6QaJcakuQUACbu8oO4Sf6S8kFBH9QKQuZlj3BEhWm0skNf8hwTcQEEt17n1ELL+wy9p8nB6j4fBqqEx7e25iFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715189105; c=relaxed/simple;
-	bh=mRchDPxMeHJwLDj1d+HyfPvCH4lFbS4D7KCFGiKd3zs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uomtTO+G7GHwDrQGdHPXACr7cmCAtW+GoyWOgXDeZam58CgJToav+cnKKw75duMuDTKnRSngQ5GfMHChL3QEmNOiRtTfP0fL78lhYTsV8UO2WBuf7vdwLvlQOg+VjdpGHDnRIz8pb8+1iQ/YF793XZHLA2/exb2Z4Lsr50V/piw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hzNqPoyN; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-23d1c4c14ceso36740fac.0
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 10:25:03 -0700 (PDT)
+	s=arc-20240116; t=1715189872; c=relaxed/simple;
+	bh=TXOzRo2lvLq2dLy4X4KCCbjFUla8ZPfNznBSr32fAwA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NG4KZmgDHuEs2NFV3plLhQU3oXsvqA7NXTpUw3OITo0JwnsX4ltz2Pa3eY8FOqvd7KLcvvBWMueXqh6F6c8lENPOFAcaHFrG3lvlV2riVKj/Tsk/Nin73QQ/69NNw5ZM7YEFXr1MrLkFLNjtPsCBWAZQlVp9CbCXQjBGy4v+UHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u/7axkXU; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41b21ed19f5so32550055e9.2
+        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 10:37:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1715189103; x=1715793903; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B+VKTM4P5eufJalRCrDbHQ7nMVvva4ngXjaL2EQ5cWU=;
-        b=hzNqPoyNkuwnHwuHdxrfPq7+hg2nM9sxsbJU8Q7k+uuQZzwKI05gAV/d06oI9tMAly
-         nl0HlYlnYXN7njM2mkIuKAXmhOapqvXMLuv0cxheRGfHimvY6uyKzI1uAd2BcEUuERdZ
-         4sZuhfzippZbaFfx9BjGSvgwh4xPeZ0MBkZLE=
+        d=linaro.org; s=google; t=1715189869; x=1715794669; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oqqIYAEt8QY8iBn2hcjwrp22I2V9u33qj84qnnfOYxo=;
+        b=u/7axkXUTizRqcKto1EfE7rXascufU7BIkP9eUxi8DXPKFVBPXd6TTYgHvoORLlk1L
+         ITXHwn/k+W4eyDQhig98EayGlEEV+8UkKFVmGMgqnnpL5IKQPjmNBOCL9J24RYXDSodb
+         DeH22B50aJfGm8ErHbZ5Vk1MPl+aJ+i9yA30eBj6hh8NM9Y9c/Gny7fk2vEza2OF0qI0
+         QKXJbWrzgoUIH/DNijYsldsHh4+5DehbNnnOBQ3rXJnl/EWKzFEMHSNGuoz6m0fmbYXn
+         Yo3/8uO0pBzduymW3Vb7vKpCWa84IxOMGFcfGeUgkjeZStP9LX8uRMGI6dmFHV53kQzf
+         R1mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715189103; x=1715793903;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B+VKTM4P5eufJalRCrDbHQ7nMVvva4ngXjaL2EQ5cWU=;
-        b=jI9fWKyszImhObsy2CAr9ptA1dCQvQ0igzzM2kFn7cPvF+F22FReZmubSH2pjr4NXm
-         /xHuEt4QMxWmrr5pZMkpUjePt2CYMaBG02hP0xxxaVQnoeRmShMrQ+JNvgpd/pxX+uhF
-         wHLF749H9QD4V5t7QMx+B866XM+7iqfMaI9/wTLkzGdddaSJ3w2rAIUbS/hFOGvMY5ZD
-         V4OA8v13apyRGdH0lipLyduIAw4EboVwfkq2Io5IT41ZDqZOS6NIATQPSvpizUIjcERR
-         oNYMru3/Wc3nHV11oE+uInSVTX6X6U0gac80gDpuiMVUpsY8JBC5nkaX244G43VG/fSk
-         3rDw==
-X-Forwarded-Encrypted: i=1; AJvYcCVDEAHb2++WHtvuSzo3Jsan2vooVLagMYf5bGZ6Jncv94UvzZ4BlLYY0fr2s+xKcKgXlY0nCcRZHUZnkH+zE+rJHJv+70XcZuwfiA==
-X-Gm-Message-State: AOJu0Yzs3U8rSUO1wNVUAaUe2VQq/Mht9aktIMyYO2Ygu17il0ViWJx8
-	0z29wg3BlnTxFhD+f8npthMySmkqY6i3dOcJaNMP8AF+mpJ2HG8ugG6fBUrFYYlsSqdYiLMkKzw
-	=
-X-Google-Smtp-Source: AGHT+IFN9NuBHudHlM8hyJjBhXVYRDWjZSJcoFZ1zkbO2ig81YHiVPoljnHhk79SiJ/eEzC1d2EbnA==
-X-Received: by 2002:a05:6870:d608:b0:23f:f53c:300f with SMTP id 586e51a60fabf-240988fe784mr3609564fac.50.1715189102825;
-        Wed, 08 May 2024 10:25:02 -0700 (PDT)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com. [209.85.160.172])
-        by smtp.gmail.com with ESMTPSA id bs18-20020ac86f12000000b00434ee466ea6sm7836535qtb.22.2024.05.08.10.25.01
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1715189869; x=1715794669;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oqqIYAEt8QY8iBn2hcjwrp22I2V9u33qj84qnnfOYxo=;
+        b=k5KbtypTQjj1zdo62+6TQCQ7rXBF+Rw1fEWdU1h0Fo9+KSPHY8PFcg/gSyd3jGIDiQ
+         ppg4BJBm4MvMd70SYd4qcgFADVmbH74i/ytW1o1/QK20c1ZN9IvCpmeYzYnV4qKXKbyI
+         qXxcqZUJ2rFUp4mMymtYRslOvxZdFUk8RL8XOQozjPcDzrVUhhSKww0YParoMLyankGr
+         1PjNVq/vszNJOJRKrofpXJInf4NgP37K5iYsCVkCJjFxYTcTASR5Qk6VeCVCDVCbPfQI
+         Kn06Xvg3I4xl5x9Oh/zMb3ciRIlj1VdbXAO9QmWRiq2XZb6x4MXymY+exDI7XsJmIaU8
+         s+fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXz8bIKnBIgZGHlSvmXJsis7Y4QwTUWkY7H0a+47rva3DD+MLugjEE7LxvDR4XNp0dlq+zkoC1fMRrOCzzpHdAEbEHK0Fx2xRPtgQ==
+X-Gm-Message-State: AOJu0YzOB27iED9Gs3cGuG9TNiBwsyTOGKWGYsJbYNDUtW70jDYmFD1Q
+	2N66pwicirfT3Aff7hzUbZ11/0zmI1ZPH4R1V8dMbxSX8HSAMm797ZvdstG1nJs=
+X-Google-Smtp-Source: AGHT+IG2HyWFwSUGdiJup/vedK3nsgsEgSjeU6gUkpcysNJXAQwDlCboLqHz1Lcaym8y5YeAFgXvTw==
+X-Received: by 2002:a05:600c:154d:b0:419:f9ae:e50 with SMTP id 5b1f17b1804b1-41f71ad0a1bmr28793645e9.37.1715189869528;
+        Wed, 08 May 2024 10:37:49 -0700 (PDT)
+Received: from [192.168.0.3] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id m8-20020a05600c4f4800b0041bcb898984sm3005872wmq.31.2024.05.08.10.37.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 May 2024 10:25:01 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-439b1c72676so30921cf.1
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 10:25:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVht8Gc0CD5m6fQNCD+wPJFuGZ58dtEmt+NxOcV0KgqEomZJMZ/bcR3Bp0B+tFCMSgTVeUwktibnkv7x13dbJ9pzk6bP/IgIBheUQ==
-X-Received: by 2002:a05:622a:4e0a:b0:43d:db04:45d1 with SMTP id
- d75a77b69052e-43ddb044c2fmr2760251cf.1.1715189101210; Wed, 08 May 2024
- 10:25:01 -0700 (PDT)
+        Wed, 08 May 2024 10:37:49 -0700 (PDT)
+Message-ID: <52a165bb-81d8-4fa5-8ead-7aced3ba9a45@linaro.org>
+Date: Wed, 8 May 2024 18:37:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240507135234.1356855-1-yangcong5@huaqin.corp-partner.google.com>
- <20240507135234.1356855-3-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=Wj5WKcVbNGHQ_BbZa_fsVJkpYb2C8TE8bjhvJvx+N_hw@mail.gmail.com> <CAHwB_NKPswAvE5TjRxWMR8LLV5sNuMmymXr4nhDc3r_AdRKr8A@mail.gmail.com>
-In-Reply-To: <CAHwB_NKPswAvE5TjRxWMR8LLV5sNuMmymXr4nhDc3r_AdRKr8A@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 8 May 2024 10:24:43 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UJkmAPB1h87o0m+6HSbVg7ehr0Xd+JFpuF+vuezof-hg@mail.gmail.com>
-Message-ID: <CAD=FV=UJkmAPB1h87o0m+6HSbVg7ehr0Xd+JFpuF+vuezof-hg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/7] drm/panel: himax-hx83102: Break out as separate driver
-To: cong yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	robh+dt@kernel.org, conor+dt@kernel.org, airlied@gmail.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, xuxinxiong@huaqin.corp-partner.google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/13] mfd: pm8008: mark regmap structures as const
+To: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Das Srinagesh <quic_gurus@quicinc.com>,
+ Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20240506150830.23709-1-johan+linaro@kernel.org>
+ <20240506150830.23709-5-johan+linaro@kernel.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240506150830.23709-5-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 06/05/2024 16:08, Johan Hovold wrote:
+> The regmap irq chip structures can be const so mark them as such.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/mfd/qcom-pm8008.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> index d0f190c2ea2b..42dd4bf039c9 100644
+> --- a/drivers/mfd/qcom-pm8008.c
+> +++ b/drivers/mfd/qcom-pm8008.c
+> @@ -51,7 +51,7 @@ enum {
+>   	POLARITY_LO_INDEX,
+>   };
+>   
+> -static unsigned int pm8008_config_regs[] = {
+> +static const unsigned int pm8008_config_regs[] = {
+>   	INT_SET_TYPE_OFFSET,
+>   	INT_POL_HIGH_OFFSET,
+>   	INT_POL_LOW_OFFSET,
+> @@ -131,7 +131,7 @@ static int pm8008_set_type_config(unsigned int **buf, unsigned int type,
+>   	return 0;
+>   }
+>   
+> -static struct regmap_irq_chip pm8008_irq_chip = {
+> +static const struct regmap_irq_chip pm8008_irq_chip = {
+>   	.name			= "pm8008_irq",
+>   	.main_status		= I2C_INTR_STATUS_BASE,
+>   	.num_main_regs		= 1,
 
-On Wed, May 8, 2024 at 4:52=E2=80=AFAM cong yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> > > +static int starry_himax83102_j02_init(struct hx83102 *ctx)
-> > > +{
-> > > +       struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi=
- };
-> > > +
-> > > +       hx83102_enable_extended_cmds(ctx, true);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x2c=
-, 0xb5, 0xb5, 0x31, 0xf1,
-> > > +                                        0x31, 0xd7, 0x2f, 0x36, 0x36=
-, 0x36, 0x36, 0x1a, 0x8b, 0x11,
-> > > +                                        0x65, 0x00, 0x88, 0xfa, 0xff=
-, 0xff, 0x8f, 0xff, 0x08, 0x74,
-> > > +                                        0x33);
-> >
-> > The indentation is still off here. You have 5 tabs followed by a
-> > space. To make things line up with the opening brace I think it should
-> > be 4 tabs followed by 5 spaces.
->
-> Sorry, my  editor 'Visual Studio Code' It seems that the correct indentat=
-ion
-> is not recognized. I have checked it through the 'vim' editor in the V4 v=
-ersion.
-> Thanks.
-
-FWIW, I use VS Code and it looks fine to me. Maybe check your VS Code
-settings? Tab size should be 8.
-
-
-> > > +static int hx83102_enable(struct drm_panel *panel)
-> > > +{
-> > > +       struct hx83102 *ctx =3D panel_to_hx83102(panel);
-> > > +       struct mipi_dsi_device *dsi =3D ctx->dsi;
-> > > +       struct device *dev =3D &dsi->dev;
-> > > +       int ret;
-> > > +
-> > > +       ret =3D ctx->desc->init(ctx);
-> > > +       if (ret)
-> > > +               return ret;
-> >
-> > You're still changing behavior here. In the old boe-tv101wum-nl6
-> > driver the init() function was invoked at the end of prepare(). Now
-> > you've got it at the beginning of enable(). If this change is
-> > important it should be in a separate commit and explained.
-> >
-> >
-> > > +       ret =3D mipi_dsi_dcs_exit_sleep_mode(dsi);
-> > > +       if (ret) {
-> > > +               dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-> > > +               return ret;
-> > > +       }
-> > > +
-> > > +       msleep(120);
-> > > +
-> > > +       ret =3D mipi_dsi_dcs_set_display_on(dsi);
-> > > +       if (ret) {
-> > > +               dev_err(dev, "Failed to turn on the display: %d\n", r=
-et);
-> > > +       }
-> >
-> > The old boe-tv101wum-nl6 driver didn't call
-> > mipi_dsi_dcs_exit_sleep_mode() nor mipi_dsi_dcs_set_display_on() in
-> > its enable routine, did it? If this change is important please put it
-> > in a separate change and justify it.
->
-> In the old boe-tv101wum-nl6 driver inital cmds was invoked at the end of
-> prepare() function , and call 0x11 and 0x29 at end of inital. For
-> himax-hx83102 driver, we move inital cmds invoked at enable() function.
-> For panel timing, I think there is no much difference. They are
-> all initial cmds executed after meeting the power-on sequence.
-> I will update these in the v4 commit message.
-
-Ah, I see! So the mipi_dsi_dcs_exit_sleep_mode() was the 0x11 in the
-old code and the mipi_dsi_dcs_set_display_on() was the 0x29 in the old
-code. OK, I agree that it's better like you've done it where those
-functions are moved out of the "->init()" function and into the
-caller, so please keep that as you have it.
-
-The only thing I would request is to keep the ->init() call to be made
-at the end of prepare() instead of the beginning of enable(). It may
-not matter too much, but in that case I'd rather keep it how it was or
-make it an explicit change and not an implicit part of the refactor.
-
--Doug
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
