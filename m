@@ -1,330 +1,102 @@
-Return-Path: <devicetree+bounces-65852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457788C03E0
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 19:56:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65BF88C0408
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 20:03:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7FB3289FFD
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 17:56:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2169A28ACF0
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 18:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C4F12BEA4;
-	Wed,  8 May 2024 17:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEAF512BE9E;
+	Wed,  8 May 2024 18:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xglaHf05"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MYbzNTes"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07F612A142
-	for <devicetree@vger.kernel.org>; Wed,  8 May 2024 17:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C44DDCB;
+	Wed,  8 May 2024 18:03:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715190993; cv=none; b=KnN0d4H4gJE+QDKF5tlPIuO3J0+2ahsIyDTaaGnbMJliA2qk9GXgSnAcX8CX7o0XxaQxmxXt6epJmejdU2vhoWyJ85OpikdNS4MfRxflgyGYfqGQzHric6UdSejHSUd97U1sbDSB4+JKPZLtta4rnRGQd3ZM/7hs6NcsyY/uCSI=
+	t=1715191397; cv=none; b=Co2RbMP0EIdVrniHXWffti0sH51/DlZoTBSoKLygi5kGe2gNMdP7HuXdGnNegBjUEAsoJlt9L14dlGtxHO5ZJuV3kIh/fKENOqEyM7kPyBHBji3TNpn1y/LZS8bzShNs9FsP8yF2qfTyHJ9nC+2BRZmi62n2WxC+d0H9Z1d/fvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715190993; c=relaxed/simple;
-	bh=szPgE3rebF1sy5v5yd23f4PLf0P3xWB8KnNzAqtAPjA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RiK7V73unEtVUv/pa68IvOmCudgW55SjSDSsAmgEeNKSO4wQXMpThMpErzVPnbRqxpDyJ0AFpvgZlbYKzeZWtVTuiV1qNgHoCSP2aVJS5VizDfwKU1bFnmagh2mgHzsbu/bLkO0VkVtX4Kym90tZ8Gb3YPgUUSVxUcu1Wr060vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xglaHf05; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2e45c0a8360so254931fa.3
-        for <devicetree@vger.kernel.org>; Wed, 08 May 2024 10:56:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715190990; x=1715795790; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uzBzRgFSdVH+nrPU1OUGiOgXRj7GxqH91mwBdStB+BA=;
-        b=xglaHf05xowF77CprSFwwUIGXiQhxFU+8aOKMwK2cdilOk7WYcVZqwYKXDF4uFh39c
-         rs0XkEU0HbiTOw0Vk3Mh2lWDIS0rfqVokj3lMIxZgpmLrZCdbvWkSs926c+J3IKOWROt
-         m+fDIKKyKyC3KmHgTLqtlDK5vkIZo0Y60eiMPc8ipCgAn7nV+ICk1wIVzHb1BJizslbM
-         cHgSgwQUmNo8wwnvrlF/TTY0CetMha52Iq6oUNoBwRIMC9UOs2OBkLmd5DqBs0ggdHH3
-         kMoU18fnuNp7L1b8/GN0jABWxLlEPhY7jLa4cNo2ziOCx5eOb8I6mk3YC7CaPSTw7IFo
-         Qesg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715190990; x=1715795790;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uzBzRgFSdVH+nrPU1OUGiOgXRj7GxqH91mwBdStB+BA=;
-        b=Chp6cod3ngdXvYJqYPxcLo8Wt5oSaLRP+x5bQx0Z3M+b/QH3+OO8/ii+sg12aeVTq9
-         qA5uw9Mgzd6y6Cjj4LjGTfTQ1k/uUHIVAoF+QTR98o2Z2oRJCUSaMILW4geAeG/wwJc8
-         m9/v8t4c1J/Lfft2jMUf/BSdmLc8592o9PeayT5nEe4G0KH4T5jn1RF4e6PgkF7PfHz3
-         yF9hpBLZLCkMZ6Z54tWH5+hSELc4Ei1vxH+atzmB/eeBbOSCZ6h9ZpL5TW2xRAooHqOo
-         3g/M8K/MRMP531+jHP+PtlxX+pakk1BOJH++AyXdjLkOkdGET3D/cyAFsg6JlWZGxaYs
-         nfWw==
-X-Forwarded-Encrypted: i=1; AJvYcCXSo9FQVWH/aUJ1BtXDElTJrU8fp/uYkFQoPvpxnr7cPgCd31H1vkwgBzkAyPQ5dEc4tMr3rhbhqHd3x+csS0rHrU5x7WojlBzGPA==
-X-Gm-Message-State: AOJu0Yy7v2K3UfVzdgREjXfuvNWBlzrGkZ0TIOvFgFnWYIQNv1f3n5k7
-	zDfjOAj9T+ZRi+2pJus4G0W1kXzYhDBJqecnK0p1nZM62oB6Z1o8ed7s68msMJI=
-X-Google-Smtp-Source: AGHT+IGNTtXzAx+uEFqVS4+rrXCid12VNtYBGtEcGsClfV93tEjIjQ51qt0rgpsLA6kPJK1trUqT/g==
-X-Received: by 2002:a2e:8906:0:b0:2e3:4f79:4d25 with SMTP id 38308e7fff4ca-2e446d82bb0mr20739551fa.3.1715190989827;
-        Wed, 08 May 2024 10:56:29 -0700 (PDT)
-Received: from [192.168.0.3] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a14-20020a05600c224e00b0041c012ca327sm3032031wmm.45.2024.05.08.10.56.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 May 2024 10:56:29 -0700 (PDT)
-Message-ID: <f838a43a-e7a1-427d-ade7-f0793474a634@linaro.org>
-Date: Wed, 8 May 2024 18:56:28 +0100
+	s=arc-20240116; t=1715191397; c=relaxed/simple;
+	bh=vtX9OYTf6vDlfS0ktBMqMcHyn0uiHbfJiCyhtnV0OXM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gkRnBv9VX+jY/KlTZQEoMyc2LVBhpnAjT2nOMKqD2ooQI3PYJAmYZS74HXdAS7Jqym7+muRpS4rUSmFGlnRYRkFjn6xfRRsRB53ysz6HwQlSqn0Q9gN6IMf4E310lcxYQ/Fbr7C/aDGzz8mbPPeI8z3NhzW08vv11xkULVY7Hsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MYbzNTes; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25185C4AF0A;
+	Wed,  8 May 2024 18:03:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715191397;
+	bh=vtX9OYTf6vDlfS0ktBMqMcHyn0uiHbfJiCyhtnV0OXM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=MYbzNTesUFW2fDlrB2ZDrQE7o/dn/z+EtJZyE3u1wWHbJ62kluNZauUa+wxvkWjsP
+	 /PV1r17b3JRJwDOk3lVi0MGoTmRt0vt6Z0CoPCCbpaCiok0LjrkZyJ4L2dIzQnWWfl
+	 RciULehgYlzP1GXZMgvog3KMkhd/blMEU7pNW5vCIbbqoHs56aSO0oLcJ2Ds8lr5oP
+	 jPXxDo9rqNkEhb+LD7jIpPSBcuv1pP0XTyyt4Oi6sJgfg96BBnLRetVeb7A778OJz8
+	 HUUmPdEgSCitvxPesDl3eqQ1apKJC3bZFWHLnoaEztDYMCR0FHkhQYLJ+OfzRRgUrm
+	 zI9+BelRbKS6A==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-51fea3031c3so6130588e87.0;
+        Wed, 08 May 2024 11:03:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUahiycJ4n6nxK4QsmcPBMD4IlEEGNK+o5DPLf5aX0EEYy9SC6CJEgGcesfwuIqUWMSVt17soORLcUUSDXYz6VLLTfV+nXlG5Ew1EWqSw4eH57l0881VLtQaEhjwKBir/xD+AheMs5rSTEQN8dkXJjesM6/pPxjPeOyvPEL78+O0X50wo51CO0cr8lAw8WLwatvHl+nNeVD/WxHSw==
+X-Gm-Message-State: AOJu0Yxg8dpUOljj+KcVp6BbT5EfW1RHrvwjxv/yiSE9WZRj9CavaS9x
+	aFBqpzgVtUu7o4E50K8AipOaRQPMMei9Sga5U5WPb1YDGe5xZiz9U6eBPPei1fkjW1ZFe0cAaoJ
+	Ab9HtYMvhxhvMqaEOZ9nB89+xVg==
+X-Google-Smtp-Source: AGHT+IH0zN0FOFcNEuZcJi5LH/Uw8GX6uuPb5ReSqM+j+elaOKtK7fdmCjjC3HJJyCFq8nUkTj/1rG7NKu7z9ZSzDVo=
+X-Received: by 2002:ac2:47fb:0:b0:51d:5f0a:8839 with SMTP id
+ 2adb3069b0e04-5217c373ed4mr2700393e87.5.1715191395399; Wed, 08 May 2024
+ 11:03:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/13] mfd: pm8008: rework driver
-To: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Das Srinagesh <quic_gurus@quicinc.com>,
- Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-12-johan+linaro@kernel.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240506150830.23709-12-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240430083730.134918-1-herve.codina@bootlin.com> <20240430083730.134918-15-herve.codina@bootlin.com>
+In-Reply-To: <20240430083730.134918-15-herve.codina@bootlin.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 8 May 2024 13:03:02 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKcgYJQUd-g3NQ-Z03fcGWswSByzh1=_0jkYsmGjK=RHA@mail.gmail.com>
+Message-ID: <CAL_JsqKcgYJQUd-g3NQ-Z03fcGWswSByzh1=_0jkYsmGjK=RHA@mail.gmail.com>
+Subject: Re: [PATCH 14/17] of: dynamic: Introduce of_changeset_add_prop_bool()
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, UNGLinuxDriver@microchip.com, 
+	Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Saravana Kannan <saravanak@google.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
+	Daniel Machon <daniel.machon@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Allan Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 06/05/2024 16:08, Johan Hovold wrote:
-> Rework the pm8008 driver to match the new binding which no longer
-> describes internal details like interrupts and register offsets
-> (including which of the two consecutive I2C addresses the registers
-> belong two).
-> 
-> Instead make the interrupt controller implementation internal and pass
-> interrupts to the subdrivers using MFD cell resources.
-> 
-> Note that subdrivers may either get their resources, like register block
-> offsets, from the parent MFD or this can be included in the subdrivers
-> directly.
-> 
-> In the current implementation, the temperature alarm driver is generic
-> enough to just get its base address and alarm interrupt from the parent
-> driver, which already uses this information to implement the interrupt
-> controller.
-> 
-> The regulator driver, however, needs additional information like parent
-> supplies and regulator characteristics so in that case it is easier to
-> just augment its table with the regulator register base addresses.
-> 
-> Similarly, the current GPIO driver already holds the number of pins and
-> that lookup table can therefore also be extended with register offsets.
-> 
-> Note that subdrivers can now access the two regmaps by name, even if the
-> primary regmap is registered last so that it's returned by default when
-> no name is provided in lookups.
-> 
-> Finally, note that the current QPNP GPIO and temperature alarm
-> subdrivers need some minor rework before they can be used with non-SPMI
-> devices like the PM8008. The MFD cell names therefore use a "qpnp"
-> rather than "spmi" prefix to prevent binding until the drivers have been
-> updated.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On Tue, Apr 30, 2024 at 3:39=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
+com> wrote:
+>
+> APIs to add some properties in a changeset exist but nothing to add a DT
+> boolean property (i.e. a property without any values).
+>
+> Fill this lack with of_changeset_add_prop_bool().
+
+Please add a test case.
+
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->   drivers/mfd/Kconfig                   |  1 +
->   drivers/mfd/qcom-pm8008.c             | 95 +++++++++++++++++++++++----
->   include/dt-bindings/mfd/qcom-pm8008.h | 19 ------
->   3 files changed, 85 insertions(+), 30 deletions(-)
->   delete mode 100644 include/dt-bindings/mfd/qcom-pm8008.h
-> 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 4b023ee229cf..bfcb68c62b07 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -2208,6 +2208,7 @@ config MFD_ACER_A500_EC
->   config MFD_QCOM_PM8008
->   	tristate "QCOM PM8008 Power Management IC"
->   	depends on I2C && OF
-> +	select MFD_CORE
->   	select REGMAP_I2C
->   	select REGMAP_IRQ
->   	help
-> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
-> index c7a4f8a60cd4..706a725428dd 100644
-> --- a/drivers/mfd/qcom-pm8008.c
-> +++ b/drivers/mfd/qcom-pm8008.c
-> @@ -7,8 +7,10 @@
->   #include <linux/gpio/consumer.h>
->   #include <linux/i2c.h>
->   #include <linux/interrupt.h>
-> +#include <linux/ioport.h>
->   #include <linux/irq.h>
->   #include <linux/irqdomain.h>
-> +#include <linux/mfd/core.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/of_platform.h>
-> @@ -16,8 +18,6 @@
->   #include <linux/regmap.h>
->   #include <linux/slab.h>
->   
-> -#include <dt-bindings/mfd/qcom-pm8008.h>
-> -
->   #define I2C_INTR_STATUS_BASE		0x0550
->   #define INT_RT_STS_OFFSET		0x10
->   #define INT_SET_TYPE_OFFSET		0x11
-> @@ -45,6 +45,16 @@ enum {
->   #define PM8008_GPIO1_ADDR	PM8008_PERIPH_2_BASE
->   #define PM8008_GPIO2_ADDR	PM8008_PERIPH_3_BASE
->   
-> +/* PM8008 IRQ numbers */
-> +#define PM8008_IRQ_MISC_UVLO	0
-> +#define PM8008_IRQ_MISC_OVLO	1
-> +#define PM8008_IRQ_MISC_OTST2	2
-> +#define PM8008_IRQ_MISC_OTST3	3
-> +#define PM8008_IRQ_MISC_LDO_OCP	4
-> +#define PM8008_IRQ_TEMP_ALARM	5
-> +#define PM8008_IRQ_GPIO1	6
-> +#define PM8008_IRQ_GPIO2	7
-> +
->   enum {
->   	SET_TYPE_INDEX,
->   	POLARITY_HI_INDEX,
-> @@ -150,21 +160,65 @@ static const struct regmap_irq_chip pm8008_irq_chip = {
->   	.get_irq_reg		= pm8008_get_irq_reg,
->   };
->   
-> -static struct regmap_config qcom_mfd_regmap_cfg = {
-> +static const struct regmap_config qcom_mfd_regmap_cfg = {
-> +	.name		= "primary",
-> +	.reg_bits	= 16,
-> +	.val_bits	= 8,
-> +	.max_register	= 0xffff,
-> +};
-> +
-> +static const struct regmap_config pm8008_regmap_cfg_2 = {
-> +	.name		= "secondary",
->   	.reg_bits	= 16,
->   	.val_bits	= 8,
->   	.max_register	= 0xffff,
->   };
->   
-> +static const struct resource pm8008_temp_res[] = {
-> +	DEFINE_RES_MEM(PM8008_TEMP_ALARM_ADDR, 0x100),
-> +	DEFINE_RES_IRQ(PM8008_IRQ_TEMP_ALARM),
-> +};
-> +
-> +static const struct mfd_cell pm8008_cells[] = {
-> +	MFD_CELL_NAME("qcom-pm8008-regulator"),
-> +	MFD_CELL_RES("qpnp-temp-alarm", pm8008_temp_res),
-> +	MFD_CELL_NAME("qpnp-gpio"),
-> +};
-> +
-> +static void devm_irq_domain_fwnode_release(void *res)
-> +{
-> +	struct fwnode_handle *fwnode = res;
-> +
-> +	irq_domain_free_fwnode(fwnode);
-> +}
-> +
->   static int pm8008_probe(struct i2c_client *client)
->   {
->   	struct regmap_irq_chip_data *irq_data;
-> +	struct device *dev = &client->dev;
-> +	struct regmap *regmap, *regmap2;
-> +	struct fwnode_handle *fwnode;
-> +	struct i2c_client *dummy;
->   	struct gpio_desc *reset;
-> +	char *name;
->   	int rc;
-> -	struct device *dev;
-> -	struct regmap *regmap;
->   
-> -	dev = &client->dev;
-> +	dummy = devm_i2c_new_dummy_device(dev, client->adapter, client->addr + 1);
-> +	if (IS_ERR(dummy)) {
-> +		rc = PTR_ERR(dummy);
-> +		dev_err(&client->dev, "failed to claim second address: %d\n", rc);
-> +		return rc;
-> +	}
-> +
-> +	regmap2 = devm_regmap_init_i2c(dummy, &qcom_mfd_regmap_cfg);
-> +	if (IS_ERR(regmap2))
-> +		return PTR_ERR(regmap2);
-> +
-> +	rc = regmap_attach_dev(dev, regmap2, &pm8008_regmap_cfg_2);
-> +	if (rc)
-> +		return rc;
-> +
-> +	/* Default regmap must be attached last. */
->   	regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
->   	if (IS_ERR(regmap))
->   		return PTR_ERR(regmap);
-> @@ -173,14 +227,33 @@ static int pm8008_probe(struct i2c_client *client)
->   	if (IS_ERR(reset))
->   		return PTR_ERR(reset);
->   
-> -	if (of_property_read_bool(dev->of_node, "interrupt-controller")) {
-> -		rc = devm_regmap_add_irq_chip(dev, regmap, client->irq,
-> +	name = devm_kasprintf(dev, GFP_KERNEL, "%pOF-internal", dev->of_node);
-> +	if (!name)
-> +		return -ENOMEM;
-> +
-> +	name = strreplace(name, '/', ':');
-> +
-> +	fwnode = irq_domain_alloc_named_fwnode(name);
-> +	if (!fwnode)
-> +		return -ENOMEM;
-> +
-> +	rc = devm_add_action_or_reset(dev, devm_irq_domain_fwnode_release, fwnode);
-> +	if (rc)
-> +		return rc;
-> +
-> +	rc = devm_regmap_add_irq_chip_fwnode(dev, fwnode, regmap, client->irq,
->   				IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
-> -		if (rc)
-> -			dev_err(dev, "failed to add IRQ chip: %d\n", rc);
-> +	if (rc) {
-> +		dev_err(dev, "failed to add IRQ chip: %d\n", rc);
-> +		return rc;
->   	}
->   
-> -	return devm_of_platform_populate(dev);
-> +	/* Needed by GPIO driver. */
-> +	dev_set_drvdata(dev, regmap_irq_get_domain(irq_data));
-> +
-> +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, pm8008_cells,
-> +				ARRAY_SIZE(pm8008_cells), NULL, 0,
-> +				regmap_irq_get_domain(irq_data));
->   }
->   
->   static const struct of_device_id pm8008_match[] = {
-> diff --git a/include/dt-bindings/mfd/qcom-pm8008.h b/include/dt-bindings/mfd/qcom-pm8008.h
-> deleted file mode 100644
-> index eca9448df228..000000000000
-> --- a/include/dt-bindings/mfd/qcom-pm8008.h
-> +++ /dev/null
-> @@ -1,19 +0,0 @@
-> -/* SPDX-License-Identifier: GPL-2.0-only */
-> -/*
-> - * Copyright (c) 2021 The Linux Foundation. All rights reserved.
-> - */
-> -
-> -#ifndef __DT_BINDINGS_MFD_QCOM_PM8008_H
-> -#define __DT_BINDINGS_MFD_QCOM_PM8008_H
-> -
-> -/* PM8008 IRQ numbers */
-> -#define PM8008_IRQ_MISC_UVLO	0
-> -#define PM8008_IRQ_MISC_OVLO	1
-> -#define PM8008_IRQ_MISC_OTST2	2
-> -#define PM8008_IRQ_MISC_OTST3	3
-> -#define PM8008_IRQ_MISC_LDO_OCP	4
-> -#define PM8008_IRQ_TEMP_ALARM	5
-> -#define PM8008_IRQ_GPIO1	6
-> -#define PM8008_IRQ_GPIO2	7
-> -
-> -#endif
-
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>  drivers/of/dynamic.c | 25 +++++++++++++++++++++++++
+>  include/linux/of.h   |  3 +++
+>  2 files changed, 28 insertions(+)
 
