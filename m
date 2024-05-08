@@ -1,74 +1,108 @@
-Return-Path: <devicetree+bounces-65786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70BD78BFF12
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 15:43:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5AB8BFFB9
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 16:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B063282E0B
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 13:43:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E9401C20E8E
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 14:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0BBC85C6A;
-	Wed,  8 May 2024 13:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400DA84DE8;
+	Wed,  8 May 2024 14:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FfK55lXI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBC484FBE;
-	Wed,  8 May 2024 13:41:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C295228;
+	Wed,  8 May 2024 14:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715175719; cv=none; b=c1eqLQds/6hcBHKOVX2pjJRTMzpvibEEnfvqiaRoHYvn4ZiHjag0Yy1HZa7vzvuV824QyL4TLLj8kB1Kb1Hq9ZsYTJkpN2kdUX1T8MUTHtaO8da5K+vnIFdh5FJlzKZCMDiwgAQHR6gMYY7xbTKW4bQLYCgFnVC9UY+pe6RHALU=
+	t=1715177354; cv=none; b=Y4lMY81mzoq1zqlS9d+5JbDHWJbNez+aFUxWurRF1JftTT0uHqo/MtqY66g/KoWjarZqkiuGVUKSr+ogKe9K/V+8F9WsqoO1lWnJvsITX7kfI+eTN1JxU7ZiOtJUThdi61EmLReJXuerDIVlfm8KKWajlporz0gH2S+X+42yUUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715175719; c=relaxed/simple;
-	bh=ZPf+rSnPTRyUxIk56yCEHcfZHAeg+uj08XJt6D76TLc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=TLastEBZzA1BvID+sDQdoMw5HOGwb2oVJlerMpREGRyTxsLCqxNZw6/T0yVOFOarYa3/uFs/cI4S4GrDIpJkL6fMfRNp/PPfgLFx4A5gzBOp6bdC4XYNfOCBKl/qAIKYWIqmAAHodPZ4Vn0JocFXTV4ADypembfT3A3bmRttJVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.ozlabs.org (Postfix) with ESMTPSA id 4VZGXM34nTz4x80;
-	Wed,  8 May 2024 23:41:55 +1000 (AEST)
-From: Michael Ellerman <patch-notifications@ellerman.id.au>
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>, "Aneesh Kumar K.V" <aneesh.kumar@kernel.org>, "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>, Ran Wang <ran.wang_1@nxp.com>, Zhao Chenhui <chenhui.zhao@freescale.com>, Li Yang <leoyang.li@nxp.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20240119203911.3143928-1-Frank.Li@nxp.com>
-References: <20240119203911.3143928-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/4] powerpc: dts: add power management nodes to FSL chips
-Message-Id: <171517558555.165093.3578824568292116308.b4-ty@ellerman.id.au>
-Date: Wed, 08 May 2024 23:39:45 +1000
+	s=arc-20240116; t=1715177354; c=relaxed/simple;
+	bh=VZyUtgn7CSrqZqD2WXaMMzb6R5zKmx5KV+opHAphR2Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J1jZev/pUNnUbrBWZki8gY6ACd0v3prXb3Q4yzfAZZ1p0mnVXVinzu/UxNHMFl1BeEBAWSB3KA1YBx3AHAJpmLPKW/5ICvgPC5tvI6FoCheRuUh6ZzUwqHsoqXT47fr2tBaWC82vzqVw1WLlYMrfUT3YqV13e6nvKpEsS7C3AY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FfK55lXI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E100C113CC;
+	Wed,  8 May 2024 14:09:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715177353;
+	bh=VZyUtgn7CSrqZqD2WXaMMzb6R5zKmx5KV+opHAphR2Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FfK55lXIxxm/5TEJWNmw3vYYan6hnJpce8FOxpJnul6TMsmsdOk7CmNCaHYXaOobc
+	 pa5rpx0Jd0c5mg/SyIYRivD8ofsnFlUBpyE2Va4NH7ZxymuNaGhwpUxSZYfB2RJ7sI
+	 KbvYvutvUYdtmv3zLRpKMUjZ1/X17Sm5tqd9VhkCKU0tiUJF6o8N+yIDi1t8q1a48O
+	 51vQYjhGDcswN4zd/4iBPrFuD5lQb/DSm0ULYs9ytwRvV1f7S9cAmunIAilmKkYN3s
+	 8/aDsad/YDxVTA4PmV5g3jydDY5244NkvnQdQAeWt2kv+k8lGqmPn5/9E5NPaqdong
+	 avbGNizqPHUMQ==
+Date: Wed, 8 May 2024 09:09:11 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>, linux-mtd@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, oxffffaa@gmail.com,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org, kernel@sberdevices.ru,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
+Message-ID: <171517732606.1572649.16193191353725811830.robh@kernel.org>
+References: <20240507230903.3399594-1-avkrasnov@salutedevices.com>
+ <20240507230903.3399594-2-avkrasnov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240507230903.3399594-2-avkrasnov@salutedevices.com>
 
-On Fri, 19 Jan 2024 15:38:54 -0500, Frank Li wrote:
-> Enable Power Management feature on device tree, including MPC8536,
-> MPC8544, MPC8548, MPC8572, P1010, P1020, P1021, P1022, P2020, P2041,
-> P3041, T104X, T1024.
+
+On Wed, 08 May 2024 02:09:01 +0300, Arseniy Krasnov wrote:
+> Boot ROM code on Meson requires that some pages on NAND must be written
+> in special mode: "short" ECC mode where each block is 384 bytes and
+> scrambling mode is on. Such pages are located on the chip in the
+> following way (for example):
 > 
+> [ p0 ][ p1 ][ p2 ][ p3 ][ p4 ][ p5 ][ p6 ][ p7 ] ... [ pN ]
+>   ^           ^           ^           ^
+> 
+> pX is page number "X". "^" means "special" page used by boot ROM - e.g.
+> every 2nd page in the range of [0, 7]. Step (2 in example is set by
+> 'amlogic,boot-page-step' field. Last page in range (7 in example) is
+> set by 'amlogic,boot-pages' field.
+> 
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> ---
+>  .../bindings/mtd/amlogic,meson-nand.yaml       | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
 
-Applied to powerpc/next.
 
-[1/4] powerpc: dts: add power management nodes to FSL chips
-      https://git.kernel.org/powerpc/c/b12ba096b89084d1e2d6ebdb71b852eeebef95d3
-[2/4] powerpc: dts: p1010rdb: fix INTx interrupt issue on P1010RDB-PB
-      https://git.kernel.org/powerpc/c/9c8dc6f34351cd0c6a2ef83be2266f7dd67c152c
-[3/4] powerpc: dts: mpc85xx: remove "simple-bus" compatible from ifc node
-      https://git.kernel.org/powerpc/c/0bf51cc9e9e57a751b4c5dacbfa499ba5cd8bd72
-[4/4] powerpc: dts: fsl: rename ifc node name to be memory-controller
-      https://git.kernel.org/powerpc/c/acb354fe97e5aa6d9534b601ce18ef7866f25c4d
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-cheers
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+
+
 
