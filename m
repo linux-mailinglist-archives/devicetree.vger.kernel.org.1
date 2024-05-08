@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-65656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD28C8BF705
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 09:28:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE58E8BF70B
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 09:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 248201F23F13
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 07:28:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C3F7B23442
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 07:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743D928383;
-	Wed,  8 May 2024 07:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B122837E;
+	Wed,  8 May 2024 07:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRe5l1wB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFItLBxk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC2D22EF5;
-	Wed,  8 May 2024 07:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A7F2C856;
+	Wed,  8 May 2024 07:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715153328; cv=none; b=FM4vdLgAhdzRntN5gyMPZnD2mmy8elU/7PnIVrGCpZhmmusxwZPXNOCMvlVMXPaQoPn6VJ9C4zG5gDAx/QIi1et9sJqM1Z25u3PpbRzQz74FP22TLXbPb1AuKTs1O2r1fYR+c4J4Yeq6+e0BwIY9bMASZTtrHp2OTQeubBcN9iA=
+	t=1715153368; cv=none; b=RYrESMCEuCdlV90J51gnySOCLhshCuuAzJ4Y99Ff4Fjz3fl524jQx5ROWH+rYxJia8pnFGSu0wzBcU+0o4CtJ3hchEWkMZDNwyWax8tFcVNoCwpZgspxNDZRDiXEa7fCSBfahE304nfCh4MUQKxzuWp0nHFGE+VcDXLPpCLwF68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715153328; c=relaxed/simple;
-	bh=YA3v3y8udHRYWjzxIZShcq66CRDcub/rDzX+f6h+13M=;
+	s=arc-20240116; t=1715153368; c=relaxed/simple;
+	bh=32ioLqPM7lnDwXJD99G8P6IhwH1PO1nE9mcgPc5umFs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rl58dgCAIIo5fB9uSDSn0z8WXDkNZQ+AJ3coys4tYltcXaaN0iTwUNxaftav17is6XGU0TVEQz9GRRDVMpem4kjMDkMd/Ud+yWALC0ADuA1sxHaMmrRVvmoCeloVsUKiqpmkM0vlLdyx/yA6Yb22DOlecNY/CjMdzwt6gJRQ62M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRe5l1wB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95ECAC113CC;
-	Wed,  8 May 2024 07:28:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JUwp5fpsim5gWFgal2g1JTdPrXx/JMyBhdk0+zcZiQrVBqbyV0UHhmxSNEWM3vW5rbD9dnXsNME2R8HMdtxcb2WF1ru50i024/+FD5IZL62i8ED73qOJ/dwOIELN/BPGPzDNk4NsLEadKifWGdn+enXJYogUVmadDB/cTZ4g72c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFItLBxk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D2E2C4AF18;
+	Wed,  8 May 2024 07:29:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715153327;
-	bh=YA3v3y8udHRYWjzxIZShcq66CRDcub/rDzX+f6h+13M=;
+	s=k20201202; t=1715153368;
+	bh=32ioLqPM7lnDwXJD99G8P6IhwH1PO1nE9mcgPc5umFs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jRe5l1wBuYBydqwX6feUGrrfHUkZ76D//acOjszQuakgqYFSPYdZWrHxSzbg24bDB
-	 iTQN17/IEVwfcESLOIeQmBorrh5i0CIZXW9vB7miF9KmdzoMlu2In1KmzKEiAwTZQS
-	 kjZIqnA3BJ06k/sH6TeiyJFCQ79//Y8PhQfzUTXAbiQoa1+Ov621MtZpABG+Pken6V
-	 fFwC4RuEjWCVZxDpM04goL+TKDxYOzx5gkKLR/AF7EgyYJgJCBcQc+dQX6NMc4VRUA
-	 QM1afoGNwo0qXk1Ds95GWZs16MW/IqBhi/Cp1f2gKtpqljZ/5wA1AXtazv2stTYhSW
-	 bUbq8PkP4p1cA==
-Message-ID: <7c4689c9-34a8-454a-a514-8ff0c77d74a8@kernel.org>
-Date: Wed, 8 May 2024 09:28:41 +0200
+	b=mFItLBxk0t3ORVVyP+Uw3/iq1vLTpubeQsj5frHza1Gp6X646wV1f2WM8uM4wDECP
+	 KOqsWeys1ZdIWR3duGlXMvO9i7AI+WJEwxMQ7h9BrgLAbZ6yIovQBV+saMRU1wXD3G
+	 SKPGKCBTfean3w/gA7MA42YX+8EMfRcZDFyKLJxRAgCcTaOSs0B8xKJiLXqVtFGsry
+	 ijatMDEyG9ws/DfoFHg/CMQOmk5qLq6o5LWZ+d8XIRCQA99O83uC4W7G2Aot4AKOJf
+	 isrCVR/ahVwwIXaOU5twMHdoEYcCk5pgF2QGTQpf5x4b1Irq/TT2k9xPDLwCKJCRx0
+	 R34QBFJ3OXhyQ==
+Message-ID: <a4479812-63aa-4f10-a4a0-0f0a44acb468@kernel.org>
+Date: Wed, 8 May 2024 09:29:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] MIPS: mobileye: Add EyeQ6H device tree
-To: Gregory CLEMENT <gregory.clement@bootlin.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-References: <20240506-eyeq6h-v1-0-f29b5269cc43@bootlin.com>
- <20240506-eyeq6h-v1-2-f29b5269cc43@bootlin.com>
+Subject: Re: [PATCH v2 3/7] dt-bindings: HID: i2c-hid: elan: add
+ 'no-reset-on-power-off' property
+To: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+ Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Douglas Anderson <dianders@chromium.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240507144821.12275-1-johan+linaro@kernel.org>
+ <20240507144821.12275-4-johan+linaro@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,90 +109,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240506-eyeq6h-v1-2-f29b5269cc43@bootlin.com>
+In-Reply-To: <20240507144821.12275-4-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/05/2024 18:16, Gregory CLEMENT wrote:
-> EyeQ6H (or “High”) is an other SoC from Mobileye still based on the
-> MIPS I6500 architecture as the EyeQ5. The 2 clusters of this SoC
-> contains 4 cores which are capable of running 4 threads. Besides this,
-> it features multiple controllers such as the classic UART, high speed
-> I2C, SPI, as well as CAN-FD, PCIe Gen4, Octal/Quad SPI Flash
-> interface, Gigabit Ethernet, MIPI CSI-2, MIPI DSI, and eMMC 5.1. It
-> also includes a Hardware Security Module, Functional Safety Hardware,
-> and video encoders and more.
+On 07/05/2024 16:48, Johan Hovold wrote:
+> When the power supply is shared with other peripherals the reset line
+> can be wired in such a way that it can remain deasserted regardless of
+> whether the supply is on or not.
 > 
-> This commit provides the initial device tree files with support for
-> UART, GPIO and pinctrl, as well as fixed clocked.
+> This is important as it can be used to avoid holding the controller in
+> reset for extended periods of time when it remains powered, something
+> which can lead to increased power consumption. Leaving reset deasserted
+> also avoids leaking current through the reset circuitry pull-up
+> resistors.
 > 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/mips/boot/dts/mobileye/eyeq6h-epm6.dts        | 22 +++++
->  .../boot/dts/mobileye/eyeq6h-fixed-clocks.dtsi     | 52 ++++++++++++
->  arch/mips/boot/dts/mobileye/eyeq6h-pins.dtsi       | 88 +++++++++++++++++++
->  arch/mips/boot/dts/mobileye/eyeq6h.dtsi            | 99 ++++++++++++++++++++++
->  4 files changed, 261 insertions(+)
+> Add a new 'no-reset-on-power-off' devicetree property which can be used
+> by the OS to determine when reset needs to be asserted on power down.
 > 
-> diff --git a/arch/mips/boot/dts/mobileye/eyeq6h-epm6.dts b/arch/mips/boot/dts/mobileye/eyeq6h-epm6.dts
-> new file mode 100644
-> index 000000000000..ebc0d363fbf8
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/mobileye/eyeq6h-epm6.dts
-> @@ -0,0 +1,22 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright 2024 Mobileye Vision Technologies Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "eyeq6h.dtsi"
-> +
-> +/ {
-> +	compatible = "mobileye,eyeq6-epm6", "mobileye,eyeq6";
-> +	model = "Mobile EyeQ6H MP6 Evaluation board";
-> +
-> +	chosen {
-> +		stdout-path = "serial0:921600n8";
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x1 0x00000000 0x1 0x00000000>;
-> +	};
-> +};
-> diff --git a/arch/mips/boot/dts/mobileye/eyeq6h-fixed-clocks.dtsi b/arch/mips/boot/dts/mobileye/eyeq6h-fixed-clocks.dtsi
-> new file mode 100644
-> index 000000000000..8bb806eb567e
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/mobileye/eyeq6h-fixed-clocks.dtsi
-> @@ -0,0 +1,52 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright 2023 Mobileye Vision Technologies Ltd.
-> + */
-> +
-> +#include <dt-bindings/clock/mobileye,eyeq5-clk.h>
-> +
-> +/ {
-> +	xtal: xtal {
+> Note that this property can also be used when the supply cannot be
+> turned off by the OS at all.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-You should use common prefixes or even preferred clock node name.
-
-https://lore.kernel.org/all/20240430180415.657067-1-robh@kernel.org/
-
-...
-
-> +
-> +	soc: soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		compatible = "simple-bus";
-
-compatible is *always* the first property. This applies to all your
-patches. See DTS coding style for the order.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
