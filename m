@@ -1,129 +1,183 @@
-Return-Path: <devicetree+bounces-65878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4EE8C0792
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 01:14:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D0F8C07AF
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 01:34:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7096AB211F0
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 23:13:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FA85282F87
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 23:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B8578C72;
-	Wed,  8 May 2024 23:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE0D131E33;
+	Wed,  8 May 2024 23:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ezdt6q/R"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ELB1v/qs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B764502D;
-	Wed,  8 May 2024 23:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5937C1BC40;
+	Wed,  8 May 2024 23:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715210033; cv=none; b=LJ+HlFdrM6RmC5lxUqkrKGbLbMoFtmole0wKL0rNuSkvKgPPAgPKVAoew1P+yWpNCf4yAi3VMnhm8aM4UJ3ul4p4Atirnyk67J8zQsON8eTr3bwUmJq5DqiVZkuOOWrQhWB1px1YAdGAEKdXNpHsvQB4rYAtESfmEGI8V2r6KHU=
+	t=1715211290; cv=none; b=fklG5W0IflmFyDCzOwk3C9zEXkjqJC0Qr1N9NMo8wn7siZv6/i/kYpAIWicCXAj5E1WGgeoP9PZySbc8nKAt4/iaAnhSa69BttCs2ifMxVdwfsRvo5JL90t+YluYmMop3gTcJbK580ySN5Dzd61CtKw+jpLmQHYzgcF96TIrzuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715210033; c=relaxed/simple;
-	bh=JUbTIS/I0CkID9zH4mhMiOz062nvn8SobfwMLUDy9V0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y18onhBA7kjKGsypyImGnrXw3bXMelafYbQMgJIqoeeWbSYroTTnTzwYIANMrd12lxL5fdnekDOBD46kf1+7EBuhmR3LMvfV0wa80MnBIkMrI+NoUy4FV4p5Q94NtFK/a7VRFzNIzqyWUZ0ZAKPJ9ExV+jbOs/3cQnY5XtDPrOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ezdt6q/R; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715210031; x=1746746031;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JUbTIS/I0CkID9zH4mhMiOz062nvn8SobfwMLUDy9V0=;
-  b=ezdt6q/Rc6wQqIAA4kL/IC5nNh2fX4JKyPZbGk75df59NFOAaMSjWkt5
-   HoMVbdQabTw/f+FUVKI1IzehcdT3pA0ZG+HKvjjLin5I3Tn025wgT9/z5
-   KTEZqer+e/wiJEod4m1poNW2beQ797Q4Cw0rgH2PBeldb8YVwk2NY7gPt
-   8/Al7Fr3F//EGcXs9DfCjItQAO8O4cckwARjB+sy2r3C9ZcZ10Spa/o6g
-   qs8E7SEMD4TGH/cm670zDvfxdq0/hAw1NEX3OcnVS6hBGmOW7dTq/YUVu
-   DmfToO1v4HWpZwoQ8TDEcoLOZTWJ2jFfz75dsVNiWPx2nOHBqfjr/YoEg
-   g==;
-X-CSE-ConnectionGUID: Kp4tGvroSACrfv6wzEmjsQ==
-X-CSE-MsgGUID: XYjsa160Q4yaMvdBLr2VNw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11067"; a="10967363"
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; 
-   d="scan'208";a="10967363"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2024 16:13:50 -0700
-X-CSE-ConnectionGUID: v4QTxU35Qae1eH8c8+dbvw==
-X-CSE-MsgGUID: rDza+m2GRcyQxfiWR0I1eA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,146,1712646000"; 
-   d="scan'208";a="59904689"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 08 May 2024 16:13:47 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s4qTo-0004DY-2Q;
-	Wed, 08 May 2024 23:13:44 +0000
-Date: Thu, 9 May 2024 07:13:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Hauke Mehrtens <hauke@hauke-m.de>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	=?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Daniel =?iso-8859-1?Q?Gonz=E1lez?= Cabanelas <dgcbueu@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v2 2/5] mips: bmips: rework and cache CBR addr handling
-Message-ID: <202405090546.iqx9FAqu-lkp@intel.com>
-References: <20240503212139.5811-3-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1715211290; c=relaxed/simple;
+	bh=HNemVXb/OpYjkw6qwSxFgtYqSMxSdSFOgSexH+uBWTg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KOioFHiDLJQidX8LUpwPhzt6pS2rHn0bZB+sri1ctAHRuohVX46F4ipAvIHVTLsccWO9qEvB/+2etJiKpEdu7E1savPaKZEAII7wpd+Fl4y3Uj6pgtnZs6OYxBEEH8lOYnKbL0QM8mogd1w9an7v2YbpZAHirW3AcGTlIILb0zA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ELB1v/qs; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 448G4E8e024341;
+	Wed, 8 May 2024 23:34:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=dtWu/6+BYJMadcGc6nDqhDflB2UOVBkrkN6Fgjdp0QI=; b=EL
+	B1v/qsGGCp0fOXdKXuvSA/2rKZcbcmx1hrrQcKAGQjEomTUaVU4/EgTDdQedD1Qq
+	bwzM4nYGnvKhC96w4jnoXi2JK+zUcNzKYfNZ5tDOle/olW1IIf92Gc2N17GSaCp4
+	fSYk/ikBULt7MUM6XUiQbdfetSJigNQPcBGJjG7DxiCjTZw+kpICPqkgKI3jorLc
+	cM5cwACGG5/wbWwVjAkFBCSLSCn7Uk++OfMFJnAEpGIaIVJGcNcwUj9dwJtfDcJ0
+	yHST7SzG4OkCg7AtJ9sg5v5oj/LRYLcaE4RP9sl1T92C9koGJe0/mn+r1fDX7RAP
+	fUQRdzTqHj7towrUe39Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y07wfsj65-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 May 2024 23:34:24 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 448NYMGc001242
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 May 2024 23:34:22 GMT
+Received: from [10.110.126.205] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 May 2024
+ 16:34:21 -0700
+Message-ID: <0a4d7c2b-ac7d-7bd4-f97e-db60944a1d39@quicinc.com>
+Date: Wed, 8 May 2024 16:34:21 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240503212139.5811-3-ansuelsmth@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v21 09/39] ASoC: qcom: qdsp6: Introduce USB AFE port to
+ q6dsp
+Content-Language: en-US
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>, <krzk+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <Thinh.Nguyen@synopsys.com>,
+        <broonie@kernel.org>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
+        <bagasdotme@gmail.com>, <robh@kernel.org>, <konrad.dybcio@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240507195116.9464-1-quic_wcheng@quicinc.com>
+ <20240507195116.9464-10-quic_wcheng@quicinc.com>
+ <9bd1ec72-71ea-4a1c-b795-af6e7687ca07@linux.intel.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <9bd1ec72-71ea-4a1c-b795-af6e7687ca07@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KE0zh6uJcMg3J7raJjI_KCNq_czRl405
+X-Proofpoint-ORIG-GUID: KE0zh6uJcMg3J7raJjI_KCNq_czRl405
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-08_09,2024-05-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ spamscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 phishscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 malwarescore=0 mlxlogscore=718
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405010000
+ definitions=main-2405080176
 
-Hi Christian,
+Hi Pierre,
 
-kernel test robot noticed the following build errors:
+On 5/7/2024 1:37 PM, Pierre-Louis Bossart wrote:
+> 
+>>   static struct snd_soc_dai_driver q6dsp_audio_fe_dais[] = {
+>> +	{
+>> +		.playback = {
+>> +			.stream_name = "USB Playback",
+>> +			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_11025 |
+>> +					SNDRV_PCM_RATE_16000 | SNDRV_PCM_RATE_22050 |
+>> +					SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_44100 |
+>> +					SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_96000 |
+>> +					SNDRV_PCM_RATE_192000,
+>> +			.formats = SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S16_BE |
+>> +					SNDRV_PCM_FMTBIT_U16_LE | SNDRV_PCM_FMTBIT_U16_BE |
+>> +					SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S24_BE |
+>> +					SNDRV_PCM_FMTBIT_U24_LE | SNDRV_PCM_FMTBIT_U24_BE,
+>> +			.channels_min = 1,
+>> +			.channels_max = 2,
+>> +			.rate_min =	8000,
+>> +			.rate_max = 192000,
+>> +		},
+>> +		.id = USB_RX,
+>> +		.name = "USB_RX",
+>> +	},
+> 
+> Wait, is this saying you will have exactly one PCM device/FE DAI
+> connected to the USB BE DAI exposed in patch 11?
+> 
+>> +	SND_SOC_DAPM_MIXER("USB Mixer", SND_SOC_NOPM, 0, 0,
+>> +			   usb_mixer_controls,
+>> +			   ARRAY_SIZE(usb_mixer_controls)),
+>> +
+> 
+> And then what is the role of the USB mixer if you only have one input?
+> 
+> I must be missing something.
+> 
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.9-rc7 next-20240508]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Not sure if this is a QCOM specific implementation, but the way the DT 
+is defined for the USB offload path is as follows:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/mips-bmips-BCM6358-make-sure-CBR-is-correctly-set/20240504-052513
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240503212139.5811-3-ansuelsmth%40gmail.com
-patch subject: [PATCH v2 2/5] mips: bmips: rework and cache CBR addr handling
-config: mips-bcm63xx_defconfig (https://download.01.org/0day-ci/archive/20240509/202405090546.iqx9FAqu-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240509/202405090546.iqx9FAqu-lkp@intel.com/reproduce)
+	usb-dai-link {
+		link-name = "USB Playback";
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405090546.iqx9FAqu-lkp@intel.com/
+		cpu {
+			sound-dai = <&q6afedai USB_RX>;
+		};
 
-All errors (new ones prefixed by >>):
+		codec {
+			sound-dai = <&usbdai USB_RX>;
+		};
 
-   mips-linux-ld: arch/mips/kernel/smp-bmips.o: in function `bmips_ebase_setup':
->> smp-bmips.c:(.text+0x114): undefined reference to `bmips_cbr_addr'
->> mips-linux-ld: smp-bmips.c:(.text+0x118): undefined reference to `bmips_cbr_addr'
-   mips-linux-ld: arch/mips/kernel/smp-bmips.o: in function `bmips_cpu_setup':
-   smp-bmips.c:(.text+0x1a4): undefined reference to `bmips_cbr_addr'
-   mips-linux-ld: smp-bmips.c:(.text+0x1b4): undefined reference to `bmips_cbr_addr'
+		platform {
+			sound-dai = <&q6routing>;
+		};
+	};
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Based on our DT parser helper API (qcom_snd_parse_of()) this isn't going 
+to create a PCM device.  The PCM devices are created for nodes that 
+don't have a codec and platform defined:
+
+	mm1-dai-link {
+		link-name = "MultiMedia1";
+		cpu {
+			sound-dai = <&q6asmdai  	MSM_FRONTEND_DAI_MULTIMEDIA1>;
+		};
+	};
+
+The ASM path is the entity that defines the number of PCM devices that 
+is created for the QC ASoC platform card, and is where the actual PCM 
+data is sent over to the DSP.  So there could be several PCM devices 
+that can use the USB BE DAI.
+
+Thanks
+Wesley Cheng
+
+
 
