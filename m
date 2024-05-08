@@ -1,120 +1,144 @@
-Return-Path: <devicetree+bounces-65723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C5F8BFBB8
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 13:17:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A428BFBEC
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 13:26:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 040D0283B68
-	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 11:17:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B11161F216B1
+	for <lists+devicetree@lfdr.de>; Wed,  8 May 2024 11:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F0281ABE;
-	Wed,  8 May 2024 11:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9B681AA2;
+	Wed,  8 May 2024 11:26:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFF581ABF;
-	Wed,  8 May 2024 11:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17B9763EC;
+	Wed,  8 May 2024 11:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715167058; cv=none; b=sefvklo4AM4vvzSXYNu3RvLc+thirgFsk47tOUb4URth69Ja+5I655krx+7SxkddYdehsKHPwP8tNEA8X36HCswi9KO5dW+j+L5IeVXoxsuLqlyS+Vc5AYWCkeHTtTVAaFlYTMBUGsdXnM9i/8Ae2PtV6P5J4opNBbxkMyJGg0Y=
+	t=1715167564; cv=none; b=Xkk5QWNdv3Yrgi+4UWwuKdumLFOs74awJuNyGJkvY1+sAtxxHyLmzYGAluGNEaYAQ/Q6GrXVYlqvf5/iFmrM0fLDxKHLSTi6JiIfv9kmJ/M+lj+gpNJE/9KGY6CheLanENlKyMw+jL26jfTR2amKBzj/nqfMULGwmS1vgeHcNTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715167058; c=relaxed/simple;
-	bh=hoBw8RlPKlZhiTIisWaNwFJrb/JCUldr/F60EG7LQJQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PuR+t3VWHJOm5OoH7jjxGSPAxVhsYKx25SmgfBtT+OXzHR5QkI89FMIOUFFwqJtsGBkefeEejVjg1Ymz96TtV0ZR+h01k7vJi17sco4GS9rt30wKhToNraR8wb1hI/jp14ysQQFJT0Fgtz2cf/pXrAVC9JH3P7rW4vmDEYqz+s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: VUMQeUu1ThelLdiCQj1P0A==
-X-CSE-MsgGUID: jDz7RiiVQa2Hswi9evx1og==
-X-IronPort-AV: E=McAfee;i="6600,9927,11066"; a="28535463"
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; 
-   d="scan'208";a="28535463"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2024 04:17:36 -0700
-X-CSE-ConnectionGUID: FYQYL4JjTrmMh8A84hJPDA==
-X-CSE-MsgGUID: tFsKdhskQxen+Pk2x3TCSQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,145,1712646000"; 
-   d="scan'208";a="28949322"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2024 04:17:29 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1s4fIa-00000005PLq-33pb;
-	Wed, 08 May 2024 14:17:24 +0300
-Date: Wed, 8 May 2024 14:17:24 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, arm@kernel.org,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	devicetree@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-	Olivia Mackall <olivia@selenic.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>
-Subject: Re: [PATCH v9 0/9] Turris Omnia MCU driver
-Message-ID: <ZjtfRIykefGlqRF9@smile.fi.intel.com>
-References: <20240508103118.23345-1-kabel@kernel.org>
+	s=arc-20240116; t=1715167564; c=relaxed/simple;
+	bh=qm/H/Coqs9tjdAzYf9iqc0Y4L26GcbCvPj+NsxUvvDo=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Qx+p+BoGU7KGcoFtlqcyofcrNdDCZhGA+0jnzKK87qToPFkhW6CGbGO0Mo2BZfIkNghx+ZXVZoGvgwjdVLsfU/Q9PrFo8rAsu6F8C0j8Ilnkm+0xtJa/o1Zr8O6bFC3NUZw7+Xot7yh5thcWXiN3HRxDR5w4gLWKbaJ4v/MGaC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VZCS326vtz6J9St;
+	Wed,  8 May 2024 19:22:59 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id A347F140CF4;
+	Wed,  8 May 2024 19:25:58 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 8 May
+ 2024 12:25:58 +0100
+Date: Wed, 8 May 2024 12:25:56 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: David Lechner <dlechner@baylibre.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Julien Stephan
+	<jstephan@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, "Michael
+ Hennerich" <Michael.Hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, kernel test
+ robot <lkp@intel.com>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH RFC v6 09/10] iio: adc: ad7380: add support for rolling
+ average oversampling mode
+Message-ID: <20240508122556.00005f71@Huawei.com>
+In-Reply-To: <CAMknhBFx-KVPRbm1xmKeU8ZaA7qt_c0_6eiUT-5kqTWVAvf3hw@mail.gmail.com>
+References: <20240501-adding-new-ad738x-driver-v6-0-3c0741154728@baylibre.com>
+	<20240501-adding-new-ad738x-driver-v6-9-3c0741154728@baylibre.com>
+	<20240506151725.10cf025e@jic23-huawei>
+	<CAMknhBFx-KVPRbm1xmKeU8ZaA7qt_c0_6eiUT-5kqTWVAvf3hw@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240508103118.23345-1-kabel@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Wed, May 08, 2024 at 12:31:09PM +0200, Marek Behún wrote:
-> Hello Andy, Hans, Ilpo, Arnd, Gregory, and others,
-> 
-> this is v9 of the series adding Turris Omnia MCU driver.
-> 
-> This series still depends on the immutable branch between LEDs and
-> locking, introducing devm_mutex_init(), see the PR
->   https://lore.kernel.org/linux-leds/20240412084616.GR2399047@google.com/
-> 
-> See also cover letters for v1, v2, v3, v4, v5, v6, v7 and v8:
->   https://patchwork.kernel.org/project/linux-soc/cover/20230823161012.6986-1-kabel@kernel.org/
->   https://patchwork.kernel.org/project/linux-soc/cover/20230919103815.16818-1-kabel@kernel.org/
->   https://patchwork.kernel.org/project/linux-soc/cover/20231023143130.11602-1-kabel@kernel.org/
->   https://patchwork.kernel.org/project/linux-soc/cover/20231026161803.16750-1-kabel@kernel.org/
->   https://patchwork.kernel.org/project/linux-soc/cover/20240323164359.21642-1-kabel@kernel.org/
->   https://patchwork.kernel.org/project/linux-soc/cover/20240418121116.22184-1-kabel@kernel.org/
->   https://patchwork.kernel.org/project/linux-soc/cover/20240424173809.7214-1-kabel@kernel.org/
->   https://patchwork.kernel.org/project/linux-soc/cover/20240430115111.3453-1-kabel@kernel.org/
+On Mon, 6 May 2024 10:04:10 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-From GPIO implementation perspective, it's good enough in my opinion. The rest
-can be amended later on.
+> On Mon, May 6, 2024 at 9:17=E2=80=AFAM Jonathan Cameron <jic23@kernel.org=
+> wrote:
+> >
+> > On Wed, 01 May 2024 16:55:42 +0200
+> > Julien Stephan <jstephan@baylibre.com> wrote:
+> > =20
+> > > Adds support for rolling average oversampling mode.
+> > >
+> > > Rolling oversampling mode uses a first in, first out (FIFO) buffer of
+> > > the most recent samples in the averaging calculation, allowing the ADC
+> > > throughput rate and output data rate to stay the same, since we only =
+need
+> > > to take only one sample for each new conversion.
+> > >
+> > > The FIFO length is 8, thus the available oversampling ratios are 1, 2=
+, 4, 8
+> > > in this mode (vs 1,  2, 4, 8, 16, 32 for the normal average) =20
+> >
+> > Ah. I should have read on!
+> > =20
+> > >
+> > > In order to be able to change the averaging mode, this commit also ad=
+ds
+> > > the new "oversampling_mode" and "oversampling_mode_available" custom
+> > > attributes along with the according documentation file in
+> > > Documentation/ABI/testing/sysfs-bus-iio-adc-ad7380 since no standard
+> > > attributes correspond to this use case. =20
+> >
+> > This comes to the comment I stuck in the previous patch.
+> >
+> > To most people this is not a form of oversampling because the data rate
+> > remains unchanged. It's a cheap low pass filter (boxcar) Google pointed=
+ me at:
+> > https://dsp.stackexchange.com/questions/9966/what-is-the-cut-off-freque=
+ncy-of-a-moving-average-filter
+> >
+> > in_voltage_low_pass_3db_frequency would be the most appropriate standard
+> > ABI for this if we do treat it as a low pass filter control.
+> >
+> > I'm not necessarily saying we don't want new ABI for this, but I would
+> > like to consider the pros and cons of just using the 3db frequency.
+> >
+> > So would that work for this part or am I missing something?
+> > =20
+>=20
+> I like the idea. But from the link, it looks like the 3dB frequency
+> depends on the sampling frequency which is unknown (e.g. could come
+> from hrtimer trigger).
+>=20
+> Would it be reasonable to calculate the 3db frequency at the max
+> sample rate that the chip allows and just use those numbers?
+>=20
+Ah. So looking at datasheet the normal average oversampling is
+self clocked, but this version is not.
 
--- 
-With Best Regards,
-Andy Shevchenko
+So, I'll ask the dumb question.  What is this feature for?
+We have to pump the SPI bus anyway why not just do the maths in
+userspace?  Oversampling is normally about data rate reduction
+with a bonus in precision obtained.
+
+Jonathan
+
+
+
+
 
 
 
