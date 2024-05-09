@@ -1,124 +1,98 @@
-Return-Path: <devicetree+bounces-65918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93FCD8C099B
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 04:04:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A0C08C094B
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 03:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 502E72833C3
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 02:04:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3687D282961
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 01:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F5113D2A4;
-	Thu,  9 May 2024 02:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0409E13C81F;
+	Thu,  9 May 2024 01:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d0LSJbbQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4AE13D26D;
-	Thu,  9 May 2024 02:03:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD70113B5B3;
+	Thu,  9 May 2024 01:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715220221; cv=none; b=iQBDukAWRyRAIzKfaKWR6qSB5QX+XsbOI6ha3QRb/kUaCOSnc1dtTIID6Il+h4PhQw4sYsjtn6sluHvvIcRzDDbD438Y3ZNPUWV1+jsHCswvU2mYac+0xYS2FZUeLx9u/4pjxSwAQfwNsDPlOYslvbG0Cx2AKWS7Q6QxAUealKA=
+	t=1715219427; cv=none; b=HdmT2YDMc1+mBkdj5MCzdmYHRc9sYyU2oLqtH3dDq7KDStGdBj8vj9iI5k+VwLWUAV46oIUCTNIrHYUN2yV86OBZoW93k1xcqnO1sHA6qoafrUaQuiGPhk9zDPT6RhrAHAqBwZLwzHDKeIEKRZDvXxsQ6OCANjsKsOuuit9c5Q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715220221; c=relaxed/simple;
-	bh=eUwcL9aI2F0Cu45RR1S0pmgtx3YEe7LfV3/UpkyDPg4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=LLbXpEICAGFckcI9fk9JHkQOycYBwtvvhy1mKru2+qg0olO7v5VqVNy6TB+xv6L5IbZgqZ6iO2++/Eh31l/R9jBboATup1L/qmZHO4gxPD96+UV6wLOHkgLDwRNdamD3hI2423cUjadi/nV9kHK0d7DrrGFKiKJJWBvS1MdWykA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EAD1E1A1829;
-	Thu,  9 May 2024 04:03:32 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AD2D11A156B;
-	Thu,  9 May 2024 04:03:32 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9D509180222F;
-	Thu,  9 May 2024 10:03:30 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: abelvesa@kernel.org,
-	peng.fan@nxp.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	marex@denx.de,
-	imx@lists.linux.dev,
-	shengjiu.wang@gmail.com
-Cc: linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 4/4] clk: imx: clk-audiomix: Corrent parent clock for earc_phy and audpll
-Date: Thu,  9 May 2024 09:43:58 +0800
-Message-Id: <1715219038-32453-5-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1715219038-32453-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1715219038-32453-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1715219427; c=relaxed/simple;
+	bh=TjFtPczTySps3gtYiaLaMfzP0mzVJYqLHUsJpNxYMLg=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=Vt6NTQo0QhCJX9mMS7LE774sXugI4EWIylBTOiOeXO07s3FI8IZgkbi7tB56XQinuImOkfYj0D9Sk1hRq7h5Aloc23MfVEdGG6bmwLH7jTVJX10Tw6G4+5/TGJA6ouB6PScZhDBaz5IxT764gUjvS92ungIRycuS5O5xzMvHxHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d0LSJbbQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 52B09C3277B;
+	Thu,  9 May 2024 01:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715219427;
+	bh=TjFtPczTySps3gtYiaLaMfzP0mzVJYqLHUsJpNxYMLg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=d0LSJbbQHDxyrM0TgTU4yAMD3lPyubH2P8+gvVy/YZtmEKiUyVA6c2cR3wkJJD5PH
+	 +9N1wwzr7GxlBbRdDnpRqCYFT0t/gt/NdBMU70VpyQUC9WIdoAL7/3+BzsRglHYMb/
+	 YURTen9dfj7Gxs+uVbi6Y3EOcvhrS0Yk0Z3loASbJFrtKEVP9BrWz4zZbJVTr2dtpE
+	 DGPUsy6i5tOVw7Gf8ZeDX1IfKddHVv4Jr2zRqvcHWGzJljHuld0ys7g1LjwOY0IlKD
+	 bfIDssEo1r6lW9JPo+VsxhfB0JhomkPTv7L6jfQbc/rvgJl9kxFVQEDZ3VgV5DtotZ
+	 o5qQyK0nXiRwg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 406EAC43331;
+	Thu,  9 May 2024 01:50:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: ipq4019-mdio: add IPQ9574 compatible
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171521942726.27440.15024502968877873009.git-patchwork-notify@kernel.org>
+Date: Thu, 09 May 2024 01:50:27 +0000
+References: <20240507024758.2810514-1-mr.nuke.me@gmail.com>
+In-Reply-To: <20240507024758.2810514-1-mr.nuke.me@gmail.com>
+To: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, robert.marko@sartura.hr,
+ linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ conor.dooley@microchip.com
 
-According to Reference Manual of i.MX8MP
-The parent clock of "earc_phy" is "sai_pll_out_div2",
-The parent clock of "audpll" is "osc_24m".
+Hello:
 
-Add CLK_GATE_PARENT() macro for usage of specifying parent clock.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Fixes: 6cd95f7b151c ("clk: imx: imx8mp: Add audiomix block control")
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- drivers/clk/imx/clk-imx8mp-audiomix.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+On Mon,  6 May 2024 21:47:57 -0500 you wrote:
+> Add a compatible property specific to IPQ9574. This should be used
+> along with the IPQ4019 compatible. This second compatible serves the
+> same purpose as the ipq{5,6,8} compatibles. This is to indicate that
+> the clocks properties are required.
+> 
+> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> [...]
 
-diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
-index 6ed44cd5001b..11a29bd46a9e 100644
---- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-+++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-@@ -157,6 +157,15 @@ static const struct clk_parent_data clk_imx8mp_audiomix_pll_bypass_sels[] = {
- 		PDM_SEL, 2, 0						\
- 	}
- 
-+#define CLK_GATE_PARENT(gname, cname, pname)						\
-+	{								\
-+		gname"_cg",						\
-+		IMX8MP_CLK_AUDIOMIX_##cname,				\
-+		{ .fw_name = pname, .name = pname }, NULL, 1,		\
-+		CLKEN0 + 4 * !!(IMX8MP_CLK_AUDIOMIX_##cname / 32),	\
-+		1, IMX8MP_CLK_AUDIOMIX_##cname % 32			\
-+	}
-+
- struct clk_imx8mp_audiomix_sel {
- 	const char			*name;
- 	int				clkid;
-@@ -174,14 +183,14 @@ static struct clk_imx8mp_audiomix_sel sels[] = {
- 	CLK_GATE("earc", EARC_IPG),
- 	CLK_GATE("ocrama", OCRAMA_IPG),
- 	CLK_GATE("aud2htx", AUD2HTX_IPG),
--	CLK_GATE("earc_phy", EARC_PHY),
-+	CLK_GATE_PARENT("earc_phy", EARC_PHY, "sai_pll_out_div2"),
- 	CLK_GATE("sdma2", SDMA2_ROOT),
- 	CLK_GATE("sdma3", SDMA3_ROOT),
- 	CLK_GATE("spba2", SPBA2_ROOT),
- 	CLK_GATE("dsp", DSP_ROOT),
- 	CLK_GATE("dspdbg", DSPDBG_ROOT),
- 	CLK_GATE("edma", EDMA_ROOT),
--	CLK_GATE("audpll", AUDPLL_ROOT),
-+	CLK_GATE_PARENT("audpll", AUDPLL_ROOT, "osc_24m"),
- 	CLK_GATE("mu2", MU2_ROOT),
- 	CLK_GATE("mu3", MU3_ROOT),
- 	CLK_PDM,
+Here is the summary with links:
+  - [v2,1/2] dt-bindings: net: ipq4019-mdio: add IPQ9574 compatible
+    https://git.kernel.org/netdev/net-next/c/3a2a192b0ef1
+  - [v2,2/2] arm64: dts: qcom: ipq9574: add MDIO bus
+    (no matching commit)
+
+You are awesome, thank you!
 -- 
-2.34.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
