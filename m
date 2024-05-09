@@ -1,116 +1,116 @@
-Return-Path: <devicetree+bounces-65982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 954878C0D7D
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 11:31:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F7158C0D85
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 11:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C59461C217DC
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 09:31:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BB58B21CB9
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 09:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA55F14A60D;
-	Thu,  9 May 2024 09:31:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3839F14A61E;
+	Thu,  9 May 2024 09:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eYGQqfJk"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="reG0mO/y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com [162.62.57.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D3914A096;
-	Thu,  9 May 2024 09:31:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06BC14A4DF;
+	Thu,  9 May 2024 09:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715247078; cv=none; b=gMKEhQ1cxS15lsNERRe0EuFgx7Tw2s5Jj6WyucgBdGWb2G+CzyZlipeICG92bj7uoJCCJmILAoNke52ZR/Dz8a5i85gNjQm0vEEkKAjBYkd70k+TT1OfvM33JlBtUQ5ee8tXbGTCvnc4VYeI9gtpyRVWwlNULxfux69jonpBnOA=
+	t=1715247243; cv=none; b=IoFTKVeQFkZTPVBjpIqFmUVEie6Fm2QwzYHcbMY2taAKHWlt9yypdeb/7k1of2oZEHlqCxZgJhHqfflLlhgNR+M03c5mfNuC26jLgxvsUAQcPP+QFnzf4NZcjXZEcgI16+6CehGTYjhWPi9zJ6aGg46fGDcA4E2ZIbZup7KyCvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715247078; c=relaxed/simple;
-	bh=yMguGKEurxhBhT2kNnn/ZtameJsGQKoLePBLTU/eYv0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GKwnqZCfF7e/lmv+ObS+4IUQf4zpb7I99Ru9MQTqFvwz0mdQiw0dBn7tzXr6IsqbmrMjlVolnEEydyGGSdN0hZYegjBjGn496GdFugkDXX1WpGjwoEH8IF1ZPO+4wnn0r1mNMnYab7Kofzml0SpYdghTjUHPKNq4s/Vil0ItfdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eYGQqfJk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1660DC116B1;
-	Thu,  9 May 2024 09:31:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715247078;
-	bh=yMguGKEurxhBhT2kNnn/ZtameJsGQKoLePBLTU/eYv0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eYGQqfJkN1d/277imD/xsq+021aWyQqzAHzvKYlJp/XBwcAmVhermLRITV4idbxlm
-	 CKZXc+52L3i+8CV+MkhcdM4HXP5msn0L9Y+QJA8uU2EFDRjw3OyF69+vNePo2x/L+a
-	 +ekUKns829/c1CY4gcDhRYGYxkNMZW48RY03sYpNtbj/uo0/hPIv4gckyyYXJhcYtR
-	 0pN4mdioeV4Fy+Y9XO/8fdm/UvhO0GutUU+IfSIgaddAZssxdb83x/LTWKQAaYvXz2
-	 tS2qnyvWguA/e1mwiS0jdH96ZXfVZNn+pO5xLVwOhzkzaUtsUTlOemVobBVVem/UMK
-	 aAky732Vxw4mw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1s507W-000000001L5-2a2j;
-	Thu, 09 May 2024 11:31:22 +0200
-Date: Thu, 9 May 2024 11:31:22 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Das Srinagesh <quic_gurus@quicinc.com>,
-	Satya Priya <quic_c_skakit@quicinc.com>,
-	Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 03/13] mfd: pm8008: deassert reset on probe
-Message-ID: <ZjyX6iBqc50ic_oI@hovoldconsulting.com>
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-4-johan+linaro@kernel.org>
- <4468becb-dc03-4832-aa03-5f597023fcb2@linaro.org>
+	s=arc-20240116; t=1715247243; c=relaxed/simple;
+	bh=MtCUZOEf09vm2s3UfRmmEbhe99AQfnhKa18eN3mnrso=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=nzfu62I+wxVyDe9fUayoBcsWaS0p7wlEZWdSlxLaiyIVfz61CUQZPGwv3UTnX/PLFuLDpGpzb8rBhQM03bO6sRsU6C7kCZLS7CBL633Ik2I4XnW8pty9AAEC9N3k7Lc2USxBXOhRy1jiMm54Mmwm9Hk577ZT0GwatpasTXW17pU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=reG0mO/y; arc=none smtp.client-ip=162.62.57.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1715247227; bh=uHRrkhKKY/U0upUZfJkXb4BY8bCTGf1SFZ8EyfT1G3g=;
+	h=From:To:Cc:Subject:Date;
+	b=reG0mO/yMD0Allajl/2aMO1ahdJMd1FG86iTLZ031D7u5g0tYM1mYE3kORENzH04s
+	 GQ9UC1LP2QjvCQCjOcF/3MrO5DJk6oNrTrboudF6/TXbLNoe+iijW7tiuiGnvAeRzw
+	 zVyBPSiMtLFK0Vh+p7YsW2wjyYMX9DX/LXbR0ZiU=
+Received: from cyy-pc.lan ([240e:379:225f:c000:ddd2:5a64:482:d6f2])
+	by newxmesmtplogicsvrsza10-0.qq.com (NewEsmtp) with SMTP
+	id 86B97886; Thu, 09 May 2024 17:33:43 +0800
+X-QQ-mid: xmsmtpt1715247223taum3m4ji
+Message-ID: <tencent_B61C1370E7632842D61BB7F9FA0515B44D09@qq.com>
+X-QQ-XMAILINFO: NkHKfw09D6j8uL2HVuJBhrc2zAVCXYqfSMQbCILL5ryFnjPQlfSSZSmyhy0OIS
+	 51hz1Aj5/VjBhn/J3uDwgpLwGwdPxe6mo0HKpyqEVWoVZD1ju4+BSdIZLKYcr1FqxTGvLrKobGz6
+	 9MRknHCRtI6YvQTjMv3elKw/uuseaZvLe+uwd92wJ+4Y/ZrEBJg6rV4kXrp+581iAqZbVyxiE19W
+	 WuqjyKz1jdnZWTG747f/PaHiKP+38krSpqFhgycfkgnsx77GiKoMDxQfI8x8Y8ynZhDQV//Qz+DH
+	 xja4FqphOyVQUcnHNPIf4uVLUaA47Lp18wJpQqGO8sLWnqs8+8gnoYXvOFgHXuzv4rwFCCOPU02C
+	 dgxsiD+mjvY16vcI6QgHkd2+clL+jKlA4liQst7W0+bF7OEvuvmpIksFU703rPDhAQY0lByg1bVG
+	 ooud3Hq4c4KlTsDwIhRKRnbenhW0cfSmOya03euiBpH9xJuJ4WdlsSaQygHYiD76It9XTfoFRpZw
+	 tUTkXSz3rxx4e4pl3SIQROzzZZ0qkcnl4G+Vg1/C3QaTcdEp0eo2xcwrcW6CrY/Sk168Y/YAwTqt
+	 zzQEhV8Z+EqwzKDRo9/tpCfx9ry+bkjCr6VEiK1dlBNkwwmk14el1KiG9m/vN6p79Bvc040hha0O
+	 3p7hySI/w3VOuB9/Xqemjuf+YtRjntvFCkMmknFI9LTnryALuCB/mlExTlcVbY0e2DD4POPIn8Fd
+	 qQPXkgf7XZtsX8q5+kRyWUA5tYZqz7ekw+SJo+QHKvLNhRL6nn4JorQDFnNzolMgQTUkLlS4Xjhp
+	 p7zpW/I7ccH83nQ+Euqv2R3XFEXfHzlFhinZw1Uo78unA2WVwgDed+rOCOkipJwUMTRwI5zgvIdv
+	 b6FoBWxUi16ON2TOOzjICCTvV0QGfeNVVNxKW7D/7HrCnH2TB5xwJHLBl5QXxUC0rglWkdMCB7Gc
+	 zOluQZfO+YuXCG5LlxNL0YfrT1qh/lAlRQpTHEKQCxYrqqYQ98BTPdz9W/qVQBsPHEDBEWuro=
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+From: Yangyu Chen <cyy@cyyself.name>
+To: linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: [PATCH] riscv: dts: fix isa string for Canaan Kendryte K230
+Date: Thu,  9 May 2024 17:33:11 +0800
+X-OQ-MSGID: <20240509093311.1943337-1-cyy@cyyself.name>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4468becb-dc03-4832-aa03-5f597023fcb2@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Wed, May 08, 2024 at 05:12:51PM +0100, Bryan O'Donoghue wrote:
-> On 06/05/2024 16:08, Johan Hovold wrote:
-> > Request and deassert any (optional) reset gpio during probe in case it
-> > has been left asserted by the boot firmware.
-> > 
-> > Note the reset line is not asserted to avoid reverting to the default
-> > I2C address in case the firmware has configured an alternate address.
+The original is a string in dts that has no "zfh" or "zvfh" extension,
+but the K230 chip has them, so I am adding them to the dts. This
+patch also reordered the Z* extension in the isa string and used
+canonical order for the category as the first key and then alphabet
+order as the second key to meet RISC-V ISA Extension Naming
+Conventions.
 
-> > @@ -169,6 +171,10 @@ static int pm8008_probe(struct i2c_client *client)
-> >   
-> >   	i2c_set_clientdata(client, regmap);
-> >   
-> > +	reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-> > +	if (IS_ERR(reset))
-> > +		return PTR_ERR(reset);
-> > +
-> >   	if (of_property_read_bool(dev->of_node, "interrupt-controller")) {
-> >   		rc = devm_regmap_add_irq_chip(dev, regmap, client->irq,
-> >   				IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
-> 
-> So not resetting is fine and I understand you want to retain the address 
-> given by the firmware, I think that's the right thing to do.
+Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+---
+prerequisite-patchset: https://lore.kernel.org/linux-riscv/tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com/
+---
+ arch/riscv/boot/dts/canaan/k230.dtsi | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-> In addition to adding a small delay suggested by Andy - a few 
-> microseconds pick a number, I think you should verify the chip is out of 
-> reset as we would do with many other i2c devices.
+diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
+index 95c1a3d8fb11..104e08ef5869 100644
+--- a/arch/riscv/boot/dts/canaan/k230.dtsi
++++ b/arch/riscv/boot/dts/canaan/k230.dtsi
+@@ -24,11 +24,12 @@ cpu@0 {
+ 			compatible = "thead,c908", "riscv";
+ 			device_type = "cpu";
+ 			reg = <0>;
+-			riscv,isa = "rv64imafdcv_zba_zbb_zbc_zbs_zicbom_zicbop_zicboz_svpbmt";
++			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zfh_zba_zbb_zbc_zbs_zvfh_svpbmt";
+ 			riscv,isa-base = "rv64i";
+-			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zba", "zbb",
+-					       "zbc", "zbs", "zicbom", "zicbop", "zicboz",
+-					       "zicntr", "zicsr", "zifencei", "zihpm", "svpbmt";
++			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
++					       "zicbop", "zicboz", "zicntr", "zicsr", "zifencei",
++					       "zihpm", "zfh", "zba", "zbb", "zbc", "zbs", "zvfh",
++					       "svpbmt";
+ 			riscv,cbom-block-size = <64>;
+ 			riscv,cbop-block-size = <64>;
+ 			riscv,cboz-block-size = <64>;
+-- 
+2.43.0
 
-> In this case, suggest reading REVID_PERPH_TYPE @ 0x104 and 
-> REVID_PERPH_SUBTYPE @ 0x105
-> 
-> REVID_PERPH_TYPE @ 0x104 == 0x51 (PMIC)
-> REVID_PERPH_SUBYTE @ 0x105 == 0x2C (PM8008)
-
-I'll consider it for v2.
-
-Johan
 
