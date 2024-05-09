@@ -1,103 +1,109 @@
-Return-Path: <devicetree+bounces-66027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82A38C0F84
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 14:20:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B448C0F9C
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 14:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAA3A1C2210A
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 12:20:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46BF3281FFB
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 12:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CD414B977;
-	Thu,  9 May 2024 12:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOw4Qrg0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B47C14D2B6;
+	Thu,  9 May 2024 12:22:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB42414B091;
-	Thu,  9 May 2024 12:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B0714BF8F;
+	Thu,  9 May 2024 12:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715257226; cv=none; b=YdLJ49ekwLeEPivWDOuwyARZpwm4HTrmPDf/Mbg0Kka2hjpE9gnOYe0IPU4iTT5/CumdrxpgJkR98I30OTA3CJgS0/MI/xxs1ycEp3cOirTcF6GomDC/7Xm8VDe+mX/jxn1DuEpIiqga6Ukwu+/WdT+9+dwarofnH70A30/Znfs=
+	t=1715257350; cv=none; b=OcuU3klH5F9p4t6U4A0osrzokED6gAHwL6VSe4T+Ho/GbvIzvgJH+NaFT6j5fWWjIkZdvdbeZRm804F2ZXbcNLvXeKVJJvGoYtLECBTQWTMkAETtpIbrh7QVUUIEB9Br75Ec+q6JooYEXy79k6u65kJenlI/Mi79C85J+OHU8I0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715257226; c=relaxed/simple;
-	bh=h3t85u57Kt6KbmQLMuFWHWJfsb393pB2tMS6O7Z9wvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RfMB/nlsnwuvctMrqNgmg/voYbfn4MSiG+86Is8/q3dsJjGERVD8xLGhuI0nMvLEFW4Ad3nm633UI8QelAsdjVZ5AzFcOB6J0qoGEwVPeMPYaGtchcd8iMPQSZwuXWxJSkAXZbtf29iEIqtpbwE5Ux4JWm6o4chIQfUGewCGzzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOw4Qrg0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B836C116B1;
-	Thu,  9 May 2024 12:20:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715257226;
-	bh=h3t85u57Kt6KbmQLMuFWHWJfsb393pB2tMS6O7Z9wvM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZOw4Qrg0aNgq0oMW7VJ0fFngyxp1MXdaeU/9D+WUoZIYuKgDpjrRlj65e3/q/Nt4n
-	 idN8MagmO1eHsVaVHAoeJsrmW0l8QfJXJJP4c4/n0k76ZBcIyJvi9yn5CFVx/PIN9J
-	 0wQHsrVzXHA14ua9Q28S2yUKNWAfHFOyo0KrklxoURlbVW9IKxHplost4PXb7jzoV0
-	 4xpa0wmyT6ctPpRuZilSZWxxb2TglsDf1M8HgwgQwQNJ54yb5E+080bdpxW58FvcPg
-	 bZOYcui7rSUfjaCHKAGPJCBUzLsR6l/BgGxmMndrV8eG+l4kHWmyR1fu5p0S5e03Ub
-	 QM7iOudQiY3lA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1s52lC-000000004oO-0DEd;
-	Thu, 09 May 2024 14:20:30 +0200
-Date: Thu, 9 May 2024 14:20:30 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Stephen Boyd <swboyd@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Das Srinagesh <quic_gurus@quicinc.com>,
-	Satya Priya <quic_c_skakit@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
-Message-ID: <Zjy_jp2f-aY5mAR6@hovoldconsulting.com>
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-13-johan+linaro@kernel.org>
- <CAE-0n52KTZ8G2VuvrDgJ9kAE61YULXY4u6nPP3CYWpg1CBjbXA@mail.gmail.com>
- <Zjy8Zj_naFQ2Ri0M@surfacebook.localdomain>
+	s=arc-20240116; t=1715257350; c=relaxed/simple;
+	bh=uDM27zrD39kvvURwdlNFw/NK0u0FOAXSDBMaCJTa3lI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EK0qZ85UBgGcNtxamB+ni5DJ0XJgf8dL5XcfZ0CXfdSTLduBNbDwSeWEXcIcbcIFVCkhjn6+YgoMsJulCWmp3TX01pb3EATHFwGlCgFKV9tokXuRp2SG8nofjO2uwKxVvtHnbsPe91zbQkiGtnllgAG043PWmSheJT5sGrfmC+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b5d.versanet.de ([83.135.91.93] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1s52mU-0007xX-8U; Thu, 09 May 2024 14:21:50 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Alex Bee <knaerzche@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Alex Bee <knaerzche@gmail.com>, sebastian.reichel@collabora.com
+Subject: Re: [PATCH v2 0/7] Add DSI support for RK3128
+Date: Thu, 09 May 2024 14:21:47 +0200
+Message-ID: <38423821.XM6RcZxFsP@diego>
+In-Reply-To: <20240509120715.86694-1-knaerzche@gmail.com>
+References: <20240509120715.86694-1-knaerzche@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zjy8Zj_naFQ2Ri0M@surfacebook.localdomain>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, May 09, 2024 at 03:07:02PM +0300, Andy Shevchenko wrote:
-> Wed, May 08, 2024 at 10:37:50PM +0000, Stephen Boyd kirjoitti:
-> > Quoting Johan Hovold (2024-05-06 08:08:29)
+Hi Alex,
+
+Am Donnerstag, 9. Mai 2024, 14:07:08 CEST schrieb Alex Bee:
+> This series aims to add support for the DesignWare MIPI DSI controller and
+> the Innoslicon D-PHY found in RK3128 SoCs. The code additions are rather
+> tiny: It only need some code in the Rockchip dw-mipi-dsi glue layer for
+> this SoC, add support for an additional clock and do some changes in the
+> SoC's clock driver. Support for the phy was already added when the
+> Innosilicon D-PHY driver was initially submitted. I tested it with a
+> 800x1280 DSI panel where all 4 lanes that are supported are used.
 > 
-> ...
-> 
-> > > +               BUILD_BUG_ON((ARRAY_SIZE(pldo_ranges) != 1) ||
-> > 
-> > This should be an && not || right?
-> 
-> > > +                               (ARRAY_SIZE(nldo_ranges) != 1));
-> 
-> In any case BUILD_BUG_ON() is not encouraged for such cases, it would be much
-> better to have a static_assert() near to one of those arrays.
+> changes in v2:
+>   To improve power-efficiency when the DSI controller is not in use, I
+>   dropped the patch which made hclk_vio_h2p a critical clock and instead
+>   added support for an AHB clock to the DSI controller driver and updated
+>   the bindings and the addition to the SoC DT accordingly.
 
-I think the reason it is placed here is that the above line reads:
+The naming already suggests that hclk_vio_h2p is not a clock-part of
+the actual dsi controller, but more an internal thing inside the clock
+controller.
 
-	rdesc->n_linear_ranges = 1;
+At least naming and perceived functionality would suggest a chain of
+	hclk_vio -> hclk_vio_h2p -> pclk_mipi
 
-and that would need to change if anyone expands the arrays.
+In any case, I really don't see hclk_vio_h2p to be in the realm of the
+actual DSI controller, but more a part of clock-controller / interconnect.
+Similar to the NIU clocks for the interconnect.
 
-Johan
+rk3588 actually tries to implement this already and while the
+gate-link clocks are described as "recent", I think this definitly the same
+concept used a most/all older Rockchip SoCs, just nobody cared about that
+till now ;-) [0] .
+
+So TL;DR I'd really prefer to not leak CRU-details into the DSI controller.
+
+
+Heiko
+
+[0] Which reminds me that I should look at Sebastian's make GATE-LINK
+actually-work-patch.
+
+
+
+
 
