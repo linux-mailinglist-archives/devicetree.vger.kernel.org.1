@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-65965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37038C0C8E
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 10:29:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243568C0C9B
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 10:31:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E39BE1C20750
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 08:29:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45B97B22A41
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 08:31:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A73149DF1;
-	Thu,  9 May 2024 08:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A2414A097;
+	Thu,  9 May 2024 08:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h44dSdFj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ABXq/ZcG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90F613C9B2
-	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 08:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE8514A085
+	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 08:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715243377; cv=none; b=jyp6EqQXF10lr/BpNTIKdahiZPRFibM7GwGG/wnfnkYclciYx1XQwn+z06WpIxguFtTyhFYRcJtTbC4KBE/rRjulJioiesnRcS/8W5IXNN5nu6c91DImvn47xmsL6qO/gSHtVEd+KLZoFFRBB/04IwugEqaC+oNKDly1AwUXYO8=
+	t=1715243500; cv=none; b=jBwPq/tbnJfmVflyjxOSgDfbSEYL4XWeHjnMWhvKpOSBxnlUAE6W5SRdTeeanv5t+xwCJxXLklhDoEqjco3nvXPbeeJcz+cC7aBmQXiSyTH/eybgsy6GZG8wN1HmI4GOibo+o+m5TaZZ/Qqu9nYogqWHT3h1dNZSn6F60BddHT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715243377; c=relaxed/simple;
-	bh=IRGjeXM1KNxqqYh4Ik3MFrABRQcli/7ofMMTYRmjaCU=;
+	s=arc-20240116; t=1715243500; c=relaxed/simple;
+	bh=g6brLIjlctrnBrGGIGeLbfb8eDQbn6shISRqkm3Vvr0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kUth07tjGBkuvwgSmkL7UBEgHJitxJ8SeP00eSU0yMJRo4OXNFjjeafhr6CUrNNfJGWPcW3g70/YZi8wbPCGWY+InXAGelD9YtEPNhDnao8w0NucW0KNhR5J1a/9GUvdADpuoWpZsKxWDcruQUER8lpecvfhWlRYMDziclOig2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h44dSdFj; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=Z2zV1HpOyOn3uF37x8cccMpkUvrYrbdF+ATrZ30Qadxew07xlsISgoohprYSgcoERptHBwVpiqYRmeVQdy/E79h1sYhn10wk/0OmOS6I5skYsg9OxCRt5+mpzZ7iktc2+EmdXcLfI8Gnx5Wkwmw0ud0x7Up2+ILE2wnLRoq7swU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ABXq/ZcG; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a59a0168c75so154504566b.1
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 01:29:35 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a599c55055dso151111366b.0
+        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 01:31:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715243374; x=1715848174; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1715243497; x=1715848297; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hMLp8AiHMhJ0KZlIbzXsouNCXcq5N+tUnfpKJC3oGdU=;
-        b=h44dSdFjZEskNhPLk2IPSDa2UPOssm+rQU4yPG7EKBXkfcFEl3X5AHD+rl4+bIaJzk
-         ULb77x0hI0e+7VbiJ+a/R2WoPInappvUhh1yakiCpCia9NRSu3aMqOiwyxPEpK6Sas2w
-         y3xVi0Sy3RxIN9b7QshjVshncScmFTJcy42YsAcxwuRqNlRh8c/br1P3MOosJYu3SMU7
-         A6JiITP75uTQqCZrM+Fn5LZaJeCw/dr3/ZNIhUwt68G1WfSpJDKPGfWec/LfVheX2A7e
-         S54phTQN4dSSeL4jwo2t4+ceH9gyEGrF0Aht1/9S6I3PJpjfUCPPesuDdyh1QsI92znh
-         LEng==
+        bh=PN7HUcKm95s2j3xS4Is4Wg9h1CVJ8IRE/G93EyxqKbA=;
+        b=ABXq/ZcGZ1VeTizHeNCuKMlhtLnESv8nlvR7BsJSwo6G9gSlR/+tPx1GK7ZagFOww5
+         yBjSTYT60F7aBdIQ0bu7JgPo8Yk+g3EPT/xqo9DJ2mP+b2sgkJ3qXeimWALKf23W/cHI
+         1fYuHGHQF1Y+azH2bevlTVfI9dJCuSA8LhayRY2OjyY7/rMQkDjGqIsTdH9qwQiPq9LK
+         HJ1Eh9fR9mzvaJXLkeWrIgxwGHdZSKudtZjugvIWwIFeOp80RaksM94Y1kY28Er6cLIv
+         PaBT60TjCRnBrJiqFeQgnbDaj7pXfm2H9VUYRMHKXnqNQalrfdnYB+DvLnqTZwJroaWQ
+         THuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715243374; x=1715848174;
+        d=1e100.net; s=20230601; t=1715243497; x=1715848297;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hMLp8AiHMhJ0KZlIbzXsouNCXcq5N+tUnfpKJC3oGdU=;
-        b=Cpg0f5QUWQbKvEWH+V9jkNBDRat1Qf54Q7qnJRLWRM6tcrd4aSYb3egOH7X3xJYBy8
-         Aq3G2k9c+KIjP0NjeoN8U3VPM+gbRlLbdGIrGyEd+TDcaK9vIeXJ6hWOhijtV99alrj9
-         PieVr5n266DD2a5BCCJtecfiR+HtvjI9iarVKbIb7wqpkbQzyjJn8tdOChMD/x/2nGbp
-         uiSCBmEu1+mzo1qkAVeOLEFn/6sa4bOHm/CKEWO33Of1Hpdg0fqUNeopNMUT5YR5jO2n
-         lwwwimW4AnWrF9RxfASOMElWrcNHmD2YM04q0wkizkEkfWMeKeRa8cXddAaBbExp4WfK
-         v9jw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtj7tXAvxsqLQfeArYo43mXTz8TtlkYAoAy0ShAP+Me3cxOl8dOtnsGl4pAXveqXTPGRDWlLi85Hd5OoCfashdiDGRSDjVxR1ekA==
-X-Gm-Message-State: AOJu0YwwqyI2to+Bq3KwYpxl45VkjshlwNx3u+a+3nYH/eVRKqU3YdsE
-	8NMXemDzUiwnHIjJN/0zaebNP9gEWnwPmMJYoBx1eAfk8qxNvTJjjJIQVly0T3g=
-X-Google-Smtp-Source: AGHT+IG8dT/haVwP+PHSIa+dbvrLvv5s5nmQBqwoDNlyNPTU7oMINb5xzYLfMOCIvdD8UqkNZqeHWg==
-X-Received: by 2002:a17:906:714f:b0:a59:ba2b:590e with SMTP id a640c23a62f3a-a59fb9dbcb9mr285672966b.48.1715243374175;
-        Thu, 09 May 2024 01:29:34 -0700 (PDT)
+        bh=PN7HUcKm95s2j3xS4Is4Wg9h1CVJ8IRE/G93EyxqKbA=;
+        b=TiiFUhmGZEmLKRh9z37yRMaPxv4/bj+Pd/T0gLnBEyQDtZIijB8iDR0UkhgO6JpRqI
+         V/D/T1N9/AbITv0LMXINbd9EIdcPzTK0OTIfO+rTpYDGGLbGvd86I3zPRQ+hEcN8sn5i
+         DrX7QsAry4KBt5e05SYCF1N4mVuJ64mheqBiS72t/XISHXXZxC70OuRRCq6rlKQWnaSM
+         n8mzi6wZaxf5IlUEAJjut3mI/cB6bpPi5v0pV3GKkcHB0CZn3yk5EU0M8zP9iMBG4XK4
+         XPe4FnXLRTz6xF46DcIoqQHnv3eI6l5J1qPBmjILMjBNixM5ALoYsdac9xUnIrtJDDEd
+         fUag==
+X-Forwarded-Encrypted: i=1; AJvYcCWBbej7zfvvwqLEB7Vv7WNo2x6MPkxHJ1GZNNGKxo1DUVM06z37/CvFQH+3r5AbfSnanuHPDJH5ofxpMyo4VYW23hqrEIQsDXPMfQ==
+X-Gm-Message-State: AOJu0YyzIZHzuqtlq3UeeQd9HOaNs1jy+uyA1L52t+BGPMHSm1nYfu5F
+	hOeuhbx/Rf+0FzN3CRWF8LDUg6gAjGXSbb8FdAnoDq2pRY/wU38qIawUEPpnErY=
+X-Google-Smtp-Source: AGHT+IEWEKZonq801qsZzLiH9WGt2fbYv4VFxzbE8jq5dRvtfVVEaz/68zuTSiORJoesn/4lMcRj9w==
+X-Received: by 2002:a17:906:407:b0:a5a:12f0:3737 with SMTP id a640c23a62f3a-a5a12f03927mr114445066b.10.1715243496882;
+        Thu, 09 May 2024 01:31:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a179c7df7sm48748366b.111.2024.05.09.01.29.32
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b0145csm48181866b.158.2024.05.09.01.31.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 May 2024 01:29:33 -0700 (PDT)
-Message-ID: <a20479be-a4cf-4fb5-8d37-277d14a93224@linaro.org>
-Date: Thu, 9 May 2024 10:29:31 +0200
+        Thu, 09 May 2024 01:31:36 -0700 (PDT)
+Message-ID: <c0a12ea3-b869-48f2-9f23-e3139d87d5cd@linaro.org>
+Date: Thu, 9 May 2024 10:31:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,32 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: hwmon: max31790: Add
- maxim,pwmout-pin-as-tach-input property
-To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>,
- Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor@kernel.org>
-Cc: Chanh Nguyen <chanh@os.amperecomputing.com>,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Justin Ledford
- <justinledford@google.com>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
- OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>,
- Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>
-References: <20240414042246.8681-1-chanh@os.amperecomputing.com>
- <20240414042246.8681-4-chanh@os.amperecomputing.com>
- <13b195e6-cbbd-4f74-a6fa-d874cb4aaa45@linaro.org>
- <065243cc-09cf-4087-8842-bd4394fb324f@amperemail.onmicrosoft.com>
- <d549cf2b-a7fa-4644-8fcb-3c420503ee01@amperemail.onmicrosoft.com>
- <20240423-gallantly-slurp-24adbfbd6f09@spud>
- <ab5cfd8c-0e88-4194-a77e-5ffbb6890319@amperemail.onmicrosoft.com>
- <396b47f5-9604-44ab-881f-94d0664bcab8@roeck-us.net>
- <0dcc8788-604a-49c1-8c6b-fdbfa9192039@amperemail.onmicrosoft.com>
- <da94fde6-3286-44eb-a543-c2ac4d11cd32@roeck-us.net>
- <8fb38eb3-bb94-49cc-b5bc-80989d7876b9@amperemail.onmicrosoft.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>, andersson@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_nankam@quicinc.com, robh@kernel.org
+References: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
+ <20240507163045.28450-1-quic_vvalluru@quicinc.com>
+ <a32fa81d-bd70-4dfa-b512-e2adce4f8c35@linaro.org>
+ <9a48b0a8-d1d7-8e2d-dafa-47e136a46c99@quicinc.com>
+ <2f810036-1832-42ef-b896-e9470f469029@linaro.org>
+ <CAA8EJpqG7k2+eEyndzrGgF4YqSOhD-kKfaj93PLhitcku1B6tw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -149,62 +136,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8fb38eb3-bb94-49cc-b5bc-80989d7876b9@amperemail.onmicrosoft.com>
+In-Reply-To: <CAA8EJpqG7k2+eEyndzrGgF4YqSOhD-kKfaj93PLhitcku1B6tw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/05/2024 05:44, Chanh Nguyen wrote:
+On 08/05/2024 10:13, Dmitry Baryshkov wrote:
+> On Wed, 8 May 2024 at 10:38, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 07/05/2024 21:20, Abhinav Kumar wrote:
+>>>
+>>>
+>>> On 5/7/2024 9:35 AM, Krzysztof Kozlowski wrote:
+>>>> On 07/05/2024 18:30, Venkata Prahlad Valluru wrote:
+>>>>> Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
+>>>>> reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
+>>>>> Bridge supplies are Vdd connected to input supply directly
+>>>>> and vcc to L11c. Enable HDMI output, bridge and corresponding
+>>>>> DSI output.
 >>>>>
+>>>>> Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+>>>>> ---
+>>>>> v3: - Updated commit text
+>>>>>      - Arranged nodes in alphabetical order
+>>>>>      - Fixed signoff
+>>>>>      - Fixed drive strength for lt9611_irq_pin
+>>>>>      - Removed 'label' from hdmi-connector, which is optional
 >>>>
->>>> I am not even sure how to define tach-ch to mean "use the pwm output pin
->>>> associated with this tachometer input channel not as pwm output
->>>> but as tachometer input". That would be a boolean, not a number.
+>>>> Please respond to each Bjorn comment and explain how did you implement it...
 >>>>
 >>>
->>> Thank Guenter,
->>>
->>> I reviewed again the "tach-ch" property, which is used in the 
->>> https://elixir.bootlin.com/linux/v6.9-rc6/source/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml#L68 and https://elixir.bootlin.com/linux/v6.9-rc6/source/drivers/hwmon/aspeed-g6-pwm-tach.c#L434
->>>
->>> That is something completely different from my purpose.
->>>
+>>> Yes, agreed. Even though it seems like you mostly just agreed to mine
+>>> and Bjorn's suggestions and decided to implement all those in v3 , it
+>>> would have been better to explicitly ack them or tell why you agreed or
+>>> what went wrong that you had not done it in v2 itself to close the loop.
 >>
->> Based on its definition, tach-ch is associated with fans, and it looks
->> like the .yaml file groups multiple sets of fans into a single
->> fan node.
->>
->> In the simple case that would be
->>      tach-ch = <1>
->> ...
->>      tach-ch = <12>
->>
->> or, if all fans are controlled by a single pwm
->>      tach-ch = <1 2 3 4 5 6 8 9 10 11 12>
->>
->> The existence of tachometer channel 7..12 implies that pwm channel 
->> (tachometer
->> channel - 6) is used as tachometer channel. That should be sufficient to 
->> program
->> the chip for that channel. All you'd have to do is to ensure that pwm 
->> channel
->> "X" is not listed as tachometer channel "X + 6", and program pwm channel 
->> "X - 6"
->> for tachometer channels 7..12 as tachometer channels.
->>
+>> The problem is that one or more were ignored... By responding to each of
+>> them, I hope they will be finally read and understood instead of
+>> repeating the same mistake three times.
 > 
-> Hi Guenter,
-> 
-> I applied the patch [2/3] in my patch series 
-> (https://lore.kernel.org/lkml/20240414042246.8681-3-chanh@os.amperecomputing.com/)
-> 
-> My device tree is configured as below, I would like to configure PWMOUT 
-> pins 5 and 6 to become the tachometer input pins.
-> 
+> I found a mistake that was repeated two times. This leaves me
+> wondering which mistake was repeated three times.
 
-And what is wrong in described common tach-ch property? I think we
-explained it three times and you did not provide any arguments, what's
-missing. Instead you say "I want something like this in DTS" which is
-not an argument and does not help discussion.
+That was about future, I was expecting v4 as in-reply-to :)
 
 Best regards,
 Krzysztof
