@@ -1,116 +1,103 @@
-Return-Path: <devicetree+bounces-66026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A7C8C0F72
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 14:16:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82A38C0F84
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 14:20:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C450A2827EA
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 12:16:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAA3A1C2210A
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 12:20:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813A014B088;
-	Thu,  9 May 2024 12:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CD414B977;
+	Thu,  9 May 2024 12:20:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="pkwvLWqy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOw4Qrg0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9F712F5B3;
-	Thu,  9 May 2024 12:16:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB42414B091;
+	Thu,  9 May 2024 12:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715256977; cv=none; b=O1erYhD+a1m4CtCfPnk5IF84uU+oYDoD8kZv8I9/KPHLi0v7MkvFrVoz227fKWmxelXECRg06xGxMMvQes/pAMpaP41RgzPiujqRBzoo9sc2NQbOo9tOelVvJlMCg2eQw9ccmIcET8qizJYhMRwt3CiT1SUPZhao3U3gYU+Ul7w=
+	t=1715257226; cv=none; b=YdLJ49ekwLeEPivWDOuwyARZpwm4HTrmPDf/Mbg0Kka2hjpE9gnOYe0IPU4iTT5/CumdrxpgJkR98I30OTA3CJgS0/MI/xxs1ycEp3cOirTcF6GomDC/7Xm8VDe+mX/jxn1DuEpIiqga6Ukwu+/WdT+9+dwarofnH70A30/Znfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715256977; c=relaxed/simple;
-	bh=xv+8EY80PprWDIrphFPGiwYWzI8mMjfVvHBAlRZAjVQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FxBWpfdh8KZHpcXPebSYFqQwFwRzgSM3XiRzecIiZNM3Q8TSlPrw8+tnjyOestwFXmciB37yhraXlNI1+7TDljrqBZQMBlEeYKhvgbdeVnyfEmdzGCJqYov/1sH5bYaPdF0cQJnIO9hlUUI+3fqUemBEPqFa3JKgCunbBDTfepo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=pkwvLWqy; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1715256976; x=1746792976;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xv+8EY80PprWDIrphFPGiwYWzI8mMjfVvHBAlRZAjVQ=;
-  b=pkwvLWqyPRzp7aj8gNQ0+TO3LKqnUqEWaUDdamLTVh1L8RtW7w7pUi+G
-   WQmC284hb/tJ+NJ6o8aibecJHDgpHQlm3Ru9DvrcA2lrk6Ojb46eijqKu
-   fkBt9czV4vKQXknAELT9uilp90Ibhu1K1gIit5hWY56k7RddDnGYVk4Gu
-   HWLGj6G85shFzrX/QR0lsbNG71vPpuy+tWkl1ApbjlCnfc1Oz5Rzonb1Y
-   VqCP0+abFD9tvbEJetM8iyZfrV6lI52f9sSS8ACBhbjUV/GMWnI+pz3xt
-   RIQPOczZjV+WF1ey2RHPy/8nwCKmKb/73TYSLrlvYHRd3yriiahP4QTsa
-   Q==;
-X-CSE-ConnectionGUID: vyZ8CGhFQVqGx8FDY47/hA==
-X-CSE-MsgGUID: CXov5e8bRyuYi+nK6g4mHg==
-X-IronPort-AV: E=Sophos;i="6.08,147,1712646000"; 
-   d="asc'?scan'208";a="24313807"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 May 2024 05:16:14 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 9 May 2024 05:15:41 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 9 May 2024 05:15:40 -0700
-Date: Thu, 9 May 2024 13:15:30 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Yangyu Chen <cyy@cyyself.name>
-CC: <linux-riscv@lists.infradead.org>, Conor Dooley <conor@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] riscv: dts: fix isa string for Canaan Kendryte K230
-Message-ID: <20240509-humility-sliceable-fc22f8d64d90@wendy>
-References: <tencent_B61C1370E7632842D61BB7F9FA0515B44D09@qq.com>
+	s=arc-20240116; t=1715257226; c=relaxed/simple;
+	bh=h3t85u57Kt6KbmQLMuFWHWJfsb393pB2tMS6O7Z9wvM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RfMB/nlsnwuvctMrqNgmg/voYbfn4MSiG+86Is8/q3dsJjGERVD8xLGhuI0nMvLEFW4Ad3nm633UI8QelAsdjVZ5AzFcOB6J0qoGEwVPeMPYaGtchcd8iMPQSZwuXWxJSkAXZbtf29iEIqtpbwE5Ux4JWm6o4chIQfUGewCGzzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOw4Qrg0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B836C116B1;
+	Thu,  9 May 2024 12:20:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715257226;
+	bh=h3t85u57Kt6KbmQLMuFWHWJfsb393pB2tMS6O7Z9wvM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZOw4Qrg0aNgq0oMW7VJ0fFngyxp1MXdaeU/9D+WUoZIYuKgDpjrRlj65e3/q/Nt4n
+	 idN8MagmO1eHsVaVHAoeJsrmW0l8QfJXJJP4c4/n0k76ZBcIyJvi9yn5CFVx/PIN9J
+	 0wQHsrVzXHA14ua9Q28S2yUKNWAfHFOyo0KrklxoURlbVW9IKxHplost4PXb7jzoV0
+	 4xpa0wmyT6ctPpRuZilSZWxxb2TglsDf1M8HgwgQwQNJ54yb5E+080bdpxW58FvcPg
+	 bZOYcui7rSUfjaCHKAGPJCBUzLsR6l/BgGxmMndrV8eG+l4kHWmyR1fu5p0S5e03Ub
+	 QM7iOudQiY3lA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1s52lC-000000004oO-0DEd;
+	Thu, 09 May 2024 14:20:30 +0200
+Date: Thu, 9 May 2024 14:20:30 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Stephen Boyd <swboyd@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya <quic_c_skakit@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
+Message-ID: <Zjy_jp2f-aY5mAR6@hovoldconsulting.com>
+References: <20240506150830.23709-1-johan+linaro@kernel.org>
+ <20240506150830.23709-13-johan+linaro@kernel.org>
+ <CAE-0n52KTZ8G2VuvrDgJ9kAE61YULXY4u6nPP3CYWpg1CBjbXA@mail.gmail.com>
+ <Zjy8Zj_naFQ2Ri0M@surfacebook.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yzTCDg/qHC1C/s+B"
-Content-Disposition: inline
-In-Reply-To: <tencent_B61C1370E7632842D61BB7F9FA0515B44D09@qq.com>
-
---yzTCDg/qHC1C/s+B
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <Zjy8Zj_naFQ2Ri0M@surfacebook.localdomain>
 
-On Thu, May 09, 2024 at 05:33:11PM +0800, Yangyu Chen wrote:
-> The original is a string in dts that has no "zfh" or "zvfh" extension,
-> but the K230 chip has them, so I am adding them to the dts. This
-> patch also reordered the Z* extension in the isa string and used
-> canonical order for the category as the first key and then alphabet
-> order as the second key to meet RISC-V ISA Extension Naming
-> Conventions.
->=20
-> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+On Thu, May 09, 2024 at 03:07:02PM +0300, Andy Shevchenko wrote:
+> Wed, May 08, 2024 at 10:37:50PM +0000, Stephen Boyd kirjoitti:
+> > Quoting Johan Hovold (2024-05-06 08:08:29)
+> 
+> ...
+> 
+> > > +               BUILD_BUG_ON((ARRAY_SIZE(pldo_ranges) != 1) ||
+> > 
+> > This should be an && not || right?
+> 
+> > > +                               (ARRAY_SIZE(nldo_ranges) != 1));
+> 
+> In any case BUILD_BUG_ON() is not encouraged for such cases, it would be much
+> better to have a static_assert() near to one of those arrays.
 
-I'm just gonna squash this one into the original patch, since I had to
-drop it from v6.10 material.
+I think the reason it is placed here is that the above line reads:
 
-Cheers,
-Conor.
+	rdesc->n_linear_ranges = 1;
 
---yzTCDg/qHC1C/s+B
-Content-Type: application/pgp-signature; name="signature.asc"
+and that would need to change if anyone expands the arrays.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjy+YgAKCRB4tDGHoIJi
-0jGiAQD7pc1KyZymIGJlsegKO1WYvefd963SGPkomtSKGL1bfwD/Xnsyh56Pzfcd
-OXdMDHsYbfBT7F78lGFCKrwFVRE03AQ=
-=XNdt
------END PGP SIGNATURE-----
-
---yzTCDg/qHC1C/s+B--
+Johan
 
