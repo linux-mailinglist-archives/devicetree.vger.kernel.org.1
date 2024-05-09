@@ -1,126 +1,182 @@
-Return-Path: <devicetree+bounces-66033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB3B28C1023
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 15:09:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A56528C102C
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 15:13:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC7321C2092A
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 13:09:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4907A284E46
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 13:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029EE14C592;
-	Thu,  9 May 2024 13:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF75152786;
+	Thu,  9 May 2024 13:12:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VjTlr5tm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U2DDXDJS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6054C12F37C
-	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 13:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 197E6158D98;
+	Thu,  9 May 2024 13:12:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715260195; cv=none; b=OuGUZquF2WDwZSoI93XgbhZk5AGzPWh9oRxtsjWjx3jTVYIQPjy49UPeasS8L4WDRnPNPJu9TvUh5ZdTaNxiZlh57ktAPSHWZIb6Q4OMbCIw5nQAIFOTQTs0XuMzPJVURHQEUoQGf6cUDzQKkglgpv/lJ1QhyZD4SDssKV5+ksE=
+	t=1715260377; cv=none; b=IvYNsdgtWyLDPBJt6QQP6YKo/G9RsQ8BeqBL2vWUS2GcHUoF7JJT/+eJMZysRe3524Efi/yyLyoREZOTlDOyBfS47QeOGy16Yl0iNbpqOaDMhc/uIR3oycCTS0abYpq+fLhWdsUmmJyHJ0o0WtqVmqVUXcczP6DB7fhIShq0TN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715260195; c=relaxed/simple;
-	bh=/2fF/U3Z7PezOWTE5bhHrvAmlH2qvb4NRDFXCcVuKn8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RD8F+kkq4myoN8hnQRpIHMza2eSMkIIZcFCXMd2XAeEJdEHQQH2vJkg7TIDga5rR11jbMCvFRXHeA87pcMabUepqQr+E2HqczO4qRxwmVVU7/5p9lpnM7+8Jm6HkGIQp6rX8M1nDLaAUhIhXWv1bbgGnlxKjQD7lnakowiookaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VjTlr5tm; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-51f40b5e059so916121e87.0
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 06:09:54 -0700 (PDT)
+	s=arc-20240116; t=1715260377; c=relaxed/simple;
+	bh=/VciWFKtAdaZRdo+HMOaQf3fXGYQctPQXc4gCbjVjkg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=BX34zTfX1SSUqWmdKoljwz53CIv2TSaahhIeOjfZAhqm+DAQo4gm0Kt+cSJc/YLcfwWPzR23usyx5knDtnrQBoLQycRwBYG3b/w7WmUt+bmMenaMV1Ez7uA3RdbVPv1xaL9x0MKtZoiiLKOOdCnLMmoYREo1FkVNJn93rDDKdmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U2DDXDJS; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-34e663aa217so570320f8f.1;
+        Thu, 09 May 2024 06:12:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1715260192; x=1715864992; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rjcbv/XOMrp8i6C8+I4UYZ+VlFPUeDdAPCf2dJU4itU=;
-        b=VjTlr5tmkSJsfKfOjM14wYUy9lOqJxun3hhMfhfZATajFsYHHXPI337+a0PD8Iq1Ku
-         3MybsepJeJxsoExRA4NLFP+UIRrYWX7CBvjPPTNq6lLKthgO3N7poafMySUS2oExF+b9
-         Nqtn/bbufDLL2NxB2BrRSSU54G5jY8kP8MW/7vqkQGBbd1nlBx4p/8ouIrH3mEm8JC2S
-         5fxIusC+V0Adt94jLWgrC2SjEZ3stRs5mWElyWWKmglp2KxiQzJ+5IQlz+QSY7vbAYLI
-         T28Qh9LLGMRQg0zUhvcaFLCqJdk0CHyRKmJAuC+WRdStKGYNjK0cC5shjfsxAqJdo5hM
-         JUQg==
+        d=gmail.com; s=20230601; t=1715260366; x=1715865166; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=AeqYlf9c4EFhi9TNIZzRvyO42T/eA+jGpWv1NKDPZXk=;
+        b=U2DDXDJS+ZiBzXuXYrc8vJgyZ7fU7+XbDbYd9PGFouvK5Yo/BqpnKr44hvhoJSY4Q6
+         JGoDIJNDq+IXhlWGfaqB7LwcfKRZrP8aLjSFMEpynV2f/6VyvxpmI6uffZ49ILs0Ffkz
+         u9h4VpXUM6zNdcQCQxggJXI7UE1df3+PA8I1HY0Kprru25LhElTQ2j3TNenW5I/ARSEA
+         AmzFLoizsuvpEO1usIQtV46Ut+WZk5WrG8L2Bx3Zurd0ABlhZf1z3tqflO0Og4tJcaTf
+         ilqH4NE4Jo8PS1QZh8GshCQLtQ9b96L6qIfQle/Ty8mkajtQSd9wX93ry6lP9mN9UUSX
+         emSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715260192; x=1715864992;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rjcbv/XOMrp8i6C8+I4UYZ+VlFPUeDdAPCf2dJU4itU=;
-        b=ui3LR2KezpQ0DllrdSwo8xsn7I75p10XIyMA0uX4ZWbdHC86Ymmj9iyDUSSyPgzPuC
-         2Q7xLV6cDJ7cBzMcmXlKx0NGREvPtyFR1TpGnmzLHeX41f0yjd/zOPaDISr6dMC4Vdbc
-         HNugTYlaS2bynFktoHwfsIsbsMMatzap33TMh2f507S5FRTA/k5I1lHXxGhUHdz/6fju
-         sCRlzocG4fFPnDaSgVMJ7t7mIxoBq+/bK8qC2JIuOPvbwhEb2xcgUm0kSSbzIFpJ9izz
-         45M44Tro4Hy5GtlLGBu2/nAcJTefIdr2DLLS1cZetQFnRJdR57f6QsWMqeIf8VY58V5Y
-         mHQg==
-X-Forwarded-Encrypted: i=1; AJvYcCWkwvg370dUQ6autBIFFAaChw8P2n9bphRZKN7+VZPf1qSp+jDLtekuJqm907U6HT8zFEe3NwRg8zUVJkg+Afu+51bVmXENjBHQZA==
-X-Gm-Message-State: AOJu0YzHQiQ9mqVjby4nsBC4+r8Kou7SNp9oIOwZTWCWBoBSAAlN4vSH
-	AsQxYvWxeH7wxkGInh9RcvQhV0WE6ZrFfiRzLqnn7ludOyXmcAsjbK81g4zm2O/X7ZxyLk5p4EE
-	ZvIyBImv1T7VLK0b33kPbrfbmDIfl9b22/Iyigv76F758ctLz
-X-Google-Smtp-Source: AGHT+IEpJlR5h7UDquPspWdgEA69rWukyGIDC5h1omtSQdQBKa/5ADlI4KFKOrwM0BJ/+Cr5u1yDz91SAFWv1jlBCEM=
-X-Received: by 2002:a19:f00b:0:b0:51e:18c5:c3e3 with SMTP id
- 2adb3069b0e04-5217c5665ddmr3092600e87.26.1715260192645; Thu, 09 May 2024
- 06:09:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715260366; x=1715865166;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AeqYlf9c4EFhi9TNIZzRvyO42T/eA+jGpWv1NKDPZXk=;
+        b=xQIUhhTM49o6jCzSaOR4wj+fRbK/UNrWRFQePB5qmP9qrGzHjxJTf2/qWFwjVfariE
+         ck6dRRWDIvrRKAGiqLNwFdq28fIiRHWPMGXxtyKkSwlcE+aDj9PPlhLC80KspZH2HEHY
+         FHLeSxv7Gb+lEAm6R37lO567ldAfiygqIwkjx6TY96r4y4WuDaTxeOoA4ufpwzPJqQXH
+         yRzbq8uQtGHlwtGDmJ0nOOuX1VkxdkId0t73evZtVHEvrlg/lVqGK8KHubGXf+sMdme9
+         YnTJYMQK2jeyaIqRCz4godSyvVBHIz7BHXSDQcyoS5L1r7JlUa7epLACy93uokJl65zM
+         4w0A==
+X-Forwarded-Encrypted: i=1; AJvYcCXYB+7eURbzn1VKt/s4hljmbE/GTWwE9YuZ1rTXSSMpTm6H+HlMLJ3Hd/iNUOxe2LHliJb3n3yc+ssrwO3TvzcLSIJr3Se54iv9r/MinpCeK0eSdeDhjxZPhJCQ1o81Quy2cRFUabtvmYDieKXHHO6O8rPk7nPBVdZLNhfEKhZpNPURSQ==
+X-Gm-Message-State: AOJu0YyjF8OIAlJA9hMq1PCj+q/yqgXQN9V8hzjxGhW3ndPR02WyHbvO
+	tfyESm0oPsN6MbTRFtewsoa3C2J0tCo7gzxY+Oma8UjKQSoAzS0=
+X-Google-Smtp-Source: AGHT+IEC7WafECIZydYUdeAbxXAmqunwb457qqLbk5bNV+opK2hsUeI5mP0GAZJxRMOafc4vJyH5uQ==
+X-Received: by 2002:adf:cd89:0:b0:343:65a8:406d with SMTP id ffacd0b85a97d-34fcb3acc64mr4369892f8f.64.1715260366006;
+        Thu, 09 May 2024 06:12:46 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:b44:d8c3:6fa8:c46f? ([2a02:810b:f40:4600:b44:d8c3:6fa8:c46f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b896a45sm1697584f8f.39.2024.05.09.06.12.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 May 2024 06:12:45 -0700 (PDT)
+Message-ID: <d5fcf678-741b-48c0-988e-4722ac756a11@gmail.com>
+Date: Thu, 9 May 2024 15:12:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240509104813.216655-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240509104813.216655-1-krzysztof.kozlowski@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 9 May 2024 15:09:41 +0200
-Message-ID: <CAMRc=MezrXs5MYDnRvbWWskWJv0eCtQ8VsUu2mD=Bq=VxLHqHQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: ti: align panel timings node name with dtschema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
-	Tony Lindgren <tony@atomide.com>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-omap@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/7] Add DSI support for RK3128
+From: Alex Bee <knaerzche@gmail.com>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ sebastian.reichel@collabora.com, Sandy Huang <hjc@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
+References: <20240509120715.86694-1-knaerzche@gmail.com>
+ <38423821.XM6RcZxFsP@diego> <1190cfb6-e2d1-4910-ad57-f7566343ff19@gmail.com>
+Content-Language: en-US
+In-Reply-To: <1190cfb6-e2d1-4910-ad57-f7566343ff19@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 9, 2024 at 12:48=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> DT schema expects panel timings node to follow certain pattern,
-> dtbs_check warnings:
->
->   am335x-pdu001.dtb: display-timings: '240x320p16' does not match any of =
-the regexes: '^timing', 'pinctrl-[0-9]+'
->
-> Linux drivers do not care about node name, so this should not have
-> effect on Linux.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm/boot/dts/ti/davinci/da850-evm.dts    | 2 +-
->  arch/arm/boot/dts/ti/omap/am335x-guardian.dts | 2 +-
->  arch/arm/boot/dts/ti/omap/am335x-pdu001.dts   | 2 +-
->  arch/arm/boot/dts/ti/omap/am335x-pepper.dts   | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/ti/davinci/da850-evm.dts b/arch/arm/boot/d=
-ts/ti/davinci/da850-evm.dts
-> index 6c5936278e75..1f5cd35f8b74 100644
-> --- a/arch/arm/boot/dts/ti/davinci/da850-evm.dts
-> +++ b/arch/arm/boot/dts/ti/davinci/da850-evm.dts
-> @@ -65,7 +65,7 @@ panel-info {
->
->                 display-timings {
->                         native-mode =3D <&timing0>;
-> -                       timing0: 480x272 {
-> +                       timing0: timing-480x272 {
->                                 clock-frequency =3D <9000000>;
->                                 hactive =3D <480>;
->                                 vactive =3D <272>;
+Am 09.05.24 um 14:43 schrieb Alex Bee:
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org> # For DaVinc=
-i
+> Hi Heiko
+>
+> Am 09.05.24 um 14:21 schrieb Heiko Stübner:
+>> Hi Alex,
+>>
+>> Am Donnerstag, 9. Mai 2024, 14:07:08 CEST schrieb Alex Bee:
+>>> This series aims to add support for the DesignWare MIPI DSI 
+>>> controller and
+>>> the Innoslicon D-PHY found in RK3128 SoCs. The code additions are 
+>>> rather
+>>> tiny: It only need some code in the Rockchip dw-mipi-dsi glue layer for
+>>> this SoC, add support for an additional clock and do some changes in 
+>>> the
+>>> SoC's clock driver. Support for the phy was already added when the
+>>> Innosilicon D-PHY driver was initially submitted. I tested it with a
+>>> 800x1280 DSI panel where all 4 lanes that are supported are used.
+>>>
+>>> changes in v2:
+>>>    To improve power-efficiency when the DSI controller is not in use, I
+>>>    dropped the patch which made hclk_vio_h2p a critical clock and 
+>>> instead
+>>>    added support for an AHB clock to the DSI controller driver and 
+>>> updated
+>>>    the bindings and the addition to the SoC DT accordingly.
+>> The naming already suggests that hclk_vio_h2p is not a clock-part of
+>> the actual dsi controller, but more an internal thing inside the clock
+>> controller.
+>>
+>> At least naming and perceived functionality would suggest a chain of
+>>     hclk_vio -> hclk_vio_h2p -> pclk_mipi
+> I personally wouldn't give to much on naming when it comes to Rockchip
+> CRUs. Actually looking at "Fig. 2-5 Chip Clock Architecture Diagram 4" of
+> RK312x its:
+>
+>
+> ... -> hclk_vio
+>
+>                    -> hclk_h2p (clock in question)
+>                    -> pclk_mipi (DSI APB clock)
+>                    -> hclk_rga
+>                    -> hclk_vop
+>                    ....
+>
+> Also there is no other display output path (HDMI, LVDS) which requires 
+> this
+> clock to be enabled. They all work when it's disabled. That really 
+> makes me
+> think it's just the AHB clock line for the DSI controller. Maybe Andy can
+> share some details?
+
+Anyway: I just looked at the "MIPI Controller architecture" part of the 
+TRM - there is not even AHB clock line, only APB. So I revert the change 
+with the additional clock, make the h2p-clock critical again and resend.
+
+Alex
+
+>> In any case, I really don't see hclk_vio_h2p to be in the realm of the
+>> actual DSI controller, but more a part of clock-controller / 
+>> interconnect.
+>> Similar to the NIU clocks for the interconnect.
+>>
+>> rk3588 actually tries to implement this already and while the
+>> gate-link clocks are described as "recent", I think this definitly 
+>> the same
+>> concept used a most/all older Rockchip SoCs, just nobody cared about 
+>> that
+>> till now ;-) [0] .
+>>
+>> So TL;DR I'd really prefer to not leak CRU-details into the DSI 
+>> controller.
+>>
+>>
+>> Heiko
+>>
+>> [0] Which reminds me that I should look at Sebastian's make GATE-LINK
+>> actually-work-patch.
+>>
+>>
+>>
+>>
 
