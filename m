@@ -1,62 +1,66 @@
-Return-Path: <devicetree+bounces-65928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D25538C0AB0
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 06:51:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD878C0AC5
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 07:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A9C9B21C80
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 04:51:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48AB5284A05
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 05:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3309148FF9;
-	Thu,  9 May 2024 04:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7738149009;
+	Thu,  9 May 2024 05:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ooWkZOan"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DqZUvz5O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69F6148858;
-	Thu,  9 May 2024 04:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C5E148FFB;
+	Thu,  9 May 2024 05:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715230252; cv=none; b=XFJpe6suuKrE9OUsbjTs0VjN6m5Jahdsz7QTF5ruBB3Q9u965QNZFbVmR93CfvLonhjVnHOUrr2LaaMhyBf6PWOa5uzqf14EmQ51+TgPSvtyzL9n3VRN8oBhmjJyJL5GEnFolLSMi5tDcPJpMhUfcKVRIj1yg/ZwmOstfG63Zgk=
+	t=1715231298; cv=none; b=g/QgXwWvduHNFwktoELsyvrvJuVEiySxeK5q4OgNisrq45CJ+vGk1Gw5fYoB1lypS1kD/NAfyBnUzZn/IcAG05pmsQDkrOclwPPuN6ILDd67vLpvnCoIuzCCOSpsU12vHe00lSuueJHR+IGSZQ/JEklUW84Hhe74Twm6L+C51Bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715230252; c=relaxed/simple;
-	bh=a964IG20g0mcJX+qtDAbnau0BEnxx6FVxxZjHZ7Ne84=;
+	s=arc-20240116; t=1715231298; c=relaxed/simple;
+	bh=S3wo7d6dVVVHJbHfUlKIIqEpnUYGY2iZwMogOjuJGx8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I04Zk8C8Ne0d3qw069yvqX/pBUgqeGPFXG5eQJGZdEi3lIvPo/nz7hSNBLWAhRiKprpsmZTtSrNjj+yPG5o6k2A4jn9yn1MjLhUFwXloJuTY20Dd+ZQD2f3wIEL7YcPchxoiW8f+nu9jCGW3/R7seXEn7dPc8Tp6X/LXfYEoHCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ooWkZOan; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCAE6C116B1;
-	Thu,  9 May 2024 04:50:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fbxQqzwcuAAcpVW+SyZr2GP81mXqH3fDOebXt+o3HPwcuHlWZniKiAQbOBSSGuOhoh+PrOx4r29s+MuXEmc+NoDHK4AEISnVwsWVZb8z74F3V0c2WPF8fMe18YW4/9FWfELZ19p5NpSEUnICK1bI/9fUChYn4G7s238RluMErfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DqZUvz5O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF1BDC116B1;
+	Thu,  9 May 2024 05:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715230252;
-	bh=a964IG20g0mcJX+qtDAbnau0BEnxx6FVxxZjHZ7Ne84=;
+	s=k20201202; t=1715231298;
+	bh=S3wo7d6dVVVHJbHfUlKIIqEpnUYGY2iZwMogOjuJGx8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ooWkZOan6eU5duQ7F6zmekuSy3fLmut/YQfpbrHptjl2VrtS+Jukly1wPYBDEu13Z
-	 jZK5/R2II0jEHQSTka5/vbweIgbbxRtCUxFd+zJkMDtqh0pBOyEDt3LxazbJWDiPMI
-	 OjFTl5G4fcqLZ1QpMZXCudRoGPvdv4RzWYl/GQrCQtCYr7UZvgv+kryoODiPbI6CTy
-	 JPkRO6hi0CBKYaAzZ0OpIXQnbwxwsWaGobUMpynUOiK2JzaBekCwNHJBgEstyRRuEJ
-	 Wosu/YjoyP3fY4Lqe0BLK14Qoobf+6n+ROJZLDWNqleNHPk2GAfbd0T+M9gKcdA4p6
-	 4QOCckZN1juxw==
-Date: Thu, 9 May 2024 06:50:48 +0200
+	b=DqZUvz5OrJ+ljxY18xYa63gis6+nDn5tcioIVdZDq8ho8RI6U5ijznAFS4hxiR60f
+	 LfV01nYVRzdQrQ0ATJcuPgPXTssf30nrDmi/evBw6Q+CJtIeqM/88fb91zTjdr/8Po
+	 q4uNnul58qGMheBbRlZ4cP0mGEPu+8G3zASJ8VF67CxTZxe8tyOdwdWdYKGe38Coyx
+	 WdRBOZCE5XXrSxQI7wAyLPZmZHp50ejFkSlSjllcNKS/VX7Sq8XVvU21u5a1yPV+tx
+	 b0KLCjIGyK7IN/xntAqgcFEvYqvZy+1uZrtL4PaHtIYT3XD7ZOx12YRQrux1z8hDv8
+	 Od5H+knND8F8A==
+Date: Thu, 9 May 2024 07:08:15 +0200
 From: Mark Brown <broonie@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	Andre Przywara <andre.przywara@arm.com>,
-	Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH RESEND v5 2/2] regulator: sun20i: Add Allwinner D1 LDOs
- driver
-Message-ID: <ZjxWKOoLMNQAmhla@finisterre.sirena.org.uk>
-References: <20240507041343.272569-1-wens@kernel.org>
- <20240507041343.272569-3-wens@kernel.org>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [RFC PATCH 0/6] Support ROHM BD96801 scalable PMIC
+Message-ID: <ZjxaP_BNWVufJb_X@finisterre.sirena.org.uk>
+References: <cover.1712058690.git.mazziesaccount@gmail.com>
+ <f7d454ac-6ecb-4431-a1de-c9b5d1240969@gmail.com>
+ <eb03ec33-0627-4986-be04-8e35da390d6b@sirena.org.uk>
+ <b6279be8-cf7d-4608-b556-3c01587f0d43@gmail.com>
+ <f1e3d31d-8c24-4cdc-ae26-747f383a937b@gmail.com>
+ <b6ded975-1d16-46ea-84a2-8799b36e1270@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,68 +68,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="g1RsFHX7V6ArnC2e"
+	protocol="application/pgp-signature"; boundary="/PL7cyDLGd10Dqzd"
 Content-Disposition: inline
-In-Reply-To: <20240507041343.272569-3-wens@kernel.org>
+In-Reply-To: <b6ded975-1d16-46ea-84a2-8799b36e1270@gmail.com>
 X-Cookie: Sorry.  Nice try.
 
 
---g1RsFHX7V6ArnC2e
-Content-Type: text/plain; charset=utf-8
+--/PL7cyDLGd10Dqzd
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 07, 2024 at 12:13:43PM +0800, Chen-Yu Tsai wrote:
-> From: Samuel Holland <samuel@sholland.org>
->=20
-> D1 contains two pairs of LDOs, "analog" LDOs and "system" LDOs. They are
-> similar and can share a driver, but only the system LDOs have a DT
-> binding defined so far.
+On Mon, Apr 22, 2024 at 01:52:27PM +0300, Matti Vaittinen wrote:
+> On 4/5/24 12:19, Matti Vaittinen wrote:
+> > On 4/4/24 16:15, Matti Vaittinen wrote:
 
-This doesn't build on at least multi_v5_defconfig, multi_v7_defconfig
-and arm64 defconfig:
+> > > > I would expect each parent interrupt to show up as a separate remap_irq.
 
-/build/stage/linux/drivers/regulator/sun20i-regulator.c: In function =E2=80=
-=98sun20i_reg
-ulator_probe=E2=80=99:
-/build/stage/linux/drivers/regulator/sun20i-regulator.c:111:16: error: impl=
-icit=20
-declaration of function =E2=80=98of_device_get_match_data=E2=80=99 [-Werror=
-=3Dimplicit-function-de
-claration]
-  111 |         data =3D of_device_get_match_data(dev);
-      |                ^~~~~~~~~~~~~~~~~~~~~~~~
-/build/stage/linux/drivers/regulator/sun20i-regulator.c:111:14: warning: as=
-signm
-ent to =E2=80=98const struct sun20i_regulator_data *=E2=80=99 from =E2=80=
-=98int=E2=80=99 makes pointer from inte
-ger without a cast [-Wint-conversion]
-  111 |         data =3D of_device_get_match_data(dev);
-      |              ^
-/build/stage/linux/drivers/regulator/sun20i-regulator.c: At top level:
-/build/stage/linux/drivers/regulator/sun20i-regulator.c:136:34: error: arra=
-y typ
-e has incomplete element type =E2=80=98struct of_device_id=E2=80=99
-  136 | static const struct of_device_id sun20i_regulator_of_match[] =3D {
-      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~
-/build/stage/linux/drivers/regulator/sun20i-regulator.c:136:34: warning: =
-=E2=80=98sun20i
-_regulator_of_match=E2=80=99 defined but not used [-Wunused-variable]
+> > > > So if we arrange to supply a name when we register multiple domains
+> > > > things should work fine?
 
---g1RsFHX7V6ArnC2e
+> > After my latest findings, yes, I think so. How to do this correctly is
+> > beyond me though. The __irq_domain_create() seems to me that the name is
+> > meant to be the dt-node name when the controller is backed by a real
+> > dt-node. Naming of the irq_domain_alloc_named_fwnode() sounds to me like
+
+...
+
+> If we wanted to support multiple HWIRQs / regmap-IRQ controller, it would
+> require us to duplicate almost everything in the struct regmap_irq_chip for
+> every new parent IRQ. The status/mask register information, IRQ type, etc.
+> Naturally, it would require also duplicating lot of the data contained in
+> the struct regmap_irq_chip_data. I am not sure if this could be done so the
+> change is not reflected in the existing IRQ data initialization macros etc.
+> Furthermore, some API changes would be required like changes to
+> regmap_irq_get_domain().
+
+I don't understand what the difficulty is here - we're creating multiple
+interrupt controllers so I'd expect to have to have full definitions of
+each, and since everything is referenced by name from the root
+regmap_irq_chip which gets registered it's just a case of supplying
+different names and all the helpers should be fine?
+
+> Thus, forcing the regmap-IRQ to support multiple parents instead of having
+> own regmap-IRQ instance / parent IRQ feels like fitting square item to a
+> round hole. I am sure fixing all the bugs I caused would give donate a lot
+> of EXP-points though :rolleyes:
+
+Right, my suggestion is to register multiple regmap_irq instrances - one
+per parent - and supply a name that allows all the display/debugfs stuff
+that currently uses the dev_name() to deduplicate.  You'd end up
+sticking -primary, -secondary or whatever name was supplied onto the
+names we currently use.
+
+> Another option I see, is trying to think if irq-domain name could be
+> changed. (This is what the RFC v3 does, [ab]using the
+> irq_domain_update_bus_token()). I was a bit put off by the idea of
+> 'instantiating' multiple domains (or regmap-IRQ controllers) from a single
+> node, but more I think of this, more I lean towards it. Besides, this is not
+
+Yes, register mutliple controllers with different names.
+
+--/PL7cyDLGd10Dqzd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmY8ViUACgkQJNaLcl1U
-h9DVRwf/W0u/DsfRiOg544BQO14Ruk6H0o+gXYE8qd5+KA124vKjN3tCXj3M5dfX
-wMKDwWXD4MmMHCDdyaQO+ZvlUojvktKtVJTsTmesOXeV6oX1KFgKPd/lVWnI3Hkb
-gSBz3iTePYx0olIQFKi0RWvqn2ykvEfKdGMxFiXexCeCKvx59eVf+Prr35cpNvXr
-QD57BzTpmHkA0X5zMJayU04imi/IwLoTSCfZFWkfdk4WqeEOaV/VwSpdZ0ZEpKe6
-cFsWgmSxIT3SaqPJfHcUAKS9btPLY4pzF2j/4pqS6HUILVLPjULh/0vPiNLF9JOq
-E1OYXyruAQ+pa70o/cnO1OkVRec/8g==
-=f3+H
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmY8WjwACgkQJNaLcl1U
+h9BlIgf/efaIkV0f4VqTTEAwN9jK2xqYQzUU/QYaEluaoaVtgKOVZ/Y2CA88QkDD
+gOs5ZkvkmijhpvI96By0iwMdNHM7St2qpr+QBOrRx1eMEgffLgVTTQC3L3ob+N5e
+/igyou5OM/aoQmqWKDpB3xbNrt3ALHZ5wkl4RM/bs3gKax7Nu2JuOTgK2LKqaVqL
+H2zf8A3U1HILV+T9CLWeF0Hy6euF1CaZTaAAhgDNVoyOKbV4BvyjRqbenGsMhhAa
+PjGnEt/d/o/zyZLwuIOz2ysbl0rsaW4RtK7zpTYFSjZFGCGlTCPWAfu1PrqD865l
+Q4d3hwpxu39VfTyfjb6bZ7JLfMbQHQ==
+=iZw5
 -----END PGP SIGNATURE-----
 
---g1RsFHX7V6ArnC2e--
+--/PL7cyDLGd10Dqzd--
 
