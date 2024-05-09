@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-65966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243568C0C9B
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 10:31:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB2E8C0CA1
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 10:33:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45B97B22A41
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 08:31:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70F64281C9C
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 08:33:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A2414A097;
-	Thu,  9 May 2024 08:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B34126F09;
+	Thu,  9 May 2024 08:33:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ABXq/ZcG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kvogapQG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE8514A085
-	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 08:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4BF338D
+	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 08:33:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715243500; cv=none; b=jBwPq/tbnJfmVflyjxOSgDfbSEYL4XWeHjnMWhvKpOSBxnlUAE6W5SRdTeeanv5t+xwCJxXLklhDoEqjco3nvXPbeeJcz+cC7aBmQXiSyTH/eybgsy6GZG8wN1HmI4GOibo+o+m5TaZZ/Qqu9nYogqWHT3h1dNZSn6F60BddHT8=
+	t=1715243587; cv=none; b=nBZrRJzem+157mUoLn6Yekmotijr28RJseBFr9j3dCKCDj+oC9BxmHyGSWqJGtyNFrzP7sDehQ0DdagJAHZWMbc4mt0LK1VBDOjnieJw4pZdeX3UDfwm5cya51eiKAPo5rly/ZpNhv5t5c7fYO4IR7S3npF/UkqHY34eC7VHLoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715243500; c=relaxed/simple;
-	bh=g6brLIjlctrnBrGGIGeLbfb8eDQbn6shISRqkm3Vvr0=;
+	s=arc-20240116; t=1715243587; c=relaxed/simple;
+	bh=zM27GSHT4pVu4YKhobUJgZt+d7XdlVRNISWcxM7M4T0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z2zV1HpOyOn3uF37x8cccMpkUvrYrbdF+ATrZ30Qadxew07xlsISgoohprYSgcoERptHBwVpiqYRmeVQdy/E79h1sYhn10wk/0OmOS6I5skYsg9OxCRt5+mpzZ7iktc2+EmdXcLfI8Gnx5Wkwmw0ud0x7Up2+ILE2wnLRoq7swU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ABXq/ZcG; arc=none smtp.client-ip=209.85.218.41
+	 In-Reply-To:Content-Type; b=bE59zLvOZXzX6hYa7gJrcq4TjCdlI1MOL516ksGEnAK7keNUNZg+Dt59ARAyqcu3QW37vRDs0YEJqPMammvabHU0kjRpXr18nOFnXa1NlFi7KrZuD6cNY61mYyI9ZbAcy4hq7SjqBPKR6kP8cjqQOTRwrvFltgajW8YLeaAhME4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kvogapQG; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a599c55055dso151111366b.0
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 01:31:38 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a59ab4f60a6so139220266b.0
+        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 01:33:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715243497; x=1715848297; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1715243584; x=1715848384; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=PN7HUcKm95s2j3xS4Is4Wg9h1CVJ8IRE/G93EyxqKbA=;
-        b=ABXq/ZcGZ1VeTizHeNCuKMlhtLnESv8nlvR7BsJSwo6G9gSlR/+tPx1GK7ZagFOww5
-         yBjSTYT60F7aBdIQ0bu7JgPo8Yk+g3EPT/xqo9DJ2mP+b2sgkJ3qXeimWALKf23W/cHI
-         1fYuHGHQF1Y+azH2bevlTVfI9dJCuSA8LhayRY2OjyY7/rMQkDjGqIsTdH9qwQiPq9LK
-         HJ1Eh9fR9mzvaJXLkeWrIgxwGHdZSKudtZjugvIWwIFeOp80RaksM94Y1kY28Er6cLIv
-         PaBT60TjCRnBrJiqFeQgnbDaj7pXfm2H9VUYRMHKXnqNQalrfdnYB+DvLnqTZwJroaWQ
-         THuw==
+        bh=h5AHvTi1tBUzUqPnJL7+2tWbunFC2I9F88MO8Fz8W3E=;
+        b=kvogapQGLm8kWXbsOPmIZO2zGvb1/6Ih+EatUl4PPuFlzGOtwJjFKJ95YqPD6etABE
+         9UPqZ9AYpgSokgmCZcHu9ZrGV/Ah5g5GVA+k8Fhn1E/1oiNz7rCVvQnPDWyUEMedR1AO
+         v8d30VJS76UyCa5G6gnvTr0i6EeU1EpFNhKN0BuT/l9T59e61S9KlIuIy5cYDKofMZoQ
+         lZjt8U2wx2Zd2VBgbe0fvH7Ua2Bd61LF/J1+PTW8Eon+3JzwJGaGJNq8pdW3nTcFPg0p
+         Clc6Th0/QFQ4hN7uRepD6WD+1qonaltBZ6pif2ObeJiRiifVTE5QDuZLbapOteFW6D1s
+         ZLhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715243497; x=1715848297;
+        d=1e100.net; s=20230601; t=1715243584; x=1715848384;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PN7HUcKm95s2j3xS4Is4Wg9h1CVJ8IRE/G93EyxqKbA=;
-        b=TiiFUhmGZEmLKRh9z37yRMaPxv4/bj+Pd/T0gLnBEyQDtZIijB8iDR0UkhgO6JpRqI
-         V/D/T1N9/AbITv0LMXINbd9EIdcPzTK0OTIfO+rTpYDGGLbGvd86I3zPRQ+hEcN8sn5i
-         DrX7QsAry4KBt5e05SYCF1N4mVuJ64mheqBiS72t/XISHXXZxC70OuRRCq6rlKQWnaSM
-         n8mzi6wZaxf5IlUEAJjut3mI/cB6bpPi5v0pV3GKkcHB0CZn3yk5EU0M8zP9iMBG4XK4
-         XPe4FnXLRTz6xF46DcIoqQHnv3eI6l5J1qPBmjILMjBNixM5ALoYsdac9xUnIrtJDDEd
-         fUag==
-X-Forwarded-Encrypted: i=1; AJvYcCWBbej7zfvvwqLEB7Vv7WNo2x6MPkxHJ1GZNNGKxo1DUVM06z37/CvFQH+3r5AbfSnanuHPDJH5ofxpMyo4VYW23hqrEIQsDXPMfQ==
-X-Gm-Message-State: AOJu0YyzIZHzuqtlq3UeeQd9HOaNs1jy+uyA1L52t+BGPMHSm1nYfu5F
-	hOeuhbx/Rf+0FzN3CRWF8LDUg6gAjGXSbb8FdAnoDq2pRY/wU38qIawUEPpnErY=
-X-Google-Smtp-Source: AGHT+IEWEKZonq801qsZzLiH9WGt2fbYv4VFxzbE8jq5dRvtfVVEaz/68zuTSiORJoesn/4lMcRj9w==
-X-Received: by 2002:a17:906:407:b0:a5a:12f0:3737 with SMTP id a640c23a62f3a-a5a12f03927mr114445066b.10.1715243496882;
-        Thu, 09 May 2024 01:31:36 -0700 (PDT)
+        bh=h5AHvTi1tBUzUqPnJL7+2tWbunFC2I9F88MO8Fz8W3E=;
+        b=VbUKQj9tVdGumCWpVy4pEag8fGNEANstOK4wKnejxtYUCLWiqQDbh3p4kYGKXqqIu4
+         vkY72+2ZNXqsHEPq1dnmC2gUoU9gvOUxOwc2XdLyuwbK8bkDEbZmTTe7a6ioLoQpql1s
+         FZGHaik+aBb2hySGNrEHBAya0uK+V214+UR2WJjcGV2EU1WE5JD+8jK182rmSanq5sqF
+         6wsfY2ZUCLtgB9BJnuqxYHbR3dKjWKwqR9Z27q6SMj0xmy72mY0MSrmxZiBv/FzF0BiX
+         bPeN9wNLg/pC+K4wf6bhQ/2RiNoFbugkg39QKoN9ZK0HBMrWh29rlQLefjZCeqj1i0co
+         jnIg==
+X-Forwarded-Encrypted: i=1; AJvYcCWGpYiIphNdn0OwtRDq72brmyG0sSoBfWUjZf4mQmh1sn2bcUncchtVXXw4WVrNZq9zsFW16m1UEUn8lPEGXAQmzz2ArHmfORebkw==
+X-Gm-Message-State: AOJu0YwWPb08X24mswVA/qpKqZ+lwfl7rN4hQ9LJKVOFpWaUQJ8s2LjP
+	RQou0ws6kqhmKhkg2cn6c6XhsB048uOYQ0JW/1Ih/y+f72HuaPGhHXM7FdDnVjo=
+X-Google-Smtp-Source: AGHT+IEvLcbAQvFPih6Kzm0lbLrK4SFAMf0flY8eXN/UbQCtJhejPNBf5kKJAQQvrjryI83sPJddRQ==
+X-Received: by 2002:a17:906:7181:b0:a59:cb29:3fa8 with SMTP id a640c23a62f3a-a59fb91fa5fmr490587666b.14.1715243584122;
+        Thu, 09 May 2024 01:33:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b0145csm48181866b.158.2024.05.09.01.31.35
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b1771bsm48730566b.215.2024.05.09.01.33.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 May 2024 01:31:36 -0700 (PDT)
-Message-ID: <c0a12ea3-b869-48f2-9f23-e3139d87d5cd@linaro.org>
-Date: Thu, 9 May 2024 10:31:34 +0200
+        Thu, 09 May 2024 01:33:03 -0700 (PDT)
+Message-ID: <424e40fb-5360-4885-ab07-f41a61a8046e@linaro.org>
+Date: Thu, 9 May 2024 10:33:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +77,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>, andersson@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_nankam@quicinc.com, robh@kernel.org
-References: <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
- <20240507163045.28450-1-quic_vvalluru@quicinc.com>
- <a32fa81d-bd70-4dfa-b512-e2adce4f8c35@linaro.org>
- <9a48b0a8-d1d7-8e2d-dafa-47e136a46c99@quicinc.com>
- <2f810036-1832-42ef-b896-e9470f469029@linaro.org>
- <CAA8EJpqG7k2+eEyndzrGgF4YqSOhD-kKfaj93PLhitcku1B6tw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: input: i2c-hid: Introduce Ilitek
+ ili2900
+To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>,
+ dmitry.torokhov@gmail.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org,
+ benjamin.tissoires@redhat.co, dianders@google.com, hsinyi@google.com
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240509064336.9803-1-lvzhaoxiong@huaqin.corp-partner.google.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -136,49 +132,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAA8EJpqG7k2+eEyndzrGgF4YqSOhD-kKfaj93PLhitcku1B6tw@mail.gmail.com>
+In-Reply-To: <20240509064336.9803-1-lvzhaoxiong@huaqin.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/05/2024 10:13, Dmitry Baryshkov wrote:
-> On Wed, 8 May 2024 at 10:38, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 07/05/2024 21:20, Abhinav Kumar wrote:
->>>
->>>
->>> On 5/7/2024 9:35 AM, Krzysztof Kozlowski wrote:
->>>> On 07/05/2024 18:30, Venkata Prahlad Valluru wrote:
->>>>> Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
->>>>> reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
->>>>> Bridge supplies are Vdd connected to input supply directly
->>>>> and vcc to L11c. Enable HDMI output, bridge and corresponding
->>>>> DSI output.
->>>>>
->>>>> Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
->>>>> ---
->>>>> v3: - Updated commit text
->>>>>      - Arranged nodes in alphabetical order
->>>>>      - Fixed signoff
->>>>>      - Fixed drive strength for lt9611_irq_pin
->>>>>      - Removed 'label' from hdmi-connector, which is optional
->>>>
->>>> Please respond to each Bjorn comment and explain how did you implement it...
->>>>
->>>
->>> Yes, agreed. Even though it seems like you mostly just agreed to mine
->>> and Bjorn's suggestions and decided to implement all those in v3 , it
->>> would have been better to explicitly ack them or tell why you agreed or
->>> what went wrong that you had not done it in v2 itself to close the loop.
->>
->> The problem is that one or more were ignored... By responding to each of
->> them, I hope they will be finally read and understood instead of
->> repeating the same mistake three times.
+On 09/05/2024 08:43, Zhaoxiong Lv wrote:
+> From: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
 > 
-> I found a mistake that was repeated two times. This leaves me
-> wondering which mistake was repeated three times.
+> The ili2900 touch screen chip same as ilitek ili9882t controller
+> has a reset gpio.
+> 
+> Signed-off-by: lvzhaoxiong <lvzhaoxiong@huaqin.corp-partner.google.com>
 
-That was about future, I was expecting v4 as in-reply-to :)
+You just sent the same, ignoring entire feedback.
+
+That's a shortcut to get ignored on your contributions... :(
 
 Best regards,
 Krzysztof
