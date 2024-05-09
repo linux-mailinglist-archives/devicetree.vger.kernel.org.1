@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-66095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A27B8C1398
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:14:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C328C13A7
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:16:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 371A61C20E06
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:14:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91DCAB20D66
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE3DDDDA;
-	Thu,  9 May 2024 17:14:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0639A17584;
+	Thu,  9 May 2024 17:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qNltURwB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXcSLdt7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B94DDBE;
-	Thu,  9 May 2024 17:14:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C431FDDDA;
+	Thu,  9 May 2024 17:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715274878; cv=none; b=ehiqA8xysjaRKQ/fgF+ZggYQrwwSjkkMR4FJXEB9CMbkOEiQBnw6e1xG2B0RUo/X/w73IYbumXDdK+bM5O1ZaZIdXRnOGpy2ZyLMTmWKyT4fXTYvIdcYYYU2e2pU1j3ii6ETGKER0hNGJiOdhQyKdqP2WyZmuDY3/06kj+bt6As=
+	t=1715274999; cv=none; b=BQgOyKH4FWBMGVhlVZFss9cZvgbXAJI/wfyI0N+GV8QhDzlyCI4Y+33D0WnYpmdsvQg/TiI/lOzRFBpvKuEq7DBvSkVYbzgO+Sz4ryvzrj4svCu7aX2swxJYEUjPvL17X2FNI9h8YZ2bmRJpr2kn3Bk1DNdz6gmPDfuvm2Dkf+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715274878; c=relaxed/simple;
-	bh=YwUKTYOpoxA/NOjHV7A/q7cg5e41+QOvCr4wGh3um4g=;
+	s=arc-20240116; t=1715274999; c=relaxed/simple;
+	bh=973lRpNkD5J9l+d336n7NUlE/nZ9DF8NwU/k6a2Ez3o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pXEor1R62bhk6ZZ8f5fRRYZO7t2n1g2zvFHZYYKK7xlLw0FI3APf/pcbgVKMTOqKK/zd9fYSOrGGsiIgkVZBVUEu1T4/mkAVBxhwvEB0VW3q+lr46beQD9b7he2roco/G8FaCOhbLYNph6HyTrzwmP3yFFPvp5oXN2zzFQKK6CE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qNltURwB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D799FC116B1;
-	Thu,  9 May 2024 17:14:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ogg3w4UjP5bY8WJtQvCpC6ViruWavRxEWOlZjHLxxUan2kP1QICjap6bawTwLkCQ8VHu97grF3aAojOYxN/9khTR0SxH06XURF6LdiAc5Xhdl8GxQ3FRMp2iG4fAdGQ9mNu1B4LAID03Scs3UTQvP2VeAa9IJdSnoKISZV3ELO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXcSLdt7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83522C116B1;
+	Thu,  9 May 2024 17:16:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715274878;
-	bh=YwUKTYOpoxA/NOjHV7A/q7cg5e41+QOvCr4wGh3um4g=;
+	s=k20201202; t=1715274999;
+	bh=973lRpNkD5J9l+d336n7NUlE/nZ9DF8NwU/k6a2Ez3o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qNltURwBHZ0ugcWbLrUYJc6RkDUcNQgiYSfZKjEwL9+mHhuhW146bkl+HHiyqOY7D
-	 wNNuItMLZg9XcI1JEb6/M6vYSge5p3d/Jqj/OmYtbmVYnvKDIu/qETs5sRmCps6IOQ
-	 4LZSSh8xcEqDzkYGMQlizUe3dBHJGeJ27fyMc2GPvTmQUB2fR1FDljGOCifTUgm44z
-	 tODVfJsI9WuQ5oCQ1S/mdwWcfvfMNNaHEiYnNaps8KLZaGtfuR9Xjg2wUSON1ihOC1
-	 qDjHDw8Jt0BWhP/UqDK3LVzv0+Cy99DGUte0fmFAja8ZXPpS+oNlfndpyWeqf3uBUo
-	 7ppc6G/TeWG3A==
-Date: Thu, 9 May 2024 18:14:32 +0100
+	b=oXcSLdt7LvEnsnJJoeHM78dSo0hKxgKPKHlcqoeiz0V6zkXKHRgd+lZCnw0Z+LFBj
+	 cP8h05WwELK4HxoFYC9Y2RxvQmSiH1MCzJIU6jMzN9D59llt5Qg9IXW1L8OVl8u/9J
+	 2J5IiUGjD/at+lYV2DQqPOvFgnqvPXBplQ686rUJNr7CVkneOc4cmgNhLwu6Htboto
+	 5WmmPzCa/g8XKMEyVRHPYtlBNyWNA1/MLeMgXl41G0pbsEslJ30RFeVCdaeO7P/uHq
+	 wPg4UlGIz5lHzRDqokPJvnUtQtI4pIhAJf8fid0kKNriY6se9IAB554he7KSc+/fzs
+	 qEHodZz5WgArQ==
+Date: Thu, 9 May 2024 18:16:34 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shengjiu.wang@gmail.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-	perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: fsl,xcvr: Add two PLL clock
- sources
-Message-ID: <20240509-repurpose-dumping-156b57c25960@spud>
-References: <1715223460-32662-1-git-send-email-shengjiu.wang@nxp.com>
- <1715223460-32662-3-git-send-email-shengjiu.wang@nxp.com>
+To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
+	dianders@chromium.org, linus.walleij@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, airlied@gmail.com,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	xuxinxiong@huaqin.corp-partner.google.com
+Subject: Re: [PATCH v5 1/7] dt-bindings: display: panel: Add himax hx83102
+ panel bindings
+Message-ID: <20240509-regretful-trombone-42ed9d7a3817@spud>
+References: <20240509015207.3271370-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240509015207.3271370-2-yangcong5@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,79 +63,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9OB7iJL8uyGYmSbm"
+	protocol="application/pgp-signature"; boundary="ncHccA2eRd27cZCy"
 Content-Disposition: inline
-In-Reply-To: <1715223460-32662-3-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <20240509015207.3271370-2-yangcong5@huaqin.corp-partner.google.com>
 
 
---9OB7iJL8uyGYmSbm
+--ncHccA2eRd27cZCy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 09, 2024 at 10:57:38AM +0800, Shengjiu Wang wrote:
-> Add two PLL clock sources, they are the parent clocks of the root clock
-> one is for 8kHz series rates, named as 'pll8k', another one is for
-> 11kHz series rates, named as 'pll11k'. They are optional clocks,
-> if there are such clocks, then the driver can switch between them to
-> support more accurate sample rates.
+On Thu, May 09, 2024 at 09:52:01AM +0800, Cong Yang wrote:
+> In V1, discussed with Doug and Linus [1], we need break out as separate
+> driver for the himax83102-j02 controller. Beacuse "starry,himax83102-j02"
+> and in this series "BOE nv110wum-l60" "IVO t109nw41" panels use same
+> controller, they have some common CMDS. So add new documentation for
+> this panels.
 >=20
-> As 'pll8k' and 'pll11k' are optional, then add 'minItems: 4' for
-> clocks and clock-names properties.
+> For himax83102-j02 controller, no need 3v3 supply, so remove it.
+>=20
+> [1]: https://lore.kernel.org/all/CACRpkdbzYZAS0=3DzBQJUC4CB2wj4s1h6n6aSAZ=
+QvdMV95r3zRUw@mail.gmail.com
+>=20
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 
-Despite the detail given here in the commit message, the series this is
-appearing in and one of the driver patches makes me a bit "suspicious"
-of this patch. Are these newly added clocks available on all devices, or
-just on the imx95, or?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
+Cheers,
 Conor.
 
->=20
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  Documentation/devicetree/bindings/sound/fsl,xcvr.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Docu=
-mentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> index 1c74a32def09..c4660faed404 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> @@ -50,6 +50,9 @@ properties:
->        - description: PHY clock
->        - description: SPBA clock
->        - description: PLL clock
-> +      - description: PLL clock source for 8kHz series
-> +      - description: PLL clock source for 11kHz series
-> +    minItems: 4
-> =20
->    clock-names:
->      items:
-> @@ -57,6 +60,9 @@ properties:
->        - const: phy
->        - const: spba
->        - const: pll_ipg
-> +      - const: pll8k
-> +      - const: pll11k
-> +    minItems: 4
-> =20
->    dmas:
->      items:
-> --=20
-> 2.34.1
->=20
-
---9OB7iJL8uyGYmSbm
+--ncHccA2eRd27cZCy
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj0EeAAKCRB4tDGHoIJi
-0kPzAP43Zn5AesCX1kKOSIjtrW5Vpt8hIHrIlOUZhE9kMqS8CgD+MljoXShCv6Tw
-G/iLAeB3RppsSsV+7vuOr03Tr0FXKAw=
-=oPv2
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj0E8gAKCRB4tDGHoIJi
+0g5CAQDdF++R3wBg5Amvd/uInS7O/p6gOkr7yA9Poj2KRSaGWwEA1n7FZs3H0ZeE
+NJTFuluFnC5smgyw1ffLSVO+JzeBoA0=
+=8+Bx
 -----END PGP SIGNATURE-----
 
---9OB7iJL8uyGYmSbm--
+--ncHccA2eRd27cZCy--
 
