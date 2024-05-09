@@ -1,105 +1,156 @@
-Return-Path: <devicetree+bounces-65958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7278C0C05
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 09:37:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8ED38C0C20
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 09:49:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BF102813A1
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 07:37:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 060ED1C216A9
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 07:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FFD13D27C;
-	Thu,  9 May 2024 07:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60027149C70;
+	Thu,  9 May 2024 07:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oOAsEd7P"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="sibTL0dW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CEB26AE7;
-	Thu,  9 May 2024 07:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35C513C9C0;
+	Thu,  9 May 2024 07:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715240237; cv=none; b=aWOCx+Qd03mUsTWh000I52yQrieetbB9Odw9vJNqs5uy1f9juO6jfYAhoTuoWMs+FlHFjZWgo+fkX4FoJ8aZQDRyY3qF//6+YkJCbVo/8yHx5Ws+WSK0jTW1HhzHTc2il5m7cgVe+QPERVmI7Sgh6wvQcYAOAKFDQ2vksbBMh54=
+	t=1715240953; cv=none; b=GD2fjvZDuvIzq7pJoemrMGRte+hTs8PNoJnf39nqDGAZOGO3gcdczQBeNrJPggv77PQ+8Kiu2FkvgMQcbEY5lwYiSc1uH+WqiKK3IJ/UZP49EhQGVZmIv3mB2C90mmVa1eB78FgDy2+nUE6GhPcLVXfLnqs4wZBIuldMm3nUATI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715240237; c=relaxed/simple;
-	bh=qk2+IBmDngaDBCJU7AWu8KKJZ2Rxhc2kyG9HF1G1JBg=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=pEPlMX2H6VPvCD4XhABwKnyhZ/yF7pPJvisv3PC3yJVIbXSLGw567lnIH216MJqcrvOTHgN4Wx0LavhwhezDYuXZ8LZsHBjyZtPzVd4qCse/MXZ1/n2gioWeq+N7D9pvHkN8dADTQ/ZaVXoBIpspdCQm3LkByEH6yABvUI94BFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oOAsEd7P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3EC6C116B1;
-	Thu,  9 May 2024 07:37:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715240237;
-	bh=qk2+IBmDngaDBCJU7AWu8KKJZ2Rxhc2kyG9HF1G1JBg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=oOAsEd7PQJIoZ2Vr4Q5rpV1oePjIklqIWCXS8FlQab75d64GDWCB8eUa5P55ZeyQD
-	 s0XWc8mGImqVD5UyZP9uXkGUmPKRyyCqC4+YYHq5rQta7obsKDM3GmmBFlD6PRYxtS
-	 xpV8tZpda60FRWM491//iijyjJWzvd0sbsvOd3UmUwekPdk6tYzGIDln7JZSqH9tFr
-	 IzNZrca1dt4rYw9pjk5FnvoFvM23bUJv7LNZozAu3NCtlzeErQOjwQ0V4R9rVDFCZb
-	 vf2MsxLB0Y10AHcRi7X3IOm4uxjqr0sd6Y2VNxkBmZmAVirDLPIGiQt0pFge40JtTT
-	 hp4/O84Z3NyPA==
-Date: Thu, 09 May 2024 02:37:15 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1715240953; c=relaxed/simple;
+	bh=sDwPafMpIIsl7Mu2sC8mUTOsijZlaGt+V4EsD8yPch4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hp1GKOd+InBotM3fe/O0nvBulhag2NM3S+Jou3RvBd0sqm2BooRUv9Jgu24zE4tPMGZlGFmvHEY8tuvbGwegoXulLWc6wCtY5+arcI+mJFzwsfvMg7lW7odFquxE+npCt55E1VnubiIQtvtBIo44lTjKoPQ2Qyj7WEp3XFFngbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=sibTL0dW; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1715240950; x=1746776950;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sDwPafMpIIsl7Mu2sC8mUTOsijZlaGt+V4EsD8yPch4=;
+  b=sibTL0dWHltkqoG9/79SI/g3961GGl49C0NOZk1xzzGFx5uxjPTDYSqM
+   m97+EU60v2YFxWuZ7Qvl8EjJCi6ItYpj6X3bUlV88oHgGxLEtbWyk5RMo
+   qR4FnTK/EhHaVkfA7f1YJ5DJGsUstvOzTuJP/Yf3xBNkjYO7YVXpPnvkg
+   kIN093h3owUFPCNhDpY5qegz4aPYGmnOUeGXtozQG5JGBY95AscCw5Ems
+   SFDhcdVGIQck758msQv3unoMbsRGKoN+gVzOMYM6fjIceqhdGuK6cEhKm
+   o7L9J1+t+Dwl5Tr2N3gHpaguzoeN0xUoD/FioUwJ/lW4jQsv8p66kq/f+
+   g==;
+X-CSE-ConnectionGUID: b4TAGUWbRRaXvl7Tlp/mVw==
+X-CSE-MsgGUID: 0hMmNNlFTQa1/hvoYYDwrg==
+X-IronPort-AV: E=Sophos;i="6.08,147,1712646000"; 
+   d="asc'?scan'208";a="191609229"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 May 2024 00:49:03 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 9 May 2024 00:48:23 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 9 May 2024 00:48:19 -0700
+Date: Thu, 9 May 2024 08:48:09 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Andy Chiu <andy.chiu@sifive.com>
+CC: Conor Dooley <conor@kernel.org>, Eric Biggers <ebiggers@kernel.org>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner <heiko@sntech.de>, Guo Ren
+	<guoren@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Jonathan Corbet <corbet@lwn.net>, Evan
+ Green <evan@rivosinc.com>, =?iso-8859-1?Q?Cl=E9ment_L=E9ger?=
+	<cleger@rivosinc.com>, Shuah Khan <shuah@kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Palmer
+ Dabbelt <palmer@rivosinc.com>, Vincent Chen <vincent.chen@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>, <devicetree@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>, Joel Granados
+	<j.granados@samsung.com>, Jerry Shih <jerry.shih@sifive.com>
+Subject: Re: [PATCH v4 7/9] riscv: vector: adjust minimum Vector requirement
+ to ZVE32X
+Message-ID: <20240509-mandatory-monsieur-dfa4d7881fa9@wendy>
+References: <20240412-zve-detection-v4-0-e0c45bb6b253@sifive.com>
+ <20240412-zve-detection-v4-7-e0c45bb6b253@sifive.com>
+ <20240418-brook-chili-4d3e61d1a55c@wendy>
+ <20240418155256.GA2410@sol.localdomain>
+ <20240418-ultimatum-yam-11de4b063b83@spud>
+ <20240418173203.GA1081@sol.localdomain>
+ <20240418173946.GB1081@sol.localdomain>
+ <20240418-sterling-sanding-d59c3b0a2aaa@spud>
+ <CABgGipU74TA3KgCH4pPuRefbnYt3q6RKcQwfyspenisEtY6eqw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: kernel@pengutronix.de, imx@lists.linux.dev, 
- krzysztof.kozlowski+dt@linaro.org, conor@kernel.org, conor+dt@kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, vkoul@kernel.org, 
- robh+dt@kernel.org, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, frank.li@nxp.com, kishon@kernel.org
-In-Reply-To: <1715234181-672-3-git-send-email-hongxing.zhu@nxp.com>
-References: <1715234181-672-1-git-send-email-hongxing.zhu@nxp.com>
- <1715234181-672-3-git-send-email-hongxing.zhu@nxp.com>
-Message-Id: <171524023506.3993776.14373949922426519018.robh@kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
- binding
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ILfmNxMoEmQr18uK"
+Content-Disposition: inline
+In-Reply-To: <CABgGipU74TA3KgCH4pPuRefbnYt3q6RKcQwfyspenisEtY6eqw@mail.gmail.com>
+
+--ILfmNxMoEmQr18uK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, May 09, 2024 at 02:56:30PM +0800, Andy Chiu wrote:
+> Hi Conor,
+>=20
+> Should we check if "v" presents for vector crypto extensions in
+> riscv_isa_extension_check()? We are not checking this for now. So a
+> kernel compiled with RISCV_ISA_V still has a problem if its isa-string
+> includes any of vector crypto ("zvbb, zvkg, etc") but not "v".
 
 
-On Thu, 09 May 2024 13:56:20 +0800, Richard Zhu wrote:
-> Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
-> Introduce one HSIO configuration 'fsl,hsio-cfg', which need be set at
-> initialization according to board design.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  .../bindings/phy/fsl,imx8qm-hsio.yaml         | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
-> 
+Yeah, one of the things I took away from this discussion is that we need
+to improve the implementation of both the methods we have at the moment
+for drivers etc to check if extensions are present and usable.
+In general, I don't think checks like that are "safe" to do in
+riscv_isa_extension_check(), because the dependencies may not all have
+been resolved when we probe an extension (Clement's current Zca etc
+series improves the situation though by only calling the checks after
+we probe all extensions).
 
-My bot found errors running 'make dt_binding_check' on your patch:
+The simple V cases are all fine though - the DT binding and ACPI rules
+for compatible strings all mandate that single-letter extensions must
+come before multi-letter ones. For riscv,isa-extensions we control the
+probe ordering and probe V before any multi-letter stuff. Additionally,
+we should make it a requirement for V to be present if things that
+depend on it are.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml:54:13: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml:54:22: [error] string value is redundantly quoted with any quotes (quoted-strings)
+That said, is it permitted by the specs to have any of the extensions
+you mention without the full V extension, but with one of the cut-down
+variants you mention here? If not, I'd be more interested in figuring
+out the non-extension dependencies: whether or not the kernel itself
+supports vector and if the kernel has opted to disable vector due to
+detecting that harts have mismatching vector lengths.
 
-dtschema/dtc warnings/errors:
+TL;DR: I think we should add some checks in riscv_isa_extension_check().
 
-doc reference errors (make refcheckdocs):
+Thanks,
+Conor.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1715234181-672-3-git-send-email-hongxing.zhu@nxp.com
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+--ILfmNxMoEmQr18uK
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZjx/qQAKCRB4tDGHoIJi
+0nmVAP9L+cHjupn5RAFkHpZYc5Cnnq2E5GdciRokz+M5dfaZiwEA9ymnxi2cQa7X
+f5iK/7u9QwmQNblOabpPI5z1wq28rAo=
+=dW2A
+-----END PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--ILfmNxMoEmQr18uK--
 
