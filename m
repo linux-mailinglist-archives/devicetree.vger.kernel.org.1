@@ -1,146 +1,146 @@
-Return-Path: <devicetree+bounces-66111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF448C140D
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:30:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6B28C15A6
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 21:56:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D63A1C21D37
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:30:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 695101F21EC4
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:56:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38D6117BC2;
-	Thu,  9 May 2024 17:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F1C7FBBD;
+	Thu,  9 May 2024 19:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RTagBD7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E1B1759E
-	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 17:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212A52907;
+	Thu,  9 May 2024 19:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715275802; cv=none; b=BcIRz43FF7S5LLAnmKiojNHWHQ3p4G3VvRseC6YFgBFRB2G9DxR8apMyCs18dT011kRbmUP20O8bJcxkZekTGyMEMzY1lI3tf+fJnBa7cY/DT+CdlqslARPZedCGWUXwbxeOCOPcrN+/SctOXpNRqy5VV72k3GGdQwxYB5SBJvQ=
+	t=1715284577; cv=none; b=nN+6RkMekzLDNvkasmXcQPmWWOAXXPwBsoAFLg38esneDeJ9mF/mMb73byiRa1K90/iq6viydeHGEou+g7fNF25ZCHpbh5wwZbGtJ2FdVA1fXlkIqagXSvcnteGGfBGOyn0s7SLgQNalxL+PLNRUjCIwCdh+bAwqR8FuvV+gYEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715275802; c=relaxed/simple;
-	bh=w2h7XneCk2MaV80gK1ryvpL88EXGmMJN8AHtD7/dmsA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B2u80IJoSZdgYFoKWPh2jbdG8ZfNayTt6Vt9Vz1LXeJZORT7rkc8/vO0fJhR2O36Hctnm9VtdXrvFTAHTXyG8QBZsIYWoBdg8WfRn1R3KWjZc8CBRo/vqRWyVtCjK+mlGeR2ppH6aNHIxTPv3w8gf4Vxu73StLN0pbsf2upC6aQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s57aC-0003Yj-7T; Thu, 09 May 2024 19:29:28 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s57a9-000UgF-2s; Thu, 09 May 2024 19:29:25 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s57a9-001PcK-00;
-	Thu, 09 May 2024 19:29:25 +0200
-Date: Thu, 9 May 2024 19:29:24 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: renesas,tpu: Do not require pwm-cells
- twice
-Message-ID: <dthqwkvdy7qkkwr6bvvi3mwutuaggnj3xripwa2jvqv4lni5bd@3zlnzotkmmfx>
-References: <c0590d8898e553f29c96c7c4083f7b3ca1915727.1715050962.git.zhoubinbin@loongson.cn>
- <CAL_JsqJewzGp5E+O44JgvHu9Q-3PKaXnhjUQbmV7OHfFCEX3Ug@mail.gmail.com>
+	s=arc-20240116; t=1715284577; c=relaxed/simple;
+	bh=yggsdWvGecv9KlZXR7Gn5ZXJpoT8aeY02OM9eHlbgFI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZpcYm13Fdk4Nb9rlZ1LuYGyyuGLmzHEB6A7bItvyo+11icOn6kzIcArUxNYaMppjeqAhGowO20u8kww+ZHeGsrAsgXRDT+tJLTbGL7u8Z1hsGTfLTz+Q1PK54jb1qlkXGLSqp3ngdMaXBYvXFEpI/xHZ5CWt/GS1ouoHjzXWNnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RTagBD7Q; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715284576; x=1746820576;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=yggsdWvGecv9KlZXR7Gn5ZXJpoT8aeY02OM9eHlbgFI=;
+  b=RTagBD7QGomYEp9Rqj9nG72Ua8Vy5vv2/DsR9AbD09Ee4hJSD0/Vj3Gs
+   XE4JwQT6IKzbCd6jeI/5E4dIYuAWCIJ07g15SF7B0FdiOTVd9Ou8QU1zn
+   C5s72CV9ZF2LQp2oHa4fQao9nlQEIbKQS0KkhEYZsg2UHA7guBjGIAkpJ
+   kRXBM5UEZeLdTAwJXu6qZdhBPhA8axOCAxtr1udmyh2pH80fuy9do3oAe
+   99RtbaBYIwhoYJ52lTfrnz3JQ2wW9xFdYDodMYQp2Ur9yabwrcGTFmz22
+   PLjfNntBiYZ2qfMB6TjRJ3YdRBiz4GJ1QMAQ9JuK0ETnYXhV1EUWZ9z3S
+   w==;
+X-CSE-ConnectionGUID: OVYOC/UESkmsBEEk0xgBww==
+X-CSE-MsgGUID: UxKGoLOVTd+VGyMPEGcUdA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11454245"
+X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; 
+   d="scan'208";a="11454245"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2024 12:56:14 -0700
+X-CSE-ConnectionGUID: 0hSRX4lDS5GfwWSqiwJzxQ==
+X-CSE-MsgGUID: Ld9aKcU1TYSOY0PDBQNl8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; 
+   d="scan'208";a="34213064"
+Received: from ajunnare-mobl.amr.corp.intel.com (HELO [10.213.181.85]) ([10.213.181.85])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2024 12:56:11 -0700
+Message-ID: <726e7006-30b4-4525-84c8-4fb2ef380994@linux.intel.com>
+Date: Thu, 9 May 2024 07:54:47 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="svvbuq3olqx47rsc"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJewzGp5E+O44JgvHu9Q-3PKaXnhjUQbmV7OHfFCEX3Ug@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v21 09/39] ASoC: qcom: qdsp6: Introduce USB AFE port to
+ q6dsp
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, lgirdwood@gmail.com, andersson@kernel.org,
+ krzk+dt@kernel.org, gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
+ broonie@kernel.org, bgoswami@quicinc.com, tiwai@suse.com,
+ bagasdotme@gmail.com, robh@kernel.org, konrad.dybcio@linaro.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240507195116.9464-1-quic_wcheng@quicinc.com>
+ <20240507195116.9464-10-quic_wcheng@quicinc.com>
+ <9bd1ec72-71ea-4a1c-b795-af6e7687ca07@linux.intel.com>
+ <0a4d7c2b-ac7d-7bd4-f97e-db60944a1d39@quicinc.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <0a4d7c2b-ac7d-7bd4-f97e-db60944a1d39@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---svvbuq3olqx47rsc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 09, 2024 at 08:46:14AM -0500, Rob Herring wrote:
-> On Tue, May 7, 2024 at 1:54=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.c=
-n> wrote:
-> >
-> > pwm-cells property is already required by pwm.yaml schema.
->=20
-> This should be dropped or reverted.
->=20
-> > Suggested-by: Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org>
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >
-> > This is a missing patch to cleanup the required pwm-cells attribute twi=
-ce[1].
-> > Thanks to Uwe for the heads up.
-> > [1]:https://lore.kernel.org/linux-pwm/cover.1714450308.git.zhoubinbin@l=
-oongson.cn/
-> >
-> >  Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml=
- b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-> > index a3e52b22dd18..4c8ce7a26d13 100644
-> > --- a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-> > +++ b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-> > @@ -16,7 +16,6 @@ select:
-> >          const: renesas,tpu
-> >    required:
-> >      - compatible
-> > -    - '#pwm-cells'
->=20
-> This line is not requiring #pwm-cells, but rather only applying the
-> schema when #pwm-cells is present. It is needed because there's also
-> renesas,tpu in bindings/timer/renesas,tpu.yaml. Without this,
-> linux-next now has these warnings:
->=20
-> [...]
 
-Huh, indeed. I only grepped and didn't notice the context of the line. I
-dropped the patch.
+>> Wait, is this saying you will have exactly one PCM device/FE DAI
+>> connected to the USB BE DAI exposed in patch 11?
+>>
+>>> +    SND_SOC_DAPM_MIXER("USB Mixer", SND_SOC_NOPM, 0, 0,
+>>> +               usb_mixer_controls,
+>>> +               ARRAY_SIZE(usb_mixer_controls)),
+>>> +
+>>
+>> And then what is the role of the USB mixer if you only have one input?
+>>
+>> I must be missing something.
+>>
+> 
+> Not sure if this is a QCOM specific implementation, but the way the DT
+> is defined for the USB offload path is as follows:
+> 
+>     usb-dai-link {
+>         link-name = "USB Playback";
+> 
+>         cpu {
+>             sound-dai = <&q6afedai USB_RX>;
+>         };
+> 
+>         codec {
+>             sound-dai = <&usbdai USB_RX>;
+>         };
+> 
+>         platform {
+>             sound-dai = <&q6routing>;
+>         };
+>     };
+> 
+> Based on our DT parser helper API (qcom_snd_parse_of()) this isn't going
+> to create a PCM device.  The PCM devices are created for nodes that
+> don't have a codec and platform defined:
+> 
+>     mm1-dai-link {
+>         link-name = "MultiMedia1";
+>         cpu {
+>             sound-dai = <&q6asmdai      MSM_FRONTEND_DAI_MULTIMEDIA1>;
+>         };
+>     };
+> 
+> The ASM path is the entity that defines the number of PCM devices that
+> is created for the QC ASoC platform card, and is where the actual PCM
+> data is sent over to the DSP.  So there could be several PCM devices
+> that can use the USB BE DAI.
 
-Sorry and thanks
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---svvbuq3olqx47rsc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmY9B+0ACgkQj4D7WH0S
-/k4cowf/Z6dozCYzK9DiFHM/0340/SNDomoR2MHiqfpe565MjkhAISkq88wrIT9f
-ZBb76SN04FljZfUjSo0kX6qeshyIIe8MO6s9il96bNOue8i4YqHY6E+kFHAu6Wot
-5XwtvW7f3/acQaWpu13LyunLifwGFvafP891XMN3iBgRmbvpZZ/b4OP78/V7SdM2
-fQKj154b4ci00chQ7yT+BXUj5QGX8fc2Er76FHFNMi0nYr77EnAI2sEkYWb0Wxg1
-FUdoWa5lnV8U/wsohICoukVCxZT0KSCIjHuXl05mllSe2Yek+SzGJZ0fGxiW9Yfz
-jeQSEiDOzeJYJRS0L/5sxCVzqNZOfw==
-=iMm5
------END PGP SIGNATURE-----
-
---svvbuq3olqx47rsc--
+ok, but then how would this work with the ALSA controls reporting which
+PCM device can be used? I didn't see a mechanism allowing for more than
+one offloaded device, IIRC the control reported just ONE PCM device number.
 
