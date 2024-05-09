@@ -1,107 +1,251 @@
-Return-Path: <devicetree+bounces-66096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C328C13A7
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:16:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76B9C8C13B0
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91DCAB20D66
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:16:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2504B282259
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0639A17584;
-	Thu,  9 May 2024 17:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8954410A36;
+	Thu,  9 May 2024 17:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oXcSLdt7"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="GOUhtmDf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C431FDDDA;
-	Thu,  9 May 2024 17:16:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D97DF58;
+	Thu,  9 May 2024 17:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715274999; cv=none; b=BQgOyKH4FWBMGVhlVZFss9cZvgbXAJI/wfyI0N+GV8QhDzlyCI4Y+33D0WnYpmdsvQg/TiI/lOzRFBpvKuEq7DBvSkVYbzgO+Sz4ryvzrj4svCu7aX2swxJYEUjPvL17X2FNI9h8YZ2bmRJpr2kn3Bk1DNdz6gmPDfuvm2Dkf+w=
+	t=1715275164; cv=none; b=CH3S9qlYwzvAokALhj0pP5XbNWHe+D1YQ/mx5OqW3KsowE3LmV1iRaxKtC4ok87I6cJYRxCnDHl2fF4BlhwgdzQCqH9jQ9wv+VvffaFkaE8l6mS7Cex3+QOCjVVcd4dAR/iy6uOS2dORbXv1gbx/JsHeZGQa2pCSmGjAGag2YeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715274999; c=relaxed/simple;
-	bh=973lRpNkD5J9l+d336n7NUlE/nZ9DF8NwU/k6a2Ez3o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ogg3w4UjP5bY8WJtQvCpC6ViruWavRxEWOlZjHLxxUan2kP1QICjap6bawTwLkCQ8VHu97grF3aAojOYxN/9khTR0SxH06XURF6LdiAc5Xhdl8GxQ3FRMp2iG4fAdGQ9mNu1B4LAID03Scs3UTQvP2VeAa9IJdSnoKISZV3ELO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oXcSLdt7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83522C116B1;
-	Thu,  9 May 2024 17:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715274999;
-	bh=973lRpNkD5J9l+d336n7NUlE/nZ9DF8NwU/k6a2Ez3o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oXcSLdt7LvEnsnJJoeHM78dSo0hKxgKPKHlcqoeiz0V6zkXKHRgd+lZCnw0Z+LFBj
-	 cP8h05WwELK4HxoFYC9Y2RxvQmSiH1MCzJIU6jMzN9D59llt5Qg9IXW1L8OVl8u/9J
-	 2J5IiUGjD/at+lYV2DQqPOvFgnqvPXBplQ686rUJNr7CVkneOc4cmgNhLwu6Htboto
-	 5WmmPzCa/g8XKMEyVRHPYtlBNyWNA1/MLeMgXl41G0pbsEslJ30RFeVCdaeO7P/uHq
-	 wPg4UlGIz5lHzRDqokPJvnUtQtI4pIhAJf8fid0kKNriY6se9IAB554he7KSc+/fzs
-	 qEHodZz5WgArQ==
-Date: Thu, 9 May 2024 18:16:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
-	dianders@chromium.org, linus.walleij@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, airlied@gmail.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	xuxinxiong@huaqin.corp-partner.google.com
-Subject: Re: [PATCH v5 1/7] dt-bindings: display: panel: Add himax hx83102
- panel bindings
-Message-ID: <20240509-regretful-trombone-42ed9d7a3817@spud>
-References: <20240509015207.3271370-1-yangcong5@huaqin.corp-partner.google.com>
- <20240509015207.3271370-2-yangcong5@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1715275164; c=relaxed/simple;
+	bh=Rzl0EsPaBZuhJT4K9DV9z0doAMFJQdY8JHAUinny52g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ucnclvB3kM6CAtVWCuJXV7ePU4BHfTqsxXKl60AnZFWgdSz/nRdtPqWbC70jGB/B8MnOLokvGOGmKyUy8u5zDCfCS1f339RuhEtwLLWwMRBQqIeGxnrLvssXYWtT11QN88JbNtEg5qOwZO0CbhkET9OVAP4iD+ZmdgRTpCv9o/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=GOUhtmDf; arc=none smtp.client-ip=213.160.72.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
+	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
+	To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=0xr23kdo3208ldSUNmPBQoRiwP+OswAeD0HG7ucF7fE=; b=GOUhtmDfzBOd7zVQV5Hoa8IQWu
+	d/6zoqVqJ7g3iRELiGE9IcquX4sG7c1yjXE5FlqEDtl/CxfdDyJupqvrpnkv/nDy8ZhLI/ByIrRSf
+	rZBRyVWkM+aZw+cmvOSqNZfBctEvuVurUHaIt6/xSSmKx17tOg1hz2jsHVw6BBhtWXG0=;
+Received: from 127.0.0.1
+	by fritzc.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim latest)
+	(envelope-from <christoph.fritz@hexdev.de>)
+	id 1s57Q4-001jf8-0o;
+	Thu, 09 May 2024 19:19:01 +0200
+From: Christoph Fritz <christoph.fritz@hexdev.de>
+To: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Simon Horman <horms@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Oliver Hartkopp <socketcan@hartkopp.net>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>
+Cc: Andreas Lauser <andreas.lauser@mercedes-benz.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+	linux-can@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: [PATCH v4 00/11] LIN Bus support for Linux
+Date: Thu,  9 May 2024 19:17:25 +0200
+Message-Id: <20240509171736.2048414-1-christoph.fritz@hexdev.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ncHccA2eRd27cZCy"
-Content-Disposition: inline
-In-Reply-To: <20240509015207.3271370-2-yangcong5@huaqin.corp-partner.google.com>
+Content-Transfer-Encoding: 8bit
 
+This series is introducing basic Local Interconnect Network (LIN) (ISO
+17987) [0] support to the Linux kernel, along with two drivers that make
+use of it: An advanced USB adapter and a lightweight serdev driver (for
+UARTs equipped with a LIN transceiver).
 
---ncHccA2eRd27cZCy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The LIN bus is common in the automotive industry for connecting
+low-level devices like side mirrors, seats, ambient lights, etc.
 
-On Thu, May 09, 2024 at 09:52:01AM +0800, Cong Yang wrote:
-> In V1, discussed with Doug and Linus [1], we need break out as separate
-> driver for the himax83102-j02 controller. Beacuse "starry,himax83102-j02"
-> and in this series "BOE nv110wum-l60" "IVO t109nw41" panels use same
-> controller, they have some common CMDS. So add new documentation for
-> this panels.
->=20
-> For himax83102-j02 controller, no need 3v3 supply, so remove it.
->=20
-> [1]: https://lore.kernel.org/all/CACRpkdbzYZAS0=3DzBQJUC4CB2wj4s1h6n6aSAZ=
-QvdMV95r3zRUw@mail.gmail.com
->=20
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+The LIN bus is a lower-cost bus system with a subset of features of CAN.
+Its earlier specification (before ISO) is publicly accessible [1].
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+This series of patches follows up on a discussion initiated by an RFC
+patch series [2].
 
-Cheers,
-Conor.
+The core of this series is the first patch, which implements the CAN_LIN
+glue driver. It basically utilizes the CAN interface on one side and
+for device drivers on the other side it creates a rx() function and
+several callbacks.
 
---ncHccA2eRd27cZCy
-Content-Type: application/pgp-signature; name="signature.asc"
+This approach is non-invasive, as LIN frames (nearly identical to CAN
+frames) are just treated as a special case of CAN frames. This approach
+eliminates the need for a separate API for LIN, allowing the use of
+existing CAN tools, including the CAN broadcast manager.
 
------BEGIN PGP SIGNATURE-----
+For the responder part of LIN, when a device responds to a controller
+request, it can reply on up to LIN its 64 possible IDs (0...63) with a
+maximum of 8 bytes payload.  The response must be sent relatively
+quickly, so offloading is used (which is used by most devices anyway).
+Devices that do not support offloading (like the lightweight serdev)
+handle the list of responses in the driver on a best-effort basis.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj0E8gAKCRB4tDGHoIJi
-0g5CAQDdF++R3wBg5Amvd/uInS7O/p6gOkr7yA9Poj2KRSaGWwEA1n7FZs3H0ZeE
-NJTFuluFnC5smgyw1ffLSVO+JzeBoA0=
-=8+Bx
------END PGP SIGNATURE-----
+The CAN broadcast manager (bcm) makes a good interface for the LIN
+userland interface, bcm is therefore enhanced to handle the
+configuration of these offload RX frames, so that the device can handle
+the response on its own.  As a basic alternative, a sysfs file per LIN
+identifier gets also introduced.
 
---ncHccA2eRd27cZCy--
+The USB device driver for the hexLIN [3] adapter uses the HID protocol
+and is located in the drivers/hid directory. Which is a bit uncommon for
+a CAN device, but this is a LIN device and mainly a hid driver.
+
+The other driver, the UART lin-serdev driver requires support for break
+detection, this is addressed by two serdev patches.
+
+The lin-serdev driver has been tested on an ARM SoC, on its uart
+(uart-pl011) an adapter board (hexLIN-tty [4]) has been used.  As a
+sidenote, in that tty serial driver (amba-pl011.c) it was necessary to
+disable DMA_ENGINE to accurately detect breaks [5].
+
+The functions for generating LIN-Breaks and checksums, originally from
+a line discipline driver named sllin [6], have been adopted into the
+lin-serdev driver.
+
+To make use of the LIN mode configuration (commander or responder)
+option, a patch for iproute2 [7] has been made.
+
+The lin-utils [8] provide userland tools for reference, testing, and
+evaluation. These utilities are currently separate but may potentially
+be integrated into can-utils in the future.
+
+[0]: https://en.wikipedia.org/wiki/Local_Interconnect_Network
+[1]: https://www.lin-cia.org/fileadmin/microsites/lin-cia.org/resources/documents/LIN_2.2A.pdf
+[2]: https://lwn.net/Articles/916049/
+[3]: https://hexdev.de/hexlin
+[4]: https://hexdev.de/hexlin#hexLINSER
+[5]: https://github.com/raspberrypi/linux/issues/5985
+[6]: https://github.com/lin-bus/linux-lin/blob/master/sllin/sllin.c
+[7]: https://github.com/ch-f/iproute2/tree/lin-feature
+[8]: https://github.com/ch-f/lin-utils
+
+Changes in v4:
+ - rebase to next-20240509
+ - dt-bindings: rename lin-serdev to hexlinser
+ - lin: don't use ndev uninitialized, use dev_err() instead
+ - lin: fix missing failure return value
+ - lin: use sysfs_emit() instead of scnprintf()
+ - lin: use static init of sysfs files
+ - hexlin: fix hid_dbg indent
+ - hexlin: use __le16 for req.baudrate
+ - hexlin: refactor to be able to drop kmemdup()
+ - linser and hexlin: s/IS_ERR_OR_NULL()/IS_ERR()/
+ - serdev treewide: refactor receive_buf() by adding argument flags
+ - address minor changes from review
+
+Changes in v3:
+ - drop unneccessary mutex_lock/unlock and _destroy() in hexlin
+ - add Kconfig depends for HID_MCS_HEXDEV
+ - simplify reset retry in hexlin
+ - simplify hid driver init
+ - fix dt-bindings and its commit message
+ - adapt and reorder includes
+ - use unsigned long instead of ulong
+ - use macro USEC_PER_SEC in linser_derive_timings()
+ - drop goto in linser_tx_frame_as_responder() and use unlock+return
+ - simplify linser_pop_fifo() by using kfifo_skip()
+ - squash [PATCH v2 08/12] can: lin: Add special frame id for rx...
+
+Changes in v2:
+ - add open/stop functions to also address teardown issues
+ - adapt dt-bindings description and add hexdev
+ - use 'unsigned int' instead of 'uint'
+ - add and adapt macros
+ - address review comments
+
+Christoph Fritz (11):
+  can: Add LIN bus as CAN abstraction
+  HID: hexLIN: Add support for USB LIN adapter
+  treewide, serdev: add flags argument to receive_buf()
+  tty: serdev: Add method to enable break flags
+  dt-bindings: vendor-prefixes: Add hexDEV
+  dt-bindings: net/can: Add serial LIN adapter hexLINSER
+  can: Add support for hexDEV serial LIN adapter hexLINSER
+  can: bcm: Add LIN answer offloading for responder mode
+  can: lin: Handle rx offload config frames
+  can: lin: Support setting LIN mode
+  HID: hexLIN: Implement ability to update lin mode
+
+ .../bindings/net/can/hexdev,hex-linser.yaml   |  32 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/bluetooth/btmtkuart.c                 |   3 +-
+ drivers/bluetooth/btnxpuart.c                 |   3 +-
+ drivers/bluetooth/hci_serdev.c                |   3 +-
+ drivers/gnss/serial.c                         |   2 +-
+ drivers/gnss/sirf.c                           |   2 +-
+ drivers/greybus/gb-beagleplay.c               |   2 +-
+ drivers/hid/Kconfig                           |  19 +
+ drivers/hid/Makefile                          |   1 +
+ drivers/hid/hid-hexdev-hexlin.c               | 620 ++++++++++++++++++
+ drivers/hid/hid-ids.h                         |   1 +
+ drivers/hid/hid-quirks.c                      |   3 +
+ drivers/iio/chemical/pms7003.c                |   2 +-
+ drivers/iio/chemical/scd30_serial.c           |   3 +-
+ drivers/iio/chemical/sps30_serial.c           |   3 +-
+ drivers/iio/imu/bno055/bno055_ser_core.c      |   3 +-
+ drivers/mfd/rave-sp.c                         |   2 +-
+ drivers/net/can/Kconfig                       |  25 +
+ drivers/net/can/Makefile                      |   2 +
+ drivers/net/can/hex-linser.c                  | 505 ++++++++++++++
+ drivers/net/can/lin.c                         | 537 +++++++++++++++
+ drivers/net/ethernet/qualcomm/qca_uart.c      |   3 +-
+ drivers/nfc/pn533/uart.c                      |   2 +-
+ drivers/nfc/s3fwrn5/uart.c                    |   3 +-
+ drivers/platform/chrome/cros_ec_uart.c        |   3 +-
+ drivers/platform/surface/aggregator/core.c    |   2 +-
+ .../lenovo-yoga-tab2-pro-1380-fastcharger.c   |   3 +-
+ drivers/tty/serdev/core.c                     |  11 +
+ drivers/tty/serdev/serdev-ttyport.c           |  19 +-
+ drivers/w1/masters/w1-uart.c                  |   3 +-
+ include/linux/serdev.h                        |  12 +-
+ include/net/lin.h                             |  97 +++
+ include/uapi/linux/can/bcm.h                  |   5 +-
+ include/uapi/linux/can/netlink.h              |   2 +
+ net/can/bcm.c                                 |  72 ++
+ sound/drivers/serial-generic.c                |   3 +-
+ 37 files changed, 1991 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/can/hexdev,hex-linser.yaml
+ create mode 100644 drivers/hid/hid-hexdev-hexlin.c
+ create mode 100644 drivers/net/can/hex-linser.c
+ create mode 100644 drivers/net/can/lin.c
+ create mode 100644 include/net/lin.h
+
+-- 
+2.39.2
+
 
