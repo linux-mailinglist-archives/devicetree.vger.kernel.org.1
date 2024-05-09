@@ -1,139 +1,142 @@
-Return-Path: <devicetree+bounces-66132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59C0B8C15C4
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 21:57:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B63D8C1484
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 20:09:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C6BF1C22C72
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:57:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9862B21359
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 18:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6099685933;
-	Thu,  9 May 2024 19:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3384A6EB62;
+	Thu,  9 May 2024 18:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SepNGnx2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcWbs/r1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BABE580055;
-	Thu,  9 May 2024 19:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2FB4A21;
+	Thu,  9 May 2024 18:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715284593; cv=none; b=A+lWI+DRORlB+mG1mcNnaC5uvesGMKKxonLOmPBn/bdGPfXHcAZvN+SnHQbj+5O4Vns3bOfsqJy+uvr5YskN4T3I/uGUfptP+/37a9DYP6OOATAHbBxLB5zJ8aSmT5NwyDoncUD8ymo5DyntA6/tuuI1m8Al3cHhSGPjCSDobtk=
+	t=1715278185; cv=none; b=jqjUccbNx8kjy3idHsiIIaTnUNUHOb1GxXiTqu0PBAq7W8j/qU6szcj8ZlysYSzP+R2QbgHcDX2YNT8WyE4XPgsCeIHGudHIhRvJSglADpdpr87v+DKaTaM6uekf9UIFxPA3dH7mdERpe1QnNBKcCV7TijUkmw91+9OOdpUML38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715284593; c=relaxed/simple;
-	bh=+Xg6sg0lsspm+oGIl2gKYWFJ9L1HRkPP8JWiP000C8Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ctXkHb4dgUoe+gXGI7qJvqBVqACriUkUfi4y3254CwCy1zWlNRThlA0KsyEqR3+iSQAqNGTgJaHkdtcXFZl8iJE7CaSVGC4iDHCgfHmqX7UwTb3VDISh7uzm29sg1rLUY1+2OBARzcXnTIoBHj7ReO6Avrve4HN9sA4HIf+cxRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SepNGnx2; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715284592; x=1746820592;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=+Xg6sg0lsspm+oGIl2gKYWFJ9L1HRkPP8JWiP000C8Y=;
-  b=SepNGnx2IJcaxT8JIsgqVPN/ggX/nMrhL31NmSKCAZXNPOpCvbozrK0/
-   xy9sy+LTGx/Eth2dOBVHkGqifhBXpSI7xqHBuBsA7xHdmJFFBlD/OrM1w
-   sK/wTvCe7iXt/ClFo7oFVQEvalqA6dKIf8OcLqot26BOYsis+HQdmsvg7
-   JXipXuIXdw5axHo6TR4d6N7pbhKSqsuEB1ZJtL3QVIsWF/6DkOEODOyf0
-   GlRBk54v/0FpzVAM87GAf6SQbvniJN+f5KnxiO7HPNlekYT4QMrrTQfOc
-   yMV3vYMaB7tD2uOrANQAPMluk/2Dde77xtuax1Pq/MN7L/renMAEWEERP
-   w==;
-X-CSE-ConnectionGUID: SbFtlId8TlKzai7seHk4qw==
-X-CSE-MsgGUID: Gd1X/7AfS9+Ajo6SxFC6Bw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11454299"
-X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; 
-   d="scan'208";a="11454299"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2024 12:56:32 -0700
-X-CSE-ConnectionGUID: 1ox1AHb5TkOlj5+tCcFZIQ==
-X-CSE-MsgGUID: qXDyMCKMR7Opd+vqjTIr4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,148,1712646000"; 
-   d="scan'208";a="34213141"
-Received: from ajunnare-mobl.amr.corp.intel.com (HELO [10.213.181.85]) ([10.213.181.85])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2024 12:56:28 -0700
-Message-ID: <92abca40-5eda-49d0-bc9d-eeb1a76e3461@linux.intel.com>
-Date: Thu, 9 May 2024 08:17:39 -0500
+	s=arc-20240116; t=1715278185; c=relaxed/simple;
+	bh=jwv2fzzjt0cfgGB3Brq3DaNH87PYRXNR2e6rGYGOafE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y82mLFY9ueoQfAwtLzvVH2zRHyVkivHPSbOCvb6AQUI1nBLoR6eBW5/wl20MZuxjA0SnHo92wzCfmjjQfL1szgPRdO4jp4thyC6Iuf8P065nFWOmf1leO9J87wd8Bm7M35y1yWj0fS09lo+ovsgLSwmgoRAL2Ha4B0zpOtgqT2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcWbs/r1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68B79C116B1;
+	Thu,  9 May 2024 18:09:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715278184;
+	bh=jwv2fzzjt0cfgGB3Brq3DaNH87PYRXNR2e6rGYGOafE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pcWbs/r1G654QjExkZzDw+Ye8SGuO5KNSoJXgb3ZcHmQu3x4E4I2S1EyboJZJ69Pm
+	 mQGtOZps9Mk4n5oD3NC0m6qaZEA2R4B3yV8ziliaYQKJuVPbeega5VLoJMM7bdEW8w
+	 QsO0dRoyLJXReH4e+Gr2o/o8rwX7eRPfNmNxtDhq2odx+5HXePP3adhAZMwihdufgm
+	 TJYZN9r45oB8RBk9LJ07YyNdaLx0jXiIe+uuIlXoZ3rnG7UWq+TcvufvwhgqAcdXUj
+	 IWIJQk7xiKk8ZMCAMycm8EUrbMdGg/3MJ+w5ZJHt/4Fmr2dZhqKHu/Lwo0Trc23XnT
+	 53sTqY3R2bs6Q==
+Date: Thu, 9 May 2024 19:09:37 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Christoph Fritz <christoph.fritz@hexdev.de>
+Cc: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Jiri Slaby <jirislaby@kernel.org>, Simon Horman <horms@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Oliver Hartkopp <socketcan@hartkopp.net>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <bentiss@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 06/11] dt-bindings: net/can: Add serial LIN adapter
+ hexLINSER
+Message-ID: <20240509-kindred-cauterize-ced967ec9d73@spud>
+References: <20240509171736.2048414-1-christoph.fritz@hexdev.de>
+ <20240509171736.2048414-7-christoph.fritz@hexdev.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v21 38/39] ASoC: qcom: Populate SoC components string
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, lgirdwood@gmail.com, andersson@kernel.org,
- krzk+dt@kernel.org, gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
- broonie@kernel.org, bgoswami@quicinc.com, tiwai@suse.com,
- bagasdotme@gmail.com, robh@kernel.org, konrad.dybcio@linaro.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240507195116.9464-1-quic_wcheng@quicinc.com>
- <20240507195116.9464-39-quic_wcheng@quicinc.com>
- <cb864ea4-95e3-4e99-920d-341188006291@linux.intel.com>
- <cdee0eb7-7fb7-f267-8203-7dfb0ea2d31d@quicinc.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <cdee0eb7-7fb7-f267-8203-7dfb0ea2d31d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="36g1c/htqkz0JRR5"
+Content-Disposition: inline
+In-Reply-To: <20240509171736.2048414-7-christoph.fritz@hexdev.de>
 
 
+--36g1c/htqkz0JRR5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 5/8/24 15:06, Wesley Cheng wrote:
-> Hi Pierre,
-> 
-> On 5/7/2024 2:40 PM, Pierre-Louis Bossart wrote:
->>
->>
->> On 5/7/24 14:51, Wesley Cheng wrote:
->>> For userspace to know about certain capabilities of the current platform
->>> card, add tags to the components string that it can use to enable
->>> support
->>> for that audio path.  In case of USB offloading, the "usboffldplybk:
->>> 1" tag
->>
->> usboffloadplayback?
->>
->> same question as before, do we need spaces?
->>
-> 
-> I think spaces are currently used as a delimiter, so I'll remove the
-> spaces.
-> 
->> And if we have controls, why do we need component strings? The component
->> string is not dynamic to the best of my knowledge, this could be
->> problematic if the card is no longer capable of supporting this stream,
->> while a control can be updated at will.
->>
-> 
-> Maybe I misunderstood your comment here:
-> 
-> https://lore.kernel.org/linux-usb/925d7c03-c288-49a4-8bcd-395b32810d75@linux.intel.com/
-> 
-> At the time, I didn't include the kcontrols on the USB SND portion of
-> it, which was added after this series.  My interpretation was that there
-> were userspace entities that could query for general information about
-> what the card supports based on the components string, or sound card
-> name.  I treated this as an independent identifier, since the change to
-> add the offload capable jack was present.
+On Thu, May 09, 2024 at 07:17:31PM +0200, Christoph Fritz wrote:
+> Add dt-bindings for hexDEV hexLINSER serial LIN adapters. These adapters
+> are basically just LIN transceivers that are mostly hard-wired to serial
+> devices.
+>=20
+> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> ---
+>  .../bindings/net/can/hexdev,hex-linser.yaml   | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/hexdev,hex-=
+linser.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/can/hexdev,hex-linser.=
+yaml b/Documentation/devicetree/bindings/net/can/hexdev,hex-linser.yaml
+> new file mode 100644
+> index 0000000000000..42dce3348f73c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/can/hexdev,hex-linser.yaml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/can/hexdev,hex-linser.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: hexDEV hexLINSER serial LIN adapter
+> +
+> +description:
+> +  LIN transceiver, mostly hard-wired to a serial device, used for commun=
+ication
+> +  on a LIN bus.
+> +  For more details on the adapter, visit <https://hexdev.de/hexlin#hexLI=
+NSER>.
 
-My comment at the time stands: it's very hard to figure out that a
-random card supports USB and is connected to a given endpoint.
+I figured I should check in firefox this time, link works fine :)
 
-It'd be much easier as you wrote in the comments on patch 34 to have a
-control in the "regular" USB card to point to the 'better' offloaded
-path exposed by another card. Applications wouldn't need to know what
-this other card is, they would then use the card:device information
-directly.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--36g1c/htqkz0JRR5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj0RYQAKCRB4tDGHoIJi
+0rn9AP9GeUrrcK2lOZklZKtI73PoesLELNp3iickgJOn7nnz3gEA2+jfFsbOdudy
+aNhI8GeBNvUtapOXQ7u6wpXTXsMdLgQ=
+=CoEI
+-----END PGP SIGNATURE-----
+
+--36g1c/htqkz0JRR5--
 
