@@ -1,131 +1,143 @@
-Return-Path: <devicetree+bounces-66086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA2F8C1347
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 18:55:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F37988C136B
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:07:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B2E8281F83
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 16:55:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C418B21C23
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 573B8748F;
-	Thu,  9 May 2024 16:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F708F49;
+	Thu,  9 May 2024 17:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="CLInEngq"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="gxr20lvq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32EBB6FD0;
-	Thu,  9 May 2024 16:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577A88F7A;
+	Thu,  9 May 2024 17:06:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715273715; cv=none; b=rc/HMP89BDWYb/bpqPJebtDG9UMnkLVQbxwHw7GyWor9Hkhfxg0wB0+BL+5u//RAuPevM8XS9Ns7JZXgsSrH1SWfGkKaaEvnT9n0OTASZNKUybNvxcPCiAuAvNw7dVy6cF1stDXCfDYk0uslA04nsp+NHiUhebtr0LS9AaVmxgo=
+	t=1715274420; cv=none; b=C6V/RjJp3lCjUDYaOEGYbvgCbE5NbqcimHUa2fumenad2f7nCuldrZ4UUClSb8WFwv8xQEuQ3M7U66qbAD8bY6W9vGEuXTmaCNAgPK/se4LM349ehSpIUGbRgr/rG4cftFDmIyeA4VwBRElLIGVhvcn4XNJwl0HzHlFlF5GKOek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715273715; c=relaxed/simple;
-	bh=Op4baZkeYx4PycytPYJ+HGzm0cEAn1ct5A+MrtsKREk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=prWC1NADbXc59cJ8v8y5LQIFwoN8esF45UWhlaSxzdO+2VPAnxAZkiPfwPTOv2icQIbcq7nJl4/CVg85ILAZFRGB/U5wR4cWxazw87U4Lx7FLGix8EFvc8TyWfKRZK1EJZd5ATWT9nvpWf+yI8NgX5fsJysPz5NYk+yxP7jYzuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=CLInEngq; arc=none smtp.client-ip=46.255.230.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 560121C008B; Thu,  9 May 2024 18:55:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1715273703;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4nfZrJNfA4kvIyfocScga5lNL685Pn0IbxsrfCfZxfk=;
-	b=CLInEngqiyFo+qFd013o5aB6NcOEoTHidDQg7ZrDKmxUqXp2MLWQ5Yx3ZK3AdrTpN1wemA
-	Np3Ru9bRj5VJVPtI+iXo519huoMRvXZHSvrXfe1RNyfbMmNjd6xfnFEyBhOOR0GhHrWij9
-	vuI5ZaqjJvsFypEOi/zZJ1QZFimETrs=
-Date: Thu, 9 May 2024 18:55:02 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Frank Wunderlich <linux@fw-web.de>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: mark label as depected to match
- description
-Message-ID: <Zjz/5slQk6XVy3us@duo.ucw.cz>
-References: <20240509110545.49889-1-linux@fw-web.de>
- <c461b4cb-2f14-4793-a967-bf08e2b4ab88@linaro.org>
- <fdce3c08-a3cb-4d5b-ad1a-0eeb8761778f@collabora.com>
+	s=arc-20240116; t=1715274420; c=relaxed/simple;
+	bh=MxdtaIuvP3af2wFj0GTldAPW14Q+V43o4PQXcu6p13o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=jBCF4cY0WRHFaVaS8yOKJwxa/yyOkPivc42NRSSUVc0aPPqV76Ocmxh5cf0vcuEfM33HdD34g8U8ybA0+QaCfbJegDKE8hmd9zW+VGeJj0XeHN0Y65UjKeZpqfNDHySejDOAVWEH33VVNX1UIErE0zH3iydWF3gjWPFkxUGMHdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=gxr20lvq; arc=none smtp.client-ip=213.160.72.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
+	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=25MzYlO2dmwacwaZXrREWevweli0BDq/E6j0rp9hAtM=; b=gxr20lvqEjMnY/UBmuWitZIj9+
+	DUIqH7StRf/p5OXpbbH09L/EsjAPuV/9QWRmH58vcj5oC6PNA/H8YC3K7kSw3AmRC+pfR2xswEhUm
+	LXwpCzG6LoMm6u1UmJcvdZNUfomrvoJc6MCdAU94kCrinPIQIwkf51oTaz2XJvJotoXY=;
+Received: from 127.0.0.1
+	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim latest)
+	(envelope-from <christoph.fritz@hexdev.de>)
+	id 1s57Dr-001jbE-0e;
+	Thu, 09 May 2024 19:06:23 +0200
+Message-ID: <333fae36f2332b705320186c2068e1236c9d1142.camel@hexdev.de>
+Subject: Re: [PATCH v3 01/11] can: Add LIN bus as CAN abstraction
+From: Christoph Fritz <christoph.fritz@hexdev.de>
+Reply-To: christoph.fritz@hexdev.de
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Oliver Hartkopp <socketcan@hartkopp.net>, Marc Kleine-Budde
+ <mkl@pengutronix.de>, Jiri Slaby <jirislaby@kernel.org>,  Vincent Mailhol
+ <mailhol.vincent@wanadoo.fr>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jiri
+ Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Andreas Lauser
+ <andreas.lauser@mercedes-benz.com>, Jonathan Corbet <corbet@lwn.net>, Pavel
+ Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org, Netdev
+ <netdev@vger.kernel.org>,  devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-serial <linux-serial@vger.kernel.org>
+Date: Thu, 09 May 2024 19:06:19 +0200
+In-Reply-To: <2024050852-vixen-arson-cb42@gregkh>
+References: <20240502182804.145926-1-christoph.fritz@hexdev.de>
+	 <20240502182804.145926-2-christoph.fritz@hexdev.de>
+	 <61adf428-2205-1563-d0b6-fa843e08559d@linux.intel.com>
+	 <e0f3d0716ed2f4281561f08bbcd3050dddcf1831.camel@hexdev.de>
+	 <4e8a50a0-f938-8aaf-fe4b-d18765407d4d@linux.intel.com>
+	 <215d898a0244d717467d44a8e93f186e2f282daa.camel@hexdev.de>
+	 <2024050852-vixen-arson-cb42@gregkh>
+Organization: hexDEV GmbH
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="dJIDwvg8nV2S1P4B"
-Content-Disposition: inline
-In-Reply-To: <fdce3c08-a3cb-4d5b-ad1a-0eeb8761778f@collabora.com>
+Content-Transfer-Encoding: 7bit
 
+On Wed, 2024-05-08 at 19:48 +0100, Greg Kroah-Hartman wrote:
+> On Wed, May 08, 2024 at 08:20:51PM +0200, Christoph Fritz wrote:
+> > ...
+> > > ...
+> > > > > > +static int lin_create_sysfs_id_files(struct net_device *ndev)
+> > > > > > +{
+> > > > > > +	struct lin_device *ldev = netdev_priv(ndev);
+> > > > > > +	struct kobj_attribute *attr;
+> > > > > > +	int ret;
+> > > > > > +
+> > > > > > +	for (int id = 0; id < LIN_NUM_IDS; id++) {
+> > > > > > +		ldev->sysfs_entries[id].ldev = ldev;
+> > > > > > +		attr = &ldev->sysfs_entries[id].attr;
+> > > > > > +		attr->attr.name = kasprintf(GFP_KERNEL, "%02x", id);
+> > > > > > +		if (!attr->attr.name)
+> > > > > > +			return -ENOMEM;
+> > > > > > +		attr->attr.mode = 0644;
+> > > > > > +		attr->show = lin_identifier_show;
+> > > > > > +		attr->store = lin_identifier_store;
+> > > > > > +
+> > > > > > +		sysfs_attr_init(&attr->attr);
+> > > > > > +		ret = sysfs_create_file(ldev->lin_ids_kobj, &attr->attr);
+> > > > > > +		if (ret) {
+> > > > > > +			kfree(attr->attr.name);
+> > > > > > +			return -ENOMEM;
+> > > > > > +		}
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	return 0;
+> > > > > > +}
+> > > > > 
+> > > > > Can you use .dev_groups instead ?
+> > > > 
+> > > > I'm not sure where to attach this in this glue code here. Should I do a
+> > > > class_register() and add the .dev_groups there?
+> > > 
+> > > I guess struct class would be correct direction but I'm not sure if it's 
+> > > viable in this case. It would avoid the need for custom sysfs setup code
+> > > if it's workable.
+> > 
+> > I just tried to find a way, but these are 64 sysfs files and declaring
+> > them all static looks a bit odd to me. I might be missing something
+> > here.
+> > 
+> > For v4 I would stick to the dynamic setup and fix the rollback.
+> > 
+> > Any objections?
+> 
+> Yes, you race with userspace and loose by trying to do this "by hand".
+> Make this static please.
 
---dJIDwvg8nV2S1P4B
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+OK, static init coming up in v4
 
-On Thu 2024-05-09 14:39:36, AngeloGioacchino Del Regno wrote:
-> Il 09/05/24 13:46, Krzysztof Kozlowski ha scritto:
-> > On 09/05/2024 13:05, Frank Wunderlich wrote:
-> > > From: Frank Wunderlich <frank-w@public-files.de>
-> > >=20
-> > > The description for property 'label' describes it as deprected, so
-> >=20
-> > Typos here and in subject.
-> >=20
-> >=20
-> > > add a option to mark it like that. Future devicetrees should use
-> > > function and color properties.
-> > >=20
-> > > Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@c=
-ollabora.com>
-> > > Fixes: 24a71afe05a8 ("dt-bindings: leds: Convert common LED binding t=
-o schema")
-> >=20
-> > Nooo, that's not a fix.
-> >=20
-> > I don't think there was conclusion to make it deprecated on last attemp=
-t:
-> >=20
-> > https://lore.kernel.org/all/20221122111124.6828-1-cniedermaier@dh-elect=
-ronics.com/
-> >=20
->=20
-> It's not a fix, agreed.
->=20
-> But that property being deprecated deserves to be marked as deprecated, a=
-nyway.
-> Otherwise the documentation shouldn't say in words that it is such.
-
-Fix the docs. We are not ready to deprecate that.
-
-Best regards,
-								Pavel
-
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---dJIDwvg8nV2S1P4B
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZjz/5gAKCRAw5/Bqldv6
-8gOgAJ90HGlgqKBZTk9S31H4rqMvmtkIGgCfTlPWwPFlqAonoICOLcwjXQdSPxs=
-=UHzF
------END PGP SIGNATURE-----
-
---dJIDwvg8nV2S1P4B--
+thanks
+  -- Christoph
 
