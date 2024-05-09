@@ -1,117 +1,164 @@
-Return-Path: <devicetree+bounces-66037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D1438C1054
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 15:26:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 828788C109A
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 15:46:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDBC3B22A57
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 13:26:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B37461C20978
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 13:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29478158A38;
-	Thu,  9 May 2024 13:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441EE158D6D;
+	Thu,  9 May 2024 13:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DcGiqcaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw20-7.mail.saunalahti.fi (fgw20-7.mail.saunalahti.fi [62.142.5.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8084B158208
-	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 13:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFA01586E7;
+	Thu,  9 May 2024 13:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715261168; cv=none; b=JNyaQzA+iU5dYLo6+/BoL9/x1nNjgscvVjHAZvKy4OrNV8fScM6BVQB8XK8VFNjX9v5IijVK6pmZW5Af6XG0r6Sp8oxUOAbuRZ+yVBC3+1YftCH8kexFSUoU0s50gJyU4eqtv3QO65jsZm0JBDqLfVF4Y7uEJK5BCx3Z7rNL62A=
+	t=1715262390; cv=none; b=MvT7jRAZQDTSsTfpDaypWd8G2ZAbEHAt08eYcod/bEzxZAgxf89Of1BahDRNHKrn5NZQrh2+zyElmQQpUXjZkWX6eauCI+YdCgerliC3ByUv72E6+8RkhCiUE5sgYToOnp5LTXT7mXX6TCCZislYNjm8qeX6IytESBcRmH6Esi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715261168; c=relaxed/simple;
-	bh=D8LYzUgF3hHRALNDAuNfy+B9rBZtLYSpGxhdvjLQAyc=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=haaNKRNgiIGKpceH3iBp3ocIvUjYsJgyNe4asWg5obLnTw5L/gmzgNqgfWhukvOzqK4WHuRMr+5v0P7poUVLfHeTPIOPQNJ0jLHp2VM46LxYGBTmkCb1z53Sy04G7ycWWofmFLmY1PeeEhrCbRfnVbvdiUOfCwS2qYCgrk5RvS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-25-208.elisa-laajakaista.fi [88.113.25.208])
-	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-	id aeaeacf0-0e07-11ef-b3cf-005056bd6ce9;
-	Thu, 09 May 2024 16:26:03 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 9 May 2024 16:26:02 +0300
-To: Johan Hovold <johan@kernel.org>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Das Srinagesh <quic_gurus@quicinc.com>,
-	Satya Priya <quic_c_skakit@quicinc.com>,
-	Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 02/13] mfd: pm8008: fix regmap irq chip initialisation
-Message-ID: <ZjzO6qB9_oExklaV@surfacebook.localdomain>
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-3-johan+linaro@kernel.org>
- <ZjknxSsyo20b5_Tm@surfacebook.localdomain>
- <ZjpCL_NQD7X3hasO@hovoldconsulting.com>
- <CAHp75Vf0raEoVmvRKNxDQ7wdAOtwWYp_fQ1m8WBdnWEFGFOrYA@mail.gmail.com>
- <ZjyOGNAaWjRtOE0s@hovoldconsulting.com>
+	s=arc-20240116; t=1715262390; c=relaxed/simple;
+	bh=05v+AZCi8SL4RKzjToP1WNbFIlRrJj5S7b7mtFwLo3A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=P3/WIYgdJCQ2+H0lnLSB6VVrEfmq7Uw9a29DjfZuBkGbD0/B2qlltX7Y2xX99wX5HRG2JVMeJIMyUkoRMq/Pa6K9BgoDx9r37XfB9EoRZyQ0beEBWwpQXxejLr9aV8FB9fNGn1kNrRYnb9U8163stNInY1Uo2oST5DmpQi+/mi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DcGiqcaZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B81BC32782;
+	Thu,  9 May 2024 13:46:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715262389;
+	bh=05v+AZCi8SL4RKzjToP1WNbFIlRrJj5S7b7mtFwLo3A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=DcGiqcaZ+stZzuErLPwy+S/9TXxZUmtBalKZxYobOs8jd+tB6A+qwd5wFzFUKmFIj
+	 tcE0NMw3JVpQMR1X4cprjwacxvzqI3DUxN1kBEu6r5UqFyzmW5OaZR6ufOXea9z8nM
+	 7qOrhe+yl+VSRNrFT2ce1ymiVqqKH0SyBUlbWF/zrdE64SHVWYhEstjUKoWd/+nrJq
+	 jSlXIEIaP7sx6pF3Ppa64+maQLYe6hbQpM5lJDP3DEcyX7HR1fuYURxXR/rDxSnFHn
+	 BAJg5Ari6+nVH0YTj8KZCQYhCSYxDCTPigp07psJQvczYIgQiOg2mKa1mhUaRQv8n+
+	 9SoVYvi8yqB2g==
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc236729a2bso916763276.0;
+        Thu, 09 May 2024 06:46:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVjiE/OAjfFGTQ03i922AeHY7EWPYLyNr9l2bwgos6Bu/XNwjFXcrxmWt92rAPAqBWQPn1VRoCf+HnYmm0ZFExORuwRt0C92VB019y1VSfGe/UXWwGwlYN8ltKMF2+LSKwEFJAfiw==
+X-Gm-Message-State: AOJu0Yx2hSd2GP2i4cvIh/XX3zZErwYW9A2yvsNpj8m+FaKPcTjqmprI
+	asrR5RyHiyELcLmgyoa8n4lVtRNbbb2N66nZ3LogRPpyi6pvgQhCRSGOV5e1rSxjDYAYUD7h+R8
+	hUaGXN5kVFZv79AbIFVcQf0bE2g==
+X-Google-Smtp-Source: AGHT+IEvyYTnwYJyzqg1ZOCg3stwZjT/mqB7lBJXlxymWAC8lzRWPjxmQ3TJLCUtoXxgx0DZrkt6DxSejhK9KvzEVWg=
+X-Received: by 2002:a5b:3c6:0:b0:de5:5040:ea12 with SMTP id
+ 3f1490d57ef6-debb9db1f9cmr5973046276.32.1715262388785; Thu, 09 May 2024
+ 06:46:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZjyOGNAaWjRtOE0s@hovoldconsulting.com>
+References: <c0590d8898e553f29c96c7c4083f7b3ca1915727.1715050962.git.zhoubinbin@loongson.cn>
+In-Reply-To: <c0590d8898e553f29c96c7c4083f7b3ca1915727.1715050962.git.zhoubinbin@loongson.cn>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Thu, 9 May 2024 08:46:14 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJewzGp5E+O44JgvHu9Q-3PKaXnhjUQbmV7OHfFCEX3Ug@mail.gmail.com>
+Message-ID: <CAL_JsqJewzGp5E+O44JgvHu9Q-3PKaXnhjUQbmV7OHfFCEX3Ug@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pwm: renesas,tpu: Do not require pwm-cells twice
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thu, May 09, 2024 at 10:49:28AM +0200, Johan Hovold kirjoitti:
-> On Tue, May 07, 2024 at 08:16:45PM +0300, Andy Shevchenko wrote:
-> > On Tue, May 7, 2024 at 6:01 PM Johan Hovold <johan@kernel.org> wrote:
-> > > On Mon, May 06, 2024 at 09:56:05PM +0300, Andy Shevchenko wrote:
-> > > > Mon, May 06, 2024 at 05:08:19PM +0200, Johan Hovold kirjoitti:
-> > > > > The regmap irq array is potentially shared between multiple PMICs and
+On Tue, May 7, 2024 at 1:54=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.cn>=
+ wrote:
+>
+> pwm-cells property is already required by pwm.yaml schema.
 
-...
+This should be dropped or reverted.
 
-> > > > > -                   dev_err(dev, "Failed to probe irq periphs: %d\n", rc);
-> > > > > +                   dev_err(dev, "failed to add IRQ chip: %d\n", rc);
-> > > >
-> > > > dev_err_probe(...); ?
-> > >
-> > > This function won't return -EPROBE_DEFER,
-> > 
-> > This is not an argument for a long time (since documentation of
-> > dev_err_probe() had been amended to encourage its use for any error
-> > cases in probe).
-> 
-> There was apparently a kernel doc update made in December 2023:
-> 
-> 	532888a59505 ("driver core: Better advertise dev_err_probe()")
-> 
-> to clarify that people are *allowed* to use it also for functions not
-> returning -EPROBE_DEFER. That's hardly a long time ago and, importantly,
-> this is of course still nothing that is *required*.
+> Suggested-by: Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>
+> This is a missing patch to cleanup the required pwm-cells attribute twice=
+[1].
+> Thanks to Uwe for the heads up.
+> [1]:https://lore.kernel.org/linux-pwm/cover.1714450308.git.zhoubinbin@loo=
+ngson.cn/
+>
+>  Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml b=
+/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+> index a3e52b22dd18..4c8ce7a26d13 100644
+> --- a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+> @@ -16,7 +16,6 @@ select:
+>          const: renesas,tpu
+>    required:
+>      - compatible
+> -    - '#pwm-cells'
 
-Fair enough.
+This line is not requiring #pwm-cells, but rather only applying the
+schema when #pwm-cells is present. It is needed because there's also
+renesas,tpu in bindings/timer/renesas,tpu.yaml. Without this,
+linux-next now has these warnings:
 
-> > > and that would be a separate
-> > > change in any case.
-> > 
-> > Sure, but why to add a technical debt? Perhaps a precursor cleanup patch?
-> 
-> This is not in any way technical debt.
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: compatible:0: 'renesas,tpu' is not one of
+['renesas,tpu-r8a73a4', 'renesas,tpu-r8a7740', 'renesas,tpu-r8a7742',
+'renesas,tpu-r8a7743', 'renesas,tpu-r8a7744', 'renesas,tpu-r8a7745',
+'renesas,tpu-r8a7790', 'renesas,tpu-r8a7791', 'renesas,tpu-r8a7792',
+'renesas,tpu-r8a7793', 'renesas,tpu-r8a7794', 'renesas,tpu-r8a7795',
+'renesas,tpu-r8a7796', 'renesas,tpu-r8a77961', 'renesas,tpu-r8a77965',
+'renesas,tpu-r8a77970', 'renesas,tpu-r8a77980',
+'renesas,tpu-r8a779a0', 'renesas,tpu-r8a779g0']
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: compatible: ['renesas,tpu'] is too short
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: reg: [[16777184, 16], [16777200, 12]] is too long
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: 'power-domains' is a required property
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: $nodename:0: 'tpu@ffffe0' does not match
+'^pwm(@.*|-([0-9]|[1-9][0-9]+))?$'
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: '#pwm-cells' is a required property
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: 'resets' is a required property
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/timer/renesas=
+,tpu.example.dtb:
+tpu@ffffe0: 'clock-names' does not match any of the regexes:
+'pinctrl-[0-9]+'
+        from schema $id: http://devicetree.org/schemas/pwm/renesas,tpu-pwm.=
+yaml#
 
-OK.
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Rob
 
