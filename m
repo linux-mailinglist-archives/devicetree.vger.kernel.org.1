@@ -1,147 +1,184 @@
-Return-Path: <devicetree+bounces-66140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13B58C17E5
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 22:48:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED7D8C186F
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 23:34:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 470B81F21AD8
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 20:48:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E84D2285303
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 21:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF9385C74;
-	Thu,  9 May 2024 20:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5297128370;
+	Thu,  9 May 2024 21:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iUNKQap1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LI9r2ZDo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399F085264;
-	Thu,  9 May 2024 20:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D7385C5E;
+	Thu,  9 May 2024 21:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715287690; cv=none; b=p9aFaPiiA7mhdcxa3TSPR1oflFa8TmqwbUhy1AiUNc8n+JQ4IMNQOZ7OY0WdWgR7yD/I51lpnAEmGuBkr5Lehf2gc7L+EQ/mKMylRfd0kZ9/luUSDcVLafCjfpTw8IU8chYoNx7DNvzNXW52kjK5N1sv/FUnCgxvrpSzfxJairE=
+	t=1715290473; cv=none; b=SZ6Mb/ttoZ/zOvt4iralrrWEYq5+KgJKph0cDRcVKwGUziD1tSmeFTVuJKCWbZ8QIoI7cz/ucnk4xnWJarPaOycyTTeUl43/hoHpOpFvIlcwAnYlH7pxUQKs6vFi8G8+C5WhaWKdLQl9shsLzg+RLYv7RvzABymzBN7c6M7/DrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715287690; c=relaxed/simple;
-	bh=yxOj5YfSwj2DTCNzCutbgmJ5WuKiiT3kbxTl71R4Wu4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nbzrkwahbbCQa5RFCY3DbLyL1hEdH61vVRiAJB/JwPLVkCZL7E8/Wfbw40JYpfEoZAfPWnQTYTbbt8J7oQFkeSAZTX4Q6cbIsRzqshhdIj3bxIUhhvDKxfnzbIPXNOPfIZhkevwjZJDKhJRqmQSa1WXXWXKqVqU908pZ5/ZuFTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iUNKQap1; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3504f34a086so124023f8f.1;
-        Thu, 09 May 2024 13:48:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715287687; x=1715892487; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CrwA2vIrlWfZjdips+U6g09WGPgGGcS7uLLAmHynIVM=;
-        b=iUNKQap1Aa10dPNN79LVaKNnBoCMrqCSaSYgREGfufDqrRxbZUrn9SjGGpDd+OJmuy
-         LrO+Pviiw+XBFXuvH7L02gt4OnNyUwfVbNrGzkfYJddp1HvutmqjpegdK+Eau0/CNE1W
-         CrRPsy5WS3zEdLbsXd4eNaT1pU+I9mWG3yEdrMjmcgoHbypaktDNfq7kjmOzKuRWyNPa
-         1JGXABMjzMEdPeSpsliCV2DuZlAeBwL8hILY+dfhRb5x84vZVfDTK7nkhVtTjCn8ExgD
-         +n9gJhCbOQIMXxKno6mamXsubRHJtoyHTRKra14UEPq9upQiEmAzHj29VS/GH2GuxbmQ
-         IElw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715287687; x=1715892487;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CrwA2vIrlWfZjdips+U6g09WGPgGGcS7uLLAmHynIVM=;
-        b=aWvrUmGHUhNLHMMPNOrE9bNq5B3tYUf8tyvYzUXnSdZYOMhec0/b/iviD6nY68QVWV
-         6Mk/jNO7BRtyih3Sv0ECEu9GTF9Qb4DPCimIZXQk9T0AeLiwfanY/tzD348dI9aPQaMX
-         qMLxqK8KHemwjXmTToRMd9CZevdOopFrOobCC3mPk5KqzZEuBnIvbzqoWpZLTLMd30q4
-         gts0+xAFJo5CwRDDo+2gop98t/O7yeNQAa6Y+Nor112vyp0GXt7vzdmuYJcJ37LQp2tu
-         vAqAhRZJPqxOf2IeY0Wp5Rpdj2drBqJTdn7AZ4QQS2/jvx0uhETK3o0mHFhPwmVcQakt
-         dM1A==
-X-Forwarded-Encrypted: i=1; AJvYcCXdbe+QQcS9s+dyJE4gclTuIViVoVA9Man3VK49ZnsvtjsBT+C2H5BVGuK9C9zDk1Vlw9zhTZ3YaUuHTBzGc4lipJnwfUX9FUSwFGgJIvHXPwRIPd7BtMIM0f02hG/ZhPtfLJMPUC/47magDJTzdg7DUXw7Vl4ywsN6afLPyEBqY2YyYpg=
-X-Gm-Message-State: AOJu0Yzd0FK0WkL7qCvNWRtqrkdJ7IRzxcCwKQmW8hocqV9NRt549qmL
-	RU62s2ZSBEfijuGKdxt38YXicNaLpdl72Z/DfjHY0FHcg4DANkwX
-X-Google-Smtp-Source: AGHT+IEqtNhXsWIapaiDKzX2IStHjSrOkOX+lqNW4IjUlE6Fw44bR12Dv2O0hQP7GdekuJ9XPwPVyA==
-X-Received: by 2002:adf:eb12:0:b0:347:9bec:9ba3 with SMTP id ffacd0b85a97d-3504aa64997mr464045f8f.66.1715287687547;
-        Thu, 09 May 2024 13:48:07 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3502bbbbf08sm2588185f8f.96.2024.05.09.13.48.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 May 2024 13:48:07 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Hauke Mehrtens <hauke@hauke-m.de>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Daniel=20Gonz=C3=A1lez=20Cabanelas?= <dgcbueu@gmail.com>,
-	=?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>
-Subject: [PATCH v4 4/4] mips: bmips: enable RAC on BMIPS4350
-Date: Thu,  9 May 2024 22:47:48 +0200
-Message-ID: <20240509204750.1538-5-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240509204750.1538-1-ansuelsmth@gmail.com>
-References: <20240509204750.1538-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1715290473; c=relaxed/simple;
+	bh=DMClA2EG4om7tUuZOout4+5pUV7yCTXmqNhHE4600xM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=csa6fCgUv9fF8ZEjNxY/qcefXwrQnJ4KZlrBrqDh5GI6doF+u+ULFrEPDoexDfaX/K4lbBSMairkAwBvtYJAO9CyCiBeivwzsja4YvWRGKl6N9hFxE39I3Pk1QRexoPpMYmc2rIL7NoCrxgdaJ/vRwNBPzCnYaepsPFgMMMJDOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LI9r2ZDo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 449KtB8X012405;
+	Thu, 9 May 2024 21:34:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=cIukUmTAz21I3U9U4WGeVwO7Ge0VeW/gUAEvuX3Cztc=; b=LI
+	9r2ZDod4f1CfRw0lzzeck32b+xIyPiWNzUzL70jaE0GWi79OrRqe7hiTMCQnshjR
+	M+YlIEWTxolltwsRLJ54IH3eQAVAfx6gcOgoYnTbqddSIGXfr4qbfsg6nT68hFqO
+	QD+/f7xVKlSdtjj19rpQSd71bm2wPqoPodM2bvcyFL0IrobV0qXFffIAnj3Ryx4J
+	JkuENjg/HdYm0UBiz4/P7WlHIMudK0ofQWhMMPONf+EumzP5KCSW7HoT6VWYJtZN
+	zWuTKpTSAZ6kshg6Mmp5jHEUYmxIwgY55lQPpGltrPb6wjXOMB58KgHKcBKe7MS2
+	WRXOLrTOkp1Gwm7T7XUw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y09f5unjr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 May 2024 21:34:07 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 449LY6PO000667
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 May 2024 21:34:06 GMT
+Received: from [10.71.112.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 9 May 2024
+ 14:34:05 -0700
+Message-ID: <d0c1e6a8-3caa-3530-d49a-a8b820d19cf1@quicinc.com>
+Date: Thu, 9 May 2024 14:34:01 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v21 09/39] ASoC: qcom: qdsp6: Introduce USB AFE port to
+ q6dsp
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>, <krzk+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <Thinh.Nguyen@synopsys.com>,
+        <broonie@kernel.org>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
+        <bagasdotme@gmail.com>, <robh@kernel.org>, <konrad.dybcio@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240507195116.9464-1-quic_wcheng@quicinc.com>
+ <20240507195116.9464-10-quic_wcheng@quicinc.com>
+ <9bd1ec72-71ea-4a1c-b795-af6e7687ca07@linux.intel.com>
+ <0a4d7c2b-ac7d-7bd4-f97e-db60944a1d39@quicinc.com>
+ <726e7006-30b4-4525-84c8-4fb2ef380994@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <726e7006-30b4-4525-84c8-4fb2ef380994@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ElA1DleWGwoZYGAQNwZNxyKuF9wVF_HB
+X-Proofpoint-ORIG-GUID: ElA1DleWGwoZYGAQNwZNxyKuF9wVF_HB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-09_12,2024-05-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ phishscore=0 suspectscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0
+ mlxlogscore=576 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405090152
 
-From: Daniel González Cabanelas <dgcbueu@gmail.com>
+Hi Pierre,
 
-The data RAC is left disabled by the bootloader in some SoCs, at least in
-the core it boots from.
-Enabling this feature increases the performance up to +30% depending on the
-task.
+On 5/9/2024 5:54 AM, Pierre-Louis Bossart wrote:
+> 
+> 
+> 
+>>> Wait, is this saying you will have exactly one PCM device/FE DAI
+>>> connected to the USB BE DAI exposed in patch 11?
+>>>
+>>>> +    SND_SOC_DAPM_MIXER("USB Mixer", SND_SOC_NOPM, 0, 0,
+>>>> +               usb_mixer_controls,
+>>>> +               ARRAY_SIZE(usb_mixer_controls)),
+>>>> +
+>>>
+>>> And then what is the role of the USB mixer if you only have one input?
+>>>
+>>> I must be missing something.
+>>>
+>>
+>> Not sure if this is a QCOM specific implementation, but the way the DT
+>> is defined for the USB offload path is as follows:
+>>
+>>      usb-dai-link {
+>>          link-name = "USB Playback";
+>>
+>>          cpu {
+>>              sound-dai = <&q6afedai USB_RX>;
+>>          };
+>>
+>>          codec {
+>>              sound-dai = <&usbdai USB_RX>;
+>>          };
+>>
+>>          platform {
+>>              sound-dai = <&q6routing>;
+>>          };
+>>      };
+>>
+>> Based on our DT parser helper API (qcom_snd_parse_of()) this isn't going
+>> to create a PCM device.  The PCM devices are created for nodes that
+>> don't have a codec and platform defined:
+>>
+>>      mm1-dai-link {
+>>          link-name = "MultiMedia1";
+>>          cpu {
+>>              sound-dai = <&q6asmdai      MSM_FRONTEND_DAI_MULTIMEDIA1>;
+>>          };
+>>      };
+>>
+>> The ASM path is the entity that defines the number of PCM devices that
+>> is created for the QC ASoC platform card, and is where the actual PCM
+>> data is sent over to the DSP.  So there could be several PCM devices
+>> that can use the USB BE DAI.
+> 
+> ok, but then how would this work with the ALSA controls reporting which
+> PCM device can be used? I didn't see a mechanism allowing for more than
+> one offloaded device, IIRC the control reported just ONE PCM device number.
 
-Signed-off-by: Daniel González Cabanelas <dgcbueu@gmail.com>
-Signed-off-by: Álvaro Fernández Rojas <noltari@gmail.com>
-[ rework code and reduce code duplication ]
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- arch/mips/kernel/smp-bmips.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+With respects to the PCM devices exposed by the ASoC card, the USB Mixer 
+controls which "Multimedia" (ASM) path can be routed to the USB BE DAI.
 
-diff --git a/arch/mips/kernel/smp-bmips.c b/arch/mips/kernel/smp-bmips.c
-index 20e2fb10022d..52324738cbb3 100644
---- a/arch/mips/kernel/smp-bmips.c
-+++ b/arch/mips/kernel/smp-bmips.c
-@@ -626,6 +626,23 @@ void bmips_cpu_setup(void)
- 		__raw_readl(cbr + BMIPS_RAC_ADDRESS_RANGE);
- 		break;
- 
-+	case CPU_BMIPS4350:
-+		u32 rac_addr = BMIPS_RAC_CONFIG_1;
-+
-+		if (!(read_c0_brcm_cmt_local() & (1 << 31)))
-+			rac_addr = BMIPS_RAC_CONFIG;
-+
-+		/* Enable data RAC */
-+		cfg = __raw_readl(cbr + rac_addr);
-+		__raw_writel(cfg | 0xf, cbr + rac_addr);
-+		__raw_readl(cbr + rac_addr);
-+
-+		/* Flush stale data out of the readahead cache */
-+		cfg = __raw_readl(cbr + BMIPS_RAC_CONFIG);
-+		__raw_writel(cfg | 0x100, cbr + BMIPS_RAC_CONFIG);
-+		__raw_readl(cbr + BMIPS_RAC_CONFIG);
-+		break;
-+
- 	case CPU_BMIPS4380:
- 		/* CBG workaround for early BMIPS4380 CPUs */
- 		switch (read_c0_prid()) {
--- 
-2.43.0
+The kcontrols you are mentioning are controlling which USB card and USB 
+PCM device to execute the offloading on.  As of now, at least for the 
+QCOM implementation, we support only offloading on one path/USB 
+interface.  I can't comment on how other offloading solutions look like, 
+but we pass the USB PCM and card index as part of our AFE port open 
+command (done from USB BE DAI).  This will result in a USB QMI message 
+back (from ADSP) to our USB SND offload driver, which carries all the 
+information about the selected card and PCM index to execute offloading on.
 
+One thing I can do is to actually make the kcontrols for selecting the 
+PCM and card devices to look at the num_supported_streams.  This would 
+at least allow for vendors that have support for more potential 
+offloading streams to select more than one.
+
+Thanks
+Wesley Cheng
 
