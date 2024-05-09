@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-65952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B6A48C0BCC
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 08:58:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3666E8C0BD9
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 09:02:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B7431F20F02
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 06:58:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A2EF1C21117
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 07:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9DAB126F3A;
-	Thu,  9 May 2024 06:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290C613CFA8;
+	Thu,  9 May 2024 07:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PIzhSf/y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bo00cS1t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB622624;
-	Thu,  9 May 2024 06:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA21013C9A4;
+	Thu,  9 May 2024 07:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715237875; cv=none; b=OPGGjQ53StC8gT8aMuF1C/9r1g3QRWPVV/Tybgeiw6O7VyfOnXsjX8z2mPVgZb2sioaK26gCGoFE73PtAkJJNGGLhOC4OjgzZlQk8aj7KmqK/45gzshtiRKGVe/Qu+zn3fKvPGxuTfZL6EP+mAJL/3m3cL2VwUPTwHdaOIckp+A=
+	t=1715238124; cv=none; b=hN4LT53VRfBpqRO7GtgQdD06tRhK3w/FcZ04TCwLjtzYhoHjk+F8GMTEZVmpqjVWh9DnGtRFnAmrYDKWjoH7cemZLY1M2kvtmb3WtY2g3ll7VpQVrPNwYqRDHB2TpfoSRAKDF0W0zrgV4OYS8SUKF5XJpXxHq6wRWjj8ir3wCVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715237875; c=relaxed/simple;
-	bh=WDuONe+R79xUUmapcU3akWhJd6uY03dWlMO8NEpg2KY=;
+	s=arc-20240116; t=1715238124; c=relaxed/simple;
+	bh=HHUwATgsQkm4exkktBSGDqLQb41I/ScfpBMZ1OFL9As=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JfCOrKjOqXiDRz8EtTpToKwZhftN1Pxs0Nce5DtTMB6Xm21JDmRy7AkyfwMUcYvP3cjJ66/Bhh0x6c8Yh1L8XjhnqnOZk1xXhxS9Sxe/az5DZUOPKiqT4xIzNG5DxgXZHO+Ilz1W861uAzbewNN481tcUjw3VvMlwDoe2qwP59w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PIzhSf/y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14848C116B1;
-	Thu,  9 May 2024 06:57:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=g0J5d9fPrQe8yVaV3oYuGIIkYfmzCPVRUbEKW7k+F5uxmpYxM6nk8LT3bHqZpRlV8lzXLq29D/16bjQGsLE8rIecUxcDlycsRtlozdRSodEVneU20XqhfExDQ2SUj9Mqrucwy2km26Mj9oV2QgclmMva8ILN+nuwLOWCjSbDIyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bo00cS1t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 160E0C2BBFC;
+	Thu,  9 May 2024 07:01:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715237875;
-	bh=WDuONe+R79xUUmapcU3akWhJd6uY03dWlMO8NEpg2KY=;
+	s=k20201202; t=1715238123;
+	bh=HHUwATgsQkm4exkktBSGDqLQb41I/ScfpBMZ1OFL9As=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PIzhSf/y1NsYhDaj9DJl0HCBPbFus7gqclqrxJWxf5Thq2nKjFznYJanyPMrrQfRx
-	 o7xYXOLoIw8tAGFUDU6jQ4/y/bg31rm2+JEYxAkF6HFaBK9wEl3mxSjI0KiPU8bYzX
-	 oawh24DbEWKLgCQuwA6tPSnTcVSJV2CS8lrhFyW9CgTFwLdOvel19kAT7Z4Gv5gdbZ
-	 Fms+GXLUM4zkDnTKWokt5lAN7BIES0WNDwKZPQy7iqATPPUyUIqlwn2Io9dFTVo6MP
-	 KIcEZYxDjS9LP7MUVkppXQwO0r0wOMwGqx0ZmspeMcKmTSMV8IkoWLRCd/vxXYJeXu
-	 yX9VUu7Mj5XEw==
-Message-ID: <21160163-4380-4d24-b25f-9caa9993bd7d@kernel.org>
-Date: Thu, 9 May 2024 08:57:47 +0200
+	b=bo00cS1t802h1N0emnQnDEt2+DH5ItaIWlezkP+yHKJtxSPp8bLogwwVuhDf0BFCY
+	 zXFhW0xJlui7ZcQWfd3kXf1aWkKxRTIJFJSh/Yx+PN3XupJeH++mFUUWTDl0JAvXI1
+	 9LAxvDNdQ7iJfd5niciOmsQIRFlHOxhkaTOe4uzijTdYdL/s99jRVWlChiPgnw2LGY
+	 HIsRwn1p2CUOEEuVLjtTZT0T1CI92Z/Ce6mcxRbHocj7uvtq0/D2/ozCNSNVt0yPBR
+	 Sa7m/iPaRS3n84SONW4NVfb/T1ya2chpGGH4miK/jyoRjZQ3c05LRzyaGtIa8LKDFJ
+	 j+2zgB2VFwKTA==
+Message-ID: <7505562d-ba61-48c2-ad30-d03499b95166@kernel.org>
+Date: Thu, 9 May 2024 09:01:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/13] dt-bindings: mfd: pm8008: rework binding
-To: Stephen Boyd <swboyd@chromium.org>, Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
- Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Das Srinagesh <quic_gurus@quicinc.com>,
- Satya Priya <quic_c_skakit@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-11-johan+linaro@kernel.org>
- <fa54422f-329e-4c3e-b297-b84438f75abe@kernel.org>
- <ZjpHWIKeFrJ1QZDj@hovoldconsulting.com>
- <CAE-0n514vcieg4uDZUOnZFm-14_hCX7eY8Ji+nyeqgtTh=xbUg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: imx8mp: Add #reset-cells
+ property
+To: Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
+ peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, marex@denx.de, imx@lists.linux.dev,
+ shengjiu.wang@gmail.com
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1715219038-32453-1-git-send-email-shengjiu.wang@nxp.com>
+ <1715219038-32453-2-git-send-email-shengjiu.wang@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,39 +107,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAE-0n514vcieg4uDZUOnZFm-14_hCX7eY8Ji+nyeqgtTh=xbUg@mail.gmail.com>
+In-Reply-To: <1715219038-32453-2-git-send-email-shengjiu.wang@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/05/2024 00:09, Stephen Boyd wrote:
-> Quoting Johan Hovold (2024-05-07 08:23:04)
->> On Tue, May 07, 2024 at 08:43:08AM +0200, Krzysztof Kozlowski wrote:
->>>> -
->>>>      maxItems: 1
->>>>
->>>>    interrupts:
->>>>      maxItems: 1
->>>>
->>>> -    description: Parent interrupt.
->>>> -
->>>>    reset-gpios:
->>>>      maxItems: 1
->>>>
->>>> -  "#interrupt-cells":
->>>> +  vdd_l1_l2-supply: true
->>>
->>> No underscores in property names.
->>
->> Indeed. These names come from Qualcomm's v15, but I should have caught
->> that. Thanks.
+On 09/05/2024 03:43, Shengjiu Wang wrote:
+> The Audio Block Control contains clock distribution and gating
+> controls, as well as reset handling to several of the AUDIOMIX
+> peripherals. Especially the reset controls for Enhanced Audio
+> Return Channel (EARC) PHY and Controller.
 > 
-> Drive by comment: we have underscores to match the label on the
-> datasheet. Not sure that will sway your opinion. Only trying to provide
-> some background rationale.
+> So make Audio Block Control a reset provider for EARC, which
+> is one of modules in this audio subsystem.
+> 
 
-I know, but if datasheet calls this "yellow_pony_!!!#1l33t-supply" we
-still won't use datasheet names directly, so s/_/-/. That's also W=2
-warning.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
