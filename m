@@ -1,58 +1,64 @@
-Return-Path: <devicetree+bounces-66109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CCEB8C13F2
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DC88C13FC
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADDC91C2094A
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:22:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5590B1C21B86
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 17:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16D9DF58;
-	Thu,  9 May 2024 17:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1DA101DE;
+	Thu,  9 May 2024 17:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QmLlGVur"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZoDS76sy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8322FDDAA;
-	Thu,  9 May 2024 17:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D4CEC2ED;
+	Thu,  9 May 2024 17:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715275339; cv=none; b=tJ6TD082W/YOy+99kQ2wZRD2r9n1MayFcsLPS5g5OLV3Nkbup2qkv+nRnecqOugNo3dcsi7tnfrWwnTJNet7k/7ubefGlXD5vm96tFc2uopsZiUs4/gtZAe1Nd1WkPzQGimruWZhp5RsUfm4H6x+qq3yLuZWhe/B1nF1R1GSz3Q=
+	t=1715275468; cv=none; b=bCeLMKnp6ar7HlZwhjdTUEqVuc8nW9GXUL2TJtDzBskzhJBxkLQ98t8KU7K0mLTc3TxLl6yDx1oZkVoHS9HiDX3htJo7UQkwKW2tm6SH6flmI3hCTChLysHSjqlPATN9KjcFMY+1WF4t68y5ZReYFpUo4AfYfpU7HFLaLjN2tkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715275339; c=relaxed/simple;
-	bh=XwNk5V9R0QPzNcNh99wAkQowo9Pa2mx7s88SZ+TAMDE=;
+	s=arc-20240116; t=1715275468; c=relaxed/simple;
+	bh=Hjq02dwS2sb5bxjvJqeSXUaXB4HOcENIQBuKUe3e6EA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CV5ffuVNlywPDSsLWXburd7tR7F3xguCyVsSOfIjXHUc6qBUJrKpOnefiDRS+Q7/bD9V0yiL4qZ4Nv9BoFKPzW+UNGOQEQXdhEy2jesZYz/uK2fgTUfLtWpBWhtL6JmX4ZjfK/65kIcbUK2iWGxZRmYMCbojjSYpqEphTYoyBgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QmLlGVur; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ACE7C116B1;
-	Thu,  9 May 2024 17:22:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nQdmvnHhe9pZ9pNceCpsAFaFNSoZgJ8blvNgjTsdgvS4Ioq3DHG/bnYm1tdnHHoPs4LPRQcenrJaSbA1xQ6T2JTsFOOtNx2kRuLwVaYzwh3VA6jCWQZ6XzhUTdZynl6rF6AgaiIGXZxNej6uytwhFlnOXO+l75RYTwhdG2B52q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZoDS76sy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25FA6C116B1;
+	Thu,  9 May 2024 17:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715275339;
-	bh=XwNk5V9R0QPzNcNh99wAkQowo9Pa2mx7s88SZ+TAMDE=;
+	s=k20201202; t=1715275468;
+	bh=Hjq02dwS2sb5bxjvJqeSXUaXB4HOcENIQBuKUe3e6EA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QmLlGVurc5Bzn2z4QgNAt8uPrwv3geS9SsHaBNCzsw9vL+xBzz5ZJEtyIm2LBIt81
-	 ka5stnEFm6GIN9odgm2n+XjrDB6+L8agro9SPTMAetuiFy7PWgPwGg86RzUxib9Z6X
-	 pHOmi8qCqqzkf5hsqnBfK9PW++J4VTPqWWDYIIm9aO8LwrsJqEFC20SAIthM65SrC2
-	 EiEoeEoA0GSlshYEMBdD3LqDgVatA2WMZaExJf/RzhDFdDeqVBqBaEbutoYP+IHnUm
-	 vWW9bmHDxD+2WYUZghfM/Et+CYKbIuZ+RI6BujaONxTri5Z9vjV3xjtV1uZA4Ukjsq
-	 8P/X1XMnuyGYg==
-Date: Thu, 9 May 2024 18:22:15 +0100
+	b=ZoDS76syiw4B/jq5SjSNXYTmMkWgnVhMsg/b7dzxsRTi1CF/m/w4uFr7I3RiiArYJ
+	 9bLmzVIEYYicuqM6bl3hrKRaswnGvPTe4zWZ2Kar1UH3qmjWDqySFnSwSxZU+f54+d
+	 a86mbEezgsIHDAyyTJquIbYG6PrxDpuEt9DjBznvj3BExHL0SSunylFmf7c7wukmn+
+	 AxtiG6bnTU2INqGiHZg0pz+gDjrP/lTvmMYkFUYmcA18JJduATKtbusiJ+008EztDn
+	 hNQULshB4JhjAOMjCJOdZSKPSHagLaHEYUGF7VNLg8JwlIQZ0nHjTKG7DqBqmQaE3T
+	 V+C55t5wMZbgA==
+Date: Thu, 9 May 2024 18:24:24 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Witold Sadowski <wsadowski@marvell.com>
-Cc: linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	pthombar@cadence.com
-Subject: Re: [PATCH v4 2/5] dt-bindings: spi: cadence: Add MRVL overlay
- bindings documentation for Cadence XSPI
-Message-ID: <20240509-hurried-canned-3ceac439b93d@spud>
-References: <20240509010523.3152264-1-wsadowski@marvell.com>
- <20240509010523.3152264-3-wsadowski@marvell.com>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: "paulburton@kernel.org" <paulburton@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: mips: Document mti,mips-cm
+Message-ID: <20240509-maimed-wharf-555787f5d773@spud>
+References: <20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com>
+ <20240507-cm_probe-v1-4-11dbfd598f3c@flygoat.com>
+ <20240507-jokester-antelope-808b21b957e6@spud>
+ <fbb4b8e2-edf4-4b4e-8b71-154a09f24ccd@app.fastmail.com>
+ <20240508-puzzle-directive-b6f771f92fe9@spud>
+ <42f91b62-2bf9-414d-ad05-6770282637f7@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,82 +66,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WpdYn/ptb22WafW8"
+	protocol="application/pgp-signature"; boundary="MugsB6SaPrl37OTd"
 Content-Disposition: inline
-In-Reply-To: <20240509010523.3152264-3-wsadowski@marvell.com>
+In-Reply-To: <42f91b62-2bf9-414d-ad05-6770282637f7@flygoat.com>
 
 
---WpdYn/ptb22WafW8
-Content-Type: text/plain; charset=us-ascii
+--MugsB6SaPrl37OTd
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hey Witold,
+On Wed, May 08, 2024 at 09:28:27PM +0100, Jiaxun Yang wrote:
+>=20
+>=20
+> =E5=9C=A8 2024/5/8 18:01, Conor Dooley =E5=86=99=E9=81=93:
+> [...]
+> > > So it's actually a register block that can be remapped to anywhere in
+> > > MMIO address space. DeviceTree usually passes firmware's mapping loca=
+tion
+> > > to kernel.
+> > >=20
+> > > There are some other similar bindings like mti,mips-cdmm and mti,mips=
+-cpc,
+> > > I just copied phraseology from them, should I try to explain it more =
+here?
+> > The description that you've given here is of something that sounded
+> > awfully like mapping into a location in DDR etc, is it actually being
+> > mapped into a non-memory address?
+> It is an overlay being realized at CPU core level so it can be mapped at =
+any
+> where, but the firmware convention is to map it to a "non-memory address".
 
-On Wed, May 08, 2024 at 06:05:20PM -0700, Witold Sadowski wrote:
-
->  allOf:
->    - $ref: spi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: marvell,cn10-xspi-nor
-> +    then:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: io
-> +            - const: sdma
-> +            - const: aux
-> +            - const: xferbase
-> +        reg:
-> +          items:
-> +            - description: address and length of the controller register set
-> +            - description: address and length of the Slave DMA data port
-> +            - description: address and length of the auxiliary registers
-> +            - description: address and length of the xfer registers
-> +    else:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: io
-> +            - const: sdma
-> +            - const: aux
-> +        reg:
-> +          items:
-> +            - description: address and length of the controller register set
-> +            - description: address and length of the Slave DMA data port
-> +            - description: address and length of the auxiliary registers
-
-The usual approach here is to define the loosest possible constraints
-at the top level, so unconditionally define the xfer register region,
-and then constrain things based on compatible. In this case, you can set
-minItems to 3 unconditionally and then do (in psuedocode):
-if:
-  marvell
-then:
-  reg:
-    minitems: 4
-else
-  reg:
-    maxItems: 3
-
-Additionally, when the allOf: is more then just references to other
-documents, it should be moved below the required list.
+In that case, a description that even eejits like my can understand
+sounds like all you need to understand :)
 
 Thanks,
 Conor.
 
---WpdYn/ptb22WafW8
+--MugsB6SaPrl37OTd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj0GRgAKCRB4tDGHoIJi
-0qAUAQDDkek5uuZo8fhS+5+n+/KC5jbgv3VqBlRRX6dNq4+aMQEA3ieUk8uBqv3x
-G0rgnFNQrGoFLnff0xt+ojPwilKoWwg=
-=aE1J
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj0GxwAKCRB4tDGHoIJi
+0kqyAP0fDiEStQ6JcYJzsw962RPlPtomFrmdBAU9SQAQGiR65wD/UnGLN9Qa1HT7
+sLegR6jS7JDKrIjxkTK2Bk1uWH0miAo=
+=Y91o
 -----END PGP SIGNATURE-----
 
---WpdYn/ptb22WafW8--
+--MugsB6SaPrl37OTd--
 
