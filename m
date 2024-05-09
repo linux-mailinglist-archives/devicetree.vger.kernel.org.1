@@ -1,80 +1,85 @@
-Return-Path: <devicetree+bounces-66001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C90A18C0E6B
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 12:48:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 252428C0E6F
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 12:48:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 810E4281B51
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 10:48:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5542B22C6F
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 10:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E4012FB1B;
-	Thu,  9 May 2024 10:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2D3130487;
+	Thu,  9 May 2024 10:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dWuTFvrq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nT0TXTna"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A55712F5B7
-	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 10:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB890322E
+	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 10:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715251679; cv=none; b=thoJFnTQWABtpDd9wainHb4wc6rvZ5fkw7UgxA834hjAVzXopHuFTuhu8irOiGMxyB1ylSGMu6nRN83Rj9CDZxB0/l4POrDy5t62aBsVGBynvRdmpRGwy79XPBIndiyA8tY/yILWVs0goS4tBSRiIJ8LPsum3BN+bwbYZnJkdjw=
+	t=1715251700; cv=none; b=BoSVRK4I8FNf8K9iK+YVg3OfQrdbqAvDGLf+I5P98zQZ9jft3IGNQO8jKK4BmdgUkpuIo1Xhgg+xrFgXIfqBA2GnzRgE4wzUKJAxRcz1eVTe+FXfETY+S91E80yjrloq+i/jcUS0i0qBM5zKGqaiSEO8+Hw7pG3kbRMFrpGF/V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715251679; c=relaxed/simple;
-	bh=OQni8xvnYy9WGLxuioB/twwX1etnlijk5yX08S2h+Lc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pMIjNY/mBCsZIeqCFXvkCUZ3zI3ybBuGjHICx3ExXcLL0gdjSzuJxI6b7Oc0ZAeOuZJHbNdJ+osiGF1qZFxD5vq/D2OdflMAlo43BKdFKTcRqnAUTFXRbrjmxgWQt99YcEY4OtW9+G1APsYnq3p98BNkakYqnoRdFLivTUYgfhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dWuTFvrq; arc=none smtp.client-ip=209.85.218.47
+	s=arc-20240116; t=1715251700; c=relaxed/simple;
+	bh=AhGKHotUOundbhN4X2YTDc462SsKg+3ZxBuT3oDaWHw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cd+9jEpDB+XenX47lbhzRObZia5YwMRG/JZ5eWjYFDnWscRDwxUj7yDVusSOrOhlgo2ptnri2oIUk9I4z4iET3o39w7C1ZXxwOl+PXmkUmDqHb2at2B0UvKt6PONmfe9ZM03fYXsTudLJ8ibJSiFjXoXQCiL/PKSYBBbaxCkBhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nT0TXTna; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a59c448b44aso169779266b.2
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 03:47:56 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a59a934ad50so167946266b.1
+        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 03:48:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715251675; x=1715856475; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1715251697; x=1715856497; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FR+x8sKExGfyELSBtCHiRo7zGgjRFCGjuQW294Rt+84=;
-        b=dWuTFvrqOaHm4EOefjAct63wRausS/vS0xBZ01eIbZ8Y7LI2B/ewqQsusYxZAr0W5f
-         Nq9XXJ+J5prbW6Gnjy7L+BvIsUVXpXKWbP4EReI5RpYirzfbsL3anIoU7FD8GZVxhGdG
-         zSq+yO6rv1CtfGsl9tMiN0p5FQ3tikyKrt4QkfEzJmCxYEjAIQgi7g48yPsDEtt0+4Z0
-         EQGwqBhopoYmfsyAhhOER+konyKDCgTJbVhBIMslJZ82OTHIq2Hf9Z+1YEd/12iYfVDs
-         8Y2EMmYukQWihWvEoEWorm6iKy8gmYvMeoc3wVX/a4airHXTrMzNR3i4DG7c76IjcsSo
-         5WFg==
+        bh=Nhk3/XajbYjebewXinPE0P/6g6ueIG9AsQRxMr6tmNE=;
+        b=nT0TXTnaL7FfAtbP7LrDzrvRKwzajzdgiNqJQqFfwCS86vqGJczlvppfzFE3o8cUdC
+         vWpSWvYDMGnoKd5oUFJMbYs64XWNBUqhhGS8lBqolhHPTUTL13wbiz/r4L6RS7hz3sSK
+         A6h5OGPcV2i/KTkWuy3IDnhrXzrUfSsD96CfS/TOFQtrYLqtT8jFnwIkksCIJUoahRt6
+         tjgLL+lNWJcc/blGeK2ksvzVzVHKaGqjEbTVM+X4o9xsioiimqEF2PwVEtDlBQFBplFv
+         2pqCAStUW1VV91/Yt5Mttyz+h61/OSA5TdRl3875TvYGSJuKibpJXgt9jrvKCysCDYY5
+         yX0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715251675; x=1715856475;
+        d=1e100.net; s=20230601; t=1715251697; x=1715856497;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=FR+x8sKExGfyELSBtCHiRo7zGgjRFCGjuQW294Rt+84=;
-        b=HCSPCjokdFc7tBEoIhObsP6HOWBu1KrjK5SUuiUoGfv57pjO77QZg6R01jA2tNBMzi
-         vHvIoaXycac/yTojt2A9KxTyubR02Vg1TeRfJuFIeNzk/f2meNBxkOPRv82ho00PYRsQ
-         p7chSAjRyS7SePeYtIhRd6cFuOT0NPFiLRakYCZ2wFR5/58ppWUyTSbojeRWaUk0GjRG
-         yarKVRlBtng3hVr8vUvzsFsWFK5+hCkZsVIgA0eSDwWEGJ7M0sx95j/3LUYVAZjW2fq0
-         tM7sOa1B8U+s+6Fs71x++4stuZjYlU4lICvX+FrJ4O91wxmZrd7oAb3146OMwLs+bxQa
-         Wy9w==
-X-Forwarded-Encrypted: i=1; AJvYcCX/dJ/c1iZN9fXhroN9Kl2SWHV/Q4jMV5XGJbLhgsB8drAMZzMx0mI1RSuR91GOOjsUX0CFUQQUWX+IsdnXZjdkTsNa0lbGzOQ23Q==
-X-Gm-Message-State: AOJu0Ywjh7t4gzM0OYO2HSg4ULCorwNUw33x5suEBl6l4/gLCbEK1BdR
-	zwY6qVf2Xrf+3VEP8c//V0Js210CM7ej7iw1I4kX+9mM/MfvfUFBNkj8SkRUfK4=
-X-Google-Smtp-Source: AGHT+IE2edGeC5X3qKaBM4AttahM0ZV4LqNcNkCLMrXATw1Lh+N+0G/Wq2ZQZT8l7qjwdwAJ0EegoA==
-X-Received: by 2002:a17:906:455a:b0:a59:ccb9:846d with SMTP id a640c23a62f3a-a59fb95d605mr322034766b.37.1715251675192;
-        Thu, 09 May 2024 03:47:55 -0700 (PDT)
+        bh=Nhk3/XajbYjebewXinPE0P/6g6ueIG9AsQRxMr6tmNE=;
+        b=qu70SIgHiOpPX5nrQ9FgcY20iDowK944BxMonCZ/DUyqa6UJEJFdx09sAS2zY1W9b/
+         gfwXBzRjKdXgU9eTCfhre+dMnmeMZgwlwRqaKCMVDTZxYMVxaXA0G9zuKhNK6Nq8h565
+         fDVdH0jc8uPihQ/4LD9KTYDhVh/DMt+YG/Lt0Vga0N4YP4GxShWw0GNWck5WOFEzBhMz
+         kY8IdDiQB+oF8RuySw4AtzpphF7Zhqp8YxEXySeYbGJWRZAU21umf38raXKIQfYTITvz
+         IK6DVDmU+6rJ6oOtJweKsGWZ/oGlvtS9uCnwWNlTbN2atrqvhqa/f4V78/4/0h2an9I9
+         c2CQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2JKW/ZRl9+1DUQFcnyKRWTjQyaJlUA9PbfRXcqVRFxy88T1hIKx/WmWc6yRe0I4SS6K+UCQXr3aihq9p/hc9S5UfALp68tdPh2A==
+X-Gm-Message-State: AOJu0YziKk+3nGS7/UPATm06WmSxtV9onvUl/IpQGs9xgWaPJiMcCuq0
+	MIxAqp3Rk5wPhzIvgMwiL7hzxXnBMA0QDz310AcC/T1iZWbFShrDwWr0hOjUX2M=
+X-Google-Smtp-Source: AGHT+IHQyuhaOFCWDh8Y20z92N/LrJzqyIZFbrRKifXgh0S2UhxNL1L6D0CsxhO9kqq9QHRTuJH7rw==
+X-Received: by 2002:a17:906:db03:b0:a59:b590:5d71 with SMTP id a640c23a62f3a-a59fb6ed704mr459961166b.0.1715251697256;
+        Thu, 09 May 2024 03:48:17 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a179c7fc4sm60588666b.135.2024.05.09.03.47.53
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b014f6sm60466866b.145.2024.05.09.03.48.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 May 2024 03:47:54 -0700 (PDT)
+        Thu, 09 May 2024 03:48:16 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: vt8500: align panel timings node name with dtschema
-Date: Thu,  9 May 2024 12:47:49 +0200
-Message-ID: <20240509104749.216605-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: ti: align panel timings node name with dtschema
+Date: Thu,  9 May 2024 12:48:13 +0200
+Message-ID: <20240509104813.216655-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -87,71 +92,71 @@ Content-Transfer-Encoding: 8bit
 DT schema expects panel timings node to follow certain pattern,
 dtbs_check warnings:
 
-  vt8500-bv07.dtb: display-timings: '800x480' does not match any of the regexes: '^timing', 'pinctrl-[0-9]+'
+  am335x-pdu001.dtb: display-timings: '240x320p16' does not match any of the regexes: '^timing', 'pinctrl-[0-9]+'
 
 Linux drivers do not care about node name, so this should not have
 effect on Linux.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/vt8500/vt8500-bv07.dts  | 2 +-
- arch/arm/boot/dts/vt8500/wm8505-ref.dts   | 2 +-
- arch/arm/boot/dts/vt8500/wm8650-mid.dts   | 2 +-
- arch/arm/boot/dts/vt8500/wm8850-w70v2.dts | 2 +-
+ arch/arm/boot/dts/ti/davinci/da850-evm.dts    | 2 +-
+ arch/arm/boot/dts/ti/omap/am335x-guardian.dts | 2 +-
+ arch/arm/boot/dts/ti/omap/am335x-pdu001.dts   | 2 +-
+ arch/arm/boot/dts/ti/omap/am335x-pepper.dts   | 2 +-
  4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/vt8500/vt8500-bv07.dts b/arch/arm/boot/dts/vt8500/vt8500-bv07.dts
-index e9f55bd30bd4..38a2da5e2c5d 100644
---- a/arch/arm/boot/dts/vt8500/vt8500-bv07.dts
-+++ b/arch/arm/boot/dts/vt8500/vt8500-bv07.dts
-@@ -16,7 +16,7 @@ &fb {
- 	bits-per-pixel = <16>;
- 	display-timings {
- 		native-mode = <&timing0>;
--		timing0: 800x480 {
-+		timing0: timing-800x480 {
- 			clock-frequency = <0>; /* unused but required */
- 			hactive = <800>;
- 			vactive = <480>;
-diff --git a/arch/arm/boot/dts/vt8500/wm8505-ref.dts b/arch/arm/boot/dts/vt8500/wm8505-ref.dts
-index 2d77c087676e..8ce9e2ef0a81 100644
---- a/arch/arm/boot/dts/vt8500/wm8505-ref.dts
-+++ b/arch/arm/boot/dts/vt8500/wm8505-ref.dts
-@@ -16,7 +16,7 @@ &fb {
- 	bits-per-pixel = <32>;
- 	display-timings {
- 		native-mode = <&timing0>;
--		timing0: 800x480 {
-+		timing0: timing-800x480 {
- 			clock-frequency = <0>; /* unused but required */
- 			hactive = <800>;
- 			vactive = <480>;
-diff --git a/arch/arm/boot/dts/vt8500/wm8650-mid.dts b/arch/arm/boot/dts/vt8500/wm8650-mid.dts
-index f6a42149a0a0..7977b6c1e8eb 100644
---- a/arch/arm/boot/dts/vt8500/wm8650-mid.dts
-+++ b/arch/arm/boot/dts/vt8500/wm8650-mid.dts
-@@ -17,7 +17,7 @@ &fb {
+diff --git a/arch/arm/boot/dts/ti/davinci/da850-evm.dts b/arch/arm/boot/dts/ti/davinci/da850-evm.dts
+index 6c5936278e75..1f5cd35f8b74 100644
+--- a/arch/arm/boot/dts/ti/davinci/da850-evm.dts
++++ b/arch/arm/boot/dts/ti/davinci/da850-evm.dts
+@@ -65,7 +65,7 @@ panel-info {
  
+ 		display-timings {
+ 			native-mode = <&timing0>;
+-			timing0: 480x272 {
++			timing0: timing-480x272 {
+ 				clock-frequency = <9000000>;
+ 				hactive = <480>;
+ 				vactive = <272>;
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-guardian.dts b/arch/arm/boot/dts/ti/omap/am335x-guardian.dts
+index 56e5d954a490..4b070e634b28 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-guardian.dts
++++ b/arch/arm/boot/dts/ti/omap/am335x-guardian.dts
+@@ -74,7 +74,7 @@ panel {
+ 		pinctrl-1 = <&lcd_pins_sleep>;
+ 
+ 		display-timings {
+-			320x240 {
++			timing-320x240 {
+ 				hactive         = <320>;
+ 				vactive         = <240>;
+ 				hback-porch     = <68>;
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts b/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts
+index f38f5bff2b96..17574d0d0525 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts
++++ b/arch/arm/boot/dts/ti/omap/am335x-pdu001.dts
+@@ -67,7 +67,7 @@ panel-info {
+ 		};
+ 
+ 		display-timings {
+-			240x320p16 {
++			timing-240x320p16 {
+ 				clock-frequency = <6500000>;
+ 				hactive = <240>;
+ 				vactive = <320>;
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-pepper.dts b/arch/arm/boot/dts/ti/omap/am335x-pepper.dts
+index d5a4a21889d1..e7d561a527fd 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-pepper.dts
++++ b/arch/arm/boot/dts/ti/omap/am335x-pepper.dts
+@@ -202,7 +202,7 @@ panel-info {
+ 	};
  	display-timings {
  		native-mode = <&timing0>;
--		timing0: 800x480 {
-+		timing0: timing-800x480 {
- 			clock-frequency = <0>; /* unused but required */
- 			hactive = <800>;
- 			vactive = <480>;
-diff --git a/arch/arm/boot/dts/vt8500/wm8850-w70v2.dts b/arch/arm/boot/dts/vt8500/wm8850-w70v2.dts
-index c7a6fe0ce48f..5d409323b10c 100644
---- a/arch/arm/boot/dts/vt8500/wm8850-w70v2.dts
-+++ b/arch/arm/boot/dts/vt8500/wm8850-w70v2.dts
-@@ -28,7 +28,7 @@ &fb {
- 	bits-per-pixel = <16>;
- 	display-timings {
- 		native-mode = <&timing0>;
--		timing0: 800x480 {
-+		timing0: timing-800x480 {
- 			clock-frequency = <0>; /* unused but required */
- 			hactive = <800>;
- 			vactive = <480>;
+-		timing0: 480x272 {
++		timing0: timing-480x272 {
+ 			clock-frequency = <18400000>;
+ 			hactive = <480>;
+ 			vactive = <272>;
 -- 
 2.43.0
 
