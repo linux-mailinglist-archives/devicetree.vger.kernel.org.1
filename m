@@ -1,116 +1,108 @@
-Return-Path: <devicetree+bounces-65983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-65984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F7158C0D85
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 11:34:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC0A78C0DAA
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 11:42:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BB58B21CB9
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 09:34:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 675AE28379C
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 09:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3839F14A61E;
-	Thu,  9 May 2024 09:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B86114B067;
+	Thu,  9 May 2024 09:42:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="reG0mO/y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6PwzGFC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com [162.62.57.49])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06BC14A4DF;
-	Thu,  9 May 2024 09:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE40614A635;
+	Thu,  9 May 2024 09:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715247243; cv=none; b=IoFTKVeQFkZTPVBjpIqFmUVEie6Fm2QwzYHcbMY2taAKHWlt9yypdeb/7k1of2oZEHlqCxZgJhHqfflLlhgNR+M03c5mfNuC26jLgxvsUAQcPP+QFnzf4NZcjXZEcgI16+6CehGTYjhWPi9zJ6aGg46fGDcA4E2ZIbZup7KyCvM=
+	t=1715247737; cv=none; b=oqUCwVvIkCrlQnbJX1UXLtLiZh3Ac+9mtryUm7+gJZWUI1E/SnyvikcbvWWhehKPJXaIXdWSiCJvHO85J+pJCsxDGmd8HNaCJuT0cucwQHsIqzhH8csCINBYF8Clmcb1RnMGmDaGX2j/yvDmLz0oW3XsXpuLyjtVwqVsKkEgEKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715247243; c=relaxed/simple;
-	bh=MtCUZOEf09vm2s3UfRmmEbhe99AQfnhKa18eN3mnrso=;
-	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=nzfu62I+wxVyDe9fUayoBcsWaS0p7wlEZWdSlxLaiyIVfz61CUQZPGwv3UTnX/PLFuLDpGpzb8rBhQM03bO6sRsU6C7kCZLS7CBL633Ik2I4XnW8pty9AAEC9N3k7Lc2USxBXOhRy1jiMm54Mmwm9Hk577ZT0GwatpasTXW17pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=reG0mO/y; arc=none smtp.client-ip=162.62.57.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1715247227; bh=uHRrkhKKY/U0upUZfJkXb4BY8bCTGf1SFZ8EyfT1G3g=;
-	h=From:To:Cc:Subject:Date;
-	b=reG0mO/yMD0Allajl/2aMO1ahdJMd1FG86iTLZ031D7u5g0tYM1mYE3kORENzH04s
-	 GQ9UC1LP2QjvCQCjOcF/3MrO5DJk6oNrTrboudF6/TXbLNoe+iijW7tiuiGnvAeRzw
-	 zVyBPSiMtLFK0Vh+p7YsW2wjyYMX9DX/LXbR0ZiU=
-Received: from cyy-pc.lan ([240e:379:225f:c000:ddd2:5a64:482:d6f2])
-	by newxmesmtplogicsvrsza10-0.qq.com (NewEsmtp) with SMTP
-	id 86B97886; Thu, 09 May 2024 17:33:43 +0800
-X-QQ-mid: xmsmtpt1715247223taum3m4ji
-Message-ID: <tencent_B61C1370E7632842D61BB7F9FA0515B44D09@qq.com>
-X-QQ-XMAILINFO: NkHKfw09D6j8uL2HVuJBhrc2zAVCXYqfSMQbCILL5ryFnjPQlfSSZSmyhy0OIS
-	 51hz1Aj5/VjBhn/J3uDwgpLwGwdPxe6mo0HKpyqEVWoVZD1ju4+BSdIZLKYcr1FqxTGvLrKobGz6
-	 9MRknHCRtI6YvQTjMv3elKw/uuseaZvLe+uwd92wJ+4Y/ZrEBJg6rV4kXrp+581iAqZbVyxiE19W
-	 WuqjyKz1jdnZWTG747f/PaHiKP+38krSpqFhgycfkgnsx77GiKoMDxQfI8x8Y8ynZhDQV//Qz+DH
-	 xja4FqphOyVQUcnHNPIf4uVLUaA47Lp18wJpQqGO8sLWnqs8+8gnoYXvOFgHXuzv4rwFCCOPU02C
-	 dgxsiD+mjvY16vcI6QgHkd2+clL+jKlA4liQst7W0+bF7OEvuvmpIksFU703rPDhAQY0lByg1bVG
-	 ooud3Hq4c4KlTsDwIhRKRnbenhW0cfSmOya03euiBpH9xJuJ4WdlsSaQygHYiD76It9XTfoFRpZw
-	 tUTkXSz3rxx4e4pl3SIQROzzZZ0qkcnl4G+Vg1/C3QaTcdEp0eo2xcwrcW6CrY/Sk168Y/YAwTqt
-	 zzQEhV8Z+EqwzKDRo9/tpCfx9ry+bkjCr6VEiK1dlBNkwwmk14el1KiG9m/vN6p79Bvc040hha0O
-	 3p7hySI/w3VOuB9/Xqemjuf+YtRjntvFCkMmknFI9LTnryALuCB/mlExTlcVbY0e2DD4POPIn8Fd
-	 qQPXkgf7XZtsX8q5+kRyWUA5tYZqz7ekw+SJo+QHKvLNhRL6nn4JorQDFnNzolMgQTUkLlS4Xjhp
-	 p7zpW/I7ccH83nQ+Euqv2R3XFEXfHzlFhinZw1Uo78unA2WVwgDed+rOCOkipJwUMTRwI5zgvIdv
-	 b6FoBWxUi16ON2TOOzjICCTvV0QGfeNVVNxKW7D/7HrCnH2TB5xwJHLBl5QXxUC0rglWkdMCB7Gc
-	 zOluQZfO+YuXCG5LlxNL0YfrT1qh/lAlRQpTHEKQCxYrqqYQ98BTPdz9W/qVQBsPHEDBEWuro=
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [PATCH] riscv: dts: fix isa string for Canaan Kendryte K230
-Date: Thu,  9 May 2024 17:33:11 +0800
-X-OQ-MSGID: <20240509093311.1943337-1-cyy@cyyself.name>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1715247737; c=relaxed/simple;
+	bh=tD9tOrxNFpXsZZQ8xg7bbuScb8DB8HBoElxo9MJcKcM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q3xrt13kac4ExOniKZ6f9O1ST2KwkqP1RDy/dS2+yTOVqMSa0VLmfKHvlzxD1AkkF+T6HL5UvgCmwxeeTJDpD1zGi291EohbjMOlm4kL5VE76QI+KzPgxsCEaIGHz02G2J4fULvoxoV3NI2hEJacruc8VhRsGS62OTvv4xb9qzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6PwzGFC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39C6EC116B1;
+	Thu,  9 May 2024 09:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715247737;
+	bh=tD9tOrxNFpXsZZQ8xg7bbuScb8DB8HBoElxo9MJcKcM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a6PwzGFC6N9hqs5FWprlYfL77L/nHkAa5ydiN7306iC2CV5mIXdsQyaBbmsYSFnxD
+	 tzMoezKcWVbYlrGIwmLow7C2IdIBKb0iO8CyvZrWNLDBlvgm4X3VoZ0mAdwaR2w/Ao
+	 5iOA7jHPH6BLGMN0IfCM+mNdP5W+D79mHHBwGFo3/Zl/3oh96Kc/xSDpBq/d/tR+S+
+	 gBxQzvqxd7Aum8cwyfdsacipu60LByxlVgkWasNZJMseao3qGyluvVww/URYqIAJ6L
+	 pNnwU8lP9cAWnxq/6pofOzj+vdW64smUwoUleufiSMqwB/l9RoT6RBPkc4gO2UFfvX
+	 gs1uqaKwQLaGg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1s50I8-000000001bK-3n8n;
+	Thu, 09 May 2024 11:42:21 +0200
+Date: Thu, 9 May 2024 11:42:20 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya <quic_c_skakit@quicinc.com>,
+	Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 11/13] mfd: pm8008: rework driver
+Message-ID: <ZjyafGz_1pY4J9C7@hovoldconsulting.com>
+References: <20240506150830.23709-1-johan+linaro@kernel.org>
+ <20240506150830.23709-12-johan+linaro@kernel.org>
+ <ZjktIrsZS-T7cm-A@surfacebook.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZjktIrsZS-T7cm-A@surfacebook.localdomain>
 
-The original is a string in dts that has no "zfh" or "zvfh" extension,
-but the K230 chip has them, so I am adding them to the dts. This
-patch also reordered the Z* extension in the isa string and used
-canonical order for the category as the first key and then alphabet
-order as the second key to meet RISC-V ISA Extension Naming
-Conventions.
+On Mon, May 06, 2024 at 10:18:58PM +0300, Andy Shevchenko wrote:
+> Mon, May 06, 2024 at 05:08:28PM +0200, Johan Hovold kirjoitti:
 
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
----
-prerequisite-patchset: https://lore.kernel.org/linux-riscv/tencent_22BA0425B4DF1CA1713B62E4423C1BFBF809@qq.com/
----
- arch/riscv/boot/dts/canaan/k230.dtsi | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+> > +static void devm_irq_domain_fwnode_release(void *res)
+> > +{
+> 
+> > +	struct fwnode_handle *fwnode = res;
+> 
+> Unneeded line, can be
+> 
+> static void devm_irq_domain_fwnode_release(void *fwnode)
+> 
+> > +	irq_domain_free_fwnode(fwnode);
+> > +}
 
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 95c1a3d8fb11..104e08ef5869 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -24,11 +24,12 @@ cpu@0 {
- 			compatible = "thead,c908", "riscv";
- 			device_type = "cpu";
- 			reg = <0>;
--			riscv,isa = "rv64imafdcv_zba_zbb_zbc_zbs_zicbom_zicbop_zicboz_svpbmt";
-+			riscv,isa = "rv64imafdcv_zicbom_zicbop_zicboz_zfh_zba_zbb_zbc_zbs_zvfh_svpbmt";
- 			riscv,isa-base = "rv64i";
--			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zba", "zbb",
--					       "zbc", "zbs", "zicbom", "zicbop", "zicboz",
--					       "zicntr", "zicsr", "zifencei", "zihpm", "svpbmt";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "v", "zicbom",
-+					       "zicbop", "zicboz", "zicntr", "zicsr", "zifencei",
-+					       "zihpm", "zfh", "zba", "zbb", "zbc", "zbs", "zvfh",
-+					       "svpbmt";
- 			riscv,cbom-block-size = <64>;
- 			riscv,cbop-block-size = <64>;
- 			riscv,cboz-block-size = <64>;
--- 
-2.43.0
+I think I prefer it this way for clarity and for type safety in the
+unlikely even that the argument to irq_domain_free_fwnode() would ever
+change.
 
+> > +	name = devm_kasprintf(dev, GFP_KERNEL, "%pOF-internal", dev->of_node);
+> 
+> You are using fwnode for IRQ domain and IRQ domain core uses fwnode, why OF here?
+> 
+> 	name = devm_kasprintf(dev, GFP_KERNEL, "%pfw-internal", dev_fwnode(dev));
+
+This driver only support OF so why bother.
+
+Johan
 
