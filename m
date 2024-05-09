@@ -1,163 +1,219 @@
-Return-Path: <devicetree+bounces-66121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB5C8C1504
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 20:48:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3951F8C151D
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 21:00:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 159BE1F21E03
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 18:48:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C8BC1C21DCC
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 19:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F267CF3E;
-	Thu,  9 May 2024 18:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ACF07CF3E;
+	Thu,  9 May 2024 19:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ErY7zMum"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="JJqxJHRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA8E1DFC5;
-	Thu,  9 May 2024 18:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62EC7F466
+	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 19:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715280490; cv=none; b=fyNaP5BtQd2dCwXzSSzaP5nqGMiKUV/LL8XvG9C5+6iRy/Tk2nW8w65nHnKr4nMVI0VPR5XUeKD/BHE0i9yhvpbKeiI324jHA0xvxEBkqXxAw857fSngXbxuuvg9cMs/ikAs6DvLkNkePqtovPcQCfW+rgW5basPlbuxJVOUSqs=
+	t=1715281251; cv=none; b=SBOCNUSD/CJ62cG19GSEstNML9JvAtNmO5L42SK3c1Zh5axtZzoaVZqwknv2JQFBYwMBNf+/yNL+VZqwdULlP+phVvYBSHdjyL5Rsn0BvLWcScL4Yu0Mq6bok1DX1RwjuIyW93StcFrq+TsdH6k6lhcTbdWIa1SzoTF94VgF9KA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715280490; c=relaxed/simple;
-	bh=tqQE8DbEcNTGyVwC9ZlW1KXdlFxeZtTQjFzsbunffK8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ob5LePanO0Pi+ZD7Hm8+b3tdnCqjm8BaOcJxWTvshwHxTgaz1GFR04+qjv7qd7/ydxTtjHDG29f8hva7aE/SmJFttbF/M+Hfo35fVqJh2WaZckZ410bRN0Lnr94MUahN2xmtBxtaNvRxP58DOifrF5ChU/loC4LLglcafAuLrHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ErY7zMum; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-34da35cd01cso1025795f8f.2;
-        Thu, 09 May 2024 11:48:08 -0700 (PDT)
+	s=arc-20240116; t=1715281251; c=relaxed/simple;
+	bh=xF39L+hs0TY+8aNmea7VYtJ+NEfSYKkZrUTY8FQHMiE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LOq+e4dxyZwxya5qiWsUjPpY86SKCmIpJ13blBrxBs+rzDGq1WnpF15hKPlNTMjHujRV+H5ykeiYNkIUbAYQtbceUGPsgMM9at74xuYmFGNcMoVxEPyZCKkdJS9uXImB6o+TxEpARSFqMvOrA8rqrKp0c+Os5SgEA1fDAxhg7Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=JJqxJHRe; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6f44bcbaae7so1116380b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 12:00:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715280487; x=1715885287; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DYTxoAU9R8PdCA3DTF+Msdy/qnJrq3ZddQpwOU9eM8s=;
-        b=ErY7zMumbS+8UTZSZ1B4ljxiOXJhg3jpMahuJiRmMrF7AyDV5h2zDcD9CJe9YDb4ub
-         e6rE+99sc2ZJ1LVn0sGQdFKutVgNQliko06IDzKAJHyh66Y430J/9T3a7gKhwBKEZ9B2
-         ZTGwqPBtxbroP41USy9VYtPvI3lWP1z43+yb7vTTOYUOvW2OMFl01f/LDE+pl1kgc6bB
-         mVzKQ8Dy9UdzeeqFlWvYE2MfAdlCCVueFE5QPH2y+6nSnnhVb5PhKRA1pBiqKYXde3EA
-         fdK0kw4O1c8cweLMNWhsWASs5YyFk5OL+5LYFKXhChbji9PQxVv1iZ42jlxX6M3E0cW3
-         BzFQ==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715281242; x=1715886042; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=suVrTFWe4Q9EJfAXikAfGsbIG5FwHp88I8wjDmo5qhw=;
+        b=JJqxJHRelJ7QcM2PM36uXftB9ooQUS6iPJ+3M48VB7n1Rt0Qvw8nwkvwQdK7vDOnbS
+         aGOCUnx0yvWjP5VLhv8aqijkQH2PhO71MfbI8y33/IpWtnZiY6xNDPK0U8dCpwyd0xpG
+         3dlf94UK2jlFf37YfJTq20Hjh3qjs16ULJthd1fBhrPnwa34PZTYrTwDx0jC2sU1i/0n
+         vsGn9/NidfMsoQPz+QPJfwiNmFIVVlgzvW7oSE4yaFwoFEz1PjPZqXy+FpRLbeyIDEsN
+         mr50KSsUPaB3x61aY+qwHMBle46w/Gy+HE1Vj0UoExGhiAFSeN5W4WLz23Ex5zBWYhf/
+         CT5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715280487; x=1715885287;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DYTxoAU9R8PdCA3DTF+Msdy/qnJrq3ZddQpwOU9eM8s=;
-        b=C4Vn/5PNh/mXVDdC0rnQ81kyKQMBPIvExITTsx3x4bPr1HitwcQT3PWOIAKcX0DI9i
-         qau3DEcMIzQbOASD1hSvXmJpRgY7QVlSK/feXSWx5dcbXfTc8wEX5x3qMV6qYXBnV5Uy
-         ytxm3x3Yn20FBgRSmF7TecDKfz2JUbSXqaXIJxamvpCi/90VdDasDNvUXgDZZYkAfuq+
-         fhL/GEJ6Fn0pjXeAQRJclXrgkyr+lS0CDHcIBYwvokBB8zrKeKSWdtKDXlejGEbyjIUl
-         yxOI1IfgNr6ytdtXXrNw7NhlRlWQUZgO0KEqWimon+4dgy0iVqHzL8Jt9JmcWeJlpv0Z
-         QsVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWuxefx6DYkZXxQeM+4dazfDl0AGx1Dt6L0b1BOiUD7frbhbE+KXuGCW7DJ9447d4cBFSoV3cwEVLlb78FTi10ScQjGj5GC9JaLNTKEqrNRXLPX9RglRTlW/4cBSAa66WbaiRh2iqXmDA==
-X-Gm-Message-State: AOJu0YyMuZG902mRiAORrQIvlLnKuzvWPjbFwMyCzg+q0ertj+GyLV+S
-	Llo4Kl6zV+9dDEvcg0GuCjhxaao3+5hJ05Hvc3bzUiIEv1foTZ3XUFGtrR3I
-X-Google-Smtp-Source: AGHT+IEZrPYMQWA87qEgbWGVE9lGIcF3sO7Q+rX+visOsuQ4eN6ZgNF/ss1X+uJz5qD/wFXiBH5o2w==
-X-Received: by 2002:a05:6000:a88:b0:34c:e62a:db70 with SMTP id ffacd0b85a97d-3504aa63447mr418641f8f.67.1715280486648;
-        Thu, 09 May 2024 11:48:06 -0700 (PDT)
-Received: from ?IPV6:2a02:2f00:503:7c00:1884:a725:4a68:962c? ([2a02:2f00:503:7c00:1884:a725:4a68:962c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502baacf47sm2374485f8f.78.2024.05.09.11.48.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 May 2024 11:48:06 -0700 (PDT)
-Message-ID: <799c3c81-fc33-4f76-bd0b-287e8b8a6f5a@gmail.com>
-Date: Thu, 9 May 2024 21:48:03 +0300
+        d=1e100.net; s=20230601; t=1715281242; x=1715886042;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=suVrTFWe4Q9EJfAXikAfGsbIG5FwHp88I8wjDmo5qhw=;
+        b=QDQd2Ydq6W7hK1UBQJn3pVOnQBPky1D7jNKORw5e5aVWGpj0LJMU/dcz/BUsPJC+R5
+         /gMXf6lspDtI+5Gjii4jyP3AKd2FjdWddLbVB7AbsI3FIwsdnal5SeQ72FwiOt3MTYtW
+         mp+RV656cNkaCm1wpe9ptU9QrmQj4DXTbPTz27kbgp/uC9IkRTWEqSOc700ZwkINwrkV
+         ZpPF+wA5lUW4dbLKqnZMD/135yH3b31G36rGOkysHwTvs6fm1z3DutuN/mifek70JoOz
+         kq4E4A5rGyud92OQD7DLDosXSvJVpt3ggOcIv5JIr8CX5HVqJ//kusKwlbaWQC/GuY72
+         uI+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWUk6qtlC+AiVz4CmPxlPyR4H9dElAAtqJJMT9jWYR0KgLBGCMoS7pfdxz+ow9SwjNtn4Upw+l8zgjiM9GwQTA/VgobPCC5HCeh8A==
+X-Gm-Message-State: AOJu0YwY1/0lqsBx0xsvL/c0zoGNvO2xCIWH2ArUnq6YkLXlgtEw4ajo
+	PcBqyKsBZ9BwSlunlM1azjRW8JxYSJ982sSsSvLzdY4wHSjkJk8OLgZ5Dz1bPjw=
+X-Google-Smtp-Source: AGHT+IHE3J/hwAQsHqywRim+p5Loya/dtj3SbYe2Ez8JQSaJRUzBly/edfRtpEMzoFQPu7m0vRKdfQ==
+X-Received: by 2002:a05:6300:8002:b0:1af:62a6:e2 with SMTP id adf61e73a8af0-1afde1fb753mr598976637.56.1715281241943;
+        Thu, 09 May 2024 12:00:41 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2a6654asm1626451b3a.43.2024.05.09.12.00.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 May 2024 12:00:41 -0700 (PDT)
+Date: Thu, 9 May 2024 12:00:36 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: paul.walmsley@sifive.com, rick.p.edgecombe@intel.com,
+	broonie@kernel.org, Szabolcs.Nagy@arm.com, kito.cheng@sifive.com,
+	keescook@chromium.org, ajones@ventanamicro.com,
+	conor.dooley@microchip.com, cleger@rivosinc.com,
+	atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com,
+	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, linux-arch@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, oleg@redhat.com,
+	akpm@linux-foundation.org, arnd@arndb.de, ebiederm@xmission.com,
+	Liam.Howlett@oracle.com, vbabka@suse.cz, lstoakes@gmail.com,
+	shuah@kernel.org, brauner@kernel.org, andy.chiu@sifive.com,
+	jerry.shih@sifive.com, hankuan.chen@sifive.com,
+	greentime.hu@sifive.com, evan@rivosinc.com, xiao.w.wang@intel.com,
+	apatel@ventanamicro.com, mchitale@ventanamicro.com,
+	dbarboza@ventanamicro.com, sameo@rivosinc.com,
+	shikemeng@huaweicloud.com, willy@infradead.org,
+	vincent.chen@sifive.com, guoren@kernel.org, samitolvanen@google.com,
+	songshuaishuai@tinylab.org, gerg@kernel.org, heiko@sntech.de,
+	bhe@redhat.com, jeeheng.sia@starfivetech.com, cyy@cyyself.name,
+	maskray@google.com, ancientmodern4@gmail.com,
+	mathis.salmen@matsal.de, cuiyunhui@bytedance.com,
+	bgray@linux.ibm.com, mpe@ellerman.id.au, baruch@tkos.co.il,
+	alx@kernel.org, david@redhat.com, catalin.marinas@arm.com,
+	revest@chromium.org, josh@joshtriplett.org, shr@devkernel.io,
+	deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org,
+	jhubbard@nvidia.com
+Subject: Re: [PATCH v3 01/29] riscv: envcfg save and restore on task switching
+Message-ID: <Zj0dVJ20D05ELAoH@debug.ba.rivosinc.com>
+References: <20240403234054.2020347-1-debug@rivosinc.com>
+ <20240403234054.2020347-2-debug@rivosinc.com>
+ <ZjwUhvLBv13qi77a@ghost>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: add schema for 8ulp AVD-SIM
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
- Shengjiu Wang <shengjiu.wang@nxp.com>, Liu Ying <victor.liu@nxp.com>,
- Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240418203720.8492-1-laurentiumihalcea111@gmail.com>
- <20240418203720.8492-3-laurentiumihalcea111@gmail.com>
- <20240422142906.GB1207218-robh@kernel.org>
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <20240422142906.GB1207218-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <ZjwUhvLBv13qi77a@ghost>
 
-
-
-On 4/22/2024 5:29 PM, Rob Herring wrote:
-> On Thu, Apr 18, 2024 at 11:37:19PM +0300, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On Wed, May 08, 2024 at 05:10:46PM -0700, Charlie Jenkins wrote:
+>On Wed, Apr 03, 2024 at 04:34:49PM -0700, Deepak Gupta wrote:
+>> envcfg CSR defines enabling bits for cache management instructions and
+>> soon will control enabling for control flow integrity and pointer
+>> masking features.
 >>
->> Add schema for i.MX8ULP's AVD-SIM module.
+>> Control flow integrity enabling for forward cfi and backward cfi are
+>> controlled via envcfg and thus need to be enabled on per thread basis.
 >>
->> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>> This patch creates a place holder for envcfg CSR in `thread_info` and
+>> adds logic to save and restore on task switching.
+>>
+>> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
 >> ---
->>  .../bindings/mfd/fsl,imx8ulp-avd-sim.yaml     | 42 +++++++++++++++++++
->>  1 file changed, 42 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mfd/fsl,imx8ulp-avd-sim.yaml
+>>  arch/riscv/include/asm/switch_to.h   | 10 ++++++++++
+>>  arch/riscv/include/asm/thread_info.h |  1 +
+>>  2 files changed, 11 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/mfd/fsl,imx8ulp-avd-sim.yaml b/Documentation/devicetree/bindings/mfd/fsl,imx8ulp-avd-sim.yaml
->> new file mode 100644
->> index 000000000000..4020c6e37f80
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/fsl,imx8ulp-avd-sim.yaml
->> @@ -0,0 +1,42 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/fsl,imx8ulp-avd-sim.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NXP i.MX8ULP Audio-Video Domain System Integration Module
->> +
->> +maintainers:
->> +  - Liu Ying <victor.liu@nxp.com>
->> +
->> +description: |
->> +  The AVD-SIM module provides configuration options for components of AVD.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: fsl,imx8ulp-avd-sim
->> +      - const: syscon
->> +      - const: simple-mfd
-> 'simple-mfd' means you have child nodes, but you have none defined.
+>> diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
+>> index 7efdb0584d47..2d9a00a30394 100644
+>> --- a/arch/riscv/include/asm/switch_to.h
+>> +++ b/arch/riscv/include/asm/switch_to.h
+>> @@ -69,6 +69,15 @@ static __always_inline bool has_fpu(void) { return false; }
+>>  #define __switch_to_fpu(__prev, __next) do { } while (0)
+>>  #endif
+>>
+>> +static inline void __switch_to_envcfg(struct task_struct *next)
+>> +{
+>> +	register unsigned long envcfg = next->thread_info.envcfg;
+>
+>This doesn't need the register storage class.
+>
 
-Thanks for the clarification! These were intentionally omitted since they're
-not needed for the DSP.
+yeah. will fix it. thanks.
+
+>> +
+>> +	asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0", 0,
+>> +							  RISCV_ISA_EXT_XLINUXENVCFG, 1)
+>> +							  :: "r" (envcfg) : "memory");
+>> +}
+>> +
+>
+>Something like:
+>
+>static inline void __switch_to_envcfg(struct task_struct *next)
+>{
+>	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_XLINUXENVCFG))
+>		csr_write(CSR_ENVCFG, next->thread_info.envcfg);
+>}
+>
+>would be easier to read, but the alternative you have written doesn't
+>have the jump that riscv_has_extension_unlikely has so what you have
+>will be more performant.
+
+Yeah looked at codegen of `riscv_has_extension_unlikely` and I didn't like un-necessary jumps,
+specially in switch_to path. All I want is a CSR write. So used alternative to patch nop with
+CSR write.
 
 >
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
-> If you do add child nodes, 'simple-mfd' also means there is not any 
-> dependency on the parent node such as needing this clock to be enabled 
-> for the child nodes.
+>Does envcfg need to be save/restored always or just with
+>CONFIG_RISCV_USER_CFI?
+
+There is no save (no read of CSR). Only restore (writes to CSR).
+
+There are pointer masking patches from Samuel Holland where senvcfg needs to be context
+switched on per task basis.
+https://lore.kernel.org/lkml/20240319215915.832127-1-samuel.holland@sifive.com/T/
+
+Given that this CSR controls user execution environment and is per task basis, I thought its
+better to not wrap it under CONFIG_RISCV_USER_CFI and rather make it dependend on
+RISCV_ISA_EXT_XLINUXENVCFG. If any of the extensions which require senvcfg, then simply
+restore this CSR on per task basis.
+
 >
-> Rob
-
-The plan was to add the children later on as required.
-Given the children would in fact depend on the parent's clock being
-enabled, I wonder if just removing 'simple-mfd' from the compatible
-list would do the trick?
-
+>- Charlie
+>
+>>  extern struct task_struct *__switch_to(struct task_struct *,
+>>  				       struct task_struct *);
+>>
+>> @@ -80,6 +89,7 @@ do {							\
+>>  		__switch_to_fpu(__prev, __next);	\
+>>  	if (has_vector())					\
+>>  		__switch_to_vector(__prev, __next);	\
+>> +	__switch_to_envcfg(__next);				\
+>>  	((last) = __switch_to(__prev, __next));		\
+>>  } while (0)
+>>
+>> diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/asm/thread_info.h
+>> index 5d473343634b..a503bdc2f6dd 100644
+>> --- a/arch/riscv/include/asm/thread_info.h
+>> +++ b/arch/riscv/include/asm/thread_info.h
+>> @@ -56,6 +56,7 @@ struct thread_info {
+>>  	long			user_sp;	/* User stack pointer */
+>>  	int			cpu;
+>>  	unsigned long		syscall_work;	/* SYSCALL_WORK_ flags */
+>> +	unsigned long envcfg;
+>>  #ifdef CONFIG_SHADOW_CALL_STACK
+>>  	void			*scs_base;
+>>  	void			*scs_sp;
+>> --
+>> 2.43.2
+>>
 
