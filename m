@@ -1,124 +1,190 @@
-Return-Path: <devicetree+bounces-66050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1CD8C1104
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 16:12:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 455008C1117
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 16:16:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92CD21F21F79
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 14:12:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F058A283884
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 14:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F314415E1E9;
-	Thu,  9 May 2024 14:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8B915ECCB;
+	Thu,  9 May 2024 14:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="DFE1vbZu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gDNNyaEJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB3F15250D
-	for <devicetree@vger.kernel.org>; Thu,  9 May 2024 14:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626B715E7F3;
+	Thu,  9 May 2024 14:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715263930; cv=none; b=sA/4upbp/w54XPv0DkrZuocKogic9v+jJwIxBFt3cNmrWGxArGEsKX8VPjSIpz9CC/z1Yoj3Mvy4GjuUGN0Itfv7X3cH7z68OVrHdPaQpuCVfJJCkdFsD2i8/K0lL3WJQQsyBHqG55xglrLpURQ93dFrtUgg9vjjRl+MJzmWLG8=
+	t=1715264188; cv=none; b=S6HRMuW7WU5ngdwR+xDWtCYN2Of1Auhf1t6IA8VEHR7dGncZsl4xDR2LS6VTg1n+yljqfXTNhl+aN76H/91QwNAeSRGPAqnKoqyegFAH2ouUHDCgVtCqMMwOf7L33r7beTsWjpbLxliPt+6NU7w5r7aH9ScwYl0Vqxfpgi3NWp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715263930; c=relaxed/simple;
-	bh=0JbJpB7AKjp4/Tkn2k5aUr2Jt6ncTbt/GkloqD6biXM=;
+	s=arc-20240116; t=1715264188; c=relaxed/simple;
+	bh=ESg1b5jnmOUHRR27iy09hYLRMXOuFgdVdTlPqAUfp4E=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RUvtADVqsjFBawqkyVNt4DHJYeM2CbocBoqpWzS6UuIDHSaKKK0aHfTEWOPKeH0ZPSLcHh+D7QKKq7Q8WSu4TEB+tckzM06d7xK+Cm/gqclOLhgX3LU8DNmhSHk+Ia+h+P2EaujjqkccaplueS/1uuMzKJrini6mgY5Zw59kQ4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=DFE1vbZu; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-43df9ac3ebcso112061cf.0
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 07:12:09 -0700 (PDT)
+	 To:Cc:Content-Type; b=QuEn1tGRTHZyknh/zdQPyOp3HBMhV4G3wsFGqhv0udJZ9vsrWCFRK/amt+8umtqzQkLo3d1GgRE+rsy7Z3c4de80OURPJRyxgTF1VWFBl20DkE/SFTYXwibJZDrMarvoqJdYrh1UkZr9scTBCqSKYjE0OjqCrGlErolWzai0B50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gDNNyaEJ; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a59c5c9c6aeso230740566b.2;
+        Thu, 09 May 2024 07:16:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1715263928; x=1715868728; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1715264185; x=1715868985; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lKYgk1K/0ztKVNzQLQfhwN4cnvKJTriQx0hD8c+rjW8=;
-        b=DFE1vbZumbNPJLEmPItIxZNyGyb+dhxkYQQZrXBLWAejKDzgkLGu7g1CHJOBhCnclf
-         wOu8fZWahjJn7LMPrgGjyOZ2YyaQyCKx93OS8XwDfMokRYAqYziFS9TGZrKTc/F8sDm7
-         JAGS/EHzCSK844dLTTR2Sju6yLhwspOvHJgCtmLoTeSNQEfXyft+iAb+U/pDaME4tzoP
-         1ZDlIeYNoAzaNxql+QOHJTqODZ8+27tg/yoJhKk92L2d7Et+9XJp6A0gf1ype4Dggd11
-         3lnpvhAg0NiHFmioWDCY7lg7zK3k7GgE2MdDBK7oO58D1s2nA/HRiW83KUF3B6WpGKao
-         U7ZQ==
+        bh=JuarBTe05a8SJXz+yxbrZY1b0TySGHncC7/ocSyGfDE=;
+        b=gDNNyaEJahFdpylW9TzZCEY1dKK3+TnmxqWx6bhAYlVw7SghE8oKbZw/aJ06OUXEg5
+         V9YcxZfVExFevn43MY3VUxsyQEueyrEkKYzap4MJAbNCtqrialRlKzYw695CDbSzPpPR
+         KVFa1Y7UmMi+ChrpGEGRwHYXg+ic8NDkcwbRAKllzpZ1KzpZ1vqeQqof/1pQfeh7Lc/a
+         hyMPYpsMSlRJ+You+hoVnH7PBV2H1iWYvWbxL32+Wmx/9yrtkqWDUITyk9Re/9FiK35A
+         7ph2kIPQkcgWjh1MaYXfraOUuQ72y3VQZErXzsx9Y5K4XWhA0WPjFBgP2Hw3AM6Sf/n0
+         6enQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715263928; x=1715868728;
+        d=1e100.net; s=20230601; t=1715264185; x=1715868985;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lKYgk1K/0ztKVNzQLQfhwN4cnvKJTriQx0hD8c+rjW8=;
-        b=EYlmzYx4//pO8b9pp5RKL+pYYftS1BIk2w1RXLby1KbA7g376SpaDIIYOB/dkAN9Zp
-         utEZ3fiwS+EkIT9G4CsO6st8Q1Lm2QzN+zvsJTXmw88g8PUrxHyvg5SoDh0owfR69SbQ
-         klD3jwXX7bZanDjUNCTNt1gMaIW+hHm7q2v0yq612hPopM1ncUiV0X69vj4yWaZ7KpQd
-         GhnciGPlOmlMB6FnsVaY5BSNq6UT5cN3AzPDaSySQ7aIZmxZERv05Y/L8qttjpYrwh72
-         9GCMiGryccMtFCWa1/er64TtuLBx7xuVNq1lpwm9acFRWGUWvsHxmVvRX4VGfCHXALQd
-         QVQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVU7Iy1bqfJqcR9LRAUab5v6hE1GdY5liAR0IKItoma64fSihZ/yXEm2UcvWt5iZbnX6e8B/+gebe2CcCXuw/pSuHIAXywllH3adA==
-X-Gm-Message-State: AOJu0YyfcqTM27o4bormtOxqwdUE0xVztArmjq20fzmdZ1QL0f2vNlAg
-	ITUL3i4kqK454PpevSNOrvmFOCi0gvaENzOiHo214Rdh3tz1tIY7p5iVkxsyVgwaAb2n/VgmqXV
-	ptJ6EWOpDx6AgCWb2JozMBdjSmA2bg70pNER6
-X-Google-Smtp-Source: AGHT+IFvuSQcG22Ig7DeauYZsrwsp+uIqjXGQRfJ1VPnduyNbUdPF39bvdjed/XkNswMRuYX8cDshnhVQDZ7qNQZMCY=
-X-Received: by 2002:a05:622a:580b:b0:43a:b977:d611 with SMTP id
- d75a77b69052e-43def960973mr4096621cf.24.1715263928208; Thu, 09 May 2024
- 07:12:08 -0700 (PDT)
+        bh=JuarBTe05a8SJXz+yxbrZY1b0TySGHncC7/ocSyGfDE=;
+        b=cBIoEpRhJaz6NWrz3h9xf2w8aoKVsKJmMGy2jXSK15R2YEA9BhEfGRS3QVXeu0I0kZ
+         KRFYxxPpq6DZ1safD6egv2JcPVD5wpStZRUxnkzlgq9pH8aQXhkqjOTX9gxtpU8UnrZY
+         Ifi8uqDEv2YxZ1a8ziUGcFt9q8+WCxd6lINhzMZ3XdlzuGfrqv3mgrjHuzrBXKtiXlmj
+         ImHBy9hUan94aJSxQcuoXPFJ3AUDEtKhyD20lDUkCMoFgFyTksuLOg6kXpN+jcumtNTh
+         /vD5gHPms1LL58QJOJ6Or57eJcl8kdkQz5jC8g47n/tirqahJLGx87mq9tzeNlSrQLKF
+         YkZw==
+X-Forwarded-Encrypted: i=1; AJvYcCWJZgnhbGFhe3YWm+ZbMCPd8sy0S/j3+ttbK5WSk9D5fjKENZ3VFKteWtb7GjmFvfFugnDrD/LHAPQxkqxX16P+JG1/826Fg5xTVgoeL1MdznVjUtZs14jj0C3cCeo/lmRywF1Fi2zpVg==
+X-Gm-Message-State: AOJu0YxhLzg2FJnskN9W3rFuJlU3nssUZskgaiZqcK91x77GREJ2zkLX
+	XOwEh+jE4cIZEVYCiiMvyiAP5/EtjuoMUm2OdAyyL3zXKFug5iw0JzDlqIPztAgIDjtJskx9ybu
+	6QPoJJz4VLcm7yjfK7u1lC6fm32Z81o1f
+X-Google-Smtp-Source: AGHT+IHEaL0zNvf/wgfMz36U5EILzloZVUXfcXUHz3D2htjZ3euaCHd0ROhVyTfoIaJnj4SE31TR55hSPLMLzD/lDKg=
+X-Received: by 2002:a17:906:4756:b0:a59:cb29:3fac with SMTP id
+ a640c23a62f3a-a59fb9f1043mr357282066b.65.1715264184620; Thu, 09 May 2024
+ 07:16:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240509083453.14073-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240509083453.14073-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Thu, 9 May 2024 07:11:52 -0700
-Message-ID: <CAD=FV=VfBXjgYTzNEj+szHX9-wGig9XUFVt+CkG6mXzHwZjduw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add starry bindings and driver
-To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jikos@kernel.org, 
-	benjamin.tissoires@redhat.co, hsinyi@google.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	cong yang <yangcong5@huaqin.corp-partner.google.com>
+References: <1715231698-451-1-git-send-email-shengjiu.wang@nxp.com> <1715231698-451-3-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <1715231698-451-3-git-send-email-shengjiu.wang@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Thu, 9 May 2024 17:16:11 +0300
+Message-ID: <CAEnQRZDoiVSD+CQoS6kcmTVbacDU=Ct3SJe5__Z5JBPAofeVrw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp-evk: add bt-sco sound card support
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	shengjiu.wang@gmail.com, Daniel Baluta <daniel.baluta@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Thu, May 9, 2024 at 1:35=E2=80=AFAM Zhaoxiong Lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
+On Thu, May 9, 2024 at 8:37=E2=80=AFAM Shengjiu Wang <shengjiu.wang@nxp.com=
+> wrote:
 >
-> Add bindings and driver for starry.
+> Add bt-sco sound card, which is used by BT HFP case.
+> It supports wb profile as default
+>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+
+
 > ---
-> Modifications between V1 and V2:
-> Kconfig and Makefile configurations added for starry driver
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 44 ++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
 >
-> ---
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/bo=
+ot/dts/freescale/imx8mp-evk.dts
+> index 8be5b2a57f27..b2225cb710b6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> @@ -114,6 +114,11 @@ reg_vext_3v3: regulator-vext-3v3 {
+>                 regulator-max-microvolt =3D <3300000>;
+>         };
 >
-> Zhaoxiong Lv (2):
->   dt-bindings: display: panel: Add Starry-er88577 support
->   drm/panel: starry: add new panel driver
+> +       audio_codec_bt_sco: audio-codec-bt-sco {
+> +               compatible =3D "linux,bt-sco";
+> +               #sound-dai-cells =3D <1>;
+> +       };
+> +
+>         sound {
+>                 compatible =3D "simple-audio-card";
+>                 simple-audio-card,name =3D "wm8960-audio";
+> @@ -145,6 +150,25 @@ simple-audio-card,codec {
 >
->  .../display/panel/starry,er88577.yaml         |  59 +++
->  drivers/gpu/drm/panel/Kconfig                 |   9 +
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  drivers/gpu/drm/panel/panel-starry-er88577.c  | 444 ++++++++++++++++++
->  4 files changed, 513 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/starr=
-y,er88577.yaml
->  create mode 100644 drivers/gpu/drm/panel/panel-starry-er88577.c
-
-I don't think anyone is going to look at this series since it's not
-taking into account previous feedback. Please talk to Cong Yang (CCed)
-who is also working at Huaquin and is also sending MIPI panel patches.
-Hopefully he should be able to pre-review your patches with you so
-that you can learn from what he learned. If for some reason you are
-unable to work with Cong Yang then let me know and we can figure out
-the next steps here.
-
--Doug
+>         };
+>
+> +       sound-bt-sco {
+> +               compatible =3D "simple-audio-card";
+> +               simple-audio-card,name =3D "bt-sco-audio";
+> +               simple-audio-card,format =3D "dsp_a";
+> +               simple-audio-card,bitclock-inversion;
+> +               simple-audio-card,frame-master =3D <&btcpu>;
+> +               simple-audio-card,bitclock-master =3D <&btcpu>;
+> +
+> +               btcpu: simple-audio-card,cpu {
+> +                       sound-dai =3D <&sai2>;
+> +                       dai-tdm-slot-num =3D <2>;
+> +                       dai-tdm-slot-width =3D <16>;
+> +               };
+> +
+> +               simple-audio-card,codec {
+> +                       sound-dai =3D <&audio_codec_bt_sco 1>;
+> +               };
+> +       };
+> +
+>         sound-hdmi {
+>                 compatible =3D "fsl,imx-audio-hdmi";
+>                 model =3D "audio-hdmi";
+> @@ -608,6 +632,17 @@ &pwm4 {
+>         status =3D "okay";
+>  };
+>
+> +&sai2 {
+> +       #sound-dai-cells =3D <0>;
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_sai2>;
+> +       assigned-clocks =3D <&clk IMX8MP_CLK_SAI2>;
+> +       assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> +       assigned-clock-rates =3D <12288000>;
+> +       fsl,sai-mclk-direction-output;
+> +       status =3D "okay";
+> +};
+> +
+>  &sai3 {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&pinctrl_sai3>;
+> @@ -880,6 +915,15 @@ MX8MP_IOMUXC_UART3_TXD__UART1_DCE_RTS      0x140
+>                 >;
+>         };
+>
+> +       pinctrl_sai2: sai2grp {
+> +               fsl,pins =3D <
+> +                       MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK    0=
+xd6
+> +                       MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC   0=
+xd6
+> +                       MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00 0=
+xd6
+> +                       MX8MP_IOMUXC_SAI2_RXD0__AUDIOMIX_SAI2_RX_DATA00 0=
+xd6
+> +               >;
+> +       };
+> +
+>         pinctrl_sai3: sai3grp {
+>                 fsl,pins =3D <
+>                         MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC   0=
+xd6
+> --
+> 2.34.1
+>
+>
 
