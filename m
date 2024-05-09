@@ -1,122 +1,164 @@
-Return-Path: <devicetree+bounces-66150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C51298C1944
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 00:13:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C04968C1958
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 00:22:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 008FC1C21A17
-	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 22:13:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DE3CB22180
+	for <lists+devicetree@lfdr.de>; Thu,  9 May 2024 22:22:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673DA1292DE;
-	Thu,  9 May 2024 22:13:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898C7129E64;
+	Thu,  9 May 2024 22:22:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMIa1+9V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZMrZFnIS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393ED770E0;
-	Thu,  9 May 2024 22:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC4E770E0;
+	Thu,  9 May 2024 22:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715292825; cv=none; b=swBGIlQHwNQjMP+iXLWPVGaS+h97X6HYtJ2T/hEjn8eiuC4OFL8P1u10MaPJZLtHHfAYDJK5wDBd5c4Oiqd6FB47G0Pkq/nibClyFD8rYDlg3fGP52pBGNDlfmN7lSL7takEf3Z4nGKbSinwt9do29fsLTNwr8zYV43QFdJvB3I=
+	t=1715293369; cv=none; b=G3CYs8NWBiz8e6VSywXRTIeXjeB/wrAFUSs0msdewYG6XHShezubhlnF9dkTY6FKzbknGa42itB3vb5NxbWjQ5lDL+f2Z2bbu0LIcYQ4JhtRG1Yu4h+Dc0pGHDu2AEN9QOATKd82eTYq8cbgTVepNhxEW3HR2UWyInvA1K1xZEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715292825; c=relaxed/simple;
-	bh=HsXBbYKsnaH2cBNxCbmFsxNH4L35JJ8rnzTl2hLvMCA=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=Amsb1zWaWEl8RIvjxz8LgYlD1IgvY2Xr0dBoEN+Y9fc9frhGNVMf1xq1D0iioiFoiW0gbASTfwuciGI45w0PhwM+drHl/xS7cXUYJpdSshDHvfxW79nCsUJ0ZFoO/GpTPpFb1wpMBDaE89ekluLnBuqGsd7QbaiLun8z9I2jC8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMIa1+9V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9462BC116B1;
-	Thu,  9 May 2024 22:13:44 +0000 (UTC)
+	s=arc-20240116; t=1715293369; c=relaxed/simple;
+	bh=t3AE0C2YacrUZCTb4JRj3hzsa+lHuEvQQO/PQSjoxNE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UJYrTv5WPVZHy7Dm4Ugi7LbBS0Y1jjiAxEvkB57T4jhDapnTM6k5FxbWuypqeuu/q2N+nrDlN2sdtmgBJeorMdm/PAihdpmSmv4nHBlNCFOqVh2mjtGRBw3X0MLBgx4HjozfO0QP824awvszrOkw8AYhDHGXTIuadgKrXNjpP14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZMrZFnIS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F940C116B1;
+	Thu,  9 May 2024 22:22:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715292824;
-	bh=HsXBbYKsnaH2cBNxCbmFsxNH4L35JJ8rnzTl2hLvMCA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=nMIa1+9VKO+e1tZRZY1J27ygFKsItAYeEY0WnZ2gS4xAWON9xuiIzp5JHk14e4JVR
-	 YCvpBBRmVL+ZcIfLdrAafXSiWdDLkOnVvgL+HKszgvlRpnrrxsJk/Ae+aQLoxI35Xj
-	 BlamZ/Mmr/BReIi8DffdEfn+O2LcYk4n1JPTIUgiEZerM3kws7qi2PlOcMCtbcLKHk
-	 3+BGzqu974gMMGcmR1qOnP7jpY/95gkF8jgC266QHH7fkER2qpocZrGJ5iOuj609J+
-	 EHJl0GiO0z+InjRy3cZdNuMBFZck8h4IEv/Z7WF5HztSpzcXe2D87lzqjOC2Ehe7iq
-	 P+STj6tLfJYsg==
-Message-ID: <8dc03fdc36b72888bd1b59cec6feebad.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1715293368;
+	bh=t3AE0C2YacrUZCTb4JRj3hzsa+lHuEvQQO/PQSjoxNE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZMrZFnIShdbR6UvQ01rcp+t1LeIHoY5Y2AD+JRKCHUBoS0NA48p0xLWusq5PPoEfX
+	 FE3e8OnlE0uxdq8cvSJDbZIsuAu4/IX3P57NaXUGqyLDgdSbeDoTSjl29Y+pg68HtX
+	 g+wEsi+avkRq7uNrdLBzNTge88GJ2sOi1PhKgMp13WZK3fh7bDMaqi/YUSdUQdEY5E
+	 yqznvKm1XK8vv0D+cKhoBpvCDOcjSnyKq7oJBXr5GTjfClVWnwK9Y9/hnG7FH29vtu
+	 vqtks0t3/Ft8vxVis2DUczaQTTa0zzGoSA2AZ3PWKpfVSLBNY8VoKRV+xI0SGiRS8W
+	 VqayPJ/5ZbbSA==
+Date: Thu, 9 May 2024 23:22:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Andy Chiu <andy.chiu@sifive.com>, Eric Biggers <ebiggers@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Heiko Stuebner <heiko@sntech.de>,
+	Guo Ren <guoren@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>, Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	Vincent Chen <vincent.chen@sifive.com>,
+	Greentime Hu <greentime.hu@sifive.com>, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	Joel Granados <j.granados@samsung.com>,
+	Jerry Shih <jerry.shih@sifive.com>,
+	Charlie Jenkins <charlie@rivosinc.com>
+Subject: Re: [PATCH v4 7/9] riscv: vector: adjust minimum Vector requirement
+ to ZVE32X
+Message-ID: <20240509-irritant-morphing-a25428a4f750@spud>
+References: <20240412-zve-detection-v4-7-e0c45bb6b253@sifive.com>
+ <20240418-brook-chili-4d3e61d1a55c@wendy>
+ <20240418155256.GA2410@sol.localdomain>
+ <20240418-ultimatum-yam-11de4b063b83@spud>
+ <20240418173203.GA1081@sol.localdomain>
+ <20240418173946.GB1081@sol.localdomain>
+ <20240418-sterling-sanding-d59c3b0a2aaa@spud>
+ <CABgGipU74TA3KgCH4pPuRefbnYt3q6RKcQwfyspenisEtY6eqw@mail.gmail.com>
+ <20240509-mandatory-monsieur-dfa4d7881fa9@wendy>
+ <20240509-habitable-unrefined-02322f228d5a@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TLKFE95zt1kQU6Bl"
+Content-Disposition: inline
+In-Reply-To: <20240509-habitable-unrefined-02322f228d5a@wendy>
+
+
+--TLKFE95zt1kQU6Bl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240506-th1520-clk-v3-2-085a18a23a7f@tenstorrent.com>
-References: <20240506-th1520-clk-v3-0-085a18a23a7f@tenstorrent.com> <20240506-th1520-clk-v3-2-085a18a23a7f@tenstorrent.com>
-Subject: Re: [PATCH RFC v3 2/7] dt-bindings: clock: Document T-Head TH1520 AP_SUBSYS controller
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Drew Fustini <dfustini@tenstorrent.com>
-To: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>, Drew Fustini <dfustini@tenstorrent.com>, Emil Renner Berthing <emil.renner.berthing@canonical.com>, Fu Wei <wefu@redhat.com>, Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>, Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Yangtao Li <frank.li@vivo.com>
-Date: Thu, 09 May 2024 15:13:42 -0700
-User-Agent: alot/0.10
 
-Quoting Drew Fustini (2024-05-06 21:55:15)
-> diff --git a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.=
-yaml b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
-> new file mode 100644
-> index 000000000000..d7e665c1534a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/thead,th1520-clk-ap.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: T-HEAD TH1520 AP sub-system clock controller
-> +
-> +description: |
-> +  The T-HEAD TH1520 AP sub-system clock controller configures the
-> +  CPU, DPU, GMAC and TEE PLLs.
-> +
-> +  SoC reference manual
-> +  https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH=
-1520%20System%20User%20Manual.pdf
-> +
-> +maintainers:
-> +  - Jisheng Zhang <jszhang@kernel.org>
-> +  - Wei Fu <wefu@redhat.com>
-> +  - Drew Fustini <dfustini@tenstorrent.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: thead,th1520-clk-ap
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: main oscillator (24MHz)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: osc
+On Thu, May 09, 2024 at 09:25:25AM +0100, Conor Dooley wrote:
+> On Thu, May 09, 2024 at 08:48:09AM +0100, Conor Dooley wrote:
+> > On Thu, May 09, 2024 at 02:56:30PM +0800, Andy Chiu wrote:
+> > > Hi Conor,
+> > >=20
+> > > Should we check if "v" presents for vector crypto extensions in
+> > > riscv_isa_extension_check()? We are not checking this for now. So a
+> > > kernel compiled with RISCV_ISA_V still has a problem if its isa-string
+> > > includes any of vector crypto ("zvbb, zvkg, etc") but not "v".
+> >=20
+> >=20
+> > Yeah, one of the things I took away from this discussion is that we need
+> > to improve the implementation of both the methods we have at the moment
+> > for drivers etc to check if extensions are present and usable.
+> > In general, I don't think checks like that are "safe" to do in
+> > riscv_isa_extension_check(), because the dependencies may not all have
+> > been resolved when we probe an extension (Clement's current Zca etc
+> > series improves the situation though by only calling the checks after
+> > we probe all extensions).
+> >=20
+> > The simple V cases are all fine though - the DT binding and ACPI rules
+> > for compatible strings all mandate that single-letter extensions must
+> > come before multi-letter ones. For riscv,isa-extensions we control the
+> > probe ordering and probe V before any multi-letter stuff. Additionally,
+> > we should make it a requirement for V to be present if things that
+> > depend on it are.
+> >=20
+> > That said, is it permitted by the specs to have any of the extensions
+> > you mention without the full V extension, but with one of the cut-down
+> > variants you mention here? If not, I'd be more interested in figuring
+> > out the non-extension dependencies: whether or not the kernel itself
+> > supports vector and if the kernel has opted to disable vector due to
+> > detecting that harts have mismatching vector lengths.
+> >=20
+> > TL;DR: I think we should add some checks in riscv_isa_extension_check().
+>=20
+> Also, unless this only becomes a problem with this series that adds the
+> cut-down forms of vector, I think this is a separate problem to solve
+> and I can send some patches for it (along with some other cleanup I'd like
+> to do as a result of Eric's comments) and you can just submit the v2 you
+> were planning to without it. I can't, off the top of my head, think of
+> why this particular series would break the vector crypto stuff though,
+> the problems with enabling extensions seem underlying.
 
-I recommend dropping clock-names so that you don't rely on anything
-besides the cell index when describing clk_parent_data.
+Here's something buggy that I chucked together as an idea of what I
+meant:
+https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Driscv-check_vector
+Beware, it is entirely untested :)
+It's based on both this series and patches 2 & 3 of Charlie's series doing
+the T-Head vector stuff. It really needs Clement's extension_check()
+rework that I mentioned 2 mails ago to function correctly for any of these
+vector subsets. Without Clement's stuff, it'll have "random" behaviour
+depending on probe order for riscv,isa and a determinate, but incorrect,
+behaviour otherwise.
 
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +    description:
-> +      See <dt-bindings/clock/thead,th1520-clk-ap.h> for valid indices.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
+Cheers,
+Conor.
 
-If you can't drop it at least make it optional.
+--TLKFE95zt1kQU6Bl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj1MsgAKCRB4tDGHoIJi
+0vmgAQD45tbvFJoRsUpsMY9T6rtZpE9/d1MUPNtjjZBcCvk81wEA9NHuzDQWVqos
+TKv6UR8HGOSqtTdK0XRrTlDGxoRiZQo=
+=ulWy
+-----END PGP SIGNATURE-----
+
+--TLKFE95zt1kQU6Bl--
 
