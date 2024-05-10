@@ -1,133 +1,259 @@
-Return-Path: <devicetree+bounces-66341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9055E8C27E3
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:33:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED8CA8C27FB
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:38:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C16641C244A8
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:33:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A45F5286D2A
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E7312DD93;
-	Fri, 10 May 2024 15:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627B017109F;
+	Fri, 10 May 2024 15:38:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FY24Fgx4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s4m+dHD8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C2E12AAD5;
-	Fri, 10 May 2024 15:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349A712AAD5;
+	Fri, 10 May 2024 15:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715355178; cv=none; b=OKZmJBV7lCtKKUZBh3lP70sNCMjq0eCh3z6OIj9zF560/GwfnuzhZ+AmL3nj/OQrAXHjNj0cBi/0rj25ya5BXUDF3SymQgDyQbjJApfJHF/CV/1HFWj/cmTMzWk5TT9qfF9vCkqV9uuXZOekziPPY0WCpX2wNg0EhhBqR3lYsA8=
+	t=1715355532; cv=none; b=d2LHLFulcYY5syXnpEh5omOwXpu1EsdRNHtXE1ho9PzMwjYNmsODRIT4Vz76VAD8X4AXBitfUSfd7qbo/ihT45RtoM5ifTqg0f2WJY4e5ay7i9W28aXHBEOBRMC6ZpM2ZMNo4f+fWFsrCnXumWE9WN7f6qIfilqBgB5U4c0DPGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715355178; c=relaxed/simple;
-	bh=ugaNMMw3t62NVbWHQEw5Wz57Ea7qNaXrEup61pOajsE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YjjzuHM9T4pALYgWfRx3hlWgkvfBm4BaFSpS4zc6rtjzkbDwb9o7b9FaSQZIbm2SmZqI4G4EyKJo+STO4BgXbRYz3GSBZijn3r9EhskRxzhU/OPY7EFvn+SrtNIDN4FVV16eHq2trPsKgTy7fX7AHtS7PpQ7WFRy8csRTB4dlYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FY24Fgx4; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3152820009;
-	Fri, 10 May 2024 15:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1715355173;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NvpIh3MztCy78ewXd3YEalmoL2kGSw4XpNzZDNRi4V0=;
-	b=FY24Fgx49n4qxpJMFZ2zNBe4gD+NlYtYM+K2PWhBQIMz4VY3rBsbjivq51AzhfKaaPzBhL
-	Ny1rTrjzvpHiG/Qjeotb652MOoT2be5dc0tgEilX2ZBMygBFeCLBbNT5qjU4kDyhPpaNp7
-	UM0UxV2I0xVHNWGbkT32xL7p3F7RIm+T+RC/vfNHqeix/MI11t4mGJbSYFYhWWxcXm8BD2
-	q1xiL13YX42hg89tlNgFd3UYeZTHkZfOLp98HmkA7SLK9Rxt5wiBnmwklHF36EK+xFY1yg
-	ufym7uB3GJoauepOfcs0ghanlGM5elnTMzy/snz/qeOMAGthHqiM8kSMmmYolA==
-Date: Fri, 10 May 2024 17:32:48 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: "Arnd Bergmann" <arnd@arndb.de>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Andrzej Hajda"
- <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Robert Foss" <rfoss@kernel.org>, "laurent.pinchart"
- <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Dave Airlie"
- <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>,
- "derek.kiernan@amd.com" <derek.kiernan@amd.com>, "dragan.cvetic@amd.com"
- <dragan.cvetic@amd.com>, "Saravana Kannan" <saravanak@google.com>, "Paul
- Kocialkowski" <contact@paulk.fr>, "Herve Codina"
- <herve.codina@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, "Paul
- Kocialkowski" <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH v2 5/5] misc: add ge-addon-connector driver
-Message-ID: <20240510173248.70fa3b60@booty>
-In-Reply-To: <a4c55013-048f-4056-9866-f0505507d501@app.fastmail.com>
-References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
-	<20240510-hotplug-drm-bridge-v2-5-ec32f2c66d56@bootlin.com>
-	<2024051039-decree-shrimp-45c6@gregkh>
-	<a1970921-f00b-411d-832d-5289f9812ba0@app.fastmail.com>
-	<20240510125423.25d4b3ed@booty>
-	<a4c55013-048f-4056-9866-f0505507d501@app.fastmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1715355532; c=relaxed/simple;
+	bh=5i/Kwz7QCD09ox7fq0+nK+iuNVgav4u7fr/M1k9fkGQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GxGmZD23AV1JyLA79iMoTbxcCeA24xMYACTY7j3hb0HgqV+ViLhkjlX95AB0AllBnuedaLrGE5i4kdO+O4EsExNE08b1CgHaQcnsWATp/VAmhatkw3nr+QGstLd5WJ44LaTX9gGEhbjKmztv17JkVrw8dbRnQoGLZENcC5EONms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s4m+dHD8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81117C113CC;
+	Fri, 10 May 2024 15:38:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715355531;
+	bh=5i/Kwz7QCD09ox7fq0+nK+iuNVgav4u7fr/M1k9fkGQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s4m+dHD8MracwXhQxc+HGvMM7x1N6E+yIVYj0BVRNfpR4cYP8M2xhklBBxbbTOam+
+	 o1s1UzSaLNLahxTkZo3hGkAw/9i5mz4OE1qRquZm1qsFeIcdIAswRHAF/oKVTy1U/s
+	 7xOhUSBjoOsn1zmsLJXq1/sK6yj29qTMzs71rBixyPYwB02YqA0aOsHREhwwjpuThP
+	 DnSAxMb59p3CCP5XT8z2GtK8xQotVUCqE4Zx+53dizwzQzrjqX5L3NI9vDjz5haYNn
+	 36Atqs8xCY1wAoZBYSgLWCJ7ZppgmbycjLkcmfBrk5t5H16ktF5b1yUaFa8nO/Nj3J
+	 0j2p6WNko87ZA==
+Date: Fri, 10 May 2024 10:38:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: conor@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, frank.li@nxp.com,
+	conor+dt@kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v4 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
+ binding
+Message-ID: <20240510153849.GA308062-robh@kernel.org>
+References: <1715234181-672-1-git-send-email-hongxing.zhu@nxp.com>
+ <1715234181-672-3-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1715234181-672-3-git-send-email-hongxing.zhu@nxp.com>
 
-Hi Greg, Arnd,
-
-On Fri, 10 May 2024 12:57:24 +0200
-"Arnd Bergmann" <arnd@arndb.de> wrote:
-
-> On Fri, May 10, 2024, at 12:54, Luca Ceresoli wrote:
-> > On Fri, 10 May 2024 12:24:06 +0200 "Arnd Bergmann" <arnd@arndb.de> wrote:  
-> >> On Fri, May 10, 2024, at 09:55, Greg Kroah-Hartman wrote:  
-> >> > On Fri, May 10, 2024 at 09:10:41AM +0200, Luca Ceresoli wrote:    
-> >> >>  
-> >> >> +config GE_SUNH_CONNECTOR
-> >> >> +	tristate "GE SUNH hotplug add-on connector"
-> >> >> +	depends on OF
-> >> >> +	select OF_OVERLAY
-> >> >> +	select FW_LOADER
-> >> >> +	select NVMEM
-> >> >> +	select DRM_HOTPLUG_BRIDGE    
-> >> >
-> >> > Can these be depends instead of select?  'select' causes dependencies
-> >> > that are hard, if not almost impossible, to detect at times why
-> >> > something is being enabled.    
-> >> 
-> >> I think FW_LOADER needs to be 'select' since it is normally
-> >> a hidden symbol and gets selected by its users, all the other
-> >> ones should be 'depends on'.  
-> >
-> > I see, makes sense.
-> >
-> > And as you pointed that out, I realize perhaps DRM_HOTPLUG_BRIDGE could
-> > become a hidden symbol as it's not expected to be used alone.  
+On Thu, May 09, 2024 at 01:56:20PM +0800, Richard Zhu wrote:
+> Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
+> Introduce one HSIO configuration 'fsl,hsio-cfg', which need be set at
+> initialization according to board design.
 > 
-> It's slightly easier to keep it as a visible symbol
-> with 'depends on' though, since otherwise you have to
-> add 'depends on' statments for anything that DRM_HOTPLUG_BRIDGE
-> in turn depends on, most notably DRM itself.
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  .../bindings/phy/fsl,imx8qm-hsio.yaml         | 142 ++++++++++++++++++
+>  1 file changed, 142 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> new file mode 100644
+> index 000000000000..e8648cd9fea6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
+> @@ -0,0 +1,142 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,imx8qm-hsio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8QM SoC series HSIO SERDES PHY
+> +
+> +maintainers:
+> +  - Richard Zhu <hongxing.zhu@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8qm-hsio
+> +      - fsl,imx8qxp-hsio
+> +  reg:
+> +    minItems: 4
+> +    maxItems: 4
 
-I see, sure. Thanks both, changes applied locally.
+Need to define what is each entry:
 
-Luca
+items:
+  - description: ...
+  - description: ...
+  - description: ...
+  - description: ...
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
+> +
+> +  "#phy-cells":
+> +    const: 3
+> +    description:
+> +      The first defines lane index.
+> +      The second defines the type of the PHY refer to the include phy.h.
+> +      The third defines the controller index, indicated which controller
+> +      is bound to the lane.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: reg
+> +      - const: phy
+> +      - const: ctrl
+> +      - const: misc
+> +
+> +  clocks:
+> +    minItems: 5
+> +    maxItems: 14
+> +
+> +  clock-names:
+> +    minItems: 5
+> +    maxItems: 14
+> +
+> +  fsl,hsio-cfg:
+> +    description: Refer macro HSIO_CFG* include/dt-bindings/phy/phy-imx8-pcie.h.
+
+I can't, it's not in this patch. But it should be.
+
+Please say something about what this is for, not just refer to header.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+       maximum: 3
+
+> +
+> +  fsl,refclk-pad-mode:
+> +    description:
+> +      Specifies the mode of the refclk pad used. INPUT(PHY refclock is
+> +      provided externally via the refclk pad) or OUTPUT(PHY refclock is
+> +      derived from SoC internal source and provided on the refclk pad).
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ "input", "output" ]
+
+default?
+
+Really, this could just be a boolean for the non-default mode.
+
+> +
+> +  power-domains:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#phy-cells"
+> +  - clocks
+> +  - clock-names
+> +  - fsl,hsio-cfg
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8qxp-hsio
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pclk0
+> +            - const: apb_pclk0
+> +            - const: phy0_crr
+> +            - const: ctl0_crr
+> +            - const: misc_crr
+> +        power-domains:
+> +          minItems: 1
+
+Should be maxItems? min is already 1.
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8qm-hsio
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pclk0
+> +            - const: pclk1
+> +            - const: apb_pclk0
+> +            - const: apb_pclk1
+> +            - const: pclk2
+> +            - const: epcs_tx
+> +            - const: epcs_rx
+> +            - const: apb_pclk2
+> +            - const: phy0_crr
+> +            - const: phy1_crr
+> +            - const: ctl0_crr
+> +            - const: ctl1_crr
+> +            - const: ctl2_crr
+> +            - const: misc_crr
+> +        power-domains:
+> +          minItems: 2
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8-clock.h>
+> +    #include <dt-bindings/clock/imx8-lpcg.h>
+> +    #include <dt-bindings/firmware/imx/rsrc.h>
+> +    #include <dt-bindings/phy/phy-imx8-pcie.h>
+> +
+> +    hsio_phy@5f1a0000 {
+
+phy@...
+
+> +        compatible = "fsl,imx8qxp-hsio";
+> +        reg = <0x5f1a0000 0x10000>,
+> +              <0x5f120000 0x10000>,
+> +              <0x5f140000 0x10000>,
+> +              <0x5f160000 0x10000>;
+> +        reg-names = "reg", "phy", "ctrl", "misc";
+> +        clocks = <&phyx1_lpcg IMX_LPCG_CLK_0>,
+> +                 <&phyx1_lpcg IMX_LPCG_CLK_4>,
+> +                 <&phyx1_crr1_lpcg IMX_LPCG_CLK_4>,
+> +                 <&pcieb_crr3_lpcg IMX_LPCG_CLK_4>,
+> +                 <&misc_crr5_lpcg IMX_LPCG_CLK_4>;
+> +        clock-names = "pclk0", "apb_pclk0", "phy0_crr", "ctl0_crr", "misc_crr";
+> +        power-domains = <&pd IMX_SC_R_SERDES_1>;
+> +        #phy-cells = <3>;
+> +        fsl,hsio-cfg = <IMX8Q_HSIO_CFG_PCIEB>;
+> +        fsl,refclk-pad-mode = "input";
+> +    };
+> +...
+> -- 
+> 2.37.1
+> 
 
