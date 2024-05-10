@@ -1,241 +1,188 @@
-Return-Path: <devicetree+bounces-66334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AE178C2709
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:39:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 590AA8C270C
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:40:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A981F2489E
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:39:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8744286926
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252C61708A7;
-	Fri, 10 May 2024 14:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18921708A3;
+	Fri, 10 May 2024 14:40:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SvXgBHQj"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XDQsiUrF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C78914B08C;
-	Fri, 10 May 2024 14:39:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0092E12C526;
+	Fri, 10 May 2024 14:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715351969; cv=none; b=TWjeIPYKDWrDPN3SC+MhbQS7FV99CPwfB3CM7yVq0F3PvVno0PgGecHZFuU2go7WXYXXsw9IiHVNjbwKzfPeB18qLQ2x3N22daO6HsxcUfuzCwXuq9RE5M3g+3iva3Q+PLiLLU9khkLPUxZ9CrB7oOfYbLoDu1EVvRaWh+LgejE=
+	t=1715352006; cv=none; b=FE3M2/V+5krgO18rHwSnODjbO5Nxxy+ppBxzG+vciubB+kqNtjzhZGA1XUYFUU4nYBXNWhEK74YnQAHH0BXeVMaDcRAgXdGAnKoJl74RwI3TH5pBwiZIuloJ+mZ466t+GcC/joq4JK8081Bj8G02SS+2x+UwvDMHgfA/yHGx0+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715351969; c=relaxed/simple;
-	bh=1mZQpCNgLHeL3u0oeK2XgbI336g5gF4n4i2zz/VMjDM=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=OLE8PG9JQDp1PtCNlVC31oFKvsdP4KQFk6nmFHzTHWx3stVOvessrHl9J3y9ZgOBm0rsYUSc7u9WE7BzEqKS8iv1Qnwj4qGDJriUDG0SewbqYmEBml5Lf9FLnH7ZRJXWMI1N2nCNV59TbLApbeVt83fIgwFE5HHOBcCrqHw7PtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SvXgBHQj; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715351967; x=1746887967;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=1mZQpCNgLHeL3u0oeK2XgbI336g5gF4n4i2zz/VMjDM=;
-  b=SvXgBHQjNX2wMKP4lWONzlnSFTJLCH/2xHX8FqcTNZAT2bMcq57W5RJO
-   Pc3O6bsEelc00UYinwyX0VwvRCdOG5mTCoNy5QlC3Hdq8zjHm7NhcXPFi
-   i8VL7mcYLT3bEPxAVSnFDtS+Vn2mSKRo63NZSj+qtYtbzVvFD+Fd0IMLb
-   Ch7TqGyrVAA3Cx9TWgdyKfRBDiNbhvixFswQ7yKwHCt37AEJgGa8uoWxZ
-   ag7xehK04+b1oavmd7My5IQOlcQYRBGrgTJ81JmkSlSGxknw2s6QIzeq3
-   6FIVVYftIBGdriv2M/beQw88fGYPXxQXcM2KRMVPHqtbRi5Tk5MisojRH
-   Q==;
-X-CSE-ConnectionGUID: VH9LRxpWTqmMk5oEfLJ9fA==
-X-CSE-MsgGUID: 10qs1WjSSCSOscoBysG28w==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="22006598"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
-   d="scan'208";a="22006598"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:39:26 -0700
-X-CSE-ConnectionGUID: VVDy6M/OSrqsiWz0tSC0nA==
-X-CSE-MsgGUID: uxmhq12gTaSaAmPHBnqdFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
-   d="scan'208";a="30018377"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.85])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:39:19 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 10 May 2024 17:39:14 +0300 (EEST)
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-cc: Jiri Slaby <jirislaby@kernel.org>, Simon Horman <horms@kernel.org>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Marc Kleine-Budde <mkl@pengutronix.de>, 
-    Oliver Hartkopp <socketcan@hartkopp.net>, 
-    Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-    "David S . Miller" <davem@davemloft.net>, 
-    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
-    Benjamin Tissoires <bentiss@kernel.org>, 
-    Sebastian Reichel <sre@kernel.org>, 
-    Linus Walleij <linus.walleij@linaro.org>, 
-    Andreas Lauser <andreas.lauser@mercedes-benz.com>, 
-    Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>, 
-    linux-can@vger.kernel.org, Netdev <netdev@vger.kernel.org>, 
-    devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-    linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v4 10/11] can: lin: Support setting LIN mode
-In-Reply-To: <20240509171736.2048414-11-christoph.fritz@hexdev.de>
-Message-ID: <b796b3ac-df5e-e39a-7ae2-db7b7829abaa@linux.intel.com>
-References: <20240509171736.2048414-1-christoph.fritz@hexdev.de> <20240509171736.2048414-11-christoph.fritz@hexdev.de>
+	s=arc-20240116; t=1715352006; c=relaxed/simple;
+	bh=7PvafIFPj4pefeXLWZ2W/aZ/FA/ODCICCZ5HhbwXLIQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M677Jlo7tN5rI16CY5NQ5dEAE9HFubENtP2W9WfgB4aN9SffdH2gR5zdU5pAec9m9rmuSbUzhc1SWHbC4aViyziZUtMU/dsTig18ahn6Fy7+MSi/voq1TDeSxt8JR/oV4cFh6EOpyU1NkrUdb7zhntYUqQrEoPuInR9Vh2I1ncU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XDQsiUrF; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E4064FF802;
+	Fri, 10 May 2024 14:39:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1715351995;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=I+nU+cv0q1WloDIweY2B89rAwtbFBH/RqHcw3iJ3zTk=;
+	b=XDQsiUrF6t6akEGF/z9RwiSoxCjD1Li48g0UfH+o4nEZKozMhwN6If3xDm0x7YstbP2Wgq
+	dzsedvzzGAhaxjq0ZmF8gijW5sMTk0onpg1sgTHKHB/hSMNy0nGwtSr82pO3WQuerJUFqQ
+	ZrbowCsVngaY/RCxd5AlXI/0OhOw/eHH2btD7LutjPNzlV/BA7W1JoEN20UtQuVf0dZJSZ
+	kAV0YmYOQeSq4CiYz8GQaC6MYrqTr7M0rBqlKB6R9Yc7oMqn37PJTns4Da9P8iCimVjgUi
+	6v7CSPIgDg4QdXoqOu+Ul5wsP7GmBvdfEmKI67hVirLqf3tComObMiIKfvmCDg==
+Date: Fri, 10 May 2024 16:39:51 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Maxime Ripard <mripard@kernel.org>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Paul Kocialkowski
+ <paul.kocialkowski@bootlin.com>, Robert Foss <rfoss@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ =?UTF-8?Q?Herv=C3=A9?= Codina <herve.codina@bootlin.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
+ <derek.kiernan@amd.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Saravana Kannan <saravanak@google.com>, David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Paul Kocialkowski
+ <contact@paulk.fr>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, Jonas
+ Karlman <jonas@kwiboo.se>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: connector: add GE SUNH hotplug
+ addon connector
+Message-ID: <20240510163951.37817e41@booty>
+In-Reply-To: <CAL_Jsq+mZLkq16OcVBcspxLrMZ=M+h57yOQohhsgn3VXVfyiLQ@mail.gmail.com>
+References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
+	<20240510-hotplug-drm-bridge-v2-1-ec32f2c66d56@bootlin.com>
+	<171533049583.3304069.11759668175103213313.robh@kernel.org>
+	<20240510123717.437ffe6e@booty>
+	<CAL_Jsq+mZLkq16OcVBcspxLrMZ=M+h57yOQohhsgn3VXVfyiLQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On Thu, 9 May 2024, Christoph Fritz wrote:
+Hello Rob,
 
-> A LIN node can work as commander or responder, so introduce a new
-> control mode (CAN_CTRLMODE_LIN_COMMANDER) for configuration.
-> 
-> This enables e.g. the userland tool ip from iproute2 to turn on
-> commander mode when the device is being brought up.
-> 
-> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
-> ---
->  drivers/net/can/lin.c            | 40 +++++++++++++++++++++++++++++++-
->  include/net/lin.h                |  7 ++++++
->  include/uapi/linux/can/netlink.h |  1 +
->  3 files changed, 47 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/can/lin.c b/drivers/net/can/lin.c
-> index f77abd7d7d21c..03ddf5d5a31b8 100644
-> --- a/drivers/net/can/lin.c
-> +++ b/drivers/net/can/lin.c
-> @@ -262,11 +262,40 @@ static netdev_tx_t lin_start_xmit(struct sk_buff *skb,
->  	return NETDEV_TX_OK;
->  }
->  
-> +static int lin_update_mode(struct net_device *ndev)
-> +{
-> +	struct lin_device *ldev = netdev_priv(ndev);
-> +	u32 ctrlmode = ldev->can.ctrlmode;
-> +	enum lin_mode lm;
-> +	int ret = 0;
-> +
-> +	lm = (ctrlmode & CAN_CTRLMODE_LIN_COMMANDER) ? LINBUS_COMMANDER :
-> +						       LINBUS_RESPONDER;
-> +	if (ldev->lmode != lm) {
-> +		if (!ldev->ldev_ops->update_lin_mode) {
-> +			netdev_err(ndev, "setting lin mode unsupported\n");
+On Fri, 10 May 2024 08:22:53 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-In user visible messages, it would be best to use the expected 
-capitalization, which I suppose is LIN given you use capitals in the 
-commit message yourself?
+> On Fri, May 10, 2024 at 5:37=E2=80=AFAM Luca Ceresoli <luca.ceresoli@boot=
+lin.com> wrote:
+> >
+> > Hello Rob,
+> >
+> > On Fri, 10 May 2024 03:41:35 -0500
+> > "Rob Herring (Arm)" <robh@kernel.org> wrote:
+> > =20
+> > > On Fri, 10 May 2024 09:10:37 +0200, Luca Ceresoli wrote: =20
+> > > > Add bindings for the GE SUNH add-on connector. This is a physical,
+> > > > hot-pluggable connector that allows to attach and detach at runtime=
+ an
+> > > > add-on adding peripherals on non-discoverable busses.
+> > > >
+> > > > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > > >
+> > > > ---
+> > > >
+> > > > NOTE: the second and third examples fail 'make dt_binding_check' be=
+cause
+> > > >       they are example of DT overlay code -- I'm not aware of a way=
+ to
+> > > >       validate overlay examples as of now =20
+> >
+> > As mentioned here...
+> > =20
+> > > >
+> > > > This patch is new in v2.
+> > > > ---
+> > > >  .../connector/ge,sunh-addon-connector.yaml         | 197 +++++++++=
+++++++++++++
+> > > >  MAINTAINERS                                        |   5 +
+> > > >  2 files changed, 202 insertions(+)
+> > > > =20
+> > >
+> > > My bot found errors running 'make dt_binding_check' on your patch:
+> > >
+> > > yamllint warnings/errors:
+> > >
+> > > dtschema/dtc warnings/errors:
+> > > Error: Documentation/devicetree/bindings/connector/ge,sunh-addon-conn=
+ector.example.dts:49.9-14 syntax error
+> > > FATAL ERROR: Unable to parse input tree =20
+> >
+> > ...this is expected.
+> >
+> > Any hints on how this can be managed in bindings examples would be very
+> > useful. =20
+>=20
+> Overlays in examples are not supported. Add actual .dtso files if you
+> want examples of overlays (maybe you did, shrug).
+>=20
+> Overlays are somewhat orthogonal to bindings. Bindings define the ABI.
+> It only makes sense to validate applied overlays. Now maybe overlays
+> contain complete nodes and we could validate those, but that's a
+> problem for actual overlay files and not something we need to
+> complicate examples with.
 
-> +			return -EINVAL;
-> +		}
-> +		ret = ldev->ldev_ops->update_lin_mode(ldev, lm);
-> +		if (ret) {
-> +			netdev_err(ndev, "Failed to set lin mode: %d\n", ret);
+Many thanks for the insights.
 
-Ditto.
+The reason I added overlays in the bindings examples is that this
+specific device calls for overlays by its very nature. And in fact the
+implementation is based on overlays.
 
-There might be other cases in any of the patches, please check.
+However I understand the reasons for not having overlays in examples. I
+think I can just remove the two examples and mention the nvmem-cells
+and nvmem-cell-names nodes as regular properties, and explain in their
+descriptions that these are supposed to be loaded via overlays. Quick
+draft:
 
-> +			return ret;
-> +		}
-> +		ldev->lmode = lm;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static int lin_open(struct net_device *ndev)
->  {
->  	struct lin_device *ldev = netdev_priv(ndev);
->  	int ret;
->  
-> +	ret = lin_update_mode(ndev);
-> +	if (ret)
-> +		return ret;
-> +
->  	ldev->tx_busy = false;
->  
->  	ret = open_candev(ndev);
-> @@ -443,7 +472,7 @@ struct lin_device *register_lin(struct device *dev,
->  	ndev->sysfs_groups[0] = &lin_sysfs_group;
->  	ldev->can.bittiming.bitrate = LIN_DEFAULT_BAUDRATE;
->  	ldev->can.ctrlmode = CAN_CTRLMODE_LIN;
-> -	ldev->can.ctrlmode_supported = 0;
-> +	ldev->can.ctrlmode_supported = CAN_CTRLMODE_LIN_COMMANDER;
->  	ldev->can.bitrate_const = lin_bitrate;
->  	ldev->can.bitrate_const_cnt = ARRAY_SIZE(lin_bitrate);
->  	ldev->can.do_set_bittiming = lin_set_bittiming;
-> @@ -458,6 +487,15 @@ struct lin_device *register_lin(struct device *dev,
->  		goto exit_candev;
->  	}
->  
-> +	ldev->lmode = LINBUS_RESPONDER;
-> +	if (ldev->ldev_ops->update_lin_mode) {
-> +		ret = ldev->ldev_ops->update_lin_mode(ldev, ldev->lmode);
-> +		if (ret) {
-> +			netdev_err(ndev, "updating lin mode failed\n");
+properties:
+  nvmem-cell-names:
+    items:
+      - const: speed-bin
 
-Ditto.
+  nvmem-cells:
+    maxItems: 1
+    description:
+      NVMEM cell containing the add-on model ID for the add-on that is
+      inserted. Multiple add-on models can be connected, and in order
+      to find out the exact model connected all of them have an EEPROM
+      at the same I2C bus and address with an ID at the same offset. By
+      its nature, this and the nvmem-cell-names nodes are supposed to be
+      added by an overlay once ad add-on is detected. So they must not
+      be present in the initial device tree, and they must be added by
+      an overlay before the add-on can be used.
 
-> +			goto exit_candev;
-> +		}
-> +	}
-> +
->  	ret = register_candev(ndev);
->  	if (ret)
->  		goto exit_candev;
-> diff --git a/include/net/lin.h b/include/net/lin.h
-> index 31bb0feefd188..63ac870a0ab6f 100644
-> --- a/include/net/lin.h
-> +++ b/include/net/lin.h
-> @@ -36,6 +36,11 @@ struct lin_attr {
->  	struct lin_device *ldev;
->  };
->  
-> +enum lin_mode {
-> +	LINBUS_RESPONDER = 0,
-> +	LINBUS_COMMANDER,
-> +};
-> +
->  struct lin_device {
->  	struct can_priv can;  /* must be the first member */
->  	struct net_device *ndev;
-> @@ -45,6 +50,7 @@ struct lin_device {
->  	struct work_struct tx_work;
->  	bool tx_busy;
->  	struct sk_buff *tx_skb;
-> +	enum lin_mode lmode;
->  };
->  
->  enum lin_checksum_mode {
-> @@ -71,6 +77,7 @@ struct lin_device_ops {
->  	int (*ldo_open)(struct lin_device *ldev);
->  	int (*ldo_stop)(struct lin_device *ldev);
->  	int (*ldo_tx)(struct lin_device *ldev, const struct lin_frame *frame);
-> +	int (*update_lin_mode)(struct lin_device *ldev, enum lin_mode lm);
->  	int (*update_bitrate)(struct lin_device *ldev, u16 bitrate);
->  	int (*update_responder_answer)(struct lin_device *ldev,
->  				       const struct lin_responder_answer *answ);
-> diff --git a/include/uapi/linux/can/netlink.h b/include/uapi/linux/can/netlink.h
-> index a37f56d86c5f2..cc390f6444d59 100644
-> --- a/include/uapi/linux/can/netlink.h
-> +++ b/include/uapi/linux/can/netlink.h
-> @@ -104,6 +104,7 @@ struct can_ctrlmode {
->  #define CAN_CTRLMODE_TDC_AUTO		0x200	/* CAN transiver automatically calculates TDCV */
->  #define CAN_CTRLMODE_TDC_MANUAL		0x400	/* TDCV is manually set up by user */
->  #define CAN_CTRLMODE_LIN		BIT(11)	/* LIN bus mode */
-> +#define CAN_CTRLMODE_LIN_COMMANDER	BIT(12)	/* LIN bus specific commander mode */
->  
->  /*
->   * CAN device statistics
-> 
+Looks reasonable?
 
--- 
- i.
+Best regards,
+Luca
 
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
