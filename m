@@ -1,113 +1,117 @@
-Return-Path: <devicetree+bounces-66347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3108B8C2836
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:52:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAC3B8C284B
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:55:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1751B216C0
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:52:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07EC21C21C2F
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AAEB171E5D;
-	Fri, 10 May 2024 15:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E079171E6A;
+	Fri, 10 May 2024 15:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dpGT41MT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="j2TqeLIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E296171675;
-	Fri, 10 May 2024 15:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA8212C49A;
+	Fri, 10 May 2024 15:55:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715356347; cv=none; b=tIVJIqXMJ04LjAk34hxN+IVREggTU9HtATg59TPnnABGXgYX7y7EyxwsvXzE7HIC3Gfe+4guvADqj6YFJ+6jQTogKSqvolfEyjhuL/PYvp30ExvmnzngmVhe6Umz1gTan+Kk75rNCKfMRJ68QhiN9DkMEwYOxCEV0Ihv327ev98=
+	t=1715356552; cv=none; b=MdUrzuUrOHsuqosYU4xyZmYRA+UfpwZ6Sv/7CyR+z8wG/pkak7NJeO9tFCgimv64O4hW/inW6vBhJgHpTAcmdgA+XVotbeBy0cpumGjK63XAB11O35lnuXmZ1rwcGDc3F6fnHtBYRRQprRWxJSdd7I8+6rcgsWHyDsRDnqxxDhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715356347; c=relaxed/simple;
-	bh=h5nTT0Du2UCghXIKEWt0yFqx/MaUNSrO06p/4aGpyvU=;
+	s=arc-20240116; t=1715356552; c=relaxed/simple;
+	bh=IBLZr/tGroMZp0lVjQIUbjuvOt/Nd1d3apRv1DjPoXk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nLjkx356W5Js9VcpuvVwWLT92yz3g1YDNUsZr7TuDnclb5Aytug/Ahd8nyQ7PC5kuUrA1AsFNXusE7Ho6Pi4N1RDc2GW1zeOmscoRk4cyoQQ97+m0O3nQBRzvmICh7Pz662GO9dJSbosDevQ35CBM3vw79vg8JnKGK9Vjw7CO2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dpGT41MT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E0A1C32781;
-	Fri, 10 May 2024 15:52:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715356347;
-	bh=h5nTT0Du2UCghXIKEWt0yFqx/MaUNSrO06p/4aGpyvU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dpGT41MTOaFu1jCl8Uwvjdbh7Qn5oQcrzA5iFcUPMJ79nJcka2C6bP6oax3zjb/FP
-	 yUxMdrhS620X8kneqIwlE5uIoc48ULno1WIuo72+dre55FfN+be/Gj4Y0Wcbpsblnz
-	 Bb8a4ZjijACzy+sJ1iJZ+/VF0EJVb3U7+b8UrEbkp6VJhM2wEfyVAJzah+RrvSzg7B
-	 ePyM8KzPDyvlmXd9zfBlRpurUE1oM8dC8sIUh4QqYR4lTbAQF407kWs3m3OpH5zAab
-	 ovaRCs0gstD861+gqxwTbl/R/gfXuf2inGSiBee3JL/4OjnLKb6fL9G52CAoCuBLPG
-	 +bMbd3oyrzLjA==
-Date: Fri, 10 May 2024 16:52:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, frank.li@nxp.com,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v4 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
- binding
-Message-ID: <20240510-daisy-overkill-99c4bee476c0@spud>
-References: <1715234181-672-1-git-send-email-hongxing.zhu@nxp.com>
- <1715234181-672-3-git-send-email-hongxing.zhu@nxp.com>
- <20240510153849.GA308062-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l5MBER0OKGQyfqx3QZ1DdhVvjlR0SVvPlYTA05yw3eIcUM6RfiQ+7OBcevy+d1IcD7gHOK3EXSVbH6wtZduwW/9IAQ04DHOZvMwaai+on8Kh4DogWQyMikDmTMxL74gPndfjCjAiv+cgSJyFQdAYyaSwx5VHdpPbiuBJFy8SqHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=j2TqeLIG; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=dy8lSBZHGbHQucNhRUnmeh0rwb1O8iiwSESw+dcfU8A=; b=j2TqeLIGRT+ss1rjOoJ2nVsQgo
+	8wXrn3qFtsaVTL35D/EoE1B/D3oVEMpSXUgYDR42dPQEMAwNi6EmP+RKs6DNvbpiNyoBv+utI+Rde
+	4XDlVZFI659lKYxs9nW+Wmwk18TRd0FxdzkO0Zm8HZfFzzsWyBBvvj8+CIhz2wfplqG6Yaoe57IkF
+	ef/yIA1z0C6ZtKKI8/JpZyttM7s2DcorU6JCY0AmWJvmmXFno9Qv3dMpYwOZmbRN5VekXeC83terg
+	YrAjAuovYMSRQ6cyZK4bIz8trOfi3914NvnzuXM8q6W2AS+yB0WBgdyY13YR9eIIQo1AWbXIMVkRX
+	jgVRTthQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42354)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1s5Sar-0007b1-0E;
+	Fri, 10 May 2024 16:55:33 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1s5Sar-0003R6-5s; Fri, 10 May 2024 16:55:33 +0100
+Date: Fri, 10 May 2024 16:55:33 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v6 3/7] net: stmmac: Make stmmac_xpcs_setup()
+ generic to all PCS devices
+Message-ID: <Zj5DddF4nl/B4zZM@shell.armlinux.org.uk>
+References: <20240510-rzn1-gmac1-v6-0-b63942be334c@bootlin.com>
+ <20240510-rzn1-gmac1-v6-3-b63942be334c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Wr3y6L4YTPWbkVH7"
-Content-Disposition: inline
-In-Reply-To: <20240510153849.GA308062-robh@kernel.org>
-
-
---Wr3y6L4YTPWbkVH7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240510-rzn1-gmac1-v6-3-b63942be334c@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Fri, May 10, 2024 at 10:38:49AM -0500, Rob Herring wrote:
-> On Thu, May 09, 2024 at 01:56:20PM +0800, Richard Zhu wrote:
-> > +  fsl,refclk-pad-mode:
-> > +    description:
-> > +      Specifies the mode of the refclk pad used. INPUT(PHY refclock is
-> > +      provided externally via the refclk pad) or OUTPUT(PHY refclock is
-> > +      derived from SoC internal source and provided on the refclk pad).
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [ "input", "output" ]
->=20
-> default?
->=20
-> Really, this could just be a boolean for the non-default mode.
+On Fri, May 10, 2024 at 09:38:10AM +0200, Romain Gantois wrote:
+> From: Serge Semin <fancer.lancer@gmail.com>
+> 
+> A pcs_init() callback will be introduced to stmmac in a future patch. This
+> new function will be called during the hardware initialization phase.
+> Instead of separately initializing XPCS and PCS components, let's group all
+> PCS-related hardware initialization logic in the current
+> stmmac_xpcs_setup() function.
+> 
+> Rename stmmac_xpcs_setup() to stmmac_pcs_setup() and move the conditional
+> call to stmmac_xpcs_setup() inside the function itself.
+> 
+> Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
+> Co-developed-by: Romain Gantois <romain.gantois@bootlin.com>
 
-There's actually a third option, or at least there was in v1, unused.
-The description in v1 was:
+stmmac_pcs_init() looks weird in this patch, but the reason is set out
+here. So:
 
-      It can be UNUSED(PHY
-      refclock is derived from SoC internal source), INPUT(PHY refclock
-      is provided externally via the refclk pad) or OUTPUT(PHY refclock
-      is derived from SoC internal source and provided on the refclk pad).
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-I suggested that there should be 3 strings and not having the property
-would mean unused. But all mention of unused seems to have vanished :/
+Thanks!
 
---Wr3y6L4YTPWbkVH7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj5CowAKCRB4tDGHoIJi
-0jCbAP4o1fystkUik1QzniCgEWNmiXcfwOndTsN+6kqytNqrpQD+Lxdi0pmPgkTY
-MDMSv9vyFHydgHukhatYEY2utuVzXAo=
-=mJ4j
------END PGP SIGNATURE-----
-
---Wr3y6L4YTPWbkVH7--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
