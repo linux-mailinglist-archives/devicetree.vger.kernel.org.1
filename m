@@ -1,80 +1,108 @@
-Return-Path: <devicetree+bounces-66385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1EC38C2C8C
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 00:22:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C60A8C2CA4
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 00:33:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 811671F22E0C
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 22:22:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36FB4B2284F
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 22:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5A713D250;
-	Fri, 10 May 2024 22:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E77317082F;
+	Fri, 10 May 2024 22:33:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kYKln0oH"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="o8hi3s3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC4115E86;
-	Fri, 10 May 2024 22:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03B3635
+	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 22:33:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715379766; cv=none; b=YGZ9vmj7VQjc67Allnw3DhFetXO+wbOvrbfawNc8ARi4wmqnGclm3sRITPltp0QTMVJEPl4r7HbzkvOcrbbkjYxvag8eYyy02U78JPnbAa5cBpOz9nDOL9KdZpj3mygBvg3//4sO1qZCmsi+tIzUMXGagSDkKgTDG5tLC5OWi1M=
+	t=1715380423; cv=none; b=TDFIGlWrQDdrgRb/3hBk0oFXBI1hCbCw4YAcjB37ypLHdmK2VNjwOzvrxhU9ibOO5JsUoZQPb/IK6InYcrlGWXY7NjSoCfehYGgwuNjscpWwole669tJTxi5sk6EDRlPeUWGItiJZeUHCPz3N8j+7KTqaSqlG7wo2Z/E6ZMOBvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715379766; c=relaxed/simple;
-	bh=1eupN9In0SKeHI6aNxZYRKBeLC1ty/HA2POqcDmV410=;
+	s=arc-20240116; t=1715380423; c=relaxed/simple;
+	bh=cFsqolC03whbOXne5XKlbHEqaO9KmgRG1wEiBKh9mPQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DzApeIR2ld9e1OCMM/RANPC7bgD/WIUJ5tWdWWMw7/IEEjlAsZYGJ42cvEDmAFaAhMsce3AKYX1zBSGXApD+sGJAmvUpSnhPo0K6ipVlpGLeL5QGjT6oPmC5Gim9X0Xk5BzHS4FBV3iwhN34gszTcqa6ybeTKgZ8/f03rCwZ78w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kYKln0oH; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715379765; x=1746915765;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1eupN9In0SKeHI6aNxZYRKBeLC1ty/HA2POqcDmV410=;
-  b=kYKln0oHHS86QfbDEhydxEQeCC/FqOyOk7XuKpM9L5Ob1mJH3JMYu0DJ
-   eGFuJ63Co/1M0OtGcE5TtzL8OY1f3h84huCaStoo1HgBec824WcDJT1hc
-   6TNRqsKY0hse+l31fE7h4aASEB43m66VFdr2j6U75H8nmOjzc/PoMHdRl
-   VeUCxel+FoLf+8VL8rl0EGse7fO0EEo6upv+ESd5pudxKvhCFuLmBhjj1
-   eYNR8yy4E0Jk8qfw/O5nMMPv4IeA3+hOtGenMt8op4tIq2R2vns1yO0c1
-   KtCmGp2faiBUB+S86Mjjpno648nNLXKJTl2B7my/GZ6bMV5axeCWsOR3o
-   g==;
-X-CSE-ConnectionGUID: weJCvV3aQSWIyGTs6UTOJA==
-X-CSE-MsgGUID: H07Tv299QvuLmzIOiWrjGQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="11540583"
-X-IronPort-AV: E=Sophos;i="6.08,152,1712646000"; 
-   d="scan'208";a="11540583"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 15:22:37 -0700
-X-CSE-ConnectionGUID: RZOv4w4eTTaxQPDK1oR0xg==
-X-CSE-MsgGUID: ZJmwQYcKQ4We5Xo0hvmsaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,152,1712646000"; 
-   d="scan'208";a="34514195"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 10 May 2024 15:22:35 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s5YdM-0006dn-2o;
-	Fri, 10 May 2024 22:22:32 +0000
-Date: Sat, 11 May 2024 06:21:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
-	linux-kernel@vger.kernel.org, jic23@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org, nuno.sa@analog.com
-Cc: oe-kbuild-all@lists.linux.dev,
-	Ramona Gradinariu <ramona.bolboaca13@gmail.com>
-Subject: Re: [PATCH v2 4/8] iio: imu: adis_buffer: Add buffer setup API with
- buffer attributes
-Message-ID: <202405110642.5PmTepVs-lkp@intel.com>
-References: <20240508131310.880479-5-ramona.bolboaca13@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CPaEy+trgEtIqC3XjlEXlWKIXxbMwF1MwM4brjl7OcsWY5LjHJTzhzP9OpFK+wUWz4TjSw66hG7aGRBchT+7YCKgWeqgeroxHdKTIOkpKU95LazZ6HrrTWeyB3deWjcO/75l5Jd0l4Kqc9tvjEVKCjBUUf/THXc/p2UtTL8Z/BQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=o8hi3s3l; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1edfc57ac0cso21008925ad.3
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 15:33:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715380421; x=1715985221; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rx86BKf20oqqJvvyTkwVjgHBFBglkui4kaaauK5EOTw=;
+        b=o8hi3s3lmX2YqQnd9C/rkwE38e0hHuJfKp8+ForFPhNh+16MvZrxNZyMWKWUzl9QrB
+         qlM2my0i+vefxi2fxXAVQoi4gWsYKvYDmT5fAB+SGucJSMbN1UluiHj9pUcBpXgy33+X
+         qu9dvsIF8CyhUcZAYtkEAiydou6AoPPlrY5W4+RnREg1kl0L9O2V43w+yFFYlU4ECd02
+         WS4SdsP5pB3hlxXuMMdwyycHVavdp9uXnIMc66BPCJ3ksWiSHr4xm4WqYCAcT2HvCYWG
+         5WCWKybQQtsyp5j3rQ3xRwEIQbZahlYP1htzOFpK/TTIifibLzJseyY+oZi+asW3gRb4
+         dyvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715380421; x=1715985221;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rx86BKf20oqqJvvyTkwVjgHBFBglkui4kaaauK5EOTw=;
+        b=Gu21uruogo8uMIyv9cQPLRLOZWjq/9zWOtGZBOYwQGxhiFt43MEFzMeXhLSh7u27C6
+         trPSyFLgedjeqReeVsuKx7c7EKkZUOCKnvTBpxe9/epN+3C0Hp2WrfsLee70B55UFG6y
+         JslcnVh/MWfZ5o9JTfNS5qb2yLWgbkCaGB7SerO9MFD/lhXswhpgNRkomv1VNlSEpaHM
+         Vgb8wQnmypi5w+M7PH/JrbwsgYx4213fZIs+h4ug6sv0sKGUgKUAQgJYZhvitRp22AAL
+         PIvO9nOoQ6xMvpRf7iwv1sdYxzfza2HKv6lUPbLhVBrF3Zh2uWnLbf4LWgMFDRajlMc3
+         tdpg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWjhyTeJb4A0x5Pr2z3eJ19NOgs+yf3+6nWTHaY4zNVCzhUA82jgEfWHRtl6kCLJQk3EJrypiSkY9QQRPihx+c9ZNhiLn+KAw7Ig==
+X-Gm-Message-State: AOJu0YwDGbxIbMkyOH6oVuIcDXVGJLAws20nVZ9q2u3z98N4U5r4aBh5
+	D+v6FMLsuU1zOGzukZPpEeTTsl2kWhPJ3K8Bk4Oh74s3MyctkixPegS8/e3o/iY=
+X-Google-Smtp-Source: AGHT+IHCbIPqYj/CMVX+dpcmx2/ThEVPaXPHBWvK+JEhPYkGjzop6fsJUs8nt4PjI1Rtz6v88FXlIQ==
+X-Received: by 2002:a17:902:d483:b0:1eb:57cb:4c69 with SMTP id d9443c01a7336-1ef43f4d1ebmr53974765ad.45.1715380420958;
+        Fri, 10 May 2024 15:33:40 -0700 (PDT)
+Received: from ghost ([2601:647:5700:6860:629e:3f2:f321:6c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0c16093fsm37221825ad.281.2024.05.10.15.33.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 May 2024 15:33:40 -0700 (PDT)
+Date: Fri, 10 May 2024 15:33:36 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: paul.walmsley@sifive.com, rick.p.edgecombe@intel.com,
+	broonie@kernel.org, Szabolcs.Nagy@arm.com, kito.cheng@sifive.com,
+	keescook@chromium.org, ajones@ventanamicro.com,
+	conor.dooley@microchip.com, cleger@rivosinc.com,
+	atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com,
+	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, linux-arch@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, oleg@redhat.com,
+	akpm@linux-foundation.org, arnd@arndb.de, ebiederm@xmission.com,
+	Liam.Howlett@oracle.com, vbabka@suse.cz, lstoakes@gmail.com,
+	shuah@kernel.org, brauner@kernel.org, andy.chiu@sifive.com,
+	jerry.shih@sifive.com, hankuan.chen@sifive.com,
+	greentime.hu@sifive.com, evan@rivosinc.com, xiao.w.wang@intel.com,
+	apatel@ventanamicro.com, mchitale@ventanamicro.com,
+	dbarboza@ventanamicro.com, sameo@rivosinc.com,
+	shikemeng@huaweicloud.com, willy@infradead.org,
+	vincent.chen@sifive.com, guoren@kernel.org, samitolvanen@google.com,
+	songshuaishuai@tinylab.org, gerg@kernel.org, heiko@sntech.de,
+	bhe@redhat.com, jeeheng.sia@starfivetech.com, cyy@cyyself.name,
+	maskray@google.com, ancientmodern4@gmail.com,
+	mathis.salmen@matsal.de, cuiyunhui@bytedance.com,
+	bgray@linux.ibm.com, mpe@ellerman.id.au, baruch@tkos.co.il,
+	alx@kernel.org, david@redhat.com, catalin.marinas@arm.com,
+	revest@chromium.org, josh@joshtriplett.org, shr@devkernel.io,
+	deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org,
+	jhubbard@nvidia.com
+Subject: Re: [PATCH v3 02/29] riscv: define default value for envcfg for task
+Message-ID: <Zj6gwFvj2gA04NJq@ghost>
+References: <20240403234054.2020347-1-debug@rivosinc.com>
+ <20240403234054.2020347-3-debug@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,51 +111,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240508131310.880479-5-ramona.bolboaca13@gmail.com>
+In-Reply-To: <20240403234054.2020347-3-debug@rivosinc.com>
 
-Hi Ramona,
+On Wed, Apr 03, 2024 at 04:34:50PM -0700, Deepak Gupta wrote:
+> Defines a base default value for envcfg per task. By default all tasks
+> should have cache zeroing capability. Any future base capabilities that
+> apply to all tasks can be turned on same way.
+> 
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/csr.h | 2 ++
+>  arch/riscv/kernel/process.c  | 6 ++++++
+>  2 files changed, 8 insertions(+)
+> 
+> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+> index 2468c55933cd..bbd2207adb39 100644
+> --- a/arch/riscv/include/asm/csr.h
+> +++ b/arch/riscv/include/asm/csr.h
+> @@ -202,6 +202,8 @@
+>  #define ENVCFG_CBIE_FLUSH		_AC(0x1, UL)
+>  #define ENVCFG_CBIE_INV			_AC(0x3, UL)
+>  #define ENVCFG_FIOM			_AC(0x1, UL)
+> +/* by default all threads should be able to zero cache */
+> +#define ENVCFG_BASE			ENVCFG_CBZE
+>  
+>  /* Smstateen bits */
+>  #define SMSTATEEN0_AIA_IMSIC_SHIFT	58
+> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+> index 92922dbd5b5c..d3109557f951 100644
+> --- a/arch/riscv/kernel/process.c
+> +++ b/arch/riscv/kernel/process.c
+> @@ -152,6 +152,12 @@ void start_thread(struct pt_regs *regs, unsigned long pc,
+>  	else
+>  		regs->status |= SR_UXL_64;
+>  #endif
+> +	/*
+> +	 * read current envcfg settings, AND it with base settings applicable
+> +	 * for all the tasks. Base settings should've been set up during CPU
+> +	 * bring up.
+> +	 */
+> +	current->thread_info.envcfg = csr_read(CSR_ENVCFG) & ENVCFG_BASE;
 
-kernel test robot noticed the following build warnings:
+This needs to be gated on xlinuxenvcfg.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.9-rc7 next-20240510]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+- Charlie
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ramona-Gradinariu/dt-bindings-iio-imu-Add-ADIS16501-compatibles/20240508-211559
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240508131310.880479-5-ramona.bolboaca13%40gmail.com
-patch subject: [PATCH v2 4/8] iio: imu: adis_buffer: Add buffer setup API with buffer attributes
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240511/202405110642.5PmTepVs-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240511/202405110642.5PmTepVs-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405110642.5PmTepVs-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/iio/imu/adis16400.c:24:
->> include/linux/iio/imu/adis.h:530:60: warning: 'struct iio_dev_attr' declared inside parameter list will not be visible outside of this definition or declaration
-     530 |                                               const struct iio_dev_attr **buffer_attrs);
-         |                                                            ^~~~~~~~~~~~
-
-
-vim +530 include/linux/iio/imu/adis.h
-
-   524	
-   525	int
-   526	devm_adis_setup_buffer_and_trigger_with_attrs(struct adis *adis,
-   527						      struct iio_dev *indio_dev,
-   528						      irq_handler_t trigger_handler,
-   529						      const struct iio_buffer_setup_ops *ops,
- > 530						      const struct iio_dev_attr **buffer_attrs);
-   531	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>  }
+>  
+>  void flush_thread(void)
+> -- 
+> 2.43.2
+> 
 
