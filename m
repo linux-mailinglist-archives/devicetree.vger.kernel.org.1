@@ -1,122 +1,113 @@
-Return-Path: <devicetree+bounces-66372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD0D8C2B65
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 23:04:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 431F88C2B6A
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 23:05:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 041771F23784
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 21:04:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 745781C2386D
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 21:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314E013B597;
-	Fri, 10 May 2024 21:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF1D13B585;
+	Fri, 10 May 2024 21:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aO63s1mA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WWfoDi2u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8397113B586
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 21:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FCAC13848A;
+	Fri, 10 May 2024 21:05:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715375089; cv=none; b=s6uwpxN+cevbfsMCgH3TwcckEEmGSWR3cf/zUx15fUFzNU4Jj2rPBGVawN6ZuHyhhIGkOYZUJOp8ejs8i8h3sOYhA5tsd+CD/jCG2n7L2+q15/BoZ174f3i+yDKNLAy/CfHnNMsJqzFEbdLMc+IqM7r2HMkOI5rX57Mz+r0Hn9A=
+	t=1715375119; cv=none; b=uQeuB1W+R+p65jhwKw712dRz4g2yol8kWSGrOWtzX3uhwpWlqG5Ny6Q3aCURZR84DM8Jb30u31P/e2m96JJ+14I2kUebnCAHBufDFm/ouOyLs3PbMbxomsvVZWfs6WreJ/5iHctSubz+gJovTkP2DIdNje/ySs3cs9QKF7piK/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715375089; c=relaxed/simple;
-	bh=VfLBOBFS9px1B2o+hcKJrQSVvzPYkQD50/pPCs8h+tc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qx/bNnjl2TTOvRXqttOxORBZNxMUsX28uRyC1C8iHkaiRRWyZWhzrmPNatUQkZxnGXDe47vIcTtgVyMrLK1GAKgFo6ZIJmkdzDy8l8GTZ6DEhyqxRmMsnnQhJqb0sZ/PPrO/dMxL9OEddSSACNv3EqXyEh57wTUUaFuffT4etWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aO63s1mA; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-23e94f0788aso1276813fac.2
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 14:04:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715375084; x=1715979884; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qEYue/AOjuByQSAvDWI/eVpcJ2TVmrbfHj6LOCzHZ/s=;
-        b=aO63s1mAzpq1Xm8ImptjXKZfduimyDfPqEQzrUcGeikuPfZ46qOb+9mp8apOKcl0N6
-         RQkO91RuxPU2t2oxPqJaBZGvUxMdJxhdUuLIfz0OzgOvT05+45F2mpP26tUY7E23Ue68
-         VvwbBibQBEJ/wtFQjg3hyV3kZeFMFLJ3bso+QRVlRypyjKxHPrp4gxxU/7OyGtlTPGnH
-         nQy9sazTAX1M4qEgyISyo620En32HfNKRRLrEnZbDUgGC7HP6CfqwVmdHcwk9mFGtsDl
-         a4oVHgms0+wWXAyGyaWTUBUAJ7ByFUQ9kz5D7u9CtxHU4XJGMmiMoU7Z1rYrdilC6XEn
-         nIPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715375084; x=1715979884;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qEYue/AOjuByQSAvDWI/eVpcJ2TVmrbfHj6LOCzHZ/s=;
-        b=dOLBTCwTfTJ0eoi1flKNUeyrXX3FDV7H2jeyKgtZHHk711eq+kyQPXYc2qOfd9Gajx
-         CDsH2lRgWLF/YxMaRnSnpzLNaS3MwDFTcxusTwpehDq9siaEZ6Rqi+6QccHpSJHIl4pv
-         kotjVgH4E4t0cYbjldqhePWox0vNczqCsmYWyr4PTzl4pSW3mfm9yQCaWR6QSeuwX85O
-         nHR5+W9lyibMZdd/OjkxbbyoiJyhQn+bm2GyjPZBpKowcw4DXrr19UVJpVuRy55VgxF2
-         gjjwN2ZHfZijpc+/8Cydl07wyi/56YvlUiBHHzK+2rD8K4dKb3Rh/o1aRqmRvAd7hrj7
-         Q+cg==
-X-Forwarded-Encrypted: i=1; AJvYcCUavNIZUtqiUWxW/W9wXmOQCsDHHrLGo384asbGfbjZkByTmhWFByEJoVdC1U2eB1/PcSqiX6fj8z+MIzlSKJCD90C5NgrU4slllA==
-X-Gm-Message-State: AOJu0YzcQR6hz6OCgCNqxlzCaCKLTaR7p1ShQenMmu3wLG9lbVsrBlhe
-	XN8vZd2HbTEgleIi9dKZl3gZ9jXtjz6bd5Uf8eRbJZlXT/dOc7VegDAueuDBkMM=
-X-Google-Smtp-Source: AGHT+IE+Z9Gv0mEoyVq7GkQVyxM+Fbs//42IwhhbeCYp7oKZf4jj5u3ny+Hd+41J/i0ScY8ge+nQ9g==
-X-Received: by 2002:a05:6871:3311:b0:22e:dfbc:4d9d with SMTP id 586e51a60fabf-241728f4fe9mr4400114fac.1.1715375084498;
-        Fri, 10 May 2024 14:04:44 -0700 (PDT)
-Received: from freyr.lechnology.com (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f0e01cc159sm841521a34.40.2024.05.10.14.04.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 May 2024 14:04:44 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
+	s=arc-20240116; t=1715375119; c=relaxed/simple;
+	bh=AA5sZgLLBpbhXbSQdOIXGjRAYnAtflIceR2L/vwR200=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t6HuBN1RG1Y4D+VpvRb5VdtMps5x/y+z0EanL0fIkVbHOvs9ELyfck7so9cLl7UVMfvKJNJhMyXRdiLodrxd/h3oPyb0qvI0jwfMr0Cf5yCBX7zvd3zF4b4aGVS4Y5iQI5kRF48GrM1ajjK64Jxnlcjovxy0B3kIrYdN3kwhNWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WWfoDi2u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED90EC113CC;
+	Fri, 10 May 2024 21:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715375118;
+	bh=AA5sZgLLBpbhXbSQdOIXGjRAYnAtflIceR2L/vwR200=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WWfoDi2uPXg023vkQwgViAKGfY1xzzMj6NRlJRbpEXW/TQBbwCDdfqCc1piRvQTOH
+	 kguCo+Ojyt1KnMw95xYDPvcEEGBmX18xgfdnjLbs7vPeW2xY5crY50yrm8YK5t3RtI
+	 A6RO5oPqVOIyKegimao9krXf2cxje61/bwB7NBYc1b+u/b/2tW1nH3B4LsDvUKJ0g2
+	 An7CWbl3YBrqea9ONfAeDwhQ4eUSWWm83TmCC+fyGrxi3+My2zUAy8+Y+WfyaCcdkI
+	 /TE879aZOB5jozx/Zjb5xpLqgkmdUSjnyIe/H3p9swlmuHyzR1Z3B+DL8GESfVFzro
+	 JjertKIY8aokg==
+Date: Fri, 10 May 2024 22:05:13 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: iio: adc: adi,axi-adc: tweak example node name
-Date: Fri, 10 May 2024 16:04:38 -0500
-Message-ID: <20240510-b4-iio-axi-adc-dt-binding-tweak-v1-1-a1f633c4602c@baylibre.com>
-X-Mailer: git-send-email 2.43.2
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Hal Feng <hal.feng@starfivetech.com>, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Message-ID: <20240510-unfounded-syrup-d1263d57d05a@spud>
+References: <20240507065319.274976-1-xingyu.wu@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.4
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fcmvmWId/wrDz6pC"
+Content-Disposition: inline
+In-Reply-To: <20240507065319.274976-1-xingyu.wu@starfivetech.com>
 
-It is always recommended to use generic node names for devicetree nodes.
-The documentation [1] of the AXI ADC IP core says "The most important
-part of the core is the Receiver PHY module.", so using phy as the node
-name seems appropriate.
 
-[1]: https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
+--fcmvmWId/wrDz6pC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue, May 07, 2024 at 02:53:17PM +0800, Xingyu Wu wrote:
+> This patch is to add the notifier for PLL0 clock and set the PLL0 rate
+> to 1.5GHz to fix the lower rate of CPUfreq on the JH7110 SoC.
+>=20
+> The first patch is to add the notifier for PLL0 clock. Setting the PLL0
+> rate need the son clock (cpu_root) to switch its parent clock to OSC=20
+> clock and switch it back after setting PLL0 rate. It need to use the=20
+> cpu_root clock from SYSCRG and register the notifier in the SYSCRG
+> driver.
+>=20
+> The second patch is to set cpu_core rate to 500MHz and PLL0 rate to
+> 1.5GHz to fix the problem about the lower rate of CPUfreq on the=20
+> visionfive board. The cpu_core clock rate is set to 500MHz first to
+> ensure that the cpu frequency will not suddenly become high and the cpu=
+=20
+> voltage is not enough to cause a crash when the PLL0 is set to 1.5GHz.
+> The cpu voltage and frequency are then adjusted together by CPUfreq.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-index e1f450b80db2..9cad4c439045 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-@@ -57,7 +57,7 @@ additionalProperties: false
- 
- examples:
-   - |
--    axi-adc@44a00000 {
-+    phy@44a00000 {
-         compatible = "adi,axi-adc-10.0.a";
-         reg = <0x44a00000 0x10000>;
-         dmas = <&rx_dma 0>;
+Hmm, how does sequencing work here? If we split the patches between
+trees it sounds like without the dts patch, the clock tree would (or
+could) crash, or mainline if the clock changes there before the dts ones
+do. Am I misunderstanding that?
 
----
-base-commit: 5e3c5871138da700796587aa5f096d39135f9d36
-change-id: 20240510-b4-iio-axi-adc-dt-binding-tweak-054f97a78bff
+--fcmvmWId/wrDz6pC
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj6MCQAKCRB4tDGHoIJi
+0n2KAP99FsOM8mLfQPX2XNtPhcooLIejFE//SoGuOehQcOqDMgD+PYpcuATbGArP
+k5ayP3fNqZAlAgpi0kidIcGvTxc1HAA=
+=5dvt
+-----END PGP SIGNATURE-----
+
+--fcmvmWId/wrDz6pC--
 
