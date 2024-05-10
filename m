@@ -1,114 +1,116 @@
-Return-Path: <devicetree+bounces-66337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F06608C272B
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:52:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E49D8C2734
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:55:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79D0D1F24286
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:52:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A13528454E
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:55:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1335717106B;
-	Fri, 10 May 2024 14:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD5517108E;
+	Fri, 10 May 2024 14:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pzcac8GP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MaRxi373"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F6EEAC0;
-	Fri, 10 May 2024 14:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A1817106E;
+	Fri, 10 May 2024 14:55:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715352741; cv=none; b=eExs1RxL4KI05ooziyp7x/z3L1NS3WRw1fU3dtNPE5X7O5dTqB8K0U8FXDu5RBwqJC7mbnhVoeo9ziY/tKZkQ3hbFRe/+NRARAfwcZOYBL7zRy5YNT/D1m3B0eVJmD8gbxAXbn24CAFi32cLnsfMzT6qAY0t49EEEjJVHeKtwb4=
+	t=1715352922; cv=none; b=kMN8RX2UIDCrN64cGNf4AXZuTVF3Hu9ioRXD4jR2WwoVxu8jWWxjjCikiX0q71icnZhi7gYeswB5dLd/vCfB7lTBoyDnfChTaLdtnozPmjLVfb1YwpvQtgfsC/5F9I9zncoaQ7e4TADdyDLq3wNgU26wPt9IMS3dUjasZ/xzhNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715352741; c=relaxed/simple;
-	bh=Wk0q4vevPtsf1bHPHOHrkMoSDRobzZE5HMMZ/bpUMqQ=;
+	s=arc-20240116; t=1715352922; c=relaxed/simple;
+	bh=bpcTd66QCrqPbkU8DpdDZoGNAxlz51z4EqF2NnOZKrc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nOlVObwfC9fH2VOR+pf+jQQUD/dFn1+eMylCCt2WZ2RmJ8d7m0DjTLybHmemHKolKZ9Jo4kFBsE2QeZcUn6yhSQtsxhWT5YhIEoroj4wSqkjRmuzj/6PdK7N5gi4FBS1zeApgs2p5sxFbm5Zbo+uGO9LaoyJ94Pzdiz+Wcdza8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pzcac8GP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6582C113CC;
-	Fri, 10 May 2024 14:52:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715352740;
-	bh=Wk0q4vevPtsf1bHPHOHrkMoSDRobzZE5HMMZ/bpUMqQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pzcac8GP99w+51uAaTDjeuzPJjGO2O2eMuXDs9L085Xbu7NvI9TtPBZ0Vp/HCfEKr
-	 JIBWYvcvVlRJx6ptANdfbBBOQbA5RRyJo8O/PO0Yj5N/nTIEaTc2FKB/h29H/LfeB2
-	 7tEhaCFBzx1UivzrgGVy1BVFEyQuyH2I6rO+lUOiqoSH+ZgIVkWvAhtJqR2fgtPB+4
-	 HfTdEIY/5S1nGhS+9VW47CZa3WnqClhYUs9rHIMwjrpaRXQAIkLIzJ/luZzgu9EhEf
-	 dVoqGFvP61P+qeHFTD7BSjXm+5Hn6AG7sSNUs5alWlTw27FVjUr5ls2iLN0T//0w3y
-	 1hPWMfP48ogBw==
-Date: Fri, 10 May 2024 15:52:14 +0100
-From: Lee Jones <lee@kernel.org>
-To: linux-kernel@vger.kernel.org, Bhargav Raviprakash <bhargav.r@ltts.com>
-Cc: m.nirmaladevi@ltts.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jpanis@baylibre.com, devicetree@vger.kernel.org, arnd@arndb.de,
-	gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
-	linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com,
-	kristo@kernel.org, eblanc@baylibre.com
-Subject: [GIT PULL] Immutable branch between MFD, Misc, Pinctrl and Regulator
- due for the v6.10 merge window
-Message-ID: <20240510145214.GC6146@google.com>
-References: <0109018f2f24c15e-c50bfc29-5f1d-4368-a4b8-2c9f1d398abb-000000@ap-south-1.amazonses.com>
- <171472796178.1311350.4406575677999610125.b4-ty@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rio0qnnRG6Cwyp71XJ/PtVRrvyg5xwDkWqbGdt0yUJEoDEWvGSCTbpWbKe8SB5wQck3LW6Fz3hVn+CHOkDdaDgeTPd2bJUX8F+Ed6cduk+QDsilhyrZ0eEyA0hWDK6SmdfPBqqm3V1kcoQBBYx7Hkk65XcCJYZjgbZtIqpR8L/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MaRxi373; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715352922; x=1746888922;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bpcTd66QCrqPbkU8DpdDZoGNAxlz51z4EqF2NnOZKrc=;
+  b=MaRxi373Xj+T+ENi86sw5nmH6CjoMDD0Cobk9crTgKv+Puo3j08O6A82
+   WoZ0ar/W7djC/MBZjq5wjrc/kwBH1paJSDW+KBq33PwtGi0/HlQ7hRZmg
+   zsL8ZzDm8EvEmbhdFws8CVuSEWSus14jqYkPtB1hUrOWSy1yrc3Zr1FIZ
+   Eqpdn8N+fPRMpf2HE3NJpc0SfSxUg10G0Nm0+dOsd3c6d3qyJz+3zu2MX
+   IaVg5MHA1+XW79G7bzsdMmIb4OMRq6Eh8E2+lKPAZCiK1HEQ6tXuFXd2c
+   V0IASZs4UtV1XSduUSKHmSqY633jlhPqU92bxQtASSfOd7vEAEv8wYJg8
+   A==;
+X-CSE-ConnectionGUID: nWc46PdOSPOjeOFhyoQQhA==
+X-CSE-MsgGUID: hGeimp1QQeCFCWCdAVxcOA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="15170026"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
+   d="scan'208";a="15170026"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:55:21 -0700
+X-CSE-ConnectionGUID: s50Lh8JFRIGHTT0f+bQ46Q==
+X-CSE-MsgGUID: 1fYDxZKuRv+WCeOt5FRj5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
+   d="scan'208";a="34078575"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:55:13 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1s5ReP-000000068S4-2BgO;
+	Fri, 10 May 2024 17:55:09 +0300
+Date: Fri, 10 May 2024 17:55:09 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Devarsh Thakkar <devarsht@ti.com>
+Cc: mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, benjamin.gaignard@collabora.com,
+	sebastian.fricke@collabora.com, laurent.pinchart@ideasonboard.com,
+	praneeth@ti.com, nm@ti.com, vigneshr@ti.com, a-bhatia1@ti.com,
+	j-luthra@ti.com, b-brnich@ti.com, detheridge@ti.com,
+	p-mantena@ti.com, vijayp@ti.com, andrzej.p@collabora.com,
+	nicolas@ndufresne.ca, akpm@linux-foundation.org,
+	gregkh@linuxfoundation.org, adobriyan@gmail.com,
+	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+	jani.nikula@intel.com, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 0/8] [PATCH v7 0/8] Add V4L2 M2M Driver for E5010 JPEG
+ Encoder
+Message-ID: <Zj41TZllCRvEdYsW@smile.fi.intel.com>
+References: <20240509183849.4060521-1-devarsht@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <171472796178.1311350.4406575677999610125.b4-ty@kernel.org>
+In-Reply-To: <20240509183849.4060521-1-devarsht@ti.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Enjoy!
+On Fri, May 10, 2024 at 12:08:49AM +0530, Devarsh Thakkar wrote:
+> This adds support for V4L2 M2M based driver for E5010 JPEG Encoder
+> which is a stateful JPEG encoder from Imagination technologies
+> and is present in TI AM62A SoC.
+> 
+> While adding support for it, following additional framework changes were
+> made:
+>  - Moved reference quantization and huffman tables provided in
+>    ITU-T-REC-T.81 to v4l2-jpeg.c as suggested in mailing list [1].
+>  - Add macros to round to closest integer (either higher or lower) while
+>    rounding in order of 2.
 
-The following changes since commit 4cece764965020c22cff7665b18a012006359095:
-
-  Linux 6.9-rc1 (2024-03-24 14:10:05 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-misc-pinctrl-regulator-v6.10
-
-for you to fetch changes up to 2088297159178ffc7c695fa34a7a88707371927d:
-
-  pinctrl: pinctrl-tps6594: Add TPS65224 PMIC pinctrl and GPIO (2024-05-03 10:07:11 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, Misc, Pinctrl and Regulator due for the v6.10 merge window
-
-----------------------------------------------------------------
-Bhargav Raviprakash (6):
-      mfd: tps6594: Use volatile_table instead of volatile_reg
-      dt-bindings: mfd: ti,tps6594: Add TI TPS65224 PMIC
-      mfd: tps6594-i2c: Add TI TPS65224 PMIC I2C
-      mfd: tps6594-spi: Add TI TPS65224 PMIC SPI
-      mfd: tps6594-core: Add TI TPS65224 PMIC core
-      misc: tps6594-pfsm: Add TI TPS65224 PMIC PFSM
-
-Nirmala Devi Mal Nadar (3):
-      mfd: tps6594: Add register definitions for TI TPS65224 PMIC
-      regulator: tps6594-regulator: Add TI TPS65224 PMIC regulators
-      pinctrl: pinctrl-tps6594: Add TPS65224 PMIC pinctrl and GPIO
-
- .../devicetree/bindings/mfd/ti,tps6594.yaml        |   1 +
- drivers/mfd/tps6594-core.c                         | 253 +++++++++++++--
- drivers/mfd/tps6594-i2c.c                          |  20 +-
- drivers/mfd/tps6594-spi.c                          |  20 +-
- drivers/misc/tps6594-pfsm.c                        |  48 ++-
- drivers/pinctrl/pinctrl-tps6594.c                  | 277 +++++++++++++---
- drivers/regulator/Kconfig                          |   4 +-
- drivers/regulator/tps6594-regulator.c              | 334 ++++++++++++++++----
- include/linux/mfd/tps6594.h                        | 351 ++++++++++++++++++++-
- 9 files changed, 1120 insertions(+), 188 deletions(-)
+You have a problem with your emails. Either you missed --thread when preparing
+the series, or something wrong with your email setup / email servers you are
+using.
 
 -- 
-Lee Jones [李琼斯]
+With Best Regards,
+Andy Shevchenko
+
+
 
