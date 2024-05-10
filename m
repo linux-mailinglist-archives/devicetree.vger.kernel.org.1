@@ -1,129 +1,108 @@
-Return-Path: <devicetree+bounces-66360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4F18C29B5
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 20:08:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFF68C2A04
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 20:41:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CA281C20F98
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 18:08:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B81CB282568
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 18:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF57241E7;
-	Fri, 10 May 2024 18:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C641F3A29A;
+	Fri, 10 May 2024 18:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="BnzsbmRW"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="SeZwY1/C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1BEE17C74
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 18:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB2C1C6B8;
+	Fri, 10 May 2024 18:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715364492; cv=none; b=MHLQJl9s0qzOcTcy2Xz1tfMEL7Kpr3cAY/N2kv+CqTRkx4AW8WMO8tnr4unrhnSEgnkCz+1lTBwihIe3OPKkyUUlSRn/dZoinHmpkymSu2JXhvnsE9UoMO6tnoi4wqWofQJ9dzaEVJfLA37XogHFp7FPh6A4PYmgSb3CBWBA2fw=
+	t=1715366484; cv=none; b=CbKYH1afncm7IzVPLYJrYALqOmRqemyEQ0Jdj8LRLEJFkliKIiwPHEbEEAxE8Ym7UlC4BtiWL7lMfSa3JH5EIgSO0kprahqABFCHK9G/Y6EOzaVPgAKWwkNQ8yaTxzPhvyV6HKTbJKxmFlPMUq5DgKQBVYvrFxmJnhDA9qFh8h8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715364492; c=relaxed/simple;
-	bh=TjfPV346g6HhhGBYNszs7914+sCUoduSH0CSumq3VbI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aJafou3cgB/sThkZBAd7+dvfpOVJ8TLqfJQhcEn6eX0RZU4xgAvViyDoh/veflPxyiSw/OXtI33ASs1+MsElEEkkeqV7hCSiC3EBvWeXn7gguQqQkiGuorDFQxIW4+YGw89bx2Unod2/QV2yMHzC6/XjjK7mW4TWDIKEkQl6N0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org; spf=pass smtp.mailfrom=kali.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=BnzsbmRW; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a59c448b44aso617551266b.2
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 11:08:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1715364488; x=1715969288; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=92ZX8NnKazriVubJgAKcioLM/4xHP1npqFQLgQaFNHI=;
-        b=BnzsbmRWbTpleBEi36Z6qPSe4hpM4c8zRhhr1suPCeNSuW4pOWB5Pj0RdLwfN98T2D
-         iqymDjywBBEo65FtcudG8G4VEk/GF1gQ48nc/WQ+uvDtwb0cfRCvGHw8alKXDqaq+/B2
-         OuaDLb2SUiZkDHX0dPNQydBru1ZJaNjvkbg8pJXngN9IJmYmMZW/BSQe6I+eNLB36Mb4
-         sQBZj5V0Jbr3tn6D8POiscUwVsKhERCDmaH5O1MpskACpzs4MI84KVTarJRKcHVkVCiU
-         XYzJ7bQpnccTRiofrPzjWHehbjAgW9BAbdCeGTLxEUbZpfAMnMv6q1X6c1L0XsRMc8FW
-         sQ0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715364488; x=1715969288;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=92ZX8NnKazriVubJgAKcioLM/4xHP1npqFQLgQaFNHI=;
-        b=IDg1h+hTshnnV9D+/AGIl+VzYHCMm1R5ae1t5yTS9W+C6wA17rmIut7dabhLQHfR8I
-         jTdmXXyiKtql5Aa1t/vgp/V7I9vS4y9ioMOdcqhZYX/RjMFAZNQjLMdsMNH5pevf8hjd
-         bj+16JaeHyDisjnh+c5vXnNIm9FwcJPdeL9ke2KMCxb4VjthjucrxgbQzqdJaOcDXw4U
-         Cfifk+Mibl1Wp6JcyAmTyEptaV52NGMzGlBifknhLdYE6kgLXPLxhewylcYd2X+obFju
-         q7W+/R+CeVgMOlUJfF4IJ5rfutOkhu7GMy2vNtkG2UPPi23dyR+fERrJj1emyVF4lXmu
-         VIyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXDUjaOD36iP+dLPn8SM5hfVJUqaj6OdPrluL5V7T/GyOOVytcMqaP+aByMcrRTFuGXm59R3F05hP/uWlT3cRfVeal3/VdkjcJnmw==
-X-Gm-Message-State: AOJu0YxthAD0G2twG32tOZPe0Hf645a9zVr5OqNTRpQzjzDXzVVLirnS
-	uerX3rF1t1vPcJpprg20RLvFewoV0UXAe1nnTpl+Ad4hUA9i5VBrysxC2D8nNXL/VopxC63W6nQ
-	1VcMyQ4NEDQnQeFKpp6XOIdJzkcu1VDeN40fPDQ==
-X-Google-Smtp-Source: AGHT+IEne6Tq/Vy41gsgsCpOQFLCZz1zGK8d8KflwozbCn6EK3PJH6kXr6qcuJTWIC2Y2Aury8Ixi48ihXvvJZ5ElME=
-X-Received: by 2002:a50:bb0e:0:b0:572:df77:c1bf with SMTP id
- 4fb4d7f45d1cf-5734d5974f2mr2413770a12.3.1715364488094; Fri, 10 May 2024
- 11:08:08 -0700 (PDT)
+	s=arc-20240116; t=1715366484; c=relaxed/simple;
+	bh=2w97oK1jExDzB2dmQW+G7YcnogGchVumDfRy3uylpLU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=oZ1/0lzr8wQIklbImkuDOHU1hW0q7/wKx9yEGZTORcCYyw0FDqSxR5PPF4XLhMRu2LfaEtxmAIDsHD3mFJzP+k55yNJ8FDwew5eKzqRDxetX+nTxFRsIImCuczdLmqYPQmxGgaPjjin0xUTTGu2VM26/deFs1jamlqzJV94fZTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=SeZwY1/C; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1715366462; x=1715971262; i=wahrenst@gmx.net;
+	bh=2w97oK1jExDzB2dmQW+G7YcnogGchVumDfRy3uylpLU=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=SeZwY1/CvYrCJxjjDSCyEOYXZZzyT3QGqPd3RJWnFxhNDxgmaQCVRzx3F9QQgjyW
+	 1kllfMaQKM02ZFcf3gca1J/49FGT1K4qSWVoH8BGbwCQqQ+/tdNxRB/xYVClIdqkU
+	 u6CvVoXpqUiWbiCizFsXy3IUwBvRV+A0iy/x6X/S7OcJz0MQkPW2FmPwnC6/YmvCb
+	 nFNhdnfY3gUa5/cRozpryGZVNoc8CH52PwLXug/rEzPzow32XL+124e/G8LB4q7RP
+	 OfOLJ/ym8L7ON/9D538fN0h0i36ZbNAK64KqpQA7H0f+JESpkdcSxL7pDJVIPinYK
+	 nEOuS6SPyWZDDHCajw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.126] ([37.4.248.43]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MEUzA-1rpWat3gmA-00Ex5b; Fri, 10
+ May 2024 20:41:01 +0200
+Message-ID: <289e3ec4-a2ba-4bbe-b758-dfcfc4a79498@gmx.net>
+Date: Fri, 10 May 2024 20:40:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240510-topic-8280_off-v1-1-bcc70cda449e@linaro.org>
-In-Reply-To: <20240510-topic-8280_off-v1-1-bcc70cda449e@linaro.org>
-From: Steev Klimaszewski <steev@kali.org>
-Date: Fri, 10 May 2024 13:07:55 -0500
-Message-ID: <CAKXuJqiHq2JXtmHawyEyporhaOUKefaRC-aV++-1=uQk8afNkQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Set status = "reserved" on PSHOLD
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Johan Hovold <johan+linaro@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm: bcm: Add BCM2712 SoC support
+To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
+ Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+References: <cover.1715332922.git.andrea.porta@suse.com>
+ <e60ee068f06cb2325e3d09c27b27002ba6db8572.1715332922.git.andrea.porta@suse.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <e60ee068f06cb2325e3d09c27b27002ba6db8572.1715332922.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:WOJWRoqjKtDUsTiFi/ZNqDsbvFNk0ekwLzkRplB2jlwJ8bh7MQM
+ JgIOSxoK5Hkh4gEcSaAnEaXju/rBT5mUbtcHhA0edylYZ8wPNHPNFwIIv8FzKkXIkkyFXPj
+ S9KijIhuLWPAYe8IIowCvni+PxMyiRYVaJB/R1pzwgMge5Lw3IrgkHfaLm9WG5UfjpC2Hd/
+ wRkgcumg0KjDD5OBWWVkw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:j7thrQ8qSFA=;wZl4qNoDouCljPfOOOAv4y++2kU
+ UjeMwOh4IcmrsYE5k/3bDMbP9EV+LfEN1Yoi1CuF8YBy9Odtotod9972TOdASGT83fGEoGkvz
+ Ksfb7zJfmjTmo8+5mTgnV04uCpn0ZgU8H/MLHSLZpSP6VxdvC9OGmzc8leW2YM/QGgfBho8P7
+ yGNFRtqE0RNdEjxJoHAGZjMGJeHQBK+M2ncgMSF291X60cs2dl3fesGU8lsr2EPAo+iQURePp
+ E6CkrgH0jlBSKcn/LJO5r9wN1EeVJyd0ZOCftQ0DB7w69bL/3r0GH5LNc6QTDMJ3WmqJxxNoy
+ N26rLmpNkQZHIKdNw07eDJct7KM5/rQsENHi6sfKYz+O93gVHaCdHEqngD/lguK5QK047tUBQ
+ N/0mN/GvtIK9D8rbDsTiIqppF2XG0NRTj5Xr/XWa0hElO78VgtEgaEzl/jmrMes+dgL1RvYiS
+ DcCZ3yvEOnRZW3NvShItWXEId34xNPeDs2LDR9g6goK+pCTQIE/79B2X6SrglysNxr3Eo1S3+
+ u5CiasVXS09an0W46SO6T7i9E+NW4xamKqGnoF637vCtAjW32zAJ8pA7u3FtbUYEzbqtVekXV
+ P74Afht1agNRc1cApNyxu/0QDBNjTtjB2ZSkuAhkKp4nkWr5v2sWTglNzk3MXEx1GM9UoKqRv
+ 57Nx+Ce9XjvPFEsXBi5q0yh9YMBCFPC8dS76qV83a51UjlV66ZbT3D1dP2F/jV8P0KrtyWX/2
+ Al3c6t5493wppcNdIenQi0BxKg4SbJpVj6kRM6vFwKnlOlK9nujsKWhxQCG2fi3/S9Ryo9t0V
+ j50C82jF9brh5ncXfg2hhkPDFXGhf1xqnNwUfSbvaEB6o=
 
-Hi Konrad,
+Am 10.05.24 um 16:35 schrieb Andrea della Porta:
+> The BCM2712 SoC is found on Raspberry Pi 5. Add compatible string to
+> acknowledge its new chipset.
+>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
-On Fri, May 10, 2024 at 8:40=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
->
-> On most devices, TZ seems to be blocking access to the PSHOLD reboot
-> register. This seems to be TZ, as even kicking the hypervisor doesn't
-> seem to make it writable.
->
-> Fixes: 865ff2e6f5da ("arm64: dts: qcom: sc8280xp: Add PS_HOLD restart")
-> Reported-by: Steev Klimaszewski <steev@kali.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts=
-/qcom/sc8280xp.dtsi
-> index 0549ba1fbeea..59f0a850671a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -4623,6 +4623,8 @@ tsens0: thermal-sensor@c263000 {
->                 restart@c264000 {
->                         compatible =3D "qcom,pshold";
->                         reg =3D <0 0x0c264000 0 0x4>;
-> +                       /* TZ seems to block access */
-> +                       status =3D "reserved";
->                 };
->
->                 tsens1: thermal-sensor@c265000 {
->
-> ---
-> base-commit: 704ba27ac55579704ba1289392448b0c66b56258
-> change-id: 20240510-topic-8280_off-11539fc57f98
->
-> Best regards,
-> --
-> Konrad Dybcio <konrad.dybcio@linaro.org>
->
-Tested on my X13s here and confirmed it does what it says on the tin now :)
-Tested-by: Steev Klimaszewski <steev@kali.org>
+Thanks
 
