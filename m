@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-66349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC3B8C284B
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:55:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00C358C2862
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 18:00:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07EC21C21C2F
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:55:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18A8F1C23FF3
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E079171E6A;
-	Fri, 10 May 2024 15:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C8A171E7C;
+	Fri, 10 May 2024 16:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="j2TqeLIG"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="gSaXuqTF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA8212C49A;
-	Fri, 10 May 2024 15:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04774F4EB;
+	Fri, 10 May 2024 15:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715356552; cv=none; b=MdUrzuUrOHsuqosYU4xyZmYRA+UfpwZ6Sv/7CyR+z8wG/pkak7NJeO9tFCgimv64O4hW/inW6vBhJgHpTAcmdgA+XVotbeBy0cpumGjK63XAB11O35lnuXmZ1rwcGDc3F6fnHtBYRRQprRWxJSdd7I8+6rcgsWHyDsRDnqxxDhk=
+	t=1715356800; cv=none; b=BOrOF1a5/MA2rU4JqH5khgBRf6r1DI0dlfq4Ifk895FJtRlMtjxTo1M36Widf+fZp/YFSyVuyumjWgFSjtWBS6ahxC9g75Di5fHYsusXUlCY8e3nLkqhYKnuwdTmIGlBqhzpkiagOFYETh9gdcsCtOFE0dcbOW1QOXGa7uBMeEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715356552; c=relaxed/simple;
-	bh=IBLZr/tGroMZp0lVjQIUbjuvOt/Nd1d3apRv1DjPoXk=;
+	s=arc-20240116; t=1715356800; c=relaxed/simple;
+	bh=wbKDnKfEQHCAXUwX9RfyMwgfTbBBsErC9trEzdCJW5A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l5MBER0OKGQyfqx3QZ1DdhVvjlR0SVvPlYTA05yw3eIcUM6RfiQ+7OBcevy+d1IcD7gHOK3EXSVbH6wtZduwW/9IAQ04DHOZvMwaai+on8Kh4DogWQyMikDmTMxL74gPndfjCjAiv+cgSJyFQdAYyaSwx5VHdpPbiuBJFy8SqHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=j2TqeLIG; arc=none smtp.client-ip=78.32.30.218
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qk6UWnN8B9PHjk7l3XMS/A7yffk060GL/015pQtovXbBcqn+YBbb5OiRVrfUUSlCXSfUR2mUhm2wh3VtHDACs+3P6vuuu2TduAplfXgobJe0CDS1p6HNYqpLUcjPJrNOQsTh32NOm4rmba2E24aNLs527w7vLL0289isKOwXPIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=gSaXuqTF; arc=none smtp.client-ip=78.32.30.218
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
 	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=dy8lSBZHGbHQucNhRUnmeh0rwb1O8iiwSESw+dcfU8A=; b=j2TqeLIGRT+ss1rjOoJ2nVsQgo
-	8wXrn3qFtsaVTL35D/EoE1B/D3oVEMpSXUgYDR42dPQEMAwNi6EmP+RKs6DNvbpiNyoBv+utI+Rde
-	4XDlVZFI659lKYxs9nW+Wmwk18TRd0FxdzkO0Zm8HZfFzzsWyBBvvj8+CIhz2wfplqG6Yaoe57IkF
-	ef/yIA1z0C6ZtKKI8/JpZyttM7s2DcorU6JCY0AmWJvmmXFno9Qv3dMpYwOZmbRN5VekXeC83terg
-	YrAjAuovYMSRQ6cyZK4bIz8trOfi3914NvnzuXM8q6W2AS+yB0WBgdyY13YR9eIIQo1AWbXIMVkRX
-	jgVRTthQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42354)
+	bh=NCElh/tyDAszVw05ZrkDEqetMG00D6E7lhb4V2GSblY=; b=gSaXuqTFqMJJ10MxmWKnlqyahH
+	e1mtg+tX+08Yx0Z9JFi0WOx/NiqCo4TT1PJDVduXxGn6u+pePxT+nwNL9/d48J3K2ZU8arGzt5f+a
+	TGCW31WrhkduJNdKfUzkNTGu5jHMFlC1RDNdkTABWJou3KBqDQ7S8/r5rFZALDMwNkW9iHenJnro/
+	t0ITEhVmlir8R67TOPrT4nB0xUfpQClLM+Qhhv8k6EgNDAVm8j0CPllNk/LGXiLlgKO54VDTUZXL0
+	nsq4Ao1zCKfbCNERsZretL0QxEegZPfrfqK9xSeiYjKAKq6641j39vyjIU2WQGoP23XCRDAzIrTVK
+	G9LY5HAQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40528)
 	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <linux@armlinux.org.uk>)
-	id 1s5Sar-0007b1-0E;
-	Fri, 10 May 2024 16:55:33 +0100
+	id 1s5Ses-0007bb-2P;
+	Fri, 10 May 2024 16:59:42 +0100
 Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
 	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1s5Sar-0003R6-5s; Fri, 10 May 2024 16:55:33 +0100
-Date: Fri, 10 May 2024 16:55:33 +0100
+	id 1s5Ses-0003RF-DD; Fri, 10 May 2024 16:59:42 +0100
+Date: Fri, 10 May 2024 16:59:42 +0100
 From: "Russell King (Oracle)" <linux@armlinux.org.uk>
 To: Romain Gantois <romain.gantois@bootlin.com>
 Cc: "David S. Miller" <davem@davemloft.net>,
@@ -73,39 +73,33 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v6 3/7] net: stmmac: Make stmmac_xpcs_setup()
- generic to all PCS devices
-Message-ID: <Zj5DddF4nl/B4zZM@shell.armlinux.org.uk>
+Subject: Re: [PATCH net-next v6 6/7] net: stmmac: add support for RZ/N1 GMAC
+Message-ID: <Zj5EbvYdOivxdrJc@shell.armlinux.org.uk>
 References: <20240510-rzn1-gmac1-v6-0-b63942be334c@bootlin.com>
- <20240510-rzn1-gmac1-v6-3-b63942be334c@bootlin.com>
+ <20240510-rzn1-gmac1-v6-6-b63942be334c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240510-rzn1-gmac1-v6-3-b63942be334c@bootlin.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240510-rzn1-gmac1-v6-6-b63942be334c@bootlin.com>
 Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Fri, May 10, 2024 at 09:38:10AM +0200, Romain Gantois wrote:
-> From: Serge Semin <fancer.lancer@gmail.com>
+On Fri, May 10, 2024 at 09:38:13AM +0200, Romain Gantois wrote:
+> From: Clément Léger <clement.leger@bootlin.com>
 > 
-> A pcs_init() callback will be introduced to stmmac in a future patch. This
-> new function will be called during the hardware initialization phase.
-> Instead of separately initializing XPCS and PCS components, let's group all
-> PCS-related hardware initialization logic in the current
-> stmmac_xpcs_setup() function.
+> Add support for the Renesas RZ/N1 GMAC. This support can make use of a
+> custom RZ/N1 PCS which is fetched by parsing the pcs-handle device tree
+> property.
 > 
-> Rename stmmac_xpcs_setup() to stmmac_pcs_setup() and move the conditional
-> call to stmmac_xpcs_setup() inside the function itself.
-> 
-> Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
+> Signed-off-by: "Clément Léger" <clement.leger@bootlin.com>
 > Co-developed-by: Romain Gantois <romain.gantois@bootlin.com>
 
-stmmac_pcs_init() looks weird in this patch, but the reason is set out
-here. So:
+Looks fine to me.
 
 Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
