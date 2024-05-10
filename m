@@ -1,146 +1,238 @@
-Return-Path: <devicetree+bounces-66356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01848C28E6
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 18:44:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B4C68C2938
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 19:28:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BEBCB25D0D
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:44:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2415E2871E7
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 984151429A;
-	Fri, 10 May 2024 16:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC1C182C3;
+	Fri, 10 May 2024 17:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iwHTst/P"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NwdxzvCv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6920910957;
-	Fri, 10 May 2024 16:44:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A584818030
+	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 17:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715359492; cv=none; b=Zebg1p5gJrCIaD5cR79TPCnaJu23GqujLzhvBXiKE9zUaF5BXqQ2s7OYo/SM71wSRVhGKd3oJedIS61s3T/fKkN5lum3h1LrzPl9ZlW8h4iMWJLDLNPOeT6DoyoeompYkwAMz4k43uCzBlFUJ4pSpbjxUktwLktU9VFt+BHtrc4=
+	t=1715362116; cv=none; b=IxW+Q0sdVlCuRzCR4Ehv9EJWQQYLTFTUqbx08H2g8EgTiETNtINKKFWbZtmxreD6jluAWN1GGVEv3Ap6W6xryRPCoXlzKtTziFdKVgjuFiyuW/7EWKkJxE26bEffsSAZl6+aTrBE5r7KcyhANPtk2F/Byn3lnfQNeQhF+jYq7Qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715359492; c=relaxed/simple;
-	bh=AKsuHfdNxYnH+Bp33dxu23hQYlBdH9/kq/GhGgLGp4Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JMFJmVW+xA9EUphCK9kAuSVArvBzYTq6atOBg5o00tII99OVhbc896rcTq7xd0L/h4/tGckfOm01x+sbR0nTwoVqa8YAdDi/aex1OiwkG1XgaQJyDCpJnsIU4FCJporAzb6/Zm2MPoE6UIlzH9lHIL+mXKQ23mQ/TAgU1ODWWZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iwHTst/P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3646C113CC;
-	Fri, 10 May 2024 16:44:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715359492;
-	bh=AKsuHfdNxYnH+Bp33dxu23hQYlBdH9/kq/GhGgLGp4Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iwHTst/PUBaIDeL/0I7NTk6xdKrE2X80x2nY/g63GwvfMQVE1XEAa5PIKamvPjV1w
-	 VzjanQL9YWSBgknLqj26H5/YGRB9ZpqfJFHSGV6wD1ewNvxq6GJ+toQkC+TfU14C/L
-	 IsbH/tSPax7zc+RF5X48zbJ8c96raFp0f0qYon0mY2yQ9YxBHOpwQL+lTZH+/sR3kK
-	 v5BjCblwT1wySlwrB7BwFo+/EPQGeFMEZJRvFZpTWUD0ocC1SuCfaq5v+YNRzz8efF
-	 DELIcPiCsxkxSHeQUEugE64fp389T9nMEWUCoHKmaM2zRP2Nz0r659xkK2aQC8w7b9
-	 aD+YspMtBolAw==
-Date: Fri, 10 May 2024 11:44:49 -0500
-From: Rob Herring <robh@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Paul Kocialkowski <contact@paulk.fr>,
-	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH v2 0/5] Add support for GE SUNH hot-pluggable connector
- (was: "drm: add support for hot-pluggable bridges")
-Message-ID: <20240510164449.GB336987-robh@kernel.org>
-References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
+	s=arc-20240116; t=1715362116; c=relaxed/simple;
+	bh=qf8oKr6WwamfpnpYFNCQqPVeWG4DFXu0MVvhKXbSr5Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QFo/e8YPWaFxJBGKB0itfKNxevspigapLuC01RELAJTHIbCD+W8JpZB0yq7fmupoWcOToqIklACQqVlX49LqWr7Ri3l/dd+mLeAhuBkaPJZXfYNicTXfhV18lQkKn3aKdkmjzh7Lj+mISAY8hDTvSP/twkUDw1dndY6oTIAGm/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NwdxzvCv; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2e564cad1f1so3045661fa.0
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 10:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715362111; x=1715966911; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T3rbohNuOg29gHEbrkJJS5rW7/8AkwQEBcxPdlAaH+o=;
+        b=NwdxzvCvSYkZWtXUm1h0wXCioq734I5bnshzbtHQLyjiHJtWgejmrinMFOqZFPCkKW
+         7FB4QKCLbu/8Q+ZgWCVpO41NoPRhu0+K4M8tizRhuG4A10Z7HtxZJztObzsjaTV+fO/m
+         n2O84BWhFYG+VU3wJ0gvVOOF1UPnHIYnsyf2j2d8RT0QuzL4cXay2iKuBeumQsCMA7iT
+         yjj9YtsYoz53ZLMZ/9Ov+4md3zDariQNcs95/LzGREo7bC67Et9E/vU+iZzwpS8cQ7Fx
+         C3zXv0Tb1zAnzA1aQkregal1bAZeG6ShN1SRz6nQa2AazBbkN2f4kPlQWrv0Tb7ZqVct
+         EBaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715362111; x=1715966911;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=T3rbohNuOg29gHEbrkJJS5rW7/8AkwQEBcxPdlAaH+o=;
+        b=ujCCHBBWYBQ0MJecq3EfPurj8+sHceagipbLyHH4joe5ypXi1102g3NFDS8lDLNncQ
+         gnQiIF1xN5z0ClOLOmgUStfKOkq1HdI79HXOGqQohV49xls32DANPHCoAAz4v1Bds/lt
+         srwlaG53NVqK8ZlJGw7s4qNn6UgWg6wB85PK0E/SDNjar1qekmLjJldzUShrCj6M2nGX
+         /iSguxI4kU3pEY+dvq6go1GNeRt7R6aapZPsuWQBSYFP15/HWQeFXtQs1IdbvDBhyjRb
+         l/h9VnsFdcIGOIFgoTpVBSFJmpiE3iA0CvKYNmJWqxgoUFAx4TE/SLWcE8mjZX61aeLl
+         F/KA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAmdYJOmSmiB36ZJEpb9VW0bx1wDjgtuR4V+skaNhp1JQWOHsvZO5c2x5BP7D0m0KlrmoL/w1sBsSs3gCCfHq6iZ9f+CCK1rOIig==
+X-Gm-Message-State: AOJu0YyynxHpzeBjLPHOGehQQBPGJuXl7v423XFZL3mKQ/xoNOWV1L+9
+	UAW7YGBu/La8FitEBuglD4KW7oKgbLN9FE1pjK0YVQgCfF7t8QjuLeLyEuhdjgtgoP+U5QZ3rOW
+	6L0DMBtGlrB2WnxjFuWW4c5ZZ0oSIWCtbqWq50A==
+X-Google-Smtp-Source: AGHT+IFMvUPgTMGdHDvPMkxljT5mGM8cFkPuvoW6GLn0zBzdmPBKzcNovEPni24+gskmvrblYDYdOBqIoJzuri6qSfk=
+X-Received: by 2002:a2e:8847:0:b0:2e2:2791:983e with SMTP id
+ 38308e7fff4ca-2e51fd451femr20534891fa.13.1715362110805; Fri, 10 May 2024
+ 10:28:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
+References: <20240510064053.278257-1-Mariel.Tinaco@analog.com> <20240510064053.278257-2-Mariel.Tinaco@analog.com>
+In-Reply-To: <20240510064053.278257-2-Mariel.Tinaco@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 10 May 2024 12:28:19 -0500
+Message-ID: <CAMknhBFXk07HbP_pPg5wkW-9Ah2-66kGzZFvcvBNrbjfguHb4g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: add docs for ad8460
+To: Mariel Tinaco <Mariel.Tinaco@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Marcelo Schmitt <marcelo.schmitt1@gmail.com>, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>, Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 10, 2024 at 09:10:36AM +0200, Luca Ceresoli wrote:
-> Hello,
-> 
-> this series aims at supporting a Linux device with a connector to
-> physically add and remove an add-on to/from the main device to augment its
-> features at runtime, using device tree overlays.
-> 
-> This is the v2 of "drm: add support for hot-pluggable bridges" [0] which
-> was however more limited in scope, covering only the DRM aspects. This new
-> series also takes a different approach to the DRM bridge instantiation.
-> 
-> [0] https://lore.kernel.org/all/20240326-hotplug-drm-bridge-v1-0-4b51b5eb75d5@bootlin.com/
-> 
-> Use case
-> ========
-> 
-> This series targets a professional product (GE SUNH) that is composed of a
-> "main" part running on battery, with the main SoC and able to work
-> autonomously with limited features, and an optional "add-on" that enables
-> more features by adding more hardware peripherals, some of which are on
-> non-discoverable busses such as I2C and MIPI DSI.
-> 
-> The add-on can be connected and disconnected at runtime at any moment by
-> the end user, and add-on features need to be enabled and disabled
-> automatically at runtime.
-> 
-> The add-on has status pins that are connected to GPIOs on the main board,
-> allowing the CPU to detect add-on insertion and removal. It also has a
-> reset GPIO allowign to reset all peripherals on the add-on at once.
-> 
-> The features provided by the add-on include a display and a battery charger
-> to recharge the battery of the main part. The display on the add-on has an
-> LVDS input but the connector between the base and the add-on has a MIPI DSI
-> bus, so a DSI-to-LVDS bridge is present on the add-on.
-> 
-> Different add-on models can be connected to the main part, and for this a
-> model ID is stored in the add-on itself so the software running on the CPU
-> on the main part knows which non-discoverable hardware to probe.
-> 
-> Overall approach
-> ================
-> 
-> Device tree overlays appear as the most natural solution to support the
-> addition and removal of devices from a running system.
-> 
-> Several features are missing from the mainline Linux kernel in order to
-> support this use case:
-> 
->  1. runtime (un)loading of device tree overlays is not supported
+On Fri, May 10, 2024 at 1:42=E2=80=AFAM Mariel Tinaco <Mariel.Tinaco@analog=
+.com> wrote:
+>
+> This adds the bindings documentation for the 14-bit
+> High Voltage, High Current, Waveform Generator
+> Digital-to-Analog converter.
+>
+> Signed-off-by: Mariel Tinaco <Mariel.Tinaco@analog.com>
+> ---
+>  .../bindings/iio/dac/adi,ad8460.yaml          | 67 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad8460.=
+yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad8460.yaml b/=
+Documentation/devicetree/bindings/iio/dac/adi,ad8460.yaml
+> new file mode 100644
+> index 000000000..924f76209
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad8460.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2024 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/adi,ad8460.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD8460 DAC
+> +
+> +maintainers:
+> +  - Mariel Tinaco <mariel.tinaco@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD8460 110 V High Voltage, 1 A High Current,
+> +  Arbitrary Waveform Generator with Integrated 14-Bit High Speed DAC
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+8460.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad8460
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 20000000
+> +
+> +  vref-supply:
 
-Not true. Device specific applying of overlays has been supported 
-since we merged DT overlay support. What's not supported is a general 
-purpose interface to userspace to change any part of the DT at any point 
-in time.
+It would be nice to make the property name match the pin name since
+there is more than one reference voltage input.
 
->  2. if enabled, overlay (un)loading exposes several bugs
+refio-1p2v-supply:
 
-Hence why there is no general purpose interface.
+> +    description: Drive voltage in the range of 1.2V maximum to as low as
+> +      low as 0.12V through the REF_IO pin to adjust full scale output sp=
+an
 
->  3. the DRM subsystem assumes video bridges are non-removable
+I don't seen anything in the datasheet named REF_IO. Is this a typo
+and it should be REFIO_1P2V?
 
-Rob
+> +
+> +  clocks:
+> +    description: The clock for the DAC. This is the sync clock
+> +
+> +  adi,rset-ohms:
+> +    description: Specify value of external resistor connected to FS_ADJ =
+pin
+> +      to establish internal HVDAC's reference current I_REF
+> +    minimum: 2000
+> +    maximum: 20000
+> +
+
+I see lots more pins on the datasheet, many of which should be trivial
+to add bindings for (we prefer to have the bindings as complete as
+possible even if the driver doesn't implement everything). Potential
+candidates:
+
+sdn-reset-gpios: (active high)
+reset-gpios: (active low)
+sdn-io-gpios: (active high)
+
+hvcc-supply:
+hvee-supply:
+vcc-5v-supply:
+vref-5v-supply:
+dvdd-3p3v-supply:
+avdd-3p3v-supply:
+
+It also looks like there is a parallel interface for data, so I would
+expect to see an io-backends property that links to the PHY used for
+handling that.
+
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    spi {
+> +        dac@0 {
+> +            compatible =3D "adi,ad8460";
+> +            reg =3D <0>;
+> +            spi-max-frequency =3D <8000000>;
+> +            adi,rset-ohms =3D <2000>;
+> +
+> +            vref-supply =3D <&vrefio>;
+> +            clocks =3D <&sync_ext_clk>;
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 758c202ec..dae93df2a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1234,6 +1234,13 @@ W:       https://ez.analog.com/linux-software-driv=
+ers
+>  F:     Documentation/devicetree/bindings/iio/adc/adi,ad7780.yaml
+>  F:     drivers/iio/adc/ad7780.c
+>
+> +ANALOG DEVICES INC AD8460 DRIVER
+> +M:     Mariel Tinaco <Mariel.Tinaco@analog.com>
+> +L:     linux-iio@vger.kernel.org
+> +S:     Supported
+> +W:     https://ez.analog.com/linux-software-drivers
+> +F:     Documentation/devicetree/bindings/iio/dac/adi,ad8460.yaml
+> +
+>  ANALOG DEVICES INC AD9739a DRIVER
+>  M:     Nuno Sa <nuno.sa@analog.com>
+>  M:     Dragos Bogdan <dragos.bogdan@analog.com>
+> --
+> 2.34.1
+>
+>
 
