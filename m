@@ -1,184 +1,119 @@
-Return-Path: <devicetree+bounces-66165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6A8C8C1D12
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 05:36:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831A28C1D4D
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 06:03:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 565C31F220D4
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 03:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23E381F22C45
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 04:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109741494DE;
-	Fri, 10 May 2024 03:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360D714A088;
+	Fri, 10 May 2024 04:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EqLW4GmA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kuJ13vB4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585A413BAC8;
-	Fri, 10 May 2024 03:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5AE14A098;
+	Fri, 10 May 2024 04:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715312176; cv=none; b=qtWV2YwljkJYDaWoZoMr/kbohRnwd4k0E2u9PAY9oZ5yF5fegIbcC8F+rxAcg1i6p2phZ1oednNU9C7VwVcyA//4YTVmfIb4A4sLQ1TBDihMDS23Ig/YAibeIJwyCe85n5dQZsQi6KTlKQ4AI0aXuHkA+DQ4tvPRUuuwsvd56eM=
+	t=1715313780; cv=none; b=Y4xtAYnSox1R1npq4TiCxrK4xGLPWBzAPJ3+0w9dAxQqSsvLohCQTUmiTNkdSS4mQ3B9LVkM0WZeYxtQh7A4LK40WdPXDT992liqbiwuHz25+L1fiHxtJmqHF+nPpEGeqsjCPiuQ2VUUFjpTP9JEGQPn4obcdcRJe+RYk3zhmH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715312176; c=relaxed/simple;
-	bh=KOSn1hZhv1DeOtrd/XQIWrqlLlDGMSahtKxPMjKo1v4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WO1R1vLqziIlze33pUr8/L2Y8KEjxtLaPcMXwnHnfD++i6dpGtYynSDY5/LTIjGNGmUzfmjxTnT/iRYEq5XSyJRan9q7VQYz7wlfwzqgChu2UF0WfuDPXaJG5ESF7s9gM/YWacfBm2Zxz2Tqw+52LpLVPzOnixBlWvKkhDPUbx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EqLW4GmA; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1715313780; c=relaxed/simple;
+	bh=jvSmy0FOqXnRlpmANSVHSxZbSvwbfOidyhPqHt9kz0I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=efuQ4ctE4ewoxZpq2uC6L0SgSCXCOzIevJ/uUSOjVyTAHerP8cuqZ8Sslfe9b2s03MjkhNyZMhyQsnFKG6/PzV9MYpDmDkdP6rcd6+Wp2Mh8KMGHYgJGte5qbQUOEeciCQSehrYVZnQHAnQRKbLACzCQP9Nn7aH7aUHEIhQpGk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kuJ13vB4; arc=none smtp.client-ip=209.85.166.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5ff57410ebbso1301587a12.1;
-        Thu, 09 May 2024 20:36:14 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-36c5eedd124so6777535ab.2;
+        Thu, 09 May 2024 21:02:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715312173; x=1715916973; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=om+gVHo+UYQCK20XV54trkvgwUZ7dLC7k9R/3N8VLiQ=;
-        b=EqLW4GmA4bZtF1KFsa9TxT5M4ieJ1Y6EO9M16RWMHtVfvXvGG3tB0T4j5vRFoPPWGy
-         w480zePmbiero3u00+O6KJ6rduFapBCQ9oOzgT5KkyhZAvdUE79+sh7gPpsdcwjn6+2X
-         E40VT19olM9fqymq6FLo4dVBDC/CoJ7Zr0h0Ua3L2QuddQcbn1Ko4VRjCpANM1iC0n7J
-         Gmh00sXkNj24PAhOlIN5A8eJv2s0SC9dWCJwdxlL69D7n76xCvEn+n2lZdNpG0ZrdhTt
-         D2uZUDWVESLaQ49+bgSYFwYdsP9DoLp03ejH5E9g3AKsCV2r2QPmEEC9ic5KpU1bXhTq
-         AqjA==
+        d=gmail.com; s=20230601; t=1715313770; x=1715918570; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OEJsQFf2xgBkjpapTfqeer4vWYgNIVVXGtaAWZEXf5Q=;
+        b=kuJ13vB4G2VWJVwmeubBZsY001g6m4EbbqZAmb7qKeKqRftjVE51Xvv1JZybsC905b
+         O+ajYibx9y9bPrUOXWXsFBnDXLu8JIFn0POc3n7zp/KdKMGpdE0UZz/tNcytkMoOnxgg
+         mZf10acfZnqvebk5F0GsTZA1Oh1OLx+Hv07t2PbvBOWpPMT6CCA4cH18zhrOki+6jLgw
+         YcnBEFm1qn3/z4g4gMEmzvp/dRGpAfLi43CC0f62SbYcA3PgCgzRcPK9W1N1QmTTr/Uz
+         1kNk5cuzTJ4/B4/XX9TmIGE5BrEo30piASJrO++6ahjYn5SbLiEvf1z7n34Qv6M2n8gT
+         7/wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715312173; x=1715916973;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1715313770; x=1715918570;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=om+gVHo+UYQCK20XV54trkvgwUZ7dLC7k9R/3N8VLiQ=;
-        b=VGcA6jymm65S0RYgGWZ5uyvpMHo9f96syANhdVnUOTm6VCUFQt+0TX9kA4K5UE1mRW
-         JSH9aiXjbIEmXkDA9QPqqLi/vGnkJ1a8DUXGbKKjcou+W1/2C0F4rubrMAxhRYq1ISl1
-         gEecZgI7GUkjzNvPggOfx/VAteqPGixeJSeWaDk11BEFFsorNQZ1XCiX/TNM+IGpSWWJ
-         K7cjXwh4/AuTmAd5B27SecYKG0P5qDZmPSpBuoPMldCYPa8cueb3RqbaobIvJK6BQSId
-         d0y37Z7cMA9vYFe9kMkiDdHOuergVzLaCpnZ2eJyorgOPpFRJ7vW5IOVjFuWsvnNB/+u
-         iJbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU92N3KrH+rfuINHMcuEzcHewO/PzoRzv5rV/vr4funPJLBczcCy6/YP/slCT6ocPED8QzqEqgTUDM45nThWXU6RxdjWxHoqVFpgaKn//m/xi1neN85+5FmJCaV0qner6KH4IpJV0Hu1sCii7cEqIiZt/YrGOXCu0BkGq2V2rVuozfEZjjR
-X-Gm-Message-State: AOJu0YzlnU/n5RUIwv+0vMngZqYFRviuFgidBAHBkKYOPFclOxerN3NY
-	O7Qzg1arDYk2Tskb4R7/BfgXhwUxIcGl7ejoY9aPsKppGNMNOdBH
-X-Google-Smtp-Source: AGHT+IE/0hqi92CFy7Q2dWIvYr/EbTY5YJEnOOZwOajGysRIZOSYsI29MBVKXbBecsK3oAg+mdknlg==
-X-Received: by 2002:a05:6a21:35c6:b0:1af:8104:46e0 with SMTP id adf61e73a8af0-1afde1b7ee1mr1601971637.49.1715312173404;
-        Thu, 09 May 2024 20:36:13 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2b67116413dsm2243612a91.13.2024.05.09.20.36.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 May 2024 20:36:12 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 9 May 2024 20:36:10 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	"jdelvare@suse.com" <jdelvare@suse.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Document adt7475 PWM initial
- duty cycle
-Message-ID: <94c843e2-4415-4786-bfd4-a77fdbbfab07@roeck-us.net>
-References: <20240508215504.300580-1-chris.packham@alliedtelesis.co.nz>
- <20240508215504.300580-2-chris.packham@alliedtelesis.co.nz>
- <fe5b3af9-b307-45e1-b190-ba2b3327a8df@kernel.org>
- <d11093bb-230b-4918-a8cd-4f4eb760ccf3@alliedtelesis.co.nz>
+        bh=OEJsQFf2xgBkjpapTfqeer4vWYgNIVVXGtaAWZEXf5Q=;
+        b=FrejcXdxugf/02RyFF3sMn6nGs07+KYDE/jK49ofWD5m68nzBjz4JM+lFjJHKIO1WT
+         Hav/PVSEmEE04nAa037DdHvosedO5Z4zIN4LNfcyrFovNCHPKFsr1C3EXXbSdOgpDGmX
+         H9CIxDrO8mRZ630webACmLaTNMC3uj+9cWYY6MGRsWCdBu3G+oOKrN3jKfuE8evbGdW+
+         aBu9YjtvZzInQ3qTRKTgtNLlexzEx6Mfg9dae7Dq0aXrHSgT6Qicaepi4FdsN+RgQS2+
+         Hodzm1hgg4QhqBPKthM5S38H6ZW90wFxYe41eHIH7bYNBTxi0PKJncDFOQ7Bz329Ekmb
+         xvlg==
+X-Forwarded-Encrypted: i=1; AJvYcCVLlXG/rgPCGBglnZV7p7vpr36MJFJQZAA9wXhjkOOBcma8b6VQ4Ge90wKThEDO7Tu1ugzggb/+RnuFDMRcVsysFTDMMS7o75iBxtxvuLJlF39HjyGNKtE3JE6HIibdnsC+dTIDRhiXVCF0rp8UlcKBooUXWa+4dNjFvrFeLOCfNzx9AA==
+X-Gm-Message-State: AOJu0YzI9o1NY6ec86X0kyfC3UWNTfu5QHXRMq/tVeet/R/ltRCW44fH
+	BHsirDmgXznCOheGXQ7gcdqoQwv20s0i8R4wVj6x51Mwfwcu2bPOeYSdGcDM1yUg1vTfRlBpJ5j
+	QEV9I4fXck4oDWhVnKPiTNM0aLek=
+X-Google-Smtp-Source: AGHT+IF/DRHYkgq9YNV2uNigtRq8cxq3EAkCVJLj/pteVRJ9Grp/Sf/n2cJ8GF/Gh2HUaqN1IhBXSRvg/7uJWGVE1Uc=
+X-Received: by 2002:a05:6e02:1909:b0:36c:f0b:4f55 with SMTP id
+ e9e14a558f8ab-36cc14f7bcdmr18846195ab.26.1715313770452; Thu, 09 May 2024
+ 21:02:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d11093bb-230b-4918-a8cd-4f4eb760ccf3@alliedtelesis.co.nz>
+References: <1715219038-32453-1-git-send-email-shengjiu.wang@nxp.com>
+ <1715219038-32453-3-git-send-email-shengjiu.wang@nxp.com> <0d10a689504be61c50b186d89ddbf9d1.sboyd@kernel.org>
+In-Reply-To: <0d10a689504be61c50b186d89ddbf9d1.sboyd@kernel.org>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Fri, 10 May 2024 12:02:39 +0800
+Message-ID: <CAA+D8AP9uS1ePxSeSUPGCGe42U5sNguZYQS3d-9T305d2iVbhQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] clk: imx: clk-audiomix: Add reset controller
+To: Stephen Boyd <sboyd@kernel.org>, p.zabel@pengutronix.de
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org, conor+dt@kernel.org, 
+	festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de, 
+	krzk+dt@kernel.org, marex@denx.de, mturquette@baylibre.com, peng.fan@nxp.com, 
+	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Chris,
-
-On Thu, May 09, 2024 at 06:19:12PM +0000, Chris Packham wrote:
-> Hi Krzysztof,
-> 
-> On 9/05/24 19:06, Krzysztof Kozlowski wrote:
-> > On 08/05/2024 23:55, Chris Packham wrote:
-> >> Add documentation for the pwm-initial-duty-cycle and
-> >> pwm-initial-frequency properties. These allow the starting state of the
-> >> PWM outputs to be set to cater for hardware designs where undesirable
-> >> amounts of noise is created by the default hardware state.
-> >>
-> >> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> >> ---
-> >>
-> >> Notes:
-> >>      Changes in v2:
-> >>      - Document 0 as a valid value (leaves hardware as-is)
-> >>
-> >>   .../devicetree/bindings/hwmon/adt7475.yaml    | 27 ++++++++++++++++++-
-> >>   1 file changed, 26 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/hwmon/adt7475.yaml b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-> >> index 051c976ab711..97deda082b4a 100644
-> >> --- a/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-> >> +++ b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-> >> @@ -51,6 +51,30 @@ properties:
-> >>         enum: [0, 1]
-> >>         default: 1
-> >>   
-> >> +  adi,pwm-initial-duty-cycle:
-> >> +    description: |
-> >> +      Configures the initial duty cycle for the PWM outputs. The hardware
-> >> +      default is 100% but this may cause unwanted fan noise at startup. Set
-> >> +      this to a value from 0 (0% duty cycle) to 255 (100% duty cycle).
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> >> +    minItems: 3
-> >> +    maxItems: 3
-> >> +    items:
-> >> +      minimum: 0
-> >> +      maximum: 255
-> >> +      default: 255
-> >> +
-> >> +  adi,pwm-initial-frequency:
-> > Frequency usually has some units, so use appropriate unit suffix and
-> > drop $ref.  Maybe that's just target-rpm property?
+On Fri, May 10, 2024 at 6:04=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wro=
+te:
+>
+> Quoting Shengjiu Wang (2024-05-08 18:43:56)
+> > Audiomix block control can be a reset controller for
+> > Enhanced Audio Return Channel (EARC), which is one of
+> > modules in this audiomix subsystem.
 > >
-> > But isn't this duplicating previous property? This is fan controller,
-> > not PWM provider (in any case you miss proper $refs to pwm.yaml or
-> > fan-common.yaml), so the only thing you initially want to configure is
-> > the fan rotation, not specific PWM waveform. If you you want to
-> > configure specific PWM waveform, then it's a PWM provider... but it is
-> > not... Confused.
-> 
-> There's two things going on here. There's a PWM duty cycle which is 
-> configurable from 0% to 100%. It might be nice if this was expressed as 
-> a percentage instead of 0-255 but I went with the latter because that's 
-> how the sysfs ABI for the duty cycle works.
-> 
-> The frequency (which I'll call adi,pwm-initial-frequency-hz in v3) 
-> affects how that duty cycle is presented to the fans. So you could still 
-> have a duty cycle of 50% at any frequency. What frequency is best 
-> depends on the kind of fans being used. In my particular case the lower 
-> frequencies end up with the fans oscillating annoyingly so I use the 
-> highest setting.
-> 
+> > The EARC PHY software reset and EARC controller software
+> > reset need to be supported.
+>
+> Can you move this to drivers/reset and use auxiliary device APIs to do
+> that? The idea would be to have reset maintainers review reset code.
 
-My udnerstanding is that we are supposed to use standard pwm provider
-properties. The property description is provider specicic, so I think
-we can pretty much just make it up.
+Thanks for your comments.
 
-Essentially you'd first define a pwm provider which defines all the
-pwm parameters needed, such as pwm freqency, default duty cycle,
-and flags such as PWM_POLARITY_INVERTED. You'd then add something like
+This is a minor reset control only for XCVR devices, two reset bits
+are accessed.
 
-	pwms = <&pwm index frequency duty_cycle ... flags>;
+If we move to an auxiliary device,  we need to define a new header file
+and a new driver, which will bring more code size and complexity.
 
-to the node for each fan, and be done.
+So is it necessary to separate it to another auxiliary driver/device?
 
-That doesn't mean that we would actually have to register the chip
-as pwm provider with the pwm subsystem; all we would have to do is to
-interpret the property values.
+And add Philipp Zabel in loop for review.
 
-Hope thie helps,
-Guenter
+Best Regards
+Shengjiu Wang
 
