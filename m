@@ -1,118 +1,222 @@
-Return-Path: <devicetree+bounces-66198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EEFA8C2028
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 11:03:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0226D8C204B
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 11:10:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1841A281ACF
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 09:03:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 705231F22C89
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 09:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0E21607A0;
-	Fri, 10 May 2024 09:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7931635A9;
+	Fri, 10 May 2024 09:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="TX5+xMsv"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="sFvw6Y9l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38CA71509B9
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 09:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B7C77119;
+	Fri, 10 May 2024 09:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715331795; cv=none; b=Pzfk4IutdbCLgJHF0C03UXuEZng0trQ6K6amokiEsD6qiZHWp5tuox3LIhjQg3cpJ87NJyH0zXa/4eqfIkps0wsonYsesPc2n5KBSjamvm6ij3uU7tOfprkD0/TOadC8tLqh+/RdNL+77AKCsgDjcEPV669L5+ALpmL81KNI1pw=
+	t=1715332195; cv=none; b=gXwLWEs0piGNs7A8TjFNXhdycIDYQP46rKhMKBdGLfoDESFRndPoMxCNQpsALoV/EGERm4N5LJMWaW62XSz+T2egjqS/JsvWqUDmKgc2k5b3V7QEfYLem9bPzXAgb5osFhppKKteBWPehnZ5lVJx8Z4bZ5yVO65lihOVpl8eIWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715331795; c=relaxed/simple;
-	bh=k1gtokQ4byZJTsBGp5EqYH6DueuKF5nY32DWjEDtT/I=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h7TdRwPEUNX2gQkY2sApt2Bnp1246LouDbfOosD1kpOd190O+T1JgwAZLBIJtxu5p2l9TPYeNgoJEED9mIw+XsogpO6vaZkVSJ9PReMinJgL+JhCuLjtd+cK15ewNHsIOZ0RG9GIFQx+ZRlq5Awyk/dwlx2gVM3KL8bAQjrRtWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=TX5+xMsv; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	s=arc-20240116; t=1715332195; c=relaxed/simple;
+	bh=Yv050DptdkKKoNNuup7N3qcGrSu/0n9z/vq27wUDTyU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Yi8/PDIM7FVl0LF1v41DAkErMD3q4QPD71i6QujaHRoTkSmsfhY/i9UUJqOSRvV5wU7i/gH/JQgx9LAyki0DtsyVgpZPH7ediFvWzXhDwacGsRJdJAb8b1nk/+/Ep68HMwRVHfxLuoGqOFATVHpQYvSR/mQXAlcBypjsVOwoj1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=sFvw6Y9l; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id C78FF100003;
+	Fri, 10 May 2024 12:09:41 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C78FF100003
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715332181;
+	bh=jZ4Ttk3n3/X3+60djZL+GZdLJyOvPAKAnJ6WGlawQZ8=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=sFvw6Y9lxgC2XKIk/yfeJYYMWXdIGWDgd+ZfLPiJVvWDqlotp3QkHyDEnEpMUxv3C
+	 P9Kwy63qDjqFrVZZUHrG+a5vWh6LRPMv21J+UL9WeOFb56HuTgzLRxx24yA0y7ktAl
+	 ocNIYq+cTPvv2+tRDw58erxKOo4vufIE2ewnPy6ZMqc6NGLVPnac4P7Y6QEOBZM4D4
+	 3cjW51KPB+1myDH469h+StzCxQr4mnXqvAZm6WlUyYOf65PQ4No7v4wUfIgxWdkXs2
+	 VDboofDUuwgmpsnZm8W0dKt7L8xizx0RXDP35ySwyk1RhIOn2INEIGFrv+c8tH8i9U
+	 eY5m9P+9l1Ulg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8D3BA3F371
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 09:03:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1715331783;
-	bh=EZg3bZExhlWVK50gpSicBrX5JPsAAk8r1XrLNevR8+8=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=TX5+xMsvsbxEUoSMimMTBo2mmwWV4mRa3e3pO4AQoCFbI4w10pgRpp9Mx98CpRH1s
-	 h+FRO8THwSY8QnEi6s/YKbGXHsk5wuJsgCYRXC3nv+oIlwSxY3Ft6OCQWpulmdc4Ok
-	 YmHgP0n40zhWOnJAjdhRZVQC2Pz8VNmWMEZNNyOlwK+g9RlJZHZvXDi/vzU6WSmn7E
-	 1r6trSYkcRZyfNlGFcCqBQKDFm60IzF5XWJTZVKDfDK7hbBOplc65fgEdblxHxfbR6
-	 9AslhanLZHyWo1O6ERoUrrNQwX1rOph/9RYoOTEs2Coa9EoQxFhTF96a44LY+OiIJm
-	 wQKEwuU2QqOAg==
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-43dacacbd14so19835141cf.0
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 02:03:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715331780; x=1715936580;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EZg3bZExhlWVK50gpSicBrX5JPsAAk8r1XrLNevR8+8=;
-        b=i5lFNo5faCns0HOvXeghwc39RoEofKqMYAd6xgmMb25Ymm/HnUd2bdogyCz4/EAjVT
-         sDOSWY55Xfx3RzW2wyYuLZc38NWgHSvdA3YrDwGwt0G0oDc8CiIuiJYE8F6NGOsSGK2l
-         VkT8RZbgegBlSa48R8uVX+fb5HFD+JGX9tepXFpm3e4QRlCuRoSJFoatKilhMV95PkYj
-         FhZdES0yYnqa5xn53pyjWbRefqU7bJwXysoEDbmK5B/2WE9+TwYLJEyJZXazi8OIlqJ+
-         Fjfjmy0dPrrouDkwL/1ctaa86E1cLelRMs70y8TH044hCULwinVXQdxw/3RXWQc8h7nH
-         u/fA==
-X-Gm-Message-State: AOJu0YwoZ0+icIkM+6sP0XbKNqZDzVF3pQAqVLF7rqz5Kgl0YAP4nz8C
-	/C9/MkAxKZrMwDCJ5dQsA6c8miC2I7bi9YbLB7edWna5RzrE07TTKyIXr7HhA07i87K3ayZyUNx
-	pTKiZMR/XgYx16QjvyH+gyY0Dn+KeNBoC7uu7mLIDtY9qR7ryynFb4wpBkX2d5CaQ0NB50wJNWh
-	7L50n+mPmjGpylm1rxWCgP4mmIwgyfD9oYFEeJnIvnzF+ncyYvHw==
-X-Received: by 2002:ac8:570a:0:b0:43a:fc66:35d8 with SMTP id d75a77b69052e-43dfdb06fccmr22804991cf.7.1715331779849;
-        Fri, 10 May 2024 02:02:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHm3BolVFsu22mYiTmhPkAgiTCxY6SWjICQtL4EpS7KCkeY9VWrwi7XisKP2lAOKpom9apfc0uDgJLCEOJTYis=
-X-Received: by 2002:ac8:570a:0:b0:43a:fc66:35d8 with SMTP id
- d75a77b69052e-43dfdb06fccmr22804731cf.7.1715331779539; Fri, 10 May 2024
- 02:02:59 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 May 2024 04:02:59 -0500
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <87wmo2nmee.fsf@linux-m68k.org>
-References: <20240508111604.887466-1-emil.renner.berthing@canonical.com> <87wmo2nmee.fsf@linux-m68k.org>
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 10 May 2024 12:09:41 +0300 (MSK)
+Received: from CAB-WSD-L081021.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 10 May 2024 12:09:41 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <jian.hu@amlogic.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Dmitry Rokosov
+	<ddrokosov@salutedevices.com>
+Subject: [PATCH v2 0/7] clk: meson: introduce Amlogic A1 SoC Family CPU clock controller driver
+Date: Fri, 10 May 2024 12:08:52 +0300
+Message-ID: <20240510090933.19464-1-ddrokosov@salutedevices.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 10 May 2024 04:02:58 -0500
-Message-ID: <CAJM55Z-F6N6ua5LoqyMFogDtLp=FaRPoDv4osXFDMjR1b8r9nw@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] riscv: dts: starfive: Enable Bluetooth on JH7100 boards
-To: Andreas Schwab <schwab@linux-m68k.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185158 [May 10 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;lore.kernel.org:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/10 08:35:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/10 08:36:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/10 07:36:00 #25144647
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Andreas Schwab wrote:
-> On Mai 08 2024, Emil Renner Berthing wrote:
->
-> > This series enables the in-kernel Bluetooth driver to work with the
-> > Broadcom Wifi/Bluetooth module on the BeagleV Starlight and StarFive
-> > VisionFive V1 boards.
->
-> That does not work for me:
->
-> [  +0.369276] Bluetooth: hci0: command 0x1001 tx timeout
-> [  +0.025545] Bluetooth: hci0: BCM: Reading local version info failed (-110)
+The CPU clock controller plays a general role in the Amlogic A1 SoC
+family by generating CPU clocks. As an APB slave module, it offers the
+capability to inherit the CPU clock from two sources: the internal fixed
+clock known as 'cpu fixed clock' and the external input provided by the
+A1 PLL clock controller, referred to as 'syspll'.
 
-Hi Andreas,
+It is important for the driver to handle the cpu_clk rate switching
+effectively by transitioning to the CPU fixed clock to avoid any
+potential execution freezes.
 
-You don't include any information useful for debugging this, but if it get's
-far enough to load the firmware could you at least make sure you run the
-version below, so that's at least the same.
+Validation:
+* to double-check all clk flags, run the below helper script:
 
-https://github.com/esmil/linux/blob/visionfive/firmware/brcm/BCM43430A1.hcd
+```
+pushd /sys/kernel/debug/clk
+for f in *; do
+    if [[ -f "$f/clk_flags" ]]; then
+        flags="$(cat $f/clk_flags | awk '{$1=$1};1' | sed ':a;N;$!ba;s/\n/ | /g')"
+        echo -e "$f: $flags"
+    fi
+done
+popd
+```
 
-/Emil
+* to trace the current clks state, use the
+  '/sys/kernel/debug/clk/clk_dump' node with jq post-processing:
+
+```
+$ cat /sys/kernel/debug/clk/clk_dump | jq '.' > clk_dump.json
+```
+
+* to see the CPU clock hierarchy, use the
+'/sys/kernel/debug/clk/clk_summary' node with jq post-processing:
+
+```
+$ cat /sys/kernel/debug/clk/clk_summary | jq '.' > clk_dump.json
+```
+
+when cpu_clk is inherited from sys_pll, it should be:
+
+```
+syspll_in    1  1  0  24000000    0  0  50000  Y  deviceless                 no_connection_id
+  sys_pll    2  2  0  1200000000  0  0  50000  Y  deviceless                 no_connection_id
+    cpu_clk  1  1  0  1200000000  0  0  50000  Y  cpu0                       no_connection_id
+                                                  cpu0                       no_connection_id
+                                                  fd000000.clock-controller  dvfs
+                                                  deviceless                 no_connection_id
+```
+
+and from cpu fixed clock:
+
+```
+fclk_div3_div           1  1  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
+  fclk_div3             4  4  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
+    cpu_fsource_sel0    1  1  0  512000000  0  0  50000  Y  deviceless                 no_connection_id
+      cpu_fsource_div0  1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
+        cpu_fsel0       1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
+          cpu_fclk      1  1  0  128000000  0  0  50000  Y  deviceless                 no_connection_id
+            cpu_clk     1  1  0  128000000  0  0  50000  Y  cpu0                       no_connection_id
+                                                            cpu0                       no_connection_id
+                                                            fd000000.clock-controller  dvfs
+                                                            deviceless                 no_connection_id
+```
+
+* to debug cpu clk rate propagation and proper parent switching, compile
+  kernel with the following definition:
+    $ sed -i "s/undef CLOCK_ALLOW_WRITE_DEBUGFS/define CLOCK_ALLOW_WRITE_DEBUGFS/g" drivers/clk/clk.c
+  after that, clk_rate debug node for each clock will be available for
+  write operation
+
+Changes v2 since v1 at [1]:
+    - introduce new 'INIT_ONCE' flag to eliminate init for already
+      enabled PLL
+    - explain why we need to break ABI for a1-pll driver by adding
+      sys_pll connections
+    - implement sys_pll init sequence, which is applicable when sys_pll
+      is disabled
+    - remove CLK_IS_CRITICAL from sys_pll
+    - move sys_pll_div16 binding to the end per Rob's suggestion
+    - add Rob's RvB
+    - remove holes from the beginning of the cpu clock controller regmap
+    - move a1-cpu.h registers offsets definition to a1-cpu.c
+    - set CLK_SET_RATE_GATE for parallel cpu fixed clock source trees
+      per Martin's and Jerome's suggestion
+    - redesign clock notifier block from cpu_clk to sys_pll to keep
+      cpu_clock working continuously (the same implementation is located
+      in the g12a clock driver)
+
+Links:
+    [1] https://lore.kernel.org/all/20240329205904.25002-1-ddrokosov@salutedevices.com/
+
+Dmitry Rokosov (7):
+  clk: meson: introduce 'INIT_ONCE' flag to eliminate init for enabled
+    PLL
+  dt-bindings: clock: meson: a1: pll: introduce new syspll bindings
+  clk: meson: a1: pll: support 'syspll' general-purpose PLL for CPU
+    clock
+  dt-bindings: clock: meson: a1: peripherals: support sys_pll_div16
+    input
+  clk: meson: a1: peripherals: support 'sys_pll_div16' clock as GEN
+    input
+  dt-bindings: clock: meson: add A1 CPU clock controller bindings
+  clk: meson: a1: add Amlogic A1 CPU clock controller driver
+
+ .../bindings/clock/amlogic,a1-cpu-clkc.yaml   |  64 ++++
+ .../clock/amlogic,a1-peripherals-clkc.yaml    |   7 +-
+ .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   7 +-
+ drivers/clk/meson/Kconfig                     |  10 +
+ drivers/clk/meson/Makefile                    |   1 +
+ drivers/clk/meson/a1-cpu.c                    | 331 ++++++++++++++++++
+ drivers/clk/meson/a1-peripherals.c            |   4 +-
+ drivers/clk/meson/a1-pll.c                    |  79 +++++
+ drivers/clk/meson/a1-pll.h                    |   6 +
+ drivers/clk/meson/clk-pll.c                   |  37 +-
+ drivers/clk/meson/clk-pll.h                   |   1 +
+ .../dt-bindings/clock/amlogic,a1-cpu-clkc.h   |  19 +
+ .../dt-bindings/clock/amlogic,a1-pll-clkc.h   |   2 +
+ 13 files changed, 546 insertions(+), 22 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-cpu-clkc.yaml
+ create mode 100644 drivers/clk/meson/a1-cpu.c
+ create mode 100644 include/dt-bindings/clock/amlogic,a1-cpu-clkc.h
+
+-- 
+2.43.0
+
 
