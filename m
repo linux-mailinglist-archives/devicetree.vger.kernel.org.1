@@ -1,141 +1,145 @@
-Return-Path: <devicetree+bounces-66307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 733368C257B
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:16:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 723D58C2597
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:23:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17644B23D17
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 13:16:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFCD7B23F41
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 13:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311CE12BF07;
-	Fri, 10 May 2024 13:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A06212BF18;
+	Fri, 10 May 2024 13:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aihVVwj1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iTl/9Qry"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C413481C0;
-	Fri, 10 May 2024 13:16:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7D3129E7A;
+	Fri, 10 May 2024 13:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715346983; cv=none; b=J2Dqj85GdNrMhwJDG1irddR5yj/Uyh4zTZ4bXxfkiQJAAkn9QH0NXixNycYoTCtt2Ecru9+ZraUeH04MdMKjziwszaa8lxrCNzPFuwc/v2xM220ejE3X5yJEJlyx0hRl1a5IUeQLvV5ykGcmTI6Bn9y+TgfyLDAHJOB0wapZKqk=
+	t=1715347388; cv=none; b=fpB56oVlrXQs9azoXPtJQWAOMPQPZjfWyyxY8Qd5i+tPn+rdySjEH13oMs5oWHKUCI2d/nQ4AiqTZwdEEQXGgbiILz2KjYc0zGcwPpBjQR5LkM4oeTavSFxRMkujq4adYm/mUnm0BziLcaA+ERTGgzoWsip3IJiNMoHPnRYuHEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715346983; c=relaxed/simple;
-	bh=s1vp/AQv0HPsNuRPL3/H5w6SZg8ScDE+PLWKilxZ1WQ=;
+	s=arc-20240116; t=1715347388; c=relaxed/simple;
+	bh=tYhskMo0rXSumUEeBpvmlx1SbCm7JZfH6Sx8+QpS5CA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pqePFxQasAVkOy4Q1vTQIUP0RfGOhIw9V8QGUe4fdgjSzwpNTKYzzfGuHHuppnjJPq9L0+ynUDnSvkXz1Yiu3YTjRWS5HWoMJC6qfBVbJbY8Ykeko5zJMoAGySt4UcN5Ka2bUgPFMSQzFynv23AFB44I7PfMrx6xD2BPFwN+MrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aihVVwj1; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a599c55055dso522721466b.0;
-        Fri, 10 May 2024 06:16:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715346980; x=1715951780; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9WxWyDp0aW9RPfysDmHcwGae8sOtSjliCl9H+az3GKQ=;
-        b=aihVVwj16YTKQzETzTJKaQC9Ol51hFcBU8uWPy0xutFCF1wak6LqeEL2xcM8umJPfy
-         lbyX0HTdF8Vh5QD1BmFMceDP9+D41ko1+CyGvkYVbzfZ9jP00sHTFt5ZBsO7T3YKqa6z
-         li2N9EpHdgSlGoVeVNXTlHiBxo7Qf7ZUcMfvs937D+XAUNoXuuybDugqTB/E8xRUyfzU
-         ffraZ7YlZlNDcWTAH3YsLYVKsbD0L2BMl7QGQbpdIjlUrpRxfWtH92s6OOczyscJN4we
-         KiA8r7ANXllEiWMuQOaz6d2kS3MJH1ZgeJO2GVfOXT2lbVZKPowyd7k6Scp+ZmXwZZaN
-         h/fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715346980; x=1715951780;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9WxWyDp0aW9RPfysDmHcwGae8sOtSjliCl9H+az3GKQ=;
-        b=Y+ndtQm/0hYPRNgHqq1UP1ce2fFiinAakPXnaAWZcgRLYfgjz99/2zLQgll810eNRQ
-         yfpMVzVs4S06p+PvkD0C6khjPl7u4eMsQvQ0gzxpfghtMRPVkTDmFKAVQtimXCxVKoSV
-         M0exFpUdYEU2g+hwe4jjb+sNOkgbTpNvDmZ37v9nBKpSk4Z33dJiiNP/BVrJT+S1R1W1
-         kRaT8jjBdvHViZGS9a6mrHYnUoAh1fOse/H8iwtgIA5llDP5MKxfIVns14rytA8jKigb
-         3mzTnOQ+PiGWxybUR93t5mc8zSdZLNq8cTgJzWfHQupga73m4fKxSQMv7Awrm0ALgvAS
-         6WZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXhkAb7Frzmm8cSTCrwen+4XzTeNone0kdMvn7kIbLtbw/oaHeyS4tSucnH1xhL+qlQArvPFnthawP7JLCKe15lQdmppCim3PyVF8Pp7IW5uwlrhYeC4M5zUjVZeaKi8nWsd4UDOHdm5K735/v93fAdMQCeP6e0fRYxjJE6Bopon14YWXtS/wU6s4emtdcl3rQtVxEGTPDcY5rau/5U2V3gSl4O
-X-Gm-Message-State: AOJu0YwLpHY4LtczSIy2Yttu2kOt45skzHDaHEyyZcsSxL8jFmPcMqrh
-	oWwGDa+J4WHGphqDJ0zHMFhZp5XbdwLlsNhjdDxLD2D/KLFoPuaWVBQEbSKAaprol+MM9M5Fqes
-	hTuj/t88I5N0YJUfd9B8mFx0ygTGwO7na
-X-Google-Smtp-Source: AGHT+IHqLlMHb3RzWbCGJo0qBKhJfkr4lTod5BN64yUs4Njxmi+vvrzgQEQBPIBYKN1Ps/VJbaIpLmm5lmY7A1e+0ng=
-X-Received: by 2002:a17:906:348a:b0:a59:ced4:25af with SMTP id
- a640c23a62f3a-a5a2d5ccfacmr160323666b.41.1715346979747; Fri, 10 May 2024
- 06:16:19 -0700 (PDT)
+	 To:Cc:Content-Type; b=nelCXdktFPzmq+iKHBkWUr9vrPMSouUx+P3AcEXbemtjsBzMacfz2NKfvnH2vAWM94D2E4yG/fcdS+PFIPGm/QvrL+20xuMMFWkIksIiAqaSWeIKEAOXWRPfwkJN16yrDyXLlJyH6hw4XiWXBV5DqjwjNBfRpmzZmgJZdX2FcjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iTl/9Qry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DA95C32781;
+	Fri, 10 May 2024 13:23:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715347388;
+	bh=tYhskMo0rXSumUEeBpvmlx1SbCm7JZfH6Sx8+QpS5CA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=iTl/9QryRDw5m6CI9fHWDlqfd+WgiPIjjwmVmxh9Y+HKDsz5HJr3zOdFIV0ISuMpf
+	 ZYRsomgmN++PBr3+k4xbr8npEB14Bwdbs+wV2TNoARERT5HFfjOFKA84a/3q2YkOb+
+	 7McgvfcnEwz1wIfC4b0rz+dl6f1QOXnd978pV2i8OL7W79nle/cvCwbSPqeqMrE3u9
+	 Z9vtzPLKzfAC9uPILO0j2Yz3zhGHNbzixj4EGQyRSNDOyVLgWEKVI3ubIzodmI6QJC
+	 ZdGsWF3WnRC/ozb7k2rTeZtifP/fjezzM6hh66RN5Ld1fSG6hJGvNXvWZzyhkj7cNV
+	 ForFdv6Gbj3LQ==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-51f0602bc58so2826476e87.0;
+        Fri, 10 May 2024 06:23:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUaBLLL9lWr9eEzOtq+rF5UwPuwYXiGcIeqNa+pDXAwzoW3zuic5HKF3Df8eo+CBS3KFEiJhopHTodLScK09XmY4Uops5JhIaoIw2hSguV9IulsusRtIHxer+7RCsadMKwgtNKv7ZZyQA==
+X-Gm-Message-State: AOJu0Yxh/QUMW7Ac4/ihOEELmnffXx5EnvHNCc26bE2TYzYOP+0jL2hr
+	CrWUKav8tUVwwSWq7tniF19y2BlmllUeeiPidjGVokg/WpeO9AyMpvJOYESIcP4ln830yqkH2Z0
+	5EadTXbOC5evCUH9/9JQGIxlorQ==
+X-Google-Smtp-Source: AGHT+IEJUcElvfTVu1yNEdpP3G4HTKH4TMjcX6DBrmz3x3jO6gk043nAqUWr2yavjxlCjyZwuuW1s4qLooweEnK1zis=
+X-Received: by 2002:a05:6512:684:b0:51c:590f:4305 with SMTP id
+ 2adb3069b0e04-5220e3736c2mr957712e87.8.1715347386370; Fri, 10 May 2024
+ 06:23:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-12-johan+linaro@kernel.org> <ZjktIrsZS-T7cm-A@surfacebook.localdomain>
- <ZjyafGz_1pY4J9C7@hovoldconsulting.com>
-In-Reply-To: <ZjyafGz_1pY4J9C7@hovoldconsulting.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 10 May 2024 16:15:43 +0300
-Message-ID: <CAHp75VfP2AB45mn6gB3suCAO9iT3bOWZ=7m9U7E087Lac0P3gg@mail.gmail.com>
-Subject: Re: [PATCH 11/13] mfd: pm8008: rework driver
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
+ <20240510-hotplug-drm-bridge-v2-1-ec32f2c66d56@bootlin.com>
+ <171533049583.3304069.11759668175103213313.robh@kernel.org> <20240510123717.437ffe6e@booty>
+In-Reply-To: <20240510123717.437ffe6e@booty>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 10 May 2024 08:22:53 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+mZLkq16OcVBcspxLrMZ=M+h57yOQohhsgn3VXVfyiLQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+mZLkq16OcVBcspxLrMZ=M+h57yOQohhsgn3VXVfyiLQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: connector: add GE SUNH hotplug addon connector
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Maxime Ripard <mripard@kernel.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Paul Kocialkowski <paul.kocialkowski@bootlin.com>, 
+	Robert Foss <rfoss@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, =?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Saravana Kannan <saravanak@google.com>, 
+	David Airlie <airlied@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Paul Kocialkowski <contact@paulk.fr>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, 
+	linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, 
+	Jonas Karlman <jonas@kwiboo.se>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 9, 2024 at 12:42=E2=80=AFPM Johan Hovold <johan@kernel.org> wro=
-te:
-> On Mon, May 06, 2024 at 10:18:58PM +0300, Andy Shevchenko wrote:
-> > Mon, May 06, 2024 at 05:08:28PM +0200, Johan Hovold kirjoitti:
-
-...
-
-> > > +static void devm_irq_domain_fwnode_release(void *res)
-> > > +{
-> >
-> > > +   struct fwnode_handle *fwnode =3D res;
-> >
-> > Unneeded line, can be
-> >
-> > static void devm_irq_domain_fwnode_release(void *fwnode)
-> >
-> > > +   irq_domain_free_fwnode(fwnode);
-> > > +}
+On Fri, May 10, 2024 at 5:37=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
 >
-> I think I prefer it this way for clarity and for type safety in the
-> unlikely even that the argument to irq_domain_free_fwnode() would ever
-> change.
-
-If it ever changes, the allocation part most likely would need an
-update and since devm_add_action() takes this type of function, I
-don't believe the argument would ever change from void * to something
-else. With this it just adds an additional burden on the conversion.
-
-> > > +   name =3D devm_kasprintf(dev, GFP_KERNEL, "%pOF-internal", dev->of=
-_node);
-> >
-> > You are using fwnode for IRQ domain and IRQ domain core uses fwnode, wh=
-y OF here?
-> >
-> >       name =3D devm_kasprintf(dev, GFP_KERNEL, "%pfw-internal", dev_fwn=
-ode(dev));
+> Hello Rob,
 >
-> This driver only support OF so why bother.
+> On Fri, 10 May 2024 03:41:35 -0500
+> "Rob Herring (Arm)" <robh@kernel.org> wrote:
+>
+> > On Fri, 10 May 2024 09:10:37 +0200, Luca Ceresoli wrote:
+> > > Add bindings for the GE SUNH add-on connector. This is a physical,
+> > > hot-pluggable connector that allows to attach and detach at runtime a=
+n
+> > > add-on adding peripherals on non-discoverable busses.
+> > >
+> > > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > >
+> > > ---
+> > >
+> > > NOTE: the second and third examples fail 'make dt_binding_check' beca=
+use
+> > >       they are example of DT overlay code -- I'm not aware of a way t=
+o
+> > >       validate overlay examples as of now
+>
+> As mentioned here...
+>
+> > >
+> > > This patch is new in v2.
+> > > ---
+> > >  .../connector/ge,sunh-addon-connector.yaml         | 197 +++++++++++=
+++++++++++
+> > >  MAINTAINERS                                        |   5 +
+> > >  2 files changed, 202 insertions(+)
+> > >
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Error: Documentation/devicetree/bindings/connector/ge,sunh-addon-connec=
+tor.example.dts:49.9-14 syntax error
+> > FATAL ERROR: Unable to parse input tree
+>
+> ...this is expected.
+>
+> Any hints on how this can be managed in bindings examples would be very
+> useful.
 
-Sure, but it makes a bit of inconsistency. Besides that dereferencing
-of_node might also add a burden one day we want to get rid of it or
-move it somewhere else, or convert to the list_head or so.
-dev_of_node(dev) in this case prevents from looking into this case.
+Overlays in examples are not supported. Add actual .dtso files if you
+want examples of overlays (maybe you did, shrug).
 
---=20
-With Best Regards,
-Andy Shevchenko
+Overlays are somewhat orthogonal to bindings. Bindings define the ABI.
+It only makes sense to validate applied overlays. Now maybe overlays
+contain complete nodes and we could validate those, but that's a
+problem for actual overlay files and not something we need to
+complicate examples with.
+
+Rob
 
