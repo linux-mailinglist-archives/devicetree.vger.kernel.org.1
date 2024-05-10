@@ -1,165 +1,134 @@
-Return-Path: <devicetree+bounces-66227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D301B8C2236
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 12:34:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0987E8C224B
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 12:37:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46E30B20FD5
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 10:34:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AC6F1C203E2
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 10:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 682FE83A0A;
-	Fri, 10 May 2024 10:34:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762B81292F2;
+	Fri, 10 May 2024 10:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MZ5A5NmG"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pxKg9ilE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A206C55C3B;
-	Fri, 10 May 2024 10:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8488912A145;
+	Fri, 10 May 2024 10:37:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715337247; cv=none; b=ZQfsEwDtmhlArChx+HGGqPEuwoA7NKsmGqbbJZZnU+HLkQ3lJyrpgeX0oqfCz19v4xAGW7xPT/fAwNlkz0MXs4aOeKO+xI6Acj1dl6tT9HykmIS9jKHJh617EzM1gDOmr0ccq1mkt570JyuxlzSmROjtAQrk2Gy3dXfBqYyGqI8=
+	t=1715337452; cv=none; b=K9sbnkR9IBs9Ar/bmF/pURjcAELAjQ0VteP7nr3g6x/GrV7H/hMC3xdG7TflbSTgPuKGAvpf4I3KMsuOKtrpVedz+qw2yiJgmZSuu0KTWMj0Fw2t2jdzY8l2TenEZj1X9XzrzH/G2EhLolVJNlDuUtSMs77RbQjsuRN4eurJZIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715337247; c=relaxed/simple;
-	bh=X0ZOJpUlqcwr+U8LRJn7Zd0g5ybOZZdwIG5yRD8/Ono=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mw4EWhW/74Lv6BAhrr9mVMG1dIRom0LosaqTPPihDD1Xtys9/9/opbVDdkuuwgc5HgF6gmhKLndfPEEkDJWp3RsG++bKQB+VuCEdkzKnCjilDh7a3mETNy5uKQ22XMRw0o2UIs5lq7lTrBEyVF6307Wotx23o28ZDtPageoMbtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MZ5A5NmG; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715337246; x=1746873246;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X0ZOJpUlqcwr+U8LRJn7Zd0g5ybOZZdwIG5yRD8/Ono=;
-  b=MZ5A5NmGI1EbTYICWcaUGpzeh2FN+heAwEVJySkjlUqDiw/ApsFSGtbX
-   DSe2jw4QqLYE4PbeM6bUgcFZS3LEIWggactF/Yq6eaCqgmsS/hSxDW8Om
-   mPCrc6N12ZJCQlZReFPjl8Oe4jByEYe5HFFaC+qU9szJgy0beilFDX+Jn
-   VSaUhyWNd1WFugVYjp8y8hCw4PR74lEF/lIv31axv3y2IUw6/fJyfK3PW
-   FtDKVOwX8qQXzJlq9oS2OuiDDORXKSiVI99N/8+MkYEZbHBvpvruU+L/e
-   rtlArU4M8KwnnYv39DaJjPCeeQabQ85ko7bQcURWllu74b7OIBUj/j2nt
-   w==;
-X-CSE-ConnectionGUID: YmV3jzuOS9uXLNxbiJAGWA==
-X-CSE-MsgGUID: D15JaaiFSRWx668yDGB5Og==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="22709432"
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; 
-   d="scan'208";a="22709432"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 03:34:05 -0700
-X-CSE-ConnectionGUID: yXrnVpWQRJ22BfscS7ipVg==
-X-CSE-MsgGUID: n46WO3hYSjiRU/eZffXjfA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,150,1712646000"; 
-   d="scan'208";a="52779431"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 10 May 2024 03:34:01 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s5NZe-0005zz-2e;
-	Fri, 10 May 2024 10:33:58 +0000
-Date: Fri, 10 May 2024 18:33:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tomer Maimon <tmaimon77@gmail.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com,
-	joel@jms.id.au, venture@google.com, yuenn@google.com,
-	benjaminfair@google.com
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	openbmc@lists.ozlabs.org, Tomer Maimon <tmaimon77@gmail.com>,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v24 2/4] reset: npcm: register npcm8xx clock auxiliary
- bus device
-Message-ID: <202405101852.gDDWbzsx-lkp@intel.com>
-References: <20240509192411.2432066-3-tmaimon77@gmail.com>
+	s=arc-20240116; t=1715337452; c=relaxed/simple;
+	bh=TXNdkz5a7GF+guGZe+EfuGLjsV7bEXk1+YJn1Ezssbc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XPhDZH9NtXFyTXB2T9kKCnN6v0e+UXyZGdUUR04hAxEokrBiu9zmY3YFlvsvGxEeew+LvWR3SDqyIaLevWvjZEwi8uPNIlDYll2wYNTU06ttDUvvKUB5CWs0Gl+HhKvMDisYSYQhyMhDUWmFDc6XT8Hq8WJ/dxzqxmqX5EGF9i8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pxKg9ilE; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 92529E0008;
+	Fri, 10 May 2024 10:37:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1715337441;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=vDoiNwoii/qxjT77o/j0b4b+dq8b/9g1u0a5i+nOs94=;
+	b=pxKg9ilEFyj+MjnvdsxaawKTc/71y4mfiays6/uP89nhdZCPgTSzPxKqOU1qD1YJCmwLXI
+	1cx3CaLdieq2d5Ft73Ox5XAnV0V7cf8ae6rYtj5X205BwbVfmMK2dBbzt/fZcpAYPuY1C+
+	JX1z0CaLoazA169azpGi0OTg5bSfchq/qOAegPiAQDey1UmRYtrej1NRSqeSjf5HtZXuuM
+	3ClcLEgb6nEAhp/pQbdB1e1KX00m+W8NxsWJ0zTm52RwIh/xBNKvsLGtYQRlhA+fgycaUV
+	zeLMVppJY9VI5G01FGM4SeoXBgc62FQv5V8Ift1NrTevKctAYVJpjCmPutKKCg==
+Date: Fri, 10 May 2024 12:37:17 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Maxime Ripard <mripard@kernel.org>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Paul Kocialkowski
+ <paul.kocialkowski@bootlin.com>, Robert Foss <rfoss@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ =?UTF-8?Q?Herv=C3=A9?= Codina <herve.codina@bootlin.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
+ <derek.kiernan@amd.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Saravana Kannan <saravanak@google.com>, David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Paul Kocialkowski
+ <contact@paulk.fr>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, Jonas
+ Karlman <jonas@kwiboo.se>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: connector: add GE SUNH hotplug
+ addon connector
+Message-ID: <20240510123717.437ffe6e@booty>
+In-Reply-To: <171533049583.3304069.11759668175103213313.robh@kernel.org>
+References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
+	<20240510-hotplug-drm-bridge-v2-1-ec32f2c66d56@bootlin.com>
+	<171533049583.3304069.11759668175103213313.robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240509192411.2432066-3-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Hi Tomer,
+Hello Rob,
 
-kernel test robot noticed the following build warnings:
+On Fri, 10 May 2024 03:41:35 -0500
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on pza/reset/next linus/master v6.9-rc7 next-20240510]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> On Fri, 10 May 2024 09:10:37 +0200, Luca Ceresoli wrote:
+> > Add bindings for the GE SUNH add-on connector. This is a physical,
+> > hot-pluggable connector that allows to attach and detach at runtime an
+> > add-on adding peripherals on non-discoverable busses.
+> > 
+> > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > 
+> > ---
+> > 
+> > NOTE: the second and third examples fail 'make dt_binding_check' because
+> >       they are example of DT overlay code -- I'm not aware of a way to
+> >       validate overlay examples as of now
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tomer-Maimon/dt-bindings-reset-npcm-add-clock-properties/20240510-072622
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20240509192411.2432066-3-tmaimon77%40gmail.com
-patch subject: [PATCH v24 2/4] reset: npcm: register npcm8xx clock auxiliary bus device
-config: arm-wpcm450_defconfig (https://download.01.org/0day-ci/archive/20240510/202405101852.gDDWbzsx-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240510/202405101852.gDDWbzsx-lkp@intel.com/reproduce)
+As mentioned here...
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405101852.gDDWbzsx-lkp@intel.com/
+> > 
+> > This patch is new in v2.
+> > ---
+> >  .../connector/ge,sunh-addon-connector.yaml         | 197 +++++++++++++++++++++
+> >  MAINTAINERS                                        |   5 +
+> >  2 files changed, 202 insertions(+)
+> >   
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.example.dts:49.9-14 syntax error
+> FATAL ERROR: Unable to parse input tree
 
-All warnings (new ones prefixed by >>):
+...this is expected.
 
-   drivers/reset/reset-npcm.c: In function 'npcm_clock_adev_release':
-   drivers/reset/reset-npcm.c:391:9: error: implicit declaration of function 'kfree'; did you mean 'vfree'? [-Werror=implicit-function-declaration]
-     391 |         kfree(rdev);
-         |         ^~~~~
-         |         vfree
-   drivers/reset/reset-npcm.c: In function 'npcm_clock_adev_alloc':
-   drivers/reset/reset-npcm.c:400:16: error: implicit declaration of function 'kzalloc'; did you mean 'vzalloc'? [-Werror=implicit-function-declaration]
-     400 |         rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
-         |                ^~~~~~~
-         |                vzalloc
->> drivers/reset/reset-npcm.c:400:14: warning: assignment to 'struct npcm_clock_adev *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     400 |         rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
-         |              ^
-   cc1: some warnings being treated as errors
+Any hints on how this can be managed in bindings examples would be very
+useful.
 
+Best regards,
 
-vim +400 drivers/reset/reset-npcm.c
-
-   393	
-   394	static struct auxiliary_device *npcm_clock_adev_alloc(struct npcm_rc_data *rst_data, char *clk_name)
-   395	{
-   396		struct npcm_clock_adev *rdev;
-   397		struct auxiliary_device *adev;
-   398		int ret;
-   399	
- > 400		rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
-   401		if (!rdev)
-   402			return ERR_PTR(-ENOMEM);
-   403	
-   404		rdev->base = rst_data->base;
-   405	
-   406		adev = &rdev->adev;
-   407		adev->name = clk_name;
-   408		adev->dev.parent = rst_data->dev;
-   409		adev->dev.release = npcm_clock_adev_release;
-   410		adev->id = 555u;
-   411	
-   412		ret = auxiliary_device_init(adev);
-   413		if (ret) {
-   414			kfree(adev);
-   415			return ERR_PTR(ret);
-   416		}
-   417	
-   418		return adev;
-   419	}
-   420	
+Luca
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
