@@ -1,156 +1,140 @@
-Return-Path: <devicetree+bounces-66322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1188C2698
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:19:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B64528C26B0
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:22:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27F3CB2470A
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:19:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB9681C21EEF
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9966616FF5B;
-	Fri, 10 May 2024 14:19:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F201708A7;
+	Fri, 10 May 2024 14:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iFwnDgVD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lo1+duOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E18D615F3EA
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 14:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7172F170888;
+	Fri, 10 May 2024 14:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715350761; cv=none; b=DmR1MZa4tyYxGgEflomIr0tXMFFef2W5s30tOF/bmDzOfnk6/7WfHWdkiYMRxGKWwBccKxsungPTFlcsBvpIB/usI4u2iKjCRGHjOKGTz7anbrDJnI7pVE6Q16HJ/ZNOOHmhGYETh4dvZdEJ8TnUjdZTeldVRBCZj9/BRoJdJYE=
+	t=1715350909; cv=none; b=l5wChpYvI4zQnUb6uRrT+FChZiZEd1uSRdApS28lRPf9lIiiMxkbmsFal80XxiLVrrxQmuJs8ZzF9ilp4jTMsJj8KYdfgp9DDDLIWjejSmDsQ/54xnktYB6OkHqtOrRcSmm90hWxM8g3HpJg2jwDgAIFDeVHrpORKb1Dfo51geo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715350761; c=relaxed/simple;
-	bh=i4G7aoZtuOLQ6v/EAbm/87VL6HJuAkCoK1F6wDmVAoA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ETtVLMrv4whgwtB8b60AksAfiuCh4y6fPHEYgCdLKo+GYvV2OUwD/M6AJVekdoPXaBrKyhnXtwrvBzsDPKzA1JM2Wn90lqS60BNzv9zH1MozczMCdi34krW9Hb8rcc6KaOz7EDvHBpyJG3whpi4ljPnLxHMs14XV10rPws0PNGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iFwnDgVD; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2e0933d3b5fso29480331fa.2
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 07:19:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715350758; x=1715955558; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ygxOQC15SUv3c6gwY3JPpSRcLSnmMYCDwnNrBTw5+2g=;
-        b=iFwnDgVDMpE5HBR8sOAoQ76o7hp7BSvjOms/HGF2HJnJvHhi5AOLEqSKQYxUNbsfnJ
-         C3iCuFyKktF45RLOTC7odHlEdBKuNc6pGYjU8El7Z6h901A9gTgeizRp+MdzVZ9Jk+BG
-         j1UsYkuCuh7rvr9TxvV+N3AkpW5A736Y/LQq4nS6TwiNawXQ/N2/+KOU7o39ibEWpaM+
-         BHplazxLWcyPuZC7Ty6nhrBF1iFaP7J0KrR1NM56PduTxJLc0H0MoRhFnn4A0LsagJc9
-         zs8wQg6W0xnO+8mU66pcY22KHVZbZxr4SePjJiHCYXZdH8X6t76gKvCpJNzfdY2PHp7v
-         08lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715350758; x=1715955558;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ygxOQC15SUv3c6gwY3JPpSRcLSnmMYCDwnNrBTw5+2g=;
-        b=uY9dJ6dx/DKAERpbM26KK0aAzahPoucqwIJEDnJmpkOVac5gUxG+1afnJyMeR/MwUx
-         BagUtIoyTQ1DfXuqnD9+VU/fxomvv1OBj/rGxKO2ydhtCcxJzawBglHaJCQ8ERkVmISo
-         t4OXRAul4EWNDBaKkeSYfZlUk1zMNKLbcwlVdWmB5I2l3BWnnvx7+wXy8d8nfmtCPhSN
-         2WOBRjiboFEYCrOXtnqBCt4QCXYjSN9f3d5v3D+cbH90HWj6APVY3QAU67nZCMqIgb1M
-         VD4xo5EUp67b3S/gVMpRM0R8Y6XYyisVbZs4ywcWdCor5I/0+5VV+meTFFMquJAr+5bq
-         X4nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJCeJta1l/fAQM1VGil/Ej6wi7Iiezc7luNNBUBiBJGfeep1pfrhUGZLy6OTNXMAI4YkBgZVEX5qmDoi4yDJuxoXIicm6a1S/0XQ==
-X-Gm-Message-State: AOJu0Yy3WjaTbqI247kQyoj56XO14M0UTe1eHs+ecI/nrZp/7p3XbDAF
-	aJqYxVgcI5rU8ACxrjFhddbsW3rxIOVRQJEN83HGJ6yjEiyDv23YoibfIsR6QDg=
-X-Google-Smtp-Source: AGHT+IFaPZglaNJ8HKYesz9qBPTuNdjcWZFbOKI1g7KqEHhS5dnFETMdXxI9xWKnlCo8gdgjLKGLtw==
-X-Received: by 2002:a2e:b16e:0:b0:2e2:1e87:bbc7 with SMTP id 38308e7fff4ca-2e51fe53fbcmr17337851fa.18.1715350758289;
-        Fri, 10 May 2024 07:19:18 -0700 (PDT)
-Received: from localhost.localdomain (host-79-47-39-74.retail.telecomitalia.it. [79.47.39.74])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fd97e842csm56111875e9.24.2024.05.10.07.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 May 2024 07:19:17 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-To: jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: nuno.sa@analog.com,
-	lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Angelo Dureghello <adureghello@baylibre.com>
-Subject: [PATCH 3/3] dt-bindings: iio: dac: fix ad3552r gain parameter names
-Date: Fri, 10 May 2024 16:18:36 +0200
-Message-ID: <20240510141836.1624009-3-adureghello@baylibre.org>
-X-Mailer: git-send-email 2.45.0.rc1
-In-Reply-To: <20240510141836.1624009-1-adureghello@baylibre.org>
-References: <20240510141836.1624009-1-adureghello@baylibre.org>
+	s=arc-20240116; t=1715350909; c=relaxed/simple;
+	bh=GICVwXtl8OlmHpKHmRiiQuN8TAKF0PfLMJwLr6g0TPQ=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=tUjaNGBExDnsodnLhYcHIQfzO9CgE2rzLBbpZcqYgriHROIMC+tpFhuDbVika+JUUcvC6CGGntvU74SZ19UlQQh2XGO1JrD0XxeGd+tkCP/5Qn7UUhKrBfefP6pPofmFUZ//BkptLcERreX51u/bcpincGNwbpCnFWuROUsog70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lo1+duOd; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715350908; x=1746886908;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=GICVwXtl8OlmHpKHmRiiQuN8TAKF0PfLMJwLr6g0TPQ=;
+  b=lo1+duOdDm0Ud6NLgZqXTpRM1qQqjvTccMKxfK+n1MYoDQe8K4XI8OhB
+   GaFkUKGKRSdcUvYMa6DSP4mWid6CrQuufQda84RELZD4ygkj+4lasvDep
+   l4MhR6WD2GtFUAUJ+LwlPWm2pDHGcQ4g/WreWoR0+xJscD0MJKgGKhsZ7
+   eWipKeS6kIavBDhsNx3MlfXwnCBSkWavsIhQsUQD2dfvc5xlIjw6goidU
+   YGVUuXVgcZviG+EvoCjMWMUVwQDfhWrRysrcoTB5QSYcIoJY6pODRe+oj
+   hiv4pX9qtsTbbAetw6t+qVEFDccZCAA8/e7z8monldbkoXNYAlhFld0UV
+   g==;
+X-CSE-ConnectionGUID: DVtBfXSmRFaiJx5KbzHQgA==
+X-CSE-MsgGUID: UWJ6AlJLTxeRVKCSq1jlzA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11459934"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
+   d="scan'208";a="11459934"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:21:48 -0700
+X-CSE-ConnectionGUID: auXQFHKwRyS2NbOh/x1Gkw==
+X-CSE-MsgGUID: rrf7dl4dQdutg4DpF62Clg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
+   d="scan'208";a="34071332"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.85])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:21:39 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 10 May 2024 17:21:36 +0300 (EEST)
+To: Christoph Fritz <christoph.fritz@hexdev.de>
+cc: Jiri Slaby <jirislaby@kernel.org>, Simon Horman <horms@kernel.org>, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Marc Kleine-Budde <mkl@pengutronix.de>, 
+    Oliver Hartkopp <socketcan@hartkopp.net>, 
+    Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+    "David S . Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+    Benjamin Tissoires <bentiss@kernel.org>, 
+    Sebastian Reichel <sre@kernel.org>, 
+    Linus Walleij <linus.walleij@linaro.org>, 
+    Andreas Lauser <andreas.lauser@mercedes-benz.com>, 
+    Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>, 
+    linux-can@vger.kernel.org, Netdev <netdev@vger.kernel.org>, 
+    devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+    linux-serial <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH v4 04/11] tty: serdev: Add method to enable break flags
+In-Reply-To: <20240509171736.2048414-5-christoph.fritz@hexdev.de>
+Message-ID: <36b0d460-1d96-89d8-db4a-76d735f7ee6b@linux.intel.com>
+References: <20240509171736.2048414-1-christoph.fritz@hexdev.de> <20240509171736.2048414-5-christoph.fritz@hexdev.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+On Thu, 9 May 2024, Christoph Fritz wrote:
 
-The adi,gain-scaling-p/n values are an inverted log2,
-so initial naiming was set correct, but the driver uses just
-adi,gain-scaling-p/n, so uniforming documentation, that seems
-a less-risk fix for future rebases, and still conformant to datasheet.
+> The recently introduced callback function receive_buf_fp() brings flags
+> buffer support. To allow signaling of TTY_BREAK flags, this patch
+> introduces serdev_device_set_break_detection() and an implementation for
+> ttyport. This enables serdev devices to configure their underlying tty
+> port to signal or ignore break conditions.
+> 
+> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> ---
+>  drivers/tty/serdev/core.c           | 11 +++++++++++
+>  drivers/tty/serdev/serdev-ttyport.c | 17 +++++++++++++++++
+>  include/linux/serdev.h              |  2 ++
+>  3 files changed, 30 insertions(+)
+> 
+> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
+> index 613cb356b918d..23a1e76cb553b 100644
+> --- a/drivers/tty/serdev/core.c
+> +++ b/drivers/tty/serdev/core.c
+> @@ -339,6 +339,17 @@ unsigned int serdev_device_set_baudrate(struct serdev_device *serdev, unsigned i
+>  }
+>  EXPORT_SYMBOL_GPL(serdev_device_set_baudrate);
+>  
+> +void serdev_device_set_break_detection(struct serdev_device *serdev, bool enable)
+> +{
+> +	struct serdev_controller *ctrl = serdev->ctrl;
+> +
+> +	if (!ctrl || !ctrl->ops->set_break_detection)
+> +		return;
 
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
----
- .../devicetree/bindings/iio/dac/adi,ad3552r.yaml | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+Why you need to test for !ctrl?
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-index 17442cdfbe27..9e3dbf890bfa 100644
---- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-@@ -94,13 +94,13 @@ patternProperties:
-             maximum: 511
-             minimum: -511
- 
--          adi,gain-scaling-p-inv-log2:
--            description: GainP = 1 / ( 2 ^ adi,gain-scaling-p-inv-log2)
-+          adi,gain-scaling-p:
-+            description: GainP = 1 / ( 2 ^ adi,gain-scaling-p)
-             $ref: /schemas/types.yaml#/definitions/uint32
-             enum: [0, 1, 2, 3]
- 
--          adi,gain-scaling-n-inv-log2:
--            description: GainN = 1 / ( 2 ^ adi,gain-scaling-n-inv-log2)
-+          adi,gain-scaling-n:
-+            description: GainN = 1 / ( 2 ^ adi,gain-scaling-n)
-             $ref: /schemas/types.yaml#/definitions/uint32
-             enum: [0, 1, 2, 3]
- 
-@@ -109,8 +109,8 @@ patternProperties:
- 
-         required:
-           - adi,gain-offset
--          - adi,gain-scaling-p-inv-log2
--          - adi,gain-scaling-n-inv-log2
-+          - adi,gain-scaling-p
-+          - adi,gain-scaling-n
-           - adi,rfb-ohms
- 
-     required:
-@@ -214,8 +214,8 @@ examples:
-                 reg = <1>;
-                 custom-output-range-config {
-                     adi,gain-offset = <5>;
--                    adi,gain-scaling-p-inv-log2 = <1>;
--                    adi,gain-scaling-n-inv-log2 = <2>;
-+                    adi,gain-scaling-p = <1>;
-+                    adi,gain-scaling-n = <2>;
-                     adi,rfb-ohms = <1>;
-                 };
-             };
+> +	ctrl->ops->set_break_detection(ctrl, enable);
+
+I'd use positive logic here:
+
+	if (ctrl->ops->set_break_detection)
+		ctrl->ops->set_break_detection(ctrl, enable);
+
+> +}
+> +EXPORT_SYMBOL_GPL(serdev_device_set_break_detection);
+
+
 -- 
-2.45.0.rc1
+ i.
 
 
