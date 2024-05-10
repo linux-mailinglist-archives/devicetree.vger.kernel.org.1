@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-66301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 374F08C2548
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:01:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DA5E8C254C
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:01:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 641881C2246A
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 13:01:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E412D2841D4
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 13:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2497171E41;
-	Fri, 10 May 2024 12:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9803812B176;
+	Fri, 10 May 2024 12:58:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C+NSkcVY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j3jLTrDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0157D171085
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 12:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD4117167D
+	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 12:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715345932; cv=none; b=UxqxUsJrmDC7qOrnDw/tL6d6zvlkFdnyliLwNsFFvfKWDoBxujLRCjLxYwKVqnLONb7U8iqRIh7WA/ic+ugY8YQXuwifq+JYbMRSU4aouHBxIfwmae0CzDZutJ21JEiezruwgFBdpAGSncSDRa66817CVff916vHZD+0LOZooNg=
+	t=1715345934; cv=none; b=utiXMVT8JcA+vtlpqfel/ZgWADMve0exXg15GbqAKevJyjc+H6SG4i2Qq+FsaYQlsP5m8aDQXOqIZlxWK2rO5OE8rUB1Jjr4zrOxPfMq/tdT9y1W2u8IUR0Zj2siM0bNLAAsXS9COCOMHlOt7pH8Cbph3qnSzKhxzNJ49vCc+oE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715345932; c=relaxed/simple;
-	bh=ahnPT653i4P3yBKIsubPh2pxiiWDa4+WxBcxEAxXX1M=;
+	s=arc-20240116; t=1715345934; c=relaxed/simple;
+	bh=mpXEdYIGFNmeTr/UviAkCq3TuhB6htqAviYK4ZRdST4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cH0VtlLVjaqLBkOw5cFqwR5HQ7yrYzG4C4KHOpFWXGZ6yotKIOW1/O603/lKe+tH+yLJtCVXh9df8mZYmnWU2GsNWV6K+Na7tAphMcXqozvHej4MiyIJchnbwlzfF0egPUE+OTGThKCGQMVPj9TJ3ck+OtXCsM72nHJjEn2t/Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C+NSkcVY; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:To:Cc; b=Q0pTVi0Dblkj1bM5jkkHi+oK7KIYN2RfBECo6hxjLuUvA4B8GIe/OJgG5jKjeqHlariI9Py67ox9ZyAe7aBpo/VTu2bFd+D7Fi/+nUDPGovizTaiUlglv/PeWuh2tuYeiw92OeC4kJrMC5aZY0jiQIip2v0zQFifez8lA9eUDmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j3jLTrDQ; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a59c5c9c6aeso491752266b.2
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 05:58:50 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a59cdf7cd78so512110966b.0
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 05:58:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715345929; x=1715950729; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1715345931; x=1715950731; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lK/7BWX9Y0nvD7QdHzfYOrPNJBMxWT+Wj9Jc9yOJ7ow=;
-        b=C+NSkcVYRw1yU6u8Qrmp9jkbWC//3TcCiCyvGIemh9q9plKZqJZjYeMDIQJur2/IME
-         QTkBADHuy/l1VN2+ybubn+JDJOgBHD0esUPSwswgRaMZkregdsSb2+eruQ2CTAwp8CFc
-         oVjhY0mpAnGiAhR3w7Egk6wQ8YEUkfWD+t4sO5817kpzTbc8ya/pC/H2Cg8ElyFN76Qj
-         ab2v0ZznSsVuPDYXXUxT0fEMA4UQUlrSntfNC2Gh78VKdfs6Dpy4b5cy2joNrucsHJYS
-         VTX2KkpG87m3RSw2/UwBK4QCFnkCJ3gttjmyzkw4pZlgqbYHVMcg8uhfyVNRAqwHK7HB
-         yAXA==
+        bh=O4LbWL7pMtjLjzOImlyCMR2kJQmPr8y/+o1GWcjQzcY=;
+        b=j3jLTrDQe6VOuAuCGCEoheWGCXxCGtTVffDaxhsFqer6Lm6bMLf0EoSqLxUo01frxc
+         VqD3OUb7zQxVYPbIUKGPWrkpZ3veaMjAuihExhQIdH0A/VcjwsnBTu2JzTtz2RRfJKFw
+         MFecPqzuWabJw9ICaXKwzfI9AdJzQBnV4OPtpjRTSTyfJQbj7tlcAw4jWtlgrUDwAdJr
+         xyeZiOXeLvvjXkxCHR/DLftgqZkF0EM50gzT2rPpSscCSiFmDgO46SeQ/ymJSfySePEr
+         zSKu4eZBXQE/xQlECCzscBlvsVPrLsHD7R706WzhGjHaC25j49fn3EUsJtzDc1er17Zh
+         1vhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715345929; x=1715950729;
+        d=1e100.net; s=20230601; t=1715345931; x=1715950731;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lK/7BWX9Y0nvD7QdHzfYOrPNJBMxWT+Wj9Jc9yOJ7ow=;
-        b=Hq7SBxEB3PjP68A39ovKmXdMZE85X73VoGmUKWMXr1gra8uwJ3anazo2vBkxv+2jYC
-         7WkjCaKMkD/wJ6xBz2YSAapfZ5Pb+zopZxX9hrsn7E/bO42mI72ZCqFB6yQM7maJdW+/
-         9lCDVtlPalkjAaBOCOrCrkXAWFQvP2TcmsV1X5BihRrTGokKwpSwkLkTjCCmeEMv6Bwc
-         MzXVCRRij9nw3nlntk5Lg5b0Zd0OLTIFpESEPIvHOuH/XqVb3ZYF8JQBHKwxHP7jKqip
-         9jUF+N/c7xUSUnUItn0UdjOp36TjAmQHOGa9tbc11EWALISgXG3ZISM99NBZBKdq0RhF
-         y2og==
-X-Forwarded-Encrypted: i=1; AJvYcCV3Hsfzj8IjjDuP2iq2ZdMzixRA+32+jYxfzYVcGNzAWC0qaz4HUvKQaEanNy1l7DLJ6bYwbxp30Q7/WQy1WJNkWlHNIzAJi231PQ==
-X-Gm-Message-State: AOJu0Yzg6hPItEmqn1L0dzcyJnv1V5QOFLzAt+HczMJupLDNX136mqt9
-	9wM9jFn5dZDCa+j0tghJNO5ood0Uszmxvv0Rtleqx9lFC0kqr1i7QqVs7JyGXXI=
-X-Google-Smtp-Source: AGHT+IHKOpovGI5VphV3uLsVQmzdZyHyTEMnWFhb29n1MWn9SfqDm/GS+pvSKWIWCe5hMFJVhvUzgA==
-X-Received: by 2002:a17:906:4ed0:b0:a59:c8bf:1269 with SMTP id a640c23a62f3a-a5a2d5eebf4mr178676766b.37.1715345929554;
-        Fri, 10 May 2024 05:58:49 -0700 (PDT)
+        bh=O4LbWL7pMtjLjzOImlyCMR2kJQmPr8y/+o1GWcjQzcY=;
+        b=neAuddc5MdN0ALM4zA7BkzqlPzAVx7usFnDJQ1QJYf6OiE3zz2qowyIDP9TOJIMFgb
+         H9LKW3sNydm4wHmkG7RDg/9p7vBiR6camO/VPEruPTXJKFBjXw6dyrvirkL2HRHQI0Z+
+         DI2KGmBDh3X/PF9OovMo0mKuu/ix+KGFP/buWqpH8Mz7G9rvuo3ccl5GHAtHxoNlkSH4
+         4BQIqAeBYXe27LlTlfD7mcRAk9G935zNzwOpogkmjLnsc0NCy7IvOHrfZ+E8y+4/7XPf
+         uHXu/9qrkWd9ElvfHmaKuKf2QIeCcMvBlFzOt0ciDKN+O845r6oegxxME4StLnRBfEtt
+         daDw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3ZCGqtHXGTStNuKGMhPm7T1pIxm81AiHRUW8R1UCpYQenE3qPrqMVaWJGecfaanUb0DIhokMwjzwchxrVa3K2E2iahzAXMyGO0g==
+X-Gm-Message-State: AOJu0YxTCe91l2TohDGrPxyge0hDu040P+jIJigTNrMF28AKJtXirQ0k
+	dq9YIknI6m6XwnZmjQO/f/k/YGILelYDgAAhfCgC/IbyillP5mx7RR934cv0x4Q=
+X-Google-Smtp-Source: AGHT+IGI57Bi1n2fSWaj3BnGu8+gLQ7UsRwbt8jtGmiWAX79UoN00c+v4fztEghOnN7ro8+Vzsqeag==
+X-Received: by 2002:a17:907:77c3:b0:a59:9db6:535d with SMTP id a640c23a62f3a-a5a2d67862amr168929466b.65.1715345931104;
+        Fri, 10 May 2024 05:58:51 -0700 (PDT)
 Received: from [127.0.1.1] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781d6bfsm181857366b.31.2024.05.10.05.58.48
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781d6bfsm181857366b.31.2024.05.10.05.58.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 May 2024 05:58:49 -0700 (PDT)
+        Fri, 10 May 2024 05:58:50 -0700 (PDT)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Fri, 10 May 2024 14:58:39 +0200
-Subject: [PATCH 10/12] arm64: dts: qcom: sm8450: Throttle the GPU when
+Date: Fri, 10 May 2024 14:58:40 +0200
+Subject: [PATCH 11/12] arm64: dts: qcom: sm8550: Throttle the GPU when
  overheating
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240510-topic-gpus_are_cool_now-v1-10-ababc269a438@linaro.org>
+Message-Id: <20240510-topic-gpus_are_cool_now-v1-11-ababc269a438@linaro.org>
 References: <20240510-topic-gpus_are_cool_now-v1-0-ababc269a438@linaro.org>
 In-Reply-To: <20240510-topic-gpus_are_cool_now-v1-0-ababc269a438@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -99,20 +99,27 @@ at it.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 48 ++++++++++++++----------------------
- 1 file changed, 18 insertions(+), 30 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 208 ++++++++++++++---------------------
+ 1 file changed, 80 insertions(+), 128 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index ee60fd257efe..38e8d3e9dd43 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -4928,28 +4928,22 @@ map0 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 51c547872438..23f769a5b1d4 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -5367,34 +5367,28 @@ gpuss-0-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu0_junction_config>;
++					trip = <&gpu0_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
  			};
  
  			trips {
 -				thermal-engine-config {
 -					temperature = <125000>;
-+				gpu_top_alert0: trip-point0 {
++				gpu0_alert0: trip-point0 {
 +					temperature = <85000>;
  					hysteresis = <1000>;
  					type = "passive";
@@ -126,14 +133,14 @@ index ee60fd257efe..38e8d3e9dd43 100644
 -					type = "passive";
 -				};
 -
--				reset-mon-cfg {
+-				reset-mon-config {
 -					temperature = <115000>;
 -					hysteresis = <5000>;
 -					type = "passive";
 +					type = "hot";
  				};
  
--				gpu_top_alert0: trip-point0 {
+-				gpu0_junction_config: junction-config {
 -					temperature = <95000>;
 -					hysteresis = <5000>;
 -					type = "passive";
@@ -144,13 +151,20 @@ index ee60fd257efe..38e8d3e9dd43 100644
  				};
  			};
  		};
-@@ -4967,28 +4961,22 @@ map0 {
+@@ -5406,34 +5400,28 @@ gpuss-1-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu1_junction_config>;
++					trip = <&gpu1_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
  			};
  
  			trips {
 -				thermal-engine-config {
 -					temperature = <125000>;
-+				gpu_bottom_alert0: trip-point0 {
++				gpu1_alert0: trip-point0 {
 +					temperature = <85000>;
  					hysteresis = <1000>;
  					type = "passive";
@@ -164,14 +178,284 @@ index ee60fd257efe..38e8d3e9dd43 100644
 -					type = "passive";
 -				};
 -
--				reset-mon-cfg {
+-				reset-mon-config {
 -					temperature = <115000>;
 -					hysteresis = <5000>;
 -					type = "passive";
 +					type = "hot";
  				};
  
--				gpu_bottom_alert0: trip-point0 {
+-				gpu1_junction_config: junction-config {
+-					temperature = <95000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++				trip-point2 {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
+ 				};
+ 			};
+ 		};
+@@ -5445,34 +5433,28 @@ gpuss-2-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu2_junction_config>;
++					trip = <&gpu2_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 
+ 			trips {
+-				thermal-engine-config {
+-					temperature = <125000>;
++				gpu2_alert0: trip-point0 {
++					temperature = <85000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 
+-				thermal-hal-config {
+-					temperature = <125000>;
++				trip-point1 {
++					temperature = <90000>;
+ 					hysteresis = <1000>;
+-					type = "passive";
+-				};
+-
+-				reset-mon-config {
+-					temperature = <115000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++					type = "hot";
+ 				};
+ 
+-				gpu2_junction_config: junction-config {
+-					temperature = <95000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++				trip-point2 {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
+ 				};
+ 			};
+ 		};
+@@ -5484,34 +5466,28 @@ gpuss-3-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu3_junction_config>;
++					trip = <&gpu3_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 
+ 			trips {
+-				thermal-engine-config {
+-					temperature = <125000>;
++				gpu3_alert0: trip-point0 {
++					temperature = <85000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 
+-				thermal-hal-config {
+-					temperature = <125000>;
++				trip-point1 {
++					temperature = <90000>;
+ 					hysteresis = <1000>;
+-					type = "passive";
+-				};
+-
+-				reset-mon-config {
+-					temperature = <115000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++					type = "hot";
+ 				};
+ 
+-				gpu3_junction_config: junction-config {
+-					temperature = <95000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++				trip-point2 {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
+ 				};
+ 			};
+ 		};
+@@ -5523,34 +5499,28 @@ gpuss-4-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu4_junction_config>;
++					trip = <&gpu4_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 
+ 			trips {
+-				thermal-engine-config {
+-					temperature = <125000>;
++				gpu4_alert0: trip-point0 {
++					temperature = <85000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 
+-				thermal-hal-config {
+-					temperature = <125000>;
++				trip-point1 {
++					temperature = <90000>;
+ 					hysteresis = <1000>;
+-					type = "passive";
+-				};
+-
+-				reset-mon-config {
+-					temperature = <115000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++					type = "hot";
+ 				};
+ 
+-				gpu4_junction_config: junction-config {
+-					temperature = <95000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++				trip-point2 {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
+ 				};
+ 			};
+ 		};
+@@ -5562,34 +5532,28 @@ gpuss-5-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu5_junction_config>;
++					trip = <&gpu5_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 
+ 			trips {
+-				thermal-engine-config {
+-					temperature = <125000>;
++				gpu5_alert0: trip-point0 {
++					temperature = <85000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 
+-				thermal-hal-config {
+-					temperature = <125000>;
++				trip-point1 {
++					temperature = <90000>;
+ 					hysteresis = <1000>;
+-					type = "passive";
+-				};
+-
+-				reset-mon-config {
+-					temperature = <115000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++					type = "hot";
+ 				};
+ 
+-				gpu5_junction_config: junction-config {
+-					temperature = <95000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++				trip-point2 {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
+ 				};
+ 			};
+ 		};
+@@ -5601,34 +5565,28 @@ gpuss-6-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu6_junction_config>;
++					trip = <&gpu6_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 
+ 			trips {
+-				thermal-engine-config {
+-					temperature = <125000>;
++				gpu6_alert0: trip-point0 {
++					temperature = <85000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 
+-				thermal-hal-config {
+-					temperature = <125000>;
++				trip-point1 {
++					temperature = <90000>;
+ 					hysteresis = <1000>;
+-					type = "passive";
+-				};
+-
+-				reset-mon-config {
+-					temperature = <115000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++					type = "hot";
+ 				};
+ 
+-				gpu6_junction_config: junction-config {
+-					temperature = <95000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++				trip-point2 {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
+ 				};
+ 			};
+ 		};
+@@ -5640,34 +5598,28 @@ gpuss-7-thermal {
+ 
+ 			cooling-maps {
+ 				map0 {
+-					trip = <&gpu7_junction_config>;
++					trip = <&gpu7_alert0>;
+ 					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 			};
+ 
+ 			trips {
+-				thermal-engine-config {
+-					temperature = <125000>;
++				gpu7_alert0: trip-point0 {
++					temperature = <85000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 
+-				thermal-hal-config {
+-					temperature = <125000>;
++				trip-point1 {
++					temperature = <90000>;
+ 					hysteresis = <1000>;
+-					type = "passive";
+-				};
+-
+-				reset-mon-config {
+-					temperature = <115000>;
+-					hysteresis = <5000>;
+-					type = "passive";
++					type = "hot";
+ 				};
+ 
+-				gpu7_junction_config: junction-config {
 -					temperature = <95000>;
 -					hysteresis = <5000>;
 -					type = "passive";
