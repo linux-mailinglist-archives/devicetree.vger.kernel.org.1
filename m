@@ -1,1119 +1,146 @@
-Return-Path: <devicetree+bounces-66171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC028C1E06
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 08:24:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 408048C1E3D
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 08:42:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 304701C20837
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 06:24:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECBA0283A64
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 06:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64E81527A0;
-	Fri, 10 May 2024 06:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5357C56B9C;
+	Fri, 10 May 2024 06:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="BMZCHxTk"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="uW1RJp4o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029D61BC2A
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 06:24:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8B81A2C0E;
+	Fri, 10 May 2024 06:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715322278; cv=none; b=Lmd3l24OsBtMMQY/pGyMDXDNdUoOJL83zWzGlUjTRZWzvPFrV2dszcw4xvNErWQ6EPn8XugDmcp8bx9VXEXp8DRo/S605t3rOS26UQ0EFGp5i5iFAcq1y9mA7dF0nxruzBoNyqHe/sWAe2y0/UtJxv60e5fqFg6eNCNAuat/80U=
+	t=1715323317; cv=none; b=hydDow8OwDKbHZGkPipZto20a9q+hsSM/8pRB9oOjjRCIOqbtAoafqgozKhUSnc1r19Xe8kez0v6psUlsZ50r4t0fqWxhC6vgVEGynu6C6jfFQyRs9fkJ9SOpSBSKrWQTJh4PLvv2f6V0Jp7m1aMl0Pw2SxmuG6DhBs/yjBIiHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715322278; c=relaxed/simple;
-	bh=MlruymtFb3a102nTK/KDbu1VhYmZ/zh0abf7vLFdiWU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=aC2Yx0+F8/sR2L35b0TlAEkTc5FLvWhjtfaVWKqPGsJMrsi+THmRdZ9ygdfUps12lq9+lrl4NrZbYu4TdjJ+UW7OuL+qvduN8bekzEb7+YRsH5PcCODiq501Dmjh263Tnf70lTsfyO2M1uOVzQB/ROsOM2r2tbBQBZbYTY7XC1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=BMZCHxTk; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a599a298990so395789866b.2
-        for <devicetree@vger.kernel.org>; Thu, 09 May 2024 23:24:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1715322274; x=1715927074; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Iqei8S0sCoB8SFXJUpFiCwdK4LHzJNlzL5RBJ+PNhcM=;
-        b=BMZCHxTkJpYVFnwHFA8L0e472Cmr3HeuKyNBBIj+/VCqG6cjkobl825Ccqky+i1FPr
-         jSqoo+q2keuEuHNWdZnmRmyu1G308BmTw6Zj1aVI4GwCieahsXB+FEp6ASbF9CNhG2LO
-         AgPx0cQQFADJBvWWp4f0C2YMMRvZ9uGaoYWk/bDaht7AQofPAjTCFaK6GHnGqG8rcOsa
-         ETqLBpilE7TcbZKyI+XPFm8adgupz6Bm55S6uCrIHSejcay++xFo8thhIF+6pRjUvDPt
-         jyzTK4GCSmZOY2PqLW0a67+wk+DLKrEloeGXkrX3ych9kMwlpJ9fDsnOagZlJuXXiwv/
-         kblw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715322274; x=1715927074;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Iqei8S0sCoB8SFXJUpFiCwdK4LHzJNlzL5RBJ+PNhcM=;
-        b=vP5QginQeInCENMtE10VMaaTmjnwJ8Mhcx1oUZb5Q8kEBxIhF6L1TBMNCbqmBt/Ho4
-         xcCqaagMJYChWIO36MpC32nZ2Xyhwanp6fH+8QeIDLVB18VwZQMYgk1PYMB6eXi34Sj8
-         Iwg4MiqZKOiU4pw0+nb3xutzED6EiC7A1OjifR2alTwb5/sl4abndYNqjfhAf39ckhPx
-         H1bPa3jN/1pVdB4aQiOzm5oyHb1nuw5WOEoNMUusd6qScky72M1RRyTN8HBPJl0hW5uL
-         MheekTJA76oFFQVgLD2eJKc/vNeFZdsu/mMDByEk4+xJUdZFyiTKIW8F+QLgXsBGM5OO
-         bhAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHXjOIaKghfVSTA8YecODzczbhU3z9hSGeaUB/r//70DcX7QH/u4JQZyt4GvUch5veswCi1OCZRawz2eGgOBQCyrfkRh5N3CmKuA==
-X-Gm-Message-State: AOJu0Ywu/Y4Qr9mwfDiabUc+z8X1J8sqIW2b3hOGrCHZTw5W8ILo/myH
-	tbcCfptYcXNynIV2TeQZ5bElcb75+LAuG/VtbgWjZE7eqXGSJLm7iTgzghayoTw=
-X-Google-Smtp-Source: AGHT+IHq0QXvEZBxPq+Xe6RMY1i3MeAsyMlYPdQhibPD73PcSo5D7TGVfeBzFO0GKRvXzZu1ACCNoQ==
-X-Received: by 2002:a17:906:305a:b0:a59:db0f:6be4 with SMTP id a640c23a62f3a-a5a2d534ec4mr114943266b.5.1715322274233;
-        Thu, 09 May 2024 23:24:34 -0700 (PDT)
-Received: from localhost (2a02-a210-20ba-5a00-9ceb-707b-2d57-26f7.cable.dynamic.v6.ziggo.nl. [2a02:a210:20ba:5a00:9ceb:707b:2d57:26f7])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b017b1sm148514666b.181.2024.05.09.23.24.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 May 2024 23:24:33 -0700 (PDT)
+	s=arc-20240116; t=1715323317; c=relaxed/simple;
+	bh=zHw5rmsy7qKm+z8qwjnC5Xt6TIYGmbIqlRzkdS4jp2Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tGhxAEu1CuiARzDMx8w3K3APHOCoOJgJ8D2S0G0gqsulowYaAXIs9zLS9ZCUHWLd9Jy1Px7syovhXoS6933bw5gYFRGt3W8lzzzp4XYHt3y3vydeysS80Zp6W68TwnNWUgKvXPDRjPy6kCWYvgIzDW11gA0EQZkMJ/NE/GT2ZKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=uW1RJp4o; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44A4dBKK006983;
+	Fri, 10 May 2024 02:41:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding; s=DKIM; bh=kVni+v16C442TfQ6e1EmMu0Ew
+	QbjLzJZQSp6aTqUDI8=; b=uW1RJp4osExmx4dk9fVw96mCbfLxzMikFa1E8Z6/V
+	Xva1MkJJ7+AgVKQUl2p79P1yxK6Wxypu1MjrFo8WR9bpZE8hD5zENjCrKnkFXbVS
+	JS+0luQi8LMw1RHQp35hgvAH7gh6KcXYArYdZqvZ2R8fs8RFxJC751jfJ9Aq3b57
+	npoP+A9tZCBj3UWpoP9XhivOydXUkpH2X2TW/YXDTRrq5N8wjxoxqM8YvZhbqqXN
+	bKa2RPHaZKUXZ4Nzqp5MJhkoMn1iDWKoviKIwWvKKeWdnCZWGI+/Cbh81juc5bLr
+	Te5G16FnOSUglyl73CwCvAC2j+aXaxs7eljfU/7hY7Ufg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3y16xt1c5c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 May 2024 02:41:18 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 44A6fHsv051476
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 10 May 2024 02:41:17 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 10 May
+ 2024 02:41:16 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 10 May 2024 02:41:16 -0400
+Received: from MTINACO-L03.ad.analog.com (MTINACO-L03.ad.analog.com [10.117.116.80])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 44A6ewwb001379;
+	Fri, 10 May 2024 02:41:00 -0400
+From: Mariel Tinaco <Mariel.Tinaco@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark
+ Brown <broonie@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Dimitri Fedrau
+	<dima.fedrau@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH 0/2] add AD8460 DAC driver
+Date: Fri, 10 May 2024 14:40:51 +0800
+Message-ID: <20240510064053.278257-1-Mariel.Tinaco@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 10 May 2024 08:24:33 +0200
-Message-Id: <D15QZXT5UM4A.2FN4KT8XJMCAE@fairphone.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: add QCM6490 SHIFTphone 8
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Caleb Connolly" <caleb.connolly@linaro.org>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-Cc: "Alexander Martinz" <amartinz@shiftphones.com>,
- <~postmarketos/upstreaming@lists.sr.ht>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.17.0
-References: <20240508-otter-bringup-v1-0-c807d3d931f6@linaro.org>
- <20240508-otter-bringup-v1-2-c807d3d931f6@linaro.org>
-In-Reply-To: <20240508-otter-bringup-v1-2-c807d3d931f6@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: lT5dUnIKRTt949X5kgeiLUUb5vZVrppF
+X-Proofpoint-ORIG-GUID: lT5dUnIKRTt949X5kgeiLUUb5vZVrppF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-10_04,2024-05-10_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 phishscore=0 clxscore=1011
+ impostorscore=0 malwarescore=0 mlxscore=0 adultscore=0 bulkscore=0
+ suspectscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405100046
 
-Hi Caleb,
+The AD8460 is a 14-bit, high power +-40V 1A, high-speed DAC,
+with dual digital input modes, programmable supply current and
+fault monitoring and protection settings for output current,
+output voltage and junction temperature.
 
-On Wed May 8, 2024 at 1:28 AM CEST, Caleb Connolly wrote:
-> The SHIFTphone 8 is an upcoming QCM6490 smartphone, it has the following
-> features:
->
-> * 12GB of RAM, 512GB UFS storage
-> * 1080p display.
-> * Hardware kill switches for cameras and microphones
-> * UART access via type-c SBU pins (enabled by an internal switch)
->
-> Initial support includes:
->
-> * Framebuffer display
-> * UFS and sdcard storage
-> * Battery monitoring and USB role switching via pmic glink
-> * Bluetooth
-> * Thermals
->
-> Wifi is not yet functional due to a crash in the remoteproc
-> firmware.
->
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                |   1 +
->  arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 938 +++++++++++++++++=
-++++++
->  2 files changed, 939 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom=
-/Makefile
-> index 7d40ec5e7d21..678e800ac797 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -92,8 +92,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8998-sony-xperia-yoshin=
-o-maple.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8998-sony-xperia-yoshino-poplar.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8998-xiaomi-sagit.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D qcm6490-fairphone-fp5.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D qcm6490-idp.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+=3D qcm6490-shift-otter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D qcs6490-rb3gen2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+=3D qdu1000-idp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts b/arch/arm6=
-4/boot/dts/qcom/qcm6490-shift-otter.dts
-> new file mode 100644
-> index 000000000000..ceef8b9b2414
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
-> @@ -0,0 +1,938 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Based largely on Fairphone 5 DT.
+The fault monitoring and shutdown protection features were
+supported in the earlier versions of the IIO driver but was
+scrapped due to uncertainties if the functionalities belong to
+the IIO driver. However, it would be best to implement it for
+the device's quality of life. I'd like to know if it's better
+suited as a stand-alone HWMON driver.
 
-:) But not sure this needs to be in the file, in the commit message
-would be enough imo
+The following are the configurable and readable parameters
+through SPI that could be implemented on the HWMON driver:
+  * An enable bit to arm/protect the device on overcurrent,
+overvoltage or overtemperature events. The device is shut down
+upon detection.
+  * A configurable range/threshold for voltage, current and
+temperature that raises alarm when exceeded while the device is
+armed.
+  * Flags that can be polled to raise alarm upon detection of
+overcurrent, overvoltage or overtemperature events, and apply
+additional protective measures.
+  * Programmable quiescent current (optional)
+  * Thermal monitoring is done by measuring voltage on TMP pin
+(unlikely to be included)
 
-> + *
-> + * Copyright (c) 2023, Luca Weiss <luca.weiss@fairphone.com>
-> + * Copyright (c) 2024, Caleb Connolly <caleb.connolly@linaro.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#define PM7250B_SID 8
-> +#define PM7250B_SID1 9
-> +
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pm7325.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "sc7280.dtsi"
+Mariel Tinaco (2):
+  dt-bindings: iio: dac: add docs for ad8460
+  iio: dac: support the ad8460 Waveform DAC
 
-Sort the list of PMICs by alphabet? Also I guess you can keep the
-comments I have in fp5.dts which has the 'real' model of the PMIC
+ .../bindings/iio/dac/adi,ad8460.yaml          |  67 ++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/dac/Kconfig                       |  13 +
+ drivers/iio/dac/Makefile                      |   1 +
+ drivers/iio/dac/ad8460.c                      | 652 ++++++++++++++++++
+ 5 files changed, 741 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad8460.yaml
+ create mode 100644 drivers/iio/dac/ad8460.c
 
-> +#include "pmk8350.dtsi" /* PMK7325 */
-> +#include "pm7325.dtsi"
-> +#include "pm8350c.dtsi"
-> +#include "pm7250b.dtsi"
-> +
-> +/* There is also a pmr735a */
 
-This thing also exists on FP5 (named SDR-735-*), but I don't think it's
-accessible to Linux - or that Linux needs to do anything with it.
-Downstream I also didn't see something for it iirc.
-
-> +
-> +/delete-node/ &rmtfs_mem;
-> +
-> +/ {
-> +	model =3D "SHIFT SHIFTphone 8";
-> +	compatible =3D "shift,otter", "qcom,qcm6490";
-> +	chassis-type =3D "handset";
-> +
-> +	aliases {
-> +		serial0 =3D &uart5;
-> +		serial1 =3D &uart7;
-> +	};
-> +
-> +	chosen {
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges;
-> +
-> +		stdout-path =3D "serial0:115200n8";
-> +
-> +		framebuffer0: framebuffer@a000000 {
-> +			compatible =3D "simple-framebuffer";
-> +			reg =3D <0x0 0xe1000000 0x0 (2400 * 1080 * 4)>;
-> +			width =3D <1080>;
-> +			height =3D <2400>;
-> +			stride =3D <(1080 * 4)>;
-> +			format =3D "a8r8g8b8";
-> +			clocks =3D <&gcc GCC_DISP_HF_AXI_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible =3D "gpio-keys";
-> +
-> +		pinctrl-0 =3D <&volume_down_default>;
-> +		pinctrl-names =3D "default";
-> +
-> +		key-volume-up {
-> +			label =3D "Volume up";
-> +			gpios =3D <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-> +			linux,code =3D <KEY_VOLUMEUP>;
-> +			debounce-interval =3D <15>;
-> +		};
-> +	};
-> +
-> +	pmic-glink {
-> +		compatible =3D "qcom,qcm6490-pmic-glink", "qcom,pmic-glink";
-> +
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		connector@0 {
-> +			compatible =3D "usb-c-connector";
-> +			reg =3D <0>;
-> +			power-role =3D "dual";
-> +			data-role =3D "dual";
-> +
-> +			ports {
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <0>;
-> +
-> +				port@0 {
-> +					reg =3D <0>;
-> +
-> +					pmic_glink_hs_in: endpoint {
-> +						remote-endpoint =3D <&usb_1_dwc3_hs>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg =3D <1>;
-> +
-> +					pmic_glink_ss_in: endpoint {
-> +						remote-endpoint =3D <&usb_dp_qmpphy_out>;
-> +					};
-> +				};
-> +
-> +				port@2 {
-> +					reg =3D <2>;
-> +
-> +					pmic_glink_sbu: endpoint {
-> +						remote-endpoint =3D <&fsa4480_sbu_mux>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		cont_splash_mem: cont-splash@e1000000 {
-> +			reg =3D <0x0 0xe1000000 0x0 0x2300000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp@88f00000 {
-> +			reg =3D <0x0 0x88f00000 0x0 0x1e00000>;
-> +			no-map;
-> +		};
-> +
-> +		rmtfs_mem: memory@f8500000 {
-
-rmtfs@
-
-> +			compatible =3D "qcom,rmtfs-mem";
-> +			reg =3D <0x0 0xf8500000 0x0 0x600000>;
-> +			no-map;
-> +
-> +			qcom,client-id =3D <1>;
-> +			qcom,vmid =3D <QCOM_SCM_VMID_MSS_MSA>, <QCOM_SCM_VMID_NAV>;
-> +		};
-> +	};
-> +
-> +	thermal-zones {
-> +		camera-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&pmk8350_adc_tm 2>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <125000>;
-> +					hysteresis =3D <1000>;
-> +					type =3D "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		chg-skin-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&pm7250b_adc_tm 0>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <125000>;
-> +					hysteresis =3D <1000>;
-> +					type =3D "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		conn-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&pm7250b_adc_tm 1>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <125000>;
-> +					hysteresis =3D <1000>;
-> +					type =3D "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		quiet-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&pmk8350_adc_tm 1>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <125000>;
-> +					hysteresis =3D <1000>;
-> +					type =3D "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		rear-cam-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&pmk8350_adc_tm 4>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <125000>;
-> +					hysteresis =3D <1000>;
-> +					type =3D "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		sdm-skin-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&pmk8350_adc_tm 3>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <125000>;
-> +					hysteresis =3D <1000>;
-> +					type =3D "passive";
-> +				};
-> +			};
-> +		};
-> +
-> +		xo-thermal {
-> +			polling-delay-passive =3D <0>;
-> +			polling-delay =3D <0>;
-> +			thermal-sensors =3D <&pmk8350_adc_tm 0>;
-> +
-> +			trips {
-> +				active-config0 {
-> +					temperature =3D <125000>;
-> +					hysteresis =3D <1000>;
-> +					type =3D "passive";
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&apps_rsc {
-> +	regulators-0 {
-> +		compatible =3D "qcom,pm7325-rpmh-regulators";
-> +		qcom,pmic-id =3D "b";
-> +
-> +		vreg_s1b: smps1 {
-> +			regulator-min-microvolt =3D <1840000>;
-> +			regulator-max-microvolt =3D <2040000>;
-> +		};
-> +
-> +		vreg_s7b: smps7 {
-> +			regulator-min-microvolt =3D <535000>;
-> +			regulator-max-microvolt =3D <1120000>;
-> +		};
-> +
-> +		vreg_s8b: smps8 {
-> +			regulator-min-microvolt =3D <1200000>;
-> +			regulator-max-microvolt =3D <1500000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_RET>;
-> +		};
-> +
-> +		vreg_l1b: ldo1 {
-> +			regulator-min-microvolt =3D <825000>;
-> +			regulator-max-microvolt =3D <925000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2b: ldo2 {
-> +			regulator-min-microvolt =3D <2700000>;
-> +			regulator-max-microvolt =3D <3544000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3b: ldo3 {
-> +			regulator-min-microvolt =3D <312000>;
-> +			regulator-max-microvolt =3D <910000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6b: ldo6 {
-> +			regulator-min-microvolt =3D <1140000>;
-> +			regulator-max-microvolt =3D <1260000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7b: ldo7 {
-> +			/* Constrained for UFS VCC, at least until UFS driver scales voltage =
-*/
-> +			regulator-min-microvolt =3D <2952000>;
-> +			regulator-max-microvolt =3D <2952000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l8b: ldo8 {
-> +			regulator-min-microvolt =3D <870000>;
-> +			regulator-max-microvolt =3D <970000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9b: ldo9 {
-> +			regulator-min-microvolt =3D <1200000>;
-> +			regulator-max-microvolt =3D <1304000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l11b: ldo11 {
-> +			regulator-min-microvolt =3D <1504000>;
-> +			regulator-max-microvolt =3D <2000000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12b: ldo12 {
-> +			regulator-min-microvolt =3D <751000>;
-> +			regulator-max-microvolt =3D <824000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13b: ldo13 {
-> +			regulator-min-microvolt =3D <530000>;
-> +			regulator-max-microvolt =3D <824000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l14b: ldo14 {
-> +			regulator-min-microvolt =3D <1080000>;
-> +			regulator-max-microvolt =3D <1304000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l15b: ldo15 {
-> +			regulator-min-microvolt =3D <765000>;
-> +			regulator-max-microvolt =3D <1020000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l16b: ldo16 {
-> +			regulator-min-microvolt =3D <1100000>;
-> +			regulator-max-microvolt =3D <1300000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l17b: ldo17 {
-> +			regulator-min-microvolt =3D <1700000>;
-> +			regulator-max-microvolt =3D <1900000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l18b: ldo18 {
-> +			regulator-min-microvolt =3D <1800000>;
-> +			regulator-max-microvolt =3D <2000000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l19b: ldo19 {
-> +			regulator-min-microvolt =3D <1800000>;
-> +			regulator-max-microvolt =3D <2000000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-1 {
-> +		compatible =3D "qcom,pm8350c-rpmh-regulators";
-> +		qcom,pmic-id =3D "c";
-> +
-> +		vreg_s1c: smps1 {
-> +			regulator-min-microvolt =3D <2190000>;
-> +			regulator-max-microvolt =3D <2210000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s9c: smps9 {
-> +			regulator-min-microvolt =3D <1010000>;
-> +			regulator-max-microvolt =3D <1170000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1c: ldo1 {
-> +			regulator-min-microvolt =3D <1800000>;
-> +			regulator-max-microvolt =3D <1980000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2c: ldo2 {
-> +			regulator-min-microvolt =3D <1800000>;
-> +			regulator-max-microvolt =3D <1950000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3c: ldo3 {
-> +			regulator-min-microvolt =3D <3000000>;
-> +			regulator-max-microvolt =3D <3400000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l4c: ldo4 {
-> +			regulator-min-microvolt =3D <1620000>;
-> +			regulator-max-microvolt =3D <3300000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l5c: ldo5 {
-> +			regulator-min-microvolt =3D <1620000>;
-> +			regulator-max-microvolt =3D <3300000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l6c: ldo6 {
-> +			regulator-min-microvolt =3D <1650000>;
-> +			regulator-max-microvolt =3D <3544000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7c: ldo7 {
-> +			regulator-min-microvolt =3D <3000000>;
-> +			regulator-max-microvolt =3D <3544000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l8c: ldo8 {
-> +			regulator-min-microvolt =3D <1620000>;
-> +			regulator-max-microvolt =3D <2000000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9c: ldo9 {
-> +			regulator-min-microvolt =3D <2700000>;
-> +			regulator-max-microvolt =3D <3544000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l10c: ldo10 {
-> +			regulator-min-microvolt =3D <720000>;
-> +			regulator-max-microvolt =3D <1050000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l11c: ldo11 {
-> +			regulator-min-microvolt =3D <2800000>;
-> +			regulator-max-microvolt =3D <3544000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12c: ldo12 {
-> +			regulator-min-microvolt =3D <1650000>;
-> +			regulator-max-microvolt =3D <2000000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13c: ldo13 {
-> +			regulator-min-microvolt =3D <2700000>;
-> +			regulator-max-microvolt =3D <3544000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_bob: bob {
-> +			regulator-min-microvolt =3D <3008000>;
-> +			regulator-max-microvolt =3D <3960000>;
-> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_AUTO>;
-> +		};
-> +	};
-> +};
-> +
-> +&gcc {
-> +	protected-clocks =3D <GCC_CFG_NOC_LPASS_CLK>,
-> +			<GCC_EDP_CLKREF_EN>,
-> +			<GCC_MSS_CFG_AHB_CLK>,
-> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>,
-> +			<GCC_MSS_OFFLINE_AXI_CLK>,
-> +			<GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>,
-> +			<GCC_MSS_SNOC_AXI_CLK>,
-> +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-> +			<GCC_QSPI_CORE_CLK>,
-> +			<GCC_QSPI_CORE_CLK_SRC>,
-> +			<GCC_SEC_CTRL_CLK_SRC>,
-> +			<GCC_WPSS_AHB_BDG_MST_CLK>,
-> +			<GCC_WPSS_AHB_CLK>,
-> +			<GCC_WPSS_RSCP_CLK>;
-> +};
-> +
-> +&gpi_dma0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&gpi_dma1 {
-> +	status =3D "okay";
-> +};
-> +
-> +&gpu {
-> +	status =3D "okay";
-> +};
-> +
-> +&gpu_zap_shader {
-> +	firmware-name =3D "qcom/qcm6490/SHIFT/otter/a660_zap.mbn";
-> +};
-> +
-> +&i2c1 {
-> +	status =3D "okay";
-> +
-> +	/* PM8008 PMIC @ 8 and 9 */
-> +	/* rtc6226 FM receiver @ 64 */
-> +
-> +	typec-mux@42 {
-> +		compatible =3D "fcs,fsa4480";
-> +		reg =3D <0x42>;
-> +
-> +		vcc-supply =3D <&vreg_bob>;
-> +
-> +		mode-switch;
-> +		orientation-switch;
-> +
-> +		port {
-> +			fsa4480_sbu_mux: endpoint {
-> +				remote-endpoint =3D <&pmic_glink_sbu>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c4 {
-> +	status =3D "okay";
-> +
-> +	/* tas2563 audio codec @ 4d */
-> +};
-> +
-> +&i2c9 {
-> +	status =3D "okay";
-> +
-> +	/* TMS(?) NFC @ 28 */
-> +	/* Ti drv2624 haptics @ 5a */
-> +};
-> +
-> +&i2c13 {
-> +	status =3D "okay";
-> +
-> +	/* focaltech FT3658U @ 38 */
-> +};
-> +
-> +&ipa {
-> +	qcom,gsi-loader =3D "self";
-> +	memory-region =3D <&ipa_fw_mem>;
-> +	firmware-name =3D "qcom/qcm6490/SHIFT/otter/ipa_fws.mbn";
-> +	status =3D "okay";
-> +};
-> +
-> +&pm7250b_adc {
-> +	channel@4d {
-> +		reg =3D <ADC5_AMUX_THM1_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +		label =3D "charger_skin_therm";
-> +	};
-> +
-> +	channel@4f {
-> +		reg =3D <ADC5_AMUX_THM3_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +		label =3D "conn_therm";
-> +	};
-> +};
-> +
-> +&pm7250b_adc_tm {
-> +	status =3D "okay";
-> +
-> +	charger-skin-therm@0 {
-> +		reg =3D <0>;
-> +		io-channels =3D <&pm7250b_adc ADC5_AMUX_THM1_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us =3D <200>;
-> +	};
-> +
-> +	conn-therm@1 {
-> +		reg =3D <1>;
-> +		io-channels =3D <&pm7250b_adc ADC5_AMUX_THM3_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us =3D <200>;
-> +	};
-> +};
-> +
-> +&pm7325_gpios {
-> +	volume_down_default: volume-down-default-state {
-> +		pins =3D "gpio6";
-> +		function =3D PMIC_GPIO_FUNC_NORMAL;
-> +		power-source =3D <1>;
-> +		bias-pull-up;
-> +		input-enable;
-> +	};
-> +};
-> +
-> +&pmk8350_adc_tm {
-> +	status =3D "okay";
-> +
-> +	xo-therm@0 {
-> +		reg =3D <0>;
-> +		io-channels =3D <&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us =3D <200>;
-> +	};
-> +
-> +	quiet-therm@1 {
-> +		reg =3D <1>;
-> +		io-channels =3D <&pmk8350_vadc PM7325_ADC7_AMUX_THM1_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us =3D <200>;
-> +	};
-> +
-> +	cam-flash-therm@2 {
-> +		reg =3D <2>;
-> +		io-channels =3D <&pmk8350_vadc PM7325_ADC7_AMUX_THM2_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us =3D <200>;
-> +	};
-> +
-> +	sdm-skin-therm@3 {
-> +		reg =3D <3>;
-> +		io-channels =3D <&pmk8350_vadc PM7325_ADC7_AMUX_THM3_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us =3D <200>;
-> +	};
-> +
-> +	wide-rfc-therm@4 {
-> +		reg =3D <4>;
-> +		io-channels =3D <&pmk8350_vadc PM7325_ADC7_AMUX_THM4_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time-us =3D <200>;
-> +	};
-> +};
-> +
-> +&pmk8350_rtc {
-> +	status =3D "okay";
-> +};
-> +
-> +&pmk8350_vadc {
-> +	status =3D "okay";
-> +
-> +	channel@44 {
-> +		reg =3D <PMK8350_ADC7_AMUX_THM1_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +		label =3D "pmk8350_xo_therm";
-> +	};
-> +
-> +	channel@144 {
-> +		reg =3D <PM7325_ADC7_AMUX_THM1_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +		label =3D "pm7325_quiet_therm";
-> +	};
-> +
-> +	channel@145 {
-> +		reg =3D <PM7325_ADC7_AMUX_THM2_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +		label =3D "pm7325_cam_flash_therm";
-> +	};
-> +
-> +	channel@146 {
-> +		reg =3D <PM7325_ADC7_AMUX_THM3_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +		label =3D "pm7325_sdm_skin_therm";
-> +	};
-> +
-> +	channel@147 {
-> +		reg =3D <PM7325_ADC7_AMUX_THM4_100K_PU>;
-> +		qcom,ratiometric;
-> +		qcom,hw-settle-time =3D <200>;
-> +		qcom,pre-scaling =3D <1 1>;
-> +		label =3D "pm7325_wide_rfc_therm";
-> +	};
-> +};
-> +
-> +&pon_pwrkey {
-> +	status =3D "okay";
-> +};
-> +
-> +&pon_resin {
-> +	linux,code =3D <KEY_VOLUMEDOWN>;
-> +	status =3D "okay";
-> +};
-> +
-> +&qup_spi13_cs {
-> +	drive-strength =3D <6>;
-> +	bias-disable;
-> +};
-> +
-> +&qup_spi13_data_clk {
-> +	drive-strength =3D <6>;
-> +	bias-disable;
-> +};
-> +
-> +&qup_uart5_rx {
-> +	drive-strength =3D <2>;
-> +	bias-disable;
-> +};
-> +
-> +&qup_uart5_tx {
-> +	drive-strength =3D <2>;
-> +	bias-disable;
-> +};
-> +
-> +&qupv3_id_0 {
-> +	status =3D "okay";
-> +};
-> +
-> +&qupv3_id_1 {
-> +	status =3D "okay";
-> +};
-> +
-> +&remoteproc_adsp {
-> +	firmware-name =3D "qcom/qcm6490/SHIFT/otter/adsp.mbn";
-> +	status =3D "okay";
-> +};
-> +
-> +&remoteproc_cdsp {
-> +	firmware-name =3D "qcom/qcm6490/SHIFT/otter/cdsp.mbn";
-> +	status =3D "okay";
-> +};
-> +
-> +&remoteproc_mpss {
-> +	firmware-name =3D "qcom/qcm6490/SHIFT/otter/modem.mbn";
-> +	status =3D "okay";
-> +};
-> +
-> +&remoteproc_wpss {
-> +	firmware-name =3D "qcom/qcm6490/SHIFT/otter/wpss.mbn";
-> +	/*
-> +	 * FIXME: wpss remoteproc crashes during boot with:
-> +	 * qcom_q6v5_pas 8a00000.remoteproc: fatal error received:
-> +	 *   cmnos_thread.c:4645:Asserted in
-> +	 *   cmnos_allocram.c:cmnos_allocram_base_with_alignment_recurse:497
-> +	 *   with Args:0x3,0x3,0x0
-> +	 */
-> +	 status =3D "disabled";
-> +};
-> +
-> +&sdc2_clk {
-> +	drive-strength =3D <16>;
-> +	bias-disable;
-> +};
-> +
-> +&sdc2_cmd {
-> +	drive-strength =3D <10>;
-> +	bias-pull-up;
-> +};
-> +
-> +&sdc2_data {
-> +	drive-strength =3D <10>;
-> +	bias-pull-up;
-> +};
-> +
-> +&sdhc_2 {
-> +	vmmc-supply =3D <&vreg_l9c>;
-> +	vqmmc-supply =3D <&vreg_l6c>;
-> +
-> +	pinctrl-0 =3D <&sdc2_clk>, <&sdc2_cmd>, <&sdc2_data>;
-> +	pinctrl-1 =3D <&sdc2_clk_sleep>, <&sdc2_cmd_sleep>, <&sdc2_data_sleep>;
-> +
-> +	status =3D "okay";
-> +};
-> +
-> +&tlmm {
-> +	/*
-> +	* 48-52: protected by XPU, not sure why.
-> +	*/
-> +	gpio-reserved-ranges =3D <48 4>;
-
-If they really shouldn't be protected from firmware level (fingerprint
-reader or whatnot), somebody at SHIFT should patch TZ firmware and
-change the owner from TZ to HLOS.
-
-> +
-> +	bluetooth_enable_default: bluetooth-enable-default-state {
-> +		pins =3D "gpio85";
-> +		function =3D "gpio";
-> +		output-low;
-> +		bias-disable;
-> +	};
-> +
-> +	qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
-> +		pins =3D "gpio28";
-> +		function =3D "gpio";
-> +		/*
-> +		* Configure a bias-bus-hold on CTS to lower power
-> +		* usage when Bluetooth is turned off. Bus hold will
-> +		* maintain a low power state regardless of whether
-> +		* the Bluetooth module drives the pin in either
-> +		* direction or leaves the pin fully unpowered.
-> +		*/
-> +		bias-bus-hold;
-> +	};
-> +
-> +	qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
-> +		pins =3D "gpio29";
-> +		function =3D "gpio";
-> +		/*
-> +		* Configure pull-down on RTS. As RTS is active low
-> +		* signal, pull it low to indicate the BT SoC that it
-> +		* can wakeup the system anytime from suspend state by
-> +		* pulling RX low (by sending wakeup bytes).
-> +		*/
-> +		bias-pull-down;
-> +	};
-> +
-> +	qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
-> +		pins =3D "gpio30";
-> +		function =3D "gpio";
-> +		/*
-> +		* Configure pull-up on TX when it isn't actively driven
-> +		* to prevent BT SoC from receiving garbage during sleep.
-> +		*/
-> +		bias-pull-up;
-> +	};
-> +
-> +	qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
-> +		pins =3D "gpio31";
-> +		function =3D "gpio";
-> +		/*
-> +		* Configure a pull-up on RX. This is needed to avoid
-> +		* garbage data when the TX pin of the Bluetooth module
-> +		* is floating which may cause spurious wakeups.
-> +		*/
-> +		bias-pull-up;
-> +	};
-> +
-> +	sw_ctrl_default: sw-ctrl-default-state {
-> +		pins =3D "gpio86";
-> +		function =3D "gpio";
-> +		bias-pull-down;
-> +	};
-> +};
-> +
-> +&uart5 {
-> +	compatible =3D "qcom,geni-debug-uart";
-
-This should be redundant soon if the author resends anytime soon
-
-https://lore.kernel.org/linux-arm-msm/20240416105650.2626-1-quic_vdadhani@q=
-uicinc.com/
-
-Don't see anything wrong with the rest
-
-Regards
-Luca
-
-> +	status =3D "okay";
-> +};
-> +
-> +&uart7 {
-> +	/delete-property/interrupts;
-> +	interrupts-extended =3D <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
-> +			<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +	pinctrl-1 =3D <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>, <&qup_uar=
-t7_sleep_tx>, <&qup_uart7_sleep_rx>;
-> +	pinctrl-names =3D "default", "sleep";
-> +
-> +	status =3D "okay";
-> +
-> +	bluetooth: bluetooth {
-> +		compatible =3D "qcom,wcn6750-bt";
-> +
-> +		pinctrl-0 =3D <&bluetooth_enable_default>, <&sw_ctrl_default>;
-> +		pinctrl-names =3D "default";
-> +
-> +		enable-gpios =3D <&tlmm 85 GPIO_ACTIVE_HIGH>;
-> +		swctrl-gpios =3D <&tlmm 86 GPIO_ACTIVE_HIGH>;
-> +
-> +		vddio-supply =3D <&vreg_l19b>;
-> +		vddaon-supply =3D <&vreg_s7b>;
-> +		vddbtcxmx-supply =3D <&vreg_s7b>;
-> +		vddrfacmn-supply =3D <&vreg_s7b>;
-> +		vddrfa0p8-supply =3D <&vreg_s7b>;
-> +		vddrfa1p7-supply =3D <&vreg_s1b>;
-> +		vddrfa1p2-supply =3D <&vreg_s8b>;
-> +		vddrfa2p2-supply =3D <&vreg_s1c>;
-> +		vddasd-supply =3D <&vreg_l11c>;
-> +
-> +		max-speed =3D <3200000>;
-> +	};
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios =3D <&tlmm 175 GPIO_ACTIVE_LOW>;
-> +
-> +	vcc-supply =3D <&vreg_l7b>;
-> +	vcc-max-microamp =3D <800000>;
-> +	/*
-> +	* Technically l9b enables an eLDO (supplied by s1b) which then powers
-> +	* VCCQ2 of the UFS.
-> +	*/
-> +	vccq-supply =3D <&vreg_l9b>;
-> +	vccq-max-microamp =3D <900000>;
-> +
-> +	status =3D "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply =3D <&vreg_l10c>;
-> +	vdda-pll-supply =3D <&vreg_l6b>;
-> +
-> +	status =3D "okay";
-> +};
-> +
-> +&usb_1 {
-> +	status =3D "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode =3D "otg";
-> +	usb-role-switch;
-> +};
-> +
-> +&usb_1_dwc3_hs {
-> +	remote-endpoint =3D <&pmic_glink_hs_in>;
-> +};
-> +
-> +&usb_dp_qmpphy_out {
-> +	remote-endpoint =3D <&pmic_glink_ss_in>;
-> +};
-> +
-> +&usb_1_hsphy {
-> +	vdda-pll-supply =3D <&vreg_l10c>;
-> +	vdda18-supply =3D <&vreg_l1c>;
-> +	vdda33-supply =3D <&vreg_l2b>;
-> +
-> +	qcom,hs-crossover-voltage-microvolt =3D <28000>;
-> +	qcom,hs-output-impedance-micro-ohms =3D <2600000>;
-> +	qcom,hs-rise-fall-time-bp =3D <5430>;
-> +	qcom,hs-disconnect-bp =3D <1743>;
-> +	qcom,hs-amplitude-bp =3D <2430>;
-> +
-> +	qcom,pre-emphasis-amplitude-bp =3D <20000>;
-> +	qcom,pre-emphasis-duration-bp =3D <20000>;
-> +
-> +	qcom,squelch-detector-bp =3D <(-2090)>;
-> +
-> +	orientation-switch;
-> +
-> +	status =3D "okay";
-> +};
-> +
-> +&usb_1_qmpphy {
-> +	vdda-phy-supply =3D <&vreg_l6b>;
-> +	vdda-pll-supply =3D <&vreg_l1b>;
-> +
-> +	status =3D "okay";
-> +};
-> +
-> +&wifi {
-> +	qcom,ath11k-calibration-variant =3D "SHIFTphone_8";
-> +
-> +	/* FIXME: wpss remoteproc crashes during init */
-> +	status =3D "disabled";
-> +};
+base-commit: 9900e7a54764998ba3a22f06ec629f7b5fe0b422
+-- 
+2.34.1
 
 
