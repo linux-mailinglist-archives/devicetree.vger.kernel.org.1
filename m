@@ -1,259 +1,147 @@
-Return-Path: <devicetree+bounces-66342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED8CA8C27FB
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:38:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 516988C27FF
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:39:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A45F5286D2A
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:38:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04E2D287799
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:39:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627B017109F;
-	Fri, 10 May 2024 15:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72DBD171663;
+	Fri, 10 May 2024 15:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s4m+dHD8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="axsPjNSI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349A712AAD5;
-	Fri, 10 May 2024 15:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E867CA6B
+	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 15:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715355532; cv=none; b=d2LHLFulcYY5syXnpEh5omOwXpu1EsdRNHtXE1ho9PzMwjYNmsODRIT4Vz76VAD8X4AXBitfUSfd7qbo/ihT45RtoM5ifTqg0f2WJY4e5ay7i9W28aXHBEOBRMC6ZpM2ZMNo4f+fWFsrCnXumWE9WN7f6qIfilqBgB5U4c0DPGs=
+	t=1715355587; cv=none; b=Q1I6eBIdu24x9KKI3IrTaLbdXEvocp0gzNyrB9VPpzMB2PdmEe+reAtQqCJ7U7EMToIAJ3EjxbtI9kvXSCDWPdjYmCkmupFJ49ZiWLXPluTyM4BLYIfrvLf5iyVmhbhYHPzuXWykD5KfCKYhtnzSUyWGKzhjo1PEzN2wqRht7zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715355532; c=relaxed/simple;
-	bh=5i/Kwz7QCD09ox7fq0+nK+iuNVgav4u7fr/M1k9fkGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GxGmZD23AV1JyLA79iMoTbxcCeA24xMYACTY7j3hb0HgqV+ViLhkjlX95AB0AllBnuedaLrGE5i4kdO+O4EsExNE08b1CgHaQcnsWATp/VAmhatkw3nr+QGstLd5WJ44LaTX9gGEhbjKmztv17JkVrw8dbRnQoGLZENcC5EONms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s4m+dHD8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81117C113CC;
-	Fri, 10 May 2024 15:38:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715355531;
-	bh=5i/Kwz7QCD09ox7fq0+nK+iuNVgav4u7fr/M1k9fkGQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s4m+dHD8MracwXhQxc+HGvMM7x1N6E+yIVYj0BVRNfpR4cYP8M2xhklBBxbbTOam+
-	 o1s1UzSaLNLahxTkZo3hGkAw/9i5mz4OE1qRquZm1qsFeIcdIAswRHAF/oKVTy1U/s
-	 7xOhUSBjoOsn1zmsLJXq1/sK6yj29qTMzs71rBixyPYwB02YqA0aOsHREhwwjpuThP
-	 DnSAxMb59p3CCP5XT8z2GtK8xQotVUCqE4Zx+53dizwzQzrjqX5L3NI9vDjz5haYNn
-	 36Atqs8xCY1wAoZBYSgLWCJ7ZppgmbycjLkcmfBrk5t5H16ktF5b1yUaFa8nO/Nj3J
-	 0j2p6WNko87ZA==
-Date: Fri, 10 May 2024 10:38:49 -0500
-From: Rob Herring <robh@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: conor@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, frank.li@nxp.com,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v4 2/3] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY
- binding
-Message-ID: <20240510153849.GA308062-robh@kernel.org>
-References: <1715234181-672-1-git-send-email-hongxing.zhu@nxp.com>
- <1715234181-672-3-git-send-email-hongxing.zhu@nxp.com>
+	s=arc-20240116; t=1715355587; c=relaxed/simple;
+	bh=HvWEHSRJd6IvYIb/63G1QS6o1Crb2nY1hmA2zf0cIX4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tp3w74xGOSaF0Rh9UA8vETEoWq6tlg1+LNFscf63MypSR6Xng0jclC2IKeOaBbGbF8rxsYr4stZ1W1fT9N/lyxzEJxUCI+bZPeXYCfgbX+KHtaKFZUmBKpBgURADjgDLHhnZeUaFchp4nGyD1AF5tsWsvLPmvkG/5o7f1FzVi2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=axsPjNSI; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2dcc8d10d39so24836561fa.3
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 08:39:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715355583; x=1715960383; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x+69akUanwgyaCNLHvZQ4aJZ/iUQNzDFDBetcAZ8+1g=;
+        b=axsPjNSI/b1f8QwE4NVvhVDymU5avjHQAZB4KlT7CYSosUK+Zxto7Ix10bRybrsbJn
+         h8+spQuR+5ckqYR3kZZhA/WVaiuZ7riGLGF+w7Bj8OlfUrs8dL7k40R/ewjP8SstNQeE
+         pE1WapnLVaaFuYngkASiY9zdQHn2VJS8uxP7ryi8KOKogA6N3mLRdvSu1+XzVSYQ7EX2
+         giggcg5BXP3qxVLoUgFIepavuxnH/zjUylejOAZrn3Nhpcj2tOTY0iWI5IO3Ulf7E8xG
+         uEY/V7yTd9w4kOLmEjwus/WWBCoA3y+jH07jZcFX+0azLAJTvdcELmfy9lOg8LcI16q8
+         RVJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715355583; x=1715960383;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=x+69akUanwgyaCNLHvZQ4aJZ/iUQNzDFDBetcAZ8+1g=;
+        b=um3ET/Iw2jS2uIerU8jj5rUyXN9wZfFPINilpEyu4HNHV0cWG3U8O3KLRI72YdklKa
+         3rmn33wVq0n89FabVVrT1eWzrjjXrtut50YxxN+8dx0W3cZScacLq6+0gz6Jkt9RwSbV
+         G4M8g3XrG7C7dw2Pzup2LwWI1sdt7smLl2ku8JpF4UGabmzvde5P2zC3B9rc8FM39o8o
+         XoWOvIT2vv01Zj0zcdXqCSPqI7DdyCRzwdbD4UuE1bELE0bpbktlPBfTyWJpE9kkQvw+
+         IqRbR9pkH0z9e+lZo0Yrv2lDEUBX26u7tm33RxqXbLUSdIdCusKCpbm2yJ1hCu6u4xDV
+         pYFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWMHMmouh0vF9wGNot4cXe2tX7tm+moHCdxrExURtkIS6NeK0txyvsuF14kbn4W9HxC87VI5PY/6b+HdHGJizF1yxbA7Td3gGOr1A==
+X-Gm-Message-State: AOJu0YzGj8s/JNwFS8U93E7HGUD70uvzUAAon/oEQu9sIF75Le8oElGE
+	nfb6HDSlBLCEY1gAvMmJGEvYL9UTEAZZ/aNyccm8TM/iGxPS5ZnjFWbHnAoowOH/SvEYUvKh4Gy
+	jrlXFKB60w5ZIvAtBngXjrxHRwnmkb1GO71MtKA==
+X-Google-Smtp-Source: AGHT+IGvAUhvYlrtXZu2653xvaGDm6s2fzNFAgaftNCnvvM/30wdVu20vvVqDYxJw62jeNpNorB/ZBPheswDD4t/bgI=
+X-Received: by 2002:a2e:9d82:0:b0:2e1:aafb:6a2 with SMTP id
+ 38308e7fff4ca-2e52038a43emr20484121fa.36.1715355583503; Fri, 10 May 2024
+ 08:39:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1715234181-672-3-git-send-email-hongxing.zhu@nxp.com>
+References: <20240510141836.1624009-1-adureghello@baylibre.org>
+In-Reply-To: <20240510141836.1624009-1-adureghello@baylibre.org>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 10 May 2024 10:39:31 -0500
+Message-ID: <CAMknhBFUUCvxbuHz0pPKd-KBcG3zfXNr8wu=AnrZx0C495RKOQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: dac: add ad35xxr single output variants
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nuno.sa@analog.com, lars@metafoo.de, Michael.Hennerich@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 09, 2024 at 01:56:20PM +0800, Richard Zhu wrote:
-> Add i.MX8QM and i.MX8QXP HSIO SerDes PHY binding.
-> Introduce one HSIO configuration 'fsl,hsio-cfg', which need be set at
-> initialization according to board design.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+On Fri, May 10, 2024 at 9:19=E2=80=AFAM Angelo Dureghello
+<adureghello@baylibre.com> wrote:
+>
+> From: Angelo Dureghello <adureghello@baylibre.com>
+>
+> Add support for ad3541r and ad3551r single output variants.
+>
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 > ---
->  .../bindings/phy/fsl,imx8qm-hsio.yaml         | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
-> new file mode 100644
-> index 000000000000..e8648cd9fea6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml
-> @@ -0,0 +1,142 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/fsl,imx8qm-hsio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX8QM SoC series HSIO SERDES PHY
-> +
-> +maintainers:
-> +  - Richard Zhu <hongxing.zhu@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8qm-hsio
-> +      - fsl,imx8qxp-hsio
-> +  reg:
-> +    minItems: 4
-> +    maxItems: 4
+>  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml       | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b=
+/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> index 8265d709094d..17442cdfbe27 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
 
-Need to define what is each entry:
+It would be nice to also add the datasheet links in the description.
 
-items:
-  - description: ...
-  - description: ...
-  - description: ...
-  - description: ...
-
-
-> +
-> +  "#phy-cells":
-> +    const: 3
-> +    description:
-> +      The first defines lane index.
-> +      The second defines the type of the PHY refer to the include phy.h.
-> +      The third defines the controller index, indicated which controller
-> +      is bound to the lane.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: reg
-> +      - const: phy
-> +      - const: ctrl
-> +      - const: misc
-> +
-> +  clocks:
-> +    minItems: 5
-> +    maxItems: 14
-> +
-> +  clock-names:
-> +    minItems: 5
-> +    maxItems: 14
-> +
-> +  fsl,hsio-cfg:
-> +    description: Refer macro HSIO_CFG* include/dt-bindings/phy/phy-imx8-pcie.h.
-
-I can't, it's not in this patch. But it should be.
-
-Please say something about what this is for, not just refer to header.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-       maximum: 3
-
-> +
-> +  fsl,refclk-pad-mode:
-> +    description:
-> +      Specifies the mode of the refclk pad used. INPUT(PHY refclock is
-> +      provided externally via the refclk pad) or OUTPUT(PHY refclock is
-> +      derived from SoC internal source and provided on the refclk pad).
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [ "input", "output" ]
-
-default?
-
-Really, this could just be a boolean for the non-default mode.
-
-> +
-> +  power-domains:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - "#phy-cells"
-> +  - clocks
-> +  - clock-names
-> +  - fsl,hsio-cfg
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
+> @@ -19,7 +19,9 @@ description: |
+>  properties:
+>    compatible:
+>      enum:
+> +      - adi,ad3541r
+>        - adi,ad3542r
+> +      - adi,ad3551r
+>        - adi,ad3552r
+>
+>    reg:
+> @@ -128,7 +130,9 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: adi,ad3542r
 > +            enum:
-> +              - fsl,imx8qxp-hsio
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pclk0
-> +            - const: apb_pclk0
-> +            - const: phy0_crr
-> +            - const: ctl0_crr
-> +            - const: misc_crr
-> +        power-domains:
-> +          minItems: 1
-
-Should be maxItems? min is already 1.
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
+> +              - adi,ad3541r
+> +              - adi,ad3542r
+>      then:
+>        patternProperties:
+>          "^channel@([0-1])$":
+> @@ -158,7 +162,9 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: adi,ad3552r
 > +            enum:
-> +              - fsl,imx8qm-hsio
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pclk0
-> +            - const: pclk1
-> +            - const: apb_pclk0
-> +            - const: apb_pclk1
-> +            - const: pclk2
-> +            - const: epcs_tx
-> +            - const: epcs_rx
-> +            - const: apb_pclk2
-> +            - const: phy0_crr
-> +            - const: phy1_crr
-> +            - const: ctl0_crr
-> +            - const: ctl1_crr
-> +            - const: ctl2_crr
-> +            - const: misc_crr
-> +        power-domains:
-> +          minItems: 2
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8-clock.h>
-> +    #include <dt-bindings/clock/imx8-lpcg.h>
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +    #include <dt-bindings/phy/phy-imx8-pcie.h>
-> +
-> +    hsio_phy@5f1a0000 {
+> +              - adi,ad3551r
+> +              - adi,ad3552r
+>      then:
+>        patternProperties:
+>          "^channel@([0-1])$":
+> --
+> 2.45.0.rc1
+>
+>
 
-phy@...
-
-> +        compatible = "fsl,imx8qxp-hsio";
-> +        reg = <0x5f1a0000 0x10000>,
-> +              <0x5f120000 0x10000>,
-> +              <0x5f140000 0x10000>,
-> +              <0x5f160000 0x10000>;
-> +        reg-names = "reg", "phy", "ctrl", "misc";
-> +        clocks = <&phyx1_lpcg IMX_LPCG_CLK_0>,
-> +                 <&phyx1_lpcg IMX_LPCG_CLK_4>,
-> +                 <&phyx1_crr1_lpcg IMX_LPCG_CLK_4>,
-> +                 <&pcieb_crr3_lpcg IMX_LPCG_CLK_4>,
-> +                 <&misc_crr5_lpcg IMX_LPCG_CLK_4>;
-> +        clock-names = "pclk0", "apb_pclk0", "phy0_crr", "ctl0_crr", "misc_crr";
-> +        power-domains = <&pd IMX_SC_R_SERDES_1>;
-> +        #phy-cells = <3>;
-> +        fsl,hsio-cfg = <IMX8Q_HSIO_CFG_PCIEB>;
-> +        fsl,refclk-pad-mode = "input";
-> +    };
-> +...
-> -- 
-> 2.37.1
-> 
+Since these are single channel, it would not hurt to restrict the
+`reg` property of of the `channel@` nodes to 1.
 
