@@ -1,126 +1,149 @@
-Return-Path: <devicetree+bounces-66288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8719D8C250A
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:47:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209C68C250D
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07CCAB21902
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 12:47:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EED01C22054
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 12:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F60E127B5F;
-	Fri, 10 May 2024 12:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD517E58F;
+	Fri, 10 May 2024 12:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UEzyeguv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="elRO8c91"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71E338DE4
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 12:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B62376;
+	Fri, 10 May 2024 12:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715345242; cv=none; b=ILUpmAKLb/VTgkF8CMnKlOVH9ZNbxJ3mSvvudDpYv7E4ZdLTXVtXss8JQNfUl6Q2+iyoONpFxwBm3m1RDr10Y5Z6DsPWGOwthpV51L3141mPybK3NZXgiMuu2j+830imVFCNOUN4zVH2xJ5dqsW8vAWP2EKLhGvUjoInuQPEVqE=
+	t=1715345321; cv=none; b=gH+WJhBkyddeFZd758KM3C2UIwQ0ZDYCiVmslxCuZCuqFeF1C7v4jmZQuB07oLg/ZJ8zTPqMfLSB9VVoBHmO+dIowQRdIs3Xm/xwMZvpC7aIpbxFosWvIM47gsgUbZh5Dl3PH8V2nNXSDa+GxgbtP7RXbHWh8/TklCnsMzCTOZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715345242; c=relaxed/simple;
-	bh=d1GYaWihPIxQCVEXmbw32R+gKUSLf8Nx0BPKiUM0VBg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vge1RXqb9vllEGcISZLEYT7/dANj5E/sFN05Py5a1P1sd2OOJPWMzk8i3Tl7RtNCl0kOGWJ66C2Qr/rQWUy9MqOw7RbSTX98LYfTicRu7jEgPKw1kUmtMASnruxoPtyDeXu345VmTUdrc0i01OIUnG1iG20P2uSFW07Oo2wqnps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UEzyeguv; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3504ad82a64so706145f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 05:47:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715345239; x=1715950039; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nxXptygVxzs9ZyI1NnjxnbgZkUJZH8Rb2+KbP5uaxLQ=;
-        b=UEzyeguvMY67ZN6AnPQutCfXP9Bm6P655yrqDXXUFrh94qXwLS1aFGaE7FTGW/TDUc
-         s/lxjvUKW8O1OyIt2oG6juBYL8WvsJnsR//MZz8jXHM0veJjSg45CnD+6BReIBdra3tk
-         NJ9K3IdrM/XG8uvrtwKWYQi0AoUAtkkzQESCBtboT5KZtD00M/eVT9LBSqTGrV0oH0Vs
-         hW1WKYwTFVtF0AGoxgPFNIUAjnW0wWYV3/FpKS3RbZuKUoVaB+SXlv2iVeo5BfvU8Hwb
-         wD9bD3bI9O2c5YMbXLF4NK85xEq1KG/hqKH+tscGL+UVQkG2KBGZQlEcFfFYDnUY0Ib3
-         oNMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715345239; x=1715950039;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nxXptygVxzs9ZyI1NnjxnbgZkUJZH8Rb2+KbP5uaxLQ=;
-        b=LnyZ6znUy+RQkDhuMxP+OoU7buBPlz6fn4vT4+f2ANLATc/j5yaGHA1OL5+v01R9G7
-         GtNwzPNnCnlqOpv1oQ73A74yUnJxuPiAd989bQnfxH9YV4DE02dCWe9GEOj5zKBB0yiD
-         9r4dsmRx5xXbVV3ZLG5zAdQo8gcNhIb/2LvIu2VCDM5LeD8nCgVREPqYV3i1317MSACD
-         DazqCZIEP8cei9pqj0cVviBrHVyj0VdNKRoG8QEuPa20goAYyIYpSwZLfWEfQXc4mpRI
-         Ty/SuSirYxEKqAYr8/dvxzaMnIpefM0reaamqY5HTUzKyfuksfIobGVY4gfdyYK0T2Eu
-         Ggvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXtjUMNUCIOqffD1Lb3u4XP8BKrKPkzmNVuafHn06O/IwH9C5GBm3og6uoosBVIidWXcW5pgt0VKANgdz1HeLpDMoypYTyit7Sv4Q==
-X-Gm-Message-State: AOJu0Yw6e5Hji8EB+d0zO0isabO0TFxuefzBfnafECEBs6pfrG7Euhmz
-	EtpaTYa0KD0b0Wu1g7eb2cf5jSRgnOLfjnHB1Q8hMGvF2ax9Dbq3J/HnvY6xWTA=
-X-Google-Smtp-Source: AGHT+IFnaBBeY7mvmHhC8XodUmGtkP//yvCKoGTsTYjDvg3yXGfKBRrDcS+5v3UnOzhL11SsQT6XKA==
-X-Received: by 2002:adf:ce0e:0:b0:346:ad3d:e4bd with SMTP id ffacd0b85a97d-3504a631201mr1870321f8f.17.1715345238912;
-        Fri, 10 May 2024 05:47:18 -0700 (PDT)
-Received: from [192.168.0.3] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b8a79cbsm4481566f8f.65.2024.05.10.05.47.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 May 2024 05:47:18 -0700 (PDT)
-Message-ID: <a6e75f97-0479-4346-af84-5d7bd05f0063@linaro.org>
-Date: Fri, 10 May 2024 13:47:17 +0100
+	s=arc-20240116; t=1715345321; c=relaxed/simple;
+	bh=V8xD1Koidl+pNdYoJfQFLAiAFVdTfdYB2dUbuhjigGw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WcWmCCkKh+tf/a1Uy08qw/74torTA8TYuW7TNkf1zhjkIV/6eqreOXH2JqWbIvqmgkcKFlZ/iGAp6VbLtnHARQ5k24R0/sgKn09Ejc7XbncRxF5/VpiOUA9jPAos43YBYQK5u/JuhDd//Wxoepn/25pnTH4T9sXoMT9TiCR7RLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=elRO8c91; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84EA9C113CC;
+	Fri, 10 May 2024 12:48:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715345320;
+	bh=V8xD1Koidl+pNdYoJfQFLAiAFVdTfdYB2dUbuhjigGw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=elRO8c91+R0DCAXv7+SLp8jJSCziQgTrHU6dWu9qwHD6XqKBCLiHuCKHNSbrgbcQg
+	 eJsQ0tFhCPQE2Y4O65z6uB4IrPGycaFkyuaOcB+YtDbvnjSSu49cJ0WU6MuQoLwWy3
+	 VxtXhLaNg2Y2Mv5eWn/LmrdnOqvHRlj/7/dCfxp9tpC9NhIxjD1VnxnJ7Maz3PCPe7
+	 LUqVWh0Ve9W2L+elph2QaZ0lc0RXMVlxbhOlTEuz25bOZUBWskDyl4CnteT7owXUgs
+	 jlwx/DYGCq9Hoav6/8i3JoYd0Ef4TlYm3FuTRoOTqnsoenH6UTmIUB8FSOwqSIeAVX
+	 EXF9K5LfHBQVg==
+Date: Fri, 10 May 2024 07:48:38 -0500
+From: Rob Herring <robh@kernel.org>
+To: Liankun Yang <liankun.yang@mediatek.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
+	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	chunfeng.yun@mediatek.com, vkoul@kernel.org, kishon@kernel.org,
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+	jitao.shi@mediatek.com, mac.shen@mediatek.com,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] Add dp PHY dt-bindings
+Message-ID: <20240510124838.GA3916816-robh@kernel.org>
+References: <20240510110523.12524-1-liankun.yang@mediatek.com>
+ <20240510110523.12524-3-liankun.yang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 31/31] arm64: dts: qcom: sm8650-*: Remove thermal zone
- polling delays
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240510-topic-msm-polling-cleanup-v2-0-436ca4218da2@linaro.org>
- <20240510-topic-msm-polling-cleanup-v2-31-436ca4218da2@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240510-topic-msm-polling-cleanup-v2-31-436ca4218da2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240510110523.12524-3-liankun.yang@mediatek.com>
 
-On 10/05/2024 12:59, Konrad Dybcio wrote:
-> All of the thermal zone suppliers are interrupt-driven, remove the
-> bogus and unnecessary polling that only wastes CPU time.
+On Fri, May 10, 2024 at 07:04:15PM +0800, Liankun Yang wrote:
+> Add dp PHY dt-bindings.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Changeds in v2:
+> - Add dp PHY dt-bindings.
+> https://patchwork.kernel.org/project/linux-mediatek/patch/
+> 20240403040517.3279-1-liankun.yang@mediatek.com/
+> 
+> Signed-off-by: Liankun Yang <liankun.yang@mediatek.com>
 > ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 88 +++++++-----------------------------
->   1 file changed, 16 insertions(+), 72 deletions(-)
+>  .../display/mediatek/mediatek.phy-dp.yaml     | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek.phy-dp.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 62a6e77730bc..39e789b21acc 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -5328,8 +5328,6 @@ compute-cb@12 {
->   
->   	thermal-zones {
->   		aoss0-thermal {
-> -			polling-delay-passive = <0>;
-> -			polling-delay = <0>;
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek.phy-dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek.phy-dp.yaml
 
-Commit log doesn't really match the values being subtracted
+git refuses to apply your patch because 'new file mode 100644' is 
+missing. You must have edited the patch or something.
 
-polling-delay:
-   $ref: /schemas/types.yaml#/definitions/uint32
-   description:
-     The maximum number of milliseconds to wait between polls when
-     checking this thermal zone. Setting this to 0 disables the polling
-     timers setup by the thermal framework and assumes that the thermal
-     sensors in this zone support interrupts.
+If it did apply, you'd notice it fails testing.
 
+> index 000000000000..476bc329363f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek.phy-dp.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,phy-dp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Display Port Controller
+> +
+> +maintainers:
+> +  - Mac shen <mac.shen@mediatek.com>
+> +  - Liankun yang <Liankun.yang@mediatek.com>
+> +
+> +description: |
+> +  Special settings need to be configured by MediaTek DP based on the actual
+> +  hardware situation. For example, when using a certain brand's docking
+> +  station for display projection, garbage may appear. Adjusting the specific
+> +  ssc value can resolve this issue.
+> +
+> +properties:
+> +  status: disabled
+> +    description: |
+> +      Since the DP driver has already registered the DP PHY device
+> +      through mtk_dp_register_phy(), so the status is disabled.
+
+What!? Please show me any other binding that has 'status' in it. Go read 
+up on how to write bindings and what goes in them.
+
+> +
+> +  dp-ssc-setting:
+> +    - ssc-delta-hbr
+> +    description: Specific values are set based on the actual HW situation.
+> +
+> +required:
+> +  - status
+> +  - dp-ssc-setting
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        phy-dp@1c600000 {
+> +          status = "disabled";
+> +          dp-ssc-setting {
+> +            ssc-delta-hbr = <0x01fe>;
+> +          }
+> +        };
+> +    };
+> -- 
+> 2.18.0
+> 
 
