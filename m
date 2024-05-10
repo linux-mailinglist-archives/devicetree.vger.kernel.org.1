@@ -1,91 +1,172 @@
-Return-Path: <devicetree+bounces-66192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727758C1F4D
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 09:52:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64EFC8C1F54
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 09:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E3B5282EF7
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 07:52:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FE2F2813F4
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 07:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457BB15EFCF;
-	Fri, 10 May 2024 07:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CB4B15ECFA;
+	Fri, 10 May 2024 07:55:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Xo1NTgKJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B13A12AAE5;
-	Fri, 10 May 2024 07:52:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.18.0.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C129914A084;
+	Fri, 10 May 2024 07:55:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715327536; cv=none; b=QDCzjGm1K9tp4NnpwnW3w3CM0FFpFpjgx4HDogonbAV9EJuAPGUPJ+vxzRfbPMm5MhCd8EcU4DqmZiQSSgvXOjc6udX0WIEFWUNLIr68HwWYMENh30Ui8OA8P3qREhB+MsA6kU9umc7D6Z3Iu1Rbb53j2KexSj+y+JRE9qJCb4s=
+	t=1715327732; cv=none; b=kgRMp7dKDCZW36dO7yhqu2XKKRtZ60M1ejK08PGxB3cCEj5NChzsqntZt15SMDptihxMxYvD67oKNrc6S6paA7NFSGCBRYCBJUw/7hdTdtxwxW8mscs6+vouT6ltQX+4574kpj3nHuGLsYeZReHhnuds5KxLUqQIoBswCLilA/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715327536; c=relaxed/simple;
-	bh=bUEgRZl42yYM5CkRO8kZ6mVRnWV+1pva2VNMuUhhmQA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=UF4GaqYI0K+K7bkjAcMWOyBEotCAQN9Uky1K0nawCFJnpQJfPV1LYdQQA6GpOnmvZ8EHa38mUfSSzCdKj1A89le0rWfhwxMG3Jt0A+Pulb1J+WsIblJngvic8peMFtgFWBE/2MSRQww0KW2I+BSIaSdqdp8ID9Pk6QxZAERVDhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=nefkom.net; arc=none smtp.client-ip=212.18.0.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nefkom.net
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 4VbLSW1sm4z1qsNr;
-	Fri, 10 May 2024 09:42:19 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 4VbLSW0D2Cz1qqlW;
-	Fri, 10 May 2024 09:42:19 +0200 (CEST)
-X-Virus-Scanned: amavis at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
- by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavis, port 10024)
- with ESMTP id wa_-KpXdVV1E; Fri, 10 May 2024 09:42:17 +0200 (CEST)
-X-Auth-Info: 1/I9WN7qMx6nrIhu6olAZ98FEHY/laUt2/c9CUhT5UGbjjWI2SaIBfGedJ1Wq8gx
-Received: from tiger.home (aftr-82-135-83-234.dynamic.mnet-online.de [82.135.83.234])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA;
-	Fri, 10 May 2024 09:42:17 +0200 (CEST)
-Received: by tiger.home (Postfix, from userid 1000)
-	id 8CAA528726F; Fri, 10 May 2024 09:42:17 +0200 (CEST)
-From: Andreas Schwab <schwab@linux-m68k.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: devicetree@vger.kernel.org,  linux-riscv@lists.infradead.org,
-  linux-kernel@vger.kernel.org,  Emil Renner Berthing <kernel@esmil.dk>,
-  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Paul Walmsley
- <paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>,  Albert
- Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v1 0/2] riscv: dts: starfive: Enable Bluetooth on JH7100
- boards
-In-Reply-To: <20240508111604.887466-1-emil.renner.berthing@canonical.com>
-	(Emil Renner Berthing's message of "Wed, 8 May 2024 13:15:53 +0200")
-References: <20240508111604.887466-1-emil.renner.berthing@canonical.com>
-X-Yow: Yow!
-Date: Fri, 10 May 2024 09:42:17 +0200
-Message-ID: <87wmo2nmee.fsf@linux-m68k.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1715327732; c=relaxed/simple;
+	bh=NfCq0znA9xiQQKOgqCjjhCeBv5JL4GapTvi5dTTgNg4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f7PTau1rzR0qN8tLOs8njbtaJAnSgVs+nLPRbyO2DrMJtDyAhVu/umNd+uOGfrIsCnn+c6VtsrKFp5oP+COS1QX/WHMkseaSF3OLHBDpYk5zhXBJf21v1kW48knJ+UQ+XtgZ0SzuAQYsaIuS0YzpHSkEDJEf/rIFvAEaqnDhl/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=Xo1NTgKJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0EE9C113CC;
+	Fri, 10 May 2024 07:55:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1715327732;
+	bh=NfCq0znA9xiQQKOgqCjjhCeBv5JL4GapTvi5dTTgNg4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Xo1NTgKJVcIRWizY4Moj56cCaQqKaTr4IAt9qxFmN4ftE2ovyUckVKIsaj6OQWTdN
+	 p86jCzWoCSRCCiTfMnXkXGX3NXMw08h66lE5PowpDhAXWq2u3Y+Z7pr5/8a4Fpw19p
+	 ndykkCosAuEu5zcVjtsTvIIljbS1e25t5ZhP5xMI=
+Date: Fri, 10 May 2024 08:55:29 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Saravana Kannan <saravanak@google.com>,
+	Paul Kocialkowski <contact@paulk.fr>,
+	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH v2 5/5] misc: add ge-addon-connector driver
+Message-ID: <2024051039-decree-shrimp-45c6@gregkh>
+References: <20240510-hotplug-drm-bridge-v2-0-ec32f2c66d56@bootlin.com>
+ <20240510-hotplug-drm-bridge-v2-5-ec32f2c66d56@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240510-hotplug-drm-bridge-v2-5-ec32f2c66d56@bootlin.com>
 
-On Mai 08 2024, Emil Renner Berthing wrote:
+On Fri, May 10, 2024 at 09:10:41AM +0200, Luca Ceresoli wrote:
+> Add a driver to support the runtime hot-pluggable add-on connector on the
+> GE SUNH device. This connector allows connecting and disconnecting an
+> add-on to/from the main device to augment its features. Connection and
+> disconnection can happen at runtime at any moment without notice.
+> 
+> Different add-on models can be connected, and each has an EEPROM with a
+> model identifier at a fixed address.
+> 
+> The add-on hardware is added and removed using device tree overlay loading
+> and unloading.
+> 
+> Co-developed-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> 
+> ---
+> 
+> This commit is new in v2.
+> ---
+>  MAINTAINERS                      |   1 +
+>  drivers/misc/Kconfig             |  15 ++
+>  drivers/misc/Makefile            |   1 +
+>  drivers/misc/ge-sunh-connector.c | 464 +++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 481 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 672c26372c92..0bdb4fc496b8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9905,6 +9905,7 @@ F:	drivers/iio/pressure/mprls0025pa*
+>  HOTPLUG CONNECTOR FOR GE SUNH ADDONS
+>  M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
+>  S:	Maintained
+> +F:	drivers/misc/ge-sunh-connector.c
+>  F:	Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.yaml
+>  
+>  HP BIOSCFG DRIVER
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 4fb291f0bf7c..99ef2eccbbaa 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -574,6 +574,21 @@ config NSM
+>  	  To compile this driver as a module, choose M here.
+>  	  The module will be called nsm.
+>  
+> +config GE_SUNH_CONNECTOR
+> +	tristate "GE SUNH hotplug add-on connector"
+> +	depends on OF
+> +	select OF_OVERLAY
+> +	select FW_LOADER
+> +	select NVMEM
+> +	select DRM_HOTPLUG_BRIDGE
 
-> This series enables the in-kernel Bluetooth driver to work with the
-> Broadcom Wifi/Bluetooth module on the BeagleV Starlight and StarFive
-> VisionFive V1 boards.
+Can these be depends instead of select?  'select' causes dependencies
+that are hard, if not almost impossible, to detect at times why
+something is being enabled.
 
-That does not work for me:
+> +	help
+> +	  Driver for the runtime hot-pluggable add-on connector on the GE SUNH
+> +	  device. This connector allows connecting and disconnecting an add-on
+> +	  to/from the main device to augment its features. Connection and
+> +	  disconnection can be done at runtime at any moment without
+> +	  notice. Different add-on models can be connected, and each has an EEPROM
+> +	  with a model identifier at a fixed address.
 
-[  +0.369276] Bluetooth: hci0: command 0x1001 tx timeout
-[  +0.025545] Bluetooth: hci0: BCM: Reading local version info failed (-110)
+Module name?
 
--- 
-Andreas Schwab, schwab@linux-m68k.org
-GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
-"And now for something completely different."
+
+> +static void sunh_conn_reset(struct sunh_conn *conn, bool keep_reset)
+> +{
+> +	dev_dbg(conn->dev, "reset\n");
+
+ftrace is your friend.
+
+> +static int sunh_conn_handle_event(struct sunh_conn *conn, bool plugged)
+> +{
+> +	int err;
+> +
+> +	if (plugged == conn->plugged)
+> +		return 0;
+> +
+> +	dev_info(conn->dev, "%s\n", plugged ? "connected" : "disconnected");
+
+Please remove debugging code from stuff you want to see merged.
+
+Same for all dev_info() calls here, when drivers work properly, they are
+quiet.
+
+thanks,
+
+greg k-h
 
