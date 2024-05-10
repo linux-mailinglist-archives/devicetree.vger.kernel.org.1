@@ -1,323 +1,554 @@
-Return-Path: <devicetree+bounces-66326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0448C26C4
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:24:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E3A8C26E2
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:32:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84A741F210F8
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:24:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7298B286695
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A600F12C49A;
-	Fri, 10 May 2024 14:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B0EEAC0;
+	Fri, 10 May 2024 14:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VAFVsdir"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V5covMGx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0283FB87
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 14:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A07338D;
+	Fri, 10 May 2024 14:32:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715351094; cv=none; b=lwpcChIki1TaqqSWNXw0iD0fupRWBDIXSr5jyXXkd1w+683NnEkOyzgEW0GoNGmnIRdnCWag6DAXWlnNwQ4S7bgptnXcG8ZzU9/JFtXSyJ4ie3QGWw1NU73bYOXpKUdT1wbNTPhLZ6yLskMp9YZNHtjtpZ0Ydun2GO6zEK4F9RM=
+	t=1715351563; cv=none; b=bLFJUyah/SBEHJJamHXNpiD1BfF8q02pwqtiAp65f29/wOwnroVJnPME1WAB4kNflH0jzuD4+AkYHCEeKyBCv5OD4ATpUPBv7fDDsCy54l/zMVP0hKWYIFw+iN1eJf2Pu1MW41ySvkSuvUaJybadte6/ON2ZE1dLvrGO9Cz5muU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715351094; c=relaxed/simple;
-	bh=an+bTm0fGEwyqEeSZ+W9NNIDPQFzqRHdP9OK6kceivk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=urJa3D5Hx8CVAg1E9SBhc51dh1rf6yQDUK3gqcCvm0f35oetlQgiK/u6np+wsXnh2vQ0B4WsToOMGVdvJGGlimEYGmEk5kOhVfyIqA1b1/HD9pSL4Bpay6hStmI0cnniHHnrL+QqT2brbUOZiZ8uqSIiF/yJ8d8GFB4vYXxLsuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VAFVsdir; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-792ce7a1fa8so11288585a.1
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 07:24:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1715351090; x=1715955890; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J1NXrtOs8kNipk5Cgp2Wy8A5yaV129in3aAVvIhs+qA=;
-        b=VAFVsdirgqIKtfx8YAgsBe5c0kX94xcfs+oBsZfoaIgLXFH5K5UH7tBcruStr6194s
-         3bkBGaK7bYNIYfNyoStT72DdT7fjXAUPAbPObf35uTdoHNspmnwjiOMhpDPrPAzZ8o4H
-         2HQ1JPIaQkSLFVeXOSN6cKvQxh6+ktoRxqxfg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715351090; x=1715955890;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J1NXrtOs8kNipk5Cgp2Wy8A5yaV129in3aAVvIhs+qA=;
-        b=u7uL0OfcAkvPdv351REbgst4o/SXM0TG7yB0/nJ4ognkuLosI4Fi/pQeSg08UCSzZy
-         iFXcFDZWqEu0vVfUj3Rlz7JIFLEaTiblzUnENYKj2CdMV/HRibEus0CEw0G0I5GCii5a
-         tn1xdiAsTqMxBOfnFOMnD8alq12ppkXEcny852yctQAMgTnjPwkiZkqjwArMrbpliUOI
-         f9Nb/Y3jQVxOtntpo+1hnQn3PxTBBNlck+j5l2BGe72zWIa9aOXZ6J589hqbDW0+xJGC
-         LMZ/KzWDiKxA54FjoAJ/n9urC0Z5c1wT/o0ZAM//2awX7rXq2MKTBufTWRuMXPr8+VgV
-         ydsA==
-X-Forwarded-Encrypted: i=1; AJvYcCU9WCe2LD57d/XotMDKGBHzgfQpv1qNfe2gIhIjc7r3aZRm6q+VnSsMN5OpnA7gFQyHAjTmbrh46X40LqygLXKMz8G0DWTsbIedNw==
-X-Gm-Message-State: AOJu0Yy2hXhYah0Bhqe7iHvILgJECa2tKE/iuJA4aUfwPIOmV+KLzSWf
-	aI21AyGZSHhFgbKA7p7lHCc8iNXzm9+hQjZyUdjWZVGc6vw7IpM5g4VvLuyn2RMEkfo4yD12SvU
-	=
-X-Google-Smtp-Source: AGHT+IG42oP1zbwWF8/UnZ6TlwGcI3V4sJLHo4nGUyEfd+sWbm0NxP+2M0iIF2VU8Ba7tf+YtOaBrw==
-X-Received: by 2002:a05:620a:f8d:b0:792:9ca6:4e22 with SMTP id af79cd13be357-792c75741a0mr260720085a.13.1715351090565;
-        Fri, 10 May 2024 07:24:50 -0700 (PDT)
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com. [209.85.160.171])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-792bf277377sm184983385a.2.2024.05.10.07.24.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 May 2024 07:24:49 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-43dfe020675so470801cf.0
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 07:24:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXV1vxJ8rkPtI0tlrSnJRAj0ORMGL8awjK9+wlkUSdi6BEphmDZIH2oZEffhJpXThwBmFefvsjt3q7JtAPVv3anvoYh7KthELrvCg==
-X-Received: by 2002:a05:622a:53c3:b0:439:ef72:75fb with SMTP id
- d75a77b69052e-43dfefcd76emr2575731cf.1.1715351089237; Fri, 10 May 2024
- 07:24:49 -0700 (PDT)
+	s=arc-20240116; t=1715351563; c=relaxed/simple;
+	bh=OyQx8duQm9hg8aX7eKlNxWpT4KFgG8uAqjkUxkYAf9g=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=R32iZWR3tP4aRJ2JU+xnKgGeheLnOdG9Nz7110DIbz7UfuAu2mfxFd6PZ/U2TZNiHmoJ9WmZrR4YoyY+dpOaMtrXNqwyzETTGnHUvx1G88Si0DNW3EN76F3VkscVMgfm0u3nDdjRuTf/d0F3CAX5E8ew139gNxCM0k4D4HvHwpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V5covMGx; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715351562; x=1746887562;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=OyQx8duQm9hg8aX7eKlNxWpT4KFgG8uAqjkUxkYAf9g=;
+  b=V5covMGxSjPhAUcJhe6X8/WN2Mad0IhsqjZLIjDg9HyI3+NT62HTWxeB
+   BhvLMFdSoS62QDGWUtk6N9il7yvh+roSYZ0o4rYdjCjtuxJ7680XhdOlW
+   Gtp6+ItdM1vyfX/xKul6MFE4cfOviDnRbHmdonrlsljf3fv6aSmI2ITda
+   s09BvnOZzIXYZOTfxlp5iGY5AfmoIUK5sRGSIdeAjXpTYNepNY8NqxfWO
+   heyODlNvreDkP+VAObyEGKVnY2YA49xF90RwZ2HSYXIIQCnf48n0PJW+4
+   XgkDTTqVjpG8tPRYGk5cpdS15lFEzrqlMTKsUOI3nNh+9ukb1umYn+IzP
+   Q==;
+X-CSE-ConnectionGUID: VWvbVRpqQoulJZBr5ua9EA==
+X-CSE-MsgGUID: uFKQnzfDReGeP88hyP81Vg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="33846247"
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
+   d="scan'208";a="33846247"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:32:41 -0700
+X-CSE-ConnectionGUID: viL66+41TVSr/Em7zPTpyw==
+X-CSE-MsgGUID: V6HV30O6Q7iaUG8D2/Vx0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
+   d="scan'208";a="60803332"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.85])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:32:33 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Fri, 10 May 2024 17:32:28 +0300 (EEST)
+To: Christoph Fritz <christoph.fritz@hexdev.de>
+cc: Jiri Slaby <jirislaby@kernel.org>, Simon Horman <horms@kernel.org>, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Marc Kleine-Budde <mkl@pengutronix.de>, 
+    Oliver Hartkopp <socketcan@hartkopp.net>, 
+    Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+    "David S . Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+    Benjamin Tissoires <bentiss@kernel.org>, 
+    Sebastian Reichel <sre@kernel.org>, 
+    Linus Walleij <linus.walleij@linaro.org>, 
+    Andreas Lauser <andreas.lauser@mercedes-benz.com>, 
+    Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>, 
+    linux-can@vger.kernel.org, Netdev <netdev@vger.kernel.org>, 
+    devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+    linux-serial <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH v4 07/11] can: Add support for hexDEV serial LIN adapter
+ hexLINSER
+In-Reply-To: <20240509171736.2048414-8-christoph.fritz@hexdev.de>
+Message-ID: <d0884a05-7f38-7026-4f3b-fd50d9133a26@linux.intel.com>
+References: <20240509171736.2048414-1-christoph.fritz@hexdev.de> <20240509171736.2048414-8-christoph.fritz@hexdev.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240509015207.3271370-1-yangcong5@huaqin.corp-partner.google.com>
- <20240509015207.3271370-8-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=Vd34kBy4meaqqYECQKaT1=XcCFdq3qaU5n=YBWVAVi-Q@mail.gmail.com> <CAHwB_N+4_cJ3NuEm+AxqhxYosLvJ+WA6SG9HhTckCxNEBkvwSw@mail.gmail.com>
-In-Reply-To: <CAHwB_N+4_cJ3NuEm+AxqhxYosLvJ+WA6SG9HhTckCxNEBkvwSw@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 10 May 2024 07:24:33 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VUjy7UL9vQX8wc9VygLhVaRw52Stm9JWxiQiy9YaQUCw@mail.gmail.com>
-Message-ID: <CAD=FV=VUjy7UL9vQX8wc9VygLhVaRw52Stm9JWxiQiy9YaQUCw@mail.gmail.com>
-Subject: Re: [PATCH v5 7/7] drm/panel: himax-hx83102: Support for IVO t109nw41
- MIPI-DSI panel
-To: cong yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	robh+dt@kernel.org, conor+dt@kernel.org, airlied@gmail.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, xuxinxiong@huaqin.corp-partner.google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 
-Hi,
+On Thu, 9 May 2024, Christoph Fritz wrote:
 
-On Thu, May 9, 2024 at 11:05=E2=80=AFPM cong yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> Hi,
->
-> Doug Anderson <dianders@chromium.org> =E4=BA=8E2024=E5=B9=B45=E6=9C=8810=
-=E6=97=A5=E5=91=A8=E4=BA=94 00:49=E5=86=99=E9=81=93=EF=BC=9A
-> >
-> > Hi,
-> >
-> > On Wed, May 8, 2024 at 6:53=E2=80=AFPM Cong Yang
-> > <yangcong5@huaqin.corp-partner.google.com> wrote:
-> > >
-> > > +static int ivo_t109nw41_init(struct hx83102 *ctx)
-> > > +{
-> > > +       struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi=
- };
-> > > +
-> > > +       msleep(60);
-> > > +
-> > > +       hx83102_enable_extended_cmds(&dsi_ctx, true);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x2c=
-, 0xed, 0xed, 0x0f, 0xcf, 0x42,
-> > > +                                    0xf5, 0x39, 0x36, 0x36, 0x36, 0x=
-36, 0x32, 0x8b, 0x11, 0x65, 0x00, 0x88,
-> > > +                                    0xfa, 0xff, 0xff, 0x8f, 0xff, 0x=
-08, 0xd6, 0x33);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETDISP, 0x00,=
- 0x47, 0xb0, 0x80, 0x00, 0x12,
-> > > +                                    0x71, 0x3c, 0xa3, 0x22, 0x20, 0x=
-00, 0x00, 0x88, 0x01);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCYC, 0x35, =
-0x35, 0x43, 0x43, 0x35, 0x35,
-> > > +                                    0x30, 0x7a, 0x30, 0x7a, 0x01, 0x=
-9d);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc=
-d);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x84)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETVDC, 0x1b, =
-0x04);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_BE, 0x=
-20);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPTBA, 0xfc,=
- 0xc4);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSTBA, 0x34,=
- 0x34, 0x22, 0x11, 0x22, 0xa0,
-> > > +                                    0x31, 0x08, 0xf5, 0x03);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc=
-c);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTCON, 0x80)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xd=
-3);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTCON, 0x22)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc=
-6);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETRAMDMY, 0x9=
-7);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPWM, 0x00, =
-0x1e, 0x13, 0x88, 0x01);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x08=
-, 0x13, 0x07, 0x00, 0x0f, 0x34);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPANEL, 0x02=
-, 0x03, 0x44);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc=
-4);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCASCADE, 0x=
-03);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPCTRL, 0x07=
-, 0x06, 0x00, 0x02, 0x04, 0x2c,
-> > > +                                    0xff);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP0, 0x06,=
- 0x00, 0x00, 0x00, 0x00, 0x08,
-> > > +                                    0x08, 0x08, 0x08, 0x37, 0x07, 0x=
-64, 0x7c, 0x11, 0x11, 0x03, 0x03, 0x32,
-> > > +                                    0x10, 0x0e, 0x00, 0x0e, 0x32, 0x=
-17, 0x97, 0x07, 0x97, 0x32, 0x00, 0x02,
-> > > +                                    0x00, 0x02, 0x00, 0x00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP1, 0x25,=
- 0x24, 0x25, 0x24, 0x18, 0x18,
-> > > +                                    0x18, 0x18, 0x07, 0x06, 0x07, 0x=
-06, 0x05, 0x04, 0x05, 0x04, 0x03, 0x02,
-> > > +                                    0x03, 0x02, 0x01, 0x00, 0x01, 0x=
-00, 0x1e, 0x1e, 0x1e, 0x1e, 0x1f, 0x1f,
-> > > +                                    0x1f, 0x1f, 0x21, 0x20, 0x21, 0x=
-20, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-> > > +                                    0x18, 0x18);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0xaa,=
- 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-> > > +                                    0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0x=
-a0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > > +                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x=
-00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > > +                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x=
-00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGMA, 0x04, =
-0x04, 0x06, 0x0a, 0x0a, 0x05,
-> > > +                                    0x12, 0x14, 0x17, 0x13, 0x2c, 0x=
-33, 0x39, 0x4b, 0x4c, 0x56, 0x61, 0x78,
-> > > +                                    0x7a, 0x41, 0x50, 0x68, 0x73, 0x=
-04, 0x04, 0x06, 0x0a, 0x0a, 0x05, 0x12,
-> > > +                                    0x14, 0x17, 0x13, 0x2c, 0x33, 0x=
-39, 0x4b, 0x4c, 0x56, 0x61, 0x78, 0x7a,
-> > > +                                    0x41, 0x50, 0x68, 0x73);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0x07, =
-0x10, 0x10, 0x1a, 0x26, 0x9e,
-> > > +                                    0x00, 0x4f, 0xa0, 0x14, 0x14, 0x=
-00, 0x00, 0x00, 0x00, 0x12, 0x0a, 0x02,
-> > > +                                    0x02, 0x00, 0x33, 0x02, 0x04, 0x=
-18, 0x01);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x01)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x01=
-, 0x7f, 0x11, 0xfd);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x86=
-);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP0, 0x00,=
- 0x00, 0x04, 0x00, 0x00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0x00,=
- 0x00, 0x00, 0x00, 0x00, 0x00,
-> > > +                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x=
-00, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-> > > +                                    0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0x=
-a0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > > +                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x=
-00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0x02, =
-0x00, 0x2b, 0x01, 0x7e, 0x0f,
-> > > +                                    0x7e, 0x10, 0xa0, 0x00, 0x00, 0x=
-77, 0x00, 0x00, 0x00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x02)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPTBA, 0xf2)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x03=
-, 0x07, 0x00, 0x10, 0x79);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0xff,=
- 0xff, 0xff, 0xff, 0xfa, 0xa0,
-> > > +                                    0xff, 0xff, 0xff, 0xff, 0xfa, 0x=
-a0);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0xfe, =
-0x01, 0xfe, 0x01, 0xfe, 0x01,
-> > > +                                    0x00, 0x00, 0x00, 0x23, 0x00, 0x=
-23, 0x81, 0x02, 0x40, 0x00, 0x20, 0x6e,
-> > > +                                    0x02, 0x01, 0x00, 0x00, 0x00, 0x=
-00, 0x00, 0x00, 0x00, 0x00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x03)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xa=
-a, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-> > > +                                    0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0x=
-a0, 0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0,
-> > > +                                    0xff, 0xff, 0xff, 0xff, 0xfa, 0x=
-a0, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-> > > +                                    0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0x=
-a0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > > +                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x=
-00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc=
-6);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCYC, 0x03, =
-0xff, 0xf8);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_E1, 0x=
-00);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x00)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_D2, 0x=
-ff, 0xff, 0xff, 0xff, 0xff, 0xff);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc=
-4);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x96)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x01)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc=
-5);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x4f)=
-;
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3=
-f);
-> > > +       mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x00)=
-;
-> > > +       if (dsi_ctx.accum_err)
-> > > +               return dsi_ctx.accum_err;
-> >
-> > Since this is a new panel you're adding support for and there's no
-> > excuse that we don't want to change the old command sequence, it seems
-> > like you should add the call to:
-> >
-> > hx83102_enable_extended_cmds(&dsi_ctx, false);
-> >
-> > If for some reason that would be a bad idea, let me know.
->
-> Confirm with the vendor again , disable extended cmds is prevent the ESD
-> mechanism write (currently there is no ESD check mechanism) ic register.
-> So it may not have any impact whether add disable extended cmds or not.
-> Of course for me, I prefer to upload according to the initial code
-> provided by  vendor.
->
-> If you prefer add it I also can fix in V6.
+> Introduce support for the hexDEV serial LIN adapter hexLINSER. These
+> devices are equipped with LIN transceivers and are mostly hard-wired to
+> serial devices.
+> 
+> This device driver uses CAN_LIN on one side and the serial device bus
+> (serdev) interface on the other.
+> 
+> For more details on the adapter, visit: https://hexdev.de/hexlin#hexLINSER
+> 
+> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
+> ---
+>  drivers/net/can/Kconfig      |  15 ++
+>  drivers/net/can/Makefile     |   1 +
+>  drivers/net/can/hex-linser.c | 505 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 521 insertions(+)
+>  create mode 100644 drivers/net/can/hex-linser.c
+> 
+> diff --git a/drivers/net/can/Kconfig b/drivers/net/can/Kconfig
+> index 0934bbf8d03b2..141972d6bbf1e 100644
+> --- a/drivers/net/can/Kconfig
+> +++ b/drivers/net/can/Kconfig
+> @@ -181,6 +181,21 @@ config CAN_LIN
+>  
+>  	  Actual device drivers need to be enabled too.
+>  
+> +config CAN_LIN_HEXLINSER
+> +	tristate "hexDEV hexLINSER serial LIN Adaptors"
+> +	depends on CAN_LIN && SERIAL_DEV_BUS && OF
+> +	help
+> +	  LIN support for serial devices equipped with LIN transceivers.
+> +	  This device driver is using CAN_LIN for a userland connection on
+> +	  one side and the kernel its serial device bus (serdev) interface
+> +	  on the other side.
+> +
+> +	  If you have a hexLINSER tty adapter, say Y here and see
+> +	  <https://hexdev.de/hexlin#hexLINSER>.
+> +
+> +	  This driver can also be built as a module. If so, the module will be
+> +	  called hex-linser.ko.
+> +
+>  config CAN_SLCAN
+>  	tristate "Serial / USB serial CAN Adaptors (slcan)"
+>  	depends on TTY
+> diff --git a/drivers/net/can/Makefile b/drivers/net/can/Makefile
+> index 0093ee9219ca8..9fdad4a0fd12a 100644
+> --- a/drivers/net/can/Makefile
+> +++ b/drivers/net/can/Makefile
+> @@ -26,6 +26,7 @@ obj-$(CONFIG_CAN_IFI_CANFD)	+= ifi_canfd/
+>  obj-$(CONFIG_CAN_JANZ_ICAN3)	+= janz-ican3.o
+>  obj-$(CONFIG_CAN_KVASER_PCIEFD)	+= kvaser_pciefd.o
+>  obj-$(CONFIG_CAN_LIN)		+= lin.o
+> +obj-$(CONFIG_CAN_LIN_HEXLINSER)	+= hex-linser.o
+>  obj-$(CONFIG_CAN_MSCAN)		+= mscan/
+>  obj-$(CONFIG_CAN_M_CAN)		+= m_can/
+>  obj-$(CONFIG_CAN_PEAK_PCIEFD)	+= peak_canfd/
+> diff --git a/drivers/net/can/hex-linser.c b/drivers/net/can/hex-linser.c
+> new file mode 100644
+> index 0000000000000..9c2d11d2ed0c0
+> --- /dev/null
+> +++ b/drivers/net/can/hex-linser.c
+> @@ -0,0 +1,505 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/* Copyright (C) 2024 hexDEV GmbH - https://hexdev.de */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/init.h>
+> +#include <linux/kfifo.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/serdev.h>
+> +#include <linux/slab.h>
+> +#include <linux/tty.h>
+> +#include <net/lin.h>
+> +
+> +#define LINSER_SAMPLES_PER_CHAR		10
+> +#define LINSER_TX_BUFFER_SIZE		11
+> +#define LINSER_RX_FIFO_SIZE		256
+> +#define LINSER_PARSE_BUFFER		24
+> +
+> +struct linser_rx {
+> +	u8 data;
+> +	u8 flag;
+> +};
+> +
+> +enum linser_rx_status {
+> +	NEED_MORE = -1,
+> +	MODE_OK = 0,
+> +	NEED_FORCE,
+> +};
+> +
+> +struct linser_priv {
+> +	struct lin_device *lin_dev;
+> +	struct serdev_device *serdev;
+> +	DECLARE_KFIFO_PTR(rx_fifo, struct linser_rx);
+> +	struct delayed_work rx_work;
+> +	unsigned long break_usleep_min;
+> +	unsigned long break_usleep_max;
+> +	unsigned long post_break_usleep_min;
+> +	unsigned long post_break_usleep_max;
+> +	unsigned long force_timeout_jfs;
+> +	struct lin_responder_answer respond_answ[LIN_NUM_IDS];
+> +	struct mutex resp_lock; /* protects respond_answ */
+> +	bool is_stopped;
+> +};
+> +
+> +static int linser_open(struct lin_device *ldev)
+> +{
+> +	struct serdev_device *serdev = to_serdev_device(ldev->dev);
+> +	struct linser_priv *priv = serdev_device_get_drvdata(serdev);
+> +	int ret;
+> +
+> +	if (priv->is_stopped) {
+> +		ret = serdev_device_open(serdev);
+> +		if (ret) {
+> +			dev_err(&serdev->dev, "Unable to open device\n");
+> +			return ret;
+> +		}
+> +
+> +		serdev_device_set_flow_control(serdev, false);
+> +		serdev_device_set_break_detection(serdev, true);
+> +
+> +		priv->is_stopped = false;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int linser_stop(struct lin_device *ldev)
+> +{
+> +	struct serdev_device *serdev = to_serdev_device(ldev->dev);
+> +	struct linser_priv *priv = serdev_device_get_drvdata(serdev);
+> +
+> +	if (priv->is_stopped)
+> +		return 0;
+> +
+> +	serdev_device_close(serdev);
+> +	priv->is_stopped = true;
+> +
+> +	return 0;
+> +}
+> +
+> +static int linser_send_break(struct linser_priv *priv)
+> +{
+> +	struct serdev_device *serdev = priv->serdev;
+> +	int ret;
+> +
+> +	ret = serdev_device_break_ctl(serdev, -1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(priv->break_usleep_min, priv->break_usleep_max);
+> +
+> +	ret = serdev_device_break_ctl(serdev, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(priv->post_break_usleep_min, priv->post_break_usleep_max);
+> +
+> +	return 0;
+> +}
+> +
+> +static int linser_ldo_tx(struct lin_device *ldev, const struct lin_frame *lf)
+> +{
+> +	struct serdev_device *serdev = to_serdev_device(ldev->dev);
+> +	struct linser_priv *priv = serdev_device_get_drvdata(serdev);
+> +	u8 pid = LIN_FORM_PID(lf->lin_id);
+> +	u8 buf[LINSER_TX_BUFFER_SIZE];
+> +	ssize_t written_len, total_len;
+> +	u8 checksum;
+> +	int ret;
+> +
+> +	if (lf->len + 3 > LINSER_TX_BUFFER_SIZE) {
+> +		dev_err(&serdev->dev, "Frame length %u exceeds buffer size\n", lf->len);
+> +		return -EINVAL;
+> +	}
+> +
+> +	buf[0] = LIN_SYNC_BYTE;
+> +	buf[1] = pid;
+> +	total_len = 2;
+> +
+> +	if (lf->len) {
+> +		memcpy(&buf[2], lf->data, lf->len);
+> +		checksum = lin_get_checksum(pid, lf->len, lf->data,
+> +					    lf->checksum_mode);
+> +		buf[lf->len + 2] = checksum;
+> +		total_len += lf->len + 1;
+> +	}
+> +
+> +	ret = linser_send_break(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	written_len = serdev_device_write(serdev, buf, total_len, 0);
+> +	if (written_len < total_len)
+> +		return written_len < 0 ? (int)written_len : -EIO;
+> +
+> +	dev_dbg(&serdev->dev, "sent out: %*ph\n", (int)total_len, buf);
+> +
+> +	serdev_device_wait_until_sent(serdev, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int linser_derive_timings(struct linser_priv *priv, u16 bitrate)
+> +{
+> +	unsigned long break_baud = (bitrate * 2) / 3;
+> +	struct serdev_device *serdev = priv->serdev;
+> +	unsigned long timeout_us;
+> +
+> +	if (bitrate < LIN_MIN_BAUDRATE || bitrate > LIN_MAX_BAUDRATE) {
+> +		dev_err(&serdev->dev, "Bitrate %u out of bounds (%u to %u)\n",
+> +			bitrate, LIN_MIN_BAUDRATE, LIN_MAX_BAUDRATE);
+> +		return -EINVAL;
+> +	}
+> +
+> +	priv->break_usleep_min = (USEC_PER_SEC * LINSER_SAMPLES_PER_CHAR) /
+> +				 break_baud;
+> +	priv->break_usleep_max = priv->break_usleep_min + 50;
+> +	priv->post_break_usleep_min = USEC_PER_SEC / break_baud;
+> +	priv->post_break_usleep_max = priv->post_break_usleep_min + 30;
+> +
+> +	timeout_us = DIV_ROUND_CLOSEST(USEC_PER_SEC * 256, bitrate);
+> +	priv->force_timeout_jfs = usecs_to_jiffies(timeout_us);
+> +
+> +	return 0;
+> +}
+> +
+> +static int linser_update_bitrate(struct lin_device *ldev, u16 bitrate)
+> +{
+> +	struct serdev_device *serdev = to_serdev_device(ldev->dev);
+> +	struct linser_priv *priv = serdev_device_get_drvdata(serdev);
+> +	unsigned int speed;
+> +	int ret;
+> +
+> +	ret = linser_open(ldev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	speed = serdev_device_set_baudrate(serdev, bitrate);
+> +	if (!bitrate || speed != bitrate)
+> +		return -EINVAL;
+> +
+> +	ret = linser_derive_timings(priv, bitrate);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int linser_get_responder_answer(struct lin_device *ldev, u8 id,
+> +				       struct lin_responder_answer *answ)
+> +{
+> +	struct serdev_device *serdev = to_serdev_device(ldev->dev);
+> +	struct linser_priv *priv = serdev_device_get_drvdata(serdev);
+> +	struct lin_responder_answer *r = &priv->respond_answ[id];
+> +
+> +	if (!answ)
+> +		return -EINVAL;
+> +
+> +	guard(mutex)(&priv->resp_lock);
+> +	memcpy(answ, r, sizeof(*answ));
+> +
+> +	return 0;
+> +}
+> +
+> +static int linser_update_resp_answer(struct lin_device *ldev,
+> +				     const struct lin_responder_answer *answ)
+> +{
+> +	struct serdev_device *serdev = to_serdev_device(ldev->dev);
+> +	struct linser_priv *priv = serdev_device_get_drvdata(serdev);
+> +	struct lin_responder_answer *r = &priv->respond_answ[answ->lf.lin_id];
+> +
+> +	if (!answ)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&priv->resp_lock);
+> +	memcpy(r, answ, sizeof(*answ));
+> +	r->lf.checksum = lin_get_checksum(LIN_FORM_PID(answ->lf.lin_id),
+> +					  answ->lf.len,
+> +					  answ->lf.data,
+> +					  answ->lf.checksum_mode);
 
-I'd prefer it be added for any new panels unless a vendor says we
-shouldn't. For the old panel I'd be OK w/ keeping it how it was.
+Can this checksum occur outside of lock using the copy in r?
 
--Doug
+In anycase, use guard() (or scoped_guard() if the checksum can happen 
+outside of the lock.)
+
+> +	mutex_unlock(&priv->resp_lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct lin_device_ops linser_lindev_ops = {
+> +	.ldo_open = linser_open,
+> +	.ldo_stop = linser_stop,
+> +	.ldo_tx = linser_ldo_tx,
+> +	.update_bitrate = linser_update_bitrate,
+> +	.get_responder_answer = linser_get_responder_answer,
+> +	.update_responder_answer = linser_update_resp_answer,
+> +};
+> +
+> +static bool linser_tx_frame_as_responder(struct linser_priv *priv, u8 id)
+> +{
+> +	struct lin_responder_answer *answ = &priv->respond_answ[id];
+> +	struct serdev_device *serdev = priv->serdev;
+> +	u8 buf[LINSER_TX_BUFFER_SIZE];
+> +	u8 checksum, count, n;
+> +	ssize_t write_len;
+> +
+> +	scoped_guard(mutex, &priv->resp_lock) {
+> +		if (!answ->is_active)
+> +			return false;
+> +
+> +		if (answ->is_event_frame) {
+> +			struct lin_responder_answer *e_answ;
+> +
+> +			e_answ = &priv->respond_answ[answ->event_associated_id];
+> +			n = min(e_answ->lf.len, LIN_MAX_DLEN);
+> +
+> +			if (memcmp(answ->lf.data, e_answ->lf.data, n) == 0)
+> +				return false;
+> +
+> +			memcpy(answ->lf.data, e_answ->lf.data, n);
+> +			checksum = lin_get_checksum(LIN_FORM_PID(answ->lf.lin_id),
+> +						    n, e_answ->lf.data,
+> +						    answ->lf.checksum_mode);
+> +			answ = e_answ;
+> +		} else {
+> +			checksum = answ->lf.checksum;
+> +		}
+> +
+> +		count = min(answ->lf.len, LIN_MAX_DLEN);
+> +		memcpy(&buf[0], answ->lf.data, count);
+> +		buf[count] = checksum;
+> +	}
+> +
+> +	write_len = serdev_device_write(serdev, buf, count + 1, 0);
+> +	if (write_len < count + 1)
+> +		return false;
+> +
+> +	serdev_device_wait_until_sent(serdev, 0);
+> +
+> +	return true;
+> +}
+> +
+> +static void linser_pop_fifo(struct linser_priv *priv, size_t n)
+> +{
+> +	for (size_t i = 0; i < n; i++)
+> +		kfifo_skip(&priv->rx_fifo);
+> +}
+> +
+> +static int linser_fill_frame(struct linser_priv *priv, struct lin_frame *lf)
+> +{
+> +	struct serdev_device *serdev = priv->serdev;
+> +	struct linser_rx buf[LINSER_PARSE_BUFFER];
+> +	unsigned int count, i, brk = 0;
+> +
+> +	count = kfifo_out_peek(&priv->rx_fifo, buf, LINSER_PARSE_BUFFER);
+> +
+> +	memset(lf, 0, sizeof(*lf));
+> +
+> +	for (i = 0; i < count; i++) {
+> +		dev_dbg(&serdev->dev, "buf[%d]: data=%02x, flag=%02x\n",
+> +			i, buf[i].data, buf[i].flag);
+> +	}
+> +
+> +	if (count < 3)
+> +		return NEED_MORE;
+> +
+> +	if (buf[0].flag != TTY_BREAK || buf[1].data != LIN_SYNC_BYTE) {
+> +		linser_pop_fifo(priv, 1); /* pop incorrect start */
+> +		return NEED_MORE;
+> +	} else if (!LIN_CHECK_PID(buf[2].data)) {
+> +		linser_pop_fifo(priv, 3); /* pop incorrect header */
+> +		return NEED_MORE;
+> +	}
+> +
+> +	lf->lin_id = LIN_GET_ID(buf[2].data);
+> +
+> +	/* from here on we do have a correct LIN header */
+> +
+> +	if (count == 3)
+> +		return linser_tx_frame_as_responder(priv, lf->lin_id) ?
+> +		       NEED_MORE : NEED_FORCE;
+> +
+> +	for (i = 3; i < count && i < LINSER_PARSE_BUFFER && i < 12; i++) {
+> +		if (buf[i].flag == TTY_BREAK) {
+> +			brk = i;
+> +			break;
+> +		}
+> +		lf->len++;
+> +	}
+> +	if (lf->len)
+> +		lf->len -= 1; /* account for checksum */
+> +
+> +	if (brk == 3)
+> +		return MODE_OK;
+> +
+> +	if (brk == 4) {
+> +		/* suppress wrong answer data-byte in between PID and break
+> +		 * because checksum is missing
+> +		 */
+> +		return MODE_OK;
+> +	}
+> +
+> +	for (i = 0; i < lf->len; i++)
+> +		lf->data[i] = buf[3 + i].data;
+> +	lf->checksum = buf[2 + lf->len + 1].data;
+> +	mutex_lock(&priv->resp_lock);
+> +	lf->checksum_mode = priv->respond_answ[lf->lin_id].lf.checksum_mode;
+> +	mutex_unlock(&priv->resp_lock);
+> +
+> +	dev_dbg(&serdev->dev, "brk:%i, len:%u, data:%*ph, checksum:%x (%s)\n",
+> +		brk, lf->len, lf->len, lf->data, lf->checksum,
+> +		lf->checksum_mode ? "enhanced" : "classic");
+> +
+> +	if (brk > 4)
+> +		return MODE_OK;	/* frame in between two breaks: so complete */
+> +
+> +	if (lf->len == 8)
+> +		return MODE_OK;
+> +
+> +	return NEED_FORCE;
+> +}
+> +
+> +static int linser_process_frame(struct linser_priv *priv, bool force)
+> +{
+> +	struct serdev_device *serdev = priv->serdev;
+> +	struct lin_frame lf;
+> +	size_t bytes_to_pop;
+> +	int ret = NEED_MORE;
+> +
+> +	while (kfifo_len(&priv->rx_fifo) >= LIN_HEADER_SIZE) {
+> +		ret = linser_fill_frame(priv, &lf);
+> +
+> +		if (!(ret == MODE_OK || (ret == NEED_FORCE && force)))
+> +			return ret;
+> +
+> +		dev_dbg(&serdev->dev, "lin_rx: %s\n", force ?
+> +			"force" : "normal");
+
+Put to one line.
+
+> +		lin_rx(priv->lin_dev, &lf);
+> +		bytes_to_pop = LIN_HEADER_SIZE + lf.len + (lf.len ? 1 : 0);
+> +		linser_pop_fifo(priv, bytes_to_pop);
+> +		force = false;
+> +		ret = MODE_OK;
+> +	}
+> +
+> +	return ret;
+> +}
+
+
+-- 
+ i.
+
 
