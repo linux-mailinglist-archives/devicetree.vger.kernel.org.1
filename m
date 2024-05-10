@@ -1,161 +1,179 @@
-Return-Path: <devicetree+bounces-66345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09808C2812
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87FF98C2834
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 17:52:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4696A1F224A8
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:43:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 023851F218DE
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 15:52:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF91171E48;
-	Fri, 10 May 2024 15:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5BB171E4B;
+	Fri, 10 May 2024 15:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="B7rTT8Lq"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="jgvQ/a3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C921C17109F
-	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 15:43:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFC3171676
+	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 15:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715355814; cv=none; b=BWjrxmefjPur1qlCTnNG28DD6MzdKSOW1k+7zsZWbZAzVuCRemYpNk350gmoiPEXjtMqiLYn77SMsQ8FPqWo+wXC0LVx3F0oOTUGVknGl2ftZvYcjTRMpHMBPkEFyvtS8OpLgM/3MhD17Q1FsjKkpyrhkaLf20BGz30mcq6N+xo=
+	t=1715356321; cv=none; b=EXKbZRuHg+3tsGrRgNSLmOubPv7Ss7ppC3MGiyPtzTUfekRBC7mMxjdeOakrgI1AaUc3qxm1wOAfM0cz7qOOcnHXpe9GIr4xzcqDhkTPri64K0Ksl4XWhCMtvX8qOwoGGVemYv7BCqhzz5yto0NRc7NPrS06r8xt5aqwgu1cQn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715355814; c=relaxed/simple;
-	bh=8ge9OcAQpy02pxdSG6GJDLs1Otucti+5yTOjo1VilHk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NdBWYDbGBGqnfu5wKkWgM3wO47hT0SGX7x5PEmtYlKqrNswBoRajqPGQ3zDueoRJtvNBWBFFx/ipLvR6YgcMfwcFw7iPBrOWGzDhsd8+74VBXD1r02c6Xz+BR7taC4tTiWykGFMyVgxhg9gBNv48f05tu6Jkv4V2wtkThieL8rQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=B7rTT8Lq; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2e564cad1f6so519411fa.1
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 08:43:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715355810; x=1715960610; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Yoyvh8Rxn6zCgMfa/t+tG3yD/3CbcjfLHaveMJsT484=;
-        b=B7rTT8LqcOCJHX9ytnmJOyTQ+SgfiLRuAmcVlrMgOpILI6tRM9rYej0arbsceV69mb
-         p+mwm13Q2184HW42HpTDfQi9MAb4pHWFYb2lWTwescDjisly41ozHU8XXXIRbigUqbIP
-         X+Xgp1O5hMzcN00u9mfLh30o4WfTe0olMiL2n5QsmPCbAPF5u66KCZoBiIruLHeJtiAh
-         XYzWVdUV+Q2G4Ib9kpDwj7vWtmD8+BpEcUDd4xygUbCuORWFjySOY1UDy78wUgLQWGk3
-         NmPC03xaYHltNhYgXZKySKJvfs/gc9nnLZWgt9r98Y2pUrYXPlmooX1dZNmXt0621YMq
-         vyPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715355810; x=1715960610;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Yoyvh8Rxn6zCgMfa/t+tG3yD/3CbcjfLHaveMJsT484=;
-        b=t8mT2Cmu6ToECKjZkff2ww97KYjoUk6diGoc4+PukdxOReomvTsy6qFrgvqjBpLxxa
-         spR+PKzA719T+KZAvxdqGRqcCNbmGy3ES++6LK+rHI0Oyt9w1cKIhNhfGsi3Dtxfek1U
-         Vwkg0ms9AoH/Tr7cazcc9DyUXsVT+Qas4Vhzb+JjWt3zjGjneEiZT4EiqFqqNoqRIdr/
-         YUdN1pd3nP1rF6IKl7qHAlGhfUvt/m6yHjFqW/LN69HAcceAnOS79rdKPv6qFMV7QsLp
-         AA6olAFeZtxv5ZWQCbs2GkNd2mg30SrZb7t8/2VzJWfKxyBjasb+O6gxgdbTRp7o3h2p
-         u2dA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQqU10aYccx8slaHYFA8pl9z2dWdeltuPmyiDlSqnwg+mKpteot5I2Y2GWjUMyToiaYpKNTxpFQdX2IS7n9P/qOaCAMTNPhf/kCg==
-X-Gm-Message-State: AOJu0Yzq3lXefK0z0ISnqM4U/iscKPslY0jBIat6JVp1hnYXvVlXfsc7
-	IbOyZdDYV4h6QjxuMTxYNsxsCB+AqZQ+1eQzj8FQgmhUTUhVGZq0fq9xRhmHTxht3jReIi34zWa
-	46NXTcyDZR3i823a2rGYzfrwSwHZ+QoJogMfhOA==
-X-Google-Smtp-Source: AGHT+IG+a4LbocG+hZ2AszaZJTTWlZVoiSxMJlQjan5IizbCYWOINZG5FzwoAQRRO1D9Cg10+5o0fcjEP+y4hd/N74M=
-X-Received: by 2002:a2e:934b:0:b0:2df:d071:76ed with SMTP id
- 38308e7fff4ca-2e51fd4ae06mr18913471fa.10.1715355810234; Fri, 10 May 2024
- 08:43:30 -0700 (PDT)
+	s=arc-20240116; t=1715356321; c=relaxed/simple;
+	bh=dXUJUODtKyCuDIIp74YorO/XM9QOZHTtO4aHgtAGTYs=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=H+X8J26OVEz6rUPabMvDIE/17hY07qhQqLROZSzj/sPAnwazkJmkXcSyUBNu90hr6/oGari9TwYOvCO0JUNF0I5M1beKgE4OTdG11dT/hDg+tVIha0sGinn/P2AEPew/sB5OCd30jAAdhwnM6DRQw7B0O9786DbhhpXPeKaQjCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=jgvQ/a3j; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E7C832C03FE;
+	Sat, 11 May 2024 03:51:54 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1715356314;
+	bh=dXUJUODtKyCuDIIp74YorO/XM9QOZHTtO4aHgtAGTYs=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=jgvQ/a3juMG4WtiIqP9PzDXuUp+Juyv+gkIIEDY0hlJdO7x1p5LIzUtsPuRSqTNv2
+	 CCj/GiVzqhOiTSkgMP/RcjYYMRovT8tVru4qQqOW0E62XXxEsMH6a4UAYCyRUTTLcw
+	 C4q2Vc2Wk/sWslRbBTfeL/JHS9I57+HB3tyE0ddtlxzxfeaT3jbokJOQ4X4/9bV2a/
+	 nIgOJFednuU6xB0fA3jv7qdC9G6DnEhumiyrpiOj9RYDXp6/vEHKFS6iLTJGZ51dzi
+	 DyGiXVhzvvevfoLo76PsRqqGgHWtLgAokt3TtMggIGX/CKC3PeiPdHVAojovk8oaSg
+	 pClk1MLlHbwnw==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B663e429a0001>; Sat, 11 May 2024 03:51:54 +1200
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Sat, 11 May 2024 03:51:54 +1200
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.011; Sat, 11 May 2024 03:51:54 +1200
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Guenter Roeck <linux@roeck-us.net>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, "jdelvare@suse.com"
+	<jdelvare@suse.com>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "linux-hwmon@vger.kernel.org"
+	<linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Document adt7475 PWM initial
+ duty cycle
+Thread-Topic: [PATCH v2 1/2] dt-bindings: hwmon: Document adt7475 PWM initial
+ duty cycle
+Thread-Index: AQHaoZJj5QPx6ZJTO0uIJD/DY55QH7GNspyAgAC7vYCAAJu9AIAAzY4A
+Date: Fri, 10 May 2024 15:51:54 +0000
+Message-ID: <35361786-ef5f-4d81-83e8-e347f47c83ed@alliedtelesis.co.nz>
+References: <20240508215504.300580-1-chris.packham@alliedtelesis.co.nz>
+ <20240508215504.300580-2-chris.packham@alliedtelesis.co.nz>
+ <fe5b3af9-b307-45e1-b190-ba2b3327a8df@kernel.org>
+ <d11093bb-230b-4918-a8cd-4f4eb760ccf3@alliedtelesis.co.nz>
+ <94c843e2-4415-4786-bfd4-a77fdbbfab07@roeck-us.net>
+In-Reply-To: <94c843e2-4415-4786-bfd4-a77fdbbfab07@roeck-us.net>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <53BCF6F17223F042AABD0ED0D6CA9B72@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240510141836.1624009-1-adureghello@baylibre.org> <20240510141836.1624009-3-adureghello@baylibre.org>
-In-Reply-To: <20240510141836.1624009-3-adureghello@baylibre.org>
-From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 10 May 2024 10:43:18 -0500
-Message-ID: <CAMknhBGU8bXg7obzyjzb7a4AUbjnw_0b+mqEAYJJekAK2CB-CQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: iio: dac: fix ad3552r gain parameter names
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	nuno.sa@analog.com, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=MfrPuI/f c=1 sm=1 tr=0 ts=663e429a a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=TpHVaj0NuXgA:10 a=7QraPcOLQ5AibYo7dxQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 
-On Fri, May 10, 2024 at 9:19=E2=80=AFAM Angelo Dureghello
-<adureghello@baylibre.com> wrote:
->
-> From: Angelo Dureghello <adureghello@baylibre.com>
->
-> The adi,gain-scaling-p/n values are an inverted log2,
-> so initial naiming was set correct, but the driver uses just
-> adi,gain-scaling-p/n, so uniforming documentation, that seems
-> a less-risk fix for future rebases, and still conformant to datasheet.
->
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b=
-/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> index 17442cdfbe27..9e3dbf890bfa 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> @@ -94,13 +94,13 @@ patternProperties:
->              maximum: 511
->              minimum: -511
->
-> -          adi,gain-scaling-p-inv-log2:
-> -            description: GainP =3D 1 / ( 2 ^ adi,gain-scaling-p-inv-log2=
-)
-> +          adi,gain-scaling-p:
-> +            description: GainP =3D 1 / ( 2 ^ adi,gain-scaling-p)
->              $ref: /schemas/types.yaml#/definitions/uint32
->              enum: [0, 1, 2, 3]
->
-> -          adi,gain-scaling-n-inv-log2:
-> -            description: GainN =3D 1 / ( 2 ^ adi,gain-scaling-n-inv-log2=
-)
-> +          adi,gain-scaling-n:
-> +            description: GainN =3D 1 / ( 2 ^ adi,gain-scaling-n)
->              $ref: /schemas/types.yaml#/definitions/uint32
->              enum: [0, 1, 2, 3]
->
-> @@ -109,8 +109,8 @@ patternProperties:
->
->          required:
->            - adi,gain-offset
-> -          - adi,gain-scaling-p-inv-log2
-> -          - adi,gain-scaling-n-inv-log2
-> +          - adi,gain-scaling-p
-> +          - adi,gain-scaling-n
->            - adi,rfb-ohms
->
->      required:
-> @@ -214,8 +214,8 @@ examples:
->                  reg =3D <1>;
->                  custom-output-range-config {
->                      adi,gain-offset =3D <5>;
-> -                    adi,gain-scaling-p-inv-log2 =3D <1>;
-> -                    adi,gain-scaling-n-inv-log2 =3D <2>;
-> +                    adi,gain-scaling-p =3D <1>;
-> +                    adi,gain-scaling-n =3D <2>;
->                      adi,rfb-ohms =3D <1>;
->                  };
->              };
-> --
-> 2.45.0.rc1
->
->
-
-The DT bindings are generally considered immutable. So unless we can
-prove that no one has ever put adi,gain-scaling-n-inv-log2 in a .dtb
-file, we probably need to fix this in the driver rather than in the
-bindings. (The driver can still handle adi,gain-scaling-p in the
-driver for backwards compatibility but the official binding should be
-what was already accepted in the .yaml file)
+DQpPbiAxMC8wNS8yNCAxNTozNiwgR3VlbnRlciBSb2VjayB3cm90ZToNCj4gQ2hyaXMsDQo+DQo+
+IE9uIFRodSwgTWF5IDA5LCAyMDI0IGF0IDA2OjE5OjEyUE0gKzAwMDAsIENocmlzIFBhY2toYW0g
+d3JvdGU6DQo+PiBIaSBLcnp5c3p0b2YsDQo+Pg0KPj4gT24gOS8wNS8yNCAxOTowNiwgS3J6eXN6
+dG9mIEtvemxvd3NraSB3cm90ZToNCj4+PiBPbiAwOC8wNS8yMDI0IDIzOjU1LCBDaHJpcyBQYWNr
+aGFtIHdyb3RlOg0KPj4+PiBBZGQgZG9jdW1lbnRhdGlvbiBmb3IgdGhlIHB3bS1pbml0aWFsLWR1
+dHktY3ljbGUgYW5kDQo+Pj4+IHB3bS1pbml0aWFsLWZyZXF1ZW5jeSBwcm9wZXJ0aWVzLiBUaGVz
+ZSBhbGxvdyB0aGUgc3RhcnRpbmcgc3RhdGUgb2YgdGhlDQo+Pj4+IFBXTSBvdXRwdXRzIHRvIGJl
+IHNldCB0byBjYXRlciBmb3IgaGFyZHdhcmUgZGVzaWducyB3aGVyZSB1bmRlc2lyYWJsZQ0KPj4+
+PiBhbW91bnRzIG9mIG5vaXNlIGlzIGNyZWF0ZWQgYnkgdGhlIGRlZmF1bHQgaGFyZHdhcmUgc3Rh
+dGUuDQo+Pj4+DQo+Pj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2to
+YW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4+Pj4gLS0tDQo+Pj4+DQo+Pj4+IE5vdGVzOg0KPj4+
+PiAgICAgICBDaGFuZ2VzIGluIHYyOg0KPj4+PiAgICAgICAtIERvY3VtZW50IDAgYXMgYSB2YWxp
+ZCB2YWx1ZSAobGVhdmVzIGhhcmR3YXJlIGFzLWlzKQ0KPj4+Pg0KPj4+PiAgICAuLi4vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9od21vbi9hZHQ3NDc1LnlhbWwgICAgfCAyNyArKysrKysrKysrKysrKysr
+KystDQo+Pj4+ICAgIDEgZmlsZSBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
+KC0pDQo+Pj4+DQo+Pj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvaHdtb24vYWR0NzQ3NS55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL2h3bW9uL2FkdDc0NzUueWFtbA0KPj4+PiBpbmRleCAwNTFjOTc2YWI3MTEuLjk3ZGVkYTA4
+MmI0YSAxMDA2NDQNCj4+Pj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2h3bW9uL2FkdDc0NzUueWFtbA0KPj4+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvaHdtb24vYWR0NzQ3NS55YW1sDQo+Pj4+IEBAIC01MSw2ICs1MSwzMCBAQCBwcm9w
+ZXJ0aWVzOg0KPj4+PiAgICAgICAgICBlbnVtOiBbMCwgMV0NCj4+Pj4gICAgICAgICAgZGVmYXVs
+dDogMQ0KPj4+PiAgICANCj4+Pj4gKyAgYWRpLHB3bS1pbml0aWFsLWR1dHktY3ljbGU6DQo+Pj4+
+ICsgICAgZGVzY3JpcHRpb246IHwNCj4+Pj4gKyAgICAgIENvbmZpZ3VyZXMgdGhlIGluaXRpYWwg
+ZHV0eSBjeWNsZSBmb3IgdGhlIFBXTSBvdXRwdXRzLiBUaGUgaGFyZHdhcmUNCj4+Pj4gKyAgICAg
+IGRlZmF1bHQgaXMgMTAwJSBidXQgdGhpcyBtYXkgY2F1c2UgdW53YW50ZWQgZmFuIG5vaXNlIGF0
+IHN0YXJ0dXAuIFNldA0KPj4+PiArICAgICAgdGhpcyB0byBhIHZhbHVlIGZyb20gMCAoMCUgZHV0
+eSBjeWNsZSkgdG8gMjU1ICgxMDAlIGR1dHkgY3ljbGUpLg0KPj4+PiArICAgICRyZWY6IC9zY2hl
+bWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMi1hcnJheQ0KPj4+PiArICAgIG1pbkl0
+ZW1zOiAzDQo+Pj4+ICsgICAgbWF4SXRlbXM6IDMNCj4+Pj4gKyAgICBpdGVtczoNCj4+Pj4gKyAg
+ICAgIG1pbmltdW06IDANCj4+Pj4gKyAgICAgIG1heGltdW06IDI1NQ0KPj4+PiArICAgICAgZGVm
+YXVsdDogMjU1DQo+Pj4+ICsNCj4+Pj4gKyAgYWRpLHB3bS1pbml0aWFsLWZyZXF1ZW5jeToNCj4+
+PiBGcmVxdWVuY3kgdXN1YWxseSBoYXMgc29tZSB1bml0cywgc28gdXNlIGFwcHJvcHJpYXRlIHVu
+aXQgc3VmZml4IGFuZA0KPj4+IGRyb3AgJHJlZi4gIE1heWJlIHRoYXQncyBqdXN0IHRhcmdldC1y
+cG0gcHJvcGVydHk/DQo+Pj4NCj4+PiBCdXQgaXNuJ3QgdGhpcyBkdXBsaWNhdGluZyBwcmV2aW91
+cyBwcm9wZXJ0eT8gVGhpcyBpcyBmYW4gY29udHJvbGxlciwNCj4+PiBub3QgUFdNIHByb3ZpZGVy
+IChpbiBhbnkgY2FzZSB5b3UgbWlzcyBwcm9wZXIgJHJlZnMgdG8gcHdtLnlhbWwgb3INCj4+PiBm
+YW4tY29tbW9uLnlhbWwpLCBzbyB0aGUgb25seSB0aGluZyB5b3UgaW5pdGlhbGx5IHdhbnQgdG8g
+Y29uZmlndXJlIGlzDQo+Pj4gdGhlIGZhbiByb3RhdGlvbiwgbm90IHNwZWNpZmljIFBXTSB3YXZl
+Zm9ybS4gSWYgeW91IHlvdSB3YW50IHRvDQo+Pj4gY29uZmlndXJlIHNwZWNpZmljIFBXTSB3YXZl
+Zm9ybSwgdGhlbiBpdCdzIGEgUFdNIHByb3ZpZGVyLi4uIGJ1dCBpdCBpcw0KPj4+IG5vdC4uLiBD
+b25mdXNlZC4NCj4+IFRoZXJlJ3MgdHdvIHRoaW5ncyBnb2luZyBvbiBoZXJlLiBUaGVyZSdzIGEg
+UFdNIGR1dHkgY3ljbGUgd2hpY2ggaXMNCj4+IGNvbmZpZ3VyYWJsZSBmcm9tIDAlIHRvIDEwMCUu
+IEl0IG1pZ2h0IGJlIG5pY2UgaWYgdGhpcyB3YXMgZXhwcmVzc2VkIGFzDQo+PiBhIHBlcmNlbnRh
+Z2UgaW5zdGVhZCBvZiAwLTI1NSBidXQgSSB3ZW50IHdpdGggdGhlIGxhdHRlciBiZWNhdXNlIHRo
+YXQncw0KPj4gaG93IHRoZSBzeXNmcyBBQkkgZm9yIHRoZSBkdXR5IGN5Y2xlIHdvcmtzLg0KPj4N
+Cj4+IFRoZSBmcmVxdWVuY3kgKHdoaWNoIEknbGwgY2FsbCBhZGkscHdtLWluaXRpYWwtZnJlcXVl
+bmN5LWh6IGluIHYzKQ0KPj4gYWZmZWN0cyBob3cgdGhhdCBkdXR5IGN5Y2xlIGlzIHByZXNlbnRl
+ZCB0byB0aGUgZmFucy4gU28geW91IGNvdWxkIHN0aWxsDQo+PiBoYXZlIGEgZHV0eSBjeWNsZSBv
+ZiA1MCUgYXQgYW55IGZyZXF1ZW5jeS4gV2hhdCBmcmVxdWVuY3kgaXMgYmVzdA0KPj4gZGVwZW5k
+cyBvbiB0aGUga2luZCBvZiBmYW5zIGJlaW5nIHVzZWQuIEluIG15IHBhcnRpY3VsYXIgY2FzZSB0
+aGUgbG93ZXINCj4+IGZyZXF1ZW5jaWVzIGVuZCB1cCB3aXRoIHRoZSBmYW5zIG9zY2lsbGF0aW5n
+IGFubm95aW5nbHkgc28gSSB1c2UgdGhlDQo+PiBoaWdoZXN0IHNldHRpbmcuDQo+Pg0KPiBNeSB1
+ZG5lcnN0YW5kaW5nIGlzIHRoYXQgd2UgYXJlIHN1cHBvc2VkIHRvIHVzZSBzdGFuZGFyZCBwd20g
+cHJvdmlkZXINCj4gcHJvcGVydGllcy4gVGhlIHByb3BlcnR5IGRlc2NyaXB0aW9uIGlzIHByb3Zp
+ZGVyIHNwZWNpY2ljLCBzbyBJIHRoaW5rDQo+IHdlIGNhbiBwcmV0dHkgbXVjaCBqdXN0IG1ha2Ug
+aXQgdXAuDQo+DQo+IEVzc2VudGlhbGx5IHlvdSdkIGZpcnN0IGRlZmluZSBhIHB3bSBwcm92aWRl
+ciB3aGljaCBkZWZpbmVzIGFsbCB0aGUNCj4gcHdtIHBhcmFtZXRlcnMgbmVlZGVkLCBzdWNoIGFz
+IHB3bSBmcmVxZW5jeSwgZGVmYXVsdCBkdXR5IGN5Y2xlLA0KPiBhbmQgZmxhZ3Mgc3VjaCBhcyBQ
+V01fUE9MQVJJVFlfSU5WRVJURUQuIFlvdSdkIHRoZW4gYWRkIHNvbWV0aGluZyBsaWtlDQo+DQo+
+IAlwd21zID0gPCZwd20gaW5kZXggZnJlcXVlbmN5IGR1dHlfY3ljbGUgLi4uIGZsYWdzPjsNCj4N
+Cj4gdG8gdGhlIG5vZGUgZm9yIGVhY2ggZmFuLCBhbmQgYmUgZG9uZS4NCj4NCj4gVGhhdCBkb2Vz
+bid0IG1lYW4gdGhhdCB3ZSB3b3VsZCBhY3R1YWxseSBoYXZlIHRvIHJlZ2lzdGVyIHRoZSBjaGlw
+DQo+IGFzIHB3bSBwcm92aWRlciB3aXRoIHRoZSBwd20gc3Vic3lzdGVtOyBhbGwgd2Ugd291bGQg
+aGF2ZSB0byBkbyBpcyB0bw0KPiBpbnRlcnByZXQgdGhlIHByb3BlcnR5IHZhbHVlcy4NCg0KV2Un
+dmUgYWxyZWFkeSBnb3QgdGhlIHB3bS1hY3RpdmUtc3RhdGUgYXMgYSBzZXBhcmF0ZSBwcm9wZXJ0
+eSBzbyB0aGF0IA0KbWlnaHQgYmUgdHJpY2t5IHRvIGRlYWwgd2l0aCwgSSBndWVzcyBpdCBjb3Vs
+ZCBiZSBkZXByZWNhdGVkIGluIGZhdm91ciANCm9mIHNvbWV0aGluZyBlbHNlLiBMb29raW5nIGF0
+IHB3bS55YW1sIGFuZCBmYW4tY29tbW9uLnlhbWwgSSBjYW4ndCBxdWl0ZSANCnNlZSBob3cgdGhh
+dCdkIGhlbHAgaGVyZS4gV2VyZSB5b3UgdGhpbmtpbmcgbWF5YmUgc29tZXRoaW5nIGxpa2UNCg0K
+cHdtOiBod21vbkAyZSB7DQogwqDCoMKgIGNvbXBhdGlibGUgPSAiYWRpLGFkdDc0NzYiOw0KIMKg
+wqDCoCByZWcgPSA8MHgyZT47DQogwqDCoMKgICNwd20tY2VsbHMgPSA8ND47DQogwqDCoMKgIGZh
+bi0wIHsNCiDCoMKgwqAgwqDCoMKgIHB3bXMgPSA8JnB3bSAwIDI1NSAyMjUwMCBQV01fUE9MQVJJ
+VFlfSU5WRVJURUQ+Ow0KIMKgwqDCoCDCoMKgwqAgcHdtLW5hbWVzID0gIlBXTTEiOw0KIMKgwqDC
+oCDCoMKgwqAgdGFjaC1jaCA9IDwwPjsNCiDCoMKgwqAgfTsNCiDCoMKgwqAgZmFuLTEgew0KIMKg
+wqDCoCDCoMKgwqAgLy8gY29udHJvbGxlZCBieSBwd20gMA0KIMKgwqDCoCDCoMKgwqAgdGFjaC1j
+aCA9IDwxPg0KIMKgwqDCoCB9Ow0KIMKgwqDCoCBmYW4tMCB7DQogwqDCoMKgwqDCoMKgwqAgcHdt
+cyA9IDwmcHdtIDIgMjU1IDIyNTAwIFBXTV9QT0xBUklUWV9JTlZFUlRFRD47DQogwqDCoMKgIMKg
+wqDCoCBwd20tbmFtZXMgPSAiUFdNMyI7DQogwqDCoMKgwqDCoMKgwqAgdGFjaC1jaCA8Mj47DQog
+wqDCoMKgIH07DQogwqDCoMKgIGZhbi0xIHsNCiDCoMKgwqDCoMKgwqDCoCAvLyBjb250cm9sbGVk
+IGJ5IHB3bSAyDQogwqDCoMKgwqDCoMKgwqAgdGFjaC1jaCA9IDwzPg0KIMKgwqDCoCB9Ow0KfTsN
+Cg==
 
