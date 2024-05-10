@@ -1,140 +1,138 @@
-Return-Path: <devicetree+bounces-66324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B64528C26B0
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:22:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F848C26AE
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 16:22:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB9681C21EEF
-	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:22:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B94F0B2489B
+	for <lists+devicetree@lfdr.de>; Fri, 10 May 2024 14:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F201708A7;
-	Fri, 10 May 2024 14:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBBB16E898;
+	Fri, 10 May 2024 14:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lo1+duOd"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hYbLpkTA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7172F170888;
-	Fri, 10 May 2024 14:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C4714B08C
+	for <devicetree@vger.kernel.org>; Fri, 10 May 2024 14:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715350909; cv=none; b=l5wChpYvI4zQnUb6uRrT+FChZiZEd1uSRdApS28lRPf9lIiiMxkbmsFal80XxiLVrrxQmuJs8ZzF9ilp4jTMsJj8KYdfgp9DDDLIWjejSmDsQ/54xnktYB6OkHqtOrRcSmm90hWxM8g3HpJg2jwDgAIFDeVHrpORKb1Dfo51geo=
+	t=1715350902; cv=none; b=QG7TbAARrBFJ6NUMT9wd4fhtlKZqcMrrehfV8XaRYZPFjdYLE/3N8VyrjmxYtYuxwb9oB258JIcc2d3ZtLvtkdep7Zhc0I6NsFFk9XxsuHdRETYftaN3JYGpd5R+7WXgg7kzlvZcqUTOCR12QMZlCtMF1u2kfpQun35NmyhSC0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715350909; c=relaxed/simple;
-	bh=GICVwXtl8OlmHpKHmRiiQuN8TAKF0PfLMJwLr6g0TPQ=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=tUjaNGBExDnsodnLhYcHIQfzO9CgE2rzLBbpZcqYgriHROIMC+tpFhuDbVika+JUUcvC6CGGntvU74SZ19UlQQh2XGO1JrD0XxeGd+tkCP/5Qn7UUhKrBfefP6pPofmFUZ//BkptLcERreX51u/bcpincGNwbpCnFWuROUsog70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lo1+duOd; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715350908; x=1746886908;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=GICVwXtl8OlmHpKHmRiiQuN8TAKF0PfLMJwLr6g0TPQ=;
-  b=lo1+duOdDm0Ud6NLgZqXTpRM1qQqjvTccMKxfK+n1MYoDQe8K4XI8OhB
-   GaFkUKGKRSdcUvYMa6DSP4mWid6CrQuufQda84RELZD4ygkj+4lasvDep
-   l4MhR6WD2GtFUAUJ+LwlPWm2pDHGcQ4g/WreWoR0+xJscD0MJKgGKhsZ7
-   eWipKeS6kIavBDhsNx3MlfXwnCBSkWavsIhQsUQD2dfvc5xlIjw6goidU
-   YGVUuXVgcZviG+EvoCjMWMUVwQDfhWrRysrcoTB5QSYcIoJY6pODRe+oj
-   hiv4pX9qtsTbbAetw6t+qVEFDccZCAA8/e7z8monldbkoXNYAlhFld0UV
-   g==;
-X-CSE-ConnectionGUID: DVtBfXSmRFaiJx5KbzHQgA==
-X-CSE-MsgGUID: UWJ6AlJLTxeRVKCSq1jlzA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11068"; a="11459934"
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
-   d="scan'208";a="11459934"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:21:48 -0700
-X-CSE-ConnectionGUID: auXQFHKwRyS2NbOh/x1Gkw==
-X-CSE-MsgGUID: rrf7dl4dQdutg4DpF62Clg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,151,1712646000"; 
-   d="scan'208";a="34071332"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.85])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 07:21:39 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 10 May 2024 17:21:36 +0300 (EEST)
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-cc: Jiri Slaby <jirislaby@kernel.org>, Simon Horman <horms@kernel.org>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Marc Kleine-Budde <mkl@pengutronix.de>, 
-    Oliver Hartkopp <socketcan@hartkopp.net>, 
-    Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-    "David S . Miller" <davem@davemloft.net>, 
-    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
-    Benjamin Tissoires <bentiss@kernel.org>, 
-    Sebastian Reichel <sre@kernel.org>, 
-    Linus Walleij <linus.walleij@linaro.org>, 
-    Andreas Lauser <andreas.lauser@mercedes-benz.com>, 
-    Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>, 
-    linux-can@vger.kernel.org, Netdev <netdev@vger.kernel.org>, 
-    devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-    linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v4 04/11] tty: serdev: Add method to enable break flags
-In-Reply-To: <20240509171736.2048414-5-christoph.fritz@hexdev.de>
-Message-ID: <36b0d460-1d96-89d8-db4a-76d735f7ee6b@linux.intel.com>
-References: <20240509171736.2048414-1-christoph.fritz@hexdev.de> <20240509171736.2048414-5-christoph.fritz@hexdev.de>
+	s=arc-20240116; t=1715350902; c=relaxed/simple;
+	bh=nTDrI9ZttDdbehCGroSRZsTLKzJKE6ZuTvRhbFn7iOU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jikjFILJSoAfVJqPRTll53Zv/zQG5ISVn4szBggO9HkqrRxDHonJkK0Vqz6en878ITQPQncndmnjrhlP8BxlI5sRi5uJ2/FLjQhb1KWK1sKCr0/i014BfnZ78K+c8qTvL42UyLyS9YPnaVQwuObUkkKy9ue05d/c286JW/+6194=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hYbLpkTA; arc=none smtp.client-ip=209.85.210.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6f07115e6caso1128753a34.2
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 07:21:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715350899; x=1715955699; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jh2huEHV1TSt+ycvIgeD7tfbDb1mnbYoWBnX7KKFMAg=;
+        b=hYbLpkTAwiLkQJrrcxmaAnPTmEP4RlDYhH5Lwd1dx0kYtXKPi+dl1oj/fD7VO7w7Z+
+         8OVxYCO2lFt+1NS67b7sQMONMrodXSb1DSf5fIMPWUcnqV48o5Fmcgrzi3h7KVLTvXhf
+         KvHE9jWw1qx+BmZC4eKN68RuhD4uLkd9a/V5ruCq97bxTNIcRX5MM/iCmnctUK4wbS2l
+         6R2j3BMDjD+QfF8ME/BOdAR6yEI7iXBmMsnLEV/Zhj0POe7dDJAgTgwYlYJ7OWxwBVvO
+         BK7VKIym31VkDxpzougGkN1ZDn6HLjzjBg7wJ+0kxz00PzsKe3ioKYzGYVSZEydLvCvL
+         NPLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715350899; x=1715955699;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jh2huEHV1TSt+ycvIgeD7tfbDb1mnbYoWBnX7KKFMAg=;
+        b=Nl5pml3qIoOoB/gDzjdqc1+o2XpodAuhU4Sqh8hqVckFqgp+CrJCwnonrVwN25E7co
+         CQ3YSSuqYgAezmCCr860C37E0XcdVqR/jIXS6i1kl/tbFWCc9rv6Idzt35B/Vu4LFf/I
+         WolTy3eVSKRzMlmfnzGegKqkybygPlIzM7zJgTDnR5jEAhWL+pcI8kvhtw7u8RPwqziU
+         1f7lDaIfksrTVRW2heZCaMcu9imq8bKGPFr4WDnDLHX4Qgc1Cr4iimPWvPpZHq80HaxH
+         7QrhFFaqfbD/JalFUtsclEKahYd/ny/yMPPwYfVy7ftCmUYExhatu6jSUHMF3uFiUx+7
+         7o6g==
+X-Forwarded-Encrypted: i=1; AJvYcCWGUK5FKliTsUfdaXdS+QP+417N+0t95hzMH/40LQyC3CoApi+JYumUiguubu0cV35ivROUdmdo/KqLFZfpmjUihNYxVC92L34bQQ==
+X-Gm-Message-State: AOJu0YzBs+tujd9fpzOEXv21aI6GRvmvB1Fjcq1KFgFqPOaTtST1nPit
+	FhJdF6IYX9Mdb+d6Fpr8tiREKiH0C412/VErr2qv3g5i8yX2gnOMz4lEWnu+R90=
+X-Google-Smtp-Source: AGHT+IHRUWfLdGZBGBWD5amiz8GI01hPZG+dwBj5rcK43s5Qsr6Cur03tK/TqVmXb8/54o6pfQJp0g==
+X-Received: by 2002:a05:6830:3a09:b0:6f0:88a9:c9e1 with SMTP id 46e09a7af769-6f0e91133admr2726700a34.7.1715350899542;
+        Fri, 10 May 2024 07:21:39 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f0e259e71dsm667035a34.56.2024.05.10.07.21.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 May 2024 07:21:38 -0700 (PDT)
+Message-ID: <d5b8b193-0694-4e65-9b0a-64fa689ed344@baylibre.com>
+Date: Fri, 10 May 2024 09:21:37 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 5/6] dt-bindings: iio: adc: ad7192: Add AD7194 support
+To: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ alexandru.tachici@analog.com, lars@metafoo.de, jic23@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, andy@kernel.org,
+ nuno.sa@analog.com, marcelo.schmitt@analog.com, bigunclemax@gmail.com,
+ okan.sahin@analog.com, fr0st61te@gmail.com, alisa.roman@analog.com,
+ marcus.folkesson@gmail.com, schnelle@linux.ibm.com, liambeguin@gmail.com
+References: <20240430162946.589423-1-alisa.roman@analog.com>
+ <20240430162946.589423-6-alisa.roman@analog.com>
+ <20240430-winnings-wrongness-32328ccfe3b5@spud>
+ <73365049-670b-4068-a159-fbdd0539f5a9@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <73365049-670b-4068-a159-fbdd0539f5a9@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, 9 May 2024, Christoph Fritz wrote:
-
-> The recently introduced callback function receive_buf_fp() brings flags
-> buffer support. To allow signaling of TTY_BREAK flags, this patch
-> introduces serdev_device_set_break_detection() and an implementation for
-> ttyport. This enables serdev devices to configure their underlying tty
-> port to signal or ignore break conditions.
+On 5/10/24 5:05 AM, Alisa-Dariana Roman wrote:
+> On 30.04.2024 20:21, Conor Dooley wrote:
+>> On Tue, Apr 30, 2024 at 07:29:45PM +0300, Alisa-Dariana Roman wrote:
+>>> +      diff-channels:
+>>> +        description:
+>>> +          Both inputs can be connected to pins AIN1 to AIN16 by choosing the
+>>> +          appropriate value from 1 to 16.
+>>> +        items:
+>>> +          minimum: 1
+>>> +          maximum: 16
+>>> +
+>>> +      single-channel:
+>>> +        description:
+>>> +          Positive input can be connected to pins AIN1 to AIN16 by choosing the
+>>> +          appropriate value from 1 to 16. Negative input is connected to AINCOM.
+>>> +        items:
+>>> +          minimum: 1
+>>> +          maximum: 16
+>>
+>> Up to 16 differential channels and 16 single-ended channels, but only 16
+>> pins? Would the number of differential channels not max out at 8?
 > 
-> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
-> ---
->  drivers/tty/serdev/core.c           | 11 +++++++++++
->  drivers/tty/serdev/serdev-ttyport.c | 17 +++++++++++++++++
->  include/linux/serdev.h              |  2 ++
->  3 files changed, 30 insertions(+)
+> Hello, Conor! I really appreciate the feedback!
 > 
-> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
-> index 613cb356b918d..23a1e76cb553b 100644
-> --- a/drivers/tty/serdev/core.c
-> +++ b/drivers/tty/serdev/core.c
-> @@ -339,6 +339,17 @@ unsigned int serdev_device_set_baudrate(struct serdev_device *serdev, unsigned i
->  }
->  EXPORT_SYMBOL_GPL(serdev_device_set_baudrate);
->  
-> +void serdev_device_set_break_detection(struct serdev_device *serdev, bool enable)
-> +{
-> +	struct serdev_controller *ctrl = serdev->ctrl;
-> +
-> +	if (!ctrl || !ctrl->ops->set_break_detection)
-> +		return;
+> The way I thought about it, the only thing constraining the number of channels is the reg number (minimum: 0, maximum: 271). 272 channels cover all possible combinations (16*16 differential and 16 single ended) and I thought there is no need for anything stricter. I added items: minimum:1 maximum:16 to make sure the numbers are from 1 to 16, corresponding to AIN1-AIN16.
+> 
+> Please let me know what should be improved!
+> 
+> Kind regards,
+> Alisa-Dariana Roman.
+> 
 
-Why you need to test for !ctrl?
-
-> +	ctrl->ops->set_break_detection(ctrl, enable);
-
-I'd use positive logic here:
-
-	if (ctrl->ops->set_break_detection)
-		ctrl->ops->set_break_detection(ctrl, enable);
-
-> +}
-> +EXPORT_SYMBOL_GPL(serdev_device_set_break_detection);
-
-
--- 
- i.
-
+Having looked at the datasheet for this and other similar chips, I agree
+that this reasoning makes sense. Some of the similar chips that have fixed
+channel assignments still have, e.g. a channel where + and - are both
+AIN2 (I assume for diagnostics). So I think it makes sense to allow for
+doing something similar here even if the most common use cases will
+probably have at most 16 channels defined in the .dts.
 
