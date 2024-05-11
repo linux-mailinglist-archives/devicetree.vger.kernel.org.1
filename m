@@ -1,88 +1,200 @@
-Return-Path: <devicetree+bounces-66481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48858C33B1
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 22:09:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0309D8C33DA
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 23:46:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E515E1C20E37
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 20:09:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6C5A1F21886
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 21:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACC8200C7;
-	Sat, 11 May 2024 20:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60B0224F6;
+	Sat, 11 May 2024 21:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=psihoexpert.ro header.i=@psihoexpert.ro header.b="P4Bcr8Bz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WQc5uu62"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.wiredblade.com (mx1.wiredblade.com [162.216.242.37])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B0E200C1
-	for <devicetree@vger.kernel.org>; Sat, 11 May 2024 20:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.216.242.37
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FFF2137F;
+	Sat, 11 May 2024 21:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715458173; cv=none; b=uQJCoqeQH0rd9tYWIwmhjCyzW7r2X1nwr6o+UFKiD/k06JdRqB0yyQ19hF+YaPlS+q9XprCzBoOiwcilcCXlV+oHjTzLkKPYINe3zNguFEaGYzlRv0WH+kzhkkBWPljD6vf6uF5NgYypi87sfUQJejObdNGA4/4rZq7+whAs5vU=
+	t=1715464010; cv=none; b=hl1H2/BXNsl20JZdkkCp8gpLjGiB89Bb7BV8b8FgX+8nXRfi2UhComxl5vbX2g/6xSvNLZN9YsHDuPFVhQ9kDKepAOv7pWnIF3W7R8Bvu5a/UCDkoh+jUJxVhMPrvdIh7PX6etFUMCMbFzeaj8KJzhdtz1JJtkI2BWAX3c4tPQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715458173; c=relaxed/simple;
-	bh=fYO0DGCAhN4g90QR+5hW7cKau4VU3epu3UDd2KH3UJw=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To; b=nIQNe6NIus8Jt4YOOsvHBiz72IpuvZj6zVJptbgN7z1H0Y+ABxC8QjmREzlydXSU+Um55RTkCM3GO3udVCrV1MpgkO9OrRdrzKT6j58i/LEuqmkObzrQMAkfLaNIYyIQ6s/8YbeJQbFBfk3BENPU02sqvIbFitOIDEPYFwNzTYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=psihoexpert.ro; spf=pass smtp.mailfrom=psihoexpert.ro; dkim=pass (2048-bit key) header.d=psihoexpert.ro header.i=@psihoexpert.ro header.b=P4Bcr8Bz; arc=none smtp.client-ip=162.216.242.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=psihoexpert.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=psihoexpert.ro
-dkim-signature: v=1; a=rsa-sha256; d=psihoexpert.ro; s=dynu;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:MIME-Version:Content-Type:Content-Transfer-Encoding;
-	bh=XD4FEX0rZ4nQHrolPtOuCfriJs3CdycVbbhKh1Ik+u4=;
-	b=P4Bcr8BzW7HE56tyb0G3J95EL6sp0A3WhKo9KWHgOGN6H0w1lLa6UnMjqYyKL9KpOZWGGz5bLQKk2SPZhMQCDHb5PDeMppMRp7CWr+tLHkPnXlMcUxLJgn3EpqFhhEZVMl92pdkM352YygCT6mJVwEcI/5IG4YGuHU1zi95q41AwnRY3ydDC0mmkBWdzEP8520M3Ts686hX1EYYMwtanec2CkAKQisu7da2U+x28FhB1Rl+DAvkqGpj8dp
-	ONTXTs+WZmgob7+M5Vy519K5dowiHTH90f3txWakjextVqPst4ruNZmju5BkOWZnbzf8CSOzHf/tTwA1slZmx7PHKzJg==
-Received: from webmail.dynu.com (webmail.dynu.com [162.216.242.204])
-	by mx1.wiredblade.com with ESMTPA
-	; Sat, 11 May 2024 20:09:29 +0000
+	s=arc-20240116; t=1715464010; c=relaxed/simple;
+	bh=08uIG1/bwHmwBLe7pL7bLSc0GiqPtuTS6M4lMExW6GQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OF9GYx7KhLDrvgZNog6QkeOxu7/3CWbdVIvG0QKrAJHDnCMs7PBPJAFzz4EyTgAjsqixMedKNsdYSm6xlJ9m4tnwfiLHYDDiRWvuHWb7utOby81KRJmpwOBs7ckw8zcGOAaELA66xWgTQmAlRpandUtrYnUJksQHu37EeX7pcHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WQc5uu62; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1ed96772f92so27280915ad.0;
+        Sat, 11 May 2024 14:46:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715464008; x=1716068808; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eCVJMzFVoc+BRHoT08G8Xmn5JdPV6LQjStyH9q97kgs=;
+        b=WQc5uu62OYjqzWK1XV6OcOvOeRRcAXnuynBQ0soHmilQYQ6g4x3kEUcsULabddIlvI
+         auC6apFKlQRTresRb+ZieA1JbuutDN2OmCuTZG9419zOKULJ8uVMjOhi5ZO88GD6FmEk
+         rTYyicc2duQjKf6CR/NuiF6Mgp8TDI/My1wn3bAVIs7h2XGCXWFI9L7iI5sB7bqrqrRD
+         KiMI+TdBganx9KBCg9N2mC7pwzEpXFcd34UJKsScKrHmFNkDPWZ+uZvGCzenOXeBTBYV
+         PfAnofXtFH9zwqsc469qfhMv9b+yj5wGRmBb4jdGV6ZxmpAq7c+XVBiKRfVV2XToyf9W
+         cqVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715464008; x=1716068808;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eCVJMzFVoc+BRHoT08G8Xmn5JdPV6LQjStyH9q97kgs=;
+        b=EierQwn7nYxvTMMLbPvNDLkxR6CFgbQ4ep+4sT54MacIFhA68dJfj5wg/JG6tBTDXC
+         fU7vd/fwrd7eYUofrG5I/nfdBvG81AmpaanUi0b+yMzR2Of+t8HzS1o5MeAGkrCWO0U9
+         4dbUBmENfkWrvpemclf/zPO+jWXUtVVC7CVYdgnIS5DhcRXYxOENRc2qRCqHlF7Ex3Yv
+         GuMQ17vmQpnUFC78Npi+k5BiXikOZ+oh0yGfhWq2xLUCjTNDHkmQuz3XTqDdFHRd2Fsk
+         GZjGVDm+0Yzzr8gdrLXuyNqhH3uVcNoX7qoVjvE0A371qm9PBSGXsDoFL+0Sdy8ITZdL
+         n2Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCUgXCqhOg5JWCJOvVfIRR6MNds60dI+qQF9LkSnZM8DNeyVDp1LW4reCaJzWlhM5fQUBb4TuT3ItDTEgWMDDfWumDnJbroJ8krN0hsB1UBoRXcbUx7JGj3kFS0PGOsudyRWyRlaRtuyu5g=
+X-Gm-Message-State: AOJu0YxBaPEnu/cIK/IlHxO2eVujAweGpOtZzalRPRi+jicDEeUGMCRV
+	Ao9HefyITvOzKKdqcp7Jgtrw+Goh56X+3VQfzT/kzaFDXhaZo9jhspBgHfd5OZ8=
+X-Google-Smtp-Source: AGHT+IHY0s6Kbuqn2GTExvPKTmIO9p64Dem87wOTwxfXJZrpnCk9XO8x508ZhLwCTRapY6MUpIW4XQ==
+X-Received: by 2002:a17:903:246:b0:1e2:bc3c:bef6 with SMTP id d9443c01a7336-1ef43e2797cmr70728535ad.37.1715464008240;
+        Sat, 11 May 2024 14:46:48 -0700 (PDT)
+Received: from xiaxiShen-ThinkPad.dhcp4.washington.edu ([205.175.106.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0c038679sm52913235ad.208.2024.05.11.14.46.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 May 2024 14:46:47 -0700 (PDT)
+From: Xiaxi Shen <shenxiaxi26@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Cc: shenxiaxi26@gmail.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	javier.carrasco.cruz@gmail.com,
+	skhan@linuxfoundation.org
+Subject: [PATCH] ASoC: dt-bindings: ak4118: convert to dt schema
+Date: Sat, 11 May 2024 14:46:24 -0700
+Message-Id: <20240511214624.242579-1-shenxiaxi26@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 11 May 2024 20:09:30 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: RainLoop/1.16.0
-From: m95d@psihoexpert.ro
-Message-ID: <46ea55652f8bcdef51d5c552902fd0cc@psihoexpert.ro>
-Subject: devicetree for Turris Omnia is missing i2c frequency for
- atsha204a
-To: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-Hello.
+Convert ak4118 binding to DT schema
 
-Booting kernel v6.6 I get these errors in dmesg:
+It passed dt_binding_check and dtbs_check. Let me know
+if you think it should include something else
 
-atmel-sha204a 6-0064: failed to read clock-frequency property
-atmel-sha204a: probe of 6-0064 failed with error -22
+Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
+---
+ .../devicetree/bindings/sound/ak4118.txt      | 22 -------
+ .../bindings/sound/asahi-kasei,ak4118.yaml    | 58 +++++++++++++++++++
+ 2 files changed, 58 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ak4118.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
 
-I'm attaching a patch to fix it.
-It adds 1MHz clock frequency to the i2c devicetree node where atsha204a i=
-s connected. This is the max. supported frequency according to the atmel =
-sha204a specs sheet.
-Tested. Works.
-
-Thank you.
-
-diff --git a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts b/arch=
-/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-index 7b755bb4e4e7..64caabc81585 100644
---- a/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-turris-omnia.dts
-@@ -378,6 +378,7 @@ i2c@5 {
- 			#address-cells =3D <1>;
- 			#size-cells =3D <0>;
- 			reg =3D <5>;
-+			clock-frequency =3D <1000000>;
-=20
-=20			/* ATSHA204A-MAHDA-T crypto module */
- 			crypto@64 {
-
-Signed-off-by: Marius Dinu <m95d+git@psihoexpert.ro>
+diff --git a/Documentation/devicetree/bindings/sound/ak4118.txt b/Documentation/devicetree/bindings/sound/ak4118.txt
+deleted file mode 100644
+index 6e11a2f7404c..000000000000
+--- a/Documentation/devicetree/bindings/sound/ak4118.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-AK4118 S/PDIF transceiver
+-
+-This device supports I2C mode.
+-
+-Required properties:
+-
+-- compatible : "asahi-kasei,ak4118"
+-- reg : The I2C address of the device for I2C
+-- reset-gpios: A GPIO specifier for the reset pin
+-- irq-gpios: A GPIO specifier for the IRQ pin
+-
+-Example:
+-
+-&i2c {
+-	ak4118: ak4118@13 {
+-		#sound-dai-cells = <0>;
+-		compatible = "asahi-kasei,ak4118";
+-		reg = <0x13>;
+-		reset-gpios = <&gpio 0 GPIO_ACTIVE_LOW>
+-		irq-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
+new file mode 100644
+index 000000000000..abbce999eb30
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4118.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AK4118 S/PDIF transceiver
++
++allOf:
++  - $ref: dai-common.yaml#
++
++maintainers:
++  - Liam Girdwood <lgirdwood@gmail.com>
++  - Mark Brown <broonie@kernel.org>
++  - Rob Herring <robh@kernel.org>
++  - Krzysztof Kozlowski <krzk+dt@kernel.org>
++  - Conor Dooley <conor+dt@kernel.org>
++
++properties:
++  compatible:
++    const: asahi-kasei,ak4118
++
++  reg:
++    description: The I2C address of the device for I2C
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0    
++
++  reset-gpios:
++    description: A GPIO specifier for the reset pin
++    maxItems: 1
++
++  irq-gpios:
++    description: A GPIO specifier for the IRQ pin
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++  - irq-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++   i2c {
++     #address-cells = <1>;
++     #size-cells = <0>;
++     ak4118@13 {
++       #sound-dai-cells = <0>;
++       compatible = "asahi-kasei,ak4118";
++       reg = <0x13>;
++       reset-gpios = <&gpio 0 0>;
++       irq-gpios = <&gpio 1 1>;
++     };
++   };
+-- 
+2.34.1
 
 
