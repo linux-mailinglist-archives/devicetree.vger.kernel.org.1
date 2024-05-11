@@ -1,124 +1,150 @@
-Return-Path: <devicetree+bounces-66427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 188768C3037
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 10:16:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FFB8C3060
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 11:35:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2C7F2841C7
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 08:16:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 706451C20AF9
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 09:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58672134DE;
-	Sat, 11 May 2024 08:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E261535CE;
+	Sat, 11 May 2024 09:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="xo03xNwp";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="d8/ZL30j"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="eyDG7Bbq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfhigh7-smtp.messagingengine.com (wfhigh7-smtp.messagingengine.com [64.147.123.158])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E32223DE;
-	Sat, 11 May 2024 08:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DF423DE;
+	Sat, 11 May 2024 09:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715415375; cv=none; b=NTaitYl8JhvQMaEK1gJFBgiPc/hIT3Rhqwn7RThNhbplacvK7yzPOmpGZq8iPotsqhBG2DJmISEspIe8VPwEDJeyJCiXlLG5y5H6CsIwJNW90RElOJ+X4BkLYuFwX0i3d3kyW7DOH+cQUAo6w9m1pBvWHPk41B6UwSxPHOTSGMQ=
+	t=1715420149; cv=none; b=b108DHF/pPv48HxqOl/3soRaO9pBQA8xJGpQYJAhyVpIdLBwEYWRnl1YIwaq5kNCKFvo2pxLnmzBlKj8D9xVxbx2TgMHHtNoXecGbaPqZsm/aNX2afZ6fKLR2uKjiUEYuXF25QW7OaaY0ad6cIkCJXZGbkaRW7/4kjBzWIAaAE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715415375; c=relaxed/simple;
-	bh=B2flMuPt7P4w1oC2gzKRD849SpIS5HNIm2968vmz6HQ=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=Ny6wW26qKUB+s6BUSeUyt6phlfYb8WrONThWCtxyS2kynmtpQpF1aLpigmkzgvJlte7uqzDwSgbeQ7udSgxNlYysrxTHlOm8UmbdHV3ThdOhEETGYDu/NLiCJJfT/d5bYT60p7p/d2RkFb+Dd7NFQN9Thz5/0tpvhKW5eDPz6AQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=xo03xNwp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=d8/ZL30j; arc=none smtp.client-ip=64.147.123.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.west.internal (Postfix) with ESMTP id D3E8F1800115;
-	Sat, 11 May 2024 04:16:11 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Sat, 11 May 2024 04:16:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1715415371; x=
-	1715501771; bh=F+lmUq+WkvIBeq12o+SumSTmxzrDuV934rJg9LBCmsc=; b=x
-	o03xNwpzD0e6B/v6gsjJpFB54wQ4XZ5Kv8HqZ/i0m7ugVnnwNBadK0wSc1cmqU4y
-	eWzXz0naCKm/YqjbUrA2ZA8D6a7BHLOG8WzrYVJfZxAes9QBDcqPoKmotH4sUVE5
-	kR8rewl8PsnK8Ko/P4YUex78K0DQF3xN/HjqO5lvvTSs0hlbBF5+bERXU9plqTjc
-	4QUZsQ3RLyKA62UYpY21ffL7l1tUbMC9aykCosY7/oFfksJDf2CC5+LbxSSATn7d
-	rV928XwTKeF+TcttvWbPWIPdQokK9YdNyFNpubyIEBEE5nY0omivTQtA/UBLZBoD
-	fAegJObXfFo6I6WFdFPnA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1715415371; x=1715501771; bh=F+lmUq+WkvIBeq12o+SumSTmxzrD
-	uV934rJg9LBCmsc=; b=d8/ZL30jOMYh4elOo2liuTOAuTelCeKJXbmQ9idvXzSQ
-	KOOvPad8JCjU7zBTseUQOFrPjgqwVPzzt3YoCKvxzt5GnoMNEH0oIH4bu5kHlqjm
-	QLGJzg7AroNF0w2Z/Z4C7ub8zGQMpiTaEubT5ONsiefyXagnChg1CqSGzoJyuxK/
-	tYCEawIraxdDpHkPu9wcq6tcGx0QNOdgkCE/Rkvx0xZJmLDwLnKn9VZZIYOLf5LN
-	CDSIyJumwLGyimXYpz0y3M7c5tIDU+HfFYHXFMakPOMELRhmrIMA9/wu5Yckd7Ja
-	iCUiPnM0BuC3o3YdzvOW77mbb54Erww1cJ02Q1O7ow==
-X-ME-Sender: <xms:Sik_ZnLYbMROGY_dTHyt53mB5vmz4MzObZogwGpM2DjEWXiD4VomDw>
-    <xme:Sik_ZrKw3Bk5CQRDwiFJWYEzImzS8SFOlXIOusPVl-XjTsE_hsMUKoCV94JTttEAM
-    j97YHnyHpPQu28djQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdegtddgtddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
-    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
-    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
-    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:Sik_Zvt_L4GLWUEoDzqIXqt1Rtfo8IchKcver0UfK5xzAjf9AGIRuQ>
-    <xmx:Sik_ZgZsfJiV7Y73c4NNvV9wbi7npRaQlu7xfPxkKwq4tR3kameY0w>
-    <xmx:Sik_ZuYm07tpSzU0uUqTFkgW4Yvoh-XFNS8V3r7fok-yJdGmsHj5lA>
-    <xmx:Sik_ZkDQyH5lIJBuyQEm8FwJFZS50i9Qgp2YyS-l_MUJig-ogaZhRA>
-    <xmx:Syk_ZgBzM16XudidKy32-uwvnMPdIS6z_CjRheSt_MY5CcbYDirfDJg7>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id A3269A60078; Sat, 11 May 2024 04:16:10 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-443-g0dc955c2a-fm-20240507.001-g0dc955c2
+	s=arc-20240116; t=1715420149; c=relaxed/simple;
+	bh=BvPFoaXVuMlkHotikPNEYLmheM+9prSGu6IcaitWVlg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rr6WT0WGxKZ6wImxCLZS2uTOmkJ9x48IQy7MsiDtTz0gzAMeROAIVnyj4rKMTU5mWFgtDIL2t98SvuCSkGKbZhXCKwYEX4whCPXYLuYs1eYxkCjdnj0ldsnhZv3699hmUT9UwjJK5FXOlEnZ7iAzemYs7dfqRG1U/bbZnP4xbQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=eyDG7Bbq; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=YK/ds1gkbnMTSGHHRHJlklAGEyLYiT7Eu+ltFawe6hE=; b=eyDG7BbqqDxe9AkQN/XMfyHOzz
+	KNLcZKB1QNtnR0SCFSjDMU76UzEsr7qwCdAhtkWAizMuflzRxYRs5zJmXGCp30gGhld+fe2969eYm
+	CJq5tfamK3JwiCaduVHJUGMENwMl2J7v6vTNj5qS1JdHyyzUa6wgDlI8v2cH2JG+sIXmoZLi0M4Un
+	RZ/j8ZpPrv5WeQ0hhHMb+kbckVs5Zmq5X1L+E7SUjsezICJib+4vTg6a7BDO8HY0PjZKazaxN+VoX
+	+/qUYvjXPhfttGAVonRDpjmZxyffZP8gkJAqqCBICUuHeQK6B57/Z3pFO4hLKiew8X0Jnp0cV3m3O
+	eoaxdlDw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38330)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1s5j8Q-0008JX-0Q;
+	Sat, 11 May 2024 10:35:18 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1s5j8L-0004AO-Dl; Sat, 11 May 2024 10:35:13 +0100
+Date: Sat, 11 May 2024 10:35:13 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org
+Subject: Re: [net-next PATCH v10 3/5] net: phy: add support for PHY LEDs
+ polarity modes
+Message-ID: <Zj870XBJFEkXZM1z@shell.armlinux.org.uk>
+References: <20240125203702.4552-1-ansuelsmth@gmail.com>
+ <20240125203702.4552-4-ansuelsmth@gmail.com>
+ <Zj6qURAmoED2QywF@makrotopia.org>
+ <bb146832-30fc-4c76-a083-51a1bc087e61@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <d381ea36-f668-4c30-b2fc-f9c81f99f09c@app.fastmail.com>
-In-Reply-To: <20240503154402.967632-1-robh@kernel.org>
-References: <20240503154402.967632-1-robh@kernel.org>
-Date: Sat, 11 May 2024 20:15:49 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Chen-Yu Tsai" <wens@csie.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, "Maxime Ripard" <mripard@kernel.org>
-Cc: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: sunxi: Fix incorrect '-' usage
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bb146832-30fc-4c76-a083-51a1bc087e61@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Sat, 4 May 2024, at 3:44 AM, Rob Herring (Arm) wrote:
-> Commit 6bc6bf8a940a ("dt-bindings: arm: sunxi: document Anbernic RG35XX
-> handheld gaming device variants") mistakenly added '-' on each line
-> which created empty (i.e. description only) schemas matching anything.
-> This causes validation to fail on all the root node compatibles as
-> there are multiple oneOf clauses passing.
->
-> Fixes: 6bc6bf8a940a ("dt-bindings: arm: sunxi: document Anbernic RG35XX 
-> handheld gaming device variants")
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-Apologies, thanks for the fix.
+On Sat, May 11, 2024 at 01:58:13AM +0200, Andrew Lunn wrote:
+> > Wanting to make use of this I noticed that polarity settings are only
+> > applied once in of_phy_led(), which is not sufficient for my use-case:
+> > 
+> > I'm writing a LED driver for Aquantia PHYs and those PHYs reset the
+> > polarity mode every time a PHY reset is triggered.
 
-Reviewed-by: Ryan Walklin <ryan@testtoast.com>
+What sort of reset? There are hard resets that set the registers back
+to default, and soft resets that don't. I think you are referring to
+a hard reset, but please be clear.
 
-Regards,
+> > I ended up writing the patch below, but I'm not sure if phy_init_hw
+> > should take care of this or if the polarity modes should be stored in
+> > memory allocated by the PHY driver and re-applied by the driver after
+> > reset (eg. in .config_init). Kinda depends on taste and on how common
+> > this behavior is in practise, so I thought the best is to reach out to
+> > discuss.
+> 
+> There was a similar discussion recently about WoL settings getting
+> lost. The conclusion about that was the PHY should keep track of WoL
+> setting. So i would say the same applies there. Please store it in a
+> local priv structure.
 
-Ryan
+Agreed. If it turns out that it's something that many PHYs need to do,
+that would be the tiem to move it into the core phylib code. If it only
+affects a minority of drivers, then it's something drivers should do.
+
+The reasoning here is: if its only a problem for a small amount of PHY
+drivers, then we don't need to penalise everyone with additional
+overhead. If it's the majority of drivers, then it makes sense to
+remove this burden from drivers.
+
+Also note that this is one of the reasons I don't particularly like
+the kernel's approach to PHY hardware resets - if a platform firmware
+decides to describe the PHy hardware reset to the kernel, then we end
+up with the hardware reset being used at various points which will
+clear all the registers back to the reset defaults including clearing
+WoL settings and the like. That's fine for AN state which will get
+reloaded, but other state does not, so describing the hardware reset
+can make things much more complicated and introduce differing
+behaviours compared to platforms that don't describe it.
+
+A lot of platforms choose not to describe the PHY hardware reset, but
+some people see that there's a way to describe it, so they do whether
+or not there's a reason for the kernel to be manipulating that reset
+signal.
+
+What I'm saying is there's several issues here that all interact...
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
