@@ -1,150 +1,142 @@
-Return-Path: <devicetree+bounces-66428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46FFB8C3060
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 11:35:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE31F8C30D7
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 13:27:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 706451C20AF9
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 09:35:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E49D91C20A01
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 11:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E261535CE;
-	Sat, 11 May 2024 09:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC8F54BFE;
+	Sat, 11 May 2024 11:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="eyDG7Bbq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2GkE73F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21DF423DE;
-	Sat, 11 May 2024 09:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14822F26;
+	Sat, 11 May 2024 11:27:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715420149; cv=none; b=b108DHF/pPv48HxqOl/3soRaO9pBQA8xJGpQYJAhyVpIdLBwEYWRnl1YIwaq5kNCKFvo2pxLnmzBlKj8D9xVxbx2TgMHHtNoXecGbaPqZsm/aNX2afZ6fKLR2uKjiUEYuXF25QW7OaaY0ad6cIkCJXZGbkaRW7/4kjBzWIAaAE4=
+	t=1715426844; cv=none; b=t0eCiPscx7b/kAAJRhM3nUtC1YWMa4dwNLjI4hWzBL4QHZo/iaWsAlu3P6PkpgnT6v8x31m9F+cEoJZzOVuO08m7lVQzUhgBw4Vt+onS3oJYwG0mKczBolYrWSbs8cTv+L16lAOr2raO6DV1yMdRgMXylilC8tTcbdNfWQmE7zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715420149; c=relaxed/simple;
-	bh=BvPFoaXVuMlkHotikPNEYLmheM+9prSGu6IcaitWVlg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rr6WT0WGxKZ6wImxCLZS2uTOmkJ9x48IQy7MsiDtTz0gzAMeROAIVnyj4rKMTU5mWFgtDIL2t98SvuCSkGKbZhXCKwYEX4whCPXYLuYs1eYxkCjdnj0ldsnhZv3699hmUT9UwjJK5FXOlEnZ7iAzemYs7dfqRG1U/bbZnP4xbQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=eyDG7Bbq; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=YK/ds1gkbnMTSGHHRHJlklAGEyLYiT7Eu+ltFawe6hE=; b=eyDG7BbqqDxe9AkQN/XMfyHOzz
-	KNLcZKB1QNtnR0SCFSjDMU76UzEsr7qwCdAhtkWAizMuflzRxYRs5zJmXGCp30gGhld+fe2969eYm
-	CJq5tfamK3JwiCaduVHJUGMENwMl2J7v6vTNj5qS1JdHyyzUa6wgDlI8v2cH2JG+sIXmoZLi0M4Un
-	RZ/j8ZpPrv5WeQ0hhHMb+kbckVs5Zmq5X1L+E7SUjsezICJib+4vTg6a7BDO8HY0PjZKazaxN+VoX
-	+/qUYvjXPhfttGAVonRDpjmZxyffZP8gkJAqqCBICUuHeQK6B57/Z3pFO4hLKiew8X0Jnp0cV3m3O
-	eoaxdlDw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38330)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1s5j8Q-0008JX-0Q;
-	Sat, 11 May 2024 10:35:18 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1s5j8L-0004AO-Dl; Sat, 11 May 2024 10:35:13 +0100
-Date: Sat, 11 May 2024 10:35:13 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Daniel Golle <daniel@makrotopia.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
-	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org
-Subject: Re: [net-next PATCH v10 3/5] net: phy: add support for PHY LEDs
- polarity modes
-Message-ID: <Zj870XBJFEkXZM1z@shell.armlinux.org.uk>
-References: <20240125203702.4552-1-ansuelsmth@gmail.com>
- <20240125203702.4552-4-ansuelsmth@gmail.com>
- <Zj6qURAmoED2QywF@makrotopia.org>
- <bb146832-30fc-4c76-a083-51a1bc087e61@lunn.ch>
+	s=arc-20240116; t=1715426844; c=relaxed/simple;
+	bh=cLCZ4jToTqkciTsy8QBqqHWI/zM1DZ9FtzabW+MzE48=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qL5rti8acOoyG3ujyEu7SDFkIzXzTg90EOBBTwm/1YiqRujrhwdW4VNfPW2Jza4bVun90hsMDRDWnDZEX+PQVdOlzFuGs/bELZ4SS8/QKczlwipVYSxDvAlEV3n94+L4o0mjiUJRZTpsg6sC/ltSDt8OWSUiK23jSmMRYL2HF7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2GkE73F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC6BC2BBFC;
+	Sat, 11 May 2024 11:27:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715426843;
+	bh=cLCZ4jToTqkciTsy8QBqqHWI/zM1DZ9FtzabW+MzE48=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=o2GkE73FrAa/+XpTYJt769JLx61wNiPupSK/TSVabLktm7Y1yWVICyXwKBuWRZFEB
+	 Gvuh7khf85hCHpGHrhiM9idlCTh8gXErvNGRw/tXNzKwVh4RTEzaE5vfNuAYMGhBWd
+	 2XQ5y3yPydVXdH+W6dLNMnKQxojBHGrS34FKfzks5QWrsaJEmgGkgpP82EWjsk2/qf
+	 KoRWzeytA0mIIAphSCuxi1hfow9NEMRQtmcd1tg1pkrpkhf9e5QY/VYnzi3Noe4lEH
+	 fiv3MqYSislw5yrsWsvp4G7g3gZ1QQtLxxCxSJzX+JlKd3zihZUwygJcITMS0zhKd6
+	 87fiD6Sx9Cdxw==
+Date: Sat, 11 May 2024 12:27:08 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, nuno.sa@analog.com
+Subject: Re: [PATCH 7/7] drivers: iio: imu: Add support for adis1657x family
+Message-ID: <20240511122708.68fac075@jic23-huawei>
+In-Reply-To: <9f0a8fdb-dd34-4a53-948d-d4ed0410de6f@gmail.com>
+References: <20240426135339.185602-1-ramona.bolboaca13@gmail.com>
+	<20240426135339.185602-8-ramona.bolboaca13@gmail.com>
+	<20240428154523.17b27fa8@jic23-huawei>
+	<9f0a8fdb-dd34-4a53-948d-d4ed0410de6f@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bb146832-30fc-4c76-a083-51a1bc087e61@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, May 11, 2024 at 01:58:13AM +0200, Andrew Lunn wrote:
-> > Wanting to make use of this I noticed that polarity settings are only
-> > applied once in of_phy_led(), which is not sufficient for my use-case:
-> > 
-> > I'm writing a LED driver for Aquantia PHYs and those PHYs reset the
-> > polarity mode every time a PHY reset is triggered.
+On Wed, 8 May 2024 17:32:34 +0300
+Ramona Gradinariu <ramona.bolboaca13@gmail.com> wrote:
 
-What sort of reset? There are hard resets that set the registers back
-to default, and soft resets that don't. I think you are referring to
-a hard reset, but please be clear.
-
-> > I ended up writing the patch below, but I'm not sure if phy_init_hw
-> > should take care of this or if the polarity modes should be stored in
-> > memory allocated by the PHY driver and re-applied by the driver after
-> > reset (eg. in .config_init). Kinda depends on taste and on how common
-> > this behavior is in practise, so I thought the best is to reach out to
-> > discuss.
+> Hello Jonathan,
 > 
-> There was a similar discussion recently about WoL settings getting
-> lost. The conclusion about that was the PHY should keep track of WoL
-> setting. So i would say the same applies there. Please store it in a
-> local priv structure.
+> Some explanations from my side.
+> 
+> >> @@ -437,6 +467,130 @@ static int adis16475_set_filter(struct adis16475 *st, const u32 filter)
+> >>  	return 0;
+> >>  }
+> >>  
+> >> +static ssize_t adis16475_get_fifo_enabled(struct device *dev,
+> >> +					  struct device_attribute *attr,
+> >> +					  char *buf)
+> >> +{
+> >> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> >> +	struct adis16475 *st = iio_priv(indio_dev);
+> >> +	int ret;
+> >> +	u16 val;
+> >> +
+> >> +	ret = adis_read_reg_16(&st->adis, ADIS16475_REG_FIFO_CTRL, &val);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +	val = FIELD_GET(ADIS16475_FIFO_EN_MASK, val);
+> >> +
+> >> +	return sysfs_emit(buf, "%d\n", val);  
+> > As below, might as well put the FIELD_GET() in the sysfs_emit rather than
+> > writing the local parameter.  
+> 
+> In all instances where I did, I did it to avoid casting. v2 inlines the values and
+> the cast is needed to avoid compilation errors.
 
-Agreed. If it turns out that it's something that many PHYs need to do,
-that would be the tiem to move it into the core phylib code. If it only
-affects a minority of drivers, then it's something drivers should do.
+I'd guess that is because the type in the sysfs_emit isn't the same as FIELD_GET()
+returns?  That will correspond to the type of the ADIS16475_FIFO_EN_MASK
+which is defined as UL I think. So just use %lu here instead and need to cast goes
+away. 
 
-The reasoning here is: if its only a problem for a small amount of PHY
-drivers, then we don't need to penalise everyone with additional
-overhead. If it's the majority of drivers, then it makes sense to
-remove this burden from drivers.
+> 
+> > 	  
+> >> +	if (adis->data->burst_max_len)
+> >> +		burst_max_length = adis->data->burst_max_len;
+> >> +	else
+> >> +		burst_max_length = burst_length;
+> >> +
+> >> +	tx = adis->buffer + burst_max_length;
+> >> +	tx[0] = ADIS_READ_REG(burst_req);
+> >> +
+> >> +	if (burst_req)  
+> > If !burst_req does the rest of this do anything at all?
+> > If so flip the logic as
+> > 	if (!burst_req)
+> > 		return adis16475_push_single_sample(pf);
+> >
+> > 	the rest...
+> > 	return spi_sync(adis->spi, &adis->msg);  
+> 
+> The update is needed even if burst_req is false. The adis message has to be updated
+> based on the burst request value, which is then used either in 
+> adis16475_push_single_sample or in spi_sync call.
 
-Also note that this is one of the reasons I don't particularly like
-the kernel's approach to PHY hardware resets - if a platform firmware
-decides to describe the PHy hardware reset to the kernel, then we end
-up with the hardware reset being used at various points which will
-clear all the registers back to the reset defaults including clearing
-WoL settings and the like. That's fine for AN state which will get
-reloaded, but other state does not, so describing the hardware reset
-can make things much more complicated and introduce differing
-behaviours compared to platforms that don't describe it.
+Which update?  The content of tx[0]?  If so that is non obvious so definitely
+need a comment. Perhaps even wrap up the update in a function with a name
+that makes it clear it's changing the adis->msg.
 
-A lot of platforms choose not to describe the PHY hardware reset, but
-some people see that there's a way to describe it, so they do whether
-or not there's a reason for the kernel to be manipulating that reset
-signal.
+adis_update_msg_burst() or something like that.
+> 
+> > 		
+> >  
+> >> +		return spi_sync(adis->spi, &adis->msg);
+> >> +
+> >> +	return adis16475_push_single_sample(pf);
+> >> +}
+> >> +
 
-What I'm saying is there's several issues here that all interact...
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Jonathan
 
