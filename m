@@ -1,177 +1,190 @@
-Return-Path: <devicetree+bounces-66415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC3B8C2FAB
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 07:31:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9728C2FBB
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 07:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0AF8B21303
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 05:31:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0065B283B6F
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 05:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 687864C630;
-	Sat, 11 May 2024 05:30:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE4247A52;
+	Sat, 11 May 2024 05:56:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TsH2yEUi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XMV9nRFH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3253D4653C;
-	Sat, 11 May 2024 05:30:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066502CCBE
+	for <devicetree@vger.kernel.org>; Sat, 11 May 2024 05:56:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715405454; cv=none; b=cjUII0alStyVv4pqSIeWrSCHCVlbU/jtGVsMBy+u8ppXYhRUAW+FBudH7epWult+R8HVhCAAqK0AOjmWNbnmoWcWp8VkOPDLVF0zGzX6M67N+cfOW+gdH4cbbT3ltFuUOls1/TuyZNBjfWApYyA8+KnpmdudI/zUDPkrJMtFxgk=
+	t=1715406988; cv=none; b=TC7qJx/GyMtCQ6PQCPijdHm9OtXrqCd2TTjkZKrLaZO0CMgamA4V6zdRUS+U6PcNB7tzVX27QzmWpGr+/gc2xf7quvSY/KQli1JWYNQWTnQN0B2mbh6Qqrl42gex0SKt783lEy3Rxk5wJ0AVyYk0HcBVs2TkHAcO4quWlaB3xD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715405454; c=relaxed/simple;
-	bh=rQ1c7y7bZSRr0Y8VPoLgL/gNE+kEqKqhcHEmsbqe1Ro=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ne5nERiCmK0AsKW7FWui4mIJVqtHEB7kIcRgw/1AqprEdjEs8XslCcH33RQyHrZz7wsB38Rg6zmvzaWIOEcKH+aQKbEaf42/p6EEuTV34E3bSoqHn34xvVNZAkmaH/U9kGPpQ61ATObGD01m9mp3qapuUgu74eBwcjMo6o4R/6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TsH2yEUi; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715405452; x=1746941452;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rQ1c7y7bZSRr0Y8VPoLgL/gNE+kEqKqhcHEmsbqe1Ro=;
-  b=TsH2yEUiIGCkFS3jmLSBNRQMylh1Lhu/qpTOkB91E4Va9xEY38Wrb0j4
-   x7gF2GBsx8ILsH45awhvzVbqID24i5UcCz9F7d+l4oF+pb06XOK83cFnH
-   0bDwg/xe9aI2xH9z8oyCe6EynypTKNIJN0EGY2e/EtMgipuGboe8ZZLiT
-   zwGALGm99nVWleW7K8soqvZAswc6fDFth4bsoiE2BCO9Wtzo/AvykJKb6
-   Z5NXGqWbPZfqqK49YmjRXE+S5uhtj57oyT8Tjhu+xZBRklB5j4R0zavH/
-   ai/cZUYG2h5z5PsKh1Zq+FEZGXsSts3SAx07agzYdVqsgIsDzOlAN0G7j
-   w==;
-X-CSE-ConnectionGUID: ndBxNdeXT9G0VpDepZF/lg==
-X-CSE-MsgGUID: CFiTEkvpTHK2n0CrJwrhHQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="11627140"
-X-IronPort-AV: E=Sophos;i="6.08,153,1712646000"; 
-   d="scan'208";a="11627140"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2024 22:30:52 -0700
-X-CSE-ConnectionGUID: U7mxv43QQ3aMp4eUHKbX3Q==
-X-CSE-MsgGUID: 1Yto9Q3cTBq4VwM+MDji3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,153,1712646000"; 
-   d="scan'208";a="34347206"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 10 May 2024 22:30:48 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s5fJl-0006yk-2S;
-	Sat, 11 May 2024 05:30:45 +0000
-Date: Sat, 11 May 2024 13:30:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Pankaj Gupta <pankaj.gupta@nxp.com>
-Subject: Re: [PATCH 4/4] firmware: imx: add driver for NXP EdgeLock Enclave
-Message-ID: <202405111304.CJcpd03O-lkp@intel.com>
-References: <20240510-imx-se-if-v1-4-27c5a674916d@nxp.com>
+	s=arc-20240116; t=1715406988; c=relaxed/simple;
+	bh=/wAlPis3fKbSPY+TOkMUqvx5LzFAMMJ078LmxK8A57Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=g3hLdLmX7mKOTggutkX+qJic6bSh1es5oCll2pMRQwV46PDMlHzJWEM0tMMKew3I9sExrfV0DcOks/XTXjrrg8G7mOw3/QDgxwXcrEEkSBvc0YIBy8teS+R+W0dBjjHfGTY8gM60YYbXQlA9HBzwcZVKt/UHb9I6PhrFeUCz+h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XMV9nRFH; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6f447260f9dso2339037b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 22:56:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715406985; x=1716011785; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7rcnb0x1Ab/oP+ua9OVpFeNPgORVez4tRKSLrjc2TvY=;
+        b=XMV9nRFHZs5Prto7TC28FwgtMvvw9nlIl0dHnUyUFLt7siMlSL/FsX2TXC/FN4K6cB
+         Oxzfr7K9CGTGWO6eV4sasy1q3fVRMSuzKjaF3DOMRjoQ33ebjjN0l79/TmkC/DsNBtqx
+         UTvEXCRp1/HCyklFPNl1tjCqdhKMhIz2RRciQh8f5ub1FuMUyu98Gj5JquMgV3pSicj/
+         DLg5p39JgZqlAKJJ3ExH2e3razkLWudBEdIyZyakw1wp/Pni5cNwpCCYKNSp5ODLUOyi
+         4rOHJ86mdr/L8ZXdwPTLBwbvKpKVhhOfeidgICahP48OXr9I6tKKN6KMMHlw/MGr6uFE
+         q4mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715406985; x=1716011785;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7rcnb0x1Ab/oP+ua9OVpFeNPgORVez4tRKSLrjc2TvY=;
+        b=rsTaXCKRsehZJxOaZc3PK1P5d+BOC7ejQD/Pu+H5WqXdZhGHD8yl8PTY6kaozqwBKw
+         Y8n/UwBpR2O4Sc8LNwbYJ25TYMdjD0NHouCljboDq3dQ9UWWpgv+IdOkhwtpkagjY3AB
+         dil1W3vzaaaTLGDtbOKC9vGXPvt7vGPKPgJ5NAS1UpLN0yRIsbKxKaIm6VSABcNtgaWa
+         pZ2CWnI1gpg7vL6jViTkw18MKrYK/7QJLFcN8GpmSTmrEqUGLmQZvpt75NgOEB1/NU1n
+         O44+4SbG78yfJaO2Ot1Hnk/Fg93Q9mO8UlYCi2TOXSWZHNa5YgFe87ppSk6f6Jk89ciR
+         xaow==
+X-Gm-Message-State: AOJu0YxR31n3LKtoKuPIWKOCebgk3qhyiTQ6GqCzVPxx6tWoJ7QyXX+S
+	V1a364q3I3oIjwCuauZXGYB4jAvVwQl7ZTv2RmIdUdA1YiKhEZFud1ARkJgdG+A=
+X-Google-Smtp-Source: AGHT+IHGkXRSI1lBKu66MqqiCaQwqtF1VdmggH3LmfQsP4a3fNv0Gh55TnTAU0x9UXY/EgwIv6VwxA==
+X-Received: by 2002:a05:6a00:4b0e:b0:6ec:fe38:d94 with SMTP id d2e1a72fcca58-6f4e0385e80mr5063998b3a.33.1715406985344;
+        Fri, 10 May 2024 22:56:25 -0700 (PDT)
+Received: from xiaxiShen-ThinkPad.dhcp4.washington.edu ([205.175.106.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2a9d981sm3948689b3a.94.2024.05.10.22.56.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 May 2024 22:56:24 -0700 (PDT)
+From: Xiaxi Shen <shenxiaxi26@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: shenxiaxi26@gmail.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	javier.carrasco.cruz@gmail.com,
+	skhan@linuxfoundation.org
+Subject: [PATCH] ASoC: dt-bindings: ak4104: convert to dt schema
+Date: Fri, 10 May 2024 22:56:06 -0700
+Message-Id: <20240511055606.51333-1-shenxiaxi26@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240510-imx-se-if-v1-4-27c5a674916d@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Pankaj,
+Convert ak4104 binding to DT schema
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
+---
+ .../devicetree/bindings/sound/ak4104.txt      | 25 ---------
+ .../bindings/sound/asahi-kasei,ak4104.yaml    | 51 +++++++++++++++++++
+ 2 files changed, 51 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ak4104.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
 
-[auto build test ERROR on e8f897f4afef0031fe618a8e94127a0934896aba]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20240510-213210
-base:   e8f897f4afef0031fe618a8e94127a0934896aba
-patch link:    https://lore.kernel.org/r/20240510-imx-se-if-v1-4-27c5a674916d%40nxp.com
-patch subject: [PATCH 4/4] firmware: imx: add driver for NXP EdgeLock Enclave
-config: x86_64-buildonly-randconfig-005-20240511 (https://download.01.org/0day-ci/archive/20240511/202405111304.CJcpd03O-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240511/202405111304.CJcpd03O-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405111304.CJcpd03O-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from <built-in>:1:
->> ./usr/include/linux/se_ioctl.h:12:2: error: unknown type name 'u8'
-      12 |         u8 *user_buf;
-         |         ^
->> ./usr/include/linux/se_ioctl.h:13:2: error: unknown type name 'u32'
-      13 |         u32 length;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:14:2: error: unknown type name 'u32'
-      14 |         u32 flags;
-         |         ^
->> ./usr/include/linux/se_ioctl.h:15:2: error: unknown type name 'u64'
-      15 |         u64 ele_addr;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:19:2: error: unknown type name 'u32'
-      19 |         u32 base_offset;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:20:2: error: unknown type name 'u32'
-      20 |         u32 size;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:24:2: error: unknown type name 'u8'
-      24 |         u8 se_if_id;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:25:2: error: unknown type name 'u8'
-      25 |         u8 interrupt_idx;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:26:2: error: unknown type name 'u8'
-      26 |         u8 tz;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:27:2: error: unknown type name 'u8'
-      27 |         u8 did;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:28:2: error: unknown type name 'u8'
-      28 |         u8 cmd_tag;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:29:2: error: unknown type name 'u8'
-      29 |         u8 rsp_tag;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:30:2: error: unknown type name 'u8'
-      30 |         u8 success_tag;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:31:2: error: unknown type name 'u8'
-      31 |         u8 base_api_ver;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:32:2: error: unknown type name 'u8'
-      32 |         u8 fw_api_ver;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:36:2: error: unknown type name 'u8'
-      36 |         u8 *message;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:37:2: error: unknown type name 'u32'
-      37 |         u32 msg_size;
-         |         ^
-   ./usr/include/linux/se_ioctl.h:38:2: error: unknown type name 'u32'
-      38 |         u32 error_code;
-         |         ^
->> ./usr/include/linux/se_ioctl.h:42:2: error: unknown type name 'u16'
-      42 |         u16 soc_id;
-         |         ^
-   fatal error: too many errors emitted, stopping now [-ferror-limit=]
-   20 errors generated.
-
+diff --git a/Documentation/devicetree/bindings/sound/ak4104.txt b/Documentation/devicetree/bindings/sound/ak4104.txt
+deleted file mode 100644
+index ae5f7f057dc3..000000000000
+--- a/Documentation/devicetree/bindings/sound/ak4104.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-AK4104 S/PDIF transmitter
+-
+-This device supports SPI mode only.
+-
+-Required properties:
+-
+-  - compatible : "asahi-kasei,ak4104"
+-
+-  - reg : The chip select number on the SPI bus
+-
+-  - vdd-supply : A regulator node, providing 2.7V - 3.6V
+-
+-Optional properties:
+-
+-  - reset-gpios : a GPIO spec for the reset pin. If specified, it will be
+-		  deasserted before communication to the device starts.
+-
+-Example:
+-
+-spdif: ak4104@0 {
+-	compatible = "asahi-kasei,ak4104";
+-	reg = <0>;
+-	spi-max-frequency = <5000000>;
+-	vdd-supply = <&vdd_3v3_reg>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
+new file mode 100644
+index 000000000000..88daa0c7c74f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4104.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AK4104 S/PDIF transmitter
++
++allOf:
++  - $ref: dai-common.yaml#
++
++maintainers:
++  - Liam Girdwood <lgirdwood@gmail.com>
++  - Mark Brown <broonie@kernel.org>
++  - Rob Herring <robh@kernel.org>
++  - Krzysztof Kozlowski <krzk+dt@kernel.org>
++  - Conor Dooley <conor+dt@kernel.org>
++
++properties:
++  compatible:
++    const: asahi-kasei,ak4104
++
++  reg:
++    description: Chip select number on the SPI bus 
++    maxItems: 1
++
++  vdd-supply:
++    description: A regulator node providing between 2.7V and 3.6V.
++
++  reset-gpios:
++    maxItems: 1
++    description: Optional GPIO spec for the reset pin, deasserted before communication starts.
++    
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++   i2c {
++     #address-cells = <1>;
++     #size-cells = <0>;
++     codec@0 {
++       compatible = "asahi-kasei,ak4104";
++       reg = <0>;
++       vdd-supply = <&vdd_3v3_reg>;
++     };
++   };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
