@@ -1,190 +1,176 @@
-Return-Path: <devicetree+bounces-66416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9728C2FBB
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 07:56:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB408C3014
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 09:37:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0065B283B6F
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 05:56:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A97CD1F213F6
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 07:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE4247A52;
-	Sat, 11 May 2024 05:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XMV9nRFH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1140E610D;
+	Sat, 11 May 2024 07:37:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2134.outbound.protection.partner.outlook.cn [139.219.146.134])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066502CCBE
-	for <devicetree@vger.kernel.org>; Sat, 11 May 2024 05:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715406988; cv=none; b=TC7qJx/GyMtCQ6PQCPijdHm9OtXrqCd2TTjkZKrLaZO0CMgamA4V6zdRUS+U6PcNB7tzVX27QzmWpGr+/gc2xf7quvSY/KQli1JWYNQWTnQN0B2mbh6Qqrl42gex0SKt783lEy3Rxk5wJ0AVyYk0HcBVs2TkHAcO4quWlaB3xD4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715406988; c=relaxed/simple;
-	bh=/wAlPis3fKbSPY+TOkMUqvx5LzFAMMJ078LmxK8A57Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=g3hLdLmX7mKOTggutkX+qJic6bSh1es5oCll2pMRQwV46PDMlHzJWEM0tMMKew3I9sExrfV0DcOks/XTXjrrg8G7mOw3/QDgxwXcrEEkSBvc0YIBy8teS+R+W0dBjjHfGTY8gM60YYbXQlA9HBzwcZVKt/UHb9I6PhrFeUCz+h4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XMV9nRFH; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6f447260f9dso2339037b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 10 May 2024 22:56:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715406985; x=1716011785; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7rcnb0x1Ab/oP+ua9OVpFeNPgORVez4tRKSLrjc2TvY=;
-        b=XMV9nRFHZs5Prto7TC28FwgtMvvw9nlIl0dHnUyUFLt7siMlSL/FsX2TXC/FN4K6cB
-         Oxzfr7K9CGTGWO6eV4sasy1q3fVRMSuzKjaF3DOMRjoQ33ebjjN0l79/TmkC/DsNBtqx
-         UTvEXCRp1/HCyklFPNl1tjCqdhKMhIz2RRciQh8f5ub1FuMUyu98Gj5JquMgV3pSicj/
-         DLg5p39JgZqlAKJJ3ExH2e3razkLWudBEdIyZyakw1wp/Pni5cNwpCCYKNSp5ODLUOyi
-         4rOHJ86mdr/L8ZXdwPTLBwbvKpKVhhOfeidgICahP48OXr9I6tKKN6KMMHlw/MGr6uFE
-         q4mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715406985; x=1716011785;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7rcnb0x1Ab/oP+ua9OVpFeNPgORVez4tRKSLrjc2TvY=;
-        b=rsTaXCKRsehZJxOaZc3PK1P5d+BOC7ejQD/Pu+H5WqXdZhGHD8yl8PTY6kaozqwBKw
-         Y8n/UwBpR2O4Sc8LNwbYJ25TYMdjD0NHouCljboDq3dQ9UWWpgv+IdOkhwtpkagjY3AB
-         dil1W3vzaaaTLGDtbOKC9vGXPvt7vGPKPgJ5NAS1UpLN0yRIsbKxKaIm6VSABcNtgaWa
-         pZ2CWnI1gpg7vL6jViTkw18MKrYK/7QJLFcN8GpmSTmrEqUGLmQZvpt75NgOEB1/NU1n
-         O44+4SbG78yfJaO2Ot1Hnk/Fg93Q9mO8UlYCi2TOXSWZHNa5YgFe87ppSk6f6Jk89ciR
-         xaow==
-X-Gm-Message-State: AOJu0YxR31n3LKtoKuPIWKOCebgk3qhyiTQ6GqCzVPxx6tWoJ7QyXX+S
-	V1a364q3I3oIjwCuauZXGYB4jAvVwQl7ZTv2RmIdUdA1YiKhEZFud1ARkJgdG+A=
-X-Google-Smtp-Source: AGHT+IHGkXRSI1lBKu66MqqiCaQwqtF1VdmggH3LmfQsP4a3fNv0Gh55TnTAU0x9UXY/EgwIv6VwxA==
-X-Received: by 2002:a05:6a00:4b0e:b0:6ec:fe38:d94 with SMTP id d2e1a72fcca58-6f4e0385e80mr5063998b3a.33.1715406985344;
-        Fri, 10 May 2024 22:56:25 -0700 (PDT)
-Received: from xiaxiShen-ThinkPad.dhcp4.washington.edu ([205.175.106.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2a9d981sm3948689b3a.94.2024.05.10.22.56.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 May 2024 22:56:24 -0700 (PDT)
-From: Xiaxi Shen <shenxiaxi26@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: shenxiaxi26@gmail.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	javier.carrasco.cruz@gmail.com,
-	skhan@linuxfoundation.org
-Subject: [PATCH] ASoC: dt-bindings: ak4104: convert to dt schema
-Date: Fri, 10 May 2024 22:56:06 -0700
-Message-Id: <20240511055606.51333-1-shenxiaxi26@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A896EC2ED;
+	Sat, 11 May 2024 07:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.134
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715413032; cv=fail; b=Tirw4RuIGpJyjsfkL3dCf3RTX3jIEkxsiV7SLs4IpCipjRkCumwpL6BzvWJ4JDDvsqZVI9+S/Tu1ZiqCKj2vpclesRu01y2VVCKkI+ij4p9brXquTcnEwAYLJ6JOgzMnTv9B8utwN2SM39eik/SgnDYlFxnAbhL9RSHf7+eoKEM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715413032; c=relaxed/simple;
+	bh=JCFDNBP8NP8wLWIr/ArFvm50MKjshvsYTDVZ86AtkkU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=RUFevTALU3HxjymxjRrqQnWbRWSxfo8p60+jZn3glNG1JNbZXBL/KbCyMYLjl9eIHkpviPbV48i06kbEDvvmmH7y8oIncsWzgua83VdU/k1YYc6xcBZCVyvDTwPi8BftBlOEXZZhsuO9arhl1c7jranvzykgrvyg69MfsOQbQ08=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l7DSXLCv3HF7EKVZRZFN7Lozk1EKBLXObnejh4s/BpVoCSOfFD8hVb9z0+peN1PRNtqwXujF10xzQYGLrbxEFXdtM9W/y+0bPNsxB8Gtst7QCpmadg7E3/VkFFkiigRiYEBfFDzW0WJ11TArMYJNIkFJVcYOxLEerDXOoYtK7ELOUQchX2UFLScrxcED9D345QkVbVUSDb5ohJ4G3fpYrw3jteo+FahELwfSHqA20vu5T+CEKgppv5G73YnWZ6n4CxHSXyGQhR41EWm6feq+N6lxCHjhplYEvcIiwW2LVkMEgnmEKMO0EsCOgyZGJO8FvpsA6tTf0JHTlVaTkbueKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JCFDNBP8NP8wLWIr/ArFvm50MKjshvsYTDVZ86AtkkU=;
+ b=PzJi7dipg56/yODSpAQyubSn/og/ZDU8UBiYMt4Wg9AcW9bQ2z0PgUwfEla62x455hKGVwzUFj9KQyU4RG5uQmMImycQeChVajXntxJ+//dtl7FqzayqaECIgSATE7My83eEGorA5zsYeTVjuWms+egFGS2QgtO2InyVNOJTF0CBO1mMJ51jytozpCq2wzIVXEvwCkIWeUIyARtcV9AxJep7gmmNigmgwOUk+F6HcB1u5SRZnn/7Cs2jViHU0ZZOe6E8oq1i+sizlWc6a+mxHsvWqGmveiFAGfm79zHhjXwJiFwzPDgh1kXui7MM1mwALV6kspp7/5nV4NLZ+39i9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::10) by NTZPR01MB1113.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:a::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Sat, 11 May
+ 2024 03:02:56 +0000
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e903:99a6:10b7:304d]) by
+ NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn ([fe80::e903:99a6:10b7:304d%6])
+ with mapi id 15.20.7472.044; Sat, 11 May 2024 03:02:56 +0000
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+	<sboyd@kernel.org>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Hal Feng <hal.feng@starfivetech.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v5 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Thread-Topic: [PATCH v5 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Thread-Index: AQHaoEtCPDK2HwhwXUSWjcDZE/pIQ7GQ+umAgABXAkA=
+Date: Sat, 11 May 2024 03:02:56 +0000
+Message-ID:
+ <NTZPR01MB0956D48361098E8AA4B3930A9FE02@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+References: <20240507065319.274976-1-xingyu.wu@starfivetech.com>
+ <20240510-unfounded-syrup-d1263d57d05a@spud>
+In-Reply-To: <20240510-unfounded-syrup-d1263d57d05a@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: NTZPR01MB0956:EE_|NTZPR01MB1113:EE_
+x-ms-office365-filtering-correlation-id: 0a7f2ce1-10d1-4a7e-96c6-08dc7166db6a
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ aMrQmWIhWxwcKlwvwU2xvOhfo1zpwD7V1AM4iGsjxyJI5RyPhyqV4wcSDyWVHc2GrVpR4EryD/iEjC1w4egHHM6uz4T5fWQw+OCCBIqDLNlvZSDyV8Gs/Q9MlvTRV9pGAfNKLvOlKhsLfUbiGUe1x89tstIZXInDfwv4TKeZsOL57jxbOIZDfMw03avb2GvSjgEH9yhJNOHvyhbagvyracj43lusIakElpLQX8b64Ah6zwvwf0HcBVQHSuwwYtPXR8nKQz4sUvoTh9sQ8nMEWVTcv5qgg1oqCbft6bTRgBKacxlUdmuBoLOZ8qcwTYiBqv46YtkXij4nTELAVqeGgOLJAX1g4zp3RHsgm0P4lqNCVhwkvBmC/aPxML14hJKLdSOTI6g7xA3zawE6MC1NF/fFKDFKXB5ZrrWMS0ZzPpw9xVSpbPRFQMYoT6YZFzo3ByR8kUEpaqPr7/ZAGaLAOaQwAkly1zEcHT2y0EDNPRRsq96A/zyUeyZ9DoItBeEJpYGakklU4152Iry6SwadWoOXxOdp7E369JCW2tud6mc8/f9YsigvZBocdWbYHokt8/S0GM+XmKHXw26l/yV9yXRdttQME/93cZnwpCxNUVM2ecy912+9Tu2jVga9CXo9
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(366007)(7416005)(1800799015)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?/DbM0m6tNMF/YY7c84L8dkem20pVWyQmkgHDjys+10odUupbHTBfXXqR082v?=
+ =?us-ascii?Q?cybqJu0jdPTDcOV0ZpRkmcwpMJ2Zz0XGpdZOjIdVPzcyFuEnQZ4K9jheUptj?=
+ =?us-ascii?Q?zsv6ekgB1OZZO6RtpUAymztgAAFs9CleW38voupMaoMwUHOUgOSQ5MRFHhKK?=
+ =?us-ascii?Q?2GJNfFK+kD5Bf2bcBU5kCH0HUr3qDY33FF1Z417iHrAp92OykJGV37quDCcT?=
+ =?us-ascii?Q?Tjni+fE+Qk7l0bcNjLm1s50kBjBUwpeR4lgWxWlXDHgt04xc4h0mN++bDRBh?=
+ =?us-ascii?Q?mRYVgaA4yYBVqBNWGRI+Ezj4Q/W3q2g20hgdBHcIE2Op0Af6qnyGpYt//1us?=
+ =?us-ascii?Q?mCw/JcoGX3ftoPnSgSX0W68pKX/1TUl58NteTSbGZWMBHDMJfDs+2he0TSVd?=
+ =?us-ascii?Q?oNSItlBBL7Sphx7kOR28SpKFypwaDk1B0Zlw5fhAHONSr005NZzZVz72E4TX?=
+ =?us-ascii?Q?9Krbb0X8oOtWIcATdgcHysKtcJGkhZxs5YgqwVOn3648Kagayj24ANQVQsYr?=
+ =?us-ascii?Q?VC3xwsw2wDhLn+MziKgeHfi2ZrD+z/5zDx7Y652hvC1iMNca2fvPoJUF1xZ1?=
+ =?us-ascii?Q?cSrbeesocqZFt6xSqtGJBNY3nhbaWJOC75rR4R1+M7YOe4+1Sfrpjcp48fTx?=
+ =?us-ascii?Q?lPiCij/40IUW0JyY8h67JsruFJtVeqQ0AcEXKWjyMwvY1PsKu3KxSeF/9clK?=
+ =?us-ascii?Q?DRktjUp593SFtdwH6NWU2h4Ae0rzsXMHSotY37Wr7WAkMf5pNpttGUOuWMtU?=
+ =?us-ascii?Q?BSJQUx0EKPEH9dcJLIESFchWcJxmk5LsfGhcWTcMJnzTXuYLzv9WjL7VHdE5?=
+ =?us-ascii?Q?gHI3NSWWja6229Lu13t4PYIgovgXKpT8P8S9w2rT0joF4NFDQt6GhBX9ZeTf?=
+ =?us-ascii?Q?ynLla6I9Q2JkVAGmTbRvCDjjg4AanahDfXxsI8UYEGD0JdTWMDUaEVmoIpj5?=
+ =?us-ascii?Q?4x63bQ7gbaTNVZKzYXzPlZa+zXLHcJzhGT/LwrAvEmvNGHEJchiSDD/0tspX?=
+ =?us-ascii?Q?PTvkFweEv5Kh77rEMn5Usx6Ixis5fa0xwVeOtz41sz35WCb8Zy2fQg7o9cWY?=
+ =?us-ascii?Q?KczvbciXk1YsAO/fy31CBauPchakE8lrNHSUpUY9s5b/vtHHG0c6dgdVx8mf?=
+ =?us-ascii?Q?6CTlstM+k2UQWRQutJ+tJimHd3mmc0L4hYUXmeE8eZuQkpQogOBeiyLDJKcX?=
+ =?us-ascii?Q?BqgYhl/pqov3rwY945/4jRdZpPqMnEZu+kM8FbmPVfUW2MvNxmFan9txMkYt?=
+ =?us-ascii?Q?axxLHoQHl1OYicAARY4RQ2H4VeCp1jQBxpFahr/I+MPzuTcyjkfOOa1NZIDG?=
+ =?us-ascii?Q?Y86eH4Xz13HDvFQFXIQHraq0mkG7E1RVXYRW7AaWrG3yZ74Kp0jmfYgEo+nJ?=
+ =?us-ascii?Q?kbL9yRY2mQv3pef5uc//bn64g0CSG8BubLzjdXEcI4LtRuDHrOMiAcD3AkgI?=
+ =?us-ascii?Q?ATxVLQoz83uYZPVi/VXq0feu4A5p3pafIJLpoY1GPz3td8s6btr1beyBSXfh?=
+ =?us-ascii?Q?ZdbXnah9IjsNCJb9tqF87+UE5trg9f/qYWcxE8iZQfAyURDzNUaf6jA3tI5I?=
+ =?us-ascii?Q?L6FbVFWM2Gq+TzXlloSabaGP+u5ee/qw/m5W0vl0?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a7f2ce1-10d1-4a7e-96c6-08dc7166db6a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2024 03:02:56.1492
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: BX4E6/8rlyJExq4/kQd0xRCVAlcUEBhuB3CvLspPwdrkRZyx0qP87oBHYd57TV379L/JOxbkxz6z3KTfuXkkOuWwXOTUunsQPySbetbLE1o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1113
 
-Convert ak4104 binding to DT schema
+On 11/05/2024 05:05, Conor Dooley wrote:
+>=20
+> On Tue, May 07, 2024 at 02:53:17PM +0800, Xingyu Wu wrote:
+> > This patch is to add the notifier for PLL0 clock and set the PLL0 rate
+> > to 1.5GHz to fix the lower rate of CPUfreq on the JH7110 SoC.
+> >
+> > The first patch is to add the notifier for PLL0 clock. Setting the
+> > PLL0 rate need the son clock (cpu_root) to switch its parent clock to
+> > OSC clock and switch it back after setting PLL0 rate. It need to use
+> > the cpu_root clock from SYSCRG and register the notifier in the SYSCRG
+> > driver.
+> >
+> > The second patch is to set cpu_core rate to 500MHz and PLL0 rate to
+> > 1.5GHz to fix the problem about the lower rate of CPUfreq on the
+> > visionfive board. The cpu_core clock rate is set to 500MHz first to
+> > ensure that the cpu frequency will not suddenly become high and the
+> > cpu voltage is not enough to cause a crash when the PLL0 is set to 1.5G=
+Hz.
+> > The cpu voltage and frequency are then adjusted together by CPUfreq.
+>=20
+> Hmm, how does sequencing work here? If we split the patches between trees=
+ it
+> sounds like without the dts patch, the clock tree would (or
+> could) crash, or mainline if the clock changes there before the dts ones =
+do. Am I
+> misunderstanding that?
 
-Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
----
- .../devicetree/bindings/sound/ak4104.txt      | 25 ---------
- .../bindings/sound/asahi-kasei,ak4104.yaml    | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/ak4104.txt
- create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
+Oh, I think you misunderstood it. Patch 1 (clock driver patch) does not cau=
+se the
+clock tree crash without the patch 2 (dts patch), and it just provides the =
+correct
+flow of how to change the PLL0 rate. The patch 2 is to set the clock rate o=
+f
+cpu_core and PLL0 rate, which causes the crash without patch 1. Setting cpu=
+_core
+rate is to avoid crashes by insufficient cpu voltage when setting PLL0 rate=
+.
 
-diff --git a/Documentation/devicetree/bindings/sound/ak4104.txt b/Documentation/devicetree/bindings/sound/ak4104.txt
-deleted file mode 100644
-index ae5f7f057dc3..000000000000
---- a/Documentation/devicetree/bindings/sound/ak4104.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--AK4104 S/PDIF transmitter
--
--This device supports SPI mode only.
--
--Required properties:
--
--  - compatible : "asahi-kasei,ak4104"
--
--  - reg : The chip select number on the SPI bus
--
--  - vdd-supply : A regulator node, providing 2.7V - 3.6V
--
--Optional properties:
--
--  - reset-gpios : a GPIO spec for the reset pin. If specified, it will be
--		  deasserted before communication to the device starts.
--
--Example:
--
--spdif: ak4104@0 {
--	compatible = "asahi-kasei,ak4104";
--	reg = <0>;
--	spi-max-frequency = <5000000>;
--	vdd-supply = <&vdd_3v3_reg>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
-new file mode 100644
-index 000000000000..88daa0c7c74f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4104.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AK4104 S/PDIF transmitter
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+maintainers:
-+  - Liam Girdwood <lgirdwood@gmail.com>
-+  - Mark Brown <broonie@kernel.org>
-+  - Rob Herring <robh@kernel.org>
-+  - Krzysztof Kozlowski <krzk+dt@kernel.org>
-+  - Conor Dooley <conor+dt@kernel.org>
-+
-+properties:
-+  compatible:
-+    const: asahi-kasei,ak4104
-+
-+  reg:
-+    description: Chip select number on the SPI bus 
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: A regulator node providing between 2.7V and 3.6V.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Optional GPIO spec for the reset pin, deasserted before communication starts.
-+    
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   i2c {
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     codec@0 {
-+       compatible = "asahi-kasei,ak4104";
-+       reg = <0>;
-+       vdd-supply = <&vdd_3v3_reg>;
-+     };
-+   };
--- 
-2.34.1
-
+Best regards,
+Xingyu Wu
 
