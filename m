@@ -1,158 +1,171 @@
-Return-Path: <devicetree+bounces-66475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C768C3370
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 21:29:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8573C8C337C
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 21:31:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F57A1F215C7
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 19:29:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 257BC1F21603
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 19:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3E21CD31;
-	Sat, 11 May 2024 19:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31FD5200C7;
+	Sat, 11 May 2024 19:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SR1jCDf+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876F51CABF
-	for <devicetree@vger.kernel.org>; Sat, 11 May 2024 19:29:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913051C6B7;
+	Sat, 11 May 2024 19:31:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715455773; cv=none; b=HvplnPLUTWIrNch+1/cSVLih7aQWh3OvfLRCJCUxAGrXegWgZ/7W35ADcLlG3poJKwXMUWqlKqhIdzCb98wxust54bsmBr+cKoKp6E7i+rfxgTGtGv5/ZSyrFLhL0mXX73aHyEktvdZ3t/rjl2AqXGXkHBb/s75jQivgwwnI+ko=
+	t=1715455884; cv=none; b=tyQKvnPi6sOIt7/KkMK5EFdvR0tF9WX/37ytQlWDqpboy/pYgincCfYRKrwqqM+JgGQdtzHtnZgMdRMPExZUWslKC3ltXuXB0FGvt8tLZ4YAXweC7G7oy+R92ANG5or9W0Iy8hU2v4HOw2j5jBBKEe8wYhZANjmXaBKw8SR11vo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715455773; c=relaxed/simple;
-	bh=4lsE2Se8vXaMMEIsPzHa9RIlcRpOCsASJLMGgVYbVfc=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nUbNvZ1oz+Z01r8gKEXjHYemeMxnqp/avPNDA5KuERuuAeyj459HjKkbPZ19aYqNlgQvrEq3kn32Z0mHfSJBY2umaXEfECyhVaVghg6TeKaIhvrLsnQyI40X8PMWa6d9J6eW5Usobc+3m0wWtlH7Wegquy9dzy606j0VSeCQlPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-25-208.elisa-laajakaista.fi [88.113.25.208])
-	by fgw21.mail.saunalahti.fi (Halon) with ESMTP
-	id c822eb82-0fcc-11ef-abf4-005056bdd08f;
-	Sat, 11 May 2024 22:29:28 +0300 (EEST)
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sat, 11 May 2024 22:29:27 +0300
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-gpio@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v4 3/3] pinctrl: imx: support SCMI pinctrl protocol for
- i.MX95
-Message-ID: <Zj_HFxHMV57EXfYm@surfacebook.localdomain>
-References: <20240505-pinctrl-scmi-oem-v3-v4-0-7c99f989e9ba@nxp.com>
- <20240505-pinctrl-scmi-oem-v3-v4-3-7c99f989e9ba@nxp.com>
+	s=arc-20240116; t=1715455884; c=relaxed/simple;
+	bh=GM904Fq2LU07JgvnLHnrKsLDSbFCeh5QBMZmKXFDf0c=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cAc0WS2pIIrF2vemMzfLBNw44Vw1uJpMQc1HOI2xlxY9UbGdwf0oe7sujMIZXzzh0Hg1spQFWBLNhmvF16/5GXrCIEW7326fgGz4BivLKugSnafJdshTVvLafrZgNx2SKCmIsCeRDvXH/pb0H1OHZRRd5OI1CuB6iDkgOI1240w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SR1jCDf+; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44BJUvMn029411;
+	Sat, 11 May 2024 14:30:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715455857;
+	bh=xQZv/xzUy/h54vzFSq/qFJqi6KOEzJtq8ToI3N/K79s=;
+	h=From:To:CC:Subject:Date;
+	b=SR1jCDf+GyceuodFzTMVrltkawR8oZ1ORVkFcF/6Xj0VJRxNahuT35uRAGYuh3Zbo
+	 bGtz89p+xrafKUGSbs/YeTNSA8XnvhU2Kkuee5MrhkD4TwYbiCpjIcIaIg2X35Q7GM
+	 dVLIGXlft7HSbHsCaDDgrvXGPv8bi+6rQrt1cx8I=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44BJUvQq073051
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 11 May 2024 14:30:57 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 11
+ May 2024 14:30:56 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 11 May 2024 14:30:56 -0500
+Received: from localhost (uda0496377.dhcp.ti.com [172.24.227.31])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44BJUtgC091562;
+	Sat, 11 May 2024 14:30:56 -0500
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Jyri Sarha
+	<jyri.sarha@iki.fi>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List
+	<devicetree@vger.kernel.org>,
+        Linux Kernel List
+	<linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Francesco Dolcini <francesco@dolcini.it>,
+        Alexander
+ Sverdlin <alexander.sverdlin@siemens.com>,
+        Randolph Sapp <rs@ti.com>, Devarsh
+ Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra
+	<j-luthra@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH 0/4] drm/tidss: Add OLDI bridge support
+Date: Sun, 12 May 2024 01:00:51 +0530
+Message-ID: <20240511193055.1686149-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240505-pinctrl-scmi-oem-v3-v4-3-7c99f989e9ba@nxp.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Sun, May 05, 2024 at 11:47:19AM +0800, Peng Fan (OSS) kirjoitti:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> The generic pinctrl-scmi.c driver could not be used for i.MX95 because
-> i.MX95 SCMI firmware not supports functions, groups or generic
-> 'Pin Configuration Type and Enumerations' listed in SCMI Specification.
-> 
-> i.MX95 System Control Management Interface(SCMI) firmware only supports
-> below pin configuration types which are OEM specific types:
->     192: PIN MUX
->     193: PIN CONF
->     194: DAISY ID
->     195: DAISY VAL
-> 
-> To support Linux generic pinctrl properties(pinmux, bias-pull-[up,
-> down], and etc), need extract the value from the property and map
-> them to the format that i.MX95 SCMI pinctrl protocol understands,
-> so add this driver.
+Hello all,
 
-...
+This patch series add support for the dual OLDI TXes supported in Texas
+Instruments' AM62x and AM62Px family of SoCs. The OLDI TXes support single-lvds,
+lvds-clone, and dual-lvds modes. These have now been represented through DRM
+bridges within TI-DSS.
 
-> +struct imx_pin_group {
-> +	struct pingroup data;
-> +};
+The OLDI configuration should happen before the video-port configuration takes
+place in tidss_crtc_atomic_enable hook. I have posted a patch allowing DRM
+bridges to get enabled before the CRTC of that bridge is enabled[0]. The patch
+4/4 of this series uses the bridge hooks introduced in [0], and hence will not
+compile without [0].
 
-I don't see the necessity of having this wrapper structure. Can't you simply
-use struct pingroup directly?
+This patch series is a complete re-vamp from the previously posted series[1] and
+hence, the version index has been reset to v1. The OLDI support from that series
+was dropped and only the base support for AM625 DSS was kept (and eventually
+merged)[2].
 
-...
+These patches have been tested on AM625 based platforms, SK-AM625 EVM with a
+Microptis dual-lvds panel (SK-LCD1), and Beagleplay with a Lincolntech dual-lvds
+panel (LCD-185T). The patches with complete support including the expected
+devicetree configuration of the OLDI TXes can be found in the
+"next_oldi_finals-v1-tests" branch of my github fork[3].
 
-> +static int scmi_pinctrl_imx_probe(struct scmi_device *sdev)
-> +{
-> +	int ret;
-> +	struct device *dev = &sdev->dev;
-> +	struct scmi_pinctrl_imx *pmx;
-> +	const struct scmi_handle *handle;
-> +	struct scmi_protocol_handle *ph;
-> +	struct device_node *np __free(device_node) = of_find_node_by_path("/");
-> +	const struct scmi_pinctrl_proto_ops *pinctrl_ops;
+Thanks,
+Aradhya
 
-> +	if (!sdev->handle)
-> +		return -EINVAL;
+[0]: Dependency Patch: Introduce early_enable / late_disable drm bridge APIs
+https://lore.kernel.org/all/20240511153051.1355825-7-a-bhatia1@ti.com/
 
-When this conditional can be true?
+[1]: AM62 OLDI Series - v7
+https://lore.kernel.org/all/20230125113529.13952-1-a-bhatia1@ti.com/
 
-> +	if (!of_match_node(scmi_pinctrl_imx_allowlist, np))
-> +		return -ENODEV;
+[2]: AM62 DSS Series - v9
+https://lore.kernel.org/all/20230616150900.6617-1-a-bhatia1@ti.com/
 
-> +	handle = sdev->handle;
+[3]: GitHub Fork for OLDI tests
+https://github.com/aradhya07/linux-ab/tree/next_oldi_finals-v1-tests
 
-It's even better to assign first and then check if the above check is needed at all.
 
-> +	pinctrl_ops = handle->devm_protocol_get(sdev, SCMI_PROTOCOL_PINCTRL, &ph);
-> +	if (IS_ERR(pinctrl_ops))
-> +		return PTR_ERR(pinctrl_ops);
-> +
-> +	pmx = devm_kzalloc(dev, sizeof(*pmx), GFP_KERNEL);
-> +	if (!pmx)
-> +		return -ENOMEM;
-> +
-> +	pmx->ph = ph;
-> +	pmx->ops = pinctrl_ops;
-> +
-> +	pmx->dev = dev;
-> +	pmx->pctl_desc.name = DRV_NAME;
-> +	pmx->pctl_desc.owner = THIS_MODULE;
-> +	pmx->pctl_desc.pctlops = &pinctrl_scmi_imx_pinctrl_ops;
-> +	pmx->pctl_desc.pmxops = &pinctrl_scmi_imx_pinmux_ops;
-> +	pmx->pctl_desc.confops = &pinctrl_scmi_imx_pinconf_ops;
-> +
-> +	ret = scmi_pinctrl_imx_get_pins(pmx, &pmx->pctl_desc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = scmi_pinctrl_imx_probe_dt(sdev, pmx);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_pinctrl_register_and_init(dev, &pmx->pctl_desc, pmx,
-> +					     &pmx->pctldev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register pinctrl\n");
-> +
-> +	return pinctrl_enable(pmx->pctldev);
-> +}
+Aradhya Bhatia (4):
+  dt-bindings: display: ti,am65x-dss: Minor Cleanup
+  dt-bindings: display: ti: Add schema for AM625 OLDI Transmitter
+  dt-bindings: display: ti,am65x-dss: Add OLDI properties for AM625 DSS
+  drm/tidss: Add OLDI bridge support
 
+ .../bindings/display/ti/ti,am625-oldi.yaml    | 153 +++++
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 178 +++++-
+ MAINTAINERS                                   |   1 +
+ drivers/gpu/drm/tidss/Makefile                |   3 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c           |  11 +-
+ drivers/gpu/drm/tidss/tidss_dispc.h           |   4 +
+ drivers/gpu/drm/tidss/tidss_drv.c             |  13 +-
+ drivers/gpu/drm/tidss/tidss_drv.h             |   4 +
+ drivers/gpu/drm/tidss/tidss_oldi.c            | 568 ++++++++++++++++++
+ drivers/gpu/drm/tidss/tidss_oldi.h            |  73 +++
+ 10 files changed, 983 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+ create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.h
+
+
+base-commit: 75fa778d74b786a1608d55d655d42b480a6fa8bd
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
