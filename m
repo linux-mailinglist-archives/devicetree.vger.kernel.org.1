@@ -1,120 +1,103 @@
-Return-Path: <devicetree+bounces-66433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA098C3120
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 13:59:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 266978C3125
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 14:12:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78362B2117F
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 11:59:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26F351C20B1E
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 12:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2A155C1A;
-	Sat, 11 May 2024 11:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9CD55C29;
+	Sat, 11 May 2024 12:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aay+PLzq"
+	dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b="Cz5wt15h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.kaechele.ca (mail.kaechele.ca [54.39.219.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6358F2F26;
-	Sat, 11 May 2024 11:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E1F5029D;
+	Sat, 11 May 2024 12:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.39.219.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715428763; cv=none; b=mxvAJWBAcbHZe26vsbPbiD1x9pDwliYIoI0QwWZLoGesk6vRjNm1DlsQ+xaqTF3qb/I8HpJC2Os0s5t4bEQbRS6fGQSbjdS9itgmzBD3NGBvfWKk2zrjUzJLqIcGq/61uPbuSaXf5SxFONqhJ7+m1mQsWqGyNNFoQ4wlLFXnGXc=
+	t=1715429573; cv=none; b=Khm7ZYB/SkQLwqxbScjNhn5VHPNb+AitbqQpcd+ZwARTvIYUoPKyssrX4XS9pKnkowZ8qjK8Rh9rU/mC8BbCvXQ0/BeJc6DEvC31+qXgucgXZ8+hrQJ4omzlmDJn5pyLv3H/Jfp/D7SBNLVA0GTj40T0TamLmoIIG0Xw8C5Lzwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715428763; c=relaxed/simple;
-	bh=ewewQeHMxrtOWqA/HQOi5zrRUH//pG5ayxcyfM2myGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Cj49vWK8yl7AYk6FRyWPLtEekCe6tEd/rVOjg8KA4zV1rOiZCceiT/YY2fpGQ4bhie+5eSeFk1lQIupCkCPzk1Ba9bfsQgThJUCvYyl43b535cUUJjF1+oWbbdNh/VnoEl0KLfdgW/n0ep6GKoMdzNg3lJ8Cfrl6T2fbgT6dlwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aay+PLzq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F830C2BBFC;
-	Sat, 11 May 2024 11:59:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715428762;
-	bh=ewewQeHMxrtOWqA/HQOi5zrRUH//pG5ayxcyfM2myGQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=aay+PLzqN9AOAKa5kSJmgKxh3pCYgtHWOpK0jF5l3SUAWofElY4pLrThFlW/BPxeq
-	 6Nholz9eM4457oAomxiP61F6J+81IzZnWcB9WroRh4Zwx5CYz1F6UEIJ3+sQT9Ld+c
-	 mf7ZE3US00rSsUTJnrqIkC+lDxFsl00nFjHein2MoEX6AZxToR1kNT0D9aRcAHUeGb
-	 wVS2ms1bq4kafEzgng4ZBLPL6RJKIsENA1SziUGkkCHHv/KKhFwHCa10px3Qq3hLuA
-	 qBJUHdLLz5g/MUp5WmMz9CJ8lsFuc3fr0geKKeDg0ek5Y80giO5FXJEzXauEqVMPR9
-	 Lc1ehBkKWdbXw==
-Date: Sat, 11 May 2024 12:59:10 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Danila Tikhonov <danila@jiaxyga.com>
-Subject: Re: [PATCH v2 1/2] iio: imu: bmi160: add support for bmi120
-Message-ID: <20240511125910.18e874cf@jic23-huawei>
-In-Reply-To: <20240511125436.520e3ff4@jic23-huawei>
-References: <20240504-bmi120-v2-0-3b3ce6e1c3c6@gmail.com>
-	<20240504-bmi120-v2-1-3b3ce6e1c3c6@gmail.com>
-	<CAMknhBFUOUy+TVi+baCN-FoLT8N=G4vOD5CgVgaKzvsu502CDQ@mail.gmail.com>
-	<20240511125436.520e3ff4@jic23-huawei>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1715429573; c=relaxed/simple;
+	bh=pJpbGrQRG17NW9RV6ENNzhtPKpgKqYX/WnTPi5BdlNo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=f/00AdgUrXMdyJ+FcCkLYSulGe4MDc3My2QL1c6qutYtXawjWI1on8TLHeUDxm2aAEXfM05fdq3l9ycmTdHMYt12sWwm+KaiV1ndjD04XHq9M7m3xvzRl76bPeCqnMlCc+vddTbHiekxP+1u4bvYDz7T0MaJddUp3DIt3e3T85k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca; spf=pass smtp.mailfrom=kaechele.ca; dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b=Cz5wt15h; arc=none smtp.client-ip=54.39.219.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaechele.ca
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B7847C005F;
+	Sat, 11 May 2024 08:13:13 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaechele.ca; s=201907;
+	t=1715429596; h=from:subject:date:message-id:to:mime-version:
+	 content-transfer-encoding; bh=81OK4Xej261w31VG4fWH+nxZNCaTDpeVyDYRMtjGIE4=;
+	b=Cz5wt15hncUJfpyninoSqs9LgxIHrYREy4yfrKJT77cne0/22ZVqjbEgkHt9YwvdkGmD0e
+	Flfab51wUCELiwlYdkBtNh/YCNhFIUCoh7ODYVMPxrhPyHZuVqjPN1cn0jbu93pGQw8NSZ
+	3sF5Z/LrMw6q4u9C0tSS1NDKiOcrpvg=
+From: Felix Kaechele <felix@kaechele.ca>
+To: Job Noorman <job@noorman.info>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] input: himax_hx83112b: add support for HX83100A
+Date: Sat, 11 May 2024 08:12:21 -0400
+Message-ID: <20240511121245.109644-1-felix@kaechele.ca>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+
+Resent, due to being caught in the spam filter.
+
+This set of patches brings support for the Himax HX83100A touch
+controller.
+
+I have no access to datasheets. So, like the original driver code
+that's being extended here, this code is mostly based on the quite
+convoluted, GPLv2 licensed manufacturer drivers for Android.
+I included links to sources and references where appropriate.
+
+A number of people tested this patch set on Lenovo ThinkSmart View
+(CD-18781Y) devices. That device has a variant utilizing a Innolux
+P080DDD-AB2 LCM. This LCM comes with the HX83100A.
+
+I would really appreciate if people using HX83112B chips could give this
+set a run to ensure nothing broke.
+
+Thanks,
+Felix
+
+Changes in v2:
+- removed regulator handling, my test device works fine without it
+- some minor formatting fixes
+
+Felix Kaechele (5):
+  dt-bindings: input: touchscreen: himax,hx83112b: add HX83100A
+  input: himax_hx83112b: use more descriptive register defines
+  input: himax_hx83112b: implement MCU register reading
+  input: himax_hx83112b: add himax_chip struct for multi-chip support
+  input: himax_hx83112b: add support for HX83100A
+
+ .../input/touchscreen/himax,hx83112b.yaml     |   1 +
+ drivers/input/touchscreen/himax_hx83112b.c    | 135 ++++++++++++++----
+ 2 files changed, 110 insertions(+), 26 deletions(-)
 
 
-> >   
-> > > +       }
-> > > +
-> > > +       return -ENODEV;
-> > > +}
-> > > +
-> > >  static int bmi160_chip_init(struct bmi160_data *data, bool use_spi)
-> > >  {
-> > >         int ret;
-> > > @@ -737,12 +753,10 @@ static int bmi160_chip_init(struct bmi160_data *data, bool use_spi)
-> > >                 dev_err(dev, "Error reading chip id\n");
-> > >                 goto disable_regulator;
-> > >         }
-> > > -       if (val != BMI160_CHIP_ID_VAL) {
-> > > -               dev_err(dev, "Wrong chip id, got %x expected %x\n",
-> > > -                       val, BMI160_CHIP_ID_VAL);
-> > > -               ret = -ENODEV;
-> > > -               goto disable_regulator;
-> > > -       }
-> > > +
-> > > +       ret = bmi160_check_chip_id(val);
-> > > +       if (ret)
-> > > +               dev_warn(dev, "Chip id not found: %x\n", val);    
-> > 
-> > This changes the error with probe failure to a warning, but the commit
-> > message doesn't explain why. We always want to know why changes were
-> > made. :-)
-> > 
-> > Should also probably be in a separate patch since changing the
-> > behavior here is a separate change from adding support for a new chip.  
-> True, separate patch would be ideal as maybe someone will backport this change and
-> not the rest.
-
-Given I'd already picked up v3, I added a note on this to the commit rather
-than splitting it.
-
-I doubt anyone will care about dragging in bmi120 IDs along with the relaxation
-of matching if they just want the relaxation.
-
-Jonathan
-
-> >   
-> > >
-> > >         ret = bmi160_set_mode(data, BMI160_ACCEL, true);
-> > >         if (ret)    
-> > 
-> > ...  
-> 
-> 
+base-commit: 5128de84d8fc849400d00f7a6982711f129699ea
+-- 
+2.45.0
 
 
