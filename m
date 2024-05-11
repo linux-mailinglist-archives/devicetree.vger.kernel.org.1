@@ -1,365 +1,124 @@
-Return-Path: <devicetree+bounces-66469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274D08C32A1
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 18:58:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FEC18C3315
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 20:11:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 782ADB21035
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 16:58:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8BC5281F26
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 18:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B723B1B7F7;
-	Sat, 11 May 2024 16:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7483A1CA9F;
+	Sat, 11 May 2024 18:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cfBkufG4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e2jdkaZb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C8C7F;
-	Sat, 11 May 2024 16:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424EB1CA8A;
+	Sat, 11 May 2024 18:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715446727; cv=none; b=bM3qBpgXNoGIKqi/Hw0BF/vr/pZdDt+eHaWwRZZk7kJ4BHYJ4ZezWnCjwRG+QydYhXMqHQ2YBDxTVTXbddDfJ/S2eJOpzYuLxYGLUqQT5R5LTBXw21wBv+LFar5AfUrKmDaAgld3WQDrLLGlvalH0gj27jUTkKZ5yhafNeWz95Y=
+	t=1715451090; cv=none; b=tQc3zcdJ/QvddwJrhgF5vJFuASuqT/m5qtRdofq5IwYWlwP4RgZGJSF17U0Ism+/AXtTeyVC3gomMJCFlwsGLp6NP8BCSfWBucQdZLBgZPI1hnVbwQ8+CNT0dVXLs46DmxdsuSfghPwTjz4X4D/HsRFLAVgTpLMjUU+c4Ou8k5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715446727; c=relaxed/simple;
-	bh=5AVH771LZeh7JEIvEAl1rITnWhqrlp/jLeqDnOLxo2A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rg98trtJKv36guG0YSICphJ7nGgLdsXjn3UpKKIMKJ+U7Gq2mx0243PBWx4kU13GDE1vlUOu5Uw7Ukphp9GXtkvxOiztCk2Jbh+/l7y9g5kPTteIdayRaN12QL4vFcDqozetpRxTDOtnDss44iq0XE8i8HuUQWnoMOCPDapUTvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cfBkufG4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33B80C2BBFC;
-	Sat, 11 May 2024 16:58:40 +0000 (UTC)
+	s=arc-20240116; t=1715451090; c=relaxed/simple;
+	bh=+t8uRZp6FGvXN+V4ScRGLv+eJyrrubY4gibWN6mdiHI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fmp2vJKyLsxf3420WNjsLvJl0gW1eIeIFZbEy3bS89ah3Jz6uKfGsRbFMoKLEQ8m/5EVfWUu72Cp73KLAXBgm7DbifaLtKoKXmpq1qbvq9JBYx3veVla4t8EXURxaQWcGf0MeEcJhhhGYXq2Shj5AYj7NA779JePC+R20XqB0C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e2jdkaZb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CD5DC2BBFC;
+	Sat, 11 May 2024 18:11:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715446726;
-	bh=5AVH771LZeh7JEIvEAl1rITnWhqrlp/jLeqDnOLxo2A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cfBkufG4JbhTFf4YjKyC1dwViTWh/PvlHouFVbu5ui4J06pma431kOdW9o6dZAfXB
-	 +NGNlspLwZ1Ul0MzUnd+ZC6npiruCInwnulqcjkwRvLmIppR0zETIlRbRfzrgaWkK0
-	 68Fo9w81UUmcvBkfzNyTUppr0Fllr3g9V0ppjcz923aw3bUgmQ5I6fqc2f3jriuQ1T
-	 0Je+wIiJOOoGEb1WxOX9s1opJGWSqL6QO9CD8vVAIGYBW05qPiOynXP3DHlAuqmi2q
-	 m1viUQR3piEV3bHOBwkPDns04oha1qpM/Or9hvu3CLAKpXympClx7KcZx2U0XywZxU
-	 Cum1zWWKydnYw==
-Date: Sat, 11 May 2024 17:58:32 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
- <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH RFC v2 8/8] iio: adc: ad7944: add support for SPI
- offload
-Message-ID: <20240511175832.6c2f6517@jic23-huawei>
-In-Reply-To: <20240510-dlech-mainline-spi-engine-offload-2-v2-8-8707a870c435@baylibre.com>
-References: <20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com>
-	<20240510-dlech-mainline-spi-engine-offload-2-v2-8-8707a870c435@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1715451089;
+	bh=+t8uRZp6FGvXN+V4ScRGLv+eJyrrubY4gibWN6mdiHI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e2jdkaZbC/mdPAuuX1eCHbhGEu4F1appnZLT1q4rOQrw8hs/5sppQXOV2zRweyBYM
+	 JTRs/m6M7JXBsqp66uNQmSheaAZglqcUtJ3KTp+CYxoJdYVdL8mkPlW0T9h3sdNZd/
+	 NMAoMhuFa/s8NWyrGFlr48VOgPI0J7tCsvDWvHG2Z4+mJITYr+8ino8G7uaoGs94dq
+	 4IQKjoJsADnxbivm5h7bvNIelFTpLU0gvAMQXaZVDsCvKI+jM49sYKr3VuamE5KHNX
+	 TdHySYjtKa8IrqdiexAKN418X1uM8P+d4U6H6DtqFXH+Skitspy7NC7OV4gLXyj7w0
+	 zsmqfQV10pQgQ==
+Date: Sat, 11 May 2024 19:11:19 +0100
+From: Simon Horman <horms@kernel.org>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	=?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next v6 4/7] net: stmmac: introduce pcs_init/pcs_exit
+ stmmac operations
+Message-ID: <20240511181119.GU2347895@kernel.org>
+References: <20240510-rzn1-gmac1-v6-0-b63942be334c@bootlin.com>
+ <20240510-rzn1-gmac1-v6-4-b63942be334c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240510-rzn1-gmac1-v6-4-b63942be334c@bootlin.com>
 
-On Fri, 10 May 2024 19:44:31 -0500
-David Lechner <dlechner@baylibre.com> wrote:
-
-> This adds support for SPI offload to the ad7944 driver. This allows
-> reading data at the max sample rate of 2.5 MSPS.
+On Fri, May 10, 2024 at 09:38:11AM +0200, Romain Gantois wrote:
+> From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Introduce a mechanism whereby platforms can create their PCS instances
+> prior to the network device being published to userspace, but after
+> some of the core stmmac initialisation has been completed. This means
+> that the data structures that platforms need will be available.
+> 
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> Co-developed-by: Romain Gantois <romain.gantois@bootlin.com>
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
 > ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c | 8 +++++++-
+>  include/linux/stmmac.h                            | 2 ++
+>  2 files changed, 9 insertions(+), 1 deletion(-)
 > 
-> v2 changes:
-> 
-> In the previous version, there was a new separate driver for the PWM
-> trigger and DMA hardware buffer. This was deemed too complex so they
-> are moved into the ad7944 driver.
-> 
-> It has also been reworked to accommodate for the changes described in
-> the other patches.
-> 
-> RFC: This isn't very polished yet, just FYI. A few things to sort out:
-> 
-> Rather than making the buffer either triggered buffer or hardware buffer,
-> I'm considering allowing both, e.g. buffer0 will always be the triggered
-> buffer and buffer1 will will be the hardware buffer if connected to a SPI
-> controller with offload support, otherwise buffer1 is absent. But since
-> multiple buffers haven't been used much so far, more investigation is
-> needed to see how that would work in practice. If we do that though, then
-> we would always have the sampling_frequency attribute though even though
-> it only applies to one buffer.
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+> index 778d79cdb2e6d..f562c563aab55 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
+> @@ -505,7 +505,10 @@ int stmmac_pcs_setup(struct net_device *ndev)
+>  	priv = netdev_priv(ndev);
+>  	mode = priv->plat->phy_interface;
+>  
+> -	if (priv->plat->mdio_bus_data && priv->plat->mdio_bus_data->has_xpcs) {
+> +	if (priv->plat->pcs_init) {
+> +		ret = priv->plat->pcs_init(priv);
+> +	} else if (priv->plat->mdio_bus_data &&
+> +		   priv->plat->mdio_bus_data->has_xpcs) {
+>  		/* Try to probe the XPCS by scanning all addresses */
+>  		for (addr = 0; addr < PHY_MAX_ADDR; addr++) {
+>  			xpcs = xpcs_create_mdiodev(priv->mii, addr, mode);
 
-Why would someone who has this nice IP in the path want the conventional
-triggered buffer?  I'm not against the two buffer option, but I'd like to know
-the reasoning not to just provide the hardware buffer if this SPI offload
-is available.
+I am unsure if this can occur, but if priv->plat->pcs_init returns 0 then
+xpcs will be used while uninitialised towards the end of this function.
 
-I can conjecture reasons but would like you to write them out for me :)
-This feels like if someone has paid for the expensive hardware they probably
-only want the best performance.
+Flagged by Smatch.
 
-Jonathan
-
-
-> ---
->  drivers/iio/adc/ad7944.c | 147 +++++++++++++++++++++++++++++++++++------------
->  1 file changed, 111 insertions(+), 36 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7944.c b/drivers/iio/adc/ad7944.c
-> index 4602ab5ed2a6..6724d6c92778 100644
-> --- a/drivers/iio/adc/ad7944.c
-> +++ b/drivers/iio/adc/ad7944.c
-> @@ -9,6 +9,7 @@
->  #include <linux/align.h>
->  #include <linux/bitfield.h>
->  #include <linux/bitops.h>
-> +#include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/err.h>
-> @@ -21,6 +22,7 @@
->  
->  #include <linux/iio/iio.h>
->  #include <linux/iio/sysfs.h>
-> +#include <linux/iio/buffer-dmaengine.h>
->  #include <linux/iio/trigger_consumer.h>
->  #include <linux/iio/triggered_buffer.h>
->  
-> @@ -65,6 +67,8 @@ struct ad7944_adc {
->  	bool always_turbo;
->  	/* Reference voltage (millivolts). */
->  	unsigned int ref_mv;
-> +	/* Clock that triggers SPI offload. */
-> +	struct clk *trigger_clk;
->  
->  	/*
->  	 * DMA (thus cache coherency maintenance) requires the
-> @@ -123,6 +127,7 @@ static const struct ad7944_chip_info _name##_chip_info = {		\
->  			.scan_type.endianness = IIO_CPU,		\
->  			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)	\
->  					| BIT(IIO_CHAN_INFO_SCALE),	\
-> +			.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SAMP_FREQ),\
->  		},							\
->  		IIO_CHAN_SOFT_TIMESTAMP(1),				\
->  	},								\
-> @@ -134,18 +139,12 @@ AD7944_DEFINE_CHIP_INFO(ad7985, ad7944, 16, 0);
->  /* fully differential */
->  AD7944_DEFINE_CHIP_INFO(ad7986, ad7986, 18, 1);
->  
-> -static void ad7944_unoptimize_msg(void *msg)
-> -{
-> -	spi_unoptimize_message(msg);
-> -}
-> -
-> -static int ad7944_3wire_cs_mode_init_msg(struct device *dev, struct ad7944_adc *adc,
-> -					 const struct iio_chan_spec *chan)
-> +static void ad7944_3wire_cs_mode_init_msg(struct device *dev, struct ad7944_adc *adc,
-> +					  const struct iio_chan_spec *chan)
->  {
->  	unsigned int t_conv_ns = adc->always_turbo ? adc->timing_spec->turbo_conv_ns
->  						   : adc->timing_spec->conv_ns;
->  	struct spi_transfer *xfers = adc->xfers;
-> -	int ret;
->  
->  	/*
->  	 * NB: can get better performance from some SPI controllers if we use
-> @@ -174,21 +173,14 @@ static int ad7944_3wire_cs_mode_init_msg(struct device *dev, struct ad7944_adc *
->  	xfers[2].bits_per_word = chan->scan_type.realbits;
->  
->  	spi_message_init_with_transfers(&adc->msg, xfers, 3);
-> -
-> -	ret = spi_optimize_message(adc->spi, &adc->msg);
-> -	if (ret)
-> -		return ret;
-> -
-> -	return devm_add_action_or_reset(dev, ad7944_unoptimize_msg, &adc->msg);
->  }
->  
-> -static int ad7944_4wire_mode_init_msg(struct device *dev, struct ad7944_adc *adc,
-> -				      const struct iio_chan_spec *chan)
-> +static void ad7944_4wire_mode_init_msg(struct device *dev, struct ad7944_adc *adc,
-> +				       const struct iio_chan_spec *chan)
->  {
->  	unsigned int t_conv_ns = adc->always_turbo ? adc->timing_spec->turbo_conv_ns
->  						   : adc->timing_spec->conv_ns;
->  	struct spi_transfer *xfers = adc->xfers;
-> -	int ret;
->  
->  	/*
->  	 * NB: can get better performance from some SPI controllers if we use
-> @@ -208,12 +200,6 @@ static int ad7944_4wire_mode_init_msg(struct device *dev, struct ad7944_adc *adc
->  	xfers[1].bits_per_word = chan->scan_type.realbits;
->  
->  	spi_message_init_with_transfers(&adc->msg, xfers, 2);
-> -
-> -	ret = spi_optimize_message(adc->spi, &adc->msg);
-> -	if (ret)
-> -		return ret;
-> -
-> -	return devm_add_action_or_reset(dev, ad7944_unoptimize_msg, &adc->msg);
->  }
->  
->  static int ad7944_chain_mode_init_msg(struct device *dev, struct ad7944_adc *adc,
-> @@ -345,6 +331,30 @@ static int ad7944_read_raw(struct iio_dev *indio_dev,
->  			return -EINVAL;
->  		}
->  
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		if (!adc->trigger_clk)
-> +			return -EOPNOTSUPP;
-> +
-> +		*val = clk_get_rate(adc->trigger_clk);
-> +		return IIO_VAL_INT;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad7944_write_raw(struct iio_dev *indio_dev,
-> +			    const struct iio_chan_spec *chan,
-> +			    int val, int val2, long info)
-> +{
-> +	struct ad7944_adc *adc = iio_priv(indio_dev);
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		if (!adc->trigger_clk)
-> +			return -EOPNOTSUPP;
-> +
-> +		return clk_set_rate(adc->trigger_clk, val);
->  	default:
->  		return -EINVAL;
->  	}
-> @@ -352,6 +362,28 @@ static int ad7944_read_raw(struct iio_dev *indio_dev,
->  
->  static const struct iio_info ad7944_iio_info = {
->  	.read_raw = &ad7944_read_raw,
-> +	.write_raw = &ad7944_write_raw,
-> +};
-> +
-> +static int ad7944_offload_ex_buffer_postenable(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7944_adc *adc = iio_priv(indio_dev);
-> +
-> +	return spi_offload_hw_trigger_enable(adc->spi, 0);
-> +}
-> +
-> +static int ad7944_offload_ex_buffer_predisable(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7944_adc *adc = iio_priv(indio_dev);
-> +
-> +	spi_offload_hw_trigger_disable(adc->spi, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct iio_buffer_setup_ops ad7944_offload_ex_buffer_setup_ops = {
-> +	.postenable = &ad7944_offload_ex_buffer_postenable,
-> +	.predisable = &ad7944_offload_ex_buffer_predisable,
->  };
->  
->  static irqreturn_t ad7944_trigger_handler(int irq, void *p)
-> @@ -471,6 +503,18 @@ static void ad7944_ref_disable(void *ref)
->  	regulator_disable(ref);
->  }
->  
-> +static void ad7944_offload_unprepare(void *p)
-> +{
-> +	struct ad7944_adc *adc = p;
-> +
-> +	spi_offload_unprepare(adc->spi, 0, &adc->msg);
-> +}
-> +
-> +static void ad7944_unoptimize_msg(void *msg)
-> +{
-> +	spi_unoptimize_message(msg);
-> +}
-> +
->  static int ad7944_probe(struct spi_device *spi)
->  {
->  	const struct ad7944_chip_info *chip_info;
-> @@ -603,16 +647,10 @@ static int ad7944_probe(struct spi_device *spi)
->  
->  	switch (adc->spi_mode) {
->  	case AD7944_SPI_MODE_DEFAULT:
-> -		ret = ad7944_4wire_mode_init_msg(dev, adc, &chip_info->channels[0]);
-> -		if (ret)
-> -			return ret;
-> -
-> +		ad7944_4wire_mode_init_msg(dev, adc, &chip_info->channels[0]);
->  		break;
->  	case AD7944_SPI_MODE_SINGLE:
-> -		ret = ad7944_3wire_cs_mode_init_msg(dev, adc, &chip_info->channels[0]);
-> -		if (ret)
-> -			return ret;
-> -
-> +		ad7944_3wire_cs_mode_init_msg(dev, adc, &chip_info->channels[0]);
->  		break;
->  	case AD7944_SPI_MODE_CHAIN:
->  		ret = device_property_read_u32(dev, "#daisy-chained-devices",
-> @@ -649,11 +687,48 @@ static int ad7944_probe(struct spi_device *spi)
->  		indio_dev->num_channels = ARRAY_SIZE(chip_info->channels);
->  	}
->  
-> -	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-> -					      iio_pollfunc_store_time,
-> -					      ad7944_trigger_handler, NULL);
-> -	if (ret)
-> -		return ret;
-> +	if (device_property_present(dev, "spi-offloads")) {
-> +		/* TODO: make this a parameter to ad7944_3wire_cs_mode_init_msg() */
-> +		/* FIXME: wrong index for 4-wire mode */
-> +		adc->xfers[2].rx_buf = NULL;
-> +		adc->xfers[2].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-> +
-> +		ret = spi_offload_prepare(adc->spi, 0, &adc->msg);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "failed to prepare offload\n");
-> +
-> +		ret = devm_add_action_or_reset(dev, ad7944_offload_unprepare, adc);
-> +		if (ret)
-> +			return ret;
-> +
-> +		adc->trigger_clk = devm_clk_get_enabled(dev, "trigger");
-> +		if (IS_ERR(adc->trigger_clk))
-> +			return dev_err_probe(dev, PTR_ERR(adc->trigger_clk),
-> +					     "failed to get trigger clk\n");
-> +
-> +		ret = devm_iio_dmaengine_buffer_setup(dev, indio_dev, "rx");
-> +		if (ret)
-> +			return ret;
-> +
-> +		indio_dev->setup_ops = &ad7944_offload_ex_buffer_setup_ops;
-> +		/* offload can't have soft timestamp */
-> +		indio_dev->num_channels--;
-> +	} else {
-> +		ret = spi_optimize_message(adc->spi, &adc->msg);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = devm_add_action_or_reset(dev, ad7944_unoptimize_msg, &adc->msg);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-> +						      iio_pollfunc_store_time,
-> +						      ad7944_trigger_handler,
-> +						      NULL);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	return devm_iio_device_register(dev, indio_dev);
->  }
-> 
-
+...
 
