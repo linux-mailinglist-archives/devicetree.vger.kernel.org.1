@@ -1,67 +1,60 @@
-Return-Path: <devicetree+bounces-66440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638328C313C
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 14:18:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 009648C3149
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 14:38:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1864B282043
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 12:18:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94A8C1F21862
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 12:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E2055E48;
-	Sat, 11 May 2024 12:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0E842044;
+	Sat, 11 May 2024 12:38:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/6ke5/c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXnNF6XQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DACE453362;
-	Sat, 11 May 2024 12:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F90AC8DE;
+	Sat, 11 May 2024 12:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715429927; cv=none; b=ZC19GDbY54HYwZ/RjjhjrA9yLzInA/MvW5Qa1oyq00DWO+0cYNkyZqaeCzWYW8yFb9HdTIc7ydzlJluPBrav+uPSKgawZfTwe1HqVqipTkIscfwPnqdJMRyOkrxlcFPh8bRpkXTc4Z0KAEbuwHFvxqQyUpfLoYQ4db47xZ5G9ro=
+	t=1715431095; cv=none; b=ppAG8MTf7UxzlryUdjTX1LVLbD50pXKha599VGWaooJ189feXrz7y3DI/RQx1H5aZOpm7TY0JxcmFxphPb2nZh5JzEfKishONJDmCa1mvVrgovSCzDif57BVoh+WEFmZZrFOiyAKaAXJ86vDnnsdu5rhr+ObEMJ5iahEtufkg3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715429927; c=relaxed/simple;
-	bh=s+M9h0DBUQzIAjC8URttvL4W46/RRLRnAX+0HaoiRJI=;
+	s=arc-20240116; t=1715431095; c=relaxed/simple;
+	bh=pTtfjAhGNdNkddBKTzttOYaB1OFfxS0HrYE/Kf0RfO4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tTv4NxTJx348gGklZ+FtYZzA7RR0alfCcg4HdWzKmSWmuxR0Zl/ti0pnwWcIXGweSeLrUTnQKsFy+Xi8DWHseV6f0XKyUnJHch6Ud/2PQg3J8J4ZAwZ99rXl7jsiyGkhWlpp8jQB2R/mXek0ajyPKiQHGsmU67EE96DxxRV7JWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/6ke5/c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F6E7C2BBFC;
-	Sat, 11 May 2024 12:18:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YUCf6q4CJ+3no+7i8+02wPiNialNLvII4ArFU5+G1BmYaaJ+wtEOaW5FZVJbgUd0VGEvNRExpLHAeo9kp7hz+foyAUgHpNWv2fVIvz3bRoIMOJkH9EUbXy+su3Qcu3vZVyRwpIS+ZTwbqy4boPXcYRK/lxpWi2c1lpFYAmQojJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXnNF6XQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDCA4C2BBFC;
+	Sat, 11 May 2024 12:38:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715429926;
-	bh=s+M9h0DBUQzIAjC8URttvL4W46/RRLRnAX+0HaoiRJI=;
+	s=k20201202; t=1715431094;
+	bh=pTtfjAhGNdNkddBKTzttOYaB1OFfxS0HrYE/Kf0RfO4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G/6ke5/c5OoLeBvn2RdkJkBy6iB8OiTNKb0NMyf8j5FtnDl4Yi5PjTaeUlns3cIOp
-	 mC5LT+b2P1SfMZabSGhbeeSB2J6uAMA+iSNSG3ZmBgFxD+o2trHRZ8KPQ7oa7BnyWA
-	 V2Q5v4i37XtvluH9ctWIHl+3+pP6HwwuGIwD8BQ06HLfIeFDKoiC0INjMt3E/bzjWT
-	 /Uljpo7zyXJTsJfKeciN8Tp6IWA07Jg9FPZmLm6XjAotY0gL9XmENG2bOZMi1OC7Us
-	 Dp5ykq3/v6KyKbw2UfxA09dYJ4nVTrtXVCivfQ7DzH+T+WzS3KcMMB7TgVonkJ+6DO
-	 kXByUnWWnbvsA==
-Date: Sat, 11 May 2024 13:18:41 +0100
+	b=RXnNF6XQRpkbClGeUmn57PI5Mey0MfPVNW/YeSs1ls+g4gnMZ1onx8X0pUWBmRyHI
+	 Tz8DMEm9A0limyW4/H7FTWs19r006d/XtTgX80mToPIntL2fZ4iiySalI8yXaGOK51
+	 JPAtBUZpv/Zfhto88y7rsvn1Hel/KLLapGc4lmBYNWS1Ug+aO0yODnl2c5E/+e/MfH
+	 s6wTTNxWl2djpDZucUcPisoFg/SZmmk2ljSfBF6QBDyyM/BiTRkYttey9oK7GR7ass
+	 qB5NLHrvRJEVdE41k4u45epV6XvCzzGnu7YAYkO4D5wsa3bGPWkVXCEGA5Zy8BBDei
+	 UpVtNOmRSdGRw==
+Date: Sat, 11 May 2024 13:38:10 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Rob Herring <robh@kernel.org>,
+To: Felix Kaechele <felix@kaechele.ca>
+Cc: Job Noorman <job@noorman.info>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
-Message-ID: <20240511-unbiased-dainty-ccb5ece9b1b9@spud>
-References: <20240507065319.274976-1-xingyu.wu@starfivetech.com>
- <20240510-unfounded-syrup-d1263d57d05a@spud>
- <NTZPR01MB0956D48361098E8AA4B3930A9FE02@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: input: touchscreen: himax,hx83112b:
+ add HX83100A
+Message-ID: <20240511-passage-obstruct-70e4c3b37dbd@spud>
+References: <20240511121245.109644-1-felix@kaechele.ca>
+ <20240511121245.109644-2-felix@kaechele.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,73 +62,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="333ws8b+xrVh64Qn"
+	protocol="application/pgp-signature"; boundary="A7xsnz4pJUUJkkL2"
 Content-Disposition: inline
-In-Reply-To: <NTZPR01MB0956D48361098E8AA4B3930A9FE02@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <20240511121245.109644-2-felix@kaechele.ca>
 
 
---333ws8b+xrVh64Qn
+--A7xsnz4pJUUJkkL2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, May 11, 2024 at 03:02:56AM +0000, Xingyu Wu wrote:
-> On 11/05/2024 05:05, Conor Dooley wrote:
-> >=20
-> > On Tue, May 07, 2024 at 02:53:17PM +0800, Xingyu Wu wrote:
-> > > This patch is to add the notifier for PLL0 clock and set the PLL0 rate
-> > > to 1.5GHz to fix the lower rate of CPUfreq on the JH7110 SoC.
-> > >
-> > > The first patch is to add the notifier for PLL0 clock. Setting the
-> > > PLL0 rate need the son clock (cpu_root) to switch its parent clock to
-> > > OSC clock and switch it back after setting PLL0 rate. It need to use
-> > > the cpu_root clock from SYSCRG and register the notifier in the SYSCRG
-> > > driver.
-> > >
-> > > The second patch is to set cpu_core rate to 500MHz and PLL0 rate to
-> > > 1.5GHz to fix the problem about the lower rate of CPUfreq on the
-> > > visionfive board. The cpu_core clock rate is set to 500MHz first to
-> > > ensure that the cpu frequency will not suddenly become high and the
-> > > cpu voltage is not enough to cause a crash when the PLL0 is set to 1.=
-5GHz.
-> > > The cpu voltage and frequency are then adjusted together by CPUfreq.
-> >=20
-> > Hmm, how does sequencing work here? If we split the patches between tre=
-es it
-> > sounds like without the dts patch, the clock tree would (or
-> > could) crash, or mainline if the clock changes there before the dts one=
-s do. Am I
-> > misunderstanding that?
+On Sat, May 11, 2024 at 08:12:22AM -0400, Felix Kaechele wrote:
+> Add a compatible string for the Himax HX83100A touch controller.
 >=20
-> Oh, I think you misunderstood it. Patch 1 (clock driver patch) does not c=
-ause the
-> clock tree crash without the patch 2 (dts patch), and it just provides th=
-e correct
-> flow of how to change the PLL0 rate. The patch 2 is to set the clock rate=
- of
-> cpu_core and PLL0 rate, which causes the crash without patch 1. Setting c=
-pu_core
-> rate is to avoid crashes by insufficient cpu voltage when setting PLL0 ra=
-te.
+> Signed-off-by: Felix Kaechele <felix@kaechele.ca>
 
-So is the problem in the other direction then? My dts tree will crash if
-I apply the dts change without the clock patch?
-Additionally, what about U-Boot? Will it have problems if the dts is
-imported there without changes to its clock driver?
+Commit message should mention what makes this device incompatible with
+the existing device.
 
-Cheers,
+Thanks,
 Conor.
 
---333ws8b+xrVh64Qn
+> ---
+>  .../devicetree/bindings/input/touchscreen/himax,hx83112b.yaml    | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/himax,hx=
+83112b.yaml b/Documentation/devicetree/bindings/input/touchscreen/himax,hx8=
+3112b.yaml
+> index f42b23d532eb..f5cfacb5e966 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.=
+yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.=
+yaml
+> @@ -15,6 +15,7 @@ allOf:
+>  properties:
+>    compatible:
+>      enum:
+> +      - himax,hx83100a
+>        - himax,hx83112b
+> =20
+>    reg:
+> --=20
+> 2.45.0
+>=20
+
+--A7xsnz4pJUUJkkL2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj9iIQAKCRB4tDGHoIJi
-0jz7AQDMGT0ZB2SbFkWjxos3cZ08Ze3mWlouJG3EZjiHUCiEpQD9GdnqEmDDi+rg
-c/RIx75GM1ix0t3Vh238l/JUOHWRsg0=
-=/uka
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj9msgAKCRB4tDGHoIJi
+0sU2AP4x75uROqsCf5hAItzPs1a76FLSU36pSc9PIX2QsE81wAD/W4rTYtFPzR4J
+iFfHxIoONo99+mqF11MlcofK2Zy6Kws=
+=DVSB
 -----END PGP SIGNATURE-----
 
---333ws8b+xrVh64Qn--
+--A7xsnz4pJUUJkkL2--
 
