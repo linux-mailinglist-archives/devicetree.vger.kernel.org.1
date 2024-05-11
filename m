@@ -1,231 +1,184 @@
-Return-Path: <devicetree+bounces-66421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419878C3000
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 09:16:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 678E58C300A
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 09:27:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBED4284611
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 07:16:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E82ABB217FD
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 07:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CCE85C89;
-	Sat, 11 May 2024 07:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3A6748D;
+	Sat, 11 May 2024 07:27:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O0KD0eCw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2PbT+hT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B9A2610D;
-	Sat, 11 May 2024 07:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D4E24A33;
+	Sat, 11 May 2024 07:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715411759; cv=none; b=DrRczBNLTlVd6mKHFjc3NU0HDOYR5eHf6GvJH7/siWCIOSV6L4OpDWzgnKPPry9csDe8cRCI8aYtpU+f+4ZIB+dECI0nT5zVuWy05CnByGfvjIYbtNZ+Wfh1IMCgXh6zJ3ZlJPAmhBRDtVmVapq8P2R+PjKqhClxB0scKdDP6bk=
+	t=1715412430; cv=none; b=CXtaSgAql/fQ2pO1cDMTFQnSlUht2r6/IPMAMXogj3iD5hauslhCOyozJ5a5RQrsWR1/j4Ky6p4tE2dkQ52KaP4zizc4qPNLMz5rDFtkuf80yWM4QcJAdYjaRJTXn1ogQMJ7i6rkw9QfJhWdn4LtriNTxaokIXTcHF7RqlHfRAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715411759; c=relaxed/simple;
-	bh=TjIX/flL554zvS60Pv08V4xwbSviSX/085JsCFPdfW0=;
+	s=arc-20240116; t=1715412430; c=relaxed/simple;
+	bh=pho0PmFfIhbXkPZtW4UZllE0y/5im6qi/bN4LGe074w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FlGixZl1n5ZN0JrHTgfiv1CG11Wtlygx5QhRsSV2bupB9Sj3egSCzshTHh3T1Srd/mWZtGfGL7JX6uWFhu+hMv18Aj75YwOMr3+BGNxhGiOdBidT5KGiGnuyDbuF0Xna3HZsTR2U1KOW0ieBsYHcaPnmegH61LH8VcPIwGmqzbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O0KD0eCw; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715411757; x=1746947757;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TjIX/flL554zvS60Pv08V4xwbSviSX/085JsCFPdfW0=;
-  b=O0KD0eCwO9R6GuqK5XlnlBlz7inxXag+onaC1SBQqx1Q4nBOG37CzdMX
-   rWHGKqNhh9bdw/mVT8Dr1gwLQcQgvlr6movjuJNoFriUnIJ6iCB4gMrX9
-   e6RlAZSKhXHie/VuLhUXGs+ssHVNCSvzg2ku3V5ORT35nFHqA4c/IfNpO
-   HNpPSwI+IIxrFAVrdeNj0IsGKlUrW1g5FAk6Qy5l3EhshCCN3R11EglvT
-   0NoQztO9f78Lh8DRmgzZiY6vFmyNf0JGK44rtciEcfyDXRi8sMRhUXFJC
-   PxrCjZj6UPd+pHhx5QhC+sjz63W8HDiJfuWrNvcayc7ikbJjsRarcpunj
-   Q==;
-X-CSE-ConnectionGUID: vFZpoqfKT/+otG1Chca/cw==
-X-CSE-MsgGUID: oiCacyipTlmlFXorJDiing==
-X-IronPort-AV: E=McAfee;i="6600,9927,11069"; a="15223393"
-X-IronPort-AV: E=Sophos;i="6.08,153,1712646000"; 
-   d="scan'208";a="15223393"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 May 2024 00:15:56 -0700
-X-CSE-ConnectionGUID: MWwOHqH+RbO9RIk3HpsY+A==
-X-CSE-MsgGUID: gzKGgGHUTNGlt5D+4HZqmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,153,1712646000"; 
-   d="scan'208";a="34391821"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 11 May 2024 00:15:52 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s5gxS-00074n-0B;
-	Sat, 11 May 2024 07:15:50 +0000
-Date: Sat, 11 May 2024 15:14:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Pankaj Gupta <pankaj.gupta@nxp.com>
-Subject: Re: [PATCH 4/4] firmware: imx: add driver for NXP EdgeLock Enclave
-Message-ID: <202405111457.slkK7qEv-lkp@intel.com>
-References: <20240510-imx-se-if-v1-4-27c5a674916d@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BnwxthqERjtpb+ovoQaa/0w0aPQ+QC60AsQ6Vy4mUcxy9zRCEPEW3fCVV2keevPMvQ/D/07hT5kizNFOOuawhn8au1peOcdOxHN6ueh7ZIX8yEiYxCBboJ4MNxMlYblQZmVUhcG/R33xo9OYL+Xb6FvOWe2cD6uUWj4aAMfcENw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2PbT+hT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3208DC2BD10;
+	Sat, 11 May 2024 07:27:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715412429;
+	bh=pho0PmFfIhbXkPZtW4UZllE0y/5im6qi/bN4LGe074w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b2PbT+hT8VgSxNsqWa/JyyLMhEnb8UwGEUbeE045CY4K2c+NLY1ZrDU1hlwv6jSPr
+	 qT/2//5zP7yE5IetJROO0eNvVce71Pro5rqgwLNRvpD89yTqsP6qBRX5+NRz8upY8i
+	 sOP2Kt8CPTKwyI/+nY20m+Mie3nqBTMQLaSbKBqgfxH0aIzNi6fWpVPaqgrW2wKWlV
+	 v7kUy8zo3byVf1k/SrFoUYJ1CehN4EXMZzmAI/JDdRpHR75WyRePhj9SzSq+UZIbKP
+	 u237q1nwXmItM1dfdnPvPSdAfae/FbQvx+gG/luqxhLLzm0bSGujw+Ih2ech4dMnbW
+	 ne+XKzWLPK1/Q==
+Date: Sat, 11 May 2024 12:57:02 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com, mani@kernel.org,
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v7 4/7] PCI: rcar-gen4: Add rcar_gen4_pcie_drvdata
+Message-ID: <20240511072702.GD6672@thinkpad>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-5-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240510-imx-se-if-v1-4-27c5a674916d@nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240415081135.3814373-5-yoshihiro.shimoda.uh@renesas.com>
 
-Hi Pankaj,
+On Mon, Apr 15, 2024 at 05:11:32PM +0900, Yoshihiro Shimoda wrote:
+> In other to support future SoCs such as r8a779g0 and r8a779h0 that
+> require different initialization settings, let's introduce SoC
+> specific driver data with the initial member being the device mode.
+> No functional change.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-kernel test robot noticed the following build warnings:
+One nitpick below. With that addressed,
 
-[auto build test WARNING on e8f897f4afef0031fe618a8e94127a0934896aba]
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20240510-213210
-base:   e8f897f4afef0031fe618a8e94127a0934896aba
-patch link:    https://lore.kernel.org/r/20240510-imx-se-if-v1-4-27c5a674916d%40nxp.com
-patch subject: [PATCH 4/4] firmware: imx: add driver for NXP EdgeLock Enclave
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20240511/202405111457.slkK7qEv-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project b910bebc300dafb30569cecc3017b446ea8eafa0)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240511/202405111457.slkK7qEv-lkp@intel.com/reproduce)
+> ---
+>  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 30 ++++++++++++++-------
+>  1 file changed, 21 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> index 0be760ed420b..3da0a844e1b6 100644
+> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> @@ -48,11 +48,15 @@
+>  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
+>  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
+>  
+> +struct rcar_gen4_pcie_drvdata {
+> +	enum dw_pcie_device_mode mode;
+> +};
+> +
+>  struct rcar_gen4_pcie {
+>  	struct dw_pcie dw;
+>  	void __iomem *base;
+>  	struct platform_device *pdev;
+> -	enum dw_pcie_device_mode mode;
+> +	const struct rcar_gen4_pcie_drvdata *drvdata;
+>  };
+>  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
+>  
+> @@ -137,7 +141,7 @@ static int rcar_gen4_pcie_start_link(struct dw_pcie *dw)
+>  	 * Since dw_pcie_setup_rc() sets it once, PCIe Gen2 will be trained.
+>  	 * So, this needs remaining times for up to PCIe Gen4 if RC mode.
+>  	 */
+> -	if (changes && rcar->mode == DW_PCIE_RC_TYPE)
+> +	if (changes && rcar->drvdata->mode == DW_PCIE_RC_TYPE)
+>  		changes--;
+>  
+>  	for (i = 0; i < changes; i++) {
+> @@ -172,9 +176,9 @@ static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
+>  		reset_control_assert(dw->core_rsts[DW_PCIE_PWR_RST].rstc);
+>  
+>  	val = readl(rcar->base + PCIEMSR0);
+> -	if (rcar->mode == DW_PCIE_RC_TYPE) {
+> +	if (rcar->drvdata->mode == DW_PCIE_RC_TYPE) {
+>  		val |= DEVICE_TYPE_RC;
+> -	} else if (rcar->mode == DW_PCIE_EP_TYPE) {
+> +	} else if (rcar->drvdata->mode == DW_PCIE_EP_TYPE) {
+>  		val |= DEVICE_TYPE_EP;
+>  	} else {
+>  		ret = -EINVAL;
+> @@ -437,9 +441,9 @@ static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
+>  /* Common */
+>  static int rcar_gen4_add_dw_pcie(struct rcar_gen4_pcie *rcar)
+>  {
+> -	rcar->mode = (uintptr_t)of_device_get_match_data(&rcar->pdev->dev);
+> +	rcar->drvdata = of_device_get_match_data(&rcar->pdev->dev);
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405111457.slkK7qEv-lkp@intel.com/
+Even though rcar->drvdata won't be NULL, the lack of NULL check will cause
+folks to send fixup patch later. So please add a NULL check here itself.
 
-All warnings (new ones prefixed by >>):
+- Mani
 
->> drivers/firmware/imx/ele_common.c:27:6: warning: variable 'err' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-      27 |         if (!wait_for_completion_timeout(&priv->done, wait)) {
-         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/firmware/imx/ele_common.c:36:9: note: uninitialized use occurs here
-      36 |         return err;
-         |                ^~~
-   drivers/firmware/imx/ele_common.c:27:2: note: remove the 'if' if its condition is always true
-      27 |         if (!wait_for_completion_timeout(&priv->done, wait)) {
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/firmware/imx/ele_common.c:24:9: note: initialize the variable 'err' to silence this warning
-      24 |         int err;
-         |                ^
-         |                 = 0
-   1 warning generated.
---
-   In file included from drivers/firmware/imx/ele_base_msg.c:8:
-   In file included from include/linux/dma-mapping.h:11:
-   In file included from include/linux/scatterlist.h:8:
-   In file included from include/linux/mm.h:2188:
-   include/linux/vmstat.h:508:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     508 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     509 |                            item];
-         |                            ~~~~
-   include/linux/vmstat.h:515:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     515 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     516 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:522:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
-   include/linux/vmstat.h:527:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     527 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     528 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:536:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     536 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     537 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
->> drivers/firmware/imx/ele_base_msg.c:23:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-      23 |         if (!priv || !s_info)
-         |             ^~~~~~~~~~~~~~~~
-   drivers/firmware/imx/ele_base_msg.c:114:9: note: uninitialized use occurs here
-     114 |         return ret;
-         |                ^~~
-   drivers/firmware/imx/ele_base_msg.c:23:2: note: remove the 'if' if its condition is always false
-      23 |         if (!priv || !s_info)
-         |         ^~~~~~~~~~~~~~~~~~~~~
-      24 |                 goto exit;
-         |                 ~~~~~~~~~
->> drivers/firmware/imx/ele_base_msg.c:23:6: warning: variable 'ret' is used uninitialized whenever '||' condition is true [-Wsometimes-uninitialized]
-      23 |         if (!priv || !s_info)
-         |             ^~~~~
-   drivers/firmware/imx/ele_base_msg.c:114:9: note: uninitialized use occurs here
-     114 |         return ret;
-         |                ^~~
-   drivers/firmware/imx/ele_base_msg.c:23:6: note: remove the '||' if its condition is always false
-      23 |         if (!priv || !s_info)
-         |             ^~~~~~~~
-   drivers/firmware/imx/ele_base_msg.c:21:9: note: initialize the variable 'ret' to silence this warning
-      21 |         int ret;
-         |                ^
-         |                 = 0
->> drivers/firmware/imx/ele_base_msg.c:23:6: warning: variable 'get_info_addr' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
-      23 |         if (!priv || !s_info)
-         |             ^~~~~~~~~~~~~~~~
-   drivers/firmware/imx/ele_base_msg.c:103:6: note: uninitialized use occurs here
-     103 |         if (get_info_addr) {
-         |             ^~~~~~~~~~~~~
-   drivers/firmware/imx/ele_base_msg.c:23:2: note: remove the 'if' if its condition is always false
-      23 |         if (!priv || !s_info)
-         |         ^~~~~~~~~~~~~~~~~~~~~
-      24 |                 goto exit;
-         |                 ~~~~~~~~~
->> drivers/firmware/imx/ele_base_msg.c:23:6: warning: variable 'get_info_addr' is used uninitialized whenever '||' condition is true [-Wsometimes-uninitialized]
-      23 |         if (!priv || !s_info)
-         |             ^~~~~
-   drivers/firmware/imx/ele_base_msg.c:103:6: note: uninitialized use occurs here
-     103 |         if (get_info_addr) {
-         |             ^~~~~~~~~~~~~
-   drivers/firmware/imx/ele_base_msg.c:23:6: note: remove the '||' if its condition is always false
-      23 |         if (!priv || !s_info)
-         |             ^~~~~~~~
-   drivers/firmware/imx/ele_base_msg.c:18:27: note: initialize the variable 'get_info_addr' to silence this warning
-      18 |         phys_addr_t get_info_addr;
-         |                                  ^
-         |                                   = 0
-   9 warnings generated.
-
-
-vim +27 drivers/firmware/imx/ele_common.c
-
-    20	
-    21	int imx_ele_msg_rcv(struct se_if_priv *priv)
-    22	{
-    23		u32 wait;
-    24		int err;
-    25	
-    26		wait = msecs_to_jiffies(1000);
-  > 27		if (!wait_for_completion_timeout(&priv->done, wait)) {
-    28			dev_err(priv->dev,
-    29					"Error: wait_for_completion timed out.\n");
-    30			err = -ETIMEDOUT;
-    31		}
-    32	
-    33		mutex_unlock(&priv->se_if_cmd_lock);
-    34		priv->no_dev_ctx_used = false;
-    35	
-    36		return err;
-    37	}
-    38	
+>  
+> -	switch (rcar->mode) {
+> +	switch (rcar->drvdata->mode) {
+>  	case DW_PCIE_RC_TYPE:
+>  		return rcar_gen4_add_dw_pcie_rp(rcar);
+>  	case DW_PCIE_EP_TYPE:
+> @@ -480,7 +484,7 @@ static int rcar_gen4_pcie_probe(struct platform_device *pdev)
+>  
+>  static void rcar_gen4_remove_dw_pcie(struct rcar_gen4_pcie *rcar)
+>  {
+> -	switch (rcar->mode) {
+> +	switch (rcar->drvdata->mode) {
+>  	case DW_PCIE_RC_TYPE:
+>  		rcar_gen4_remove_dw_pcie_rp(rcar);
+>  		break;
+> @@ -500,14 +504,22 @@ static void rcar_gen4_pcie_remove(struct platform_device *pdev)
+>  	rcar_gen4_pcie_unprepare(rcar);
+>  }
+>  
+> +static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie = {
+> +	.mode = DW_PCIE_RC_TYPE,
+> +};
+> +
+> +static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie_ep = {
+> +	.mode = DW_PCIE_EP_TYPE,
+> +};
+> +
+>  static const struct of_device_id rcar_gen4_pcie_of_match[] = {
+>  	{
+>  		.compatible = "renesas,rcar-gen4-pcie",
+> -		.data = (void *)DW_PCIE_RC_TYPE,
+> +		.data = &drvdata_rcar_gen4_pcie,
+>  	},
+>  	{
+>  		.compatible = "renesas,rcar-gen4-pcie-ep",
+> -		.data = (void *)DW_PCIE_EP_TYPE,
+> +		.data = &drvdata_rcar_gen4_pcie_ep,
+>  	},
+>  	{},
+>  };
+> -- 
+> 2.25.1
+> 
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+மணிவண்ணன் சதாசிவம்
 
