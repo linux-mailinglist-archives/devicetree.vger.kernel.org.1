@@ -1,409 +1,260 @@
-Return-Path: <devicetree+bounces-66425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399E08C302C
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 10:03:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D2708C3033
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 10:15:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19FE61C21968
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 08:03:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 408541C2152D
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 08:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24BF310953;
-	Sat, 11 May 2024 08:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 752D724A0D;
+	Sat, 11 May 2024 08:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZyQ49s2g"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b="qrzd/Q6C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fritzc.com (mail.fritzc.com [213.160.72.247])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2FF28E7;
-	Sat, 11 May 2024 08:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F233CF65;
+	Sat, 11 May 2024 08:15:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.72.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715414586; cv=none; b=TZSQTvY1A++N/9yGTPb4UFl+a1Mx0paBqtypYjJDfZ4/cVFpEpPb7SXmIXN2vKjJeC6sp2SHqosEXzEOJmAI9u1KmZ3Xrqn6V2P98+P8TiCoBExrywu5+YT1fVK2Lwnj87ZayrmqCOTNlgpj8Meo9OiJMoxnD44mwOE7TiZ6u4Y=
+	t=1715415330; cv=none; b=nWCHj8s+Y+a/kf7nNv+dOVxCPdk86bhLNkUgvfkS0bL3cFTkILUr0HlE1Z4w7WNs6cheTD3d7jOssY+VOJ6ba6Q8rpUJeO8wkvg0GBZhLQ2iTRvz5ktCNgAWLcV4+24Cx1Gm9HGFZbctrbPyrx/k9jI0rULtuPngIR6Z+WhJw+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715414586; c=relaxed/simple;
-	bh=4Mwr+ojaEbimCCwqLFLAG1Fr6vQlP/RCJ1aQV940zsc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rMEZ2wE0/EzJTPaTlR+skj57CPoEu8yRt4i1oS9ljMgmNOIC5U52f1K9y6tR+3oOA3088rdRrSivEbzVyrrWrOLt+2Sq92BfMM2JIM5QCheghCWgzckYXiQ2MES9m5p6esmI1RMwPgRq46CmhkS4y/TWl4/P35zGd4/vCxS+wi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZyQ49s2g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F3F8C2BD10;
-	Sat, 11 May 2024 08:03:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715414585;
-	bh=4Mwr+ojaEbimCCwqLFLAG1Fr6vQlP/RCJ1aQV940zsc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZyQ49s2gZrVR7FSb2wCR3KknUuynlry1jeb/jF3XnwEJbl3ON3vnoWF/XLCSNuKkC
-	 iFOgUHpRdf/0nw8Amp3GC6oGoPcjg5Vl4hanuWC6fEXy+IjCVdKqTWeJFV6pPZwzCa
-	 KC1u7EGSWnN+Lbsvb444PCv2KmR8Xha6PUhmJnyqw67kX36pHK77CpKld1zBd/8CNC
-	 7kUYEyENvJile4LaABVmW0yLcdbHbfgUAzFEGcN+Dz5Kv9Ur95xhhvukE/HE7sVe2t
-	 XKy+d27QeODcRw+g+IVvYr89fASEa0hZOcz7OvdZWur/aoQt8BwF3kO1383YBc0+Id
-	 HXUhL9Iw5r/XA==
-Date: Sat, 11 May 2024 13:32:57 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jingoohan1@gmail.com,
-	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
-Message-ID: <20240511080257.GF6672@thinkpad>
-References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
- <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+	s=arc-20240116; t=1715415330; c=relaxed/simple;
+	bh=jUCqp7mbe1MgeyRsxbECoRThdo43Iu1WuFBlIsZaXMk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=YLjE89dgSHeO3uaC/LxNxvJs+tqwO/89LF23OEvzfrrR0yIgDQqTX6O2y9ea1QmyHZoT6c4sxoYserkpkkfOgmD/ktUJDRD5VcXPJ3i+AwQnZXhLSezVf3LM21PyYJjmvxIJTweBzC/XAR6GbSUlXU3Sk890jctLNcoVFAGqjP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de; spf=pass smtp.mailfrom=hexdev.de; dkim=pass (1024-bit key) header.d=fritzc.com header.i=@fritzc.com header.b=qrzd/Q6C; arc=none smtp.client-ip=213.160.72.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hexdev.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hexdev.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=fritzc.com;
+	s=dkim; h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+	In-Reply-To:Date:Cc:To:Reply-To:From:Subject:Message-ID:Sender:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=JcD1RWz5//JWV1w0Jl43QQMXM9Jjam+DZ+mIDPZQTFw=; b=qrzd/Q6C+yjvVfmaP8CM53oHBP
+	yt1nUxTRAPrNE6qINHezlr0FAZWe/fEGCkhHp3m+chFZIIeuuwnK46rt23xOdkzhcE/EVnpBfzCqv
+	sMTQioQcQm3iEGsOL+r1coQ6zh7oMq8YOe8tdTFX/ZMM2DrFJjOis/k0ZpzSoNh3XvoU=;
+Received: from 127.0.0.1
+	by fritzc.com with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim latest)
+	(envelope-from <christoph.fritz@hexdev.de>)
+	id 1s5hsY-001mUp-12;
+	Sat, 11 May 2024 10:14:51 +0200
+Message-ID: <8738628a5c1b87c6521fdd8d05a3b36e5c32b48a.camel@hexdev.de>
+Subject: Re: [PATCH v4 02/11] HID: hexLIN: Add support for USB LIN adapter
+From: Christoph Fritz <christoph.fritz@hexdev.de>
+Reply-To: christoph.fritz@hexdev.de
+To: Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Jiri Slaby <jirislaby@kernel.org>, Simon Horman <horms@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Marc Kleine-Budde
+ <mkl@pengutronix.de>, Oliver Hartkopp <socketcan@hartkopp.net>, Vincent
+ Mailhol <mailhol.vincent@wanadoo.fr>,  "David S . Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires
+ <bentiss@kernel.org>, Sebastian Reichel <sre@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Andreas Lauser
+ <andreas.lauser@mercedes-benz.com>, Jonathan Corbet <corbet@lwn.net>, Pavel
+ Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org, Netdev
+ <netdev@vger.kernel.org>,  devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-serial <linux-serial@vger.kernel.org>
+Date: Sat, 11 May 2024 10:14:46 +0200
+In-Reply-To: <4bf1a5e9-904c-584e-72df-71abc3f99bd2@linux.intel.com>
+References: <20240509171736.2048414-1-christoph.fritz@hexdev.de>
+	 <20240509171736.2048414-3-christoph.fritz@hexdev.de>
+	 <4bf1a5e9-904c-584e-72df-71abc3f99bd2@linux.intel.com>
+Organization: hexDEV GmbH
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 15, 2024 at 05:11:34PM +0900, Yoshihiro Shimoda wrote:
-> This driver previously supported r8a779f0 (R-Car S4-8). Add support
-> for r8a779g0 (R-Car V4H). PCIe features of both r8a779f0 and r8a779g0
-> are almost all the same. For example:
->  - PCI Express Base Specification Revision 4.0
->  - Root complex mode and endpoint mode are supported
+...
+> > diff --git a/drivers/hid/hid-hexdev-hexlin.c b/drivers/hid/hid-hexdev-hexlin.c
+> > new file mode 100644
+> > index 0000000000000..a9ed080b3e33e
+> > --- /dev/null
+> > +++ b/drivers/hid/hid-hexdev-hexlin.c
+> > 
+...
 > 
-> However, r8a779g0 requires specific firmware downloading, to
-> initialize the PHY. Otherwise, the PCIe controller cannot work.
-> The firmware is attached in the manual of the r8a779g0 as text.
-> So, convert it to a binary file by using a script.
+> > +}
+> > +
+> > +#define HEXLIN_GET_CMD(name, enum_cmd)					\
+> > +	static int hexlin_##name(struct hexlin_priv_data *p)		\
+> > +	{								\
+> > +		u8 *req;						\
+> > +		int ret;						\
+> > +									\
+> > +		req = kmalloc(sizeof(*req), GFP_KERNEL)	;		\
+> 
+> Extra space.
+> 
+> Use:
+> 
+> u8 *req __free(kfree) = kmalloc(sizeof(*req), GFP_KERNEL);
+> 
+> > +		if (!req)						\
+> > +			return -ENOMEM;					\
+> > +									\
+> > +		*req = enum_cmd;					\
+> > +									\
+> > +		ret = hexlin_tx_req_status(p, req, sizeof(*req));	\
+> > +		if (ret)						\
+> > +			hid_err(p->hid_dev, "%s failed, error: %d\n",	\
+> > +				#name, ret);				\
+> > +									\
+> > +		kfree(req);						\
+> 
+> Not needed after using __free().
+> 
+> > +		return ret;						\
+> > +	}
+> > +
+> > +HEXLIN_GET_CMD(get_version, HEXLIN_GET_VERSION)
+> > +HEXLIN_GET_CMD(reset_dev, HEXLIN_RESET)
+> > +HEXLIN_GET_CMD(get_baudrate, HEXLIN_GET_BAUDRATE)
+> 
+> Could you convert the function in the macro into a helper function which 
+> is just called by a simple function with the relevant parameters for 
+> these 3 cases?
 
-The firmware is expected to be present in userspace. So where is it btw? Is it
-upstreamed to linux-firmware?
+The device actually has a lot more features that I'm using in my debug
+version and which might end up here in the future. So I would like to
+keep it. Any objections?
 
-You cannot ask users to manually copy the text and convert it to a binary file.
-But if the firmware or sequence is not going to change, why can't you hardcode
-it in the driver itself?
+...
+> > +
+> > +static int hexlin_set_baudrate(struct hexlin_priv_data *priv, u16 baudrate)
+> > +{
+> > +	struct hexlin_baudrate_req *req;
+> > +	int ret;
+> > +
+> > +	if (baudrate < LIN_MIN_BAUDRATE || baudrate > LIN_MAX_BAUDRATE)
+> > +		return -EINVAL;
+> > +
+> > +	req = kmalloc(sizeof(*req), GFP_KERNEL);
+> 
+> Hmm... Why do you alloc this small structure (3 bytes?) with kmalloc() and 
+> not just have it in stack as a local variable?
+
+
+This buffer must be suitable for DMA (see docu for struct urb).
+
+So with a stack variable we would need to use kmemdup() before the
+actual sending call, but that's what you did not like since v3 so I
+changed it to this which now you also don't like.
+
+Let's dial it back to the original kmemdup() usage, ok?
+
+...
+> > +static int hexlin_queue_frames_insert(struct hexlin_priv_data *priv,
+> > +				      const struct hexlin_frame *hxf)
+> > +{
+> > +	struct hid_device *hdev = priv->hid_dev;
+> > +	struct lin_frame lf;
+> > +
+> > +	lf.len = hxf->len;
+> > +	lf.lin_id = hxf->lin_id;
+> > +	memcpy(lf.data, hxf->data, LIN_MAX_DLEN);
+> > +	lf.checksum = hxf->checksum;
+> > +	lf.checksum_mode = hxf->checksum_mode;
+> > +
+> > +	hid_dbg(hdev, "id:%02x, len:%u, data:%*ph, chk:%02x (%s), flg:%08x\n",
+> > +		lf.lin_id, lf.len, lf.len, lf.data, lf.checksum,
+> > +		lf.checksum_mode ? "enhanced" : "classic", hxf->flags);
+> > +
+> > +	lin_rx(priv->ldev, &lf);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int hexlin_raw_event(struct hid_device *hdev,
+> > +			    struct hid_report *report, u8 *data, int sz)
+> > +{
+> > +	struct hexlin_priv_data *priv;
+> > +	struct hexlin_baudrate_req *br;
+> > +	struct hexlin_responder_answer_req *rar;
+> > +	struct hexlin_unconditional_req *hfr;
+> > +	struct hexlin_val8_req *vr;
+> > +
+> > +	if (sz < 1 || sz > HEXLIN_PKGLEN_MAX)
+> > +		return -EREMOTEIO;
+> > +
+> > +	priv = hid_get_drvdata(hdev);
+> > +
+> > +	hid_dbg(hdev, "%s, size:%i, data[0]: 0x%02x\n", __func__, sz, data[0]);
+> > +
+> > +	priv->is_error = false;
+> > +
+> > +	switch (data[0]) {
+> > +	case HEXLIN_SUCCESS:
+> > +		if (sz != HEXLIN_LEN_RETCODE)
+> > +			return -EREMOTEIO;
+> > +		hid_dbg(hdev, "HEXLIN_SUCCESS: 0x%02x\n", data[0]);
+> > +		complete(&priv->wait_in_report);
+> > +		break;
+> > +	case HEXLIN_FAIL:
+> > +		if (sz != HEXLIN_LEN_RETCODE)
+> > +			return -EREMOTEIO;
+> > +		hid_err(hdev, "HEXLIN_FAIL: 0x%02x\n", data[0]);
+> > +		priv->is_error = true;
+> > +		complete(&priv->wait_in_report);
+> > +		break;
+> > +	case HEXLIN_GET_VERSION:
+> > +		if (sz != sizeof(*vr))
+> > +			return -EREMOTEIO;
+> > +		vr = (struct hexlin_val8_req *) data;
+> > +		priv->fw_version = vr->v;
+> > +		complete(&priv->wait_in_report);
+> > +		break;
+> > +	case HEXLIN_GET_RESPONDER_ANSWER_ID:
+> > +		if (sz != sizeof(*rar))
+> > +			return -EREMOTEIO;
+> > +		rar = (struct hexlin_responder_answer_req *) data;
+> > +		memcpy(&priv->answ, &rar->answ, sizeof(priv->answ));
+> > +		complete(&priv->wait_in_report);
+> > +		break;
+> > +	case HEXLIN_GET_BAUDRATE:
+> > +		if (sz != sizeof(*br))
+> > +			return -EREMOTEIO;
+> > +		br = (struct hexlin_baudrate_req *) data;
+> > +		le16_to_cpus(br->baudrate);
+> > +		priv->baudrate = br->baudrate;
+> > +		complete(&priv->wait_in_report);
+> > +		break;
+> > +	/* following cases not initiated by us, so no complete() */
+> > +	case HEXLIN_FRAME:
+> > +		if (sz != sizeof(*hfr)) {
+> > +			hid_err_once(hdev, "frame size mismatch: %i\n", sz);
+> > +			return -EREMOTEIO;
+> > +		}
+> > +		hfr = (struct hexlin_unconditional_req *) data;
+> > +		le32_to_cpus(hfr->frm.flags);
+> 
+> I'm bit worried about this from endianness perspective. Perhaps there's 
+> some struct reusing that shouldn't be happening because the same field 
+> cannot be __le32 and u32 at the same time.
+
+Can you propose a solution?
 
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 201 +++++++++++++++++++-
->  1 file changed, 200 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> index 980a916933d6..4e934e9156f2 100644
-> --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> @@ -5,8 +5,10 @@
->   */
->  
->  #include <linux/delay.h>
-> +#include <linux/firmware.h>
->  #include <linux/interrupt.h>
->  #include <linux/io.h>
-> +#include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/pci.h>
-> @@ -20,9 +22,10 @@
->  /* Renesas-specific */
->  /* PCIe Mode Setting Register 0 */
->  #define PCIEMSR0		0x0000
-> -#define BIFUR_MOD_SET_ON	BIT(0)
-> +#define APP_SRIS_MODE		BIT(6)
->  #define DEVICE_TYPE_EP		0
->  #define DEVICE_TYPE_RC		BIT(4)
-> +#define BIFUR_MOD_SET_ON	BIT(0)
->  
->  /* PCIe Interrupt Status 0 */
->  #define PCIEINTSTS0		0x0084
-> @@ -37,19 +40,47 @@
->  #define PCIEDMAINTSTSEN		0x0314
->  #define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
->  
-> +/* Port Logic Registers 89 */
-> +#define PRTLGC89		0x0b70
-> +
-> +/* Port Logic Registers 90 */
-> +#define PRTLGC90		0x0b74
-> +
->  /* PCIe Reset Control Register 1 */
->  #define PCIERSTCTRL1		0x0014
->  #define APP_HOLD_PHY_RST	BIT(16)
->  #define APP_LTSSM_ENABLE	BIT(0)
->  
-> +/* PCIe Power Management Control */
-> +#define PCIEPWRMNGCTRL		0x0070
-> +#define APP_CLK_REQ_N		BIT(11)
-> +#define APP_CLK_PM_EN		BIT(10)
-> +
-> +/*
-> + * The R-Car Gen4 documents don't describe the PHY registers' name.
-> + * But, the initialization procedure describes these offsets. So,
-> + * this driver makes up own #defines for the offsets.
-> + */
-> +#define RCAR_GEN4_PCIE_PHY_0f8	0x0f8
-> +#define RCAR_GEN4_PCIE_PHY_148	0x148
-> +#define RCAR_GEN4_PCIE_PHY_1d4	0x1d4
-> +#define RCAR_GEN4_PCIE_PHY_514	0x514
-> +#define RCAR_GEN4_PCIE_PHY_700	0x700
-> +
+...
 
-As I said before, these defines provide no information about the registers at
-all. So please use the offset directly and add a comment.
+thanks
+  -- Christoph
 
->  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
->  #define RCAR_MAX_LINK_SPEED		4
->  
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
->  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
->  
-> +#define RCAR_GEN4_PCIE_FIRMWARE_NAME		"rcar_gen4_pcie.bin"
-> +#define RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR	0xc000
-> +
-> +MODULE_FIRMWARE(RCAR_GEN4_PCIE_FIRMWARE_NAME);
-> +
->  struct rcar_gen4_pcie;
->  struct rcar_gen4_pcie_drvdata {
-> +	void (*additional_common_init)(struct rcar_gen4_pcie *rcar);
 
-What is this init for? Controller? PHY?
-
->  	int (*ltssm_enable)(struct rcar_gen4_pcie *rcar);
->  	enum dw_pcie_device_mode mode;
->  };
-> @@ -57,12 +88,144 @@ struct rcar_gen4_pcie_drvdata {
->  struct rcar_gen4_pcie {
->  	struct dw_pcie dw;
->  	void __iomem *base;
-> +	void __iomem *phy_base;
->  	struct platform_device *pdev;
->  	const struct rcar_gen4_pcie_drvdata *drvdata;
->  };
->  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
->  
->  /* Common */
-> +static void rcar_gen4_pcie_phy_reg_update_bits(struct rcar_gen4_pcie *rcar,
-> +					       u32 offset, u32 mask, u32 val)
-> +{
-> +	u32 tmp;
-> +
-> +	tmp = readl(rcar->phy_base + offset);
-> +	tmp &= ~mask;
-> +	tmp |= val;
-> +	writel(tmp, rcar->phy_base + offset);
-> +}
-> +
-> +static int rcar_gen4_pcie_reg_check(struct rcar_gen4_pcie *rcar,
-> +				    u32 offset, u32 mask)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +
-> +	if (dw_pcie_readl_dbi(dw, offset) & mask)
-> +		return -EAGAIN;
-
-What is this function checking actually? It is just a DBI read. Do you expect
-these register accesses to fail?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int rcar_gen4_pcie_download_phy_firmware(struct rcar_gen4_pcie *rcar)
-> +{
-> +	const u32 check_addr[] = { 0x00101018, 0x00101118, 0x00101021, 0x00101121};
-
-What does this check_addr corresponds to?
-
-> +	struct dw_pcie *dw = &rcar->dw;
-> +	const struct firmware *fw;
-> +	unsigned int i, timeout;
-> +	u32 data;
-> +	int ret;
-> +
-> +	ret = request_firmware(&fw, RCAR_GEN4_PCIE_FIRMWARE_NAME, dw->dev);
-> +	if (ret) {
-> +		dev_err(dw->dev, "%s: Requesting firmware failed\n", __func__);
-
-Print the firmware name in the case of error.
-
-But as I said above, please try to hardcode the fw if it is not going to change.
-We do this in other drivers as well.
-
-- Mani
-
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < (fw->size / 2); i++) {
-> +		data = fw->data[(i * 2) + 1] << 8 | fw->data[i * 2];
-> +		timeout = 100;
-> +		do {
-> +			dw_pcie_writel_dbi(dw, PRTLGC89, RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR + i);
-> +			dw_pcie_writel_dbi(dw, PRTLGC90, data);
-> +			if (rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30)) >= 0)
-> +				break;
-> +			if (!(--timeout)) {
-> +				ret = -ETIMEDOUT;
-> +				goto exit;
-> +			}
-> +			usleep_range(100, 200);
-> +		} while (1);
-> +	}
-> +
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(17), BIT(17));
-> +
-> +	for (i = 0; i < ARRAY_SIZE(check_addr); i++) {
-> +		timeout = 100;
-> +		do {
-> +			dw_pcie_writel_dbi(dw, PRTLGC89, check_addr[i]);
-> +			ret = rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30));
-> +			ret |= rcar_gen4_pcie_reg_check(rcar, PRTLGC90, BIT(0));
-> +			if (ret >= 0)
-> +				break;
-> +			if (!(--timeout)) {
-> +				ret = -ETIMEDOUT;
-> +				goto exit;
-> +			}
-> +			usleep_range(100, 200);
-> +		} while (1);
-> +	}
-> +
-> +	ret = 0;
-> +exit:
-> +	release_firmware(fw);
-> +
-> +	return ret;
-> +}
-> +
-> +static int rcar_gen4_pcie_enable_phy(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +	u32 val;
-> +	int ret;
-> +
-> +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_FORCE);
-> +	val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
-> +	dw_pcie_writel_dbi(dw, PCIE_PORT_FORCE, val);
-> +
-> +	val = readl(rcar->base + PCIEMSR0);
-> +	val |= APP_SRIS_MODE;
-> +	writel(val, rcar->base + PCIEMSR0);
-> +
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(28), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(20), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(12), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(4), 0);
-> +
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(23, 22), BIT(22));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(18, 16), GENMASK(17, 16));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(7, 6), BIT(6));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> +					   GENMASK(2, 0), GENMASK(11, 0));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_1d4,
-> +					   GENMASK(16, 15), GENMASK(16, 15));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_514, BIT(26), BIT(26));
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(16), 0);
-> +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(19), BIT(19));
-> +
-> +	val = readl(rcar->base + PCIERSTCTRL1);
-> +	val &= ~APP_HOLD_PHY_RST;
-> +	writel(val, rcar->base + PCIERSTCTRL1);
-> +
-> +	ret = readl_poll_timeout(rcar->phy_base + RCAR_GEN4_PCIE_PHY_0f8, val,
-> +				 !(val & BIT(18)), 100, 10000);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = rcar_gen4_pcie_download_phy_firmware(rcar);
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = readl(rcar->base + PCIERSTCTRL1);
-> +	val |= APP_LTSSM_ENABLE;
-> +	writel(val, rcar->base + PCIERSTCTRL1);
-> +
-> +	return 0;
-> +}
-> +
->  static void rcar_gen4_pcie_ltssm_control(struct rcar_gen4_pcie *rcar,
->  					 bool enable)
->  {
-> @@ -200,6 +363,9 @@ static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
->  	if (ret)
->  		goto err_unprepare;
->  
-> +	if (rcar->drvdata->additional_common_init)
-> +		rcar->drvdata->additional_common_init(rcar);
-> +
->  	return 0;
->  
->  err_unprepare:
-> @@ -241,6 +407,10 @@ static void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
->  
->  static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
->  {
-> +	rcar->phy_base = devm_platform_ioremap_resource_byname(rcar->pdev, "phy");
-> +	if (IS_ERR(rcar->phy_base))
-> +		return PTR_ERR(rcar->phy_base);
-> +
->  	/* Renesas-specific registers */
->  	rcar->base = devm_platform_ioremap_resource_byname(rcar->pdev, "app");
->  
-> @@ -517,6 +687,31 @@ static int r8a779f0_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
->  	return 0;
->  }
->  
-> +static void rcar_gen4_pcie_additional_common_init(struct rcar_gen4_pcie *rcar)
-> +{
-> +	struct dw_pcie *dw = &rcar->dw;
-> +	u32 val;
-> +
-> +	/*
-> +	 * The SoC manual said the register setting is required. Otherwise,
-> +	 * linkup failed.
-> +	 */
-> +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_LANE_SKEW);
-> +	val &= ~PORT_LANE_SKEW_INSERT_MASK;
-> +	if (dw->num_lanes < 4)
-> +		val |= BIT(6);
-> +	dw_pcie_writel_dbi(dw, PCIE_PORT_LANE_SKEW, val);
-> +
-> +	val = readl(rcar->base + PCIEPWRMNGCTRL);
-> +	val |= APP_CLK_REQ_N | APP_CLK_PM_EN;
-> +	writel(val, rcar->base + PCIEPWRMNGCTRL);
-> +}
-> +
-> +static int rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
-> +{
-> +	return rcar_gen4_pcie_enable_phy(rcar);
-> +}
-> +
->  static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie = {
->  	.ltssm_enable = r8a779f0_pcie_ltssm_enable,
->  	.mode = DW_PCIE_RC_TYPE,
-> @@ -528,10 +723,14 @@ static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie_ep = {
->  };
->  
->  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie = {
-> +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
-> +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
->  	.mode = DW_PCIE_RC_TYPE,
->  };
->  
->  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie_ep = {
-> +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
-> +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
->  	.mode = DW_PCIE_EP_TYPE,
->  };
->  
-> -- 
-> 2.25.1
-> 
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
 
