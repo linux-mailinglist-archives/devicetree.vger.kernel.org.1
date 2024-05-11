@@ -1,165 +1,68 @@
-Return-Path: <devicetree+bounces-66456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D94108C318A
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 15:08:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9D68C31A4
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 15:30:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93EDF281958
-	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 13:08:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BB081F216D0
+	for <lists+devicetree@lfdr.de>; Sat, 11 May 2024 13:30:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59CC50A72;
-	Sat, 11 May 2024 13:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DMBV/L0R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11CA651C44;
+	Sat, 11 May 2024 13:30:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sh10040.ispgateway.de (sh10040.ispgateway.de [92.204.55.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C374F5ED;
-	Sat, 11 May 2024 13:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285176FC6
+	for <devicetree@vger.kernel.org>; Sat, 11 May 2024 13:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.204.55.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715432889; cv=none; b=S+eWDeuwZTI4d/ZdAqG9pzWRqfnCFYHvGnW7Wm91w48JWi9c7mSWAZPVQ3QiTp/e8xP9EvYoIuLKjO0LhpGMkg5GGWTm3de9Gwlufzlwz8NTJHtf2hzgaKosGIIi0YY0lvxPK1LvNg+ip9ywAH2AoLWGvNz6wHswXU+JOxa3/0o=
+	t=1715434206; cv=none; b=EELmR9/OKww8h+VwhG3LaUWPq7OgtHsrsY/bkfYRXRudBqMQJw7TfehOQZddfmL10hp4v51iQm2t2kAwg9qQPQmy3fHyOYycvfTmOKqe20e2/te0v8IyGmKN+EmDLnDrxT+LVOPpOHta3LNbjK6EA9HrTKLR+9DJCrlouukZUTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715432889; c=relaxed/simple;
-	bh=nn5CCGqDXRDW0kal5/Z0nExGsCcCmd7RqOdWPQZZ+Fs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GJzxrj/c/3RFCbTChuRcPipoaQ2OHONumAUyXR1FkzqSALYbslUSfGdh8z8XSMTk/uNu2rYeZAMjfgirBz7S73XSHg04xtC7Qra1GdHn/mTPM77fSHj/oob6m4rQic4/O55AEaS/dffk5C5MFc/ySlyKmbl/JW2B2YO4VcMEiuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DMBV/L0R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08707C2BBFC;
-	Sat, 11 May 2024 13:08:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715432889;
-	bh=nn5CCGqDXRDW0kal5/Z0nExGsCcCmd7RqOdWPQZZ+Fs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DMBV/L0Rf02+pxMLC/ZTNs8StcL5fKgQTU5ppq5oaWJDipa8ukbCHuu/An38u5vZU
-	 NnvuNdjhyXgdTFMGWo8KlgW8zLJmi3r7tGype6lRozJK8NjdT6VfopQtHp/fe1MEnX
-	 SNlppIGviW72sy/N86tNc1o4u9AfAZcoo4x96htViPYEdUyh/egQzsQtT/0S6IIlND
-	 TFqDsQ2KaXVatNx1bFwXu6QFyGvbnmYHwoV42p57DbnAQdI7Hri0K8vHJzciBLqfvz
-	 +CRGOg8oJbrFXEHKBNvNDKDvLyF8imNkO+DwfSnPqPPxj4sWLcOAAAymdDRm15AbLo
-	 LZgR1LdLH6XtQ==
-Date: Sat, 11 May 2024 14:08:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
-	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-	martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
-	kernel@sberdevices.ru, rockosov@gmail.com,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: meson: a1: pll: introduce new
- syspll bindings
-Message-ID: <20240511-secret-barcode-e25c722ddf1d@spud>
-References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
- <20240510090933.19464-3-ddrokosov@salutedevices.com>
+	s=arc-20240116; t=1715434206; c=relaxed/simple;
+	bh=DAJnWejLmYWf+jYi8GpGCXK8CtS70HMTTuNkwc0mGSg=;
+	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=jZsx1NYiiyZfRynIu1mtNMz76urgFMD/RETEgfqFROAuc9PqhB3kweMefrOzizKd0ogVpQr1+Tq+5mdArUq22RqbN5CwaLLyppyk4QNETl4OKXd6TIhKApmwJnoU3Ir0uJ1FExC8R8wJA8CuVGZlHlMZZ8Nk2ETlkRkdKU2RD3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=lilibrown.de; spf=none smtp.mailfrom=lilibrown.de; arc=none smtp.client-ip=92.204.55.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=lilibrown.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=lilibrown.de
+Received: from sh10040.ispgateway.de (_gateway [IPv6:fd00:dead:beef::1])
+	by sh10040.ispgateway.de (Postfix) with ESMTPS id A1ABAA3796
+	for <devicetree@vger.kernel.org>; Sat, 11 May 2024 15:22:26 +0200 (CEST)
+Received: (from 128811@localhost)
+	by sh10040.ispgateway.de (8.15.2/8.15.2/Submit) id 44BDMQcQ012639;
+	Sat, 11 May 2024 15:22:26 +0200
+X-Authentication-Warning: sh10040.ispgateway.de: 128811 set sender to wilke@lilibrown.de using -f
+To: devicetree@vger.kernel.org
+Subject: Ihre Nachricht an Lilibrown
+X-PHP-Originating-Script: 128811:PHPMailer.php
+Date: Sat, 11 May 2024 13:22:26 +0000
+From: Lilibrown <noreply@lilibrown.de>
+Message-ID: <rcoO8DozDiTEmKTq41BdoguPmVimXnqOc4bC1K08ch4@lilibrown.de>
+X-Mailer: PHPMailer 6.8.1 (https://github.com/PHPMailer/PHPMailer)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BapyMlBTqqZEbUPF"
-Content-Disposition: inline
-In-Reply-To: <20240510090933.19464-3-ddrokosov@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8
 
+Message Body:
 
---BapyMlBTqqZEbUPF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Guten Tag!
 
-On Fri, May 10, 2024 at 12:08:54PM +0300, Dmitry Rokosov wrote:
-> The 'syspll' PLL is a general-purpose PLL designed specifically for the
-> CPU clock. It is capable of producing output frequencies within the
-> range of 768MHz to 1536MHz.
->=20
-> The clock source sys_pll_div16, being one of the GEN clock parents,
-> plays a crucial role and cannot be tagged as "optional". Unfortunately,
-> it was not implemented earlier due to the cpu clock ctrl driver's
-> pending status on the TODO list.
+Vielen Dank für Ihre Nachricht an Lilibrown. Wir werden uns schnellstmöglich mit Ihnen in Verbindung setzen.
 
-It's fine to not mark it optional in the binding, but it should be
-optional in the driver as otherwise backwards compatibility will be
-broken. Given this is an integral clock driver, sounds like it would
-quite likely break booting on these devices if the driver doesn't treat
-syspll_in as optional.
-A lesson perhaps in describing the hardware entirely, even if the
-drivers don't make use of all the information yet?
+Beste Grüße
+Ihr Team von Lilibrown
 
-Cheers,
-Conor.
+---
 
->=20
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  .../devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml     | 7 +++++--
->  include/dt-bindings/clock/amlogic,a1-pll-clkc.h            | 2 ++
->  2 files changed, 7 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.=
-yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> index a59b188a8bf5..fbba57031278 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> @@ -26,11 +26,13 @@ properties:
->      items:
->        - description: input fixpll_in
->        - description: input hifipll_in
-> +      - description: input syspll_in
-> =20
->    clock-names:
->      items:
->        - const: fixpll_in
->        - const: hifipll_in
-> +      - const: syspll_in
-> =20
->  required:
->    - compatible
-> @@ -53,7 +55,8 @@ examples:
->              reg =3D <0 0x7c80 0 0x18c>;
->              #clock-cells =3D <1>;
->              clocks =3D <&clkc_periphs CLKID_FIXPLL_IN>,
-> -                     <&clkc_periphs CLKID_HIFIPLL_IN>;
-> -            clock-names =3D "fixpll_in", "hifipll_in";
-> +                     <&clkc_periphs CLKID_HIFIPLL_IN>,
-> +                     <&clkc_periphs CLKID_SYSPLL_IN>;
-> +            clock-names =3D "fixpll_in", "hifipll_in", "syspll_in";
->          };
->      };
-> diff --git a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h b/include/dt=
--bindings/clock/amlogic,a1-pll-clkc.h
-> index 2b660c0f2c9f..a702d610589c 100644
-> --- a/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> +++ b/include/dt-bindings/clock/amlogic,a1-pll-clkc.h
-> @@ -21,5 +21,7 @@
->  #define CLKID_FCLK_DIV5		8
->  #define CLKID_FCLK_DIV7		9
->  #define CLKID_HIFI_PLL		10
-> +#define CLKID_SYS_PLL		11
-> +#define CLKID_SYS_PLL_DIV16	12
-> =20
->  #endif /* __A1_PLL_CLKC_H */
-> --=20
-> 2.43.0
->=20
->=20
+Ihre Nachricht an uns:
+Darling, your love is the reason I exist. 
+If you have a moment, could you please take a look at my page via this link: https://tinyurl.com/2y4ebahv I've uploaded some fresh photos and updates from current events there. It would be great to catch up and share our experiences.
 
---BapyMlBTqqZEbUPF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZj9tswAKCRB4tDGHoIJi
-0pj2AP9o4HZKD5fAbbwEJlMifsTMl/7hSOmkyRbcNK3IJjs/IwEAovKPd0n+svw5
-TYMMJ7Bah8z91bGRNWgo/Zn/yyRxdw8=
-=ohus
------END PGP SIGNATURE-----
-
---BapyMlBTqqZEbUPF--
 
