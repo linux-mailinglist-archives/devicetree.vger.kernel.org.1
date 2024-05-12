@@ -1,118 +1,333 @@
-Return-Path: <devicetree+bounces-66519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47FD8C36D7
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 16:38:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74DAE8C36F7
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 17:24:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE29C1C20CC1
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 14:38:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 991EA1C2089B
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 15:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51101DDE9;
-	Sun, 12 May 2024 14:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 752FA381DA;
+	Sun, 12 May 2024 15:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pmtvGKR2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gDfarrKr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E73D2D792;
-	Sun, 12 May 2024 14:38:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310792576E;
+	Sun, 12 May 2024 15:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715524712; cv=none; b=FPqnGYvMV/n2SXdxWL0a6cyRrHmSZSDIEykHZwNhcN9Wo0Mihi21wrfqhHY+iIVHoTpJLAZpT/S+nW/nwmRqZ4C02ARET/zMVcef+ByXl1smXApfzh7vcftwTsBZ7IYjoacfIpNyG5qvid0MbiZfG7az5I79IycXuqjia16Dv1s=
+	t=1715527439; cv=none; b=pJ1vu8hYYwBwf/cIO94yYJ81W5YPgPgHCGEifGwQ9NkpQ+CNof40OYYk3goGCKiNIs6sv0rmk1HOpMguS0wNj2o0Qf8wlBlk1O0jZO4puo7ybeqe+gwJl2ayA3PX8C3wFEPuuY39suM50BoGXklXdTK3WxSYEQG2QAR2vShR+1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715524712; c=relaxed/simple;
-	bh=AudCllP4j2KERmkzBH7fZqgPHg52zvoWk38UKGar26E=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FzLuTstIxJPLETXgdkTtOdmKPNxilkHz0+y5Kfm1pk6q1QVExIcz64iLBuyC4lsj/8w+c1Cf9GQbmGwpEX2C/tpXDQn9pMZ1TzSIu9TRfMDDBJN/JYCQAdZtbku4QCsxDmbBRYlUG5J2X43HKIoyPXz+0eEohufW5GoVCLr2N8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pmtvGKR2; arc=none smtp.client-ip=198.47.19.141
+	s=arc-20240116; t=1715527439; c=relaxed/simple;
+	bh=1jDLyqkbOZ+d216VZJbeO6tJvvYjODjQOQifg08CX3M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Zv4abbR2VoZsJ0gBmDSd/H5Q5TIUEEbAw3qL4YAnI8SbLj4eIRE91edFWzPNslGg5tf0lUunqPGA+KeBbIHBpcCNOb6AL6ipug+xOG+CNJz9IcLPNjrqPqnw2TKqWg4r58KOzVe3/IcdW4hkan20vnEdr7FJLlFfb18WPg+phy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gDfarrKr; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44CEcQpx092808;
-	Sun, 12 May 2024 09:38:26 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44CFNOLi104054;
+	Sun, 12 May 2024 10:23:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715524706;
-	bh=NZZgOXBnBWttjILJyHHNUk0x7jPRIHmPvJIAiVj0Czk=;
-	h=From:To:CC:Subject:Date;
-	b=pmtvGKR2c0pa1dUiJ9t9iD4xvE9MDhJ37QqHCHbBvVAzcEr+kyD72wZV4ywBzCiog
-	 hP0XjWOss4BRNrP7+nudNDCfXw5pS/4pbKxbV66GOsND13YT5Vw2I612z4M9jId6nQ
-	 1qntjZptsBwrnh2baFNOaqpQWw8yTcl+2XDHtAJs=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44CEcQBI076983
+	s=ti-com-17Q1; t=1715527404;
+	bh=iPt9kUUsTlBAWuNAoPBMtkKgtnn+LDWAMV58Vn9IFvA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=gDfarrKrX3LbWffw/cxWr8PUQ1no0AAh2nX2j/FMZVG6mNQ1MYrCN/N1oBL8wuTPC
+	 tSdNxtNLhQLXWIb2eLxBfiRxcG0vjj1ovcU605jREoeUuqFQPgVSSOU8ndwQPfrRlg
+	 Al+C8/6X8adOaWSS2kb8rj8iLWHz6sy1ShRdAf8w=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44CFNO90022407
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 12 May 2024 09:38:26 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 12 May 2024 10:23:24 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 12
- May 2024 09:38:25 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ May 2024 10:23:23 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 12 May 2024 09:38:25 -0500
-Received: from localhost (uda0496377.dhcp.ti.com [172.24.227.31])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44CEcPxL022997;
-	Sun, 12 May 2024 09:38:25 -0500
-From: Aradhya Bhatia <a-bhatia1@ti.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List
-	<linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>, Nishanth Menon
-	<nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Praneeth Bajjuri
-	<praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Devarsh Thakkar
-	<devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>,
-        Aradhya Bhatia
-	<a-bhatia1@ti.com>
-Subject: [PATCH] dt-bindings: mfd: syscon: Add ti,am625-dss-oldi-io-ctrl compatible
-Date: Sun, 12 May 2024 20:08:24 +0530
-Message-ID: <20240512143824.1862290-1-a-bhatia1@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Frontend Transport; Sun, 12 May 2024 10:23:23 -0500
+Received: from [10.249.131.75] ([10.249.131.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44CFNEba016476;
+	Sun, 12 May 2024 10:23:15 -0500
+Message-ID: <e34dc434-7922-4b47-bc41-c06f13366194@ti.com>
+Date: Sun, 12 May 2024 20:53:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] drm/tidss: Add OLDI bridge support
+To: Francesco Dolcini <francesco@dolcini.it>
+CC: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Jyri Sarha
+	<jyri.sarha@iki.fi>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@gmail.com>, Daniel
+ Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        DRI Development
+ List <dri-devel@lists.freedesktop.org>,
+        Devicetree List
+	<devicetree@vger.kernel.org>,
+        Linux Kernel List
+	<linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+        Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh
+ Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
+References: <20240511193055.1686149-1-a-bhatia1@ti.com>
+ <20240511193055.1686149-5-a-bhatia1@ti.com>
+ <ZkCsfH1qeSsXyQz4@gaggiata.pivistrello.it>
+Content-Language: en-US
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <ZkCsfH1qeSsXyQz4@gaggiata.pivistrello.it>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add TI DSS OLDI-IO control registers compatible for AM625 DSS. This is a
-region of 10 32bit registers found in the TI AM625 CTRL_MMR0 register
-space[0]. They are used to control the characteristics of the OLDI
-DATA/CLK IO as needed by the OLDI TXes controller node.
+Hi Francesco,
 
-[0]: https://www.ti.com/lit/pdf/spruiv7
+On 12/05/24 17:18, Francesco Dolcini wrote:
+> Hello Aradhya, thanks for you patch, I should be able to test your patch on my
+> hardware in the coming days.
 
-Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
----
- Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
- 1 file changed, 1 insertion(+)
+That's appreciated. Thank you! =)
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 7ed12a938baa..6a5834b11a35 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -88,6 +88,7 @@ properties:
-               - rockchip,rv1126-qos
-               - starfive,jh7100-sysmain
-               - ti,am62-usb-phy-ctrl
-+              - ti,am625-dss-oldi-io-ctrl
-               - ti,am62p-cpsw-mac-efuse
-               - ti,am654-dss-oldi-io-ctrl
-               - ti,am654-serdes-ctrl
+> 
+> On Sun, May 12, 2024 at 01:00:55AM +0530, Aradhya Bhatia wrote:
+>> Up till now, the OLDI support in tidss was integrated within the tidss dispc.
+>> This was fine till the OLDI was one-to-mapped with the DSS video-port (VP).
+>> The AM62 and AM62P SoCs have 2 OLDI TXes that can support dual-lvds / lvds-clone
+>> modes.
+>>
+>> Add OLDI TXes as separate DRM bridge entities to better support the new LVDS
+>> configurations.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>  drivers/gpu/drm/tidss/Makefile      |   3 +-
+>>  drivers/gpu/drm/tidss/tidss_dispc.c |  11 +-
+>>  drivers/gpu/drm/tidss/tidss_dispc.h |   4 +
+>>  drivers/gpu/drm/tidss/tidss_drv.c   |  13 +-
+>>  drivers/gpu/drm/tidss/tidss_drv.h   |   4 +
+>>  drivers/gpu/drm/tidss/tidss_oldi.c  | 568 ++++++++++++++++++++++++++++
+>>  drivers/gpu/drm/tidss/tidss_oldi.h  |  73 ++++
+>>  7 files changed, 673 insertions(+), 3 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.c
+>>  create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.h
+>>
+>> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+>> index d15f836dca95..fd90e8498cc2 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_drv.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
+>> @@ -23,6 +23,7 @@
+>>  #include "tidss_drv.h"
+>>  #include "tidss_kms.h"
+>>  #include "tidss_irq.h"
+>> +#include "tidss_oldi.h"
+>>  
+>>  /* Power management */
+>>  
+>> @@ -140,10 +141,17 @@ static int tidss_probe(struct platform_device *pdev)
+>>  
+>>  	spin_lock_init(&tidss->wait_lock);
+>>  
+>> +	ret = tidss_oldi_init(tidss);
+>> +	if (ret) {
+>> +		if (ret != -EPROBE_DEFER)
+>> +			dev_err(dev, "failed to init OLDI (%d)\n", ret);
+>> +		return ret;
+>> +	}
+> 
+> return dev_err_probe()
+> 
+>> diff --git a/drivers/gpu/drm/tidss/tidss_oldi.c b/drivers/gpu/drm/tidss/tidss_oldi.c
+>> new file mode 100644
+>> index 000000000000..fd96ca815542
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/tidss/tidss_oldi.c
+>> @@ -0,0 +1,568 @@
+> 
+> ...
+> 
+>> +		ret = drm_of_find_panel_or_bridge(child, OLDI_OURPUT_PORT, -1,
+>> +						  &panel, &bridge);
+>> +		if (ret) {
+>> +			/*
+>> +			 * Either there was no OLDI sink in the devicetree, or
+>> +			 * the OLDI sink has not been added yet. In any case,
+>> +			 * return.
+>> +			 * We don't want to have an OLDI node connected to DSS
+>> +			 * but not to any sink.
+>> +			 */
+>> +			if (ret != -EPROBE_DEFER)
+>> +				dev_err(tidss->dev,
+>> +					"no panel/bridge for OLDI%d. Error %d\n",
+>> +					oldi_instance, ret);
+> 
+> just dev_err_probe
+> 
+>> +			goto err_put_node;
+>> +		}
+> 
+> ...
+> 
+>> +		if (IS_ERR(oldi->io_ctrl)) {
+>> +			dev_err(oldi->dev,
+>> +				"%s: oldi%d syscon_regmap_lookup_by_phandle failed %ld\n",
+>> +			       __func__, oldi_instance, PTR_ERR(oldi->io_ctrl));
+>> +			ret = PTR_ERR(oldi->io_ctrl);
+> 
+> dev_err_probe 
+> 
+>> +			goto err_put_node;
+>> +		}
+>> +
+>> +		oldi->s_clk = of_clk_get_by_name(child, "s_clk");
+>> +		if (IS_ERR(oldi->s_clk)) {
+>> +			dev_err(oldi->dev,
+>> +				"%s: oldi%d Failed to get s_clk: %ld\n",
+>> +				__func__, oldi_instance, PTR_ERR(oldi->s_clk));
+>> +			ret = PTR_ERR(oldi->s_clk);
+> 
+> dev_err_probe
 
-base-commit: 75fa778d74b786a1608d55d655d42b480a6fa8bd
--- 
-2.34.1
+Got it. Will update in all the 4 places.
 
+> 
+> In general, in this function, sometime you print an error and goto
+> err_put_node, sometime you just goto err_put_node.  Not sure what's the
+> rationale on this.
+
+There hasn't been any real logic behind the prints, except that I have
+added them whenever there was something (specifc) to be explained. Other
+times, for example, if the error is -ENOMEM, or any other systemic API
+failure, there isn't any print required.
+
+If this function does exit in an error, however, tidss_probe will always
+throw a print (except in the case of -EPROBE_DEFER).
+
+> 
+>> +			goto err_put_node;
+>> +		}
+>> +
+>> +		/* Register the bridge. */
+>> +		oldi->bridge.of_node = child;
+>> +		oldi->bridge.driver_private = oldi;
+>> +		oldi->bridge.funcs = &tidss_oldi_bridge_funcs;
+>> +		oldi->bridge.timings = &default_tidss_oldi_timings;
+>> +
+>> +		tidss->oldis[tidss->num_oldis++] = oldi;
+>> +		oldi->tidss = tidss;
+>> +
+>> +		drm_bridge_add(&oldi->bridge);
+>> +	}
+>> +
+>> +err_put_node:
+>> +	of_node_put(child);
+>> +	of_node_put(oldi_parent);
+>> +	return ret;
+>> +}
+>> diff --git a/drivers/gpu/drm/tidss/tidss_oldi.h b/drivers/gpu/drm/tidss/tidss_oldi.h
+>> new file mode 100644
+>> index 000000000000..5ad02ddea11a
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/tidss/tidss_oldi.h
+>> @@ -0,0 +1,73 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+>> +/*
+>> + * Copyright (C) 2023 - Texas Instruments Incorporated
+>> + *
+>> + * Aradhya Bhatia <a-bhati1@ti.com>
+>> + */
+>> +
+>> +#ifndef __TIDSS_OLDI_H__
+>> +#define __TIDSS_OLDI_H__
+>> +
+>> +#include <linux/media-bus-format.h>
+>> +
+>> +#include "tidss_drv.h"
+>> +#include "tidss_dispc.h"
+>> +
+>> +struct tidss_oldi;
+> 
+> why do you need this here? 
+
+So that struct tidss_device can store pointers to struct tidss_oldi
+instances.
+
+> 
+>> +
+>> +/* OLDI Instances */
+>> +#define OLDI(n)		n
+>> +
+>> +/* OLDI PORTS */
+>> +#define OLDI_INPUT_PORT		0
+>> +#define OLDI_OURPUT_PORT	1
+>> +
+>> +/* OLDI Config Bits */
+>> +#define OLDI_ENABLE		BIT(0)
+>> +#define OLDI_MAP		(BIT(1) | BIT(2) | BIT(3))
+>> +#define OLDI_SRC		BIT(4)
+>> +#define OLDI_CLONE_MODE		BIT(5)
+>> +#define OLDI_MASTERSLAVE	BIT(6)
+>> +#define OLDI_DEPOL		BIT(7)
+>> +#define OLDI_MSB		BIT(8)
+>> +#define OLDI_LBEN		BIT(9)
+>> +#define OLDI_LBDATA		BIT(10)
+>> +#define OLDI_DUALMODESYNC	BIT(11)
+>> +#define OLDI_SOFTRST		BIT(12)
+>> +#define OLDI_TPATCFG		BIT(13)
+>> +
+>> +/* Control MMR Register */
+>> +
+>> +/* Register offsets */
+>> +#define OLDI_PD_CTRL            0x100
+>> +#define OLDI_LB_CTRL            0x104
+>> +
+>> +/* Power control bits */
+>> +#define OLDI_PWRDN_TX(n)	BIT(n)
+>> +
+>> +/* LVDS Bandgap reference Enable/Disable */
+>> +#define OLDI_PWRDN_BG		BIT(8)
+>> +
+>> +#define OLDI_IDLE_CLK_HZ	25000000 /*25 MHz */
+> this is used only on a single C files, move it there?
+> 
+> I would consider this comment in general for this header file,
+> from a quick check most of this is used only in tidss_oldi.c.
+
+Apart from struct tidss_device being able to access struct tidss_oldi,
+there is no direct access to any of the above.
+
+Perhaps I can move the idle clock definition into the C file.
+
+However, before tidss_oldi.h, all the register definitions have been
+stored in tidss_dispc_regs.h. It just seemed right to keep them out in
+the header file and maintain the status quo.
+
+
+Regards
+Aradhya
 
