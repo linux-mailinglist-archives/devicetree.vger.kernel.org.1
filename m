@@ -1,110 +1,159 @@
-Return-Path: <devicetree+bounces-66540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F4F8C37B5
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 19:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B1598C37CB
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 19:38:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A37CA1C20891
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 17:12:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56E8F1C2090B
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 17:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933FE481D1;
-	Sun, 12 May 2024 17:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17D74AED7;
+	Sun, 12 May 2024 17:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="MJWlGTEO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5132B1CD1F;
-	Sun, 12 May 2024 17:12:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5781E528;
+	Sun, 12 May 2024 17:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715533940; cv=none; b=pgyBHAb9TT6OKsq8DbPiK79fymyR9KZkeJJ06WNvzaEijuhm9pxlJjaLzz/odyyRihliK9sr3gEVyCp6K0MjSCefrBOBBg/h20lOmtav4XBLDztv9tCx24o6ml2/3Z+ac3oi7JxioT9uZmvIVRLj/qvHW5unPUM1zgsdmnFc4Vw=
+	t=1715535476; cv=none; b=p5uMc3sd0U97xG62k7PianuV+jX+GwzWYPs1oRlk8Gy/UDZQiOoYeDYOkpUpBVkBsW3rz7QkrvZrwkReno/ECsQMzbYWxqW70K89E3T9IfmKn/w1G3eufhuhebxRZU1dAAwWGmOHR2r1t/QrQH2JVgBmmxbWgaljy5G83XmKJj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715533940; c=relaxed/simple;
-	bh=w6NwSoOtMT0hnPgKaWCq1divH8ZZ5o+3MEIUab+wZAw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SqnJyFofZcmy07XjMWGzHVkXHx2omAl9vm5FxkpgPeuP1IRHYvdxP+iBthgD1b6Z80wvtDPLSJ5NYWbN0SWgQrjwnN/WWK35dLn5X+xlYTnpFvkx43v19gLx4GRmxjj3ruykxW4/2RuMNNyIDqUEHGQ3sr72YXUsTciAoI0dQrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B9EE740007;
-	Sun, 12 May 2024 17:11:03 +0000 (UTC)
-Message-ID: <cbbb6e81-355b-4e07-b1e5-4b3ffe6c79ae@ghiti.fr>
-Date: Sun, 12 May 2024 19:10:59 +0200
+	s=arc-20240116; t=1715535476; c=relaxed/simple;
+	bh=U75ivTuC56utMHdDFPzGOGOJJmGtbfE4XqWe0/BYtns=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sR/04EB9rqMPWgmbJi8tPXGeP/7a4ZhUX54ixE3bkIlxuOOEu2+FBT4NiVMhnPWb/OHHr6WS2vzcp5sXXodxuETT8ru64MGHq3LkhyvYL5Fl/J4gyVtBwtwqpSrZaPKGfV6DhVFsxNPVIvh6vEOOY9BLYt9evUc0iWpz7bhsJBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=MJWlGTEO; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4DD4F120002;
+	Sun, 12 May 2024 20:37:43 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4DD4F120002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715535463;
+	bh=uwsRFR9afraqpGHPq8DU2TSJXRBWv6wXpdPPQhQUsLY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=MJWlGTEOl1552sZrUtJQGf6XyPUgf5YKCyzIZH/ZnvlUOVrcmO9vlSlrOeiKUUOpK
+	 3DTB1ZTu5xJrJ5AGiLLm1D/uGN6J+i/LwWEZCab7wU2gTLos9fgSZMu0hiMMkMb3Hm
+	 BsCUstwLD5Qmk10Eq4MKdGgfHdZknWmJcJLn/HUyZSCzECeazwPqvbZ65ifdTjFvsR
+	 4+zM81xf0Qs1FkJv94UN0k+cFjS7UcmySsuk0hKzp1AZYywW0nGbM7aLB8Vflg9jgt
+	 8L/qzVtlLCuxtVULswG4HAXTiDRfmucsTRZ/h4G1YP/z+mbKruUPPhKfE/aBCnlYBK
+	 u8eJPbczokiYg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Sun, 12 May 2024 20:37:43 +0300 (MSK)
+Received: from [172.28.226.125] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 12 May 2024 20:37:42 +0300
+Message-ID: <418e29c7-9baf-ee4c-7a24-49c196ac89b2@salutedevices.com>
+Date: Sun, 12 May 2024 20:26:51 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 20/29] riscv/kernel: update __show_regs to print shadow
- stack register
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: amlogic,meson-nand: support
+ fields for boot ROM code
 Content-Language: en-US
-To: Deepak Gupta <debug@rivosinc.com>, paul.walmsley@sifive.com,
- rick.p.edgecombe@intel.com, broonie@kernel.org, Szabolcs.Nagy@arm.com,
- kito.cheng@sifive.com, keescook@chromium.org, ajones@ventanamicro.com,
- conor.dooley@microchip.com, cleger@rivosinc.com, atishp@atishpatra.org,
- bjorn@rivosinc.com, alexghiti@rivosinc.com, samuel.holland@sifive.com,
- conor@kernel.org
-Cc: linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mm@kvack.org, linux-arch@vger.kernel.org,
- linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, oleg@redhat.com,
- akpm@linux-foundation.org, arnd@arndb.de, ebiederm@xmission.com,
- Liam.Howlett@oracle.com, vbabka@suse.cz, lstoakes@gmail.com,
- shuah@kernel.org, brauner@kernel.org, andy.chiu@sifive.com,
- jerry.shih@sifive.com, hankuan.chen@sifive.com, greentime.hu@sifive.com,
- evan@rivosinc.com, xiao.w.wang@intel.com, charlie@rivosinc.com,
- apatel@ventanamicro.com, mchitale@ventanamicro.com,
- dbarboza@ventanamicro.com, sameo@rivosinc.com, shikemeng@huaweicloud.com,
- willy@infradead.org, vincent.chen@sifive.com, guoren@kernel.org,
- samitolvanen@google.com, songshuaishuai@tinylab.org, gerg@kernel.org,
- heiko@sntech.de, bhe@redhat.com, jeeheng.sia@starfivetech.com,
- cyy@cyyself.name, maskray@google.com, ancientmodern4@gmail.com,
- mathis.salmen@matsal.de, cuiyunhui@bytedance.com, bgray@linux.ibm.com,
- mpe@ellerman.id.au, baruch@tkos.co.il, alx@kernel.org, david@redhat.com,
- catalin.marinas@arm.com, revest@chromium.org, josh@joshtriplett.org,
- shr@devkernel.io, deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org,
- jhubbard@nvidia.com
-References: <20240403234054.2020347-1-debug@rivosinc.com>
- <20240403234054.2020347-21-debug@rivosinc.com>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20240403234054.2020347-21-debug@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: alex@ghiti.fr
+To: Krasnov Arseniy <oxffffaa@gmail.com>, "Rob Herring (Arm)"
+	<robh@kernel.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+	<devicetree@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+	<linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	<linux-amlogic@lists.infradead.org>, <kernel@sberdevices.ru>, Jerome Brunet
+	<jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+References: <20240507230903.3399594-1-avkrasnov@salutedevices.com>
+ <20240507230903.3399594-2-avkrasnov@salutedevices.com>
+ <171517732606.1572649.16193191353725811830.robh@kernel.org>
+ <CAP_G_RUdN+6OcsQZUkqWQMYoH-ZvmPnskT3yONK_YssqUYhm9Q@mail.gmail.com>
+From: Arseniy Krasnov <avkrasnov@salutedevices.com>
+In-Reply-To: <CAP_G_RUdN+6OcsQZUkqWQMYoH-ZvmPnskT3yONK_YssqUYhm9Q@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185167 [May 11 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avkrasnov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 19 0.3.19 07c7fa124d1a1dc9662cdc5aace418c06ae99d2b, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/12 16:13:00 #25178084
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On 04/04/2024 01:35, Deepak Gupta wrote:
-> Updating __show_regs to print captured shadow stack pointer as well.
-> On tasks where shadow stack is disabled, it'll simply print 0.
->
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->   arch/riscv/kernel/process.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> index ebed7589c51a..079fd6cd6446 100644
-> --- a/arch/riscv/kernel/process.c
-> +++ b/arch/riscv/kernel/process.c
-> @@ -89,8 +89,8 @@ void __show_regs(struct pt_regs *regs)
->   		regs->s8, regs->s9, regs->s10);
->   	pr_cont(" s11: " REG_FMT " t3 : " REG_FMT " t4 : " REG_FMT "\n",
->   		regs->s11, regs->t3, regs->t4);
-> -	pr_cont(" t5 : " REG_FMT " t6 : " REG_FMT "\n",
-> -		regs->t5, regs->t6);
-> +	pr_cont(" t5 : " REG_FMT " t6 : " REG_FMT " ssp : " REG_FMT "\n",
-> +		regs->t5, regs->t6, get_active_shstk(current));
->   
->   	pr_cont("status: " REG_FMT " badaddr: " REG_FMT " cause: " REG_FMT "\n",
->   		regs->status, regs->badaddr, regs->cause);
+Sorry, sending from proper mail client again (not sure it was delivered sent from gmail client on 08.05) :)
 
+R-b was removed, because this patch was updated
 
-Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+Thanks, Arseniy
 
+On 08.05.2024 20:07, Krasnov Arseniy wrote:
+> Hi! I removed Your R-b because patch was changed in this version, after
+> comments from Miquel Raynal
+> 
+> Thanks
+> 
+> ср, 8 мая 2024 г., 17:09 Rob Herring (Arm) <robh@kernel.org>:
+> 
+>>
+>> On Wed, 08 May 2024 02:09:01 +0300, Arseniy Krasnov wrote:
+>>> Boot ROM code on Meson requires that some pages on NAND must be written
+>>> in special mode: "short" ECC mode where each block is 384 bytes and
+>>> scrambling mode is on. Such pages are located on the chip in the
+>>> following way (for example):
+>>>
+>>> [ p0 ][ p1 ][ p2 ][ p3 ][ p4 ][ p5 ][ p6 ][ p7 ] ... [ pN ]
+>>>   ^           ^           ^           ^
+>>>
+>>> pX is page number "X". "^" means "special" page used by boot ROM - e.g.
+>>> every 2nd page in the range of [0, 7]. Step (2 in example is set by
+>>> 'amlogic,boot-page-step' field. Last page in range (7 in example) is
+>>> set by 'amlogic,boot-pages' field.
+>>>
+>>> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+>>> ---
+>>>  .../bindings/mtd/amlogic,meson-nand.yaml       | 18 ++++++++++++++++++
+>>>  1 file changed, 18 insertions(+)
+>>>
+>>
+>>
+>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+>> there's no need to repost patches *only* to add the tags. The upstream
+>> maintainer will do that for acks received on the version they apply.
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>>
+>> Missing tags:
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>>
+>>
+>>
+>>
+> 
 
