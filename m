@@ -1,275 +1,122 @@
-Return-Path: <devicetree+bounces-66544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93CE38C383B
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 21:35:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A61958C3867
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 23:05:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 543C9281FAE
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 19:35:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D39C280F25
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 21:05:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0732E51C5C;
-	Sun, 12 May 2024 19:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7D942077;
+	Sun, 12 May 2024 21:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mPUneHSs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bqJRtDB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311541E49B;
-	Sun, 12 May 2024 19:35:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F4B1DFD0;
+	Sun, 12 May 2024 21:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715542512; cv=none; b=P5r++pYMyIpdob6hFNiVA4ahrPKpJgu5GrCuQa4vWTsh/crsqXZM2AS+QQkfihperp1cwjQKEDMrDUdi3DJmUMPtQ8sUrcrHzAZ3LtcsM+LNEP2G9+2lxXKfKGOsUEo8ebFUiC+iIHRptNqWj4FtJHsL+/0pDeyQQxxo2knOGxI=
+	t=1715547895; cv=none; b=dCLSURRcxP3Ym28a682zhNbZsGMrkTeaxUZ4xXuCXlBaSEBAvQaOeQETcgoR7O3Jm6XCCDy3as1odQbF8qZyPoMEXLQDKuBJxKiQ+T8ls7SqjgIgxw1/FwRYt+ct26qvXrbfdCQNNNrSmndYstMDFwOW4wqkfquVlH375KnPSco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715542512; c=relaxed/simple;
-	bh=Uvp4c9PzSzl2dbXGTaNaX4y79zqXzrLQBohz5lqtVZ4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sVxF4uLhAm8jAg51VDPF/v++B5FkQXrNE5wr2XHMRrzgXvvOm3JPbuna4pnOqZtB2g7SgQo+KkiuQMNbsngVPby6g5snThiZVmQZXadvPWhwjFYOUf+znl72r9e/2PFc/RYJsD/1C/e31YR8BwKZCSNZq/Zgmu0XWAoMZkrB4rE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mPUneHSs; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 465DA564;
-	Sun, 12 May 2024 21:35:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1715542502;
-	bh=Uvp4c9PzSzl2dbXGTaNaX4y79zqXzrLQBohz5lqtVZ4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mPUneHSs8tQCzr3IMbVN9drNZ3xlxy/xYRdQKZEbjfY11lW6fxnTXGCr2qJ4GG+xh
-	 3pyUOY7pidyg1rgQQd68v4AFbbj2PQd8Ngt5qFjSscCUV0GG9U30IjXm2Amff826Tc
-	 1m6mHyEr5Tbovlx/Wichn5RjldZV6D1tn7Zlfp8g=
-Date: Sun, 12 May 2024 22:34:59 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Aradhya Bhatia <a-bhatia1@ti.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Jyri Sarha <jyri.sarha@iki.fi>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	DRI Development List <dri-devel@lists.freedesktop.org>,
-	Devicetree List <devicetree@vger.kernel.org>,
-	Linux Kernel List <linux-kernel@vger.kernel.org>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-	Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
-Subject: Re: [PATCH 2/4] dt-bindings: display: ti: Add schema for AM625 OLDI
- Transmitter
-Message-ID: <20240512193459.GF17158@pendragon.ideasonboard.com>
-References: <20240511193055.1686149-1-a-bhatia1@ti.com>
- <20240511193055.1686149-3-a-bhatia1@ti.com>
+	s=arc-20240116; t=1715547895; c=relaxed/simple;
+	bh=uWMyoS64M6BvRn+3IiwkbrlGwagXWlrWOlikPtGavgg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Hsi7cz0PAe5EGYbT6nx8g9LhBkx/O8mA6+nXKIBc5VhTdT285xfyGHZg7Q6v24fth184CgbSMfJcMQfDlnA+sduZFN7yrssxUWuWxq3XL8oLaEUEuSnzZj0E2sjHXQmCf1H5TYJFqQViPziztRskTL1Dmcp16919kWBnEap0H6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bqJRtDB7; arc=none smtp.client-ip=209.85.161.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5ac61cf3fffso1822635eaf.3;
+        Sun, 12 May 2024 14:04:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715547893; x=1716152693; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=49gp34vg08KM1Pui5A3dBoTwgYUqH7gz93G6LxNn9ds=;
+        b=bqJRtDB7tT+8xynmaz6XRLTsuFh2j0ulC/YBe/YDrqwLZ/vC4AAUk5Dr1+NI++TSEy
+         /+M/Xqff3vzzJR75uPjauam1YU/O82ILu8Wslb7Rvwj965fn3xMmxMbwX1JihffPCnWJ
+         ogH4cXPxaY8mHL6K5WAwokzY/8bgbB6YvAMQ+PKdxV+v+o1nE/LFPlhTfGUOZ2v8yyt3
+         XFfwS3QBLdfKSyJkrKJ3rWqrY32hec6hYskipYUpo5ol9xp+yRe/G8bqNWmVDooG74Jg
+         9TuQWt/6ZzaZ7lyLISmETLafyRSzG6fQunSbgKz49XKJ77H1H3updDjRkVJhWbbcUXK2
+         hyGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715547893; x=1716152693;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=49gp34vg08KM1Pui5A3dBoTwgYUqH7gz93G6LxNn9ds=;
+        b=RHQxFRCbizpDmrnglu0NSljNI7jR3DEla3RvNVnOxSZEktf3BYfe06EQ5t4HmrPDQs
+         fT4BMr6D/3Dn0vEDXTQJ7z2PfQgl0iX5NWF1Wncm3Yl6fTJtPdAD9XWt/62uojCVuEWa
+         ukvpWrjHi05UHFFypeXNQdLmleU53WmiI5T13jZxov+HJdavhgY7ptOFtqmrFd4K6w46
+         9KJyZJBFZlGUepkFDdxtq7IowdMWLgBGQxN5L5NVrm9o6VrEoodr2tYOkX6Caiwb8VQJ
+         IJdIJCOE3gTvbEriFExPEE93nB/uEtPxe/9wmJYzukbgoceZAkMFlmYgbKdI+4+nfmdB
+         qXiA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUlpn+8tGF7mhRO+X59xhtZnav2/A5br8ORR4H14C5vxeoltd8MLcbPTAKRR2mWMT2x6vslBWN8pfn5Nl8LY+7Y+X+0IVNgjo+5NjW3gBU/gcMGcWlGH/Hn3vTs7QknXFk1NUMKiSf2/rrAQxpueTMadhPi5DR7EJLlmRTf2Ewl9RV5Q==
+X-Gm-Message-State: AOJu0YzgSTrc/aQjmv1C1hVLCbsFgbMg1oX95eKpEqIIyYwSp2GcCz7d
+	3I2r/i5q1d6Or2JKYR++f5p8lTpwlyY9U/uJ1UeKeXSr/LeB6WYX
+X-Google-Smtp-Source: AGHT+IGaLzQtf8lEExRQHkXeBJWs+tj4uh3NdhXcCrZvn+xvs8ap41m82njn5QXF1jySL4urQ15lkA==
+X-Received: by 2002:a05:6358:7f9b:b0:18d:daac:f411 with SMTP id e5c5f4694b2df-193bd0005b6mr749382655d.31.1715547892974;
+        Sun, 12 May 2024 14:04:52 -0700 (PDT)
+Received: from localhost.localdomain ([189.101.162.253])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6340a447391sm6534865a12.3.2024.05.12.14.04.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 May 2024 14:04:52 -0700 (PDT)
+From: Gustavo Silva <gustavograzs@gmail.com>
+To: jic23@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lars@metafoo.de,
+	christophe.jaillet@wanadoo.fr,
+	gerald.loacker@wolfvision.net,
+	devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] Add driver for ENS160 sensor
+Date: Sun, 12 May 2024 18:04:36 -0300
+Message-ID: <20240512210444.30824-1-gustavograzs@gmail.com>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240511193055.1686149-3-a-bhatia1@ti.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Aradhya,
+This series of patches adds a driver for ScioSense ENS160 multi-gas
+sensor, designed for indoor air quality monitoring.
 
-Thank you for the patch.
+Gustavo Silva (6):
+  dt-bindings: vendor-prefixes: add ScioSense
+  dt-bindings: Add ENS160 as trivial device
+  iio: chemical: add driver for ENS160 sensor
+  iio: chemical: ens160: add triggered buffer support
+  iio: chemical: ens160: add power management support
+  MAINTAINERS: Add ScioSense ENS160
 
-On Sun, May 12, 2024 at 01:00:53AM +0530, Aradhya Bhatia wrote:
-> Add devicetree binding schema for AM625 OLDI Transmitters.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
->  .../bindings/display/ti/ti,am625-oldi.yaml    | 153 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 154 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
-> new file mode 100644
-> index 000000000000..0a96e600bc0b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
-> @@ -0,0 +1,153 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/ti/ti,am625-oldi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments AM625 OLDI Transmitter
-> +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> +  - Aradhya Bhatia <a-bhatia1@ti.com>
-> +
-> +description: |
-> +  The AM625 TI Keystone OpenLDI transmitter (OLDI TX) supports serialized RGB
-> +  pixel data transmission between host and flat panel display over LVDS (Low
-> +  Voltage Differential Sampling) interface. The OLDI TX consists of 7-to-1 data
-> +  serializers, and 4-data and 1-clock LVDS outputs. It supports the LVDS output
-> +  formats "jeida-18", "jeida-24" and "vesa-18", and can accept 24-bit RGB or
-> +  padded and un-padded 18-bit RGB bus formats as input.
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: serial clock input for the OLDI transmitters
-> +
-> +  clock-names:
-> +    const: s_clk
-> +
-> +  ti,companion-oldi:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to companion OLDI transmitter. This property is mandatory for the
-> +      primarty OLDI TX if the OLDI TXes are expected to work either in dual-lvds
-> +      mode or in clone mode. This property should point to the secondary OLDI
-> +      TX.
-> +
-> +  ti,secondary-oldi:
-> +    type: boolean
-> +    description: Boolean property to mark an OLDI TX as secondary node.
-> +
-> +  ti,oldi-io-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to syscon device node mapping OLDI IO_CTRL registers found in the
-> +      control MMR region. This property is needed for OLDI interface to work.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Parallel RGB input port
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: LVDS output port
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        ti,secondary-oldi: true
-> +    then:
-> +      properties:
-> +        ti,companion-oldi: false
-> +        ti,oldi-io-ctrl: false
-> +        clocks: false
-> +        clock-names: false
-> +
-> +    else:
-> +      required:
-> +        - ti,oldi-io-ctrl
-> +        - clocks
-> +        - clock-names
-> +
-> +required:
-> +  - reg
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +
-> +    oldi_txes {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        oldi: oldi@0 {
-> +            reg = <0>;
-> +            clocks = <&k3_clks 186 0>;
-> +            clock-names = "s_clk";
-> +            ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ drivers/iio/chemical/Kconfig                  |  22 +
+ drivers/iio/chemical/Makefile                 |   3 +
+ drivers/iio/chemical/ens160.h                 |  11 +
+ drivers/iio/chemical/ens160_core.c            | 401 ++++++++++++++++++
+ drivers/iio/chemical/ens160_i2c.c             |  69 +++
+ drivers/iio/chemical/ens160_spi.c             |  70 +++
+ 9 files changed, 588 insertions(+)
+ create mode 100644 drivers/iio/chemical/ens160.h
+ create mode 100644 drivers/iio/chemical/ens160_core.c
+ create mode 100644 drivers/iio/chemical/ens160_i2c.c
+ create mode 100644 drivers/iio/chemical/ens160_spi.c
 
-What bus does this device live on ? Couldn't the I/O register space be
-referenced by the reg property ?
 
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    oldi_in: endpoint {
-> +                        remote-endpoint = <&dpi0_out>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +
-> +    oldi_txes {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        oldi0: oldi@0 {
-> +            reg = <0>;
-> +            clocks = <&k3_clks 186 0>;
-> +            clock-names = "s_clk";
-> +            ti,companion-oldi = <&oldi1>;
-> +            ti,oldi-io-ctrl = <&dss_oldi_io_ctrl>;
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    oldi0_in: endpoint {
-> +                        remote-endpoint = <&dpi0_out0>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +        oldi1: oldi@1 {
-> +            reg = <1>;
-> +            ti,secondary-oldi;
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    oldi1_in: endpoint {
-> +                        remote-endpoint = <&dpi0_out1>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c675fc296b19..4426c4d41a7f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7480,6 +7480,7 @@ M:	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->  L:	dri-devel@lists.freedesktop.org
->  S:	Maintained
->  T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-> +F:	Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
->  F:	Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
->  F:	Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
->  F:	Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-
+base-commit: 084eeee1d8da6b4712719264b01cb27b41307f54
 -- 
-Regards,
+2.45.0
 
-Laurent Pinchart
 
