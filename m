@@ -1,190 +1,96 @@
-Return-Path: <devicetree+bounces-66525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE68B8C3700
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 17:25:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A4D8C370D
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 17:28:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA3C32812C6
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 15:25:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBDF51F214A5
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 15:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5E1D45BEF;
-	Sun, 12 May 2024 15:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAAC03BB32;
+	Sun, 12 May 2024 15:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dFGSdjJq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JIlijAlU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AAC83FB8B;
-	Sun, 12 May 2024 15:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EA7381DA
+	for <devicetree@vger.kernel.org>; Sun, 12 May 2024 15:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715527547; cv=none; b=EYp1wo6icF7tdNVZcmV1pAgUVivzlHUMKdvIAs+VN/CpfImq8Xdk2ahp9XPjyQRb0uuy4EYECbjZ4iWhwDhwT5nTOgqSi2bBOof5zCaUANaNDoZQZ+B1lK7+HkHSXxTK9rvmWBoVhMA9VFrKPSIJIQA5TbwYPhz6UAQB5ZpYQO4=
+	t=1715527692; cv=none; b=L4P/Tpp7GgacMK3VYAnzuCTN14JVbyhystUnkMxwrWFPUVHqR3psdOha271horFuITZopetQ+n4Zb7RBV7YicebJS8Up+EulNH72lqjiXGaefsY4yHXFtEKydKlaovbkueVmZe0TKTX3aHWEBQvpq3VWnQlvEb01hUokcbVSxwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715527547; c=relaxed/simple;
-	bh=VxXd1pVTHgFPYpuyHPxoomX3P5xw2HYOOi9eD32Pv50=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T0A3a9AxKmEwlhrTUVNtqwGddNRvHV4kq3+Y8uORpfYsW4c3j8ebX3acTy/BizteEk4NmBWKXRgF63tMDn3jMthhFizDp8EAa8tqdcYocl7EMj4Bhl9185VE6edt9OdLG1I+v8kRW2ddveEIih0nmkz8UAe/DE77Qe5s9NvuPNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dFGSdjJq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4641EC4AF11;
-	Sun, 12 May 2024 15:25:47 +0000 (UTC)
+	s=arc-20240116; t=1715527692; c=relaxed/simple;
+	bh=eGt7xrSBMhn4Epr9ZFy/Lt+CLjsvFOjbiZ7MLPJSmvU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BepqytDHZOyliC7NgfDcoTrHOu80rxpNB1Lzckqk9GHKoau74/Y+HqHnIfcw9KUbozwrKZXNMswENnYHSFyAHjHHnsiOPGAGXQnNSwi8PXOQ38QlCm+fHHGT1y95iVkF0kV3EwddixO2DnG7v0I8dImRagw9XW5wisp6ETq5XkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JIlijAlU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3A1DC116B1;
+	Sun, 12 May 2024 15:28:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715527547;
-	bh=VxXd1pVTHgFPYpuyHPxoomX3P5xw2HYOOi9eD32Pv50=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dFGSdjJq05nFpLJHZFgRinsGoYsV2u3q13UBxbSAsOiq2/ZgzBP8K2sWH+0vZF4Xl
-	 am9Knl/KwBIXy+9nd/G2246osRwrqqglllTWXMKxE6o+f1pQIseHMB8TefxIwaCsuX
-	 Vtgctp1nSmeQNaShThpVsLJnxZ1p0T77g+tWDLa8wNmnjSEepkZcp2nAq1MOmc94fK
-	 x+0AVRU5BmSE+TnQ5bONeqV49VnJFZjxmtxvU5gtvU94E5QueVdTUrJblBBySlcaWQ
-	 TnXVMZuiNBZ3Xqt9RWGKIuXvj1tCxTL35MhHnNSHyuNI0aGQBhl1Qi6YMcH+qrsMDL
-	 JxA+yrMeIWZzw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3ED1CC25B77;
-	Sun, 12 May 2024 15:25:47 +0000 (UTC)
-From: =?utf-8?q?Noralf_Tr=C3=B8nnes_via_B4_Relay?= <devnull+noralf.tronnes.org@kernel.org>
-Date: Sun, 12 May 2024 17:25:42 +0200
-Subject: [PATCH v2 5/5] drm/tiny: panel-mipi-dbi: Support the pixel format
- property
+	s=k20201202; t=1715527692;
+	bh=eGt7xrSBMhn4Epr9ZFy/Lt+CLjsvFOjbiZ7MLPJSmvU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=JIlijAlU+aKc0EtSy7kZ7MSG7w11BrYPcz7pjgNMTUrqlV8hUbZmv/tevBV5NusyK
+	 edG/fCVEYYyW10SNITcuPtyyQ4zpm+cO6C3Ul/VH56/X6f04XzF3IA+KZ73WJwSs3u
+	 hKRJ3s+6lKiJclZFuYQsdBXRLAQpp9yvcGa/wYjO7t9L6E8sJuurpSTx6bJwxrgI4v
+	 os8ITWJ873CRxA6WnDTY22vxCrFFLU1zk7Q6PJqi/iciOxyVOAU4ew35Y1hxy0xCEh
+	 grRDQNu9uqD6B5WNcu4uL4nD/2hF6k5wSEDKgDc01myLorcpBpImVct/5fhUI3Iggt
+	 RhdYLHe0k/svg==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-phy@lists.infradead.org
+Cc: vkoul@kernel.org,
+	kishon@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com
+Subject: [PATCH 0/3] Introduce PCIe PHY driver for EN7581 SoC
+Date: Sun, 12 May 2024 17:27:37 +0200
+Message-ID: <cover.1715527166.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240512-panel-mipi-dbi-rgb666-v2-5-49dd266328a0@tronnes.org>
-References: <20240512-panel-mipi-dbi-rgb666-v2-0-49dd266328a0@tronnes.org>
-In-Reply-To: <20240512-panel-mipi-dbi-rgb666-v2-0-49dd266328a0@tronnes.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, 
- Tommaso Merciai <tommaso.merciai@amarulasolutions.com>, 
- =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1715527545; l=2926;
- i=noralf@tronnes.org; s=20221122; h=from:subject:message-id;
- bh=VkhLn8bg4+tzwHP3nVSjku8IqF1KyX0WKDV/6VouitQ=;
- b=mRfFsOMoujbyBk79qJfPAYkXoDM5n4PyHaR8rUjCDEPPG5JsOo7woURRkpWcj+AhydkSnYnPg
- Q3tSS1zKHKJBCrPfqE63WCQjLOTR5Zc+zsvRWMkX1iIbnJhM7xkURAo
-X-Developer-Key: i=noralf@tronnes.org; a=ed25519;
- pk=0o9is4iddvvlrY3yON5SVtAbgPnVs0LfQsjfqR2Hvz8=
-X-Endpoint-Received: by B4 Relay for noralf@tronnes.org/20221122 with
- auth_id=8
-X-Original-From: =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-Reply-To: noralf@tronnes.org
 
-From: Noralf Trønnes <noralf@tronnes.org>
+Add support for Airoha PCIe PHY controller available in the EN7581 SoC.
 
-Add support for these pixel format property values:
-- r5g6b5, RGB565
-- b6x2g6x2r6x2, BGR666
+Lorenzo Bianconi (3):
+  dt-bindings: phy: airoha: Add binding doc for PCIe PHY driver
+  arm64: dts: airoha: Add EN7581 pcie-phy node
+  phy: airoha: Add PCIe PHY driver for EN7581 SoC.
 
-BGR666 is presented to userspace as RGB888. The 2 LSB in each color
-are discarded by the controller. The pixel is sent on the wire using
-8 bits per word (little endian) so the controller sees it as BGR.
-
-RGB565 is the default if the property is not present.
-
-Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
----
- drivers/gpu/drm/tiny/panel-mipi-dbi.c | 55 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 54 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/tiny/panel-mipi-dbi.c b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-index f80a141fcf36..f3aa2abce314 100644
---- a/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-+++ b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-@@ -26,6 +26,49 @@
- 
- #include <video/mipi_display.h>
- 
-+struct panel_mipi_dbi_format {
-+	const char *name;
-+	u32 fourcc;
-+	unsigned int bpp;
-+};
-+
-+static const struct panel_mipi_dbi_format panel_mipi_dbi_formats[] = {
-+	{ "r5g6b5", DRM_FORMAT_RGB565, 16 },
-+	{ "b6x2g6x2r6x2", DRM_FORMAT_RGB888, 24 },
-+};
-+
-+static int panel_mipi_dbi_get_format(struct device *dev, u32 *formats, unsigned int *bpp)
-+{
-+	const char *format_name;
-+	unsigned int i;
-+	int ret;
-+
-+	formats[1] = DRM_FORMAT_XRGB8888;
-+
-+	ret = device_property_read_string(dev, "format", &format_name);
-+	if (ret) {
-+		/* Old Device Trees don't have this property */
-+		formats[0] = DRM_FORMAT_RGB565;
-+		*bpp = 16;
-+		return 0;
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(panel_mipi_dbi_formats); i++) {
-+		const struct panel_mipi_dbi_format *format = &panel_mipi_dbi_formats[i];
-+
-+		if (strcmp(format_name, format->name))
-+			continue;
-+
-+		formats[0] = format->fourcc;
-+		*bpp = format->bpp;
-+		return 0;
-+	}
-+
-+	dev_err(dev, "Pixel format is not supported: '%s'\n", format_name);
-+
-+	return -EINVAL;
-+}
-+
- static const u8 panel_mipi_dbi_magic[15] = { 'M', 'I', 'P', 'I', ' ', 'D', 'B', 'I',
- 					     0, 0, 0, 0, 0, 0, 0 };
- 
-@@ -276,6 +319,9 @@ static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
- 	struct drm_device *drm;
- 	struct mipi_dbi *dbi;
- 	struct gpio_desc *dc;
-+	unsigned int bpp;
-+	size_t buf_size;
-+	u32 formats[2];
- 	int ret;
- 
- 	dbidev = devm_drm_dev_alloc(dev, &panel_mipi_dbi_driver, struct mipi_dbi_dev, drm);
-@@ -323,7 +369,14 @@ static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
- 	if (IS_ERR(dbidev->driver_private))
- 		return PTR_ERR(dbidev->driver_private);
- 
--	ret = mipi_dbi_dev_init(dbidev, &panel_mipi_dbi_pipe_funcs, &mode, 0);
-+	ret = panel_mipi_dbi_get_format(dev, formats, &bpp);
-+	if (ret)
-+		return ret;
-+
-+	buf_size = DIV_ROUND_UP(mode.hdisplay * mode.vdisplay * bpp, 8);
-+	ret = mipi_dbi_dev_init_with_formats(dbidev, &panel_mipi_dbi_pipe_funcs,
-+					     formats, ARRAY_SIZE(formats),
-+					     &mode, 0, buf_size);
- 	if (ret)
- 		return ret;
- 
+ .../bindings/phy/airoha,pcie-phy.yaml         |   55 +
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |    9 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/phy/Kconfig                           |   10 +
+ drivers/phy/Makefile                          |    1 +
+ drivers/phy/phy-airoha-pcie-regs.h            |  476 +++++++
+ drivers/phy/phy-airoha-pcie.c                 | 1227 +++++++++++++++++
+ 8 files changed, 1787 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/airoha,pcie-phy.yaml
+ create mode 100644 drivers/phy/phy-airoha-pcie-regs.h
+ create mode 100644 drivers/phy/phy-airoha-pcie.c
 
 -- 
 2.45.0
-
 
 
