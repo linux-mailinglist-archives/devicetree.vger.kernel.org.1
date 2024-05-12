@@ -1,90 +1,116 @@
-Return-Path: <devicetree+bounces-66510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86658C3646
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 13:53:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27CE58C364E
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 14:05:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61F6F281485
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 11:53:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B84B01F2060A
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 12:05:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CAD20323;
-	Sun, 12 May 2024 11:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2EF208CB;
+	Sun, 12 May 2024 12:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8eCumQg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ucv4hU31"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA12F208AD;
-	Sun, 12 May 2024 11:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9EAF9F7;
+	Sun, 12 May 2024 12:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715514783; cv=none; b=MvifbRfTRnehbYMsXeGwLGoJhqmVLlN/b7A6QY42ypsCBwGJZRfRHgoaG4gSqLaJ9iYZkNpE00IpXCt4X1xGPPeHalEPdnNTouGu+KgtqSc8kc73BDxoDChGKWkCq5Yrk44p2i74Evw/fmJXDVgorrRmoEexmGFyJLNgxdF64FE=
+	t=1715515495; cv=none; b=kbsSgVACrhaL2/Ci32IPWEY8FHM15JS7TxIO2BZl5JyMRhb1jIQLOCR2+K+3GhhGZsP+SHvYbSf51/XUJeHyOfz5i+4BdVMj30zwDhSVhAIRlUhMm+k79ZoUjblu8Z4h1XG2LytVNpGE0L3kfGdws0bYy9VJ07zOc2w8FrL/4GE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715514783; c=relaxed/simple;
-	bh=EV5hOtBRZoACEd3ofs5zsHiQzho+I7OVwriKzAsb/iE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QvukEQV+akzyBzp59hf7uM7eYqHOLO/JTcvRbvb/MVmYd/0zcPHIbb5h2TZft0J1dRf+m5x9JnbVdTBBeWpv1Saj6G0auys53iYGNIjqZGWDxt5ernFSgGGGtBtQFY/miNBD7Loh3UsZrkjmO/z1tPeIy2ZyynTVz7VD9zZvznU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8eCumQg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F71C116B1;
-	Sun, 12 May 2024 11:53:00 +0000 (UTC)
+	s=arc-20240116; t=1715515495; c=relaxed/simple;
+	bh=KJmHfyH6mlZJ/m0XwcieNIyf8Qx2hjId1Vn0YiHi4tY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V6Oy+FgXJJyhGdo3BSY1/tf3v/GPgR85foeHB4TRzXHkKAjj/byNcQg5NIqHLUh4mklEhsh9xMTxw5FdcxlscjYNGJeUjhlxLUZY3N2GpOeXlcfa/Q9LPG3TbOPOAwA68KMSQT0v4QOZDOY7e9P9FlT1PZc5cs30uUoaUKg/N30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ucv4hU31; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B179FC116B1;
+	Sun, 12 May 2024 12:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715514783;
-	bh=EV5hOtBRZoACEd3ofs5zsHiQzho+I7OVwriKzAsb/iE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=m8eCumQgcg1UC3/G+H4OfDG37QQ+BovQueGPuCYuYI3UiP5sx4cyAVsA6pvlD2fGy
-	 wDLmsUp6PBzZB4lVb7IyWQMno8Oi2XSjSaknTknePMA9d8Dh2kThLNxzAz9hZkBajs
-	 ly95NUXStV7MfLncaOTKVECeNaCSfLIl4gDlrl24zZB5VHw2cCT9GUefXAnYdtWvgI
-	 NGxe6nknBUZrJezpv9JIYgAzSV0Kz9ho2zygisA1qbfSrmEiXw29GsEXOJBvDZxkCo
-	 nUmBSpSPdE/4I6ogPsze1w42wspN/jCSCW6OyuaNFNo0Ve9mhKvmHqDYMFqybLaUaa
-	 8a5UnUCf5ymRg==
-Date: Sun, 12 May 2024 12:52:52 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: adi,axi-adc: tweak example node
- name
-Message-ID: <20240512125252.7b4ed1fb@jic23-huawei>
-In-Reply-To: <20240511-overeater-prodigy-7f41e66762ac@spud>
-References: <20240510-b4-iio-axi-adc-dt-binding-tweak-v1-1-a1f633c4602c@baylibre.com>
-	<20240511-overeater-prodigy-7f41e66762ac@spud>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1715515494;
+	bh=KJmHfyH6mlZJ/m0XwcieNIyf8Qx2hjId1Vn0YiHi4tY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ucv4hU319txPNUxw3tX8uYnMFOXqZ634eGAw6UzW3URMD2nFzveUY+gxIkPSkUuxd
+	 pT+BfLdAIokszleGFrDGkUTPfvUpGz24sn7I7MkHqY1T/l1dTAkinPJQHVsZuwX3hL
+	 1rF1pA7wEaCNJAoNjbkr9zTQ7azPjdJqpQTGyj1MCYHoOm4WQ2LxQLOJDeN6UHSuSe
+	 HPZbdEH0t73ZN62oYeZ8k1+eIcaTFMXyow1ArJ8C0IuL8JhsQdLGY/pNy/UA447cFa
+	 G56lWHkrpyg3wiJsUa4F2+ixU6hN5hUPm/DTWyzRX4ZrQke4KvZZvYfUjWU8yCZuZQ
+	 kv5umxncG0TrA==
+Date: Sun, 12 May 2024 13:04:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Felix Kaechele <felix@kaechele.ca>
+Cc: Job Noorman <job@noorman.info>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: input: touchscreen: himax,hx83112b:
+ add HX83100A
+Message-ID: <20240512-trailing-wad-0b9553d03d30@spud>
+References: <20240511121245.109644-1-felix@kaechele.ca>
+ <20240511121245.109644-2-felix@kaechele.ca>
+ <20240511-passage-obstruct-70e4c3b37dbd@spud>
+ <dab1dddd-57ae-445e-bce7-879e8d73d809@kaechele.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1Zr+TJl8NhKVw3HF"
+Content-Disposition: inline
+In-Reply-To: <dab1dddd-57ae-445e-bce7-879e8d73d809@kaechele.ca>
 
-On Sat, 11 May 2024 14:00:40 +0100
-Conor Dooley <conor@kernel.org> wrote:
 
-> On Fri, May 10, 2024 at 04:04:38PM -0500, David Lechner wrote:
-> > It is always recommended to use generic node names for devicetree nodes.
-> > The documentation [1] of the AXI ADC IP core says "The most important
-> > part of the core is the Receiver PHY module.", so using phy as the node
-> > name seems appropriate.
-> > 
-> > [1]: https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
-> > 
-> > Signed-off-by: David Lechner <dlechner@baylibre.com>  
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-Sure, I guess phy is sort of applicable here.
+--1Zr+TJl8NhKVw3HF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied,
+On Sat, May 11, 2024 at 10:10:08AM -0400, Felix Kaechele wrote:
+> On 2024-05-11 08:38, Conor Dooley wrote:
+> > On Sat, May 11, 2024 at 08:12:22AM -0400, Felix Kaechele wrote:
+> > > Add a compatible string for the Himax HX83100A touch controller.
+> > >=20
+> > > Signed-off-by: Felix Kaechele <felix@kaechele.ca>
+> >=20
+> > Commit message should mention what makes this device incompatible with
+> > the existing device.
+>=20
+> Thanks!
+>=20
+> I have added this note in the commit message which will be part of a v3,
+> coming after I hopefully receive a few more comments on the other parts of
+> this change:
+>=20
+> The HX83100A presents touch events on its internal bus rather than offeri=
+ng
+> a dedicated event register like the other chips in this family do.
 
-> Cheers,
-> Conor.
+Ye, that sounds good. W/ that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
+
+
+--1Zr+TJl8NhKVw3HF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkCwYgAKCRB4tDGHoIJi
+0ukQAP4tdPpHCiS+aYv9tr4OD64LFywGL9bFq4elfXmGBza0bgD/fr8b5baNVflq
+Fj62Y4D36caKcEeKcT6HFxA4nTFrRQ8=
+=WlBl
+-----END PGP SIGNATURE-----
+
+--1Zr+TJl8NhKVw3HF--
 
