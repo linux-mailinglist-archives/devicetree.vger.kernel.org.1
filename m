@@ -1,211 +1,278 @@
-Return-Path: <devicetree+bounces-66507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F38B8C35BE
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 10:36:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D345E8C363F
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 13:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87CDE1F21460
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 08:35:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87D292812B8
+	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 11:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C58517997;
-	Sun, 12 May 2024 08:35:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB001E894;
+	Sun, 12 May 2024 11:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="askoPFk3"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="0kmb2Owc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B54CA40;
-	Sun, 12 May 2024 08:35:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D99E1C2AD;
+	Sun, 12 May 2024 11:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715502954; cv=none; b=YVUlREDDeiUQmf1Ojxj/GmOgtUwQEbM9JbzlQBBY4oqEZVasY80lD8NV01H3M9VqZGWe+6CYUCM9MvabeHmTvCBQLflxXuzpPiIPset2+K6kxFdGJ9okzYnYscOENdmlEhyQG/PDVXnZD4nPxity9OqsIvV43O2wiEI0HSjiPI8=
+	t=1715514506; cv=none; b=K3FEtln6mvwrem7q/L/lFetuwEjp+FOSj6MRAJO+vaj3XVI1JuYYUqfu7D/+Zes8xYUrMYIjUZeKcenvC1kTXWiCm1spvred+eCr95NOGn5mOi6anfEOO9ieXK1/vptkRkhrD5ICjGNY1Se4FVj8yKW2eSAud1fxcJsy9xhGUEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715502954; c=relaxed/simple;
-	bh=AYAOGX2iykH9oRAdYbACeysu3pcN+xhSPwvPYtAF/u4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ktk4c7LYWGvDLddpahZEgMQXNUvceO0g1jg5vp64HyQ6Ax+JzX2oyV0HmVdp/tW3U2lF1EWHLLxqog2622i/34b3u1VagPO5cyl2rqUwACHCzvnue9OPCkqLmN1gFRVFSvvyuQQZIt23eDibts+qiFZoG1ckoFgC3hhNAN7d3qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=askoPFk3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44C7l93p030917;
-	Sun, 12 May 2024 08:35:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Fofzy2llsdid6StBXTMQNjdLNqsuy2vO0XIxoDRwRQU=; b=as
-	koPFk3XB0DgMlPA3842tl2FyFadbf596uEyEaiLHR5ngGr/aASQZKrCFs05ftQ+e
-	KzbPe9I2HsPbKoR+VOZ5yDNGNFjCGkvNdmlAWsxU4aZEdC879A3sck6vU4PM+1Oi
-	0tYGF/aC0AtV1AxkrnNl3pXQuaMMvwlrQof7OlQasOhZroN5/XGMwyxMuFI8P1eT
-	uAMqk4SYI8pSTIjk2MD70BEpH+vTPzsu2rHYWkd+1/vd3YCIYQtjAJM3Z3Nx4RsM
-	vQMk08W4oeBwGZuf7jmC+swHPCj3mU5l/a6ZIZXZHguU8mq8CQcb25ZeXaTuUCm5
-	eYpPg9NlT3UmjjCh9ukA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y20rt9gyw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 12 May 2024 08:35:35 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44C8ZY6A015767
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 12 May 2024 08:35:34 GMT
-Received: from [10.216.17.219] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 12 May
- 2024 01:35:26 -0700
-Message-ID: <d283bf55-8b7b-4873-b2e3-aade4231dc78@quicinc.com>
-Date: Sun, 12 May 2024 14:05:18 +0530
+	s=arc-20240116; t=1715514506; c=relaxed/simple;
+	bh=a5sdWUu/SAnXiIE5VHIWRL/RhaEuPx+jDaNkfSPfeoc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ctrEt3l1e2cxH619YDOrUZmDtxeeltkcO/u1WluuyYL2Bhc9shxoFCEhKjrk8HTftz1y4T17+gxkiVC4Oi+itMeBp+078N5eUjmedn5vhCWWir03KXKQyYANO9mt3L4QkwfpA+oGPgdsijiumlqaZksU8FZIBQXW+9cIx46gYeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=0kmb2Owc; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 7E6081FA0A;
+	Sun, 12 May 2024 13:48:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1715514493;
+	bh=h0z00hFgh4UUjW8xjsLXv7Y36CFzGdOnXABZK2z+T8E=;
+	h=Received:From:To:Subject;
+	b=0kmb2Owch7ccpjr4CzvDlwCyQcDbQL/navgz7mJJnrdKG6zWp+U2OcHP8I9gYZiYy
+	 /q2yQCEnsgM/wtoxjQTiK360leWExG3pE0/yLGsAv1VpkR/dVzOe1VC2ZGIjK32m11
+	 JBPuTgB+0/yKwNdozsIkoBOLM05koOpaPulZI0iADs5wUc3audNKGVhjiBZLuAhZQR
+	 EpMeqq1VlgthSjVSKusPRbgFemA4Li6y1ZSRAXL5J3g7VuR4LfP53suGUkUZ/D9eVu
+	 zxqwwsbvrU7fQLX0mFxmeR7yXYx4Gndej8IexOKFtIUC4Cb4WHYAETvp6m3btAKCv8
+	 XFbV5taFPx/CQ==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 117787F95F; Sun, 12 May 2024 13:48:13 +0200 (CEST)
+Date: Sun, 12 May 2024 13:48:12 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Aradhya Bhatia <a-bhatia1@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Jyri Sarha <jyri.sarha@iki.fi>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	DRI Development List <dri-devel@lists.freedesktop.org>,
+	Devicetree List <devicetree@vger.kernel.org>,
+	Linux Kernel List <linux-kernel@vger.kernel.org>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+	Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
+Subject: Re: [PATCH 4/4] drm/tidss: Add OLDI bridge support
+Message-ID: <ZkCsfH1qeSsXyQz4@gaggiata.pivistrello.it>
+References: <20240511193055.1686149-1-a-bhatia1@ti.com>
+ <20240511193055.1686149-5-a-bhatia1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 RESEND 0/8] ipq9574: Enable PCI-Express support
-To: <mr.nuke.me@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad
- Dybcio <konrad.dybcio@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring
-	<robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul
-	<vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Michael
- Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-clk@vger.kernel.org>
-References: <20240501042847.1545145-1-mr.nuke.me@gmail.com>
- <569087fe-e675-41a4-b975-2d01d95b6d3c@quicinc.com>
- <c3f99ece-7f66-4c6f-a262-4d8894154ae9@gmail.com>
-Content-Language: en-US
-From: Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <c3f99ece-7f66-4c6f-a262-4d8894154ae9@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: aATPM805tWjekuvXtQyCUttm-CIsjzFz
-X-Proofpoint-GUID: aATPM805tWjekuvXtQyCUttm-CIsjzFz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-12_05,2024-05-10_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 bulkscore=0 clxscore=1015 mlxscore=0 malwarescore=0
- adultscore=0 spamscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405120064
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240511193055.1686149-5-a-bhatia1@ti.com>
 
+Hello Aradhya, thanks for you patch, I should be able to test your patch on my
+hardware in the coming days.
 
-
-On 5/8/2024 10:40 PM, mr.nuke.me@gmail.com wrote:
-> On 5/8/24 1:16 AM, Devi Priya wrote:
->>
->>
->> On 5/1/2024 9:58 AM, Alexandru Gagniuc wrote:
->>> There are four PCIe ports on IPQ9574, pcie0 thru pcie3. This series
->>> addresses pcie2, which is a gen3x2 port. The board I have only uses
->>> pcie2, and that's the only one enabled in this series. pcie3 is added
->>> as a special request, but is untested.
->>>
->>> I believe this makes sense as a monolithic series, as the individual
->>> pieces are not that useful by themselves.
->>
->> Hi Alexandru,
->>
->> As Dmitry suggested, we are working on enabling the PCIe NOC clocks
->> via Interconnect. We will be posting the PCIe series with
->> Interconnect support [1] shortly.
+On Sun, May 12, 2024 at 01:00:55AM +0530, Aradhya Bhatia wrote:
+> Up till now, the OLDI support in tidss was integrated within the tidss dispc.
+> This was fine till the OLDI was one-to-mapped with the DSS video-port (VP).
+> The AM62 and AM62P SoCs have 2 OLDI TXes that can support dual-lvds / lvds-clone
+> modes.
 > 
-> I am generally very hesitant to depend on unmerged series, as this can 
-> cause undue delays. In this particular case, I considered that both 
-> series can continue to stay independent, with the ability to convert the 
-> PCIe users to the new clock scheme when the time is right.
+> Add OLDI TXes as separate DRM bridge entities to better support the new LVDS
+> configurations.
 > 
->> [1] - 
->> https://lore.kernel.org/linux-arm-msm/20240430064214.2030013-1-quic_varada@quicinc.com/
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  drivers/gpu/drm/tidss/Makefile      |   3 +-
+>  drivers/gpu/drm/tidss/tidss_dispc.c |  11 +-
+>  drivers/gpu/drm/tidss/tidss_dispc.h |   4 +
+>  drivers/gpu/drm/tidss/tidss_drv.c   |  13 +-
+>  drivers/gpu/drm/tidss/tidss_drv.h   |   4 +
+>  drivers/gpu/drm/tidss/tidss_oldi.c  | 568 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/tidss/tidss_oldi.h  |  73 ++++
+>  7 files changed, 673 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.c
+>  create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.h
 > 
-> What changes would be needed to this series to make use of this? How 
-> does one use the "interconnected" clocks?
-> 
-> Alex
-Hi Alex,
+> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+> index d15f836dca95..fd90e8498cc2 100644
+> --- a/drivers/gpu/drm/tidss/tidss_drv.c
+> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
+> @@ -23,6 +23,7 @@
+>  #include "tidss_drv.h"
+>  #include "tidss_kms.h"
+>  #include "tidss_irq.h"
+> +#include "tidss_oldi.h"
+>  
+>  /* Power management */
+>  
+> @@ -140,10 +141,17 @@ static int tidss_probe(struct platform_device *pdev)
+>  
+>  	spin_lock_init(&tidss->wait_lock);
+>  
+> +	ret = tidss_oldi_init(tidss);
+> +	if (ret) {
+> +		if (ret != -EPROBE_DEFER)
+> +			dev_err(dev, "failed to init OLDI (%d)\n", ret);
+> +		return ret;
+> +	}
 
-Please refer to the latest PCIe series which adds support for enabling
-the NoC clocks via interconnect.
+return dev_err_probe()
 
-https://lore.kernel.org/linux-arm-msm/20240512082858.1806694-1-quic_devipriy@quicinc.com/
+> diff --git a/drivers/gpu/drm/tidss/tidss_oldi.c b/drivers/gpu/drm/tidss/tidss_oldi.c
+> new file mode 100644
+> index 000000000000..fd96ca815542
+> --- /dev/null
+> +++ b/drivers/gpu/drm/tidss/tidss_oldi.c
+> @@ -0,0 +1,568 @@
 
-Thanks & Regards,
-S.Devi Priya
-> 
->> Thanks,
->> S.Devi Priya
->>>
->>> In v2, I've had some issues regarding the dt schema checks. For
->>> transparency, I used the following test invocations to test:
->>>
->>>        make dt_binding_check 
->>> DT_SCHEMA_FILES=qcom,pcie.yaml:qcom,ipq8074-qmp-pcie-phy.yaml
->>>        make dtbs_check 
->>> DT_SCHEMA_FILES=qcom,pcie.yaml:qcom,ipq8074-qmp-pcie-phy.yaml
->>>
->>> Changes since v3:
->>>   - "const"ify .hw.init fields for the PCIE pipe clocks
->>>   - Used pciephy_v5_regs_layout instead of v4 in phy-qcom-qmp-pcie.c
->>>   - Included Manivannan's patch for qcom-pcie.c clocks
->>>   - Dropped redundant comments in "ranges" and "interrupt-map" of pcie2.
->>>   - Added pcie3 and pcie3_phy dts nodes
->>>   - Moved snoc and anoc clocks to PCIe controller from PHY
->>>
->>> Changes since v2:
->>>   - reworked resets in qcom,pcie.yaml to resolve dt schema errors
->>>   - constrained "reg" in qcom,pcie.yaml
->>>   - reworked min/max intems in qcom,ipq8074-qmp-pcie-phy.yaml
->>>   - dropped msi-parent for pcie node, as it is handled by "msi" IRQ
->>>
->>> Changes since v1:
->>>   - updated new tables in phy-qcom-qmp-pcie.c to use lowercase hex 
->>> numbers
->>>   - reorganized qcom,ipq8074-qmp-pcie-phy.yaml to use a single list 
->>> of clocks
->>>   - reorganized qcom,pcie.yaml to include clocks+resets per compatible
->>>   - Renamed "pcie2_qmp_phy" label to "pcie2_phy"
->>>   - moved "ranges" property of pcie@20000000 higher up
->>>
->>> Alexandru Gagniuc (7):
->>>    dt-bindings: clock: Add PCIe pipe related clocks for IPQ9574
->>>    clk: qcom: gcc-ipq9574: Add PCIe pipe clocks
->>>    dt-bindings: PCI: qcom: Add IPQ9574 PCIe controller
->>>    PCI: qcom: Add support for IPQ9574
->>>    dt-bindings: phy: qcom,ipq8074-qmp-pcie: add ipq9574 gen3x2 PHY
->>>    phy: qcom-qmp-pcie: add support for ipq9574 gen3x2 PHY
->>>    arm64: dts: qcom: ipq9574: add PCIe2 and PCIe3 nodes
->>>
->>> Manivannan Sadhasivam (1):
->>>    PCI: qcom: Switch to devm_clk_bulk_get_all() API to get the clocks
->>>      from Devicetree
->>>
->>>   .../devicetree/bindings/pci/qcom,pcie.yaml    |  37 ++++
->>>   .../phy/qcom,ipq8074-qmp-pcie-phy.yaml        |   1 +
->>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 178 +++++++++++++++++-
->>>   drivers/clk/qcom/gcc-ipq9574.c                |  76 ++++++++
->>>   drivers/pci/controller/dwc/pcie-qcom.c        | 164 +++-------------
->>>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 136 ++++++++++++-
->>>   .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h   |  14 ++
->>>   include/dt-bindings/clock/qcom,ipq9574-gcc.h  |   4 +
->>>   8 files changed, 469 insertions(+), 141 deletions(-)
->>>
+...
+
+> +		ret = drm_of_find_panel_or_bridge(child, OLDI_OURPUT_PORT, -1,
+> +						  &panel, &bridge);
+> +		if (ret) {
+> +			/*
+> +			 * Either there was no OLDI sink in the devicetree, or
+> +			 * the OLDI sink has not been added yet. In any case,
+> +			 * return.
+> +			 * We don't want to have an OLDI node connected to DSS
+> +			 * but not to any sink.
+> +			 */
+> +			if (ret != -EPROBE_DEFER)
+> +				dev_err(tidss->dev,
+> +					"no panel/bridge for OLDI%d. Error %d\n",
+> +					oldi_instance, ret);
+
+just dev_err_probe
+
+> +			goto err_put_node;
+> +		}
+
+...
+
+> +		if (IS_ERR(oldi->io_ctrl)) {
+> +			dev_err(oldi->dev,
+> +				"%s: oldi%d syscon_regmap_lookup_by_phandle failed %ld\n",
+> +			       __func__, oldi_instance, PTR_ERR(oldi->io_ctrl));
+> +			ret = PTR_ERR(oldi->io_ctrl);
+
+dev_err_probe 
+
+> +			goto err_put_node;
+> +		}
+> +
+> +		oldi->s_clk = of_clk_get_by_name(child, "s_clk");
+> +		if (IS_ERR(oldi->s_clk)) {
+> +			dev_err(oldi->dev,
+> +				"%s: oldi%d Failed to get s_clk: %ld\n",
+> +				__func__, oldi_instance, PTR_ERR(oldi->s_clk));
+> +			ret = PTR_ERR(oldi->s_clk);
+
+dev_err_probe
+
+In general, in this function, sometime you print an error and goto
+err_put_node, sometime you just goto err_put_node.  Not sure what's the
+rationale on this.
+
+> +			goto err_put_node;
+> +		}
+> +
+> +		/* Register the bridge. */
+> +		oldi->bridge.of_node = child;
+> +		oldi->bridge.driver_private = oldi;
+> +		oldi->bridge.funcs = &tidss_oldi_bridge_funcs;
+> +		oldi->bridge.timings = &default_tidss_oldi_timings;
+> +
+> +		tidss->oldis[tidss->num_oldis++] = oldi;
+> +		oldi->tidss = tidss;
+> +
+> +		drm_bridge_add(&oldi->bridge);
+> +	}
+> +
+> +err_put_node:
+> +	of_node_put(child);
+> +	of_node_put(oldi_parent);
+> +	return ret;
+> +}
+> diff --git a/drivers/gpu/drm/tidss/tidss_oldi.h b/drivers/gpu/drm/tidss/tidss_oldi.h
+> new file mode 100644
+> index 000000000000..5ad02ddea11a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/tidss/tidss_oldi.h
+> @@ -0,0 +1,73 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + * Copyright (C) 2023 - Texas Instruments Incorporated
+> + *
+> + * Aradhya Bhatia <a-bhati1@ti.com>
+> + */
+> +
+> +#ifndef __TIDSS_OLDI_H__
+> +#define __TIDSS_OLDI_H__
+> +
+> +#include <linux/media-bus-format.h>
+> +
+> +#include "tidss_drv.h"
+> +#include "tidss_dispc.h"
+> +
+> +struct tidss_oldi;
+
+why do you need this here? 
+
+> +
+> +/* OLDI Instances */
+> +#define OLDI(n)		n
+> +
+> +/* OLDI PORTS */
+> +#define OLDI_INPUT_PORT		0
+> +#define OLDI_OURPUT_PORT	1
+> +
+> +/* OLDI Config Bits */
+> +#define OLDI_ENABLE		BIT(0)
+> +#define OLDI_MAP		(BIT(1) | BIT(2) | BIT(3))
+> +#define OLDI_SRC		BIT(4)
+> +#define OLDI_CLONE_MODE		BIT(5)
+> +#define OLDI_MASTERSLAVE	BIT(6)
+> +#define OLDI_DEPOL		BIT(7)
+> +#define OLDI_MSB		BIT(8)
+> +#define OLDI_LBEN		BIT(9)
+> +#define OLDI_LBDATA		BIT(10)
+> +#define OLDI_DUALMODESYNC	BIT(11)
+> +#define OLDI_SOFTRST		BIT(12)
+> +#define OLDI_TPATCFG		BIT(13)
+> +
+> +/* Control MMR Register */
+> +
+> +/* Register offsets */
+> +#define OLDI_PD_CTRL            0x100
+> +#define OLDI_LB_CTRL            0x104
+> +
+> +/* Power control bits */
+> +#define OLDI_PWRDN_TX(n)	BIT(n)
+> +
+> +/* LVDS Bandgap reference Enable/Disable */
+> +#define OLDI_PWRDN_BG		BIT(8)
+> +
+> +#define OLDI_IDLE_CLK_HZ	25000000 /*25 MHz */
+this is used only on a single C files, move it there?
+
+I would consider this comment in general for this header file,
+from a quick check most of this is used only in tidss_oldi.c.
+
+Francesco
+
 
