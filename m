@@ -1,143 +1,145 @@
-Return-Path: <devicetree+bounces-66638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDCB18C401C
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 13:49:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9BF8C4039
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 13:57:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29AE6283029
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 11:49:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9532BB238FA
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 11:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7A314F102;
-	Mon, 13 May 2024 11:49:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE3014F10B;
+	Mon, 13 May 2024 11:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Bj2ePlh+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOYynaPt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0EBC14EC74;
-	Mon, 13 May 2024 11:49:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 344B614F102;
+	Mon, 13 May 2024 11:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715600968; cv=none; b=YOEdY6kg/3IHGscDxlr3yIVclXZYhFCBsRtTIU4kBUXYLlMaUMB2n99e51g8psXlJvXX+NNPGIvYZkDCW94lclXuAK/Ihf5Y8dg0qnPxpzuJZ55J7NUnBAd3LZ5xYAnfiTQ9WOD6kCoVP5WhoBFcqeB5ofaYcDJ7RQd5yOe96Qs=
+	t=1715601408; cv=none; b=SMq0piZW9lv5oztSyTt+WjUc582vEEvRORsBAJ++riKYvsKI1dGmSoudxnXd0rliZTmWFhOL5WAGtb9+vzGAKpvX9/dKleFQQKmKt5GlsBWLFhwsIU18cs1gfA8KqQxUtixbxDcTEIR3/tDadqp4GxACkCQ2D/OimTflRysrTag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715600968; c=relaxed/simple;
-	bh=Q8SRBiPVnD0RtsPawn3pWdml/P6ZAB5CutaNw1zmoJw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gp4qpmACszh97SPRORRS1ruV/OS7015otyN1uc5ImUhRpqkXCknPou9cnH629ZpZn8J03gCh14Ou0e9IxaQcYO7NE004zBb5SUKW/1XLg1jAS4hjhnWyVuP4U/3n9At9fIDY/U9nbWd5TlQhzChZcZ1Ag/mhvHq0gRZ55MeCkO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Bj2ePlh+; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44DBnLM8000872;
-	Mon, 13 May 2024 06:49:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715600961;
-	bh=j5+SPj/im+qkgkiZreOqeuGMoxAMv/SmMapvWxtjZ8U=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Bj2ePlh+AGKrUGNIt2C0oMwJgy5VZMx+CrCSMQ/F9J6SP8OUQvhws/aooIXgqcNxV
-	 nl6/A4oqE79ITiTd1R+KxmxRd/RXbA1XjgXVjmJCzR/8GsW6Qov1ltgmkC9PNvRCy3
-	 tqpwgiSQGLFDm6piyggs9up1dlsgQ6K7uZlWp9JI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44DBnLHH046034
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 13 May 2024 06:49:21 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 13
- May 2024 06:49:21 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 13 May 2024 06:49:21 -0500
-Received: from [172.24.227.88] (uda0500640.dhcp.ti.com [172.24.227.88])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44DBnGPS099101;
-	Mon, 13 May 2024 06:49:17 -0500
-Message-ID: <f29f4d5f-b23e-5729-ea51-b8995171347f@ti.com>
-Date: Mon, 13 May 2024 17:19:16 +0530
+	s=arc-20240116; t=1715601408; c=relaxed/simple;
+	bh=dFuXtoP5vaHg64OwsGSIklmUjOdYsEkW24eo3PiJYPg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mELjmicTfoaS1VGiQbY4tZN8nvTkCZ7gHQhtsDs3LJsZ5ewqWn5rau+KeRxXFgxAHQOvi+VKk21bwB58YJqcSdf6g0E6MUzIqT08wlLSVMYjqUqAomDmOIVSt8vHX3JVcQPnSpz5V8KLBuFD0JVhZSi7ll/bmWwc9vPEoKit5CI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOYynaPt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C3C6C113CC;
+	Mon, 13 May 2024 11:56:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715601407;
+	bh=dFuXtoP5vaHg64OwsGSIklmUjOdYsEkW24eo3PiJYPg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OOYynaPtNmxx1bMQjbXLqbJHkyb5LhBds3fbj3hdoKJpo2LjK040qr/r+dnNGzVYV
+	 mgAetOzVOLri0Dn1ED+iVEuBj4+Ew398j+9JD/OKI3vzFM6jekESYZoh0SgIRHfJ8g
+	 qABpgcphkUQZHBuUJNohQafuHYodYxrKXAD0zVR1GdmE2TTwY53eEAXJts5EOG/Pli
+	 kSGURXCXmEQ1YqF/ZTLLPUhO90c2XwBdbEQf1h9GwDHVFtvAEQBQLtTOTrpJfd84FY
+	 EnQgyOxsUp0RNAQnp4seNvv8kTf2jj4LxM4RtwUAmZaP+PX7awCzqIKbERmdtutgx2
+	 J7+GQ4oceLJQA==
+Message-ID: <ce047081-177e-403d-a874-76762c948bb1@kernel.org>
+Date: Mon, 13 May 2024 13:56:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/3] arm64: dts: ti: k3-j722s-main: Add support for
- SERDES0
-To: <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>, <robh@kernel.org>,
-        <rogerq@kernel.org>
-CC: <kristo@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <srk@ti.com>, <s-vadapalli@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Ravi
- Gunasekaran <r-gunasekaran@ti.com>
-References: <20240513114443.16350-1-r-gunasekaran@ti.com>
- <20240513114443.16350-2-r-gunasekaran@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: st,stm32mp1-pwr-reg: add
+ compatible for STM32MP13
+To: Patrick DELAUNAY <patrick.delaunay@foss.st.com>,
+ Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Pascal Paillet <p.paillet@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20240426183253.1360098-1-patrick.delaunay@foss.st.com>
+ <20240426203245.v2.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+ <b0e794ad-f164-4304-b59e-736606bfe529@kernel.org>
+ <f37d220b-1364-4c77-8cc5-169844d47c8f@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <20240513114443.16350-2-r-gunasekaran@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f37d220b-1364-4c77-8cc5-169844d47c8f@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Roger,
-
-On 5/13/24 5:14 PM, Ravi Gunasekaran wrote:
-> AM62P's DT source files are reused for J722S inorder to
-> avoid duplication of nodes. But J722S has additional
-> peripherals that are not present in AM62P.
+On 13/05/2024 11:46, Patrick DELAUNAY wrote:
 > 
-> Introduce a -main.dtsi to define such additional main
-> domain peripherals and define the SERDES0 node.
+> On 4/29/24 07:11, Krzysztof Kozlowski wrote:
+>> On 26/04/2024 20:32, Patrick Delaunay wrote:
+>>> Add new compatible "st,stm32mp13-pwr-reg" for STM32MP13 SoC family.
+>>>
+>>> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - update for Rob review, only add compatible for STM32MP13 family
+>> Please start testing your patches BEFORE sending.
 > 
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> ---
-> Changes since v1:
-> ----------------
-> * Newly introduced k3-j722s-main.dtsi to add main domain
->   peripherals that are additionally present in J722S
 > 
-> * Used generic node names - renamed "clock-cmnrefclk" to "clk-0",
->   "wiz@f000000" to "phy@f000000"
+> Sorry,
 > 
+> I don't know why I don't see the issue even if I executed
+> 
+> make dt_binding_check SCHEMA_FILES=stm32
 
-[...]
+The code is incorrect, which is easily visible by the diff. dtschema
+detects it so, your setup is probably not complete, if you claim you run
+it before sending. writing-schema doc has short guide how to setup, but
+that's basically only one command - pip install dtschema
 
-> +
-> +&cbass_main {
-> +	serdes_wiz0: phy@f000000 {
-> +		compatible = "ti,am64-wiz-10g";
-> +		ranges = <0x0f000000 0x0 0x0f000000 0x00010000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		power-domains = <&k3_pds 279 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 279 0>, <&k3_clks 279 1>, <&serdes_refclk>;
-> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
-> +		num-lanes = <1>;
-> +		#reset-cells = <1>;
-> +		#clock-cells = <1>;
-> +
-> +		assigned-clocks = <&k3_clks 279 1>;
-> +		assigned-clock-parents = <&k3_clks 279 5>;
-> +
-> +		serdes0: serdes@f000000 {
+Best regards,
+Krzysztof
 
-[1] expects the node name to be "serdes". So I could not rename this node to "phy"
-as discussed in the v1 series.
-
-[1] - https://elixir.bootlin.com/linux/latest/source/drivers/phy/ti/phy-j721e-wiz.c#L1474
-
-> +			compatible = "ti,j721e-serdes-10g";
-
-
-[...]
-
--- 
-Regards,
-Ravi
 
