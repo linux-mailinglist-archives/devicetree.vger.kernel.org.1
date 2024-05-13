@@ -1,92 +1,199 @@
-Return-Path: <devicetree+bounces-66703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEAAD8C44BF
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:02:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE9758C44C8
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:04:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF94E1C2110C
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:02:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 846B4280E6F
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263A9155327;
-	Mon, 13 May 2024 16:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C6D15532B;
+	Mon, 13 May 2024 16:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OV8R2lzv"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="KWL06VFg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF91B147C60;
-	Mon, 13 May 2024 16:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B28155320;
+	Mon, 13 May 2024 16:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715616175; cv=none; b=G0fxcJmcjFt/DQoh/bi9HeLsLY+oy/vtgqZnX8Ex7kBcy3cmPIeRTy3s1cvKDGXtyYKaXGtWgVUle/FwwdhE69R0USb6T+KRG/CrA1gd6AeAcC97ZzwzcfQZ8R+/hNc3ApIJqrHjlNRqI4D1QqM5PEdy7CxyT5xBcOrJ5i/dK1c=
+	t=1715616286; cv=none; b=AklhWYDh2q4pdlviqaHDdZVhfzvaOYZlCIrHbPBiH4zeOv3yYdTgdObul0wkNVEcgmhvLCn+gJNXJrs4P8SWM8YPONaJrIL69JvOlIuRZApvF4nouCeelaRwGc9Lq7oeSIiEeVcmVI6xrDvb8VD5qXjVSXkZUFSrYyJgg3i2/pU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715616175; c=relaxed/simple;
-	bh=ZYUsMvbE3F1zih0Bi+6eFTsa3DX4SbMk211lkAqs+tM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Oy3tAGKVg7JsIae23i0XnievxNl7qmFrd+nl3hsLFy7BooyJeYJaMEUjcrTwWONOD/4RP72kM8tQTAK2BXgVasdsI9ORdqgTYw41SdFjSTRnQgjwdJ++GduuEeueLa8yf0B99N72w4Cjk7hBp7Z68cpPGyXFkYztxQ38EqcR8iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OV8R2lzv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44942C113CC;
-	Mon, 13 May 2024 16:02:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715616174;
-	bh=ZYUsMvbE3F1zih0Bi+6eFTsa3DX4SbMk211lkAqs+tM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OV8R2lzvW+ZFWLTql+BTFBNdFcEYx1ykw1rGjWKanwVpflj1gIFRKGgkhc3ti4inK
-	 FhKctbkwwwWo2hSG77dyZH6cEyWrXEGm2yehZIa7dSUdfhyjIq1fYWRpIz98ImHiiX
-	 SrUBKDuUP2PuHQLtkz58vPHLgmTDsVpyZqOaAYTrReonH1bfr9ZgbE/alDxLVMUq1K
-	 D7avBrRQdltnxicNipUUauMXHhfVpTom13ozqhXzgNZJJDq2QNReJLkvvLQDYkn0Jz
-	 DTuuilsgJh4RXCm69LCwEE3XYlkf3NksyvCTMF5nHHhGOryhk/U0pz9JWsddrtDqmm
-	 wxeSMu6W6el3Q==
-Date: Mon, 13 May 2024 17:02:50 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Gustavo Silva <gustavograzs@gmail.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lars@metafoo.de, christophe.jaillet@wanadoo.fr,
-	gerald.loacker@wolfvision.net, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: vendor-prefixes: add ScioSense
-Message-ID: <20240513-credibly-expanse-dbf321dbdb30@spud>
-References: <20240512210444.30824-1-gustavograzs@gmail.com>
- <20240512210444.30824-2-gustavograzs@gmail.com>
+	s=arc-20240116; t=1715616286; c=relaxed/simple;
+	bh=pWUQezwcvEM8YCOr5g1M17xK3KYYf4L5566Iz1r76tA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uHAQLJy0GzdgQmmcvnVvFxwesW4gqNgcRXM9oyKSc7AR96M1mJ9ii7iJBvh5n80IXZchkFtGZ1eM09D3aqp221gsm75RA117BsDc/saAHe1m8aJEN/iVMk8NV8JEt5SSfGqvkJAPqWOJ3jJ7h4oXFC+hGOKNH8ZMtq4gp95VptM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=KWL06VFg; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44DC1mtn004753;
+	Mon, 13 May 2024 18:02:31 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=B766p5PPQr7dHmHzceq9OMDPS3Z4QnY2plz4PZdwYqw=; b=KW
+	L06VFgIsC51L9S28vBzQzSYHj6WEM4xVAJUqLfJb8ECuAjIsa1qvRrObJzWq+iYe
+	X5ordIMO33l3QmE+JiIrWBS8rm0CkFbUGgvNNYWJAwVpNCQkPU2MCfPP8lI8sB8g
+	YEcPAQPwCAWh0vkvYm8gUhl+leGGwl7oCEA/x7tncYr9cOG3CGwF4p9yFkXE3sdB
+	E+YQYokSpMjCECWYMDEdS0JtK8u8Y3VxtPAdmr9RNkwKZLB/ZcW+LodFYsPQQTJe
+	m4wnAncEWTH1eJmt8clMTns0kKc7LT/amdW8mYFS+lSkg4vu2ydcJXH5V2Mx5bo2
+	By1TNcybmLqb5IVmFsvw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3y2kmhnf0w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 May 2024 18:02:31 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C915640044;
+	Mon, 13 May 2024 18:02:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DBD832248DE;
+	Mon, 13 May 2024 18:01:13 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 13 May
+ 2024 18:01:12 +0200
+Message-ID: <8bf3be27-3222-422d-bfff-ff67271981d8@foss.st.com>
+Date: Mon, 13 May 2024 18:01:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GrsbxW7unxrSDcxV"
-Content-Disposition: inline
-In-Reply-To: <20240512210444.30824-2-gustavograzs@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 10/11] ARM: dts: stm32: add ethernet1 and ethernet2 for
+ STM32MP135F-DK board
+To: Marek Vasut <marex@denx.de>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard
+ Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+ <20240426125707.585269-11-christophe.roullier@foss.st.com>
+ <43024130-dcd6-4175-b958-4401edfb5fd8@denx.de>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <43024130-dcd6-4175-b958-4401edfb5fd8@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-13_11,2024-05-10_02,2023-05-22_02
 
+Hi Marek
 
---GrsbxW7unxrSDcxV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 4/26/24 17:44, Marek Vasut wrote:
+> On 4/26/24 2:57 PM, Christophe Roullier wrote:
+>> Add dual Ethernet:
+>> -Ethernet1: RMII with crystal
+>> -Ethernet2: RMII without crystal
+>> PHYs used are SMSC (LAN8742A)
+>>
+>> With Ethernet1, we can performed WoL from PHY instead of GMAC point
+>> of view.
+>> (in this case IRQ for WoL is managed as wakeup pin and configured
+>> in OS secure).
+> 
+> How does the Linux PHY driver process such a PHY IRQ ?
+> 
+> Or is Linux unaware of the PHY IRQ ? Doesn't that cause issues ?
 
-On Sun, May 12, 2024 at 06:04:37PM -0300, Gustavo Silva wrote:
-> Add vendor prefix for ScioSense B.V.
-> https://www.sciosense.com/
->=20
-> Signed-off-by: Gustavo Silva <gustavograzs@gmail.com>
+In this case, we want to have an example to wakeup the system from 
+Standby low power mode (VDDCPU and VDD_CORE off) thanks to a magic 
+packet detected by the PHY. The PHY then assert his interrupt output signal.
+On MP13 DK platform, this PHY signal is connected to a specific GPIO
+aka "Wakeup pins" (only 6 wakeup pins an MP13). Those specific GPIOs are 
+handled by the PWR peripheral which is controlled by the secure OS.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On WoL packet, the Secure OS catches the PHY interrupt and uses 
+asynchronous notification mechanism to warn Linux (on our platform we 
+use a PPI). On Linux side, Optee core driver creates an irq 
+domain/irqchip triggered on the asynchronous notification. Each device 
+which use a wakeup pin need then to request an IRQ on this "Optee irq 
+domain".
 
---GrsbxW7unxrSDcxV
-Content-Type: application/pgp-signature; name="signature.asc"
+This OPTEE irq domain will be pushed soon.
 
------BEGIN PGP SIGNATURE-----
+cheers
+Alex
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkI5qgAKCRB4tDGHoIJi
-0tTDAP4sF1wdC+ZxfzjWrsk79d1EzW/3V7hiRnOSOIuZ925M7AD/UnIxJmsjvKxz
-lrbqg1YRiI+jtqy8PQJkG+hg4z+hIgY=
-=rUFx
------END PGP SIGNATURE-----
-
---GrsbxW7unxrSDcxV--
+> 
+>> diff --git a/arch/arm/boot/dts/st/stm32mp135f-dk.dts 
+>> b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+>> index 567e53ad285f..3b8eb0ab9ab9 100644
+>> --- a/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+>> +++ b/arch/arm/boot/dts/st/stm32mp135f-dk.dts
+>> @@ -19,6 +19,8 @@ / {
+>>       compatible = "st,stm32mp135f-dk", "st,stm32mp135";
+>>       aliases {
+>> +        ethernet0 = &ethernet1;
+>> +        ethernet1 = &ethernet2;
+>>           serial0 = &uart4;
+>>           serial1 = &usart1;
+>>           serial2 = &uart8;
+>> @@ -141,6 +143,52 @@ &cryp {
+>>       status = "okay";
+>>   };
+>> +&ethernet1 {
+>> +    status = "okay";
+>> +    pinctrl-0 = <&eth1_rmii_pins_a>;
+>> +    pinctrl-1 = <&eth1_rmii_sleep_pins_a>;
+>> +    pinctrl-names = "default", "sleep";
+>> +    phy-mode = "rmii";
+>> +    max-speed = <100>;
+>> +    phy-handle = <&phy0_eth1>;
+> 
+> Keep the list sorted please (is the max-speed even needed? if not, drop it)
+> 
+>> +    mdio {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        compatible = "snps,dwmac-mdio";
+>> +
+>> +        phy0_eth1: ethernet-phy@0 {
+>> +            compatible = "ethernet-phy-id0007.c131";
+>> +            reset-gpios =  <&mcp23017 9 GPIO_ACTIVE_LOW>;
+>> +            reg = <0>;
+>> +            wakeup-source;
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&ethernet2 {
+>> +    status = "okay";
+>> +    pinctrl-0 = <&eth2_rmii_pins_a>;
+>> +    pinctrl-1 = <&eth2_rmii_sleep_pins_a>;
+>> +    pinctrl-names = "default", "sleep";
+>> +    phy-mode = "rmii";
+>> +    max-speed = <100>;
+>> +    phy-handle = <&phy0_eth2>;
+>> +    st,ext-phyclk;
+>> +    phy-supply = <&scmi_v3v3_sw>;
+> 
+> Sort please
+> 
+> [...]
 
