@@ -1,125 +1,174 @@
-Return-Path: <devicetree+bounces-66564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7997D8C3B9C
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 08:48:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A11138C3BDC
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 09:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 169FAB21065
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 06:48:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C37C21C20F72
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 07:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE181465BD;
-	Mon, 13 May 2024 06:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE302146A83;
+	Mon, 13 May 2024 07:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p4KQIVYW"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WeTqcEJH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7381C14659B;
-	Mon, 13 May 2024 06:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EDF9146A67;
+	Mon, 13 May 2024 07:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715582929; cv=none; b=Jg3XbxnkNRGeJesPvaOXIf0muwtCiIyvxj4FvCi9PWPiulRFr8npRiAH1RYMBZOfLOhwXXPDSkoZRYVLfdVg/UxcUZ5LQnVDEm/1bJjeK+JySO9WQfwgIis1oA1byhLjA5dUkOOjiC4zCWHSZFrcWM++gOdbyNja25PfxphlCLE=
+	t=1715585082; cv=none; b=Yp/vPfFlgRq5PC0iBRS+7gMBb6U6X0TKYmGnpMOracFwKBSGeSUd3ISUZR/BdEetJcZW09HUs19SO2y7lCIPiVfnD1Ei/DBIgQMgPcokGgPFzeJwC2p3elyp0EKY7Aa5lL420WIMPe5S7i9po3iVZOiCZhmmlzj5RUWCJ8kYz+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715582929; c=relaxed/simple;
-	bh=BL7ea56f7IRq97McfG2GKuk5+W78EDHVuHGDV+iQxNk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=WcUX1FXjH/Fbukv8Xjb3EVc5TYawHy4laa/Oi+hMD+YdP3uY31IftddyQ1JJPhZ/A538GJp3gSRLkSPgyuZIbnZCytkXLeeiWaaSWEQA8Le9cB4p/GOaUFVBaXMG9Lk3LovDOZWhFjMIdYT4CxTLzdsZhI5sfAJJoMhJ1i9s+hY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p4KQIVYW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 020FDC113CC;
-	Mon, 13 May 2024 06:48:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715582929;
-	bh=BL7ea56f7IRq97McfG2GKuk5+W78EDHVuHGDV+iQxNk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=p4KQIVYWijwmbIjk7Z2Lm5DHuQHdS+ll4gs/QIygYN5r2OWwXrQg2zcGT4Ls9XAeI
-	 bERpsCt5ai76GHpOS+VtdNHeC98416k6D5DfgZvpgxPzpZBLwhg4GVBhYrrftbTLVG
-	 p7rQwLesOm9URyOH65WBdhyrCHdPl10ruDI7qkT3LtfHHMnPLcXFfV0o7ncxISp5dg
-	 LXMB8VBF8zerUaJb2yzNc4P9p4mEFbabI574xVD1zH3zjFDmRGw3G/vbkHgZPE0mQY
-	 eqkVE/t4ovoGb0vdiFOi760GShNRYKV1GvwxI/xVTD+6Jd/h2UTUr1mIffhKTG+Y+a
-	 DExrXZLrghJIw==
-Message-ID: <2eaefbc2-d284-460f-aae8-4c1cd003580c@kernel.org>
-Date: Mon, 13 May 2024 08:48:44 +0200
+	s=arc-20240116; t=1715585082; c=relaxed/simple;
+	bh=ZXFdIBiRjDdx2nViooKJFY3balQZn5nQtmUZaVwuiOE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=A7FeNwDKnjbSnKZrcCa0NQ43qAlW1GRGAh5+L2Tap9vFeZ7VI55JQYczIUYgliAIvoZAIDIfKsWWpO0Us4c9J23pIp6Od8rsuQAprwZ9fE9rjTAb9mpjfm9iGHr41jU2fN9eVsQv5WoSKozbg3qwDgtP/R1cgNUQQ0+XEJ2giKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WeTqcEJH; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 788902000E;
+	Mon, 13 May 2024 07:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1715585078;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=l7briKDXZUlZ4ihbmAD3jDG5eaCQTlrkO60KlQj+9HM=;
+	b=WeTqcEJHjwKOo8R4WSwTL75V2yKbee+HmaMtjc9Qrbdypb4OlgWPrQ2L1tphQFmJfaDuY4
+	U77LGD5+uZpbOWD5LEYbJ+7ohVE8oHiT2P9GDdXDsO70PSw6uBsXnevw6UC8Kmol64/tfy
+	QBMj2bJ1nRLOTe/251p6SuJN5o8+VHKOlT6qqQtYgU8O2VZANhet2BTl4uOWuk6qbwxJa0
+	R8E0GzqYGJSNIaYsocVF/apwxDeVFQNN6kEIXrGL5P4jcMeSFyvOk5qnct9ESux7jGLWiE
+	JrzsKTT3RCXirlekxdV4s9kHjMRVERA64vlBDxedHvnwqqM96Nk1O8LY46gf9Q==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH net-next v7 0/7] net: stmmac: Add support for RZN1 GMAC
+ devices
+Date: Mon, 13 May 2024 09:25:11 +0200
+Message-Id: <20240513-rzn1-gmac1-v7-0-6acf58b5440d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/2] dt-bindings: phy: qcom,ipq8074-qmp-pcie: Document
- the IPQ9574 QMP PCIe PHYs
-To: devi priya <quic_devipriy@quicinc.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
- quic_msarkar@quicinc.com, quic_qianyu@quicinc.com, abel.vesa@linaro.org,
- quic_cang@quicinc.com, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240512082541.1805335-1-quic_devipriy@quicinc.com>
- <20240512082541.1805335-2-quic_devipriy@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240512082541.1805335-2-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFjAQWYC/23QQW7DIBAF0KtErEsFw4Chq96jygLwkCA1UNmWl
+ TTy3Yu8qV13Ofp6/0vzZCMNmUb2dnqygeY85lra0b2cWLz6ciGe+3YzEIACBfDhu0h+ufkoubE
+ 6Jts51QtiDXwNlPJ9LftghSZe6D6xc0uueZzq8FhXZrnm/xXOkguuA0EA67C38T3UOn3m8hrrb
+ S2aYYvdDkPDnYsedYIUO3fEaoOl3mHVsA8SEkREIfsjxg0G3GFs2GrwbTiSiOKI9QYrscO6YQP
+ JaG8xobRHbH6xlntsGg5GOYRASuGfhy3L8gMDbkTA4QEAAA==
+To: "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Jose Abreu <joabreu@synopsys.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ =?utf-8?q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>, 
+ Serge Semin <fancer.lancer@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, 
+ Romain Gantois <romain.gantois@bootlin.com>, 
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+X-Mailer: b4 0.13.0
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On 12/05/2024 10:25, devi priya wrote:
-> Document the QMP PCIe PHYs on IPQ9574 platform.
-> 
-> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
-> ---
+Hello everyone,
 
+This is version seven of my series that adds support for a Gigabit Ethernet
+controller featured in the Renesas r9a06g032 SoC, of the RZ/N1 family. This
+GMAC device is based on a Synopsys IP and is compatible with the stmmac driver.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+My former colleague Clément Léger originally sent a series for this driver,
+but an issue in bringing up the PCS clock had blocked the upstreaming
+process. This issue has since been resolved by the following series:
+
+https://lore.kernel.org/all/20240326-rxc_bugfix-v6-0-24a74e5c761f@bootlin.com/
+
+This series consists of a devicetree binding describing the RZN1 GMAC
+controller IP, a node for the GMAC1 device in the r9a06g032 SoC device
+tree, and the GMAC driver itself which is a glue layer in stmmac.
+
+There are also two patches by Russell that improve pcs initialization handling
+in stmmac.
+
+Best Regards,
+
+Romain Gantois
+
+---
+Changes in v7:
+- Fixed potential uninitialized use in stmmac_pcs_setup()
+- Link to v6: https://lore.kernel.org/r/20240510-rzn1-gmac1-v6-0-b63942be334c@bootlin.com
+
+Changes in v6:
+- Changed stmmac_pcs_clean() prototype to match stmmac_pcs_setup()
+- Link to v5: https://lore.kernel.org/r/20240430-rzn1-gmac1-v5-0-62f65a84f418@bootlin.com
+
+Changes in v5:
+- Refactored the stmmac_xpcs_setup() function to group together XPCS and PCS
+  setup logic.
+- Added a stmmac_pcs_clean() function as a counterpart to stmmac_pcs_setup()
+- Link to v4: https://lore.kernel.org/r/20240424-rzn1-gmac1-v4-0-852a5f2ce0c0@bootlin.com
+
+Changes in v4:
+- Removed the second parameters of the new pcs_init/exit() callbacks
+- Removed unnecessary interrupt-parent reference in gmac1 device node
+- Link to v3: https://lore.kernel.org/r/20240415-rzn1-gmac1-v3-0-ab12f2c4401d@bootlin.com
+
+Changes in v3:
+- Fixed a typo in the socfpga patch
+- Link to v2: https://lore.kernel.org/r/20240409-rzn1-gmac1-v2-0-79ca45f2fc79@bootlin.com
+
+Changes in v2:
+- Add pcs_init/exit callbacks in stmmac to solve race condition
+- Use pcs_init/exit callbacks in dwmac_socfpga glue layer
+- Miscellaneous device tree binding corrections
+- Link to v1: https://lore.kernel.org/r/20240402-rzn1-gmac1-v1-0-5be2b2894d8c@bootlin.com
+
+---
+Clément Léger (3):
+      dt-bindings: net: renesas,rzn1-gmac: Document RZ/N1 GMAC support
+      net: stmmac: add support for RZ/N1 GMAC
+      ARM: dts: r9a06g032: describe GMAC1
+
+Russell King (Oracle) (2):
+      net: stmmac: introduce pcs_init/pcs_exit stmmac operations
+      net: stmmac: dwmac-socfpga: use pcs_init/pcs_exit
+
+Serge Semin (2):
+      net: stmmac: Add dedicated XPCS cleanup method
+      net: stmmac: Make stmmac_xpcs_setup() generic to all PCS devices
+
+ .../devicetree/bindings/net/renesas,rzn1-gmac.yaml |  66 +++++++++++++
+ MAINTAINERS                                        |   6 ++
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi           |  18 ++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig        |  12 +++
+ drivers/net/ethernet/stmicro/stmmac/Makefile       |   1 +
+ drivers/net/ethernet/stmicro/stmmac/dwmac-rzn1.c   |  86 +++++++++++++++++
+ .../net/ethernet/stmicro/stmmac/dwmac-socfpga.c    | 107 ++++++++++-----------
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h       |   3 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  |  14 +--
+ drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c  |  52 +++++++---
+ include/linux/stmmac.h                             |   2 +
+ 11 files changed, 290 insertions(+), 77 deletions(-)
+---
+base-commit: cddd2dc6390b90e62cec2768424d1d90f6d04161
+change-id: 20240402-rzn1-gmac1-685cf8793d0e
 
 Best regards,
-Krzysztof
+-- 
+Romain Gantois <romain.gantois@bootlin.com>
 
 
