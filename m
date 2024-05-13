@@ -1,131 +1,139 @@
-Return-Path: <devicetree+bounces-66613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86208C3E65
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 11:53:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 142358C3E77
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 11:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E5531F22335
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 09:53:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 457051C2113D
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 09:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECD4148839;
-	Mon, 13 May 2024 09:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33755149DE7;
+	Mon, 13 May 2024 09:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDH8BtR7"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Xn+ALl5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFFA147C91;
-	Mon, 13 May 2024 09:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82810148FE3;
+	Mon, 13 May 2024 09:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715594021; cv=none; b=gTXABifL8+mEdgZM1EeGSo92A7no2/mt5IsuCUk7istVFh3J745YEnP2gOmUqNH+o0LwMjZzbbR8oqI1TORg9JeP0IbYA2OUrx873MedZDQXDsoOSolUG7DbsrtqJ7wcA+9b/C7wAFIVC5Mi3nqnLrMJr3XsrHwN0mNUKJ8nBds=
+	t=1715594264; cv=none; b=byJeK9/xjzMULM5KS+Q1a38+x7P66eYGc5l782LfSdb7cCoW1scIAIUQA+2KL9RIQ7JwzsmPr9w3o9bGtnnIKsGHWKzdP2monMnwHwVDpcGncThMrrUT4tfef9tfEe7i7T6y8a/iCttuLLmpDkO2Yytl0T4j7wW0sZa4pOrMVNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715594021; c=relaxed/simple;
-	bh=pSaP0oKyXtPiLCTwVDsndP7Da0tNxbGDydC7EAOZaOc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KqzfSCuhqO96ADpsZCr4mobXXZlxtDfbKwDCCc9NAlKWsuoOnAa8TB1dUUWdu6Y9tmgWDpYf3c60dTA1MrpMw2KwetrjEEzp1lgkaTZqosGP9yZ7JHKJ0k2LPIlP8qghP4esWlri+AusACHfFti7N6r67BfrW5tPnyUToTi/FIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDH8BtR7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A134FC113CC;
-	Mon, 13 May 2024 09:53:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715594020;
-	bh=pSaP0oKyXtPiLCTwVDsndP7Da0tNxbGDydC7EAOZaOc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oDH8BtR7U1DF64D91khI6qNkuu0IIMeFSn6k0bWuBvr6N7gvCZE+agcNrkqSUmjul
-	 xqcun+22g6m4282s6JvtoQDvBKxrtOgNFNQgEQlXePsE9Z9yrWBmAyYdt4o+n6F5NM
-	 btbDXu6kHmA08Ep1pgAKCLcTS+1i5iJZE0VfvoY0YA2XrQ7zVdVCP/bniB/1hR7BwZ
-	 XsJzN7zfTVjyqBdSOeva+VKdYH39d3sq2EKXkIuOpZg0qjDo2p8A1TU9D6JbhUpbWZ
-	 8O4bI70twUxCU6nRnI5ZXnghsNWD8+3muRVF1Zr4TQH005zkZVi7ll9WwQhA9PXKnv
-	 Ny/3PndzxRSWQ==
-Date: Mon, 13 May 2024 10:52:03 +0100
-From: Simon Horman <horms@kernel.org>
-To: Christoph Fritz <christoph.fritz@hexdev.de>
-Cc: Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Oliver Hartkopp <socketcan@hartkopp.net>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Benjamin Tissoires <bentiss@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andreas Lauser <andreas.lauser@mercedes-benz.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v4 01/11] can: Add LIN bus as CAN abstraction
-Message-ID: <20240513095203.GJ2787@kernel.org>
-References: <20240509171736.2048414-1-christoph.fritz@hexdev.de>
- <20240509171736.2048414-2-christoph.fritz@hexdev.de>
+	s=arc-20240116; t=1715594264; c=relaxed/simple;
+	bh=I3TEGDltJv2QQsYppV9FRanJLs8vAg/I31dXMaxtWyk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rs4Un3UhRWCepVNZrl1l2rZQdsypNA8G8odEbuXqSOBZrwpvXmiXE2p2fEp+M9FWwni+R2v++eQscQYj2Q7CVVsoiy61knuAAwZSH1hPrso6uBtfNr9Q3S6nhiWa1fH7UdTMpNsfZKiflAUk/jhKvjXXeF7nkr3Qn3u3N5KUl5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Xn+ALl5c; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44D8M5wE008202;
+	Mon, 13 May 2024 11:57:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=IVz8GLj
+	JytTTaf9y+4NV3G5TkNUJmDm03ovIMIb2MbE=; b=Xn+ALl5clpNlkGDk5FTGdl0
+	EaVogPgMkKil0F46xIH7ubIMtpMgfvVPkR75Pd8sV8xjAPjpF2irfrhAu9AJM8Vd
+	rDMOjYEgl/7VImDtUn8W08BZioT1N8KZ/k4aDX6x0GEKcj6MjmkHh9XGgPz6Rtxq
+	PtH2ymI9OzUcUSP6TjO/DX75VQ3Zl9ieC98v65ddvbPYPmMPYK6JiIYhAM4xuY4P
+	NdOVsKMXcz3siW7D5SgpBOi0PGZCFyI6khG/G+V0oUZMtsTUAx1eGuKQOmdsBf+Q
+	digsh3YJi+5bG9uC5QVFtZdulb/7hiVuB4/NrypjCzqxdHdXe6rUpSJYt7xNJsw=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3y2kmhkjd2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 May 2024 11:57:26 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DC1D840058;
+	Mon, 13 May 2024 11:57:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E9B53216605;
+	Mon, 13 May 2024 11:56:31 +0200 (CEST)
+Received: from localhost (10.48.87.205) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 13 May
+ 2024 11:56:31 +0200
+From: Patrick Delaunay <patrick.delaunay@foss.st.com>
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Pascal
+ Paillet <p.paillet@foss.st.com>
+CC: Marek Vasut <marex@denx.de>,
+        Patrick Delaunay
+	<patrick.delaunay@foss.st.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v3 0/2] ARM: st: add new compatible for PWR regulators on STM32MP13
+Date: Mon, 13 May 2024 11:56:03 +0200
+Message-ID: <20240513095605.218042-1-patrick.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240509171736.2048414-2-christoph.fritz@hexdev.de>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-13_06,2024-05-10_02,2023-05-22_02
 
-On Thu, May 09, 2024 at 07:17:26PM +0200, Christoph Fritz wrote:
-> Introduce a LIN (local interconnect network) abstraction on top of CAN.
-> This is a glue driver adapting CAN on one side while offering LIN
-> abstraction on the other side. So that upcoming LIN device drivers can
-> make use of it.
-> 
-> Tested-by: Andreas Lauser <andreas.lauser@mercedes-benz.com>
-> Signed-off-by: Christoph Fritz <christoph.fritz@hexdev.de>
 
-...
+This patchset adds the new PWR regulators compatible for STM32MP13:
+"st,stm32mp13-pwr-reg".
 
-> +#define LID(_name) \
-> +	struct device_attribute linid_##_name = __ATTR(_name, 0644, \
-> +	lin_identifier_show, lin_identifier_store)
-> +
-> +LID(00); LID(01); LID(02); LID(03); LID(04); LID(05); LID(06); LID(07);
-> +LID(08); LID(09); LID(0a); LID(0b); LID(0c); LID(0d); LID(0e); LID(0f);
-> +LID(10); LID(11); LID(12); LID(13); LID(14); LID(15); LID(16); LID(17);
-> +LID(18); LID(19); LID(1a); LID(1b); LID(1c); LID(1d); LID(1e); LID(1f);
-> +LID(20); LID(21); LID(22); LID(23); LID(24); LID(25); LID(26); LID(27);
-> +LID(28); LID(29); LID(2a); LID(2b); LID(2c); LID(2d); LID(2e); LID(2f);
-> +LID(30); LID(31); LID(32); LID(33); LID(34); LID(35); LID(36); LID(37);
-> +LID(38); LID(39); LID(3a); LID(3b); LID(3c); LID(3d); LID(3e); LID(3f);
+As this node is just introduced by [1] and it is is not used by any
+board in Linux,  it is the good time to introduced this compatible
+and update the STM32MP13 SoC dtsi without ABI break.
 
-Hi Christoph,
+A new compatible is needed as the content of the PWR_CR3 register,
+used by this driver change with new bits on STM32MP13 for SD IO domain:
+- bit 23: VDDSD2VALID
+- bit 22: VDDSD1VALID
+- bit 16: VDDSD2RDY
+- bit 15: VDDSD2EN
+- bit 14: VDDSD1RDY
+- bit 13: VDDSD1EN
 
-Sparse flags that the structures defined by the above code are not
-declared elsewhere, and therefore likely should be static.
-> +
-> +static struct attribute *lin_sysfs_attrs[] = {
-> +	&linid_00.attr, &linid_01.attr, &linid_02.attr, &linid_03.attr,
-> +	&linid_04.attr, &linid_05.attr, &linid_06.attr, &linid_07.attr,
-> +	&linid_08.attr, &linid_09.attr, &linid_0a.attr, &linid_0b.attr,
-> +	&linid_0c.attr, &linid_0d.attr, &linid_0e.attr, &linid_0f.attr,
-> +	&linid_10.attr, &linid_11.attr, &linid_12.attr, &linid_13.attr,
-> +	&linid_14.attr, &linid_15.attr, &linid_16.attr, &linid_17.attr,
-> +	&linid_18.attr, &linid_19.attr, &linid_1a.attr, &linid_1b.attr,
-> +	&linid_1c.attr, &linid_1d.attr, &linid_1e.attr, &linid_1f.attr,
-> +	&linid_20.attr, &linid_21.attr, &linid_22.attr, &linid_23.attr,
-> +	&linid_24.attr, &linid_25.attr, &linid_26.attr, &linid_27.attr,
-> +	&linid_28.attr, &linid_29.attr, &linid_2a.attr, &linid_2b.attr,
-> +	&linid_2c.attr, &linid_2d.attr, &linid_2e.attr, &linid_2f.attr,
-> +	&linid_30.attr, &linid_31.attr, &linid_32.attr, &linid_33.attr,
-> +	&linid_34.attr, &linid_35.attr, &linid_36.attr, &linid_37.attr,
-> +	&linid_38.attr, &linid_39.attr, &linid_3a.attr, &linid_3b.attr,
-> +	&linid_3c.attr, &linid_3d.attr, &linid_3e.attr, &linid_3f.attr,
-> +	NULL
-> +};
+I will push a update on STM32MP13 SoC dtsi if this new compatible
+is accepted to preserve the bisectability.
 
-...
+[1] commit f798f7079233 ("ARM: dts: stm32: add PWR regulators support on stm32mp131")
+    https://lore.kernel.org/linux-arm-kernel/b89d0531-067f-4356-91b0-ed7434cee3d7@foss.st.com/
+
+
+Changes in v3:
+- Replace oneOf/const by enum; solve the V2 issues for dt_binding_check
+
+Changes in v2:
+- Add new compatible for STM32MP13 and change title after Rob remarks
+  V1: "ARM: st: use a correct pwr compatible for stm32mp15"
+
+Patrick Delaunay (2):
+  dt-bindings: regulator: st,stm32mp1-pwr-reg: add compatible for
+    STM32MP13
+  regulator: stm32-pwr: add support of STM32MP13
+
+ .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml    | 4 +++-
+ drivers/regulator/stm32-pwr.c                                 | 1 +
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
+
 
