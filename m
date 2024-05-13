@@ -1,116 +1,134 @@
-Return-Path: <devicetree+bounces-66770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A69838C490E
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 23:59:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06ABB8C4986
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 00:12:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7EE21C20D45
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 21:59:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6F67281CF9
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 22:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F7D84A2F;
-	Mon, 13 May 2024 21:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEEB84A54;
+	Mon, 13 May 2024 22:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="lbAMqkeT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MqEHOgEc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFF739FD8
-	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 21:58:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44C52C1A9;
+	Mon, 13 May 2024 22:12:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715637540; cv=none; b=DlJgzjfna+N6vyhqUAbb2DIxwaHiQP4fXrs7ePLPtamPK6WGvdk0kuyN/TSpvXYKRLOpBKuFRq6qV4fcWlbR5W9DOV1G836MHl1tfVoZ8+fK+fG2C4o7TN6iL8MoeRoqfwZp+lEICu8m31VEbOk9R1YJ8IQ4OTUOfaO/Zq17648=
+	t=1715638365; cv=none; b=F5tPzp0XQCagnupLwNiZipNADnU87ZyrsDNrc4LYg8CRGllu1+PGLZ4pH4wypEjwIzt4DxCCW3hyRns2SjeWlo3MIzjA1sCT4qrWvrNdIKep5I2fJZ83rN9WLs5kGixVuklAlHrfU4VrhVjptTIBpQU8DCxI8fikFxJnoSuFkYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715637540; c=relaxed/simple;
-	bh=2S+Nj2cMmnlwjoeZGV3KjthapZS0GTgX0GekuUClTIY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K0FuwhJv7tkBukWR0j1BV2whgDc9Kp3lmhC/jrh/sljfsYEFIPTQ2SgTcFm6g32frnXS/yxZ1YV/EC0+U4Rt2e7pvpjrE9piz9M6AdQvV7pteS5jml+PP3MD2tGteGnnBCfEirJaz7ET8BOkHviQA+hRB7CsjsSrSP8RTJDlStI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=lbAMqkeT; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id D6D8B87BC9;
-	Mon, 13 May 2024 23:58:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1715637531;
-	bh=d7xRaYr7WQ/WAGh0b8NuH1jVV3rJLRs+i7/Qt6CSGrY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=lbAMqkeTtxKlm89+vpzcZkXel+b1s2lBIIxTe8zU9BGms7PdeTCvcQRPFO3m8sAqy
-	 UQxxt9LBuKez5HVdTzezJBpr77a4uSXk6NJ5x91NvaArEu4dwIb+hIpo5qDWlReMTv
-	 GX0qh9gmH2hnOg8LdXg7bWb4zr0zg4vO0w58RDDEVNSKeYq1Lii7ApOoOyPxTGkzX6
-	 9jjbPGl1NB8Nu8JWxSVPo74zrCSeW9IiIWddSjPX+AB7Hnh5QM0zPQ4Rt0iA5lZtAc
-	 zNBVZL1m7f54yKG/r5+6f1BBAJUPTIMjAhzEN3roM2BL+ZKXAMssJHAW59bw6IHzTZ
-	 Ev6zkAAsSMVYA==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: Add arm,no-tick-in-suspend to STM32MP15xx STGEN timer
-Date: Mon, 13 May 2024 23:58:15 +0200
-Message-ID: <20240513215835.183402-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1715638365; c=relaxed/simple;
+	bh=sA2GkAzui82ivR8UWlwQO0jUVrYnIPKmWlnjf5dHsTg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=rU4OtOwJhGykXowkzlYzGdGycprHND30zri35620UGGrlNUru7Hx1ogMzzTfJzeC4DdcrVS1p4Dy9xr0VjrCni1cmkpThn0ldarCIam0jaf5ynjMi5jATLhNSbU9Zc7Ti2NdbE+/hK1o0WWdoa8ddehXskQyo9W3bh1z9TVyDv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MqEHOgEc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E7FBC113CC;
+	Mon, 13 May 2024 22:12:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715638364;
+	bh=sA2GkAzui82ivR8UWlwQO0jUVrYnIPKmWlnjf5dHsTg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=MqEHOgEcUb69CXqiQog9QH+6VVlTLgTEXv6JmxVuzbqPhcH+7kcWPwj4a+GjCq7na
+	 cBButhe4Lpa/Re8mJHsScIwhnNcSIwJmCpTxScnyFZEsgmF1L4086aNbEoENXB7nwe
+	 lgA50/jJmSZx/yo4hVGtVTAM03hE6st0QnXM41Ovtihj419lmDE0cW48Em6KvcA3/N
+	 RlLdM/7Z/noQ/oP2PMTFAU82V8VbL1p6LvYO2UClv1MEdBecsP14XiRk62Fl84Ug6w
+	 4g6UZz7gENVJohd0u68YAwkKOM3t/VZ+0Dd3u+wHHUcHlSslvKUkBvxv6/qJP3qSPK
+	 PpoeHYYHyy9oQ==
+Date: Mon, 13 May 2024 17:12:42 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: matthew.gerlach@linux.intel.com
+Cc: linux-kernel@vger.kernel.org, conor+dt@kernel.org, 
+ lpieralisi@kernel.org, krzysztof.kozlowski+dt@linaro.org, kw@linux.com, 
+ bhelgaas@google.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20240513205913.313592-1-matthew.gerlach@linux.intel.com>
+References: <20240513205913.313592-1-matthew.gerlach@linux.intel.com>
+Message-Id: <171563836233.3319279.14962600621083837198.robh@kernel.org>
+Subject: Re: [PATCH v5] dt-bindings: PCI: altera: Convert to YAML
 
-STM32MP15xx RM0436 Rev 6 section 46.3 System timer generator (STGEN) states
-"
-Arm recommends that the system counter is in an always-on power domain.
-This is not supported in the current implementation, therefore STGEN should
-be saved and restored before Standby mode entry, and restored at Standby
-exit by secure software.
-...
-"
-Instead of piling up workarounds in the firmware which is difficult to
-update, add "arm,no-tick-in-suspend" DT property into the timer node to
-indicate the timer is stopped in suspend, and let the kernel fix the
-timer up.
 
-Fixes: 8471a20253eb ("ARM: dts: stm32: add stm32mp157c initial support")
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
----
- arch/arm/boot/dts/st/stm32mp151.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, 13 May 2024 15:59:13 -0500, matthew.gerlach@linux.intel.com wrote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> 
+> Convert the device tree bindings for the Altera Root Port PCIe controller
+> from text to YAML.
+> 
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> ---
+> v5:
+>  - add interrupt-conntroller #interrupt-cells to required field
+>  - don't touch original example dts
+> 
+> v4:
+>  - reorder reg-names to match original binding
+>  - move reg and reg-names to top level with limits.
+> 
+> v3:
+>  - Added years to copyright
+>  - Correct order in file of allOf and unevaluatedProperties
+>  - remove items: in compatible field
+>  - fix reg and reg-names constraints
+>  - replace deprecated pci-bus.yaml with pci-host-bridge.yaml
+>  - fix entries in ranges property
+>  - remove device_type from required
+> 
+> v2:
+>  - Move allOf: to bottom of file, just like example-schema is showing
+>  - add constraint for reg and reg-names
+>  - remove unneeded device_type
+>  - drop #address-cells and #size-cells
+>  - change minItems to maxItems for interrupts:
+>  - change msi-parent to just "msi-parent: true"
+>  - cleaned up required:
+>  - make subject consistent with other commits coverting to YAML
+>  - s/overt/onvert/g
+> ---
+>  .../devicetree/bindings/pci/altera-pcie.txt   | 50 ----------
+>  .../bindings/pci/altr,pcie-root-port.yaml     | 93 +++++++++++++++++++
+>  2 files changed, 93 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+> 
 
-diff --git a/arch/arm/boot/dts/st/stm32mp151.dtsi b/arch/arm/boot/dts/st/stm32mp151.dtsi
-index 3b705e7fe5c0d..68846699b26fd 100644
---- a/arch/arm/boot/dts/st/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp151.dtsi
-@@ -50,6 +50,7 @@ timer {
- 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
- 		interrupt-parent = <&intc>;
-+		arm,no-tick-in-suspend;
- 	};
- 
- 	clocks {
--- 
-2.43.0
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/altr,pcie-root-port.example.dtb: pcie@c00000000: interrupt-map: [[0, 0, 0, 1, 2, 1, 0, 0, 0], [2, 2, 2, 0, 0, 0, 3, 2, 3], [0, 0, 0, 4, 2, 4]] is too short
+	from schema $id: http://devicetree.org/schemas/altr,pcie-root-port.yaml#
+
+doc reference errors (make refcheckdocs):
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pci/altera-pcie.txt
+MAINTAINERS: Documentation/devicetree/bindings/pci/altera-pcie.txt
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240513205913.313592-1-matthew.gerlach@linux.intel.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
