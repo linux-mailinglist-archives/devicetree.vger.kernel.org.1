@@ -1,124 +1,158 @@
-Return-Path: <devicetree+bounces-66551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B258C3879
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 23:06:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 769038C39DA
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 03:41:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB70D1C2037A
-	for <lists+devicetree@lfdr.de>; Sun, 12 May 2024 21:06:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC3DA281293
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 01:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E5655C1A;
-	Sun, 12 May 2024 21:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RIe+0v7Z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3133D304;
+	Mon, 13 May 2024 01:41:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1096558AC1;
-	Sun, 12 May 2024 21:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D655BE4F;
+	Mon, 13 May 2024 01:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715547922; cv=none; b=k1s9g+7/H2Vv6ZmSEy/Pr8ZxwfGLUuG1xPsRZKb8ihe6TEkX7SEtENlmJ5wtouydOG/Ne5KeA2cmNhid6FP3vJazBgMplni2mpBQKaLmny01+ZNy2gx2m3LCr1znJ/yRStIBr2JnXWotOQyxAnujbD2n+fIF8lcOX+9yE1zeBto=
+	t=1715564488; cv=none; b=LgtUBGzBhe2HiNcMIhUIBeHgLqiYe5MhRipl3ySZb1WoEkFozzfF10WWbkl3NaZ5E3R8WsjDujzQ4BOFQAtwb+q5BeJ7nHpSm9nlWD30fGUgFGHvM4y1G1II7TE2sNYo30Y/W5rwfbfrPW52J0a10Hvyg5FQbNC2B3xsORp/y9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715547922; c=relaxed/simple;
-	bh=SH9oRQMjdWisKJzgNmlM9HRFY+ONAsdZowm1gdmvCvM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K9CuiHb0kkcqKPxCMrfyYllp9h2e7adPlwtaJBoJxJfgcwKBgv18mtVLG+1WsB4oH+PB04tO9LVEHDzpJw4nrJHsIfCjDpsOJl8kqU8KIsc+9BH8vkgdBSDJkyGe6r8x0s46fkpTGZZjVYd8RWcTnDsEFdVAKrgudpGjc61PqBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RIe+0v7Z; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6f472d550cbso2994943b3a.1;
-        Sun, 12 May 2024 14:05:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715547920; x=1716152720; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MZxVl6V73Zt3zGRSEIH0bHVxMtSUe0uIzUK9Y3RzWb8=;
-        b=RIe+0v7Z/MH9HFxrLmXZGIbWF9MEqJ7j491itqXjtcv+zXYzTd+7AFrJw/+S8mbSD3
-         qqgIXcVjwI/SqDDQ4RBH6XaTfstfabS1rbEVc8rBHjKctIMiTMqC6HxAfVWgzxDK2DpA
-         a+1x7HDqqZ0SKO9YAw4kueonwKORvdxusbVcn/FjtSZR/6ZLdmXMOwgqjG9Tpj3eqDzj
-         7sZ3BclovB9DDHmcfN+VcZ4az3/MmXpTP1/X2YlvJxUX4R4/VspOV1A2Br5CPFZwhMms
-         oKbbWCAaFcJe6/YHdgzhb6QM8DefrfEUQs+ZxeZwFytvByP8p7zo3pHpD4FKlizZ0xaS
-         4tEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715547920; x=1716152720;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MZxVl6V73Zt3zGRSEIH0bHVxMtSUe0uIzUK9Y3RzWb8=;
-        b=BS6f7MEEL4cy9pbjmraMXcqNXdXj3Pn/WWPfs7h5HucYyvzmkKGGb5oH2Oi2kEIRVr
-         DGaiHoorBEjC6I/Yep74Uqcc+4yIU8VNcW9Y26wC/UsOrXeLephFTvggs/DuVy/662gb
-         /UZT7cit1PjGrAg9i7JwpkAuQ0YJXAVpaQt6moegHyZBxBX/G5IHoHnT5M+W96UN+T7w
-         9iLxiWbxDbAR3f9ejpel5Uv2w9AL4yTjju+58rWj8QqN6g1ffWyODAYiTkyMWLONtcy7
-         woEWJQjf85j0AY9nWloFyB55IK0d5wjbijj5BvxUxmv65dubWobeuprIMLVy6tRKgyrZ
-         zfFA==
-X-Forwarded-Encrypted: i=1; AJvYcCVsDxPpopYqADzTFwezkEtlgAfRsotQcsAIJF4ko27Ir9JGDizlDrutyeyrzmzyt8JmYI6EglnGAsaZavReKJmsjNJ6uK+pAQQBM+npaYMYqlLwYsQ7ecWBw0LZeA/mngrHGguxQ0G575UrN9ohpqaWyT5vteae2Xhzf4/Ju4lwKRxkHA==
-X-Gm-Message-State: AOJu0Yyq+w8YO63W3R49JPgoKCvGO7EqMF3wzxcHcYBTzy9TyuZPH7kQ
-	3PGn3q3k6efingtnSbgHZv1zxhakZOFrfkB2+VNKrDj2cJdl0qfk
-X-Google-Smtp-Source: AGHT+IG5MvnYwIO6+AJazfOTBsF6M/uKIYOGmvv6fP7kAHEoITheedJ4UpwH2DZJX0Ai4cfEmr5S6Q==
-X-Received: by 2002:a05:6300:8085:b0:1af:cfe9:9221 with SMTP id adf61e73a8af0-1afde1c580fmr10890522637.54.1715547920408;
-        Sun, 12 May 2024 14:05:20 -0700 (PDT)
-Received: from localhost.localdomain ([189.101.162.253])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6340a447391sm6534865a12.3.2024.05.12.14.05.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 May 2024 14:05:20 -0700 (PDT)
-From: Gustavo Silva <gustavograzs@gmail.com>
-To: jic23@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	lars@metafoo.de,
-	christophe.jaillet@wanadoo.fr,
-	gerald.loacker@wolfvision.net,
+	s=arc-20240116; t=1715564488; c=relaxed/simple;
+	bh=HExHPsON4CqrO3LxsKWufOI3fJDGO7ZL+VCYtmf411Q=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=fEY4i33lS5pqofLKoza0YWFiIhaT6nUhOieEmJuR9PYbxUYauXGSEFasx1AY7wW/AkgnzhPIG6JtyabDD+3H9Q1cUH4Go4h0oHl5T+Ffm8cP7JHTzq8cMojIWP3fHqhs4eT1+l8/qU+21hMOz0wl850HPzBwbdMe3rALfp3SgLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5BBBC1A03B8;
+	Mon, 13 May 2024 03:41:20 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E4B971A12E1;
+	Mon, 13 May 2024 03:41:19 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 25A11180226C;
+	Mon, 13 May 2024 09:41:18 +0800 (+08)
+From: Richard Zhu <hongxing.zhu@nxp.com>
+To: conor@kernel.org,
+	vkoul@kernel.org,
+	kishon@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	frank.li@nxp.com,
+	conor+dt@kernel.org
+Cc: hongxing.zhu@nxp.com,
+	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] MAINTAINERS: Add ScioSense ENS160
-Date: Sun, 12 May 2024 18:04:42 -0300
-Message-ID: <20240512210444.30824-7-gustavograzs@gmail.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20240512210444.30824-1-gustavograzs@gmail.com>
-References: <20240512210444.30824-1-gustavograzs@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	kernel@pengutronix.de,
+	imx@lists.linux.dev
+Subject: [PATCH v5 0/2] Add i.MX8Q HSIO PHY support
+Date: Mon, 13 May 2024 09:22:02 +0800
+Message-Id: <1715563324-6391-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Add myself as maintainer for ScioSense ENS160 multi-gas sensor driver.
+v5 changes:
+dt-binding
+- Fix dt_binding_check errors of fsl,refclk-pad-mode.
+  And, add the unused description of this property.
+- Add description for each register entry.
+- Add fsl,hsio-cfg description.
+- Other minor refine changes.
 
-Signed-off-by: Gustavo Silva <gustavograzs@gmail.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+PHY driver
+- To make codes safe enough in multi instances probe, use scoped_guard()
+to replace the atomic_###() callbacks.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 304429f9b..92a130c8c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19660,6 +19660,14 @@ F:	include/linux/wait.h
- F:	include/uapi/linux/sched.h
- F:	kernel/sched/
- 
-+SCIOSENSE ENS160 MULTI-GAS SENSOR DRIVER
-+M:	Gustavo Silva <gustavograzs@gmail.com>
-+S:	Maintained
-+F:	drivers/iio/chemical/ens160_core.c
-+F:	drivers/iio/chemical/ens160_i2c.c
-+F:	drivers/iio/chemical/ens160_spi.c
-+F:	drivers/iio/chemical/ens160.h
-+
- SCSI LIBSAS SUBSYSTEM
- R:	John Garry <john.g.garry@oracle.com>
- R:	Jason Yan <yanaijie@huawei.com>
--- 
-2.45.0
+v4:https://patchwork.kernel.org/project/linux-phy/cover/1715234181-672-1-git-send-email-hongxing.zhu@nxp.com/
+
+v4 changes:
+- Re-format the "phy-cells" as <&hsio_phy lane_id phy_mode controller_id>
+- Use each lane as a phys entry, suggested by Rob.
+PCIEA:
+phys = <&hsio_phy 0 PHY_MODE_PCIE>;
+or:
+phys = <&hsio_phy 0 PHY_MODE_PCIE>, <&hsio_phy 1 PHY_MODE_PCIE>;
+
+PCIEB:
+phys = <&hsio_phy 1 PHY_MODE_PCIE>;
+or:
+phys = <&hsio_phy 2 PHY_MODE_PCIE>;
+
+SATA:
+phys = <&hsio_phy 2 PHY_MODE_SATA>;
+
+- Add a new propery "fsl,hsio-cfg".
+The HSIO configuration (fsl,hsio-cfg) is one global state.
+It should be known and used to set global setting: PCIE_AB_SELECT and
+PHY_X1_EPCS_SEL at the begin of HSIO initialization like this listed below.
+
+ +-------------------------------------------------------------+
+ |CRR(SYS.CSR) register|PCIAx2 and|PCIEAx1, PCIEBx1|PCIEAx2 and|
+ |                     |SATA      |SATA            |PCIEBx1    |
+ |---------------------|----------|----------------|-----------|
+ |PCIE_AB_SELECT       | 0        | 1              | 1         |
+ |---------------------|----------|----------------|-----------|
+ |PHY_X1_EPCS_SEL      | 1        | 1              | 0         |
+ +-------------------------------------------------------------+
+When first PHY instance is probed, PHY driver can't get a global view of the
+HSIO use case and doesn't know how to set global setting: PCIE_AB_SELECT and
+PHYX1_EPCS_SEL.
+Because first PHY instance doesn't know followed PHY instance use mode.
+
+So, one property named "fsl,hsio-cfg" has to be introduced here to specify the
+setting of the global setting: PCIE_AB_SELECT and PHY_X1_EPCS_SEL.
+
+Here is the discussion about this.
+https://lkml.org/lkml/2024/4/26/231
+
+- Address Conor's comments about the "fsl,refclk-pad-mode".
+fsl,refclk-pad-mode:
+  description:
+    ...
+  enum: ["input", "output"].
+
+v3:https://patchwork.kernel.org/project/linux-phy/cover/1713939683-15328-1-git-send-email-hongxing.zhu@nxp.com/
+
+v3 changes:
+Refer to Conor's comments.
+- Let filename match a compatible
+- Refine description of the fsl,refclk-pad-mode.
+- Remove power-domains description.
+- Keep clock ording for two devices.
+- Drop the unused label and status.
+Refer to Rob's comments.
+- Use standard phy mode defines.
+- Correct the spell mistakes in the binding document.
+
+v2:https://patchwork.kernel.org/project/linux-phy/cover/1712036704-21064-1-git-send-email-hongxing.zhu@nxp.com/ 
+
+v2 changes:
+- Place the dt-bindings header file changes as the first one
+in the patch-set, make the annotation more clear, and add
+Frank's Reviewed-by tag.
+
+v1:https://patchwork.kernel.org/project/linux-phy/cover/1711699790-16494-1-git-send-email-hongxing.zhu@nxp.com/
+
+[PATCH v5 1/2] dt-bindings: phy: Add i.MX8Q HSIO SerDes PHY binding
+[PATCH v5 2/2] phy: freescale: imx8qm-hsio: Add i.MX8QM HSIO PHY
+
+Documentation/devicetree/bindings/phy/fsl,imx8qm-hsio.yaml | 152 +++++++++++++++++++++
+drivers/phy/freescale/Kconfig                              |   8 ++
+drivers/phy/freescale/Makefile                             |   1 +
+drivers/phy/freescale/phy-fsl-imx8qm-hsio.c                | 608 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+include/dt-bindings/phy/phy-imx8-pcie.h                    |  29 ++++
+5 files changed, 798 insertions(+)
 
 
