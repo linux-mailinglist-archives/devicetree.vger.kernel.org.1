@@ -1,54 +1,48 @@
-Return-Path: <devicetree+bounces-66686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51318C43C3
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:07:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7668C4324
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BDDD1F22B23
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:07:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C11B1C21013
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 14:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F4455E6A;
-	Mon, 13 May 2024 15:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E179153BC0;
+	Mon, 13 May 2024 14:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="kUpaXSXm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U/LNEcHr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683F71DDC5;
-	Mon, 13 May 2024 15:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26800153836;
+	Mon, 13 May 2024 14:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715612812; cv=none; b=OZsuWz7SeX8QefoCnop1sdgU9tTU+k9YSAIwLOf/e7vP2uX+D9KhInr9QLMiWQPANGBAo9WB9N3miRWVj7Sn0E7X71hDqhgLe4uEIBj3ng/oyB5re+KE5UGAwCDqJdXpxByhOYXJlPIesDW25wntykJlXXuNsRZpvRlX4FZxmVw=
+	t=1715610068; cv=none; b=rnRfUZi6aKJ2oPws46KPYVvsguN+HzieQ3jhWaJ+Ku61BBWU+7Pz/kQYwRGgi9jxkiRfdKIQYVlObk++9AeIS+yrwYNL+qsW7TfcnAV/y/G2bwzI2mPK4OcsVtFO5yNlUaZw6YId1SzfemD/AF5cp2DqeYzsNVHdY3ZFadU+NlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715612812; c=relaxed/simple;
-	bh=aWv4uhjr6Nqh1WTQMG3pOFjP+s2H/GrHjZ+pXgW3x7g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qafXu10Svqa8X8H5wo5xQ21MH+rYoVXRfHwuz+aaTxVU6poJG27hFisOO3mJ7gTjQz4W03vTlM2Lh3FAWRSj6abLWFPpBEAFCk/a9Jk9kdfPaQFNWs3BaL5jMRUEzuA024M0vYszuF3bFp1KsufxFhEFm0EEFj8uPim3y9vnc68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=kUpaXSXm; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 42D9A882D8;
-	Mon, 13 May 2024 17:06:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1715612808;
-	bh=dFRl+UyXsb6ZN6/Bsy1gYor7t7lvZznQLrqAhOOp/wg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kUpaXSXm2V5tAqWUzWOnUcr30a32u+LYIZ6BxWf97mYO/7FVS+xv7W5J0mELzqbg4
-	 v9aD/SOgXFxAb+RcLQxhgY3RzO8SA+TsV9IGSMWS3+HHKDNibtO0/nTCTxIY3/pDtb
-	 XYdMzRV2J96o6C2jwFSEoZgPdsdRhkHf3MNi06StgLhEL54ZUk7in+6CcnyngPGZTV
-	 tLbb+VdnVXOOSOWF2ffkr1LSL1pe0XQ5n6uf5D1qiKWTo+eoyYMGgzcuSAMl7bMAb3
-	 TL66NN8EzfcplXm6VcYiCgwoll9/7q0KYdFGD4vM13tEHN8kc5dcAix3Ch2WYxqaqN
-	 9DbYTedQtlvOg==
-Message-ID: <601550a5-da3b-4311-965d-ce65f6fdd337@denx.de>
-Date: Mon, 13 May 2024 16:20:10 +0200
+	s=arc-20240116; t=1715610068; c=relaxed/simple;
+	bh=F7Da7ZL3zBg2AHT/qoDMrvqxjoFBxdXnMxiethSrStQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=uWLZcmx5B80NPGYNzdj94MsjmDf4OYz+loD70XhKiOMuKqtjESm6q51AFSysu4uJaNbtJJCnoBvbf+juT31dH2mlV1B5Cdoy0rQWO1KOfrbQbd9tVQK7bpWUnR00yPAKe4cU+tAd4+sYBthHzuK1lYeH7dXRKRizA4olb0gcj4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U/LNEcHr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63897C32782;
+	Mon, 13 May 2024 14:21:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715610068;
+	bh=F7Da7ZL3zBg2AHT/qoDMrvqxjoFBxdXnMxiethSrStQ=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=U/LNEcHrQLcM9RcgwIxbLr5MVqCXvg+LYw6q4KfC9bKMGKqviU7iLn4dxpJ+4/5mt
+	 4/4HSYgyWHX346gicoF9xSFyjILtd8GXFINUUKmhjpaqEcDgjCnZJB961enTFkxZGa
+	 snZG76fDOGuHMEVDpCrms24alA6TOEq53yvdEuotLUXu+SJu45mvJlknrIL33BQiSf
+	 phlDAqsL4eliM6DlCaVLQARf+ppwFwClOUUMSDAVpfH3p2qW6IxXFj8DLRx+v1RFbE
+	 jsf80w9nElSt3+eFaBdHVili9zuRCWHbftnQgcUp/YGOtn7MVdr1WX/sbY/BIPSJiL
+	 I35D4GfOsh4LA==
+Message-ID: <4a147f2d-71c8-4acf-aab4-9d761b81bc73@kernel.org>
+Date: Mon, 13 May 2024 16:20:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,72 +50,145 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/11] dt-bindings: net: add phy-supply property for
- stm32
-To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
- Rob Herring <robh@kernel.org>
-Cc: "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
- <20240426125707.585269-3-christophe.roullier@foss.st.com>
- <20240426153010.GA1910161-robh@kernel.org>
- <a2a631a0-9a16-4068-aed2-6bdaa71e3953@foss.st.com>
+Subject: Re: [PATCH v2 2/2] Add dp PHY dt-bindings
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?UTF-8?B?TElBTktVTiBZQU5HICjmnajov57lnaQp?= <Liankun.Yang@mediatek.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ =?UTF-8?B?TWFjIFNoZW4gKOayiOS/iik=?= <Mac.Shen@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "kishon@kernel.org" <kishon@kernel.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20240510110523.12524-1-liankun.yang@mediatek.com>
+ <20240510110523.12524-3-liankun.yang@mediatek.com>
+ <e02c2f42-b5e4-4200-8131-3881b7034625@kernel.org>
+ <3f387c9e8ac34ca25ec7b6bfb02536cd4ebbc508.camel@mediatek.com>
+ <f4f85f0b-49eb-4fba-ac76-2df845571b12@kernel.org>
 Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <a2a631a0-9a16-4068-aed2-6bdaa71e3953@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f4f85f0b-49eb-4fba-ac76-2df845571b12@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 5/13/24 4:06 PM, Christophe ROULLIER wrote:
-> Hi
-> 
-> On 4/26/24 17:30, Rob Herring wrote:
->> On Fri, Apr 26, 2024 at 02:56:58PM +0200, Christophe Roullier wrote:
->>> Phandle to a regulator that provides power to the PHY. This
->>> regulator will be managed during the PHY power on/off sequence.
+On 13/05/2024 16:17, Krzysztof Kozlowski wrote:
+>>> dp.yaml
+>>>> @@ -0,0 +1,45 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: 
+>>> http://devicetree.org/schemas/display/mediatek/mediatek,phy-dp.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: MediaTek Display Port Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Mac shen <mac.shen@mediatek.com>
+>>>> +  - Liankun yang <Liankun.yang@mediatek.com>
+>>>> +
+>>>> +description: |
+>>>> +  Special settings need to be configured by MediaTek DP based on
+>>> the actual
+>>>> +  hardware situation. For example, when using a certain brand's
+>>> docking
+>>>> +  station for display projection, garbage may appear. Adjusting
+>>> the specific
+>>>> +  ssc value can resolve this issue.
+>>>> +
+>>>> +properties:
+>>>> +  status: disabled
 >>>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
->>> ---
->>>   Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 3 +++
->>>   1 file changed, 3 insertions(+)
+>>> I think you nicely shocked Rob already.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml 
->>> b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
->>> index b901a432dfa9..7c3aa181abcb 100644
->>> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
->>> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
->>> @@ -84,6 +84,9 @@ properties:
->>>             - description: offset of the control register
->>>             - description: field to set mask in register
->>> +  phy-supply:
->>> +    description: PHY regulator
->> This is for which PHY? The serdes phy or ethernet phy? This only makes
->> sense here if the phy is part of the MAC. Otherwise, it belongs in the
->> phy node.
+>>> Please reach internally to Mediatek or collaborating companies to get
+>>> basic training and instructions how to write patches and bindings.
+>>>
+>>> Otherwise it is waste of our time. Mediatek is not a small company so
+>>> there is no excuse in sending such poor quality patches, which would
+>>> be
+>>> EASILY spotted by the MOST BASIC review.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
 >>
->> Rob
+>> I used scripts/checkpatch.pl and fix reported error and warnings.
+>> I am resumbmitting bindings by the MOST BASIC review.
 > 
-> You are right, normally it should be managed in Ethernet PHY (Realtek, 
-> Microchip etc...)
+> No, please wait. Who did the basic review of your patch? Who from
+> Mediatek? Upstream is not a workhorse to use instead of your resources
+> for the absolute basic stuff... This feels such exploiting.
 > 
-> Lots of glue manage this like this. Does it forbidden now ? if yes need 
-> to update PHY driver to manage this property.
 
-If the regulator is connected to the PHY, then the supply should be 
-described in the PHY node and you wouldn't even need these PHY patches 
-(also see my comment that you should split the PHY regulator part of 
-this patchset into separate series).
+After reading AngeloGioacchino's response, it looks even worse... This
+was never tested...
+
+So not only exploiting but also feels like wasting our time.
+
+Best regards,
+Krzysztof
+
 
