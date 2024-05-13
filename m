@@ -1,140 +1,182 @@
-Return-Path: <devicetree+bounces-66749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78ED28C474B
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 20:58:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E80A8C4758
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 21:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16F1E1F2246B
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:58:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0434A281DE3
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 19:03:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9E65914C;
-	Mon, 13 May 2024 18:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DC2B4436B;
+	Mon, 13 May 2024 19:03:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="P2Gs6F4k";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="jaoiE/KA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="F88L8rB4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh3-smtp.messagingengine.com (fhigh3-smtp.messagingengine.com [103.168.172.154])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA1057C94;
-	Mon, 13 May 2024 18:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E50B2EAF9
+	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 19:03:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715626700; cv=none; b=Up3YifoKACAU25MdnS22ct5iv7AEh2Ccwugh4xbct8gpz5Vn9UVLP580KNAGnuwgnigJ3j4T7afhYkJFocdjPk6h00MSLhX+0PrhICpNry3LiHCM/FZinOXbntgEIqLj0A7AyMGzt5Dhql3kF8ckpefkjPmUnJ6RLn3cD/zhzJc=
+	t=1715627031; cv=none; b=CLJsx89Jq1YMaAVYOOqG82IGgA8gtcJjlBphKIpV44bVZbPQNQOlMziyOPvrb2d7Fzv706sRp3RbPJ3Bo7XaKArct/6l9dlrKI8e4Q3GoRXaFfnT+l1Sq+kOzX33h6GUqSfD9HRIx4rXIwoUF0rJToBWmXXg9rDT7E9sWtJSU4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715626700; c=relaxed/simple;
-	bh=AxqJL6jRCqV6vjY2t6hZsW6Hct2fql6azgLtT1kWzBE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Iaj5ZOlzQ3SiPymPwAFwaY3nzgRcgro8yEgELR8rP8aD+18kwocjXzpmH/ewR7T7Lj5N5eyqJynrFH/FOwq9O55Xliehu7YXv2E2M31iQWKGr/aPT8H/T+1KcEOsmloMzLMwnPf/nqfXLWe/aFh86WfRWyNYePzrNwQvKWCjb5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=P2Gs6F4k; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=jaoiE/KA; arc=none smtp.client-ip=103.168.172.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 778E9114017A;
-	Mon, 13 May 2024 14:58:18 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 13 May 2024 14:58:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1715626698;
-	 x=1715713098; bh=VDFbaTESjI+KTwwEwgBDTk2QVAvlm0Ozsc93TRmAp1I=; b=
-	P2Gs6F4k8JzfhAxBW1F+KApwfLU+Estb8+Lv8EDL1MfyJEPr3iklD23T0NBljCOD
-	xgZjr/7cfz66dxarVBYLYqpSj5LVQCGDiqhwqgaSMFcvJIskU47+pFyZI+Wkpmp+
-	Iksq3j49yz29oeBtbfDGGpqtY1iMQtBjdzYpv5ZFOgc4CBX3eW4JJFIeHbg8N28j
-	cx84ncKLfvH5GtZtYSsYMpZzQ94xV4ZzfZ50zer990NxS6Ri7ZGBPxQ6Ebt/sy9e
-	telf4ihevfEjrSdoRurJu96a01y9PrP47YsqiKWI/CGdzGPQug3WlIS4PdQ1MdxP
-	fOLC9yv0izuY9wgPa90yhA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1715626698; x=
-	1715713098; bh=VDFbaTESjI+KTwwEwgBDTk2QVAvlm0Ozsc93TRmAp1I=; b=j
-	aoiE/KArf0rNW+jUUQ1tJQCtQnWC2vrjM4wJ6fPMmk9PpZhyFeQr6ABAl+Z+7goI
-	IbrrJUoB76DWTdqXYJEXs4mWefMdIRsh2WL4wUcX3ypf+OuQvJklpPV4TM9yAaeH
-	jp6bIVtdbOP4FPUbOzbJrDodziCxzPt10nx4qHEGcCd8wcVVsosyKxMuGsYXba4v
-	+eg06yn9n9dUB/jbuODIVYmnWhcqygDTHbItd9JLuD04xsytdEUvfQ+GehulOkp9
-	cwBATst179iH6fzIX4gq2s5x+L6BJKpNV9JMKWPV3srosN9QcKow9+X4N7+xbkhm
-	MBuJeACWkXfcgaDaktJdQ==
-X-ME-Sender: <xms:ymJCZvsma4gIGFpafHjT4bQBlXmMrlOJROYvIOqWYd9E2X5mNb5Now>
-    <xme:ymJCZgc3_zscivg3BWHJ8151AS_BAi9hfSvtV83Y7k44puOqYDbe6C9BExxA1ul79
-    TJf3YbjeJRFMBLVpSk>
-X-ME-Received: <xmr:ymJCZiwQ75o_R7g4cYfJbb-zvkqCmqad1xF1BAsKswxjtLutvcAjS-Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdeggedgudeftdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomheplfhi
-    rgiguhhnucgjrghnghcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqe
-    enucggtffrrghtthgvrhhnpedvkeeihfefveekueevteefleffkeegudeghfdtuddugefh
-    ueevgeffgedukeejleenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
-    hlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:ymJCZuPWxBU5hKlfiWZFQQWjHqw1_M_qySR-bHnrRXM-tLX0lccYeQ>
-    <xmx:ymJCZv80Z02dqTn6ZxxQFnaVbfYd3lD8x4YO6yHu8F9JtbebJeRifA>
-    <xmx:ymJCZuVGiSyWQQVa3CGLcETEgVKEtWie3FUp0NMVbzL2LQhrOY-eDA>
-    <xmx:ymJCZgd_3q9iZMVyVgQqUNnuXHpl7lNF5Kn0ESKkpD1Kor5dx_WDwQ>
-    <xmx:ymJCZg0FkalagIgjED6vFTPK7QtxSw9O8LW3jltMVt_RvxH3nGRStAMj>
-Feedback-ID: ifd894703:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 May 2024 14:58:16 -0400 (EDT)
-From: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Date: Mon, 13 May 2024 19:58:15 +0100
-Subject: [PATCH 2/2] MIPS: dts: Boston: Add simple-mfd compatible
+	s=arc-20240116; t=1715627031; c=relaxed/simple;
+	bh=ODnBtUQC1KGN4ow+iWiB+NzhvXE+z0uYg67vlzoql8U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ws8SZF4dfXlAg/8Qp7Q1fQ/0NBFABT8EIUYxg617rwIPWSz/DlVX1JFIDHkav/1du1k6BVcAYWM+Fp0IKkINyVgTX4nAhCiReyqwsj2I+zs6NCK6O66QqQI0SySkc6eGjWhEb09BrRF6BvCiWO2e9qdCGvlEuJJG5G3zmeZ1ji0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=F88L8rB4; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2e0933d3b5fso70588161fa.2
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 12:03:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715627027; x=1716231827; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nhvUe0kz82j++VbhjIKW6Ozs4qMAqHSTH+1XrVw/7S0=;
+        b=F88L8rB4UB8o45X+uuVh56RqHNcVBskatOIFhVaO4kl1vtGv5fLmcyj5Dx9EvhDZNE
+         ADybMfqCX1x+uagiX5Sco95XrX8fGwOywU0rHwBdQGlJ2hIDpjfW2oHQcTmvki59p6M5
+         V8TGEPBqdWI5cgi7ZQ9/o2CTyOkbEq8TsukYDkCC497chYIMHxyYJGdJ6bK8abuKRNLh
+         ox99c3TCHFyS8VtxCQdu/PisMYnwvpv536wJSeDlmoES7kdIRA5hzKRLmtK4IGwXmv6+
+         Xv6xF/S6DVW3Mw+5HRuvdHt31f/ISraQp5Jj1iQHlxm0/ArIUkWsHYHZXJ7myKdNoLKl
+         KTqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715627027; x=1716231827;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nhvUe0kz82j++VbhjIKW6Ozs4qMAqHSTH+1XrVw/7S0=;
+        b=B0sbGyhie8+Lwsmdzpvu7ArTqtSz0IgQ88/Y50e85kKKwrZ8l/Evl61X5gIQXZqfSy
+         3RBON/9k7CARYIa1x2YIylapzNxuK4kJG0n10UPQdGsqu/c0n1WllA9jiPV5csX5vkkd
+         tr5YcemR1yt6JKGS1Rpq75BDudIeat+jVIaValSO7v50wUPQiR72HFrM6ctR2TfxXarL
+         u8CIafhM3yRwX49b05LATN0QiIAyzXXJ07xdnPOzFGY6JBV3kiu70Sh3zUS7a3GbQfEj
+         AVr5kssMMx8heU7M1xacT3WQrMxp71lThZBRSjmcaE4gNK0LOGqCfgNDVpwGb6/e/epE
+         Iu1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUxHnhW7JGJjfMcHRDGnXO3hfwwITw+eH0BsdM4EsDlq+dWsf/CSD0HbMSwkMcguNwZ6tSyVZDV/iNxDc54HfjpOumElQvsvgsDuw==
+X-Gm-Message-State: AOJu0Yyp6xl8SDylJURjU/g/lsPQssY4Jr9XRPgCu1UQAW61STk/4Xo+
+	CUwJo0hJ+mPtapelsml/DtDnD8jpMPfbR0yzpwviAMhvmSPpJF3IXcGlaRFT3Nc+T2qE5oG+r8s
+	Nt636pwv1eW1gYrHl+6aDiPSEFbW5Y7hFAqTHkQ==
+X-Google-Smtp-Source: AGHT+IGZ69IeXMlMpqoM2M2YCgUD+Q6OrAktJUZz+SfLTgBzkeHUgQGwGofSbNJO2eeSU7To0QFto6gNN1OAzOT88qk=
+X-Received: by 2002:a2e:2c15:0:b0:2e1:c6bd:ebba with SMTP id
+ 38308e7fff4ca-2e51fd42043mr59366271fa.1.1715627026721; Mon, 13 May 2024
+ 12:03:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240513-boston-syscon-v1-2-93ff557d3548@flygoat.com>
-References: <20240513-boston-syscon-v1-0-93ff557d3548@flygoat.com>
-In-Reply-To: <20240513-boston-syscon-v1-0-93ff557d3548@flygoat.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Burton <paulburton@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-mips@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=765;
- i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
- bh=AxqJL6jRCqV6vjY2t6hZsW6Hct2fql6azgLtT1kWzBE=;
- b=owGbwMvMwCHmXMhTe71c8zDjabUkhjSnpOOu7s/PtvVUXBRTMtpl+GEZdymfitjGldzfPgkvU
- qqILT3dUcrCIMbBICumyBIioNS3ofHigusPsv7AzGFlAhnCwMUpABM5yczwv1pzncXze+dcPvhP
- vewtIfqFyVlTvLvsyg0jkYzQKN/IRQz/PU86LpjoFtwY4KevLX1lc5e4xJ/G7aXBU6yiWUK221i
- yAgA=
-X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
- fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
+References: <20240510141836.1624009-1-adureghello@baylibre.org>
+ <20240510141836.1624009-3-adureghello@baylibre.org> <CAMknhBGU8bXg7obzyjzb7a4AUbjnw_0b+mqEAYJJekAK2CB-CQ@mail.gmail.com>
+ <20240513185231.GA2920495-robh@kernel.org>
+In-Reply-To: <20240513185231.GA2920495-robh@kernel.org>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 13 May 2024 14:03:35 -0500
+Message-ID: <CAMknhBH6CrUmoUiSmU-EGc0eLw-HbaO30gAcsLBQppe3uYHpWw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: iio: dac: fix ad3552r gain parameter names
+To: Rob Herring <robh@kernel.org>
+Cc: Angelo Dureghello <adureghello@baylibre.com>, jic23@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, nuno.sa@analog.com, lars@metafoo.de, 
+	Michael.Hennerich@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-We certainly want subnodes of system-controller node to
-be populated, add simple-mfd compatible to make that happen.
+On Mon, May 13, 2024 at 1:52=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Fri, May 10, 2024 at 10:43:18AM -0500, David Lechner wrote:
+> > On Fri, May 10, 2024 at 9:19=E2=80=AFAM Angelo Dureghello
+> > <adureghello@baylibre.com> wrote:
+> > >
+> > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > >
+> > > The adi,gain-scaling-p/n values are an inverted log2,
+> > > so initial naiming was set correct, but the driver uses just
+> > > adi,gain-scaling-p/n, so uniforming documentation, that seems
+> > > a less-risk fix for future rebases, and still conformant to datasheet=
+.
+> > >
+> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > ---
+> > >  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml | 16 ++++++++------=
+--
+> > >  1 file changed, 8 insertions(+), 8 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.ya=
+ml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > index 17442cdfbe27..9e3dbf890bfa 100644
+> > > --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > @@ -94,13 +94,13 @@ patternProperties:
+> > >              maximum: 511
+> > >              minimum: -511
+> > >
+> > > -          adi,gain-scaling-p-inv-log2:
+> > > -            description: GainP =3D 1 / ( 2 ^ adi,gain-scaling-p-inv-=
+log2)
+> > > +          adi,gain-scaling-p:
+> > > +            description: GainP =3D 1 / ( 2 ^ adi,gain-scaling-p)
+> > >              $ref: /schemas/types.yaml#/definitions/uint32
+> > >              enum: [0, 1, 2, 3]
+> > >
+> > > -          adi,gain-scaling-n-inv-log2:
+> > > -            description: GainN =3D 1 / ( 2 ^ adi,gain-scaling-n-inv-=
+log2)
+> > > +          adi,gain-scaling-n:
+> > > +            description: GainN =3D 1 / ( 2 ^ adi,gain-scaling-n)
+> > >              $ref: /schemas/types.yaml#/definitions/uint32
+> > >              enum: [0, 1, 2, 3]
+> > >
+> > > @@ -109,8 +109,8 @@ patternProperties:
+> > >
+> > >          required:
+> > >            - adi,gain-offset
+> > > -          - adi,gain-scaling-p-inv-log2
+> > > -          - adi,gain-scaling-n-inv-log2
+> > > +          - adi,gain-scaling-p
+> > > +          - adi,gain-scaling-n
+> > >            - adi,rfb-ohms
+> > >
+> > >      required:
+> > > @@ -214,8 +214,8 @@ examples:
+> > >                  reg =3D <1>;
+> > >                  custom-output-range-config {
+> > >                      adi,gain-offset =3D <5>;
+> > > -                    adi,gain-scaling-p-inv-log2 =3D <1>;
+> > > -                    adi,gain-scaling-n-inv-log2 =3D <2>;
+> > > +                    adi,gain-scaling-p =3D <1>;
+> > > +                    adi,gain-scaling-n =3D <2>;
+> > >                      adi,rfb-ohms =3D <1>;
+> > >                  };
+> > >              };
+> > > --
+> > > 2.45.0.rc1
+> > >
+> > >
+> >
+> > The DT bindings are generally considered immutable. So unless we can
+> > prove that no one has ever put adi,gain-scaling-n-inv-log2 in a .dtb
+> > file,
+>
+> You can't ever prove that.
+>
+> > we probably need to fix this in the driver rather than in the
+> > bindings. (The driver can still handle adi,gain-scaling-p in the
+> > driver for backwards compatibility but the official binding should be
+> > what was already accepted in the .yaml file)
+>
+> If we can reasonable assume that the Linux driver is the only consumer,
+> there are no upstream dts users (in kernel or other opensource
+> projects), and/or the property is somewhat recent, then that's good
+> enough IMO.
+>
+> Rob
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- arch/mips/boot/dts/img/boston.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/mips/boot/dts/img/boston.dts b/arch/mips/boot/dts/img/boston.dts
-index 72f7605d2e31..f7a2c46f1eb8 100644
---- a/arch/mips/boot/dts/img/boston.dts
-+++ b/arch/mips/boot/dts/img/boston.dts
-@@ -203,7 +203,7 @@ cpc@16200000 {
- 	};
- 
- 	plat_regs: system-controller@17ffd000 {
--		compatible = "img,boston-platform-regs", "syscon";
-+		compatible = "img,boston-platform-regs", "syscon", "simple-mfd";
- 		reg = <0x17ffd000 0x1000>;
- 
- 		clk_boston: clock {
-
--- 
-2.34.1
-
+Ack. I stand corrected then.
 
