@@ -1,368 +1,289 @@
-Return-Path: <devicetree+bounces-66737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7B28C46E6
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 20:34:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30A358C46F8
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 20:37:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 805D928236B
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:34:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A76401F21744
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A8A2E631;
-	Mon, 13 May 2024 18:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB23439AEC;
+	Mon, 13 May 2024 18:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bUMjOVnS"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="sqiZz3wA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC0363D3B8;
-	Mon, 13 May 2024 18:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECE237700
+	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 18:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715625290; cv=none; b=P7MgV3/DQE0wKgxP7MD2FbzEmNHx4j61DbnE6murE2ZN6S3AshL+2wdvRjB7R/3B67QLq9l0ooGUb/ADci52nL8zd64vrHP6fXV8XfkOipsolyDYN32tp2vExrTrwooSU902sg8vwGS+ejGy+lXcV83X+o8UHfYaA0L18w7JkOc=
+	t=1715625420; cv=none; b=HVs3x6sG7m+tWsJ5KQzOABbS6ZWiwBTG5iMLXXzEg8wtgj++FOjEM7fhiTMox3yaK2kZNEaKVDePYdXOyMvrbE3izwULoAcD/ATDoGWHT+bfrv1VDLknuJBMbho7y4RdORAhAI4UNe7Hmbpx9kolY73p2AXeSJOmeZKf5miDfWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715625290; c=relaxed/simple;
-	bh=lWp3qSP9yeWeEVRrF736edtP5bAdugOS1ziOGLFtlso=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DWNXQbLmEbTw0HwtDFeB/gbqzjgk6iodVMj4o+6ajQ45rbPBDPfXEaA/NQ1DvTbZU9ykt4ArucuzLohM1eB+8XFSSN9oY53Dw8/Soz9kl38zY8ItMWwGTPN4nwyGzrBNgNZqx/JAkfPdPEN8balT38y1Ngi7Kzni5wnTKZKNJ2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bUMjOVnS; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 42FEAC0002;
-	Mon, 13 May 2024 18:34:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1715625284;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=15TaJhhVE39xtbVy6DL0G5qguHdHmLrumCWfn8eUaIA=;
-	b=bUMjOVnSosl1+o2wPXU8AfizTsnbHdUN1HOosaMjl9o2/DlesrG03+rvJ2ykpRkqnaCd2h
-	pi3utVbne0op7m5sITWVSuv5QGHX9VpmQfcSCGvjNzt3HAvYOpkoRPC99z+4zhaIk4xz/t
-	WuV8LjVEt/vaLXhXUswcOqTEo6GRYKRLuQV+McTssWvojroqffniqX//R99YUzHOYjK5sa
-	Ic1T+6mKcz7l2PaiZDsaY3r28GbLvWBBMCdsdEPXGKbcfAF8FG9NK8QjgacCNGMRgOJyn1
-	QBK4/tEq/yyevEvjBoxh2lUkgOo0LOF4F/u8ce3zHlAOiVnP93Np88oaiFFxSA==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-Date: Mon, 13 May 2024 20:34:17 +0200
-Subject: [PATCH v2 3/3] MIPS: mobileye: Add EyeQ6H support
+	s=arc-20240116; t=1715625420; c=relaxed/simple;
+	bh=BvI39EAKtQpX2KnQvFJ2uFQpNAn8Ssm0ZY3/iNJ4Gpg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l13s+1fqPPDV0SB4YTlxiD56tuWLT/fFDQ2fYOFpb/iibf88yROeyHch41R09E1fpfAJyobf9gf4uAnExyo0SqqNqP0y+SzaqdCJYY73A+BfKQ7i8HtOmRAhN8DexpkZBHzwVN0yZaKpvwV2RuM+yenteCcszul0KPo86oy53DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=sqiZz3wA; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6f45f1179c3so4442391b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 11:36:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715625418; x=1716230218; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EJ8xaQQ9gfY7+cG8KujzU2LQ7mZBfQgErlO4DocitkQ=;
+        b=sqiZz3wAwg5d+gK3gtKX4HKCKs2PF74FqtvCGajcnnYeWbJq3WC0abaoFWnXZIqQ0x
+         T4dj7JPXyu4ZOAYWUZfPui7zFPbs94RPwLZH6/l4WEf8A/Gs0/7UETu3HnJm/m3FEIgN
+         GRMJ5QS9yinp/S1ynzQ5op+NKIFHX1QCNEUnqP4FOqoUdoYOFQwy9kzgITsUo+6pWJnP
+         Qxo1HTVi9Gc+jDT26CJN5OMYSa8P6NMEXRP06/RIcQtk8bspvf2a2kRlavPfwrCzJ42q
+         rJnGGsLk0jnABqGWZmX6XjEdjcxY4AAU9YxL54sI36jZlUD5RFn/kkrM6Y915I7Gel51
+         swpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715625418; x=1716230218;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EJ8xaQQ9gfY7+cG8KujzU2LQ7mZBfQgErlO4DocitkQ=;
+        b=EVDiGoQTZ0dH5oAekF2dHaqMYUyYcW6iQkD5sCNO0IyHX9J4LL5DnDYOex1KaKVekh
+         TjvQweipPMx6URWeZfza3ktOn3AXmr4InLA8dkJk+8slcW+jp5PsDDklI0KjoJJApMlg
+         X+7yO/Ld9L+pF+zsbs3O18SHqoq/w3jK1JRltxILHAxMCSgWyT5YZF5rywOpHY+q2CMm
+         +hPfBxaxQEcoyadmJfeuXiN/J7E6JJieHWGJ/6KsCsTGTkHHCAr9L6zmh5Rjz79kJrgV
+         PtwfC091+r3zXSzSDpELw8ulQmgXzCc1pFm7G46Yl/+AvlKGQl7DNAXpVcWJxLnFnJpL
+         V4lA==
+X-Forwarded-Encrypted: i=1; AJvYcCUxk+EwBlgUmB/SmIIAmbm8edJdvzhV5Yq+ldVF6d7n26N7G2h4QokKS+Trl8Jyu3DbO2I4fj5X++TZzY8imMwFfocoUNmUaOJZqg==
+X-Gm-Message-State: AOJu0YzdeURTM+eWTgUJiaP4qXUPSr9eloPj7EVfhHgdfPxy9tZqICZg
+	yLjHYeif590pBGSHL2Ak/Lv4Hw5/bjSGzQDY2LS5GuhP/Zx+YHMGbvQ6ZZcazvc=
+X-Google-Smtp-Source: AGHT+IEtFJqHdWFS93HqHX5hpNlL66iEYhRvuRmrd98dRBICcH+zlHlVBgPVDx05Rv0/gkrNtS6Lwg==
+X-Received: by 2002:a05:6a00:2406:b0:6f3:86ac:5eae with SMTP id d2e1a72fcca58-6f4e03843d1mr10090101b3a.28.1715625418280;
+        Mon, 13 May 2024 11:36:58 -0700 (PDT)
+Received: from ghost ([2600:1010:b062:ae34:7efe:e26b:c29e:9a14])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2a9d9acsm7881752b3a.90.2024.05.13.11.36.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 May 2024 11:36:57 -0700 (PDT)
+Date: Mon, 13 May 2024 11:36:49 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: paul.walmsley@sifive.com, rick.p.edgecombe@intel.com,
+	broonie@kernel.org, Szabolcs.Nagy@arm.com, kito.cheng@sifive.com,
+	keescook@chromium.org, ajones@ventanamicro.com,
+	conor.dooley@microchip.com, cleger@rivosinc.com,
+	atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com,
+	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org,
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mm@kvack.org, linux-arch@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, oleg@redhat.com,
+	akpm@linux-foundation.org, arnd@arndb.de, ebiederm@xmission.com,
+	Liam.Howlett@oracle.com, vbabka@suse.cz, lstoakes@gmail.com,
+	shuah@kernel.org, brauner@kernel.org, andy.chiu@sifive.com,
+	jerry.shih@sifive.com, hankuan.chen@sifive.com,
+	greentime.hu@sifive.com, evan@rivosinc.com, xiao.w.wang@intel.com,
+	apatel@ventanamicro.com, mchitale@ventanamicro.com,
+	dbarboza@ventanamicro.com, sameo@rivosinc.com,
+	shikemeng@huaweicloud.com, willy@infradead.org,
+	vincent.chen@sifive.com, guoren@kernel.org, samitolvanen@google.com,
+	songshuaishuai@tinylab.org, gerg@kernel.org, heiko@sntech.de,
+	bhe@redhat.com, jeeheng.sia@starfivetech.com, cyy@cyyself.name,
+	maskray@google.com, ancientmodern4@gmail.com,
+	mathis.salmen@matsal.de, cuiyunhui@bytedance.com,
+	bgray@linux.ibm.com, mpe@ellerman.id.au, baruch@tkos.co.il,
+	alx@kernel.org, david@redhat.com, catalin.marinas@arm.com,
+	revest@chromium.org, josh@joshtriplett.org, shr@devkernel.io,
+	deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org,
+	jhubbard@nvidia.com
+Subject: Re: [PATCH v3 10/29] riscv/mm : ensure PROT_WRITE leads to VM_READ |
+ VM_WRITE
+Message-ID: <ZkJdYvkUqHkX7yPf@ghost>
+References: <20240403234054.2020347-1-debug@rivosinc.com>
+ <20240403234054.2020347-11-debug@rivosinc.com>
+ <Zj6LfpQhOjTLEx2O@ghost>
+ <ZkJSLTk1iWFGJZCQ@debug.ba.rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240513-eyeq6h-v2-3-ae8c1974b52b@bootlin.com>
-References: <20240513-eyeq6h-v2-0-ae8c1974b52b@bootlin.com>
-In-Reply-To: <20240513-eyeq6h-v2-0-ae8c1974b52b@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- Jiaxun Yang <jiaxun.yang@flygoat.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8811;
- i=gregory.clement@bootlin.com; h=from:subject:message-id;
- bh=lWp3qSP9yeWeEVRrF736edtP5bAdugOS1ziOGLFtlso=;
- b=owGbwMvMwCTIzSbRJ1JkfZXxtFoSQ5pTrL3TovnHLdXWOZ83kGLcIRQVNuNV9+zUt6/91Hl23
- 4x1TdnREcvCIMjEICumyCKxsuCMeLm+xza75uswc1iZQIYwcHEKwEQ2pTHM9z3U6azbfzGTyevJ
- 24leCgU1QtmZDPMjktdvNNS+vuLxtKmLHzv95w+aKd0OAA==
-X-Developer-Key: i=gregory.clement@bootlin.com; a=openpgp;
- fpr=18A970CC17772F48B63E83D70B06188E14723BD5
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZkJSLTk1iWFGJZCQ@debug.ba.rivosinc.com>
 
-EyeQ6H (or “High”) is an other SoC from Mobileye still based on the
-MIPS I6500 architecture as the EyeQ5. The 2 clusters of this SoC
-contains 4 cores which are capable of running 4 threads. Besides this,
-it features multiple controllers such as the classic UART, high speed
-I2C, SPI, as well as CAN-FD, PCIe Gen4, Octal/Quad SPI Flash
-interface, Gigabit Ethernet, MIPI CSI-2, MIPI DSI, and eMMC 5.1. It
-also includes a Hardware Security Module, Functional Safety Hardware,
-and video encoders and more.
+On Mon, May 13, 2024 at 10:47:25AM -0700, Deepak Gupta wrote:
+> On Fri, May 10, 2024 at 02:02:54PM -0700, Charlie Jenkins wrote:
+> > On Wed, Apr 03, 2024 at 04:34:58PM -0700, Deepak Gupta wrote:
+> > > `arch_calc_vm_prot_bits` is implemented on risc-v to return VM_READ |
+> > > VM_WRITE if PROT_WRITE is specified. Similarly `riscv_sys_mmap` is
+> > > updated to convert all incoming PROT_WRITE to (PROT_WRITE | PROT_READ).
+> > > This is to make sure that any existing apps using PROT_WRITE still work.
+> > > 
+> > > Earlier `protection_map[VM_WRITE]` used to pick read-write PTE encodings.
+> > > Now `protection_map[VM_WRITE]` will always pick PAGE_SHADOWSTACK PTE
+> > > encodings for shadow stack. Above changes ensure that existing apps
+> > > continue to work because underneath kernel will be picking
+> > > `protection_map[VM_WRITE|VM_READ]` PTE encodings.
+> > > 
+> > > Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> > > ---
+> > >  arch/riscv/include/asm/mman.h    | 24 ++++++++++++++++++++++++
+> > >  arch/riscv/include/asm/pgtable.h |  1 +
+> > >  arch/riscv/kernel/sys_riscv.c    | 11 +++++++++++
+> > >  arch/riscv/mm/init.c             |  2 +-
+> > >  mm/mmap.c                        |  1 +
+> > >  5 files changed, 38 insertions(+), 1 deletion(-)
+> > >  create mode 100644 arch/riscv/include/asm/mman.h
+> > > 
+> > > diff --git a/arch/riscv/include/asm/mman.h b/arch/riscv/include/asm/mman.h
+> > > new file mode 100644
+> > > index 000000000000..ef9fedf32546
+> > > --- /dev/null
+> > > +++ b/arch/riscv/include/asm/mman.h
+> > > @@ -0,0 +1,24 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > +#ifndef __ASM_MMAN_H__
+> > > +#define __ASM_MMAN_H__
+> > > +
+> > > +#include <linux/compiler.h>
+> > > +#include <linux/types.h>
+> > > +#include <uapi/asm/mman.h>
+> > > +
+> > > +static inline unsigned long arch_calc_vm_prot_bits(unsigned long prot,
+> > > +	unsigned long pkey __always_unused)
+> > > +{
+> > > +	unsigned long ret = 0;
+> > > +
+> > > +	/*
+> > > +	 * If PROT_WRITE was specified, force it to VM_READ | VM_WRITE.
+> > > +	 * Only VM_WRITE means shadow stack.
+> > > +	 */
+> > > +	if (prot & PROT_WRITE)
+> > > +		ret = (VM_READ | VM_WRITE);
+> > > +	return ret;
+> > > +}
+> > > +#define arch_calc_vm_prot_bits(prot, pkey) arch_calc_vm_prot_bits(prot, pkey)
+> > > +
+> > > +#endif /* ! __ASM_MMAN_H__ */
+> > > diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
+> > > index 6066822e7396..4d5983bc6766 100644
+> > > --- a/arch/riscv/include/asm/pgtable.h
+> > > +++ b/arch/riscv/include/asm/pgtable.h
+> > > @@ -184,6 +184,7 @@ extern struct pt_alloc_ops pt_ops __initdata;
+> > >  #define PAGE_READ_EXEC		__pgprot(_PAGE_BASE | _PAGE_READ | _PAGE_EXEC)
+> > >  #define PAGE_WRITE_EXEC		__pgprot(_PAGE_BASE | _PAGE_READ |	\
+> > >  					 _PAGE_EXEC | _PAGE_WRITE)
+> > > +#define PAGE_SHADOWSTACK       __pgprot(_PAGE_BASE | _PAGE_WRITE)
+> > > 
+> > >  #define PAGE_COPY		PAGE_READ
+> > >  #define PAGE_COPY_EXEC		PAGE_READ_EXEC
+> > > diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.c
+> > > index f1c1416a9f1e..846c36b1b3d5 100644
+> > > --- a/arch/riscv/kernel/sys_riscv.c
+> > > +++ b/arch/riscv/kernel/sys_riscv.c
+> > > @@ -8,6 +8,8 @@
+> > >  #include <linux/syscalls.h>
+> > >  #include <asm/cacheflush.h>
+> > >  #include <asm-generic/mman-common.h>
+> > > +#include <vdso/vsyscall.h>
+> > > +#include <asm/mman.h>
+> > > 
+> > >  static long riscv_sys_mmap(unsigned long addr, unsigned long len,
+> > >  			   unsigned long prot, unsigned long flags,
+> > > @@ -17,6 +19,15 @@ static long riscv_sys_mmap(unsigned long addr, unsigned long len,
+> > >  	if (unlikely(offset & (~PAGE_MASK >> page_shift_offset)))
+> > >  		return -EINVAL;
+> > > 
+> > > +	/*
+> > > +	 * If only PROT_WRITE is specified then extend that to PROT_READ
+> > > +	 * protection_map[VM_WRITE] is now going to select shadow stack encodings.
+> > > +	 * So specifying PROT_WRITE actually should select protection_map [VM_WRITE | VM_READ]
+> > > +	 * If user wants to create shadow stack then they should use `map_shadow_stack` syscall.
+> > > +	 */
+> > > +	if (unlikely((prot & PROT_WRITE) && !(prot & PROT_READ)))
+> > 
+> > The comments says that this should extend to PROT_READ if only
+> > PROT_WRITE is specified. This condition instead is checking if
+> > PROT_WRITE is selected but PROT_READ is not. If prot is (VM_EXEC |
+> > VM_WRITE) then it would be extended to (VM_EXEC | VM_WRITE | VM_READ).
+> > This will not currently cause any issues because these both map to the
+> > same value in the protection_map PAGE_COPY_EXEC, however this seems to
+> > be not the intention of this change.
+> > 
+> > prot == PROT_WRITE better suits the condition explained in the comment.
+> 
+> If someone specifies this (PROT_EXEC | PROT_WRITE) today, it works because
+> of the way permissions are setup in `protection_map`. On risc-v there is no
+> way to have a page which is execute and write only. So expectation is that
+> if some apps were using `PROT_EXEC | PROT_WRITE` today, they were working
+> because internally it was translating to read, write and execute on page
+> permissions level. This patch make sure that, it stays same from page
+> permissions perspective.
+> 
+> If someone was using PROT_EXEC, it may translate to execute only and this change
+> doesn't impact that.
+> 
+> Patch simply looks for presence of `PROT_WRITE` and absence of `PROT_READ` in
+> protection flags and if that condition is satisfied, it assumes that caller assumed
+> page is going to be read allowed as well.
 
-This commit provides the infrastructure to build a kernel running on
-EyeQ6H SoC. For now the support is limited and only one CPU core is
-running.
+The purpose of this change is for compatibility with shadow stack pages
+but this affects flags for pages that are not shadow stack pages.
+Adding PROT_READ to the other cases is redundant as protection_map
+already handles that mapping. Permissions being strictly PROT_WRITE is
+the only case that needs to be handled, and is the only case that is
+called out in the commit message and in the comment.
 
-Reviewed-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- arch/mips/Kbuild.platforms           |   2 +-
- arch/mips/Kconfig                    |   7 ++-
- arch/mips/boot/dts/Makefile          |   2 +-
- arch/mips/boot/dts/mobileye/Makefile |   1 +
- arch/mips/configs/eyeq5_defconfig    |   1 +
- arch/mips/configs/eyeq6_defconfig    | 111 +++++++++++++++++++++++++++++++++++
- arch/mips/mobileye/Kconfig           |  26 ++++++++
- arch/mips/mobileye/Platform          |   1 +
- 8 files changed, 146 insertions(+), 5 deletions(-)
+- Charlie
 
-diff --git a/arch/mips/Kbuild.platforms b/arch/mips/Kbuild.platforms
-index 5c145b67d3bf..bca37ddf974b 100644
---- a/arch/mips/Kbuild.platforms
-+++ b/arch/mips/Kbuild.platforms
-@@ -8,6 +8,7 @@ platform-$(CONFIG_BCM47XX)		+= bcm47xx/
- platform-$(CONFIG_BCM63XX)		+= bcm63xx/
- platform-$(CONFIG_BMIPS_GENERIC)	+= bmips/
- platform-$(CONFIG_CAVIUM_OCTEON_SOC)	+= cavium-octeon/
-+platform-$(CONFIG_EYEQ)			+= mobileye/
- platform-$(CONFIG_MIPS_COBALT)		+= cobalt/
- platform-$(CONFIG_MACH_DECSTATION)	+= dec/
- platform-$(CONFIG_MIPS_GENERIC)		+= generic/
-@@ -17,7 +18,6 @@ platform-$(CONFIG_MACH_LOONGSON2EF)	+= loongson2ef/
- platform-$(CONFIG_MACH_LOONGSON32)	+= loongson32/
- platform-$(CONFIG_MACH_LOONGSON64)	+= loongson64/
- platform-$(CONFIG_MIPS_MALTA)		+= mti-malta/
--platform-$(CONFIG_MACH_EYEQ5)		+= mobileye/
- platform-$(CONFIG_MACH_NINTENDO64)	+= n64/
- platform-$(CONFIG_PIC32MZDA)		+= pic32/
- platform-$(CONFIG_RALINK)		+= ralink/
-diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
-index 516dc7022bd7..ac330b135346 100644
---- a/arch/mips/Kconfig
-+++ b/arch/mips/Kconfig
-@@ -575,8 +575,8 @@ config MACH_PIC32
- 	  Microchip PIC32 is a family of general-purpose 32 bit MIPS core
- 	  microcontrollers.
- 
--config MACH_EYEQ5
--	bool "Mobileye EyeQ5 SoC"
-+config EYEQ
-+	bool "Mobileye EyeQ SoC"
- 	select MACH_GENERIC_CORE
- 	select ARM_AMBA
- 	select PHYSICAL_START_BOOL
-@@ -615,7 +615,7 @@ config MACH_EYEQ5
- 	select USB_UHCI_BIG_ENDIAN_MMIO if CPU_BIG_ENDIAN
- 	select USE_OF
- 	help
--	  Select this to build a kernel supporting EyeQ5 SoC from Mobileye.
-+	  Select this to build a kernel supporting EyeQ SoC from Mobileye.
- 
- 	bool
- 
-@@ -1021,6 +1021,7 @@ source "arch/mips/generic/Kconfig"
- source "arch/mips/ingenic/Kconfig"
- source "arch/mips/jazz/Kconfig"
- source "arch/mips/lantiq/Kconfig"
-+source "arch/mips/mobileye/Kconfig"
- source "arch/mips/pic32/Kconfig"
- source "arch/mips/ralink/Kconfig"
- source "arch/mips/sgi-ip27/Kconfig"
-diff --git a/arch/mips/boot/dts/Makefile b/arch/mips/boot/dts/Makefile
-index efff87cb33a9..e2476b12bb0c 100644
---- a/arch/mips/boot/dts/Makefile
-+++ b/arch/mips/boot/dts/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- subdir-$(CONFIG_BMIPS_GENERIC)		+= brcm
- subdir-$(CONFIG_CAVIUM_OCTEON_SOC)	+= cavium-octeon
-+subdir-$(CONFIG_EYEQ)			+= mobileye
- subdir-$(CONFIG_FIT_IMAGE_FDT_MARDUK)   += img
- subdir-$(CONFIG_FIT_IMAGE_FDT_BOSTON)	+= img
- subdir-$(CONFIG_MACH_INGENIC)		+= ingenic
-@@ -8,7 +9,6 @@ subdir-$(CONFIG_LANTIQ)			+= lantiq
- subdir-$(CONFIG_MACH_LOONGSON64)	+= loongson
- subdir-$(CONFIG_SOC_VCOREIII)		+= mscc
- subdir-$(CONFIG_MIPS_MALTA)		+= mti
--subdir-$(CONFIG_MACH_EYEQ5)		+= mobileye
- subdir-$(CONFIG_LEGACY_BOARD_SEAD3)	+= mti
- subdir-$(CONFIG_FIT_IMAGE_FDT_NI169445)	+= ni
- subdir-$(CONFIG_MACH_PIC32)		+= pic32
-diff --git a/arch/mips/boot/dts/mobileye/Makefile b/arch/mips/boot/dts/mobileye/Makefile
-index 01c01c3aad81..7cc89968aaac 100644
---- a/arch/mips/boot/dts/mobileye/Makefile
-+++ b/arch/mips/boot/dts/mobileye/Makefile
-@@ -2,3 +2,4 @@
- # Copyright 2023 Mobileye Vision Technologies Ltd.
- 
- dtb-$(CONFIG_MACH_EYEQ5)		+= eyeq5-epm5.dtb
-+dtb-$(CONFIG_MACH_EYEQ6H)		+= eyeq6h-epm6.dtb
-diff --git a/arch/mips/configs/eyeq5_defconfig b/arch/mips/configs/eyeq5_defconfig
-index c35c29a4d479..84e26ef2e3a0 100644
---- a/arch/mips/configs/eyeq5_defconfig
-+++ b/arch/mips/configs/eyeq5_defconfig
-@@ -19,6 +19,7 @@ CONFIG_USER_NS=y
- CONFIG_SCHED_AUTOGROUP=y
- CONFIG_BLK_DEV_INITRD=y
- CONFIG_EXPERT=y
-+CONFIG_EYEQ=y
- CONFIG_MACH_EYEQ5=y
- CONFIG_FIT_IMAGE_FDT_EPM5=y
- CONFIG_PAGE_SIZE_16KB=y
-diff --git a/arch/mips/configs/eyeq6_defconfig b/arch/mips/configs/eyeq6_defconfig
-new file mode 100644
-index 000000000000..6597d5e88b33
---- /dev/null
-+++ b/arch/mips/configs/eyeq6_defconfig
-@@ -0,0 +1,111 @@
-+CONFIG_SYSVIPC=y
-+CONFIG_NO_HZ_IDLE=y
-+CONFIG_HIGH_RES_TIMERS=y
-+CONFIG_BPF_SYSCALL=y
-+CONFIG_TASKSTATS=y
-+CONFIG_IKCONFIG=y
-+CONFIG_IKCONFIG_PROC=y
-+CONFIG_MEMCG=y
-+CONFIG_BLK_CGROUP=y
-+CONFIG_CFS_BANDWIDTH=y
-+CONFIG_RT_GROUP_SCHED=y
-+CONFIG_CGROUP_PIDS=y
-+CONFIG_CGROUP_FREEZER=y
-+CONFIG_CPUSETS=y
-+CONFIG_CGROUP_DEVICE=y
-+CONFIG_CGROUP_CPUACCT=y
-+CONFIG_NAMESPACES=y
-+CONFIG_USER_NS=y
-+CONFIG_SCHED_AUTOGROUP=y
-+CONFIG_BLK_DEV_INITRD=y
-+CONFIG_EXPERT=y
-+CONFIG_EYEQ=y
-+CONFIG_MACH_EYEQ6H=y
-+CONFIG_MIPS_CPS=y
-+CONFIG_CPU_HAS_MSA=y
-+CONFIG_NR_CPUS=16
-+CONFIG_MIPS_RAW_APPENDED_DTB=y
-+CONFIG_JUMP_LABEL=y
-+CONFIG_PAGE_SIZE_16KB=y
-+CONFIG_COMPAT_32BIT_TIME=y
-+CONFIG_MODULES=y
-+CONFIG_MODULE_UNLOAD=y
-+CONFIG_TRIM_UNUSED_KSYMS=y
-+# CONFIG_COMPAT_BRK is not set
-+CONFIG_SPARSEMEM_MANUAL=y
-+CONFIG_USERFAULTFD=y
-+CONFIG_NET=y
-+CONFIG_PACKET=y
-+CONFIG_UNIX=y
-+CONFIG_NET_KEY=y
-+CONFIG_INET=y
-+CONFIG_IP_PNP=y
-+CONFIG_IP_PNP_DHCP=y
-+CONFIG_NETFILTER=y
-+CONFIG_CAN=y
-+CONFIG_PCI=y
-+CONFIG_PCI_MSI=y
-+CONFIG_PCI_DEBUG=y
-+CONFIG_PCI_ENDPOINT=y
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+CONFIG_CONNECTOR=y
-+CONFIG_MTD=y
-+CONFIG_MTD_UBI=y
-+CONFIG_MTD_UBI_BLOCK=y
-+CONFIG_SCSI=y
-+CONFIG_NETDEVICES=y
-+CONFIG_MACVLAN=y
-+CONFIG_IPVLAN=y
-+CONFIG_MACB=y
-+CONFIG_MARVELL_PHY=y
-+CONFIG_MICREL_PHY=y
-+CONFIG_CAN_M_CAN=y
-+CONFIG_SERIAL_AMBA_PL011=y
-+CONFIG_SERIAL_AMBA_PL011_CONSOLE=y
-+CONFIG_HW_RANDOM=y
-+CONFIG_I2C=y
-+CONFIG_I2C_CHARDEV=y
-+# CONFIG_PTP_1588_CLOCK is not set
-+CONFIG_PINCTRL=y
-+CONFIG_PINCTRL_SINGLE=y
-+CONFIG_MFD_SYSCON=y
-+CONFIG_HID_A4TECH=y
-+CONFIG_HID_BELKIN=y
-+CONFIG_HID_CHERRY=y
-+CONFIG_HID_CYPRESS=y
-+CONFIG_HID_EZKEY=y
-+CONFIG_HID_ITE=y
-+CONFIG_HID_KENSINGTON=y
-+CONFIG_HID_REDRAGON=y
-+CONFIG_HID_MICROSOFT=y
-+CONFIG_HID_MONTEREY=y
-+CONFIG_MMC=y
-+CONFIG_MMC_SDHCI=y
-+# CONFIG_IOMMU_SUPPORT is not set
-+CONFIG_RESET_CONTROLLER=y
-+# CONFIG_NVMEM is not set
-+CONFIG_EXT4_FS=y
-+CONFIG_EXT4_FS_POSIX_ACL=y
-+CONFIG_EXT4_FS_SECURITY=y
-+CONFIG_FS_ENCRYPTION=y
-+CONFIG_FUSE_FS=y
-+CONFIG_CUSE=y
-+CONFIG_MSDOS_FS=y
-+CONFIG_VFAT_FS=y
-+CONFIG_TMPFS=y
-+CONFIG_TMPFS_POSIX_ACL=y
-+CONFIG_UBIFS_FS=y
-+CONFIG_NFS_FS=y
-+CONFIG_NFS_V3_ACL=y
-+CONFIG_NFS_V4=y
-+CONFIG_NFS_V4_1=y
-+CONFIG_NFS_V4_2=y
-+CONFIG_ROOT_NFS=y
-+CONFIG_CRYPTO_CRC32_MIPS=y
-+CONFIG_FRAME_WARN=1024
-+CONFIG_DEBUG_FS=y
-+# CONFIG_RCU_TRACE is not set
-+# CONFIG_FTRACE is not set
-+CONFIG_CMDLINE_BOOL=y
-+CONFIG_CMDLINE="earlycon"
-diff --git a/arch/mips/mobileye/Kconfig b/arch/mips/mobileye/Kconfig
-new file mode 100644
-index 000000000000..f9abb2d6e178
---- /dev/null
-+++ b/arch/mips/mobileye/Kconfig
-@@ -0,0 +1,26 @@
-+# SPDX-License-Identifier: GPL-2.0
-+if EYEQ
-+
-+choice
-+	prompt "Mobileye EyeQ SoC selection"
-+	default MACH_EYEQ5
-+	help
-+	  Select Mobileye EyeQ MIPS SoC type.
-+
-+	config MACH_EYEQ5
-+		bool "Mobileye EyeQ5 SoC"
-+
-+	config MACH_EYEQ6H
-+		bool "Mobileye EyeQ6H SoC"
-+endchoice
-+
-+config FIT_IMAGE_FDT_EPM5
-+	bool "Include FDT for Mobileye EyeQ5 development platforms"
-+	depends on MACH_EYEQ5
-+	default n
-+	help
-+	  Enable this to include the FDT for the EyeQ5 development platforms
-+	  from Mobileye in the FIT kernel image.
-+	  This requires u-boot on the platform.
-+
-+endif
-diff --git a/arch/mips/mobileye/Platform b/arch/mips/mobileye/Platform
-index c69f811dd13a..69f775bbbb1e 100644
---- a/arch/mips/mobileye/Platform
-+++ b/arch/mips/mobileye/Platform
-@@ -9,6 +9,7 @@
- #
- 
- load-$(CONFIG_MACH_EYEQ5)	= 0xa800000808000000
-+load-$(CONFIG_MACH_EYEQ6H)	= 0xa800000100800000
- all-$(CONFIG_MACH_EYEQ5)	+= vmlinux.gz.itb
- 
- its-y					:= vmlinux.its.S
-
--- 
-2.43.0
-
+> 
+> 
+> > 
+> > > +		prot |= PROT_READ;
+> > > +
+> > >  	return ksys_mmap_pgoff(addr, len, prot, flags, fd,
+> > >  			       offset >> (PAGE_SHIFT - page_shift_offset));
+> > >  }
+> > > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> > > index fa34cf55037b..98e5ece4052a 100644
+> > > --- a/arch/riscv/mm/init.c
+> > > +++ b/arch/riscv/mm/init.c
+> > > @@ -299,7 +299,7 @@ pgd_t early_pg_dir[PTRS_PER_PGD] __initdata __aligned(PAGE_SIZE);
+> > >  static const pgprot_t protection_map[16] = {
+> > >  	[VM_NONE]					= PAGE_NONE,
+> > >  	[VM_READ]					= PAGE_READ,
+> > > -	[VM_WRITE]					= PAGE_COPY,
+> > > +	[VM_WRITE]					= PAGE_SHADOWSTACK,
+> > >  	[VM_WRITE | VM_READ]				= PAGE_COPY,
+> > >  	[VM_EXEC]					= PAGE_EXEC,
+> > >  	[VM_EXEC | VM_READ]				= PAGE_READ_EXEC,
+> > > diff --git a/mm/mmap.c b/mm/mmap.c
+> > > index d89770eaab6b..57a974f49b00 100644
+> > > --- a/mm/mmap.c
+> > > +++ b/mm/mmap.c
+> > > @@ -47,6 +47,7 @@
+> > >  #include <linux/oom.h>
+> > >  #include <linux/sched/mm.h>
+> > >  #include <linux/ksm.h>
+> > > +#include <linux/processor.h>
+> > 
+> > It doesn't seem like this is necessary for this patch.
+> 
+> Thanks. Yeah it looks like I forgot to remove this over the churn.
+> Will fix it.
+> 
+> > 
+> > - Charlie
+> > 
+> > > 
+> > >  #include <linux/uaccess.h>
+> > >  #include <asm/cacheflush.h>
+> > > --
+> > > 2.43.2
+> > > 
 
