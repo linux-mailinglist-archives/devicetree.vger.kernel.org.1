@@ -1,147 +1,278 @@
-Return-Path: <devicetree+bounces-66641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40868C40A8
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 14:24:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 310718C40B7
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 14:28:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFD40B2201C
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 12:24:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBBD7287108
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 12:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94A714F130;
-	Mon, 13 May 2024 12:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FFA814F9C2;
+	Mon, 13 May 2024 12:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UIKpq9JJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Tyx1nlK9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38BC814F119;
-	Mon, 13 May 2024 12:24:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B2914F103;
+	Mon, 13 May 2024 12:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715603091; cv=none; b=GKYitgAvci8zLqtPYPyq2iZSTYwxYhHXwLU460ScERJN998sJ9cndkEpAxNsQS5V2/F6cRoxS/oRFa3kj0XWu8Lv1/AF1tuk5QYkB3cLSJgYAl5L25mKgBn5KIwwC2TOx0hFA+OwsquzkpltmoAFQhPnj9IpTJgrqqMvaNLZB3s=
+	t=1715603292; cv=none; b=BRop9kfYfQSOLAxXiiAclR4SSy6hlUh6skvQ/ud4y7xXKkUTwpAeDqIVEmoLCN60/3GN3MpAVcVMEJ5T5xJE7iGPX6VizsA5wucD2w24ScC9+uHCTFlGkVhxXvc9ETKI5pk8qWwc3CCJPmnYmLGGzVSn2PReqNBwdgnXHAIhxwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715603091; c=relaxed/simple;
-	bh=gGMG42Zz0ybZm0xvlkq65MZ8X026PNiCDiLOel1ltDs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jUaMMhbLRl8O04yx81mfJY5bHDMswFFiHldy6kgsm6ecmJ/LIx0+i+dmXpLZ3wKmRs+yj1Cy/aJ21rBXVE6q3Jjn/YC7PTp/4WmxYL7+bJO94Wlyd9E36JSTmsza7TNWgsTlM3vm3T30xrAAE9QS3cp7/5Mp0uS0gWAXTsHR5Wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UIKpq9JJ; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1eca195a7c8so35356885ad.2;
-        Mon, 13 May 2024 05:24:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715603089; x=1716207889; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9uEdXqbZ7OmVXroYRzO4MQldyt0w8o8Vs1CnZronQ5I=;
-        b=UIKpq9JJGtwlNf48WQcj7Z1grGybPE+RGeu5VmxrOH1SOZpdWlzcAxNiFBWWusOYBb
-         gOT/mstx9RKYwTspIik+qtbqqu/linUrCaimQP3Wu8BUiYZTjxw/FjDyXyr7+Kadw31w
-         uj34izmOO8aZkg4BPvcWsix6MJhQmgKsjsqI4GdjeDHcZcYeHynAA5i6hez1996IsVO9
-         kABLSNzytUVsIg8fV/Ba7s33dzPRsdljobB5xZtf7A2sVr2sxEIl1Ap5n5zbxdqZqhZd
-         CNZgziaTJ+Tt8zoI/sdwtGkLqjRK/Y/3JAcuPDdbxcIGC8sY4bYAz4CXhJxsBFOyHh3l
-         bmvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715603089; x=1716207889;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9uEdXqbZ7OmVXroYRzO4MQldyt0w8o8Vs1CnZronQ5I=;
-        b=WIiqPlmpAjts4YIlNnbJ4Odk1efI2rWsGMntRcAHlzbP5Wf/uj1I7Eiwu3rViv0Kag
-         UF4V9U7Nsj2wfT3mRMWIlzuVy5jYNUwSZRlCUkHeODGT8wVz9/kMFfPpWB70y4ePtyGe
-         3b9h68h2ae21pkWz4wOVyRvlavvZVlPOMO+PiHyK2HYB8wMVxCAmQ+AS3j/PXqdwCv17
-         yG9Iw2Vi+ixcy7LzQ2eNNEJMVHZswjjajzNwvSV314R3KuEoASsT7nr+XO0FUWVlJ4m6
-         nNgEdopRE1kVmWFjNpf470Gk2ISHVp95aYAc+uei7BMdIw6G3QQXBDTLf3HdJX3XREIs
-         On7A==
-X-Forwarded-Encrypted: i=1; AJvYcCXbAgIHHP3vSIxI+e3GHjKBuuQE+Qy5s61F0I31CJu7H4jjWTvTC7sR5mQcNyKsQyioKvn99nxlvMyyrXmutnRMZAewbfjds4RV76RaQlLysv+3ex47+Yjr05D0yYtf5wsq1qCNxNgAXA==
-X-Gm-Message-State: AOJu0YwEU/N568RYF7MmzjeHI6qvzla4vYYpWW6CcOGG9h5AzxembbgW
-	YpAc3DhTgH0VK59W3tW6Wa3ix5ivZdahFUyvjqF/as5+QntVdVKiGzqNe1fEqN1LIfl8PDJY7YZ
-	ftVfplsoZcNw3DqukNsKnzlcH0Ko=
-X-Google-Smtp-Source: AGHT+IHdqWutAgLlnkeZq9lfl0ycFYjE0nnS3IKxHwLVKS8LDItaYXZI9kZ+SBHOfXOhLhe5WXWhAIXZE8Bv1REbIiY=
-X-Received: by 2002:a17:902:e847:b0:1e0:f473:fd8b with SMTP id
- d9443c01a7336-1ef43c0f5f4mr119026505ad.9.1715603089219; Mon, 13 May 2024
- 05:24:49 -0700 (PDT)
+	s=arc-20240116; t=1715603292; c=relaxed/simple;
+	bh=pelZmS6zFQdTzAjl9pAUlFxDeQyc9gffvbQ7dqOMy98=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=IjRHh7YL6Nn2ZFnw/iadrdB5MM83T1yXoBV/tLCr4WgR1GDO2oTIU0breNH0CEnZr6skOAXm7Nto16X37WiX1qjQyg/6VYCDYXU8kUaZGWIuef2NJnhshL8dkD5uT1NGvTHW9Z5lGf6zcLtvh9bcLicrFOX1PxKpvHKpxbRdZAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Tyx1nlK9; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715603291; x=1747139291;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=pelZmS6zFQdTzAjl9pAUlFxDeQyc9gffvbQ7dqOMy98=;
+  b=Tyx1nlK9zeOZgbITWcWyGbwcVdBARt1IP9u2TDgz5774s1i1GMLWZTed
+   TwznyHjPk7eYoGGNNH9aVHReaEvtdhdCo43/Us7+p0xwylNmJOmAifvxA
+   sZHucWfM3/UIq+7TmTUmc5R3W/79BysDfg3CJS1/VViJMcArTn4z91NJC
+   O7XZc040c/4TMgr8MqSJR1JIg/mkENPPeEJJaDJW1r/dhGMS1fSEUHD4G
+   zPiLpFt40Eab5qP4nk9vBiMun59wm/GFJP/PTUjR1MdWPn0saCj/hg+Ga
+   MbP8hSc001tuQbNv8Pw4MKhNKT2MKYLSbH5TMGkTN7BOfqoVGz+lKWyKW
+   A==;
+X-CSE-ConnectionGUID: d2ruA6gpRVSDgtQnrjPYFQ==
+X-CSE-MsgGUID: 9Er9zJ2sRW+K9pcq/yb/nQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11071"; a="22682054"
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; 
+   d="scan'208";a="22682054"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2024 05:28:10 -0700
+X-CSE-ConnectionGUID: WF3DJ0yaRmykx5Jte4aWwg==
+X-CSE-MsgGUID: Ln+RwkV9RU2JRw/D6ynj7g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,158,1712646000"; 
+   d="scan'208";a="30437389"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.247.89])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2024 05:28:01 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Mon, 13 May 2024 15:27:56 +0300 (EEST)
+To: Christoph Fritz <christoph.fritz@hexdev.de>
+cc: Jiri Slaby <jirislaby@kernel.org>, Simon Horman <horms@kernel.org>, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Marc Kleine-Budde <mkl@pengutronix.de>, 
+    Oliver Hartkopp <socketcan@hartkopp.net>, 
+    Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+    "David S . Miller" <davem@davemloft.net>, 
+    Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+    Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, Jiri Kosina <jikos@kernel.org>, 
+    Benjamin Tissoires <bentiss@kernel.org>, 
+    Sebastian Reichel <sre@kernel.org>, 
+    Linus Walleij <linus.walleij@linaro.org>, 
+    Andreas Lauser <andreas.lauser@mercedes-benz.com>, 
+    Jonathan Corbet <corbet@lwn.net>, Pavel Pisa <pisa@cmp.felk.cvut.cz>, 
+    linux-can@vger.kernel.org, Netdev <netdev@vger.kernel.org>, 
+    devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+    linux-serial <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH v4 02/11] HID: hexLIN: Add support for USB LIN adapter
+In-Reply-To: <8738628a5c1b87c6521fdd8d05a3b36e5c32b48a.camel@hexdev.de>
+Message-ID: <d91451f2-5636-2526-391d-f575a7feb17c@linux.intel.com>
+References: <20240509171736.2048414-1-christoph.fritz@hexdev.de>  <20240509171736.2048414-3-christoph.fritz@hexdev.de>  <4bf1a5e9-904c-584e-72df-71abc3f99bd2@linux.intel.com> <8738628a5c1b87c6521fdd8d05a3b36e5c32b48a.camel@hexdev.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240305004859.201085-1-aford173@gmail.com> <20240305004859.201085-2-aford173@gmail.com>
- <CAHCN7xLsEvP0A3mQJRzX=nXGr30WD4RU9vQVw9ynqzSi6cDNRg@mail.gmail.com>
-In-Reply-To: <CAHCN7xLsEvP0A3mQJRzX=nXGr30WD4RU9vQVw9ynqzSi6cDNRg@mail.gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Mon, 13 May 2024 07:24:36 -0500
-Message-ID: <CAHCN7xJGnutJ8szxqG+AHyEU5ULOMAcn8Q21N0=FBp18EYSqmQ@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] arm64: dts: imx8mp-beacon-kit: Enable HDMI bridge HPD
-To: dri-devel@lists.freedesktop.org
-Cc: aford@beaconembedded.com, laurent.pinchart@ideasonboard.com, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 
-On Tue, Apr 16, 2024 at 4:18=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
-e:
->
-> On Mon, Mar 4, 2024 at 6:49=E2=80=AFPM Adam Ford <aford173@gmail.com> wro=
-te:
-> >
-> > The DSI to HDMI bridge supports hot-plut-detect, but the
-> > driver didn't previously support a shared IRQ GPIO.  With
-> > the driver updated, the interrupt can be added to the bridge.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> Shawn,
->
-> Patch 1/2 has been applied and sits in linux-next.  Are you OK to
-> apply this to the IMX branch so the hot-plug detection can work?
+On Sat, 11 May 2024, Christoph Fritz wrote:
 
+> ...
+> > > diff --git a/drivers/hid/hid-hexdev-hexlin.c b/drivers/hid/hid-hexdev-hexlin.c
+> > > new file mode 100644
+> > > index 0000000000000..a9ed080b3e33e
+> > > --- /dev/null
+> > > +++ b/drivers/hid/hid-hexdev-hexlin.c
+> > > 
+> ...
+> > 
+> > > +}
+> > > +
+> > > +#define HEXLIN_GET_CMD(name, enum_cmd)					\
+> > > +	static int hexlin_##name(struct hexlin_priv_data *p)		\
+> > > +	{								\
+> > > +		u8 *req;						\
+> > > +		int ret;						\
+> > > +									\
+> > > +		req = kmalloc(sizeof(*req), GFP_KERNEL)	;		\
+> > 
+> > Extra space.
+> > 
+> > Use:
+> > 
+> > u8 *req __free(kfree) = kmalloc(sizeof(*req), GFP_KERNEL);
+> > 
+> > > +		if (!req)						\
+> > > +			return -ENOMEM;					\
+> > > +									\
+> > > +		*req = enum_cmd;					\
+> > > +									\
+> > > +		ret = hexlin_tx_req_status(p, req, sizeof(*req));	\
+> > > +		if (ret)						\
+> > > +			hid_err(p->hid_dev, "%s failed, error: %d\n",	\
+> > > +				#name, ret);				\
+> > > +									\
+> > > +		kfree(req);						\
+> > 
+> > Not needed after using __free().
+> > 
+> > > +		return ret;						\
+> > > +	}
+> > > +
+> > > +HEXLIN_GET_CMD(get_version, HEXLIN_GET_VERSION)
+> > > +HEXLIN_GET_CMD(reset_dev, HEXLIN_RESET)
+> > > +HEXLIN_GET_CMD(get_baudrate, HEXLIN_GET_BAUDRATE)
+> > 
+> > Could you convert the function in the macro into a helper function which 
+> > is just called by a simple function with the relevant parameters for 
+> > these 3 cases?
+> 
+> The device actually has a lot more features that I'm using in my debug
+> version and which might end up here in the future. So I would like to
+> keep it. Any objections?
 
-Shawn,
+I don't follow, HEXLIN_GET_CMD() will always produce a copy of that same 
+function even if you use it 1000 times?? (Except for the enum and string 
+which can easily be passed as arguments to a common function).
 
-Do you want me to repost this patch separately since patch 1/2 has
-already been applied?
+You can still keep HEXLIN_GET_CMD() which just calls that common function
+if you want to avoid giving those two parameters directly.
 
-adam
+> > > +static int hexlin_set_baudrate(struct hexlin_priv_data *priv, u16 baudrate)
+> > > +{
+> > > +	struct hexlin_baudrate_req *req;
+> > > +	int ret;
+> > > +
+> > > +	if (baudrate < LIN_MIN_BAUDRATE || baudrate > LIN_MAX_BAUDRATE)
+> > > +		return -EINVAL;
+> > > +
+> > > +	req = kmalloc(sizeof(*req), GFP_KERNEL);
+> > 
+> > Hmm... Why do you alloc this small structure (3 bytes?) with kmalloc() and 
+> > not just have it in stack as a local variable?
+> 
+> This buffer must be suitable for DMA (see docu for struct urb).
+> 
+> So with a stack variable we would need to use kmemdup() before the
+> actual sending call, but that's what you did not like since v3 so I
+> changed it to this which now you also don't like.
 >
-> Thank you,
->
-> adam
->
-> adam
-> > ---
-> > V2:  No Change
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch=
-/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> > index a08057410bde..fba8fd04398d 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-> > @@ -304,6 +304,8 @@ adv_bridge: hdmi@3d {
-> >                 compatible =3D "adi,adv7535";
-> >                 reg =3D <0x3d>, <0x3c>, <0x3e>, <0x3f>;
-> >                 reg-names =3D "main", "cec", "edid", "packet";
-> > +               interrupt-parent =3D <&gpio4>;
-> > +               interrupts =3D <27 IRQ_TYPE_EDGE_FALLING>;
-> >                 adi,dsi-lanes =3D <4>;
-> >                 #sound-dai-cells =3D <0>;
-> >
-> > --
-> > 2.43.0
-> >
+> Let's dial it back to the original kmemdup() usage, ok?
+
+I asked a question. Since you have a good reason for alloc, just keep the 
+alloc then.
+
+Now I notice it's kmalloc(), why not kzalloc()?
+
+> > > +static int hexlin_queue_frames_insert(struct hexlin_priv_data *priv,
+> > > +				      const struct hexlin_frame *hxf)
+> > > +{
+> > > +	struct hid_device *hdev = priv->hid_dev;
+> > > +	struct lin_frame lf;
+> > > +
+> > > +	lf.len = hxf->len;
+> > > +	lf.lin_id = hxf->lin_id;
+> > > +	memcpy(lf.data, hxf->data, LIN_MAX_DLEN);
+> > > +	lf.checksum = hxf->checksum;
+> > > +	lf.checksum_mode = hxf->checksum_mode;
+> > > +
+> > > +	hid_dbg(hdev, "id:%02x, len:%u, data:%*ph, chk:%02x (%s), flg:%08x\n",
+> > > +		lf.lin_id, lf.len, lf.len, lf.data, lf.checksum,
+> > > +		lf.checksum_mode ? "enhanced" : "classic", hxf->flags);
+> > > +
+> > > +	lin_rx(priv->ldev, &lf);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int hexlin_raw_event(struct hid_device *hdev,
+> > > +			    struct hid_report *report, u8 *data, int sz)
+> > > +{
+> > > +	struct hexlin_priv_data *priv;
+> > > +	struct hexlin_baudrate_req *br;
+> > > +	struct hexlin_responder_answer_req *rar;
+> > > +	struct hexlin_unconditional_req *hfr;
+> > > +	struct hexlin_val8_req *vr;
+> > > +
+> > > +	if (sz < 1 || sz > HEXLIN_PKGLEN_MAX)
+> > > +		return -EREMOTEIO;
+> > > +
+> > > +	priv = hid_get_drvdata(hdev);
+> > > +
+> > > +	hid_dbg(hdev, "%s, size:%i, data[0]: 0x%02x\n", __func__, sz, data[0]);
+> > > +
+> > > +	priv->is_error = false;
+> > > +
+> > > +	switch (data[0]) {
+> > > +	case HEXLIN_SUCCESS:
+> > > +		if (sz != HEXLIN_LEN_RETCODE)
+> > > +			return -EREMOTEIO;
+> > > +		hid_dbg(hdev, "HEXLIN_SUCCESS: 0x%02x\n", data[0]);
+> > > +		complete(&priv->wait_in_report);
+> > > +		break;
+> > > +	case HEXLIN_FAIL:
+> > > +		if (sz != HEXLIN_LEN_RETCODE)
+> > > +			return -EREMOTEIO;
+> > > +		hid_err(hdev, "HEXLIN_FAIL: 0x%02x\n", data[0]);
+> > > +		priv->is_error = true;
+> > > +		complete(&priv->wait_in_report);
+> > > +		break;
+> > > +	case HEXLIN_GET_VERSION:
+> > > +		if (sz != sizeof(*vr))
+> > > +			return -EREMOTEIO;
+> > > +		vr = (struct hexlin_val8_req *) data;
+> > > +		priv->fw_version = vr->v;
+> > > +		complete(&priv->wait_in_report);
+> > > +		break;
+> > > +	case HEXLIN_GET_RESPONDER_ANSWER_ID:
+> > > +		if (sz != sizeof(*rar))
+> > > +			return -EREMOTEIO;
+> > > +		rar = (struct hexlin_responder_answer_req *) data;
+> > > +		memcpy(&priv->answ, &rar->answ, sizeof(priv->answ));
+> > > +		complete(&priv->wait_in_report);
+> > > +		break;
+> > > +	case HEXLIN_GET_BAUDRATE:
+> > > +		if (sz != sizeof(*br))
+> > > +			return -EREMOTEIO;
+> > > +		br = (struct hexlin_baudrate_req *) data;
+> > > +		le16_to_cpus(br->baudrate);
+> > > +		priv->baudrate = br->baudrate;
+> > > +		complete(&priv->wait_in_report);
+> > > +		break;
+> > > +	/* following cases not initiated by us, so no complete() */
+> > > +	case HEXLIN_FRAME:
+> > > +		if (sz != sizeof(*hfr)) {
+> > > +			hid_err_once(hdev, "frame size mismatch: %i\n", sz);
+> > > +			return -EREMOTEIO;
+> > > +		}
+> > > +		hfr = (struct hexlin_unconditional_req *) data;
+> > > +		le32_to_cpus(hfr->frm.flags);
+> > 
+> > I'm bit worried about this from endianness perspective. Perhaps there's 
+> > some struct reusing that shouldn't be happening because the same field 
+> > cannot be __le32 and u32 at the same time.
+> 
+> Can you propose a solution?
+
+Just do a le32_to_cpu(hfr->frm.flags) in the debug print's arguments?
+
+-- 
+ i.
+
 
