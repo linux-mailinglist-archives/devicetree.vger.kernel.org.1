@@ -1,236 +1,481 @@
-Return-Path: <devicetree+bounces-66693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603D58C4421
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:25:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8817E8C4460
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:36:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 388E01C20F84
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:25:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DC55281059
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F7F54725;
-	Mon, 13 May 2024 15:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D94F14A0AF;
+	Mon, 13 May 2024 15:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="h/ZYC0xM"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="lH8uLncF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2068.outbound.protection.outlook.com [40.107.22.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 818EF5240
-	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 15:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715613913; cv=none; b=VvRcTUOJVk2dRR6XHyHc72PziS+diwZuMBPFUWqXvrenKYqf9+9VeQFFRI2OmOHzlxAOWGCHgeea2RlYNaGKqvhMmPePE5sD8eChzsLgM4FwgCu/KR8CeFad/VAUz2rUEWMyhwGbRFmvjAn9CJraeQzneKCY8mdjS0FT65XxpHU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715613913; c=relaxed/simple;
-	bh=RUL55M2yQWF+n5Qa3kB5sZu+NFJWzNWQ1RVVk+25g4o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ot9r/91KGmKIIKVLMpm/JJPedV52RAFNxix+uNth/6AZZSnQHikznQ+0AIwfEhBgG2i5cpDc6LcIjiGE1cF2VNHOwCiQgq9Q9A/fQL766DOLb1pyatP5Qx39aD0kFcJsEkvYjHJFYtQFuB32K1cUhGgHCg/tNHC3uWcj7rMnRwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=h/ZYC0xM; arc=none smtp.client-ip=209.85.160.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-43df23e034cso38060941cf.0
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 08:25:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1715613909; x=1716218709; darn=vger.kernel.org;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wMixA3I3G/7tLcmhv74TrQoKnr24+H+WZ4qd8vhBbSM=;
-        b=h/ZYC0xMfOaEWCKS00hNS44h6Pm9vdh3HiTtyi/cN+nhSMoTVtojgb5n69rAjYZ5Fv
-         PWdCstoJ/f9FcTjWWHs10LXdMmtUseHkTVuMvuVZpZDYwyUP+IPnzUwOcWbbsYWuNRsN
-         MQ4R0YYQaxK63vPlNCrnP/BYQj8dbmM1ANpRM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715613909; x=1716218709;
-        h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wMixA3I3G/7tLcmhv74TrQoKnr24+H+WZ4qd8vhBbSM=;
-        b=m16XRRNCsTJwvb1ExMdBwEnYOtiqF4xKhIQBLiSbT9DoQN6Ueos0NkrVjDEHlIg7Ln
-         EG7hRN70+uIxv1psQWA9cpY235FwhoaAA1DPHF146HYumcPY26K9QyVPZvc1yRMLQBvz
-         eaco9/KPplTWN7P9s/86sepc6NCSKUcBvbHqWjKEi3+VvY2TtxKoVmVv9yDAwVpROZWj
-         uge+8sXCytR9FTBCWc54BLsu+/K1wm/UbwJxgyC5CfELCtQLvzQiNDRGY0PZLe4lUh/K
-         rUn8AOdxXGWQCJEOGJOMAYNr7dxKpYLdTVB7jUHUmA5q1jZqLuQEhu81havkJumEQPjt
-         7nZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWjbg0Yq0ZWgUkfOe7soy/5CBCOPb3jBmtSvAvEnNxwi5bipQdwKrrdxP3GlBG814O+0ltzGQ1ZgUkhuSqA2+azMHL2AfFtcnOy0g==
-X-Gm-Message-State: AOJu0Yz+ac1nD7oaKUex2Ci6xS18rehSmXArB/AxLb4ME+FWSB8ZhYSr
-	TwV8uZykJqSBXR/y+ql5abklgU/8hVdkn1m9gOjlG5UMF06g4AAL2rPycG8Pcw==
-X-Google-Smtp-Source: AGHT+IESmcSy5V+HwdZ3G2EB2EsQiokSYuvLf6AGlL3ugaNzQxvquc2TEN6JAzOJ3/l/BjVs4oKzZg==
-X-Received: by 2002:a05:622a:394:b0:43a:fbe3:c2ea with SMTP id d75a77b69052e-43dec297879mr137242971cf.21.1715613909398;
-        Mon, 13 May 2024 08:25:09 -0700 (PDT)
-Received: from [192.168.1.3] (ip68-4-215-93.oc.oc.cox.net. [68.4.215.93])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-43df8308580sm53827241cf.66.2024.05.13.08.25.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 May 2024 08:25:07 -0700 (PDT)
-Message-ID: <2ca65ebd-7b85-4bc2-8137-692991102774@broadcom.com>
-Date: Mon, 13 May 2024 08:25:03 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B55958210;
+	Mon, 13 May 2024 15:36:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715614610; cv=fail; b=IGm5QJzp4n1aa0V4AqYeHFi42lShMtx5Pyigiabcu39La/F85saMuZYIK9/hp3MxHToIEAdO/Qe+g9erByKrnlKDl09GGhzUynO+065LdR0LsqWXasLM8vuSy4wk3aS9IbItRwUwvdlqJZs2LBErF4/ks+oUz4vtvBJ+yUIJOZU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715614610; c=relaxed/simple;
+	bh=ndIFHRSFcu/r/uqDAMP1+G+lEH4+wGm6W5YNtYkY1u0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=OiKnWp/SJs4Vi802xDwzjlta6bfxoLQgQh3bw7xHZRMhBvdlJdC74zF8gcRlJjI4guo1kiyCicbjKUHOysOn6q7yBwA7CzOmNY4G/rhvoQu+83EPCgqLw1/qRcFL8G3M74hSv99nIic5N7VO4OTZvEkGieciVUom3muF7DRhBhA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=lH8uLncF; arc=fail smtp.client-ip=40.107.22.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PV0NuI0orVCKGvvEYqgtxbYgnnHWkiPDrBiPkQS6zZTNKzVU5lHkJxqv0oLlHARbI+d2tXbMASee/Ig1w3GJmLg/OY+iV4M3L4C346GsJvNRy9kj3NldfmPopT3fNNveKgmB9HmxOMhaqN49K3Mbx9roPM3JV8tRdW28Y1Sa+c/lxF7W9Y7FnGm8jgyT1R7hCFTV1LckKgqNrQzGtZvujPbw7mIdjHTEkgrtjNMVhARerNZGvpuj23ZU+osnXIC6yurlEz8c+R2JcSZrOAmb5wRcyzACc1fD0Me71R1tIQSurymHycg/qx1WWXTc8cj37GEqiSoGj7I99nGAJqRkyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XcKNrw6k/axGcB0ocFKaEVBIGSlImXV9nqMzIqI/lL8=;
+ b=nzzTFiwJZ0k36DAscHA34U+i3JB2ANDLdQxO3AP/NEYLpy0DH7QwZDtgGRM4OH1gdHU6Qpds0dWZ7aRPKp2JM0+t8lNA8qbBbyNCW8PhbbzW4uTcF/vrC+EdJBPdcR8YrUDSpNv3bljERmgZ/seovoPYbXE4PTs/sYXS29Xgntyl5cuwTuzQbzROrgVQ9g0HfzdbEBWhDI074eTxIXNCCCuU4jx0ATwrBYyuJK2tkZnjyrh7PwrQ7mX2wNj6LHqHDZONIfi77Dn3P6fsPtigRyXj8r5NGa+MZV9MkdpolF6Y57FKw26rv1lImOTlDFWGLHEQcXPQatP5R9OvFf/1CA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XcKNrw6k/axGcB0ocFKaEVBIGSlImXV9nqMzIqI/lL8=;
+ b=lH8uLncF+XZGUEzHzC7BkFCS7myp6Y5IeP/9hfswngNyqAJxHbotmTY32eMHG+/f2l62e+238t7YVesT78KO4TnQzDZleK9oZxLcn+DBNintNrj6UNtQyZo+cGjVqwO+3XYYtIVOxLQR8x3+cauHiZ+ny3WCQAmXNuCZcaCVpQQ=
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+ by AM7PR04MB6854.eurprd04.prod.outlook.com (2603:10a6:20b:10c::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Mon, 13 May
+ 2024 15:36:44 +0000
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827%4]) with mapi id 15.20.7544.052; Mon, 13 May 2024
+ 15:36:44 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: Rob Herring <robh@kernel.org>
+CC: Jonathan Corbet <corbet@lwn.net>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH 2/4] dt-bindings: arm: fsl: add imx-se-fw
+ binding doc
+Thread-Topic: [EXT] Re: [PATCH 2/4] dt-bindings: arm: fsl: add imx-se-fw
+ binding doc
+Thread-Index: AQHaot4r694Tqoi2OkK/Xnn0LWMP+LGQ5hKAgAQVonA=
+Date: Mon, 13 May 2024 15:36:44 +0000
+Message-ID:
+ <AM9PR04MB8604479439A3723792B865EE95E22@AM9PR04MB8604.eurprd04.prod.outlook.com>
+References: <20240510-imx-se-if-v1-0-27c5a674916d@nxp.com>
+ <20240510-imx-se-if-v1-2-27c5a674916d@nxp.com>
+ <20240510200903.GA628922-robh@kernel.org>
+In-Reply-To: <20240510200903.GA628922-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|AM7PR04MB6854:EE_
+x-ms-office365-filtering-correlation-id: 0417b572-c2ad-44cb-7770-08dc73627eab
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230031|7416005|366007|1800799015|376005|38070700009;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?YB2L4CLaBw3dlM5pU2ccM8U5OYJBhd7x4JTtVxrkd3yek81xXk/MAN8rffdr?=
+ =?us-ascii?Q?JOT6LLbINugN5zzJZXGTA/o9kwn9PnEzSG0cuEuFKbFl5o+dEDtgRGN/VO/h?=
+ =?us-ascii?Q?ujUiups0Rqk2HT+HRETacedzvyqhqKMUhs1uDpdJGmCNBU/+llIDdcPFIfin?=
+ =?us-ascii?Q?Bg1zrLHgBa0MQUEWChfcxLvlf2qvzLcWGPiWfItNcVule51Iadc/u1nRUeLV?=
+ =?us-ascii?Q?IKX3OG52qcMvKciBBFVW3R49ODBq+NZh9miPzCxRDg2PkTcOjEk1cxIzwRJf?=
+ =?us-ascii?Q?GvAC6MMjK9zpPB5JfQQlp0ugZeuTODZZqge/usT+7UBEHlDyKP8GRjYPXXTL?=
+ =?us-ascii?Q?+WpTC/ReuNKGm8Wewo2IqiVbo8UZ7fdSPmK1IEGuyA1HrQZTsM43kEexmA9N?=
+ =?us-ascii?Q?0HI8c4SHmXYM7POHRv9mbvQYOxh2nmxCO1CFcBBkUmnu30IBfxFYR0Ru8DIr?=
+ =?us-ascii?Q?e/nV/wXjCLuidsAckm5uAs5k8w6Tpln2kNDH83ml8Oo4iEAOHDYwbPg6vRYt?=
+ =?us-ascii?Q?NJ0U9VIkFU3QUuJeHYD0txqQ3XRvHwMs8nbbVJno6/o/Unafio1BF+3tzWQm?=
+ =?us-ascii?Q?aXU+ZmzeUNAmtigmkcGbdm0qpk2Act0vvLTUeaqQG2AS4h1QwHkrpo1MR0Xg?=
+ =?us-ascii?Q?ve+CW4ZN1OFhZIXdquuV/i6aL5SRHmSTOsL5GohSZOW1c7VVjxtV7tE/7RFm?=
+ =?us-ascii?Q?ndrZRZP1nCmPlZwAuNbVFP2ppLz3HCOe7uuYXsR82RkK/pXGBqHKesNXFS1G?=
+ =?us-ascii?Q?tv73LZOegTgRBDF8rWezme7EbY2h/t8dgRDdJslMJhY1+IsE7xBc9V+1g6dJ?=
+ =?us-ascii?Q?wYrsF8F2Ckh6F3XtOZ0Rv5fvAnhY8qcX2SR3arTSULX3BrDnbBO5vcJkFVOy?=
+ =?us-ascii?Q?O0N7/soWniuL+ejlDlEK/j+QwCksK9+BgYxCg6EYJ/fq1UkvpHY7l9VJRm4v?=
+ =?us-ascii?Q?U6+YhUQdMhOdu+aUIJKdI1mjZ+hFA7I+7aW5brHx+Gjt6dfLif9VsdchKbiY?=
+ =?us-ascii?Q?wVWF5sge71TYn5SYpx/Na7y+ciLNK1GqhSpjSDGvZIrnmEtNGZ0WzUKeWx7Y?=
+ =?us-ascii?Q?UwufU7UHa3n8KbE6EOqOOjBeRLTDhfRAx05xdjrfYpTxTX6+DiJYEn9t2mCJ?=
+ =?us-ascii?Q?BG6QnffpPnYKRm5cwS8d3G5SjY0sPn6SBgnKoM3NXAGQDR+an9VkK7ti/2ma?=
+ =?us-ascii?Q?AqoKZdBGDUj7YCC/FwOOpVKV1UM6PvQvnpZponu4hvqyEioupGzd0rB3slE7?=
+ =?us-ascii?Q?XZ8JcgjjpdjbyDUgt//IWbh6sCuSIJxvjDYOJiwmdsCUx5Zj0qZwoCP0BPHM?=
+ =?us-ascii?Q?jQpYlIAXB9D8STYN5G8XI7v08c5rG8K3I1dpYgFPf0HL5g=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(366007)(1800799015)(376005)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?QvvWtpsKJgVMlXxGVGnSKx2xqikXxOSx8mUEeCHFXOBono+dkp+j9B0Of86/?=
+ =?us-ascii?Q?9U6D2PK9JLSDAzPgmK3GLahrBzSUdhSzaIDZnmhT9qeoaLZHtwqFGvPuqGa5?=
+ =?us-ascii?Q?tEz8wpw8C+id49hA6o/fog9qK8tDe1HKGDz0+Ze5N6ztFs1AENEXtNV5phr/?=
+ =?us-ascii?Q?IdSTuC+bFpTgBh6AHIBZE4vJ+V2j7eN49qc80Qx3b+cm9bg3VMSSOMCueJWp?=
+ =?us-ascii?Q?0Yk3GhE23UnZBvJF+Tdo8KjzlNlI0XZhQjWeuH5L7bQM9wrQgQQ2OwY1nbdg?=
+ =?us-ascii?Q?OBPRRBIyfZIKbdGwDzydQ+6CbqefJuqA0umSd4ZVaKRxSInf9V0dMvwoto6G?=
+ =?us-ascii?Q?o0y29LbCwW7uC1STb9lbEPvR+OORUe2Tg3mTmsEq/dkDbAfxTZUTJ5Hg9ogb?=
+ =?us-ascii?Q?3WEMjkgErLMQBpHxpJVhHjAdEYT1j3zmW/IWy7+FTOfgcrNuIHqdgnLDnqbq?=
+ =?us-ascii?Q?V1UCQBS+b9oKiz2v074z4rnVihPAdF10IxVi0C1BW5o8uDrlNXJc2Llnfgt6?=
+ =?us-ascii?Q?ja2pWbcZNNg4Uh8oDc5zQ1bbmn194Ra7MSdMYkut3G2qAu9tmYMs6vPze77n?=
+ =?us-ascii?Q?uUSZ7m1msSKKlD9JQrl0LTJSVOj+hiNI223SxsNoIar4JlfR+Voyo/aFPncI?=
+ =?us-ascii?Q?1+70vcOmqMfCipIKP3k6KLEbdsO7FDQXyZop8QBNTiptzTKwBgHCrGQsQ99+?=
+ =?us-ascii?Q?VuiFpUInidlHaZWBb7xZmZXqTxC7lyUF825Kjo3GalxTwUzzfbP4so6nd6ak?=
+ =?us-ascii?Q?tarx1lSYmto9P+n5FNZ9miqf5NaDITTJMeSGjPH41Ffl41AHg7t85js5xOe2?=
+ =?us-ascii?Q?UjvrefFksTYC/kdpTUs2DHt8z+pkk5ohbnWECBD5OOWydmUdkQzPP/4A52fg?=
+ =?us-ascii?Q?wD3Z0DwZ6BA3F7IntSd1T6WG/+8OcxrB7piT7h64evBJcnZ+lYxdgbox97Nt?=
+ =?us-ascii?Q?Vl2gV4nsh6PT/mnijNALvNOFSbgO3I+BSy978C0pHwOP1/NcFbw2AnXBwIro?=
+ =?us-ascii?Q?AFJAaw2YT7pspNrhvVdXuIST/No9Mzu2x/W0A0uxG0wqs8+YOpf7e8iPK1AI?=
+ =?us-ascii?Q?T+bwBX5YXP6j57jpzdXeNYarbJbDoU6wmUtLwJssuu0iy1IGzvjEQnF2Nn9b?=
+ =?us-ascii?Q?023XdsHfCyCOdGi/dyoiFxRYQuVCfi+/hvEaOzHnuMRDxFKwJanBCnKhPY0u?=
+ =?us-ascii?Q?ReVMLwgVG5psdMCqfqFByguNK+S8H32z0fSv7fL/SRRcvFqRapRkaUvVboQ+?=
+ =?us-ascii?Q?gdBS/ijQ16eCDEuUKamk7ORKaSmvhHepG8BhEKm8myDqjGO1nLzFnYN/ld8v?=
+ =?us-ascii?Q?mLa37I0TsInqiGcGK5hMziEY/YQj265+1Miid/McrUD2z2jfmZwWo+UfLMDr?=
+ =?us-ascii?Q?Fw6VOXq/Nd7vB/nfq3neaFeDrLkFUXzW+ogiAu9mKKwbf6P6HnlMSATX7oZv?=
+ =?us-ascii?Q?TGwMNEDcEr/EIicT/oB07wEIf9XKeU3Tw6HG9017rwOCnpEbALxakVuhXzBG?=
+ =?us-ascii?Q?z7w0QK/9BXhN0u28AlDQtE1zAgES5QP/2WkMBh7x8/pKz5iqU16/QOJVyxxE?=
+ =?us-ascii?Q?L2KkLJ75rnPzjioqQhtuWAI6brW1TBSwYbycNg6or8br7Rr7nvUAb5UcBjE7?=
+ =?us-ascii?Q?xRRhp8cjRMtD4tYDa5xPSbQOOjMwzoHgJQhiihO2YaaO?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] dt-bindings: mips: brcm: Document
- brcm,bmips-cbr-reg property
-To: Christian Marangi <ansuelsmth@gmail.com>,
- Hauke Mehrtens <hauke@hauke-m.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <zajec5@gmail.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>
-References: <20240511130349.23409-1-ansuelsmth@gmail.com>
- <20240511130349.23409-3-ansuelsmth@gmail.com>
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20240511130349.23409-3-ansuelsmth@gmail.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000aa70610618577d51"
-
---000000000000aa70610618577d51
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0417b572-c2ad-44cb-7770-08dc73627eab
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 May 2024 15:36:44.8893
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FfXRpG0JczixuZpNCqTnCHbdv47TAUIFXPMPO5O45j3HH05D0VkB7gn2tSMMwCQKp8+j+Uo4hTPzPE3Bt8EQFg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6854
 
 
 
-On 5/11/2024 6:03 AM, Christian Marangi wrote:
-> Document brcm,bmips-cbr-reg property.
-> 
-> Some SoC suffer from a BUG where CBR(Core Base Register)
-> address might be badly or never initialized by the Bootloader
-> or reading it from co-processor registers, if the system boots
-> from secondary CPU, results in invalid address.
-> 
-> The CBR address is always the same on the SoC.
-> 
-> Usage of this property is to give an address also in these broken
-> configuration/bootloader.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Saturday, May 11, 2024 1:39 AM
+> To: Pankaj Gupta <pankaj.gupta@nxp.com>
+> Cc: Jonathan Corbet <corbet@lwn.net>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+> Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
+> <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>; linux-
+> doc@vger.kernel.org; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org; imx@lists.linux.dev; linux-arm-
+> kernel@lists.infradead.org
+> Subject: [EXT] Re: [PATCH 2/4] dt-bindings: arm: fsl: add imx-se-fw bindi=
+ng
+> doc
+>=20
+> Caution: This is an external email. Please take care when clicking links =
+or
+> opening attachments. When in doubt, report the message using the 'Report
+> this email' button
+>=20
+>=20
+> On Fri, May 10, 2024 at 06:57:28PM +0530, Pankaj Gupta wrote:
+> > The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
+> > creates an embedded secure enclave within the SoC boundary to enable
+> > features like:
+> > - HSM
+> > - SHE
+> > - V2X
+> >
+> > Secure-Enclave(s) communication interface are typically via message
+> > unit, i.e., based on mailbox linux kernel driver. This driver enables
+> > communication ensuring well defined message sequence protocol between
+> > Application Core and enclave's firmware.
+> >
+> > Driver configures multiple misc-device on the MU, for multiple
+> > user-space applications, to be able to communicate over single MU.
+> >
+> > It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+> >
+> > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> > ---
+> >  .../devicetree/bindings/firmware/fsl,imx-se.yaml   | 186
+> +++++++++++++++++++++
+> >  1 file changed, 186 insertions(+)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> > b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> > new file mode 100644
+> > index 000000000000..a858ef6965cb
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/firmware/fsl,imx-se.yaml
+> > @@ -0,0 +1,186 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> > +cetree.org%2Fschemas%2Ffirmware%2Ffsl%2Cimx-
+> se.yaml%23&data=3D05%7C02%7
+> >
+> +Cpankaj.gupta%40nxp.com%7C2c17789530e9431069b308dc712d0e47%7C
+> 686ea1d3
+> >
+> +bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638509685520936926%7CUnkn
+> own%7CTWF
+> >
+> +pbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJX
+> VCI6
+> >
+> +Mn0%3D%7C0%7C%7C%7C&sdata=3DRwof3k3K1OWimcI5ApRMiyvD%2FPXgk
+> b%2BRWrvx76J
+> > +YBtw%3D&reserved=3D0
+> > +$schema:
+> > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
+i
+> > +cetree.org%2Fmeta-
+> schemas%2Fcore.yaml%23&data=3D05%7C02%7Cpankaj.gupta%
+> >
+> +40nxp.com%7C2c17789530e9431069b308dc712d0e47%7C686ea1d3bc2b4c
+> 6fa92cd9
+> >
+> +9c5c301635%7C0%7C0%7C638509685520944809%7CUnknown%7CTWFpb
+> GZsb3d8eyJWI
+> >
+> +joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7
+> C0%7C%
+> >
+> +7C%7C&sdata=3Daile3WnYE69fuJHvAOXQARlqLV9roZDuDK63fCj2ZTE%3D&res
+> erved=3D0
+> > +
+> > +title: NXP i.MX HW Secure Enclave(s) EdgeLock Enclave
+> > +
+> > +maintainers:
+> > +  - Pankaj Gupta <pankaj.gupta@nxp.com>
+> > +
+> > +description: |
+> > +  NXP's SoC may contain one or multiple embedded secure-enclave HW
+> > +  IP(s) like i.MX EdgeLock Enclave, V2X etc. These NXP's HW IP(s)
+> > +  enables features like
+> > +    - Hardware Security Module (HSM),
+> > +    - Security Hardware Extension (SHE), and
+> > +    - Vehicular to Anything (V2X)
+> > +
+> > +  Communication interface to the secure-enclaves is based on the
+> > + messaging unit(s).
+> > +
+> > +properties:
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx8ulp-ele
+> > +      - fsl,imx93-ele
+>=20
+> You basically have 0 properties in the parent node. What's the point of i=
+t?
+> Either just get rid of it and define the child nodes independently or mak=
+e the
+> parent contain all the resources.
+>=20
+> > +
+> > +patternProperties:
+> > +  "^[0-9a-z]*-if@[0-9]+$":
+>=20
+> unit-addresses are hex.
+Accepted.
 
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+>=20
+> > +    type: object
+> > +    description:
+> > +      Communication interface to secure-enclave node, that defines
+> hardware
+> > +      properties to required to establish the communication. There can=
+ be
+> > +      multiple interfaces to the same secure-enclave. Each interface i=
+s
+> > +      enumerated with reg property. It optionally defines properties
+> > +      depending on the compatible string and interface enum identifier=
+.
+> > +
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +        description: Identifier of the communication interface to secu=
+re-
+> enclave.
+>=20
+> What are the identifiers based on?=20
+Identifier is used to identify a particular secure enclave interface, withi=
+n the multiple secure enclave interfaces under same compatible string.
 
---000000000000aa70610618577d51
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+Secure enclave interface is the combination of:
+- messaging unit (hardware), and
+- memory constraint applicable to a particular interface.
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGKXLJdNd4ci37f7
-d9I+xdpKWQc9ZzmoogJvFqV+uYGuMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTI0MDUxMzE1MjUwOVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDfH9LAaKehk+csexDqY3hWl8eu+zOX+9oA
-ZJh3r6HlX/2fXtopw6YSbY4G1UPeYumhKjMnS95j6mbDPv9lRaCcvNSHqYkv121/MkIUtq/DGUoK
-aCnENngkrRQ/DGU5Mttfrt5Zy+vW98WyST+yW24D7QfDp5OFajDWFWGbruEZSkAS3m1ntPpBHJ/d
-9iXFigMnR+vWTjlHNjWlfCUnbgIke/sH3VsHaZ35K6HGE1ozqGD2Ln37wInsOEohCwzpI3lBWvfZ
-d1klZbTjDC5Pso24pqWb6Ua11+R3m9PoG5UjL+AjWlr5a6nXfJZUc1uPjrHn4JGHMOsyyWSoSc6K
-cv7i
---000000000000aa70610618577d51--
+> Is the value significant to s/w? Kind of looks like you just made up indi=
+ces.
+
+For the below example:
+    v2x {
+      compatible =3D "fsl,imx95-v2x";
+      #address-cells =3D <1>;
+      #size-cells =3D <0>;
+
+      v2x-if@0 { // if it is not @0, then what identifier to be used to ide=
+ntify a particular node.
+        reg =3D <0x0>;
+        mboxes =3D <&v2x_mu 0 0>, <&v2x_mu 1 0>;
+        mbox-names =3D "tx", "rx";
+      };
+      v2x-if@1 {
+        reg =3D <0x1>;
+        mboxes =3D <&v2x_mu6 0 0>, <&v2x_mu6 1 0>;
+        mbox-names =3D "txdb", "rxdb";
+      };
+      v2x-if@2 {
+        reg =3D <0x2>;
+        mboxes =3D <&v2x_mu7 0 0>, <&v2x_mu7 1 0>;
+        mbox-names =3D "tx", "rx";
+      };
+    };
+s/w needs to differentiate one node from another node, for the same compati=
+ble string for the SoC.=20
+
+>=20
+> How many child nodes do you have? Is it fixed per SoC?
+It is fixed for a particular SoC.
+While number of child nodes varies from one SoC to another SoC.
+
+>=20
+> > +
+> > +      mboxes:
+> > +        description: contain a list of phandles to mailboxes.
+> > +        items:
+> > +          - description: Specify the mailbox used to send message to s=
+e
+> firmware
+> > +          - description: Specify the mailbox used to receive message
+> > + from se firmware
+> > +
+> > +      mbox-names:
+> > +        items:
+> > +          - const: tx
+> > +          - const: rx
+> > +          - const: txdb
+> > +          - const: rxdb
+> > +        minItems: 2
+> > +
+> > +      memory-region:
+> > +        description: contains a list of phandles to reserved external =
+memory.
+> > +        items:
+> > +          - description: It is used by secure-enclave firmware. It is =
+an optional
+> > +              property based on compatible and identifier to communica=
+tion
+> interface.
+> > +              (see bindings/reserved-memory/reserved-memory.txt)
+> > +
+> > +      sram:
+> > +        description: contains a list of phandles to sram.
+> > +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +        items:
+> > +          - description: Phandle to the device SRAM. It is an optional=
+ property
+> > +              based on compatible and identifier to communication inte=
+rface.
+> > +
+> > +    required:
+> > +      - reg
+> > +      - mboxes
+> > +      - mbox-names
+> > +
+> > +allOf:
+> > +  # memory-region
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - fsl,imx8ulp-ele
+> > +              - fsl,imx93-ele
+>=20
+> What else would they contain? Those are the only compatibles defined here=
+.
+
+It will have multiple child nodes, but fixed number of child node for a par=
+ticular SoC.
+
+>=20
+> > +    then:
+> > +      patternProperties:
+> > +        "^[0-9a-z]*-if@[0-9]+$":
+> > +          allOf:
+> > +            - if:
+>=20
+> These conditionals are hard to follow. Probably a sign some of this needs=
+ to be
+> separate or simplified.
+I am ready to separate and simplify.=20
+Please help by sharing an example on how to go about this change. =20
+Probably an example that helps me understand your point and then will start=
+ to work on this comment.
+It is highly appreciated. Thanks.
+
+>=20
+> > +                properties:
+> > +                  reg:
+> > +                    items:
+> > +                      - enum:
+> > +                          - 0
+> > +              then:
+> > +                required:
+> > +                  - memory-region
+> > +              else:
+> > +                not:
+> > +                  required:
+> > +                    - memory-region
+> > +  # sram
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - fsl,imx8ulp-ele
+> > +    then:
+> > +      patternProperties:
+> > +        "^[0-9a-z]*-if@[0-9]+$":
+> > +          allOf:
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    items:
+> > +                      - enum:
+> > +                          - 0
+> > +              then:
+> > +                required:
+> > +                  - sram
+> > +              else:
+> > +                not:
+> > +                  required:
+> > +                    - sram
+> > +
+> > +additionalProperties: false
 
