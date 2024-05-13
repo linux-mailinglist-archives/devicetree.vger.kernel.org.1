@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-66591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00498C3D9C
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 10:56:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3751A8C3DB4
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 11:03:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96BAA1F222C2
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 08:56:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D969F281E91
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 09:03:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD5C148313;
-	Mon, 13 May 2024 08:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC6B2147C88;
+	Mon, 13 May 2024 09:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="For2Uvzn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A/+FLJbj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC2B14830E;
-	Mon, 13 May 2024 08:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9752AD11;
+	Mon, 13 May 2024 09:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715590575; cv=none; b=pFjc/zMDzjevTUUsp07U7Hha8gTsAyhfZzeslQeHky0vuEWsnG90wOy0yB8arY6B38XAwOqugKKL4rjiFI6YTuwMcuTpxMrI+RFjPRCIchYxxaJ0KomCUFGU3fvNKYY2lWzT4u5gpARw0j2FDiusNYb+aRjoat9z+pLuuLn3Aoo=
+	t=1715590980; cv=none; b=DPbW/nmq3LjZF3clq5B44zFOm95/pHTfDmMn1E2wlVW5qBRfD3FhXWf1w/R9tGMWPGpEdKH4quzR37Qa6JydOQMdmO9g91LkpmI9wjU/AP7psfXOJO2HHdTwldDo+LzKAgNuqy5G0ZS4KvKkW3JpwSWq2M900SEYrrwq7wzs75A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715590575; c=relaxed/simple;
-	bh=ZVgnAhf7mtm8J9Z9AUD+3eXKHZVcTgNyUjiO04JfAEo=;
+	s=arc-20240116; t=1715590980; c=relaxed/simple;
+	bh=s0EggrzDRtwd1QQwT28+y5mOLtbo0dl6U8XEYPlo+yQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=euuayUtT0UJiZNepNAMcPIvjXY5EeOh+eAI/U8kJJd3T/V29+1JIFCjka/dXHSKQZgLgjZShvf4PlOXJT29uWkK+TCQGZG34rRv4coa1ZvLBAECKclgU0wbFdP3HGicniJR+n8cevoCBORRqLzwexhhw8hrGC0siyE0Gks8IMqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=For2Uvzn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E14C2BD11;
-	Mon, 13 May 2024 08:56:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fBnIjNY038Ao1IH3yUNCX643OOI441/ft5wS6ZlguaxPNAoCXCTINrXDoguOLVd6m31foVE68I//A/5Hm1NiF1X6Jkf7AUXHb25SrQWEY9s/NReO5ljqM8PkXNfwpQCvBvfWDP0yg7jb3JEydiRQBBUx8ez4N1J6b9mGr7oDC9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A/+FLJbj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54AD1C113CC;
+	Mon, 13 May 2024 09:02:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715590575;
-	bh=ZVgnAhf7mtm8J9Z9AUD+3eXKHZVcTgNyUjiO04JfAEo=;
+	s=k20201202; t=1715590980;
+	bh=s0EggrzDRtwd1QQwT28+y5mOLtbo0dl6U8XEYPlo+yQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=For2Uvzn6W7HsSZv10gOcoBy0Tc73BVSONx+icRWHSOE0kgv7VuUVVcoMgYUbudPh
-	 URxT07SFNNbZiix9gdxmrcmdc87o/0fGs1Kg3tRNhbnNx28kXqXB2TNSSwT7l4tIwM
-	 gwWNX1ftv/aEqT6W9+7JdHce0FJuQaK0AxlMkv9gdvCQkDrqjOePEZZbpW/5wRB118
-	 knUCfg9d37+0QEN3ckh9q4DRRZ8kv65JG5zwGrtYv7O6oSOE/LKlSMXzi9aEPhemYI
-	 fYz4aREtW3aLQk6YdCXMOZnu8TMgnYmEMlEjTFbkQ8D7NKwpkZ0v0DGyWEmei6X/sK
-	 jeURUhYL9VUYg==
-Message-ID: <829162d0-2fef-4bbc-9417-13e8ca96150c@kernel.org>
-Date: Mon, 13 May 2024 10:56:11 +0200
+	b=A/+FLJbj4oXu5vlP2FOyLU5Y3872Wt4b2TwJjGM0ieE2rOafc8vehRo6Vq6/PQMNZ
+	 Z2LeE+/SeiiVRlsDNRFQKbDrtwh+O1i0QK8CWWOPU0p9Z9v3YFsgBi3ghu1+xbxG6J
+	 WTEddw9Kdv31J9rygrSXfMD3pSyg0ROSHlKjOWTxRxsyLJxnErI9lgGwpHYzYbb1H7
+	 Qr52K+qH53PlN1elIWpGeXoySdQngfWQYkTGyD61bsQj6AxHBxCA4VHn7w0N12gp0H
+	 v9R2OuABqhlWRQm1i/tCb9df/9dB6HXy8sIAQYi3OmAuofb0q8qWNwQWYRRCbOyMli
+	 TjXWx7jKfjwSg==
+Message-ID: <99f0fcb4-7c45-426a-8176-8191a032c0f0@kernel.org>
+Date: Mon, 13 May 2024 11:02:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Move some common usb node
- settings to SoC dtsi
-To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240513084701.1658826-1-quic_tengfan@quicinc.com>
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: add schema for 8ulp AVD-SIM
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
+ Shengjiu Wang <shengjiu.wang@nxp.com>, Liu Ying <victor.liu@nxp.com>,
+ Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240418203720.8492-1-laurentiumihalcea111@gmail.com>
+ <20240418203720.8492-3-laurentiumihalcea111@gmail.com>
+ <20240422142906.GB1207218-robh@kernel.org>
+ <799c3c81-fc33-4f76-bd0b-287e8b8a6f5a@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,23 +111,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240513084701.1658826-1-quic_tengfan@quicinc.com>
+In-Reply-To: <799c3c81-fc33-4f76-bd0b-287e8b8a6f5a@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/05/2024 10:47, Tengfei Fan wrote:
-> All the board dts which base on SM8550 SoC dtsi refer to usb_1_dwc3_ss,
-> usb_dp_qmpphy_usb_ss_in, orientation-switch and usb-role-switch, so move
-> them to SoC dtsi from board dts.
+On 09/05/2024 20:48, Laurentiu Mihalcea wrote:
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>> If you do add child nodes, 'simple-mfd' also means there is not any 
+>> dependency on the parent node such as needing this clock to be enabled 
+>> for the child nodes.
+>>
+>> Rob
+> 
+> The plan was to add the children later on as required.
+> Given the children would in fact depend on the parent's clock being
+> enabled, I wonder if just removing 'simple-mfd' from the compatible
+> list would do the trick?
 
-That's not really a good argument. Argument is that it is a SoC property
-(vs being a property of a board). Provide rationale for that. You are
-moving things just because they look common, so to me it looks really
-unjustified.
-
-> OTG is default for dr_mode, so it can be dropped from board dts.
-
-Separate patch, see submitting patches.
+Dropping simple-mfd would be a requirement in such case, but not
+sufficient. Please send complete bindings, so with the children.
 
 Best regards,
 Krzysztof
