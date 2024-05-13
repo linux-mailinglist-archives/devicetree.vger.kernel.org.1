@@ -1,146 +1,152 @@
-Return-Path: <devicetree+bounces-66695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86B78C4466
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:38:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5FB8C4479
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:42:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63C0A280F6E
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:38:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 568B22821A4
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D519154425;
-	Mon, 13 May 2024 15:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD1D15380C;
+	Mon, 13 May 2024 15:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="US5XeI47"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQq0r5sP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 917E8153BEE;
-	Mon, 13 May 2024 15:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437D75695;
+	Mon, 13 May 2024 15:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715614701; cv=none; b=VVQ6Eoew9VX/+Xtv/x/YonDiAkoVCRgt5qkGjaECz3kaU7BGRKiS3qBHpx7WuXkI1ydIulmagbl3y3BmANcUT3MXQaE+COPIow8q4axrscEs2cffTTaldDG3I3E39jGriB7hNZE35qPFxuwwZRY+RFNtGEINWKxd5ClOaeqUyjs=
+	t=1715614967; cv=none; b=DhbGmzSoS9NKLhX2Dvencd5b//83vsweUW7NZ9nUzfEPSo6KHW8qLhlxhNCsRKXYYcQzMtWdh7cQ4oM3outUmZAVuY/l6p9zX9WmgDa5Uii0FP37nlZx0PzbXxdwIfW6+Svm4xBDA+JCSSvEpLMW58ovMadpMS+V1YJ71gOAsGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715614701; c=relaxed/simple;
-	bh=D4Jesxp0goxfo4+RkqtmVUcnjRYiUHslXFAvBn18PIg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=X9eKqG+2uxg0TzQevDzo3shjBXv2Sg7S6BSWTsxNdD883jjV3aaeXrV4CRWjW7edxJKblyUouFD7CvIWqBchgsqbT0MwAlwzAv52qwDb5xpJMpPy+HcMFNy0ugx9ym+bWQoZ8rIUpkAigjlcC/lbOnev2v5NVYJh0qq9mQ1UtY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=US5XeI47; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a59e4136010so1161281166b.3;
-        Mon, 13 May 2024 08:38:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715614698; x=1716219498; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cwyN+SM57vzeVl611qrZpQ9hXHag66qCgwB27/VmmyA=;
-        b=US5XeI47bp0EIzSEF6RCjXLmzqxl5eNlpkErlK7jziudh1+E0URZ9eKz6GtjMWNEfH
-         tCQyk9B4MeNkayR8w8ndV9HGDDYOCGsbfJ+2POD+HvdUE7WqHN0341LmqVqP5parXF49
-         GFI1uQLJJs8QMBllfFK33t+rgCqOfwsSPUYB865IqQRY4E9Trv7sXrZZRA/Ah3An9lOW
-         RC1kKzhOzDdR2ot8j9+CnPCxTzcTk59mNY8VD9FtsV2o6bThRsqAwTuR+Rjh/sTZa/QN
-         RuiBMQInuwUO//FuDPT1Enw8c/Z3KlnBxguPTIKAlz2jIlOWi5SLDPVovT/0G1qfBtoj
-         verw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715614698; x=1716219498;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cwyN+SM57vzeVl611qrZpQ9hXHag66qCgwB27/VmmyA=;
-        b=D50aWMqG62leXs1Hl4thl5rG0F23U1q8G0H/BjKNqO/4lCv+gJQq2Y2BGk2yJ4Htua
-         40j2lWNKyluja4l58LKtxrIbLh0XMTIj7U2gEBuGIKqauqPaJvVdfT5VRnW0tcaLlZ3n
-         7pg2F/lmpZ9mjSUt4h8IWEsuSw4Rj3nWT92jMyFn8fYxMntbmUNOmBgjKKtJuUcIcvgG
-         +lBpLvMa2zzdSh6u1/O4yg2QGdcQIBr7DLv6hAWf9/nEpplRnVyUe1q2jUiCHfs4vauo
-         e5b5Bv1WSnEHiFpC5vt/M1o2YwanzD/0FPkHDFnGlZU2BbbocN0rzux056/UattXG+a3
-         HXdw==
-X-Forwarded-Encrypted: i=1; AJvYcCU6cvPSO67d065hLFaOIhUvvXwsvcA2cAr8HLZ5+vsI8HGxHnH9Yse1o89o6hT1LtbGpuGV0lCDptgu70VvFLJgbu4iflY4ndHl9ZAnW5HtCMI07Wu0lIVwjX/g6AXzYt8Eqx8AhoU1dg==
-X-Gm-Message-State: AOJu0YyYZjKjLPasoyJQ/4gkeZfL9rSTExSDOnrhGLKv8FxlW9+ilyzo
-	CkeByeeinyWLYMH0qmsBJ+3bLuB9arLjey6rMChOG4U071I8D/jk2H+FA4Mf
-X-Google-Smtp-Source: AGHT+IGTNJtlgQGQD4ibnubprYy9/aebeejMr1qpEPPXsn/mM3SWgJQhe7VU8Jgr2xjufacdWnm8yg==
-X-Received: by 2002:a50:c010:0:b0:572:7e9f:c124 with SMTP id 4fb4d7f45d1cf-5734d59040bmr7010860a12.9.1715614697660;
-        Mon, 13 May 2024 08:38:17 -0700 (PDT)
-Received: from njaxe.localnet (host-79-55-54-147.retail.telecomitalia.it. [79.55.54.147])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733c322c06sm6459548a12.85.2024.05.13.08.38.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 May 2024 08:38:17 -0700 (PDT)
-From: matteomartelli3@gmail.com
-To: Matteo Martelli <matteomartelli3@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: es8311: dt-bindings: add everest es8311 codec
-Date: Mon, 13 May 2024 17:38:16 +0200
-Message-ID: <4072123.0gxhY3eTYf@njaxe>
-In-Reply-To: <91fa1c1f-22ea-4f4a-9d87-a919ddf118cd@kernel.org>
-References:
- <20240510131238.1319333-1-matteomartelli3@gmail.com>
- <20240510131238.1319333-2-matteomartelli3@gmail.com>
- <91fa1c1f-22ea-4f4a-9d87-a919ddf118cd@kernel.org>
+	s=arc-20240116; t=1715614967; c=relaxed/simple;
+	bh=F3u3mKadL+3EZX5zWP3ezeTiqNbAGqyfcxAJ3U4RsoI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uMeW0CE5ATJNTZtdJlNqI8iLQbO8ja4Ve+89EW6PgWCA4X1BBdO/6L4bGSsQQToyJVVlxoL1x++N8nbB1QMwt+YwZyGemtjlesdXhuaQTm4gpm7u6gi1aSvbD3t/GwcAdIRTcfyxQEgEFo9qIz3aeEbg4W4tPNy5u933zts0IFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQq0r5sP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91A22C32786;
+	Mon, 13 May 2024 15:42:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715614966;
+	bh=F3u3mKadL+3EZX5zWP3ezeTiqNbAGqyfcxAJ3U4RsoI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KQq0r5sPRu78vdVdG+L7slIqkDQjf6Glz1m5xloulimbwvyaf331+Ts9RCGWXWy52
+	 V5vY3mLQKoDMBoynd61Q9m1bcEHA3vkD0gLfksydJ0E8t3+F1YYcYKXiAZuP5L7kVa
+	 v/5vfwkbYqYujFK0vsdNj+99Rp8YfMc0G38VhSQJnDLeLrnwLQvT1r5r1kya6YbuN0
+	 PhYnKGz+dJ1DeDeOj4mvpmJKE8YypTO1AL3rYJZZ6XJiYymY5qDge1FiOXpazziSgT
+	 U+ezmPVVPiXunoqCLxG0MOEuPSUwmxAfrJidFr/5CZ+rdd+SPsDj4uIv0sGa5N0NRN
+	 E4d0RuCySxi5w==
+Date: Mon, 13 May 2024 16:42:41 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Dmitry Rokosov <ddrokosov@salutedevices.com>, neil.armstrong@linaro.org,
+	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+	martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
+	kernel@sberdevices.ru, rockosov@gmail.com,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: meson: a1: pll: introduce new
+ syspll bindings
+Message-ID: <20240513-capsule-sadness-4d387baf2bed@spud>
+References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
+ <20240510090933.19464-3-ddrokosov@salutedevices.com>
+ <20240511-secret-barcode-e25c722ddf1d@spud>
+ <1jjzjxzy4d.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-
-On Monday, 13 May 2024 10.53.57 CEST Krzysztof Kozlowski wrote:
-> On 10/05/2024 15:00, Matteo Martelli wrote:
-> > Add DT bindings documentation for the Everest-semi ES8311 codec.
-> > 
-> > Everest-semi ES8311 codec is a low-power mono audio codec with I2S audio
-> > interface and I2C control.
-> > 
-> > Signed-off-by: Matteo Martelli <matteomartelli3@gmail.com>
-> > ---
-> >  .../bindings/sound/everest,es8311.yaml        | 52 +++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/everest,es8311.yaml b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> > new file mode 100644
-> > index 000000000000..54fb58b9ab58
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/everest,es8311.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Everest ES8311 audio CODEC
-> 
-> This looks exactly like es8316, except of later added port. Are you sure
-> you are not planning to add port later, which would make both schemas
-> identical?
-
-I did not pay enough attention to audio-graph-port property which is in
-fact supported and could be added as well. Thus the es8311.yaml would be
-identical to es8316.yaml. My guess is that I should just add the
-"everest,es8311" compatible string to the existing es8316.yaml even if the
-two drivers are separate (like for instance mediatek,mt8186-clock.yaml). Is
-this correct?
-If that's the case:
-* should the evereset,es8316.yaml file be renamed to evereset,es831x.yaml?
-* should I also add myself to the maintainers list of that schema?
-
-> Best regards,
-> Krzysztof
-> 
-> 
-
-Thanks for your support,
-Matteo Martelli
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RbuUotNKYzyDBfFf"
+Content-Disposition: inline
+In-Reply-To: <1jjzjxzy4d.fsf@starbuckisacylon.baylibre.com>
 
 
+--RbuUotNKYzyDBfFf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, May 13, 2024 at 02:04:41PM +0200, Jerome Brunet wrote:
+>=20
+> On Sat 11 May 2024 at 14:08, Conor Dooley <conor@kernel.org> wrote:
+>=20
+> > [[PGP Signed Part:Undecided]]
+> > On Fri, May 10, 2024 at 12:08:54PM +0300, Dmitry Rokosov wrote:
+> >> The 'syspll' PLL is a general-purpose PLL designed specifically for the
+> >> CPU clock. It is capable of producing output frequencies within the
+> >> range of 768MHz to 1536MHz.
+> >>=20
+> >> The clock source sys_pll_div16, being one of the GEN clock parents,
+> >> plays a crucial role and cannot be tagged as "optional". Unfortunately,
+> >> it was not implemented earlier due to the cpu clock ctrl driver's
+> >> pending status on the TODO list.
+> >
+> > It's fine to not mark it optional in the binding, but it should be
+> > optional in the driver as otherwise backwards compatibility will be
+> > broken. Given this is an integral clock driver, sounds like it would
+> > quite likely break booting on these devices if the driver doesn't treat
+> > syspll_in as optional.
+> > A lesson perhaps in describing the hardware entirely, even if the
+> > drivers don't make use of all the information yet?
+>=20
+> That is nice but it is only possible if/when we have perfect knowledge
+> of the HW being implemented. I don't know about you, but I rarely get
+> perfect documentation for HW, let alone a public one.
+>=20
+> Those things are bound to happen as we implement support for the HW and
+> discover how it works, not to mention the mistakes humans will
+> inevitably do. If Linux was only supporting perfectly documented HW, it
+> would not be supporting much of them I suspect.
+
+I mean, you can say what you want chief about what you did or didn't
+know, but there's a line in one of the drivers that was added back when
+the original driver was that talks about the missing clock, so you can't
+really act as if there was no knowledge about it. If it hadn't been
+previously known about and TODO-listed, I would not have made these
+comments.
+
+> Stable API is already hard with ioctl but there, both sides are
+> perfectly known. That is a fundamental difference with the 'DT ABI'
+>=20
+> Getting it right on day 1, every time
+
+Wind your neck in, I don't expect you (or anyone else) to get it right
+on "day 1, every time". I only expect it to be dealt with in a way that
+is compatible with the existing devicetree.
+
+Thanks,
+Conor.
+
+> - because things are set in stone
+> afterwards - is unrealistic. As a maintainer, I do spend a
+> disproportionate amount of time checking the bindings submission because
+> I know how painful it gets to fix things up down the line.
+>=20
+> Unless I missed the simple solution to this problem, we can expect the
+> problem keep happening again and again, no matter the number of lessons
+> learned.
+
+
+--RbuUotNKYzyDBfFf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkI08QAKCRB4tDGHoIJi
+0jSxAQC8QxVuGHYq7syN68cgLxp136YiQh2236yQnHQf+MYYrgEAzT7ENp3HENlz
+kbYC+C95klbNPHlpS4gAQN2AoaUk4AM=
+=84uz
+-----END PGP SIGNATURE-----
+
+--RbuUotNKYzyDBfFf--
 
