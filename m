@@ -1,93 +1,155 @@
-Return-Path: <devicetree+bounces-66658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1710D8C41A0
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:17:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3568F8C41AB
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:18:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 482C81C22D02
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 13:17:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E343C2825CA
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 13:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848C6152171;
-	Mon, 13 May 2024 13:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627B51514E2;
+	Mon, 13 May 2024 13:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GVOQ6J6q"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hc9LoSrI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE5B1514CB;
-	Mon, 13 May 2024 13:17:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94F2150980
+	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 13:18:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715606234; cv=none; b=aNXwZgXKPewn+I73PUwGw91uKy5ObUmgff3k0eBTs28llFoQiQuhxD8IAzYtFcWA/h1JY9c49CMuQn9Kq7slyEFhw4V0Qm62wFI9N0CwxxZajKXKWwDiOG84PoNyddjofLrvKiIq6WIngp99k0mU3vYtAhAcO3wc8I/yhOmFtQ8=
+	t=1715606329; cv=none; b=qg5w59ScnlH7LcR5ZQh4o1naAI1BBRpcgjFDXl5r7McAQNt3oAsdTllp5m0gglc4v/pbZGbYu6XWLpCGsDVVRz6ll919ftzqrOymyayIhoFYyGuhBPnQ92wJZkrcG2atj2JP3ny7DE2lB6FmF9VqSL33hogaheA2qWHBxVMEp6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715606234; c=relaxed/simple;
-	bh=sCQQdb5fu1AI/GGQpLevWmpW1G8ldkeo47pUNmNMP28=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eLfABpuy3HzoqDs2nERVx54QSuK8/rNWww1bpT5Zdhf+tCd1aXLlgGL5COeh//7f6rAZbhzAk7eu52aMkF6GAiRx8ovuY8TeKcO7KBJWXjVk/Rz3ii6II2bbCpacNS5yu1wseL7cdNNLb7cdpgk6uX5GKylSjdZmF7zY2tAzs8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GVOQ6J6q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3C88C32782;
-	Mon, 13 May 2024 13:17:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715606234;
-	bh=sCQQdb5fu1AI/GGQpLevWmpW1G8ldkeo47pUNmNMP28=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GVOQ6J6qh9mPjnMq3qWXWlho7YHflOLaSR7O8ow4CyTYYKWE8VLxAuwgeNWUvnhbB
-	 lJHTadSnAkBn5dX3iQDDPYfwl8qEa253rLwbY80rMa6ltM8/CL90fDFQxsyO9WEIpV
-	 yIFYmDclZKObVEIt5Gc5FEtij2cLgxyKYBClMwdserwKoCcjhUapvYgMRGAbUWy/3I
-	 +V4XjklX7tXHR9liySEK4MtRskLrFbK5tDgx/bUnkD7AB0avM2xNxDR8vHg80WMof1
-	 YgwS3ipWEE7NYv9RmhOpWWmmnzg8S3tfOuQ3eJjWVhhxk36eiilob23X8S5/0yLHWw
-	 RxzmKIwNUU3Sw==
-Date: Mon, 13 May 2024 08:17:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Konrad Dybcio <konradybcio@gmail.com>,
-	Del Regno <angelogioacchino.delregno@somainline.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	Dmitry Baryskov <dmitry.baryshkov@linaro.org>,
-	Shawn Guo <shawn.guo@linaro.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] dt-bindings: display: panel: constrain 'reg'
-Message-ID: <20240513131711.GA2419451-robh@kernel.org>
-References: <20240509-dt-bindings-dsi-panel-reg-v1-0-8b2443705be0@linaro.org>
+	s=arc-20240116; t=1715606329; c=relaxed/simple;
+	bh=t97Unp7RFvu8X9BfWzZrMSSAs1Et06nWvHkA4YhFGn8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e3Bb7OUUakzkm1pf6cGLK7pWN7FV6ojP7z7siM24vQBuy3rfnnKFzH3CYvc9ca4zK3XawPSM6+OhnStiMBGqSeAk43iL5Ng0IAwuvJR+Xg3VSsZqPlkhKW144DE74JYIBjvLbWZXwR9k7zvMmZN8Qacw7Abs74bISmlW/Daejvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hc9LoSrI; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1715606325;
+	bh=t97Unp7RFvu8X9BfWzZrMSSAs1Et06nWvHkA4YhFGn8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hc9LoSrIediHL21bEQssqc4OEfA1pW8MNWtd+d9jj7fS8JuxW/QttImJo2H41AUpS
+	 mCUfHhzXgdilnT2BcdD10WM23jq0JVvwGaRUFiTFEKrooQEV23mDkB+2nuIxHxpIrX
+	 rMBuZfnTQdvTZEV/Bp00vJ/goA2fnPeOxcdA7Fo8G8bClr9U73Iijmgm7lyuP3sBgt
+	 3dfncasCB0Kt+kqGTu1B/3JMAe3HL+GMSVN50CQC0s6hziAkbM7gUJq8ERyhwmx/Sy
+	 bs3X93g/fevYXo/fAoO4rLSepd1IvJ7BjP8J0iRaSoBEU2v1i5WLtLtn4SSrY2AJne
+	 86zfpKsWTXLMw==
+Received: from [IPV6:fd00::2a:39ce] (cola.collaboradmins.com [IPv6:2a01:4f8:1c1c:5717::1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 894CE3782017;
+	Mon, 13 May 2024 13:18:44 +0000 (UTC)
+Message-ID: <b6bb36aa-cb8c-4e13-8ee3-233d1c76dd50@collabora.com>
+Date: Mon, 13 May 2024 15:18:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240509-dt-bindings-dsi-panel-reg-v1-0-8b2443705be0@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] phy: airoha: Add PCIe PHY driver for EN7581 SoC.
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-phy@lists.infradead.org
+Cc: vkoul@kernel.org, kishon@kernel.org, lorenzo.bianconi83@gmail.com,
+ conor@kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com,
+ catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com
+References: <cover.1715527166.git.lorenzo@kernel.org>
+ <0005610f38bef591b0f97bafcc58dffdfa1f0ead.1715527166.git.lorenzo@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <0005610f38bef591b0f97bafcc58dffdfa1f0ead.1715527166.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 09, 2024 at 11:42:50AM +0200, Krzysztof Kozlowski wrote:
-> Hi,
+Il 12/05/24 17:27, Lorenzo Bianconi ha scritto:
+> Introduce support for Airoha PCIe PHY controller available in EN7581
+> SoC.
 > 
-> Cleanups for display panel bindings.
+> Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>   MAINTAINERS                        |    8 +
+>   arch/arm64/configs/defconfig       |    1 +
+>   drivers/phy/Kconfig                |   10 +
+>   drivers/phy/Makefile               |    1 +
+>   drivers/phy/phy-airoha-pcie-regs.h |  476 +++++++++++
+>   drivers/phy/phy-airoha-pcie.c      | 1227 ++++++++++++++++++++++++++++
+>   6 files changed, 1723 insertions(+)
+>   create mode 100644 drivers/phy/phy-airoha-pcie-regs.h
+>   create mode 100644 drivers/phy/phy-airoha-pcie.c
 > 
-> Rob, maybe you could take entire set if it applies? I based it on
-> linux-next, so letl me know if I need to rebase on your for-next.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ce9fac46f741..d918d41a80a3 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -653,6 +653,14 @@ S:	Supported
+>   F:	fs/aio.c
+>   F:	include/linux/*aio*.h
+>   
+> +AIROHA PCIE PHY DRIVER
+> +M:	Lorenzo Bianconi <lorenzo@kernel.org>
+> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/phy/airoha,pcie-phy.yaml
+> +F:	drivers/phy/phy-airoha-pcie-regs.h
+> +F:	drivers/phy/phy-airoha-pcie.c
+> +
+>   AIROHA SPI SNFI DRIVER
+>   M:	Lorenzo Bianconi <lorenzo@kernel.org>
+>   M:	Ray Liu <ray.liu@airoha.com>
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index a53c58584bcf..c0eacced5d41 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
 
-Applied. These 2 don't exist in my tree:
+No, this should be in a different commit.
 
-Documentation/devicetree/bindings/display/panel/lg,sw43408.yaml
-Documentation/devicetree/bindings/display/panel/raydium,rm69380.yaml
+> @@ -1479,6 +1479,7 @@ CONFIG_RESET_QCOM_AOSS=y
+>   CONFIG_RESET_QCOM_PDC=m
+>   CONFIG_RESET_RZG2L_USBPHY_CTRL=y
+>   CONFIG_RESET_TI_SCI=y
+> +CONFIG_PHY_AIROHA_PCIE=y
+>   CONFIG_PHY_XGENE=y
+>   CONFIG_PHY_CAN_TRANSCEIVER=m
+>   CONFIG_PHY_SUN4I_USB=y
+> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> index 787354b849c7..8f9a7a6c4bba 100644
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -72,6 +72,16 @@ config PHY_CAN_TRANSCEIVER
+>   	  functional modes using gpios and sets the attribute max link
+>   	  rate, for CAN drivers.
+>   
+> +config PHY_AIROHA_PCIE
+> +	tristate "Airoha PCIe-PHY Driver"
+> +	depends on ARCH_AIROHA || COMPILE_TEST
+> +	depends on OF
+> +	select GENERIC_PHY
+> +	help
+> +	  Say 'Y' here to add support for Airoha PCIe PHY driver.
 
-Rob
+Say Y here (without quotes)
+
+Apart from that:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> +	  This driver create the basic PHY instance and provides initialize
+> +	  callback for PCIe GEN3 port.
+> +
+>   source "drivers/phy/allwinner/Kconfig"
+>   source "drivers/phy/amlogic/Kconfig"
+>   source "drivers/phy/broadcom/Kconfig"
+
 
