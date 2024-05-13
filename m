@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-66589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D0D8C3D91
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 10:51:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1C08C3D94
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 10:54:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99867280E21
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 08:51:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 003AA1C202ED
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 08:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F812148300;
-	Mon, 13 May 2024 08:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F51F148309;
+	Mon, 13 May 2024 08:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="dqJr2p+b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aeE2MdTM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBB81482F2
-	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 08:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2025A1482FE;
+	Mon, 13 May 2024 08:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715590314; cv=none; b=cTBmqVHiuLo90jT1dCG3djM3jKOVY8Ge2fCG64svyFpMDr5JprXiJnLxvXIAJldlbNplNt6oBlkdQXckdVAp38Y+FJcAH5vCcD4nUYlJmCuXTr6LHtrLOiA4exW9KFeHW6XIJaoStgfKZAUIwLNmptTOteIWLEvhbCEFG+WT10g=
+	t=1715590442; cv=none; b=IVRbtAGp76XxHt+9QMQ40djE1HgW79QIkx3Yn24wi7W5GldfosACvMbx+HmcynTBENB5cdkxGzB5zq5Dd8nvz4VUqDrmUhFyxWwiD5LBc2QmVm4/GuQhQCw0hgKUi5hulIhXvMuAjcyLgiGlOD04p8gM8jpbyqZZsPC+K6EwoVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715590314; c=relaxed/simple;
-	bh=z5Z7uapwXbkUbxpFVy5XmE1gJYtNsO0d2cLn0Xvvnvc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=faIt/HMpwQlVtZkRl9sIMmwC4R7HfrT2m/FOiL/D9YVLNGx4dzuVyBHgK44/7vSfC0R6iHB2vi932NM0Iyf57yqnrq89qHlMisCjezkc/hT2JaTsAQ2Vxn/63waJQPB+WToGv06Q7P7Q99kqNHk1Odm49lZYwdZ1Rmw0AJDKnOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=dqJr2p+b; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-41ffad242c8so17473125e9.3
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 01:51:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1715590311; x=1716195111; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mq/uD1dC/7z1I5LAURM1IjfFE6NOjVkUpk7Uo6+ZcRo=;
-        b=dqJr2p+bluAmqCplD4r+hncW2Zi2MUeunOjo4OZ9wJiUDuzpsZw6a55wjHAfv6KCOU
-         TR7Abesjfg7HaBUZg2SnOCCo7ivMXkuhXpHpE7pTCZ06LPKC6gbgwXeMR0yb78ebQC1u
-         gyAqre8LvvK93dXyRNlkqSOkMjg4FAF4FdOovNi17tXFofFq6LFwwqAqa+8qSOgdBHIv
-         lv7RCCSMvObQi8M7Q92KGEXWTQ/ipA4Me0L7m3Cdg9rbAIiyH9Og+oWYespVt6bvJLw2
-         PO78rYZwpll2fKEMXxRT5q0BA4Ui9XOW5O/TGbVeiiB6xC0EqWGOf69DvCZi5/ecA8Ho
-         g3xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715590311; x=1716195111;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mq/uD1dC/7z1I5LAURM1IjfFE6NOjVkUpk7Uo6+ZcRo=;
-        b=CkLofbeDW2qbhxvvmOPawqLefpJP/u8AYQ1WHJmyqjUfBLYDyPr7+/17EWk5QJ5lK6
-         5xvaKKd9TkLMoT9nhgiFuJgAmHREvLKg9Bu82DwMXkw66w8tYzRKcckQUkiSYV11xyZq
-         E4/T/HpsdqaGTNiGPGJD/h/sPGCd+gt+HU4SjIGn7zCaVkGs9PAykcXasMfFpGfkpemf
-         ITTsMco40xYE1qV7L0K6Gdim37f3AL4ZxE8xoMRYKhL/vTDtKNmiKET4WyHpm1LMWX60
-         8hJvxNmneP4dZQCADCo/tPZxLMUGoT3rbrbOzIWVct2tWG7ewMmWk/n9rTjIDMBo580U
-         AuBw==
-X-Forwarded-Encrypted: i=1; AJvYcCVYL7pflHJPTHwuyAPB+dXeX1QhETtHKB65ja+eheTvsiCBNPx5T4GqfJfv++op9KaQe3R7OjR4wFB6kpfA537wH/v3+lCJwnENIQ==
-X-Gm-Message-State: AOJu0Yw8a+Ev9viRSTzxWvV7XO4QZwdk19GiX3quC5Luwt0v20p83BWJ
-	xr+nBf49CihahNGSFREUdzZlSusVjNS/vOlUy14Bo6hGoZl6LYVdpqedlguC8CI=
-X-Google-Smtp-Source: AGHT+IF1vjY/l97xX+3YM2pxVOc0i8Y8BHs5vGidJPHg2uTeTLpKgj60714olHOATJCWNs1sv+58Sw==
-X-Received: by 2002:a05:600c:4fcd:b0:41b:9e4f:d2b2 with SMTP id 5b1f17b1804b1-41fea931aaamr95401755e9.2.1715590310656;
-        Mon, 13 May 2024 01:51:50 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4201088fe8csm68995455e9.32.2024.05.13.01.51.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 May 2024 01:51:50 -0700 (PDT)
-Message-ID: <e187c5ab-0241-4a45-8d74-a33ec12deec6@freebox.fr>
-Date: Mon, 13 May 2024 10:51:49 +0200
+	s=arc-20240116; t=1715590442; c=relaxed/simple;
+	bh=U5RxhLu8lpk7MZX4XMAs7c/A8C55vbBGbUfKuiSKxMA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E3/E/myxHdAE3XCn4okpYY1otbs2eFgaGQ9TXTXJRsJLFcJwUsXcWFsHfc+kaV38aHqo5MRTqt6cEy9kB2HkHxdE2b3cjgwojQDpugoLhvOE03fd/edwx+l/5++VbWdMtpHG1L4mZh6lQcMx9KKpml8Z5BefZlQDNrEJPcDuPMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeE2MdTM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AA68C113CC;
+	Mon, 13 May 2024 08:53:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715590441;
+	bh=U5RxhLu8lpk7MZX4XMAs7c/A8C55vbBGbUfKuiSKxMA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aeE2MdTMaNi4wVTODcpB1tfETmMzXDwWIVLZIBQAcpJLbSoovq0IwI4mhi+zDzXPa
+	 iALtiUU1/o/3xxzzifWc6zlMCJbOnhOqgM+wKHCDsJQfDGdGfDj6Y1yLN7GceH62v6
+	 mR4MOdR+K/gJH4y9u5Ja14L2mnFXcVTl6QnKSVQVrGJZ0g4ps7vBhixsEmaoh9eaKK
+	 FXjTD0PtKU9y4qUpl4DTjCItAzW/99cvrBme2XbPqFGgQSSWKZHFsaayyqzQQZMW5l
+	 dis2b15OfbIHeCZYU8SNxHmGEuT5m3EHGilhIeJ33fRNP1U7iVXQVhp7ugOS/fUp20
+	 Z4xsblBlX/aSw==
+Message-ID: <91fa1c1f-22ea-4f4a-9d87-a919ddf118cd@kernel.org>
+Date: Mon, 13 May 2024 10:53:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,104 +50,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: msm8998: add venus node
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-To: Bjorn Andersson <andersson@kernel.org>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>
-Cc: MSM <linux-arm-msm@vger.kernel.org>,
- linux-media <linux-media@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Subject: Re: [PATCH 1/2] ASoC: es8311: dt-bindings: add everest es8311 codec
+To: Matteo Martelli <matteomartelli3@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
-References: <1cf08b56-a247-431b-a24b-69f563f49240@freebox.fr>
- <c2fca6c7-2421-42b4-a43d-68b251daf9b4@freebox.fr>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240510131238.1319333-1-matteomartelli3@gmail.com>
+ <20240510131238.1319333-2-matteomartelli3@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <c2fca6c7-2421-42b4-a43d-68b251daf9b4@freebox.fr>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240510131238.1319333-2-matteomartelli3@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/05/2024 11:29, Marc Gonzalez wrote:
-
-> From: Pierre-Hugues Husson <phhusson@freebox.fr>
+On 10/05/2024 15:00, Matteo Martelli wrote:
+> Add DT bindings documentation for the Everest-semi ES8311 codec.
 > 
-> Now that the venus clocks are fixed, we can add the DT node.
+> Everest-semi ES8311 codec is a low-power mono audio codec with I2S audio
+> interface and I2C control.
 > 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> Signed-off-by: Matteo Martelli <matteomartelli3@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/msm8998.dtsi | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
+>  .../bindings/sound/everest,es8311.yaml        | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8311.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index 5f5b90a6e2bf1..3d3b1f61c0690 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -3010,6 +3010,54 @@ mdss_dsi1_phy: phy@c996400 {
->  			};
->  		};
->  
-> +		venus: video-codec@cc00000 {
-> +			compatible = "qcom,msm8998-venus";
-> +			reg = <0x0cc00000 0xff000>;
-> +			interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH>;
-> +			power-domains = <&mmcc VIDEO_TOP_GDSC>;
-> +			clocks = <&mmcc VIDEO_CORE_CLK>,
-> +				 <&mmcc VIDEO_AHB_CLK>,
-> +				 <&mmcc VIDEO_AXI_CLK>,
-> +				 <&mmcc VIDEO_MAXI_CLK>;
-> +			clock-names = "core", "iface", "bus", "mbus";
-> +			iommus = <&mmss_smmu 0x400>,
-> +				 <&mmss_smmu 0x401>,
-> +				 <&mmss_smmu 0x40a>,
-> +				 <&mmss_smmu 0x407>,
-> +				 <&mmss_smmu 0x40e>,
-> +				 <&mmss_smmu 0x40f>,
-> +				 <&mmss_smmu 0x408>,
-> +				 <&mmss_smmu 0x409>,
-> +				 <&mmss_smmu 0x40b>,
-> +				 <&mmss_smmu 0x40c>,
-> +				 <&mmss_smmu 0x40d>,
-> +				 <&mmss_smmu 0x410>,
-> +				 <&mmss_smmu 0x421>,
-> +				 <&mmss_smmu 0x428>,
-> +				 <&mmss_smmu 0x429>,
-> +				 <&mmss_smmu 0x42b>,
-> +				 <&mmss_smmu 0x42c>,
-> +				 <&mmss_smmu 0x42d>,
-> +				 <&mmss_smmu 0x411>,
-> +				 <&mmss_smmu 0x431>;
-> +			memory-region = <&venus_mem>;
-> +			status = "disabled";
+> diff --git a/Documentation/devicetree/bindings/sound/everest,es8311.yaml b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
+> new file mode 100644
+> index 000000000000..54fb58b9ab58
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/everest,es8311.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +			video-decoder {
-> +				compatible = "venus-decoder";
-> +				clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
-> +				clock-names = "core";
-> +				power-domains = <&mmcc VIDEO_SUBCORE0_GDSC>;
-> +			};
-> +
-> +			video-encoder {
-> +				compatible = "venus-encoder";
-> +				clocks = <&mmcc VIDEO_SUBCORE1_CLK>;
-> +				clock-names = "core";
-> +				power-domains = <&mmcc VIDEO_SUBCORE1_GDSC>;
-> +			};
-> +		};
-> +
->  		mmss_smmu: iommu@cd00000 {
->  			compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
->  			reg = <0x0cd00000 0x40000>;
+> +title: Everest ES8311 audio CODEC
 
-Hello Bjorn,
+This looks exactly like es8316, except of later added port. Are you sure
+you are not planning to add port later, which would make both schemas
+identical?
 
-This patch is supposed to be merged through one of your trees, right?
-
-Regards
+Best regards,
+Krzysztof
 
 
