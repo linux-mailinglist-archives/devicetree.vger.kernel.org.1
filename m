@@ -1,99 +1,127 @@
-Return-Path: <devicetree+bounces-66675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3678E8C4319
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:19:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B51318C43C3
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:07:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 672711C214F4
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 14:19:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BDDD1F22B23
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4510B15383D;
-	Mon, 13 May 2024 14:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F4455E6A;
+	Mon, 13 May 2024 15:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jQbhfASj"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="kUpaXSXm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18397152180;
-	Mon, 13 May 2024 14:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683F71DDC5;
+	Mon, 13 May 2024 15:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715609948; cv=none; b=o8Uwt9VCVlEzIDlnkzqBvdSVJ1K6g5Rf/uSQ0flhGNgYAZ9M1IZ4P2ViY3sb3crJVeMhZgxWhmorh6lYA+DNfsrPnjpFQKHqqeW+g7D9YBYj2cePqZtE6zcgGDf5BgIn+EQECIUJb7H7/Kj2G0ioCowLubLDJD8u5d9e4kgDw28=
+	t=1715612812; cv=none; b=OZsuWz7SeX8QefoCnop1sdgU9tTU+k9YSAIwLOf/e7vP2uX+D9KhInr9QLMiWQPANGBAo9WB9N3miRWVj7Sn0E7X71hDqhgLe4uEIBj3ng/oyB5re+KE5UGAwCDqJdXpxByhOYXJlPIesDW25wntykJlXXuNsRZpvRlX4FZxmVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715609948; c=relaxed/simple;
-	bh=PD4GwX3Z6iq20lzOHlzaVgnrNqVXh7Lp5OI62HCHswU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O5qUK5V6Jm5CKbr2qAk0VEVFPkp69KXy2ivDHFEAhrSfWhNMt9v6lQzMeJWtFXMQTib3F5vYbglqBAMqITY8ze7Zr78OI7cgGE5mi3E8JUDoqXfzMGbv0dtDfErnaWZBoLh7OA4rVj1R7LBWAzqOUNwDWho/TgeKNY+sFNx5fWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jQbhfASj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84B27C4AF07;
-	Mon, 13 May 2024 14:19:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715609947;
-	bh=PD4GwX3Z6iq20lzOHlzaVgnrNqVXh7Lp5OI62HCHswU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jQbhfASjvXHGTKOPtu1AmhG20WH02RT274WXbettv8w84cXwTK3rQJkJhKstTVkYq
-	 Kp5vyE2u6UhcE1o64Qo4nJLlwTOkBEmOqIWPR/ofPWCTXwqqfYPUevvIj/qid8TnAm
-	 GU1K7dX7dxfz6jauJpjAF/kvpab1CPjI04WIiUwuPYqb0mx2oxtYqratxHtpMuZLoA
-	 ZwfUoqFOFhiT3M9cSj5O84lNHuJZO3o/DoBAxf+1tt3BddnTtZ2btt6nEHYVNd7TNU
-	 IQPcesAJgDq5lPU2uzBhUc7uiXC7Bemjqlt8VEeFuo1hxLNnGPNUG9O4j4gxWRqmof
-	 7FhuGta9uPONg==
-Date: Mon, 13 May 2024 09:19:06 -0500
-From: Rob Herring <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: adi,axi-adc: tweak example node
- name
-Message-ID: <20240513141906.GA2534611-robh@kernel.org>
-References: <20240510-b4-iio-axi-adc-dt-binding-tweak-v1-1-a1f633c4602c@baylibre.com>
+	s=arc-20240116; t=1715612812; c=relaxed/simple;
+	bh=aWv4uhjr6Nqh1WTQMG3pOFjP+s2H/GrHjZ+pXgW3x7g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qafXu10Svqa8X8H5wo5xQ21MH+rYoVXRfHwuz+aaTxVU6poJG27hFisOO3mJ7gTjQz4W03vTlM2Lh3FAWRSj6abLWFPpBEAFCk/a9Jk9kdfPaQFNWs3BaL5jMRUEzuA024M0vYszuF3bFp1KsufxFhEFm0EEFj8uPim3y9vnc68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=kUpaXSXm; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 42D9A882D8;
+	Mon, 13 May 2024 17:06:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1715612808;
+	bh=dFRl+UyXsb6ZN6/Bsy1gYor7t7lvZznQLrqAhOOp/wg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kUpaXSXm2V5tAqWUzWOnUcr30a32u+LYIZ6BxWf97mYO/7FVS+xv7W5J0mELzqbg4
+	 v9aD/SOgXFxAb+RcLQxhgY3RzO8SA+TsV9IGSMWS3+HHKDNibtO0/nTCTxIY3/pDtb
+	 XYdMzRV2J96o6C2jwFSEoZgPdsdRhkHf3MNi06StgLhEL54ZUk7in+6CcnyngPGZTV
+	 tLbb+VdnVXOOSOWF2ffkr1LSL1pe0XQ5n6uf5D1qiKWTo+eoyYMGgzcuSAMl7bMAb3
+	 TL66NN8EzfcplXm6VcYiCgwoll9/7q0KYdFGD4vM13tEHN8kc5dcAix3Ch2WYxqaqN
+	 9DbYTedQtlvOg==
+Message-ID: <601550a5-da3b-4311-965d-ce65f6fdd337@denx.de>
+Date: Mon, 13 May 2024 16:20:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240510-b4-iio-axi-adc-dt-binding-tweak-v1-1-a1f633c4602c@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/11] dt-bindings: net: add phy-supply property for
+ stm32
+To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+ Rob Herring <robh@kernel.org>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+ <20240426125707.585269-3-christophe.roullier@foss.st.com>
+ <20240426153010.GA1910161-robh@kernel.org>
+ <a2a631a0-9a16-4068-aed2-6bdaa71e3953@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <a2a631a0-9a16-4068-aed2-6bdaa71e3953@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Fri, May 10, 2024 at 04:04:38PM -0500, David Lechner wrote:
-> It is always recommended to use generic node names for devicetree nodes.
-> The documentation [1] of the AXI ADC IP core says "The most important
-> part of the core is the Receiver PHY module.", so using phy as the node
-> name seems appropriate.
+On 5/13/24 4:06 PM, Christophe ROULLIER wrote:
+> Hi
 > 
-> [1]: https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
+> On 4/26/24 17:30, Rob Herring wrote:
+>> On Fri, Apr 26, 2024 at 02:56:58PM +0200, Christophe Roullier wrote:
+>>> Phandle to a regulator that provides power to the PHY. This
+>>> regulator will be managed during the PHY power on/off sequence.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/net/stm32-dwmac.yaml | 3 +++
+>>>   1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml 
+>>> b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+>>> index b901a432dfa9..7c3aa181abcb 100644
+>>> --- a/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/stm32-dwmac.yaml
+>>> @@ -84,6 +84,9 @@ properties:
+>>>             - description: offset of the control register
+>>>             - description: field to set mask in register
+>>> +  phy-supply:
+>>> +    description: PHY regulator
+>> This is for which PHY? The serdes phy or ethernet phy? This only makes
+>> sense here if the phy is part of the MAC. Otherwise, it belongs in the
+>> phy node.
+>>
+>> Rob
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> You are right, normally it should be managed in Ethernet PHY (Realtek, 
+> Microchip etc...)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> index e1f450b80db2..9cad4c439045 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> @@ -57,7 +57,7 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    axi-adc@44a00000 {
-> +    phy@44a00000 {
+> Lots of glue manage this like this. Does it forbidden now ? if yes need 
+> to update PHY driver to manage this property.
 
-phy should be used when there's #phy-cells which is not the case here. 
-'adc' is somewhat standard. Or maybe it should be tied to 
-#io-backend-cells.
-
-Until we have something defined as ti what it should be, we should just 
-leave node names alone.
-
-Rob
+If the regulator is connected to the PHY, then the supply should be 
+described in the PHY node and you wouldn't even need these PHY patches 
+(also see my comment that you should split the PHY regulator part of 
+this patchset into separate series).
 
