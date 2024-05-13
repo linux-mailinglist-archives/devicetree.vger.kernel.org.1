@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-66590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1C08C3D94
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 10:54:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E00498C3D9C
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 10:56:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 003AA1C202ED
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 08:54:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96BAA1F222C2
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 08:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F51F148309;
-	Mon, 13 May 2024 08:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD5C148313;
+	Mon, 13 May 2024 08:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aeE2MdTM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="For2Uvzn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2025A1482FE;
-	Mon, 13 May 2024 08:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC2B14830E;
+	Mon, 13 May 2024 08:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715590442; cv=none; b=IVRbtAGp76XxHt+9QMQ40djE1HgW79QIkx3Yn24wi7W5GldfosACvMbx+HmcynTBENB5cdkxGzB5zq5Dd8nvz4VUqDrmUhFyxWwiD5LBc2QmVm4/GuQhQCw0hgKUi5hulIhXvMuAjcyLgiGlOD04p8gM8jpbyqZZsPC+K6EwoVY=
+	t=1715590575; cv=none; b=pFjc/zMDzjevTUUsp07U7Hha8gTsAyhfZzeslQeHky0vuEWsnG90wOy0yB8arY6B38XAwOqugKKL4rjiFI6YTuwMcuTpxMrI+RFjPRCIchYxxaJ0KomCUFGU3fvNKYY2lWzT4u5gpARw0j2FDiusNYb+aRjoat9z+pLuuLn3Aoo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715590442; c=relaxed/simple;
-	bh=U5RxhLu8lpk7MZX4XMAs7c/A8C55vbBGbUfKuiSKxMA=;
+	s=arc-20240116; t=1715590575; c=relaxed/simple;
+	bh=ZVgnAhf7mtm8J9Z9AUD+3eXKHZVcTgNyUjiO04JfAEo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E3/E/myxHdAE3XCn4okpYY1otbs2eFgaGQ9TXTXJRsJLFcJwUsXcWFsHfc+kaV38aHqo5MRTqt6cEy9kB2HkHxdE2b3cjgwojQDpugoLhvOE03fd/edwx+l/5++VbWdMtpHG1L4mZh6lQcMx9KKpml8Z5BefZlQDNrEJPcDuPMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeE2MdTM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AA68C113CC;
-	Mon, 13 May 2024 08:53:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=euuayUtT0UJiZNepNAMcPIvjXY5EeOh+eAI/U8kJJd3T/V29+1JIFCjka/dXHSKQZgLgjZShvf4PlOXJT29uWkK+TCQGZG34rRv4coa1ZvLBAECKclgU0wbFdP3HGicniJR+n8cevoCBORRqLzwexhhw8hrGC0siyE0Gks8IMqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=For2Uvzn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E14C2BD11;
+	Mon, 13 May 2024 08:56:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715590441;
-	bh=U5RxhLu8lpk7MZX4XMAs7c/A8C55vbBGbUfKuiSKxMA=;
+	s=k20201202; t=1715590575;
+	bh=ZVgnAhf7mtm8J9Z9AUD+3eXKHZVcTgNyUjiO04JfAEo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aeE2MdTMaNi4wVTODcpB1tfETmMzXDwWIVLZIBQAcpJLbSoovq0IwI4mhi+zDzXPa
-	 iALtiUU1/o/3xxzzifWc6zlMCJbOnhOqgM+wKHCDsJQfDGdGfDj6Y1yLN7GceH62v6
-	 mR4MOdR+K/gJH4y9u5Ja14L2mnFXcVTl6QnKSVQVrGJZ0g4ps7vBhixsEmaoh9eaKK
-	 FXjTD0PtKU9y4qUpl4DTjCItAzW/99cvrBme2XbPqFGgQSSWKZHFsaayyqzQQZMW5l
-	 dis2b15OfbIHeCZYU8SNxHmGEuT5m3EHGilhIeJ33fRNP1U7iVXQVhp7ugOS/fUp20
-	 Z4xsblBlX/aSw==
-Message-ID: <91fa1c1f-22ea-4f4a-9d87-a919ddf118cd@kernel.org>
-Date: Mon, 13 May 2024 10:53:57 +0200
+	b=For2Uvzn6W7HsSZv10gOcoBy0Tc73BVSONx+icRWHSOE0kgv7VuUVVcoMgYUbudPh
+	 URxT07SFNNbZiix9gdxmrcmdc87o/0fGs1Kg3tRNhbnNx28kXqXB2TNSSwT7l4tIwM
+	 gwWNX1ftv/aEqT6W9+7JdHce0FJuQaK0AxlMkv9gdvCQkDrqjOePEZZbpW/5wRB118
+	 knUCfg9d37+0QEN3ckh9q4DRRZ8kv65JG5zwGrtYv7O6oSOE/LKlSMXzi9aEPhemYI
+	 fYz4aREtW3aLQk6YdCXMOZnu8TMgnYmEMlEjTFbkQ8D7NKwpkZ0v0DGyWEmei6X/sK
+	 jeURUhYL9VUYg==
+Message-ID: <829162d0-2fef-4bbc-9417-13e8ca96150c@kernel.org>
+Date: Mon, 13 May 2024 10:56:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: es8311: dt-bindings: add everest es8311 codec
-To: Matteo Martelli <matteomartelli3@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240510131238.1319333-1-matteomartelli3@gmail.com>
- <20240510131238.1319333-2-matteomartelli3@gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Move some common usb node
+ settings to SoC dtsi
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240513084701.1658826-1-quic_tengfan@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,39 +103,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240510131238.1319333-2-matteomartelli3@gmail.com>
+In-Reply-To: <20240513084701.1658826-1-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/05/2024 15:00, Matteo Martelli wrote:
-> Add DT bindings documentation for the Everest-semi ES8311 codec.
-> 
-> Everest-semi ES8311 codec is a low-power mono audio codec with I2S audio
-> interface and I2C control.
-> 
-> Signed-off-by: Matteo Martelli <matteomartelli3@gmail.com>
-> ---
->  .../bindings/sound/everest,es8311.yaml        | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/everest,es8311.yaml b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> new file mode 100644
-> index 000000000000..54fb58b9ab58
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/everest,es8311.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Everest ES8311 audio CODEC
+On 13/05/2024 10:47, Tengfei Fan wrote:
+> All the board dts which base on SM8550 SoC dtsi refer to usb_1_dwc3_ss,
+> usb_dp_qmpphy_usb_ss_in, orientation-switch and usb-role-switch, so move
+> them to SoC dtsi from board dts.
 
-This looks exactly like es8316, except of later added port. Are you sure
-you are not planning to add port later, which would make both schemas
-identical?
+That's not really a good argument. Argument is that it is a SoC property
+(vs being a property of a board). Provide rationale for that. You are
+moving things just because they look common, so to me it looks really
+unjustified.
+
+> OTG is default for dr_mode, so it can be dropped from board dts.
+
+Separate patch, see submitting patches.
 
 Best regards,
 Krzysztof
