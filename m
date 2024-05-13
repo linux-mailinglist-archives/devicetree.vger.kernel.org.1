@@ -1,125 +1,105 @@
-Return-Path: <devicetree+bounces-66698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40ACF8C4497
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:52:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B2E8C449E
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:52:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D51381F22FD3
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:52:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 617CDB231DC
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB288154440;
-	Mon, 13 May 2024 15:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF2B154BE4;
+	Mon, 13 May 2024 15:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K+xo1SsW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/ylobXw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4BA154427;
-	Mon, 13 May 2024 15:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45275154454;
+	Mon, 13 May 2024 15:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715615516; cv=none; b=VDDRzd1PEfdU8Zak/hDmRhxw06D4wWcF05Wm0znB/quyxyBjsghdYQQu3wEeRWnK/9v9vYDMB26OD8Obq82dILynEmzNRPMjv1aGh/MWacCu4zCmpveZp+pNJMIqoF1lCpVryv8KCgtuwxt5qb/gBao/i8yRvC7FrNTSNJYy4mM=
+	t=1715615549; cv=none; b=L8UdWHWTzyZ9Pb9nUWyqRZtTgiKpN3ciSWpJx7QzazSVWmGYvpys70oOyA2TUphThWFuj5JnQzl0osq/tTRi+7sutydzIVxjX3e6FJrqnxoy6LlmLHcuEXrXMRRXX7bVHQWVCE07Q+ZtU0l9qeZUFxLh8IoNxKaN1s3HBLmafYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715615516; c=relaxed/simple;
-	bh=8dI/ebZzuVSd46EGsZIVX9qJ10BBglNLC/rRfmEYLmE=;
+	s=arc-20240116; t=1715615549; c=relaxed/simple;
+	bh=75oUXoThArbKO9d+Z2VBTAalA0tvT0Hl3rs3i7zDhpo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DpcYDoMo5duitDW/30wLvA0lwUaVfFb9bxHJ5cndJldlgboIZY3i0gVBbFoFCvWychsdD6RegTujWjWHZRUMZrSLxHXxbXR7EZcLAQE02icH/3ZWClJAyihq93wfMar1qDswxPsq93qZJlWiUXGKlOTEmrYcOE1jOxfKC3SWZx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K+xo1SsW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D99A7C32782;
-	Mon, 13 May 2024 15:51:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cLeU8tqnUPUejVam7XJci36zGcoLfiHS8noLV7yyNURcRplygSsYC/cIILY4Npjf+nh/l6I1gA/ygUi0aG4/TYhnai/x1lRMabd0T+Rkdq30ULaYQz8nHj49J0yKSZ84hiEukgFS76bIYGr2WReXuW9G1HETvmsjCNOjCWDoLVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/ylobXw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87A04C113CC;
+	Mon, 13 May 2024 15:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715615516;
-	bh=8dI/ebZzuVSd46EGsZIVX9qJ10BBglNLC/rRfmEYLmE=;
+	s=k20201202; t=1715615548;
+	bh=75oUXoThArbKO9d+Z2VBTAalA0tvT0Hl3rs3i7zDhpo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K+xo1SsWE/bSPQ0qhDZl3DvC1o7yOyMUTU4WGKMMw/FO3pnCWbrlZFDwuuSn/ixji
-	 6O3XNwURKgOK0PBto6YvTInxCrvKfGp/2xLQDW+v1GAGT1xKCaq65/rwV8Uz7sTeLa
-	 Vs5Dpq9IL4kJzdber7Jfw8Sac8q/QVcTlGfy6n187TxwvfueliPoI8iEU6UjKTmN46
-	 4gcrFZ+OdtkjKShI5LVXWQq/kWVUSp2bDJhbLv4QW27GaeLo5MRskrNd4f4plkFS58
-	 z19rNBamJbmlCiwWn/MCfEgCxSB97G08ctY6DbU9wiLPCnL1qetM+/+/nxU8YTGYZg
-	 js9ynnN9rBvNQ==
-Date: Mon, 13 May 2024 10:51:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com,
-	joel@jms.id.au, venture@google.com, yuenn@google.com,
-	benjaminfair@google.com, openbmc@lists.ozlabs.org,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v24 1/4] dt-bindings: reset: npcm: add clock properties
-Message-ID: <20240513155154.GA2595523-robh@kernel.org>
-References: <20240509192411.2432066-1-tmaimon77@gmail.com>
- <20240509192411.2432066-2-tmaimon77@gmail.com>
+	b=Q/ylobXwd7VbMVe5SZijuHybR9/viyvDmLqnsjPI5wKdNrwYWOV9ldFMfbYgMjSW3
+	 CT1ar1NzJbZmkRAtbn5WLVNOxJKSJWm9n4yiHl75DDaX0eCqrgOR4+Jx2bq9/up9Nf
+	 frU78yhv9D+8CZwH8XqhNZcObRSxLJxqY096ijIm+pQ/SOaGG9xYrG8r1AYAjcl8Wk
+	 23yXpcQwUIuaYpr+1W0EzoxJbOSoQiDmgj1FAmXmpsJbPWjSXcPqb7glY1tevr3jHn
+	 hXMfdIP6cAEGP0zy8SpJyz5VoUIt+PlmlXmvhAB84ZEVOGBlQ4Al9k0s704R9UU3e1
+	 iAe6gIP0jxQqQ==
+Date: Mon, 13 May 2024 16:52:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: imx: Support i.MX91 IOMUXC
+Message-ID: <20240513-unmarked-lurk-70edc676de22@spud>
+References: <20240513-imx91-pinctrl-v1-0-c99a23c6843a@nxp.com>
+ <20240513-imx91-pinctrl-v1-1-c99a23c6843a@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IB6mHrhOGrSkI2CG"
+Content-Disposition: inline
+In-Reply-To: <20240513-imx91-pinctrl-v1-1-c99a23c6843a@nxp.com>
+
+
+--IB6mHrhOGrSkI2CG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240509192411.2432066-2-tmaimon77@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 09, 2024 at 10:24:08PM +0300, Tomer Maimon wrote:
-> Adding 25MHz reference clock and clock-cell properties to NPCM reset
-> document due to the registration of the npcm8xx clock auxiliary bus device
-> in the NPCM reset driver
-> 
-> The NPCM8xx clock auxiliary bus device has been registered in the NPCM
-> reset driver because the reset and the clock share the same register
-> region.
+On Mon, May 13, 2024 at 05:20:46PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> i.MX91 and i.MX93 share similar design. They could share same dt-binding
+> doc, so rename fsl,imx93-pinctrl.yaml to fsl,imx9-pinctrl.yaml and add
+> i.MX91 compatible string
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-auxiliary bus is a Linux concept. The reasoning for this should be the 
-reset block also provides clocks.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  .../bindings/reset/nuvoton,npcm750-reset.yaml  | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml b/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> index d82e65e37cc0..18db4de13098 100644
-> --- a/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> @@ -21,6 +21,13 @@ properties:
->    '#reset-cells':
->      const: 2
->  
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: specify external 25MHz referance clock.
+--IB6mHrhOGrSkI2CG
+Content-Type: application/pgp-signature; name="signature.asc"
 
-s/referance/reference/
+-----BEGIN PGP SIGNATURE-----
 
-> +
->    nuvoton,sysgcr:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description: a phandle to access GCR registers.
-> @@ -39,6 +46,17 @@ required:
->    - '#reset-cells'
->    - nuvoton,sysgcr
->  
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - nuvoton,npcm845-reset
-> +then:
-> +  required:
-> +    - '#clock-cells'
-> +    - clocks
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkI3NwAKCRB4tDGHoIJi
+0pgzAQD3d1IeZ8b0wLTFJJ95fjJ2Q609ddPtd03Luv1hdENw4AEAsk0RA/+UlonM
+ssqf2EyqMRFAysuP6wxT2tTHB0c1RAY=
+=hAAr
+-----END PGP SIGNATURE-----
 
-New required properties are an ABI break. Please justify why that's okay 
-for this platform in the commit message (assuming that it is).
-
-Rob
+--IB6mHrhOGrSkI2CG--
 
