@@ -1,90 +1,91 @@
-Return-Path: <devicetree+bounces-66716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE758C454A
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:49:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DE938C454E
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:50:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CAB51C20EC8
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:49:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E2E31F24975
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47AC218645;
-	Mon, 13 May 2024 16:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41561CD23;
+	Mon, 13 May 2024 16:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NpnRh7uT"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="azX4gpeF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66ED1CD06
-	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 16:49:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B641C6B4
+	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 16:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715618994; cv=none; b=EJwrsM2ep+U/dnKYWpGx5EeF2d/QVio2Q7r0/ra45ad9kPzl+r6CkHPGzZI5PGQeuUkNWEYJYcBbNJPeSB+iXWPWW9pz3pTiKTye2H/vZrfYYny2u23IsWIStRpIjQxO6+IEcRy/mSE94ubRYKrR3SEX+z5k0kc4dJAKblzoWo0=
+	t=1715618998; cv=none; b=ZoJKhvP+4hPa+e4yFSmYHB1xx52DsfmhLBPJrFbXF3nbXlQX4M50s75+DQB63kBXMKrXIWsGosMRMb5Vrnj8U3vyB8/OzwivySranqSzXPCzeX1qU4fVmm+AFCyFlgMcD8yOFSwv7Z6j6R5ONx3llTwVfzhXHn3X/tshPtGm6+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715618994; c=relaxed/simple;
-	bh=4bm01R6KNRYKHHRMimoIwQnyE5W3reBvqA9AAwp8soo=;
+	s=arc-20240116; t=1715618998; c=relaxed/simple;
+	bh=cj8rJejB14OhovDU7mN2qrJaZ+XHTVvKDLhBqzNr4WE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cO+LGIkDhJa6fEa/0xGrWyNoD7VZNvpCI5bINy0u7BWBmQ1j6ZtcOz7zhNWn2HEP6SomhP1ojxg84Q3v3QI8voNveW5Q0FG0npGi0lafT409pZAewM79tp3vk1BsNtidAo3e9bF1K3uEj22lQod/m6IfzObLei9497k2+dqzVTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NpnRh7uT; arc=none smtp.client-ip=209.85.222.170
+	 To:Cc:Content-Type; b=YaDT3il5WsUGfCYGLt+W7RJdFNDPwMuf9D5j/x49J9O5dHPiNXaUs4nx1MK89XeNHX7tH8XwgZUH8oXxq4ca7XgzvKnE6r9/0ehOTW9X0Ff9I6eFq1Be8k/Y3EWE9Xsyl4z3nKoLxdFAGYiIJiaatU5dxVXDc6z8WHOD6J3WJl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=azX4gpeF; arc=none smtp.client-ip=209.85.219.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-792bd1f5b38so385971285a.1
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 09:49:52 -0700 (PDT)
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-69b4e94ecd2so13433176d6.3
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 09:49:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1715618990; x=1716223790; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1715618995; x=1716223795; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hJRwL4tnfvW/OsRQWszZHG+HVl8OHZr6t0b1afINm14=;
-        b=NpnRh7uT0rZUW8v1HqcNO+XyFtfi5uFL7inxpMezypC+uP9S69YDxHqxwt9JXhEs08
-         HWF7TIHQFbQbr4vZKt+3MT0Qj+jHgZiMDRMC7hEpWqQjEGAXcry4KUMGd7IqdNsYPKOn
-         J9toFwlvDmBmC+HV7f4icsEiGKwiA4W+TOAVc=
+        bh=1OM85BfQlIgcnJ/1dV+4zfpQvFXRIYFAfmerK9P8RRU=;
+        b=azX4gpeFnFJT1bEUgjp5fVQU8jCrlZZBslVjLISrBW91WwSjWPnVoBIRYfmSlLrCcP
+         v2nAptkjYd68mAhO4VnAMyKgYACUg17Zftpk8PogOY1+PNAp1nYZalbzqC4V4Ws9RZ9q
+         QmPNENomLDSSIjONYiYdPtmuppVZBU6WVZLp0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715618990; x=1716223790;
+        d=1e100.net; s=20230601; t=1715618995; x=1716223795;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hJRwL4tnfvW/OsRQWszZHG+HVl8OHZr6t0b1afINm14=;
-        b=nSFfDW5+qLfyBRd8+WnYxwtIpSYyL+zcNyuFmYhtaETUK3SGykZs3/a67n4OVi9riI
-         rXPnFlmfhQBI7kQWnTdEXfyQO+SW9lfUErvhcE7bKprZEeJlZMyv59QSmJvK3d+VZmUf
-         fj/g1/66yszAHlg6q0xI5KqbSqbNGZXomqr/0Gt4BHwC2J+WPZl67YgiHgs8CC5au5c1
-         KEi2ppnIIwbLGsZ36yH6iOedOq7DLy4IOdOHqla32Ql0AmyRzX1Zt6ozCqWspjeIeIDI
-         m3CPMz3Sws3oGUgy5x2GtGL3xGZ67n9hLptNtcnYaKwVDSAb4QOotb5Ha6T67IVG/k0Y
-         kv5w==
-X-Forwarded-Encrypted: i=1; AJvYcCXdKbWs28ZHV0Y8oZO5BzOeJLwrBzI2iEXcCXxOoUO9Ha1qogCGzlbXVaLwX11sNYsR2oO2ZwEiy0maTv0rklMF3EBN83w06E2Urw==
-X-Gm-Message-State: AOJu0YzEstVsdoj+2lNzcWbPSm6n20dIy2oiSwosS/Q84Cj/+2vfMaxq
-	7/AfF4DZtHvyzX61QsLqK1U5GPmRpKDxOJHqCD5FWwmuF+LxpruBrSHEfJB8kzznuulDI2pXBAg
+        bh=1OM85BfQlIgcnJ/1dV+4zfpQvFXRIYFAfmerK9P8RRU=;
+        b=wX5mTcinUFB0NvYR/Eb9TQ9o/STImu0fgfhhGQ+hlNlZPmiHqIbVy0l7qMth7NlULy
+         ZlRl2mtKM3PBdZ6Am5LGyqufaWQ14BeCzM4wFMumWe6GT1GfMVri7e3c9OL5BtBQWv30
+         9+HePTchKK6Q3px1N38Es9AQZ8a5QTDzBuAzx5d5n75avBfAyGsjKia1qf78xMpXb8Nj
+         CDtUPO9gleAMtq7fpMTxkdroJQ/n1wIGjYpOgGvqknc+iTjXmDYe4xqaX7yU1O/LkuQE
+         Lytk86QIuy/oS1jXZn9Qi21IF+awRFzQfm0CgWbn83oJBn5Q6D6E3MVHbf8pctaj5des
+         z74A==
+X-Forwarded-Encrypted: i=1; AJvYcCW91wSRVQHdwLFjpn5MMF+53hi7nY/Knmg1/5dVyWv76m7LNVsT+aJs9xQ5JUHUApWPinJqRSmzyd8jKFgtKiA9Ek9x/xWhioE/1A==
+X-Gm-Message-State: AOJu0YxZbpWo/1z1HFSv5cQKG21Km+2CbynjeNcwfgS+fkJLvfVJlQdM
+	TVGBcTRkaEMNLaKEmC0uNaWlofGnfRl2uxfOEhtdln5eu/ASnOFIiN84OV6h/be37FpzKp/z8HI
 	=
-X-Google-Smtp-Source: AGHT+IFgeVgq8L8tYOI4qycxCWbnTtZdoKmS+JTUer3dIgvP4iFvAtcBAIdw7SijzFpiey+z+wQhZw==
-X-Received: by 2002:ae9:c009:0:b0:792:c268:fbf0 with SMTP id af79cd13be357-792c7576ff6mr1066186685a.6.1715618989778;
-        Mon, 13 May 2024 09:49:49 -0700 (PDT)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com. [209.85.160.172])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-792bf27f78fsm469445885a.30.2024.05.13.09.49.48
+X-Google-Smtp-Source: AGHT+IHrue+hdHBeBE4wl5moHUO/PxYrDR9zd4dE+TVhK3p6WnuVzcddQ1P47/zP4XCA3NHg8T8qPQ==
+X-Received: by 2002:a05:6214:4803:b0:6a0:cace:1ae4 with SMTP id 6a1803df08f44-6a16823513amr124460096d6.46.1715618994564;
+        Mon, 13 May 2024 09:49:54 -0700 (PDT)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com. [209.85.160.171])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6a15f205d88sm44884366d6.144.2024.05.13.09.49.52
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 May 2024 09:49:49 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-43dfe020675so846991cf.0
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 09:49:48 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWNtIWs+2UlHhtUcK53dlLGos7rrp3TLIjOivykUOzm4VL+iNNHeRU2nZBu//Fii6/N1YLOg2SbqM4Zuo82PHC2tnNziBuieCGzRQ==
-X-Received: by 2002:a05:622a:1c15:b0:43a:f42f:f0b4 with SMTP id
- d75a77b69052e-43e0a22b948mr4322661cf.13.1715618987646; Mon, 13 May 2024
- 09:49:47 -0700 (PDT)
+        Mon, 13 May 2024 09:49:52 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-43df9ac3ebcso766921cf.0
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 09:49:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX6tnGA4BhLqEGx2ZNZNstyQsEIz8Q7Lc/fOhlKzK9ufqR1uTTQHKaB9P7TdNem1Bq+nqPVNLp+qAOac7vB/MVnXz2xXF602/pTeg==
+X-Received: by 2002:ac8:6f0d:0:b0:43b:43c:2e05 with SMTP id
+ d75a77b69052e-43e0a223775mr4615311cf.19.1715618991681; Mon, 13 May 2024
+ 09:49:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240511021326.288728-1-yangcong5@huaqin.corp-partner.google.com> <20240511021326.288728-3-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20240511021326.288728-3-yangcong5@huaqin.corp-partner.google.com>
+References: <20240511021326.288728-1-yangcong5@huaqin.corp-partner.google.com> <20240511021326.288728-6-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20240511021326.288728-6-yangcong5@huaqin.corp-partner.google.com>
 From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 13 May 2024 09:49:31 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Xm99c3t_LGiHCBaJVKfurD7_SO1Wcxk73gZgftS7jEcw@mail.gmail.com>
-Message-ID: <CAD=FV=Xm99c3t_LGiHCBaJVKfurD7_SO1Wcxk73gZgftS7jEcw@mail.gmail.com>
-Subject: Re: [PATCH v6 2/7] drm/panel: himax-hx83102: Break out as separate driver
+Date: Mon, 13 May 2024 09:49:39 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XrmxSV1O2S+Z2_n11=sh7WACvg24xiAquGTMMFFGDEPg@mail.gmail.com>
+Message-ID: <CAD=FV=XrmxSV1O2S+Z2_n11=sh7WACvg24xiAquGTMMFFGDEPg@mail.gmail.com>
+Subject: Re: [PATCH v6 5/7] drm/panel: himax-hx83102: Support for BOE
+ nv110wum-l60 MIPI-DSI panel
 To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
 	linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
@@ -100,66 +101,47 @@ Hi,
 On Fri, May 10, 2024 at 7:13=E2=80=AFPM Cong Yang
 <yangcong5@huaqin.corp-partner.google.com> wrote:
 >
-> +static int hx83102_prepare(struct drm_panel *panel)
-> +{
-> +       struct hx83102 *ctx =3D panel_to_hx83102(panel);
-> +       struct mipi_dsi_device *dsi =3D ctx->dsi;
-> +       struct device *dev =3D &dsi->dev;
-> +       int ret;
-> +
-> +       gpiod_set_value(ctx->enable_gpio, 0);
-> +       usleep_range(1000, 1500);
-> +
-> +       ret =3D regulator_enable(ctx->pp1800);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       usleep_range(3000, 5000);
-> +
-> +       ret =3D regulator_enable(ctx->avdd);
-> +       if (ret < 0)
-> +               goto poweroff1v8;
-> +       ret =3D regulator_enable(ctx->avee);
-> +       if (ret < 0)
-> +               goto poweroffavdd;
-> +
-> +       usleep_range(10000, 11000);
-> +
-> +       mipi_dsi_dcs_nop(ctx->dsi);
-> +       usleep_range(1000, 2000);
-> +
-> +       gpiod_set_value(ctx->enable_gpio, 1);
-> +       usleep_range(1000, 2000);
-> +       gpiod_set_value(ctx->enable_gpio, 0);
-> +       usleep_range(1000, 2000);
-> +       gpiod_set_value(ctx->enable_gpio, 1);
-> +       usleep_range(6000, 10000);
-> +
-> +       ret =3D ctx->desc->init(ctx);
-> +       if (ret < 0)
-> +               goto poweroff;
-> +
-> +       ret =3D mipi_dsi_dcs_exit_sleep_mode(dsi);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-> +               return ret;
-> +       }
-
-The above should have been "goto poweroff", not "return ret".
-
-
-> +       msleep(120);
-> +
-> +       ret =3D mipi_dsi_dcs_set_display_on(dsi);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to turn on the display: %d\n", ret);
-> +               return ret;
-> +       }
-
-The above should have been "goto poweroff", not "return ret".
-
-
-Other than that:
+> The BOE nv110wum-l60 is a 11.0" WUXGA TFT LCD panel, use hx83102 controll=
+er
+> which fits in nicely with the existing panel-himax-hx83102 driver. Hence,
+> we add a new compatible with panel specific config.
+>
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+> Chage since V6:
+>
+> - No change.
+>
+> V5: https://lore.kernel.org/all/20240509015207.3271370-6-yangcong5@huaqin=
+.corp-partner.google.com
+>
+> Chage since V5:
+>
+> - Adjust inital cmds indentation and check accum_err before calling mdela=
+y in init()..
+>
+> V4: https://lore.kernel.org/all/20240507135234.1356855-6-yangcong5@huaqin=
+.corp-partner.google.com
+>
+> Chage since V4:
+>
+> - Depend Dous'series [1].
+> [1]: https://lore.kernel.org/all/20240501154251.3302887-1-dianders@chromi=
+um.org
+>
+> V3: https://lore.kernel.org/all/20240424023010.2099949-6-yangcong5@huaqin=
+.corp-partner.google.com
+>
+> Chage since V3:
+>
+> - inital cmds use lowercasehex.
+>
+> V2: https://lore.kernel.org/all/20240422090310.3311429-6-yangcong5@huaqin=
+.corp-partner.google.com
+>
+> ---
+>  drivers/gpu/drm/panel/panel-himax-hx83102.c | 133 ++++++++++++++++++++
+>  1 file changed, 133 insertions(+)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
