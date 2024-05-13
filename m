@@ -1,245 +1,116 @@
-Return-Path: <devicetree+bounces-66769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5FAC8C48FF
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 23:47:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A69838C490E
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 23:59:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D8EF2863A1
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 21:47:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7EE21C20D45
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 21:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F2F83CDF;
-	Mon, 13 May 2024 21:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F7D84A2F;
+	Mon, 13 May 2024 21:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="vSR/QEKB"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="lbAMqkeT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC0283CD7;
-	Mon, 13 May 2024 21:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFF739FD8
+	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 21:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715636862; cv=none; b=XfSQfE1yQEJ9XoaoWo0Dm5DrpmLiYFCsX9hp969qPBs3MJ+4Pf7Hi4vlKhiKP65AOSifKQcsVdyue0/9DZz/g1qRpvxci0lDFIbqNbTlA4rncEHgLDi18KTMN4YN8gGCiVHrcEUlqpICYuFdxjKwMfL+Yz2r07eJynX2J76PKmA=
+	t=1715637540; cv=none; b=DlJgzjfna+N6vyhqUAbb2DIxwaHiQP4fXrs7ePLPtamPK6WGvdk0kuyN/TSpvXYKRLOpBKuFRq6qV4fcWlbR5W9DOV1G836MHl1tfVoZ8+fK+fG2C4o7TN6iL8MoeRoqfwZp+lEICu8m31VEbOk9R1YJ8IQ4OTUOfaO/Zq17648=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715636862; c=relaxed/simple;
-	bh=jDCQIjVqZVc5wUwm1ijALwsy3NpnKwstDOn1Vl7lrQM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SVdmhUskE6OeLjBwMn4Em95AGUtUeBnzwvtj5sqeJgYz1bYwzMmQ+xCxnQKdbFczj+pE2HbyRrqjFQG3/DZ7UT8maw4SkfsnRAwW2tOG2tt+4bGYSkU+vf8cHO/KZ7+EJzrznhePj7ggKq+vKeVS0ddeGvf3w2HVCDiT4ebIAM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=vSR/QEKB; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 591CE12001C;
-	Tue, 14 May 2024 00:47:29 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 591CE12001C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1715636849;
-	bh=ZM+lhNatKFUHF9a5/vTMQlspJzgvNe8FHwZNKI0g9q0=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=vSR/QEKByL5EOOHvOy4bWeZ01VVdtBRk4ratwRSJMeGDlEA7q+1H4RIko65+sPvvw
-	 8pgRVvW9Q5IM2cyfTMoM7glWw6OYHmYHXCzizc1xhHmrRhDMo/Ha+WJAEiu84k30js
-	 HgWDmc6UaAC9mXZ/RPlq/gZ8xo+M2wUUBPwmZJd9eMfyMJ4IMYZ0+vEW73X2Mpz6dk
-	 gWotq29uAjyKzT92Ha++7hStbvYbBoN0E5nCST/lCJZk8/Mr9FnlziwQKoMkUEzVTz
-	 u7V6sXnHeMBol2wYHoVf3qwfp3cnW0QY4cjcO3wjUtbdafjckNvnA4XbPVia0wV49v
-	 v6l6RDAvU8S+A==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	s=arc-20240116; t=1715637540; c=relaxed/simple;
+	bh=2S+Nj2cMmnlwjoeZGV3KjthapZS0GTgX0GekuUClTIY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K0FuwhJv7tkBukWR0j1BV2whgDc9Kp3lmhC/jrh/sljfsYEFIPTQ2SgTcFm6g32frnXS/yxZ1YV/EC0+U4Rt2e7pvpjrE9piz9M6AdQvV7pteS5jml+PP3MD2tGteGnnBCfEirJaz7ET8BOkHviQA+hRB7CsjsSrSP8RTJDlStI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=lbAMqkeT; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 14 May 2024 00:47:29 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 14 May
- 2024 00:47:28 +0300
-Date: Tue, 14 May 2024 00:47:28 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-CC: <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-	<sboyd@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-	<kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 1/7] clk: meson: introduce 'INIT_ONCE' flag to
- eliminate init for enabled PLL
-Message-ID: <20240513214728.g4isbfisifxalqxy@CAB-WSD-L081021>
-References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
- <20240510090933.19464-2-ddrokosov@salutedevices.com>
- <1jfrulzxms.fsf@starbuckisacylon.baylibre.com>
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id D6D8B87BC9;
+	Mon, 13 May 2024 23:58:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1715637531;
+	bh=d7xRaYr7WQ/WAGh0b8NuH1jVV3rJLRs+i7/Qt6CSGrY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=lbAMqkeTtxKlm89+vpzcZkXel+b1s2lBIIxTe8zU9BGms7PdeTCvcQRPFO3m8sAqy
+	 UQxxt9LBuKez5HVdTzezJBpr77a4uSXk6NJ5x91NvaArEu4dwIb+hIpo5qDWlReMTv
+	 GX0qh9gmH2hnOg8LdXg7bWb4zr0zg4vO0w58RDDEVNSKeYq1Lii7ApOoOyPxTGkzX6
+	 9jjbPGl1NB8Nu8JWxSVPo74zrCSeW9IiIWddSjPX+AB7Hnh5QM0zPQ4Rt0iA5lZtAc
+	 zNBVZL1m7f54yKG/r5+6f1BBAJUPTIMjAhzEN3roM2BL+ZKXAMssJHAW59bw6IHzTZ
+	 Ev6zkAAsSMVYA==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] ARM: dts: stm32: Add arm,no-tick-in-suspend to STM32MP15xx STGEN timer
+Date: Mon, 13 May 2024 23:58:15 +0200
+Message-ID: <20240513215835.183402-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1jfrulzxms.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185198 [May 13 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/13 16:04:00 #25186646
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, May 13, 2024 at 02:44:06PM +0200, Jerome Brunet wrote:
-> 
-> On Fri 10 May 2024 at 12:08, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
-> 
-> > When dealing with certain PLLs, it is necessary to avoid modifying them
-> > if they have already been initialized by lower levels. For instance, in
-> > the A1 SoC Family, the sys_pll is enabled as the parent for the cpuclk,
-> > and it cannot be disabled during the initialization sequence. Therefore,
-> > initialization phase must be skipped.
-> >
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> > ---
-> >  drivers/clk/meson/clk-pll.c | 37 +++++++++++++++++++++----------------
-> >  drivers/clk/meson/clk-pll.h |  1 +
-> >  2 files changed, 22 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-> > index 78d17b2415af..47b22a6be2e4 100644
-> > --- a/drivers/clk/meson/clk-pll.c
-> > +++ b/drivers/clk/meson/clk-pll.c
-> > @@ -289,11 +289,32 @@ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
-> >  	return -ETIMEDOUT;
-> >  }
-> >  
-> > +static int meson_clk_pll_is_enabled(struct clk_hw *hw)
-> > +{
-> > +	struct clk_regmap *clk = to_clk_regmap(hw);
-> > +	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> > +
-> > +	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-> > +	    meson_parm_read(clk->map, &pll->rst))
-> > +		return 0;
-> > +
-> > +	if (!meson_parm_read(clk->map, &pll->en) ||
-> > +	    !meson_parm_read(clk->map, &pll->l))
-> > +		return 0;
-> > +
-> > +	return 1;
-> > +}
-> > +
-> >  static int meson_clk_pll_init(struct clk_hw *hw)
-> >  {
-> >  	struct clk_regmap *clk = to_clk_regmap(hw);
-> >  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> >  
-> > +	/* Do not init already enabled PLL which marked with 'init_once'
-> > */
-> 
-> That is decribing the code, which we can read. So not really helpful
-> Saying why you do it, like "Keep the clock running from the bootloader
-> stage and avoid glitching it ..." gives more context about what you are
-> trying to do.
-> 
+STM32MP15xx RM0436 Rev 6 section 46.3 System timer generator (STGEN) states
+"
+Arm recommends that the system counter is in an always-on power domain.
+This is not supported in the current implementation, therefore STGEN should
+be saved and restored before Standby mode entry, and restored at Standby
+exit by secure software.
+...
+"
+Instead of piling up workarounds in the firmware which is difficult to
+update, add "arm,no-tick-in-suspend" DT property into the timer node to
+indicate the timer is stopped in suspend, and let the kernel fix the
+timer up.
 
-Yes, I agree with you.
+Fixes: 8471a20253eb ("ARM: dts: stm32: add stm32mp157c initial support")
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+---
+ arch/arm/boot/dts/st/stm32mp151.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-"Instead of describing the action, provide the reasoning behind it."
-
-I will incorporate your feedback in the upcoming version.
-
-> > +	if ((pll->flags & CLK_MESON_PLL_INIT_ONCE) &&
-> 
-> I don't like INIT_ONCE. It gives the false impression that
-> 
-> * The PLL is going to be initialized once in Linux if it has the flag
-> * Is initialised multiple times otherwise 
-
-But that's how things happen. For previous clocks on other platforms, we
-assumed that the PLL could be initialized multiple times: once from the
-bootloader and once from Linux. We didn't have the ability to disable
-initialization from the Linux side before, so it meant that multiple
-initializations were potentially possible by default.
-
-> 
-> I agree that currently that carefully reading the code clears that up
-> but it is misleading
-> 
-> CLK_MESON_PLL_EN_NOINIT ?
-> 
-
-I have been considering this name and its derivatives, such as:
-
-    CLK_MESON_PLL_SKIP_ENABLED
-    CLK_MESON_PLL_NOINIT_ENABLED
-    CLK_MESON_PLL_INIT_DISABLED_ONLY
-
-However, I find all of these names to be quite long and bulky. It
-reminded me of the WARN_ONCE() function, which ensures that a warning
-message is only printed once. In my opinion, the name "INIT_ONCE"
-accurately reflects the situation.  Nevertheless, if it is your
-requirement for me to change the flag name, I am more than willing to do
-so, it's not a problem.
-
-> > +	    meson_clk_pll_is_enabled(hw))
-> > +		return 0;
-> > +
-> >  	if (pll->init_count) {
-> >  		if (MESON_PARM_APPLICABLE(&pll->rst))
-> >  			meson_parm_write(clk->map, &pll->rst, 1);
-> > @@ -308,22 +329,6 @@ static int meson_clk_pll_init(struct clk_hw *hw)
-> >  	return 0;
-> >  }
-> >  
-> > -static int meson_clk_pll_is_enabled(struct clk_hw *hw)
-> > -{
-> > -	struct clk_regmap *clk = to_clk_regmap(hw);
-> > -	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> > -
-> > -	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-> > -	    meson_parm_read(clk->map, &pll->rst))
-> > -		return 0;
-> > -
-> > -	if (!meson_parm_read(clk->map, &pll->en) ||
-> > -	    !meson_parm_read(clk->map, &pll->l))
-> > -		return 0;
-> > -
-> > -	return 1;
-> > -}
-> > -
-> >  static int meson_clk_pcie_pll_enable(struct clk_hw *hw)
-> >  {
-> >  	int retries = 10;
-> > diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-> > index a2228c0fdce5..23195ea4eae1 100644
-> > --- a/drivers/clk/meson/clk-pll.h
-> > +++ b/drivers/clk/meson/clk-pll.h
-> > @@ -28,6 +28,7 @@ struct pll_mult_range {
-> >  	}
-> >  
-> >  #define CLK_MESON_PLL_ROUND_CLOSEST	BIT(0)
-> > +#define CLK_MESON_PLL_INIT_ONCE		BIT(1)
-> >  
-> >  struct meson_clk_pll_data {
-> >  	struct parm en;
-> 
-> 
-> -- 
-> Jerome
-
+diff --git a/arch/arm/boot/dts/st/stm32mp151.dtsi b/arch/arm/boot/dts/st/stm32mp151.dtsi
+index 3b705e7fe5c0d..68846699b26fd 100644
+--- a/arch/arm/boot/dts/st/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp151.dtsi
+@@ -50,6 +50,7 @@ timer {
+ 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+ 		interrupt-parent = <&intc>;
++		arm,no-tick-in-suspend;
+ 	};
+ 
+ 	clocks {
 -- 
-Thank you,
-Dmitry
+2.43.0
+
 
