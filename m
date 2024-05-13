@@ -1,732 +1,1361 @@
-Return-Path: <devicetree+bounces-66722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25B48C456D
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:56:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4E08C4570
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:57:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18B211F222AE
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:56:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C73228466F
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836ED1B94F;
-	Mon, 13 May 2024 16:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C651D1CAA6;
+	Mon, 13 May 2024 16:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hcTDf93o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jpEa0RXD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E1B22331
-	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 16:56:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8191C6B4
+	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 16:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715619402; cv=none; b=jVFPXoYiye8aEs/Up5oloaRUILCnyQJbgiVhGRHgt+MYYtZ1rcsB3jXPPcg6mS38uJG5KIsQ2HV7CyP6BTmsDn3NAGL0DbgkaLQ0wSX/r7IMTE/iBuYD7Fa5vMmnolYDOyG9ljw/OO5elk8tiVvDLzHL9VhfGDaiXFFonKvihk8=
+	t=1715619404; cv=none; b=OGSqKhhocZI/CCEl6mW4EqotBd4V2oAUBq/AwFetVAwbFKUTyic+JgG/aVN3MmgxJfgbQHGSbd6X0s948Ncl3J0IitvowmQK0UWgLEkZlq7d+NByB8UUyecPiZkUI0cWnUbCI4Ek5U3C73QYjbS0Ndh6rnmnKlPhY3rjhA7zB5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715619402; c=relaxed/simple;
-	bh=DGcXKTxrE/8EcGRNkXE90qCzUbC3/CI6HD/dP8pZ0UY=;
+	s=arc-20240116; t=1715619404; c=relaxed/simple;
+	bh=257tg1ecO2+jjI/+GDVDoynBQ49K/tx40Go05H2ZTHU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ARV6AF0hD4W2HcDP72OX8upO/f3P/e4aWaVfQhjAkY8AZJtwHPCoWIincYkiOzcrhwswR02dBWh0qolnk2S/chXVO6B9w4tdAvCFJIXXwqclWfkhpFngeS/K1JpDy4bGW27vGgdC0vGxlbT7q5+oiOlVdTxcow/DfyyGAsyYxD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=hcTDf93o; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6f5053dc057so1127363b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 09:56:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715619398; x=1716224198; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=VK8vYit8+gdtU6flQEkqpwhK6a5E14jjPOZSmkE0mPU=;
-        b=hcTDf93ogUg/bzGeX7rgLqSmN0+VB/We1A2bE1FguXPfyhAIwLhuIvtUvmls9kwry1
-         bj6GgkFmdF8m48uSz5X62K1EtRaUh6aC7qV7sz6gn16QSnNfwVStjQUi9GW3d3Ut/mFr
-         hguZzIY3zyW4mBCFngemrbfbx2gQnO4Cuq7l6uvX40vqL4AHPAqQupJzYWrYnLLJM2in
-         y4znldI9Lk4IPmtISks2x65fp6IEckG0ko9pDW7oycM0IIrN0FkE4nYlk6QQTbp0VIjN
-         0ENiucpy7v5kwws2h3SZnhw3iFnRYfnlSNoW08mwZLQ7KvwTS+Yhrr9aKEJ3fyag9OeP
-         jgeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715619398; x=1716224198;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VK8vYit8+gdtU6flQEkqpwhK6a5E14jjPOZSmkE0mPU=;
-        b=qms5fII09T7x3ONBhapWTG0aqbX7RE3xgUE5tvxzxtz6CM1TGQ1wPkfknIdls4Js50
-         KuzzJYoEHJUbRwshVM8+xu0XkAKX8cZF0gGsLsvTzXcmtg2kYamsXn0Gwlacn5vOn303
-         c6hUaXkxqQ6uUm/EAuYfY308l5VQJSb+3aFd9GTliWRXuLV16S82e+q+tDCUOMEN/dPa
-         XzAwXJEfWE4DbqcAdkgLAKiEU7jLLXGDZgQkAN5IW67MKkeDbLzQfCAACa1jZOkhWkaO
-         2T/1aFVui7xHeUBcsejEMzK/i9Yr9u0FzIN8YS0Z2RYN8HNWnybZuwh9WhnFM1JaeJPJ
-         GwBw==
-X-Forwarded-Encrypted: i=1; AJvYcCW4TL0+mnJEHmoKk1GL7h33UrIpC41QhFDJwrX4Taj9ekTlfMGcbvAWHxRoZ/S0NfUhqHOLk3waaOp9CnrDSDyX6vhpN9jwepx0oA==
-X-Gm-Message-State: AOJu0YwSG2S4qu3+Giub1Rbh89MRD4oOo/Jj1ayXcGG3RxUOEljm8zgX
-	DAKJUKJOLQaapZJOEQThuflkoRJ1ddNT2TJ+I24FRhYbu2jKCicOl1kcOA6HfsQ=
-X-Google-Smtp-Source: AGHT+IHajz6ulNGvu1i/yT1eA7FdMl4NaAuxDNWOd+7lvJAt6WrPn9Bnm6rDLbkRgAASe47XyhLGBg==
-X-Received: by 2002:a05:6a20:7350:b0:1af:a72e:8b7e with SMTP id adf61e73a8af0-1afde1b6f32mr13102711637.50.1715619397966;
-        Mon, 13 May 2024 09:56:37 -0700 (PDT)
-Received: from ghost ([2601:647:5700:6860:3a68:91f5:da04:ef09])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2a87bb1sm7592789b3a.87.2024.05.13.09.56.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 May 2024 09:56:37 -0700 (PDT)
-Date: Mon, 13 May 2024 09:56:31 -0700
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Andy Chiu <andy.chiu@sifive.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v6 13/17] riscv: vector: Support xtheadvector save/restore
-Message-ID: <ZkJGP2ilt0x23MaE@ghost>
-References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
- <20240503-dev-charlie-support_thead_vector_6_9-v6-13-cb7624e65d82@rivosinc.com>
- <CABgGipUMtgQxYx1mUBojtCSh7kwAco=P_NYuWp=QtLBFSziT_A@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HQdK0J8JqNiI+mJdyGISxqfciHN/I4Sqd/7gaJJ2KTYUUBJRE9OSAkOqmw4KinhSAXNtEDPULMS+st2a5rIHHhClTf7QMW8/w76ZBImQnzxDQi2+vfODt96xC30Tb07ytohyzDNQqZXFYmgm9M5c+12kH4MWqfUiRy3d/Cfn26U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jpEa0RXD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BB5EC4AF08;
+	Mon, 13 May 2024 16:56:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715619404;
+	bh=257tg1ecO2+jjI/+GDVDoynBQ49K/tx40Go05H2ZTHU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jpEa0RXDw8OFODwqQNo84PdLLcdEhzinaK+ssQMMpZKcC6TtIpmpnLg1f37HxLzSF
+	 MvTF3R1b/vsdMTMMsqIgPdscv+IEZGDNjhpuXGQNyXSBTNIIE5+GUOcWq1C4aghT4v
+	 Ve737bya9VKY8pCImkuF8bJ9BJOhd1sqXLVjQyyFnB5oIs1MluAxYeanyDjwZt4AQm
+	 j9Sp4DS93QdURNAfFcWnxw9bxarmRuvv/X9oPyJLL4Z4RuqX9IRHChxSMjD+yjfYpD
+	 OPjAoRhOLhJgRfqVM8v2rxIvqNbb0scTt2FEpLUIIVe9b9x1YrQAyMd3biqso/Z3oc
+	 7rwyoICO/Katg==
+Date: Mon, 13 May 2024 18:56:40 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Amit Singh Tomar <amitsinght@marvell.com>
+Cc: linux-phy@lists.infradead.org, vkoul@kernel.org, kishon@kernel.org,
+	lorenzo.bianconi83@gmail.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
+	upstream@airoha.com, angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH 3/3] phy: airoha: Add PCIe PHY driver for EN7581 SoC.
+Message-ID: <ZkJGSNQ7TQzUsEWE@lore-desk>
+References: <cover.1715527166.git.lorenzo@kernel.org>
+ <0005610f38bef591b0f97bafcc58dffdfa1f0ead.1715527166.git.lorenzo@kernel.org>
+ <5beb1261-a173-4ec2-b075-9a6d9c79d62e@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xXqAj4fcYoThyFC+"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABgGipUMtgQxYx1mUBojtCSh7kwAco=P_NYuWp=QtLBFSziT_A@mail.gmail.com>
+In-Reply-To: <5beb1261-a173-4ec2-b075-9a6d9c79d62e@marvell.com>
 
-On Mon, May 13, 2024 at 04:45:18PM +0800, Andy Chiu wrote:
-> Hi Charlie,
-> 
-> Sorry, I am late on this. I haven't looked through the entire series
-> yet, but here is something that I thought worth bringing up sooner.
-> 
-> On Sat, May 4, 2024 at 2:22 AM Charlie Jenkins <charlie@rivosinc.com> wrote:
-> >
-> > Use alternatives to add support for xtheadvector vector save/restore
-> > routines.
-> >
-> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > ---
-> >  arch/riscv/Kconfig.vendor              |  13 ++
-> >  arch/riscv/include/asm/csr.h           |   6 +
-> >  arch/riscv/include/asm/switch_to.h     |   2 +-
-> >  arch/riscv/include/asm/vector.h        | 247 ++++++++++++++++++++++++++-------
-> >  arch/riscv/kernel/cpufeature.c         |   2 +-
-> >  arch/riscv/kernel/kernel_mode_vector.c |   8 +-
-> >  arch/riscv/kernel/process.c            |   4 +-
-> >  arch/riscv/kernel/signal.c             |   6 +-
-> >  arch/riscv/kernel/vector.c             |  13 +-
-> >  9 files changed, 233 insertions(+), 68 deletions(-)
-> >
-> > diff --git a/arch/riscv/Kconfig.vendor b/arch/riscv/Kconfig.vendor
-> > index aa5a191e659e..edf49f3065ac 100644
-> > --- a/arch/riscv/Kconfig.vendor
-> > +++ b/arch/riscv/Kconfig.vendor
-> > @@ -13,6 +13,19 @@ config RISCV_ISA_VENDOR_EXT_THEAD
-> >           extensions. Without this option enabled, T-Head vendor extensions will
-> >           not be detected at boot and their presence not reported to userspace.
-> >
-> > +         If you don't know what to do here, say Y.
+
+--xXqAj4fcYoThyFC+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+[...]
+
+> > +#endif /* _PHY_AIROHA_PCIE_H */
+> > diff --git a/drivers/phy/phy-airoha-pcie.c b/drivers/phy/phy-airoha-pci=
+e.c
+> > new file mode 100644
+> > index 000000000000..66d8bee93ee6
+> > --- /dev/null
+> > +++ b/drivers/phy/phy-airoha-pcie.c
+> > @@ -0,0 +1,1227 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) 2024 AIROHA Inc
+> > + * Author: Lorenzo Bianconi <lorenzo@kernel.org>
+> > + */
 > > +
-> > +config RISCV_ISA_XTHEADVECTOR
-> > +       bool "xtheadvector extension support"
-> > +       depends on RISCV_ISA_VENDOR_EXT_THEAD
-> > +       depends on RISCV_ISA_V
-> > +       depends on FPU
-> > +       default y
-> > +       help
-> > +         Say N here if you want to disable all xtheadvector related procedure
-> > +         in the kernel. This will disable vector for any T-Head board that
-> > +         contains xtheadvector rather than the standard vector.
+> > +#include <linux/delay.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/phy/phy.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/slab.h>
 > > +
-> >           If you don't know what to do here, say Y.
-> >  endmenu
-> >
-> > diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> > index e5a35efd56e0..13657d096e7d 100644
-> > --- a/arch/riscv/include/asm/csr.h
-> > +++ b/arch/riscv/include/asm/csr.h
-> > @@ -30,6 +30,12 @@
-> >  #define SR_VS_CLEAN    _AC(0x00000400, UL)
-> >  #define SR_VS_DIRTY    _AC(0x00000600, UL)
-> >
-> > +#define SR_VS_THEAD            _AC(0x01800000, UL) /* xtheadvector Status */
-> > +#define SR_VS_OFF_THEAD                _AC(0x00000000, UL)
-> > +#define SR_VS_INITIAL_THEAD    _AC(0x00800000, UL)
-> > +#define SR_VS_CLEAN_THEAD      _AC(0x01000000, UL)
-> > +#define SR_VS_DIRTY_THEAD      _AC(0x01800000, UL)
+> > +#include "phy-airoha-pcie-regs.h"
 > > +
-> >  #define SR_XS          _AC(0x00018000, UL) /* Extension Status */
-> >  #define SR_XS_OFF      _AC(0x00000000, UL)
-> >  #define SR_XS_INITIAL  _AC(0x00008000, UL)
-> > diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
-> > index 7efdb0584d47..ada6b5cf2d94 100644
-> > --- a/arch/riscv/include/asm/switch_to.h
-> > +++ b/arch/riscv/include/asm/switch_to.h
-> > @@ -78,7 +78,7 @@ do {                                                  \
-> >         struct task_struct *__next = (next);            \
-> >         if (has_fpu())                                  \
-> >                 __switch_to_fpu(__prev, __next);        \
-> > -       if (has_vector())                                       \
-> > +       if (has_vector() || has_xtheadvector())         \
-> >                 __switch_to_vector(__prev, __next);     \
-> >         ((last) = __switch_to(__prev, __next));         \
-> >  } while (0)
-> > diff --git a/arch/riscv/include/asm/vector.h b/arch/riscv/include/asm/vector.h
-> > index 731dcd0ed4de..db851dc81870 100644
-> > --- a/arch/riscv/include/asm/vector.h
-> > +++ b/arch/riscv/include/asm/vector.h
-> > @@ -18,6 +18,27 @@
-> >  #include <asm/cpufeature.h>
-> >  #include <asm/csr.h>
-> >  #include <asm/asm.h>
-> > +#include <asm/vendorid_list.h>
-> > +#include <asm/vendor_extensions.h>
-> > +#include <asm/vendor_extensions/thead.h>
+> > +/**
+> > + * struct airoha_pcie_phy - PCIe phy driver main structure
+> > + * @dev: pointer to device
+> > + * @phy: pointer to generic phy
+> > + * @csr_2l: Analogic lane IO mapped register base address
+> > + * @pma0: IO mapped register base address of PMA0-PCIe
+> > + * @pma1: IO mapped register base address of PMA1-PCIe
+> > + * @data: pointer to SoC dependent data
+>=20
+> The structure below lacks this data pointer.
+
+ack, it is just a leftover. I will fix it in v2.
+
+Regards,
+Lorenzo
+
+> > + */
+> > +struct airoha_pcie_phy {
+> > +	struct device *dev;
+> > +	struct phy *phy;
+> > +	void __iomem *csr_2l;
+> > +	void __iomem *pma0;
+> > +	void __iomem *pma1;
+> > +};
 > > +
-> > +#define __riscv_v_vstate_or(_val, TYPE) ({                             \
-> > +       typeof(_val) _res = _val;                                       \
-> > +       if (has_xtheadvector()) \
-> > +               _res = (_res & ~SR_VS_THEAD) | SR_VS_##TYPE##_THEAD;    \
-> > +       else                                                            \
-> > +               _res = (_res & ~SR_VS) | SR_VS_##TYPE;                  \
-> > +       _res;                                                           \
-> > +})
-> > +
-> > +#define __riscv_v_vstate_check(_val, TYPE) ({                          \
-> > +       bool _res;                                                      \
-> > +       if (has_xtheadvector()) \
-> > +               _res = ((_val) & SR_VS_THEAD) == SR_VS_##TYPE##_THEAD;  \
-> > +       else                                                            \
-> > +               _res = ((_val) & SR_VS) == SR_VS_##TYPE;                \
-> > +       _res;                                                           \
-> > +})
-> >
-> >  extern unsigned long riscv_v_vsize;
-> >  int riscv_v_setup_vsize(void);
-> > @@ -40,39 +61,62 @@ static __always_inline bool has_vector(void)
-> >         return riscv_has_extension_unlikely(RISCV_ISA_EXT_v);
-> >  }
-> >
-> > +static __always_inline bool has_xtheadvector_no_alternatives(void)
+> > +static void airoha_phy_clear_bits(void __iomem *reg, u32 mask)
 > > +{
-> > +       if (IS_ENABLED(CONFIG_RISCV_ISA_XTHEADVECTOR))
-> > +               return riscv_isa_vendor_extension_available(THEAD_VENDOR_ID, XTHEADVECTOR);
-> > +       else
-> > +               return false;
+> > +	u32 val =3D readl(reg) & ~mask;
+> > +
+> > +	writel(val, reg);
 > > +}
 > > +
-> > +static __always_inline bool has_xtheadvector(void)
+> > +static void airoha_phy_set_bits(void __iomem *reg, u32 mask)
 > > +{
-> > +       if (IS_ENABLED(CONFIG_RISCV_ISA_XTHEADVECTOR))
-> > +               return riscv_has_vendor_extension_unlikely(THEAD_VENDOR_ID,
-> > +                                                          RISCV_ISA_VENDOR_EXT_XTHEADVECTOR);
-> > +       else
-> > +               return false;
+> > +	u32 val =3D readl(reg) | mask;
+> > +
+> > +	writel(val, reg);
 > > +}
 > > +
-> >  static inline void __riscv_v_vstate_clean(struct pt_regs *regs)
-> >  {
-> > -       regs->status = (regs->status & ~SR_VS) | SR_VS_CLEAN;
-> > +       regs->status = __riscv_v_vstate_or(regs->status, CLEAN);
-> >  }
-> >
-> >  static inline void __riscv_v_vstate_dirty(struct pt_regs *regs)
-> >  {
-> > -       regs->status = (regs->status & ~SR_VS) | SR_VS_DIRTY;
-> > +       regs->status = __riscv_v_vstate_or(regs->status, DIRTY);
-> >  }
-> >
-> >  static inline void riscv_v_vstate_off(struct pt_regs *regs)
-> >  {
-> > -       regs->status = (regs->status & ~SR_VS) | SR_VS_OFF;
-> > +       regs->status = __riscv_v_vstate_or(regs->status, OFF);
-> >  }
-> >
-> >  static inline void riscv_v_vstate_on(struct pt_regs *regs)
-> >  {
-> > -       regs->status = (regs->status & ~SR_VS) | SR_VS_INITIAL;
-> > +       regs->status = __riscv_v_vstate_or(regs->status, INITIAL);
-> >  }
-> >
-> >  static inline bool riscv_v_vstate_query(struct pt_regs *regs)
-> >  {
-> > -       return (regs->status & SR_VS) != 0;
-> > +       return !__riscv_v_vstate_check(regs->status, OFF);
-> >  }
-> >
-> >  static __always_inline void riscv_v_enable(void)
-> >  {
-> > -       csr_set(CSR_SSTATUS, SR_VS);
-> > +       if (has_xtheadvector())
-> > +               csr_set(CSR_SSTATUS, SR_VS_THEAD);
-> > +       else
-> > +               csr_set(CSR_SSTATUS, SR_VS);
-> >  }
-> >
-> >  static __always_inline void riscv_v_disable(void)
-> >  {
-> > -       csr_clear(CSR_SSTATUS, SR_VS);
-> > +       if (has_xtheadvector())
-> > +               csr_clear(CSR_SSTATUS, SR_VS_THEAD);
-> > +       else
-> > +               csr_clear(CSR_SSTATUS, SR_VS);
-> >  }
-> >
-> >  static __always_inline void __vstate_csr_save(struct __riscv_v_ext_state *dest)
-> > @@ -81,10 +125,47 @@ static __always_inline void __vstate_csr_save(struct __riscv_v_ext_state *dest)
-> >                 "csrr   %0, " __stringify(CSR_VSTART) "\n\t"
-> >                 "csrr   %1, " __stringify(CSR_VTYPE) "\n\t"
-> >                 "csrr   %2, " __stringify(CSR_VL) "\n\t"
-> > -               "csrr   %3, " __stringify(CSR_VCSR) "\n\t"
-> > -               "csrr   %4, " __stringify(CSR_VLENB) "\n\t"
-> >                 : "=r" (dest->vstart), "=r" (dest->vtype), "=r" (dest->vl),
-> > -                 "=r" (dest->vcsr), "=r" (dest->vlenb) : :);
-> > +               "=r" (dest->vcsr) : :);
+> > +static void airoha_phy_update_bits(void __iomem *reg, u32 mask, u32 va=
+l)
+> > +{
+> > +	u32 tmp =3D readl(reg);
 > > +
-> > +       if (has_xtheadvector()) {
-> > +               u32 tmp_vcsr;
-> > +               bool restore_fpu = false;
-> > +               unsigned long status = csr_read(CSR_SSTATUS);
+> > +	tmp &=3D ~mask;
+> > +	tmp |=3D val & mask;
+> > +	writel(tmp, reg);
+> > +}
 > > +
-> > +               /*
-> > +                * CSR_VCSR is defined as
-> > +                * [2:1] - vxrm[1:0]
-> > +                * [0] - vxsat
-> > +                * The earlier vector spec implemented by T-Head uses separate
-> > +                * registers for the same bit-elements, so just combine those
-> > +                * into the existing output field.
-> > +                *
-> > +                * Additionally T-Head cores need FS to be enabled when accessing
-> > +                * the VXRM and VXSAT CSRs, otherwise ending in illegal instructions.
-> > +                * Though the cores do not implement the VXRM and VXSAT fields in the
-> > +                * FCSR CSR that vector-0.7.1 specifies.
-> > +                */
-> > +               if ((status & SR_FS) == SR_FS_OFF) {
-> > +                       csr_set(CSR_SSTATUS, (status & ~SR_FS) | SR_FS_CLEAN);
-> > +                       restore_fpu = true;
-> > +               }
+> > +#define airoha_phy_update_field(reg, mask, val)					\
+> > +	do {									\
+> > +		BUILD_BUG_ON_MSG(!__builtin_constant_p((mask)),			\
+> > +				 "mask is not constant");			\
+> > +		airoha_phy_update_bits((reg), (mask),				\
+> > +				       FIELD_PREP((mask), (val)));		\
+> > +	} while (0)
 > > +
-> > +               asm volatile (
-> > +                       "csrr   %[tmp_vcsr], " __stringify(VCSR_VXRM) "\n\t"
-> > +                       "slliw  %[vcsr], %[tmp_vcsr], " __stringify(VCSR_VXRM_SHIFT) "\n\t"
-> > +                       "csrr   %[tmp_vcsr], " __stringify(VCSR_VXSAT) "\n\t"
-> > +                       "or     %[vcsr], %[vcsr], %[tmp_vcsr]\n\t"
-> > +                       : [vcsr] "=r" (dest->vcsr), [tmp_vcsr] "=&r" (tmp_vcsr));
+> > +#define airoha_phy_csr_2l_clear_bits(pcie_phy, reg, mask)			\
+> > +	airoha_phy_clear_bits((pcie_phy)->csr_2l + (reg), (mask))
+> > +#define airoha_phy_csr_2l_set_bits(pcie_phy, reg, mask)				\
+> > +	airoha_phy_set_bits((pcie_phy)->csr_2l + (reg), (mask))
+> > +#define airoha_phy_csr_2l_update_field(pcie_phy, reg, mask, val)		\
+> > +	airoha_phy_update_field((pcie_phy)->csr_2l + (reg), (mask), (val))
+> > +#define airoha_phy_pma0_clear_bits(pcie_phy, reg, mask)				\
+> > +	airoha_phy_clear_bits((pcie_phy)->pma0 + (reg), (mask))
+> > +#define airoha_phy_pma1_clear_bits(pcie_phy, reg, mask)				\
+> > +	airoha_phy_clear_bits((pcie_phy)->pma1 + (reg), (mask))
+> > +#define airoha_phy_pma0_set_bits(pcie_phy, reg, mask)				\
+> > +	airoha_phy_set_bits((pcie_phy)->pma0 + (reg), (mask))
+> > +#define airoha_phy_pma1_set_bits(pcie_phy, reg, mask)				\
+> > +	airoha_phy_set_bits((pcie_phy)->pma1 + (reg), (mask))
+> > +#define airoha_phy_pma0_update_field(pcie_phy, reg, mask, val)			\
+> > +	airoha_phy_update_field((pcie_phy)->pma0 + (reg), (mask), (val))
+> > +#define airoha_phy_pma1_update_field(pcie_phy, reg, mask, val)			\
+> > +	airoha_phy_update_field((pcie_phy)->pma1 + (reg), (mask), (val))
 > > +
-> > +               if (restore_fpu)
-> > +                       csr_set(CSR_SSTATUS, status);
-> 
-> vlenb is on ABI and ptrace needs that to recover the width of the
-> register. So we should probably save Xtheadvector's vlenb into vstate
-> if we meant to maintain ABI compatibility between V and Xtheadvector
-> from the kernel.
+> > +static void
+> > +airoha_phy_init_lane0_rx_fw_pre_calib(struct airoha_pcie_phy *pcie_phy,
+> > +				      int gen)
+> > +{
+> > +	u32 fl_out_target =3D gen =3D=3D 3 ? 41600 : 41941;
+> > +	u32 lock_cyclecnt =3D gen =3D=3D 3 ? 26000 : 32767;
+> > +	u32 pr_idac, val, cdr_pr_idac_tmp =3D 0;
+> > +	int i;
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_SS_LCPLL_PWCTL_SETTING_1,
+> > +				 PCIE_LCPLL_MAN_PWDB);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET2,
+> > +				     PCIE_LOCK_TARGET_BEG,
+> > +				     fl_out_target - 100);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET2,
+> > +				     PCIE_LOCK_TARGET_END,
+> > +				     fl_out_target + 100);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET1,
+> > +				     PCIE_PLL_FT_LOCK_CYCLECNT, lock_cyclecnt);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +				     PCIE_LOCK_LOCKTH, 0x3);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET3,
+> > +				     PCIE_UNLOCK_TARGET_BEG,
+> > +				     fl_out_target - 100);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET3,
+> > +				     PCIE_UNLOCK_TARGET_END,
+> > +				     fl_out_target + 100);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET1,
+> > +				     PCIE_PLL_FT_UNLOCK_CYCLECNT,
+> > +				     lock_cyclecnt);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +				     PCIE_UNLOCK_LOCKTH, 0x3);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_CDR0_PR_INJ_MODE,
+> > +				   CSR_2L_PXP_CDR0_INJ_FORCE_OFF);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_R_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				 PCIE_FORCE_DA_PXP_CDR_PR_LPF_R_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_C_EN);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				   PCIE_FORCE_DA_PXP_CDR_PR_LPF_C_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_IDAC);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_PWDB);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				   PCIE_FORCE_DA_PXP_CDR_PR_PWDB);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				 PCIE_FORCE_DA_PXP_CDR_PR_PWDB);
+> > +
+> > +	for (i =3D 0; i < 7; i++) {
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +				REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				PCIE_FORCE_DA_PXP_CDR_PR_IDAC, i << 8);
+> > +		airoha_phy_pma0_clear_bits(pcie_phy,
+> > +					   REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					   PCIE_FREQLOCK_DET_EN);
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					     PCIE_FREQLOCK_DET_EN, 0x3);
+> > +
+> > +		usleep_range(10000, 15000);
+> > +
+> > +		val =3D FIELD_GET(PCIE_RO_FL_OUT,
+> > +				readl(pcie_phy->pma0 +
+> > +				      REG_PCIE_PMA_RO_RX_FREQDET));
+> > +		if (val > fl_out_target)
+> > +			cdr_pr_idac_tmp =3D i << 8;
+> > +	}
+> > +
+> > +	for (i =3D 7; i >=3D 0; i--) {
+> > +		pr_idac =3D cdr_pr_idac_tmp | (0x1 << i);
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +				REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				PCIE_FORCE_DA_PXP_CDR_PR_IDAC, pr_idac);
+> > +		airoha_phy_pma0_clear_bits(pcie_phy,
+> > +					   REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					   PCIE_FREQLOCK_DET_EN);
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					     PCIE_FREQLOCK_DET_EN, 0x3);
+> > +
+> > +		usleep_range(10000, 15000);
+> > +
+> > +		val =3D FIELD_GET(PCIE_RO_FL_OUT,
+> > +				readl(pcie_phy->pma0 +
+> > +				      REG_PCIE_PMA_RO_RX_FREQDET));
+> > +		if (val < fl_out_target)
+> > +			pr_idac &=3D ~(0x1 << i);
+> > +
+> > +		cdr_pr_idac_tmp =3D pr_idac;
+> > +	}
+> > +
+> > +	airoha_phy_pma0_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				     PCIE_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				     cdr_pr_idac_tmp);
+> > +
+> > +	for (i =3D 0; i < 10; i++) {
+> > +		airoha_phy_pma0_clear_bits(pcie_phy,
+> > +					   REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					   PCIE_FREQLOCK_DET_EN);
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					     PCIE_FREQLOCK_DET_EN, 0x3);
+> > +
+> > +		usleep_range(10000, 15000);
+> > +	}
+> > +
+> > +	/* turn off force mode and update band values */
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR0_PR_INJ_MODE,
+> > +				     CSR_2L_PXP_CDR0_INJ_FORCE_OFF);
+> > +
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_R_EN);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_C_EN);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_PWDB);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_IDAC);
+> > +	if (gen =3D=3D 3) {
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_DIG_RESERVE_14,
+> > +					     PCIE_FLL_IDAC_PCIEG3,
+> > +					     cdr_pr_idac_tmp);
+> > +	} else {
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_DIG_RESERVE_13,
+> > +					     PCIE_FLL_IDAC_PCIEG1,
+> > +					     cdr_pr_idac_tmp);
+> > +		airoha_phy_pma0_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_DIG_RESERVE_13,
+> > +					     PCIE_FLL_IDAC_PCIEG2,
+> > +					     cdr_pr_idac_tmp);
+> > +	}
+> > +}
+> > +
+> > +static void
+> > +airoha_phy_init_lane1_rx_fw_pre_calib(struct airoha_pcie_phy *pcie_phy,
+> > +				      int gen)
+> > +{
+> > +	u32 fl_out_target =3D gen =3D=3D 3 ? 41600 : 41941;
+> > +	u32 lock_cyclecnt =3D gen =3D=3D 3 ? 26000 : 32767;
+> > +	u32 pr_idac, val, cdr_pr_idac_tmp =3D 0;
+> > +	int i;
+> > +
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_SS_LCPLL_PWCTL_SETTING_1,
+> > +				 PCIE_LCPLL_MAN_PWDB);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET2,
+> > +				     PCIE_LOCK_TARGET_BEG,
+> > +				     fl_out_target - 100);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET2,
+> > +				     PCIE_LOCK_TARGET_END,
+> > +				     fl_out_target + 100);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET1,
+> > +				     PCIE_PLL_FT_LOCK_CYCLECNT, lock_cyclecnt);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +				     PCIE_LOCK_LOCKTH, 0x3);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET3,
+> > +				     PCIE_UNLOCK_TARGET_BEG,
+> > +				     fl_out_target - 100);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET3,
+> > +				     PCIE_UNLOCK_TARGET_END,
+> > +				     fl_out_target + 100);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET1,
+> > +				     PCIE_PLL_FT_UNLOCK_CYCLECNT,
+> > +				     lock_cyclecnt);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +				     PCIE_UNLOCK_LOCKTH, 0x3);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_CDR1_PR_INJ_MODE,
+> > +				   CSR_2L_PXP_CDR1_INJ_FORCE_OFF);
+> > +
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_R_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				 PCIE_FORCE_DA_PXP_CDR_PR_LPF_R_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_C_EN);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				   PCIE_FORCE_DA_PXP_CDR_PR_LPF_C_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_IDAC);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PR_PWDB);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				   PCIE_FORCE_DA_PXP_CDR_PR_PWDB);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				 PCIE_FORCE_DA_PXP_CDR_PR_PWDB);
+> > +
+> > +	for (i =3D 0; i < 7; i++) {
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +				REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				PCIE_FORCE_DA_PXP_CDR_PR_IDAC, i << 8);
+> > +		airoha_phy_pma1_clear_bits(pcie_phy,
+> > +					   REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					   PCIE_FREQLOCK_DET_EN);
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					     PCIE_FREQLOCK_DET_EN, 0x3);
+> > +
+> > +		usleep_range(10000, 15000);
+> > +
+> > +		val =3D FIELD_GET(PCIE_RO_FL_OUT,
+> > +				readl(pcie_phy->pma1 +
+> > +				      REG_PCIE_PMA_RO_RX_FREQDET));
+> > +		if (val > fl_out_target)
+> > +			cdr_pr_idac_tmp =3D i << 8;
+> > +	}
+> > +
+> > +	for (i =3D 7; i >=3D 0; i--) {
+> > +		pr_idac =3D cdr_pr_idac_tmp | (0x1 << i);
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +				REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				PCIE_FORCE_DA_PXP_CDR_PR_IDAC, pr_idac);
+> > +		airoha_phy_pma1_clear_bits(pcie_phy,
+> > +					   REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					   PCIE_FREQLOCK_DET_EN);
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					     PCIE_FREQLOCK_DET_EN, 0x3);
+> > +
+> > +		usleep_range(10000, 15000);
+> > +
+> > +		val =3D FIELD_GET(PCIE_RO_FL_OUT,
+> > +				readl(pcie_phy->pma1 +
+> > +				      REG_PCIE_PMA_RO_RX_FREQDET));
+> > +		if (val < fl_out_target)
+> > +			pr_idac &=3D ~(0x1 << i);
+> > +
+> > +		cdr_pr_idac_tmp =3D pr_idac;
+> > +	}
+> > +
+> > +	airoha_phy_pma1_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				     PCIE_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				     cdr_pr_idac_tmp);
+> > +
+> > +	for (i =3D 0; i < 10; i++) {
+> > +		airoha_phy_pma1_clear_bits(pcie_phy,
+> > +					   REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					   PCIE_FREQLOCK_DET_EN);
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_SS_RX_FREQ_DET4,
+> > +					     PCIE_FREQLOCK_DET_EN, 0x3);
+> > +
+> > +		usleep_range(10000, 15000);
+> > +	}
+> > +
+> > +	/* turn off force mode and update band values */
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR1_PR_INJ_MODE,
+> > +				     CSR_2L_PXP_CDR1_INJ_FORCE_OFF);
+> > +
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_R_EN);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_LPF_C,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_LPF_C_EN);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_PIEYE_PWDB,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_PWDB);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				   PCIE_FORCE_SEL_DA_PXP_CDR_PR_IDAC);
+> > +	if (gen =3D=3D 3) {
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_DIG_RESERVE_14,
+> > +					     PCIE_FLL_IDAC_PCIEG3,
+> > +					     cdr_pr_idac_tmp);
+> > +	} else {
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_DIG_RESERVE_13,
+> > +					     PCIE_FLL_IDAC_PCIEG1,
+> > +					     cdr_pr_idac_tmp);
+> > +		airoha_phy_pma1_update_field(pcie_phy,
+> > +					     REG_PCIE_PMA_DIG_RESERVE_13,
+> > +					     PCIE_FLL_IDAC_PCIEG2,
+> > +					     cdr_pr_idac_tmp);
+> > +	}
+> > +}
+> > +
+> > +static void airoha_pcie_phy_init_default(struct airoha_pcie_phy *pcie_=
+phy)
+> > +{
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CMN,
+> > +				       CSR_2L_PXP_CMN_TRIM_MASK, 0x10);
+> > +	writel(0xcccbcccb, pcie_phy->pma0 + REG_PCIE_PMA_DIG_RESERVE_21);
+> > +	writel(0xcccb, pcie_phy->pma0 + REG_PCIE_PMA_DIG_RESERVE_22);
+> > +	writel(0xcccbcccb, pcie_phy->pma1 + REG_PCIE_PMA_DIG_RESERVE_21);
+> > +	writel(0xcccb, pcie_phy->pma1 + REG_PCIE_PMA_DIG_RESERVE_22);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_CMN,
+> > +				   CSR_2L_PXP_CMN_LANE_EN);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_init_clk_out(struct airoha_pcie_phy *pcie_=
+phy)
+> > +{
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_TXPLL_POSTDIV_D256,
+> > +				       CSR_2L_PXP_CLKTX0_AMP, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_CLKTX0_FORCE_OUT1,
+> > +				       CSR_2L_PXP_CLKTX1_AMP, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_TXPLL_POSTDIV_D256,
+> > +				       CSR_2L_PXP_CLKTX0_OFFSET, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CLKTX1_OFFSET,
+> > +				       CSR_2L_PXP_CLKTX1_OFFSET, 0x2);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CLKTX0_FORCE_OUT1,
+> > +				     CSR_2L_PXP_CLKTX0_HZ);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CLKTX1_OFFSET,
+> > +				     CSR_2L_PXP_CLKTX1_HZ);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_CLKTX0_FORCE_OUT1,
+> > +				       CSR_2L_PXP_CLKTX0_IMP_SEL, 0x12);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CLKTX1_IMP_SEL,
+> > +				       CSR_2L_PXP_CLKTX1_IMP_SEL, 0x12);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_POSTDIV_D256,
+> > +				     CSR_2L_PXP_CLKTX0_SR);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CLKTX1_OFFSET,
+> > +				     CSR_2L_PXP_CLKTX1_SR);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_PLL_CMN_RESERVE0,
+> > +				       CSR_2L_PXP_PLL_RESERVE_MASK, 0xdd);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_init_csr_2l(struct airoha_pcie_phy *pcie_p=
+hy)
+> > +{
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_SW_RESET,
+> > +				 PCIE_SW_XFI_RXPCS_RST | PCIE_SW_REF_RST |
+> > +				 PCIE_SW_RX_RST);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_SW_RESET,
+> > +				 PCIE_SW_XFI_RXPCS_RST | PCIE_SW_REF_RST |
+> > +				 PCIE_SW_RX_RST);
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_TX_RESET,
+> > +				 PCIE_TX_TOP_RST | REG_PCIE_PMA_TX_RESET);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_TX_RESET,
+> > +				 PCIE_TX_TOP_RST | REG_PCIE_PMA_TX_RESET);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_init_rx(struct airoha_pcie_phy *pcie_phy)
+> > +{
+> > +	writel(0x2a00090b, pcie_phy->pma0 + REG_PCIE_PMA_DIG_RESERVE_17);
+> > +	writel(0x2a00090b, pcie_phy->pma1 + REG_PCIE_PMA_DIG_RESERVE_17);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_CDR0_PR_MONPI,
+> > +				   CSR_2L_PXP_CDR0_PR_XFICK_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_CDR1_PR_MONPI,
+> > +				   CSR_2L_PXP_CDR1_PR_XFICK_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy,
+> > +				     REG_CSR_2L_CDR0_PD_PICAL_CKD8_INV,
+> > +				     CSR_2L_PXP_CDR0_PD_EDGE_DISABLE);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy,
+> > +				     REG_CSR_2L_CDR1_PD_PICAL_CKD8_INV,
+> > +				     CSR_2L_PXP_CDR1_PD_EDGE_DISABLE);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX0_PHYCK_DIV,
+> > +				       CSR_2L_PXP_RX0_PHYCK_SEL, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_PHYCK_DIV,
+> > +				       CSR_2L_PXP_RX1_PHYCK_SEL, 0x1);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_init_jcpll(struct airoha_pcie_phy *pcie_ph=
+y)
+> > +{
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_EN);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				   PCIE_FORCE_DA_PXP_JCPLL_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_EN);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				   PCIE_FORCE_DA_PXP_JCPLL_EN);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_TCL_VTP_EN,
+> > +				       CSR_2L_PXP_JCPLL_SPARE_LOW, 0x20);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_RST_DLY,
+> > +				   CSR_2L_PXP_JCPLL_RST);
+> > +	writel(0x0, pcie_phy->csr_2l + REG_CSR_2L_JCPLL_SSC_DELTA1);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_SSC_PERIOD,
+> > +				     CSR_2L_PXP_JCPLL_SSC_PERIOD);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_SSC,
+> > +				     CSR_2L_PXP_JCPLL_SSC_PHASE_INI);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_SSC,
+> > +				     CSR_2L_PXP_JCPLL_SSC_TRI_EN);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_LPF_BR,
+> > +				       CSR_2L_PXP_JCPLL_LPF_BR, 0xa);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_LPF_BR,
+> > +				       CSR_2L_PXP_JCPLL_LPF_BP, 0xc);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_LPF_BR,
+> > +				       CSR_2L_PXP_JCPLL_LPF_BC, 0x1f);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_LPF_BWC,
+> > +				       CSR_2L_PXP_JCPLL_LPF_BWC, 0x1e);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_LPF_BR,
+> > +				       CSR_2L_PXP_JCPLL_LPF_BWR, 0xa);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_JCPLL_MMD_PREDIV_MODE,
+> > +				       CSR_2L_PXP_JCPLL_MMD_PREDIV_MODE,
+> > +				       0x1);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, CSR_2L_PXP_JCPLL_MONCK,
+> > +				     CSR_2L_PXP_JCPLL_REFIN_DIV);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_VO=
+S,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_SDM_PCW);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_VO=
+S,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_SDM_PCW);
+> > +	airoha_phy_pma0_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_JCPLL_SDM_PCW,
+> > +				     PCIE_FORCE_DA_PXP_JCPLL_SDM_PCW,
+> > +				     0x50000000);
+> > +	airoha_phy_pma1_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_JCPLL_SDM_PCW,
+> > +				     PCIE_FORCE_DA_PXP_JCPLL_SDM_PCW,
+> > +				     0x50000000);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy,
+> > +				   REG_CSR_2L_JCPLL_MMD_PREDIV_MODE,
+> > +				   CSR_2L_PXP_JCPLL_POSTDIV_D5);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy,
+> > +				   REG_CSR_2L_JCPLL_MMD_PREDIV_MODE,
+> > +				   CSR_2L_PXP_JCPLL_POSTDIV_D2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_RST_DLY,
+> > +				       CSR_2L_PXP_JCPLL_RST_DLY, 0x4);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_RST_DLY,
+> > +				     CSR_2L_PXP_JCPLL_SDM_DI_LS);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_TCL_KBAND_VRE=
+F,
+> > +				     CSR_2L_PXP_JCPLL_VCO_KBAND_MEAS_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_IB_EXT,
+> > +				     CSR_2L_PXP_JCPLL_CHP_IOFST);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_IB_EXT,
+> > +				       CSR_2L_PXP_JCPLL_CHP_IBIAS, 0xc);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_JCPLL_MMD_PREDIV_MODE,
+> > +				       CSR_2L_PXP_JCPLL_MMD_PREDIV_MODE,
+> > +				       0x1);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_VCODIV,
+> > +				   CSR_2L_PXP_JCPLL_VCO_HALFLSB_EN);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_VCODIV,
+> > +				       CSR_2L_PXP_JCPLL_VCO_CFIX, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_VCODIV,
+> > +				       CSR_2L_PXP_JCPLL_VCO_SCAPWR, 0x4);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_IB_EXT,
+> > +				     REG_CSR_2L_JCPLL_LPF_SHCK_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_KBAND_KFC,
+> > +				   CSR_2L_PXP_JCPLL_POSTDIV_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_KBAND_KFC,
+> > +				     CSR_2L_PXP_JCPLL_KBAND_KFC);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_KBAND_KFC,
+> > +				       CSR_2L_PXP_JCPLL_KBAND_KF, 0x3);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_KBAND_KFC,
+> > +				     CSR_2L_PXP_JCPLL_KBAND_KS);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_LPF_BWC,
+> > +				       CSR_2L_PXP_JCPLL_KBAND_DIV, 0x1);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_SCAN_MODE,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_KBAND_LOAD_EN);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy, REG_PCIE_PMA_SCAN_MODE,
+> > +				   PCIE_FORCE_DA_PXP_JCPLL_KBAND_LOAD_EN);
+> > +
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_LPF_BWC,
+> > +				       CSR_2L_PXP_JCPLL_KBAND_CODE, 0xe4);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_SDM_HREN,
+> > +				   CSR_2L_PXP_JCPLL_TCL_AMP_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_TCL_CMP,
+> > +				   CSR_2L_PXP_JCPLL_TCL_LPF_EN);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_JCPLL_TCL_KBAND_VREF,
+> > +				       CSR_2L_PXP_JCPLL_TCL_KBAND_VREF, 0xf);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_SDM_HREN,
+> > +				       CSR_2L_PXP_JCPLL_TCL_AMP_GAIN, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_SDM_HREN,
+> > +				       CSR_2L_PXP_JCPLL_TCL_AMP_VREF, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_TCL_CMP,
+> > +				       CSR_2L_PXP_JCPLL_TCL_LPF_BW, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_VCO_TCLVAR,
+> > +				       CSR_2L_PXP_JCPLL_VCO_TCLVAR, 0x3);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_CKOUT_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_JCPLL_CKOUT_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_CKOUT_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_JCPLL_CKOUT_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_JCPLL_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_JCPLL_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_PXP_JCPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_JCPLL_EN);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_txpll(struct airoha_pcie_phy *pcie_phy)
+> > +{
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_EN);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				   PCIE_FORCE_DA_PXP_TXPLL_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_EN);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				   PCIE_FORCE_DA_PXP_TXPLL_EN);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TXPLL_REFIN_DIV,
+> > +				   CSR_2L_PXP_TXPLL_PLL_RSTB);
+> > +	writel(0x0, pcie_phy->csr_2l + REG_CSR_2L_TXPLL_SSC_DELTA1);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_SSC_PERIOD,
+> > +				     CSR_2L_PXP_txpll_SSC_PERIOD);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_CHP_IOFST,
+> > +				       CSR_2L_PXP_TXPLL_CHP_IOFST, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_750M_SYS_CK,
+> > +				       CSR_2L_PXP_TXPLL_CHP_IBIAS, 0x2d);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_REFIN_DIV,
+> > +				     CSR_2L_PXP_TXPLL_REFIN_DIV);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_TCL_LPF_BW,
+> > +				       CSR_2L_PXP_TXPLL_VCO_CFIX, 0x3);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_I=
+DAC,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_SDM_PCW);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_I=
+DAC,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_SDM_PCW);
+> > +	airoha_phy_pma0_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_SDM_PCW,
+> > +				     PCIE_FORCE_DA_PXP_TXPLL_SDM_PCW,
+> > +				     0xc800000);
+> > +	airoha_phy_pma1_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_SDM_PCW,
+> > +				     PCIE_FORCE_DA_PXP_TXPLL_SDM_PCW,
+> > +				     0xc800000);
+> > +
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_SDM_DI_LS,
+> > +				     CSR_2L_PXP_TXPLL_SDM_IFM);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_SSC,
+> > +				     CSR_2L_PXP_TXPLL_SSC_PHASE_INI);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_REFIN_DIV,
+> > +				       CSR_2L_PXP_TXPLL_RST_DLY, 0x4);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_SDM_DI_LS,
+> > +				     CSR_2L_PXP_TXPLL_SDM_DI_LS);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_SDM_DI_LS,
+> > +				       CSR_2L_PXP_TXPLL_SDM_ORD, 0x3);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_TCL_KBAND_VRE=
+F,
+> > +				     CSR_2L_PXP_TXPLL_VCO_KBAND_MEAS_EN);
+> > +	writel(0x0, pcie_phy->csr_2l + REG_CSR_2L_TXPLL_SSC_DELTA1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_CHP_IOFST,
+> > +				       CSR_2L_PXP_TXPLL_LPF_BP, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_CHP_IOFST,
+> > +				       CSR_2L_PXP_TXPLL_LPF_BC, 0x18);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_CHP_IOFST,
+> > +				       CSR_2L_PXP_TXPLL_LPF_BR, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_CHP_IOFST,
+> > +				       CSR_2L_PXP_TXPLL_CHP_IOFST, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_750M_SYS_CK,
+> > +				       CSR_2L_PXP_TXPLL_CHP_IBIAS, 0x2d);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_TCL_VTP,
+> > +				       CSR_2L_PXP_TXPLL_SPARE_L, 0x1);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_LPF_BWR,
+> > +				     CSR_2L_PXP_TXPLL_LPF_BWC);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_POSTDIV,
+> > +				     CSR_2L_PXP_TXPLL_MMD_PREDIV_MODE);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_REFIN_DIV,
+> > +				     CSR_2L_PXP_TXPLL_REFIN_DIV);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TXPLL_TCL_LPF_BW,
+> > +				   CSR_2L_PXP_TXPLL_VCO_HALFLSB_EN);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_VCO_SCAPWR,
+> > +				       CSR_2L_PXP_TXPLL_VCO_SCAPWR, 0x7);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_TCL_LPF_BW,
+> > +				       CSR_2L_PXP_TXPLL_VCO_CFIX, 0x3);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_SDM_PCW);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PR_IDAC,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_SDM_PCW);
+> > +
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_SSC,
+> > +				     CSR_2L_PXP_TXPLL_SSC_PHASE_INI);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_LPF_BWR,
+> > +				     CSR_2L_PXP_TXPLL_LPF_BWR);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TXPLL_PHY_CK2,
+> > +				   CSR_2L_PXP_TXPLL_REFIN_INTERNAL);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_TCL_KBAND_VRE=
+F,
+> > +				     CSR_2L_PXP_TXPLL_VCO_KBAND_MEAS_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_VTP,
+> > +				     CSR_2L_PXP_TXPLL_VTP_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_POSTDIV,
+> > +				     CSR_2L_PXP_TXPLL_PHY_CK1_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TXPLL_PHY_CK2,
+> > +				   CSR_2L_PXP_TXPLL_REFIN_INTERNAL);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_SSC,
+> > +				     CSR_2L_PXP_TXPLL_SSC_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_750M_SYS_CK,
+> > +				     CSR_2L_PXP_TXPLL_LPF_SHCK_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_POSTDIV,
+> > +				     CSR_2L_PXP_TXPLL_POSTDIV_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TXPLL_KBAND_DIV,
+> > +				     CSR_2L_PXP_TXPLL_KBAND_KFC);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_KBAND_DIV,
+> > +				       CSR_2L_PXP_TXPLL_KBAND_KF, 0x3);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_KBAND_DIV,
+> > +				       CSR_2L_PXP_txpll_KBAND_KS, 0x1);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_KBAND_DIV,
+> > +				       CSR_2L_PXP_TXPLL_KBAND_DIV, 0x4);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_LPF_BWR,
+> > +				       CSR_2L_PXP_TXPLL_KBAND_CODE, 0xe4);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TXPLL_SDM_OUT,
+> > +				   CSR_2L_PXP_TXPLL_TCL_AMP_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TXPLL_TCL_AMP_VREF,
+> > +				   CSR_2L_PXP_TXPLL_TCL_LPF_EN);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_TXPLL_TCL_KBAND_VREF,
+> > +				       CSR_2L_PXP_TXPLL_TCL_KBAND_VREF, 0xf);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_SDM_OUT,
+> > +				       CSR_2L_PXP_TXPLL_TCL_AMP_GAIN, 0x3);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_TXPLL_TCL_AMP_VREF,
+> > +				       CSR_2L_PXP_TXPLL_TCL_AMP_VREF, 0xb);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_TXPLL_TCL_LPF_BW,
+> > +				       CSR_2L_PXP_TXPLL_TCL_LPF_BW, 0x3);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_CKOUT_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_TXPLL_CKOUT_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_CKOUT_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_TXPLL_CKOUT_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_EN);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_TXPLL_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_SEL_DA_PXP_TXPLL_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_TXPLL_CKOUT,
+> > +				 PCIE_FORCE_DA_PXP_TXPLL_EN);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_init_ssc_jcpll(struct airoha_pcie_phy *pci=
+e_phy)
+> > +{
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_SSC_DELTA1,
+> > +				       CSR_2L_PXP_JCPLL_SSC_DELTA1, 0x106);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_SSC_DELTA1,
+> > +				       CSR_2L_PXP_JCPLL_SSC_DELTA, 0x106);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_JCPLL_SSC_PERIOD,
+> > +				       CSR_2L_PXP_JCPLL_SSC_PERIOD, 0x31b);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_SSC,
+> > +				   CSR_2L_PXP_JCPLL_SSC_PHASE_INI);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_SSC,
+> > +				   CSR_2L_PXP_JCPLL_SSC_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_SDM_IFM,
+> > +				   CSR_2L_PXP_JCPLL_SDM_IFM);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_SDM_HREN,
+> > +				   REG_CSR_2L_JCPLL_SDM_HREN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_RST_DLY,
+> > +				     CSR_2L_PXP_JCPLL_SDM_DI_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_JCPLL_SSC,
+> > +				   CSR_2L_PXP_JCPLL_SSC_TRI_EN);
+> > +}
+> > +
+> > +static void
+> > +airoha_pcie_phy_set_rxlan0_signal_detect(struct airoha_pcie_phy *pcie_=
+phy)
+> > +{
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_CDR0_PR_COR_HBW,
+> > +				   CSR_2L_PXP_CDR0_PR_LDO_FORCE_ON);
+> > +
+> > +	usleep_range(100, 200);
+> > +
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_19,
+> > +				     PCIE_PCP_RX_REV0_PCIE_GEN1, 0x18b0);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_20,
+> > +				     PCIE_PCP_RX_REV0_PCIE_GEN2, 0x18b0);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_20,
+> > +				     PCIE_PCP_RX_REV0_PCIE_GEN3, 0x1030);
+> > +
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX0_SIGDET_DCTEST,
+> > +				       CSR_2L_PXP_RX0_SIGDET_PEAK, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX0_SIGDET_VTH_SE=
+L,
+> > +				       CSR_2L_PXP_RX0_SIGDET_VTH_SEL, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX0_REV0,
+> > +				       CSR_2L_PXP_VOS_PNINV, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX0_SIGDET_DCTEST,
+> > +				       CSR_2L_PXP_RX0_SIGDET_LPF_CTRL, 0x1);
+> > +
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_CAL2,
+> > +				     PCIE_CAL_OUT_OS, 0x0);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_PXP_RX0_FE_VB_EQ2,
+> > +				   CSR_2L_PXP_RX0_FE_VCM_GEN_PWDB);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_GAIN_CTRL,
+> > +				 PCIE_FORCE_SEL_DA_PXP_RX_FE_PWDB);
+> > +	airoha_phy_pma0_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_GAIN_CTRL,
+> > +				     PCIE_FORCE_DA_PXP_RX_FE_GAIN_CTRL, 0x3);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_RX_FORCE_MODE0,
+> > +				     PCIE_FORCE_DA_XPON_RX_FE_GAIN_CTRL, 0x1);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_SIGDET0,
+> > +				     PCIE_SIGDET_WIN_NONVLD_TIMES, 0x3);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy, REG_PCIE_PMA_SEQUENCE_DISB_CTRL1,
+> > +				   PCIE_DISB_RX_SDCAL_EN);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_CTRL_SEQUENCE_FORCE_CTRL1,
+> > +				 PCIE_FORCE_RX_SDCAL_EN);
+> > +	usleep_range(150, 200);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_CTRL_SEQUENCE_FORCE_CTRL1,
+> > +				   PCIE_FORCE_RX_SDCAL_EN);
+> > +}
+> > +
+> > +static void
+> > +airoha_pcie_phy_set_rxlan1_signal_detect(struct airoha_pcie_phy *pcie_=
+phy)
+> > +{
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_CDR1_PR_COR_HBW,
+> > +				   CSR_2L_PXP_CDR1_PR_LDO_FORCE_ON);
+> > +
+> > +	usleep_range(100, 200);
+> > +
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_19,
+> > +				     PCIE_PCP_RX_REV0_PCIE_GEN1, 0x18b0);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_20,
+> > +				     PCIE_PCP_RX_REV0_PCIE_GEN2, 0x18b0);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_20,
+> > +				     PCIE_PCP_RX_REV0_PCIE_GEN3, 0x1030);
+> > +
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_SIGDET_NOVTH,
+> > +				       CSR_2L_PXP_RX1_SIGDET_PEAK, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_SIGDET_NOVTH,
+> > +				       CSR_2L_PXP_RX1_SIGDET_VTH_SEL, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_REV0,
+> > +				       CSR_2L_PXP_VOS_PNINV, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_DAC_RANGE_EYE,
+> > +				       CSR_2L_PXP_RX1_SIGDET_LPF_CTRL, 0x1);
+> > +
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_CAL2,
+> > +				     PCIE_CAL_OUT_OS, 0x0);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_RX1_FE_VB_EQ1,
+> > +				   CSR_2L_PXP_RX1_FE_VCM_GEN_PWDB);
+> > +
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_GAIN_CTRL,
+> > +				 PCIE_FORCE_SEL_DA_PXP_RX_FE_PWDB);
+> > +	airoha_phy_pma1_update_field(pcie_phy,
+> > +				     REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_GAIN_CTRL,
+> > +				     PCIE_FORCE_DA_PXP_RX_FE_GAIN_CTRL, 0x3);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_RX_FORCE_MODE0,
+> > +				     PCIE_FORCE_DA_XPON_RX_FE_GAIN_CTRL, 0x1);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_SS_RX_SIGDET0,
+> > +				     PCIE_SIGDET_WIN_NONVLD_TIMES, 0x3);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy, REG_PCIE_PMA_SEQUENCE_DISB_CTRL1,
+> > +				   PCIE_DISB_RX_SDCAL_EN);
+> > +
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_CTRL_SEQUENCE_FORCE_CTRL1,
+> > +				 PCIE_FORCE_RX_SDCAL_EN);
+> > +	usleep_range(150, 200);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy,
+> > +				   REG_PCIE_PMA_CTRL_SEQUENCE_FORCE_CTRL1,
+> > +				   PCIE_FORCE_RX_SDCAL_EN);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_set_rxflow(struct airoha_pcie_phy *pcie_ph=
+y)
+> > +{
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_RX_SCAN_RST,
+> > +				 PCIE_FORCE_DA_PXP_RX_SIGDET_PWDB |
+> > +				 PCIE_FORCE_SEL_DA_PXP_RX_SIGDET_PWDB);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_RX_SCAN_RST,
+> > +				 PCIE_FORCE_DA_PXP_RX_SIGDET_PWDB |
+> > +				 PCIE_FORCE_SEL_DA_PXP_RX_SIGDET_PWDB);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PD_PWDB,
+> > +				 PCIE_FORCE_DA_PXP_CDR_PD_PWDB |
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PD_PWDB);
+> > +	airoha_phy_pma0_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_PWDB,
+> > +				 PCIE_FORCE_DA_PXP_RX_FE_PWDB |
+> > +				 PCIE_FORCE_SEL_DA_PXP_RX_FE_PWDB);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_CDR_PD_PWDB,
+> > +				 PCIE_FORCE_DA_PXP_CDR_PD_PWDB |
+> > +				 PCIE_FORCE_SEL_DA_PXP_CDR_PD_PWDB);
+> > +	airoha_phy_pma1_set_bits(pcie_phy,
+> > +				 REG_PCIE_PMA_FORCE_DA_PXP_RX_FE_PWDB,
+> > +				 PCIE_FORCE_DA_PXP_RX_FE_PWDB |
+> > +				 PCIE_FORCE_SEL_DA_PXP_RX_FE_PWDB);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_RX0_PHYCK_DIV,
+> > +				   CSR_2L_PXP_RX0_PHYCK_RSTB |
+> > +				   CSR_2L_PXP_RX0_TDC_CK_SEL);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_RX1_PHYCK_DIV,
+> > +				   CSR_2L_PXP_RX1_PHYCK_RSTB |
+> > +				   CSR_2L_PXP_RX1_TDC_CK_SEL);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_SW_RESET,
+> > +				 PCIE_SW_RX_FIFO_RST | PCIE_SW_TX_RST |
+> > +				 PCIE_SW_PMA_RST | PCIE_SW_ALLPCS_RST |
+> > +				 PCIE_SW_TX_FIFO_RST);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_SW_RESET,
+> > +				 PCIE_SW_RX_FIFO_RST | PCIE_SW_TX_RST |
+> > +				 PCIE_SW_PMA_RST | PCIE_SW_ALLPCS_RST |
+> > +				 PCIE_SW_TX_FIFO_RST);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_PXP_RX0_FE_VB_EQ2,
+> > +				   CSR_2L_PXP_RX0_FE_VB_EQ2_EN |
+> > +				   CSR_2L_PXP_RX0_FE_VB_EQ3_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_RX0_SIGDET_VTH_SEL,
+> > +				   CSR_2L_PXP_RX0_FE_VB_EQ1_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_RX1_FE_VB_EQ1,
+> > +				   CSR_2L_PXP_RX1_FE_VB_EQ1_EN |
+> > +				   CSR_2L_PXP_RX1_FE_VB_EQ2_EN |
+> > +				   CSR_2L_PXP_RX1_FE_VB_EQ3_EN);
+> > +
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX0_REV0,
+> > +				       CSR_2L_PXP_FE_GAIN_NORMAL_MODE, 0x4);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX0_REV0,
+> > +				       CSR_2L_PXP_FE_GAIN_TRAIN_MODE, 0x4);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_REV0,
+> > +				       CSR_2L_PXP_FE_GAIN_NORMAL_MODE, 0x4);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_REV0,
+> > +				       CSR_2L_PXP_FE_GAIN_TRAIN_MODE, 0x4);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_set_pr(struct airoha_pcie_phy *pcie_phy)
+> > +{
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR0_PR_VREG_IBAN=
+D,
+> > +				       CSR_2L_PXP_CDR0_PR_VREG_IBAND, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR0_PR_VREG_IBAN=
+D,
+> > +				       CSR_2L_PXP_CDR0_PR_VREG_CKBUF, 0x5);
+> > +
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR0_PR_CKREF_DIV,
+> > +				     CSR_2L_PXP_CDR0_PR_CKREF_DIV);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR0_PR_COR_HBW,
+> > +				     CSR_2L_PXP_CDR0_PR_CKREF_DIV1);
+> > +
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_CDR1_PR_VREG_IBAND_VAL,
+> > +				       CSR_2L_PXP_CDR1_PR_VREG_IBAND, 0x5);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_CDR1_PR_VREG_IBAND_VAL,
+> > +				       CSR_2L_PXP_CDR1_PR_VREG_CKBUF, 0x5);
+> > +
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR1_PR_CKREF_DIV,
+> > +				     CSR_2L_PXP_CDR1_PR_CKREF_DIV);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR1_PR_COR_HBW,
+> > +				     CSR_2L_PXP_CDR1_PR_CKREF_DIV1);
+> > +
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR0_LPF_RATIO,
+> > +				       CSR_2L_PXP_CDR0_LPF_TOP_LIM, 0x20000);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR1_LPF_RATIO,
+> > +				       CSR_2L_PXP_CDR1_LPF_TOP_LIM, 0x20000);
+> > +
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR0_PR_BETA_DAC,
+> > +				       CSR_2L_PXP_CDR0_PR_BETA_SEL, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR1_PR_BETA_DAC,
+> > +				       CSR_2L_PXP_CDR1_PR_BETA_SEL, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR0_PR_BETA_DAC,
+> > +				       CSR_2L_PXP_CDR0_PR_KBAND_DIV, 0x4);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR1_PR_BETA_DAC,
+> > +				       CSR_2L_PXP_CDR1_PR_KBAND_DIV, 0x4);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_set_txflow(struct airoha_pcie_phy *pcie_ph=
+y)
+> > +{
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TX0_CKLDO,
+> > +				   CSR_2L_PXP_TX0_CKLDO_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TX1_CKLDO,
+> > +				   CSR_2L_PXP_TX1_CKLDO_EN);
+> > +
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TX0_CKLDO,
+> > +				   CSR_2L_PXP_TX0_DMEDGEGEN_EN);
+> > +	airoha_phy_csr_2l_set_bits(pcie_phy, REG_CSR_2L_TX1_CKLDO,
+> > +				   CSR_2L_PXP_TX1_DMEDGEGEN_EN);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_TX1_MULTLANE,
+> > +				     CSR_2L_PXP_TX1_MULTLANE_EN);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_set_rx_mode(struct airoha_pcie_phy *pcie_p=
+hy)
+> > +{
+> > +	writel(0x804000, pcie_phy->pma0 + REG_PCIE_PMA_DIG_RESERVE_27);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_18,
+> > +				     PCIE_PXP_RX_VTH_SEL_PCIE_G1, 0x5);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_18,
+> > +				     PCIE_PXP_RX_VTH_SEL_PCIE_G2, 0x5);
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_18,
+> > +				     PCIE_PXP_RX_VTH_SEL_PCIE_G3, 0x5);
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_30,
+> > +				 0x77700);
+> > +
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR0_PR_MONCK,
+> > +				     CSR_2L_PXP_CDR0_PR_MONCK_ENABLE);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR0_PR_MONCK,
+> > +				       CSR_2L_PXP_CDR0_PR_RESERVE0, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_PXP_RX0_OSCAL_CTLE1IOS,
+> > +				       CSR_2L_PXP_RX0_PR_OSCAL_VGA1IOS, 0x19);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_PXP_RX0_OSCA_VGA1VOS,
+> > +				       CSR_2L_PXP_RX0_PR_OSCAL_VGA1VOS, 0x19);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy,
+> > +				       REG_CSR_2L_PXP_RX0_OSCA_VGA1VOS,
+> > +				       CSR_2L_PXP_RX0_PR_OSCAL_VGA2IOS, 0x14);
+> > +
+> > +	writel(0x804000, pcie_phy->pma1 + REG_PCIE_PMA_DIG_RESERVE_27);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_18,
+> > +				     PCIE_PXP_RX_VTH_SEL_PCIE_G1, 0x5);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_18,
+> > +				     PCIE_PXP_RX_VTH_SEL_PCIE_G2, 0x5);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_18,
+> > +				     PCIE_PXP_RX_VTH_SEL_PCIE_G3, 0x5);
+> > +
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_30,
+> > +				 0x77700);
+> > +
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_CDR1_PR_MONCK,
+> > +				     CSR_2L_PXP_CDR1_PR_MONCK_ENABLE);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_CDR1_PR_MONCK,
+> > +				       CSR_2L_PXP_CDR1_PR_RESERVE0, 0x2);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_OSCAL_VGA1IOS,
+> > +				       CSR_2L_PXP_RX1_PR_OSCAL_VGA1IOS, 0x19);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_OSCAL_VGA1IOS,
+> > +				       CSR_2L_PXP_RX1_PR_OSCAL_VGA1VOS, 0x19);
+> > +	airoha_phy_csr_2l_update_field(pcie_phy, REG_CSR_2L_RX1_OSCAL_VGA1IOS,
+> > +				       CSR_2L_PXP_RX1_PR_OSCAL_VGA2IOS, 0x14);
+> > +}
+> > +
+> > +static void airoha_pcie_phy_load_kflow(struct airoha_pcie_phy *pcie_ph=
+y)
+> > +{
+> > +	airoha_phy_pma0_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_12,
+> > +				     PCIE_FORCE_PMA_RX_SPEED, 0xa);
+> > +	airoha_phy_pma1_update_field(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_12,
+> > +				     PCIE_FORCE_PMA_RX_SPEED, 0xa);
+> > +	airoha_phy_init_lane0_rx_fw_pre_calib(pcie_phy, 3);
+> > +	airoha_phy_init_lane1_rx_fw_pre_calib(pcie_phy, 3);
+> > +
+> > +	airoha_phy_pma0_clear_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_12,
+> > +				   PCIE_FORCE_PMA_RX_SPEED);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_12,
+> > +				   PCIE_FORCE_PMA_RX_SPEED);
+> > +	usleep_range(100, 200);
+> > +
+> > +	airoha_phy_init_lane0_rx_fw_pre_calib(pcie_phy, 2);
+> > +	airoha_phy_init_lane1_rx_fw_pre_calib(pcie_phy, 2);
+> > +}
+> > +
+> > +/**
+> > + * airoha_pcie_phy_init() - Initialize the phy
+> > + * @phy: the phy to be initialized
+> > + *
+> > + * Initialize the phy registers.
+> > + * The hardware settings will be reset during suspend, it should be
+> > + * reinitialized when the consumer calls phy_init() again on resume.
+> > + */
+> > +static int airoha_pcie_phy_init(struct phy *phy)
+> > +{
+> > +	struct airoha_pcie_phy *pcie_phy =3D phy_get_drvdata(phy);
+> > +
+> > +	/* enable load FLL-K flow */
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_14,
+> > +				 PCIE_FLL_LOAD_EN);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_DIG_RESERVE_14,
+> > +				 PCIE_FLL_LOAD_EN);
+> > +
+> > +	airoha_pcie_phy_init_default(pcie_phy);
+> > +	airoha_pcie_phy_init_clk_out(pcie_phy);
+> > +	airoha_pcie_phy_init_csr_2l(pcie_phy);
+> > +
+> > +	usleep_range(100, 200);
+> > +
+> > +	airoha_pcie_phy_init_rx(pcie_phy);
+> > +	/* phase 1, no ssc for K TXPLL */
+> > +	airoha_pcie_phy_init_jcpll(pcie_phy);
+> > +
+> > +	usleep_range(500, 600);
+> > +
+> > +	/* TX PLL settings */
+> > +	airoha_pcie_phy_txpll(pcie_phy);
+> > +
+> > +	usleep_range(200, 300);
+> > +
+> > +	/* SSC JCPLL setting */
+> > +	airoha_pcie_phy_init_ssc_jcpll(pcie_phy);
+> > +
+> > +	usleep_range(100, 200);
+> > +
+> > +	/* Rx lan0 signal detect */
+> > +	airoha_pcie_phy_set_rxlan0_signal_detect(pcie_phy);
+> > +	/* Rx lan1 signal detect */
+> > +	airoha_pcie_phy_set_rxlan1_signal_detect(pcie_phy);
+> > +	/* RX FLOW */
+> > +	airoha_pcie_phy_set_rxflow(pcie_phy);
+> > +
+> > +	usleep_range(100, 200);
+> > +
+> > +	airoha_pcie_phy_set_pr(pcie_phy);
+> > +	/* TX FLOW */
+> > +	airoha_pcie_phy_set_txflow(pcie_phy);
+> > +
+> > +	usleep_range(100, 200);
+> > +	/* RX mode setting */
+> > +	airoha_pcie_phy_set_rx_mode(pcie_phy);
+> > +	/* Load K-Flow */
+> > +	airoha_pcie_phy_load_kflow(pcie_phy);
+> > +	airoha_phy_pma0_clear_bits(pcie_phy, REG_PCIE_PMA_SS_DA_XPON_PWDB0,
+> > +				   PCIE_DA_XPON_CDR_PR_PWDB);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy, REG_PCIE_PMA_SS_DA_XPON_PWDB0,
+> > +				   PCIE_DA_XPON_CDR_PR_PWDB);
+> > +
+> > +	usleep_range(100, 200);
+> > +
+> > +	airoha_phy_pma0_set_bits(pcie_phy, REG_PCIE_PMA_SS_DA_XPON_PWDB0,
+> > +				 PCIE_DA_XPON_CDR_PR_PWDB);
+> > +	airoha_phy_pma1_set_bits(pcie_phy, REG_PCIE_PMA_SS_DA_XPON_PWDB0,
+> > +				 PCIE_DA_XPON_CDR_PR_PWDB);
+> > +
+> > +	usleep_range(100, 200);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int airoha_pcie_phy_exit(struct phy *phy)
+> > +{
+> > +	struct airoha_pcie_phy *pcie_phy =3D phy_get_drvdata(phy);
+> > +
+> > +	airoha_phy_pma0_clear_bits(pcie_phy, REG_PCIE_PMA_SW_RESET,
+> > +				   PCIE_PMA_SW_RST);
+> > +	airoha_phy_pma1_clear_bits(pcie_phy, REG_PCIE_PMA_SW_RESET,
+> > +				   PCIE_PMA_SW_RST);
+> > +	airoha_phy_csr_2l_clear_bits(pcie_phy, REG_CSR_2L_JCPLL_SSC,
+> > +				     CSR_2L_PXP_JCPLL_SSC_PHASE_INI |
+> > +				     CSR_2L_PXP_JCPLL_SSC_TRI_EN |
+> > +				     CSR_2L_PXP_JCPLL_SSC_EN);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct phy_ops airoha_pcie_phy_ops =3D {
+> > +	.init =3D airoha_pcie_phy_init,
+> > +	.exit =3D airoha_pcie_phy_exit,
+> > +	.owner =3D THIS_MODULE,
+> > +};
+> > +
+> > +static int airoha_pcie_phy_probe(struct platform_device *pdev)
+> > +{
+> > +	struct airoha_pcie_phy *pcie_phy;
+> > +	struct device *dev =3D &pdev->dev;
+> > +	struct phy_provider *provider;
+> > +
+> > +	pcie_phy =3D devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
+> > +	if (!pcie_phy)
+> > +		return -ENOMEM;
+> > +
+> > +	pcie_phy->csr_2l =3D devm_platform_ioremap_resource_byname(pdev, "csr=
+_2l");
+> > +	if (IS_ERR(pcie_phy->csr_2l))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->csr_2l),
+> > +				     "Failed to map phy-csr_2l base\n");
+> > +
+> > +	pcie_phy->pma0 =3D devm_platform_ioremap_resource_byname(pdev, "pma0"=
+);
+> > +	if (IS_ERR(pcie_phy->pma0))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->pma0),
+> > +				     "Failed to map phy-pma0 base\n");
+> > +
+> > +	pcie_phy->pma1 =3D devm_platform_ioremap_resource_byname(pdev, "pma1"=
+);
+> > +	if (IS_ERR(pcie_phy->pma1))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->pma1),
+> > +				     "Failed to map phy-pma1 base\n");
+> > +
+> > +	pcie_phy->phy =3D devm_phy_create(dev, dev->of_node, &airoha_pcie_phy=
+_ops);
+> > +	if (IS_ERR(pcie_phy->phy))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
+> > +				     "Failed to create PCIe phy\n");
+> > +
+> > +	pcie_phy->dev =3D dev;
+> > +	phy_set_drvdata(pcie_phy->phy, pcie_phy);
+> > +
+> > +	provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> > +	if (IS_ERR(provider))
+> > +		return dev_err_probe(dev, PTR_ERR(provider),
+> > +				     "PCIe phy probe failed\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct of_device_id airoha_pcie_phy_of_match[] =3D {
+> > +	{ .compatible =3D "airoha,en7581-pcie-phy" },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, airoha_pcie_phy_of_match);
+> > +
+> > +static struct platform_driver airoha_pcie_phy_driver =3D {
+> > +	.probe	=3D airoha_pcie_phy_probe,
+> > +	.driver	=3D {
+> > +		.name =3D "airoha-pcie-phy",
+> > +		.of_match_table =3D airoha_pcie_phy_of_match,
+> > +	},
+> > +};
+> > +module_platform_driver(airoha_pcie_phy_driver);
+> > +
+> > +MODULE_DESCRIPTION("Airoha PCIe PHY driver");
+> > +MODULE_AUTHOR("Lorenzo Bianconi <lorenzo@kernel.org>");
+> > +MODULE_LICENSE("GPL");
+>=20
 
-We can pull the vlenb from riscv_v_vsize which gets populated from the
-devicetree for xtheadvector. I will change that in the next version!
+--xXqAj4fcYoThyFC+
+Content-Type: application/pgp-signature; name="signature.asc"
 
-- Charlie
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> > +       } else {
-> > +               asm volatile (
-> > +                       "csrr   %[vcsr], " __stringify(CSR_VCSR) "\n\t"
-> > +                       "csrr   %[vlenb], " __stringify(CSR_VLENB) "\n\t"
-> > +                       : [vcsr] "=r" (dest->vcsr), [vlenb] "=r" (dest->vlenb));
-> > +       }
-> >  }
-> >
-> >  static __always_inline void __vstate_csr_restore(struct __riscv_v_ext_state *src)
-> > @@ -95,9 +176,37 @@ static __always_inline void __vstate_csr_restore(struct __riscv_v_ext_state *src
-> >                 "vsetvl  x0, %2, %1\n\t"
-> >                 ".option pop\n\t"
-> >                 "csrw   " __stringify(CSR_VSTART) ", %0\n\t"
-> > -               "csrw   " __stringify(CSR_VCSR) ", %3\n\t"
-> > -               : : "r" (src->vstart), "r" (src->vtype), "r" (src->vl),
-> > -                   "r" (src->vcsr) :);
-> > +               : : "r" (src->vstart), "r" (src->vtype), "r" (src->vl));
-> > +
-> > +       if (has_xtheadvector()) {
-> > +               u32 tmp_vcsr;
-> > +               bool restore_fpu = false;
-> > +               unsigned long status = csr_read(CSR_SSTATUS);
-> > +
-> > +               /*
-> > +                * Similar to __vstate_csr_save above, restore values for the
-> > +                * separate VXRM and VXSAT CSRs from the vcsr variable.
-> > +                */
-> > +               if ((status & SR_FS) == SR_FS_OFF) {
-> > +                       csr_set(CSR_SSTATUS, (status & ~SR_FS) | SR_FS_CLEAN);
-> > +                       restore_fpu = true;
-> > +               }
-> > +
-> > +               asm volatile (
-> > +                       "srliw  %[tmp_vcsr], %[vcsr], " __stringify(VCSR_VXRM_SHIFT) "\n\t"
-> > +                       "andi   %[tmp_vcsr], %[tmp_vcsr], " __stringify(VCSR_VXRM_MASK) "\n\t"
-> > +                       "csrw   " __stringify(VCSR_VXRM) ", %[tmp_vcsr]\n\t"
-> > +                       "andi   %[tmp_vcsr], %[vcsr], " __stringify(VCSR_VXSAT_MASK) "\n\t"
-> > +                       "csrw   " __stringify(VCSR_VXSAT) ", %[tmp_vcsr]\n\t"
-> > +                       : [tmp_vcsr] "=&r" (tmp_vcsr) : [vcsr] "r" (src->vcsr));
-> > +
-> > +               if (restore_fpu)
-> > +                       csr_set(CSR_SSTATUS, status);
-> > +       } else {
-> > +               asm volatile (
-> > +                       "csrw   " __stringify(CSR_VCSR) ", %[vcsr]\n\t"
-> > +                       : : [vcsr] "r" (src->vcsr));
-> > +       }
-> >  }
-> >
-> >  static inline void __riscv_v_vstate_save(struct __riscv_v_ext_state *save_to,
-> > @@ -107,19 +216,33 @@ static inline void __riscv_v_vstate_save(struct __riscv_v_ext_state *save_to,
-> >
-> >         riscv_v_enable();
-> >         __vstate_csr_save(save_to);
-> > -       asm volatile (
-> > -               ".option push\n\t"
-> > -               ".option arch, +v\n\t"
-> > -               "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
-> > -               "vse8.v         v0, (%1)\n\t"
-> > -               "add            %1, %1, %0\n\t"
-> > -               "vse8.v         v8, (%1)\n\t"
-> > -               "add            %1, %1, %0\n\t"
-> > -               "vse8.v         v16, (%1)\n\t"
-> > -               "add            %1, %1, %0\n\t"
-> > -               "vse8.v         v24, (%1)\n\t"
-> > -               ".option pop\n\t"
-> > -               : "=&r" (vl) : "r" (datap) : "memory");
-> > +       if (has_xtheadvector()) {
-> > +               asm volatile (
-> > +                       "mv t0, %0\n\t"
-> > +                       THEAD_VSETVLI_T4X0E8M8D1
-> > +                       THEAD_VSB_V_V0T0
-> > +                       "add            t0, t0, t4\n\t"
-> > +                       THEAD_VSB_V_V0T0
-> > +                       "add            t0, t0, t4\n\t"
-> > +                       THEAD_VSB_V_V0T0
-> > +                       "add            t0, t0, t4\n\t"
-> > +                       THEAD_VSB_V_V0T0
-> > +                       : : "r" (datap) : "memory", "t0", "t4");
-> > +       } else {
-> > +               asm volatile (
-> > +                       ".option push\n\t"
-> > +                       ".option arch, +v\n\t"
-> > +                       "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
-> > +                       "vse8.v         v0, (%1)\n\t"
-> > +                       "add            %1, %1, %0\n\t"
-> > +                       "vse8.v         v8, (%1)\n\t"
-> > +                       "add            %1, %1, %0\n\t"
-> > +                       "vse8.v         v16, (%1)\n\t"
-> > +                       "add            %1, %1, %0\n\t"
-> > +                       "vse8.v         v24, (%1)\n\t"
-> > +                       ".option pop\n\t"
-> > +                       : "=&r" (vl) : "r" (datap) : "memory");
-> > +       }
-> >         riscv_v_disable();
-> >  }
-> >
-> > @@ -129,55 +252,77 @@ static inline void __riscv_v_vstate_restore(struct __riscv_v_ext_state *restore_
-> >         unsigned long vl;
-> >
-> >         riscv_v_enable();
-> > -       asm volatile (
-> > -               ".option push\n\t"
-> > -               ".option arch, +v\n\t"
-> > -               "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
-> > -               "vle8.v         v0, (%1)\n\t"
-> > -               "add            %1, %1, %0\n\t"
-> > -               "vle8.v         v8, (%1)\n\t"
-> > -               "add            %1, %1, %0\n\t"
-> > -               "vle8.v         v16, (%1)\n\t"
-> > -               "add            %1, %1, %0\n\t"
-> > -               "vle8.v         v24, (%1)\n\t"
-> > -               ".option pop\n\t"
-> > -               : "=&r" (vl) : "r" (datap) : "memory");
-> > +       if (has_xtheadvector()) {
-> > +               asm volatile (
-> > +                       "mv t0, %0\n\t"
-> > +                       THEAD_VSETVLI_T4X0E8M8D1
-> > +                       THEAD_VLB_V_V0T0
-> > +                       "add            t0, t0, t4\n\t"
-> > +                       THEAD_VLB_V_V0T0
-> > +                       "add            t0, t0, t4\n\t"
-> > +                       THEAD_VLB_V_V0T0
-> > +                       "add            t0, t0, t4\n\t"
-> > +                       THEAD_VLB_V_V0T0
-> > +                       : : "r" (datap) : "memory", "t0", "t4");
-> > +       } else {
-> > +               asm volatile (
-> > +                       ".option push\n\t"
-> > +                       ".option arch, +v\n\t"
-> > +                       "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
-> > +                       "vle8.v         v0, (%1)\n\t"
-> > +                       "add            %1, %1, %0\n\t"
-> > +                       "vle8.v         v8, (%1)\n\t"
-> > +                       "add            %1, %1, %0\n\t"
-> > +                       "vle8.v         v16, (%1)\n\t"
-> > +                       "add            %1, %1, %0\n\t"
-> > +                       "vle8.v         v24, (%1)\n\t"
-> > +                       ".option pop\n\t"
-> > +                       : "=&r" (vl) : "r" (datap) : "memory");
-> > +       }
-> >         __vstate_csr_restore(restore_from);
-> >         riscv_v_disable();
-> >  }
-> >
-> >  static inline void __riscv_v_vstate_discard(void)
-> >  {
-> > -       unsigned long vl, vtype_inval = 1UL << (BITS_PER_LONG - 1);
-> > +       unsigned long vtype_inval = 1UL << (BITS_PER_LONG - 1);
-> >
-> >         riscv_v_enable();
-> > +       if (has_xtheadvector())
-> > +               asm volatile (THEAD_VSETVLI_X0X0E8M8D1);
-> > +       else
-> > +               asm volatile (
-> > +                       ".option push\n\t"
-> > +                       ".option arch, +v\n\t"
-> > +                       "vsetvli        x0, x0, e8, m8, ta, ma\n\t"
-> > +                       ".option pop\n\t");
-> > +
-> >         asm volatile (
-> >                 ".option push\n\t"
-> >                 ".option arch, +v\n\t"
-> > -               "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
-> >                 "vmv.v.i        v0, -1\n\t"
-> >                 "vmv.v.i        v8, -1\n\t"
-> >                 "vmv.v.i        v16, -1\n\t"
-> >                 "vmv.v.i        v24, -1\n\t"
-> > -               "vsetvl         %0, x0, %1\n\t"
-> > +               "vsetvl         x0, x0, %0\n\t"
-> >                 ".option pop\n\t"
-> > -               : "=&r" (vl) : "r" (vtype_inval) : "memory");
-> > +               : : "r" (vtype_inval));
-> > +
-> >         riscv_v_disable();
-> >  }
-> >
-> >  static inline void riscv_v_vstate_discard(struct pt_regs *regs)
-> >  {
-> > -       if ((regs->status & SR_VS) == SR_VS_OFF)
-> > -               return;
-> > -
-> > -       __riscv_v_vstate_discard();
-> > -       __riscv_v_vstate_dirty(regs);
-> > +       if (riscv_v_vstate_query(regs)) {
-> > +               __riscv_v_vstate_discard();
-> > +               __riscv_v_vstate_dirty(regs);
-> > +       }
-> >  }
-> >
-> >  static inline void riscv_v_vstate_save(struct __riscv_v_ext_state *vstate,
-> >                                        struct pt_regs *regs)
-> >  {
-> > -       if ((regs->status & SR_VS) == SR_VS_DIRTY) {
-> > +       if (__riscv_v_vstate_check(regs->status, DIRTY)) {
-> >                 __riscv_v_vstate_save(vstate, vstate->datap);
-> >                 __riscv_v_vstate_clean(regs);
-> >         }
-> > @@ -186,7 +331,7 @@ static inline void riscv_v_vstate_save(struct __riscv_v_ext_state *vstate,
-> >  static inline void riscv_v_vstate_restore(struct __riscv_v_ext_state *vstate,
-> >                                           struct pt_regs *regs)
-> >  {
-> > -       if ((regs->status & SR_VS) != SR_VS_OFF) {
-> > +       if (riscv_v_vstate_query(regs)) {
-> >                 __riscv_v_vstate_restore(vstate, vstate->datap);
-> >                 __riscv_v_vstate_clean(regs);
-> >         }
-> > @@ -195,7 +340,7 @@ static inline void riscv_v_vstate_restore(struct __riscv_v_ext_state *vstate,
-> >  static inline void riscv_v_vstate_set_restore(struct task_struct *task,
-> >                                               struct pt_regs *regs)
-> >  {
-> > -       if ((regs->status & SR_VS) != SR_VS_OFF) {
-> > +       if (riscv_v_vstate_query(regs)) {
-> >                 set_tsk_thread_flag(task, TIF_RISCV_V_DEFER_RESTORE);
-> >                 riscv_v_vstate_on(regs);
-> >         }
-> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> > index 2993318b8ea2..44f0017a98d5 100644
-> > --- a/arch/riscv/kernel/cpufeature.c
-> > +++ b/arch/riscv/kernel/cpufeature.c
-> > @@ -781,7 +781,7 @@ void __init riscv_fill_hwcap(void)
-> >                 elf_hwcap &= ~COMPAT_HWCAP_ISA_F;
-> >         }
-> >
-> > -       if (elf_hwcap & COMPAT_HWCAP_ISA_V) {
-> > +       if (elf_hwcap & COMPAT_HWCAP_ISA_V || has_xtheadvector_no_alternatives()) {
-> >                 riscv_v_setup_vsize();
-> >                 /*
-> >                  * ISA string in device tree might have 'v' flag, but
-> > diff --git a/arch/riscv/kernel/kernel_mode_vector.c b/arch/riscv/kernel/kernel_mode_vector.c
-> > index 6afe80c7f03a..99972a48e86b 100644
-> > --- a/arch/riscv/kernel/kernel_mode_vector.c
-> > +++ b/arch/riscv/kernel/kernel_mode_vector.c
-> > @@ -143,7 +143,7 @@ static int riscv_v_start_kernel_context(bool *is_nested)
-> >
-> >         /* Transfer the ownership of V from user to kernel, then save */
-> >         riscv_v_start(RISCV_PREEMPT_V | RISCV_PREEMPT_V_DIRTY);
-> > -       if ((task_pt_regs(current)->status & SR_VS) == SR_VS_DIRTY) {
-> > +       if (__riscv_v_vstate_check(task_pt_regs(current)->status, DIRTY)) {
-> >                 uvstate = &current->thread.vstate;
-> >                 __riscv_v_vstate_save(uvstate, uvstate->datap);
-> >         }
-> > @@ -160,7 +160,7 @@ asmlinkage void riscv_v_context_nesting_start(struct pt_regs *regs)
-> >                 return;
-> >
-> >         depth = riscv_v_ctx_get_depth();
-> > -       if (depth == 0 && (regs->status & SR_VS) == SR_VS_DIRTY)
-> > +       if (depth == 0 && __riscv_v_vstate_check(regs->status, DIRTY))
-> >                 riscv_preempt_v_set_dirty();
-> >
-> >         riscv_v_ctx_depth_inc();
-> > @@ -208,7 +208,7 @@ void kernel_vector_begin(void)
-> >  {
-> >         bool nested = false;
-> >
-> > -       if (WARN_ON(!has_vector()))
-> > +       if (WARN_ON(!(has_vector() || has_xtheadvector())))
-> >                 return;
-> >
-> >         BUG_ON(!may_use_simd());
-> > @@ -236,7 +236,7 @@ EXPORT_SYMBOL_GPL(kernel_vector_begin);
-> >   */
-> >  void kernel_vector_end(void)
-> >  {
-> > -       if (WARN_ON(!has_vector()))
-> > +       if (WARN_ON(!(has_vector() || has_xtheadvector())))
-> >                 return;
-> >
-> >         riscv_v_disable();
-> > diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> > index 92922dbd5b5c..eabca86fc3c0 100644
-> > --- a/arch/riscv/kernel/process.c
-> > +++ b/arch/riscv/kernel/process.c
-> > @@ -178,7 +178,7 @@ void flush_thread(void)
-> >  void arch_release_task_struct(struct task_struct *tsk)
-> >  {
-> >         /* Free the vector context of datap. */
-> > -       if (has_vector())
-> > +       if (has_vector() || has_xtheadvector())
-> >                 riscv_v_thread_free(tsk);
-> >  }
-> >
-> > @@ -225,7 +225,7 @@ int copy_thread(struct task_struct *p, const struct kernel_clone_args *args)
-> >                 p->thread.s[0] = 0;
-> >         }
-> >         p->thread.riscv_v_flags = 0;
-> > -       if (has_vector())
-> > +       if (has_vector() || has_xtheadvector())
-> >                 riscv_v_thread_alloc(p);
-> >         p->thread.ra = (unsigned long)ret_from_fork;
-> >         p->thread.sp = (unsigned long)childregs; /* kernel sp */
-> > diff --git a/arch/riscv/kernel/signal.c b/arch/riscv/kernel/signal.c
-> > index 501e66debf69..5d3ba8e46807 100644
-> > --- a/arch/riscv/kernel/signal.c
-> > +++ b/arch/riscv/kernel/signal.c
-> > @@ -188,7 +188,7 @@ static long restore_sigcontext(struct pt_regs *regs,
-> >
-> >                         return 0;
-> >                 case RISCV_V_MAGIC:
-> > -                       if (!has_vector() || !riscv_v_vstate_query(regs) ||
-> > +                       if (!(has_vector() || has_xtheadvector()) || !riscv_v_vstate_query(regs) ||
-> >                             size != riscv_v_sc_size)
-> >                                 return -EINVAL;
-> >
-> > @@ -210,7 +210,7 @@ static size_t get_rt_frame_size(bool cal_all)
-> >
-> >         frame_size = sizeof(*frame);
-> >
-> > -       if (has_vector()) {
-> > +       if (has_vector() || has_xtheadvector()) {
-> >                 if (cal_all || riscv_v_vstate_query(task_pt_regs(current)))
-> >                         total_context_size += riscv_v_sc_size;
-> >         }
-> > @@ -283,7 +283,7 @@ static long setup_sigcontext(struct rt_sigframe __user *frame,
-> >         if (has_fpu())
-> >                 err |= save_fp_state(regs, &sc->sc_fpregs);
-> >         /* Save the vector state. */
-> > -       if (has_vector() && riscv_v_vstate_query(regs))
-> > +       if ((has_vector() || has_xtheadvector()) && riscv_v_vstate_query(regs))
-> >                 err |= save_v_state(regs, (void __user **)&sc_ext_ptr);
-> >         /* Write zero to fp-reserved space and check it on restore_sigcontext */
-> >         err |= __put_user(0, &sc->sc_extdesc.reserved);
-> > diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
-> > index e04586cdb7f0..c12ea4547da6 100644
-> > --- a/arch/riscv/kernel/vector.c
-> > +++ b/arch/riscv/kernel/vector.c
-> > @@ -63,7 +63,7 @@ int riscv_v_setup_vsize(void)
-> >
-> >  void __init riscv_v_setup_ctx_cache(void)
-> >  {
-> > -       if (!has_vector())
-> > +       if (!(has_vector() || has_xtheadvector()))
-> >                 return;
-> >
-> >         riscv_v_user_cachep = kmem_cache_create_usercopy("riscv_vector_ctx",
-> > @@ -184,7 +184,8 @@ bool riscv_v_first_use_handler(struct pt_regs *regs)
-> >         u32 insn = (u32)regs->badaddr;
-> >
-> >         /* Do not handle if V is not supported, or disabled */
-> > -       if (!(ELF_HWCAP & COMPAT_HWCAP_ISA_V))
-> > +       if (!(ELF_HWCAP & COMPAT_HWCAP_ISA_V) &&
-> > +           !(has_xtheadvector() && riscv_v_vstate_ctrl_user_allowed()))
-> >                 return false;
-> >
-> >         /* If V has been enabled then it is not the first-use trap */
-> > @@ -223,7 +224,7 @@ void riscv_v_vstate_ctrl_init(struct task_struct *tsk)
-> >         bool inherit;
-> >         int cur, next;
-> >
-> > -       if (!has_vector())
-> > +       if (!(has_vector() || has_xtheadvector()))
-> >                 return;
-> >
-> >         next = riscv_v_ctrl_get_next(tsk);
-> > @@ -245,7 +246,7 @@ void riscv_v_vstate_ctrl_init(struct task_struct *tsk)
-> >
-> >  long riscv_v_vstate_ctrl_get_current(void)
-> >  {
-> > -       if (!has_vector())
-> > +       if (!(has_vector() || has_xtheadvector()))
-> >                 return -EINVAL;
-> >
-> >         return current->thread.vstate_ctrl & PR_RISCV_V_VSTATE_CTRL_MASK;
-> > @@ -256,7 +257,7 @@ long riscv_v_vstate_ctrl_set_current(unsigned long arg)
-> >         bool inherit;
-> >         int cur, next;
-> >
-> > -       if (!has_vector())
-> > +       if (!(has_vector() || has_xtheadvector()))
-> >                 return -EINVAL;
-> >
-> >         if (arg & ~PR_RISCV_V_VSTATE_CTRL_MASK)
-> > @@ -306,7 +307,7 @@ static struct ctl_table riscv_v_default_vstate_table[] = {
-> >
-> >  static int __init riscv_v_sysctl_init(void)
-> >  {
-> > -       if (has_vector())
-> > +       if (has_vector() || has_xtheadvector())
-> >                 if (!register_sysctl("abi", riscv_v_default_vstate_table))
-> >                         return -EINVAL;
-> >         return 0;
-> >
-> > --
-> > 2.44.0
-> >
-> >
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> 
-> Cheers,
-> Andy
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZkJGSAAKCRA6cBh0uS2t
+rGlKAPsFBwYIliDdXMPn1vpG8/RMvTMwek3XOmdx6uuOe5+MywD/QT7OWX076Fdr
+M+xg71jyA4unvvLFNpTg6lvdYBOSMgo=
+=OUf/
+-----END PGP SIGNATURE-----
+
+--xXqAj4fcYoThyFC+--
 
