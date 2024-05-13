@@ -1,204 +1,205 @@
-Return-Path: <devicetree+bounces-66646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 283B88C40FA
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 14:48:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257658C4104
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 14:50:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93EA61F24383
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 12:48:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DAC4287ABC
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 12:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E11B14F9FA;
-	Mon, 13 May 2024 12:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A471509A1;
+	Mon, 13 May 2024 12:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="I5WddfN+"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6EM+wPBH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A22A1465A7
-	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 12:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 362A115099B;
+	Mon, 13 May 2024 12:50:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715604481; cv=none; b=qQs2L7B/jv1MGN2PnACaURYd6cHFE2e5f/rS9SdIZ5qWu0n173YL/IKgX7BD9u9yKDtC9HNQrjKX6urkZMhOanE2DcFeicHlUJQRqLmfJYRcGx+E1IbD2xbe0LkZx8u71aaU+fw7sKzYK+mIK1X+5ZN5eAKMlmobfxXd/zLZQV0=
+	t=1715604635; cv=none; b=r8I6KMQJP15bax+M7VfTaTm62JGFrWaphpvwoH9pNEMRiLd8+J0tPzHY62i6HjIGZIRjPA2lFZkBnRb2dr1nwLE2T3c1IAjiBIPUBJ9/s7ZtD0fUL9gcBmpH1q+xRJACRFs4VzVAYrvGeN6GFZVQH39oOtZiucwvyH26FyPSWBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715604481; c=relaxed/simple;
-	bh=TghhJdJ8P4MQ1ToTx62O5Kt1Ggi0cOhu1N6WVIdlRbo=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=XBCwy7Bq7Xf08br5vR3I6fA+grGT829244dRkDntp4stDLr9hvCL2AzUubgcJ/Ddac42rWHna4TNLQgcAmgz+bJlZM5JaCwvU7HtK1H2vyzA0QXvKfkiN1MwXIa76jZsFfvSZOU9/e+iQwYabPL8n5PjVYQZRzh8LehES7rwPFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=I5WddfN+; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-34f7d8bfaa0so3113007f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 05:47:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715604476; x=1716209276; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=fPNX1+WwpMtldcZbMIphrzlav74hQQ8rXHdwhbhRO+4=;
-        b=I5WddfN+DwmpZCCGOIjIHSyYjs3JnlFA3jfH3rMz+72G6DGZ7/dBp2e+gs8KbNk9BC
-         XwJteVtMdd8mL9lpnGtFVEHJtBjuFZWxFIg3nQ/y8T5avfYBjimAkElre57QVE8aAOvF
-         1smqs49mm4MB9Ql7tyTOlHiZAknxfd0/btw1sYFoy4hjXu/7xt7ixiuMmJUb6AEf/lvu
-         KobPT9VsOFqmbk/jVx1GsQvIFnb8cGA6m+rbb0P/uQR0VkD2+WtYc9qTlFAEMvzARTNw
-         Ta35JPJ4+UdLH+zYSVCYpUyew2Y2XS1ZhxaiA0WXrQihQJ41Pny77/zvsp/I9RAZSYh5
-         AwJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715604476; x=1716209276;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fPNX1+WwpMtldcZbMIphrzlav74hQQ8rXHdwhbhRO+4=;
-        b=EApgrEcrNnfa6Bz32iKDTlYFX6fyui/c/Q8Ld7eJg8DMRe8/a7uFgnFw3qtnGe3B03
-         2KflRFpafOFBTgu0G4UNQTjeZdHUoJEko0AmkVtcb6xi5j2x3IsBZ092sb6vy/h1xctL
-         P9ZMIGvH+zANaM+Pt7cUFWvaTpgesoFz7OcO5rBhfUj/CaOi4Cb0CmkMYmS1oJYwsYCq
-         WWVT2tFw2mvf4cjhjkGVzwSo0S8alQO3WSh/xnHl+x78IEkErglP5pMMOd/uKyI6bEg5
-         PZH/ptkt0s0Bc5XQikGbz/Ip51DkthRq9pox9iRFQf9U6EjIkbc2bgJh5DZ65ftaqvME
-         cV1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXgKzXyldzmTESnBMZi/exOUDr57mWFT9CtJyrsv+ccGPObD5Y1eQxCNiA/UB1l6FSIMhYa/TXqej2HhrlYwrAXjcRZiY0sybZFRQ==
-X-Gm-Message-State: AOJu0Yxm7M/FAosmmz88IX0oNMiobJiigNXwPaYuJzmjNj1HfNp1DCx3
-	ykpkPyqt4nLVsf3CwXRpzlvi4jiS/uuPuIMQeVP8zolq+gqjhD+7w43yKZ0HNh0=
-X-Google-Smtp-Source: AGHT+IEk+Met1qf2o3dGT4F3YeppkeI/2Ixdh7UZ2ZMou78Xn6gzYNBNsB2yR/oj9LHHrEyEco7psg==
-X-Received: by 2002:adf:f48a:0:b0:34c:6b36:33e5 with SMTP id ffacd0b85a97d-3504aa6a22emr6914680f8f.71.1715604475948;
-        Mon, 13 May 2024 05:47:55 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:5b77:3e5a:a808:339a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b896ab0sm11140161f8f.41.2024.05.13.05.47.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 May 2024 05:47:55 -0700 (PDT)
-References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
- <20240510090933.19464-2-ddrokosov@salutedevices.com>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: neil.armstrong@linaro.org, jbrunet@baylibre.com,
- mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
- kernel@sberdevices.ru, rockosov@gmail.com,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/7] clk: meson: introduce 'INIT_ONCE' flag to
- eliminate init for enabled PLL
-Date: Mon, 13 May 2024 14:44:06 +0200
-In-reply-to: <20240510090933.19464-2-ddrokosov@salutedevices.com>
-Message-ID: <1jfrulzxms.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1715604635; c=relaxed/simple;
+	bh=FRB14+0j2v798cn6A5NFCMGFCYVwy17/xyTF2pSNCgw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RJRX1dQ11389uFqWg0Q2Eo6KRMCaGJQiwvwqq43dR7FKuFpQHpwChNjy1mRHGx1chthkdqRCkoO2FgfpJy7JtVuX9N071Abpp0ZFJ3tNE2AtQJyLLGKaMc+1dueEJ0EWQ2aWMNGECJZ2DE+muDvMO9KvKHRak7ZFvyukvIgRzqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=6EM+wPBH; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44DBQd8F009156;
+	Mon, 13 May 2024 14:49:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=jULG4BPSUFaHm0SKRBaAKf82JzLF2ZXIL0z6ooA0hNg=; b=6E
+	M+wPBHTG9ST0T5Fws2x7VuO9e7bNBevGyZ2rVYrEKqwujVz2wJ+GaMRrP8wqj6Gx
+	VEIORBcsNTRAFY7Vul4OQCvrCNiNyFQLeuclTaloTVn+HZjfa3nP9j408Sy6eCff
+	Nza937rWANALuLSC/ii7BLd+uh1jgX5BM27P+iRckhH6wNU2kbQwRGrpbKBsQSoV
+	8XA/x63SrdOTBjQIdui63HSWvAibBwxIoBi3T11R1SMo5157fqR0Ms+q7K8cnoPv
+	AyqzxHAe9FVJpyPn0K70sXDWMXvkQ6nqQ9GQhY62qT7qJzhPuf7vnvVFTfBogCSR
+	oYbFIP1yx4pk2WmsmQKA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3y2kmhmbyf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 May 2024 14:49:52 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1F9694002D;
+	Mon, 13 May 2024 14:49:45 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7AA2121B519;
+	Mon, 13 May 2024 14:48:28 +0200 (CEST)
+Received: from [10.48.86.164] (10.48.86.164) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 13 May
+ 2024 14:48:26 +0200
+Message-ID: <4da0ce80-2120-4d67-aaaa-7dbf13b1da73@foss.st.com>
+Date: Mon, 13 May 2024 14:48:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/11] net: stmmac: dwmac-stm32: rework glue to
+ simplify management
+To: Marek Vasut <marex@denx.de>, "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Richard Cochran
+	<richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+ <20240426125707.585269-4-christophe.roullier@foss.st.com>
+ <56f2d023-82d5-4910-8c4e-68e9d62bd1fe@denx.de>
+Content-Language: en-US
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <56f2d023-82d5-4910-8c4e-68e9d62bd1fe@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-13_08,2024-05-10_02,2023-05-22_02
 
+Hi
 
-On Fri 10 May 2024 at 12:08, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
-
-> When dealing with certain PLLs, it is necessary to avoid modifying them
-> if they have already been initialized by lower levels. For instance, in
-> the A1 SoC Family, the sys_pll is enabled as the parent for the cpuclk,
-> and it cannot be disabled during the initialization sequence. Therefore,
-> initialization phase must be skipped.
+On 4/26/24 16:53, Marek Vasut wrote:
+> On 4/26/24 2:56 PM, Christophe Roullier wrote:
+>> Change glue to be more generic and manage easily next stm32 products.
+>> The goal of this commit is to have one stm32mp1_set_mode function which
+>> can manage different STM32 SOC. SOC can have different SYSCFG register
+>> bitfields. so in pmcsetr we defined the bitfields corresponding to 
+>> the SOC.
+>>
+>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>> ---
+>>   .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 76 +++++++++++++------
+>>   1 file changed, 51 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c 
+>> b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+>> index c92dfc4ecf57..68a02de25ac7 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
+>> @@ -23,10 +23,6 @@
+>>     #define SYSCFG_MCU_ETH_MASK        BIT(23)
+>>   #define SYSCFG_MP1_ETH_MASK        GENMASK(23, 16)
+>> -#define SYSCFG_PMCCLRR_OFFSET        0x40
+>> -
+>> -#define SYSCFG_PMCR_ETH_CLK_SEL        BIT(16)
+>> -#define SYSCFG_PMCR_ETH_REF_CLK_SEL    BIT(17)
+>>     /* CLOCK feed to PHY*/
+>>   #define ETH_CK_F_25M    25000000
+>> @@ -46,9 +42,6 @@
+>>    * RMII  |   1     |   0      |   0       |  n/a  |
+>>    *------------------------------------------
+>>    */
+>> -#define SYSCFG_PMCR_ETH_SEL_MII        BIT(20)
+>> -#define SYSCFG_PMCR_ETH_SEL_RGMII    BIT(21)
+>> -#define SYSCFG_PMCR_ETH_SEL_RMII    BIT(23)
+>>   #define SYSCFG_PMCR_ETH_SEL_GMII    0
+>>   #define SYSCFG_MCU_ETH_SEL_MII        0
+>>   #define SYSCFG_MCU_ETH_SEL_RMII        1
+>> @@ -90,19 +83,33 @@ struct stm32_dwmac {
+>>       int eth_ref_clk_sel_reg;
+>>       int irq_pwr_wakeup;
+>>       u32 mode_reg;         /* MAC glue-logic mode register */
+>> +    u32 mode_mask;
+>>       struct regmap *regmap;
+>>       u32 speed;
+>>       const struct stm32_ops *ops;
+>>       struct device *dev;
+>>   };
+>>   +struct stm32_syscfg_pmcsetr {
+>> +    u32 eth1_clk_sel;
+>> +    u32 eth1_ref_clk_sel;
+>> +    u32 eth1_selmii;
+>> +    u32 eth1_sel_rgmii;
+>> +    u32 eth1_sel_rmii;
+>> +    u32 eth2_clk_sel;
+>> +    u32 eth2_ref_clk_sel;
+>> +    u32 eth2_sel_rgmii;
+>> +    u32 eth2_sel_rmii;
+>> +};
 >
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> ---
->  drivers/clk/meson/clk-pll.c | 37 +++++++++++++++++++++----------------
->  drivers/clk/meson/clk-pll.h |  1 +
->  2 files changed, 22 insertions(+), 16 deletions(-)
+> [...]
 >
-> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-> index 78d17b2415af..47b22a6be2e4 100644
-> --- a/drivers/clk/meson/clk-pll.c
-> +++ b/drivers/clk/meson/clk-pll.c
-> @@ -289,11 +289,32 @@ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
->  	return -ETIMEDOUT;
->  }
->  
-> +static int meson_clk_pll_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct clk_regmap *clk = to_clk_regmap(hw);
-> +	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> +
-> +	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-> +	    meson_parm_read(clk->map, &pll->rst))
-> +		return 0;
-> +
-> +	if (!meson_parm_read(clk->map, &pll->en) ||
-> +	    !meson_parm_read(clk->map, &pll->l))
-> +		return 0;
-> +
-> +	return 1;
-> +}
-> +
->  static int meson_clk_pll_init(struct clk_hw *hw)
->  {
->  	struct clk_regmap *clk = to_clk_regmap(hw);
->  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
->  
-> +	/* Do not init already enabled PLL which marked with 'init_once'
-> */
+>> @@ -487,8 +502,19 @@ static struct stm32_ops stm32mp1_dwmac_data = {
+>>       .suspend = stm32mp1_suspend,
+>>       .resume = stm32mp1_resume,
+>>       .parse_data = stm32mp1_parse_data,
+>> -    .syscfg_eth_mask = SYSCFG_MP1_ETH_MASK,
+>> -    .clk_rx_enable_in_suspend = true
+>> +    .clk_rx_enable_in_suspend = true,
+>> +    .syscfg_clr_off = 0x44,
+>> +    .pmcsetr = {
+>> +        .eth1_clk_sel        = BIT(16),
+>> +        .eth1_ref_clk_sel    = BIT(17),
+>> +        .eth1_selmii        = BIT(20),
+>> +        .eth1_sel_rgmii        = BIT(21),
+>> +        .eth1_sel_rmii        = BIT(23),
+>> +        .eth2_clk_sel        = 0,
+>> +        .eth2_ref_clk_sel    = 0,
+>> +        .eth2_sel_rgmii        = 0,
+>> +        .eth2_sel_rmii        = 0
+>> +    }
+>>   };
+>
+> Is this structure really necessary ?
+>
+I prefer to keep this implementation for the moment, as it is working 
+fine. Maybe at a later stage, I will send some optimizations.
 
-That is decribing the code, which we can read. So not really helpful
-Saying why you do it, like "Keep the clock running from the bootloader
-stage and avoid glitching it ..." gives more context about what you are
-trying to do.
-
-> +	if ((pll->flags & CLK_MESON_PLL_INIT_ONCE) &&
-
-I don't like INIT_ONCE. It gives the false impression that
-
-* The PLL is going to be initialized once in Linux if it has the flag
-* Is initialised multiple times otherwise 
-
-I agree that currently that carefully reading the code clears that up
-but it is misleading
-
-CLK_MESON_PLL_EN_NOINIT ?
-
-> +	    meson_clk_pll_is_enabled(hw))
-> +		return 0;
-> +
->  	if (pll->init_count) {
->  		if (MESON_PARM_APPLICABLE(&pll->rst))
->  			meson_parm_write(clk->map, &pll->rst, 1);
-> @@ -308,22 +329,6 @@ static int meson_clk_pll_init(struct clk_hw *hw)
->  	return 0;
->  }
->  
-> -static int meson_clk_pll_is_enabled(struct clk_hw *hw)
-> -{
-> -	struct clk_regmap *clk = to_clk_regmap(hw);
-> -	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> -
-> -	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-> -	    meson_parm_read(clk->map, &pll->rst))
-> -		return 0;
-> -
-> -	if (!meson_parm_read(clk->map, &pll->en) ||
-> -	    !meson_parm_read(clk->map, &pll->l))
-> -		return 0;
-> -
-> -	return 1;
-> -}
-> -
->  static int meson_clk_pcie_pll_enable(struct clk_hw *hw)
->  {
->  	int retries = 10;
-> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-> index a2228c0fdce5..23195ea4eae1 100644
-> --- a/drivers/clk/meson/clk-pll.h
-> +++ b/drivers/clk/meson/clk-pll.h
-> @@ -28,6 +28,7 @@ struct pll_mult_range {
->  	}
->  
->  #define CLK_MESON_PLL_ROUND_CLOSEST	BIT(0)
-> +#define CLK_MESON_PLL_INIT_ONCE		BIT(1)
->  
->  struct meson_clk_pll_data {
->  	struct parm en;
-
-
--- 
-Jerome
+> It seems the MP15 single ethernet config bitfield is at offset 16.
+> MP13 has two bitfields, one at offset 16, the other at offset 24 .
+>
+> All you need to do is figure out which of the two MACs you are 
+> configuring, and then shift the bitfield mask by 16 or 24, since the 
+> bits are at the same offset for both bitfields.
+>
+> See the matching upstream U-Boot commit for how this shift can be done:
+> a440d19c6c91 ("net: dwc_eth_qos: Add DT parsing for STM32MP13xx 
+> platform")
+>
 
