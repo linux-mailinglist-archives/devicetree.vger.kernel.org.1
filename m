@@ -1,148 +1,192 @@
-Return-Path: <devicetree+bounces-66718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88908C4552
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:50:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CABC18C4561
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:55:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24A9D1C22E9A
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:50:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8052D281C6A
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD1D18C22;
-	Mon, 13 May 2024 16:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A591A29A;
+	Mon, 13 May 2024 16:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DGxfFIIc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Np33hDol"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B261208B0
-	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 16:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2BE18C3D
+	for <devicetree@vger.kernel.org>; Mon, 13 May 2024 16:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715619005; cv=none; b=D9CJIlmUVJ69YP5gjEYJvmFrWnBFamshSGndLsiXMz5mJJR5beqYgbS7pEQcWvVAMXXkbmjMSDqml93lEM2tTuH4sCGnFVqQ0YN7RkUFrdHmkUmIoFvIRin768OhvYihEztmQfMSXqTmq60OvCwMH6riUBtGxzATiYe4R4MVr80=
+	t=1715619296; cv=none; b=CrUKqoLkpJo0OihMxyfgKloN2ceLEllBW+hAMrvcLVZYjh4EOLsue3EcxZ7CqYDShCu5l3irwYX/Cf6prb8N63NyYUEvRPLAZ9Trs6xhnzvXw9Ow743vbM9nHvr8SDDsHJHHBhSueRD9de5pA94ZfsoGK/5WU87SAMDkMHI6nYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715619005; c=relaxed/simple;
-	bh=Q4T8vXoHPZEkmdIakq62WIsnrqTauoxd/8JWnWqS/P8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JborFomBx1mpetaTaf+4BTheeMTncHYvCwfh2cQ1huvE613CUUTMU94hTsVTtqdZAHYLVojna2Y0gKDLydit3nCKmvgukGSym2K07aAx7YEMY68zyqzjNhYAHk96a5IbmkJyehcuVcz/HFDFxBaxUrmSDeWwuqfzdsw6Z9iycuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=DGxfFIIc; arc=none smtp.client-ip=209.85.160.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-43e23ce7b07so2287171cf.1
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 09:50:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1715619002; x=1716223802; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l3xjzHuMpEUX44ljRlkgoiEVbWwXbypeHFgnO2FiPZg=;
-        b=DGxfFIIcx0hP1FBTfqilmU3QdXMViq5Ats8g9aR5wyKDih+KTPa99I9eZIV2PkNkHj
-         Fi58z341bcrfiZxq9vHeqmqG7isbn5uasdmy4eHLT1N0+xx4RDN5BTX3mDcRDmFKV6Yj
-         1SplwgCCNi4SbuYqItnt596RjVAeZjvobdFuw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715619002; x=1716223802;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l3xjzHuMpEUX44ljRlkgoiEVbWwXbypeHFgnO2FiPZg=;
-        b=XkYRk5CYjWvnCztUBmXWeFqy7y4BaxbGyTFGj2sZBysHcxomRfk3p8iU6zOUCbvKJD
-         VOEmqryOn/nqiejDalUCYnGc1EwejqIttHk7/R3ZFhYDm3Ms3SqLIMwBnbXiMqDu+DSa
-         1Sh3BFunB4CXJbkSiv9/BENw0b6JkpbMnjXLffdveYjGN4OCUkK/GUL2ISs91O2NPGXW
-         ZL22jeSWpUSxMjPmA6nHyfIqWrhx7mCiAQ4EVVR1U4h81LdX4eR5WowKO9yY+PyVq3VT
-         MRsHPsvq618D8ybvkFvdzCfh5RyheYJTI0+e0nXatDeVR7Y5bZ0GEkjgRCYlnjirdFoL
-         Afvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXYeWKh2jzRxBuCYe8LevQKBfOTsudKGnx4pTEsWe2Hv01hWt5J26+9uenHPII+HyLKwGabTl5UIQvT9igRS43S0c9SXIS8lUVVWw==
-X-Gm-Message-State: AOJu0YxFOk8BEHRMo0+5Tgl56R9eOYO5vkDYIc2AYEjM2g60BTkaM5vq
-	n/nX4yGOqbQ2V/3wqF78NRUaUBzgpg3i/seV6WrK4B7Ae+R9hOAgnAUXe1HRzWGERSF/yQV4DYE
-	=
-X-Google-Smtp-Source: AGHT+IFL7wlvrsPKtmxyIxlt+TJNOHvpIXXkMaJTNe0lJo6TXLiw1CfOXruOiimX3QD1Y9bCZpnoxA==
-X-Received: by 2002:ac8:5d0e:0:b0:43d:dee6:812a with SMTP id d75a77b69052e-43dfdd0d327mr124531891cf.61.1715618999835;
-        Mon, 13 May 2024 09:49:59 -0700 (PDT)
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com. [209.85.160.177])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-43dfa7c0c1esm50543991cf.34.2024.05.13.09.49.57
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 May 2024 09:49:58 -0700 (PDT)
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-43df9ac3ebcso767171cf.0
-        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 09:49:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUnsHX5XfskveUYvMIrGAPEKBfH8WK77v5jwt746DYHaHKtT7OUAVr5J7wdoGi24pqPc+Q/KTlL16UvUzNcCpppPutdHxD6L/Whhw==
-X-Received: by 2002:a05:622a:510e:b0:437:b572:6d with SMTP id
- d75a77b69052e-43e0a2240ccmr4259321cf.21.1715618997464; Mon, 13 May 2024
- 09:49:57 -0700 (PDT)
+	s=arc-20240116; t=1715619296; c=relaxed/simple;
+	bh=uZ5ard+sumv6T1N848qKHAi5miG10E+UbOzJaGtMlTw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SudYt5tV+WdRWztnv+V5KeH2ryV4ZCbAVyF6wNdVTNxVmuRHU66+OXeD02DPUtEQhi+7j0A1XT6mMW0jsuzChEIHJYaMjiO59RZqfjOWhzKQvQXJP0sT11XBPJ0rSxD6pounQTLhjy1mx4lX1zoFwL1UPn1eDyqQVIpUFSLuCJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Np33hDol; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22DCCC113CC;
+	Mon, 13 May 2024 16:54:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715619295;
+	bh=uZ5ard+sumv6T1N848qKHAi5miG10E+UbOzJaGtMlTw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Np33hDolXOw4LOUaAUcVKCSqYJyvSzuFFa0Q4aUkIBWLnO4D0XDy/bn4XyeZsUkeb
+	 l/WY2vGPl4j7csM4P3KMhY0bh2XHD+QMOxRKKDEIEOZHhygUxfx5LsjwoN2Ma3Qb+V
+	 nz3JqcMAjyCM7NRBzbMxSXFha0dVBbAeJ54FbIBvCQdBmY+Qg3qy6qK5NfGsHmVHu1
+	 XoVrKFYJJEckBvufyzVYxWL0rOvpNM2FwoddpvSzMmgghNCBtscwD9KKNMvDobOZGa
+	 WDQBPB2wh/dLbfhVOfA5pKcKthpbZn5nh4ylSHZayiaHfNgLOccgz6f/QcOSqMrQHy
+	 dgnVyEqT7/0sg==
+Date: Mon, 13 May 2024 18:54:51 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-phy@lists.infradead.org, vkoul@kernel.org, kishon@kernel.org,
+	lorenzo.bianconi83@gmail.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH 1/3] dt-bindings: phy: airoha: Add binding doc for PCIe
+ PHY driver
+Message-ID: <ZkJF2w0f2L6nOtKP@lore-desk>
+References: <cover.1715527166.git.lorenzo@kernel.org>
+ <7b60943ea9814a1a9a3d8b273157b338f9130174.1715527166.git.lorenzo@kernel.org>
+ <b65a6290-1500-42bc-815c-d88dd52dd8ac@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240511021326.288728-1-yangcong5@huaqin.corp-partner.google.com> <20240511021326.288728-8-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20240511021326.288728-8-yangcong5@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 13 May 2024 09:49:45 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U0AqC1HKaVfJhw4zQjH4EPyWdQ=sNGOd=Of48A64hHKg@mail.gmail.com>
-Message-ID: <CAD=FV=U0AqC1HKaVfJhw4zQjH4EPyWdQ=sNGOd=Of48A64hHKg@mail.gmail.com>
-Subject: Re: [PATCH v6 7/7] drm/panel: himax-hx83102: Support for IVO t109nw41
- MIPI-DSI panel
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	robh+dt@kernel.org, conor+dt@kernel.org, airlied@gmail.com, 
-	dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	xuxinxiong@huaqin.corp-partner.google.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dRkxIEJn6F1Z9zTu"
+Content-Disposition: inline
+In-Reply-To: <b65a6290-1500-42bc-815c-d88dd52dd8ac@collabora.com>
+
+
+--dRkxIEJn6F1Z9zTu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+> Il 12/05/24 17:27, Lorenzo Bianconi ha scritto:
+> > Introduce device-tree binding documentation for Airoha EN7581 PCIe PHY
+> > driver.
+> >=20
+> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >   .../bindings/phy/airoha,pcie-phy.yaml         | 55 +++++++++++++++++++
+> >   1 file changed, 55 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/phy/airoha,pcie-=
+phy.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/phy/airoha,pcie-phy.yaml=
+ b/Documentation/devicetree/bindings/phy/airoha,pcie-phy.yaml
+> > new file mode 100644
+> > index 000000000000..443d7e717296
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/airoha,pcie-phy.yaml
+>=20
+> airoha,en7581-pcie-phy.yaml
 
-On Fri, May 10, 2024 at 7:14=E2=80=AFPM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The IVO t109nw41 is a 11.0" WUXGA TFT LCD panel, use hx83102 controller
-> which fits in nicely with the existing panel-himax-hx83102 driver. Hence,
-> we add a new compatible with panel specific config.
->
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
-> Chage since V6:
->
-> - Add hx83102_enable_extended_cmds(&dsi_ctx, false) at end of inital cmds=
-.
->
-> V5: https://lore.kernel.org/all/20240509015207.3271370-8-yangcong5@huaqin=
-.corp-partner.google.com
->
-> Chage since V5:
->
-> - Adjust inital cmds indentation and check accum_err before calling mdela=
-y in init().
-> - Adjust somes inital cmds to Optimize gamma.
->
-> V4: https://lore.kernel.org/all/20240507135234.1356855-8-yangcong5@huaqin=
-.corp-partner.google.com
->
-> Chage since V4:
->
-> - inital cmds use lowercasehex.
->
-> V3: https://lore.kernel.org/all/20240424023010.2099949-8-yangcong5@huaqin=
-.corp-partner.google.com
->
-> Chage since V3:
->
-> - Depend Dous'series [1].
-> [1]: https://lore.kernel.org/all/20240501154251.3302887-1-dianders@chromi=
-um.org
->
-> V2: https://lore.kernel.org/all/20240422090310.3311429-8-yangcong5@huaqin=
-.corp-partner.google.com
->
-> ---
->  drivers/gpu/drm/panel/panel-himax-hx83102.c | 131 ++++++++++++++++++++
->  1 file changed, 131 insertions(+)
+ack, I will fix it.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>=20
+> > @@ -0,0 +1,55 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/airoha,pcie-phy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Airoha PCIe PHY
+>=20
+> title: Airoha EN7581 PCI-Express PHY
+
+ack, I will fix it.
+
+>=20
+> > +
+> > +maintainers:
+> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > +
+> > +description: |
+> > +  The PCIe PHY supports physical layer functionality for PCIe Gen2/Gen=
+3 port.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: airoha,en7581-pcie-phy
+> > +
+> > +  reg:
+> > +    maxItems: 3
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: csr_2l
+> > +      - const: pma0
+> > +      - const: pma1
+> > +
+> > +  "#phy-cells":
+> > +    const: 0
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - "#phy-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/phy/phy.h>
+> > +
+> > +    bus {
+>=20
+> Shouldn't this realistically be 'soc' instead?
+
+ack, I will fix it.
+
+Regards,
+Lorenzo
+
+>=20
+> Cheers,
+> Angelo
+>=20
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        phy@11e80000 {
+> > +            compatible =3D "airoha,en7581-pcie-phy";
+> > +            #phy-cells =3D <0>;
+> > +            reg =3D <0x0 0x1fa5a000 0x0 0xfff>,
+> > +                  <0x0 0x1fa5b000 0x0 0xfff>,
+> > +                  <0x0 0x1fa5c000 0x0 0xfff>;
+> > +            reg-names =3D "csr_2l", "pma0", "pma1";
+> > +        };
+> > +    };
+>=20
+>=20
+>=20
+
+--dRkxIEJn6F1Z9zTu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZkJF2wAKCRA6cBh0uS2t
+rFNMAQCINIx9JZ9XM42fFpuj8Pir2nzs80N6LEFcQsCRJCe2MAEA+FbysgeLv4+a
+zNIakzQSgk9pdAywa4H7FPmMBAmyGQQ=
+=p21a
+-----END PGP SIGNATURE-----
+
+--dRkxIEJn6F1Z9zTu--
 
