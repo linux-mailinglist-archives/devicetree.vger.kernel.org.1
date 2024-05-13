@@ -1,269 +1,394 @@
-Return-Path: <devicetree+bounces-66777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDAEE8C49F4
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 01:15:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4306B8C49B9
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 00:46:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F61FB20B86
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 23:15:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6775F1C2193E
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 22:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C6C8526A;
-	Mon, 13 May 2024 23:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6685584D34;
+	Mon, 13 May 2024 22:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="KDb1W5zf"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="kHLkwhFu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D5F84D07;
-	Mon, 13 May 2024 23:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83602AF09;
+	Mon, 13 May 2024 22:46:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715642139; cv=none; b=fty4U/JMuryfcDUbvTHSb12YY43EbZ12hP0oDk7hgTK9zi4J5SnhIq0jMVCK4qshZ8Rf/WFGR8kQvOFK6CbWlvzi5evD4+kgEn4ND1TI6TiGXaLRzbFmzS+MsIyCDPJOpBqmrG1x57gb/ic03BrMzDkBDPNPcL/Lmmanae1u9uE=
+	t=1715640412; cv=none; b=Gm7sPEYP68q2Lm/MDoZ0vfMKpusUd7PlEDD22fhdROEsdpiYusToIk+9orKiNajmlSluo/z3K6bq5u9VPIRF/QM7SchiL6FtEdnoe8bM4VQX/jmX7SKxVmXBRclX7CCIDZZZfk/aHNJX9Ye7DtWSYy0NWUcrP8oqI6DAgeDiVpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715642139; c=relaxed/simple;
-	bh=loyZmoPtuDA5rMTG5lqXULUHGz/rf7HlgkI14OxieQA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A7jEYQaNb4Zwa9seJPtCqeI98gO1FO5gickNzBn/JCWFw5dXa1lDcoD4QdV1Nt1iw+qI+8lwJ/xJxG2b0yk2aq3rkekQn/uyxP596RuCVYz9q4D6mNaO1F0ZEq9yX6RkQmjn3kf7mz9GvXMRPUMzfShALpD1M+oGmxjPZFTWSO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=KDb1W5zf; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	s=arc-20240116; t=1715640412; c=relaxed/simple;
+	bh=y8FOmJu3tWA29CYfyy+y+pXIeU/7gF8sl1aFPPGxY/k=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZMEi4I0WND9AFqFg44WIjChxujst53kC6dv64b4T+KQf3aLDhqjh/nQnNtr2fJQ8W7AzuEARw+02GSdQ5t6PeizQpf8TYop9igrf2RH0EkUOnW/3opqf+xcHux8GRXba3634eEk8oY7oyuOoSp+/sB1HLKfHSLoU4F7n0gLw3DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=kHLkwhFu; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 8B56F12001C;
+	Tue, 14 May 2024 01:46:43 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 8B56F12001C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1715640403;
+	bh=kXE1Li6CYAMN37Y6ndANEsSdW059zB4iC9T0bLHvcxg=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=kHLkwhFueeFp6DpOXB/h35U1Z6uGicWSKOkof9iyYngtvn3GPyZu2cn3aUQXCX0it
+	 oXSAhD8Ad0+hSVNrS6AlhIId6hNaKXDFQakdxfC7cgQik37aazcYC/6uFsaGqCZeJm
+	 vcwLo/3/vfu9PP49863eIAw5dW2mml8Q8kFIBTctudJXdY56jWEnscpKl5t+6eoLdo
+	 UunROdUtrE5oFgzFHRIPXaLtsSt38/7g95nRetP8aaT/6GD9Ma3TsvqFoz7PPSs8VU
+	 xEztQzkVpm1LlHfxaw2T3AhdSI2/wFU7fq9cUPGsrXFTzGygW1Z0BTUatTci+3mSmM
+	 cpDbXI/HzZ/7g==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id AE06A87C75;
-	Tue, 14 May 2024 01:15:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1715642135;
-	bh=y94VBu3rZqXoPf5qJmghmwP/Qu0OecNomu4N18OPJk8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KDb1W5zfmoUzuqSNQmrm2kabFQTBN/gm1zuaeWYez5y7rFnL1dy6ic3sgUfoasrKc
-	 8TgdCpee1r/OJis2LcSjW34EIsKO9z1Zwy3Ydhcs0Z57pJZWqRrhp3Bt5xvlOZOjuS
-	 URdcvQ0pnhBVgsaSDE/WxfO4501H3T1IfT7pLNZPRabvHYdospTWpEHzDxaYGJqagG
-	 hMag83m+X0lzF89Q8mqru018k0xEvdOaxCulH69/72NQAx4Q/12NCgVs36jmld4YY0
-	 J2fVqAmI068QXmNd0DdlW05QcOME83EsHYZ3qy+Gy4fLP9gAOY64dOHoSiXIKe+vDh
-	 ah4FSmqSe7aeA==
-Message-ID: <2d213010-7aae-4f5a-8332-54d7e69b862c@denx.de>
-Date: Tue, 14 May 2024 00:33:23 +0200
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 14 May 2024 01:46:43 +0300 (MSK)
+Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 14 May 2024 01:46:42 +0300
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH v2] dt-bindings: clock: meson: Convert axg-audio-clkc to YAML format
+Date: Tue, 14 May 2024 01:45:52 +0300
+Message-ID: <20240513224552.800153-1-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/11] net: stmmac: dwmac-stm32: update config
- management for phy wo cristal
-To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
- <20240426125707.585269-6-christophe.roullier@foss.st.com>
- <b790f34e-8bfb-44f6-869d-798508008483@denx.de>
- <3137049f-eac8-4522-ad2e-b2b0d3537239@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <3137049f-eac8-4522-ad2e-b2b0d3537239@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185198 [May 13 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;devicetree.org:7.1.1;100.64.160.123:7.1.2;lore.kernel.org:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/13 21:20:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/13 21:20:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/13 20:57:00 #25189509
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On 5/13/24 5:11 PM, Christophe ROULLIER wrote:
-> 
-> On 4/26/24 17:37, Marek Vasut wrote:
->> On 4/26/24 2:57 PM, Christophe Roullier wrote:
->>> Some cleaning because some Ethernet PHY configs do not need to add
->>> st,ext-phyclk property.
->>> Change print info message "No phy clock provided" only when debug.
->>>
->>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
->>> ---
->>>   .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 27 ++++++++++---------
->>>   1 file changed, 14 insertions(+), 13 deletions(-)
->>>
->>> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c 
->>> b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->>> index 7529a8d15492..e648c4e790a7 100644
->>> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->>> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c
->>> @@ -55,17 +55,17 @@
->>>    *|         |        |      25MHz    |        50MHz 
->>> |                  |
->>>    * 
->>> ---------------------------------------------------------------------------
->>>    *|  MII    |     -   |     eth-ck    |          n/a | n/a        |
->>> - *|         |        | st,ext-phyclk | |             |
->>> + *|         |        |                 | |             |
->>>    * 
->>> ---------------------------------------------------------------------------
->>>    *|  GMII   |     -   |     eth-ck    |          n/a | n/a        |
->>> - *|         |        | st,ext-phyclk | |             |
->>> + *|         |        |               | |             |
->>>    * 
->>> ---------------------------------------------------------------------------
->>>    *| RGMII   |     -   |     eth-ck    |          n/a | eth-ck      |
->>> - *|         |        | st,ext-phyclk |                    | 
->>> st,eth-clk-sel or|
->>> + *|         |        |               |                    | 
->>> st,eth-clk-sel or|
->>>    *|         |        |               |                    | 
->>> st,ext-phyclk    |
->>>    * 
->>> ---------------------------------------------------------------------------
->>>    *| RMII    |     -   |     eth-ck    |        eth-ck | n/a        |
->>> - *|         |        | st,ext-phyclk | st,eth-ref-clk-sel 
->>> |             |
->>> + *|         |        |               | st,eth-ref-clk-sel 
->>> |             |
->>>    *|         |        |               | or st,ext-phyclk 
->>> |             |
->>>    * 
->>> ---------------------------------------------------------------------------
->>>    *
->>> @@ -174,23 +174,22 @@ static int stm32mp1_set_mode(struct 
->>> plat_stmmacenet_data *plat_dat)
->>>       dwmac->enable_eth_ck = false;
->>>       switch (plat_dat->mac_interface) {
->>>       case PHY_INTERFACE_MODE_MII:
->>> -        if (clk_rate == ETH_CK_F_25M && dwmac->ext_phyclk)
->>> +        if (clk_rate == ETH_CK_F_25M)
->>
->> I see two problems here.
->>
->> First, according to the table above, in MII mode, clk_rate cannot be 
->> anything else but 25 MHz, so the (clk_rate == ETH_CK_F_25M) condition 
->> is always true. Why not drop that condition ?
-> Not agree, there is also "Normal" case MII (MII with quartz/cristal) 
-> (first column in the table above), so need to keep this test to check 
-> clk_rate 25MHz.
+From: Alexander Stein <alexander.stein@mailbox.org>
 
-What other rate is supported in the MII mode ? Isn't the rate always 25 
-MHz for MII , no matter whether it is generated by RCC or external Xtal ?
+Convert Amlogic AXG Audio Clock Controller binding to yaml.
 
->> The "dwmac->ext_phyclk" means "Ethernet PHY have no crystal", which 
->> means the clock are provided by the STM32 RCC clock IP instead, which 
->> means if the dwmac->ext_phyclk is true, dwmac->enable_eth_ck should be 
->> set to true, because dwmac->enable_eth_ck controls the enablement of 
->> these STM32 clock IP generated clock.
-> Right
->>
->> Second, as far as I understand it, there is no way to operate this IP 
->> with external clock in MII mode, so this section should always be only:
->>
->> dwmac->enable_eth_ck = true;
-> Not for case "Normal" MII :-)
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+---
 
-What happens if that external clock source is not an xtal, but an 
-oscillator with its own driver described in DT, and enabled e.g. using 
-GPIO (that's compatible "gpio-gate-clock" for that oscillator) . Then 
-you do need to enable those clock even in the "normal" (with external 
-clock source instead of RCC clock source) MII case.
+Also, this patch was discussed at [1].
 
->>>               dwmac->enable_eth_ck = true;
->>>           val = dwmac->ops->pmcsetr.eth1_selmii;
->>>           pr_debug("SYSCFG init : PHY_INTERFACE_MODE_MII\n");
->>>           break;
->>>       case PHY_INTERFACE_MODE_GMII:
->>>           val = SYSCFG_PMCR_ETH_SEL_GMII;
->>> -        if (clk_rate == ETH_CK_F_25M &&
->>> -            (dwmac->eth_clk_sel_reg || dwmac->ext_phyclk)) {
->>> +        if (clk_rate == ETH_CK_F_25M)
->>>               dwmac->enable_eth_ck = true;
->>> -            val |= dwmac->ops->pmcsetr.eth1_clk_sel;
->>> -        }
->>>           pr_debug("SYSCFG init : PHY_INTERFACE_MODE_GMII\n");
->>>           break;
->>>       case PHY_INTERFACE_MODE_RMII:
->>>           val = dwmac->ops->pmcsetr.eth1_sel_rmii | 
->>> dwmac->ops->pmcsetr.eth2_sel_rmii;
->>> -        if ((clk_rate == ETH_CK_F_25M || clk_rate == ETH_CK_F_50M) &&
->>> +        if (clk_rate == ETH_CK_F_25M)
->>> +            dwmac->enable_eth_ck = true;
->>> +        if (clk_rate == ETH_CK_F_50M &&
->>>               (dwmac->eth_ref_clk_sel_reg || dwmac->ext_phyclk)) {
->>
->> This doesn't seem to be equivalent change to the previous code . Here, 
->> if the clock frequency is 25 MHz, the clock are unconditionally 
->> enabled. Before, the code enabled the clock only if clock frequency 
->> was 25 MHz AND one of the "dwmac->eth_ref_clk_sel_reg" or 
->> "dwmac->ext_phyclk" was set (i.e. clock provided by SoC RCC clock IP).
-> 
-> You are right, but in STM32MP15/MP13 reference manual it is write that 
-> we need to update SYSCFG (SYSCFG_PMCSETR) register only in "Ethernet 
-> 50MHz RMII clock selection":
-> 
-> Bit 17 ETH_REF_CLK_SEL: Ethernet 50MHz RMII clock selection.
-> 
->      Set by software.
-> 
->        0: Writing '0' has no effect, reading '0' means External clock is 
-> used. Need selection of AFMux. Could be used with all PHY
-> 
->        1: Writing '1' set this bit, reading '1' means Internal clock 
-> ETH_CLK1 from RCC is used regardless AFMux. Could be used only with RMII 
-> PHY
+Changes v1 -> v2 [2]
+ - Stop using conditionals and list all clocks;
+ - Cosmetics.
 
-Look at this:
-"
-RM0436 Rev 6 Reset and clock control (RCC)
-Clock distribution for Ethernet (ETH)
-Figure 83. Peripheral clock distribution for Ethernet
-Page 575
-"
-See the mux at bottom left side in the PKCS group.
+Links
+[1] https://lore.kernel.org/linux-devicetree/20240508144259.191843-1-jan.dakinevich@salutedevices.com/
+[2] https://lore.kernel.org/linux-devicetree/20230808194811.113087-1-alexander.stein@mailbox.org/
 
-I suspect that no matter whether the clock are 25 MHz or 50 MHz, they 
-enter this mux, the mux selects the clock source from either RCC or from 
-external oscillator, and therefore the original code was correct.
+ .../bindings/clock/amlogic,axg-audio-clkc.txt |  59 -----
+ .../clock/amlogic,axg-audio-clkc.yaml         | 201 ++++++++++++++++++
+ 2 files changed, 201 insertions(+), 59 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
 
->> I think it might make this code easier if you drop all of the 
->> frequency test conditionals, which aren't really all that useful, and 
->> only enable the clock if either dwmac->ext_phyclk / 
->> dwmac->eth_clk_sel_reg / dwmac->eth_ref_clk_sel_reg is set , because 
->> effectively what this entire convoluted code is implementing is "if 
->> (clock supplied by clock IP i.e. RCC) enable the clock()" *, right ?
->>
->> * And it is also toggling the right clock mux bit in PMCSETR.
->>
->> So, for MII this would be plain:
->> dwmac->enable_eth_ck = true;
->>
->> For GMII/RGMII this would be:
->> if (dwmac->ext_phyclk || dwmac->eth_clk_sel_reg)
->>   dwmac->enable_eth_ck = true;
->>
->> For RMII this would be:
->> if (dwmac->ext_phyclk || dwmac->eth_ref_clk_sel_reg)
->>   dwmac->enable_eth_ck = true;
->>
->> Maybe the clock frequency validation can be retained, but done 
->> separately?
-> As explained previously, need to keep check of clock frequency in this 
-> test.
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+deleted file mode 100644
+index 3a8948c04bc9..000000000000
+--- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
++++ /dev/null
+@@ -1,59 +0,0 @@
+-* Amlogic AXG Audio Clock Controllers
+-
+-The Amlogic AXG audio clock controller generates and supplies clock to the
+-other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
+-devices.
+-
+-Required Properties:
+-
+-- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D,
+-		  "amlogic,g12a-audio-clkc" for G12A,
+-		  "amlogic,sm1-audio-clkc" for S905X3.
+-- reg		: physical base address of the clock controller and length of
+-		  memory mapped region.
+-- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
+-		  in clock-names.
+-- clock-names	: must contain the following:
+-		  * "pclk" - Main peripheral bus clock
+-		  may contain the following:
+-		  * "mst_in[0-7]" - 8 input plls to generate clock signals
+-		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
+-				      components.
+-		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
+-				       components.
+-- resets	: phandle of the internal reset line
+-- #clock-cells	: should be 1.
+-- #reset-cells  : should be 1 on the g12a (and following) soc family
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
+-used in device tree sources.
+-
+-Example:
+-
+-clkc_audio: clock-controller@0 {
+-	compatible = "amlogic,axg-audio-clkc";
+-	reg = <0x0 0x0 0x0 0xb4>;
+-	#clock-cells = <1>;
+-
+-	clocks = <&clkc CLKID_AUDIO>,
+-		 <&clkc CLKID_MPLL0>,
+-		 <&clkc CLKID_MPLL1>,
+-		 <&clkc CLKID_MPLL2>,
+-		 <&clkc CLKID_MPLL3>,
+-		 <&clkc CLKID_HIFI_PLL>,
+-		 <&clkc CLKID_FCLK_DIV3>,
+-		 <&clkc CLKID_FCLK_DIV4>,
+-		 <&clkc CLKID_GP0_PLL>;
+-	clock-names = "pclk",
+-		      "mst_in0",
+-		      "mst_in1",
+-		      "mst_in2",
+-		      "mst_in3",
+-		      "mst_in4",
+-		      "mst_in5",
+-		      "mst_in6",
+-		      "mst_in7";
+-	resets = <&reset RESET_AUDIO>;
+-};
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+new file mode 100644
+index 000000000000..fd7982dd4cea
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.yaml
+@@ -0,0 +1,201 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic AXG Audio Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++  - Jerome Brunet <jbrunet@baylibre.com>
++
++description:
++  The Amlogic AXG audio clock controller generates and supplies clock to the
++  other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
++  devices.
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-audio-clkc
++      - amlogic,g12a-audio-clkc
++      - amlogic,sm1-audio-clkc
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    items:
++      - description: main peripheral bus clock
++      - description: input plls to generate clock signals N0
++      - description: input plls to generate clock signals N1
++      - description: input plls to generate clock signals N2
++      - description: input plls to generate clock signals N3
++      - description: input plls to generate clock signals N4
++      - description: input plls to generate clock signals N5
++      - description: input plls to generate clock signals N6
++      - description: input plls to generate clock signals N7
++      - description: slave bit clock N0 provided by external components
++      - description: slave bit clock N1 provided by external components
++      - description: slave bit clock N2 provided by external components
++      - description: slave bit clock N3 provided by external components
++      - description: slave bit clock N4 provided by external components
++      - description: slave bit clock N5 provided by external components
++      - description: slave bit clock N6 provided by external components
++      - description: slave bit clock N7 provided by external components
++      - description: slave bit clock N8 provided by external components
++      - description: slave bit clock N9 provided by external components
++      - description: slave sample clock N0 provided by external components
++      - description: slave sample clock N1 provided by external components
++      - description: slave sample clock N2 provided by external components
++      - description: slave sample clock N3 provided by external components
++      - description: slave sample clock N4 provided by external components
++      - description: slave sample clock N5 provided by external components
++      - description: slave sample clock N6 provided by external components
++      - description: slave sample clock N7 provided by external components
++      - description: slave sample clock N8 provided by external components
++      - description: slave sample clock N9 provided by external components
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: pclk
++      - const: mst_in0
++      - const: mst_in1
++      - const: mst_in2
++      - const: mst_in3
++      - const: mst_in4
++      - const: mst_in5
++      - const: mst_in6
++      - const: mst_in7
++      - const: slv_sclk0
++      - const: slv_sclk1
++      - const: slv_sclk2
++      - const: slv_sclk3
++      - const: slv_sclk4
++      - const: slv_sclk5
++      - const: slv_sclk6
++      - const: slv_sclk7
++      - const: slv_sclk8
++      - const: slv_sclk9
++      - const: slv_lrclk0
++      - const: slv_lrclk1
++      - const: slv_lrclk2
++      - const: slv_lrclk3
++      - const: slv_lrclk4
++      - const: slv_lrclk5
++      - const: slv_lrclk6
++      - const: slv_lrclk7
++      - const: slv_lrclk8
++      - const: slv_lrclk9
++
++  resets:
++    description: internal reset line
++
++required:
++  - compatible
++  - '#clock-cells'
++  - reg
++  - clocks
++  - clock-names
++  - resets
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - amlogic,g12a-audio-clkc
++              - amlogic,sm1-audio-clkc
++    then:
++      required:
++        - '#reset-cells'
++    else:
++      properties:
++        '#reset-cells': false
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/axg-clkc.h>
++    #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
++    apb {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clkc_audio: clock-controller@0 {
++            compatible = "amlogic,axg-audio-clkc";
++            reg = <0x0 0x0 0x0 0xb4>;
++            #clock-cells = <1>;
++
++            clocks = <&clkc CLKID_AUDIO>,
++                     <&clkc CLKID_MPLL0>,
++                     <&clkc CLKID_MPLL1>,
++                     <&clkc CLKID_MPLL2>,
++                     <&clkc CLKID_MPLL3>,
++                     <&clkc CLKID_HIFI_PLL>,
++                     <&clkc CLKID_FCLK_DIV3>,
++                     <&clkc CLKID_FCLK_DIV4>,
++                     <&clkc CLKID_GP0_PLL>,
++                     <&slv_sclk0>,
++                     <&slv_sclk1>,
++                     <&slv_sclk2>,
++                     <&slv_sclk3>,
++                     <&slv_sclk4>,
++                     <&slv_sclk5>,
++                     <&slv_sclk6>,
++                     <&slv_sclk7>,
++                     <&slv_sclk8>,
++                     <&slv_sclk9>,
++                     <&slv_lrclk0>,
++                     <&slv_lrclk1>,
++                     <&slv_lrclk2>,
++                     <&slv_lrclk3>,
++                     <&slv_lrclk4>,
++                     <&slv_lrclk5>,
++                     <&slv_lrclk6>,
++                     <&slv_lrclk7>,
++                     <&slv_lrclk8>,
++                     <&slv_lrclk9>;
++            clock-names = "pclk",
++                          "mst_in0",
++                          "mst_in1",
++                          "mst_in2",
++                          "mst_in3",
++                          "mst_in4",
++                          "mst_in5",
++                          "mst_in6",
++                          "mst_in7",
++                          "slv_sclk0",
++                          "slv_sclk1",
++                          "slv_sclk2",
++                          "slv_sclk3",
++                          "slv_sclk4",
++                          "slv_sclk5",
++                          "slv_sclk6",
++                          "slv_sclk7",
++                          "slv_sclk8",
++                          "slv_sclk9",
++                          "slv_lrclk0",
++                          "slv_lrclk1",
++                          "slv_lrclk2",
++                          "slv_lrclk3",
++                          "slv_lrclk4",
++                          "slv_lrclk5",
++                          "slv_lrclk6",
++                          "slv_lrclk7",
++                          "slv_lrclk8",
++                          "slv_lrclk9";
++            resets = <&reset RESET_AUDIO>;
++        };
++    };
+-- 
+2.34.1
 
-I sent 5 patches which split this code up, you were on CC:
-
-[net-next,RFC,PATCH 1/5] net: stmmac: dwmac-stm32: Separate out external 
-clock rate validation
-
-Maybe you can apply those, fix them up as needed, and then add this 
-series on top ? I think it would simplify this code a lot, since that 
-series splits up the clock rate validation / PMCR configuration / 
-external-internal clock selection into separate steps. What do you think ?
 
