@@ -1,117 +1,109 @@
-Return-Path: <devicetree+bounces-66672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196BD8C42FE
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:16:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C46F8C43BE
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 17:07:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA191281D2A
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 14:16:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5277C1C21684
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 15:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 406EE153835;
-	Mon, 13 May 2024 14:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C850E6AC0;
+	Mon, 13 May 2024 15:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DNmtCVJw"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="nVAyY1V/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1266350279;
-	Mon, 13 May 2024 14:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D834E4C7B;
+	Mon, 13 May 2024 15:06:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715609765; cv=none; b=oZMjnp1LcdFhMjhc01/T/vG3UXoOLHEdVk6bEKO+07sB9W6aZpub21QILLg84j+jQqdWhG/6AKXt0c9gujDCjcIXxRFSzXiQr2+FnMT/6ZbbZa0/GcYV5aWLvN8I9nOBcMwR/ww4Es3ilTYlC2U64Z4nXeUd9dWMOaUr3wS4z00=
+	t=1715612810; cv=none; b=XOgw8ynchpoawp3sy9X/Dk4mm//QUlBqCmEbssMyPg5xdb/BGPulurY7EPLZH6OZ7nQ8szzWEDywYno2JILfGxC23uur8r7PcVGzY+OdiJRJNwUzR6tO34UrItHtfeZtZZ4L1RlRlkdZqNW/bOqHQJWehyhr/04c+1uGED/BrE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715609765; c=relaxed/simple;
-	bh=ztDLgSBwpXs1XqFtFOt86T1h2DMz/XQmvsHWKSx1FeM=;
-	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:References:To:
-	 Cc:Message-ID:Date; b=qH3IfW0t/e68Mfr+US5q7Zjow8q0Qi9wcQzEn5V7cEPxjschRGGLuplNHY4IJE2dMVX++RbFNSWle5UkqcUop2q3iz+bRMnfc5N88nyTkIOK29jycLNBiuVkSdYRL3aPF9hVMi9hFpVOGUzATxfC6SEcaz7LBrE3Ahvsli2Z+d0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DNmtCVJw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C2D4C32781;
-	Mon, 13 May 2024 14:16:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715609764;
-	bh=ztDLgSBwpXs1XqFtFOt86T1h2DMz/XQmvsHWKSx1FeM=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=DNmtCVJwPDEsfWvcPiiLOyHBC4Rmy3N3hPBcJgLbFVdGL8tHpmNpfu4Vbqle0QPY4
-	 PsFmfqWo0euv1DYfjyazS7BPjAgu2LTVgezqGPm9PxM7e0esVeZqPW7t+v6T93jjh+
-	 oLp/uW4uSLL1EqSJvj66pxuE+tM1rIPn1thedJosCmoambJFEWpeKmB0BwLKxxxN1o
-	 BFiIuyhP0Mmr5KCKhLM7KXupG3G7/QIeb6U1p0wxqNaetUNsFDNkd9ZSNwR+7tDXwX
-	 g40rXpANPwJFhlLLJbNdWUtZt88PHFvjJDLpgwPj3gv6RlI/Gf62diIjizSch2FHXZ
-	 nPSCPQ1o9+U1Q==
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1715612810; c=relaxed/simple;
+	bh=8aYhnyESUx91UbZYjQFvpNe164Hwg9vkCST5TzdH/Ks=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c5riNHkIgQF3WOGOp9ijPUQ9fY/vENU18EeaBPw/esfNM8zaf0GOoyuXepmqhTQPvFOJ/C7It7r73lKFqtS95FhTwOKYvAuhAFngeVY01FDqOSS0zuQK6l5tfl1eb0fkRm97SfHS781stsNx+BHF/LWJerM52KzZ1yF5zI1JV08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=nVAyY1V/; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 587A987E50;
+	Mon, 13 May 2024 17:06:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1715612807;
+	bh=D+kDYWZibEUugDcn49CQ+F1gtNp7/FJaDN/c69YDh5U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nVAyY1V/Ba0HWbriExYe4dZLigqzqJP6GhBUECrwmBSYFXv4/UB//Cnsh7o9Eje1S
+	 FXLepTguU4p51QYDmAQGyLOSRczHQwmgbkJKoCJfcf32zQNlNs5hPrM6DMx0hQ5hgM
+	 dj0eHocM6PtpQmeLleEYPMQGoVxh3ysE3hzOlLZWC3kuPvUSgdXCL6uBAykn46wINk
+	 0xSxBLXt6izu1N5J27TjgAJokl5CRDudBrfymJtSJp0ACA9aClRnbMaIw94tHSheZ/
+	 SO3Wtb9gs0rTdBYVHTRKwaejQpU2bSbV8oAWj88qjoNLPHEIE+bnOTTdJwlJ6mVKfK
+	 mcjCcBwWUaCmg==
+Message-ID: <4096ae14-bbb7-446b-bd96-2498c7ee4057@denx.de>
+Date: Mon, 13 May 2024 16:16:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr>
-References: <54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
- ath10k <ath10k@lists.infradead.org>,
- wireless <linux-wireless@vger.kernel.org>, DT
- <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/11] dt-bindings: net: add phy-supply property for
+ stm32
+To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Alexey Minnekhanov <alexeymin@postmarketos.org>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <171560975908.1690511.498631481702370762.kvalo@kernel.org>
-Date: Mon, 13 May 2024 14:16:00 +0000 (UTC)
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>, Jose Abreu
+ <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+ <20240426125707.585269-3-christophe.roullier@foss.st.com>
+ <4e03e7a4-c52b-4c68-b7e5-a03721401cdf@denx.de>
+ <0ef43ed5-24f5-4889-abb2-d01ee445a02d@foss.st.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <0ef43ed5-24f5-4889-abb2-d01ee445a02d@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+On 5/13/24 1:45 PM, Christophe ROULLIER wrote:
+> Hi,
 
-> The ath10k driver waits for an "MSA_READY" indicator
-> to complete initialization. If the indicator is not
-> received, then the device remains unusable.
-> 
-> cf. ath10k_qmi_driver_event_work()
-> 
-> Several msm8998-based devices are affected by this issue.
-> Oddly, it seems safe to NOT wait for the indicator, and
-> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
-> 
-> Jeff Johnson wrote:
-> 
->   The feedback I received was "it might be ok to change all ath10k qmi
->   to skip waiting for msa_ready", and it was pointed out that ath11k
->   (and ath12k) do not wait for it.
-> 
->   However with so many deployed devices, "might be ok" isn't a strong
->   argument for changing the default behavior.
-> 
-> Kalle Valo first suggested setting a bit in firmware-5.bin to trigger
-> work-around in the driver. However, firmware-5.bin is parsed too late.
-> So we are stuck with a DT property.
-> 
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Hi,
 
-2 patches applied to ath-next branch of ath.git, thanks.
+> On 4/26/24 16:47, Marek Vasut wrote:
+>> On 4/26/24 2:56 PM, Christophe Roullier wrote:
+>>> Phandle to a regulator that provides power to the PHY. This
+>>> regulator will be managed during the PHY power on/off sequence.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
+>>
+>> Maybe this entire regulator business should be separate series from 
+>> the MP13 DWMAC ethernet series ?
+> I prefer push it with MP13 Ethernet series if possible.
 
-71b6e321e302 dt-bindings: net: wireless: ath10k: add qcom,no-msa-ready-indicator prop
-6d67d18014a8 wifi: ath10k: do not always wait for MSA_READY indicator
+This is separate functionality, independent of the MP13 support and not 
+required for the MP13 support, correct ?
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+If yes, move it into separate patch(set) to make both series easier to 
+review.
 
