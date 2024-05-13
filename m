@@ -1,73 +1,56 @@
-Return-Path: <devicetree+bounces-66756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80A6D8C4790
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 21:35:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 981D28C47A4
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 21:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 396D7283117
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 19:35:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E3571F247F7
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 19:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7891175813;
-	Mon, 13 May 2024 19:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BAB878297;
+	Mon, 13 May 2024 19:38:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EBioGh+4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n/RwX359"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F34439FD8;
-	Mon, 13 May 2024 19:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F6777F13;
+	Mon, 13 May 2024 19:38:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715628907; cv=none; b=EWyTj3bS4hWXewpdtrZ9E2dVtL0qi7Odsys2Dw5NoHRXLZQMSsxHEYqwAwOena3aRIXwXPfWFdgKfSUs8hLNVTD3LthdbWv/SPrWy4JFUO4+w4+Q9n8Z63UPfh4yviwOCxT+xY/Odc1JAxv89pdnChiOQ6otme+P1JjnAKKT7uI=
+	t=1715629106; cv=none; b=kw0lWqftToYYmcqliusNiOG2EeZAruB72E7qfP+K8Ej67dxMfCbWkEiqFNWw2T7o+wbGiV+jBfrNjJILuX7Adz+q9AdeVgepNDTOH8LLMCjzg1xVXQ/FXubhgIkf4sCM4yAY/bY7q2sgpmOVbezUqzsawpvVAwA7rl0foKkJeMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715628907; c=relaxed/simple;
-	bh=KNTg+2wS+o1DKHL98I7FqXY+zNv3Twt4zrowVfZvpN8=;
+	s=arc-20240116; t=1715629106; c=relaxed/simple;
+	bh=FDhzjixi9qj4qYYv/pF0kkgOWecQpxha+5i6/ywXIAo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SCZrAzm/CxwV7MurV9AyYR1KKDbVqNkUiei5iAEQSeefNgjubPhcOxrpyH7qHZkQpwAI9zJ7sjQXoPcAGO3WKMaJbqr/iJZgtqwoNntQdDIITjmkjDsZC4mlpuJG5Jfz5bISNFj80g7Y3ke1VBdmUXeDsyvolT+gYSPBfnPvHXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EBioGh+4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0BEAC113CC;
-	Mon, 13 May 2024 19:35:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cs/Bvxs9KVsDLYdcox3ZNQa6uZaGFHzrwBYSpcmfOc4lFLHkn49RlYz70dtxpPbXM/+OOslk2cmcQCKvhndAoI3wrlsnrqy+J4voUdauAA6cL76gBt+uOTx0/0bUiUSJ7/86NOkN1IgbCN9cLsAZubrCW6wbI27fiJ7rEGlR+K4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n/RwX359; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4B62C113CC;
+	Mon, 13 May 2024 19:38:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715628906;
-	bh=KNTg+2wS+o1DKHL98I7FqXY+zNv3Twt4zrowVfZvpN8=;
+	s=k20201202; t=1715629105;
+	bh=FDhzjixi9qj4qYYv/pF0kkgOWecQpxha+5i6/ywXIAo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EBioGh+4tTPxzt3D8JlYW0wLp/e4N7nSOtfQvKZpS1tWCbeyRNVLPKf2CTRnGiLkZ
-	 XnrYs7H+aavjBKzCMDhf9ujP19Xb9X2vyDqvLIA+IJfSkG42wPHUrbPa+aTArklx+t
-	 4JTqqpj9+ETx1la2tnaFqYVzQILAr13BPdfANys4zkTQJ7WFLD18UoEdI3WF52ZxAi
-	 xJUPt8hBZk03JNe8tb8GcVvKRV0lQMmi/pLt4Hf/5E3dsRg0CVu+BEZkRQMR6gHQuu
-	 695SrPiR9KAdmFLZhCsjrGFTDfk2jghgkl0xaApzWH0Dg81rckYoqs4Gl+dXFFPtV2
-	 dWy3ZAZdUaFgg==
-Date: Mon, 13 May 2024 14:35:04 -0500
+	b=n/RwX3595HOJ8PBr6qaPAAsTXAIOVM9woIeVmAwgKv7oyt9UYae1QPTgGEk0Kr/Jc
+	 l76XD5FXCghLL3c+yZOUhsnDB0gXh+S5K0r40ujM+vMEYxnVB44zXVJvRhEOAwq/i2
+	 TFK/DtQ2dRjjZ8OxHknblkB/vpcBYN9zguPlL+K6KJtMK9SNH+ZQaoD+25i9bO2yY3
+	 uRvyaFk1mtLNpKODWs6D6ugnPf0Evx+V0gtlpJeanUZHA3tVusrw/mDB0omJeB0pi3
+	 wdXKBhM9BeAp9qWaDkjf73JTHYZ4YQSwFNnq8CAZORfl6/Vj2CjGEJlGCqVsefk1iS
+	 Bku1bukNMpe4g==
+Date: Mon, 13 May 2024 14:38:23 -0500
 From: Rob Herring <robh@kernel.org>
-To: Aradhya Bhatia <a-bhatia1@ti.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Jyri Sarha <jyri.sarha@iki.fi>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	DRI Development List <dri-devel@lists.freedesktop.org>,
-	Devicetree List <devicetree@vger.kernel.org>,
-	Linux Kernel List <linux-kernel@vger.kernel.org>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Randolph Sapp <rs@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-	Jayesh Choudhary <j-choudhary@ti.com>, Jai Luthra <j-luthra@ti.com>
-Subject: Re: [PATCH 3/4] dt-bindings: display: ti,am65x-dss: Add OLDI
- properties for AM625 DSS
-Message-ID: <20240513193504.GA3000298-robh@kernel.org>
-References: <20240511193055.1686149-1-a-bhatia1@ti.com>
- <20240511193055.1686149-4-a-bhatia1@ti.com>
+To: Xiaxi Shen <shenxiaxi26@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org, lgirdwood@gmail.com,
+	broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	javier.carrasco.cruz@gmail.com, skhan@linuxfoundation.org
+Subject: Re: [PATCH] ASoC: dt-bindings: ak4118: convert to dt schema
+Message-ID: <20240513193823.GA3006391-robh@kernel.org>
+References: <20240511214624.242579-1-shenxiaxi26@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,78 +59,130 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240511193055.1686149-4-a-bhatia1@ti.com>
+In-Reply-To: <20240511214624.242579-1-shenxiaxi26@gmail.com>
 
-On Sun, May 12, 2024 at 01:00:54AM +0530, Aradhya Bhatia wrote:
-> The DSS in AM625 SoC has 2 OLDI TXes. Refer the OLDI schema to add the
-> properties.
+On Sat, May 11, 2024 at 02:46:24PM -0700, Xiaxi Shen wrote:
+> Convert ak4118 binding to DT schema
 > 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> It passed dt_binding_check and dtbs_check. Let me know
+> if you think it should include something else
+
+This doesn't belong in the commit message.
+
+> 
+> Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
 > ---
->  .../bindings/display/ti/ti,am65x-dss.yaml     | 136 +++++++++++++++++-
->  1 file changed, 135 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/sound/ak4118.txt      | 22 -------
+>  .../bindings/sound/asahi-kasei,ak4118.yaml    | 58 +++++++++++++++++++
+>  2 files changed, 58 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/ak4118.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> index 399d68986326..4aa2de59b32b 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> @@ -85,12 +85,30 @@ properties:
->  
->      properties:
->        port@0:
-> -        $ref: /schemas/graph.yaml#/properties/port
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-
-You don't need this change. You aren't adding any extra properties.
-
->          description:
->            For AM65x DSS, the OLDI output port node from video port 1.
->            For AM625 DSS, the internal DPI output port node from video
->            port 1.
->            For AM62A7 DSS, the port is tied off inside the SoC.
-> +        properties:
-> +          endpoint@0:
-> +            $ref: /schemas/graph.yaml#/properties/endpoint
-> +            description:
-> +              For AM625 DSS, VP Connection to OLDI0.
-> +              For AM65X DSS, OLDI output from the SoC.
+> diff --git a/Documentation/devicetree/bindings/sound/ak4118.txt b/Documentation/devicetree/bindings/sound/ak4118.txt
+> deleted file mode 100644
+> index 6e11a2f7404c..000000000000
+> --- a/Documentation/devicetree/bindings/sound/ak4118.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -AK4118 S/PDIF transceiver
+> -
+> -This device supports I2C mode.
+> -
+> -Required properties:
+> -
+> -- compatible : "asahi-kasei,ak4118"
+> -- reg : The I2C address of the device for I2C
+> -- reset-gpios: A GPIO specifier for the reset pin
+> -- irq-gpios: A GPIO specifier for the IRQ pin
+> -
+> -Example:
+> -
+> -&i2c {
+> -	ak4118: ak4118@13 {
+> -		#sound-dai-cells = <0>;
+> -		compatible = "asahi-kasei,ak4118";
+> -		reg = <0x13>;
+> -		reset-gpios = <&gpio 0 GPIO_ACTIVE_LOW>
+> -		irq-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
+> new file mode 100644
+> index 000000000000..abbce999eb30
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4118.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4118.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +          endpoint@1:
-> +            $ref: /schemas/graph.yaml#/properties/endpoint
-> +            description:
-> +              For AM625 DSS, VP Connection to OLDI1.
+> +title: AK4118 S/PDIF transceiver
 > +
-> +        anyOf:
-> +          - required:
-> +              - endpoint
-> +          - required:
-> +              - endpoint@0
-> +              - endpoint@1
->  
->        port@1:
->          $ref: /schemas/graph.yaml#/properties/port
-> @@ -112,6 +130,22 @@ properties:
->        Input memory (from main memory to dispc) bandwidth limit in
->        bytes per second
->  
-> +  oldi-txes:
-> +    type: object
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
+> +allOf:
+> +  - $ref: dai-common.yaml#
 > +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^oldi_tx@[0-1]$':
-> +        type: object
-> +        $ref: ti,am625-oldi.yaml#
-> +        unevaluatedProperties: false
-> +        description: OLDI transmitters connected to the DSS VPs
+> +maintainers:
+> +  - Liam Girdwood <lgirdwood@gmail.com>
+> +  - Mark Brown <broonie@kernel.org>
+> +  - Rob Herring <robh@kernel.org>
+> +  - Krzysztof Kozlowski <krzk+dt@kernel.org>
+> +  - Conor Dooley <conor+dt@kernel.org>
 
-Connected to is not part of the DSS. I don't think these nodes belong 
-here as mentioned in the other patch.
+Again, should be someone with the h/w or that cares about it.
 
-Rob
+(If you are new to bindings (or anything else), it would be best to send 
+1 patch out and wait for comments before sending more and repeating the 
+same problems on multiple ones.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: asahi-kasei,ak4118
+> +
+> +  reg:
+> +    description: The I2C address of the device for I2C
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0    
+> +
+> +  reset-gpios:
+> +    description: A GPIO specifier for the reset pin
+> +    maxItems: 1
+> +
+> +  irq-gpios:
+> +    description: A GPIO specifier for the IRQ pin
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +  - irq-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +   i2c {
+> +     #address-cells = <1>;
+> +     #size-cells = <0>;
+> +     ak4118@13 {
+
+Node names should be generic:
+
+spdif@13
+
+> +       #sound-dai-cells = <0>;
+> +       compatible = "asahi-kasei,ak4118";
+> +       reg = <0x13>;
+> +       reset-gpios = <&gpio 0 0>;
+> +       irq-gpios = <&gpio 1 1>;
+> +     };
+> +   };
+> -- 
+> 2.34.1
+> 
 
