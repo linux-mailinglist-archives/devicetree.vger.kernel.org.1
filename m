@@ -1,56 +1,84 @@
-Return-Path: <devicetree+bounces-66711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F268C4509
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9DB8C4517
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 18:28:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97206B20958
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:26:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0740EB222D2
+	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 16:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5BE4155344;
-	Mon, 13 May 2024 16:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB7B155351;
+	Mon, 13 May 2024 16:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h7E7qh2C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YNkZuFVT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA9B23CB;
-	Mon, 13 May 2024 16:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12587155344;
+	Mon, 13 May 2024 16:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715617575; cv=none; b=RqZUVESD1VI2O+2qLjkNORbekeA2RSQf8uDZmo/UQ210Qel+ILjpKtkhTbMeHjf43PhXJS4KTyvaWmR1OSYIzhN2IOpNriTvfrxoBakOMlAyXCCAFbzFfjBjrHNx91UW9cn++P0AhFYAOXHoahyB6w1BDLEpUYmRmeupLKR7bVg=
+	t=1715617716; cv=none; b=nCiB0hlxFVjIWA3JWCfBQXMbtG4sUYPxqGIVkME3sGQgsGKykLqEbInmt25l/bwsNxJSqhasUkQG3K8/Uae4izQZQ8LH2z85PZpYz9l9zrmfkm0KpSCCHqivhtta+/TsQYoQD3aUhCU4uakkc+dZ0TbPtGYOS13yl8y+SUAJKhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715617575; c=relaxed/simple;
-	bh=+4zO9ASfKSS6PnSBipIzzhi8J3n45oak72iAryaZmb0=;
+	s=arc-20240116; t=1715617716; c=relaxed/simple;
+	bh=dreGzymTKJvTE2xPwadAY/8dXCucGzSp5e1CjkI9194=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uC477rig8qAovbpF3SKsb8gzWm1i7TOQBce8VHG7HdCJRVW+jEq1RFWji5T9Lwuhm39SyGPaFoRSvfk5TsN2QzRAOoyBw49H/FQ+M4t51KGAzIUz9z8G7nPy+K5WBhbEie587axusLd7Bf7oXsiW01z3OiQqZ3i8BMQmgV66e60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h7E7qh2C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FBC9C113CC;
-	Mon, 13 May 2024 16:26:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sBHKoG2Yg3p8ftZ8l8y3Y/l2OZpKP3VHLwy6MJCg3hnvO2Uu1dVKUCKqoaXcgkx8siGg1ZKE6n0wl0OAgLz7Oszn6jZU2GPyCTPcQvPOSzrDYqTFRY0SR32mZfnsdR1ud5ebwhoDblGZZ3ZmRVr0JvCvZ5lZgK4iSJ2jqDFU0qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YNkZuFVT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41FCCC113CC;
+	Mon, 13 May 2024 16:28:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715617575;
-	bh=+4zO9ASfKSS6PnSBipIzzhi8J3n45oak72iAryaZmb0=;
+	s=k20201202; t=1715617715;
+	bh=dreGzymTKJvTE2xPwadAY/8dXCucGzSp5e1CjkI9194=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h7E7qh2CG77iROarlTd2amPHvTcfr+NbfMXLC09jvHzk6QcYf31tpbLcGavDvdh9T
-	 fNHe+3NT/0vr2HtqsZcCpFFcJ1Zx36fZ/WltHnoFYSXo9+9a9x55VSpoTwgfFeFUQQ
-	 taBJFV7x+RmKWbRrqjNw98GIyo2TU6R+s4grE3qqAo1qtQw0jyW+TIuEK99KmIcWUW
-	 9K61ZiKCfXFDMqT+Nk/F+Ca/Lm/dJAt8DNshBm6lQLt3v+VJPvOT+huBszKwHP8V8l
-	 KAi2whdXlykabID3bnuxEmQUsOynd6YO34LUhRt5DM4OqsfEOgw87Z8UH2uVouDL58
-	 cL5lEQJfjDEiQ==
-Date: Mon, 13 May 2024 17:26:12 +0100
+	b=YNkZuFVTgpilJnrk8k42qcAleha/WbDDTTi4Qgq1tTQkm/Ebiz7FPNf4ikKCYaseZ
+	 7N/pgS2dC5ti1KaPZSiSLdW/c6tTGcnFlO62YIXDDWkRxvldaFiXI/Srbw/GdDaOSK
+	 DaayMNussMq2hVzzqpQ4sQVLtgVw5hUd3e5iOowyHxXbnwpZZeSn3IPbrE4xjB9JQ5
+	 UEBlb/U+w8eMMvj4P/3IvFENgPyKzxEFpGfobya5R1G/vQmxTvV5/tySFTFP9RkkuQ
+	 cuN7q1aKqATShYTqcCv+FfOEphVxJJQx/WaucdXMtNgpqQZRnZFj3XD/7kEz30I3nC
+	 N/zGUS/lTIcUw==
+Date: Mon, 13 May 2024 17:28:29 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Arthur Becker <arthur.becker@sentec.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: CK Hu =?utf-8?B?KOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"wenst@chromium.org" <wenst@chromium.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"tzimmermann@suse.de" <tzimmermann@suse.de>,
+	Shawn Sung =?utf-8?B?KOWui+WtneismSk=?= <Shawn.Sung@mediatek.com>,
+	"mripard@kernel.org" <mripard@kernel.org>,
+	Jitao Shi =?utf-8?B?KOefs+iusOa2myk=?= <jitao.shi@mediatek.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
 	"robh@kernel.org" <robh@kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: iio: light: add veml6040 RGBW-LS bindings
-Message-ID: <20240513-repulsive-fiftieth-884b3805472f@spud>
-References: <ZR1P278MB1117B205886E023F9F72A2E881E22@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"airlied@gmail.com" <airlied@gmail.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"kernel@collabora.com" <kernel@collabora.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	Yu-chang Lee =?utf-8?B?KOadjuemueeSiyk=?= <Yu-chang.Lee@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
+ support for board path
+Message-ID: <20240513-papaya-bagged-8f01503b0a22@spud>
+References: <4dfb09b9c437ab2baa0898eca13a43fd7475047a.camel@mediatek.com>
+ <46347f5d-e09b-4e83-a5a2-e12407f442a4@collabora.com>
+ <847e1a84b532956f697d24014d684c86f0b76f03.camel@mediatek.com>
+ <cbf73111-a6cf-47da-9563-89d49fbdb17d@collabora.com>
+ <ee721fd3339f8b3a25464ca57ca192343a51e514.camel@mediatek.com>
+ <34caf545-1fc9-4905-a82f-2596f053b3ff@collabora.com>
+ <de23d55dd1c84bf9b04119014c3785189ce6f9da.camel@mediatek.com>
+ <c384946a-e151-4afb-82f7-d31a5a26aff6@collabora.com>
+ <5b0ed6dd7190496d70fe625ac9b4539eb0181c0a.camel@mediatek.com>
+ <6796f082-dfbe-45dc-bd01-3c9b4ac73865@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,70 +86,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZitAmeaQDcOi6BbO"
+	protocol="application/pgp-signature"; boundary="aZdOAVgj7H5otCBg"
 Content-Disposition: inline
-In-Reply-To: <ZR1P278MB1117B205886E023F9F72A2E881E22@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+In-Reply-To: <6796f082-dfbe-45dc-bd01-3c9b4ac73865@collabora.com>
 
 
---ZitAmeaQDcOi6BbO
-Content-Type: text/plain; charset=us-ascii
+--aZdOAVgj7H5otCBg
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 13, 2024 at 02:35:44PM +0000, Arthur Becker wrote:
-> This commit adds device tree bindings for the veml6040 RGBW Light Sensor
->=20
-> signed-off-by: Arthur Becker <arthur.becker@sentec.com>
+On Mon, May 13, 2024 at 03:44:00PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 13/05/24 08:15, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) ha scritto:
+> > On Fri, 2024-05-10 at 12:14 +0200, AngeloGioacchino Del Regno wrote:
+> > > Il 10/05/24 11:34, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) ha scritto:
+> > > > On Thu, 2024-05-09 at 11:27 +0200, AngeloGioacchino Del Regno
+> > > > wrote:
+> > > > > Il 09/05/24 07:42, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) ha scritto:
+> > > > > > On Wed, 2024-05-08 at 15:03 +0200, AngeloGioacchino Del Regno
+> > > > > > wrote:
+> > > > > > > Il 08/05/24 09:19, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) ha scr=
+itto:
+> > > > > > > > On Tue, 2024-05-07 at 16:07 +0200, AngeloGioacchino Del
+> > > > > > > > Regno
+> > > > > > > > wrote:
+> > > > > > > > > Il 07/05/24 08:59, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) ha=
+ scritto:
+> > > > > > > > > > On Thu, 2024-05-02 at 10:50 +0200, AngeloGioacchino Del
+> > > > > > > > > > Regno
+> > > > > > > > > > wrote:
+> > > > > > > > > > > Il 25/04/24 04:23, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89=
+) ha scritto:
+> > > > > > > > > > > > Hi, Angelo:
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > On Tue, 2024-04-09 at 14:02 +0200, AngeloGioacchino
+> > > > > > > > > > > > Del
+> > > > > > > > > > > > Regno
+> > > > > > > > > > > > wrote:
+> > > > > > > > > > > > > Document OF graph on MMSYS/VDOSYS: this supports
+> > > > > > > > > > > > > up
+> > > > > > > > > > > > > to
+> > > > > > > > > > > > > three
+> > > > > > > > > > > > > DDP
+> > > > > > > > > > > > > paths
+> > > > > > > > > > > > > per HW instance (so potentially up to six
+> > > > > > > > > > > > > displays
+> > > > > > > > > > > > > for
+> > > > > > > > > > > > > multi-
+> > > > > > > > > > > > > vdo
+> > > > > > > > > > > > > SoCs).
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > The MMSYS or VDOSYS is always the first component
+> > > > > > > > > > > > > in
+> > > > > > > > > > > > > the
+> > > > > > > > > > > > > DDP
+> > > > > > > > > > > > > pipeline,
+> > > > > > > > > > > > > so it only supports an output port with multiple
+> > > > > > > > > > > > > endpoints -
+> > > > > > > > > > > > > where
+> > > > > > > > > > > > > each
+> > > > > > > > > > > > > endpoint defines the starting point for one of
+> > > > > > > > > > > > > the
+> > > > > > > > > > > > > (currently
+> > > > > > > > > > > > > three)
+> > > > > > > > > > > > > possible hardware paths.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > Signed-off-by: AngeloGioacchino Del Regno <
+> > > > > > > > > > > > > angelogioacchino.delregno@collabora.com>
 
-If you're writing a standalone binding for this and not putting it into
-trivial-devices.yaml you should document the supply for this device.
+One of you guys, probably =E8=83=A1=E4=BF=8A=E5=85=89, has a mail client th=
+at is completely
+mangling these quotes. Can you try to fix that please? It makes reading
+the thread unfun :/
 
-> ---
->=20
->  .../bindings/iio/light/veml6040.yaml          | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/veml6040.=
-yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/light/veml6040.yaml b/=
-Documentation/devicetree/bindings/iio/light/veml6040.yaml
-> new file mode 100644
-> index 000000000000..796c22f75575
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/veml6040.yaml
-
-Filename matching the compatible please.
-
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/veml6040.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: VEML6040 RGBW Light Sensor
-> +
-> +maintainers:
-> +  - Arthur Becker <arthur.becker@sentec.com>
-> +
-> +description: |
-
-This | isn;t needed, you've got no formatting to preserve.
-
-
-Cheers,
-Conor.
-
---ZitAmeaQDcOi6BbO
+--aZdOAVgj7H5otCBg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkI/JAAKCRB4tDGHoIJi
-0u3NAQDsfKGAM28B8wsjgPoIYMhedJufJfYp+IZUBzI0SVYGkwEAnYppx7Mh7S+D
-LhvpMTYTJzUgkwQnEWW/LY+X2NZkhwE=
-=OphQ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkI/rQAKCRB4tDGHoIJi
+0jwnAP9uirCN5nWb54TXI+oti65ABU7175drHSW8qsorNLLmJAD+LES8EPnVXHkZ
+ntqNSxhNBnabta4KQYednD8SAoWwyAw=
+=uI9h
 -----END PGP SIGNATURE-----
 
---ZitAmeaQDcOi6BbO--
+--aZdOAVgj7H5otCBg--
 
