@@ -1,147 +1,147 @@
-Return-Path: <devicetree+bounces-66838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83D358C4E81
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 11:14:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0617C8C4ED0
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 12:19:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4040F283734
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:14:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49E641F21AD9
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 10:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C2F3D0D9;
-	Tue, 14 May 2024 09:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5660412A152;
+	Tue, 14 May 2024 09:28:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GfYcL/Qk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109F2286A6;
-	Tue, 14 May 2024 09:13:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C2A8594C;
+	Tue, 14 May 2024 09:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715678015; cv=none; b=knYhzkaLfuX5Kztkfak50dEAkhcczDpxzFNLxhesDIlgCdP/qCzf4cqQlDLgA6Dg4S+TuJK07hEUwu+r2PSB7UEt9DaPiUV5yMYH6xl9gJluK5RBUpY+q2c/z4z9KAHqkiDejJ0rulmj0cELlTjBhMtiOCSR3FGkP2g/DwyEef0=
+	t=1715678925; cv=none; b=nOqCnnIzzK1e3sFAc76Gbg8AoUks3lrBPSDi23rhkrOmGOlgTJI7hhTktH4Xk+Wk77B1CUPR1VvpD6eYZkqKN1KntzuK+rG1ALDKJZDckxCQ9GkwC4FE8A48bOPl9cKU9fD+t8KsDX5PpmXfsJqV9YiO7qV2nTvKnrC2XVR8NN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715678015; c=relaxed/simple;
-	bh=dHqEPBaw5nSQKZiDPjBfxGzkUWeHJx2AEu+zXPtpOlg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=C4s90O3wtveoq1SflXHfVEx2x1LOTAN2y1EGSdcPwkPDAfEPEwPNW44HP/Sr8kpwnFpuiZ4pJtG7ScLmfFHwQTnj7714CVuw7UMgYYNXkV922F2Z1ZlzbGnJya4pGbPepVtfEi2U8RTLbZmMDsjhhdsEL6/zqhk4XIHGOPCpXqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 764B2201C85;
-	Tue, 14 May 2024 11:13:32 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 2E65A201C78;
-	Tue, 14 May 2024 11:13:32 +0200 (CEST)
-Received: from pe-lt8779.in-pnq01.nxp.com (pe-lt8779.in-pnq01.nxp.com [10.17.104.141])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 17F1F180226C;
-	Tue, 14 May 2024 17:13:30 +0800 (+08)
-From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-To: marcel@holtmann.org,
-	luiz.dentz@gmail.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-bluetooth@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	amitkumar.karwar@nxp.com,
-	rohit.fule@nxp.com,
-	neeraj.sanjaykale@nxp.com,
-	sherry.sun@nxp.com,
-	ziniu.wang_1@nxp.com,
-	haibo.chen@nxp.com,
-	LnxRevLi@nxp.com
-Subject: [PATCH v3 2/2] Bluetooth: btnxpuart: Update firmware names
-Date: Tue, 14 May 2024 14:43:20 +0530
-Message-Id: <20240514091320.1508015-3-neeraj.sanjaykale@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240514091320.1508015-1-neeraj.sanjaykale@nxp.com>
-References: <20240514091320.1508015-1-neeraj.sanjaykale@nxp.com>
+	s=arc-20240116; t=1715678925; c=relaxed/simple;
+	bh=HwGGfmR6sqS6WP0aIbowQLShPEm7IIhjY9D4SqgUD2M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f2Hhws9gttplsJT4eZ8ZAxhCa1BjXAkcrV/NRVOSFUeOZSs9pSORaOfisCWrlhllNPZyrYXZFGqSukPnGxeJNkak+wouoB0avvgAR1q2/LdFR42NLW2BzdOlx2OVJ9eT+d2G9jT6eRwaaNIuaAsAcrI7h0gFJKMw2t4quasm8nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GfYcL/Qk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62E81C2BD10;
+	Tue, 14 May 2024 09:28:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715678924;
+	bh=HwGGfmR6sqS6WP0aIbowQLShPEm7IIhjY9D4SqgUD2M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GfYcL/QkIkE5PyQHM6b+a0gOfkH5yNZSZ3mxJt7ajzRnDnfnS0M3o0HiU1jhxfNCP
+	 p4h2hiT8rutj76sSkfZxwJqSGaUHji8hFAeLtvvA0sTeWfmp3oWIh2IdjW/q4YDxEt
+	 /3E7usTuEDyX3LJ6fPe+XTgnmGSiL9nQ4+Giz/zunWs03LJ+PvWkOr05qS+2h+Dpdu
+	 0DN8P5XPHbJMQYgs2PccGG8Fa9T8BEY3W7tXZuyRI1f7KyXqp6vcFnTOlDboMJq8ay
+	 F/7TjQuD97ExUfjAwCSkF8HBOTdB9IQ6X2m8oPBjBoTtBy2rtkEvKt5VlYpviFqqw1
+	 XHpl48Quz2AZA==
+Date: Tue, 14 May 2024 11:28:38 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, johan+linaro@kernel.org,
+	bmasney@redhat.com, djakov@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	vireshk@kernel.org, quic_vbadigan@quicinc.com,
+	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_parass@quicinc.com, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v12 6/6] PCI: qcom: Add OPP support to scale performance
+Message-ID: <20240514092838.GE2463@thinkpad>
+References: <20240427-opp_support-v12-0-f6beb0a1f2fc@quicinc.com>
+ <20240427-opp_support-v12-6-f6beb0a1f2fc@quicinc.com>
+ <20240430052613.GD3301@thinkpad>
+ <8b213eba-7ab6-ae9c-7683-937a9d6aaf08@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+In-Reply-To: <8b213eba-7ab6-ae9c-7683-937a9d6aaf08@quicinc.com>
 
-This updates the firmware names of 3 chipsets: w8987, w8997, w9098.
-These changes are been done to standardize chip specific firmware
-file names.
-To allow user to use older firmware file names, a new device tree
-property has been introduced called firmware-name, which will override
-the hardcoded firmware names in the driver.
+On Thu, May 09, 2024 at 09:21:55PM +0530, Krishna Chaitanya Chundru wrote:
+> 
+> 
+> On 4/30/2024 10:56 AM, Manivannan Sadhasivam wrote:
+> > On Sat, Apr 27, 2024 at 07:22:39AM +0530, Krishna chaitanya chundru wrote:
+> > > QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
+> > > maintains hardware state of a regulator by performing max aggregation of
+> > > the requests made by all of the clients.
+> > > 
+> > > PCIe controller can operate on different RPMh performance state of power
+> > > domain based on the speed of the link. And this performance state varies
+> > > from target to target, like some controllers support GEN3 in NOM (Nominal)
+> > > voltage corner, while some other supports GEN3 in low SVS (static voltage
+> > > scaling).
+> > > 
+> > > The SoC can be more power efficient if we scale the performance state
+> > > based on the aggregate PCIe link bandwidth.
+> > > 
+> > > Add Operating Performance Points (OPP) support to vote for RPMh state based
+> > > on the aggregate link bandwidth.
+> > > 
+> > > OPP can handle ICC bw voting also, so move ICC bw voting through OPP
+> > > framework if OPP entries are present.
+> > > 
+> > > As we are moving ICC voting as part of OPP, don't initialize ICC if OPP
+> > > is supported.
+> > > 
+> > > Before PCIe link is initialized vote for highest OPP in the OPP table,
+> > > so that we are voting for maximum voltage corner for the link to come up
+> > > in maximum supported speed.
+> > > 
+> > > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> > > ---
+> > >   drivers/pci/controller/dwc/pcie-qcom.c | 81 ++++++++++++++++++++++++++++------
+> > >   1 file changed, 67 insertions(+), 14 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > index 465d63b4be1c..40c875c518d8 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > 
+> > [...]
+> > 
+> > > @@ -1661,6 +1711,9 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+> > >   		ret = icc_disable(pcie->icc_cpu);
+> > >   		if (ret)
+> > >   			dev_err(dev, "Failed to disable CPU-PCIe interconnect path: %d\n", ret);
+> > > +
+> > > +		if (!pcie->icc_mem)
+> > > +			dev_pm_opp_set_opp(pcie->pci->dev, NULL);
+> > 
+> > At the start of the suspend, there is a call to icc_set_bw() for PCIe-MEM path.
+> > Don't you want to update it too?
+> > 
+> > - Mani
+> > 
+> if opp is supported we just need to call dev_pm_opp_set_opp() only once
+> which will take care for both PCIe-MEM & CPU-PCIe path.
+> so we are not adding explicitly there.
 
-Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
----
-v2: Remove "nxp/" from all firmware name definitions to be inline with
-firware file name read from device tree file. (Krzysztof)
----
- drivers/bluetooth/btnxpuart.c | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
+No, I was asking you why you are not adding a check for the existing
+icc_set_bw() at the start like you were doing elsewhere.
 
-diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
-index 0b93c2ff29e4..4442d911eba8 100644
---- a/drivers/bluetooth/btnxpuart.c
-+++ b/drivers/bluetooth/btnxpuart.c
-@@ -33,16 +33,16 @@
- /* NXP HW err codes */
- #define BTNXPUART_IR_HW_ERR		0xb0
- 
--#define FIRMWARE_W8987		"nxp/uartuart8987_bt.bin"
--#define FIRMWARE_W8997		"nxp/uartuart8997_bt_v4.bin"
--#define FIRMWARE_W9098		"nxp/uartuart9098_bt_v1.bin"
--#define FIRMWARE_IW416		"nxp/uartiw416_bt_v0.bin"
--#define FIRMWARE_IW612		"nxp/uartspi_n61x_v1.bin.se"
--#define FIRMWARE_IW624		"nxp/uartiw624_bt.bin"
--#define FIRMWARE_SECURE_IW624	"nxp/uartiw624_bt.bin.se"
--#define FIRMWARE_AW693		"nxp/uartaw693_bt.bin"
--#define FIRMWARE_SECURE_AW693	"nxp/uartaw693_bt.bin.se"
--#define FIRMWARE_HELPER		"nxp/helper_uart_3000000.bin"
-+#define FIRMWARE_W8987		"uart8987_bt_v0.bin"
-+#define FIRMWARE_W8997		"uart8997_bt_v4.bin"
-+#define FIRMWARE_W9098		"uart9098_bt_v1.bin"
-+#define FIRMWARE_IW416		"uartiw416_bt_v0.bin"
-+#define FIRMWARE_IW612		"uartspi_n61x_v1.bin.se"
-+#define FIRMWARE_IW624		"uartiw624_bt.bin"
-+#define FIRMWARE_SECURE_IW624	"uartiw624_bt.bin.se"
-+#define FIRMWARE_AW693		"uartaw693_bt.bin"
-+#define FIRMWARE_SECURE_AW693	"uartaw693_bt.bin.se"
-+#define FIRMWARE_HELPER		"helper_uart_3000000.bin"
- 
- #define CHIP_ID_W9098		0x5c03
- #define CHIP_ID_IW416		0x7201
-@@ -685,13 +685,19 @@ static bool process_boot_signature(struct btnxpuart_dev *nxpdev)
- static int nxp_request_firmware(struct hci_dev *hdev, const char *fw_name)
- {
- 	struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-+	const char *fw_name_dt;
- 	int err = 0;
- 
- 	if (!fw_name)
- 		return -ENOENT;
- 
- 	if (!strlen(nxpdev->fw_name)) {
--		snprintf(nxpdev->fw_name, MAX_FW_FILE_NAME_LEN, "%s", fw_name);
-+		if (strcmp(fw_name, FIRMWARE_HELPER) &&
-+		    !device_property_read_string(&nxpdev->serdev->dev,
-+						 "firmware-name",
-+						 &fw_name_dt))
-+			fw_name = fw_name_dt;
-+		snprintf(nxpdev->fw_name, MAX_FW_FILE_NAME_LEN, "nxp/%s", fw_name);
- 
- 		bt_dev_dbg(hdev, "Request Firmware: %s", nxpdev->fw_name);
- 		err = request_firmware(&nxpdev->fw, nxpdev->fw_name, &hdev->dev);
+- Mani
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
