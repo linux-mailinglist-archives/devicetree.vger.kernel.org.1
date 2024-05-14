@@ -1,148 +1,116 @@
-Return-Path: <devicetree+bounces-66779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D42C58C4A3B
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 01:51:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A4C8C4A80
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 02:40:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5ECD0B226FD
-	for <lists+devicetree@lfdr.de>; Mon, 13 May 2024 23:51:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 362DF1C22E8E
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 00:40:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93978627C;
-	Mon, 13 May 2024 23:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF7A1A34;
+	Tue, 14 May 2024 00:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LjkzpoSI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y3R/oS7C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27995129E7E;
-	Mon, 13 May 2024 23:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF84625;
+	Tue, 14 May 2024 00:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715644266; cv=none; b=E7dmGgIz7VyOovE8TIMSTQQgSIC3wFmjMSqvj5uFCU/ZMz9p7a5MxgooBNvI5mZB2Pnh7IAPSRb9ICXutqqbtNcUet410DBiTtQG8WQe8ALzdOW4NLq0pDcYAHqjvfNaDKQgCs5BV7s2IY82OiSTW6XKaM/b9/FDnSK9t/K4Q+k=
+	t=1715647231; cv=none; b=XmfdmvTjVHyz/aCCSuHx/pnhLqQul8gsYb/YcbDUpKIgmilnyl/M0qzf2nEdnw9cyzV3RtoQxLkVFE8T+qQRWjBF9S8RWpMJq2dAApaEl1A3ogRytZPY+ldEP+8TecQ+gCm4GdCZyBMghKcdYm6eK6+q8LYrYTzEIyWBc02IXsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715644266; c=relaxed/simple;
-	bh=8k7wY0dIyy5/im7vf9wz7CejUYZadSeVLOyq35oenu0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UFIWXUEHqR89Vue/bOz2pFp+/Dw2mmLhd6g8EtC4gxpi827Bnzb2nomh5ql6yJrJBMAN2a6/No54fM4o88HuO/E2F6upAkQTWOHGooN4cDhQVOdNhvK8kro9quhBiRlX8iheo3viDEUc6ko9ymVAQcik/7iUeRBZR83FRCaIdY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LjkzpoSI; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715644264; x=1747180264;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8k7wY0dIyy5/im7vf9wz7CejUYZadSeVLOyq35oenu0=;
-  b=LjkzpoSIFECDZ4ftKkZZVDFLiDUjLUQNTQP0IaMgAc1O8aI+QDCoQc0K
-   GMAE6QblmYZyQLEeLJth3FxP1Jgxw71Olr+nlAVYoXj6gHOHpz47Cuuh3
-   Qu6RO4Ki+aZRUQu9dlvXSBIQEKLxIo5TX+AZeAiTIBu1GRZh7+Dd3p7ZY
-   UIzpEi0qKxKnhKxrfENlnXa9F/n0KG2VyWdSzOArzhH/r4VtOk4U0976f
-   V9TOe1pzXCX46+yhMgWuN5nm/d6h+kiuTb6jcQfGQK8utZDX3h6jVc+3x
-   l5pqgZUAdqPP5IRX87/tZuI8ukvI66yrwkWAaLXaAQwzlq70f8hbT+KHl
-   Q==;
-X-CSE-ConnectionGUID: kHOrN815Qf2MB1x4mxI9oQ==
-X-CSE-MsgGUID: Ge/Bl8W9RhmQyzesPfyAwQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11072"; a="29093954"
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; 
-   d="scan'208";a="29093954"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2024 16:51:03 -0700
-X-CSE-ConnectionGUID: SX6aCGhPTHuCKaVvAbrmLA==
-X-CSE-MsgGUID: N0lPQVPlSMeeWOzne2Q0Sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; 
-   d="scan'208";a="30497746"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 13 May 2024 16:51:01 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s6fRa-000Ao7-1C;
-	Mon, 13 May 2024 23:50:58 +0000
-Date: Tue, 14 May 2024 07:50:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Gustavo Silva <gustavograzs@gmail.com>, jic23@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lars@metafoo.de, christophe.jaillet@wanadoo.fr,
-	gerald.loacker@wolfvision.net, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/6] iio: chemical: ens160: add triggered buffer support
-Message-ID: <202405140721.LuiSHRvx-lkp@intel.com>
-References: <20240512210444.30824-5-gustavograzs@gmail.com>
+	s=arc-20240116; t=1715647231; c=relaxed/simple;
+	bh=93n0YB5LyuStAJQCV97FzZlYnXBJBJnFNuQFhpwqgUg=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=nggKxZP6AuYhMLNNrWoFDBiXd/GhRGC1HToNsop9Q6aNQ1qi/36EttPZVWkd81oskdGuvEPYndqKgUTDroces/zwZAiXs0ev/treJ7NpD4oUMdQ4nGlQ0MfvDfgqtxlggW1cFLxNiDRdWIaO2z1B/yduMHB7GHncz1h34Ixmh2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y3R/oS7C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E908AC32781;
+	Tue, 14 May 2024 00:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715647231;
+	bh=93n0YB5LyuStAJQCV97FzZlYnXBJBJnFNuQFhpwqgUg=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=Y3R/oS7CelvSJjiGRbUYW0K3tTmD6WxGxsVSkpWnpXYoAOjcKZl4btM0HUThza2le
+	 hcwU2XonmUY5W5XsN4x0lYg50gj5wBh8Q3NxemDvgrn/6Gp/3F3NSuHdCNPAdbU2Ot
+	 YXCeFiZSRhqzxXa4kfQAEQEL0pAHY0fT/fNXlq/0TOpwLUqOHRDGFj08xaBYrZ2eBc
+	 yJgAWLD6nztNlG2kGwIF1MjF36GE5cMmYVGdTVdfuHy6KQ+lRNimUYmjv/mbygHnWO
+	 T4xQ2Gl5nP/coZ9Ys/E8UDB6eRhFN0nksAP7aNr6uwYjr8CF8wLkRK3zSU2YYI9rf9
+	 reY0tk1AOa/+g==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D5F95C43443;
+	Tue, 14 May 2024 00:40:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240512210444.30824-5-gustavograzs@gmail.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v7 0/7] net: stmmac: Add support for RZN1 GMAC
+ devices
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171564723087.24946.4336582223559029417.git-patchwork-notify@kernel.org>
+Date: Tue, 14 May 2024 00:40:30 +0000
+References: <20240513-rzn1-gmac1-v7-0-6acf58b5440d@bootlin.com>
+In-Reply-To: <20240513-rzn1-gmac1-v7-0-6acf58b5440d@bootlin.com>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+ alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+ mcoquelin.stm32@gmail.com, linux@armlinux.org.uk, clement.leger@bootlin.com,
+ fancer.lancer@gmail.com, thomas.petazzoni@bootlin.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, rmk+kernel@armlinux.org.uk,
+ maxime.chevallier@bootlin.com
 
-Hi Gustavo,
+Hello:
 
-kernel test robot noticed the following build warnings:
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-[auto build test WARNING on 084eeee1d8da6b4712719264b01cb27b41307f54]
+On Mon, 13 May 2024 09:25:11 +0200 you wrote:
+> Hello everyone,
+> 
+> This is version seven of my series that adds support for a Gigabit Ethernet
+> controller featured in the Renesas r9a06g032 SoC, of the RZ/N1 family. This
+> GMAC device is based on a Synopsys IP and is compatible with the stmmac driver.
+> 
+> My former colleague Clément Léger originally sent a series for this driver,
+> but an issue in bringing up the PCS clock had blocked the upstreaming
+> process. This issue has since been resolved by the following series:
+> 
+> [...]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Gustavo-Silva/dt-bindings-vendor-prefixes-add-ScioSense/20240513-050745
-base:   084eeee1d8da6b4712719264b01cb27b41307f54
-patch link:    https://lore.kernel.org/r/20240512210444.30824-5-gustavograzs%40gmail.com
-patch subject: [PATCH 4/6] iio: chemical: ens160: add triggered buffer support
-config: arc-randconfig-r123-20240514 (https://download.01.org/0day-ci/archive/20240514/202405140721.LuiSHRvx-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240514/202405140721.LuiSHRvx-lkp@intel.com/reproduce)
+Here is the summary with links:
+  - [net-next,v7,1/7] dt-bindings: net: renesas,rzn1-gmac: Document RZ/N1 GMAC support
+    https://git.kernel.org/netdev/net-next/c/ab5588703981
+  - [net-next,v7,2/7] net: stmmac: Add dedicated XPCS cleanup method
+    https://git.kernel.org/netdev/net-next/c/d5c50937d50f
+  - [net-next,v7,3/7] net: stmmac: Make stmmac_xpcs_setup() generic to all PCS devices
+    https://git.kernel.org/netdev/net-next/c/f9cdff1bdacc
+  - [net-next,v7,4/7] net: stmmac: introduce pcs_init/pcs_exit stmmac operations
+    https://git.kernel.org/netdev/net-next/c/f0ef433fc264
+  - [net-next,v7,5/7] net: stmmac: dwmac-socfpga: use pcs_init/pcs_exit
+    https://git.kernel.org/netdev/net-next/c/81b418a65657
+  - [net-next,v7,6/7] net: stmmac: add support for RZ/N1 GMAC
+    https://git.kernel.org/netdev/net-next/c/f360446ec1d0
+  - [net-next,v7,7/7] ARM: dts: r9a06g032: describe GMAC1
+    (no matching commit)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405140721.LuiSHRvx-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/iio/chemical/ens160_core.c:250:39: sparse: sparse: incorrect type in assignment (different base types) @@     expected unsigned short @@     got restricted __le16 [addressable] [usertype] val @@
-   drivers/iio/chemical/ens160_core.c:250:39: sparse:     expected unsigned short
-   drivers/iio/chemical/ens160_core.c:250:39: sparse:     got restricted __le16 [addressable] [usertype] val
-   drivers/iio/chemical/ens160_core.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/xarray.h, ...):
-   include/linux/page-flags.h:242:46: sparse: sparse: self-comparison always evaluates to false
-   include/linux/page-flags.h:242:46: sparse: sparse: self-comparison always evaluates to false
-
-vim +250 drivers/iio/chemical/ens160_core.c
-
-   232	
-   233	static irqreturn_t ens160_trigger_handler(int irq, void *p)
-   234	{
-   235		struct iio_poll_func *pf = p;
-   236		struct iio_dev *indio_dev = pf->indio_dev;
-   237		struct ens160_data *data = iio_priv(indio_dev);
-   238		__le16 val;
-   239		int ret, i, j = 0;
-   240	
-   241		mutex_lock(&data->mutex);
-   242	
-   243		for_each_set_bit(i, indio_dev->active_scan_mask,
-   244				 indio_dev->masklength) {
-   245			ret = regmap_bulk_read(data->regmap,
-   246					       ENS160_REG_DATA_TVOC + 2 * i, &val, 2U);
-   247			if (ret)
-   248				goto err;
-   249	
- > 250			data->scan.chans[j++] = val;
-   251		}
-   252	
-   253		iio_push_to_buffers_with_timestamp(indio_dev, &data->scan,
-   254						   pf->timestamp);
-   255	err:
-   256		mutex_unlock(&data->mutex);
-   257		iio_trigger_notify_done(indio_dev->trig);
-   258	
-   259		return IRQ_HANDLED;
-   260	}
-   261	
-
+You are awesome, thank you!
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
