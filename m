@@ -1,194 +1,135 @@
-Return-Path: <devicetree+bounces-66877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A99C8C5667
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 14:56:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28A628C568B
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 15:09:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DB8A1C21D04
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 12:56:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B42272834D4
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC897F49F;
-	Tue, 14 May 2024 12:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9498140E58;
+	Tue, 14 May 2024 13:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SqHcSbng"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j21QyHbX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C6605A79B;
-	Tue, 14 May 2024 12:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E504A13E02A
+	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 13:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715691334; cv=none; b=ZVGgFFP70v07VQmhzkFIeXcfxzGyJy/AaubjpnnV0Gv734i3gQj5ogi0xAOUyt8LsOY0zkaKYbV0/j0kSx5+E7nphvBsTWzqHQT90X2dMnx7I5VjrjdJLJfQ8alBRf82EIIBU4mq4TlF5fM0uuHi1KR0NEAhGxfPl2GyHIYNZKE=
+	t=1715692129; cv=none; b=ZoEvAadV+BM1blTPN4Dh8ijE+nw2IKwNp8nK4Dy1WRtZHlav0Re3vzDfLJnZmv+mg4lMiORfLwT/SvpNUlPy5ViMtIGJl5176TY0g7CLOXotWifPchyD4X/6ZbRzOpy4aK5hc3E3Kr0iiXN3wpxBbzdCLgWqscR0u/VH62RWy1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715691334; c=relaxed/simple;
-	bh=ogLSvab9s/uaYk8nU1V6GvKZYCgdD8Qs2Pc34NIY5X0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=REk401ZHEAYvgdh8g52Z1C6NddsmO9qCrrMJ2qGJfTKPMX4lQfBgBVorSikqnMco0AEEwRu8kN/ZZSXPf9NRKEBgwlYNZ6uewoNuys+L9m4J7LtUQDNvOfKQMmj6d/7pbv5fS3Wkp52lMuoTO2K72q0oP7r3bQovx944Na8TGA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SqHcSbng; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 103CD20007;
-	Tue, 14 May 2024 12:55:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1715691323;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1U1lSHyn+UBGYjOWsepzisKyKSuUqvB3hMNBkgKOiVw=;
-	b=SqHcSbngLJlpXZ3Qfg4KbR4KsZwO0iwvwjzI88o8+Tf2e/Q0DD67RsrnIP/SgrGMEJZ3hQ
-	Op8bxR6zbPwZWcXBE35qbKg9Z3diV2VFHHT+H3fyKu2MHKiNGs2FNi+dsvqmB9Id1OI8L0
-	Zcrk4xCQCpNsWLtad7RjLVLwn70oLnGzp+xvl+4UIL1PutKDvt9wCLEPbs0sRSkiIcTmXk
-	x8OVkso3DFNW+I0RFrCfQa9Y5hfPaxWMG0z9OJYQmMRGmNsXb167RC3WrZi0FrHHdbi+5H
-	hL27DJm0xrFQ4QSjQosQYjpgMA0WqCpPxwAYZRB1OAK1XvcexRfN+zuhnoMJTA==
-Date: Tue, 14 May 2024 14:55:18 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: <Steen.Hegelund@microchip.com>
-Cc: <tglx@linutronix.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>,
- <kuba@kernel.org>, <pabeni@redhat.com>, <lee@kernel.org>, <arnd@arndb.de>,
- <Horatiu.Vultur@microchip.com>, <UNGLinuxDriver@microchip.com>,
- <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
- <saravanak@google.com>, <bhelgaas@google.com>, <p.zabel@pengutronix.de>,
- <Lars.Povlsen@microchip.com>, <Daniel.Machon@microchip.com>,
- <alexandre.belloni@bootlin.com>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
- <linux-pci@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <Allan.Nielsen@microchip.com>, <luca.ceresoli@bootlin.com>,
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 16/17] mfd: Add support for LAN966x PCI device
-Message-ID: <20240514145518.3e989b83@bootlin.com>
-In-Reply-To: <D1447AHUWV6C.13V6FOWZ80GH@microchip.com>
-References: <20240430083730.134918-1-herve.codina@bootlin.com>
-	<20240430083730.134918-17-herve.codina@bootlin.com>
-	<D1447AHUWV6C.13V6FOWZ80GH@microchip.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1715692129; c=relaxed/simple;
+	bh=ZcblkuDSMv7tvtn/vseBea9lWN9fs5R+BIKAqQHnsjM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bnK9yC91Q2RXLIbfoqd1xQykHDMZbA0bfcUilm4XGag4pIVVdfDH2Lq9+ITjDvuRGshnbAoSQX2Ys0lvgmoFP+viqlkkRMD9g09iD2VRUs5MKaZlCVm/eJOn+5aaYADU7oF4U/a3OtR9ty9xXD9kY4V/wLcZerNWsP/AxiOqdN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j21QyHbX; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a5a1054cf61so36482966b.1
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 06:08:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715692126; x=1716296926; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zeT6KnLVfhQXaqC3Lu4DkuZNlc4YLw9XtuNUDZ2X/BE=;
+        b=j21QyHbXXZCSqc50bIZmrSoW8YkiXvRWX4oxNyXkFDVYImoS99hwMNKXNR1GQyFAOd
+         P9O39C8Oc5kPYNgTrh0IhUfP33lzlNmtQeMPkaZ0kVxhQ8YLGf3k1vxOxO7THJ59wJJ+
+         c2UyZNaVhpexrk+uP3a750SWDLTTFqvSFIod1Zr+Xl9+JNj5ZpYomptYLB1nvOM2qpm+
+         rbW330r5k/YTzOyc1eY+pTDF8ixavbkb0Bp+P8gQd2oyVS/YOFRvK7lBsbGcNk3vJcC/
+         Lp2xR8Qkqy0WPN/ZcdItUZpNHbJVlD6542iUjrorQTDTebVTAYSawCYm0jXfP/q90/px
+         W+Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715692126; x=1716296926;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zeT6KnLVfhQXaqC3Lu4DkuZNlc4YLw9XtuNUDZ2X/BE=;
+        b=oPSrIDqrFGS6deY8pZ8yiNM00WsINL2kVrWjGTrj87I/tT4jlIp9bTatWDUG70cqF7
+         cS8Kz7IBeQJaCq5XD6lu8C5Ssue9jXEo1HW5cvWx4w9wrHUtAH7gWts+2WeB4Sgfnvo8
+         4DBx2HsOrea9sAURjaM+q3TJ2sjF2LNZoTAgjx3CYnewm65dUyzgJDUD0AkGwfaWQ9qU
+         gCvvLJbRnp7noZ/Rftx1U4ucGKkYbnqKdZZGP/6Sa4G2m3pQrW84XSfkRu5Sh7YzT/tR
+         cU4YgOZX1+fbOGPK3H794gVdYENiQeGh8+8qlNXpMVyeVLfQbk+ohm4swPT1r3AE2CRT
+         MUdA==
+X-Forwarded-Encrypted: i=1; AJvYcCVvsuJrUC4ZtSjYbwxcQK/b1WwuGDphEsinxzTlBYp2eaVO9tCI2JQd1nau5/CjOcPALABsRWnliyir30sABMn/kzK2EqOXJnD8VA==
+X-Gm-Message-State: AOJu0YxHQQD6KBv157NT077iqOaQ838lgTJisZP0WCjZzrbloEZLgZo5
+	vxRwLF/nwP2Po3EoQ26hum/ZhFO4WE2jDGry9SrUubCAp+xa7JTo3kyab4sWyQ==
+X-Google-Smtp-Source: AGHT+IEyW5wWXcI0YcuMfRPEURlz7RUMcwyj0jHYGuOT5hpqOwAsP8E1/EwXva+mlyTkLrd58nrF6A==
+X-Received: by 2002:a17:906:fe07:b0:a5a:81b0:a6a9 with SMTP id a640c23a62f3a-a5a81b0a73cmr290104466b.53.1715692126068;
+        Tue, 14 May 2024 06:08:46 -0700 (PDT)
+Received: from [127.0.1.1] ([149.14.240.163])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781cf91sm719572466b.1.2024.05.14.06.08.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 May 2024 06:08:45 -0700 (PDT)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: Use 'ufshc' as the node name for UFS
+ controller nodes
+Date: Tue, 14 May 2024 15:08:39 +0200
+Message-Id: <20240514-ufs-nodename-fix-v1-0-4c55483ac401@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFdiQ2YC/x2MQQqAIBAAvyJ7bsFMi/pKdDDbag9ZKEUg/j3pO
+ AMzCSIFpgiDSBDo4cinL1BXAtxu/UbIS2FQUmlpao33GtGfC3l7EK78opZtp2Zn+sYaKNkVqOh
+ /OU45fwYcUmZiAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
+ Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
+ cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1214;
+ i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
+ bh=ZcblkuDSMv7tvtn/vseBea9lWN9fs5R+BIKAqQHnsjM=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBmQ2JcaJ9euCKId9vPpWsFIdRS2FdM2R5vL6pDl
+ fZWwIiROd2JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZkNiXAAKCRBVnxHm/pHO
+ 9edqCACDqoqsYSw6t2XP/npVZcwSA/XSunW2FkD4mEAfxYKrhfV3MRmsTne0zbB8MSwnmO2r/YJ
+ bf4ZgALL1+P8RkSSRRNQ+0Ly7z08Jb435scJlJVskteLH+clh5Z4CCVxrUFXMhKLOCERZyMJhJB
+ ww2GNgy15M0ewcoqe78aMj9zM0Rc0aA12NlXs643WJG16wH4Fyi62fiDW/D89seZut7pG64Vfhv
+ 97fdlqGmup6lNtv44Vfe1g1wK75VpWHTdVKh3bZlor9Ou9oMgEFTYz02/HXKsn637qoM2Jrn6vG
+ IKG7v4vL/N60ZvTXWG5BGrGWz5aR5t8l1gN/1QFjMkkHA5AB
+X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 
-Hi Steen,
+Devicetree binding has documented the node name for UFS controllers as
+'ufshc'. So let's use it instead of 'ufs' which is for the UFS devices.
 
-On Wed, 8 May 2024 08:20:04 +0000
-<Steen.Hegelund@microchip.com> wrote:
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+Manivannan Sadhasivam (2):
+      dt-bindings: ufs: qcom: Use 'ufshc' as the node name for UFS controller nodes
+      arm64: dts: qcom: Use 'ufshc' as the node name for UFS controller nodes
 
-...
-> > +
-> > +static irqreturn_t pci_dev_irq_handler(int irq, void *data)
-> > +{
-> > +       struct pci_dev_intr_ctrl *intr_ctrl = data;
-> > +       int ret;
-> > +
-> > +       ret = generic_handle_domain_irq(intr_ctrl->irq_domain, 0);
-> > +       return ret ? IRQ_NONE : IRQ_HANDLED;
-> > +}
-> > +
-> > +static struct pci_dev_intr_ctrl *pci_dev_create_intr_ctrl(struct pci_dev *pdev)
-> > +{
-> > +       struct pci_dev_intr_ctrl *intr_ctrl;
-> > +       struct fwnode_handle *fwnode;
-> > +       int ret;
-> > +
-> > +       if (!pdev->irq)
-> > +               return ERR_PTR(-EOPNOTSUPP);
-> > +
-> > +       fwnode = dev_fwnode(&pdev->dev);
-> > +       if (!fwnode)
-> > +               return ERR_PTR(-ENODEV);
-> > +
-> > +       intr_ctrl = kmalloc(sizeof(*intr_ctrl), GFP_KERNEL);
-> > +       if (!intr_ctrl)
-> > +               return ERR_PTR(-ENOMEM);
-> > +
-> > +       intr_ctrl->pci_dev = pdev;
-> > +
-> > +       intr_ctrl->irq_domain = irq_domain_create_linear(fwnode, 1, &pci_dev_irq_domain_ops,
-> > +                                                        intr_ctrl);
-> > +       if (!intr_ctrl->irq_domain) {
-> > +               pci_err(pdev, "Failed to create irqdomain\n");
-> > +               ret = -ENOMEM;
-> > +               goto err_free_intr_ctrl;
-> > +       }
-> > +
-> > +       ret = pci_alloc_irq_vectors(pdev, 1, 1, PCI_IRQ_LEGACY);
-> > +       if (ret < 0) {
-> > +               pci_err(pdev, "Unable alloc irq vector (%d)\n", ret);
-> > +               goto err_remove_domain;
-> > +       }
-> > +       intr_ctrl->irq = pci_irq_vector(pdev, 0);
-> > +       ret = request_irq(intr_ctrl->irq, pci_dev_irq_handler, IRQF_SHARED,
-> > +                         dev_name(&pdev->dev), intr_ctrl);
-> > +       if (ret) {
-> > +               pci_err(pdev, "Unable to request irq %d (%d)\n", intr_ctrl->irq, ret);
-> > +               goto err_free_irq_vector;
-> > +       }
-> > +
-> > +       return intr_ctrl;
-> > +
-> > +err_free_irq_vector:
-> > +       pci_free_irq_vectors(pdev);
-> > +err_remove_domain:
-> > +       irq_domain_remove(intr_ctrl->irq_domain);
-> > +err_free_intr_ctrl:
-> > +       kfree(intr_ctrl);
-> > +       return ERR_PTR(ret);
-> > +}
-> > +
-> > +static void pci_dev_remove_intr_ctrl(struct pci_dev_intr_ctrl *intr_ctrl)
-> > +{
-> > +       free_irq(intr_ctrl->irq, intr_ctrl);
-> > +       pci_free_irq_vectors(intr_ctrl->pci_dev);
-> > +       irq_dispose_mapping(irq_find_mapping(intr_ctrl->irq_domain, 0));
-> > +       irq_domain_remove(intr_ctrl->irq_domain);
-> > +       kfree(intr_ctrl);
-> > +}
-> > +  
-> 
-> It looks like the two functions below (and their helper functions) are so
-> generic that they could be part of the pci driver core support.
-> Any plans for that?
-
-Indeed, I tried to write them in a generic way.
-Right now, at least for the next iteration of this series, I don't plan to
-move them as part of the PCI code.
-This piece of code did not get any feedback and I would prefer to keep them
-here for the moment.
-
-Of course, they could be move out of the LAN966x PCI driver later.
-
-> 
-> > +static void devm_pci_dev_remove_intr_ctrl(void *data)
-> > +{
-> > +       struct pci_dev_intr_ctrl *intr_ctrl = data;
-> > +
-> > +       pci_dev_remove_intr_ctrl(intr_ctrl);
-> > +}
-> > +
-> > +static int devm_pci_dev_create_intr_ctrl(struct pci_dev *pdev)
-> > +{
-> > +       struct pci_dev_intr_ctrl *intr_ctrl;
-> > +
-> > +       intr_ctrl = pci_dev_create_intr_ctrl(pdev);
-> > +
-> > +       if (IS_ERR(intr_ctrl))
-> > +               return PTR_ERR(intr_ctrl);
-> > +
-> > +       return devm_add_action_or_reset(&pdev->dev, devm_pci_dev_remove_intr_ctrl, intr_ctrl);
-> > +}
-> > +  
-> 
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi               | 2 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi              | 4 ++--
+ arch/arm64/boot/dts/qcom/sm6115.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/sm6125.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/sm6350.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                | 2 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi                | 2 +-
+ 9 files changed, 10 insertions(+), 10 deletions(-)
+---
+base-commit: 4cece764965020c22cff7665b18a012006359095
+change-id: 20240514-ufs-nodename-fix-40672bc593a5
 
 Best regards,
-Hervé
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
 
