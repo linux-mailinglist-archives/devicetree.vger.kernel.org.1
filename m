@@ -1,172 +1,208 @@
-Return-Path: <devicetree+bounces-66802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDEE28C4C26
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 08:04:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2DF58C4C87
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:01:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A28281F21765
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 06:04:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AFE51F21AB6
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124541AACC;
-	Tue, 14 May 2024 06:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCD9F9D4;
+	Tue, 14 May 2024 07:01:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="D2+u+eYJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NYsOUl5S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30588208C3;
-	Tue, 14 May 2024 06:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B4AE545;
+	Tue, 14 May 2024 07:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715666652; cv=none; b=fowtWwBhWn3vWw/B9jJOZ1cFVkP1t03x0nRnOHsTIpCA/aNYNEK1sA3VM+lPmMDG2GvnFmZZz7AVt6qrqUnpsFAD/YLj9CsSkp+fHUTR2NpfcUXI2tzwSXMKHiJeHEI6xMGZRu6Sj9xXPC/3gQHv/6mmYdesJbhnwKx3G9oIBq0=
+	t=1715670079; cv=none; b=l9ugeZbceYdzEu5sEoD3WsUNgBUN5PNgpsEKreNY/4hFlkfWHXg9j9XEik+p5j9Y/7B6eLA5pPmmMvg80Af4obhPdxxHjqNJ/xyQ1LbqK6fAYOaFeLSmNwvOns/Jy6KHprss9kDuN0KhFh/n8dAzYo8exFgTiUTq+/xholZB+8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715666652; c=relaxed/simple;
-	bh=SBj4zRWJ5U7N1De1j6b7/mipglpMDjo74vTCV5thJOQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lt3CuTvZZcMW2HIfoUBOgThoVOzWppvy9M4LT+dHWr4go1smBVcqxdGzDvLHvhanGupMGSLe/0ppRrisq2wNx5fbyr9hm/G+S31HXEiSbq8PCag0V1i871WcbuZcu8LlCSwoyCpGMtpjkXWLIXKTpVR6dMVmFwLDR3hXzP9cz18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=D2+u+eYJ; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44E644ea119127;
-	Tue, 14 May 2024 01:04:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715666644;
-	bh=Cwa/dZ8r2Vkm4lraGU0DMeoDj07ahS1Z7Ekt+cihs6E=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=D2+u+eYJfLbWUXehGC3U9F141+HhsE3antmD5Ma9gxKgQ+zwlufSC2XGghw+TLVEi
-	 51hpE+yEGrp2IsbkhDX4P+kQfxe+XFLN+PvvQkyXaBVnLUWau6LfcR0781FRYPsPIh
-	 LOG5CKE3rEFxdWtF2OPVOMffo8Shsm8huAxKDxhQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44E644cw058612
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 14 May 2024 01:04:04 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 14
- May 2024 01:04:04 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 14 May 2024 01:04:04 -0500
-Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44E640F6039958;
-	Tue, 14 May 2024 01:04:01 -0500
-Message-ID: <bb323edd-ceac-4811-bdea-51cba429659b@ti.com>
-Date: Tue, 14 May 2024 11:33:59 +0530
+	s=arc-20240116; t=1715670079; c=relaxed/simple;
+	bh=BKqXlZK7XF1UJpzIlE4H+vLXVZQDJHc91wlqO8+Qta4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uhBm9Wwq3JMGSUmiHspF4HUoLR1T5EZ7URa/ne9ImGCl1oiBivtVQCP0loiSXjGC9XOBCow8L23dZgmTyLsbuwK+GAs29JWkakH7IXeJ0b9lOOeJhyynnz7wPZ5QikVz60n+YdmtzKQGj6qHmlies3ZuIGBpJry5HuBFcwiIGas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NYsOUl5S; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6f447260f9dso4137220b3a.0;
+        Tue, 14 May 2024 00:01:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715670077; x=1716274877; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=forXuWPFy2XsVfocDJuDgmCjaOGTlPxEs7gWnYosGQU=;
+        b=NYsOUl5SKlH5mvBNspD5y2ei0mi2JKjUhUaEc3kYlYNmMZ7DejKdB0udhJGrRy+UFL
+         4t2+rbP9DNIW40yR+7D311Iiz344LQNO1i3NCCxDcH6Eo01TFCL2gHXTZ4vJ2goJO903
+         dztK/H9vb++BU0rYyKCcuQBwWwJwuYJ369z650Q6nhJvJORvKGNqIuzM6iTYhBy6z51y
+         T4oP52x3v/bafcvk8SrGiFx/3QmoausddPTKmSk9+hEZvNzE3S6/N646rkFnaM4QIdmd
+         +IA/OsMqEIZg5qGMiyTfKuJSu3xgBSorK8Ul72Y+UQ5+oICBzjMdDZI8ZrFsxa+jocvy
+         OTww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715670077; x=1716274877;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=forXuWPFy2XsVfocDJuDgmCjaOGTlPxEs7gWnYosGQU=;
+        b=Aj2qfpdy3ESs0KFeCysP79L4518EkoQm0XrP/jebDCt5e169+0dzSSbaubaRL1Y7Rx
+         0c/sOAPocI3KNU46BhVn/zFleMl13I7Sh/pEqmL8/CwAdU20LLutuMz45nyHeLq1qsSl
+         KvY00K7amPRy1O0nPBjFTkEts/xa7JwsdcqFrboD3Lcy6P1hmav8SBpZPdyRj9yG4Vz/
+         eN4HrqhdQFw8EwgnIBi2iwxebuzT0o6blyFs016UtMNs2UGDAsRXQwhsgnghZg/J3JBh
+         UNJyEYTRmLMHnRnLcmRmOkLipGBFfAWKbeoTxrMr/5wgDpOpGlUnPUzkI9eIcCAXbJGE
+         nmGg==
+X-Forwarded-Encrypted: i=1; AJvYcCW08XBPuhxXsCifQs5ybFORYnrcAusFHys6A5ZnRe/agUF+JHIY/Jj19f2a472uGvwkQyEpX812e7TvTNh5vvC/68jC+4nS8KLsOGHg6p5ErbUnC+s2howy62kYgEDO6qrG2MRgYQp40NzMQmKBBKPG63BCSCPR6HiHwi6iiinSYXG6ig==
+X-Gm-Message-State: AOJu0YyTifdiZaZn8e31I5m1w/BlhsITmdQnswJbztBkzm9NbHuhrxFd
+	6hCq34Nd1keH6A+lCWfcMlU07nwe83nmxM4nSB3o5gWyKZ3fwuhh
+X-Google-Smtp-Source: AGHT+IG5wzqOBVK3vrl6okMD0dC+FNrITjROwyOlVg2T7q+mkNnpWLMSaxVru01OWZXLEbp8azZpwQ==
+X-Received: by 2002:a05:6a00:21c1:b0:6e6:ac71:8b38 with SMTP id d2e1a72fcca58-6f4e034858bmr11988580b3a.22.1715670076859;
+        Tue, 14 May 2024 00:01:16 -0700 (PDT)
+Received: from localhost.localdomain ([223.178.86.144])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-6f4f2cdedb7sm4830006b3a.52.2024.05.14.00.01.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 May 2024 00:01:16 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+X-Google-Original-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+To: 
+Cc: wahrenst@gmx.net,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: spi: brcm,bcm2835-spi: convert to dtschema
+Date: Tue, 14 May 2024 12:30:47 +0530
+Message-Id: <20240514070051.2959-1-kanakshilledar111@protonmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: soc: ti: pruss: Add documentation for
- PA_STATS support
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Suman Anna <s-anna@ti.com>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob
- Herring <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, <srk@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <r-gunasekaran@ti.com>,
-        Roger Quadros <rogerq@kernel.org>
-References: <20240430121915.1561359-1-danishanwar@ti.com>
- <7742b3d6-b513-43f2-803a-dec83eb37116@kernel.org>
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <7742b3d6-b513-43f2-803a-dec83eb37116@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+From: Kanak Shilledar <kanakshilledar@gmail.com>
 
-On 01/05/24 3:58 pm, Krzysztof Kozlowski wrote:
-> On 30/04/2024 14:19, MD Danish Anwar wrote:
->> Add documentation for pa-stats node which is syscon regmap for
->> PA_STATS register. This will be used to dump statistics maintained by
->> ICSSG firmware.
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  .../devicetree/bindings/soc/ti/ti,pruss.yaml    | 17 +++++++++++++++++
->>  1 file changed, 17 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->> index c402cb2928e8..cb6f41660847 100644
->> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->> @@ -278,6 +278,23 @@ patternProperties:
->>  
->>      additionalProperties: false
->>  
->> +  pa-stats@[a-f0-9]+$:
-> 
-> Missing ^
-> 
+Convert the Broadcom BCM2835 SPI0 controller to newer DT
+schema. Created DT schema based on the .txt file which had
+`comaptible`, `reg`, `interrupts`, `clocks` as required
+properties.
+Added GPL-2.0 OR BSD-2-Clause License
 
-Sure, I will add that.
+Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+---
+Changes in v3:
+- Updated DCO email address
+Changes in v2:
+- Updated the maintainers
+---
+ .../bindings/spi/brcm,bcm2835-spi.txt         | 23 ---------
+ .../bindings/spi/brcm,bcm2835-spi.yaml        | 50 +++++++++++++++++++
+ 2 files changed, 50 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
 
->> +    description: |
->> +      PA-STATS sub-module represented as a SysCon.
->> +
->> +    type: object
->> +
->> +    properties:
->> +      compatible:
->> +        items:
->> +          - const: ti,pruss-pa-st
->> +          - const: syscon
->> +
-> 
-> No resources? So you use it just to instantiate Linux driver? That's not
-> the purpose of DT. Just squash it into parent node?
-> 
-
-I am trying to module pa-stats as a regmap just like mii-rt and
-mii-g-rt. ICSSG has different segments for storing different types of
-registers. mii-rt, starting at 0x32000 have registers that stores mainly
-TX and RX configurations. mii-g-rt, starting at 0x33000 have registers
-that stores hardware statistics counters (TX RX good frame, drop etc).
-Similarly pa-stats starting at 0x2c000 have registers that stores some
-diagnostic counters which is maintained by firmware. ICSSG firmware
-stores statistics other than hadrware statistics like if the packet was
-pushed to dma or not. Why was the packet dropped etc. This is very
-helpful in debugging failures. Also ICSSG firmware maintains all TSN
-related statistics in this memory only, which will be needed to be
-dumped from driver once TSN support is enabled (the patches for that are
-still under review).
-
-More or less the functionality of pa-stats here is same as mii-rt and
-mii-g-rt and that is why I am trying to describe the node in exactly the
-same way as the other two nodes.
-
->> +      reg:
->> +        maxItems: 1
->> +
->> +    additionalProperties: false
-> 
-> Put it after type:object.
-> 
-
-Sure, will move it.
-
->> +
->>    interrupt-controller@[a-f0-9]+$:
->>      description: |
->>        PRUSS INTC Node. Each PRUSS has a single interrupt controller instance
-> 
-> Best regards,
-> Krzysztof
-> 
-
+diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
+deleted file mode 100644
+index 3d55dd64b1be..000000000000
+--- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-Broadcom BCM2835 SPI0 controller
+-
+-The BCM2835 contains two forms of SPI master controller, one known simply as
+-SPI0, and the other known as the "Universal SPI Master"; part of the
+-auxiliary block. This binding applies to the SPI0 controller.
+-
+-Required properties:
+-- compatible: Should be one of "brcm,bcm2835-spi" for BCM2835/2836/2837 or
+-  "brcm,bcm2711-spi" for BCM2711 or "brcm,bcm7211-spi" for BCM7211.
+-- reg: Should contain register location and length.
+-- interrupts: Should contain interrupt.
+-- clocks: The clock feeding the SPI controller.
+-
+-Example:
+-
+-spi@20204000 {
+-	compatible = "brcm,bcm2835-spi";
+-	reg = <0x7e204000 0x1000>;
+-	interrupts = <2 22>;
+-	clocks = <&clk_spi>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-};
+diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
+new file mode 100644
+index 000000000000..94da68792194
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-spi.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM2835 SPI0 controller
++
++maintainers:
++  - Florian Fainelli <florian.fainelli@broadcom.com>
++  - Kanak Shilledar <kanakshilledar111@protonmail.com>
++  - Stefan Wahren <wahrenst@gmx.net>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm2835-spi
++      - brcm,bcm2711-spi
++      - brcm,bcm7211-spi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi@20204000 {
++        compatible = "brcm,bcm2835-spi";
++        reg = <0x7e204000 0x1000>;
++        interrupts = <2 22>;
++        clocks = <&clk_spi>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
 -- 
-Thanks and Regards,
-Danish
+2.34.1
+
 
