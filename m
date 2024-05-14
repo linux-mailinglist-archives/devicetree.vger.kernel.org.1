@@ -1,198 +1,135 @@
-Return-Path: <devicetree+bounces-66882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D653B8C56A6
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 15:11:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B224D8C56AD
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 15:13:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B13EE2820C7
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:11:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C2BD1F24C2D
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BB11411D3;
-	Tue, 14 May 2024 13:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ibvi81Gw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9838E1448E1;
+	Tue, 14 May 2024 13:13:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2F714036F;
-	Tue, 14 May 2024 13:11:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C17F1448C5;
+	Tue, 14 May 2024 13:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715692273; cv=none; b=aoOlAJrk2xIOn9JGfJpQSjqVH6k7+Otz3V2uGlX3XoVmXqUygwjNMxzjC0xq2iWwQh7jeSSUs4We8pIWH85U558jwp0Ymzi6K4Jb6f5T+ZEaM7dLKzM82X7h8jN+ZNSelMRg1HCNcGjHs/X0LnbvJPljvULkndTGxcuT0bvl5a0=
+	t=1715692394; cv=none; b=UaTSfZ/IErIX2oBY53Ih7lBLpxz07S5YW7ckOBbBJQKr6ee44SzC5VaUfSt3glUeb2ppa4487Y0siPpzm8wF5CUhvHCoqim1MzcvSrry4uSoBarW4r1QPS3BjkAlwhFjPMx+zPt+WOkieebLMm+x2px+MR9GPpFwvoqHiMrTpsg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715692273; c=relaxed/simple;
-	bh=XEaOsdnwY0vCrlmEAlDtw9snDXediHSG2/z+a5o7Osg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uo5blS8dMwHI+waFRRm5YqvT8hGQE+DaAtzGgmlflOsgLDANZLYPKFYT0DrD4hl9cmRBmwha0RZPQLl37q5VneFChLchfglZyoxDzr7w/Ev5OHsPhfKlnJYL1inr7o5O6awbgXyHhAyFlYicCOEdNuhA8t4rUd42kIowpDbabuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ibvi81Gw; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44E8UVTW025820;
-	Tue, 14 May 2024 13:11:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=t7+DNYi
-	nlRbmPItKv/asPORCPqUW6C/oU8CcoQWe3Xw=; b=Ibvi81GwZU3QYbaYWT6Y6la
-	+KsXsA3rFcY2TQaKG4CQLH7xhqbyoyYwcEDQbq+443mk8QZhTmS9Kaeg9BqYp74T
-	oN/MXmASkXVXggOp6tugziLL+rO4733a5RgmLSjWZhD7+G2PgThC9lEFwwZvd8x6
-	ws5UwXIJTXJQ+4eSh/+UA8nTd6o5aEXfUyHQ6gHXM33DZ+llc75M7tycI+e5rm4j
-	8Yn7nJGAEn+1UhPzulTbXnCW31orUTG9yUZ3LU5e1axUWyjatfONiMcsJihmZOSI
-	JeIpsYWiIBEUuW0jKgRSGKMDl/cSW5x60t0Kg1z1d5SGnTlat5QyDf/AJAfP56w=
-	=
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y2125ebk1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 13:11:05 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44EDB182025238
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 13:11:01 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 14 May 2024 06:10:58 -0700
-From: Komal Bajaj <quic_kbajaj@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Melody Olvera <quic_molvera@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Komal Bajaj
-	<quic_kbajaj@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: qdu/qru1000-idp: Fix the voltage setting
-Date: Tue, 14 May 2024 18:40:38 +0530
-Message-ID: <20240514131038.28036-1-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1715692394; c=relaxed/simple;
+	bh=aOQguXPOeVpFjbc/NkW1mh5EX2xzWebjWEzQ1meSRbI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sKDjWfIboVtedTdylwbuM7fZ1NfZZbHDj+/dlLxc71UcxdUb8qDLGwdAIG/8+ysxQFWfBTe++Sq080yWA+GqFdD8UYkwrghwbsjfVSQ7qrucXJD0yydDioCKMCmpoe76xhktrY9fVrIw+57Y3CmjOMHkhv5yIc72CRVl30ZOHhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: GzFFwDAXR0KYdikQCwll3w==
+X-CSE-MsgGUID: NywGtkIlR3q0TqStj14d9w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11073"; a="14617243"
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; 
+   d="scan'208";a="14617243"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 May 2024 06:13:12 -0700
+X-CSE-ConnectionGUID: /kASNeFJRA2oVloL10ju9Q==
+X-CSE-MsgGUID: u0W3hKOZRLqfR96alajX+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; 
+   d="scan'208";a="61854598"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 May 2024 06:13:08 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1s6rxp-00000007RCl-1243;
+	Tue, 14 May 2024 16:13:05 +0300
+Date: Tue, 14 May 2024 16:13:05 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	lars@metafoo.de, jic23@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	lgirdwood@gmail.com, broonie@kernel.org, nuno.sa@analog.com,
+	marcelo.schmitt@analog.com, bigunclemax@gmail.com,
+	dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
+	alisa.roman@analog.com, marcus.folkesson@gmail.com,
+	schnelle@linux.ibm.com, liambeguin@gmail.com
+Subject: Re: [PATCH v8 3/6] iio: adc: ad7192: Add aincom supply
+Message-ID: <ZkNjYZew7Mko7iPX@smile.fi.intel.com>
+References: <20240514120222.56488-1-alisa.roman@analog.com>
+ <20240514120222.56488-4-alisa.roman@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: COxtjKqUDfHRAb5xMjN7bGDOgoEi7iT-
-X-Proofpoint-ORIG-GUID: COxtjKqUDfHRAb5xMjN7bGDOgoEi7iT-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-14_06,2024-05-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
- lowpriorityscore=0 mlxlogscore=384 clxscore=1015 bulkscore=0
- priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405140093
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240514120222.56488-4-alisa.roman@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Fixing the regulator voltages for qdu/qru1000 idp boards.
-In particular -
-- smps4 is 1.574V min and 2.04V max
-- smps5 is 1.2V min and 1.4V max
-- smps6 is 0.382V min and 1.12V max
-- smps8 is fixed at 0.752V
+On Tue, May 14, 2024 at 03:02:19PM +0300, Alisa-Dariana Roman wrote:
+> AINCOM should actually be a supply. AINx inputs are referenced to AINCOM
+> in pseudo-differential operation mode. AINCOM voltage represents the
+> offset of corresponding channels.
 
-Fixes: d1f2cfe2f669 ("arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs")
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 16 ++++++++--------
- arch/arm64/boot/dts/qcom/qru1000-idp.dts | 16 ++++++++--------
- 2 files changed, 16 insertions(+), 16 deletions(-)
+...
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-index 6e129dc123ed..89b84fb0f70a 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-@@ -96,20 +96,20 @@ vreg_s3a_1p05: smps3 {
+Possible cleanup with the help of
 
- 		vreg_s4a_1p8: smps4 {
- 			regulator-name = "vreg_s4a_1p8";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
-+			regulator-min-microvolt = <1574000>;
-+			regulator-max-microvolt = <2040000>;
- 		};
+	struct device *dev = &spi->dev;
 
- 		vreg_s5a_2p0: smps5 {
- 			regulator-name = "vreg_s5a_2p0";
--			regulator-min-microvolt = <1904000>;
--			regulator-max-microvolt = <2000000>;
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1400000>;
- 		};
 
- 		vreg_s6a_0p9: smps6 {
- 			regulator-name = "vreg_s6a_0p9";
--			regulator-min-microvolt = <920000>;
--			regulator-max-microvolt = <1128000>;
-+			regulator-min-microvolt = <382000>;
-+			regulator-max-microvolt = <1120000>;
- 		};
+>  	struct ad7192_state *st;
+>  	struct iio_dev *indio_dev;
+> +	struct regulator *aincom;
+>  	int ret;
 
- 		vreg_s7a_1p2: smps7 {
-@@ -120,8 +120,8 @@ vreg_s7a_1p2: smps7 {
+...
 
- 		vreg_s8a_1p3: smps8 {
- 			regulator-name = "vreg_s8a_1p3";
--			regulator-min-microvolt = <1352000>;
--			regulator-max-microvolt = <1352000>;
-+			regulator-min-microvolt = <752000>;
-+			regulator-max-microvolt = <752000>;
- 		};
+> +	aincom = devm_regulator_get_optional(&spi->dev, "aincom");
 
- 		vreg_l1a_0p91: ldo1 {
-diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-index 2a862c83309e..258483af065b 100644
---- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-@@ -96,20 +96,20 @@ vreg_s3a_1p05: smps3 {
+	aincom = devm_regulator_get_optional(dev, "aincom");
 
- 		vreg_s4a_1p8: smps4 {
- 			regulator-name = "vreg_s4a_1p8";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
-+			regulator-min-microvolt = <1574000>;
-+			regulator-max-microvolt = <2040000>;
- 		};
+...
 
- 		vreg_s5a_2p0: smps5 {
- 			regulator-name = "vreg_s5a_2p0";
--			regulator-min-microvolt = <1904000>;
--			regulator-max-microvolt = <2000000>;
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1400000>;
- 		};
+> +			return dev_err_probe(&spi->dev, PTR_ERR(aincom),
+> +					     "Failed to get AINCOM supply\n");
 
- 		vreg_s6a_0p9: smps6 {
- 			regulator-name = "vreg_s6a_0p9";
--			regulator-min-microvolt = <920000>;
--			regulator-max-microvolt = <1128000>;
-+			regulator-min-microvolt = <382000>;
-+			regulator-max-microvolt = <1120000>;
- 		};
+			return dev_err_probe(dev, PTR_ERR(aincom),
+					     "Failed to get AINCOM supply\n");
 
- 		vreg_s7a_1p2: smps7 {
-@@ -120,8 +120,8 @@ vreg_s7a_1p2: smps7 {
+...
 
- 		vreg_s8a_1p3: smps8 {
- 			regulator-name = "vreg_s8a_1p3";
--			regulator-min-microvolt = <1352000>;
--			regulator-max-microvolt = <1352000>;
-+			regulator-min-microvolt = <752000>;
-+			regulator-max-microvolt = <752000>;
- 		};
+> +			return dev_err_probe(&spi->dev, ret,
+> +					     "Failed to enable specified AINCOM supply\n");
 
- 		vreg_l1a_0p91: ldo1 {
---
-2.42.0
+			return dev_err_probe(dev, ret,
+					     "Failed to enable specified AINCOM supply\n");
+
+...
+
+> +		ret = devm_add_action_or_reset(&spi->dev, ad7192_reg_disable, aincom);
+
+		ret = devm_add_action_or_reset(dev, ad7192_reg_disable, aincom);
+
+...
+
+> +			return dev_err_probe(&spi->dev, ret,
+> +					     "Device tree error, AINCOM voltage undefined\n");
+
+			return dev_err_probe(dev, ret,
+					     "Device tree error, AINCOM voltage undefined\n");
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
