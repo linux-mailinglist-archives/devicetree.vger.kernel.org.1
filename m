@@ -1,118 +1,204 @@
-Return-Path: <devicetree+bounces-66857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC308C509F
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:07:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6238C5121
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 873D81F211BC
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 11:07:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ABDF1C2101F
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 11:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17A4913DDD3;
-	Tue, 14 May 2024 10:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27B42B9D7;
+	Tue, 14 May 2024 10:55:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="BnLoj0zt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mkOS96N6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3F213DDAB;
-	Tue, 14 May 2024 10:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2607A1CFB2;
+	Tue, 14 May 2024 10:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715683519; cv=none; b=NzwM9JXLIUCF/fwFLWOlwlH4AS5MQo/K0DlTtACV8GuPmGBT89JmRsvJ6wLODi1IV9Mr7c/gFPf4BEev1S6Q3woiJ1P90NPQq4NGlGprp1Vw+R3lh68aEjS9VX6wh0+Zm4OMKpL1MTBXjkuDAI0MSMaRxtZLtrRMCqyHgAlOKhk=
+	t=1715684102; cv=none; b=eo0JPZ0mcBv4+yRsSsPuJ0wv9UbIgD/anIipta4DKcbT5HQeL21gCnCZTDVE0xUUDa4U1lIASWFVa+/bBJ7cUDdxRqlxwy0WEmrdhNb+NDsWRRZ3YDPkbDMnFL8u7O/tagllN+VkZoxXLKPH166JzbPHBiktLhbtIXpVceVMOnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715683519; c=relaxed/simple;
-	bh=rlzB6/rDQbIjLk5lmcHcPcaK9fFkQm1X7kDxNwBZFVc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IiHjP5Dyp3X2hX7LAnF0KDqxXGXDnpOqAp3+Izdu7s3mZqGBvBsGqp4gIccJYuqZfSLhNty3LYx0mouXh2PbC5d48kM1k64JknuSV2/aFWP7X6p9gIs6BHOarwhZRfxhpDITz1Tc7uQmhub1yxbzOZFjn1F4pN8cMGqOwHB1drQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BnLoj0zt; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1715683517; x=1747219517;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=rlzB6/rDQbIjLk5lmcHcPcaK9fFkQm1X7kDxNwBZFVc=;
-  b=BnLoj0ztel0mdFjT7MM5or7uNFkU0AAJURHbwYZkuaxssXVXV3w9WOa+
-   TiitbXaBATX+o2Qa02AnccCPinVF0J2wsMBh6i6cfpIZxrW8+oXTzr52R
-   AB70VzJzkNXF+VZEoDVQ+vxdgPMpjXBOOS0+oczJ/WYR+YixE2Xq7uaEP
-   q6RDe05/seD4Kk/lVuZkXXlyv02rheceFomnJauIt2s3i1o7OYbC6TVqH
-   czkwfgbB0yJIPVT+4SP1UxNr4c7YgEyfkAxoZ+ynSaqvES3a/kWlWx5vg
-   pDhWMgjVOCiob+jqDiwr4WfLR6YOiNsJtVpn6f6nNP/T/UONsUcojKgC7
-   w==;
-X-CSE-ConnectionGUID: CRVhllyDQl2XuPQNxlB5Rg==
-X-CSE-MsgGUID: nK6nDysRTn+Y+1qP6SwjEQ==
-X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; 
-   d="scan'208";a="24625780"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 May 2024 03:45:14 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 14 May 2024 03:45:03 -0700
-Received: from Lily.microchip.com (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Tue, 14 May 2024 03:45:01 -0700
-From: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-To: Mark Brown <broonie@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-spi@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Conor Dooley
-	<conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
-	<valentina.fernandezalanis@microchip.com>,
-	<prajna.rajendrakumar@microchip.com>
-Subject: [PATCH v2 3/3] spi: spi-microchip-core: Add support for GPIO based CS
-Date: Tue, 14 May 2024 11:45:08 +0100
-Message-ID: <20240514104508.938448-4-prajna.rajendrakumar@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240514104508.938448-1-prajna.rajendrakumar@microchip.com>
-References: <20240514104508.938448-1-prajna.rajendrakumar@microchip.com>
+	s=arc-20240116; t=1715684102; c=relaxed/simple;
+	bh=aYR1eZ8kr84KU/iH3MiAHsNKrACN/BhWJG1zs3EpEeA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=buvp2uG2Vn1Hk6COsrcJ5+Ryk314/bHORVBAkOA9mGzuax+s1qQ7IMjTAjJtH9tJYiOO5Ebu6go0QubR5kG4nOhLOqoITeFOyiWWK/svZFkVuOyHPBxAENrazEPTO6wE5xfcYsVKQjhaG6DuvdtZBetgQhm8wVtI2S+X8xOOF/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mkOS96N6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44E8hLbC023875;
+	Tue, 14 May 2024 10:54:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=7Bo+nderALaOSTlE7QBlXAwjL5XUIIfsXSuQqM2dxeM=; b=mk
+	OS96N6JPwqo8dYpF9aUBRCPuGQMjndL+1IknEa+VYhMr0GLEyFQSE6p8fVBPyElN
+	0Ok7s8J8L3iLtiIEMR3g1UjMgCCR53jcPtwH753O9JrGwYVBfT/sMfxNomzFeaSD
+	62LXGPA5Zqb3RsnfDtQIIoyumbUYP9hHt2lQZgzJRpqE1iiSRc7SLStT12K4koLm
+	ZPpzeR3UeQOJ5OHHkxpyx5HY/C6YkuJkJnyNeu/UdtFxTIEE7knRhQ9v5o9FRAs/
+	zFxPXPGxGHQTAnhW7hUjbb6HENrlp5EhbQyzC6sXSHAYx4G1Iw3491PYBAfEjtz5
+	1XmzK1Y75kasOIQmVp/A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y2125e13k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 May 2024 10:54:48 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44EAsgZd013233
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 May 2024 10:54:42 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 14 May
+ 2024 03:54:36 -0700
+Message-ID: <f1c8eca4-b5cf-662d-8ccc-ff51b4b44eb9@quicinc.com>
+Date: Tue, 14 May 2024 16:24:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V4 2/5] mailbox: Add support for QTI CPUCP mailbox
+ controller
+To: Cristian Marussi <cristian.marussi@arm.com>
+CC: <sudeep.holla@arm.com>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <dmitry.baryshkov@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
+        <quic_gkohli@quicinc.com>, <quic_nkela@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <abel.vesa@linaro.org>
+References: <20240422164035.1045501-1-quic_sibis@quicinc.com>
+ <20240422164035.1045501-3-quic_sibis@quicinc.com> <ZjTdNwzA4F-GxYY5@pluto>
+Content-Language: en-US
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <ZjTdNwzA4F-GxYY5@pluto>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jkQCSV4VmlOyJPxj7koqdW0Cu-bFonNO
+X-Proofpoint-ORIG-GUID: jkQCSV4VmlOyJPxj7koqdW0Cu-bFonNO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-14_05,2024-05-10_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ lowpriorityscore=0 mlxlogscore=808 clxscore=1015 bulkscore=0
+ priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405140077
 
-The SPI "hard" controller within the PolarFire SoC is capable of
-handling eight CS lines, but only one CS line is wired. Therefore, use
-GPIO descriptors to configure additional CS lines.
 
-Signed-off-by: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
----
- drivers/spi/spi-microchip-core.c | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/spi/spi-microchip-core.c b/drivers/spi/spi-microchip-core.c
-index c10de45aa472..6246254e1dff 100644
---- a/drivers/spi/spi-microchip-core.c
-+++ b/drivers/spi/spi-microchip-core.c
-@@ -258,6 +258,9 @@ static int mchp_corespi_setup(struct spi_device *spi)
- 	struct mchp_corespi *corespi = spi_controller_get_devdata(spi->controller);
- 	u32 reg;
- 
-+	if (spi_is_csgpiod(spi))
-+		return 0;
-+
- 	/*
- 	 * Active high targets need to be specifically set to their inactive
- 	 * states during probe by adding them to the "control group" & thus
-@@ -516,6 +519,7 @@ static int mchp_corespi_probe(struct platform_device *pdev)
- 
- 	host->num_chipselect = num_cs;
- 	host->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-+	host->use_gpio_descriptors = true;
- 	host->setup = mchp_corespi_setup;
- 	host->bits_per_word_mask = SPI_BPW_MASK(8);
- 	host->transfer_one = mchp_corespi_transfer_one;
--- 
-2.25.1
+On 5/3/24 18:18, Cristian Marussi wrote:
+> On Mon, Apr 22, 2024 at 10:10:32PM +0530, Sibi Sankar wrote:
+>> Add support for CPUSS Control Processor (CPUCP) mailbox controller,
+>> this driver enables communication between AP and CPUCP by acting as
+>> a doorbell between them.
+>>
+> 
+> Hi Sibi,
+> 
+> one small reflection about locking on the RX path down below...
+> 
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+>>
 
+Hey Christian,
+Thanks for taking time to review the series :)
+
+> 
+> [snip]
+> 
+>> +struct qcom_cpucp_mbox {
+>> +	struct mbox_chan chans[APSS_CPUCP_IPC_CHAN_SUPPORTED];
+>> +	struct mbox_controller mbox;
+>> +	void __iomem *tx_base;
+>> +	void __iomem *rx_base;
+>> +};
+>> +
+>> +static inline int channel_number(struct mbox_chan *chan)
+>> +{
+>> +	return chan - chan->mbox->chans;
+>> +}
+>> +
+>> +static irqreturn_t qcom_cpucp_mbox_irq_fn(int irq, void *data)
+>> +{
+>> +	struct qcom_cpucp_mbox *cpucp = data;
+>> +	struct mbox_chan *chan;
+>> +	unsigned long flags;
+>> +	u64 status;
+>> +	u32 val;
+>> +	int i;
+>> +
+>> +	status = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_STAT);
+>> +
+>> +	for_each_set_bit(i, (unsigned long *)&status, APSS_CPUCP_IPC_CHAN_SUPPORTED) {
+>> +		val = readl(cpucp->rx_base + APSS_CPUCP_RX_MBOX_CMD(i) + APSS_CPUCP_MBOX_CMD_OFF);
+>> +		chan = &cpucp->chans[i];
+>> +		/* Provide mutual exclusion with changes to chan->cl */
+>> +		spin_lock_irqsave(&chan->lock, flags);
+>> +		if (chan->cl)
+> 
+> So the spinlock here is needed to properly check for races on chan->cl
+> being NULLified by concurrent calls to mbox_channel_free()...the end
+> result, though, is that you disable IRQs here on each single data
+> processed on the RX path, while calling mbox_chan_received_data(), in order
+> to avoid the remote (but real) possibility that the mbox users could free
+> the channel while some traffic is still in-flight and processed by this ISR.
+> 
+> Note that, though, that mbox_channel_free() calls straight away at start
+> your controller provided qcom_cpucp_mbox_shutdown() method, where you disable
+> the IRQ at the HW level in the chip: this means that the only race which could
+> then happen between the call to .shutdown and chan->cl = NULL, would happen in
+> any already executing qcom_cpucp_mbox_irq_fn() ISR...
+> 
+> So, I was thinking, what if you add a
+> 
+> 	sincronize_irq(cpucp->irq);
+> 
+> in your shutdown right after having disabled the HW IRQs.
+> 
+> This would mean waiting for the termination of any IRQ handlers pending on your
+> cpucp->irq (field that does not exist as of now :D), right after having
+> disabled such irq and so just before NULLifying chan->cl...in this way you
+> should be able to safely drop this spinlock call from the host RX path,
+> because once you chan->cl = NULL is executed, the IRQs are disabled and
+> any ongoing ISR would have been terminated.
+> 
+> syncronize_irq() is blocking of course, potentially, but the shutdown
+> method in mbox_chan_ops is allowed to be blocking looking at the comments.
+> 
+> ...not sure if all of this is worth to avoid this small section of code to be
+> run with IRQs disabled....note though that the mbox_chan_received_data() calls
+> straight away into the client provided cl->callback....so the real lenght of this
+> code path is uncertain ....
+> 
+> ...just an idea to reason about...
+
+In addition to shutdown, Bjorn was worried about handling the setup
+scenario as well. Since there are multiple channels, irq handler could
+end up dereferencing a half baked cl of the second channel while it's
+still being setup. Of course this could happen only if the status bits
+aren't cleared by the bootloader though. If it's just the shutdown path
+your rec should work fine :)
+
+-Sibi
+
+> 
+> Thanks,
+> Cristian
 
