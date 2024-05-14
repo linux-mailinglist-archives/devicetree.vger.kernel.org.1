@@ -1,134 +1,123 @@
-Return-Path: <devicetree+bounces-66898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6247F8C5872
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 17:05:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9C18C5883
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 17:11:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 941A91C21B3A
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 15:05:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B31D71F2224B
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 15:11:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC9717EB81;
-	Tue, 14 May 2024 15:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5CC17EB87;
+	Tue, 14 May 2024 15:11:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fwH2L2d/"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="J9AvAyz7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6ABF3EA66;
-	Tue, 14 May 2024 15:05:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86D21448C3
+	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 15:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715699116; cv=none; b=rAr1lJOeT06x1bwVn+xJumIPhTrpZPI0hQkSEBR21t+5BJPxIP32IycZiW3ey9xnmhX7xK1NbTFxlCSpbYLeSkJGB6fdrq81MUMYExZSr5XzLjm5sn1CIBvmsSDs5rHoiAQx2NHccnAtoejRBYFHwDjM+KtJPH9kEbUu3TP0e4g=
+	t=1715699505; cv=none; b=fOaQ9jKho5vE8SbmkORtwaZFe76XoqCJJM1wkHSEkVczJsimkaspTcwX7PRf5IhMVeBS4DX22YomGNn646FSLOdsr/YFyDCDOr3Hm78dPL1nHdo7X0FvRImNbqt3WYXsZ5B432CdeFnx3H+0gQVIiAA0DPjSzbB0YQnvtd6CkV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715699116; c=relaxed/simple;
-	bh=w4qu7AcWvUkrD2GyDHl1h65yHhTJv5ueqrzrzj7ci3s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TMqHrKhOVpbr3EudIwoRQuP1lc6c/Q7umqo8FBPYQAQN7KUU0yaxuDGoZCaJsETdBKCGi2QcDQl2trqbKetZzG4yqLSs+c3jXmUSYK72R4L2J4bpgj4uE+uXnw4yixTYj5i3VLqc0HBUFcMMlk05n60WFE8ux09hmPBrj2glx1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fwH2L2d/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44EBohpO004317;
-	Tue, 14 May 2024 15:05:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=NnZu3bgBmSPSM6LjznEKtBZHGtRz96Gtt9Ol698i3bE=; b=fw
-	H2L2d/9BoqMTJgCd45y6wQvAHo0ncZjyEqdX8HMR5PCTprwfXmuRNoOhgcv2s/Sz
-	hrg0O6wK43J0ZPZ7aMUTqPYBQx/aczrpep8aG1RzpzcRSVti39ViagTLFHVizOhg
-	4hVZ30A+hikkkj93BzXzP0s2BO8LOQyP0fQOUdNxBMkTsqSHMQLtvqOyLiLF0J/c
-	txY/Eiu5x/Vp36QW9boaZOFeu4ygJfmhzwYmNNmKkJVYEo8bPcIVNVMIS7TQxh5k
-	GGLqUz/0+j8PDcpI0/o/BAcNZuuvE8w3/ziqZ9S2+wcJvPDKNHJU2vr6EyAxDYi3
-	FOQKMCc0kp2yfGPvNqsQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y47eg8fxc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 15:05:08 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44EF55m7013646
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 15:05:05 GMT
-Received: from [10.216.14.10] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 14 May
- 2024 08:04:59 -0700
-Message-ID: <0a372307-8887-ac97-54c6-d6080e64540f@quicinc.com>
-Date: Tue, 14 May 2024 20:34:56 +0530
+	s=arc-20240116; t=1715699505; c=relaxed/simple;
+	bh=NL1KHWtYv3QKUfmEMXyKfHmHt/nVGsCsOJA2nvTmHeo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tHynzjvyz8rqOtISEOXxMPYmnAjOU3JYNtte/r6Z7gO1x0xeU7Qd9bmfEoFiyeqaD8krhoPO4b2cb0/M1h/GHWXUCSIDBYpXH6WGQ8HNVXzUG3x+PhyNnKVS2i6UB1X3YXXponbMsbcUq71H2nEz1LkKGG8YhEGMvjCJSidGNDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=J9AvAyz7; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1715699502;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4cnIUuYkHWIx+FjkGcvXg8Ni+ZK2m6H2U3SaL0bU3Wk=;
+	b=J9AvAyz73u9zQ4l9zLAwM4JqEzghgC+UQKn1861gHIP7I6vJrA+0NkoXhHs22YGqv9XAhF
+	JsQYMBXzX7yeH9yCH7EIcM3hVu+wB05ivGhvb7MH5MAlsfWtYLNcenOw1okSsRvDBoUTmj
+	cOlCmbsxy7df4OMZeASPv6/XkPRa0Rw=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-288-Ozl3eAIZNbeq_cj2pwukuQ-1; Tue, 14 May 2024 11:11:41 -0400
+X-MC-Unique: Ozl3eAIZNbeq_cj2pwukuQ-1
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-792929ff543so679994985a.0
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 08:11:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715699501; x=1716304301;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4cnIUuYkHWIx+FjkGcvXg8Ni+ZK2m6H2U3SaL0bU3Wk=;
+        b=pKQW9PR5SeS+KRJTYKcfxTFI4X6Zy0LmrlhXEokVpDNVDhkgw6AXX1JaAOlUB7rk2l
+         XOnG7HvjZzWmSqA87twrfSfZwmRVeM3csTMfYUbI0xkZvwKPw2B1bGYn4NE0D35Wjjza
+         V89JIYETkTxBrBEEhI2GHjBnYuRSin5NT0TU6Ojae0671toaRxdeDfoyB7VDF2KLc2+s
+         FT9nD8G/hOxD4QfHNvyxQHVH3/oKEb25hoqfRJ2TvMed+MXxfWHmfGQlM/pqZruZQOGM
+         NiWHZYJvjruyCXav0rU103qSVCevMfIqQOmXhJ713cIW8R6JhxEyWn036FuA02VISn36
+         k4/g==
+X-Forwarded-Encrypted: i=1; AJvYcCXUg+Cul9V1qwL61vXH3Dkra59CO6osDRcK0/Djgws7pQtCuasBt/oLlzkLAKtOTRhD1BP8cnjek0HyesPyHqCN5nArYDv3isxJhQ==
+X-Gm-Message-State: AOJu0YzmXtWX7SeNJGbdVlQT6qqwG007oUstmZ82dekntaWHqUOTF9wS
+	WlgzX19FKuhuNROXaz2Uj8y2vLnSO27wgcWTEIe4cGMkaBmhRgJLGP8cG/3g26+DQzJv9dlMHzD
+	0x2fqxErFgvU6Cz+xGl3x9gFsls3BBKAKtWPePHV1z0XMTfauiMXMc4TAe6I=
+X-Received: by 2002:a05:620a:1248:b0:792:ba5c:85ea with SMTP id af79cd13be357-792c75a0384mr1329258085a.18.1715699498429;
+        Tue, 14 May 2024 08:11:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE4S4VGlqFkjBvHME2OCbJc+xM35zlrwB2nmBbAdAlvnOFUj9Ev1YE2Zow33l3IJrgZpEtiKg==
+X-Received: by 2002:a05:620a:1248:b0:792:ba5c:85ea with SMTP id af79cd13be357-792c75a0384mr1329254585a.18.1715699497938;
+        Tue, 14 May 2024 08:11:37 -0700 (PDT)
+Received: from x1gen2nano ([2600:1700:1ff0:d0e0::33])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-792e4c1076dsm165732485a.130.2024.05.14.08.11.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 May 2024 08:11:37 -0700 (PDT)
+Date: Tue, 14 May 2024 10:11:35 -0500
+From: Andrew Halaney <ahalaney@redhat.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Sagar Cheluvegowda <quic_scheluve@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Vinod Koul <vkoul@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>, kernel@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] Mark Ethernet devices on sa8775p as DMA-coherent
+Message-ID: <3werahgyztwoznysqijjk5nz25fexx7r2yas6osw4qqbb4k27c@euv6wu47seuv>
+References: <20240507-mark_ethernet_devices_dma_coherent-v3-0-dbe70d0fa971@quicinc.com>
+ <5z22b7vrugyxqj7h25qevyd5aj5tsofqqyxqn7mfy4dl4wk7zw@fipvp44y4kbb>
+ <20240514074142.007261f2@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
-Content-Language: en-US
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-CC: <johan@kernel.org>, <andersson@kernel.org>, <broonie@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <johan+linaro@kernel.org>, <konrad.dybcio@linaro.org>,
-        <krzk+dt@kernel.org>, <lee@kernel.org>, <lgirdwood@gmail.com>,
-        <linus.walleij@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh@kernel.org>, <swboyd@chromium.org>
-References: <ZjpMeVk_HiixZUEu@hovoldconsulting.com>
- <20240514140446.706847-1-quic_skakitap@quicinc.com>
- <CAHp75VcfYuukpLg=F36ykddsT9SpfdGNyyvVeyw-Yvz61Lrq7g@mail.gmail.com>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <CAHp75VcfYuukpLg=F36ykddsT9SpfdGNyyvVeyw-Yvz61Lrq7g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 06wmee6BnCQYyBEKBkIDU_zBFoOtEd63
-X-Proofpoint-ORIG-GUID: 06wmee6BnCQYyBEKBkIDU_zBFoOtEd63
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-14_08,2024-05-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- malwarescore=0 phishscore=0 spamscore=0 mlxlogscore=894 lowpriorityscore=0
- clxscore=1015 impostorscore=0 suspectscore=0 priorityscore=1501
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405140106
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240514074142.007261f2@kernel.org>
 
+On Tue, May 14, 2024 at 07:41:42AM GMT, Jakub Kicinski wrote:
+> On Tue, 14 May 2024 09:21:08 -0500 Andrew Halaney wrote:
+> > I don't know how to figure out who takes this patch in the end based on
+> > the output above :)
+> 
+> bindings/net is usually going via netdev, but my reading of Krzysztof's
+> comment was that there will be a v4...
+> 
 
-On 5/14/2024 7:48 PM, Andy Shevchenko wrote:
-> On Tue, May 14, 2024 at 5:05 PM Satya Priya Kakitapalli
-> <quic_skakitap@quicinc.com> wrote:
->>> On Thu, May 09, 2024 at 03:07:02PM +0300, Andy Shevchenko wrote:
->>>> Wed, May 08, 2024 at 10:37:50PM +0000, Stephen Boyd kirjoitti:
->>>>> Quoting Johan Hovold (2024-05-06 08:08:29)
-> ...
->
->>>>>> +               BUILD_BUG_ON((ARRAY_SIZE(pldo_ranges) != 1) ||
->>>>> This should be an && not || right?
->>>>>> +                               (ARRAY_SIZE(nldo_ranges) != 1));
->>>> In any case BUILD_BUG_ON() is not encouraged for such cases, it would be much
->>>> better to have a static_assert() near to one of those arrays.
->>> I think the reason it is placed here is that the above line reads:
->>>
->>>        rdesc->n_linear_ranges = 1;
->>>
->>> and that would need to change if anyone expands the arrays.
->> Correct. static_assert() cannot be used in the middle of code here, it can only be used at the declarations part which doesn't serve the purpose.
-> I didn't get this. The ARRAY_SIZE():s are defined at compile time
-> globally. How does this prevent from using static_assert()?
+Ahh, I read that differently. I'll ask Sagar to respin with that comment
+taken into consideration!
 
+But ignoring that, let me know if there's a good way to know who really
+picks things up outside of experience contributing. It's Sagar's first
+submission upstream, etc, so I've been fielding some first time
+contribution questions and realized I didn't have a good answer to that
+other than troll through lkml or the git log and see who picked those up
+in the past!
 
-The reason we added it here is to make sure the nlod_ranges and 
-pldo_ranges doesn't become larger, and we forget updating the 
-n_linear_ranges. Adding static_assert here is not feasible so adding a 
-BUILD_BUG_ON at this point makes sure the n_linear_ranges is proper.
+Thanks,
+Andrew
 
-
->> So, BUILD_BUG_ON is the only way to go here.
-> I don't think so.
->
 
