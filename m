@@ -1,155 +1,102 @@
-Return-Path: <devicetree+bounces-66855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82E08C500D
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 12:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F358C509C
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:07:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9827D284BC8
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 10:56:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 135612818F5
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 11:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D763A13666E;
-	Tue, 14 May 2024 10:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6FE13DDAA;
+	Tue, 14 May 2024 10:45:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TA28sTl8"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="P6bGh7JM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D62320F;
-	Tue, 14 May 2024 10:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1ED5B5D3;
+	Tue, 14 May 2024 10:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715682891; cv=none; b=Hn6lWKgDJocCeF4u5/b/y3ll/bbfNXnI0PORFtz4pQu1JGdFlMlsOW71eylwRaTXTNmftezgKgKNL7ywxL6LHUz+Zs+gPcsy8SuOS3ho/lA6QTOUGXF9G68pArbUi0Fc1kA5q+QmX2p3H/lxPE/2Eqa9Q0vB4f0kbTmoMkeQQdw=
+	t=1715683517; cv=none; b=T96MbkGgIAXwAYcewg79wIUWMo+j1+edTLpJBWHlSNylV/uy7zu2AvgWtm71wbGm/LNwHVaeN2Av6HUHzXGsAzyEowtsOSK18/rPEA7RyFSGRuo48ZsMV01Wh+C+m/oNs4c2v/gOo9EiCz/9Ad9wPVA0RlXyghsnNh224A1LQjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715682891; c=relaxed/simple;
-	bh=TWwiNmIgzodg4vjdt4GkKt1IUIQV7RRqeSjjxHf7908=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LBnBrLk6EcunEnyvyYySHVj+nDlPk04FDd2JeVNPgDSM6b9VOehL6NOzXSE+vDNtJQeMU+G2xDohi1fFnzWO7jrCo4OyryGKtPAjvG+mtD0auewNUfs/kpHiUtGbPDcKfv/qu+6kFGPj2OXBbI5pRwH8fadZPU+vnHAMTGhaLsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TA28sTl8; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a59e4136010so1395306566b.3;
-        Tue, 14 May 2024 03:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715682888; x=1716287688; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R7trD0rDL4U7JA4p6IKLVIIlna4fm1L1zpyVjzxwMlo=;
-        b=TA28sTl8F1V/h+L2Zg6gakOXLVbi2P7H/XW+Qgytke1xiovSnSm/LNsjT94QFe3N92
-         zCgWEsjxXPKSZbBIWafAPtC08l0B2m4dDzDC469SMhaZ/WsqBderR1Il9v6reUK2Vxfo
-         686OP1gqA65sS2iCS5ZgA6FF+OIH/oCndwykbti8Z8PaOmFluEIvWhXedsTpPeintn91
-         nm4ks9xbaroMu1ugOc3FdCxSqDLqVsr1LvcqpSgHNilTzU8NuxT/i+HLqcIMkLkZI6je
-         iBhAbqSjXekbYlwG5aNLRV8IdGcwGgypG2kYZ4vsyRIehUtbYq6OCKLSq1YuE55+UPpR
-         jqOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715682888; x=1716287688;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R7trD0rDL4U7JA4p6IKLVIIlna4fm1L1zpyVjzxwMlo=;
-        b=MIA75hC8LodTakVwwL99uYX4Dls0gJghI8wavuuJNEKebzvMejrWvEnM+f+mFAbJ+7
-         vjF6Jz70cS2fSo7lzbgSqYLB2lgm9av6FN1/QhcTOyBOofIiPT0xlSNunCDerBGz4pcy
-         mnRdZTHxMAcTvMpsPUOLTUi5XhWvokumcXmjH4xdx+NwhAltl5JB7OreLCW2YCdLMKjr
-         GGD3WGbnfzvNS9K+Wb1iC7xOqMQOk75QcaCMr+QU8N73uUjQvOHx8yP5rM6sCoYzAUe/
-         qABmZa65dBz0o2IhoYrJsbK2SIdOKsIxRKSo/VGqd4ONNDjGz2qBOR7gLjtY0iBgJbZQ
-         QKgA==
-X-Forwarded-Encrypted: i=1; AJvYcCU9iidAlrzmO8wOzGRLxVeOhzNCpGVKbSqmQEyLsZ/gbff011RvpbNIEsV0/VFWy9yOHpQO5Rie6jUTcB2f07nVDkusITEB9pSMQuurfYLVfY7CKU16OxihN9OkCKZtuA9+kh96mFB2j8ahlHdkIjFKEcKSp355gsPNgxpIK2FNVHIvlv4f
-X-Gm-Message-State: AOJu0Ywt3mA15TrHBDi66C9MccwhqDNfbg4//1UElnarxwCpJo0AKlbL
-	WH6BMxGAVD93hQqRofTMlqAGF1ch4XZjCbfSNTl7MLsfsob1dyD65tWUsYf3
-X-Google-Smtp-Source: AGHT+IF2/0DyNnYwDYAigKCEdRXmn4XP3gsRHlGPpr2+mdv/bs9kDusp8Vw8UqBhX/D9pnrRYpYSqQ==
-X-Received: by 2002:a17:907:bb83:b0:a59:b68d:4604 with SMTP id a640c23a62f3a-a5a2d65f36amr744967066b.59.1715682888350;
-        Tue, 14 May 2024 03:34:48 -0700 (PDT)
-Received: from njaxe.localnet (host-79-55-54-147.retail.telecomitalia.it. [79.55.54.147])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a178a9d9csm704053766b.74.2024.05.14.03.34.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 03:34:48 -0700 (PDT)
-From: matteomartelli3@gmail.com
-To: matteomartelli3@gmail.com, Rob Herring <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: es8311: dt-bindings: add everest es8311 codec
-Date: Tue, 14 May 2024 12:34:47 +0200
-Message-ID: <4196680.zEN4bpRDmC@njaxe>
-In-Reply-To: <20240513184404.GA2805391-robh@kernel.org>
-References:
- <20240510131238.1319333-1-matteomartelli3@gmail.com>
- <4072123.0gxhY3eTYf@njaxe> <20240513184404.GA2805391-robh@kernel.org>
+	s=arc-20240116; t=1715683517; c=relaxed/simple;
+	bh=0/gq0Od8tn/NFYb5S2ybhGqd4qamz5PoX4ti0poIl0c=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Zx5JQ/TWGwoglrcbITFxobcHoPeCp/JaHdPzXHjzCfb81m7SmHOkDTZS24tZFol956ULI9xOJEXexkdkOr+rOJuNVEugro6ArMpgz0f+Cqkk3N0ZqbXL7rvSQbKrzL2QpknvFqhzsLbj5NnwfxuPt5BBXdyUa0/DtZQqqKMaNYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=P6bGh7JM; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1715683515; x=1747219515;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=0/gq0Od8tn/NFYb5S2ybhGqd4qamz5PoX4ti0poIl0c=;
+  b=P6bGh7JMyhhiHz25n/SZooK7/F13H88SkzDZCGfd3QDhQTHYt7KSaQHG
+   J3XWz4achL+9gz1EMHVH2tRNcbxEDJi1RZHnDjfV28NFR4T0iJK/CL35o
+   LlrWju6KLr/WY47VmoVR91o+zombNTp/qYXxulhJXbmY4PlOiGNeAUi2r
+   yJELS3kBZUfaznWXwKf6hkCMhV4DDriAGf0RN4w+PV0Qbv5U1I70/x+2I
+   95vnlqJ29Y2ndHnCfDB3yNUtO6jJB8QLXKovScwKQvfmR0ESdqomjKx4X
+   KzwrjwjFpbBvXYsDESiTpBTBr0RiEDq0Jz5M0J1bFkrwEKmXFzVS9XWGq
+   w==;
+X-CSE-ConnectionGUID: CRVhllyDQl2XuPQNxlB5Rg==
+X-CSE-MsgGUID: p33gXK/ZR+6lRZgA3nAYjw==
+X-IronPort-AV: E=Sophos;i="6.08,159,1712646000"; 
+   d="scan'208";a="24625779"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 May 2024 03:45:14 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 14 May 2024 03:44:53 -0700
+Received: from Lily.microchip.com (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Tue, 14 May 2024 03:44:51 -0700
+From: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
+To: Mark Brown <broonie@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Conor Dooley
+	<conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
+	<valentina.fernandezalanis@microchip.com>,
+	<prajna.rajendrakumar@microchip.com>
+Subject: [PATCH v2 0/3] Add support for GPIO based CS
+Date: Tue, 14 May 2024 11:45:05 +0100
+Message-ID: <20240514104508.938448-1-prajna.rajendrakumar@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Monday, 13 May 2024 20.44.04 CEST Rob Herring wrote:
-> On Mon, May 13, 2024 at 05:38:16PM +0200, matteomartelli3@gmail.com wrote:
-> > On Monday, 13 May 2024 10.53.57 CEST Krzysztof Kozlowski wrote:
-> > > On 10/05/2024 15:00, Matteo Martelli wrote:
-> > > > Add DT bindings documentation for the Everest-semi ES8311 codec.
-> > > > 
-> > > > Everest-semi ES8311 codec is a low-power mono audio codec with I2S audio
-> > > > interface and I2C control.
-> > > > 
-> > > > Signed-off-by: Matteo Martelli <matteomartelli3@gmail.com>
-> > > > ---
-> > > >  .../bindings/sound/everest,es8311.yaml        | 52 +++++++++++++++++++
-> > > >  1 file changed, 52 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/sound/everest,es8311.yaml b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..54fb58b9ab58
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/sound/everest,es8311.yaml
-> > > > @@ -0,0 +1,52 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/sound/everest,es8311.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Everest ES8311 audio CODEC
-> > > 
-> > > This looks exactly like es8316, except of later added port. Are you sure
-> > > you are not planning to add port later, which would make both schemas
-> > > identical?
-> > 
-> > I did not pay enough attention to audio-graph-port property which is in
-> > fact supported and could be added as well. Thus the es8311.yaml would be
-> > identical to es8316.yaml. My guess is that I should just add the
-> > "everest,es8311" compatible string to the existing es8316.yaml even if the
-> > two drivers are separate (like for instance mediatek,mt8186-clock.yaml). Is
-> > this correct?
-> 
-> Yes.
-> 
-> > If that's the case:
-> > * should the evereset,es8316.yaml file be renamed to evereset,es831x.yaml?
-> 
-> No.
-> 
-> > * should I also add myself to the maintainers list of that schema?
-> 
-> That's up to you. Do you want to be CCed on future changes to it?
+The Microchip PolarFire SoC SPI "hard" controller supports eight 
+chip selects. However, only one chip select is physically wired. 
+Therefore, use GPIO descriptors to configure additional chip select 
+lines.
 
-Yes.
+v1-> v2: 
+ - Modified all commit messages for better understanding
+ - driver - added spi_is_csgpiod() API to address review comment
+ - bindings - fixed bindings to set the default value of num-cs
 
-> Rob
-> 
+Prajna Rajendra Kumar (3):
+  spi: dt-bindings: Add num-cs property for mpfs-spi
+  spi: spi-microchip-core: Fix the number of chip selects supported
+  spi: spi-microchip-core: Add support for GPIO based CS
 
-Thanks for your feedbacks, I will fix it in patch version 2 as discussed.
+ .../bindings/spi/microchip,mpfs-spi.yaml      | 29 +++++++++++++++++--
+ drivers/spi/spi-microchip-core.c              |  6 +++-
+ 2 files changed, 31 insertions(+), 4 deletions(-)
 
-Matteo Martelli
-
-
-
+-- 
+2.25.1
 
