@@ -1,239 +1,134 @@
-Return-Path: <devicetree+bounces-66897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7680C8C5833
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 16:44:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6247F8C5872
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 17:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E73FA1F219BF
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 14:44:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 941A91C21B3A
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 15:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE8917BB33;
-	Tue, 14 May 2024 14:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC9717EB81;
+	Tue, 14 May 2024 15:05:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JNn88E3q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fwH2L2d/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458E326AC6;
-	Tue, 14 May 2024 14:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6ABF3EA66;
+	Tue, 14 May 2024 15:05:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715697851; cv=none; b=XktmwwpcuLud2BWGCHppJH+ci0xBHMtouWYgLfjsWR4WW40a0R2tH+4hS2DuWR/c5yMDT0S37yxk7FrDDvP4H5khqztRYjDcaAbAqBM/GKOggPmVZ9UkQ2dU88nR1ZAa4Hnl27oPOHCRwwfbd5HimmQ3XJG8eTxYjcrx6gyi4eM=
+	t=1715699116; cv=none; b=rAr1lJOeT06x1bwVn+xJumIPhTrpZPI0hQkSEBR21t+5BJPxIP32IycZiW3ey9xnmhX7xK1NbTFxlCSpbYLeSkJGB6fdrq81MUMYExZSr5XzLjm5sn1CIBvmsSDs5rHoiAQx2NHccnAtoejRBYFHwDjM+KtJPH9kEbUu3TP0e4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715697851; c=relaxed/simple;
-	bh=y6f6cP8b+wbXxgeRLntoPzUrt10oVgLSe6lqdbiAE/Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DiNRnUICMyUSdWqZP/6t1a/iRJmCuIt2vLSDQaagUtA0Ir+4yWGQCZIXAB2dsaVNwPsfjj5ERdBnl/yIZ0mO5ejrqynYqqfojst2HCQekYkzCdNf1Nb9coaVT112yRHHWPOkDn6fF49TsjMqHSEWtXew5HgVvGtNpBefecORbF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JNn88E3q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54926C2BD10;
-	Tue, 14 May 2024 14:44:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715697850;
-	bh=y6f6cP8b+wbXxgeRLntoPzUrt10oVgLSe6lqdbiAE/Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JNn88E3qwlFZ8IDo6NLYz/WL2sOshJD3Uwz336B+1EH4VNtFWEZ+38K/urjlox5v4
-	 +p20OpHYmetUOS7FZF3FMG+TTHQ74Py0oaqF+8nysAdUl6Q/S+A6DtPPu1CbPT0nD2
-	 56JsY/sPwMcRh+UeCI85oV+CUt42T8bkE/rro8rs6hAli5pQnKnI6mikqVICbwyVtE
-	 T/89KdPyIKiQM5KK3IxQEOcmODsQ6xNUdO5WbgVHnDkYF/G5O9Otq4LkDmXfqLHxwu
-	 8uLS1hakZ34fk7+HjgCTmylScgB4wF6RJM2WTkGHUyuZJLNwKszxO5OW1N0yZa0b9x
-	 qfcktlIO2YeRA==
-Date: Tue, 14 May 2024 15:44:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v4 02/11] riscv: add ISA extensions validation
-Message-ID: <20240514-ascend-joyous-a15969f703de@spud>
-References: <20240429150553.625165-1-cleger@rivosinc.com>
- <20240429150553.625165-3-cleger@rivosinc.com>
- <20240429-subtext-tabby-3a1532f058a5@spud>
- <5d5febd5-d113-4e8c-9535-9e75acf23398@rivosinc.com>
- <20240430-payable-famished-6711765d5ca4@wendy>
- <e57f8b70-7981-42c1-bb04-2060054dd796@rivosinc.com>
- <20240514-sip-exclusion-014b07b01f4c@spud>
- <9d0840ff-d00a-4866-8f45-e8676f369ad6@rivosinc.com>
+	s=arc-20240116; t=1715699116; c=relaxed/simple;
+	bh=w4qu7AcWvUkrD2GyDHl1h65yHhTJv5ueqrzrzj7ci3s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TMqHrKhOVpbr3EudIwoRQuP1lc6c/Q7umqo8FBPYQAQN7KUU0yaxuDGoZCaJsETdBKCGi2QcDQl2trqbKetZzG4yqLSs+c3jXmUSYK72R4L2J4bpgj4uE+uXnw4yixTYj5i3VLqc0HBUFcMMlk05n60WFE8ux09hmPBrj2glx1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fwH2L2d/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44EBohpO004317;
+	Tue, 14 May 2024 15:05:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=NnZu3bgBmSPSM6LjznEKtBZHGtRz96Gtt9Ol698i3bE=; b=fw
+	H2L2d/9BoqMTJgCd45y6wQvAHo0ncZjyEqdX8HMR5PCTprwfXmuRNoOhgcv2s/Sz
+	hrg0O6wK43J0ZPZ7aMUTqPYBQx/aczrpep8aG1RzpzcRSVti39ViagTLFHVizOhg
+	4hVZ30A+hikkkj93BzXzP0s2BO8LOQyP0fQOUdNxBMkTsqSHMQLtvqOyLiLF0J/c
+	txY/Eiu5x/Vp36QW9boaZOFeu4ygJfmhzwYmNNmKkJVYEo8bPcIVNVMIS7TQxh5k
+	GGLqUz/0+j8PDcpI0/o/BAcNZuuvE8w3/ziqZ9S2+wcJvPDKNHJU2vr6EyAxDYi3
+	FOQKMCc0kp2yfGPvNqsQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y47eg8fxc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 May 2024 15:05:08 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44EF55m7013646
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 May 2024 15:05:05 GMT
+Received: from [10.216.14.10] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 14 May
+ 2024 08:04:59 -0700
+Message-ID: <0a372307-8887-ac97-54c6-d6080e64540f@quicinc.com>
+Date: Tue, 14 May 2024 20:34:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="77IYhpXVRVT+g+0m"
-Content-Disposition: inline
-In-Reply-To: <9d0840ff-d00a-4866-8f45-e8676f369ad6@rivosinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
+Content-Language: en-US
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+CC: <johan@kernel.org>, <andersson@kernel.org>, <broonie@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <johan+linaro@kernel.org>, <konrad.dybcio@linaro.org>,
+        <krzk+dt@kernel.org>, <lee@kernel.org>, <lgirdwood@gmail.com>,
+        <linus.walleij@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh@kernel.org>, <swboyd@chromium.org>
+References: <ZjpMeVk_HiixZUEu@hovoldconsulting.com>
+ <20240514140446.706847-1-quic_skakitap@quicinc.com>
+ <CAHp75VcfYuukpLg=F36ykddsT9SpfdGNyyvVeyw-Yvz61Lrq7g@mail.gmail.com>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <CAHp75VcfYuukpLg=F36ykddsT9SpfdGNyyvVeyw-Yvz61Lrq7g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 06wmee6BnCQYyBEKBkIDU_zBFoOtEd63
+X-Proofpoint-ORIG-GUID: 06wmee6BnCQYyBEKBkIDU_zBFoOtEd63
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-14_08,2024-05-14_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ malwarescore=0 phishscore=0 spamscore=0 mlxlogscore=894 lowpriorityscore=0
+ clxscore=1015 impostorscore=0 suspectscore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405140106
 
 
---77IYhpXVRVT+g+0m
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 5/14/2024 7:48 PM, Andy Shevchenko wrote:
+> On Tue, May 14, 2024 at 5:05 PM Satya Priya Kakitapalli
+> <quic_skakitap@quicinc.com> wrote:
+>>> On Thu, May 09, 2024 at 03:07:02PM +0300, Andy Shevchenko wrote:
+>>>> Wed, May 08, 2024 at 10:37:50PM +0000, Stephen Boyd kirjoitti:
+>>>>> Quoting Johan Hovold (2024-05-06 08:08:29)
+> ...
+>
+>>>>>> +               BUILD_BUG_ON((ARRAY_SIZE(pldo_ranges) != 1) ||
+>>>>> This should be an && not || right?
+>>>>>> +                               (ARRAY_SIZE(nldo_ranges) != 1));
+>>>> In any case BUILD_BUG_ON() is not encouraged for such cases, it would be much
+>>>> better to have a static_assert() near to one of those arrays.
+>>> I think the reason it is placed here is that the above line reads:
+>>>
+>>>        rdesc->n_linear_ranges = 1;
+>>>
+>>> and that would need to change if anyone expands the arrays.
+>> Correct. static_assert() cannot be used in the middle of code here, it can only be used at the declarations part which doesn't serve the purpose.
+> I didn't get this. The ARRAY_SIZE():s are defined at compile time
+> globally. How does this prevent from using static_assert()?
 
-On Tue, May 14, 2024 at 02:48:01PM +0200, Cl=E9ment L=E9ger wrote:
->=20
->=20
-> On 14/05/2024 14:43, Conor Dooley wrote:
-> > On Tue, May 14, 2024 at 09:53:08AM +0200, Cl=E9ment L=E9ger wrote:
-> >>
-> >>
-> >> On 30/04/2024 13:44, Conor Dooley wrote:
-> >>> On Tue, Apr 30, 2024 at 09:18:47AM +0200, Cl=E9ment L=E9ger wrote:
-> >>>>
-> >>>>
-> >>>> On 30/04/2024 00:15, Conor Dooley wrote:
-> >>>>> On Mon, Apr 29, 2024 at 05:04:55PM +0200, Cl=E9ment L=E9ger wrote:
-> >>>>>> Since a few extensions (Zicbom/Zicboz) already needs validation and
-> >>>>>> future ones will need it as well (Zc*) add a validate() callback to
-> >>>>>> struct riscv_isa_ext_data. This require to rework the way extensio=
-ns are
-> >>>>>> parsed and split it in two phases. First phase is isa string or isa
-> >>>>>> extension list parsing and consists in enabling all the extensions=
- in a
-> >>>>>> temporary bitmask without any validation. The second step "resolve=
-s" the
-> >>>>>> final isa bitmap, handling potential missing dependencies. The mec=
-hanism
-> >>>>>> is quite simple and simply validate each extension described in the
-> >>>>>> temporary bitmap before enabling it in the final isa bitmap. valid=
-ate()
-> >>>>>> callbacks can return either 0 for success, -EPROBEDEFER if extensi=
-on
-> >>>>>> needs to be validated again at next loop. A previous ISA bitmap is=
- kept
-> >>>>>> to avoid looping mutliple times if an extension dependencies are n=
-ever
-> >>>>>> satisfied until we reach a stable state. In order to avoid any pot=
-ential
-> >>>>>> infinite looping, allow looping a maximum of the number of extensi=
-on we
-> >>>>>> handle. Zicboz and Zicbom extensions are modified to use this vali=
-dation
-> >>>>>> mechanism.
-> >>>>>
-> >>>>> Your reply to my last review only talked about part of my comments,
-> >>>>> which is usually what you do when you're gonna implement the rest, =
-but
-> >>>>> you haven't.
-> >>>>> I like the change you've made to shorten looping, but I'd at least =
-like
-> >>>>> a response to why a split is not worth doing :)
-> >>>>
-> >>>> Hi Conor,
-> >>>>
-> >>>> Missed that point since I was feeling that my solution actually
-> >>>> addresses your concerns. Your argument was that there is no reason to
-> >>>> loop for Zicbom/Zicboz but that would also apply to Zcf in case we a=
-re
-> >>>> on RV64 as well (since zcf is not supported on RV64). So for Zcf, th=
-at
-> >>>> would lead to using both mecanism or additional ifdefery with little=
- to
-> >>>> no added value since the current solution actually solves both cases:
-> >>>>
-> >>>> - We don't have any extra looping if all validation callback returns=
- 0
-> >>>> (except the initial one on riscv_isa_ext, which is kind of unavoidab=
-le).
-> >>>> - Zicbom, Zicboz callbacks will be called only once (which was one of
-> >>>> your concern).
-> >>>>
-> >>>> Adding a second kind of callback for after loop validation would only
-> >>>> lead to a bunch of additional macros/ifdefery for extensions with
-> >>>> validate() callback, with validate_end() or with both (ie Zcf)). For
-> >>>> these reasons, I do not think there is a need for a separate mechani=
-sm
-> >>>> nor additional callback for such extensions except adding extra code
-> >>>> with no real added functionality.
-> >>>>
-> >>>> AFAIK, the platform driver probing mechanism works the same, the pro=
-be()
-> >>>> callback is actually called even if for some reason properties are
-> >>>> missing from nodes for platform devices and thus the probe() returns
-> >>>> -EINVAL or whatever.
-> >>>>
-> >>>> Hope this answers your question,
-> >>>
-> >>> Yeah, pretty much I am happy with just an "it's not worth doing it"
-> >>> response. Given it wasn't your first choice, I doubt you're overly ha=
-ppy
-> >>> with it either, but I really would like to avoid looping to closure to
-> >>> sort out dependencies - particularly on the boot CPU before we bring
-> >>> anyone else up, but if the code is now more proactive about breaking
-> >>> out, I suppose that'll have to do :)
-> >>> I kinda wish we didn't do this at all, but I think we've brought this
-> >>> upon ourselves via hwprobe. I'm still on the fence as to whether thin=
-gs
-> >>> that are implied need to be handled in this way. I think I'll bring t=
-his
-> >>> up tomorrow at the weekly call, because so far it's only been you and=
- I
-> >>> discussing this really and it's a policy decision that hwprobe-ists
-> >>> should be involved in I think.
-> >>
-> >> Hi Conor,
-> >>
-> >> Were you able to discuss that topic ?
-> >=20
-> > I realised last night that I'd not got back to this thread and meant to
-> > do that today (I had accidentally deleted it from my mailbox), but I had
-> > a migraine this morning and so didn't.
-> > I did bring it up and IIRC Palmer was of the opinion that we should try
-> > our best to infer extensions.
-> >=20
-> >>> Implied extensions aside, I think we will eventually need this stuff
-> >>> anyway, for extensions that make no sense to consider if a config opt=
-ion
-> >>> for a dependency is disabled.
-> >>> From talking to Eric Biggers the other week about
-> >>> riscv_isa_extension_available() I'm of the opinion that we need to do
-> >>> better with that interface w.r.t. extension and config dependencies,
-> >>> and what seems like a good idea to me at the moment is putting tests =
-for
-> >>> IS_ENABLED(RISCV_ISA_FOO) into these validate hooks.
-> >>>
-> >>> I'll try to look at the actual implementation here tomorrow.
-> >>
-> >> Did you found time to look at the implementation ?
-> >=20
-> > No, with the above excuse. I'll try to get to it today or tomorrow...
->=20
-> No worries, I was on vacation and was just checking if I hadn't missed
-> anything in the meantime. Take your time ;)
 
-I forget where we talked about validation for F/V, but I chucked this
-together last week in response to another thread of Andy's that was
-adding some of the vector subset stuff, because I realised we don't turn
-off any of the stuff that depends on vector if vector gets disabled:
-https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
-=3Driscv-check_vector&id=3D38050c6858143f43ce2fd04e9824727a7d7731d0
+The reason we added it here is to make sure the nlod_ranges and 
+pldo_ranges doesn't become larger, and we forget updating the 
+n_linear_ranges. Adding static_assert here is not feasible so adding a 
+BUILD_BUG_ON at this point makes sure the n_linear_ranges is proper.
 
-What I've got there doesn't actually work for the vector subsets though,
-only for vector itself, because of the probe ordering. Your validate
-callback stuff should solve that issue though.
 
---77IYhpXVRVT+g+0m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkN4tQAKCRB4tDGHoIJi
-0qISAP90Cmxbqg0YPzaeFWc+C9/VvgVu9xKpX7ljk8pbm7X1owD6AnM5MtNIBLJQ
-RIKtT/ATp2dDqn5rjyDfcJhTFVb4Qwk=
-=e78x
------END PGP SIGNATURE-----
-
---77IYhpXVRVT+g+0m--
+>> So, BUILD_BUG_ON is the only way to go here.
+> I don't think so.
+>
 
