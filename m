@@ -1,262 +1,290 @@
-Return-Path: <devicetree+bounces-66861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC038C51B0
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:31:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9098C522B
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 13:35:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 399AD282920
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 11:31:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D14C1F22480
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 11:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E9113AD31;
-	Tue, 14 May 2024 11:08:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCF112D772;
+	Tue, 14 May 2024 11:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="ZsvvLKY3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S5v6QpNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11011008.outbound.protection.outlook.com [52.101.229.8])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37751E495;
-	Tue, 14 May 2024 11:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715684905; cv=fail; b=DedMxmNaRz1pj8QPDMOPqOP/+JFzM4IQG+IY3EfhB4sF8weWBFHmzxnU3XJnWbvUzLFQGvFu1y4yR5wVKMi8TFXGaT0BH6nneCOJ902zoYtvzPRx/hQ5VhdHkDyQVaeJ8pDe7M7Ri4fI3QobYZVJai1XK+FCJHg3vJY+Mime1Kk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715684905; c=relaxed/simple;
-	bh=BJS3geFSRyiDaeRW0yQfevTnjCAXzUl11KGbbpJ4o7A=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=msLUsyqpgvGEs0E58WOahLSWlclwdz0JKQ4u/UudbsvP/+KUj5i3/mERoWF2uhu4baVhsMOs8aZ/RlhlsJZdsvmig+gtzHPaSBEKLJPCbbU7Yh6A5AvpGdT6Ob22cFPhRUmFKNOZuSj4MSEyg6VVBpLr+H4/H44VQqvVlpGgP2I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=ZsvvLKY3; arc=fail smtp.client-ip=52.101.229.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n6NdrTWPSQmmrVcqZj0nk6N5+toZ4hKzT6TYQn/vzomq38poJZkYso4iWDOzTfrPvGPiCAC6ums0aTpmDY8kHxSpk5AufyG/pOm1P0KXo9ERWmjbLSihWkrwccF1dM+SJTna2dJb/xUnqZ6vzW+LjMh3v23vrV2pqebiv0r5mJhRDvqXfD+7h38VhYGWIeFf9nF2/yTQim9m+oGQCtpFJatSpNS/Ij7GP/RTpxWWPoi8g07CugA0x792Hmjkeb/wo5n5EHGQsHA4uwjWzxOK1avAylwYHfRkoU2TsalF5xPT2g5xoc0H+48DZUwH+ArTq/16zU8qhQ03O79HVMy9Vw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BJS3geFSRyiDaeRW0yQfevTnjCAXzUl11KGbbpJ4o7A=;
- b=YR8R7fYtVXFQoa+jPFR/f/TE40rYwCn9F72fZCltH+4inbma8AzPwVfH6DPM/zdMd8ExxYgw/5XLqvmyWGLEw1EXz1mgkFtfHF3FE/dRL/QJMnk7Wz8mXKKH9a4+s+4fJ3mavBFIXIc77jpzwVH8UpoYiC7qZEC4mYNitX6j3uC4/UHf2wVnf/5SiagIypGn2yjs/iZ5zgEMv605FYXRLVPbDlqnkxCbPIfx5h25yKh/7QT5d/DalFLh5Cej35Au9l68+LLxeoUDe+yKq1k1eW0zNiW2YASpdJ6zINB1/DIKCAUfUs/8IBDBZfCV9N7AynqGYmfBqmpjPJUuZUGSow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BJS3geFSRyiDaeRW0yQfevTnjCAXzUl11KGbbpJ4o7A=;
- b=ZsvvLKY3I7K2LGs2MvN1WfqQcqFFyBMYCRK41NHLeRBebn8PIOMygGQy1ixm3/kCsxPCW9H4QDLrGSD/z5WK1oORnc/VBu0MjxVmSxwnEHzSZ3KJTSKYUeRmyjfOAzm88fjVE8apjXWOf2JcSDGmISUfSXHQ2xbb6lI/FJj3Vt8=
-Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com (2603:1096:400:3a7::6)
- by TYWPR01MB10322.jpnprd01.prod.outlook.com (2603:1096:400:1e6::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.26; Tue, 14 May
- 2024 11:08:19 +0000
-Received: from TYCPR01MB11040.jpnprd01.prod.outlook.com
- ([fe80::11c0:4ed:1ee4:d774]) by TYCPR01MB11040.jpnprd01.prod.outlook.com
- ([fe80::11c0:4ed:1ee4:d774%5]) with mapi id 15.20.7544.052; Tue, 14 May 2024
- 11:08:19 +0000
-From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To: Manivannan Sadhasivam <mani@kernel.org>
-CC: "lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com"
-	<kw@linux.com>, "robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com"
-	<bhelgaas@google.com>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v7 5/7] PCI: rcar-gen4: Add .ltssm_enable() for other SoC
- support
-Thread-Topic: [PATCH v7 5/7] PCI: rcar-gen4: Add .ltssm_enable() for other SoC
- support
-Thread-Index: AQHajwyP0UTEDb7OV0S3rZrOCPwM6bGRzkEAgATwkZA=
-Date: Tue, 14 May 2024 11:08:19 +0000
-Message-ID:
- <TYCPR01MB11040708AC5609CA7752B5729D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
-References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
- <20240415081135.3814373-6-yoshihiro.shimoda.uh@renesas.com>
- <20240511073812.GE6672@thinkpad>
-In-Reply-To: <20240511073812.GE6672@thinkpad>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYCPR01MB11040:EE_|TYWPR01MB10322:EE_
-x-ms-office365-filtering-correlation-id: ef21506b-e4a6-41a2-faed-08dc74062951
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230031|7416005|376005|1800799015|366007|38070700009;
-x-microsoft-antispam-message-info:
- =?utf-8?B?ck9WbDVIbURYZ1UxdXpHak8xTzZyNVVyVGRHVTZtUzBmV3NoYzFMV0wrdkM5?=
- =?utf-8?B?MGY2Zm15eTRJVHdYclQ0aTRlN3RDTTByNnp1M3JzKy9hR2tOWjlaZ1BTTG44?=
- =?utf-8?B?NFhUUnNqMmJoTWVqWG9iMEZCeDdtS1VML3lmeEgvNHNiL212OEVOb0hicXh5?=
- =?utf-8?B?eWUvUVB3QytkdEN1VmVaaGZUWDU2VkVyYmpBVDBTV0dPYmZ4ZXh3Q3hSQWhq?=
- =?utf-8?B?NHFNTXlVelJXamNZK0tkdjR1ZC8xZHFtNHVPeVVWbmVRM2FXOGhkOGI2aVFy?=
- =?utf-8?B?TDZoM3lPV0FBYU03TFErK3FvRnpQY05LcjFiYXRVNkt5ZjdOeVlpQVp2aVFW?=
- =?utf-8?B?eUROMGdCVlJZWUxDZ3E3aFBoSFJyZUd2UjRRUHhrT1BNR0dCblpxM0dXdGhG?=
- =?utf-8?B?VEpzaG16eFkvWXNUVVNQWG54UnFWc1hJaEdFTFRYa3d4a1lrNTR1b0FTMDFl?=
- =?utf-8?B?OTRCeTdiTWljQ2oyYkxUQ3BoWmVkd0ExTjFCU2YvZzlBVmsrYmMzK0FPSmlC?=
- =?utf-8?B?UXphNk9sWU5hR2NtSUFSa0Y4SXl4Qm81L0RmdUJzNEJkK2RJRmhUNzYxTFRU?=
- =?utf-8?B?OFo1UWtVUTNoWUxBVzM5ZDZNMEE1RCszUHlGY0s5dGp6MjJuNGMwSmFDODZD?=
- =?utf-8?B?ejRDdi8yOGNkTFZDVExHbHNNaXM3SEs3N3RtVjFpK1RKZWdaU0xhd3NYVFJM?=
- =?utf-8?B?WFRGYXZqS3EyRlg0KzBiaDRiQllDazZMT2RFOWl5SjJpd3BqYmdFSkRQT3o5?=
- =?utf-8?B?T1lFekJhOTN5a2ZoS3FtV01RV2UxTUg2SmEzU1BLeEF1TVlXTEV6OW9ZYmkv?=
- =?utf-8?B?bm1lN1V2K2JHeGJ2TEw4RCtxT3BncTBDVjR6aHZtcUdBbWx1NU5LVGpWazRY?=
- =?utf-8?B?d2FBTlpNOEYvZmRHNlBiTnJwaW54YTdLUjRhbms5Yjhod25TZXVhU1hZUFZj?=
- =?utf-8?B?bW9MaENWVUxpNTJNMVJmc1lVTGFRUHIxRHFydEIyUnc3OXpQVDlvM3ZTaXJ6?=
- =?utf-8?B?eDA2bGFXNlowYWc5UHdDVmZvZCtOWit6cFdjODBIWDU1b1FzTzJMUU9Yc2xu?=
- =?utf-8?B?VkVMMjdqMWRxSXNEYU5VMnA3SExGcWZFSTZ1NytkNFE4VHJXL2Z1OVRQWEVO?=
- =?utf-8?B?SURUTVV5dmtpN0RQa3VUTGZGZlBUelBjOTZTdmppV1Y1QWJEaVZHNlp0N0tM?=
- =?utf-8?B?OGxuZlZkSE1kVDUxSUJYYTdvNUR1T2lra00xRmQ4c0ZmYkh0L3Q1ZjczWTcr?=
- =?utf-8?B?RCtFRjhpMUlLaHU4RmdyN1dQaVNPVmZyV1NpeGZIeGZFWTJFTkh6S0F6QUEx?=
- =?utf-8?B?cFBCVkpZSnRkamYyWFJNM1BUWVFVRjJiREFVUXJWRDB3aGdEVld2RmRuVk15?=
- =?utf-8?B?aGRLT0V2c2lCMHZXSm5uSW13RWE0cElmSXhJd0tnZHBFNERlbjlzN3J1WVVB?=
- =?utf-8?B?bkV3OU9PRzZ5cmc5OURmVWRab0FuVW91RVNkWW5nQVdpc1p0allrMWxwcDcy?=
- =?utf-8?B?ZTFjMUNZQkdPSzVLdUdTNk1XZ3BzTmdOeGdVa2RibVJQV3kvSkFETE1xMlRJ?=
- =?utf-8?B?MklpenRTeUdjRkRTQmRzVDNWZytPNmlUL1pXNzl2L29Fd05kT1UzbGh6eVlE?=
- =?utf-8?B?NStYVGNTUnRiV0Jpa0pkeHViNWdkSitVMXV3emF6dksvTERGRUkwTGhBa0NC?=
- =?utf-8?B?RVNPVWxsNndmTGZnSWs1OFgva0ZnYXdlNG1UamJZV3JzRG5NZGRFK0JFVXJ5?=
- =?utf-8?B?NW14STJrYm5UTklCQlhrMFh0YkZqUmQzR3lMWGNkWnVSSjRlUDVpL3JxazZR?=
- =?utf-8?B?c1lSWWpyakx2ZlZUVmMwQT09?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:ja;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11040.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?dEQ3anNuUE44MVFXaXdoY1FWT3RKWERKcjdWcEk1NS8zZmFSZlBBU1IvUGtS?=
- =?utf-8?B?ODFwQXkrMEVPYXZKYmJvZjVQbzNaN0dmeEh3YW8rNm5EaGdabzR5NklUNUR3?=
- =?utf-8?B?RnNXelk1eEVHOU50NGdpYkNJKzM5L1dmSEk1Zkl1K3htclRVS0NreXdsOFBJ?=
- =?utf-8?B?Nm5vMW9lRTk5R1dFRThVR1Evc055RGV6OVRWWlBvY244NE9rV0hOc1NVZ1J6?=
- =?utf-8?B?Sng4THlnNnpzQ2hRdXVkcndVaVhjdGRFQXMvcHAvWWRMNjl0OGVwTkxHcVZJ?=
- =?utf-8?B?Y3p0TkU5V2t2ejk3WktNQTRuVkJGSlB0QURtVU1MVTI5bjc4cHlSTElHc2ZB?=
- =?utf-8?B?VVNvY0Qra0FMMUxuY25STmVERGdpcFRaMUJETjVoaDI4VkYyNlVFejhmelJo?=
- =?utf-8?B?dTJYeE51elpmazZRdmw0ckJGeUVQbjJpSjNhOVBZSG1wcXZyaUg2V25GQWJ4?=
- =?utf-8?B?OFRISHpWUThEVktPaTBIVTlIYnNXSkZpcEU4NlprcGJyWFF0aklSZFU3VWhM?=
- =?utf-8?B?NHU3eXh5S2pxUTV5Q1l4M1RUZTBCaWpZcTQxejBTTGhET0g1dTE1SE9JQ3B6?=
- =?utf-8?B?YkRocE4rNk5XRjgxUUlCbUNSN0FjSWlzVStNdGtWT0JXMW0zd1Y1M3haRWsw?=
- =?utf-8?B?SHVWZVZmNE1FYzVJN1FuZjhnZ0xZSzVBMVo0anJFczhVOFJRaVVyTno3dFd2?=
- =?utf-8?B?VTBhTHpvNCs3U0NNQmJBRGV5NWphNzI5dzAzZzl2QlJyTk9waERNeEFjZW8y?=
- =?utf-8?B?ZkRldHJZelljRFFYOWNtVkxmQUpnQ1d0ZXhaWEVEK3g2WGxhSFdVam83cFh4?=
- =?utf-8?B?dUtKVEI3TGhDUjNkOTBjbkFOUE9GU2hncC9MVmIxdXFxeW92V3cvQVJCUUgx?=
- =?utf-8?B?M1NPUmlQSUt1elFnY3hWOXRYdS9OWFFQL0I1Qkl1OTJRTzhsb2RyOTdrUXdj?=
- =?utf-8?B?bWR2MmtoU2ZHSUZhdzlqREVUcERrb1czalZCWC9kNWdtalQ4ZjZiaVRNazB6?=
- =?utf-8?B?dHMwQWltd1JDck5pT2g5TDJYaTNrbk1XRVZPVzR5TXljcEI1QXpIVHRhdTZP?=
- =?utf-8?B?Q0I3eG9ZamVIbG1MbzVtWm1zZ1BIRUdpeklHdXoxenRNZDc3TitMaGZFT3FP?=
- =?utf-8?B?WFJCVjlEa2dNU0F4RVN0bzZOejdQL0RsUjhya3dxcnN5R0o4anB0ZGtmVUs3?=
- =?utf-8?B?VTdqS3RPbE85VGdLaURyRDVla2tnaEJpaCtqK0g3U25oRmV6NUR0eVpYbjl1?=
- =?utf-8?B?dGczczJLU2lkeWt3Z2YzOVBkZUZ2Y0xPTW5reFpsTDZUWFJRbHNSSDVHZ25h?=
- =?utf-8?B?RW03Uy8yZVVrcmJRRk53M21GSHlsVzlCUi94eDdQaFBaTWViNkRUZVZUQk9M?=
- =?utf-8?B?d3FVZ2pDTHUrb0FTN2phNzVwa29tWTlOK2dUNXU4UW5TQmU1WXE2ZDhMQXRr?=
- =?utf-8?B?emxvWWRWMHZRS0VRR2hVWm43WURUTzBzblRvTjdsRWMvekdoSXNLUkVCZnR4?=
- =?utf-8?B?VllFZ05tWlhCOEZwb0kwdXJ6NHFkK1RBaFUveEtvZ1IyQjlMNlpUczY5a2w2?=
- =?utf-8?B?V0QwRUlHOWpCTzhKZ3RtYXJycFpLOVlrUTN6WkNFb1hhSEVGODRiY1hPYlFR?=
- =?utf-8?B?Q1hpMTFWcVU1TW9VZzlnalkzVGI3b1h4aXZUSTJOd29ZQnU4bGRCSVBJTml0?=
- =?utf-8?B?OHNES0FweFprRjdUcENIejR4ZjRsbVpkdXU5SkZYWlVHTU1JaWNGZFNxY1ox?=
- =?utf-8?B?Q3dTbVMzU3p5WjZkY1Zkbng0MW03eWJnYVdLQWVWTHh5TGMxVTdMcWZkK1V1?=
- =?utf-8?B?WldQa3NEOTk2VFcwV0IxbkJlVU84QjNtVjBCQjRHNVkrMWJsWEhTWW44bWNh?=
- =?utf-8?B?S0Q1MVJyaThYak4xMXgyVEdnU09NdExNS1RJTVlxcHN4Sm5kWmVNZVZGTmph?=
- =?utf-8?B?a0JiNTQrNlJ3QzhxSng0VHFPUkVWeTdkUmgycGx3S3FrU3QyQ2xBZkFUTTh5?=
- =?utf-8?B?UkhMdWdsSXR0dDRaWVQxaGt3bERjeFF0amhkTGppK3hNTllGUXloYS9NUWQ4?=
- =?utf-8?B?R3UyZ1FrMmo5Q1EyNlc4alZGcGg5enNaTEx1YWExdThiWWM4eVJlZHg0dG0x?=
- =?utf-8?B?NEQ1YlVNN05YMkRBUnQrRjE0NklhNnNQMjR0ZlloVXYxYmZmem1BdGw5WjFq?=
- =?utf-8?B?L2c9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8509E53E30;
+	Tue, 14 May 2024 11:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715685610; cv=none; b=pSlkvp7QqrCOcaVKV8UajrJz50/xqd+TD1BjKc0aZQdknt6wTQr6JtUI9JV7CozAH3HrFBnlsTSLzvtU6aujmmo2k7AZfFzSDR3RSd4dt0cApbRWx4MOoLMM+qwBiBxTiGcNKghGoMOuPCbSsd5BNYWyig078fpSEWKTxFJWy0E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715685610; c=relaxed/simple;
+	bh=XyFKyyciBLAngkmK68/fR6eZNy1P+tJIELRli0u+emk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=IxWFcPbWnuC5uWjdvKcW0iB8lbcV8E9umQKOQJsMGowEdW3fmaHXK8VNu6YetfIavO5G+6tEUjdKv3mALBQWS/piqXnIXQOgRQZkxb40wtDdHZNqICK7qpUi2vKEoKueN/gmX+G5qzHN50sLQMegOXbENLdUyj43cpPySvrxEsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=S5v6QpNc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44E849JD024016;
+	Tue, 14 May 2024 11:20:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:from:to:cc:references
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=SVlVPEfTD6tQYDnw8/PDRROwMu37COEhPHGsPjiczE8=; b=S5
+	v6QpNc5J/S87wlPpBEYsCUpGKhSBFJufkWmrUbqUTqIfQu3BBDgSAJkfg3LxnDAh
+	kBm3a9/2SGaQrLzsgUbFZxYrDOdk1YA2wI6fg4+UAUqdM3sxxhyDS9j17sPJuQWM
+	zzL7db2Z7QCDihHpHvu0LN6mXVqgCtpYfoMSYBsYDKvMD+TSs3uDdlEl1ahHDoof
+	yPmOjVN8cwpjJFGAdHj41xUE87One225MOcBG3pyxCJTw2EqPhM+JumIV3lgwOL3
+	fFXnf3R4PtMoLFJcbMcqGX26MsG/nsN4NCmCKP3VNogjsHdsBtHhVutw1TYlUoUY
+	jnVugIsd++dCGZnpb1UA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y2125e2pp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 May 2024 11:20:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44EBK2Of004764
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 May 2024 11:20:02 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 14 May
+ 2024 04:19:41 -0700
+Message-ID: <d113adc9-2192-44af-a5df-7bbaa6907ac8@quicinc.com>
+Date: Tue, 14 May 2024 16:49:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11040.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef21506b-e4a6-41a2-faed-08dc74062951
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 May 2024 11:08:19.1544
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0QoYlSYEIMKnOyyUiN/P2JpX1OSe3ZPWAcE/ZZumJjpxn+N8san1F3XK0wNCaGjmCN5T6dTnprpBvuACnpcUcJUHOxBSxcyv3IaBqFToBPGhwOiwkYtQpXiJNJ9GfZ4B
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10322
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V4 2/5] mailbox: Add support for QTI CPUCP mailbox
+ controller
+Content-Language: en-US
+From: Sibi Sankar <quic_sibis@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <sudeep.holla@arm.com>,
+        <cristian.marussi@arm.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>
+References: <20240422164035.1045501-1-quic_sibis@quicinc.com>
+ <20240422164035.1045501-3-quic_sibis@quicinc.com>
+ <d6052413-5706-446b-b508-2a5ed839acc4@linaro.org>
+ <d5581614-71ad-5f7f-e948-bdbab3ef854e@quicinc.com>
+In-Reply-To: <d5581614-71ad-5f7f-e948-bdbab3ef854e@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NJYgaQtE3hCQlT887lNeQ0fuDrv6fH5j
+X-Proofpoint-ORIG-GUID: NJYgaQtE3hCQlT887lNeQ0fuDrv6fH5j
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-14_06,2024-05-10_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ lowpriorityscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0
+ priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405140079
 
-SGkgTWFuaXZhbm5hbiwNCg0KPiBGcm9tOiBNYW5pdmFubmFuIFNhZGhhc2l2YW0sIFNlbnQ6IFNh
-dHVyZGF5LCBNYXkgMTEsIDIwMjQgNDozOCBQTQ0KPiANCj4gUENJOiByY2FyLWdlbjQ6IE1vdmUg
-TFRTU00gaGFuZGxpbmcgdG8gbHRzc21fY29udHJvbCgpIGNhbGxiYWNrDQo+IA0KPiBPbiBNb24s
-IEFwciAxNSwgMjAyNCBhdCAwNToxMTozM1BNICswOTAwLCBZb3NoaWhpcm8gU2hpbW9kYSB3cm90
-ZToNCj4gPiBUaGlzIGRyaXZlciBjYW4gcmV1c2Ugb3RoZXIgUi1DYXIgR2VuNCBTb0NzIHN1cHBv
-cnQgbGlrZSByOGE3NzlnMCBhbmQNCj4gPiByOGE3NzloMC4gSG93ZXZlciwgcjhhNzc5ZzAgYW5k
-IHI4YTc3OWgwIHJlcXVpcmUgb3RoZXIgaW5pdGlhbGl6aW5nDQo+ID4gc2V0dGluZ3MgdGhhdCBk
-aWZmZXIgdGhhbiByOGE3NzlmMC4gU28sIGFkZCBhIG5ldyBmdW5jdGlvbiBwb2ludGVyDQo+ID4g
-Lmx0c3NtX2VuYWJsZSgpIGZvciBpdC4NCj4gPg0KPiA+IEFmdGVyIGFwcGxpZWQgdGhpcyBwYXRj
-aCwgcHJvYmluZyBTb0NzIGJ5IHJjYXJfZ2VuNF9wY2llX29mX21hdGNoW10NCj4gPiB3aWxsIGJl
-IGNoYW5nZWQgbGlrZSBiZWxvdzoNCj4gPg0KPiA+IC0gcjhhNzc5ZjAgYXMgInJlbmVzYXMscjhh
-Nzc5ZjAtcGNpZSIgYW5kICJyZW5lc2FzLHI4YTc3OWYwLXBjaWUtZXAiDQo+ID4NCj4gPiBFeGlz
-dGluZyBkdHMgZmlsZXMgaGF2ZSB0aGUgY29tcGF0aWJsZSBhYm92ZS4gU28sIG5vIGJlaGF2aW9y
-IGNoYW5nZXMuDQo+ID4NCj4gDQo+IEhvdyBhYm91dDoNCj4gDQo+IFNlcXVlbmNlIGZvciBjb250
-cm9sbGluZyB0aGUgTFRTU00gc3RhdGUgbWFjaGluZSBpcyBnb2luZyB0byBjaGFuZ2UgZm9yIFNv
-Q3MNCj4gbGlrZSByOGE3NzlmMC4gU28gbGV0J3MgbW92ZSB0aGUgTFRTU00gY29kZSB0byBhIG5l
-dyBjYWxsYmFjayBsdHNzbV9jb250cm9sKCkNCj4gYW5kIHBvcHVsYXRlIGl0IGZvciBlYWNoIFNv
-Q3MuDQo+IA0KPiBUaGlzIGFsc28gd2FycmFudHMgdGhlIGFkZGl0aW9uIG9mIG5ldyBjb21wYXRp
-YmxlcyBmb3IgcjhhNzc5ZzAgYW5kIHI4YTc3OWgwLg0KPiBCdXQgc2luY2UgdGhleSBhcmUgYWxy
-ZWFkeSBwYXJ0IG9mIHRoZSBEVCBiaW5kaW5nLCBpdCB3b24ndCBtYWtlIGFueSBkaWZmZXJlbmNl
-Lg0KDQpUaGFuayB5b3UgZm9yIHN1Z2dlc3Rpb24uIEl0IGdvb2QgdG8gbWUuIEknbGwgdXNlIHRo
-aXMgZGVzY3JpcHRpb24uDQoNCj4gPiBTaWduZWQtb2ZmLWJ5OiBZb3NoaWhpcm8gU2hpbW9kYSA8
-eW9zaGloaXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMv
-cGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtcmNhci1nZW40LmMgfCA0MSArKysrKysrKysrKysrKysr
-KystLS0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDM2IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25z
-KC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNp
-ZS1yY2FyLWdlbjQuYyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtcmNhci1nZW40
-LmMNCj4gPiBpbmRleCAzZGEwYTg0NGUxYjYuLjk4MGE5MTY5MzNkNiAxMDA2NDQNCj4gPiAtLS0g
-YS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLXJjYXItZ2VuNC5jDQo+ID4gKysrIGIv
-ZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1yY2FyLWdlbjQuYw0KPiA+IEBAIC00OCw3
-ICs0OCw5IEBADQo+ID4gICNkZWZpbmUgUkNBUl9HRU40X1BDSUVfRVBfRlVOQ19EQklfT0ZGU0VU
-CTB4MTAwMA0KPiA+ICAjZGVmaW5lIFJDQVJfR0VONF9QQ0lFX0VQX0ZVTkNfREJJMl9PRkZTRVQJ
-MHg4MDANCj4gPg0KPiA+ICtzdHJ1Y3QgcmNhcl9nZW40X3BjaWU7DQo+ID4gIHN0cnVjdCByY2Fy
-X2dlbjRfcGNpZV9kcnZkYXRhIHsNCj4gPiArCWludCAoKmx0c3NtX2VuYWJsZSkoc3RydWN0IHJj
-YXJfZ2VuNF9wY2llICpyY2FyKTsNCj4gDQo+IGludCAoKmx0c3NtX2NvbnRyb2wpKHN0cnVjdCBy
-Y2FyX2dlbjRfcGNpZSAqcmNhciwgYm9vbCBlbmFibGUpOw0KDQpJIGdvdCBpdC4NCg0KPiA+ICAJ
-ZW51bSBkd19wY2llX2RldmljZV9tb2RlIG1vZGU7DQo+ID4gIH07DQo+ID4NCj4gPiBAQCAtNjEs
-OCArNjMsOCBAQCBzdHJ1Y3QgcmNhcl9nZW40X3BjaWUgew0KPiA+ICAjZGVmaW5lIHRvX3JjYXJf
-Z2VuNF9wY2llKF9kdykJY29udGFpbmVyX29mKF9kdywgc3RydWN0IHJjYXJfZ2VuNF9wY2llLCBk
-dykNCj4gPg0KPiA+ICAvKiBDb21tb24gKi8NCj4gPiAtc3RhdGljIHZvaWQgcmNhcl9nZW40X3Bj
-aWVfbHRzc21fZW5hYmxlKHN0cnVjdCByY2FyX2dlbjRfcGNpZSAqcmNhciwNCj4gPiAtCQkJCQli
-b29sIGVuYWJsZSkNCj4gPiArc3RhdGljIHZvaWQgcmNhcl9nZW40X3BjaWVfbHRzc21fY29udHJv
-bChzdHJ1Y3QgcmNhcl9nZW40X3BjaWUgKnJjYXIsDQo+ID4gKwkJCQkJIGJvb2wgZW5hYmxlKQ0K
-PiA+ICB7DQo+ID4gIAl1MzIgdmFsOw0KPiA+DQo+ID4gQEAgLTEyNyw5ICsxMjksMTMgQEAgc3Rh
-dGljIGludCByY2FyX2dlbjRfcGNpZV9zcGVlZF9jaGFuZ2Uoc3RydWN0IGR3X3BjaWUgKmR3KQ0K
-PiA+ICBzdGF0aWMgaW50IHJjYXJfZ2VuNF9wY2llX3N0YXJ0X2xpbmsoc3RydWN0IGR3X3BjaWUg
-KmR3KQ0KPiA+ICB7DQo+ID4gIAlzdHJ1Y3QgcmNhcl9nZW40X3BjaWUgKnJjYXIgPSB0b19yY2Fy
-X2dlbjRfcGNpZShkdyk7DQo+ID4gLQlpbnQgaSwgY2hhbmdlczsNCj4gPiArCWludCBpLCBjaGFu
-Z2VzLCByZXQ7DQo+ID4NCj4gPiAtCXJjYXJfZ2VuNF9wY2llX2x0c3NtX2VuYWJsZShyY2FyLCB0
-cnVlKTsNCj4gPiArCWlmIChyY2FyLT5kcnZkYXRhLT5sdHNzbV9lbmFibGUpIHsNCj4gPiArCQly
-ZXQgPSByY2FyLT5kcnZkYXRhLT5sdHNzbV9lbmFibGUocmNhcik7DQo+ID4gKwkJaWYgKHJldCkN
-Cj4gPiArCQkJcmV0dXJuIHJldDsNCj4gPiArCX0NCj4gPg0KPiA+ICAJLyoNCj4gPiAgCSAqIFJl
-cXVpcmUgZGlyZWN0IHNwZWVkIGNoYW5nZSB3aXRoIHJldHJ5aW5nIGhlcmUgaWYgdGhlIGxpbmtf
-Z2VuIGlzDQo+ID4gQEAgLTE1Nyw3ICsxNjMsNyBAQCBzdGF0aWMgdm9pZCByY2FyX2dlbjRfcGNp
-ZV9zdG9wX2xpbmsoc3RydWN0IGR3X3BjaWUgKmR3KQ0KPiA+ICB7DQo+ID4gIAlzdHJ1Y3QgcmNh
-cl9nZW40X3BjaWUgKnJjYXIgPSB0b19yY2FyX2dlbjRfcGNpZShkdyk7DQo+ID4NCj4gPiAtCXJj
-YXJfZ2VuNF9wY2llX2x0c3NtX2VuYWJsZShyY2FyLCBmYWxzZSk7DQo+ID4gKwlyY2FyX2dlbjRf
-cGNpZV9sdHNzbV9jb250cm9sKHJjYXIsIGZhbHNlKTsNCj4gDQo+IFlvdSBzaG91bGQgdXNlIHRo
-ZSBjYWxsYmFjayBoZXJlIGFzIGxpa2UgYWJvdmUuDQoNCkkgZ290IGl0LiBKRllJLCB0aGUgY3Vy
-cmVudCBwYXRjaCB1c2VkIHJjYXJfZ2VuNF9wY2llX2x0c3NtX2NvbnRyb2wocmNhciwgZmFsc2Up
-IGZvcg0KYm90aCByOGE3NzlmMCBhbmQgcjhhNzc5ZzAuIFNvLCBJJ2xsIG1vZGlmeSB0aGUgcmNh
-cl9nZW40X3BjaWVfbHRzc21fZW5hYmxlKCkgZm9yIGNhc2Ugb2YgZmFsc2UuDQoNCj4gPiAgfQ0K
-PiA+DQo+ID4gIHN0YXRpYyBpbnQgcmNhcl9nZW40X3BjaWVfY29tbW9uX2luaXQoc3RydWN0IHJj
-YXJfZ2VuNF9wY2llICpyY2FyKQ0KPiA+IEBAIC01MDQsNiArNTEwLDIzIEBAIHN0YXRpYyB2b2lk
-IHJjYXJfZ2VuNF9wY2llX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiA+
-ICAJcmNhcl9nZW40X3BjaWVfdW5wcmVwYXJlKHJjYXIpOw0KPiA+ICB9DQo+ID4NCj4gPiArc3Rh
-dGljIGludCByOGE3NzlmMF9wY2llX2x0c3NtX2VuYWJsZShzdHJ1Y3QgcmNhcl9nZW40X3BjaWUg
-KnJjYXIpDQo+ID4gK3sNCj4gPiArCXJjYXJfZ2VuNF9wY2llX2x0c3NtX2NvbnRyb2wocmNhciwg
-dHJ1ZSk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRp
-YyBzdHJ1Y3QgcmNhcl9nZW40X3BjaWVfZHJ2ZGF0YSBkcnZkYXRhX3I4YTc3OWYwX3BjaWUgPSB7
-DQo+ID4gKwkubHRzc21fZW5hYmxlID0gcjhhNzc5ZjBfcGNpZV9sdHNzbV9lbmFibGUsDQo+IA0K
-PiBKdXN0IHBhc3MgcmNhcl9nZW40X3BjaWVfbHRzc21fY29udHJvbCgpIGRpcmVjdGx5Lg0KDQpJ
-IGdvdCBpdC4NCg0KQmVzdCByZWdhcmRzLA0KWW9zaGloaXJvIFNoaW1vZGENCg0KPiAtIE1hbmkN
-Cj4gDQo+IC0tDQo+IOCuruCuo+Cuv+CuteCuo+CvjeCuo+CuqeCvjSDgrprgrqTgrr7grprgrr/g
-rrXgrq7gr40NCg==
+
+
+On 4/23/24 22:40, Sibi Sankar wrote:
+> 
+> 
+> On 4/23/24 04:47, Konrad Dybcio wrote:
+>>
+>>
+>> On 4/22/24 18:40, Sibi Sankar wrote:
+>>> Add support for CPUSS Control Processor (CPUCP) mailbox controller,
+>>> this driver enables communication between AP and CPUCP by acting as
+>>> a doorbell between them.
+>>>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +
+>>> +static int qcom_cpucp_mbox_send_data(struct mbox_chan *chan, void 
+>>> *data)
+>>> +{
+>>> +    struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct 
+>>> qcom_cpucp_mbox, mbox);
+>>> +    unsigned long chan_id = channel_number(chan);
+>>> +    u32 *val = data;
+>>> +
+>>> +    writel(*val, cpucp->tx_base + APSS_CPUCP_TX_MBOX_CMD(chan_id) + 
+>>> APSS_CPUCP_MBOX_CMD_OFF);
+>>
+> 
+> Hey Konrad,
+> 
+> Thanks for taking time to review the series.
+> 
+>> Just checking in, is *this access only* supposed to be 32b instead of 
+>> 64 like others?
+> 
+> yeah, the readl and writely in the driver were used intentionally.
+> 
+>>
+>> [...]
+>>
+>>> +
+>>> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
+>>> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
+>>> +    writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_MAP);
+>>
+>> If these writes are here to prevent a possible interrupt storm type 
+>> tragedy,
+>> you need to read back these registers to ensure the writes have left 
+>> the CPU
+>> complex and reached the observer at the other end of the bus (not to be
+>> confused with barriers which only ensure that such accesses are ordered
+>> *when still possibly within the CPU complex*).
+> 
+> I couldn't find anything alluding to ^^. This sequence was just
+> meant to reset the mailbox. Looks like we do need to preserve the
+> ordering so relaxed read/writes aren't an option.
+> 
+> -Sibi
+> 
+>>
+>> Moreover, if the order of them arriving (en/clear/mask) doesn't 
+>> matter, you
+>> can add _relaxed for a possible nanosecond-order perf gain
+>>
+>>> +
+>>> +    irq = platform_get_irq(pdev, 0);
+>>> +    if (irq < 0)
+>>> +        return irq;
+>>> +
+>>> +    ret = devm_request_irq(dev, irq, qcom_cpucp_mbox_irq_fn,
+>>> +                   IRQF_TRIGGER_HIGH, "apss_cpucp_mbox", cpucp);
+>>> +    if (ret < 0)
+>>> +        return dev_err_probe(dev, ret, "Failed to register irq: 
+>>> %d\n", irq);
+>>> +
+>>> +    writeq(APSS_CPUCP_RX_MBOX_CMD_MASK, cpucp->rx_base + 
+>>> APSS_CPUCP_RX_MBOX_MAP);
+>>
+>> Similarly here, unless read back, we may potentially miss some 
+>> interrupts if
+>> e.g. a channel is opened and that write "is decided" (by the silicon) 
+>> to leave
+>> the internal buffer first
+> 
+> At this point in time we don't expect any interrupts. They are expected
+> only after channel activation. Also there were no recommendations for
+> reading it back here as well.
+> 
+> -Sibi
+> 
+>>
+>>
+>>> +
+>>> +    mbox = &cpucp->mbox;
+>>> +    mbox->dev = dev;
+>>> +    mbox->num_chans = APSS_CPUCP_IPC_CHAN_SUPPORTED;
+>>> +    mbox->chans = cpucp->chans;
+>>> +    mbox->ops = &qcom_cpucp_mbox_chan_ops;
+>>> +    mbox->txdone_irq = false;
+>>> +    mbox->txdone_poll = false;
+>>
+>> "false" == 0 is the default value (as you're using k*z*alloc)
+>>
+>>
+>>> +
+>>> +    ret = devm_mbox_controller_register(dev, mbox);
+>>> +    if (ret)
+>>> +        return dev_err_probe(dev, ret, "Failed to create mailbox\n");
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static const struct of_device_id qcom_cpucp_mbox_of_match[] = {
+>>> +    { .compatible = "qcom,x1e80100-cpucp-mbox" },
+>>> +    {}
+>>> +};
+>>> +MODULE_DEVICE_TABLE(of, qcom_cpucp_mbox_of_match);
+>>> +
+>>> +static struct platform_driver qcom_cpucp_mbox_driver = {
+>>> +    .probe = qcom_cpucp_mbox_probe,
+>>> +    .driver = {
+>>> +        .name = "qcom_cpucp_mbox",
+>>> +        .of_match_table = qcom_cpucp_mbox_of_match,
+>>> +    },
+>>> +};
+>>> +module_platform_driver(qcom_cpucp_mbox_driver);
+>>
+>> That's turbo late. Go core_initcall.
+
+Christian/Sudeep,
+
+Looks like making the cpucp mbox as part of the core initcall and having
+the vendor protocol as a module_scmi_driver causes a race as follows:
+
+scmi_core: SCMI protocol bus registered
+scmi_core: Requesting SCMI device (clocks) for protocol 14
+scmi_core: Registered new scmi driver scmi-clocks
+scmi_core: Requesting SCMI device (qcom_scmi_vendor_protocol) for 
+protocol 80
+scmi_core: Registered new scmi driver qcom-scmi-driver
+scmi_core: Requesting SCMI device (perf) for protocol 13
+scmi_core: Registered new scmi driver scmi-perf-domain
+scmi_core: Requesting SCMI device (genpd) for protocol 11
+scmi_core: Registered new scmi driver scmi-power-domain
+scmi_core: Requesting SCMI device (reset) for protocol 16
+scmi_core: Registered new scmi driver scmi-reset
+scmi_core: Requesting SCMI device (hwmon) for protocol 15
+scmi_core: Registered new scmi driver scmi-hwmon
+scmi_core: Requesting SCMI device (cpufreq) for protocol 13
+scmi_core: Registered new scmi driver scmi-cpufreq
+scmi_module: Registered SCMI Protocol 0x10
+scmi_module: Registered SCMI Protocol 0x14
+scmi_module: Registered SCMI Protocol 0x13
+scmi_module: Registered SCMI Protocol 0x11
+scmi_module: Registered SCMI Protocol 0x16
+scmi_module: Registered SCMI Protocol 0x15
+scmi_module: Registered SCMI Protocol 0x17
+scmi_module: Registered SCMI Protocol 0x12
+scmi_module: Registered SCMI Protocol 0x18
+scmi_module: Registered SCMI Protocol 0x19
+scmi_core: (scmi) Created SCMI device 'scmi_dev.1' for protocol 0x10 
+(__scmi_transport_device_tx_10)
+scmi_core: (scmi) Created SCMI device 'scmi_dev.2' for protocol 0x10 
+(__scmi_transport_device_rx_10)
+arm-scmi firmware:scmi: SCMI Notifications - Core Enabled.
+scmi_module: Found SCMI Protocol 0x10
+arm-scmi firmware:scmi: SCMI Protocol v2.0 'Qualcomm:' Firmware version 
+0x20000
+scmi_module: Found SCMI Protocol 0x13
+scmi_core: (scmi) Created SCMI device 'scmi_dev.3' for protocol 0x13 
+(cpufreq)
+scmi-perf-domain scmi_dev.4: Initialized 3 performance domains
+scmi_core: (scmi) Created SCMI device 'scmi_dev.4' for protocol 0x13 (perf)
+scmi_module: SCMI Protocol 0x80 not found!
+scmi_core: (scmi) Created SCMI device 'scmi_dev.5' for protocol 0x80 
+(qcom_scmi_vendor_protocol)
+scmi_module: Registered SCMI Protocol 0x80
+
+By the time the vendor protocol get's registered it's already reported
+as not found.
+
+-Sibi
+
+>>
+>> Konrad
+> 
 
