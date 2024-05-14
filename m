@@ -1,537 +1,199 @@
-Return-Path: <devicetree+bounces-66826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D778C4D47
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:51:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA97A8C4D51
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:53:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F1402836CC
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:51:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 643061F228AE
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA9FC15E81;
-	Tue, 14 May 2024 07:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C917917721;
+	Tue, 14 May 2024 07:53:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n+02EKDX"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="YG1QtCEv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CA213ACC
-	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 07:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7F213ACC
+	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 07:53:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715673069; cv=none; b=tW1c5qwQqP0odfZAczs0miFqOzeClFMKK/Hfa8ABFlFO7W7SymyUsLL9zaM2LRU7D5WD+b8c8jdbr2jPcndcDgeDzmNw7iXbtrwRXBvS8xCqSqT9w41JLoUO6LK6V07bh/t4GX/9AiS6XNgiEuYfqWWPbLyDIeZuPCJE5A1cBrg=
+	t=1715673193; cv=none; b=RdIgF5K2g5MYGFSFPcCEXWkoKN5YzrSerUQWyon7qxui5AdSbv/nua2viFG7nMn5mZxxU4avevxcEVGtEmrkwJcIrXVT0mbyzMqRLHDeNRLZPbHvLHZA52qXZOP3UXzVJf1/uETnrLapYqhZpTTDcOE+WPb8ShlVEPtW8AZ3heM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715673069; c=relaxed/simple;
-	bh=krG1zVaK3l/29Cmol8z1CCc8GFVbvQaFOBN40o6k7w0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e+k1GLqsYdLCkolBbh83om+UqcxA9ch/e/8hJPLc5AeR4CiKPine1F0YXmtT7BnV7JfSl7SpjgBX/wv3qBzP2lM1glzXA8BlzozBFe5ciFCuZM+DDAW3RpKUpaAZhcEDb/19w5yuHG2honqI58CMJ7e7Dcrilj80FR2YlIMoqzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n+02EKDX; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a5a7d28555bso197446166b.1
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 00:51:07 -0700 (PDT)
+	s=arc-20240116; t=1715673193; c=relaxed/simple;
+	bh=4BPRRFjn10KTemZVMiXfbzWtTKbIap/yR25p1VitIqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iTo7Sws0wQSylpDxFOgYocyfkPFdPpCMUECGMplG5bANvXOGT2dOoIAYmAedTwGJ9THRVaO1GM1qEc0q3/LjmLo/0OoaALItNOxLhqIEVpEJlfS88Q5soXkPPk4fhHrzf1G0k3MFqHlknQ0BASix/iExQcrnHbdZOOY38K36ACQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=YG1QtCEv; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5221e161fa4so950326e87.3
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 00:53:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715673066; x=1716277866; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8BO15yDmXpBmEarxhd2q42jHVox3qmbWZ3jkNFDgX8g=;
-        b=n+02EKDX4aYaz2vVM7OUNUQ+1V7r/lcX/XwTeiBbBKfnCzZE+iA18MGFbt3X3+YGV2
-         Ywa9AYXw0TUmiQ00NH3nOdM7GiPIzJLf4/uCjUM5OwQ3Oj3WcDVB4Eis62AmX15/oTGy
-         5DtCfvEcSn+eDxLxxfVHke1yfsbVCe2vFmQkevx7uI0hOd2qDdBKbRTIBhsP3EhZaFnq
-         5V71v6GI9oZv48tiaHV1918k7LQ8WPLmhKd4rzVjkou7E8ypbhFEbTIfhkJl51Fv5ctA
-         r1BzZ0qLvDEXOBnwfL1KiCLetTIALWIwDHIUdSjevkZJA6GgAhge+iGC1DmQi6gYwNqA
-         +bKw==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715673190; x=1716277990; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xLTEzVHwu7ZYKj/KSfivTkPQEQSaRSHzucHxEOOY2fE=;
+        b=YG1QtCEvwcvEyKCFIuvs7uSvdvIKGv+ODpphQ2TyWi8aNEm8CSrztNmrfa9mvgCYTz
+         Z1kQhC4hzMipZrMG5UeoE0S1iQ/1S9Q7A0HWy0r01wIcFhah2C79lGO0YGAdtROQGdQW
+         8U8yNXCxErgc/F6qD3q6N5/FcMAta1iI4/BVBCdJ8PXMi2psIJbp89w3Kg1ytm/nG9M1
+         UFfTbhV0wA7JbHc/Yq2A9iH8QGOXiWgkHGTO3vwJyEi7NwSUguk4PTVguFG8IRR4ZfpM
+         4wD76T2x+hKkd/RoaHq974MefhtRF4Py04rtrrNxy+lFatqsjeMVc9IkbbiXuFXY0N+9
+         QWCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715673066; x=1716277866;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1715673190; x=1716277990;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8BO15yDmXpBmEarxhd2q42jHVox3qmbWZ3jkNFDgX8g=;
-        b=FrfwOokLTWtrWvuflVOZqYojd9X7nk9I4LKJXdRgHSM2t+x6x8ZutfB5+b9vphGR4U
-         RoFapYlF69hC9ID7mgPItqwTNvNoHXcV/YHbyWqNWWtFmZzbNC4mVk/g7wFgx5LDkKtU
-         gIy3Uh4++0pVq2lgM5jJYnDKQMtEi+C+B+MlbD8rEWpBWgndTya4pfLAlHHpbcokKI6T
-         UJkmeLsw+y6aLpL8E15VCpD9ygRe6IywbILA6Lw9W7ozBWo/fp1sewKJGQi5ol+sEWA2
-         7sqgo0aPKS68x5iz4OAd8j/yy29Ysarpml8IyYhVrIKmupwJQBgBtmz+pB35RhluGX5H
-         CN8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW+fzCR8OIU+NRkkKVVfrA+6rHnsO25ZFmCVFMQ/aq/mHvT2Cp7BZsNGkX3rbQNHo6gnw9mSXInGedal1tmNOrH9/QZVRL8WgTlJw==
-X-Gm-Message-State: AOJu0YxpGqkYeyeH0vITf6j8cqHg+0P3i0lHzXOcwHALcBz/cenJgEvX
-	1ymzkToGzWFlCfy4txHQ0bFX543QiOM8ek75XXy4sCDnYBgR0z4AihcqRatrew==
-X-Google-Smtp-Source: AGHT+IHUaJLFnIiuyoFrpGYTc0NWLuj5PD6zueiu7Svp/b7aCdLGs7X2LzBVH8yZwX48aFr540/JLA==
-X-Received: by 2002:a50:d516:0:b0:56f:e75b:83aa with SMTP id 4fb4d7f45d1cf-5734d5c17b7mr8876915a12.6.1715673065886;
-        Tue, 14 May 2024 00:51:05 -0700 (PDT)
-Received: from thinkpad ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733bed000esm7215529a12.54.2024.05.14.00.51.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 00:51:05 -0700 (PDT)
-Date: Tue, 14 May 2024 09:51:04 +0200
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 RESEND 4/8] PCI: qcom: Switch to
- devm_clk_bulk_get_all() API to get the clocks from Devicetree
-Message-ID: <20240514075104.GC2463@thinkpad>
-References: <20240501042847.1545145-1-mr.nuke.me@gmail.com>
- <20240501042847.1545145-5-mr.nuke.me@gmail.com>
+        bh=xLTEzVHwu7ZYKj/KSfivTkPQEQSaRSHzucHxEOOY2fE=;
+        b=Al7PL7GT/xFFuxiI2yyEkPXgjJHnH4nza2LiHf6gEbUqERgxBzBqGE6oNXttP0VDOX
+         u8lfKkpFswmXxLRQaXZtPoNE+9LbAGj3dE/OvGJw3x1mYbudGvKjgS0OBtizlp4Rrr+t
+         k9YCzCciU5W7kHR23UFfViOU9BqdsM8MfugWvZI25Sndr7AjfJuH7Bz/g9k9yBZOjWmw
+         fkcAypejZhieOfuGdmRTz1lj5SFOEI5fYSpYN3FxWI9fxVA0LAF9cpXbc2UDdPUlfVR8
+         9yik1sJe1dwe+TuU1nXhnQ7d3o30RaBEUWyvWhFgfucFl1Xn8fAqusbBBaBCEkP360br
+         LruA==
+X-Forwarded-Encrypted: i=1; AJvYcCVzEBquKPXQEONElxi3Fz6/4pKM8ithbM9uoCc/+BeXLbauQC6ngAKmUxAlOqSGPVVJ1Xf19c2bJiXklbysP+G9GfL8IxtU/hxT6g==
+X-Gm-Message-State: AOJu0Yz8wb6Uwat79jga8VggEHa0oYeTVnxHou4IQbd/phnsoKjfUBx6
+	h+lo2JN7cIh1V4D/Z2dWAIzXWQjpy89ofL9z/Jp3jTBcaskvs2zXPAlfLcGGYyc=
+X-Google-Smtp-Source: AGHT+IGAAZ+jOBUCojQGggh22j6hs6WvIQhPLRiw+ncZod2lDfQS/ZA3a8ERikpxDRqLtFBslYYo/A==
+X-Received: by 2002:a2e:9094:0:b0:2df:4bad:cb7f with SMTP id 38308e7fff4ca-2e51fd4b333mr72404111fa.2.1715673189903;
+        Tue, 14 May 2024 00:53:09 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:1660:5f6e:2f9c:91b9? ([2a01:e0a:999:a3a0:1660:5f6e:2f9c:91b9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fccbe8e3csm185259155e9.1.2024.05.14.00.53.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 May 2024 00:53:09 -0700 (PDT)
+Message-ID: <e57f8b70-7981-42c1-bb04-2060054dd796@rivosinc.com>
+Date: Tue, 14 May 2024 09:53:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/11] riscv: add ISA extensions validation
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+ Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kvm@vger.kernel.org,
+ kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+References: <20240429150553.625165-1-cleger@rivosinc.com>
+ <20240429150553.625165-3-cleger@rivosinc.com>
+ <20240429-subtext-tabby-3a1532f058a5@spud>
+ <5d5febd5-d113-4e8c-9535-9e75acf23398@rivosinc.com>
+ <20240430-payable-famished-6711765d5ca4@wendy>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20240430-payable-famished-6711765d5ca4@wendy>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240501042847.1545145-5-mr.nuke.me@gmail.com>
 
-On Tue, Apr 30, 2024 at 11:28:43PM -0500, Alexandru Gagniuc wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> There is no need for the device drivers to validate the clocks defined in
-> Devicetree. The validation should be performed by the DT schema and the
-> drivers should just get all the clocks from DT. Right now the driver
-> hardcodes the clock info and validates them against DT which is redundant.
-> 
-> So use devm_clk_bulk_get_all() that just gets all the clocks defined in DT
-> and get rid of all static clocks info from the driver. This simplifies the
-> driver.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> [moved clks to struct qcom_pcie to reduce code duplication]
 
-This patch is already applied to pci tree. So hopefully you can just rebase it
-on top of pci/next for next version (it should get updated soon).
 
-- Mani
-
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 163 ++++---------------------
->  1 file changed, 25 insertions(+), 138 deletions(-)
+On 30/04/2024 13:44, Conor Dooley wrote:
+> On Tue, Apr 30, 2024 at 09:18:47AM +0200, Clément Léger wrote:
+>>
+>>
+>> On 30/04/2024 00:15, Conor Dooley wrote:
+>>> On Mon, Apr 29, 2024 at 05:04:55PM +0200, Clément Léger wrote:
+>>>> Since a few extensions (Zicbom/Zicboz) already needs validation and
+>>>> future ones will need it as well (Zc*) add a validate() callback to
+>>>> struct riscv_isa_ext_data. This require to rework the way extensions are
+>>>> parsed and split it in two phases. First phase is isa string or isa
+>>>> extension list parsing and consists in enabling all the extensions in a
+>>>> temporary bitmask without any validation. The second step "resolves" the
+>>>> final isa bitmap, handling potential missing dependencies. The mechanism
+>>>> is quite simple and simply validate each extension described in the
+>>>> temporary bitmap before enabling it in the final isa bitmap. validate()
+>>>> callbacks can return either 0 for success, -EPROBEDEFER if extension
+>>>> needs to be validated again at next loop. A previous ISA bitmap is kept
+>>>> to avoid looping mutliple times if an extension dependencies are never
+>>>> satisfied until we reach a stable state. In order to avoid any potential
+>>>> infinite looping, allow looping a maximum of the number of extension we
+>>>> handle. Zicboz and Zicbom extensions are modified to use this validation
+>>>> mechanism.
+>>>
+>>> Your reply to my last review only talked about part of my comments,
+>>> which is usually what you do when you're gonna implement the rest, but
+>>> you haven't.
+>>> I like the change you've made to shorten looping, but I'd at least like
+>>> a response to why a split is not worth doing :)
+>>
+>> Hi Conor,
+>>
+>> Missed that point since I was feeling that my solution actually
+>> addresses your concerns. Your argument was that there is no reason to
+>> loop for Zicbom/Zicboz but that would also apply to Zcf in case we are
+>> on RV64 as well (since zcf is not supported on RV64). So for Zcf, that
+>> would lead to using both mecanism or additional ifdefery with little to
+>> no added value since the current solution actually solves both cases:
+>>
+>> - We don't have any extra looping if all validation callback returns 0
+>> (except the initial one on riscv_isa_ext, which is kind of unavoidable).
+>> - Zicbom, Zicboz callbacks will be called only once (which was one of
+>> your concern).
+>>
+>> Adding a second kind of callback for after loop validation would only
+>> lead to a bunch of additional macros/ifdefery for extensions with
+>> validate() callback, with validate_end() or with both (ie Zcf)). For
+>> these reasons, I do not think there is a need for a separate mechanism
+>> nor additional callback for such extensions except adding extra code
+>> with no real added functionality.
+>>
+>> AFAIK, the platform driver probing mechanism works the same, the probe()
+>> callback is actually called even if for some reason properties are
+>> missing from nodes for platform devices and thus the probe() returns
+>> -EINVAL or whatever.
+>>
+>> Hope this answers your question,
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 14772edcf0d3..ea81ff68d433 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -154,58 +154,42 @@
->  #define QCOM_PCIE_LINK_SPEED_TO_BW(speed) \
->  		Mbps_to_icc(PCIE_SPEED2MBS_ENC(pcie_link_speed[speed]))
->  
-> -#define QCOM_PCIE_1_0_0_MAX_CLOCKS		4
->  struct qcom_pcie_resources_1_0_0 {
-> -	struct clk_bulk_data clks[QCOM_PCIE_1_0_0_MAX_CLOCKS];
->  	struct reset_control *core;
->  	struct regulator *vdda;
->  };
->  
-> -#define QCOM_PCIE_2_1_0_MAX_CLOCKS		5
->  #define QCOM_PCIE_2_1_0_MAX_RESETS		6
->  #define QCOM_PCIE_2_1_0_MAX_SUPPLY		3
->  struct qcom_pcie_resources_2_1_0 {
-> -	struct clk_bulk_data clks[QCOM_PCIE_2_1_0_MAX_CLOCKS];
->  	struct reset_control_bulk_data resets[QCOM_PCIE_2_1_0_MAX_RESETS];
->  	int num_resets;
->  	struct regulator_bulk_data supplies[QCOM_PCIE_2_1_0_MAX_SUPPLY];
->  };
->  
-> -#define QCOM_PCIE_2_3_2_MAX_CLOCKS		4
->  #define QCOM_PCIE_2_3_2_MAX_SUPPLY		2
->  struct qcom_pcie_resources_2_3_2 {
-> -	struct clk_bulk_data clks[QCOM_PCIE_2_3_2_MAX_CLOCKS];
->  	struct regulator_bulk_data supplies[QCOM_PCIE_2_3_2_MAX_SUPPLY];
->  };
->  
-> -#define QCOM_PCIE_2_3_3_MAX_CLOCKS		5
->  #define QCOM_PCIE_2_3_3_MAX_RESETS		7
->  struct qcom_pcie_resources_2_3_3 {
-> -	struct clk_bulk_data clks[QCOM_PCIE_2_3_3_MAX_CLOCKS];
->  	struct reset_control_bulk_data rst[QCOM_PCIE_2_3_3_MAX_RESETS];
->  };
->  
-> -#define QCOM_PCIE_2_4_0_MAX_CLOCKS		4
->  #define QCOM_PCIE_2_4_0_MAX_RESETS		12
->  struct qcom_pcie_resources_2_4_0 {
-> -	struct clk_bulk_data clks[QCOM_PCIE_2_4_0_MAX_CLOCKS];
-> -	int num_clks;
->  	struct reset_control_bulk_data resets[QCOM_PCIE_2_4_0_MAX_RESETS];
->  	int num_resets;
->  };
->  
-> -#define QCOM_PCIE_2_7_0_MAX_CLOCKS		15
->  #define QCOM_PCIE_2_7_0_MAX_SUPPLIES		2
->  struct qcom_pcie_resources_2_7_0 {
-> -	struct clk_bulk_data clks[QCOM_PCIE_2_7_0_MAX_CLOCKS];
-> -	int num_clks;
->  	struct regulator_bulk_data supplies[QCOM_PCIE_2_7_0_MAX_SUPPLIES];
->  	struct reset_control *rst;
->  };
->  
-> -#define QCOM_PCIE_2_9_0_MAX_CLOCKS		5
->  struct qcom_pcie_resources_2_9_0 {
-> -	struct clk_bulk_data clks[QCOM_PCIE_2_9_0_MAX_CLOCKS];
->  	struct reset_control *rst;
->  };
->  
-> @@ -247,6 +231,8 @@ struct qcom_pcie {
->  	struct icc_path *icc_mem;
->  	const struct qcom_pcie_cfg *cfg;
->  	struct dentry *debugfs;
-> +	struct clk_bulk_data *clks;
-> +	int num_clks;
->  	bool suspended;
->  };
->  
-> @@ -337,22 +323,6 @@ static int qcom_pcie_get_resources_2_1_0(struct qcom_pcie *pcie)
->  	if (ret)
->  		return ret;
->  
-> -	res->clks[0].id = "iface";
-> -	res->clks[1].id = "core";
-> -	res->clks[2].id = "phy";
-> -	res->clks[3].id = "aux";
-> -	res->clks[4].id = "ref";
-> -
-> -	/* iface, core, phy are required */
-> -	ret = devm_clk_bulk_get(dev, 3, res->clks);
-> -	if (ret < 0)
-> -		return ret;
-> -
-> -	/* aux, ref are optional */
-> -	ret = devm_clk_bulk_get_optional(dev, 2, res->clks + 3);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	res->resets[0].id = "pci";
->  	res->resets[1].id = "axi";
->  	res->resets[2].id = "ahb";
-> @@ -373,7 +343,7 @@ static void qcom_pcie_deinit_2_1_0(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_resources_2_1_0 *res = &pcie->res.v2_1_0;
->  
-> -	clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  	reset_control_bulk_assert(res->num_resets, res->resets);
->  
->  	writel(1, pcie->parf + PARF_PHY_CTRL);
-> @@ -413,7 +383,6 @@ static int qcom_pcie_init_2_1_0(struct qcom_pcie *pcie)
->  
->  static int qcom_pcie_post_init_2_1_0(struct qcom_pcie *pcie)
->  {
-> -	struct qcom_pcie_resources_2_1_0 *res = &pcie->res.v2_1_0;
->  	struct dw_pcie *pci = pcie->pci;
->  	struct device *dev = pci->dev;
->  	struct device_node *node = dev->of_node;
-> @@ -425,7 +394,7 @@ static int qcom_pcie_post_init_2_1_0(struct qcom_pcie *pcie)
->  	val &= ~PHY_TEST_PWR_DOWN;
->  	writel(val, pcie->parf + PARF_PHY_CTRL);
->  
-> -	ret = clk_bulk_prepare_enable(ARRAY_SIZE(res->clks), res->clks);
-> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
->  	if (ret)
->  		return ret;
->  
-> @@ -476,21 +445,11 @@ static int qcom_pcie_get_resources_1_0_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_1_0_0 *res = &pcie->res.v1_0_0;
->  	struct dw_pcie *pci = pcie->pci;
->  	struct device *dev = pci->dev;
-> -	int ret;
->  
->  	res->vdda = devm_regulator_get(dev, "vdda");
->  	if (IS_ERR(res->vdda))
->  		return PTR_ERR(res->vdda);
->  
-> -	res->clks[0].id = "iface";
-> -	res->clks[1].id = "aux";
-> -	res->clks[2].id = "master_bus";
-> -	res->clks[3].id = "slave_bus";
-> -
-> -	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(res->clks), res->clks);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	res->core = devm_reset_control_get_exclusive(dev, "core");
->  	return PTR_ERR_OR_ZERO(res->core);
->  }
-> @@ -500,7 +459,7 @@ static void qcom_pcie_deinit_1_0_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_1_0_0 *res = &pcie->res.v1_0_0;
->  
->  	reset_control_assert(res->core);
-> -	clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  	regulator_disable(res->vdda);
->  }
->  
-> @@ -517,7 +476,7 @@ static int qcom_pcie_init_1_0_0(struct qcom_pcie *pcie)
->  		return ret;
->  	}
->  
-> -	ret = clk_bulk_prepare_enable(ARRAY_SIZE(res->clks), res->clks);
-> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
->  	if (ret) {
->  		dev_err(dev, "cannot prepare/enable clocks\n");
->  		goto err_assert_reset;
-> @@ -532,7 +491,7 @@ static int qcom_pcie_init_1_0_0(struct qcom_pcie *pcie)
->  	return 0;
->  
->  err_disable_clks:
-> -	clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  err_assert_reset:
->  	reset_control_assert(res->core);
->  
-> @@ -580,15 +539,6 @@ static int qcom_pcie_get_resources_2_3_2(struct qcom_pcie *pcie)
->  	if (ret)
->  		return ret;
->  
-> -	res->clks[0].id = "aux";
-> -	res->clks[1].id = "cfg";
-> -	res->clks[2].id = "bus_master";
-> -	res->clks[3].id = "bus_slave";
-> -
-> -	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(res->clks), res->clks);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	return 0;
->  }
->  
-> @@ -596,7 +546,7 @@ static void qcom_pcie_deinit_2_3_2(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_resources_2_3_2 *res = &pcie->res.v2_3_2;
->  
-> -	clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  	regulator_bulk_disable(ARRAY_SIZE(res->supplies), res->supplies);
->  }
->  
-> @@ -613,7 +563,7 @@ static int qcom_pcie_init_2_3_2(struct qcom_pcie *pcie)
->  		return ret;
->  	}
->  
-> -	ret = clk_bulk_prepare_enable(ARRAY_SIZE(res->clks), res->clks);
-> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
->  	if (ret) {
->  		dev_err(dev, "cannot prepare/enable clocks\n");
->  		regulator_bulk_disable(ARRAY_SIZE(res->supplies), res->supplies);
-> @@ -661,18 +611,6 @@ static int qcom_pcie_get_resources_2_4_0(struct qcom_pcie *pcie)
->  	bool is_ipq = of_device_is_compatible(dev->of_node, "qcom,pcie-ipq4019");
->  	int ret;
->  
-> -	res->clks[0].id = "aux";
-> -	res->clks[1].id = "master_bus";
-> -	res->clks[2].id = "slave_bus";
-> -	res->clks[3].id = "iface";
-> -
-> -	/* qcom,pcie-ipq4019 is defined without "iface" */
-> -	res->num_clks = is_ipq ? 3 : 4;
-> -
-> -	ret = devm_clk_bulk_get(dev, res->num_clks, res->clks);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	res->resets[0].id = "axi_m";
->  	res->resets[1].id = "axi_s";
->  	res->resets[2].id = "axi_m_sticky";
-> @@ -700,7 +638,7 @@ static void qcom_pcie_deinit_2_4_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_2_4_0 *res = &pcie->res.v2_4_0;
->  
->  	reset_control_bulk_assert(res->num_resets, res->resets);
-> -	clk_bulk_disable_unprepare(res->num_clks, res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  }
->  
->  static int qcom_pcie_init_2_4_0(struct qcom_pcie *pcie)
-> @@ -726,7 +664,7 @@ static int qcom_pcie_init_2_4_0(struct qcom_pcie *pcie)
->  
->  	usleep_range(10000, 12000);
->  
-> -	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
-> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
->  	if (ret) {
->  		reset_control_bulk_assert(res->num_resets, res->resets);
->  		return ret;
-> @@ -742,16 +680,6 @@ static int qcom_pcie_get_resources_2_3_3(struct qcom_pcie *pcie)
->  	struct device *dev = pci->dev;
->  	int ret;
->  
-> -	res->clks[0].id = "iface";
-> -	res->clks[1].id = "axi_m";
-> -	res->clks[2].id = "axi_s";
-> -	res->clks[3].id = "ahb";
-> -	res->clks[4].id = "aux";
-> -
-> -	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(res->clks), res->clks);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	res->rst[0].id = "axi_m";
->  	res->rst[1].id = "axi_s";
->  	res->rst[2].id = "pipe";
-> @@ -769,9 +697,7 @@ static int qcom_pcie_get_resources_2_3_3(struct qcom_pcie *pcie)
->  
->  static void qcom_pcie_deinit_2_3_3(struct qcom_pcie *pcie)
->  {
-> -	struct qcom_pcie_resources_2_3_3 *res = &pcie->res.v2_3_3;
-> -
-> -	clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  }
->  
->  static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
-> @@ -801,7 +727,7 @@ static int qcom_pcie_init_2_3_3(struct qcom_pcie *pcie)
->  	 */
->  	usleep_range(2000, 2500);
->  
-> -	ret = clk_bulk_prepare_enable(ARRAY_SIZE(res->clks), res->clks);
-> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
->  	if (ret) {
->  		dev_err(dev, "cannot prepare/enable clocks\n");
->  		goto err_assert_resets;
-> @@ -862,8 +788,6 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->  	struct dw_pcie *pci = pcie->pci;
->  	struct device *dev = pci->dev;
-> -	unsigned int num_clks, num_opt_clks;
-> -	unsigned int idx;
->  	int ret;
->  
->  	res->rst = devm_reset_control_array_get_exclusive(dev);
-> @@ -877,37 +801,6 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	if (ret)
->  		return ret;
->  
-> -	idx = 0;
-> -	res->clks[idx++].id = "aux";
-> -	res->clks[idx++].id = "cfg";
-> -	res->clks[idx++].id = "bus_master";
-> -	res->clks[idx++].id = "bus_slave";
-> -	res->clks[idx++].id = "slave_q2a";
-> -
-> -	num_clks = idx;
-> -
-> -	ret = devm_clk_bulk_get(dev, num_clks, res->clks);
-> -	if (ret < 0)
-> -		return ret;
-> -
-> -	res->clks[idx++].id = "tbu";
-> -	res->clks[idx++].id = "ddrss_sf_tbu";
-> -	res->clks[idx++].id = "aggre0";
-> -	res->clks[idx++].id = "aggre1";
-> -	res->clks[idx++].id = "noc_aggr";
-> -	res->clks[idx++].id = "noc_aggr_4";
-> -	res->clks[idx++].id = "noc_aggr_south_sf";
-> -	res->clks[idx++].id = "cnoc_qx";
-> -	res->clks[idx++].id = "sleep";
-> -	res->clks[idx++].id = "cnoc_sf_axi";
-> -
-> -	num_opt_clks = idx - num_clks;
-> -	res->num_clks = idx;
-> -
-> -	ret = devm_clk_bulk_get_optional(dev, num_opt_clks, res->clks + num_clks);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	return 0;
->  }
->  
-> @@ -925,7 +818,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  		return ret;
->  	}
->  
-> -	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
-> +	ret = clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
->  	if (ret < 0)
->  		goto err_disable_regulators;
->  
-> @@ -977,7 +870,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  
->  	return 0;
->  err_disable_clocks:
-> -	clk_bulk_disable_unprepare(res->num_clks, res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  err_disable_regulators:
->  	regulator_bulk_disable(ARRAY_SIZE(res->supplies), res->supplies);
->  
-> @@ -1015,7 +908,7 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->  
-> -	clk_bulk_disable_unprepare(res->num_clks, res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  
->  	regulator_bulk_disable(ARRAY_SIZE(res->supplies), res->supplies);
->  }
-> @@ -1101,17 +994,6 @@ static int qcom_pcie_get_resources_2_9_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_2_9_0 *res = &pcie->res.v2_9_0;
->  	struct dw_pcie *pci = pcie->pci;
->  	struct device *dev = pci->dev;
-> -	int ret;
-> -
-> -	res->clks[0].id = "iface";
-> -	res->clks[1].id = "axi_m";
-> -	res->clks[2].id = "axi_s";
-> -	res->clks[3].id = "axi_bridge";
-> -	res->clks[4].id = "rchng";
-> -
-> -	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(res->clks), res->clks);
-> -	if (ret < 0)
-> -		return ret;
->  
->  	res->rst = devm_reset_control_array_get_exclusive(dev);
->  	if (IS_ERR(res->rst))
-> @@ -1122,9 +1004,7 @@ static int qcom_pcie_get_resources_2_9_0(struct qcom_pcie *pcie)
->  
->  static void qcom_pcie_deinit_2_9_0(struct qcom_pcie *pcie)
->  {
-> -	struct qcom_pcie_resources_2_9_0 *res = &pcie->res.v2_9_0;
-> -
-> -	clk_bulk_disable_unprepare(ARRAY_SIZE(res->clks), res->clks);
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
->  }
->  
->  static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
-> @@ -1153,7 +1033,7 @@ static int qcom_pcie_init_2_9_0(struct qcom_pcie *pcie)
->  
->  	usleep_range(2000, 2500);
->  
-> -	return clk_bulk_prepare_enable(ARRAY_SIZE(res->clks), res->clks);
-> +	return clk_bulk_prepare_enable(pcie->num_clks, pcie->clks);
->  }
->  
->  static int qcom_pcie_post_init_2_9_0(struct qcom_pcie *pcie)
-> @@ -1561,6 +1441,13 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  		goto err_pm_runtime_put;
->  	}
->  
-> +	pcie->num_clks = devm_clk_bulk_get_all(dev, &pcie->clks);
-> +	if (pcie->num_clks < 0) {
-> +		ret = pcie->num_clks;
-> +		dev_err(dev, "Failed to get clocks\n");
-> +		goto err_pm_runtime_put;
-> +	}
-> +
->  	ret = qcom_pcie_icc_init(pcie);
->  	if (ret)
->  		goto err_pm_runtime_put;
-> -- 
-> 2.40.1
-> 
+> Yeah, pretty much I am happy with just an "it's not worth doing it"
+> response. Given it wasn't your first choice, I doubt you're overly happy
+> with it either, but I really would like to avoid looping to closure to
+> sort out dependencies - particularly on the boot CPU before we bring
+> anyone else up, but if the code is now more proactive about breaking
+> out, I suppose that'll have to do :)
+> I kinda wish we didn't do this at all, but I think we've brought this
+> upon ourselves via hwprobe. I'm still on the fence as to whether things
+> that are implied need to be handled in this way. I think I'll bring this
+> up tomorrow at the weekly call, because so far it's only been you and I
+> discussing this really and it's a policy decision that hwprobe-ists
+> should be involved in I think.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Hi Conor,
+
+Were you able to discuss that topic ?
+
+> 
+> Implied extensions aside, I think we will eventually need this stuff
+> anyway, for extensions that make no sense to consider if a config option
+> for a dependency is disabled.
+> From talking to Eric Biggers the other week about
+> riscv_isa_extension_available() I'm of the opinion that we need to do
+> better with that interface w.r.t. extension and config dependencies,
+> and what seems like a good idea to me at the moment is putting tests for
+> IS_ENABLED(RISCV_ISA_FOO) into these validate hooks.
+> 
+> I'll try to look at the actual implementation here tomorrow.
+
+Did you found time to look at the implementation ?
+
+Thanks,
+
+Clément
+
+> 
+> Cheers,
+> Conor.
 
