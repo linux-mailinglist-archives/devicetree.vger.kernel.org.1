@@ -1,136 +1,107 @@
-Return-Path: <devicetree+bounces-66820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833E98C4CF4
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:28:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBDA68C4D02
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:29:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4739283906
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:28:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BAAB1F22691
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A763770D;
-	Tue, 14 May 2024 07:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E4622625;
+	Tue, 14 May 2024 07:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VFnuYnPi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KicqaabY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140FD376E7
-	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 07:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27BA21364;
+	Tue, 14 May 2024 07:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715671507; cv=none; b=Qz+wXAmSYIyINczAy00KR//KtovB6PSPkzdrMqs/mErB3eypbtsTiK+VgJSljHER7Vn3bDwf1cESeTFeAIGAb2BxLT9oCIxagxZPLssoXsCznTle57gUUp5ns5FbBt6lkW8bF3BoLfbn7cTcZGz+4wYkgwFsnIrFNSnnlfQTCnc=
+	t=1715671707; cv=none; b=Fb40HklPxHuRs83U6tDnsIL+Ek40qy7s7VZwU71v/3oQ8ApIGuNOOR+Ez+dBSNjLI6hmF1u5ROyVYJdeCXXmsnCIG35fm0XOAqNHV9W5AMmBqzMxSteYw163Rwuuj1hKKCCFLoWXZeyot28c0cCHgN2SV09Cq+xu8UfbJAdic7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715671507; c=relaxed/simple;
-	bh=MrsK/SOAFyvJ5rW6noiqY2i2AWXHF7hXaxT2Iuly1Kw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QbOkW4z+/Fdz+HqajQecD5VEY0N3K2HtOy3729/pD1Fd/9byfYacLn4TLMOwKY/bqzm3iPlc3Srs8fDVXEkfupbXkSp8xuQRyvYAv4IyUx74Ygx4L7HDUBu/+xw7xXpwx29eMvrD01UvN9oaYcNE6Pka6MPg6WPcx5KfpbgRfFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VFnuYnPi; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a59b49162aeso1304524366b.3
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 00:25:05 -0700 (PDT)
+	s=arc-20240116; t=1715671707; c=relaxed/simple;
+	bh=FRYTpE+ZKXIh4YyPPKLg4bjtwKieQShpeatsuOLN5z8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WwItr+cklYwRM3qLAWoFp8n69/H3wkB7hN/bLT88aaQ76Lk/uZ1yBgOiks4qhHJ/83zwFdXq28tvGUGijQFIP5ygSytccXY4zcR3GnGRFe/ahjxQQxtbuO91szDcYZbIEUsxSTTDW07DYbMZttfkZHhd4DuVUbMO8jSzGVRAjeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KicqaabY; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a599c55055dso1339106166b.0;
+        Tue, 14 May 2024 00:28:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715671504; x=1716276304; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JB+Z0CRSJcLUU9yXDS+6zp2SY8ySyHlLC8dbiqLhtlQ=;
-        b=VFnuYnPijUKB5OvXDY4k+InVPo5hmPze9ahmz5tkhJUqO7fsoeww5VCnnSCFttYCwU
-         zcRnuUzTc0WaHbUp03SF28XAAbAaMvDY77hYTr8pVB2nCUfgwtZmN3hb7S0uNp0FrE4R
-         ogOw1rNBSlcUrt6HzNMJEkq1qwAANH0bZMLBpyPvJKg6NdkctCoNbx5ieROcTDHE9ZOK
-         OYbZ8tvx8YLKE/mHQ6yz4+kg/ch95kQuL7LmmsSZcuUg5VemintQU+s42IkTSIAbcZvV
-         CwBdjJrFz1/eroLQ78WGb3KhYpTLgy7vpJXolTI140gMdYwsmZKxccYLggzpmEgE/Kww
-         oKNg==
+        d=gmail.com; s=20230601; t=1715671704; x=1716276504; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fkOAfgx4bguLtu620L16y0kU0KIWqErrwfo8cR4hKAY=;
+        b=KicqaabYoenpZsk6+xeGWBtSFGVV72/Ndw0kxoO/1VyUyd+Ez6Lsnl+gcz5fr3nlyq
+         wI482gKcZFOwSC2BjmzJSNpTDSYic6RF7G499H+EyeLrmDibOr1O9VQ1z1ywX0rJ3UWE
+         LtOv1ntwY1WLe39QblIopMJUVPOZ87WcleNVKmK/G9aNgHfCKweycizrNK6mFUzS8ZLE
+         WR84HjzE+nS7qcatNZeGbJmCn4l2w2smNMFTJV7iqZQXSIAWrU4yLqlYtWRaivIuvfqW
+         G3vhP7u9MWflOlG/Iq92C4H4hjyNoMywHZNbFjDlAQQyffN5/jz/6YJC7DKn0Wv32mG1
+         wqHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715671504; x=1716276304;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1715671704; x=1716276504;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JB+Z0CRSJcLUU9yXDS+6zp2SY8ySyHlLC8dbiqLhtlQ=;
-        b=Yl/T+BuGtjAT5KxW6qF7K43SAHDRNldZPJfv7hKL0NpGKQ/fDYhKuA5uDI2mnm9Pch
-         VaUmbgevFfYMQGysFPeqAGI3HEledh4EVzj2Qb2/QcpfxYzkCMRShHZYfQJyoNElXDNh
-         xu/UtQZVmobmIAgWa58LDdR1R6CQylaDaamjeGXC5TE1shIG+FctulpuGj53Hkm+cPpB
-         oh3bMDWCaLKgKOb+0oEI9ZONk7Fqs1RDoloI9JT07uQX1BilqnS+PqPDFdgqB1A5WwrG
-         yL1omhVV+op3C1NeQbuosI/rvjx40FYxrMkDhpXQj8BX99Gw9UzA+hb86JrrYJhjajga
-         sW9g==
-X-Forwarded-Encrypted: i=1; AJvYcCWi90EeHWuAgpj0P5NUyLz9MxQ/x8tFnTdjkVOfYNu0gW1ks2xQr3hqOyRvBZtFYvLXRIW8zYyBHlBrhbWhvk6aXodXo6kwBb4t8Q==
-X-Gm-Message-State: AOJu0YwGTW2Ah1koB6Pu+SN96CMu3/HwdCTaKZUx1FW8+eBubiW6W//8
-	J7HMis0AYzdN6hxutWP9HByVsE75qWRSW4UnYGJ5MyFYasKifNDlGs6QLN8sFQ==
-X-Google-Smtp-Source: AGHT+IEQTQ5t33iG1QpTljAk13ZjKCJq2arLVGhz/pfUDhGt2rL8ANrYeLV7xamqA3YFh7dM+6YrzA==
-X-Received: by 2002:a17:906:ee86:b0:a59:aae5:5840 with SMTP id a640c23a62f3a-a5a2d6759e5mr1063776566b.75.1715671504270;
-        Tue, 14 May 2024 00:25:04 -0700 (PDT)
-Received: from thinkpad ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781d2ecsm703097166b.16.2024.05.14.00.25.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 00:25:03 -0700 (PDT)
-Date: Tue, 14 May 2024 09:25:02 +0200
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devi priya <quic_devipriy@quicinc.com>, bhelgaas@google.com,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH V5 3/6] dt-bindings: PCI: qcom: Document the IPQ9574 PCIe
- controller.
-Message-ID: <20240514072502.GA2463@thinkpad>
-References: <20240512082858.1806694-1-quic_devipriy@quicinc.com>
- <20240512082858.1806694-4-quic_devipriy@quicinc.com>
- <b3199f40-0983-4185-bd0c-2e2d45d690ad@kernel.org>
+        bh=fkOAfgx4bguLtu620L16y0kU0KIWqErrwfo8cR4hKAY=;
+        b=PMxV88h/gqZESsMaHw61zBlssZq/N9IRXnp2DzjYitutMAAhkyGIhB/dElCTR1Y2T9
+         tbuDVw4A9mVfMWH1YgEnbTniEdjMlVKmmXVtaq9zpkyb6F2hfBur0b/LGCM4Z/eTQkMf
+         5WIJWFLyPN578l+mS2DxO/PZJDQltQ5DjBhO2H0ozAxvFKcXRnRM+uiDByDiEBeBx986
+         mLGMtLZae/mPLx8L8GRQlW1lfTQsHl8KbxfePhddZdc/o+B1Hv64ox4EzDwHphyhn2yi
+         P9WVDG/tJn+VJmh7EGOAbf9V0n6bKqPQBM832ZiM0bYbnTdF2kmr/z5wEHvFWMdoSPyO
+         H0ww==
+X-Forwarded-Encrypted: i=1; AJvYcCXNQeqi5PTwMD6Rkjf7+LRc5/sjvmsexuzPNY1rvtANY+lehrzkOLTe1rAs+vBKODCDQlFsCUeArr37CpTaNkptawvjLbVMFrHZVAX0koTVHI93WqRqBH9fCRCX7vQfW08RviWTc0w1j7EctAfsd7IVstHMD9/6gVj8QWw0fNX3t45V9A==
+X-Gm-Message-State: AOJu0YxzvbN47smNDhgUpumbLlB71kG3lOWNvuinaU9d7KnSg5VkcZrG
+	i3jWhp64GE68NAAXYEIqkfbzL7NoTcEfHcNhd4/ZvtcbFJAcCh+r
+X-Google-Smtp-Source: AGHT+IE1NondGHhAST7tDS6gFOX8bCH78EncM9TLCv5C0qyrSxfln2AbTQ6B2TWE1aZc67h/cD+soQ==
+X-Received: by 2002:a17:906:4443:b0:a59:c728:5420 with SMTP id a640c23a62f3a-a5a2d6786damr777502266b.66.1715671703779;
+        Tue, 14 May 2024 00:28:23 -0700 (PDT)
+Received: from [10.76.84.175] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a7a944664sm104110266b.37.2024.05.14.00.28.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 May 2024 00:28:22 -0700 (PDT)
+Message-ID: <82131f75-b03b-4015-9421-548b0fd7be6e@gmail.com>
+Date: Tue, 14 May 2024 10:28:21 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b3199f40-0983-4185-bd0c-2e2d45d690ad@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] iio: adc: ad7173: Add support for AD411x devices
+To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240401-ad4111-v1-0-34618a9cc502@analog.com>
+ <20240401-ad4111-v1-6-34618a9cc502@analog.com>
+ <CAMknhBFdtv84E_S4wa4UW0pO2yiUEk9=jn=_i4F=b8VHdR6v+w@mail.gmail.com>
+Content-Language: en-US
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <CAMknhBFdtv84E_S4wa4UW0pO2yiUEk9=jn=_i4F=b8VHdR6v+w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, May 13, 2024 at 08:48:19AM +0200, Krzysztof Kozlowski wrote:
-> On 12/05/2024 10:28, devi priya wrote:
-> 
-> >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,pcie-ipq9574
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 6
-> > +          maxItems: 6
-> > +        clock-names:
-> > +          items:
-> > +            - const: ahb  # AHB clock
-> > +            - const: aux  # Auxiliary clock
-> > +            - const: axi_m # AXI Master clock
-> > +            - const: axi_s # AXI Slave clock
-> > +            - const: axi_bridge # AXI bridge clock
-> > +            - const: rchng
-> 
-> That's introducing one more order of clocks... Please keep it
-> consistent. The only existing case with ahb has it at after axi_m and
-> others. Why making things everytime differently?
-> 
-> I also to propose to finally drop the obvious comments, like "AHB
-> clock". It cannot be anything else. AXI Master / slave are descriptive,
-> so should stay.
-> 
+On 01/04/2024 22:45, David Lechner wrote:
+>>         unsigned int clock;
+>>         unsigned int id;
+>>         char *name;
+>> +       bool has_current_inputs;
+> Maybe more future-proof to have num_current_inputs instead of bool?
 
-+1 to drop the names.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+ At first I agreed with this, but the way that the current inputs are
+mapped to reg values does not really offer a way to extend them
+without changing completely the numbering scheme. If that happens,
+changing this field will be the least bit to need changing.
 
