@@ -1,141 +1,224 @@
-Return-Path: <devicetree+bounces-66800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61DC78C4C0B
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:49:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7BA38C4C1E
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:56:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18353286BD3
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 05:49:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB3181C212E3
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 05:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EA6182AE;
-	Tue, 14 May 2024 05:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F911BC49;
+	Tue, 14 May 2024 05:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="zRqe3R7J"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="W9cTRxMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0ECE1802E;
-	Tue, 14 May 2024 05:49:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708C31802B
+	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 05:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715665744; cv=none; b=YrFmP6Du0Ayxjufv+3z2XJY9A4YuHMHkmD3maWGsvrrBfjUhlFnQC+FJub6rk1XD6RooWI30GtG6+uNbP5TUhoV10kbfj79z8obmGhHmNSGpCvx6sCQdS/zxSyDoP4ad+ycs/DXCQMzqVGnZdmVfctO2TLqQI6XU+FhVVUSZDlI=
+	t=1715666210; cv=none; b=REuRHGTw9WwChKodqPHlSOgecLUg6t8HWb6WJG8k3NjBbkIRM2M3+Fr98MBtnCWLjvXFt7UHgjdOFZcZhUeJNF6HZk69hcZIEdRgJlj+uQVX7bAKvg6IZ1emS/C+b5Ki0y7q+RwSHZkrPXn8hB89CazCCxDoMKO3buk6LZmDsWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715665744; c=relaxed/simple;
-	bh=QEsA9rVW5PEd0GIZ939vlg+hTw7lyZxJmxlffqRFvYo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OHbJGgKaovkgZ7I0qaaS3z5VK/Sqp6jAgncKgZm1TQbyOoqWn/oiJhGI9c+lNdw28OSOunOY25UT2XzTi7AGy9JpRgeIHL2bCgSlgf51nojIBsjHO4IJRcD0P8lEXIyzYvksSkVTl0/GRP+VoqGnLdBnNSQ8LUrBY3xPJMk/lo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=zRqe3R7J; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44E5melc116320;
-	Tue, 14 May 2024 00:48:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715665720;
-	bh=QkSC8tfDasMCgcVuKaxBBhub6zp3UOWi2j7PTS//D/g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=zRqe3R7Jirxm7EdWdg4qhWIO23t+ETRx3OxlZIuMq2pVCgJc+WcIFH9P4F82DxlBG
-	 mul7VJHG2S4lnwCrnslucpAtqQRVW+ZH1fn9B40ajVcx2jTt2f6VhYehm1tdByyOOi
-	 lzsxCabMPO4vvaAPH+nD/TWQC9yoJVFFAuLANU68=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44E5mebX046157
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 14 May 2024 00:48:40 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 14
- May 2024 00:48:40 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 14 May 2024 00:48:39 -0500
-Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44E5mYcY009227;
-	Tue, 14 May 2024 00:48:35 -0500
-Message-ID: <f0586fff-c47a-4610-bb31-5a5ad743a1be@ti.com>
-Date: Tue, 14 May 2024 11:18:33 +0530
+	s=arc-20240116; t=1715666210; c=relaxed/simple;
+	bh=YFv/xreV8sszgCh+v63BHFOd+heWfDqr5JVAp+/+CrQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EZNKLJnlpx1Wj1Izbx9JlLj1ZVK540uEkPLkI6pCcBNGHp/Ya7cZEMwIb4U1PeCFfblnVfAlxR4cmOn/zrMhmJQS8K9KMElDf5SYpyCBkKUShbZJJVEJYARgC5W8jup8PJIWp4UnGbAM0CVtKTmjTdJFXaLOYQ/GxTarsPnHQEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=W9cTRxMN; arc=none smtp.client-ip=209.85.166.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-7e1c06191d0so98540039f.1
+        for <devicetree@vger.kernel.org>; Mon, 13 May 2024 22:56:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1715666206; x=1716271006; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=440oD4b9Bphk4WWjPWWaKFmIBo6vJ3VIwixVh9ybBDo=;
+        b=W9cTRxMN2SszKKgjTYB3wGXbUkY4nENoC21C84mU+Rhn5TXbnEKQL7BuY7VfHjRtRn
+         YnYq23spwJXjz6Z4y9Efm1beElifl7Rjbs94OmU43vRoM+Qod7Izbm0D7xeYHLFCyEHk
+         LUwdOBso1zwy049q3Vevayx9zQMWlCGrCG/uFqr7rsWeKt6I5ZF0Khc7wJSuW2f7AOyC
+         gKR7UfT74MGJ/uZ9lYvCatn6f5mg4w68Pac9gwwblr1fbTnkd8OqqUlkVXY1lSEfJ7j5
+         keuKultVdUmohffUIWb4Wa1k9cC4A+Igetda72hAwNclTqpZ2OMlE2RDgNQJ+YFQ1kYQ
+         3R7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715666206; x=1716271006;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=440oD4b9Bphk4WWjPWWaKFmIBo6vJ3VIwixVh9ybBDo=;
+        b=pjCd+LkR3ddiJFE5mEMxnnGdlhSDUdyMmQiDMlvmvkO890b0YaRA9Eg97ScHZn0keG
+         A3DZjw8zSfwhF1PJhLZhAnW70OTII6au9UaHSBm4ydsxKbo1d/dDt6Qkkrzzpg+wboPT
+         dquAPV04ebTjA0GCriqa2OdBZpPNVNH7IZAmDoqeLJqtwkRPfZmWLs4MuPQw4o950JM2
+         QGhyaOwGqBQv2oLq4K2t7b/sDeXpUmIbmKl44Xz4Qbdro+c5sdoo3ixbOTlVbTfd91Bt
+         EWKSRYRTUugItawlLLu8pncRt9H6sYn3vlkArSCAWcK1gJ9FYWw1Rmm10vCa2sdTNAgN
+         P7Mw==
+X-Forwarded-Encrypted: i=1; AJvYcCUpcz08dKQKhkpqRvwzB8MFg5uLVFtdtdeu1/B3e8RiiVvSaklm2fiP+dLKb8ujjX2r5BdQSxEcuWLIl1audaw6B6dXXfjnCYdNDA==
+X-Gm-Message-State: AOJu0YxHw0VHiGIEY1BLJVHSEjfY/pGRussR2cCCmlFT9OMXKesGgQw1
+	pQvHoSwswaggzlJ/Z9gBivKDExb1SC8pAnvkbjVk+hVNBaLl05ZWzrAFeKCiPRw0Q5fnCf0qpjX
+	rEU7lFgQ4ZI1kYem1S3CooDHKUBArtV3F0/48dw==
+X-Google-Smtp-Source: AGHT+IF9N9dfmP7bVHVJo2ZfC3OHvLjDan409QcJv1aNsscxhoEEW8h6W1834/OEIiZpFBCIoCKO6oKWs8pWyT7uDD8=
+X-Received: by 2002:a05:6602:3049:b0:7e1:d5cc:84bf with SMTP id
+ ca18e2360f4ac-7e1d5cc851dmr559335339f.6.1715666206518; Mon, 13 May 2024
+ 22:56:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next] dt-bindings: net: ti: icssg_prueth: Add
- documentation for PA_STATS support
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>, Eric
- Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <srk@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        <r-gunasekaran@ti.com>, Roger Quadros <rogerq@kernel.org>
-References: <20240430122403.1562769-1-danishanwar@ti.com>
- <8ce66e56-7f41-4f2d-ac10-1328784a51af@kernel.org>
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <8ce66e56-7f41-4f2d-ac10-1328784a51af@kernel.org>
+References: <cover.1714752293.git.tjeznach@rivosinc.com> <b28d4fe49c5fe4e3ece9de789cfd92cfa5b3c16c.1714752293.git.tjeznach@rivosinc.com>
+In-Reply-To: <b28d4fe49c5fe4e3ece9de789cfd92cfa5b3c16c.1714752293.git.tjeznach@rivosinc.com>
+From: Zong Li <zong.li@sifive.com>
+Date: Tue, 14 May 2024 13:56:35 +0800
+Message-ID: <CANXhq0q+aQ1T37j4uQi5ryUyPxBtvQkaBJ9qvS9iGwSRGaQSyQ@mail.gmail.com>
+Subject: Re: [PATCH v4 4/7] iommu/riscv: Enable IOMMU registration and device probe.
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, linux@rivosinc.com, 
+	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	Sebastien Boeuf <seb@rivosinc.com>, iommu@lists.linux.dev, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Nick Kossifidis <mick@ics.forth.gr>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org, 
+	Lu Baolu <baolu.lu@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Sat, May 4, 2024 at 12:13=E2=80=AFAM Tomasz Jeznach <tjeznach@rivosinc.c=
+om> wrote:
+>
+> Advertise IOMMU device and its core API.
+> Only minimal implementation for single identity domain type, without
+> per-group domain protection.
+>
+> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+> Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
+> ---
+>  drivers/iommu/riscv/iommu.c | 66 +++++++++++++++++++++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>
+> diff --git a/drivers/iommu/riscv/iommu.c b/drivers/iommu/riscv/iommu.c
+> index 3c5a6b49669d..1f889daffb0e 100644
+> --- a/drivers/iommu/riscv/iommu.c
+> +++ b/drivers/iommu/riscv/iommu.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/init.h>
+>  #include <linux/iommu.h>
+>  #include <linux/kernel.h>
+> +#include <linux/pci.h>
+>
+>  #include "iommu-bits.h"
+>  #include "iommu.h"
+> @@ -36,6 +37,60 @@ static void riscv_iommu_disable(struct riscv_iommu_dev=
+ice *iommu)
+>         riscv_iommu_writel(iommu, RISCV_IOMMU_REG_PQCSR, 0);
+>  }
+>
+> +static int riscv_iommu_attach_identity_domain(struct iommu_domain *iommu=
+_domain,
+> +                                             struct device *dev)
+> +{
+> +       /* Global pass-through already enabled, do nothing for now. */
+> +       return 0;
+> +}
+> +
+> +static struct iommu_domain riscv_iommu_identity_domain =3D {
+> +       .type =3D IOMMU_DOMAIN_IDENTITY,
+> +       .ops =3D &(const struct iommu_domain_ops) {
+> +               .attach_dev =3D riscv_iommu_attach_identity_domain,
+> +       }
+> +};
+> +
+> +static int riscv_iommu_device_domain_type(struct device *dev)
+> +{
+> +       return IOMMU_DOMAIN_IDENTITY;
+> +}
+> +
+> +static struct iommu_group *riscv_iommu_device_group(struct device *dev)
+> +{
+> +       if (dev_is_pci(dev))
+> +               return pci_device_group(dev);
+> +       return generic_device_group(dev);
+> +}
+> +
+> +static int riscv_iommu_of_xlate(struct device *dev, const struct of_phan=
+dle_args *args)
+> +{
+> +       return iommu_fwspec_add_ids(dev, args->args, 1);
+> +}
+> +
+> +static struct iommu_device *riscv_iommu_probe_device(struct device *dev)
+> +{
+> +       struct iommu_fwspec *fwspec =3D dev_iommu_fwspec_get(dev);
+> +       struct riscv_iommu_device *iommu;
+> +
+> +       if (!fwspec->iommu_fwnode->dev || !fwspec->num_ids)
+> +               return ERR_PTR(-ENODEV);
 
-On 01/05/24 3:56 pm, Krzysztof Kozlowski wrote:
-> On 30/04/2024 14:24, MD Danish Anwar wrote:
->> Add documentation for ti,pa-stats property which is syscon regmap for
->> PA_STATS register. This will be used to dump statistics maintained by
->> ICSSG firmware.
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> index e253fa786092..abf372f7191b 100644
->> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> @@ -55,6 +55,11 @@ properties:
->>      description:
->>        phandle to MII_RT module's syscon regmap
->>  
->> +  ti,pa-stats:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      phandle to PA_STATS module's syscon regmap
-> 
-> One register needed? Then use phandle-array syntax - see examples.
+It seems to me that we might need to ensure fwspec is not NULL before
+accessing fwspec->iommu_fwnode, otherwise, it will cause NULL pointer
+dereference.
 
-No this is not one register only. PA_STATS is a set of registers. My bad
-I should have mentioned *registers* in the commit description. Just like
-MII_RT and MII_G_RT modules, PA_STATS is also a set of registers where
-different statistics are dumped by ICSSG firmware. Moduling this as
-syscon will help the driver read/write those statistics using
-regmap_read() / write() just like the driver currently read / write
-registers from mii_rt and mii_g_rt regmaps.
-
-I have tried to describe this node *ti,pa-stats* the same way as
-"ti,mii-g-rt" and "ti,mii-rt"
-
-> Explain in description the purpose of this register in the context of
-> *this* device.
-> 
-
-Sure will do that.
-
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Thanks and Regards,
-Danish
+> +
+> +       iommu =3D dev_get_drvdata(fwspec->iommu_fwnode->dev);
+> +       if (!iommu)
+> +               return ERR_PTR(-ENODEV);
+> +
+> +       return &iommu->iommu;
+> +}
+> +
+> +static const struct iommu_ops riscv_iommu_ops =3D {
+> +       .of_xlate =3D riscv_iommu_of_xlate,
+> +       .identity_domain =3D &riscv_iommu_identity_domain,
+> +       .def_domain_type =3D riscv_iommu_device_domain_type,
+> +       .device_group =3D riscv_iommu_device_group,
+> +       .probe_device =3D riscv_iommu_probe_device,
+> +};
+> +
+>  static int riscv_iommu_init_check(struct riscv_iommu_device *iommu)
+>  {
+>         u64 ddtp;
+> @@ -71,6 +126,7 @@ static int riscv_iommu_init_check(struct riscv_iommu_d=
+evice *iommu)
+>
+>  void riscv_iommu_remove(struct riscv_iommu_device *iommu)
+>  {
+> +       iommu_device_unregister(&iommu->iommu);
+>         iommu_device_sysfs_remove(&iommu->iommu);
+>  }
+>
+> @@ -95,5 +151,15 @@ int riscv_iommu_init(struct riscv_iommu_device *iommu=
+)
+>                 return dev_err_probe(iommu->dev, rc,
+>                                      "cannot register sysfs interface\n")=
+;
+>
+> +       rc =3D iommu_device_register(&iommu->iommu, &riscv_iommu_ops, iom=
+mu->dev);
+> +       if (rc) {
+> +               dev_err_probe(iommu->dev, rc, "cannot register iommu inte=
+rface\n");
+> +               goto err_remove_sysfs;
+> +       }
+> +
+>         return 0;
+> +
+> +err_remove_sysfs:
+> +       iommu_device_sysfs_remove(&iommu->iommu);
+> +       return rc;
+>  }
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
