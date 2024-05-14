@@ -1,142 +1,197 @@
-Return-Path: <devicetree+bounces-66805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73B598C4CA2
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:11:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CADB38C4CA9
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:12:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27923282538
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:11:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 082CC1C20C79
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB8910795;
-	Tue, 14 May 2024 07:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FE312E75;
+	Tue, 14 May 2024 07:12:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLYM+C8g"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FGakXGiG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB9810A0A;
-	Tue, 14 May 2024 07:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA9911720;
+	Tue, 14 May 2024 07:12:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715670673; cv=none; b=ifkrpkoo2Yk7LH4eSSmtOtadSBTWKHg13sgemb/U+FYhimbPbXmqrrOLLMJppiphzyk3dx6JCqLly95aDTxH5vHTz1aXkyJ+djJcuoFBz2D9ljflpoK8dfuynZdG7dUuyG3ENZuQq/waRRV5fKj94ttoKuvC3NqyuQosBEZkKB0=
+	t=1715670722; cv=none; b=HWp0dsMdz4O87DIbTs1imLZv5KBD+Tg4C74i1n9oGmnPyg0mOpGPDhU4PVnv0fdPoeX2a2OFDb7CB875ChOkJ9jiPu3zO1xOVqImM9FOY1SzTyRnsVtwJrGYf8wXbHN6bDnp1tfXL3MUPxChX3CU3/aqxKOp7iy4PI5tMqRCUl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715670673; c=relaxed/simple;
-	bh=AklOykSt9OUbo5m/h4ZJ7UGOoSdlweOtHizFmIsjnI0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cny2m3pu//8J/uKuWS8m93QLzCSf5oydCZGXvsELuGSoHB/OgtUTTd3g+7gZjoNgAAsXb/DsGo6+69AJufJLS5J504VTPFGjiGUa9aZTKDv/fUOUKw7kcxcRFDaxjFelxo12lO24gkgGr1msAjr/Xe0myVLDsUzxkfRuTe5pzQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLYM+C8g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B94ABC2BD10;
-	Tue, 14 May 2024 07:11:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715670672;
-	bh=AklOykSt9OUbo5m/h4ZJ7UGOoSdlweOtHizFmIsjnI0=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=VLYM+C8gIHZC4nEPQAvJDhQD9Q6xg4rzTqGiQCzNYxaHX2uLEMPEwqKs1p4KVdImk
-	 RS9WHCOAN0+GnBexeLWR01zsRAN4SSwctJT30KCsshEdB08X/axXaRYTNvD6To349x
-	 iXSKES7WRs/IJ9tex5bkG0tzt35nWehAyWCi27iB98PYgIdAJ2fOkh9dM3npbAYtY+
-	 PEKJnkI1/D0+2WsExln0gzabSvCuSchnb6RODDbMnlHYao2WBVA1MRj3qrTiA7sCe6
-	 b2v9enIJyzw/vt8zDJJUl4GNbLXLUUtensPfUWUr+0KZNUC/0OSLYh2VMpozp3cbnB
-	 VVf1toikLBGdg==
-Message-ID: <b86470c8-94fe-4a44-a7db-7f2dcff7d7ac@kernel.org>
-Date: Tue, 14 May 2024 09:11:09 +0200
+	s=arc-20240116; t=1715670722; c=relaxed/simple;
+	bh=pcnYluDag238mmBsUKSC6PbYsfe7QbcseXtCxzyXERY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=c0nFESfzhso/+8X7nd3TNJLsuSVHqAATxB8SKuk3lPGY06jaM2VD06+1+E5BxrzckM0wYpF8yMQ00ZaXo3HDC6Oa8BbSEJ+HSkV7JxvCAK4bJVLfr+FlTcqiV/4IU0MJtzOKn/Rlo424EtxpDQWvNDiSAxxSsYDxm3i+XjxR5fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FGakXGiG; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1eb0e08bfd2so30134385ad.1;
+        Tue, 14 May 2024 00:12:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715670720; x=1716275520; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3uYIr3Ml2AVWzJhE/ggK+DKrQxQADQHuE7nOd7CrufI=;
+        b=FGakXGiGzuOcD3YDjVKFt/g02EXOOvakW/eoyuq3X3Jcrdn7i3mc4SHWiHP2Q/vphq
+         Tp5Bg0WrmXYkHpSKPPBxXUgB2EUJErmUgHLGXCMJJG7mhtmkpL7YGSv+u80JRzsbJyOO
+         M8lgnB4dq23USqxIChVoKF8cYw2xIXcVhHRR+FMi6IIQ/Qs74QUcNpaiLQOnaHuCtTTe
+         tqYDf9grdVK5V+tk59AmNvYI9YZyjiqzMTKrdv4opfqAldV8AsJouPCV0sz16clZ58FP
+         LPooSgH1l7fckNTSzRrtSZBnt20Ak50QPvf/dqWInNLh1qBl2uE6iO6e8JV6kQCyk0t8
+         Q30A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715670720; x=1716275520;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3uYIr3Ml2AVWzJhE/ggK+DKrQxQADQHuE7nOd7CrufI=;
+        b=Y6aGIIkE9sxQvPqm4eBF+FDU6+wjtCGNsg8YnnstooF/bLRM90B325W3TUCW8Q79JO
+         trf6rpM5z4mfxnN2LoPONFT+yUnoNHw2pd3wu5vbXhvErbBjTM9cS/WwsC5dXiS8sq2J
+         AVgPOjXPvmK7g8gkeVXemnLH0ZwxMpBQz9fLu2xk0DffWExo7ZaqGyFSnFmLfwPNIsCS
+         R+mxNurgCVcugF0GiiRQ/8sPDMyou7RVPTSZEgltYAQItO3cDO2YrnAMIeX6SmtkEg/l
+         1AGwpQAiWdClsJX/Q1N6R03qJCg0EbZn6hH4GrNMdzCvXeylDM9b7pHMi2rHh7d1jmjQ
+         PMlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWJu61vjky6YVEBlhC/vV9jyT5EJKMVffHJ2Z1o+sKSXgk1uVrJRA38zzlwQPwOCRmbgjf2Drnul30Uj8LY1pwEeBwvII4d2DyPrzQS5ozLc8w3aR+ml5lJYYPOTg1xD5pjBMwa+Y11gyg=
+X-Gm-Message-State: AOJu0Yz3pHBx14Wu+6mEuoZkUmQKhUsli0yCWV7xVFcI4Z6nciDqEZTz
+	Zv/x9Fciq5LrKbQOU9E3LnFoZTYm7IYBXE8hOruDfHz19QPuvVFBIrKKMIxaeow=
+X-Google-Smtp-Source: AGHT+IHjy9RplyYNtkpgjstWh8etxT8+rKaKrPSFQtNG4FdFsK/ntTcQAtLDJAMGDRMI748GfeeLDw==
+X-Received: by 2002:a17:903:2d2:b0:1eb:1008:2dca with SMTP id d9443c01a7336-1ef43f4cf0cmr138053615ad.49.1715670719911;
+        Tue, 14 May 2024 00:11:59 -0700 (PDT)
+Received: from xiaxiShen-ThinkPad.gigstreem.net ([66.160.179.28])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0bf32f51sm93073275ad.154.2024.05.14.00.11.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 May 2024 00:11:59 -0700 (PDT)
+From: Xiaxi Shen <shenxiaxi26@gmail.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Cc: shenxiaxi26@gmail.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	javier.carrasco.cruz@gmail.com,
+	skhan@linuxfoundation.org
+Subject: [PATCH v2] ASoC: dt-bindings: ak4104: convert to dt schema
+Date: Tue, 14 May 2024 00:11:43 -0700
+Message-Id: <20240514071143.438748-1-shenxiaxi26@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: iio: light: add veml6040 RGBW-LS bindings
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Arthur Becker <arthur.becker@sentec.com>,
- Jonathan Cameron <jic23@kernel.org>, "robh@kernel.org" <robh@kernel.org>
-Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <ZR1P278MB1117B205886E023F9F72A2E881E22@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
- <2f23c0ae-8f8d-41db-af6c-c1b82e965466@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <2f23c0ae-8f8d-41db-af6c-c1b82e965466@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/05/2024 09:10, Krzysztof Kozlowski wrote:
-> On 13/05/2024 16:35, Arthur Becker wrote:
->> This commit adds device tree bindings for the veml6040 RGBW Light Sensor
-> 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-> 
-> More importantly: where is the driver or any other user of this binding?
-> Why this is sent alone?
+Convert ak4104 binding to DT schema
 
-Also:
+Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
+---
+Changes in v2:
+ - Remove subsystem maintainers
+ - Wrap lines at <80
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
+Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
+---
+ .../devicetree/bindings/sound/ak4104.txt      | 25 ----------
+ .../bindings/sound/asahi-kasei,ak4104.yaml    | 49 +++++++++++++++++++
+ 2 files changed, 49 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ak4104.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
 
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline), work on fork of kernel
-(don't, instead use mainline) or you ignore some maintainers (really
-don't). Just use b4 and everything should be fine, although remember
-about `b4 prep --auto-to-cc` if you added new patches to the patchset.
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/sound/ak4104.txt b/Documentation/devicetree/bindings/sound/ak4104.txt
+deleted file mode 100644
+index ae5f7f057dc3..000000000000
+--- a/Documentation/devicetree/bindings/sound/ak4104.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-AK4104 S/PDIF transmitter
+-
+-This device supports SPI mode only.
+-
+-Required properties:
+-
+-  - compatible : "asahi-kasei,ak4104"
+-
+-  - reg : The chip select number on the SPI bus
+-
+-  - vdd-supply : A regulator node, providing 2.7V - 3.6V
+-
+-Optional properties:
+-
+-  - reset-gpios : a GPIO spec for the reset pin. If specified, it will be
+-		  deasserted before communication to the device starts.
+-
+-Example:
+-
+-spdif: ak4104@0 {
+-	compatible = "asahi-kasei,ak4104";
+-	reg = <0>;
+-	spi-max-frequency = <5000000>;
+-	vdd-supply = <&vdd_3v3_reg>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
+new file mode 100644
+index 000000000000..91b3a6817a85
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4104.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AK4104 S/PDIF transmitter
++
++allOf:
++  - $ref: dai-common.yaml#
++
++maintainers:
++  - Daniel Mack <github@zonque.org>
++  - Xiaxi Shen <shenxiaxi26@gmail.com>
++
++properties:
++  compatible:
++    const: asahi-kasei,ak4104
++
++  reg:
++    description: Chip select number on the SPI bus 
++    maxItems: 1
++
++  vdd-supply:
++    description: A regulator node providing between 2.7V and 3.6V.
++
++  reset-gpios:
++    maxItems: 1
++    description: Optional GPIO spec for the reset pin, deasserted 
++                  before communication starts.
++    
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++   i2c {
++     #address-cells = <1>;
++     #size-cells = <0>;
++     codec@0 {
++       compatible = "asahi-kasei,ak4104";
++       reg = <0>;
++       vdd-supply = <&vdd_3v3_reg>;
++     };
++   };
+-- 
+2.34.1
 
 
