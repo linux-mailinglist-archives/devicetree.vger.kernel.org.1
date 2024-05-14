@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-66829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50238C4D74
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 10:06:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D37D68C4D8F
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 10:15:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C5EC1F22891
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 08:06:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E611B2151E
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 08:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14DC18E20;
-	Tue, 14 May 2024 08:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1A817BDC;
+	Tue, 14 May 2024 08:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="EW+TjDsH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="r2AhasqJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D0017583
-	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 08:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1801B17996;
+	Tue, 14 May 2024 08:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715673996; cv=none; b=qecACljBVxhRckHEemOliyb5sgpBNVS2dX4Y+0+/gkuEebQCu1SNzJD7ro3rAnQDoUTX7hpwNlEsYQwXDG3hUP+I6J32bU7qDmQuxYHweny1Lq7KCAEa5B70LiIkRoBJQ+IIvMtZ3oH0+Kg5kH10qODHUobhb3AzGi2eP7tQi1o=
+	t=1715674509; cv=none; b=GZ2lcrlekghoHtg7OwN/pIxjqAXWrLA/rYLzYuYc4r4t5Xro9+/uNBZt3lPJf18Cb+qFCRi+ar4OIuis8XWeliEMbacyUXK7nlCqZIIVLI+aCAnx0esyrEAwiCd+tg0ZIN9GksRVJycVD2eYOxDhdr3YW2cpD9lI8s+jVAv0u3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715673996; c=relaxed/simple;
-	bh=wa4C6Ee4ECOYeCIj8wjhLw3SuJWijNKeWZClb1WFn2U=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=nlMoH/Hu4xYE6/wEaacOCWrfNwdKbUtBfJ7YtHmvDEA5YR/XkyPIO3ShPp9V1C2eQVdC33sUUpFtuU9V0yKr4wjsdSCq243An9DqDkJTDODm3HtYH4IM8DfR50qDMyWLD1fTYaxTgQbqZDYZdFLiqyp5KW70gUuzfSCjD7z8mgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=EW+TjDsH; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-41ff0c3eacdso2392365e9.2
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 01:06:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715673992; x=1716278792; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pjopg8Hd6ezoM2VPeWMeiUlmhpM5PP4esFYOJITTIpM=;
-        b=EW+TjDsHm2Pxm+1mvV9BATFejR590jZ9rWX5XYDjndrAu6rrUUgl+M+nGys1t37I57
-         IyrRyBL1Jkn46bIWrPdDhJKIs2EH8Se+/BEs26amQxTZJnAuvyEgwZ3B3NgyP/OmdI/V
-         WO0lAWP74Qd4tPq7B3DP6fUVIJdcxJz5xtjSUKV77YVrHN57TkTsqfSI2kfPCbb1xNhE
-         z96FgnoePIEwmB480adOdnnNii6OqgNr7wbqtfXGvhbE9bhNJWHmkOpxR8mn8R6yOkex
-         QXc30dy2J/8i3ppfBKIuw5s2nSGpQvnJLdC+v5ybk3bM/botPQjtgKmvWDTJ5TcBIQtC
-         AjWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715673992; x=1716278792;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pjopg8Hd6ezoM2VPeWMeiUlmhpM5PP4esFYOJITTIpM=;
-        b=HLeVwn1k1liyh51g5Wy9c0nfJVtbugjpQt8EI30hff1UlO4DMweqTsU7sp2kNso5rf
-         K/JvGdX33B7S2I60RMZEeIGBgrCn2QWYg7bQ/AzJoBwlfjjDaGGu1PDOARTwSuEBf5MF
-         Ijr1Apg0mLm2ggWVLlyaoLuY4nCzD3EdzFkagDE+TdOIxicHYkp+CPtmmF341uTzBDkk
-         Zj9yIBq5yZ6/38FHLsRCLwk4ileNnRThqAx8TpH56HENE8xO1KDvWalIJXILwNvYP+/3
-         le9h3EkFJ4Wv+bZptRRoCyvw48pgohakAv2+hdpTGNGOljf5i8Wvb+CVSLmktOrAeVPH
-         oLnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9EJCDqviS6egbAZR2PTRUzKqw+LOqow4pgScDVpp1sRkUvOE81XLMhcE3swHlEXupAfIX67lcsGXM6csOqAYUrPREeZ/KQxt2Xg==
-X-Gm-Message-State: AOJu0YyyLvWPaQxXkgnLRUnEySnNVkXyiuqRYMUOUnMql3ZIQSFqXcYy
-	LR4NVjwHDxutus9Ea25S3aTh9Wm3p6MaNoK34eysrkB+lbfiCMm97D6M8UQ0hQo=
-X-Google-Smtp-Source: AGHT+IHrTYyJeDAN6oeeNkuklJ3k4rzrTPEj0NJCPsHETslMiuk4YMPVJXS8JcMds7tACAEYtoHs+w==
-X-Received: by 2002:adf:ff92:0:b0:34d:8ccf:c9ce with SMTP id ffacd0b85a97d-3504a967162mr8354223f8f.5.1715673992206;
-        Tue, 14 May 2024 01:06:32 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:999:a3a0:1660:5f6e:2f9c:91b9? ([2a01:e0a:999:a3a0:1660:5f6e:2f9c:91b9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b896b0bsm13038230f8f.46.2024.05.14.01.06.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 May 2024 01:06:31 -0700 (PDT)
-Message-ID: <e33b8eba-85f0-44b7-8a6f-802a6979f6c8@rivosinc.com>
-Date: Tue, 14 May 2024 10:06:31 +0200
+	s=arc-20240116; t=1715674509; c=relaxed/simple;
+	bh=OANFS5ECFgeKFFYVg3fcTGwR6TyRnc0IfKETy8kdE7Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mWrpmfbCs42Mrsi6EHRQkSloE3z1QOC1ngnpW9XbLD6+N1Cq1djKKPzEidMShAip7m4DDINW8YKRrK0FghetwJhq5E/wascmFgB8Hk5tcJE8pIrs7sgWcm+B2yR39st3xKydBq7wgUAgbx/6TmHYP1NNPmyhB6e5Drx6ULycKmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=r2AhasqJ; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44E8Eu7t055243;
+	Tue, 14 May 2024 03:14:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715674496;
+	bh=TFWyx7lBYzNo+KT14ImWJcQGLXvxa8Pgabr3mWZz9vQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=r2AhasqJ0wXpr1zqviEPJo07okDWvX+ZNkzve/lFe8KIJv+ilP7cJcYCQO5mNWdvr
+	 qPsZT6nQFhajnaQJjsgS5NEJCSWNnyQZcrQO3jCF6+agOYdt39+wR/58Z2QiNBEjJ1
+	 x/EMeEZ6oYqD7RQxqAjj+gJV4u3wm9SCy/C7dVp8=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44E8EuiL023893
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 14 May 2024 03:14:56 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 14
+ May 2024 03:14:56 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 14 May 2024 03:14:55 -0500
+Received: from [10.24.68.216] (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44E8Eqr1002234;
+	Tue, 14 May 2024 03:14:52 -0500
+Message-ID: <7958373c-fe27-4331-bf59-54092d10adc9@ti.com>
+Date: Tue, 14 May 2024 13:44:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,176 +65,210 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-Subject: Re: [RFC PATCH 5/7] riscv: add double trap driver
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
- kvm-riscv@lists.infradead.org, Ved Shanbhogue <ved@rivosinc.com>
-References: <20240418142701.1493091-1-cleger@rivosinc.com>
- <20240418142701.1493091-6-cleger@rivosinc.com>
- <Ziw//90J0WfOY/tl@debug.ba.rivosinc.com>
+Subject: Re: [PATCH v4] arm64: dts: ti: k3-j721e-sk: Add support for multiple
+ CAN instances
 Content-Language: en-US
-In-Reply-To: <Ziw//90J0WfOY/tl@debug.ba.rivosinc.com>
-Content-Type: text/plain; charset=UTF-8
+To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
+References: <20240430131512.1327283-1-b-padhi@ti.com>
+From: Bhavya Kapoor <b-kapoor@ti.com>
+In-Reply-To: <20240430131512.1327283-1-b-padhi@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+LGTM  :)
 
+On 30/04/24 6:45 pm, Beleswar Padhi wrote:
+> CAN instance 0 in the mcu domain is brought on the J721E-SK board
+> through header J1. Thus, add its respective transceiver 1 dt node to add
+> support for this CAN instance.
+>
+> CAN instances 0, 5 and 9 in the main domain are brought on the J721E-SK
+> board through headers J5, J6 and J2 respectively. Thus, add their
+> respective transceivers 2, 3 and 4 dt nodes to add support for these CAN
+> instances.
+>
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
 
-On 27/04/2024 01:59, Deepak Gupta wrote:
-> On Thu, Apr 18, 2024 at 04:26:44PM +0200, Clément Léger wrote:
->> Add a small driver to request double trap enabling as well as
->> registering a SSE handler for double trap. This will also be used by KVM
->> SBI FWFT extension support to detect if it is possible to enable double
->> trap in VS-mode.
->>
->> Signed-off-by: Clément Léger <cleger@rivosinc.com>
->> ---
->> arch/riscv/include/asm/sbi.h    |  1 +
->> drivers/firmware/Kconfig        |  7 +++
->> drivers/firmware/Makefile       |  1 +
->> drivers/firmware/riscv_dbltrp.c | 95 +++++++++++++++++++++++++++++++++
->> include/linux/riscv_dbltrp.h    | 19 +++++++
->> 5 files changed, 123 insertions(+)
->> create mode 100644 drivers/firmware/riscv_dbltrp.c
->> create mode 100644 include/linux/riscv_dbltrp.h
->>
->> diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
->> index 744aa1796c92..9cd4ca66487c 100644
->> --- a/arch/riscv/include/asm/sbi.h
->> +++ b/arch/riscv/include/asm/sbi.h
->> @@ -314,6 +314,7 @@ enum sbi_sse_attr_id {
->> #define SBI_SSE_ATTR_INTERRUPTED_FLAGS_SPIE    (1 << 2)
->>
->> #define SBI_SSE_EVENT_LOCAL_RAS        0x00000000
->> +#define SBI_SSE_EVENT_LOCAL_DOUBLE_TRAP    0x00000001
->> #define SBI_SSE_EVENT_GLOBAL_RAS    0x00008000
->> #define SBI_SSE_EVENT_LOCAL_PMU        0x00010000
->> #define SBI_SSE_EVENT_LOCAL_SOFTWARE    0xffff0000
->> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
->> index 59f611288807..a037f6e89942 100644
->> --- a/drivers/firmware/Kconfig
->> +++ b/drivers/firmware/Kconfig
->> @@ -197,6 +197,13 @@ config RISCV_SSE_TEST
->>       Select if you want to enable SSE extension testing at boot time.
->>       This will run a series of test which verifies SSE sanity.
->>
->> +config RISCV_DBLTRP
->> +    bool "Enable Double trap handling"
->> +    depends on RISCV_SSE && RISCV_SBI
->> +    default n
->> +    help
->> +      Select if you want to enable SSE double trap handler.
->> +
->> config SYSFB
->>     bool
->>     select BOOT_VESA_SUPPORT
->> diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
->> index fb7b0c08c56d..ad67a1738c0f 100644
->> --- a/drivers/firmware/Makefile
->> +++ b/drivers/firmware/Makefile
->> @@ -18,6 +18,7 @@ obj-$(CONFIG_RASPBERRYPI_FIRMWARE) += raspberrypi.o
->> obj-$(CONFIG_FW_CFG_SYSFS)    += qemu_fw_cfg.o
->> obj-$(CONFIG_RISCV_SSE)        += riscv_sse.o
->> obj-$(CONFIG_RISCV_SSE_TEST)    += riscv_sse_test.o
->> +obj-$(CONFIG_RISCV_DBLTRP)    += riscv_dbltrp.o
->> obj-$(CONFIG_SYSFB)        += sysfb.o
->> obj-$(CONFIG_SYSFB_SIMPLEFB)    += sysfb_simplefb.o
->> obj-$(CONFIG_TI_SCI_PROTOCOL)    += ti_sci.o
->> diff --git a/drivers/firmware/riscv_dbltrp.c
->> b/drivers/firmware/riscv_dbltrp.c
->> new file mode 100644
->> index 000000000000..72f9a067e87a
->> --- /dev/null
->> +++ b/drivers/firmware/riscv_dbltrp.c
->> @@ -0,0 +1,95 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (C) 2023 Rivos Inc.
->> + */
-> 
-> nit: fix copyright year
->> +
->> +#define pr_fmt(fmt) "riscv-dbltrp: " fmt
->> +
->> +#include <linux/cpu.h>
->> +#include <linux/init.h>
->> +#include <linux/riscv_dbltrp.h>
->> +#include <linux/riscv_sse.h>
->> +
->> +#include <asm/sbi.h>
->> +
->> +static bool double_trap_enabled;
->> +
->> +static int riscv_sse_dbltrp_handle(uint32_t evt, void *arg,
->> +                   struct pt_regs *regs)
->> +{
->> +    __show_regs(regs);
->> +    panic("Double trap !\n");
->> +
->> +    return 0;
-> Curious:
-> Does panic return?
-> What's the point of returning from here?
+Reviewed-by: Bhavya Kapoor <b-kapoor@ti.com>
 
-Hi Deepak,
-
-No, panic() does not return and indeed, the "return 0" is useless. It's
-a leftover of a previous implementation without panic in order to keep
-GCC mouth shut ;).
-
-> 
->> +}
->> +
->> +struct cpu_dbltrp_data {
->> +    int error;
->> +};
->> +
->> +static void
->> +sbi_cpu_enable_double_trap(void *data)
->> +{
->> +    struct sbiret ret;
->> +    struct cpu_dbltrp_data *cdd = data;
->> +
->> +    ret = sbi_ecall(SBI_EXT_FWFT, SBI_EXT_FWFT_SET,
->> +            SBI_FWFT_DOUBLE_TRAP_ENABLE, 1, 0, 0, 0, 0);
->> +
->> +    if (ret.error) {
->> +        cdd->error = 1;
->> +        pr_err("Failed to enable double trap on cpu %d\n",
->> smp_processor_id());
->> +    }
->> +}
->> +
->> +static int sbi_enable_double_trap(void)
->> +{
->> +    struct cpu_dbltrp_data cdd = {0};
->> +
->> +    on_each_cpu(sbi_cpu_enable_double_trap, &cdd, 1);
->> +    if (cdd.error)
->> +        return -1;
-> 
-> There is a bug here. If `sbi_cpu_enable_double_trap` failed on all cpus
-> but last cpu.
-> Then cdd.error would not record error and will be reflect as if double
-> trap was enabled.
-
-cdd.error is only written in case of error by the per-cpu callbacks, so
-it is only set if enabled failed. Is there something I'm missing ?
-
-Thanks,
-
-Clément
-
-> 
-> Its less likely to happen that FW would return success for one cpu and
-> fail for others.
-> But there is non-zero probablity here.
-> 
-
+> ---
+> Test logs: https://gist.github.com/3V3RYONE/2144fa883bf3a390981d25572971fcf3
+>
+> v4: Changelog:
+> 1) Made transceiver ID and can-phy ID in sync for all applicable nodes
+>
+> Link to v3:
+> https://lore.kernel.org/all/20240412112025.201639-1-b-padhi@ti.com/
+>
+> v3: Changelog:
+> 1) Updated board name in capital letters in commit message description
+> 2) Updated test logs to include communication between all applicable CAN
+> instances
+>
+> Link to v2:
+> https://lore.kernel.org/linux-arm-kernel/20240325103405.182692-1-b-padhi@ti.com/
+>
+> v2: Changelog:
+> 1) Re-ordered status = "okay" property to the end of all applicable dt
+> nodes following kernel documentation
+>
+> Link to v1:
+> https://lore.kernel.org/linux-arm-kernel/20240315124728.490331-1-b-padhi@ti.com/
+>
+>   arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 116 +++++++++++++++++++++++++
+>   1 file changed, 116 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> index 0c4575ad8d7c..02e6c49b7090 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> @@ -210,6 +210,42 @@ vdd_sd_dv_alt: gpio-regulator-tps659411 {
+>   			 <3300000 0x1>;
+>   	};
+>   
+> +	transceiver1: can-phy1 {
+> +		compatible = "ti,tcan1042";
+> +		#phy-cells = <0>;
+> +		max-bitrate = <5000000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
+> +		standby-gpios = <&wkup_gpio0 3 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	transceiver2: can-phy2 {
+> +		compatible = "ti,tcan1042";
+> +		#phy-cells = <0>;
+> +		max-bitrate = <5000000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&main_mcan0_gpio_pins_default>;
+> +		standby-gpios = <&main_gpio0 65 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	transceiver3: can-phy3 {
+> +		compatible = "ti,tcan1042";
+> +		#phy-cells = <0>;
+> +		max-bitrate = <5000000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&main_mcan5_gpio_pins_default>;
+> +		standby-gpios = <&main_gpio0 66 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	transceiver4: can-phy4 {
+> +		compatible = "ti,tcan1042";
+> +		#phy-cells = <0>;
+> +		max-bitrate = <5000000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&main_mcan9_gpio_pins_default>;
+> +		standby-gpios = <&main_gpio0 67 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+>   	dp_pwr_3v3: fixedregulator-dp-prw {
+>   		compatible = "regulator-fixed";
+>   		regulator-name = "dp-pwr";
+> @@ -367,6 +403,45 @@ J721E_IOPAD(0x164, PIN_OUTPUT, 7) /* (V29) RGMII5_TD2 */
+>   		>;
+>   	};
+>   
+> +	main_mcan0_pins_default: main-mcan0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x208, PIN_INPUT, 0) /* (W5) MCAN0_RX */
+> +			J721E_IOPAD(0x20c, PIN_OUTPUT, 0) /* (W6) MCAN0_TX */
+> +		>;
+> +	};
+> +
+> +	main_mcan0_gpio_pins_default: main-mcan0-gpio-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x108, PIN_INPUT, 7) /* (AD27) PRG0_PRU1_GPO2.GPIO0_65 */
+> +		>;
+> +	};
+> +
+> +	main_mcan5_pins_default: main-mcan5-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x050, PIN_INPUT, 6) /* (AE21) PRG1_PRU0_GPO18.MCAN5_RX */
+> +			J721E_IOPAD(0x04c, PIN_OUTPUT, 6) /* (AJ21) PRG1_PRU0_GPO17.MCAN5_TX */
+> +		>;
+> +	};
+> +
+> +	main_mcan5_gpio_pins_default: main-mcan5-gpio-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x10c, PIN_INPUT, 7) /* (AC25) PRG0_PRU1_GPO3.GPIO0_66 */
+> +		>;
+> +	};
+> +
+> +	main_mcan9_pins_default: main-mcan9-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x0d0, PIN_INPUT, 6) /* (AC27) PRG0_PRU0_GPO8.MCAN9_RX */
+> +			J721E_IOPAD(0x0cc, PIN_OUTPUT, 6) /* (AC28) PRG0_PRU0_GPO7.MCAN9_TX */
+> +		>;
+> +	};
+> +
+> +	main_mcan9_gpio_pins_default: main-mcan9-gpio-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x110, PIN_INPUT, 7) /* (AD29) PRG0_PRU1_GPO4.GPIO0_67 */
+> +		>;
+> +	};
+> +
+>   	dp0_pins_default: dp0-default-pins {
+>   		pinctrl-single,pins = <
+>   			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
+> @@ -555,6 +630,19 @@ J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
+>   		>;
+>   	};
+>   
+> +	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_WKUP_IOPAD(0x0ac, PIN_INPUT, 0) /* (C29) MCU_MCAN0_RX */
+> +			J721E_WKUP_IOPAD(0x0a8, PIN_OUTPUT, 0) /* (D29) MCU_MCAN0_TX */
+> +		>;
+> +	};
+> +
+> +	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721E_WKUP_IOPAD(0x0bc, PIN_INPUT, 7) /* (F27) WKUP_GPIO0_3 */
+> +		>;
+> +	};
+> +
+>   	/* Reset for M.2 M Key slot on PCIe1  */
+>   	mkey_reset_pins_default: mkey-reset-pns-default-pins {
+>   		pinctrl-single,pins = <
+> @@ -1108,6 +1196,34 @@ &pcie1_rc {
+>   	num-lanes = <2>;
+>   };
+>   
+> +&mcu_mcan0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_mcan0_pins_default>;
+> +	phys = <&transceiver1>;
+> +	status = "okay";
+> +};
+> +
+> +&main_mcan0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_mcan0_pins_default>;
+> +	phys = <&transceiver2>;
+> +	status = "okay";
+> +};
+> +
+> +&main_mcan5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_mcan5_pins_default>;
+> +	phys = <&transceiver3>;
+> +	status = "okay";
+> +};
+> +
+> +&main_mcan9 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_mcan9_pins_default>;
+> +	phys = <&transceiver4>;
+> +	status = "okay";
+> +};
+> +
+>   &ufs_wrapper {
+>   	status = "disabled";
+>   };
 
