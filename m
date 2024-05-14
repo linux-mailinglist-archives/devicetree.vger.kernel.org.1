@@ -1,201 +1,141 @@
-Return-Path: <devicetree+bounces-66904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4858C58EA
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 17:39:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 085F18C594B
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 18:05:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C7A51C21859
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 15:39:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3051A1C21EC7
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 16:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A29317EBAE;
-	Tue, 14 May 2024 15:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F61C17EBBB;
+	Tue, 14 May 2024 16:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="ER4cPBLa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ns0gklQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29EF61E480;
-	Tue, 14 May 2024 15:39:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A22B1292D2;
+	Tue, 14 May 2024 16:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715701159; cv=none; b=pxNzBwM7P3AnKjvvJHf6F8ZhPi2U18t/pk9S0+po8Q2+4/eON+pZ6H4ipwt8/EtW0Sl8RyyU7XEFSo3JkbHVVju76HTDJtsxkuihez3933TVSiPfs6WnmfdPrmL5dJVQi/1chtCVqfP8UZ01hdv1QIGLHTn8PGLsaJao1sMHmVs=
+	t=1715702739; cv=none; b=qrp2CCZAucxkRT3mA46GONfoMOlf7z4iJoPlAAvif1trEAYAbKjKNwNGQVKCofk4db+A/64culD53DtlCj8VqXfBjafPxppQtoXQ4PKVL3eUTLTsLknMqKFNnpdZVUCoktuZTDN9xy/nrJ1r3fTBy3cLYJmZC6hXAkL/OfPdVKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715701159; c=relaxed/simple;
-	bh=TFIjicffkfSAiX7EWr4Uq8n9eqdo38oBcHIaWAKFAgE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=g1z9brJXU0iDJhQK8Fy9kb8TIo+wZ1qds6fpI695HOT2H+tGUpotJtvGKpjYPWc3BMvsFicUwvBDHLLL0iR4ajtW0jm+ubQHDZcQqld6HKdZs4I6VVzECFqkYrzcmwG3pvuir+PlJY/HmJNIXWnviix49nreKj8XeoKjFm1DBwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=ER4cPBLa; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44EDaZ8m005782;
-	Tue, 14 May 2024 15:38:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=QUu8bBw94LTXyX9BD3qDzghP2sdLwyB4xSVozL91ThY=;
- b=ER4cPBLauHTpdppQycxSKBvBBRVLfIWPWDKeDq7NNCH/nPJ4BASf2gwN5/ARyqP+6HXK
- oH/Ivp8fHZ1mm8vdhIn3F1o+J4yYspSdlIxK735RQ0vodUtfb013IFvChbh4OQivV/d3
- nx1GYPwvMw9qlOmjsY1yQeDkKNRkJMnsgUhaaDkAfGXoB9eWzXEG335mBouEwfPuHdD/
- 9jGwfYdjs4KKg4VkxHzqBlqWBKclNHhb0RHYEYJUoKyhTdPe7NITP8w92zJm8aYrxORR
- zjGoFBOgoQpQw/3Dk/a2a6az8j7yH0Zn4OSL5vPENaNx6BdEcOfMXpXj5Px+Q+EWTkMf 4Q== 
-Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3y48dngeqw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 15:38:57 +0000
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma21.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44EFTFdl002273;
-	Tue, 14 May 2024 15:38:56 GMT
-Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
-	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3y2m0p66f2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 15:38:56 +0000
-Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com [10.39.53.230])
-	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44EFcrN448562508
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 14 May 2024 15:38:55 GMT
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 86A9D5805D;
-	Tue, 14 May 2024 15:38:53 +0000 (GMT)
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id C2ABC5805C;
-	Tue, 14 May 2024 15:38:52 +0000 (GMT)
-Received: from [9.61.107.19] (unknown [9.61.107.19])
-	by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Tue, 14 May 2024 15:38:52 +0000 (GMT)
-Message-ID: <18011b0e-a479-4d93-947a-a71fe4efdcb5@linux.ibm.com>
-Date: Tue, 14 May 2024 10:38:52 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 08/17] dt-bindings: fsi: ast2600-fsi-master: Convert to
- json-schema
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fsi@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        linux-i2c@vger.kernel.org, lakshmiy@us.ibm.com, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, andi.shyti@kernel.org
-References: <20240429210131.373487-1-eajames@linux.ibm.com>
- <20240429210131.373487-9-eajames@linux.ibm.com>
- <af51132f-e4a3-4f45-b066-24b8c348eb28@kernel.org>
- <a7ca71c0-971c-49ab-b9f3-f6e6b32e9567@linux.ibm.com>
- <0a43b522-7c07-43a0-b4b0-155c3cf94177@kernel.org>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <0a43b522-7c07-43a0-b4b0-155c3cf94177@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 0rbf2XRZiQi425DQQIeCERRgFQxutBWq
-X-Proofpoint-GUID: 0rbf2XRZiQi425DQQIeCERRgFQxutBWq
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	s=arc-20240116; t=1715702739; c=relaxed/simple;
+	bh=tpiw7IYuGjhBXF2DDCwDzTvk5q5Xhwg23VZBJ9+60Y8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dJX/c8SodaXVGezLCzGk1lHBPk5wM/0p8Ckle/RjfWBZPXCX014CYYlbH/ZQ4mqH3Y6VjZJt3AAgwqUc5QjM9RWvuBBpMGknINnvBt8Bjiy8Np9h7ZfA0hv5W/1fk26n7y5V2i1T5YLZ5GZub2JBZBSmmAw50UjVIJItdHF6rho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ns0gklQ2; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a59a352bbd9so59232066b.1;
+        Tue, 14 May 2024 09:05:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715702736; x=1716307536; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fW1Zk+kCimN2Iqojt/YnfpXJKfkUntvLK6DTSR9T0HM=;
+        b=ns0gklQ2AkBv6MxF/wadcyvr+IXytgX3d4osjkoqrjT3bp3JVv3lV2pP9T662NbErH
+         H/dfQ4QWWmPj4r8OeO+uSTl0mmMuRZ+QOJlL4ROlQ3Y8UvMd7eqy+BylxNXIBIGBAumO
+         tlq7D1pKn0E8JmfNdO1/0sHiRO9HTq+e/qeYRLyh0QmuQb8iUQrm9a+47r9P6KNJJrUw
+         UUMY/pGW6fL+TZemcTOYEvsXt3HSDBxeY8MAimThrtelF2wIP9jGuDwEdXd7ENPWscLC
+         fZNuaX3VKdi298GjlgSI2RtibNNIDn8N+lp9Ev5DFNSYYkbG5iwf+HPWCH9HkXCx9+Wy
+         vxnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715702736; x=1716307536;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fW1Zk+kCimN2Iqojt/YnfpXJKfkUntvLK6DTSR9T0HM=;
+        b=lnUJ4CBS9HGSvy4IJncD1+UdFAtKh36i9HUMCyhH08hhBvdGovN3sovDv2KRduns2x
+         f7HNjSH42qHTIRBdsQDAwZSAuRp3J0r4ie505RrbaYxWP66tymGrGmMdSFagpeA95wwB
+         gJ6x6DoCpleoy+ZuW+O+SwH83A77iZ9SXmIr+w8wq2NHdwPYwkMx4rPJmOpH3UyzMP6z
+         IWcKb/LqiR23SjYBx3r1hqwxxeR2+Vt+WfCPaFL90f4kKUOSTnGO+cyr11o2KCJf9Quu
+         gsT4G29Oa70mBk22lTI4JQxP73xSy1ewhRPnxz3X207WOh2ybebRjNXCBHGbF0cEPxD8
+         jbjw==
+X-Forwarded-Encrypted: i=1; AJvYcCW0wXHtli9mhSgeN1I4XV/3sRjxwqSPZZ05cTQnye5WVfoKGQwVaWzsmpKLtBOQWqdzs+1zCbsTX/kS+s4kOYdtNn5l9W9SfjkTzPOEMzqzBK3RdFz7Wl2iDqilodGmCMyK7vcfrLkXtq+MKAYpomPxU3vsoNV/WgyO1OgjSiReDkxgXEOeLAlm6I/kcDR0IJkyEOWfkjrdzSeBxS6RfU+/rjIG
+X-Gm-Message-State: AOJu0Yzdh7KiTiX22DZz2BbWJ41Z/GWQ/mGCycRfV24c0XHhaxrzZWF5
+	8Ukkt9Zq4h6kfIc3UwZ3moRKpEGVEu4ri6KMKJ+AuTzPjdzP67EfYqTP6/bPa5TeL1e3Ci054mX
+	772WpDmIm7q1q6uNbPskR2NLT1d0=
+X-Google-Smtp-Source: AGHT+IF1K9kLqXaF/wSSHniCW4SSJsP6V1e2Eey8FppUfEal0xssx45EV2LSI4Ou5zR7+iz4dGAHI/k3UMcmiX2NRyw=
+X-Received: by 2002:a17:907:86a9:b0:a5a:24ab:f5e with SMTP id
+ a640c23a62f3a-a5a2d27d8bcmr1377625766b.25.1715702735782; Tue, 14 May 2024
+ 09:05:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-14_08,2024-05-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
- impostorscore=0 malwarescore=0 priorityscore=1501 mlxscore=0 bulkscore=0
- spamscore=0 lowpriorityscore=0 adultscore=0 phishscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2405010000
- definitions=main-2405140110
+References: <ZjpMeVk_HiixZUEu@hovoldconsulting.com> <20240514140446.706847-1-quic_skakitap@quicinc.com>
+ <CAHp75VcfYuukpLg=F36ykddsT9SpfdGNyyvVeyw-Yvz61Lrq7g@mail.gmail.com> <0a372307-8887-ac97-54c6-d6080e64540f@quicinc.com>
+In-Reply-To: <0a372307-8887-ac97-54c6-d6080e64540f@quicinc.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 14 May 2024 19:04:58 +0300
+Message-ID: <CAHp75VddpSz9Z785ey1FfgDMPD-zY8gesrqD1rt8yGdc9Pz-PQ@mail.gmail.com>
+Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
+To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+Cc: johan@kernel.org, andersson@kernel.org, broonie@kernel.org, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, johan+linaro@kernel.org, 
+	konrad.dybcio@linaro.org, krzk+dt@kernel.org, lee@kernel.org, 
+	lgirdwood@gmail.com, linus.walleij@linaro.org, linux-arm-msm@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org, 
+	swboyd@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, May 14, 2024 at 6:05=E2=80=AFPM Satya Priya Kakitapalli (Temp)
+<quic_skakitap@quicinc.com> wrote:
+> On 5/14/2024 7:48 PM, Andy Shevchenko wrote:
+> > On Tue, May 14, 2024 at 5:05=E2=80=AFPM Satya Priya Kakitapalli
+> > <quic_skakitap@quicinc.com> wrote:
+> >>> On Thu, May 09, 2024 at 03:07:02PM +0300, Andy Shevchenko wrote:
+> >>>> Wed, May 08, 2024 at 10:37:50PM +0000, Stephen Boyd kirjoitti:
+> >>>>> Quoting Johan Hovold (2024-05-06 08:08:29)
 
-On 5/4/24 06:55, Krzysztof Kozlowski wrote:
-> On 01/05/2024 18:12, Eddie James wrote:
->> On 4/30/24 02:04, Krzysztof Kozlowski wrote:
->>> On 29/04/2024 23:01, Eddie James wrote:
->>>> Convert to json-schema for the AST2600 FSI master documentation.
->>> Please mention all the changes from pure conversion.
->>
->> Sure.
->>
->>
->>>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->>>> ---
->>>> Changes since v3:
->>>>    - Remove quotes around compatible strings
->>>>    - Re-order allOf to below required
->>>>    - Add child node in the example
->>>>    - Change commit message to match similar commits
->>>>
->>>>    .../fsi/aspeed,ast2600-fsi-master.yaml        | 81 +++++++++++++++++++
->>>>    .../bindings/fsi/fsi-master-aspeed.txt        | 36 ---------
->>>>    2 files changed, 81 insertions(+), 36 deletions(-)
->>>>    create mode 100644 Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
->>>>    delete mode 100644 Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml b/Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
->>>> new file mode 100644
->>>> index 000000000000..fcf7c4b93b78
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/fsi/aspeed,ast2600-fsi-master.yaml
->>>> @@ -0,0 +1,81 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Aspeed FSI master
->>>> +
->>>> +maintainers:
->>>> +  - Eddie James <eajames@linux.ibm.com>
->>>> +
->>>> +description:
->>>> +  The AST2600 and later contain two identical FSI masters. They share a
->>>> +  clock and have a separate interrupt line and output pins.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - aspeed,ast2600-fsi-master
->>>> +      - aspeed,ast2700-fsi-master
->>> There was no such compatible before.
->>>
->>> How does this even validate? Where is fsi-master? You dropped a
->>> compatible without any explanation.
->>
->> I can make it a separate change to add ast2700.
->>
->>
->> I suppose I don't understand having two compatibles... Aspeed master
->> shouldn't use "fsi-master" as that is too generic, right? Why wouldn't
-> Not necessarily, depends. Dropping it silently is confusing. What about
-> other users? firmware, bootloaders, out-of-tree, other OS? Did you
-> investigate all of them?
+...
 
+> >>>>>> +               BUILD_BUG_ON((ARRAY_SIZE(pldo_ranges) !=3D 1) ||
+> >>>>> This should be an && not || right?
+> >>>>>> +                               (ARRAY_SIZE(nldo_ranges) !=3D 1));
+> >>>> In any case BUILD_BUG_ON() is not encouraged for such cases, it woul=
+d be much
+> >>>> better to have a static_assert() near to one of those arrays.
+> >>> I think the reason it is placed here is that the above line reads:
+> >>>
+> >>>        rdesc->n_linear_ranges =3D 1;
+> >>>
+> >>> and that would need to change if anyone expands the arrays.
+> >> Correct. static_assert() cannot be used in the middle of code here, it=
+ can only be used at the declarations part which doesn't serve the purpose.
+> > I didn't get this. The ARRAY_SIZE():s are defined at compile time
+> > globally. How does this prevent from using static_assert()?
 
-The old format file actually only used fsi-master in the example, not in 
-the actual properties description. So I didn't really drop a compatible. 
-Device trees using "fsi-master" are just buggy and should be fixed 
-eventually, but I don't think it needs to be part of this series.
+> The reason we added it here is to make sure the nlod_ranges and
+> pldo_ranges doesn't become larger, and we forget updating the
+> n_linear_ranges.
 
+> Adding static_assert here is not feasible so adding a
+> BUILD_BUG_ON at this point makes sure the n_linear_ranges is proper.
 
-Thanks,
+No, static_assert() will do _exactly_ the same with better error
+reporting and location, but what you are trying to say is that the
+location is chosen to be near to the n_liner_ranges assignment which
+happens at runtime, that's why it can't be used as an argument to
+BUILD_BUG_ON(). Based on this discussion I think the comment is
+missing before BUILD_BUG_ON() to explain the semantics of 1 and all
+that was just said.
 
-Eddie
+> >> So, BUILD_BUG_ON is the only way to go here.
+> > I don't think so.
 
+As i said.
 
-
->
->> it validate? Devicetrees using "fsi-master" also use
->> "aspeed,ast2600-fsi-master" so they should be OK...
-> No, because the compatibles do not match. Run validation and you will
-> see the errors.
->
-> I am fine with dropping such compatible, which is not used by current
-> kernel ABI, but first DTS must be fixed and second some explanation and
-> justification is needed.
->
-> Best regards,
-> Krzysztof
->
+--=20
+With Best Regards,
+Andy Shevchenko
 
