@@ -1,130 +1,108 @@
-Return-Path: <devicetree+bounces-66959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B988C5D97
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 00:18:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3B98C5DAA
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 00:35:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54055B21944
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 22:18:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DCCA1F21681
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 22:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36452181D0B;
-	Tue, 14 May 2024 22:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7FF181BAD;
+	Tue, 14 May 2024 22:35:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ABVrdqsn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGiQtCwc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A789181D08;
-	Tue, 14 May 2024 22:18:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20ADD1DDEE;
+	Tue, 14 May 2024 22:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715725092; cv=none; b=NBBHDn2CIONroCJtTQAsd8YLhqnMiLNLxawyHuBSecvdcWmSjZTYDa8k6bwlhUeE0zUec57D4t38iE2RetWMe21wAr56H0lBFPk9fxooI+BW+ocUUfKu4TPB51YnQSmMHUz0jI2bJ05VV3KNxMWaGQkZiSIljJCiY0KaaEE7gdU=
+	t=1715726151; cv=none; b=qiDkAkX/Imgv8sKFnNUW3MCnbCthCHJeL+nzB+Mkrs92019aP/8usinf5inWpQlGG4mzntix825YsM0SOm7DvzBMta0kLG/riwuraLr5G8CimsppL7XnA0hRUpQKr0fmmU0uTY0irzkFNO+H16i9JwdzypN7yBGoJ62YtwHDJZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715725092; c=relaxed/simple;
-	bh=9ciPSoqqMHTtFS8nutcgS4ikRZ/tBFIV3ZdrBc/NiWE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HHWJbNyi7ygXd8FJAJ9zWiHmuoOTTuF9VhGj3uk2odVQXUpAmCtgqkPll8XIsTjccrG6oSysVjO5kkqqr7mhP50syEzQxZyDph0jNJ450BZ22MuwIhJWB+1ihA5gtHMeFIHe5m2W/pGPLl47JPjCdqugOwoaZXQewVTiBFt4AlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ABVrdqsn; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 5AF00876D3;
-	Wed, 15 May 2024 00:18:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1715725087;
-	bh=CsNoWcXM1ppcN0YOlwJ4B/BYSvwggX+9BTCQYNe9hWI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ABVrdqsnvRAtXScssnktnh1qHNWzKJIRDs1HmZFPIKdpdO9F8hGtzscoeXFQ3odgz
-	 JXvGs8d8pvJSI7+L5kY6K/VIzZd0bcjnvITGshseTd9Q382QLR1mU3TSB2rFwovLe0
-	 xME8aKImNN7f6Ye7dDa6MSk1dxoJfroerq6oBpoi4lQXzs220MQEnqc8Je4A5hMPmB
-	 hNX3rJRUSa26TklWwV4LgCVvHfLQHGB9Sargv9KuztVkAS1GHsOlPRiQIYe7/zBdpu
-	 J1I8fzq9vrU7rUKTIaZHzyybDtTxEORH7rhpBL6X2bIKL9gkK7Q83JA3V/9BpyPm4y
-	 cxRNchqKD2KEQ==
-Message-ID: <68faa6d9-2053-4b7c-bf34-5b0132234fdb@denx.de>
-Date: Wed, 15 May 2024 00:18:05 +0200
+	s=arc-20240116; t=1715726151; c=relaxed/simple;
+	bh=x7tUxf7jfIVDoQyzXs6S/E8tZSxfh6CAU+jLxpsTgbQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=t5UYgJlZpG5IirlVod7gRBXVSUPYbmDafsMkeGR7B6tFSkD2Q95bfTPQw+AkMYhE1nu6g4wtxDikVxTo9iYMDjzYQ/Murf/s86shFZftrUbx/H+uiV8ROxRSZpxcfb2umWzLH+fw3vN6lnI2adfX+jcMAmAtaRrmI6KdsCX/ARo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGiQtCwc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 669E6C2BD10;
+	Tue, 14 May 2024 22:35:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715726150;
+	bh=x7tUxf7jfIVDoQyzXs6S/E8tZSxfh6CAU+jLxpsTgbQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=WGiQtCwcvpIFYCaEfv0VX2ev/dp60ppCc3OmYH+/oLaM6BoDiziPnYU2FFBsOnslU
+	 PaEh4PZPeYsJPnMiEGzN677cNKieI7oUatv6Fsh9vR2zlEdttICtInbQi5HjlGl3yk
+	 B1q+SjEvx6daWjA+5IQqruHkxC5mzO0/h2xxgiTN3L0pa1NjsfJIHh/pri4+QVlXE0
+	 Zq76EbqOCpWn0nS30zAVhV9fNTuGmyE6NSkMPdNY1GD6Zx2Ev5suYeVf8+yK3wVMdS
+	 /lSth/CUi8xWQvypdaTBS3NuzCVW5v0D1ysboER9UfcgI1ol407bGrLfIQqu8KpjIp
+	 erY6MKj97ZLbw==
+Date: Tue, 14 May 2024 17:35:49 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2 and
- PDK3
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, kernel@dh-electronics.com,
- linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-arm-kernel@lists.infradead.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20240514010706.245874-1-marex@denx.de>
- <171569116690.1193972.14506684066492342240.robh@kernel.org>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <171569116690.1193972.14506684066492342240.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Eddie James <eajames@linux.ibm.com>
+Cc: joel@jms.id.au, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-fsi@lists.ozlabs.org, andrew@codeconstruct.com.au, 
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240514195435.155372-2-eajames@linux.ibm.com>
+References: <20240514195435.155372-1-eajames@linux.ibm.com>
+ <20240514195435.155372-2-eajames@linux.ibm.com>
+Message-Id: <171572614925.2391901.12172648988051515568.robh@kernel.org>
+Subject: Re: [PATCH v5 1/9] dt-bindings: fsi: fsi2spi: Document SPI
+ controller child nodes
 
-On 5/14/24 2:53 PM, Rob Herring (Arm) wrote:
-> 
-> On Tue, 14 May 2024 03:06:42 +0200, Marek Vasut wrote:
->> Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
->> I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
->> of HDMI DDC mode to permit connection of other I2C devices on those buses.
->> The pinctrl_hdmi node is part of the SoM DTSI already.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: imx@lists.linux.dev
->> Cc: kernel@dh-electronics.com
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-kernel@vger.kernel.org
->> ---
->>   .../boot/dts/freescale/imx8mp-dhcom-pdk2.dts  | 39 +++++++++++++++++++
->>   .../boot/dts/freescale/imx8mp-dhcom-pdk3.dts  | 39 +++++++++++++++++++
->>   2 files changed, 78 insertions(+)
->>
-> 
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->    pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y freescale/imx8mp-dhcom-pdk2.dtb freescale/imx8mp-dhcom-pdk3.dtb' for 20240514010706.245874-1-marex@denx.de:
-> 
-> arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb: hdmi@32fd8000: Unevaluated properties are not allowed ('ddc-i2c-bus' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/display/bridge/fsl,imx8mp-hdmi-tx.yaml#
-> arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dtb: hdmi@32fd8000: Unevaluated properties are not allowed ('ddc-i2c-bus' was unexpected)
-> 	from schema $id: http://devicetree.org/schemas/display/bridge/fsl,imx8mp-hdmi-tx.yaml#
 
-Should be fixed in:
-[PATCH] dt-bindings: display: synopsys,dw-hdmi: Document ddc-i2c-bus in core
+On Tue, 14 May 2024 14:54:27 -0500, Eddie James wrote:
+> The FSI2SPI bridge has several SPI controllers behind it, which
+> should be documented. Also, therefore the node needs to specify
+> address and size cells.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Depends on https://lore.kernel.org/all/20240514192630.152747-1-eajames@linux.ibm.com/
+> 
+>  .../devicetree/bindings/fsi/ibm,fsi2spi.yaml  | 36 ++++++++++++++++---
+>  1 file changed, 32 insertions(+), 4 deletions(-)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/fsi/ibm,fsi2spi.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/spi/ibm,spi-fsi.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/fsi/ibm,fsi2spi.example.dtb: fsi2spi@1c00: spi@0: False schema does not allow {'compatible': ['ibm,spi-fsi'], 'reg': [[0]], '#address-cells': [[1]], '#size-cells': [[0]], 'eeprom@0': {'compatible': ['atmel,at25'], 'reg': [[0]], 'address-width': [[24]], 'pagesize': [[256]], 'size': [[524288]], 'spi-max-frequency': [[1000000]]}}
+	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
+Documentation/devicetree/bindings/fsi/ibm,fsi2spi.example.dtb: /example-0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240514195435.155372-2-eajames@linux.ibm.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
