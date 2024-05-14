@@ -1,86 +1,88 @@
-Return-Path: <devicetree+bounces-66806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CADB38C4CA9
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:12:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4768C4CB9
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:19:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 082CC1C20C79
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:12:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B66F1F216B0
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03FE312E75;
-	Tue, 14 May 2024 07:12:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9142AE574;
+	Tue, 14 May 2024 07:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FGakXGiG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cj6Lkc92"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA9911720;
-	Tue, 14 May 2024 07:12:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B4CD304
+	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 07:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715670722; cv=none; b=HWp0dsMdz4O87DIbTs1imLZv5KBD+Tg4C74i1n9oGmnPyg0mOpGPDhU4PVnv0fdPoeX2a2OFDb7CB875ChOkJ9jiPu3zO1xOVqImM9FOY1SzTyRnsVtwJrGYf8wXbHN6bDnp1tfXL3MUPxChX3CU3/aqxKOp7iy4PI5tMqRCUl8=
+	t=1715671193; cv=none; b=txo9VQ+ZfJ7Uozsy4Jmq5Lkng/WGhOhVxCdioM4iEv3ITZauUUpBwSfvMnZHUObzY9TKCZrXqlsZ7aWo80Fo/t6UUvwpH2Ro9rUa3Aim8kVA01TQmD8dXJpgawew8STsBPoWLvqzY5499HM5xCow2Z+WXNCCwP8WTl6Utq2VjaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715670722; c=relaxed/simple;
-	bh=pcnYluDag238mmBsUKSC6PbYsfe7QbcseXtCxzyXERY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=c0nFESfzhso/+8X7nd3TNJLsuSVHqAATxB8SKuk3lPGY06jaM2VD06+1+E5BxrzckM0wYpF8yMQ00ZaXo3HDC6Oa8BbSEJ+HSkV7JxvCAK4bJVLfr+FlTcqiV/4IU0MJtzOKn/Rlo424EtxpDQWvNDiSAxxSsYDxm3i+XjxR5fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FGakXGiG; arc=none smtp.client-ip=209.85.214.179
+	s=arc-20240116; t=1715671193; c=relaxed/simple;
+	bh=85K/vSrEJLCNv5aWdsgAzKFvZDZRmsycnNhFdTQ6M2U=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=m3ffgEA73st8oCxKQ7yLFiwABTLA4mYS9ceWg+LrHW3O8p+Xwrqlw9mD3PGg3czsOj+mjtRw0HsbfNCf5Ryh/upg1MSz64y9KEgNKmR7AZBqiq4nbmZo/KcqO2V/jLb2KDaHB3fejvbHNOVwIWMTCPgPczTjiMhklpn/itjM8SM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cj6Lkc92; arc=none smtp.client-ip=209.85.215.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1eb0e08bfd2so30134385ad.1;
-        Tue, 14 May 2024 00:12:01 -0700 (PDT)
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5f80aa2d4a3so4163868a12.0
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 00:19:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715670720; x=1716275520; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3uYIr3Ml2AVWzJhE/ggK+DKrQxQADQHuE7nOd7CrufI=;
-        b=FGakXGiGzuOcD3YDjVKFt/g02EXOOvakW/eoyuq3X3Jcrdn7i3mc4SHWiHP2Q/vphq
-         Tp5Bg0WrmXYkHpSKPPBxXUgB2EUJErmUgHLGXCMJJG7mhtmkpL7YGSv+u80JRzsbJyOO
-         M8lgnB4dq23USqxIChVoKF8cYw2xIXcVhHRR+FMi6IIQ/Qs74QUcNpaiLQOnaHuCtTTe
-         tqYDf9grdVK5V+tk59AmNvYI9YZyjiqzMTKrdv4opfqAldV8AsJouPCV0sz16clZ58FP
-         LPooSgH1l7fckNTSzRrtSZBnt20Ak50QPvf/dqWInNLh1qBl2uE6iO6e8JV6kQCyk0t8
-         Q30A==
+        d=gmail.com; s=20230601; t=1715671191; x=1716275991; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=85K/vSrEJLCNv5aWdsgAzKFvZDZRmsycnNhFdTQ6M2U=;
+        b=cj6Lkc929TAUGb/ZX4pyj3okREbvDXytD0bOC7gXa46OdbaLfkbytMQppSEjWec2D2
+         ZC43lCH62H74/m3IKJt6A3NFCh7zxoQRGeUUAB1u5HnN8wj40tWg9nIJlY2cCYaIsrsW
+         fAeIJtdaK26yLc3sVVA3vV8dOfHkaOV0DVJqApbOl7Y/sYtTDZlDdE0FredJ5cumC/9k
+         FJ4R19vNHNr2+Fh9929eavZ1HXWjgNTX6064wfP1pNx6R+NtpRMGQIb5aIvAAxFw9CZ7
+         yEU06IFGdPp6PheUpbOXf81+SWvjeX7xe1N8uh622pLD9fN8vUU8YZ5aXuPpeCcIjpzU
+         ujAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715670720; x=1716275520;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3uYIr3Ml2AVWzJhE/ggK+DKrQxQADQHuE7nOd7CrufI=;
-        b=Y6aGIIkE9sxQvPqm4eBF+FDU6+wjtCGNsg8YnnstooF/bLRM90B325W3TUCW8Q79JO
-         trf6rpM5z4mfxnN2LoPONFT+yUnoNHw2pd3wu5vbXhvErbBjTM9cS/WwsC5dXiS8sq2J
-         AVgPOjXPvmK7g8gkeVXemnLH0ZwxMpBQz9fLu2xk0DffWExo7ZaqGyFSnFmLfwPNIsCS
-         R+mxNurgCVcugF0GiiRQ/8sPDMyou7RVPTSZEgltYAQItO3cDO2YrnAMIeX6SmtkEg/l
-         1AGwpQAiWdClsJX/Q1N6R03qJCg0EbZn6hH4GrNMdzCvXeylDM9b7pHMi2rHh7d1jmjQ
-         PMlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJu61vjky6YVEBlhC/vV9jyT5EJKMVffHJ2Z1o+sKSXgk1uVrJRA38zzlwQPwOCRmbgjf2Drnul30Uj8LY1pwEeBwvII4d2DyPrzQS5ozLc8w3aR+ml5lJYYPOTg1xD5pjBMwa+Y11gyg=
-X-Gm-Message-State: AOJu0Yz3pHBx14Wu+6mEuoZkUmQKhUsli0yCWV7xVFcI4Z6nciDqEZTz
-	Zv/x9Fciq5LrKbQOU9E3LnFoZTYm7IYBXE8hOruDfHz19QPuvVFBIrKKMIxaeow=
-X-Google-Smtp-Source: AGHT+IHjy9RplyYNtkpgjstWh8etxT8+rKaKrPSFQtNG4FdFsK/ntTcQAtLDJAMGDRMI748GfeeLDw==
-X-Received: by 2002:a17:903:2d2:b0:1eb:1008:2dca with SMTP id d9443c01a7336-1ef43f4cf0cmr138053615ad.49.1715670719911;
-        Tue, 14 May 2024 00:11:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715671191; x=1716275991;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=85K/vSrEJLCNv5aWdsgAzKFvZDZRmsycnNhFdTQ6M2U=;
+        b=GKVJn18e41UjO2fpQ2D/GJNNxX2JllizRJw4KVtjVbVd6o/V9YdJjz94fW9dXqC6zX
+         dSMIFk7bpC71FiUmYhZ9cycLW3V2M3YZWwWqSi6BATjThF+t/v++anl+XIRRf11uZvT6
+         qc3MWfAyiry/8+lkfOhBo7eTs2oWLR3JItinW9zJpwvI2H+I8I3cxICe9i478HloxQGc
+         ZAxTErVkN2loea3HCCObZDq7mAyl/8sJ91BheCnZqODnFfv7w5eZbZMZR34upOUmgijM
+         QFTPk0nNbuMCLgXPGndHiw6Z/lRluxQeHOyUIIDHm/G6JqiZXUE/d4jNlAEQDC85odZz
+         5QEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUPKITPHaScSCxQvp9Wh42N/WLxxjgbmPUpb8pP2T2w/ELGIwW1iD9HPnJ2L9GT0qePaHMido4tBPmFkBMNtcaTmcENj7I9SVss3A==
+X-Gm-Message-State: AOJu0Yz+QB1ewMV/b+nSVQvTgCVvuptbISBWpdeJcy7V9DtzmPRmvSjH
+	GuoX4Mud9qcT1CtTbyaWmt0cLQBj40vepNhrG68ivbAM6GtmFm0Ez8nkoHOODH0=
+X-Google-Smtp-Source: AGHT+IHyCQy6k+OfAI52dV1DDXrM4AuJBiW9QF/zQKEGktrU1nRmRmSSYNXt/YQc1Wp0/D2ACz11Qw==
+X-Received: by 2002:a05:6a20:2447:b0:1af:d9df:d8de with SMTP id adf61e73a8af0-1afde0afc3fmr14147371637.21.1715671191537;
+        Tue, 14 May 2024 00:19:51 -0700 (PDT)
 Received: from xiaxiShen-ThinkPad.gigstreem.net ([66.160.179.28])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0bf32f51sm93073275ad.154.2024.05.14.00.11.58
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2b628861725sm12028794a91.22.2024.05.14.00.19.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 00:11:59 -0700 (PDT)
+        Tue, 14 May 2024 00:19:51 -0700 (PDT)
 From: Xiaxi Shen <shenxiaxi26@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Cc: shenxiaxi26@gmail.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
+To: robh@kernel.org
+Cc: broonie@kernel.org,
 	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
 	javier.carrasco.cruz@gmail.com,
+	krzk+dt@kernel.org,
+	lgirdwood@gmail.com,
+	shenxiaxi26@gmail.com,
 	skhan@linuxfoundation.org
-Subject: [PATCH v2] ASoC: dt-bindings: ak4104: convert to dt schema
-Date: Tue, 14 May 2024 00:11:43 -0700
-Message-Id: <20240514071143.438748-1-shenxiaxi26@gmail.com>
+Subject: Re: Your Feedback on AK4104 Dt-bindings
+Date: Tue, 14 May 2024 00:19:48 -0700
+Message-Id: <20240514071948.439857-1-shenxiaxi26@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240513191511.GA2975244-robh@kernel.org>
+References: <20240513191511.GA2975244-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,109 +91,10 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert ak4104 binding to DT schema
+Hi Rob,
 
-Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
----
-Changes in v2:
- - Remove subsystem maintainers
- - Wrap lines at <80
+Thanks for your advices, I will follow what you suggested in my following patches.
 
-Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
----
- .../devicetree/bindings/sound/ak4104.txt      | 25 ----------
- .../bindings/sound/asahi-kasei,ak4104.yaml    | 49 +++++++++++++++++++
- 2 files changed, 49 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/ak4104.txt
- create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/ak4104.txt b/Documentation/devicetree/bindings/sound/ak4104.txt
-deleted file mode 100644
-index ae5f7f057dc3..000000000000
---- a/Documentation/devicetree/bindings/sound/ak4104.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--AK4104 S/PDIF transmitter
--
--This device supports SPI mode only.
--
--Required properties:
--
--  - compatible : "asahi-kasei,ak4104"
--
--  - reg : The chip select number on the SPI bus
--
--  - vdd-supply : A regulator node, providing 2.7V - 3.6V
--
--Optional properties:
--
--  - reset-gpios : a GPIO spec for the reset pin. If specified, it will be
--		  deasserted before communication to the device starts.
--
--Example:
--
--spdif: ak4104@0 {
--	compatible = "asahi-kasei,ak4104";
--	reg = <0>;
--	spi-max-frequency = <5000000>;
--	vdd-supply = <&vdd_3v3_reg>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
-new file mode 100644
-index 000000000000..91b3a6817a85
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4104.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AK4104 S/PDIF transmitter
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+maintainers:
-+  - Daniel Mack <github@zonque.org>
-+  - Xiaxi Shen <shenxiaxi26@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: asahi-kasei,ak4104
-+
-+  reg:
-+    description: Chip select number on the SPI bus 
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: A regulator node providing between 2.7V and 3.6V.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Optional GPIO spec for the reset pin, deasserted 
-+                  before communication starts.
-+    
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   i2c {
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     codec@0 {
-+       compatible = "asahi-kasei,ak4104";
-+       reg = <0>;
-+       vdd-supply = <&vdd_3v3_reg>;
-+     };
-+   };
--- 
-2.34.1
-
+Best regards,
+Xiaxi Shen
 
