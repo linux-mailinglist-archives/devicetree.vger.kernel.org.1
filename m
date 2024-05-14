@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-66914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5560D8C5AB2
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 19:57:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119D88C5AC6
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 20:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACA0A1F227E8
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 17:57:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 262D21C21D51
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 18:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227761802B2;
-	Tue, 14 May 2024 17:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A61F41802DB;
+	Tue, 14 May 2024 18:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rRq3zDXK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CVSAm+Q7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FCD1791ED;
-	Tue, 14 May 2024 17:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9982B9D7;
+	Tue, 14 May 2024 18:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715709429; cv=none; b=Z1gbf+6xs1ZgIKNLWHgTU1kg2aFa+NGC39zgJ0OaFWKc8uoL/wrEYyTVHMwh+VpKTI+K5Sb2u0GYEjUBwhBBr2HNppvw9ChAw3cD4wmRt1HpN1G7NBvbbgEDd9+IIkVDiA2G3BEOI9Bpedc+H8Zqj70orAid7IxzUiVnhFoN/S8=
+	t=1715709686; cv=none; b=qBxKBcd2VoF/yVYXM6M87YGQdMPvjbtcxYovWAfT96cunRY2m1q3irJECAaTjRZf1WNVtDo0Rr6QE5ABRoJlCuKgPvDw42ZB08w5RY4ey/TMTd//nWbWAMQ6UByOMxkLSzqgXfxH3VBYH2EywnDZP1K1fisIfxyelyLdGAIiy2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715709429; c=relaxed/simple;
-	bh=L4rhaJihbyiVB4osf1uPgFvAN8dhp1LCMRxGAjsa0OE=;
+	s=arc-20240116; t=1715709686; c=relaxed/simple;
+	bh=Bc0wnqBHezPEtPKq9Cw+J6D4ZphM4Nqpns2kp7JEKHc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jk446IOzEEjjnn11vyR7qahJjTrpEXx9PmjV1TrbsQ1/QFbubi1k45xPSiC1crhJ98RAcF6CjwQl+7snsSm5wKMc81V9HNmG8cyk+OisXgHyet1gCcB3ZLDJ9ock60MuWPs9w3FU0k1lWN4324GACBKIvHcPXU8QQVijwzBY29c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rRq3zDXK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2288AC2BD10;
-	Tue, 14 May 2024 17:57:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kezz7jRLPBSRXTnVPnqxMzs/9ldmrCJAjL5p0PoZc3WvB0295Z8I93eSpLy1q/5RfYytFjBGI/JdDVIgBCkaKcmsJK0wbZzxG89FMaaJfSn+RgR9HH5LJC0xABlnO/AxnId40DlnAJ7yNIXlGbKh14uNLnp2g6lEwkXli02Q4dA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CVSAm+Q7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C8E1C2BD10;
+	Tue, 14 May 2024 18:01:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715709428;
-	bh=L4rhaJihbyiVB4osf1uPgFvAN8dhp1LCMRxGAjsa0OE=;
+	s=k20201202; t=1715709686;
+	bh=Bc0wnqBHezPEtPKq9Cw+J6D4ZphM4Nqpns2kp7JEKHc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rRq3zDXKfziGPndKIghDH2Ny/HCHKekmPcybt/UPF+wnk5uRbW+KxG9BFEUwdr/t5
-	 03UcWVvXUHD5aGH4/2k0RLBabcigooyfR24Qoim0iKuoDkMnLWTvKxxI/j9pxKZhDp
-	 TE7U4R+A/so3UmFi1JxX78NJlPikPr8Dsqv8G75blcOFXXA9g02Uf2khoZfjjAXwMR
-	 yjIua2mNhCB4M53pn+/Vfk7FSG9KUkXisPp3I4rBfamcctKwN8Np8W2nA8DD5pETs1
-	 NiXp78pno/+siqfjYqEj2PyXVtNyW+EOQXQ0c+lB/wZUoc1nFCSQKny/CV1/4IplR5
-	 F6A3LvquuLlKw==
-Date: Tue, 14 May 2024 18:57:04 +0100
+	b=CVSAm+Q7jYM0tMpv4biueBN83sAVh5OHFylqNh5+9zQ+7+cMZg8Ntwyu2jg8qlKMa
+	 Du8JgN5ms8MXa0m+vB1PuwbNbRR5EbOuiGlfNZwd3UDv/xNIonLJ1s3nKtk5+WuO1n
+	 Bwx8LvTuk7H3kZeYRYs6C65w5MeUUIIXjNXqLJKrRsU4xqdesxJ1VYMO0BodazZFJi
+	 wEU9DVG84W3FixjeJu5b2dxl/Zhf4gtkOGjQR0d8xM6Q3jknGFkJ7DLkd2rGVvaE0S
+	 /wJt+J/i0x1WzmAVhLrKC1icMGahXzTyKYLsx3sW+HF2YCoom7dZJbIH1Olx/HdENk
+	 P9xE7vvmXUZsA==
+Date: Tue, 14 May 2024 19:01:21 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	valentina.fernandezalanis@microchip.com
-Subject: Re: [PATCH v2 3/3] spi: spi-microchip-core: Add support for GPIO
- based CS
-Message-ID: <20240514-malt-diffuser-2fd207015e72@spud>
-References: <20240514104508.938448-1-prajna.rajendrakumar@microchip.com>
- <20240514104508.938448-4-prajna.rajendrakumar@microchip.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Alina Yu <alina_yu@richtek.com>, lgirdwood@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, johnny_lai@richtek.com,
+	cy_huang@richtek.com
+Subject: Re: [PATCH v3 6/6] regulator: dt-bindings: rtq2208: Add property to
+ get ldo of RTQ2208 is adjustable or not
+Message-ID: <20240514-plunging-chair-803d9e342e6f@spud>
+References: <cover.1715340537.git.alina_yu@richtek.com>
+ <6a3a90d9aa2022dfb92e124e417f3e72c2f28b0b.1715340537.git.alina_yu@richtek.com>
+ <20240513-tissue-repave-13d2e3bf88fd@spud>
+ <d97752ed-4032-4681-b28f-17f149fdc3d4@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,88 +63,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Y+iyNK1SdnhbDI8k"
+	protocol="application/pgp-signature"; boundary="y6XnTRi+fElIVr2m"
 Content-Disposition: inline
-In-Reply-To: <20240514104508.938448-4-prajna.rajendrakumar@microchip.com>
+In-Reply-To: <d97752ed-4032-4681-b28f-17f149fdc3d4@sirena.org.uk>
 
 
---Y+iyNK1SdnhbDI8k
+--y6XnTRi+fElIVr2m
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Prajna, Mark,
-
-On Tue, May 14, 2024 at 11:45:08AM +0100, Prajna Rajendra Kumar wrote:
-> The SPI "hard" controller within the PolarFire SoC is capable of
-> handling eight CS lines, but only one CS line is wired. Therefore, use
-> GPIO descriptors to configure additional CS lines.
+On Tue, May 14, 2024 at 11:34:29AM +0100, Mark Brown wrote:
+> On Mon, May 13, 2024 at 05:22:54PM +0100, Conor Dooley wrote:
+> > On Fri, May 10, 2024 at 08:06:25PM +0800, Alina Yu wrote:
 >=20
-> Signed-off-by: Prajna Rajendra Kumar <prajna.rajendrakumar@microchip.com>
-
-I provided an ack on v1, so here it is again:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-In general you can keep tags between versions, if you intentionally drop
-tags you should mention why you dropped them.
-
-> ---
->  drivers/spi/spi-microchip-core.c | 4 ++++
->  1 file changed, 4 insertions(+)
+> > > +            richtek,fixed-microvolt =3D <1200000>;
+> > >              regulator-min-microvolt =3D <1200000>;
+> > >              regulator-max-microvolt =3D <1200000>;
 >=20
-> diff --git a/drivers/spi/spi-microchip-core.c b/drivers/spi/spi-microchip=
--core.c
-> index c10de45aa472..6246254e1dff 100644
-> --- a/drivers/spi/spi-microchip-core.c
-> +++ b/drivers/spi/spi-microchip-core.c
-> @@ -258,6 +258,9 @@ static int mchp_corespi_setup(struct spi_device *spi)
->  	struct mchp_corespi *corespi =3D spi_controller_get_devdata(spi->contro=
-ller);
->  	u32 reg;
-> =20
-> +	if (spi_is_csgpiod(spi))
-> +		return 0;
+> > I'm dumb and this example seemed odd to me. Can you explain to me why
+> > it is not sufficient to set min-microvolt =3D=3D max-microvolt to achie=
+ve
+> > the same thing?
+>=20
+> This is for a special mode where the voltage being configured is out of
+> the range usually supported by the regulator, requiring a hardware
+> design change to achieve.  The separate property is because otherwise we
+> can't distinguish the case where the mode is in use from the case where
+> the constraints are nonsense, and we need to handle setting a fixed
+> voltage on a configurable regulator differently to there being a
+> hardware fixed voltage on a normally configurable regulator.
 
-Mark,
+Cool, I think an improved comment message and description would be
+helpful then to describe the desired behaviour that you mention here.
+The commit message in particular isn't great:
+| Since there is no way to check is ldo is adjustable or not.
+| As discussing in v2 series, 'richtek,fixed-microvolt' is added for that.
+| user is supposed to know whether vout of ldo is adjustable.
 
-This has no users outside of core code, but is < 6 months old. Is using
-it in a driver like this okay?
+It also doesn't seem like this sort of behaviour would be limited to
+Richtek either, should this actually be a common property in
+regulator.yaml w/o the vendor prefix?
 
 Cheers,
 Conor.
 
-> +
->  	/*
->  	 * Active high targets need to be specifically set to their inactive
->  	 * states during probe by adding them to the "control group" & thus
-> @@ -516,6 +519,7 @@ static int mchp_corespi_probe(struct platform_device =
-*pdev)
-> =20
->  	host->num_chipselect =3D num_cs;
->  	host->mode_bits =3D SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-> +	host->use_gpio_descriptors =3D true;
->  	host->setup =3D mchp_corespi_setup;
->  	host->bits_per_word_mask =3D SPI_BPW_MASK(8);
->  	host->transfer_one =3D mchp_corespi_transfer_one;
-> --=20
-> 2.25.1
->=20
->=20
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
-
---Y+iyNK1SdnhbDI8k
+--y6XnTRi+fElIVr2m
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkOl7wAKCRB4tDGHoIJi
-0vAbAP4s3UDpCqUDZ7kvX4ikM1pgZrQjOVzd/RDR6106Rr5HdAEAsa9NZW8rS76m
-pTMi3kRiV4hfKVd6W17bzh01HOJPtA8=
-=Eyq7
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkOm8QAKCRB4tDGHoIJi
+0gEmAP4o7NTdR+NPyO2SBBx+xJS2PcXXapchLf9DJZ9ZomjMwwD5AX40LUjeIKEB
+aR0bZK9YX8u5pX0M5rhLdjRaYib3igU=
+=D1lw
 -----END PGP SIGNATURE-----
 
---Y+iyNK1SdnhbDI8k--
+--y6XnTRi+fElIVr2m--
 
