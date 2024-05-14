@@ -1,127 +1,222 @@
-Return-Path: <devicetree+bounces-66808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667A38C4CBD
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7C7D8C4CC7
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:23:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D56611F21AC2
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:22:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73F281F216B7
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71991170F;
-	Tue, 14 May 2024 07:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B9E1EB37;
+	Tue, 14 May 2024 07:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mUqmRHK8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PiKJY3Ru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8778710949;
-	Tue, 14 May 2024 07:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9423D1DFFB;
+	Tue, 14 May 2024 07:23:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715671345; cv=none; b=IzR77fu3sj2s0rWF173dSV3K1mz9/DEg7rWNBaOGB02PeBEE+xG3830CYVLOSiRz+6VEPaFQ+zc78oI5QsJY1wevtFqDhvIbSe5UEVOfP1tru8+dwKgb3JW7J5dG9tm8MQ21a8KVKAdn0OUnhOiONX+uLywCrVUHAo82DqJtJNI=
+	t=1715671398; cv=none; b=QIhVRTQe/H3B5iLfG/+3CNsRehEm7oIvQouQ5+SlDCySVD5W/lw09x3vVk3lc7Ar5htNWzuJa3lyqrG+oarw8SYkzD1H4PPkjS08QdyAK8wAKDHPL/DM4BgiFgdoa2xuIIGXeFYpAHF2zbaMj7R3W4hKoJ7pa2NE/fZGhYQ2BGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715671345; c=relaxed/simple;
-	bh=JzVYEOFYJs0vaOsSEbpguUeyRllA43s34MwtB1FYfVQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=vC6AQp4O+sKyIO77LehQZUGxXFM4t39zfs30fYgYxZY34RXhvxhN58d/UI7zFBToAaidxeem7PgIXjeZLo5BQsgD+H1/xwUYa2AcAFRc+AJVRyYq+cglDzsxCVr+mvd5+ZQYowVQDcdSoakleqazS2eEKGq6wp37NHWmJdFqXwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mUqmRHK8; arc=none smtp.client-ip=209.85.166.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-36c80f9c86bso25177375ab.0;
-        Tue, 14 May 2024 00:22:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715671344; x=1716276144; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9WNa+3eLjaxowCpV/iLa2mMgq8zXzxRscxKrC3IUfjs=;
-        b=mUqmRHK8n8W6fAKPFBygxVO3CtLivR/mkbwcJ+5jsFeZLHl1j5lY/ImTBbIhav5owZ
-         JVEX+Jeen5jnwFtXP38VO06QZt4I8XGL4LoZNVc+m5OquPaRn8oa9Durwga9l72xFjB5
-         wP6gj6QwmWJBpR+BZHV04pEmtVn2sDR2yQizKBNFhuaFCOdPzRXRCNsNAPkI8Razi4zQ
-         g86DzP4c7TE3pLCqLuaqbHRVTxkCStq2EaIfHSnGrA1NQ25sdrEJlTzMjbxAnhudHYHS
-         AOhssVAUEeFFSi6YKu0OILxwiuwJhETWEPt9KY59huh1TsmnMZkODV6Qnk2AcQQtjMID
-         RxmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715671344; x=1716276144;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9WNa+3eLjaxowCpV/iLa2mMgq8zXzxRscxKrC3IUfjs=;
-        b=Vp4OAHhqr3zO0ZAE2zAXnSisEZ49GZYja9UatRPKe6QgOikIz6Obw7u8RIZBpLK+Tn
-         JmKWOTvZEb4d0xp4ad7yQszEZdOd+9PEDyEHX4kUX9Q1TPIWGUjxCiuUb4KqYQYsRKVu
-         Q1rcOtFE+cfFyg+9J+BY/JbME7//yrMwiuV53JMa7K4QKifLFUunKBLqY7kggcZCKpMF
-         n83Bhp4fyaYLkxKzF1phHNzf4Oqs4N5av4UvsXm97FJQX2eQGVPckJYJ6/nVCCKWd9DX
-         LgbkhJ0Pv5u2uTYY+J2Ppmmu3zTmtT/oZ0RV1aSXJI2Rg5Y6OFBb4xPth3d6SzAnWQG6
-         tR1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUo3W85dheKzzg41LynFF3wKTr6FBNX9lHkz7y2L/RGF3Kl6Imj4NQtZoBSpsYef2PTxQiHPUqHLcU+QHw5o/uA1ZzE6kRcpWRYBLFHV7icvbYgNI5qwcDbFdKDft7AS2vDBCCYgM3Haun0aeIv/dY5Gi3edzN2qE8e2x2Vazc9u5EjBw==
-X-Gm-Message-State: AOJu0YyTPfgYFhteclpQJUgD1vozj5jtaGoqnvHPQZ2FmhcjcJkQ4URS
-	LOsbAwPrpME6zN6N74OeoYwHQB12nkrh9VOCBuznOGnAKdYSUM8jVrZZBqyBqvttBvhUczynSph
-	1tokWkiyDYJhhqrVi3MX9YJ2iQaE=
-X-Google-Smtp-Source: AGHT+IHz7rxMKPw4QcPFf9e3+rPk6L5/ivfWPbNHVCV7og1/nXbe/V3wGrxTTVUvZ2OU/ikTt9tJestH0UovLmH6h3c=
-X-Received: by 2002:a05:6e02:17ca:b0:36b:85e:7d69 with SMTP id
- e9e14a558f8ab-36cc144b718mr211747815ab.10.1715671343660; Tue, 14 May 2024
- 00:22:23 -0700 (PDT)
+	s=arc-20240116; t=1715671398; c=relaxed/simple;
+	bh=3bcxwx7sfw8ExkjnXW8neKCzL9NjAQifAMy4d7Pc3gk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iKNPCNJ2H+soQBXOOvfWFwQEwaf8XDiYclAZVSAXUiAY/bbh/bFYmeaaEimafZ6tlGGHlxq70oVhjqk4kln2jj6t74MJMKnTg+b6hVKT+HBv+deOK8KaMZpEURK8hfgfEL+etCVrU27uh9T7VDSVKE0PNAwslT22wVhvuc8D5Qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PiKJY3Ru; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2942BC4AF0A;
+	Tue, 14 May 2024 07:23:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715671398;
+	bh=3bcxwx7sfw8ExkjnXW8neKCzL9NjAQifAMy4d7Pc3gk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=PiKJY3RuSk3b0iWQI/TNHXIQFjUlbnxgF6FBbF3qpI/wELvzgkGfSBnnjYRJZ+K40
+	 h5bF4gm8i0B9Qt80ENKUPBWi3VG9ziNDLnS4pLD3nFrITuHJBF8Urix0VRGfKERx95
+	 6mCkWbmHTy9TcYEf3GBbD4chd1A9PFgcwirjoVSAhjheqn2plsoEQgAk8ZjMEMkbIU
+	 7smlWBW7xc/nhrYHWh+AIbj2bpM3ar757AWmbOQiJM1QtQvXA4albG5KBIFDttiogZ
+	 ftHy5NAEecJwFO2Rx/oREOAOTJgP9RfZwQSQ7bvuU6U6I+cBZqUbi1Ynf8q8jJrEdI
+	 +JzTau80xDTmw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 18043C25B75;
+	Tue, 14 May 2024 07:23:18 +0000 (UTC)
+From: Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
+Subject: [PATCH v2 0/9] Add support for AD411x
+Date: Tue, 14 May 2024 10:22:45 +0300
+Message-Id: <20240514-ad4111-v2-0-29be6a55efb5@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1715219038-32453-1-git-send-email-shengjiu.wang@nxp.com>
- <1715219038-32453-3-git-send-email-shengjiu.wang@nxp.com> <0d10a689504be61c50b186d89ddbf9d1.sboyd@kernel.org>
- <CAA+D8AP9uS1ePxSeSUPGCGe42U5sNguZYQS3d-9T305d2iVbhQ@mail.gmail.com>
-In-Reply-To: <CAA+D8AP9uS1ePxSeSUPGCGe42U5sNguZYQS3d-9T305d2iVbhQ@mail.gmail.com>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Tue, 14 May 2024 15:22:12 +0800
-Message-ID: <CAA+D8ANZYB2ec8qEzub8++Rz76zwn10Bt9c7cZ3tSTUbbQfwGA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] clk: imx: clk-audiomix: Add reset controller
-To: Stephen Boyd <sboyd@kernel.org>, p.zabel@pengutronix.de
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org, conor+dt@kernel.org, 
-	festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de, 
-	krzk+dt@kernel.org, marex@denx.de, mturquette@baylibre.com, peng.fan@nxp.com, 
-	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEURQ2YC/zXMyw7CIBCF4VdpZi2Ggam3le9huqB02pIoNGCIp
+ uHdxRqX/8nJt0Li6DjBpVkhcnbJBV9D7Rqws/ETCzfUBiUVSY1KmIEQURyZe03ck2lHqOcl8uh
+ eG3Tras8uPUN8b27G7/ojSOKfyCik0HTAkzlb20p1Nd7cw7S34QFdKeUD8nmS+J0AAAA=
+To: Ceclan Dumitru <dumitru.ceclan@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dumitru Ceclan <mitrutzceclan@gmail.com>, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1715671396; l=6250;
+ i=dumitru.ceclan@analog.com; s=20240313; h=from:subject:message-id;
+ bh=3bcxwx7sfw8ExkjnXW8neKCzL9NjAQifAMy4d7Pc3gk=;
+ b=3pQ94uO81s0//8XuVGtezlkkET09/clzgXKTYhvLUbvh05IcCoou4f+U2Sl+bz7fqsGj5xA9l
+ zw22lFP1GvDAtMw32ZUVIQ1VZQnO41qoMi5FXoaLp+mCJrC1n46C0FL
+X-Developer-Key: i=dumitru.ceclan@analog.com; a=ed25519;
+ pk=HdqMlVyrcazwoiai7oN6ghU+Bj1pusGUFRl30jhS7Bo=
+X-Endpoint-Received: by B4 Relay for dumitru.ceclan@analog.com/20240313
+ with auth_id=140
+X-Original-From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+Reply-To: dumitru.ceclan@analog.com
 
-On Fri, May 10, 2024 at 12:02=E2=80=AFPM Shengjiu Wang <shengjiu.wang@gmail=
-.com> wrote:
->
-> On Fri, May 10, 2024 at 6:04=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> w=
-rote:
-> >
-> > Quoting Shengjiu Wang (2024-05-08 18:43:56)
-> > > Audiomix block control can be a reset controller for
-> > > Enhanced Audio Return Channel (EARC), which is one of
-> > > modules in this audiomix subsystem.
-> > >
-> > > The EARC PHY software reset and EARC controller software
-> > > reset need to be supported.
-> >
-> > Can you move this to drivers/reset and use auxiliary device APIs to do
-> > that? The idea would be to have reset maintainers review reset code.
->
-> Thanks for your comments.
->
-> This is a minor reset control only for XCVR devices, two reset bits
-> are accessed.
->
-> If we move to an auxiliary device,  we need to define a new header file
-> and a new driver, which will bring more code size and complexity.
->
-> So is it necessary to separate it to another auxiliary driver/device?
->
-> And add Philipp Zabel in loop for review.
->
+This patch series adds support for the Analog Devices AD4111, AD4112,
+ AD4114, AD4115, AD4116 within the existing AD7173 driver.
 
-I will use syscon and simple-mfd to separate the reset function to
-a new driver,  which will be a child node of the audiomix device.
+  The AD411X family encompasses a series of low power, low noise, 24-bit,
+sigma-delta analog-to-digital converters that offer a versatile range of
+specifications. They integrate an analog front end suitable for processing
+fully differential/single-ended and bipolar voltage inputs.
 
-Best regards
-Shengjiu Wang
+Particularities of the models:
+- All ADCs have inputs with a precision voltage divider with a division
+ratio of 10.
+- AD4116 has 5 low level inputs without a voltage divider.
+- AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
+shunt resistor.
+
+Discussions from this patch series have concluded with:
+-Datasheets mention single-ended and pseudo differential capabilities by
+ the means of connecting the negative input of a differential pair (IN-)
+ to a constant voltage supply and letting the positive input fluctuate.
+ This is not a special operating mode, it is a capability of the
+ differential channels to also measure such signals.
+
+-Single-ended and pseudo differential do not need any specific
+ configuration and cannot be differentiated from differential usage by
+ the driver side =>
+	offer adi,channel-type attribute to flag the usage of the channel
+
+-VINCOM is described as a dedicated pin for single-ended channels but as
+ seen in AD4116, it is a normal input connected to the cross-point
+ multiplexer (VIN10, VINCOM (single-ended or differential pair)).
+ This does not mean full functionality in any configuration:
+ AD4111:"If any two voltage inputs are paired in a configuration other
+ than what is described in this data sheet, the accuracy of the device
+ cannot be guaranteed".
+
+-ADCIN15 input pin from AD4116 is specified as the dedicated pin for
+ pseudo-differential but from the datasheet it results that this pin is
+ also able to measure single-ended and fully differential channels
+ ("ADCIN11, ADCIN15. (pseudo differential or differential pair)";
+  "An example is to connect the ADCIN15 pin externally to the AVSS
+   pin in a single-ended configuration")
+
+ As such, detecting the type of usage of a channel is not possible and
+will be the responsability of the user to specify.
+ If the user has connected a non 0V (in regards to AVSS) supply to
+the negative input pin of a channel in a pseudo differential
+configuration, the offset of the measurement from AVSS will not be known
+from the driver and will need to be measured by other means.
+
+Datasheets:
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD4111.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD4112.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD4114.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD4115.pdf
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD4116.pdf
+
+This series depends on patch:
+(iio: adc: ad7173: Use device_for_each_child_node_scoped() to simplify error paths.)
+https://lore.kernel.org/all/20240330190849.1321065-6-jic23@kernel.org
+
+Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+---
+Changes in v2:
+
+dt-bindings: adc: ad7173: add support for ad411x
+- Add constraint for missing avdd2-supply on ad411x
+- Change support for current channels to selecting the actual
+   diff-channels input values and activating the
+   adi,current-channel property
+- Add constraint for adi,current-channel
+- Add adi,channel-type to be able to differentiante in the driver
+   between single-ended, pseudo-differential and differential channels.
+- Update diff-channels description to decribe inputs beside the AINs
+
+iio: adc: ad7173: fix buffers enablement for ad7176-2
+- Specify ".has_input_buf = false" for AD7176-2
+- Drop fixes tag, specify that configuration bits are read only
+
+iio: adc: ad7173: refactor channel configuration parsing
+- Add Link and Suggested-by in commit message
+
+iio: adc: ad7173: refactor ain and vref selection
+- Improve commit message to express commit purpose
+- Refactor line wrappings due to reduced indent
+- Change AINs check to a loop
+
+iio: adc: ad7173: add support for special inputs
+- Create patch
+
+iio: adc: ad7173: Add ad7173_device_info names
+- Create patch
+
+iio: adc: ad7173: Remove index from temp channel
+- Justify in commit message userspace breakage
+- Remove index from the correct channel template
+
+iio: adc: ad7173: Add support for AD411x devices
+- Add missing validation for VCOM and inputs with voltage divider
+- Add missing validation for AD4116 low level inputs
+- Add missing ad7173_device_info names
+- Add support for setting differential flag depending on the channel type
+- Change current channel validation to use actual pin values
+- Combine multiple chipID reg values in a single define
+		(AD7173_AD4111_AD4112_AD4114_ID)
+- Rename num_inputs and num_inputs_with_divider to include voltage
+- Add comment to specify that num_voltage_inputs_with_divider does not
+   include the VCOM pin.
+- Change break to direct returns where possible in switch cases
+- Add fix for ad411x gpio's
+
+iio: adc: ad7173: Reduce device info struct size
+- Create patch
+
+- Link to v1: https://lore.kernel.org/r/20240401-ad4111-v1-0-34618a9cc502@analog.com
+
+---
+Dumitru Ceclan (9):
+      dt-bindings: adc: ad7173: add support for ad411x
+      iio: adc: ad7173: fix buffers enablement for ad7176-2
+      iio: adc: ad7173: refactor channel configuration parsing
+      iio: adc: ad7173: refactor ain and vref selection
+      iio: adc: ad7173: add support for special inputs
+      iio: adc: ad7173: Add ad7173_device_info names
+      iio: adc: ad7173: Remove index from temp channel
+      iio: adc: ad7173: Add support for AD411x devices
+      iio: adc: ad7173: Reduce device info struct size
+
+ .../devicetree/bindings/iio/adc/adi,ad7173.yaml    | 118 +++++-
+ drivers/iio/adc/ad7173.c                           | 438 ++++++++++++++++++---
+ 2 files changed, 497 insertions(+), 59 deletions(-)
+---
+base-commit: 5ab61121a34759eb2418977f0b3589b7edc57776
+change-id: 20240312-ad4111-7eeb34eb4a5f
+
+Best regards,
+-- 
+Dumitru Ceclan <dumitru.ceclan@analog.com>
+
+
 
