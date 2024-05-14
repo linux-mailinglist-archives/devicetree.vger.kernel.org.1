@@ -1,168 +1,136 @@
-Return-Path: <devicetree+bounces-66819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FAFF8C4CEC
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:27:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 833E98C4CF4
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 09:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 203BB1F22508
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:27:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4739283906
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 07:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD55825605;
-	Tue, 14 May 2024 07:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A763770D;
+	Tue, 14 May 2024 07:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QC9pG9l2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VFnuYnPi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06022BCF7;
-	Tue, 14 May 2024 07:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140FD376E7
+	for <devicetree@vger.kernel.org>; Tue, 14 May 2024 07:25:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715671501; cv=none; b=j306ipQIxkYnzD5AhZcwXxfUufya2j3hJYJi0EKCkXWqCJPIcE3bk89fc9qslriQ1xO+O+bZA22DwDdKBepb+r7/TRwTUeZnDz9R/qRvli14bE5Cmh4rsGQqy47+ME+W4LxfB2jeJcbpEHn/K+TOUA/9f2okJ7vS5mGrDvsTzuU=
+	t=1715671507; cv=none; b=Qz+wXAmSYIyINczAy00KR//KtovB6PSPkzdrMqs/mErB3eypbtsTiK+VgJSljHER7Vn3bDwf1cESeTFeAIGAb2BxLT9oCIxagxZPLssoXsCznTle57gUUp5ns5FbBt6lkW8bF3BoLfbn7cTcZGz+4wYkgwFsnIrFNSnnlfQTCnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715671501; c=relaxed/simple;
-	bh=2QQ1+Z8kEBrNJM3D0N/aUjBPhoFh6P09AjFDjptkjNA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HWiQq2kYN5bj4ofgNOnpoxHq3PdZ02eCtDCl061Z66IA32SqEadbzlNsD/TdFx0SEcaTrTf/IaYfUnwDDeftHmuC+EBsZsp+PbCHj+hW3l2MrU0T1lVDwGnY9vGC2NbQztK+ct0+R6Qb5xrh7+QxSoLgoxC3b8MXL2O8eHvzOBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QC9pG9l2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA150C4AF07;
-	Tue, 14 May 2024 07:24:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715671501;
-	bh=2QQ1+Z8kEBrNJM3D0N/aUjBPhoFh6P09AjFDjptkjNA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QC9pG9l2O+Fhq7wQjs3Pv8bojol55cWYFoO9yYWuNXNQZjP7k8c69nav347ZkCTpU
-	 JKWw3nVUR1Z+UDfE3ueQkcDc1oXk+fOeutLCeJmjCbIppiqsGrZk2vGk6Ud1PjUQCx
-	 ZE4FYW2Yosvnis7FuDZkA12bWBwW0UlrSje7+ZW0ForEre1znQcrRniiO//ib1BlBu
-	 HQ3Tmemsjcojm816qCVHSdrpXtllaW6qcsasUOVNho3jgS41MRsgF1dZlmrirF7kwB
-	 yFU6ElBtgqpZF3UKZq1G3gSOYLCpxRHYn/OsAIrWGNqcBU4v0SbxIKz89En9dmc1Kf
-	 PcJOGIkd4AP0Q==
-Message-ID: <ab4186fa-5a2f-4f97-9aa7-75a6c55bc142@kernel.org>
-Date: Tue, 14 May 2024 09:24:56 +0200
+	s=arc-20240116; t=1715671507; c=relaxed/simple;
+	bh=MrsK/SOAFyvJ5rW6noiqY2i2AWXHF7hXaxT2Iuly1Kw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QbOkW4z+/Fdz+HqajQecD5VEY0N3K2HtOy3729/pD1Fd/9byfYacLn4TLMOwKY/bqzm3iPlc3Srs8fDVXEkfupbXkSp8xuQRyvYAv4IyUx74Ygx4L7HDUBu/+xw7xXpwx29eMvrD01UvN9oaYcNE6Pka6MPg6WPcx5KfpbgRfFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VFnuYnPi; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a59b49162aeso1304524366b.3
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 00:25:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715671504; x=1716276304; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=JB+Z0CRSJcLUU9yXDS+6zp2SY8ySyHlLC8dbiqLhtlQ=;
+        b=VFnuYnPijUKB5OvXDY4k+InVPo5hmPze9ahmz5tkhJUqO7fsoeww5VCnnSCFttYCwU
+         zcRnuUzTc0WaHbUp03SF28XAAbAaMvDY77hYTr8pVB2nCUfgwtZmN3hb7S0uNp0FrE4R
+         ogOw1rNBSlcUrt6HzNMJEkq1qwAANH0bZMLBpyPvJKg6NdkctCoNbx5ieROcTDHE9ZOK
+         OYbZ8tvx8YLKE/mHQ6yz4+kg/ch95kQuL7LmmsSZcuUg5VemintQU+s42IkTSIAbcZvV
+         CwBdjJrFz1/eroLQ78WGb3KhYpTLgy7vpJXolTI140gMdYwsmZKxccYLggzpmEgE/Kww
+         oKNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715671504; x=1716276304;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JB+Z0CRSJcLUU9yXDS+6zp2SY8ySyHlLC8dbiqLhtlQ=;
+        b=Yl/T+BuGtjAT5KxW6qF7K43SAHDRNldZPJfv7hKL0NpGKQ/fDYhKuA5uDI2mnm9Pch
+         VaUmbgevFfYMQGysFPeqAGI3HEledh4EVzj2Qb2/QcpfxYzkCMRShHZYfQJyoNElXDNh
+         xu/UtQZVmobmIAgWa58LDdR1R6CQylaDaamjeGXC5TE1shIG+FctulpuGj53Hkm+cPpB
+         oh3bMDWCaLKgKOb+0oEI9ZONk7Fqs1RDoloI9JT07uQX1BilqnS+PqPDFdgqB1A5WwrG
+         yL1omhVV+op3C1NeQbuosI/rvjx40FYxrMkDhpXQj8BX99Gw9UzA+hb86JrrYJhjajga
+         sW9g==
+X-Forwarded-Encrypted: i=1; AJvYcCWi90EeHWuAgpj0P5NUyLz9MxQ/x8tFnTdjkVOfYNu0gW1ks2xQr3hqOyRvBZtFYvLXRIW8zYyBHlBrhbWhvk6aXodXo6kwBb4t8Q==
+X-Gm-Message-State: AOJu0YwGTW2Ah1koB6Pu+SN96CMu3/HwdCTaKZUx1FW8+eBubiW6W//8
+	J7HMis0AYzdN6hxutWP9HByVsE75qWRSW4UnYGJ5MyFYasKifNDlGs6QLN8sFQ==
+X-Google-Smtp-Source: AGHT+IEQTQ5t33iG1QpTljAk13ZjKCJq2arLVGhz/pfUDhGt2rL8ANrYeLV7xamqA3YFh7dM+6YrzA==
+X-Received: by 2002:a17:906:ee86:b0:a59:aae5:5840 with SMTP id a640c23a62f3a-a5a2d6759e5mr1063776566b.75.1715671504270;
+        Tue, 14 May 2024 00:25:04 -0700 (PDT)
+Received: from thinkpad ([149.14.240.163])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781d2ecsm703097166b.16.2024.05.14.00.25.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 May 2024 00:25:03 -0700 (PDT)
+Date: Tue, 14 May 2024 09:25:02 +0200
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devi priya <quic_devipriy@quicinc.com>, bhelgaas@google.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH V5 3/6] dt-bindings: PCI: qcom: Document the IPQ9574 PCIe
+ controller.
+Message-ID: <20240514072502.GA2463@thinkpad>
+References: <20240512082858.1806694-1-quic_devipriy@quicinc.com>
+ <20240512082858.1806694-4-quic_devipriy@quicinc.com>
+ <b3199f40-0983-4185-bd0c-2e2d45d690ad@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ASoC: dt-bindings: ak4104: convert to dt schema
-To: Xiaxi Shen <shenxiaxi26@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, javier.carrasco.cruz@gmail.com,
- skhan@linuxfoundation.org
-References: <20240514071143.438748-1-shenxiaxi26@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240514071143.438748-1-shenxiaxi26@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b3199f40-0983-4185-bd0c-2e2d45d690ad@kernel.org>
 
-On 14/05/2024 09:11, Xiaxi Shen wrote:
-> Convert ak4104 binding to DT schema
+On Mon, May 13, 2024 at 08:48:19AM +0200, Krzysztof Kozlowski wrote:
+> On 12/05/2024 10:28, devi priya wrote:
 > 
-> Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
-> ---
-> Changes in v2:
->  - Remove subsystem maintainers
->  - Wrap lines at <80
+> >  
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,pcie-ipq9574
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 6
+> > +          maxItems: 6
+> > +        clock-names:
+> > +          items:
+> > +            - const: ahb  # AHB clock
+> > +            - const: aux  # Auxiliary clock
+> > +            - const: axi_m # AXI Master clock
+> > +            - const: axi_s # AXI Slave clock
+> > +            - const: axi_bridge # AXI bridge clock
+> > +            - const: rchng
 > 
-> Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
+> That's introducing one more order of clocks... Please keep it
+> consistent. The only existing case with ahb has it at after axi_m and
+> others. Why making things everytime differently?
+> 
+> I also to propose to finally drop the obvious comments, like "AHB
+> clock". It cannot be anything else. AXI Master / slave are descriptive,
+> so should stay.
+> 
 
-Only one SoB.
++1 to drop the names.
 
-...
+- Mani
 
-> +title: AK4104 S/PDIF transmitter
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +maintainers:
-> +  - Daniel Mack <github@zonque.org>
-> +  - Xiaxi Shen <shenxiaxi26@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: asahi-kasei,ak4104
-> +
-> +  reg:
-> +    description: Chip select number on the SPI bus 
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: A regulator node providing between 2.7V and 3.6V.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Optional GPIO spec for the reset pin, deasserted 
-> +                  before communication starts.
-> +    
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-
-unevaluatedProperties instead, so the dai-cells will be allowed.
-
-> +
-> +examples:
-> +  - |
-> +   i2c {
-
-Indentation looks odd here. It should start with | above. See other files.
-
-Best regards,
-Krzysztof
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
