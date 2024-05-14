@@ -1,420 +1,211 @@
-Return-Path: <devicetree+bounces-66787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9EB8C4B16
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 04:05:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335E18C4B5F
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 04:59:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA21E1C21613
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 02:05:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE8242814BE
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 02:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D62B4A2F;
-	Tue, 14 May 2024 02:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54911AD4B;
+	Tue, 14 May 2024 02:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KT4YYRTL"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="kXoH/d9L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2081.outbound.protection.outlook.com [40.107.241.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901BC17FF;
-	Tue, 14 May 2024 02:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715652329; cv=none; b=qDKPRkN+N0m1iUz0pYuoZvXOyW4jdZQ8ISYEkxWuxTqD8fxQ34dUh2ZdblEIzdyY6z/8TuY7ztvKkQ32uyfPo7xBOooo5XQippMyONHgjV+rpL5MIEMuo1wjfUXRppaA8GJ973Lz58rHzGK8uhQg9P3r7aN3SlKxl46KfyovHgg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715652329; c=relaxed/simple;
-	bh=IGkETeGABm+TIa0iQTB6Fz1ARLWjcPwPnyTonhxV+DI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Lma/qbIddOmt2hpfLPFTWIh/kb/un4hExatJqaACSFdJTCvraI3SY4lx47pUmGkT/pWkOEUCFxttbj5NtcU8CH+FwipiMJkUK32hPhSojymWpwW4NhH4nEapCtTgvuZfyzHjKuMDKan7E+KMHG4mULZW44ZnzRbNT69q4Kk0Vzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KT4YYRTL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44DJ8VYx023869;
-	Tue, 14 May 2024 02:05:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=j0bvF67G05x02NhJMFacFGuxgG9HdtLgRHpYahSHjR4=; b=KT
-	4YYRTLNFkJArGzz/yzeV0e84I95oiGRbu15N/lE3Ud7xyv37dg5EWUTKUrx5Jv7Q
-	VyLOajtc/2LcMe5xLrtHOvn5ylyIdRXA07ihczy8uG2LEfFUOgQNz+lEWTD8fwKc
-	CMucrLmdL66qcJRrgqCzU54bcq6tVYUTPo0BD/lh1luvDFAue5SS1CsCK5NYFhKM
-	fDQ9EwJnJ9joHhe8VthZ/aEti6LkU6v9TgFD9f7yMyhyVy4NjYi0Gm1X0WIJrdxF
-	Z8Yl1Rk1t3mlCNXRDt1y9rB/MsQ+/9XPSsxb/98yO0/Mh/MwFT119+r7kULpedEs
-	s4qid3cL78d+tytEDxkA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y2125d097-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 02:05:13 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44E25BGO014103
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 02:05:11 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 May
- 2024 19:05:02 -0700
-Message-ID: <0d263263-4fa9-489e-8d44-00d107743b56@quicinc.com>
-Date: Tue, 14 May 2024 10:05:00 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1104079D2;
+	Tue, 14 May 2024 02:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.81
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715655583; cv=fail; b=h3rpgABzTeLE4vAY3rRvEFcC3lYuXZGEixfwPdngrYuZ7UvfngSF+KY9DhD+V7p6zQaHMs2o2m3g2uIUSXTRAsmY69ivFfKkeKS3vRUq6tyO4q1I2bNvnY+n7ix47zaMv3GNYjrIx7wth7gxCdoMKtxbeqbmt4WUkBFgcZDBNTw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715655583; c=relaxed/simple;
+	bh=TpYFVJCg+fsRyyg7Nu6SBCiRSZwVJJbeZVRIrKL+ub0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=aaJ/9RVQHRNw30Wndmr719/ZjjtPDnVsLKYhbA32m3UX/0w0Nzd4elBxIWqa0JNFxqwSM2s5Q6uol9TrAFY//UN6tK7B9EcQc41AaMzEmTedhcZqMW4FzEFuFxA6lwtllhaN3njEELuo+eZLNAuPbcX83m1TeFzC3XDutreMLro=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=kXoH/d9L; arc=fail smtp.client-ip=40.107.241.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=deXKDYIhWrCMwz+vC7pcJl3Li1bNK7Mcos+FUPEroNI8sHPEuSuKUyUyffjUC0cOV260sAVshNEE9IifYKyHgnVdyWUuUJWmhRARm8B7o/ORa1bj1M1G0BLDFbQHKX/vNX7nUMe79qEXTBNriP9SONnYdv4MjLBTU1Tg70FfrLrX6dpn4xF823Vh5Mc8K+ChDGUkpiM7FiR2ePv6PlnXknurlPSKHvqkAM9nTNJyqlrcxQSpWuBfNJ9MJAodc2CWv61rM0RGspb+OZAOo520W7dO68HTrRvYY+PCMK3/oOSiLccXMWqmkJeUqVFrvuENxOu4HGX8xJBQ5snjRH9F8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4lId89HD9aDmqso4yTwGwRZMJk+nm/D8EYGo0cEPv5s=;
+ b=Aufnb3ErimZS7lJAi1SvqG8HgQxCSlU8br+7v3Tj1PmCOdOLLyUH2LB3R8aaraCoiImQStGjjbRw59AwvkWn7KGXzeZeE/2oZ/QenJtGS8m+qyfvAjFs24avMnLwOV7Qg26Dn96WwENt1nwc9ywVxbWCbgAwyD+RuHHvJKU9gf1GO1oYOOZY26+kpawRQf03zUyniFyDOyDp9RlRBZb2OzT1BSN3f9d7L2/qsfMrgYGZI08WOnGjnKj8UanrWwOivj9s54/DpDFxhcudnc6RlBWPIQHFbUnuJ+ZTz57XZ3ONbiy5AYya8pdtQUlUW0mzuPFS2a9gLFJcfA5GVupH9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4lId89HD9aDmqso4yTwGwRZMJk+nm/D8EYGo0cEPv5s=;
+ b=kXoH/d9LODYNl/6Gj3TeEmOLhXlLgAZr7kJkQ8/xJd/C6cH5TnUEXNijRZ46LRXej9Zz9PKv4JpGGv6hjLQ1U9QXufBtcf7a1ChZD6OaXmXlmMKP4vnVosHyHER5s0J9i1ZtyNvRou5PDrMMs4mo6APMtRkSiVmuK/eY/Bt4asg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by VI0PR04MB10543.eurprd04.prod.outlook.com (2603:10a6:800:25a::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.45; Tue, 14 May
+ 2024 02:59:38 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%3]) with mapi id 15.20.7544.052; Tue, 14 May 2024
+ 02:59:38 +0000
+From: Liu Ying <victor.liu@nxp.com>
+To: imx@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	dmitry.baryshkov@linaro.org
+Subject: [PATCH] arm: dts: imx53-qsb-hdmi: Disable panel instead of deleting node
+Date: Tue, 14 May 2024 11:07:18 +0800
+Message-Id: <20240514030718.533169-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2P153CA0028.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::9)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/4] arm64: dts: qcom: qcs8550: introduce qcs8550 dtsi
-To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
-CC: <keescook@chromium.org>, <tony.luck@intel.com>, <gpiccoli@igalia.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <20240513090735.1666142-1-quic_tengfan@quicinc.com>
- <20240513090735.1666142-3-quic_tengfan@quicinc.com>
- <ce8bc51b-a8b3-259c-f70c-d240d7b166cc@quicinc.com>
- <4fe74490-b4ee-4462-b225-caf2bc01cde7@quicinc.com>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <4fe74490-b4ee-4462-b225-caf2bc01cde7@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: BhBvQJ5G0hGB9cHZL_99psyj7AjyR6mz
-X-Proofpoint-ORIG-GUID: BhBvQJ5G0hGB9cHZL_99psyj7AjyR6mz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-13_17,2024-05-10_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
- lowpriorityscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0
- priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405140014
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|VI0PR04MB10543:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b281fe5-29ff-4a7d-23a3-08dc73c1e464
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|366007|376005|7416005|52116005|1800799015|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?muMA76hbNrBsRDE7ESKXS4nLfEeS3a4wv9ZuobEn9EPhILS7J/OAA6fepLuW?=
+ =?us-ascii?Q?ykIohIVnRPkaD1HpNTAKeoS3auGeMZFE9a4NhC9TWxtPr/PHUBRvFjzrBYYJ?=
+ =?us-ascii?Q?MZwRhpFjA4aGo4FU8aTxklw3DHmDkMmWgvjFKVrd9PwGtTO9VGDkcgD80A8C?=
+ =?us-ascii?Q?fK9THhqn7hzdwGazytNyIgO33Ycm849/60YIOblxS3EBfQbc7vSAZTPSQHQX?=
+ =?us-ascii?Q?ep2pvjqhWiN5ApyRzrBbWZqvBKrFx2klT0gYMqZ/zI1GgXrSLXUuXkFym5U7?=
+ =?us-ascii?Q?DMgr5FFm/qIa2MyxK5cF+FYANAnnnxIBw/q2qkOGHw/dBEy/TL9dqephMWCi?=
+ =?us-ascii?Q?Rft6rr8znrRzKvxc0r/WnJMJmcFb0htVQXrMMVLoVA+/mfhfIVo3Xx4r51W0?=
+ =?us-ascii?Q?Wi9TyPxD82M3QTK2ECxRGCR14IVtXECfbT595QK9UlIensQ4qroauwS2cg6O?=
+ =?us-ascii?Q?EvppN53VjWchEx122ULKE8jwwQMqGemSEP7+EBDgTLY8GcZR2Dfp/7AZa+lK?=
+ =?us-ascii?Q?bgJ9Ecbfe1/4hUxN2ZSdUYbqCaXglkKv8eTvHT5RwltKAV3XN1pa4BuwtS01?=
+ =?us-ascii?Q?7oyGKpQY2hopk+aveDbiDFXJ+qFBCj+xFuDtc8RzVOlQRDxvSC6yNZLCWkhW?=
+ =?us-ascii?Q?eNSmcCRpoKY/wH14W5Ihg0fa/MKKqGqY70L7gB5EabM8Dd5idnUmb+KMPsMV?=
+ =?us-ascii?Q?FvSvB00CaiEB0V+guK487Q547F6EiZUaRIZYcbjQ6rAOynMzv2mjybjAYCvp?=
+ =?us-ascii?Q?0qe1rjkc2VvG0R1DIFd/pPF59lYZPNvt7gkBgWoGf54PK3qBvbDGnv8lk8Yh?=
+ =?us-ascii?Q?hWBXNnl0tRxT/5vJuBVOPM5b7t+S1H75RRFQsIFxYuO7KAW6/uqazJR2IOHY?=
+ =?us-ascii?Q?YDYWVKPGCdC1v1nokIbzvl3N66eK7Yr1ZNlefPod8bJjMbqGWr2X4x19BG+9?=
+ =?us-ascii?Q?FMLlPpRG+j1oVie6WGSbpcHhiuBCLtPnlaqF8/ef50pOWU2GMG1c2AxC4zPV?=
+ =?us-ascii?Q?dMlE0LChjCwovdUK4jsPP5fpk5rxqXe/9qa15Dbr9SR3E/vYrXWnXyIXn1df?=
+ =?us-ascii?Q?1OpJ6JsbkpIyTvZBoxpzoCTEz7MOGBYiAWEEbSV+8GrjerwrKZNJGCXaMuq0?=
+ =?us-ascii?Q?tTMd92/+ECYCWsteivr0S9a1ROQq9tkfvrjjT/ldfmdReI9WXWbAsNJquEBi?=
+ =?us-ascii?Q?bN6WDJNvrgEsArlmff9MQptlwOmlZPY3IeiCkBIGXlQdLPlscO3NQembwfvM?=
+ =?us-ascii?Q?8nyBLD04UK1CckUb96uA6i2VzySrMHeOJFZncNrnYzNDBoJ7XIns558K3aib?=
+ =?us-ascii?Q?41T+4VErkerQm3oARLHDhfBLcWqEUlARR/u7e8kI7aGmoQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(7416005)(52116005)(1800799015)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?HZ5ICL68+hN91+1oynSJUNg5aX8dlC39Qt5PAvNEXu3ZPfDUQ8gqzhGjuJXf?=
+ =?us-ascii?Q?x6JOpDhjyXx9ApALyMI4vAt2VAtkBTSnxFtH+pcxnNVAXPNuj6z1pLBo3Iyh?=
+ =?us-ascii?Q?QUsz7aR6Ed+IradUk3mqZEY0TtzVu54CrQQwPNhkRyamOnxQRHHfglShPIa+?=
+ =?us-ascii?Q?eS4KvgYjpRMZZy+YWSjOH6Lang10l8jWuMZPP+nkURhXP/d6jcPDBTBok5Vq?=
+ =?us-ascii?Q?P5ElyJO2PKfz6gl0lHQd8EqPWEls1NQztdl/hmvieQHWzfNT3gSiXrllMn54?=
+ =?us-ascii?Q?kRX/+DE/tRWSmsYPMKt0ntgyjNVRb2RYw2OW6CTBBjDud0wHR1fUJ3Vs82M5?=
+ =?us-ascii?Q?grJ7RNLqegW7UNVJ5IXiNx1XtKimDA6B9qtZbzODEAKBmx+bxOADNC5hiktl?=
+ =?us-ascii?Q?w9G8LkXXsNkT4/SguZWs5Q1iK41faA/MdM2Z/ypcA0MHH5MHZ3JhaZ5Typjp?=
+ =?us-ascii?Q?/8592PTn74efXi65ITZd9neePbM6j9racydkhSMZ8GrY5rcTkjBU6Dw6qyHp?=
+ =?us-ascii?Q?NAqg/aLGLqXU/M2tmNKn0NvY8YiI/FCX2I60c50KBS8RhUjjdu8CkrRNGbZK?=
+ =?us-ascii?Q?EwJQZQJc+0GC5976chhzZhOm4A5zRZCkp+KjdZVQysQCD8+xC16Eq7Jmit+B?=
+ =?us-ascii?Q?t3OzztKyRxCJTT4D/M7cKmGPZEV1LvlLM03B3puMaewgqk1PR4zxqF8b0hdW?=
+ =?us-ascii?Q?9N2y8ngQAg59tv91gyFiu5skP3RTOHtiFDxbIsMJ/Ax8413l04tf9MFvwboP?=
+ =?us-ascii?Q?7w94LBJdZHTt4ESoT4zNSRNNJQDM37nQEUN31ORSlw2PVeLiw4YEU90s+FcK?=
+ =?us-ascii?Q?+H+PEeMYPs/8OjGJOiX11uuYpATkaAWmOi0cwF9y6ijPfikXxs/Q/L6rhWKy?=
+ =?us-ascii?Q?eoW9gbkVkByOIVoVtG28V+l3fBUwxo8mnDGppAMiGbqtFqdG+pclGgdQmMzp?=
+ =?us-ascii?Q?sbIG/jx2HQB1mmhBCqGc2HSTIaCbKwz6ztYx3NdrNqAZ3lmKxZgaXU1v/uUB?=
+ =?us-ascii?Q?Y8yY45MFCM2YzKz3CA8DJD6jygwwjqu3B/j+trMwWwE1HFzum0scxS+DDQ8T?=
+ =?us-ascii?Q?wYYVie92ohDMqzaS16YDUJz2P9JsIw5QDcsX1QHgZZORdLL99SnALB+MRuDC?=
+ =?us-ascii?Q?uSUcT4hx1fRX5h73CVz5cXbqajWxRqnbPfJexA8Ikum9i23LRyxm+cy3/k8M?=
+ =?us-ascii?Q?COVcRhPukE7aWgqpRCTDrhL9M9j1M26+Be9Uixe0irUdklzUC4ySQv1xCBRx?=
+ =?us-ascii?Q?OMALlvNCK9gLOVfbAYt6NDD01ySe5RWRhQBvWBN3QXbUcMOpNIviTN6l+pRd?=
+ =?us-ascii?Q?bSqmBiK8PmwcWUIh4k0T3TYmIMY6j8Cpign7e2XYTmPQqd4JmiA0hyiGWz35?=
+ =?us-ascii?Q?nEA7vu/hlPaDEUDiPKJvS6YoLWfMWzKP6dZHmr3sT1XhDwS+b+15V07QtpI9?=
+ =?us-ascii?Q?iKmhXk01OL6/F3mFgf9zh6HiCCn/CfSEFRhcKT2LvdNmjnCRkCIvBy5UsuoQ?=
+ =?us-ascii?Q?BaZiJjOERzrKJA7Fpz9REh9oRRrfxYoViphORukbup0FWM+crg1DVSv6UPfw?=
+ =?us-ascii?Q?W3FdGcs9ZJZo3lusxVv5QFuqFIr/eowhUvCgqa+o?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b281fe5-29ff-4a7d-23a3-08dc73c1e464
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2024 02:59:37.9526
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0rpqiOJMiZSmXsdO01upF6uaCoazLz/q3i/m9Grgft4uIvpFpSmQUhW1fTMqw/FeX0U4MNIR9Et9UpLz3poh/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10543
 
+We cannot use /delete-node/ directive to delete a node in a DT
+overlay.  The node won't be deleted effectively.  Instead, set
+the node's status property to "disabled" to achieve something
+similar.
 
+Fixes: eeb403df953f ("ARM: dts: imx53-qsb: add support for the HDMI expander")
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+---
+ arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso   | 6 ++++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
-On 5/14/2024 9:21 AM, Aiqun Yu (Maria) wrote:
-> 
-> 
-> On 5/14/2024 12:37 AM, Trilok Soni wrote:
->> On 5/13/2024 2:07 AM, Tengfei Fan wrote:
->>> QCS8550 is derived from SM8550. The differnece between SM8550 and
->>
->> spellcheck s/difference/difference
-
-Typos wil be modified.
-
->>
->>> QCS8550 is QCS8550 doesn't have modem RF system. QCS8550 is mainly used
->>> in IoT scenarios.
->>
->> IoT products and not scenarios.
-
-I will modify this description.
-
->>
->>> QCS8550 firmware has different memory map with SM8550 firmware.
->>
->> "QCS8550 firmware has different memory map compared to SM8550"
->>
->>
->> The
->>> memory map will be runtime added through bootloader.
-
-In the next version of the patch series, I will add "The" to make the 
-sentence's grammar more complete.
-
->>
->>
->>> There are 3 types of reserved memory regions here:
->>> 1. Firmware related regions which aren't shared with kernel.
->>>      The device tree source in kernel doesn't need to have node to indicate
->>> the firmware related reserved information. OS bootloader conveys the
->>
->> Just "Bootloader conveys the information by updating devicetree at runtime" ?
-
-I will modify this description.
-
->>
->>> information by update device tree in runtime.
->>>      This will be described as: UEFI saves the physical address of the
->>> UEFI System Table to dts file's chosen node. Kernel read this table and
->>> add reserved memory regions to efi config table. Current reserved memory
->>> region may have reserved region which was not yet used, release note of
->>> the firmware have such kind of information.
->>
->> I understand what you are trying to explain below, but can we simplify further? I
->> had to read multiple times to understand what you are trying to convey above.
->>
->>> 2. Firmware related memory regions which are shared with Kernel
->>>      Each region has a specific node with specific label name for later
->>> phandle reference from other driver dt node.
-> 
-> How about like this:
->   2. Firmware related memory regions which are shared with Kernel
-> The device tree source in the kernel needs to include nodes that
-> indicate firmware-related shared information. A label name is suggested
-> because this type of shared information needs to be referenced by
-> specific drivers for handling purposes.
-> 
->>> 3. PIL regions.
->>
->> Do we use the PIL - peripheral image loader in the upstream kernel or just remoteproc?
->> I am fine w/ PIL if it is used at other places in Qualcomm remoteproc.
-
-We are only used for remoteproc in the upstream kernel, and I will 
-remove the description related to PIL.
-
->>
->>>      PIL regions will be reserved and then assigned to subsystem firmware
->>> later.
->>> Here is a reserved memory map for this platform:
->>> 0x100000000 +------------------+
->>>              |                  |
->>>              | Firmware Related |
->>>              |                  |
->>>   0xd4d00000 +------------------+
->>>              |                  |
->>>              | Kernel Available |
->>
->> What is "kernel available" means?
-> 
-> It means not reserved memory, normal available memory from kernel point
-> of view.
-> 
->>
->>>              |                  |
->>>   0xa7000000 +------------------+
->>>              |                  |
->>>              |    PIL Region    |
->>>              |                  |
->>>   0x8a800000 +------------------+
->>>              |                  |
->>>              | Firmware Related |
->>>              |                  |
->>>   0x80000000 +------------------+
->>
->>> Note that:
->>
->> Do we need to write "Note that:" ?
-
-This "Note that:" will be removed.
-
->>
->>> 0xa7000000..0xA8000000 is used by bootloader, when kernel boot up,
->>> it is available for kernel usage. This region is not suggested to be
->>> used by kernel features like ramoops, suspend resume etc.
->>>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/qcs8550.dtsi | 169 ++++++++++++++++++++++++++
->>>   1 file changed, 169 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/qcom/qcs8550.dtsi
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550.dtsi b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
->>> new file mode 100644
->>> index 000000000000..a3ebf3d4e16d
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/qcs8550.dtsi
->>> @@ -0,0 +1,169 @@
->>> +// SPDX-License-Identifier: BSD-3-Clause
->>> +/*
->>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>> + */
->>> +
->>> +#include "sm8550.dtsi"
->>> +
->>> +/delete-node/ &reserved_memory;
->>> +
->>> +/ {
->>> +	reserved_memory: reserved-memory {
->>> +		#address-cells = <2>;
->>> +		#size-cells = <2>;
->>> +		ranges;
->>> +
->>> +
->>> +		/* These are 3 types of reserved memory regions here:
->>> +		 * 1. Firmware related regions which aren't shared with kernel.
->>> +		 *     The device tree source in kernel doesn't need to have node to
->>> +		 * indicate the firmware related reserved information. OS bootloader
->>> +		 * conveys the information by update device tree in runtime.
->>> +		 *     This will be described as: UEFI saves the physical address of
->>> +		 * the UEFI System Table to dts file's chosen node. Kernel read this
->>> +		 * table and add reserved memory regions to efi config table. Current
->>> +		 * reserved memory region may have reserved region which was not yet
->>> +		 * used, release note of the firmware have such kind of information.
->>> +		 * 2. Firmware related memory regions which are shared with Kernel.
->>> +		 *     Each region has a specific node with specific label name for
->>> +		 * later phandle reference from other driver dt node.
->>> +		 * 3. PIL regions.
->>> +		 *     PIL regions will be reserved and then assigned to subsystem
->>> +		 * firmware later.
->>> +		 * Here is a reserved memory map for this platform:
->>
->> Just check the comment above and it will apply here.
-
-Sure, I will modify these according to the comments above.
-
->>
->>> +		 * 0x100000000 +------------------+
->>> +		 *             |                  |
->>> +		 *             | Firmware Related |
->>> +		 *             |                  |
->>> +		 *  0xd4d00000 +------------------+
->>> +		 *             |                  |
->>> +		 *             | Kernel Available |
->>> +		 *             |                  |
->>> +		 *  0xa7000000 +------------------+
->>> +		 *             |                  |
->>> +		 *             |    PIL Region    |
->>> +		 *             |                  |
->>> +		 *  0x8a800000 +------------------+
->>> +		 *             |                  |
->>> +		 *             | Firmware Related |
->>> +		 *             |                  |
->>> +		 *  0x80000000 +------------------+
->>> +		 * Note that:
->>> +		 * 0xa7000000..0xA8000000 is used by bootloader, when kernel boot up,
->>> +		 * it is available for kernel usage. This region is not suggested to
->>> +		 * be used by kernel features like ramoops, suspend resume etc.
->>> +		 */
->>> +
->>> +		/*
->>> +		 * Firmware related regions, bootlader will possible reserve parts of
->>
->> spellcheck s/bootlader/bootloader
-
-Typos wil be modified.
-
->>
->>> +		 * region from 0x80000000..0x8a800000.
->>> +		 */
->>> +		aop_image_mem: aop-image-region@81c00000 {
->>> +			reg = <0x0 0x81c00000 0x0 0x60000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		aop_cmd_db_mem: aop-cmd-db-region@81c60000 {
->>> +			compatible = "qcom,cmd-db";
->>> +			reg = <0x0 0x81c60000 0x0 0x20000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		aop_config_mem: aop-config-region@81c80000 {
->>> +			no-map;
->>> +			reg = <0x0 0x81c80000 0x0 0x20000>;
->>> +		};
->>> +
->>> +		smem_mem: smem-region@81d00000 {
->>> +			compatible = "qcom,smem";
->>> +			reg = <0x0 0x81d00000 0x0 0x200000>;
->>> +			hwlocks = <&tcsr_mutex 3>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		adsp_mhi_mem: adsp-mhi-region@81f00000 {
->>> +			reg = <0x0 0x81f00000 0x0 0x20000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		/* PIL region */
->>> +		mpss_mem: mpss-region@8a800000 {
->>> +			reg = <0x0 0x8a800000 0x0 0x10800000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		q6_mpss_dtb_mem: q6-mpss-dtb-region@9b000000 {
->>> +			reg = <0x0 0x9b000000 0x0 0x80000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		ipa_fw_mem: ipa-fw-region@9b080000 {
->>> +			reg = <0x0 0x9b080000 0x0 0x10000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		ipa_gsi_mem: ipa-gsi-region@9b090000 {
->>> +			reg = <0x0 0x9b090000 0x0 0xa000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		gpu_micro_code_mem: gpu-micro-code-region@9b09a000 {
->>> +			reg = <0x0 0x9b09a000 0x0 0x2000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		spss_region_mem: spss-region@9b100000 {
->>> +			reg = <0x0 0x9b100000 0x0 0x180000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		spu_secure_shared_memory_mem: spu-secure-shared-memory-region@9b280000 {
->>> +			reg = <0x0 0x9b280000 0x0 0x80000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		camera_mem: camera-region@9b300000 {
->>> +			reg = <0x0 0x9b300000 0x0 0x800000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		video_mem: video-region@9bb00000 {
->>> +			reg = <0x0 0x9bb00000 0x0 0x700000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		cvp_mem: cvp-region@9c200000 {
->>> +			reg = <0x0 0x9c200000 0x0 0x700000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		cdsp_mem: cdsp-region@9c900000 {
->>> +			reg = <0x0 0x9c900000 0x0 0x2000000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		q6_cdsp_dtb_mem: q6-cdsp-dtb-region@9e900000 {
->>> +			reg = <0x0 0x9e900000 0x0 0x80000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		q6_adsp_dtb_mem: q6-adsp-dtb-region@9e980000 {
->>> +			reg = <0x0 0x9e980000 0x0 0x80000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		adspslpi_mem: adspslpi-region@9ea00000 {
->>> +			reg = <0x0 0x9ea00000 0x0 0x4080000>;
->>> +			no-map;
->>> +		};
->>> +
->>> +		/*
->>> +		 * Firmware related regions, bootlader will possible reserve parts of
->>
->> Ditto.
-
-Typos wil be modified.
-
->>
->>> +		 * region from 0xd8000000..0x100000000.
->>> +		 */
->>> +		mpss_dsm_mem: mpss_dsm_region@d4d00000 {
->>> +			reg = <0x0 0xd4d00000 0x0 0x3300000>;
->>> +			no-map;
->>> +		};
->>> +	};
->>> +};
-> 
-
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi
+index d80440446473..05d7a462ea25 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx53-qsb-common.dtsi
+@@ -85,7 +85,7 @@ led-user {
+ 		};
+ 	};
+ 
+-	panel {
++	panel_dpi: panel {
+ 		compatible = "sii,43wvf1g";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_display_power>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso b/arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso
+index c84e9b052527..151e9cee3c87 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso
++++ b/arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso
+@@ -10,8 +10,6 @@
+ /plugin/;
+ 
+ &{/} {
+-	/delete-node/ panel;
+-
+ 	hdmi: connector-hdmi {
+ 		compatible = "hdmi-connector";
+ 		label = "hdmi";
+@@ -82,6 +80,10 @@ sii9022_out: endpoint {
+ 	};
+ };
+ 
++&panel_dpi {
++	status = "disabled";
++};
++
+ &tve {
+ 	status = "disabled";
+ };
 -- 
-Thx and BRs,
-Tengfei Fan
+2.34.1
+
 
