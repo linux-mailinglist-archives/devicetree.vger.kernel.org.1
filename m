@@ -1,127 +1,218 @@
-Return-Path: <devicetree+bounces-66781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370E58C4AAA
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 02:53:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D155B8C4ABF
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 03:07:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0B551F218A8
-	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 00:53:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 074EF1C20D07
+	for <lists+devicetree@lfdr.de>; Tue, 14 May 2024 01:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD635136A;
-	Tue, 14 May 2024 00:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D81C15A8;
+	Tue, 14 May 2024 01:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P8+JsvFW"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Uf9gQv3T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FE1EDB;
-	Tue, 14 May 2024 00:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F797ED8;
+	Tue, 14 May 2024 01:07:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715647995; cv=none; b=rX4YAF4fxAL/cj9snjujwhakh72n4ZWVcuMgeyR7waFGIP3/gQPvg8OdhljN2SfOeDwB2KCMvOikp/piCjtSoiWZlCaj4URt/OrgFqcLQNJbic7oN11xEapEncPA0x5Idyd+8bMBGNSwR7HKa2rxHzD1rx1w7Bvx/xWQj8kfhYU=
+	t=1715648854; cv=none; b=U0M1daqSfHwuAsDD78gQRrtRQnXNC7ii0sMhRBQy5JSloeR1WN3PnSRF9TA9k/+UCaKLJ7SeGwoZOTVU6RnxQTlTus6DXTbJLlRsUC3JAJgL0x4zOsVYpts3gKy8bBcUH5u2k6s81CWxbn/dh7jJ5l9hcLFwm9tZ+tisNIlDPJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715647995; c=relaxed/simple;
-	bh=Xq2PX+DjyVLfvDVIvB+cYl66J5yHAtbZ2rA7GXILshw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=to+23OOuSm5Ys1OjmhSnE0N7usf/fx6UjkTFS/VQhiIphxh6OE3IXZVRtVsF015EZzgq7r7u0TJrLvyntWPjDh9lmTP8YH6hQS6ZTp/8nAqDY+ifiUQVRpUsxWD9nNPcWEA25iq+q0Kwl8Dp7GQxQYCiYo5SixTiIczenXqCpQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=P8+JsvFW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44DNr7Z3003327;
-	Tue, 14 May 2024 00:53:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=2J8a04BGf8A6Ka/nOnyeCwZH094HYnU/QGOxubC6yjA=; b=P8
-	+JsvFW/kNbq22cTykgRDEjgpTRfGRIOnxL648z4Wks4OqBRuIO3It1j6ZvUIogPy
-	qpUJK8M7J0Tyn0XNBrkY627saHDl/bCQaJC5Rk9yfnIiYATYpgZdn0HzLHWAGPUc
-	UJ/ctWcg0HuQ0sd46/GwwJ63yoJ9Pdumxmh/C+0B4Oc04l0UpBnfhOUlwmnEpsTN
-	Bp5uEBjrVMgXKwdxsLmOOzNYsZa8LyH7VnqvhMlCC3FMkNY4km9rw4QSLeEQDnjk
-	Ez+Nb6PjOuOgYwb6ol2PTjIu0ZH3ppSp43oQLyWgQnyT155cmyTCLILRpJJTBUJt
-	F9RY2ePAwKnDCuaQ4zHA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y21y7vu1w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 00:53:08 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44E0r8Q5024103
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 May 2024 00:53:08 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 May
- 2024 17:53:01 -0700
-Message-ID: <66e5bf06-6302-47f3-9bdd-5213a1e6c570@quicinc.com>
-Date: Tue, 14 May 2024 08:52:59 +0800
+	s=arc-20240116; t=1715648854; c=relaxed/simple;
+	bh=f3uKJl77S3XOtyuC/S9DUc5g9aTtxON73vg/NMUwG8I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TdPF3fXoyWS0naklc4zXNMqkoUXQ0gPs492G0u69+oLiWwNp+JmiUfRanHBAanQvzuYd/Z5vGT2ujp8RAwkULGe62BVOaRC4mD4Wx2tsurxDz64iTl6arRAFIV29Z8uLIw2lvWqaPaN7ZTbw6WkiAZc/xKHfwCHOYqLSM5DEJQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Uf9gQv3T; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id D24AF87CDA;
+	Tue, 14 May 2024 03:07:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1715648848;
+	bh=xa8qPwKZOCPA6/bJm4wN473IAF5TnUbKp0w2XO2euGc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Uf9gQv3TS2ZdvuTL4ueqYusy6VjZooHp2Umwz+LKpfP67fFq7AeUWlf5nxC7JquMa
+	 WCvnBbF6UH9Ek4d7p2tT+hiZIWQVcCgZS8li7GrHQwexqLYMLYxF+ETX9a2a4UP+ky
+	 QdB0Ef/gHRzHBilbVNWBEzcSO6zxFaAIpLc3aDGq9WoYGErUK4H3p20CyJuHnGNdOP
+	 QSfdguK/iOhK7hcN9cZeiApKO1NcDl/Jth2UduaKWh5H0fOyH4frlJZkG0YQuOuMdn
+	 T9d853XIJidH0Bft89HtfVa8z10rjMuSJqc+bL9JsvEVwmyKOWP1ucYtkHzO13NaMB
+	 SKF4O9kEzJnfg==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2 and PDK3
+Date: Tue, 14 May 2024 03:06:42 +0200
+Message-ID: <20240514010706.245874-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Move some common usb node
- settings to SoC dtsi
-To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20240513084701.1658826-1-quic_tengfan@quicinc.com>
- <829162d0-2fef-4bbc-9417-13e8ca96150c@kernel.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <829162d0-2fef-4bbc-9417-13e8ca96150c@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: FMliadLRU70OnW3eUV5eWWnHt4AjfGtj
-X-Proofpoint-GUID: FMliadLRU70OnW3eUV5eWWnHt4AjfGtj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-13_17,2024-05-10_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 phishscore=0 spamscore=0 bulkscore=0
- priorityscore=1501 adultscore=0 suspectscore=0 clxscore=1011
- mlxlogscore=874 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405140004
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
+Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
+I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
+of HDMI DDC mode to permit connection of other I2C devices on those buses.
+The pinctrl_hdmi node is part of the SoM DTSI already.
 
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+ .../boot/dts/freescale/imx8mp-dhcom-pdk2.dts  | 39 +++++++++++++++++++
+ .../boot/dts/freescale/imx8mp-dhcom-pdk3.dts  | 39 +++++++++++++++++++
+ 2 files changed, 78 insertions(+)
 
-On 5/13/2024 4:56 PM, Krzysztof Kozlowski wrote:
-> On 13/05/2024 10:47, Tengfei Fan wrote:
->> All the board dts which base on SM8550 SoC dtsi refer to usb_1_dwc3_ss,
->> usb_dp_qmpphy_usb_ss_in, orientation-switch and usb-role-switch, so move
->> them to SoC dtsi from board dts.
-> 
-> That's not really a good argument. Argument is that it is a SoC property
-> (vs being a property of a board). Provide rationale for that. You are
-> moving things just because they look common, so to me it looks really
-> unjustified.
-
-In the next version of the patch series, I will modify the commit 
-message to more accurately indicate why they need to be moved SoC dtsi.
-
-> 
->> OTG is default for dr_mode, so it can be dropped from board dts.
-> 
-> Separate patch, see submitting patches.
-
-In the next version of the patch series, I will separate this.
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+index 3b1c940860e02..ebdf13e97b4e2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+@@ -69,6 +69,18 @@ button-3 {
+ 		};
+ 	};
+ 
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		label = "X38";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_out>;
++			};
++		};
++	};
++
+ 	led {
+ 		compatible = "gpio-leds";
+ 
+@@ -184,6 +196,33 @@ &flexcan1 {
+ 	status = "okay";
+ };
+ 
++&hdmi_pvi {
++	status = "okay";
++};
++
++&hdmi_tx {
++	ddc-i2c-bus = <&i2c5>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_hdmi>;
++	status = "okay";
++
++	ports {
++		port@1 {
++			hdmi_tx_out: endpoint {
++				remote-endpoint = <&hdmi_connector_in>;
++			};
++		};
++	};
++};
++
++&hdmi_tx_phy {
++	status = "okay";
++};
++
++&lcdif3 {
++	status = "okay";
++};
++
+ &pcie_phy {
+ 	clock-names = "ref";
+ 	clocks = <&hsio_blk_ctrl>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+index ac7ec7533a3c8..ef012e8365b1f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+@@ -75,6 +75,18 @@ button-3 {
+ 		};
+ 	};
+ 
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		label = "X28";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_out>;
++			};
++		};
++	};
++
+ 	led {
+ 		compatible = "gpio-leds";
+ 
+@@ -248,6 +260,33 @@ &flexcan1 {
+ 	status = "okay";
+ };
+ 
++&hdmi_pvi {
++	status = "okay";
++};
++
++&hdmi_tx {
++	ddc-i2c-bus = <&i2cmuxed1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_hdmi>;
++	status = "okay";
++
++	ports {
++		port@1 {
++			hdmi_tx_out: endpoint {
++				remote-endpoint = <&hdmi_connector_in>;
++			};
++		};
++	};
++};
++
++&hdmi_tx_phy {
++	status = "okay";
++};
++
++&lcdif3 {
++	status = "okay";
++};
++
+ &pcie_phy {
+ 	clocks = <&pcieclk 1>;
+ 	clock-names = "ref";
 -- 
-Thx and BRs,
-Tengfei Fan
+2.43.0
+
 
