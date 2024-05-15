@@ -1,203 +1,202 @@
-Return-Path: <devicetree+bounces-67067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5D48C67B5
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC058C682B
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:01:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C2D41F21679
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 13:47:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B6ED1F23E0B
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E1F13EFEE;
-	Wed, 15 May 2024 13:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422D013F427;
+	Wed, 15 May 2024 14:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="nTULDYJt"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="Td6C1HQc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F35313EFE4
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 13:47:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F4C128379;
+	Wed, 15 May 2024 14:01:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715780844; cv=none; b=JnCMgcNNZ9JFf0cdCBef5MCQr0aITeBRf0ZgOLyrnY6YZC5f27VCmBXWvCBJOUTuPsVtmcXDpjIytbTWoFAxzdoeAQjf/oZRu7lY2vbrErk3+BpOgVSnkgusKuH9X0utIJmTEhzsbdPTojpR1w9uLHEao++EbEVoVE3/lR4cK3w=
+	t=1715781689; cv=none; b=qxwS6VT6nZgkQPU01ReOBljcOaHkm5qSHEtGBi+ndF9jrfxCQapZAfATap9k+TZ8JPPrmegbEynkHroZ437aKw4AS7R0AqSswmWcHLvOjGvK2rhiNo0baZG+1c/cCzhMFkmTe6sdQ9GKMhfy7Ju+rSFkEl44NiOn4W9eVSvnjF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715780844; c=relaxed/simple;
-	bh=xrhUxugfQmSronO7F7nFYQOsMiIyasnr75Y/dPgA2vQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PAn01eFLCA9asCy0sBEjLmEiZNdUC8HA7tzaKwc+MYo7FKmmGiJhyHqbVfBKtldE/a0PDFRWJ6ukwPMyNrBKyDdShNGx5EvYlVwGlSvqMVlVSM8KHcksANqpBR3qsjgeFg+HdKBQwINTiUg3PiLA8ZxDHmRJruJ3Ai8lAezgdHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=nTULDYJt; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF225975;
-	Wed, 15 May 2024 15:47:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1715780826;
-	bh=xrhUxugfQmSronO7F7nFYQOsMiIyasnr75Y/dPgA2vQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nTULDYJt7QoihhYWMNHga/yOs8nVYs4KB/g5CKPYPF5vztp3g7pYi2b5PdHQ2C9aI
-	 eNCCeq3YUEYuEsW4ZqOqr0UnUP5g7N1c2smlGOHiQPmSPDokypX8DuSb6MezvFE3De
-	 FCCTQv5dN9lDR1xeYAJxIrrMs0oulmtvIdjajaBs=
-Date: Wed, 15 May 2024 16:47:05 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Marek Vasut <marex@denx.de>
-Cc: devicetree@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
+	s=arc-20240116; t=1715781689; c=relaxed/simple;
+	bh=7+qaI3JiYI59CYRhmbzL8j7cV6PyJ9333GJlAGWXQQM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ZxpaaONxq2ULF98zwoqv3NgAFyTfVaYDg/zWXnJeqnhTU24c/i+l4tNzViScxCBw5YEoK6jEZpcpGyH8vQB24mwM/G1S7f112bi9HlHJpWCoNQsR3Uw3YFvia2kb72SuIfYRGxAlFWtqNF+YJ6xg96xpXcKnC/BigMEwtUU8PeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=Td6C1HQc; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 4A7719C5818;
+	Wed, 15 May 2024 09:54:21 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id fFMLMWQGlLgx; Wed, 15 May 2024 09:54:20 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id E10049C58EA;
+	Wed, 15 May 2024 09:54:19 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com E10049C58EA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1715781260; bh=9rD/3giniaHUn4tfYhFlufR+6C3wG/E6x6qDZI5qkbI=;
+	h=From:To:Date:Message-Id:MIME-Version;
+	b=Td6C1HQca4ZqBgvcF6hj2mgY9wXFWGbiyXP/Yp4HUmYsTdKKQqcLMmlsWdK1i3+Fy
+	 x9z2MdmShQG3NlTVhIXzYiKWXiHiDoaOLMA3Ms26RXmTReq52KGGP9VZJTd6HVQ2Iv
+	 wybi9Od8okL9AGj4fkgwhLaXZ7reXVDGQw4vPkk0+G5ndH6RSOtr7D/59u3CBG9o7J
+	 9Nnu2XO88JxrkB3qxOnVYPvGvYQnm17cAxPbANDSvchiUFll5FneSheUsjUoVWvgoG
+	 OEzv3gqVB3YFlPLvFKm15XRs6G98kHvwNJej+xhjjtc+LCChJAfOiTPtC0Dgq7/X21
+	 8vbun28p1Pj9g==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 3sJiTzQkGwk9; Wed, 15 May 2024 09:54:19 -0400 (EDT)
+Received: from gerard.rennes.sfl (lmontsouris-657-1-69-118.w80-15.abo.wanadoo.fr [80.15.101.118])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id CEC679C5818;
+	Wed, 15 May 2024 09:54:17 -0400 (EDT)
+From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>,
 	Fabio Estevam <festevam@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liu Ying <victor.liu@nxp.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Robert Foss <rfoss@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
-	kernel@dh-electronics.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: display: synopsys,dw-hdmi: Document
- ddc-i2c-bus in core
-Message-ID: <20240515134705.GA12169@pendragon.ideasonboard.com>
-References: <20240515062753.111746-1-marex@denx.de>
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+Subject: [PATCHv4 0/9] ASoC: fsl-asoc-card: compatibility integration of a generic codec use case for use with S/PDIF controller
+Date: Wed, 15 May 2024 15:54:02 +0200
+Message-Id: <20240515135411.343333-1-elinor.montmasson@savoirfairelinux.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240515062753.111746-1-marex@denx.de>
+Content-Type: text/plain; charset=quoted-printable
+Content-Transfer-Encoding: quoted-printable
 
-Hi Marek,
+Hello,
 
-Thank you for the patch.
+This is the v4 of the series of patch aiming to make the machine driver
+"fsl-asoc-card" compatible with use cases where there is no real codec
+driver. It proposes to use the "spdif_receiver" and "spdif_transmitter"
+drivers instead of the dummy codec.
+This is a first step in using the S/PDIF controller with the ASRC.
 
-On Wed, May 15, 2024 at 08:27:44AM +0200, Marek Vasut wrote:
-> The DW HDMI driver core is responsible for parsing the 'ddc-i2c-bus' property,
-> move the property description into the DW HDMI common DT schema too, so this
-> property can be used on all devices integrating the DW HDMI core.
+The five first patches add compatibility with the pair of codecs
+"spdif_receiver" and "spdif_transmitter" with a new compatible,
+"fsl,imx-audio-generic". Codec parameters are set with default values.
+Consequently, the driver is modified to work with multi-codec use cases.
+It can get 2 codecs phandles from the device tree, and the
+"fsl_asoc_card_priv" struct now has 2 "codec_priv" to store properties
+of both codecs. It is fixed to 2 codecs as only "fsl,imx-audio-generic"
+uses multiple codecs at the moment.
+However, the driver now uses "for_each_codecs" macros when possible to
+ease future implementations of multi-codec configurations.
 
-De-duplicating documentation is good :-)
+The three following patches add configuration options for the
+devicetree. They configure the CPU DAI when using
+"fsl,imx-audio-generic". These options are usually hard-coded in
+"fsl-asoc-card.c" for each audio codec. Because the generic codec could
+be used with other CPU DAIs than the S/PDIF controller, setting these
+parameters could be required.
+These new options try to follow the style of the simple-card driver:
+* standard TDM properties are used, as defined in "tdm-slot.txt".
+* the CPU DAI system-clock can be specified, allowing the codec to
+retrieve its frequency.
+* the CPU DAI system-clock direction can be specified through a new
+binding, the same way it is done in simple-card.
 
-I see no reason why this property should be disallowed on any of the
-platforms that integrate a DW HDMI (unless that platform has no other
-I2C controller, but I think we can ignore that in the bindings).
+The last commit updates the DT bindings documentation and add a new
+example for the generic codec use case.
 
-There could be platforms where the DW HDMI DDC pins are not exposed,
-making the ddc-i2c-bus property mandatory, but that's something for
-platform-specific bindings to handle by simply adding a
+This series of patch was successfully built for arm64 and x86 on top of
+the latest=C2=A0"for-next" branch of the ASoC git tree on the 14th of May
+2024.
+These modifications have also been tested on an i.MX8MN evaluation
+board, with a linux kernel RT v6.1.26-rt8.
 
-required:
-  - ddc-i2c-bus
+If you have any question or remark about these commits, don't hesitate
+to reply.
 
-That's a separate issue. This patch looks good to me.
+Best regards,
+Elinor Montmasson
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Liu Ying <victor.liu@nxp.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Robert Foss <rfoss@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: Update rockchip,dw-hdmi.yaml as well
-> ---
->  .../bindings/display/bridge/synopsys,dw-hdmi.yaml         | 8 ++++++++
->  .../devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml    | 8 --------
->  .../bindings/display/rockchip/rockchip,dw-hdmi.yaml       | 8 --------
->  3 files changed, 8 insertions(+), 16 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> index 4b7e54a8f037f..828709a8ded26 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> @@ -45,6 +45,14 @@ properties:
->        - const: isfr
->      additionalItems: true
->  
-> +  ddc-i2c-bus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      The HDMI DDC bus can be connected to either a system I2C master or the
-> +      functionally-reduced I2C master contained in the DWC HDMI. When connected
-> +      to a system I2C master this property contains a phandle to that I2C
-> +      master controller.
-> +
->    interrupts:
->      maxItems: 1
->  
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-> index 7979cf07f1199..180c4b510fb12 100644
-> --- a/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx6-hdmi.yaml
-> @@ -31,14 +31,6 @@ properties:
->    clock-names:
->      maxItems: 2
->  
-> -  ddc-i2c-bus:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -    description:
-> -      The HDMI DDC bus can be connected to either a system I2C master or the
-> -      functionally-reduced I2C master contained in the DWC HDMI. When connected
-> -      to a system I2C master this property contains a phandle to that I2C
-> -      master controller.
-> -
->    gpr:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> index 2aac62219ff64..9d096856a79a6 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> @@ -70,14 +70,6 @@ properties:
->            - vpll
->            - ref
->  
-> -  ddc-i2c-bus:
-> -    $ref: /schemas/types.yaml#/definitions/phandle
-> -    description:
-> -      The HDMI DDC bus can be connected to either a system I2C master or the
-> -      functionally-reduced I2C master contained in the DWC HDMI. When connected
-> -      to a system I2C master this property contains a phandle to that I2C
-> -      master controller.
-> -
->    phys:
->      maxItems: 1
->      description: The HDMI PHY
+Changelog:
+v3 -> v4:
+* Use the standard TDM bidings, as defined in "tdm-slot.txt", for the
+new optional DT bindings setting the TDM slots number and width.
+* Use the clock DT bindings to optionally specify the CPU DAI system
+clock frequency, instead of a dedicated new binding.
+* Rename the new DT binding "cpu-sysclk-dir-out" to
+"cpu-system-clock-direction-out" to better follow the style of the
+simple-card driver.
+* Merge TX an RX bindings for CPU DAI system-clock, to better follow the
+style of the simple-card driver, and also as there was no use case in
+fsl-asoc-card where TX and RX settings had to be different.
+* Add the documentation for the new bindings in the new DT schema
+bindings documentation. Also add an example with the generic codec.
+* v3 patch series at :
+https://lore.kernel.org/alsa-devel/20231218124058.2047167-1-elinor.montmass=
+on@savoirfairelinux.com/
 
--- 
-Regards,
+v2 -> v3:
+* When the bitmaster or framemaster are retrieved from the device tree,
+the driver will now compare them with the two codecs possibly given in
+device tree, and not just the first codec.
+* Improve driver modifications to use multiple codecs for better
+integration of future multi-codec use cases:
+    * Use "for_each_codec" macros when possible.
+    * "fsl_asoc_card_priv" struct now has 2 "codec_priv" as the driver
+    can currently retrieve 2 codec phandles from the device tree.
+* Fix subject of patch 10/10 to follow the style of the subsystem
+* v2 patch series at:
+https://lore.kernel.org/alsa-devel/20231027144734.3654829-1-elinor.montmass=
+on@savoirfairelinux.com/
 
-Laurent Pinchart
+v1 -> v2:
+* Replace use of the dummy codec by the pair of codecs spdif_receiver /
+spdif_transmitter.
+* Adapt how dai links codecs are used to take into account the
+possibility for multiple codecs per link.
+* Change compatible name.
+* Adapt driver to be able to register two codecs given in the device
+tree.
+* v1 patch series at:
+https://lore.kernel.org/alsa-devel/20230901144550.520072-1-elinor.montmasso=
+n@savoirfairelinux.com/
+
+
+Elinor Montmasson (9):
+  ASoC: fsl-asoc-card: add support for dai links with multiple codecs
+  ASoC: fsl-asoc-card: add second dai link component for codecs
+  ASoC: fsl-asoc-card: add compatibility to use 2 codecs in dai-links
+  ASoC: fsl-asoc-card: add new compatible for a generic codec use case
+  ASoC: fsl-asoc-card: set generic codec as clock provider
+  ASoC: fsl-asoc-card: add use of devicetree TDM slot properties
+  ASoC: fsl-asoc-card: add DT clock "cpu_sysclk" with generic codec
+  ASoC: fsl-asoc-card: add DT property "cpu-system-clock-direction-out"
+  ASoC: dt-bindings: fsl-asoc-card: add compatible for generic codec
+
+ .../bindings/sound/fsl-asoc-card.yaml         |  96 +++++-
+ sound/soc/fsl/fsl-asoc-card.c                 | 306 +++++++++++-------
+ 2 files changed, 287 insertions(+), 115 deletions(-)
+
+--=20
+2.34.1
+
 
