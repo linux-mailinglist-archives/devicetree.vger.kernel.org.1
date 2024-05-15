@@ -1,112 +1,174 @@
-Return-Path: <devicetree+bounces-67137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A568C6A9A
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:30:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79F78C6AAD
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61AEF1F23C6A
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:30:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6165F280F54
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52D21BF53;
-	Wed, 15 May 2024 16:30:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XtaHsBhM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A6613AF2;
+	Wed, 15 May 2024 16:34:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 938EC38382;
-	Wed, 15 May 2024 16:30:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0514F1392;
+	Wed, 15 May 2024 16:33:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715790608; cv=none; b=uAh0QFAl+NeU5RJ8K4hTDcMSy5t0ZSE/wC4bvkpQGe70gBam4705XYRjN578TEMKqN3T1Ljx/qKWHiYSaqG1gxbcH7u/N9U83TgHrrDboR9uHT7ujLmuHDVIN6dfsKDK5u2sXwDFaPRm82EXGJZFEpO1NPqD1kexZhzelCb8GZg=
+	t=1715790842; cv=none; b=QCICXFolli57D4HWCrEKxUqPOfC5uNSF6tdvlryzblVHqIqXgqeZgxTF+crJ9ZDAy7MEAeuDb3tl44vkSRgP9/nIzNV1qy5nt2K6V4WkoR4XouDodNxPVlL6F41Cu4RFbMZjdUPMNg0mkLdy4MC5/Xxb7CYR0UnExV10jmeUy3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715790608; c=relaxed/simple;
-	bh=b6uOhLr5+sNikINkdW52UqVYtu5Q8MJRE/rYI96Vk7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FS5yxPVPYYkHzKHw2J9232ZrW7X3B9Xxy2xYYXuskVWfVgR3Vx/kuKS1Nkz0jaKOX0MlsEIGeKEgD3Rq/sEnItbNEIwl5SkobIzoVKOMpIfc1NGxFneXzIaUOP5htMEL3E5x8yG2huMZhFiKzVmnNeErdthogIDxbBxaHNBgCNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XtaHsBhM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E881C116B1;
-	Wed, 15 May 2024 16:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715790608;
-	bh=b6uOhLr5+sNikINkdW52UqVYtu5Q8MJRE/rYI96Vk7k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XtaHsBhMDyJYm5SKHP6Fjz/B2vn3eXKF0hqyN8fTzRq3m+CH0ez+mlCv+xMz6NQCg
-	 Eg3YOAcg7GFEFRorZCOrAfO/fCU6aijvikwMRDWP9g43jMcqO9k51imp+BJWfvLZNt
-	 vFt8ZDojVHRS4+FrN4tCQCE/ocjf2zq0Q7d3hXVC2I5tXLen9RyCTRGwnWD/Ye/Lc3
-	 nQm6mTN2mClmV263HTxrs3qoKvs/cG/KSSid7qprGQdpGRt8+4HevwH/IgUspQq2+q
-	 i/8t2Jp8ZN9CtAn75sbrQuDbu65qVMOnIgqhB6Ar1dQ46d6CPrCSmUt2yatplQPvER
-	 TUtpxKRQpRAdA==
-Date: Wed, 15 May 2024 17:30:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
-Message-ID: <20240515-reorder-even-8b9eebd91b45@spud>
-References: <20240507065319.274976-1-xingyu.wu@starfivetech.com>
- <20240510-unfounded-syrup-d1263d57d05a@spud>
- <NTZPR01MB0956D48361098E8AA4B3930A9FE02@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
- <20240511-unbiased-dainty-ccb5ece9b1b9@spud>
- <NTZPR01MB0956A7393097129D3CD048EB9FE32@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
- <20240514-congenial-smother-1e4b0fc6a5df@spud>
- <NTZPR01MB0956CF1AA9EA5A20A174FD8A9FEC2@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1715790842; c=relaxed/simple;
+	bh=LstZVtS7mTOW34aC+wGMxQNmFlltAtZihtWnahDgL14=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=b11OlA3Opa0ykECHvka72HJrYz6dfIdcL7JNistCUaiDsS73XhYbGjz9bYFGzEyYBY2bevK7lAnu28+vLvWo+g+2c0AO8qpPyV2oDAHm8R7InPcnaxgPprQ9kFH+le100UF4RdQ+l/tlbJpzWSuTB/930AXwzAfR64SCIxOwUzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b5d.versanet.de ([83.135.91.93] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1s7HZD-00078Z-Sj; Wed, 15 May 2024 18:33:23 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: display: vop2: Add VP clock resets
+Date: Wed, 15 May 2024 18:33:22 +0200
+Message-ID: <2182693.irdbgypaU6@diego>
+In-Reply-To: <20240515-risk-exes-13db315da6bb@spud>
+References:
+ <20240514152328.21415-1-detlev.casanova@collabora.com>
+ <20240514152328.21415-4-detlev.casanova@collabora.com>
+ <20240515-risk-exes-13db315da6bb@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0esYplcxwawkbSl6"
-Content-Disposition: inline
-In-Reply-To: <NTZPR01MB0956CF1AA9EA5A20A174FD8A9FEC2@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Am Mittwoch, 15. Mai 2024, 18:19:29 CEST schrieb Conor Dooley:
+> On Tue, May 14, 2024 at 11:19:47AM -0400, Detlev Casanova wrote:
+> > Add the documentation for VOP2 video ports reset clocks.
+> > One reset can be set per video port.
+> > 
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> 
+> Are these resets valid for all VOPs or just the one on 3588?
+
+Not in that form.
+I.e. rk3588 has 4 video-ports (0-3), while rk3568 has 3 (0-2).
+
+So the binding should take into account that rk3568 also has the
+SRST_VOP0 ... SRST_VOP2.
 
 
---0esYplcxwawkbSl6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Also, I guess we might not want to limit ourself to stuff we use?
+I.e. the new VOP-design is one block with multiple video-ports
 
-On Wed, May 15, 2024 at 02:23:47AM +0000, Xingyu Wu wrote:
-> On 15/05/2024 02:08, Conor Dooley wrote:
+So for rk3568 I see
+#define SRST_A_VOP
+#define SRST_H_VOP
+#define SRST_VOP0
+#define SRST_VOP1
+#define SRST_VOP2
 
-> > There's a push in U-Boot to move devicestrees to use "OF_UPSTREAM", which
-> > means importing devicetrees directly from Linux and using them in U-Boot. I
-> > don't really want to merge a patch that would present U-Boot with a problem if
-> > the VisionFive 2 moved to that model there.
+similarly rk3588 has
 
-> Would it be better  if I  change the rates of PLL0 and CPU core in the driver not dts,
-> and avoid the dts of Linux and U-Boot being different?
+#define SRST_H_VOP
+#define SRST_A_VOP
+#define SRST_D_VOP0
+#define SRST_D_VOP1
+#define SRST_D_VOP2
+#define SRST_D_VOP3
 
-I'd definitely prefer if we don't include stuff in the kernel tree that
-would cause problems for U-Boot if imported there, yeah.
+as generalized reset lines.
 
 
---0esYplcxwawkbSl6
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkTjCwAKCRB4tDGHoIJi
-0mXdAP45Fq2HjIOOGuw/DNTX8COHl/M4Og4CCDPl9ZvpBSrKhAEAnXj3M2a41LKv
-r68Iay0nVDI4wfm5b+vYD81nKcHouwo=
-=t5CG
------END PGP SIGNATURE-----
 
---0esYplcxwawkbSl6--
+> 
+> > ---
+> >  .../display/rockchip/rockchip-vop2.yaml       | 27 +++++++++++++++++++
+> >  1 file changed, 27 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> > index 2531726af306b..941fd059498d4 100644
+> > --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> > +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> > @@ -65,6 +65,22 @@ properties:
+> >        - const: dclk_vp3
+> >        - const: pclk_vop
+> >  
+> > +  resets:
+> > +    minItems: 3
+> > +    items:
+> > +      - description: Pixel clock reset for video port 0.
+> > +      - description: Pixel clock reset for video port 1.
+> > +      - description: Pixel clock reset for video port 2.
+> > +      - description: Pixel clock reset for video port 3.
+> > +
+> > +  reset-names:
+> > +    minItems: 3
+> > +    items:
+> > +      - const: dclk_vp0
+> > +      - const: dclk_vp1
+> > +      - const: dclk_vp2
+> > +      - const: dclk_vp3
+> > +
+> >    rockchip,grf:
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> >      description:
+> > @@ -128,6 +144,11 @@ allOf:
+> >          clock-names:
+> >            minItems: 7
+> >  
+> > +        resets:
+> > +          minItems: 4
+> > +        reset-names:
+> > +          minItems: 4
+> > +
+> >          ports:
+> >            required:
+> >              - port@0
+> > @@ -183,6 +204,12 @@ examples:
+> >                                "dclk_vp0",
+> >                                "dclk_vp1",
+> >                                "dclk_vp2";
+> > +                resets = <&cru SRST_VOP0>,
+> > +                         <&cru SRST_VOP1>,
+> > +                         <&cru SRST_VOP2>;
+> > +                reset-names = "dclk_vp0",
+> > +                              "dclk_vp1",
+> > +                              "dclk_vp2";
+> >                  power-domains = <&power RK3568_PD_VO>;
+> >                  iommus = <&vop_mmu>;
+> >                  vop_out: ports {
+> 
+
+
+
+
 
