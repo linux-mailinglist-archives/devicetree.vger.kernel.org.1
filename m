@@ -1,198 +1,202 @@
-Return-Path: <devicetree+bounces-67174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF148C6DB3
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:17:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 124008C6DC3
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:23:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7ADCAB22DA8
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:17:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43E961C22291
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E7115B145;
-	Wed, 15 May 2024 21:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155DE15B561;
+	Wed, 15 May 2024 21:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bHKjO6+a"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="MPP15BOP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FADF15B132
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 21:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8439A15B54F
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 21:23:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715807841; cv=none; b=Sb/14YOKSoRBpulxsJHpjkXqsRPxtUR6llimDc8HMV39C0u590mdC6FYX1/0FBgbju0bmb8iMPmpy4glzHLMCoC9Yv4mPWO/+JBfKc0JyoqxLNce4biu03Ok7ykl5kiA+oTMw6oliXF0XckdEgmzFr0rgDxs7PNGO4Kh1e/2SZk=
+	t=1715808214; cv=none; b=EUEou7DKjeu1JYdAqrrHO+G9PykoU1CvmexSBzDuXNDNRMH5pwlu0344cOxUOEZExaKY7OOn5vemPmit0ELntpwMPtAi4qMdmtDPelKW8eSald4/qaTEYxk3CZ7CHfmxDBLS0hqqQIL34NVjenXCOTKUh4BUOR2BZ+XDFWvdN3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715807841; c=relaxed/simple;
-	bh=1uPoM8M5AFnNA/aSK75lckJJ0XXBCxElxSBf+HLF4/Q=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ChlVG/qw06o8ntsDT14K6wSOdWENDivBgyFNDREgPG7kYDFdLWXj9j0hD5rZelNVIq1OxdK7H5xcKH/T3pJqpMRrZf4HN7E7iLT2oi12Bka22csY9nvOYUCQjBV1T03m1JyTZKmwJo1Z2YD6HHZPK2HZAHN+18e8XInOdq0Q2Z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bHKjO6+a; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-34da04e44a2so5743386f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 14:17:19 -0700 (PDT)
+	s=arc-20240116; t=1715808214; c=relaxed/simple;
+	bh=0bZrMTEzSJyGLU+1iaAm3gzS/iAMcqebq3Gza9P4igE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QohlDQW7RYaaaKZoUWRlMhgnQCxPPpij5joMgerpSlFmvcKkMcXi3X3zdtTRmeeaxF8yzCihLWuzsIsAbkAL5sWN9jpVaIurwMNmnMhTbugte4DN6Uk7lHvLMcPBQ3CeqRpnL9nlB1OiivNt7w95zI/0KsFw2AHNYM9oOSTYWbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=MPP15BOP; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-43dfe020675so2310001cf.0
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 14:23:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715807838; x=1716412638; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=D0ecu82tuX1ni98ypLLsTpUA0kFlxPhIqL4+3/EGxOA=;
-        b=bHKjO6+aDOUhEVD+aJCFXw6ntVRO0vX9hU9v85U6XbKR8WLrcyEGvwcny8k5PTjVwn
-         /aFeRmHJeMYD6afjYvFydPsAHsQcCUXOOmcy318HuqXQpxrzoYSk/Sxn8XzOtAZNpg7b
-         CrMRjp1UChcveu8KMLq/B9p46mqcrcIiAXkpfk+ZsU5UbMozSyl7stzcOf+e1G8aRpv7
-         ERP64mWqnhFuL8PGsRCpBVZyc1sfFzVN5oEFexfQ1ZII1dYK0RCKQi25FmAuh80GzLVH
-         6eog7+kOBs6Mij1A6Bu9rvJnOxnHpbQ7wjoLdqr3y6wy/PMMUG74vgjFoJbvpU7qlggI
-         t4Vw==
+        d=google.com; s=20230601; t=1715808211; x=1716413011; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WD8+IMzeNqwu8PcRhXHvU51M3Wk2fj6yp4uWJzohC/s=;
+        b=MPP15BOPm3iwWR/wYnh5r9cwCslJmni9JNAPFHX2b+VdPKiNW+KEdX+qLEYILcOtN5
+         L+exKB3IO1ThjX509+XHxo5cJazFeJ8uopYo+z98nZu54LO2DX2UDNArbaNnxnvL7hOv
+         6b4rREDjdTgmIl80XCd9/WcWmIi+Lids3qD1HUi/5B+sOVMpTiMIIqkwdpqkZcXQHIc0
+         7j9mHhykTxTFrqfj1sIr0GOeuXAdpc81KPKtXc/LsvV/utqx7KdMsrhi6y6QOqs0eu4k
+         kyli2BIH8EGK/sIqGI7Ao2vGUevu7neTWbtGhYuBhNVDDmnTk6sjPeMBcQoTz+JUu2Un
+         FSUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715807838; x=1716412638;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=D0ecu82tuX1ni98ypLLsTpUA0kFlxPhIqL4+3/EGxOA=;
-        b=qedK8oYIpzfu0i/nlcC8uz0jDNmlmFz6TzGu+VVpfnnXFd7P0wCCttUW9McL3aMVom
-         y/yqhbRzQK6XujEh+R4Iabv9LQddYXW9B1J9XVdMwQ2VUJJKIsAyIFC1VgQ+LrBGYO63
-         sWXVRhz88qJbkCXePJ8NmQHUXAQUY9aoCeADntYjoWfPGN8XYvT7Lz6LDYdxFpT5tZfb
-         zbQRXBRJ3ZZKLMK9kRnwQQjHQq8thjCFCgfaAnPEBsKDkhShTA0Uc1Qm6pN1ZaTDn719
-         UYgSfPmZguJPppKn5B7w1ZmfdzPsgG9F1GB9Y3qe0id9K2I+dgK31BygXPWMMbtZ2ymi
-         dZhg==
-X-Forwarded-Encrypted: i=1; AJvYcCWmPCy0iJg7TNs8ymxTTZEnA632+PQedEIGfFLZQUF3o4hvxlhaQ5BrqJmuZTycP9HjJS8OtBnts9AhwZXxxtHh2Uu0Bv4zWCcyRQ==
-X-Gm-Message-State: AOJu0Yx5Lv8zg9bKoTBW2o0kdQifxL+r5o2OxbIwQfK0SEO9Gjgyp29p
-	KpHMSsE5DjSiAsu1mE5n6YQ1PtcHmJFbv37rO/93L7RZjIsj0TTcTZsCttCoU0A=
-X-Google-Smtp-Source: AGHT+IH8Iu67CkoC7/nlTrdtjmS8OSpJsiAUHCgKh2Xh/6pKxrhVkmBbpcisbLl6bNrjDPNWu/keEw==
-X-Received: by 2002:adf:f791:0:b0:343:8e85:dd7c with SMTP id ffacd0b85a97d-3504a9580bamr12811320f8f.55.1715807837876;
-        Wed, 15 May 2024 14:17:17 -0700 (PDT)
-Received: from [10.1.2.176] ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502bbbca98sm17355196f8f.112.2024.05.15.14.17.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 May 2024 14:17:17 -0700 (PDT)
-Message-ID: <eb65ad1a-04df-42bf-8683-ba8876bb885e@linaro.org>
-Date: Wed, 15 May 2024 23:17:16 +0200
+        d=1e100.net; s=20230601; t=1715808211; x=1716413011;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WD8+IMzeNqwu8PcRhXHvU51M3Wk2fj6yp4uWJzohC/s=;
+        b=CiHA3czFtsgB0499tl/Tcb1VE4DPK7Txaz8B8UuzE+83c+xd8nz/+IPFy+Aiduw/gq
+         Lb3IeLf4p6smpiN6NVWgt1PGl9SXyacE8LWgq1G623yTmLtyaqxWAlwM1aMM8HxknXu5
+         G3rYYopGXdJ1kW8BeCNh+/MSrtMH0nyvY2/9B5M+oPJn92YsU2pPunXkh8jeYaiwEGC8
+         AXxHfwKLSdORo6M2KsYK/kuLFTYncUM7z6MnIuUetCB+fbiSsb5STBJoQx2KB/2zRona
+         dfaekpquxZHrbvMW5WNfiqrwB1GItEwOohGkHMs/qE0MqVohLOrsQCv7pkcwxMFTst4n
+         mSjA==
+X-Forwarded-Encrypted: i=1; AJvYcCXZAxrLssPX8Z/+7RwxkN/6pdbwTid92rA2kATguD1tY4SizfjNGo6d7u5RZFjwsFcKTTzUmmxZ/bRdEs978mL1+tOqX/jxEWzX9A==
+X-Gm-Message-State: AOJu0YyDS/Mn1EM9TAA9Wqiu+bL1wiSQejm7U76Y6h2Dcf24onmb5mE7
+	FOX5qV7NMeCWhJAe9eAxGuVeUY/CuG+4oLQcEYQeBgAWLRrhrt8OYu9Fufme5njVYRdRBOxh+ij
+	hD+SB3Ltv+JC4GLpU63L7OhoSndkirYpM14+l
+X-Google-Smtp-Source: AGHT+IFue5emqn/LHFSNZRtEGFcdNSYph/nzud89n5KuMeGSGlxgBJoiiSYYM0QRBPNuiIt4RuBBVKxDfiozpMKM1TI=
+X-Received: by 2002:a05:622a:4108:b0:43a:b51c:46ca with SMTP id
+ d75a77b69052e-43e0a2ea43fmr16263881cf.29.1715808202330; Wed, 15 May 2024
+ 14:23:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 6/6] drm/panel: simple: Add Microtips Technology
- MF-103HIEB0GA0 panel
-To: Aradhya Bhatia <a-bhatia1@ti.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Liu Ying <victor.liu@nxp.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
- Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
-References: <20240515095133.745492-1-a-bhatia1@ti.com>
- <20240515095133.745492-7-a-bhatia1@ti.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240515095133.745492-7-a-bhatia1@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240515202915.16214-3-shresthprasad7@gmail.com>
+In-Reply-To: <20240515202915.16214-3-shresthprasad7@gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Wed, 15 May 2024 23:22:42 +0200
+Message-ID: <CAGETcx9Bq2=4OiqZndWaW+ZVcDv5sXOEpd2YHzZ_SYBxKf54dw@mail.gmail.com>
+Subject: Re: [PATCH][next] of: property: Remove calls to of_node_put
+To: Shresth Prasad <shresthprasad7@gmail.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com, 
+	julia.lawall@inria.fr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 15/05/2024 11:51, Aradhya Bhatia wrote:
-> Add support for Microtips Technology USA MF-103HIEB0GA0 10.25"[0],
-> 1920x720, 8-bit TFT LCD with LVDS interface. Its a Dual-LVDS Panel and
-> does not support touch.
-> 
-> [0]: Panel Datasheet
-> https://simplespec.microtipsusa.com/uploads/spec/datasheetFile/2660/13-103HIEB0GA0-S_V1.0_20211206.pdf
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+On Wed, May 15, 2024 at 10:35=E2=80=AFPM Shresth Prasad
+<shresthprasad7@gmail.com> wrote:
+>
+> Add __free cleanup handler to some variable initialisations, which
+> ensures that the resource is freed as soon as the variable goes out of
+> scope. Thus removing the need to manually free up the resource using
+> of_node_put.
+>
+> Suggested-by: Julia Lawall <julia.lawall@inria.fr>
+> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
 > ---
->   drivers/gpu/drm/panel/panel-simple.c | 32 ++++++++++++++++++++++++++++
->   1 file changed, 32 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 3a0d8f0ff267..1b0a6b4e034c 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -3084,6 +3084,35 @@ static const struct panel_desc microtips_mf_101hiebcaf0_c = {
->   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
->   };
->   
-> +static const struct drm_display_mode microtips_mf_103hieb0ga0_mode = {
-> +	.clock = 93301,
-> +	.hdisplay = 1920,
-> +	.hsync_start = 1920 + 72,
-> +	.hsync_end = 1920 + 72 + 72,
-> +	.htotal = 1920 + 72 + 72 + 72,
-> +	.vdisplay = 720,
-> +	.vsync_start = 720 + 3,
-> +	.vsync_end = 720 + 3 + 3,
-> +	.vtotal = 720 + 3 + 3 + 2,
-> +};
-> +
-> +static const struct panel_desc microtips_mf_103hieb0ga0 = {
-> +	.modes = &microtips_mf_103hieb0ga0_mode,
-> +	.bpc = 8,
-> +	.num_modes = 1,
-> +	.size = {
-> +		.width = 244,
-> +		.height = 92,
-> +	},
-> +	.delay = {
-> +		.prepare = 50,
-> +		.disable = 50,
-> +	},
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-> +};
-> +
->   static const struct drm_display_mode mitsubishi_aa070mc01_mode = {
->   	.clock = 30400,
->   	.hdisplay = 800,
-> @@ -4726,6 +4755,9 @@ static const struct of_device_id platform_of_match[] = {
->   	}, {
->   		.compatible = "microtips,mf-101hiebcaf0",
->   		.data = &microtips_mf_101hiebcaf0_c,
-> +	}, {
-> +		.compatible = "microtips,mf-103hieb0ga0",
-> +		.data = &microtips_mf_103hieb0ga0,
->   	}, {
->   		.compatible = "mitsubishi,aa070mc01-ca1",
->   		.data = &mitsubishi_aa070mc01,
+> I had submitted a similar patch a couple weeks ago addressing the same
+> issue, but as it turns out I wasn't thorough enough and had left a couple
+> instances.
+>
+> I hope this isn't too big an issue.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+I didn't see the previous patch from a couple weeks ago, but this
+patch looks good.
+
+Reviewed-by: Saravana Kannan <saravanak@google.com>
+
+-Saravana
+
+> ---
+>  drivers/of/property.c | 27 +++++++++++----------------
+>  1 file changed, 11 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 17b294e16c56..96a74f6a8d64 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -773,15 +773,14 @@ EXPORT_SYMBOL(of_graph_get_port_parent);
+>  struct device_node *of_graph_get_remote_port_parent(
+>                                const struct device_node *node)
+>  {
+> -       struct device_node *np, *pp;
+> +       struct device_node *pp;
+>
+>         /* Get remote endpoint node. */
+> -       np =3D of_graph_get_remote_endpoint(node);
+> +       struct device_node *np __free(device_node) =3D
+> +                           of_graph_get_remote_endpoint(node);
+>
+>         pp =3D of_graph_get_port_parent(np);
+>
+> -       of_node_put(np);
+> -
+>         return pp;
+>  }
+>  EXPORT_SYMBOL(of_graph_get_remote_port_parent);
+> @@ -835,17 +834,18 @@ EXPORT_SYMBOL(of_graph_get_endpoint_count);
+>  struct device_node *of_graph_get_remote_node(const struct device_node *n=
+ode,
+>                                              u32 port, u32 endpoint)
+>  {
+> -       struct device_node *endpoint_node, *remote;
+> +       struct device_node *endpoint_node __free(device_node) =3D
+> +                           of_graph_get_endpoint_by_regs(node, port, end=
+point);
+> +
+> +       struct device_node *remote __free(device_node) =3D
+> +                           of_graph_get_remote_port_parent(endpoint_node=
+);
+>
+> -       endpoint_node =3D of_graph_get_endpoint_by_regs(node, port, endpo=
+int);
+>         if (!endpoint_node) {
+>                 pr_debug("no valid endpoint (%d, %d) for node %pOF\n",
+>                          port, endpoint, node);
+>                 return NULL;
+>         }
+>
+> -       remote =3D of_graph_get_remote_port_parent(endpoint_node);
+> -       of_node_put(endpoint_node);
+>         if (!remote) {
+>                 pr_debug("no valid remote node\n");
+>                 return NULL;
+> @@ -853,7 +853,6 @@ struct device_node *of_graph_get_remote_node(const st=
+ruct device_node *node,
+>
+>         if (!of_device_is_available(remote)) {
+>                 pr_debug("not available for remote node\n");
+> -               of_node_put(remote);
+>                 return NULL;
+>         }
+>
+> @@ -1064,19 +1063,15 @@ static void of_link_to_phandle(struct device_node=
+ *con_np,
+>                               struct device_node *sup_np,
+>                               u8 flags)
+>  {
+> -       struct device_node *tmp_np =3D of_node_get(sup_np);
+> +       struct device_node *tmp_np __free(device_node) =3D of_node_get(su=
+p_np);
+>
+>         /* Check that sup_np and its ancestors are available. */
+>         while (tmp_np) {
+> -               if (of_fwnode_handle(tmp_np)->dev) {
+> -                       of_node_put(tmp_np);
+> +               if (of_fwnode_handle(tmp_np)->dev)
+>                         break;
+> -               }
+>
+> -               if (!of_device_is_available(tmp_np)) {
+> -                       of_node_put(tmp_np);
+> +               if (!of_device_is_available(tmp_np))
+>                         return;
+> -               }
+>
+>                 tmp_np =3D of_get_next_parent(tmp_np);
+>         }
+> --
+> 2.45.1
+>
 
