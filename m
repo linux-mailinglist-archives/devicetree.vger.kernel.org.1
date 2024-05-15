@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-67172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD468C6DAC
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:17:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 488488C6DB0
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:17:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EC671C21353
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:16:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76BB1B224DF
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9F915B144;
-	Wed, 15 May 2024 21:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECF715B144;
+	Wed, 15 May 2024 21:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Anym1BH4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oIhLQExt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0650E155A57
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 21:16:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9A815B14E
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 21:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715807818; cv=none; b=cIm5ibcpB/hd094uRa3eKg49C2VFKgzENeOIOqk/T5YGTJbSSdnh9GhayNbDRykK6clCV13q5EHjMysxIWoYKrIlSURiJM39pqLQ2mxh1P0kGbVQ5edgAbcyN1B/ZD2F3d/4qi2ponCGkw8XSBkDPJthwf2xu5YAug8eBiMKnMQ=
+	t=1715807828; cv=none; b=gCUTVkFwZp8ZOf3G+AowRKbI4FXqGQ9pieqgsQ3rDd2KwuWJRy9jDB8C/eg6LN8e+zvkesCRZiLkXss6+yMEc/8vDJzA8LTNRx0II4YJhDDfcCnvjxf/8q63gqDz6gF1j+PEz5X1rW8FTBB8SCxL1GMOETIeEQ9rF9NwlGRwLhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715807818; c=relaxed/simple;
-	bh=6PDXEOf/kBufPSsrOCtvBapcjEUqnaQjXJDs/jKsvSk=;
+	s=arc-20240116; t=1715807828; c=relaxed/simple;
+	bh=fVu8teOm/cpL+PXaRt7rUtjUZJu9F5TcDV5Sv6zSvko=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=iYPZEqKlag24xxHQ/RYvciQZZBadYkVlip3k45v+xJZx4DMnkjdk0p1zFqQNdT2f3hug2ZfPAsbeUQUrpqfTkbTbV4sb3Usd2YGH7n/zRAlUqhMlWk9pcQXPYgOlz9dtnl8PVRKDbRUALCh/VEn4ubfcM5m3u/h97poBwNRzVkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Anym1BH4; arc=none smtp.client-ip=209.85.221.45
+	 In-Reply-To:Content-Type; b=YFLIgVRatdq0X3yVfnnHHNPXR0m6ngePRROzuv+Vk0+e4s/+t3sr04bKPE0EMHrOBzPdoXDWx9p30mgKE7IrZjdZIVtm/cxjW2nbt9bSxqegtCx/qB4OZ1Vee2bzA6mWZcHTpeVPv+bW3FucCBbz8NcBlatgwOjLzZOo4sDdsZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oIhLQExt; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-34db9a38755so6902049f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 14:16:56 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-34dc8d3fbf1so6048644f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 14:17:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715807815; x=1716412615; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1715807825; x=1716412625; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uO72t1z4PhC45RlSB4zxjIXXfxmOyzDDnn9KfpOoEe4=;
-        b=Anym1BH4e7XlSZKIxxfAUsBT1knjDmOFjyZ2/wDHK7oSAHIK6EWujl3TOyRINpgtM1
-         W3oHzBNxNHQYd2EudhAbG78uzCbfktqUc9u9NOISgjGmicFY/OyDv4stjOuHMSsyiP2k
-         D4R+6UjJdEe2hK/XYK7hZ2EVgvMrx8FTX3KvXBCuYFBSQNRkLTUREVb/FoKqI3DVB3rp
-         JRub84KQCjyQC4LOWbsXFQcisIPDmtPdmojW2CeTfbZViZrQfsMt5ocAzQ0ftj98KxfV
-         d4+m/4CdL/19aHcgJprwopMuh1MXLEh4/bjjYz0lTirG5aj7lPj6VwVZeLVV7HVOPt+o
-         B/vQ==
+        bh=vBWhsyX9LLmi6Zfn+QHqsSBYed60uZAgbYOF3wTL9Z8=;
+        b=oIhLQExtwRFW2cNHBzbrHJpiZKG2XUktjDc5b5xPTOrofxNnqeR5Gk8KPZGALiQwDh
+         YBnaZ0rqApAHyisPdavFv8PLWckoVDdFS5blyF85dSFc9HIVTnCcwfCajUDqT7+kqwA5
+         t3pOWfw0Zl9R0MfuI/QhktoR7g/6w5Xp4uLmPXJ7XP+5SLvAuwbEWI4g9IET+k3DbzYg
+         Uv+B6mu6yW5mFd20E72/qzUgxPPGXwc2XwLoCeZfrgjV0yEHYzLBN786N71exJBoOUQC
+         L2GnU2Q9elOrCeswKJUoijGagom8BZn6i9NcnjA9h8BHouqf3tCoQ0dTpvt14SZpf2uP
+         Sn1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715807815; x=1716412615;
+        d=1e100.net; s=20230601; t=1715807825; x=1716412625;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=uO72t1z4PhC45RlSB4zxjIXXfxmOyzDDnn9KfpOoEe4=;
-        b=J+4cgTAHiBMT3d2w6KMSgG+K7yv1aXPAoFZ65XZ+ZME3/If2jV0wmKE88gB5lO9Rdf
-         wkURTDiTvTysuaf1rWTXU7H5+VbAjrZiM1/GjQgBgnf1pQ1jVEL9dxpxgyV7C/PHnMLi
-         bJ+HMXNzcEdc+zEUgBbSEvkXx1XatFm7NiZ0+9vt5xKq4L6ThAlks4H/I7/B2T5Cp4n5
-         4qqon0gcA42Y6DRFrL1gE38XwcL+RdQpCkqXCwNJ9R67F3BwMaLkDhh0/7o0YRFx4jQ+
-         Ry6AvEh1IgsVe5KNd+Yqby15DP7qrUoOmNsec4kTH7nDn9zSzFeBnRDY0JsSuOO3imFg
-         hJ5w==
-X-Forwarded-Encrypted: i=1; AJvYcCXRwXgWo7Mbb5ZPT7XwKULJr10NTbfqz95wc91UFr753ob9hey9n5TlugeKFPds+Cc/+kmPmuod6vY0Vm0XSfHeVpX1RfM5mlwDUg==
-X-Gm-Message-State: AOJu0YyRCHEATNfgjnNM7X9Zy9GfZuVQYehexC7h5H1UAEVqalfm1iHT
-	Y/4C7Z82BTHiErx4sli6fN4oh0I/Wavskc1CMqFN44XMsvLGwMqQr35N7R96aWw=
-X-Google-Smtp-Source: AGHT+IEUctWvzTXBDh1cypHW7Zi5V2fUkv/hXY0KH6Mc4+fNR34ZBg14Lrsy8sjgxwL6kcVno6FY0A==
-X-Received: by 2002:a05:6000:1968:b0:34d:707c:922a with SMTP id ffacd0b85a97d-3504a6310bbmr16846290f8f.13.1715807815272;
-        Wed, 15 May 2024 14:16:55 -0700 (PDT)
+        bh=vBWhsyX9LLmi6Zfn+QHqsSBYed60uZAgbYOF3wTL9Z8=;
+        b=RnbZCPYK6xekrJj3QI/sO3hAeIs1AiYKfc9RhA2yLaiNSq88t2gpI08oRTXsvyDYh4
+         a+X9UDzIJdQlMkJWqYNlyhTGKrS6x87PAAjESpt8MRAYHT2hGPhwWnVWm5L2jg2FxxgI
+         OrmoFYKMWv8Bdf/sIjwZQvsyrF4/b1ZBA7bV4gaE/A4iP8m+JJvM/sSSzxUhD8sYtHkl
+         FyIMtyqGeLr0BZP5k/EVE5yc8gdeLgKhG0P/hrg4KohKPxad+zcmGBsVuOKxb1Ty141Z
+         RNeuz4FnMlgUvhqbwpXdms/y/Pon1JdAxzt7Ftb8sNQAgiIrR+ozjeR97Bg4Bp5EN4ij
+         cQaA==
+X-Forwarded-Encrypted: i=1; AJvYcCXOKELP9G47KYZTFE55j8VWCcmy8IwcMSPFX0IylxE3XpftggOuZOwCIfGKCOy4je5Vqs00geV54QDDeW5tlyUCKopBhMJKBupdUQ==
+X-Gm-Message-State: AOJu0Yxly+mUthjGVDS2+C7JIS+KQB72zZ3vfu9nEErsE6AzCq3c/h6W
+	bgF73JQeFdwRkJkhW4+JRRDgkRf/hbaEfUCPvfdSbWMdjsHHtMDlWLzeJMglNc0=
+X-Google-Smtp-Source: AGHT+IGQw+SyF1Ngyi3PHoftO0kJoIhWYm3aqC1MeDXQ/v9s6nV3ueLPsQz8+6lxlT7itvNTlikq3Q==
+X-Received: by 2002:adf:e5cc:0:b0:351:cb2d:fd2f with SMTP id ffacd0b85a97d-351cb2dffa2mr3200072f8f.19.1715807825162;
+        Wed, 15 May 2024 14:17:05 -0700 (PDT)
 Received: from [10.1.2.176] ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fccce25casm244577145e9.20.2024.05.15.14.16.53
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b896b00sm17241576f8f.45.2024.05.15.14.17.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 May 2024 14:16:54 -0700 (PDT)
-Message-ID: <721b4837-420f-4acf-95b4-514395ed8896@linaro.org>
-Date: Wed, 15 May 2024 23:16:52 +0200
+        Wed, 15 May 2024 14:17:04 -0700 (PDT)
+Message-ID: <a48e0ccb-43cf-4215-a725-1ed62b222ab1@linaro.org>
+Date: Wed, 15 May 2024 23:17:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,8 +80,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 4/6] drm/panel: simple: Add Lincoln Tech Sol
- LCD185-101CT panel
+Subject: Re: [PATCH v3 5/6] drm/panel: simple: Add Microtips Technology
+ 13-101HIEBCAF0-C panel
 To: Aradhya Bhatia <a-bhatia1@ti.com>,
  Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
  David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
@@ -99,7 +99,7 @@ Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
  Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
  Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
 References: <20240515095133.745492-1-a-bhatia1@ti.com>
- <20240515095133.745492-5-a-bhatia1@ti.com>
+ <20240515095133.745492-6-a-bhatia1@ti.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -126,17 +126,17 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240515095133.745492-5-a-bhatia1@ti.com>
+In-Reply-To: <20240515095133.745492-6-a-bhatia1@ti.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 15/05/2024 11:51, Aradhya Bhatia wrote:
-> Add support for Lincoln Technology Solutions LCD185-101CT, 10.1",
-> 1920x1200, 8-bit TFT LCD with LVDS interface, LED backlight and PCAP
-> touch support (Goodix GT928).
+> Add support for Microtips Technology USA 13-101HIECAF0-C 10.1",
+> 1920x1200, 8-bit TFT LCD with LVDS interface, LED backlight and touch
+> support (ILITEK 2511).
 > 
 > [0]: Panel Datasheet
-> https://lincolntechsolutions.com/wp-content/uploads/2023/04/LCD185-101CTL1ARNTT_DS_R1.3.pdf
+> https://simplespec.microtipsusa.com/uploads/spec/datasheetFile/2588/13-101HIEBCAF0-S_V1.1_20221104.pdf
 > 
 > Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
 > ---
@@ -144,27 +144,27 @@ On 15/05/2024 11:51, Aradhya Bhatia wrote:
 >   1 file changed, 32 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index dcb6d0b6ced0..10e974bffd28 100644
+> index 10e974bffd28..3a0d8f0ff267 100644
 > --- a/drivers/gpu/drm/panel/panel-simple.c
 > +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -2870,6 +2870,35 @@ static const struct panel_desc lg_lb070wv8 = {
->   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+> @@ -3055,6 +3055,35 @@ static const struct panel_desc logicpd_type_28 = {
+>   	.connector_type = DRM_MODE_CONNECTOR_DPI,
 >   };
 >   
-> +static const struct drm_display_mode lincolntech_lcd185_101ct_mode = {
-> +	.clock = 155127,
+> +static const struct drm_display_mode microtips_mf_101hiebcaf0_c_mode = {
+> +	.clock = 150275,
 > +	.hdisplay = 1920,
-> +	.hsync_start = 1920 + 128,
-> +	.hsync_end = 1920 + 128 + 20,
-> +	.htotal = 1920 + 128 + 20 + 12,
+> +	.hsync_start = 1920 + 32,
+> +	.hsync_end = 1920 + 32 + 52,
+> +	.htotal = 1920 + 32 + 52 + 24,
 > +	.vdisplay = 1200,
-> +	.vsync_start = 1200 + 19,
-> +	.vsync_end = 1200 + 19 + 4,
-> +	.vtotal = 1200 + 19 + 4 + 20,
+> +	.vsync_start = 1200 + 24,
+> +	.vsync_end = 1200 + 24 + 8,
+> +	.vtotal = 1200 + 24 + 8 + 3,
 > +};
 > +
-> +static const struct panel_desc lincolntech_lcd185_101ct = {
-> +	.modes = &lincolntech_lcd185_101ct_mode,
+> +static const struct panel_desc microtips_mf_101hiebcaf0_c = {
+> +	.modes = &microtips_mf_101hiebcaf0_c_mode,
 > +	.bpc = 8,
 > +	.num_modes = 1,
 > +	.size = {
@@ -180,19 +180,19 @@ On 15/05/2024 11:51, Aradhya Bhatia wrote:
 > +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
 > +};
 > +
->   static const struct display_timing logictechno_lt161010_2nh_timing = {
->   	.pixelclock = { 26400000, 33300000, 46800000 },
->   	.hactive = { 800, 800, 800 },
-> @@ -4644,6 +4673,9 @@ static const struct of_device_id platform_of_match[] = {
+>   static const struct drm_display_mode mitsubishi_aa070mc01_mode = {
+>   	.clock = 30400,
+>   	.hdisplay = 800,
+> @@ -4694,6 +4723,9 @@ static const struct of_device_id platform_of_match[] = {
 >   	}, {
->   		.compatible = "lg,lb070wv8",
->   		.data = &lg_lb070wv8,
+>   		.compatible = "logictechno,lttd800480070-l6wh-rt",
+>   		.data = &logictechno_lttd800480070_l6wh_rt,
 > +	}, {
-> +		.compatible = "lincolntech,lcd185-101ct",
-> +		.data = &lincolntech_lcd185_101ct,
+> +		.compatible = "microtips,mf-101hiebcaf0",
+> +		.data = &microtips_mf_101hiebcaf0_c,
 >   	}, {
->   		.compatible = "logicpd,type28",
->   		.data = &logicpd_type_28,
+>   		.compatible = "mitsubishi,aa070mc01-ca1",
+>   		.data = &mitsubishi_aa070mc01,
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
