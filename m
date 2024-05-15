@@ -1,305 +1,216 @@
-Return-Path: <devicetree+bounces-66972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42288C5EF4
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 03:48:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8948C5F16
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 04:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 454241F21EF6
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 01:48:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40AF12828EE
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 02:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45089383BE;
-	Wed, 15 May 2024 01:47:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="b46bSRtA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E618C11;
+	Wed, 15 May 2024 02:24:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2137.outbound.protection.partner.outlook.cn [139.219.146.137])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDD014294
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 01:47:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715737648; cv=none; b=DNc+T7TtL7VtNm3FTOuC36qWevjwcn/EgYu7u8cxG33b0eA+U6IbLGywE2Su4wyEQcC4B5mvvnaN/e8oJC7ah3POBOZWc8J/4vpK5WQUgw/FgGdWUlHMVTst8eRvj4P1mJIeDFJ7OAXMfLjOhx7n07oyJD6c0awvxd6Ew3v+V2g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715737648; c=relaxed/simple;
-	bh=QhmLQQj2VIgM7JAd+nz7yTuy1/ztCxscqW6V3cAygT8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Q4Hn5U98N171A+lu12b6tcHNcGjvECte3DuEQx7AO7YESRoqRv62RqLe266FK9uo/vIUqAixC5kZy/VBUpzmTTIFk+U44tYu+l0ogKcE9QyQBVdnw/8dc5+5e4IMjxp3bpx8nD5PHGpZPOji66869ENiimhjydbeM8R44PHwziU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=b46bSRtA; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1ee0132a6f3so47997645ad.0
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 18:47:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1715737636; x=1716342436; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u4uLuo4h2NxEX+K81CXv+jIlOK6zmCeu55JyHv32RRk=;
-        b=b46bSRtAreC37iP/eqTERXweqHRYULqGfsXkJ2TH2RRwGOMba7w/25UWOzUpTx8ZFR
-         jIxSEethFxbFWKotHZBI+XUZQNsZhcHm+918YlnnepeaU0ueuIuOk8BNfi5/oz/p7gDe
-         z0n5JOtrYvxESBCR7M+PiAbjYVsSjsSs4ZgdDy0bbwb9UZyL6e/FGv6Gc0KJ+7+9S/d8
-         q+aCbi/fwYE7TbsTqcDF+Hzuhv9mn8EFYrkcmux25NwU6eZ0hLTkJOKyAygd5ovABS8e
-         +hdktK0J6YFO6rFbgoOaoEubuoEStI088HEXcJ5+wRVJ+YUuS8eTe/AwErxR57smRZ4U
-         qiOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715737636; x=1716342436;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u4uLuo4h2NxEX+K81CXv+jIlOK6zmCeu55JyHv32RRk=;
-        b=dg+/vTPC+R26mPMW3IMc3oFGtGwaCEFCppXDdW54rLfug5F4yXqZPbkkwoC3rFmMlR
-         vEq8uBf1lIhpezji7PuNk9V+/absvYZNTOQ8pkx5jMkM4mJ+NqHCVaTieBsFYZFHn336
-         Nmli29SYfA2fokYnyiZMgUGgZZ7J7gk04OGWywedE3FX7yOACqrWM6qlT8SbNk8XOx6V
-         3loHt4+j1tlK98ms42Odgw+EzHRsPVB2ucjAxNSUnv3JjmSeQ32SdWQGq3YnuuQj3bUF
-         /pD8tso+Kg79YW1flRWt2VTWK8PSwnyqtYWMz8utOI3FhyQnONfAEsLEN4E43mMBbtmC
-         Estw==
-X-Forwarded-Encrypted: i=1; AJvYcCWi3G7T5nk9mE7goPt7947rjNOSBxpZYytsbauyqWVvF1+H0zcgO3VpUMdL6zfvY6urv0UxGfYycGC1a2GudBQnJlyRwBpYsrAoWw==
-X-Gm-Message-State: AOJu0Yz0NMbGVylmLtN/Ppc3mt420XdBoP1PfK64Cz1QfMycuXeMN6R+
-	AIb6r1Cs5rrBLUX/Iwf8083tK45fTIVH6cjVBDpaylZ7Bxgcs3VCrdZWqkhqqcLjPq22/kIkSpd
-	H
-X-Google-Smtp-Source: AGHT+IELf6QjV55+yBtMk01cJSk/vt/AtytiFitdpPCGPEzVfN5euT54vrkkHJwMB2nS8MONIHiAhQ==
-X-Received: by 2002:a17:903:26cf:b0:1ee:d2e4:f1ae with SMTP id d9443c01a7336-1ef43d18223mr106383205ad.27.1715737636522;
-        Tue, 14 May 2024 18:47:16 -0700 (PDT)
-Received: from localhost.localdomain ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0c1368desm105582145ad.233.2024.05.14.18.47.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 18:47:16 -0700 (PDT)
-From: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To: sam@ravnborg.org,
-	neil.armstrong@linaro.org,
-	daniel@ffwll.ch,
-	dianders@chromium.org,
-	linus.walleij@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org,
-	airlied@gmail.com
-Cc: dmitry.baryshkov@linaro.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	xuxinxiong@huaqin.corp-partner.google.com,
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [v7 7/7] drm/panel: himax-hx83102: Support for IVO t109nw41 MIPI-DSI panel
-Date: Wed, 15 May 2024 09:46:43 +0800
-Message-Id: <20240515014643.2715010-8-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240515014643.2715010-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20240515014643.2715010-1-yangcong5@huaqin.corp-partner.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A8263B9;
+	Wed, 15 May 2024 02:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.137
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715739842; cv=fail; b=bOlePS6yh7cZGNCHGbuyEAnfd5iqsE2wFfZbZye8/q1oX+lfbl0BlDiPCyazt0BNGHIm85AG00uCtG42S0B6as2iOUYheCqwYl/xqE8y2F/iSONhe4tp/L4hPP6NreaoolchX0yXx9VYTFEUyAQ4Ftd80qSYUjBifxWIXPqU/ts=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715739842; c=relaxed/simple;
+	bh=5IYkLseJvz19J9hXRlZ3rNQvRG/Jg2vmGfRjkJjt7Y0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=QdtGnOvdFOmcxHxJlgVGkPdYa76AdC8hhiA5EF9mnCAf9n3cxr565hauYwG38ItpMCt1FKtM1KorgXe8w8yUBbhFndxr9hY9LB1zNoc6YK8S6TH0gQHGAMCY+WNjZlRHxdPtjV2XA8s6wskXcQPZnEJJMDr+FyrDVR7FDkykdM8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.137
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UfKegW3oePo1ggSmdca9j9PgtC8D0J9/IlW28+Pc0HQxBFX9889GnusFD0oO4K6ujjJsGPPs411ndrUig3XcJlwrrRcRirLzVL+2wCP0lLI14GtH1b5yOyx4lULdKg6ykyqporKmfFWo436PG/85GJao90eyNvkd9g2c6i/zfX9CZBfz2PwI6blE3ChRK4Ux3TskpkQSbryly7/O6mYnGBhzSS4RNdLAPMh9gE+uChb2GReK+NtfYM1jrsquVeKJLMd+aruYP8K7vXTCbK8OE+Q4Gboq6D3XWpsdi1EvKRcnSlZ8upkG+0Fagf2EfY8nRf3JIKf2y82Ug0sJFy938g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=juykI4KxJpPd+HSTYr18AIlTmvsWU2/XL7PboPIe8Dc=;
+ b=Klpvrv6gnzNOttslvI6XXqUcb4sDco0FediEMdtm6nSwy4c38Cvyk7CvUyo5qDBnHSipJrHWeK/6OzkrP4OnnRXhfpgVH9LHjf/ww5kfRTdF+NLXM0cvBmUE6ts1BPraXpNOO1wutDVT5Ydaz0lkWATZOvPkLJ4SZe3v/quDuKx2loNgbAOTE9HOYUo8sF4ijGt8TSntEsNTSdv+hGHZBh/5TG3h+k5aXWNaI8BeyEd7qCHfq6NGBy/Hbp616tclfdVfUhRmh9mAFXYVaoGy/ucikcGivWh49hPQ/vfbvhKriRB/0088P13++Viv+Ak+tbJdgr+u34pt/0mE2ALwAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:8::10) by NTZPR01MB1002.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:b::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.33; Wed, 15 May
+ 2024 02:23:47 +0000
+Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e903:99a6:10b7:304d]) by
+ NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn ([fe80::e903:99a6:10b7:304d%6])
+ with mapi id 15.20.7472.044; Wed, 15 May 2024 02:23:47 +0000
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+	<sboyd@kernel.org>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Hal Feng <hal.feng@starfivetech.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v5 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Thread-Topic: [PATCH v5 0/2] Add notifier for PLL0 clock and set it 1.5GHz on
+Thread-Index:
+ AQHaoEtCPDK2HwhwXUSWjcDZE/pIQ7GQ+umAgABXAkCAAKg2gIAEWZ+wgAC+9gCAAIQbsA==
+Date: Wed, 15 May 2024 02:23:47 +0000
+Message-ID:
+ <NTZPR01MB0956CF1AA9EA5A20A174FD8A9FEC2@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+References: <20240507065319.274976-1-xingyu.wu@starfivetech.com>
+ <20240510-unfounded-syrup-d1263d57d05a@spud>
+ <NTZPR01MB0956D48361098E8AA4B3930A9FE02@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+ <20240511-unbiased-dainty-ccb5ece9b1b9@spud>
+ <NTZPR01MB0956A7393097129D3CD048EB9FE32@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+ <20240514-congenial-smother-1e4b0fc6a5df@spud>
+In-Reply-To: <20240514-congenial-smother-1e4b0fc6a5df@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: NTZPR01MB0956:EE_|NTZPR01MB1002:EE_
+x-ms-office365-filtering-correlation-id: b2c51c7d-98e3-42a1-5224-08dc74860d1b
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ dM12cF7KI3pKWC0YB1+wvHJVT1dtjIqhwI8p9w+sssXLO1QPYFz0ue/GEKcWUhNzTjRZ+nzFXr9lCp/DtXj7nCBgctC7yAtRxVOvlhBFFkzd27XB3EHQ3SazLHhPw1MTMkPpb4MQt5M8bee6zZEvqNe1tpZofXbxm2QDjhYbykAIBndLwShmAH2n4NnfJK35pYCgTLv4djP32LJpnNYVdsAQImMGVClEz1spJASJGOrbB5UvdWN7a8/vKnbpY4bo4pgwrpeFbGTE9hrTBsdb2/JWGf9Bu5eqAfMQ+EhmRWkUEiXLxXXhaXhk7jHguTFs+YOCJSOxoep5e780aHhX5G4EcXTREBEwjUuPYKSNOVy7f/q5JJrd9OnfZnKPdnXHM3hMpB/ROKFTPolNjNUaOJo5mTB7r/ta15InNsVba1vliOEiG5vQ/lsP2cDjYMzFHhTB/LtC/wxxQLO5ibtvrQcFmUAswHy4PYtVkflW5t+q//zUlNqLA7KHd3/TIPdxC46d+9sfur0kA9/O+44EtmjTnipLkTwNANkWGWP4cnvvrLTzaUZLNYSLaKNSfCMx7N/QkXq05LN7KaMWu71UlFZBTOovjujQY2a5tXZ9YNv0r3mkc/Js84O8xxEEPaXP
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(7416005)(41320700004)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?ogPuLDcKEquOYoRpp1omm5qe+K4XtmbiH6L85hZqMSUDkFLJ0gdHGARkh0ST?=
+ =?us-ascii?Q?+feJwKMDpEkkUHqeugg76x7wdND8hrWRcCGcYA1e9fUNBRGe4XOKkCK/1YmL?=
+ =?us-ascii?Q?x/ijGgb8vVu0+lM6XJkcad0DoWzY2+4mPe0CzEZvtVEQ67yzJaNiIRXfz4ly?=
+ =?us-ascii?Q?1Ab9LUXcA2PQ6CLVuXNLPF7jakrihDjccpRdXLPsiTdh8xKQE8yD/lJNzn9f?=
+ =?us-ascii?Q?kiS3ACI5l32yD3m2fvJp+2thrghFXeC4LcOUEagFbxnWV5Irkoal99UJbIqz?=
+ =?us-ascii?Q?CZOfnQ4PzY32DxKZFLwrw5H/gUAdt9/s/VzvL+yV+x5Z9Qr+vWuryZ4FoxFY?=
+ =?us-ascii?Q?0FnvGe7ZlnrZZ63tjc43YSYVGtgy/91zt4gGPhc9tSDHqpHGLUhTmkVJPI4G?=
+ =?us-ascii?Q?5TQLjMlGndFCoUpew87pPoYqxgp63Xoa7rCResBSXYENV9PawMbdaYvD3Uji?=
+ =?us-ascii?Q?wZlEQs3cPTlOtPWEVNBTTBX5sxuAJ4mW3bzWxy6Lib+ENfCwIyWf7hg+Ti0y?=
+ =?us-ascii?Q?FHL30p9J49cTXlQnGOVsuC7bE1KlJTkv2PTWXWCHdr/Fmp9qQJMfAAU9L7Ek?=
+ =?us-ascii?Q?x1ZnWX7ROxWlfnNNT8o0GJzXNdvqEe65xXoZ5ywbw29NYIWE/nVoK36pMk/f?=
+ =?us-ascii?Q?znPzyYK5bNOnGMVRfoyPOFqqxM9GtY7ChJaHk9nmrxnqW46yM6EBu4ObqkC/?=
+ =?us-ascii?Q?HBfx8u5w2gWPY1hH3iIjZVWAjA5QLGZjSF8jf6edRQusZ7N+f/QwtynzIxZK?=
+ =?us-ascii?Q?aIVSc8H6dlrJcKLFOHQx2avVqR3wRHOsIU5IeVlLVDUwIv+tFs293FuSwTyY?=
+ =?us-ascii?Q?kZ7yMbZR2ibKn5WzV4GdLXId1KyKDZumIg+Ld4C55RPM/6p05ToMoxzNNQbe?=
+ =?us-ascii?Q?7KIkDoY5R3f8nYOuD4G5RVD3kx+Dxc5cATUXxO2MM/CNNh8wiPaLtg3sqpKF?=
+ =?us-ascii?Q?wngALbbTjRCCS+pcxyyI/C4mXiljZlqEcnf/4UqmX9Ib3WfJZrMhRN038in9?=
+ =?us-ascii?Q?y1l12xTTlwKMUwPS0i4sIuFftvPFEwu5PalGv5zbx8U/fWF30rSzROoxqW0M?=
+ =?us-ascii?Q?OG8W5GwferafH/E082mTfzVpWgUlb1hhxQdhOcXW/lCHlLmuciQVbFf43rhm?=
+ =?us-ascii?Q?SAGR97eY7C95Ol0+mdrACQqUC67cJOw0jOJCsO2olUKBXSNVnPMuaV9ABocO?=
+ =?us-ascii?Q?B02tccPmLXuDoFQiGjkAsGkAYLjp8Tjsqvlndxbl25MVrnNiDMYtHkCJoKyu?=
+ =?us-ascii?Q?ZMAz4VOJAgaxn+2HPpzTgh2yGhkdxP3uIyCpAGlJSRr+a0BCtFwyc+GLI6Dc?=
+ =?us-ascii?Q?7VndP0awnGvWBNumJmFWXddsH7SBTo7NfeorBtpn9kjgL2jG/BiGT6qPvdMP?=
+ =?us-ascii?Q?Fucxq8PAXQRIAebn4tTJIFyU1FEhGmKfVCGtJXHPKxB57mqnVCG/SXTtiE6R?=
+ =?us-ascii?Q?JCG3/ZVyewAwIrPFTZPY2WCdRzoLjI2j04TSeLTJJs+F/y+Mc+7qbXke2wy1?=
+ =?us-ascii?Q?jxINluR2obToPE7pF+adke19xV2RGtqMxG3MSzE+8miTidHg11vWFQdUHyli?=
+ =?us-ascii?Q?SWBbAK6lsKW5NAKT4etjirM08Fe0UHcBchjufahJ?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2c51c7d-98e3-42a1-5224-08dc74860d1b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2024 02:23:47.3879
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UyVjhXhus+Kgyj53BnzJgu+11+S/IUuc97Ckp0rmMp4tUZi3nUbfpO4l4EK006b3/6VlhON6hMZYMdjq0FINQ7ki7DsfLmyvMbrMXAdrLdE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB1002
 
-The IVO t109nw41 is a 11.0" WUXGA TFT LCD panel, use hx83102 controller
-which fits in nicely with the existing panel-himax-hx83102 driver. Hence,
-we add a new compatible with panel specific config.
+On 15/05/2024 02:08, Conor Dooley wrote:
+>=20
+> On Tue, May 14, 2024 at 07:40:02AM +0000, Xingyu Wu wrote:
+> > On 11/05/2024 20:19, Conor Dooley wrote:
+> > >
+> > > On Sat, May 11, 2024 at 03:02:56AM +0000, Xingyu Wu wrote:
+> > > > On 11/05/2024 05:05, Conor Dooley wrote:
+> > > > >
+> > > > > On Tue, May 07, 2024 at 02:53:17PM +0800, Xingyu Wu wrote:
+> > > > > > This patch is to add the notifier for PLL0 clock and set the
+> > > > > > PLL0 rate to 1.5GHz to fix the lower rate of CPUfreq on the JH7=
+110 SoC.
+> > > > > >
+> > > > > > The first patch is to add the notifier for PLL0 clock. Setting
+> > > > > > the
+> > > > > > PLL0 rate need the son clock (cpu_root) to switch its parent
+> > > > > > clock to OSC clock and switch it back after setting PLL0 rate.
+> > > > > > It need to use the cpu_root clock from SYSCRG and register the
+> > > > > > notifier in the SYSCRG driver.
+> > > > > >
+> > > > > > The second patch is to set cpu_core rate to 500MHz and PLL0
+> > > > > > rate to 1.5GHz to fix the problem about the lower rate of
+> > > > > > CPUfreq on the visionfive board. The cpu_core clock rate is
+> > > > > > set to 500MHz first to ensure that the cpu frequency will not
+> > > > > > suddenly become high and the cpu voltage is not enough to
+> > > > > > cause a crash when the PLL0 is set
+> > > to 1.5GHz.
+> > > > > > The cpu voltage and frequency are then adjusted together by CPU=
+freq.
+> > > > >
+> > > > > Hmm, how does sequencing work here? If we split the patches
+> > > > > between trees it sounds like without the dts patch, the clock
+> > > > > tree would (or
+> > > > > could) crash, or mainline if the clock changes there before the
+> > > > > dts ones do. Am I misunderstanding that?
+> > > >
+> > > > Oh, I think you misunderstood it. Patch 1 (clock driver patch)
+> > > > does not cause the clock tree crash without the patch 2 (dts
+> > > > patch), and it just provides the correct flow of how to change the
+> > > > PLL0 rate. The patch 2 is to set the clock rate of cpu_core and
+> > > > PLL0 rate, which causes the crash without patch 1. Setting
+> > > > cpu_core rate is to avoid crashes by
+> > > insufficient cpu voltage when setting PLL0 rate.
+> > >
+> > > So is the problem in the other direction then? My dts tree will
+> > > crash if I apply the dts change without the clock patch?
+> >
+> > Sorry, I tested it and it could not crash using only dts patch. It can
+> > separate the patches and use it individually.
+> >
+> > > Additionally, what about U-Boot? Will it have problems if the dts is
+> > > imported there without changes to its clock driver?
+> > >
+> >
+> > It is not apply to U-Boot. In the U-Boot, the PLL0 rate should be 1GHz
+> > to for GMAC and PMIC to work. But now the PLL0 rate should be 1.5GHz in=
+ the
+> Linux.
+>=20
+> There's a push in U-Boot to move devicestrees to use "OF_UPSTREAM", which
+> means importing devicetrees directly from Linux and using them in U-Boot.=
+ I
+> don't really want to merge a patch that would present U-Boot with a probl=
+em if
+> the VisionFive 2 moved to that model there.
+>=20
+> Cheers,
+> Conor.
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
-Chage since V7:
+Would it be better  if I  change the rates of PLL0 and CPU core in the driv=
+er not dts,
+and avoid the dts of Linux and U-Boot being different?
 
-- Fine tune HFP/HBP/CLK to increase the frame rate to 60.01Hz.
-
-V6: https://lore.kernel.org/all/20240511021326.288728-8-yangcong5@huaqin.corp-partner.google.com
-
-Chage since V6:
-
-- Add hx83102_enable_extended_cmds(&dsi_ctx, false) at end of inital cmds.
-
-V5: https://lore.kernel.org/all/20240509015207.3271370-8-yangcong5@huaqin.corp-partner.google.com
-
-Chage since V5:
-
-- Adjust inital cmds indentation and check accum_err before calling mdelay in init().
-- Adjust somes inital cmds to Optimize gamma.
-
-V4: https://lore.kernel.org/all/20240507135234.1356855-8-yangcong5@huaqin.corp-partner.google.com
-
-Chage since V4:
-
-- inital cmds use lowercasehex.
-
-V3: https://lore.kernel.org/all/20240424023010.2099949-8-yangcong5@huaqin.corp-partner.google.com
-
-Chage since V3:
-
-- Depend Dous'series [1].
-[1]: https://lore.kernel.org/all/20240501154251.3302887-1-dianders@chromium.org
-
-V2: https://lore.kernel.org/all/20240422090310.3311429-8-yangcong5@huaqin.corp-partner.google.com
-
----
- drivers/gpu/drm/panel/panel-himax-hx83102.c | 132 ++++++++++++++++++++
- 1 file changed, 132 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-himax-hx83102.c b/drivers/gpu/drm/panel/panel-himax-hx83102.c
-index 9464996e4ebd..fd3a5a132e72 100644
---- a/drivers/gpu/drm/panel/panel-himax-hx83102.c
-+++ b/drivers/gpu/drm/panel/panel-himax-hx83102.c
-@@ -293,6 +293,113 @@ static int boe_nv110wum_init(struct hx83102 *ctx)
- 	return 0;
- };
- 
-+static int ivo_t109nw41_init(struct hx83102 *ctx)
-+{
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+
-+	msleep(60);
-+
-+	hx83102_enable_extended_cmds(&dsi_ctx, true);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x2c, 0xed, 0xed, 0x0f, 0xcf, 0x42,
-+				     0xf5, 0x39, 0x36, 0x36, 0x36, 0x36, 0x32, 0x8b, 0x11, 0x65, 0x00, 0x88,
-+				     0xfa, 0xff, 0xff, 0x8f, 0xff, 0x08, 0xd6, 0x33);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETDISP, 0x00, 0x47, 0xb0, 0x80, 0x00, 0x12,
-+				     0x71, 0x3c, 0xa3, 0x22, 0x20, 0x00, 0x00, 0x88, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCYC, 0x35, 0x35, 0x43, 0x43, 0x35, 0x35,
-+				     0x30, 0x7a, 0x30, 0x7a, 0x01, 0x9d);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xcd);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x84);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETVDC, 0x1b, 0x04);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_BE, 0x20);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPTBA, 0xfc, 0xc4);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSTBA, 0x34, 0x34, 0x22, 0x11, 0x22, 0xa0,
-+				     0x31, 0x08, 0xf5, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xcc);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTCON, 0x80);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xd3);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTCON, 0x22);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc6);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETRAMDMY, 0x97);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPWM, 0x00, 0x1e, 0x13, 0x88, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x08, 0x13, 0x07, 0x00, 0x0f, 0x34);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPANEL, 0x02, 0x03, 0x44);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc4);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCASCADE, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPCTRL, 0x07, 0x06, 0x00, 0x02, 0x04, 0x2c,
-+				     0xff);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x08,
-+				     0x08, 0x08, 0x08, 0x37, 0x07, 0x64, 0x7c, 0x11, 0x11, 0x03, 0x03, 0x32,
-+				     0x10, 0x0e, 0x00, 0x0e, 0x32, 0x17, 0x97, 0x07, 0x97, 0x32, 0x00, 0x02,
-+				     0x00, 0x02, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP1, 0x25, 0x24, 0x25, 0x24, 0x18, 0x18,
-+				     0x18, 0x18, 0x07, 0x06, 0x07, 0x06, 0x05, 0x04, 0x05, 0x04, 0x03, 0x02,
-+				     0x03, 0x02, 0x01, 0x00, 0x01, 0x00, 0x1e, 0x1e, 0x1e, 0x1e, 0x1f, 0x1f,
-+				     0x1f, 0x1f, 0x21, 0x20, 0x21, 0x20, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-+				     0x18, 0x18);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+				     0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGMA, 0x04, 0x04, 0x06, 0x0a, 0x0a, 0x05,
-+				     0x12, 0x14, 0x17, 0x13, 0x2c, 0x33, 0x39, 0x4b, 0x4c, 0x56, 0x61, 0x78,
-+				     0x7a, 0x41, 0x50, 0x68, 0x73, 0x04, 0x04, 0x06, 0x0a, 0x0a, 0x05, 0x12,
-+				     0x14, 0x17, 0x13, 0x2c, 0x33, 0x39, 0x4b, 0x4c, 0x56, 0x61, 0x78, 0x7a,
-+				     0x41, 0x50, 0x68, 0x73);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0x07, 0x10, 0x10, 0x1a, 0x26, 0x9e,
-+				     0x00, 0x4f, 0xa0, 0x14, 0x14, 0x00, 0x00, 0x00, 0x00, 0x12, 0x0a, 0x02,
-+				     0x02, 0x00, 0x33, 0x02, 0x04, 0x18, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x01, 0x7f, 0x11, 0xfd);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x86);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP0, 0x00, 0x00, 0x04, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+				     0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0x02, 0x00, 0x2b, 0x01, 0x7e, 0x0f,
-+				     0x7e, 0x10, 0xa0, 0x00, 0x00, 0x77, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x02);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPTBA, 0xf2);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCLOCK, 0x03, 0x07, 0x00, 0x10, 0x79);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETGIP3, 0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0,
-+				     0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETTP1, 0xfe, 0x01, 0xfe, 0x01, 0xfe, 0x01,
-+				     0x00, 0x00, 0x00, 0x23, 0x00, 0x23, 0x81, 0x02, 0x40, 0x00, 0x20, 0x6e,
-+				     0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+				     0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0,
-+				     0xff, 0xff, 0xff, 0xff, 0xfa, 0xa0, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0,
-+				     0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xa0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+				     0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc6);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETCYC, 0x03, 0xff, 0xf8);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_E1, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_UNKNOWN_D2, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc4);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x96);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xc5);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETMIPI, 0x4f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0x3f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETBANK, 0x00);
-+	hx83102_enable_extended_cmds(&dsi_ctx, false);
-+	if (dsi_ctx.accum_err)
-+		return dsi_ctx.accum_err;
-+
-+	msleep(60);
-+
-+	return 0;
-+};
-+
- static const struct drm_display_mode starry_mode = {
- 	.clock = 162680,
- 	.hdisplay = 1200,
-@@ -337,6 +444,28 @@ static const struct hx83102_panel_desc boe_nv110wum_desc = {
- 	.init = boe_nv110wum_init,
- };
- 
-+static const struct drm_display_mode ivo_t109nw41_default_mode = {
-+	.clock = 167700,
-+	.hdisplay = 1200,
-+	.hsync_start = 1200 + 75,
-+	.hsync_end = 1200 + 75 + 20,
-+	.htotal = 1200 + 75 + 20 + 65,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 115,
-+	.vsync_end = 1920 + 115 + 8,
-+	.vtotal = 1920 + 115 + 8 + 12,
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static const struct hx83102_panel_desc ivo_t109nw41_desc = {
-+	.modes = &ivo_t109nw41_default_mode,
-+	.size = {
-+		.width_mm = 147,
-+		.height_mm = 235,
-+	},
-+	.init = ivo_t109nw41_init,
-+};
-+
- static int hx83102_enable(struct drm_panel *panel)
- {
- 	msleep(130);
-@@ -584,6 +713,9 @@ static const struct of_device_id hx83102_of_match[] = {
- 	{ .compatible = "boe,nv110wum-l60",
- 	.data = &boe_nv110wum_desc
- 	},
-+	{ .compatible = "ivo,t109nw41",
-+	  .data = &ivo_t109nw41_desc
-+	},
- 	{ .compatible = "starry,himax83102-j02",
- 	  .data = &starry_desc
- 	},
--- 
-2.25.1
-
+Thanks,
+Xingyu Wu=20
 
