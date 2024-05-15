@@ -1,141 +1,115 @@
-Return-Path: <devicetree+bounces-67060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E34E8C66DC
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:06:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B388C671F
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 701F21C21251
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 13:06:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF314284FA2
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 13:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B663D8594A;
-	Wed, 15 May 2024 13:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE27012B17A;
+	Wed, 15 May 2024 13:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="ma4PFVCS"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="v+12ub72"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F963BBED;
-	Wed, 15 May 2024 13:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C28128366
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 13:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715778408; cv=none; b=QOvW4a52o7dSQO3NdzVrPgLvSulGjJ1hZO39M35EV5FoKTClPujiWfvEquS1v5RqrqloiGo6xCy55lBE2ViPX/xLaOh8O3I9+gCaWuPFe5OLaFV8OPY5fQe+7M0nJZJvHgy47GGG22W/uCR9w6Ywzpm+uEXnVKs+lIFRmHN9fX0=
+	t=1715778823; cv=none; b=sk8srgr9nLsOpoBubrqm6BnLbj70LyPXLDUfzhzdOBb8Xdkaqbvh7bE7CCwduSsG24baWCUZpozJh8DmfBZ52HUkTvv6DbEHXlgwnilCAj12mb4QuDj0kEX8WL0XrYwOUpH+Wq2DD4ovsNTpGiu3J2bIls0qA7AcAHenaTQdktQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715778408; c=relaxed/simple;
-	bh=bOt7jiJjqvR3Xb0uZ0VGKUcbibFf3eOrvAtuGYaYrrk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yn2pXIJOAf7Nyv1rrl3mPAYn6UbYjf1Ug59/brJp1iyXSaahWhihMGh0jrdnlQrTT9GwjXnQo+UtKLsetbHsW2K57iPY6bPS2uUsoE43i3tP99HnX2HCyjKWOOV3jaDXrMdwSCbN1okeJzuyXCyVZCjhaqmqaiIRt9WomoPt4cQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=ma4PFVCS; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44FD6Uoq022929;
-	Wed, 15 May 2024 13:06:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=XcohvDplrYpovplc1395I8uKQ9hZtisQ4Yf3MvSI9os=;
- b=ma4PFVCSkulcVFsM6IKjcUTcubcPiK/Y3takDTz1XX6jYsudj8E5/RmQR1vZCtz3FQ0T
- yrx1kIhOvaPT2oWic5gXDK8xhJEu+kfPXAdvW6LGsJPA4sGVrq17is1jfvLGFToWChaU
- y6GTDI5H3DMhR/FYzHe+DP60/pVX7XUZuwfiXsnzc1KhuQ6oIBZfkgr49aFsZHK5KYHP
- dsy+ybcbNftKnn1DiVNl1CRtAN0AyGvb+5QADdbiGDUFaucPTsarH9hbPGVxvOMR/l22
- pi43taPddzKPZU3exTmzl3XYlEZpvsJN88D82VBYN4NoyeXp1cY9ryIgAYAUgQfuaFrB 4g== 
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3y4te9rh2f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 May 2024 13:06:29 +0000
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44FBVlui020403;
-	Wed, 15 May 2024 13:06:28 GMT
-Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3y2kd03v8w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 May 2024 13:06:28 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
-	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44FD6QrW24969812
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 15 May 2024 13:06:28 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3071058070;
-	Wed, 15 May 2024 13:06:26 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B8DA058068;
-	Wed, 15 May 2024 13:06:25 +0000 (GMT)
-Received: from [9.61.107.19] (unknown [9.61.107.19])
-	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Wed, 15 May 2024 13:06:25 +0000 (GMT)
-Message-ID: <3128df9c-0883-4aad-a959-76f175e8e9a4@linux.ibm.com>
-Date: Wed, 15 May 2024 08:06:25 -0500
+	s=arc-20240116; t=1715778823; c=relaxed/simple;
+	bh=t1GL/VLTmYGsAxw6mUtAF631CxA1tvSVOImVMs6ckaQ=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
+	 MIME-Version:Content-Type; b=bs1QgMteyUM6L1iCHt0b4b9lYG3xKirWNNFkCie6hpWGmtXR102NvJmw8ePzEYdzSoW62smROoW+gtqhC/CTHngq5QYVnyAwunsCF/am9ZmT4WH+172kOBFfoxjOkfa33IAlBs21wTLS/NTr4n7yAci7HE9AInqmNq8mMXOlnGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=v+12ub72; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-420180b5838so22102765e9.2
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 06:13:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715778820; x=1716383620; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=M91H+nHHqkLBLg1QqXRG3fezduhANXnoUy1GZJinJLM=;
+        b=v+12ub72VVs+HLnmCjwXLVOm4QNJ+vIQGJbxKnI+CIv/3UgDf8KEaMYg2Zw10RQANg
+         dbdoK44j3YA6VB0uX8B4fCZDIjTM3MkkuLeXBXJCk66hmWmVRIA933aPMmR66CC8gual
+         PqPlepbZhzO5Hu1J7J4qhxjO3uumAmeV/zQnnFXDQJ0Q/W7CU+a4JdKCF64WJbni0NKA
+         agyHdHjCcoAoTQPK81BEqxI9sUdemjYEQG1GPrLnRHEsz3CkJV6MQ+hga2bAvu/gX5mO
+         HNcO3FPdueoINsncm4lK2xChJm8BgXcB3F3rtBjYfi89MDpKg8K83xfUwK3HWuOnxhsd
+         iNSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715778820; x=1716383620;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M91H+nHHqkLBLg1QqXRG3fezduhANXnoUy1GZJinJLM=;
+        b=UZuEf3FzCdgcIzPMY2/2ij0f9EdUB+/K0P7Wj1O+jHeQotE4tBIWqPsqZx3KMG8YCr
+         LwqbXHfl70OJLy2OjKVZuz0AEcY1vmCk/ZioRbaJUN0JgSmvKGV7zdAY55/pEcnS9GCR
+         hVWGi0DXO210ItTkAWgP/oWJDgqKsYKd1E4KT97RLII6Lg9wpIpNxtLvU/Otcwcxc7DB
+         tucAGcOTtQAWptfTI+dwqLl8QjveEtkwJ5BIa9hbntbhhl09GXtnBFO/llAzlWALq+cB
+         wS8HRTxwTwtkYerPpSiP6AgPgZDyQ3YPHcERpxrMSiCyvrDlZLQTgiu3M9WKRuvUFxv8
+         cYSg==
+X-Forwarded-Encrypted: i=1; AJvYcCWuzaBIyUHqFqYNJWjfPZeZ5ye3YnzoEVyNIObmY9FrmKJApj4pDUupuKDDZWwnD3BXq9Lp3sy5be5mVcMraFx/61luFMbMr+mukQ==
+X-Gm-Message-State: AOJu0Yz8c7t004ggLUff3r/Jp0wpQhz9nIH+s+gnFhdKs3cnVnVX1sf/
+	HKyIOz9ilDhhUglaL4U5HBcLpgyrSs6SvsrOKpW8yQud88TLMTtc01CSThjQLvE=
+X-Google-Smtp-Source: AGHT+IFGKx5BSWfW3mhzW8qqzYmSwVybzwb9nvOAxYK14fvZAmTCWSio0KnxCN2xyBvzkP9/4QqX4Q==
+X-Received: by 2002:a05:600c:1c9f:b0:41f:aef0:9349 with SMTP id 5b1f17b1804b1-41feac556f1mr169219155e9.25.1715778818567;
+        Wed, 15 May 2024 06:13:38 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:2893:1a8f:5988:776a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41f88110fedsm270535765e9.31.2024.05.15.06.13.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 May 2024 06:13:38 -0700 (PDT)
+References: <20240510090933.19464-1-ddrokosov@salutedevices.com>
+ <20240510090933.19464-2-ddrokosov@salutedevices.com>
+ <1jfrulzxms.fsf@starbuckisacylon.baylibre.com>
+ <20240513214728.g4isbfisifxalqxy@CAB-WSD-L081021>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, neil.armstrong@linaro.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+ martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
+ kernel@sberdevices.ru, rockosov@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/7] clk: meson: introduce 'INIT_ONCE' flag to
+ eliminate init for enabled PLL
+Date: Wed, 15 May 2024 15:12:02 +0200
+In-reply-to: <20240513214728.g4isbfisifxalqxy@CAB-WSD-L081021>
+Message-ID: <1jle4bxloe.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/9] dt-bindings: fsi: fsi2spi: Document SPI controller
- child nodes
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-fsi@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
-        joel@jms.id.au, andrew@codeconstruct.com.au
-References: <20240514195435.155372-1-eajames@linux.ibm.com>
- <20240514195435.155372-2-eajames@linux.ibm.com>
- <5e8eb8a7-c497-4960-8c1c-e58586f53c9f@kernel.org>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <5e8eb8a7-c497-4960-8c1c-e58586f53c9f@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 6o8wOsYhCb8iLLCIcPeWZCkMHNww2G5H
-X-Proofpoint-ORIG-GUID: 6o8wOsYhCb8iLLCIcPeWZCkMHNww2G5H
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-15_06,2024-05-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- phishscore=0 adultscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
- bulkscore=0 spamscore=0 suspectscore=0 impostorscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2405010000
- definitions=main-2405150092
+Content-Type: text/plain
 
 
-On 5/15/24 03:14, Krzysztof Kozlowski wrote:
-> On 14/05/2024 21:54, Eddie James wrote:
+On Tue 14 May 2024 at 00:47, Dmitry Rokosov <ddrokosov@salutedevices.com> wrote:
+
+>> 
+>> I agree that currently that carefully reading the code clears that up
+>> but it is misleading
+>> 
+>> CLK_MESON_PLL_EN_NOINIT ?
+>>                         
 >
->>   properties:
->>     compatible:
->> @@ -24,6 +23,17 @@ properties:
->>       items:
->>         - description: FSI slave address
->>   
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +patternProperties:
->> +  "^spi@[0-9a-f]+$":
->> +    type: object
->> +    $ref: /schemas/spi/ibm,spi-fsi.yaml
-> Are you sure you do not have dependencies? Nothing was explained about
-> this in the cover letter or changelog.
-
-
-I did mention that it depends on the SPI binding change below the commit 
-message in this patch. I guess I should have kept these two together...
-
-Thanks,
-
-Eddie
-
-
+> I have been considering this name and its derivatives, such as:
 >
-> Best regards,
-> Krzysztof
->
+>     CLK_MESON_PLL_SKIP_ENABLED
+
+>     CLK_MESON_PLL_NOINIT_ENABLED
+
+That one accurately describes what you do.
+Use this one please
 
