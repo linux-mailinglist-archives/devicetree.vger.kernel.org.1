@@ -1,166 +1,120 @@
-Return-Path: <devicetree+bounces-67009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681BD8C6359
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 11:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFC308C6369
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 11:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FEB21F21433
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 09:02:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76C501F21413
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 09:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12DAA54BFE;
-	Wed, 15 May 2024 09:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0685E57C8A;
+	Wed, 15 May 2024 09:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="FoY/q1zS"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="U1bF4n+h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79ADC43144;
-	Wed, 15 May 2024 09:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9BE55C3B
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 09:09:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715763769; cv=none; b=suslMWzJuAQ4ISXlBUkN4+R4OHmm5ieZZHN++3XqMonWteboPGgS7PuQ2eJ5aKmuSSan6ec/wtN+yDFyfBHTVtUWG1dEfFfexypQGzaCnAN2OUusNNuku33j1RC6zifavPBWHTSmRcpEvMXlC9NaIKMJKzwGeLqjQGuSvWieTLM=
+	t=1715764148; cv=none; b=UlTlBKvu8oiCHerDXuirFUpv+2YRE9tcDbVQkUOT1G3JVguDKcBCVQiFs2k48WWojdwR34DzheKApvfHo/oarJeYqa4ZQQUoG3Xyxk/7v0UscHuePHb8pNv3upqXi5qgD9bBG2/pLA18BGl3upzSheI9VgOEpNyXH1fGB5d3RFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715763769; c=relaxed/simple;
-	bh=/VuNJcv05SfTwBFyWswb2YfPZ2EOktMAj3D+B5OcUcY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AwenUxk98gR269Hz5q+fgLt7DzpxIHR+Dnk/R/saKGEbmh4f14mjYtFGTCX0IbbaRRoJ1Pv+ELgEVGMKOGhuq/AoJOgZtoiiXcylXOUtOufpWHshoj0O6AADJeXXjLcJf98o9ieQu/uI5SdNqi7YT1zlFAc043zdrY+A36ROFnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=FoY/q1zS; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1715763762;
-	bh=i1+/WjWovmhqSn2DxEiDFC8cbnMZSlltFGKOqzlSZhM=; l=3603;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=FoY/q1zSUCCc9IUMYk6ImKvSdKjx9ZZrHgFaDChb98bTkywLjSOpHWleq+D7K2kJD
-	 SejbRdi2lff/JH1J3EXAGgqIIAVxJFxf4C7Gqv+0TdTQu8eyKT8NeJT8xs1vP1OzHL
-	 y9eec8uzBHSGnKofLCjxNMiBxUH+rI5b2ljG4sbpzqa4ucWZ4L6xZGabwTpS7I7oG2
-	 khQ95Wis63Ldw2ObRnoL5eBUyGBAJ9oj5CF2fM3BcXUmvMzEHIaXDP9P+XwSW7djZy
-	 Y9OrWzDFOMQwT6V6Zd0MYFgK75lkfPOQMnoJIMzC5tzKA4pgkzrsYbqhvSI1V74kR+
-	 5r8f6jey5jcyw==
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213217:0:AUTH_RELAY)
-	(envelope-from <alina_yu@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 15 May 2024 17:02:30 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 15 May
- 2024 17:02:29 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 15 May 2024 17:02:29 +0800
-Date: Wed, 15 May 2024 17:02:29 +0800
-From: Alina Yu <alina_yu@richtek.com>
-To: Conor Dooley <conor.dooley@microchip.com>
-CC: Conor Dooley <conor@kernel.org>, Mark Brown <broonie@kernel.org>,
-	<lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<johnny_lai@richtek.com>, <cy_huang@richtek.com>
-Subject: Re: [PATCH v3 6/6] regulator: dt-bindings: rtq2208: Add property to
- get ldo of RTQ2208 is adjustable or not
-Message-ID: <20240515090229.GA15889@linuxcarl2.richtek.com>
-References: <cover.1715340537.git.alina_yu@richtek.com>
- <6a3a90d9aa2022dfb92e124e417f3e72c2f28b0b.1715340537.git.alina_yu@richtek.com>
- <20240513-tissue-repave-13d2e3bf88fd@spud>
- <d97752ed-4032-4681-b28f-17f149fdc3d4@sirena.org.uk>
- <20240514-plunging-chair-803d9e342e6f@spud>
- <20240515073830.GA12525@linuxcarl2.richtek.com>
- <20240515-wrinkle-engross-ab6b089baae3@wendy>
+	s=arc-20240116; t=1715764148; c=relaxed/simple;
+	bh=zv16F37AidPawEoWnbMIbBxeozEKI5aIumtzE/9F23o=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FRTaiycdz4l/pwZ2Zzfz6MuJpZkbCLcjjm/Fabt/jy0zJbwROyebNoSEwVrpqVtfUAe6Q9a2pZ5Y20ObO6soGx9OBuqettZH6FJTg6zKVljAdRiTAvQcod/YUsInG09I81D41LYqaJ51w5S4c9EWc5Fou0XTSRTLsMsS1SMOiyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=U1bF4n+h; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=zv16
+	F37AidPawEoWnbMIbBxeozEKI5aIumtzE/9F23o=; b=U1bF4n+hlIJBMCFyOODj
+	IY2TWisQSeNdd0EdnxLokEMVhX2Kg7bYRSr2RXFwlOX5wH6oyyWbcxD09ELke30I
+	M3BLXTKqLf589e0JAbolgDLpoPJXfKP1HVcZ0fxbh3rcH1Zm34IBReB+dRMbatjD
+	o4bZVgFFAR4Tt8/VKuQMM+/0Bvn8wPuoUnQN+//o+uziyTeXw6LY7tZWBirUBH7U
+	iv7cBHeYsVUvxy84m3Yi40hoKww/Fna+FcxQEmbETM/GYTvO5vtU8j4mdIM8n+Qi
+	MxphY01fqU7+Tj4Aawkar094fEmLAkPw9EDWtLVfGAPZ18uzS3Edkwrcu7HheBz+
+	hQ==
+Received: (qmail 2771315 invoked from network); 15 May 2024 11:09:04 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 May 2024 11:09:04 +0200
+X-UD-Smtp-Session: l3s3148p1@NhdVeHoYcMZehhtP
+Date: Wed, 15 May 2024 11:09:04 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Manivannan Sadhasivam <mani@kernel.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>, 
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"bhelgaas@google.com" <bhelgaas@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>, "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
+Message-ID: <ttyjo2w5bkjbmlrw6oxwuyfshxi5ohwhudj5oexhecqorqnt3t@umjxxcj6iu4k>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, 
+	"robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>, "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+ <20240511080257.GF6672@thinkpad>
+ <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+ <20240515075954.GB4488@thinkpad>
+ <l62l4ksr2rkxxi7kwatd3pfwmwv4ytfumhwkthjsurgla2prno@felahg5h5g7o>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nljzks2p6utui7p4"
 Content-Disposition: inline
-In-Reply-To: <20240515-wrinkle-engross-ab6b089baae3@wendy>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <l62l4ksr2rkxxi7kwatd3pfwmwv4ytfumhwkthjsurgla2prno@felahg5h5g7o>
 
-On Wed, May 15, 2024 at 09:06:06AM +0100, Conor Dooley wrote:
-> On Wed, May 15, 2024 at 03:38:30PM +0800, Alina Yu wrote:
-> > On Tue, May 14, 2024 at 07:01:21PM +0100, Conor Dooley wrote:
-> > > On Tue, May 14, 2024 at 11:34:29AM +0100, Mark Brown wrote:
-> > > > On Mon, May 13, 2024 at 05:22:54PM +0100, Conor Dooley wrote:
-> > > > > On Fri, May 10, 2024 at 08:06:25PM +0800, Alina Yu wrote:
-> > > > 
-> > > > > > +            richtek,fixed-microvolt = <1200000>;
-> > > > > >              regulator-min-microvolt = <1200000>;
-> > > > > >              regulator-max-microvolt = <1200000>;
-> > > > 
-> > > > > I'm dumb and this example seemed odd to me. Can you explain to me why
-> > > > > it is not sufficient to set min-microvolt == max-microvolt to achieve
-> > > > > the same thing?
-> > > > 
-> > > > This is for a special mode where the voltage being configured is out of
-> > > > the range usually supported by the regulator, requiring a hardware
-> > > > design change to achieve.  The separate property is because otherwise we
-> > > > can't distinguish the case where the mode is in use from the case where
-> > > > the constraints are nonsense, and we need to handle setting a fixed
-> > > > voltage on a configurable regulator differently to there being a
-> > > > hardware fixed voltage on a normally configurable regulator.
-> > > 
-> > > Cool, I think an improved comment message and description would be
-> > > helpful then to describe the desired behaviour that you mention here.
-> > > The commit message in particular isn't great:
-> > > | Since there is no way to check is ldo is adjustable or not.
-> > > | As discussing in v2 series, 'richtek,fixed-microvolt' is added for that.
-> > > | user is supposed to know whether vout of ldo is adjustable.
-> > > 
-> > > It also doesn't seem like this sort of behaviour would be limited to
-> > > Richtek either, should this actually be a common property in
-> > > regulator.yaml w/o the vendor prefix?
-> > > 
-> > > Cheers,
-> > > Conor.
-> > 
-> > 
-> > Hi Conor,
-> > 
-> > 
-> > Should I update v4 to fix the commit message ?
-> > I will modify it as follows.
-> > 
-> > 
-> > There are two types of LDO VOUT: fixed voltage mode and adjustable voltage mode.
-> > 
-> > As the fixed voltage for the LDO is outside the range of the adjustable voltage mode,
-> > the constraints for this scenario are not suitable to represent both modes.
-> 
-> That's definitely an improvement, yes. The property description could
-> also do with an update to explain that this is for a situation where the
-> fixed voltage is out of the adjustable range, it doesn't mention that at
-> all right now.
-> 
-> > In version 3, a property has been added to specify the fixed voltage.
-> 
-> Don't refer to previous versions of the patchset in your commit message,
-> that doesn't help people reading a commit log in the future etc. If
-> there's some relevant information in a previous version patchset, put it
-> in the commit message directly.
-> 
-> Cheers,
-> Conor.
 
-Hi Conor,
+--nljzks2p6utui7p4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-May I modify the description as follows ?
 
-        properties:
-          richtek,fixed-microvolt:
-            description: |
--              If it exists, the voltage is unadjustable.
--              There is no risk-free method for software to determine whether the ldo vout is fixed or not.
--              Therefore, it can only be done in this way.
-+
-+              There are two types of LDO VOUT: fixed voltage mode and adjustable voltage mode.
-+              For fixed voltage mode, the working voltage is out side the range of the adjustable mode.
-+              The constraints are unsuitable to describe both modes.
-+              Therefore, this property is added to specify the fixed LDO VOUT.
+> No, the user has to buy the SoC and will get the firmware with the
+> documentation. Renesas is not allowed to distribute the firmware to
+> non-users of the SoC. So, linux-firmware cannot be used, sadly. We all
+> wish it would be different.
 
-Thanks,
-Alina
+I am not a lawyer and all this. But this is how I, as a contractor
+working for Renesas, understand the situation.
+
+
+--nljzks2p6utui7p4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZEe68ACgkQFA3kzBSg
+KbYjhw//fCcWz0aJmWDSQyDmeYSVa3c6JvQZB3tXFPn5fNUpPUohNGrUIpov2oaK
+YccbjSDyhXfrC8w9sE6Mbs731k3UU/y+Hc+W1QP6qvALxZLHNVd9tx48Mpy6oLbu
+/3kieqGVcRoD0MNb4cFJEehjg1XcD77otRfV34L3HvPGZzaJ4Hjv4CAGNgJe+x/d
+z6/FwL9NC+5rRXWvSV3OsXfiR0oMurhx+/QCPupIvtfWsQQpp2QhZ0wpqscBshFu
+CW4pmHJDZcC8o4hgKsg/7HvxzqTr6wlCTud+5QZxSLJKrzAsIznFw5vkzjWXWbLm
+Y/xb6thL/Ospf3RcTx9SpNsiQz0cAg6vYu1uTVY5XxEnuUldVrIeLskwVkLkEAxJ
+d/tjH9OToZPLi0zlXN73Bpn7EvY2HJw9Zmu1gKOGZh8vCi48jcLCKJy5+F6Ohflk
+Z1mbW9dp398aYZt+ox0w7bWYOm4XXL8JJ6btPGKI/5Wo+h9chHuHAumjH6trU83D
+LhxYxMERY3ikAlcb6NbCg7rYjNCX4HBTtvjjgdscQ8jN0ZES2TGMfOm5KLv8iEHC
+OK4cUNXiT/rePsAqZQHmSpgSeEG372GBy05swuZ91CX7YwK3iN0OYEN773yQnsY1
+MH4sVZf0yWBGSCNR20pCIRryv8ZosKkbKTRzj8Ndxpkcrf+dbRE=
+=p4IJ
+-----END PGP SIGNATURE-----
+
+--nljzks2p6utui7p4--
 
