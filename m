@@ -1,1134 +1,139 @@
-Return-Path: <devicetree+bounces-67061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8602A8C671A
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:17:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB32A8C6725
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:18:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 307C3284E89
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 13:17:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6607D1F26882
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 13:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B6812AAF7;
-	Wed, 15 May 2024 13:13:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2DE12D219;
+	Wed, 15 May 2024 13:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CWldZSKK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UzJ3PiRf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D1212A170;
-	Wed, 15 May 2024 13:13:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D770012D1E9;
+	Wed, 15 May 2024 13:14:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715778812; cv=none; b=lVolwIVN0vUEfBebdugmdPGwpjt/KVQ/da3jOQwzGpYhGBRrhiIz5Fn9JOh59FvWmRWOtal+j+9iwFLS6HZnl3E4qAd7XElX0CUnOe/GqliYaRCGHy7Kq+xwW/1M7dynQ75yN6SCTunteoLhuYYe2zEkOkiFLPturr/MWJqZ5+4=
+	t=1715778868; cv=none; b=fj6Mg2jIhMrMxz69kw96AvzenJNShW4d+Q7UvO5FyBxlyr5scS2qoorSqToMR5spGr+/pmkG84ipsNiRJRSCjqCJ6vgl5KHb04DrpT0h0M7kA8ecRkJQAO2e1WudJ/0oTWO5/JX+HamT+DlemlnH0AtPdY6V6FHdNGrzPZ4TdP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715778812; c=relaxed/simple;
-	bh=i9DKrQsXGUxAUpBevzvA160IgVfmfZ+PnzcXxx5XO50=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=JM1iChITGkzcGwo7DSbYknCfY8fjqAlYPOp4bi0wt3DvyBFAeNvgvzZT4p4aOC+eDP744GK7f+UsEE6xGXAf/hiTt0fMdoFClSCDA17hMKGDSgOrGmXGCEdm3uvocHrejvUtoljPBqjTyZ032zaJePNTdY4Cypq6XSAh7FVYQfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CWldZSKK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16843C4AF07;
-	Wed, 15 May 2024 13:13:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715778811;
-	bh=i9DKrQsXGUxAUpBevzvA160IgVfmfZ+PnzcXxx5XO50=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=CWldZSKKRh/RjuXfgDlMEBUQCQDJBGilz4hcocfKUMTSscSwm7I3UfdfEDcuPIpjw
-	 Onn3LscrDpwM4c5vqJ7dozEVL1zJ0jVbSs8UzKeCSGkqzxiSq9vbVRQ5k4TjJCZYt4
-	 HDaGYGZuxRqPCwOpjLG0urM+zHfGaY1r8LWBVE5hbZtEKvsdf+2ETNSfRYCywlJDcN
-	 7wBTIGdNF5gm59qAzJELz6aBBvj/6GwLRjZ+LyOfZYdMfrJu12ao0rJ4xFYkUbx83S
-	 dS9VCRJo4KWyR1NukC4VfSi+h/b/IWu6bIcubpWhEuyCbHYd01fvPg3Y3y0EflcfTw
-	 gkZbCoYmtlpCQ==
-Date: Wed, 15 May 2024 08:13:29 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1715778868; c=relaxed/simple;
+	bh=Yb5M9H36jt8uea4+5ZG2QLZ3q4Yzr5yww1nqS+8QW5Q=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=N8J8PpZh1eIUUB2D3QI5YclqD8XtB4UwjnTTAgJg7u362VBBa4Bq/pv4iYC5ZZsODPCiG1CJaeiJRAHKPyYHgkUyyluFkuZ4PYDj5RCn05Vf3YG2VGnllIJ6RRGSxkoovkvmteS/RPzqHbGAuHJnyQKLEGTRzmO3JAjDCcxwNvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UzJ3PiRf; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-34e667905d2so4707391f8f.1;
+        Wed, 15 May 2024 06:14:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715778865; x=1716383665; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xqCAubB284eWJZEoxEZDG9uJ95Ernv3VMqhGxv3fKCg=;
+        b=UzJ3PiRfnROyKCszeDGypAuESw9sV8uqsOOMLmvmEH5bQTM3zJDzZ0ww+PaO61CpXX
+         jeINeq3IAwN3tkumUPD75oLht1YxOI08opSgPWTV5r73kWulSaAiT7d2YYJ61UDLg+Iy
+         aXmYeimQ1dpBsLAa3dJK+Z8/1knnWqU7E2MYS3Y0t1R6PTSzadFuvZL8VtJBXGuOzK2T
+         rLrH86l56MmD2mMVzWl3QOHF2xTTMSegtfNHHxqTBgVkTRXx4Nb4oyLw1V6lNdDXyr89
+         QwbAbNhci3vsQvYWL7MU9lidji6RPXO4sTLqwuto2e+sErPhwt3C2jIse4H168PTbed1
+         bWKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715778865; x=1716383665;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xqCAubB284eWJZEoxEZDG9uJ95Ernv3VMqhGxv3fKCg=;
+        b=s2ejDHV5Hdgb6gZsarcovDQtIlTlh2OQRuHvIgDcUKwGXpQTzNX4RDmYJl7Q8Z3xPN
+         eqPbuLW+hKlyJ4MW8dOurBebBmCzpl1PQjQoKirIaN1V61HChB3GdFDVm5fvU9EWGH8j
+         JIVWHI0+HYWRQaoVMt6RYCYOU/9Mtd88HBOr533WQ2gaRM9qvu+oQ5tpVAExpZ+U5Yww
+         nQv3MjpQnTlfx4Q12KI9BJ89P0KYGJwRF+KgKR5IppJMcwProsNzlhuuBk2WV0XgZoXQ
+         g2tycFZCTaXneCavXfOi2QJKUgllNJ577r5CR8Hq/htoohXeHi3AOvpKhW5P74nhFWdz
+         uAtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUIv+X8fCeM3YT70yf+Ktk67Mm69YYQxuqu35KYVhHgdsI71qg9GcDp6l8AFJ7IDrZCvOcvnKZxBvXK2HTYK5RNxJBvo5g52tB0JVMejCHPVmWte4gDKdj/6fyaVmp4VIwGdah4KRXZlw==
+X-Gm-Message-State: AOJu0YxAodX684PPek09sMzYcVWTESIUXPJiC3mTqTfzODrEk23vOknE
+	m3dfcH+lcb7Zkrm6QQ0xgXTRgOIPq5EKJU3xyMz7pTFqzarUuhy1
+X-Google-Smtp-Source: AGHT+IFzeuuotpdffji9hPE+SlOa46FpGzcGLpwc2mDaJCNNjbVZQTmLPGQpVyrfhAu+GfS7sWtn3A==
+X-Received: by 2002:a5d:510b:0:b0:34d:750c:5d81 with SMTP id ffacd0b85a97d-3504a741521mr11460139f8f.42.1715778864960;
+        Wed, 15 May 2024 06:14:24 -0700 (PDT)
+Received: from ?IPV6:2001:861:3385:e20:6384:4cf:52c5:3194? ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3504660753esm14821268f8f.8.2024.05.15.06.14.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 May 2024 06:14:24 -0700 (PDT)
+Message-ID: <9f0e7fb6-8712-4956-b058-9dfcb652cfbc@gmail.com>
+Date: Wed, 15 May 2024 15:14:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: joel@jms.id.au, krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
- andrew@codeconstruct.com.au, conor+dt@kernel.org
-In-Reply-To: <20240514213510.159144-1-eajames@linux.ibm.com>
-References: <20240514213510.159144-1-eajames@linux.ibm.com>
-Message-Id: <171577872361.488906.8984153966666655315.robh@kernel.org>
-Subject: Re: [PATCH v5 0/4] ARM: dts: aspeed: Add IBM P11 BMC systems
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] ARM: dts: st: add thermal property on stih410.dtsi
+ and stih418.dtsi
+From: =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>, Lee Jones <lee@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240320-thermal-v3-0-700296694c4a@gmail.com>
+ <20240320-thermal-v3-2-700296694c4a@gmail.com>
+Content-Language: en-US, fr
+In-Reply-To: <20240320-thermal-v3-2-700296694c4a@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Hi Patrice,
 
-On Tue, 14 May 2024 16:35:06 -0500, Eddie James wrote:
-> This series was previously included in
-> https://lore.kernel.org/all/20240429210131.373487-1-eajames@linux.ibm.com/
-> The series now depends on
-> https://lore.kernel.org/all/20240514212555.158788-1-eajames@linux.ibm.com/
-> https://lore.kernel.org/all/20240514205454.158157-1-eajames@linux.ibm.com/
-> https://lore.kernel.org/all/20240514195435.155372-1-eajames@linux.ibm.com/
-> https://lore.kernel.org/all/20240514192630.152747-1-eajames@linux.ibm.com/
+Gentle ping on this one. :)
+
+Regards,
+Raphaël
+
+Le 20/03/2024 à 22:33, Raphael Gallais-Pou a écrit :
+> "#thermal-sensor-cells" is required and missing in thermal nodes.
+> Add it.
 > 
-> Changes since v4:
->  - Update SPI frequencies
->  - Add Blueridge 4U system
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> ---
+>   arch/arm/boot/dts/st/stih410.dtsi | 1 +
+>   arch/arm/boot/dts/st/stih418.dtsi | 1 +
+>   2 files changed, 2 insertions(+)
 > 
-> Eddie James (4):
->   ARM: dts: aspeed: Add IBM P11 FSI devices
->   ARM: dts: aspeed: Add IBM P11 Blueridge BMC system
->   ARM: dts: aspeed: Add IBM P11 Blueridge 4U BMC system
->   ARM: dts: aspeed: Add IBM P11 Fuji BMC system
+> diff --git a/arch/arm/boot/dts/st/stih410.dtsi b/arch/arm/boot/dts/st/stih410.dtsi
+> index 29e95e9d3229..a69231854f78 100644
+> --- a/arch/arm/boot/dts/st/stih410.dtsi
+> +++ b/arch/arm/boot/dts/st/stih410.dtsi
+> @@ -270,6 +270,7 @@ thermal@91a0000 {
+>   			clock-names = "thermal";
+>   			clocks = <&clk_sysin>;
+>   			interrupts = <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>;
+> +			#thermal-sensor-cells = <0>;
+>   		};
+>   
+>   		cec@94a087c {
+> diff --git a/arch/arm/boot/dts/st/stih418.dtsi b/arch/arm/boot/dts/st/stih418.dtsi
+> index b35b9b7a7ccc..0f0db988a907 100644
+> --- a/arch/arm/boot/dts/st/stih418.dtsi
+> +++ b/arch/arm/boot/dts/st/stih418.dtsi
+> @@ -113,6 +113,7 @@ thermal@91a0000 {
+>   			clock-names = "thermal";
+>   			clocks = <&clk_sysin>;
+>   			interrupts = <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>;
+> +			#thermal-sensor-cells = <0>;
+>   		};
+>   	};
+>   };
 > 
->  arch/arm/boot/dts/aspeed/Makefile             |    2 +
->  .../aspeed/aspeed-bmc-ibm-blueridge-4u.dts    |   21 +
->  .../dts/aspeed/aspeed-bmc-ibm-blueridge.dts   | 1691 +++++++
->  .../boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts   | 3880 +++++++++++++++++
->  .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 1538 +++++++
->  5 files changed, 7132 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dts
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dts
->  create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-quad.dtsi
-> 
-> --
-> 2.39.3
-> 
-> 
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-ibm-blueridge-4u.dtb aspeed/aspeed-bmc-ibm-blueridge.dtb aspeed/aspeed-bmc-ibm-fuji.dtb' for 20240514213510.159144-1-eajames@linux.ibm.com:
-
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /: failed to match any schema with compatible: ['ibm,fuji-bmc', 'aspeed,ast2600']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /: failed to match any schema with compatible: ['ibm,blueridge-bmc', 'aspeed,ast2600']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /: failed to match any schema with compatible: ['ibm,blueridge-bmc', 'aspeed,ast2600']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
-	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: ftgmac@1e680000: $nodename:0: 'ftgmac@1e680000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: ftgmac@1e670000: $nodename:0: 'ftgmac@1e670000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: ftgmac@1e670000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: ftgmac@1e690000: $nodename:0: 'ftgmac@1e690000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: ftgmac@1e690000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: ftgmac@1e680000: $nodename:0: 'ftgmac@1e680000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: ftgmac@1e670000: $nodename:0: 'ftgmac@1e670000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: ftgmac@1e670000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: ftgmac@1e690000: $nodename:0: 'ftgmac@1e690000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: ftgmac@1e690000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: ftgmac@1e660000: $nodename:0: 'ftgmac@1e660000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: ftgmac@1e680000: $nodename:0: 'ftgmac@1e680000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: ftgmac@1e670000: $nodename:0: 'ftgmac@1e670000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: ftgmac@1e670000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: ftgmac@1e690000: $nodename:0: 'ftgmac@1e690000' does not match '^ethernet(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: ftgmac@1e690000: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: syscon@1e6e2000: 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: pinctrl: i3c1_default:function:0: 'I3C1' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', '
- NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB2BH',
-  'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: pinctrl: i3c1_default:groups:0: 'I3C1' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMCG1', 'EMMCG4', 'EMMCG8', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'HVI3C3', 'HVI3C4', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'N
- RI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10G0', 'PWM10G1', 'PWM11G0', 'PWM11G1', 'PWM12G0', 'PWM12G1', 'PWM13G0', 'PWM13G1', 'PWM14G0', 'PWM14G1', 'PWM15G0', 'PWM15G1', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8G0', 'PWM8G1', 'PWM9G0', 'PWM9G1', 'QSPI1', 'QSPI2', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10G0', 'SALT10G1', 'SALT11G0', 'SALT11G1', 'SALT12G0', 'SALT12G1', 'SALT13G0', 'SALT13G1', 'SALT14G0', 'SALT14G1', 'SALT15G0', 'SALT15G1', 'SALT16G0', 'SALT16G1', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9G0', 'SALT9G1', 'SD1', 'SD2', 'SD3', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15
- ', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12G0', 'UART12G1', 'UART13G0', 'UART13G1', 'UART6', 'UART7', 'UART8', 'UART9', 'USBA', 'USBB', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: pinctrl: i3c2_default:function:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', '
- NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB2BH',
-  'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: pinctrl: i3c2_default:groups:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMCG1', 'EMMCG4', 'EMMCG8', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'HVI3C3', 'HVI3C4', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'N
- RI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10G0', 'PWM10G1', 'PWM11G0', 'PWM11G1', 'PWM12G0', 'PWM12G1', 'PWM13G0', 'PWM13G1', 'PWM14G0', 'PWM14G1', 'PWM15G0', 'PWM15G1', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8G0', 'PWM8G1', 'PWM9G0', 'PWM9G1', 'QSPI1', 'QSPI2', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10G0', 'SALT10G1', 'SALT11G0', 'SALT11G1', 'SALT12G0', 'SALT12G1', 'SALT13G0', 'SALT13G1', 'SALT14G0', 'SALT14G1', 'SALT15G0', 'SALT15G1', 'SALT16G0', 'SALT16G1', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9G0', 'SALT9G1', 'SD1', 'SD2', 'SD3', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15
- ', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12G0', 'UART12G1', 'UART13G0', 'UART13G1', 'UART6', 'UART7', 'UART8', 'UART9', 'USBA', 'USBB', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: pinctrl: usb2ad_default:function:0: 'USB2AD' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1
- ', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB2
- BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: pinctrl: usb11bhid_default:function:0: 'USB11BHID' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 
- 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD',
-  'USB2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: syscon@1e6e2000: 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: pinctrl: i3c2_default:function:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'N
- RTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', '
- USB2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: pinctrl: i3c2_default:groups:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMCG1', 'EMMCG4', 'EMMCG8', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'HVI3C3', 'HVI3C4', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'ND
- TR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10G0', 'PWM10G1', 'PWM11G0', 'PWM11G1', 'PWM12G0', 'PWM12G1', 'PWM13G0', 'PWM13G1', 'PWM14G0', 'PWM14G1', 'PWM15G0', 'PWM15G1', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8G0', 'PWM8G1', 'PWM9G0', 'PWM9G1', 'QSPI1', 'QSPI2', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10G0', 'SALT10G1', 'SALT11G0', 'SALT11G1', 'SALT12G0', 'SALT12G1', 'SALT13G0', 'SALT13G1', 'SALT14G0', 'SALT14G1', 'SALT15G0', 'SALT15G1', 'SALT16G0', 'SALT16G1', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9G0', 'SALT9G1', 'SD1', 'SD2', 'SD3', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14',
-  'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12G0', 'UART12G1', 'UART13G0', 'UART13G1', 'UART6', 'UART7', 'UART8', 'UART9', 'USBA', 'USBB', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: pinctrl: usb11bhid_default:function:0: 'USB11BHID' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 
- 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', '
- USB2BD', 'USB2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: pinctrl: usb2ad_default:function:0: 'USB2AD' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4'
- , 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD
- ', 'USB2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: pinctrl: i3c1_default:function:0: 'I3C1' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'N
- RTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', '
- USB2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: pinctrl: i3c1_default:groups:0: 'I3C1' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMCG1', 'EMMCG4', 'EMMCG8', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'HVI3C3', 'HVI3C4', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'ND
- TR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10G0', 'PWM10G1', 'PWM11G0', 'PWM11G1', 'PWM12G0', 'PWM12G1', 'PWM13G0', 'PWM13G1', 'PWM14G0', 'PWM14G1', 'PWM15G0', 'PWM15G1', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8G0', 'PWM8G1', 'PWM9G0', 'PWM9G1', 'QSPI1', 'QSPI2', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10G0', 'SALT10G1', 'SALT11G0', 'SALT11G1', 'SALT12G0', 'SALT12G1', 'SALT13G0', 'SALT13G1', 'SALT14G0', 'SALT14G1', 'SALT15G0', 'SALT15G1', 'SALT16G0', 'SALT16G1', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9G0', 'SALT9G1', 'SD1', 'SD2', 'SD3', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14',
-  'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12G0', 'UART12G1', 'UART13G0', 'UART13G1', 'UART6', 'UART7', 'UART8', 'UART9', 'USBA', 'USBB', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: syscon@1e6e2000: 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: pinctrl: usb2ad_default:function:0: 'USB2AD' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', '
- NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 
- 'USB2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: pinctrl: usb11bhid_default:function:0: 'USB11BHID' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NR
- I4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB
- 2BD', 'USB2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: pinctrl: i3c1_default:function:0: 'I3C1' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS
- 1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB
- 2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: pinctrl: i3c1_default:groups:0: 'I3C1' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMCG1', 'EMMCG4', 'EMMCG8', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'HVI3C3', 'HVI3C4', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4
- ', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10G0', 'PWM10G1', 'PWM11G0', 'PWM11G1', 'PWM12G0', 'PWM12G1', 'PWM13G0', 'PWM13G1', 'PWM14G0', 'PWM14G1', 'PWM15G0', 'PWM15G1', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8G0', 'PWM8G1', 'PWM9G0', 'PWM9G1', 'QSPI1', 'QSPI2', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10G0', 'SALT10G1', 'SALT11G0', 'SALT11G1', 'SALT12G0', 'SALT12G1', 'SALT13G0', 'SALT13G1', 'SALT14G0', 'SALT14G1', 'SALT15G0', 'SALT15G1', 'SALT16G0', 'SALT16G1', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9G0', 'SALT9G1', 'SD1', 'SD2', 'SD3', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'T
- ACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12G0', 'UART12G1', 'UART13G0', 'UART13G1', 'UART6', 'UART7', 'UART8', 'UART9', 'USBA', 'USBB', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: pinctrl: i3c2_default:function:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMC', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS
- 1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10', 'PWM11', 'PWM12', 'PWM13', 'PWM14', 'PWM15', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8', 'PWM9', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10', 'SALT11', 'SALT12', 'SALT13', 'SALT14', 'SALT15', 'SALT16', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9', 'SD1', 'SD2', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'TACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12', 'UART13', 'UART6', 'UART7', 'UART8', 'UART9', 'USBAD', 'USBADP', 'USB2AH', 'USB2AHP', 'USB2BD', 'USB
- 2BH', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: pinctrl: i3c2_default:groups:0: 'I3C2' is not one of ['ADC0', 'ADC1', 'ADC10', 'ADC11', 'ADC12', 'ADC13', 'ADC14', 'ADC15', 'ADC2', 'ADC3', 'ADC4', 'ADC5', 'ADC6', 'ADC7', 'ADC8', 'ADC9', 'BMCINT', 'EMMCG1', 'EMMCG4', 'EMMCG8', 'ESPI', 'ESPIALT', 'FSI1', 'FSI2', 'FWQSPI', 'FWSPIABR', 'FWSPID', 'FWSPIWP', 'GPIT0', 'GPIT1', 'GPIT2', 'GPIT3', 'GPIT4', 'GPIT5', 'GPIT6', 'GPIT7', 'GPIU0', 'GPIU1', 'GPIU2', 'GPIU3', 'GPIU4', 'GPIU5', 'GPIU6', 'GPIU7', 'HVI3C3', 'HVI3C4', 'I2C1', 'I2C10', 'I2C11', 'I2C12', 'I2C13', 'I2C14', 'I2C15', 'I2C16', 'I2C2', 'I2C3', 'I2C4', 'I2C5', 'I2C6', 'I2C7', 'I2C8', 'I2C9', 'I3C3', 'I3C4', 'I3C5', 'I3C6', 'JTAGM', 'LHPD', 'LHSIRQ', 'LPC', 'LPCHC', 'LPCPD', 'LPCPME', 'LPCSMI', 'LSIRQ', 'MACLINK1', 'MACLINK2', 'MACLINK3', 'MACLINK4', 'MDIO1', 'MDIO2', 'MDIO3', 'MDIO4', 'NCTS1', 'NCTS2', 'NCTS3', 'NCTS4', 'NDCD1', 'NDCD2', 'NDCD3', 'NDCD4', 'NDSR1', 'NDSR2', 'NDSR3', 'NDSR4', 'NDTR1', 'NDTR2', 'NDTR3', 'NDTR4
- ', 'NRI1', 'NRI2', 'NRI3', 'NRI4', 'NRTS1', 'NRTS2', 'NRTS3', 'NRTS4', 'OSCCLK', 'PEWAKE', 'PWM0', 'PWM1', 'PWM10G0', 'PWM10G1', 'PWM11G0', 'PWM11G1', 'PWM12G0', 'PWM12G1', 'PWM13G0', 'PWM13G1', 'PWM14G0', 'PWM14G1', 'PWM15G0', 'PWM15G1', 'PWM2', 'PWM3', 'PWM4', 'PWM5', 'PWM6', 'PWM7', 'PWM8G0', 'PWM8G1', 'PWM9G0', 'PWM9G1', 'QSPI1', 'QSPI2', 'RGMII1', 'RGMII2', 'RGMII3', 'RGMII4', 'RMII1', 'RMII2', 'RMII3', 'RMII4', 'RXD1', 'RXD2', 'RXD3', 'RXD4', 'SALT1', 'SALT10G0', 'SALT10G1', 'SALT11G0', 'SALT11G1', 'SALT12G0', 'SALT12G1', 'SALT13G0', 'SALT13G1', 'SALT14G0', 'SALT14G1', 'SALT15G0', 'SALT15G1', 'SALT16G0', 'SALT16G1', 'SALT2', 'SALT3', 'SALT4', 'SALT5', 'SALT6', 'SALT7', 'SALT8', 'SALT9G0', 'SALT9G1', 'SD1', 'SD2', 'SD3', 'SGPM1', 'SGPM2', 'SGPS1', 'SGPS2', 'SIOONCTRL', 'SIOPBI', 'SIOPBO', 'SIOPWREQ', 'SIOPWRGD', 'SIOS3', 'SIOS5', 'SIOSCI', 'SPI1', 'SPI1ABR', 'SPI1CS1', 'SPI1WP', 'SPI2', 'SPI2CS1', 'SPI2CS2', 'TACH0', 'TACH1', 'TACH10', 'TACH11', 'TACH12', 'TACH13', 'TACH14', 'T
- ACH15', 'TACH2', 'TACH3', 'TACH4', 'TACH5', 'TACH6', 'TACH7', 'TACH8', 'TACH9', 'THRU0', 'THRU1', 'THRU2', 'THRU3', 'TXD1', 'TXD2', 'TXD3', 'TXD4', 'UART10', 'UART11', 'UART12G0', 'UART12G1', 'UART13G0', 'UART13G1', 'UART6', 'UART7', 'UART8', 'UART9', 'USBA', 'USBB', 'VB', 'VGAHS', 'VGAVS', 'WDTRST1', 'WDTRST2', 'WDTRST3', 'WDTRST4']
-	from schema $id: http://devicetree.org/schemas/pinctrl/aspeed,ast2600-pinctrl.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@560: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@570: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/xdma@1e6e7000: failed to match any schema with compatible: ['aspeed,ast2600-xdma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: adc@1e6e9000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: adc@1e6e9100: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: crypto@1e6fa000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/video@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-video-engine']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: gpio@1e780000: 'usb-power-hog' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: sgpiom@1e780500: '#interrupt-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: sgpiom@1e780600: '#interrupt-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: lpc@1e789000: reg-io-width: [[4]] is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: sdc@1e740000: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: sdc@1e740000: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@560: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@570: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/xdma@1e6e7000: failed to match any schema with compatible: ['aspeed,ast2600-xdma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: adc@1e6e9000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: adc@1e6e9100: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: crypto@1e6fa000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/video@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-video-engine']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: gpio@1e780000: 'i2c3-mux-oe-n-hog', 'usb-power-hog' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: sgpiom@1e780500: '#interrupt-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: sgpiom@1e780600: '#interrupt-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: lpc@1e789000: reg-io-width: [[4]] is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@80/led-controller@62: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/led-controller@65: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: sdc@1e740000: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: sdc@1e740000: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/i2c-mux@70/i2c@0/led-controller@62: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/i2c-mux@70/i2c@1/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/i2c-mux@70/i2c@2/led-controller@61: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/led-controller@66: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@1/led-controller@61: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@2/led-controller@62: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@3/led-controller@63: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@380/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@200/led-controller@61: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@380/i2c-mux@70/i2c@1/led-controller@62: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@380/i2c-mux@70/i2c@2/led-controller@63: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@380/i2c-mux@70/i2c@3/led-controller@61: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@1/led-controller@61: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@380/led-controller@65: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@31: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@30: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@32: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@31: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@33: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@32: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@30: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@33: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@34: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@560: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@570: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/pwm@52: failed to match any schema with compatible: ['maxim,max31785a']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@35: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@61: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: pressure-sensor@76: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/xdma@1e6e7000: failed to match any schema with compatible: ['aspeed,ast2600-xdma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: adc@1e6e9000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: adc@1e6e9100: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@480/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@480/led-controller@61: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: crypto@1e6fa000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/video@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-video-engine']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: gpio@1e780000: 'i2c3-mux-oe-n-hog', 'usb-power-hog' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@600/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: sgpiom@1e780500: '#interrupt-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: sgpiom@1e780600: '#interrupt-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/i2c-mux@70/i2c@2/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/i2c-mux@70/i2c@3/pwm@52: failed to match any schema with compatible: ['maxim,max31785a']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/bus@1e78a000/i2c-bus@800/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/i2c-mux@70/i2c@3/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: lpc@1e789000: reg-io-width: [[4]] is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/i2c-mux@70/i2c@3/led-controller@61: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: sdc@1e740000: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: sdc@1e740000: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
-	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@200/led-controller@61: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@280/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@300/i2c-mux@70/i2c@1/led-controller@61: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@30: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@31: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@32: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@33: failed to match any schema with compatible: ['ibm,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/pwm@52: failed to match any schema with compatible: ['maxim,max31785a']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@400/led-controller@61: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: pressure-sensor@76: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@480/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@480/led-controller@61: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@600/i2c-mux@70/i2c@0/led-controller@60: failed to match any schema with compatible: ['nxp,pca9551']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@700/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@780/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/bus@1e78a000/i2c-bus@800/led-controller@60: failed to match any schema with compatible: ['nxp,pca9552']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@4,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@5,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@6,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@1,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@0/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@1/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@c/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@d/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@7,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-fuji.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@2,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/scom@1000: failed to match any schema with compatible: ['ibm,p9-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800: failed to match any schema with compatible: ['ibm,i2c-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@2/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@3/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@a/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@b/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@e/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@f/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@10/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi@20: '#address-cells', '#size-cells', 'cfam@0,0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,i2cr-fsi-master.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/scom@1000: failed to match any schema with compatible: ['ibm,i2cr-scom']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/i2c@1800/i2c-bus@11/fsi@20/cfam@0,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,odyssey-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: fsi2spi@1c00: '#address-cells', '#size-cells', 'spi@0', 'spi@20', 'spi@40', 'spi@60' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/fsi/ibm,fsi2spi.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@0: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@20: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@40: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi2spi@1c00/spi@60: failed to match any schema with compatible: ['ibm,spi-fsi']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/sbefifo@2400: failed to match any schema with compatible: ['ibm,p9-sbefifo']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/sbefifo@2400/occ: failed to match any schema with compatible: ['ibm,p10-occ']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b000/cfam@0,0/fsi@3400/cfam@3,0/fsi@3400: failed to match any schema with compatible: ['ibm,p9-fsi-controller']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
-
-
-
-
-
 
