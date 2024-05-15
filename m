@@ -1,101 +1,68 @@
-Return-Path: <devicetree+bounces-67021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3788C644E
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 11:52:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2EAC8C650E
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 12:45:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DA941C21455
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 09:52:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DF73281373
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3967760B95;
-	Wed, 15 May 2024 09:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6D85A7AB;
+	Wed, 15 May 2024 10:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DkoCiYvF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jykfc7/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824F65CDD0;
-	Wed, 15 May 2024 09:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482025EE67
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 10:44:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715766723; cv=none; b=qaE9VOmHQAyefNZFGMNfb0CTPW1Uw0BVmyPxXCl27dMyX+uaiMUqG7DtquXjM3vyAKMAAp/0WfISi6Uv95Soirz1jVPCNsVGP1uPt4fSoSxqXUaOMTkShMVmTp3GMDIhp4vBULU2kIXdckxx9/b+qGKCjEBQB20/X8HWmrLlUa4=
+	t=1715769897; cv=none; b=usvcHPZH0M+8sPddOlridKMhOMk0kWQnPu3UmXLiQbavJYIcnzzd2MFlTm5+6BhZdugoQVxejMx4341tsHLCEEJ4uBFrRxnf1mPf6E0T8Rhp2UG6cEga3bu1PEAvx0c9EXfZusa+2JMvs453OApMNMXcQ9pN4y0oxpXjIxjvktM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715766723; c=relaxed/simple;
-	bh=FqsP7HuwkMh4tdTQQe70uJSrEuVaCFV4t/iCknOg63o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FrMwqz+T//Ho1m3nUlHmiufhR5U5r5bCuplIKPgsE6Ra6DDlq0BUvlf/y23SckT8erPjOUxAI/W8Aye3inh5Dla9R9oYa8HeT4HGWEpuBFfmPgLl1IFUsgmnj8Puiiy4xeDwwLHYwl3fvqvGuNYCMhIvmfxG60HCRVqpAOLf7ns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DkoCiYvF; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44F9pja9021145;
-	Wed, 15 May 2024 04:51:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715766705;
-	bh=+Im48V8StjmmVMV/wSC1fpPAJfkvp4PeLDmO6kGm1C0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=DkoCiYvFrBJmSrDmcEjzUgKjr9K3T6j1ni75K7rNFbnWXtNh/JDnEYfBUmakUO6u2
-	 foThoTMopqZbs8oHiiCYAAnJESxCyV9JsO3FG5CJkZlmI9TlCvFzi//NtB6Pze2Qtp
-	 5WeyzPlJh+kPb9vQ3hKA5Dq0FvJbhGkU5/pXcWxM=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44F9pjVZ121595
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 15 May 2024 04:51:45 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 15
- May 2024 04:51:45 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 15 May 2024 04:51:45 -0500
-Received: from localhost (uda0496377.dhcp.ti.com [172.24.227.31])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44F9piRD125507;
-	Wed, 15 May 2024 04:51:45 -0500
-From: Aradhya Bhatia <a-bhatia1@ti.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang
-	<quic_jesszhan@quicinc.com>,
-        Sam Ravnborg <sam@ravnborg.org>, David Airlie
-	<airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Liu Ying <victor.liu@nxp.com>,
-        Thierry Reding
-	<thierry.reding@gmail.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>
-CC: DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List
-	<devicetree@vger.kernel.org>,
-        Linux Kernel List
-	<linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>, Jai Luthra
-	<j-luthra@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>
-Subject: [PATCH v3 6/6] drm/panel: simple: Add Microtips Technology MF-103HIEB0GA0 panel
-Date: Wed, 15 May 2024 15:21:33 +0530
-Message-ID: <20240515095133.745492-7-a-bhatia1@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240515095133.745492-1-a-bhatia1@ti.com>
-References: <20240515095133.745492-1-a-bhatia1@ti.com>
+	s=arc-20240116; t=1715769897; c=relaxed/simple;
+	bh=SaM6rBkEWsdmGxMdLo5qtXW2ylDMeVaUbAOoA0bZes4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZOQSjPbrqWeClUWTQEg7puCiM4jnd64e48mmTYR0OlpYta8uT2JTn4nUia4FRSvef6Wm1YcBs4d6aFDRnYE+yPQuQbgqVXE43a+bASKxa3FOkJKNQg5EdAtjrcLmIV+r3tYRacKoPaUtq5Pw9P9Ro1vnlpbZLj2FghwrWara4WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jykfc7/1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55C95C116B1;
+	Wed, 15 May 2024 10:44:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715769896;
+	bh=SaM6rBkEWsdmGxMdLo5qtXW2ylDMeVaUbAOoA0bZes4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jykfc7/1NJrVt9GVjJIiVgYWF/fWSv+yCSFLQI9iTKQOhhrgmSRaLYuKHUePI0TPx
+	 NjkPUDf5KC4/N7cjWkMCPA7RMJi36cJtdt9hGhugKjWutQHMrw2oncj3GomI1nVXGZ
+	 8tnl8ZrDZSo+EExs4aV0TAqDG4RYX/ShNDwuXHeNkK9QXS7aPwjt2/gZKLkzAMjcvC
+	 PLf4WZWrb3ElOO6JP8UN+8Ot3m7C7V4dp/Mv5hJqiV48JUiIE5QWEOH7ITU98yKws1
+	 nZ8JAsF1GWnBlRhULwzCBdCwOUKzTBUWY2SMT338GyEYPWU8pk/sAtWW8Fbf8DA9o+
+	 W8Xg01ejw81mQ==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-phy@lists.infradead.org
+Cc: vkoul@kernel.org,
+	kishon@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	amitsinght@marvell.com
+Subject: [PATCH v2 0/4] Introduce PCIe PHY driver for EN7581 SoC
+Date: Wed, 15 May 2024 12:44:44 +0200
+Message-ID: <cover.1715769325.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,72 +70,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add support for Microtips Technology USA MF-103HIEB0GA0 10.25"[0],
-1920x720, 8-bit TFT LCD with LVDS interface. Its a Dual-LVDS Panel and
-does not support touch.
+Add support for Airoha PCIe PHY controller available in the EN7581 SoC.
 
-[0]: Panel Datasheet
-https://simplespec.microtipsusa.com/uploads/spec/datasheetFile/2660/13-103HIEB0GA0-S_V1.0_20211206.pdf
+Changes since v1:
+- add patch 4/4 to enable PCIe PHY driver
+- rename documentation binding in airoha,en7581-pcie-phy.yaml
+- fix kernel doc
 
-Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 32 ++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+Lorenzo Bianconi (4):
+  dt-bindings: phy: airoha: Add binding doc for PCIe PHY driver
+  arm64: dts: airoha: Add EN7581 pcie-phy node
+  phy: airoha: Add PCIe PHY driver for EN7581 SoC.
+  arm64: defconfig: Enable Airoha pcie phy driver
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 3a0d8f0ff267..1b0a6b4e034c 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3084,6 +3084,35 @@ static const struct panel_desc microtips_mf_101hiebcaf0_c = {
- 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
- };
- 
-+static const struct drm_display_mode microtips_mf_103hieb0ga0_mode = {
-+	.clock = 93301,
-+	.hdisplay = 1920,
-+	.hsync_start = 1920 + 72,
-+	.hsync_end = 1920 + 72 + 72,
-+	.htotal = 1920 + 72 + 72 + 72,
-+	.vdisplay = 720,
-+	.vsync_start = 720 + 3,
-+	.vsync_end = 720 + 3 + 3,
-+	.vtotal = 720 + 3 + 3 + 2,
-+};
-+
-+static const struct panel_desc microtips_mf_103hieb0ga0 = {
-+	.modes = &microtips_mf_103hieb0ga0_mode,
-+	.bpc = 8,
-+	.num_modes = 1,
-+	.size = {
-+		.width = 244,
-+		.height = 92,
-+	},
-+	.delay = {
-+		.prepare = 50,
-+		.disable = 50,
-+	},
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode mitsubishi_aa070mc01_mode = {
- 	.clock = 30400,
- 	.hdisplay = 800,
-@@ -4726,6 +4755,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "microtips,mf-101hiebcaf0",
- 		.data = &microtips_mf_101hiebcaf0_c,
-+	}, {
-+		.compatible = "microtips,mf-103hieb0ga0",
-+		.data = &microtips_mf_103hieb0ga0,
- 	}, {
- 		.compatible = "mitsubishi,aa070mc01-ca1",
- 		.data = &mitsubishi_aa070mc01,
+ .../bindings/phy/airoha,en7581-pcie-phy.yaml  |   55 +
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |    9 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/phy/Kconfig                           |   10 +
+ drivers/phy/Makefile                          |    1 +
+ drivers/phy/phy-airoha-pcie-regs.h            |  476 +++++++
+ drivers/phy/phy-airoha-pcie.c                 | 1226 +++++++++++++++++
+ 8 files changed, 1786 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/airoha,en7581-pcie-phy.yaml
+ create mode 100644 drivers/phy/phy-airoha-pcie-regs.h
+ create mode 100644 drivers/phy/phy-airoha-pcie.c
+
 -- 
-2.34.1
+2.45.0
 
 
