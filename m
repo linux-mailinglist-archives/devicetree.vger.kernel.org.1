@@ -1,173 +1,181 @@
-Return-Path: <devicetree+bounces-66998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A9C8C6279
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:03:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4CC8C6280
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:06:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4E1C1F22EB8
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:03:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2AB1B22459
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B994D5AB;
-	Wed, 15 May 2024 08:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6586B48CCD;
+	Wed, 15 May 2024 08:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rO6y9sDE"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="nzUFl2Kx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A887D4A990
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 08:03:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1188B4C62E;
+	Wed, 15 May 2024 08:06:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715760224; cv=none; b=GacQaoQF9fQBtDX0OcIIf0oOEz9R9sbiIK1kYD3fC4KTizd1HrTAPuE0BBQy94pLlU06PeSi/JjzxkNNAmBrgE9wScuVbYfV9Z56eqHULbjrC0ME8OMKeI/czUSkNtNWlcq+3Wi4hWLLv3ONbZLgMvKC+p2fTe/IueErlm8x8co=
+	t=1715760400; cv=none; b=Qe97Mu+6R47RSngnBB/jErRbu7Gr3R754IL6HvFWzCgXkWwN/E5Sedwm4OQxjB67uOpcTFJdHeXkz3GBBtQJLgUHd3azgQrQQCQJx64OZwDYqD7rTCU8pBtTTzTHSICAbJEda/86JcoG6KpVWrPtwpcNf35vy59+jx6KX1N4Y4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715760224; c=relaxed/simple;
-	bh=VH9txt46L4P36L40P+7h3wObatnHZuVpGod7pcvsnpg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=thqPPXkwvh4UEqMUs6dLbSLnBUNrLYZtT1CMsmYCm94aR327uXGlE1Ap26ax1xlu3ANRyVlUlzvAMlkhOFsHxZDmDmXrICWAPnz7b5tuvtU16xbGyJDq/Q0oxHRDdnAH6q9QllF8+Y/FY/XEqgAB/LjDpj/adR84HeBgify+6vM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rO6y9sDE; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2e6f2534e41so10348901fa.0
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 01:03:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715760219; x=1716365019; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=R04O4/+uapb3Pagg8ZXSnZwmMA9rR8+o1ejwqMPkjdk=;
-        b=rO6y9sDER7lQl7VEYZaDGtYgROFvUBW96HRWjFyGOlO/OTov6G1iQsWXrIWUrGGMCR
-         XhiqI2DnSgWzD5Ws3/x/ac6OQTp25CtbbThmt472C/0WXhNSrPLZ3aDe6bWD9He1Yr2l
-         05qqXe7SU40uZxFJmOw92re9GYaIZqCNynErvLvKI8OEWYJfh5qGvlrDJBu1dtKtMTUA
-         EC/Sk5EOEDbvWmMDKXR63Uqx/GjwQCFlID3bnEZpnfBpE6BBXObnMsmBaf5hC5RxXwR3
-         HLEc9HkGidxPGgu1oX+xAPPTkmtK0c97Kg6XdXzFqo+ZocXiWNdVF11Nz8oQqu20I316
-         ij5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715760219; x=1716365019;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R04O4/+uapb3Pagg8ZXSnZwmMA9rR8+o1ejwqMPkjdk=;
-        b=ZpV9i9vMZTKF4izRq+pxm0jwTjs8385rKjMT6exCmrAGYcYJ2Gb+A4iih7ZoIRLjXv
-         L0oF+phTP21WnEZVx8pJZG7v5k58x6qqyK8TxPWnenNTB3R2NuXA393YZiyl0TKts+Wz
-         7BRRamWBbQi2LQZ948zF5VRA1aXPJcXjoonbpO6n/rkcbWbEdm9T7zg9dcpuqFO1Lub8
-         VjAcf1hXtqn0hzJRcBE+vkrSNnNSWyiMsEETLfsWudU4zRE64pyJ6K9vmZi15CH+xx0f
-         F9M92pthyzCkWDYDnc6aMrC2LHlj9b8khhv4PuooEVX9CLo9BsfahulaGBA1mFxcnUkg
-         DWng==
-X-Forwarded-Encrypted: i=1; AJvYcCX3A7uCS082x4cOPaJy45eWleUT2GK6Nxo1FYoOspeAKxO8/PMozFdyQ8To7bhI7WPPeCt0SZyHS1L4tRjNAcqreWi6r417XG+raA==
-X-Gm-Message-State: AOJu0Yz0qAG2h8UoDzcAviGzZ6K8Iua3QSHKjzjitKayuVWXzCGXptHg
-	SwsQEli3xBFdjsgYo3g3mLNcfWGZucW5zotx3eHVkkRrbCfuay81VhlGtKJWYEY=
-X-Google-Smtp-Source: AGHT+IFtdXWk+XPXvaBplFUmiQVxNdck1a7Vh7kOUzVnhb7FDeeuJyPAnxtf1CxsBH0hkDIPvgRv2w==
-X-Received: by 2002:a2e:a98a:0:b0:2e6:f769:5124 with SMTP id 38308e7fff4ca-2e6f769532emr8715491fa.39.1715760218543;
-        Wed, 15 May 2024 01:03:38 -0700 (PDT)
-Received: from [10.91.0.75] ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502bbbbec5sm15620651f8f.95.2024.05.15.01.03.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 May 2024 01:03:38 -0700 (PDT)
-Message-ID: <f6de4e1a-b3fa-457e-8819-041b2fb8739a@linaro.org>
-Date: Wed, 15 May 2024 10:03:36 +0200
+	s=arc-20240116; t=1715760400; c=relaxed/simple;
+	bh=h0Sqhr4ifyZrC1b5lPNa6Gyug/wpM7myXaQxIuh3AZ4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GqC11zrJcf19aZ6ktVGTNzOAAHSpsxEaeKL9zmcYHU63b8ffQdT6O4g3SwoP5TOefiN8NpechCAuu0psOoQI0JvtKK1pm83Xw0pBVYNsjIdW/ruYsXV1E8jE9GXnL4fPQsxajz/nP4Cu9uPmtqQSgQlf0kW4AUHsjf7gk1clDf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=nzUFl2Kx; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1715760398; x=1747296398;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=h0Sqhr4ifyZrC1b5lPNa6Gyug/wpM7myXaQxIuh3AZ4=;
+  b=nzUFl2KxHPlZyCxSu7RzeKN3iZy4YGBVDp/ohKEDRKIQu/j1Ia1QrFby
+   QCCdAQBsllYyRSV8S2wOBdj1Sf7aScUsbByFWD45upZr2UyUF2nvJTJF1
+   nztaDtcXU09yEpBEfHk/BwGMqlF9PVEmH4aZKpQbTh/CEMBYFksafRB31
+   uSRXnVH8k+mtOtVnfcRE9YufAkfLArWa8+SMJa2APjtKkWcAX4oVMMQWW
+   LcOpBp/mGajcFORdRfsw6ngR6V3Crtm8SenK9rzOG6GcBrt501SxkzfhX
+   IfFA8k/GEKMLWVLPwihI+amyN8Oxu4NJ8K08MkiGMa1plI42ELgz7IQCL
+   g==;
+X-CSE-ConnectionGUID: EvxhA01VQR6BcbhVcVTEIw==
+X-CSE-MsgGUID: gMj862SdQQKslckEPmEeNQ==
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; 
+   d="asc'?scan'208";a="25383960"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 May 2024 01:06:37 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 15 May 2024 01:06:22 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Wed, 15 May 2024 01:06:20 -0700
+Date: Wed, 15 May 2024 09:06:06 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Alina Yu <alina_yu@richtek.com>
+CC: Conor Dooley <conor@kernel.org>, Mark Brown <broonie@kernel.org>,
+	<lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<johnny_lai@richtek.com>, <cy_huang@richtek.com>
+Subject: Re: [PATCH v3 6/6] regulator: dt-bindings: rtq2208: Add property to
+ get ldo of RTQ2208 is adjustable or not
+Message-ID: <20240515-wrinkle-engross-ab6b089baae3@wendy>
+References: <cover.1715340537.git.alina_yu@richtek.com>
+ <6a3a90d9aa2022dfb92e124e417f3e72c2f28b0b.1715340537.git.alina_yu@richtek.com>
+ <20240513-tissue-repave-13d2e3bf88fd@spud>
+ <d97752ed-4032-4681-b28f-17f149fdc3d4@sirena.org.uk>
+ <20240514-plunging-chair-803d9e342e6f@spud>
+ <20240515073830.GA12525@linuxcarl2.richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: ufs: qcom: Use 'ufshc' as the node name
- for UFS controller nodes
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Conor Dooley <conor@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
- linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240514-ufs-nodename-fix-v1-0-4c55483ac401@linaro.org>
- <20240514-ufs-nodename-fix-v1-1-4c55483ac401@linaro.org>
- <20240514-buggy-sighing-1573000e3f52@spud> <20240515075005.GC2445@thinkpad>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240515075005.GC2445@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="0FcHBb/wqZoBsRLq"
+Content-Disposition: inline
+In-Reply-To: <20240515073830.GA12525@linuxcarl2.richtek.com>
 
-On 15/05/2024 09:50, Manivannan Sadhasivam wrote:
-> On Tue, May 14, 2024 at 07:50:15PM +0100, Conor Dooley wrote:
->> On Tue, May 14, 2024 at 03:08:40PM +0200, Manivannan Sadhasivam wrote:
->>> Devicetree binding has documented the node name for UFS controllers as
->>> 'ufshc'. So let's use it instead of 'ufs' which is for the UFS devices.
->>
->> Can you point out where that's been documented?
-> 
-> Typo here. s/Devicetree binding/Devicetree spec
-> 
-> https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter2-devicetree-basics.rst#generic-names-recommendation
+--0FcHBb/wqZoBsRLq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I read your explanation in DT spec commit:
+On Wed, May 15, 2024 at 03:38:30PM +0800, Alina Yu wrote:
+> On Tue, May 14, 2024 at 07:01:21PM +0100, Conor Dooley wrote:
+> > On Tue, May 14, 2024 at 11:34:29AM +0100, Mark Brown wrote:
+> > > On Mon, May 13, 2024 at 05:22:54PM +0100, Conor Dooley wrote:
+> > > > On Fri, May 10, 2024 at 08:06:25PM +0800, Alina Yu wrote:
+> > >=20
+> > > > > +            richtek,fixed-microvolt =3D <1200000>;
+> > > > >              regulator-min-microvolt =3D <1200000>;
+> > > > >              regulator-max-microvolt =3D <1200000>;
+> > >=20
+> > > > I'm dumb and this example seemed odd to me. Can you explain to me w=
+hy
+> > > > it is not sufficient to set min-microvolt =3D=3D max-microvolt to a=
+chieve
+> > > > the same thing?
+> > >=20
+> > > This is for a special mode where the voltage being configured is out =
+of
+> > > the range usually supported by the regulator, requiring a hardware
+> > > design change to achieve.  The separate property is because otherwise=
+ we
+> > > can't distinguish the case where the mode is in use from the case whe=
+re
+> > > the constraints are nonsense, and we need to handle setting a fixed
+> > > voltage on a configurable regulator differently to there being a
+> > > hardware fixed voltage on a normally configurable regulator.
+> >=20
+> > Cool, I think an improved comment message and description would be
+> > helpful then to describe the desired behaviour that you mention here.
+> > The commit message in particular isn't great:
+> > | Since there is no way to check is ldo is adjustable or not.
+> > | As discussing in v2 series, 'richtek,fixed-microvolt' is added for th=
+at.
+> > | user is supposed to know whether vout of ldo is adjustable.
+> >=20
+> > It also doesn't seem like this sort of behaviour would be limited to
+> > Richtek either, should this actually be a common property in
+> > regulator.yaml w/o the vendor prefix?
+> >=20
+> > Cheers,
+> > Conor.
+>=20
+>=20
+> Hi Conor,
+>=20
+>=20
+> Should I update v4 to fix the commit message ?
+> I will modify it as follows.
+>=20
+>=20
+> There are two types of LDO VOUT: fixed voltage mode and adjustable voltag=
+e mode.
+>=20
+> As the fixed voltage for the LDO is outside the range of the adjustable v=
+oltage mode,
+> the constraints for this scenario are not suitable to represent both mode=
+s.
 
-"In a lot of places, 'ufs' is used as the node name to identify the host
-    controller, but it is wrong since 'ufs' denotes 'UFS device'."
+That's definitely an improvement, yes. The property description could
+also do with an update to explain that this is for a situation where the
+fixed voltage is out of the adjustable range, it doesn't mention that at
+all right now.
 
-but isn't this the same as with MMC? We do not call the nodes "mmchc" or
-"mmch", even though all of them are hosts, because "mmc" is the card.
-The same for most of other storage devices. Or USB. The term
-"controller" appears only for few cases like clocks, resets and power.
+> In version 3, a property has been added to specify the fixed voltage.
 
-When looking at storage nodes, ufsHC is an exception here.
+Don't refer to previous versions of the patchset in your commit message,
+that doesn't help people reading a commit log in the future etc. If
+there's some relevant information in a previous version patchset, put it
+in the commit message directly.
 
-Best regards,
-Krzysztof
+Cheers,
+Conor.
 
+--0FcHBb/wqZoBsRLq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkRs7gAKCRB4tDGHoIJi
+0vH7AQD9Pv88a/PkA91egE2kjvXH7h48NPsjCN8xwJ8vNsM5XgEAuD17AiUn8eu7
+CNpGygjTUdxaBxaAC0nC6jR2+XMgXwg=
+=ELYJ
+-----END PGP SIGNATURE-----
+
+--0FcHBb/wqZoBsRLq--
 
