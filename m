@@ -1,198 +1,249 @@
-Return-Path: <devicetree+bounces-67113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C723B8C692D
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 17:03:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C95C78C6932
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 17:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAD84B2205E
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:03:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5905B281484
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:05:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C990A155A5F;
-	Wed, 15 May 2024 15:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35CC115573C;
+	Wed, 15 May 2024 15:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="qt4VBpKN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EgVufc0X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8CF155A30;
-	Wed, 15 May 2024 15:03:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7C015572C;
+	Wed, 15 May 2024 15:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715785412; cv=none; b=cnnEnkhrDPHfunI6mW1cexLceC5bvdUnAnERfTdcdNtMNYXO+FVDA7z8Y16w8/I8k4ShDgEhKQguvx3hDg4DFPhUHMocz5JDSVUtFozAuWo/1jUyBk39UMU+fmK5wpXN10l1ChJwFDb7BYil7T/JKDBQPtsETko3Ql5bxerg1XE=
+	t=1715785537; cv=none; b=PX5fyfl1CQQPTDFmZE4jdGV6dWnnoVYFl2pfZZ3jVAPOlIVnG5UMpJ+TaC6M1xZSxMDohaUl+yHZynFwSdOuySBIYrdfptwEUoGavwQ7Eikzs2yaouHkkfk+fU3iR36DitnZ4F7LqiGNi8B1xuH0PlwItHGxeAz4FVFLo/HU+GA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715785412; c=relaxed/simple;
-	bh=FAyHswWUFcqlFWsTaHBnDaW6jjNPZ3Kxz4mJcJOdT88=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QkAOxYuGD+GhnvREgV+EVYctxiXeTdXUnucKmt34jN/JTPbWXjNeeFd1OXaZbbaDRmkLlquyhMIiiJZ/N3I1SnGoVGB+qDqkvqmKEX0bla8f15ifJka53soyhMIsa6EP5V9gqJqkzE4dFqPLJ8RSHOiXtWlx/e3xzuVVTKqOoYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=qt4VBpKN; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353727.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44FEjE7u021827;
-	Wed, 15 May 2024 15:02:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=Eg8ZNW6inA9pj/zfkTYeWUoHB8TFL+NlKQ+DAnY0S+c=;
- b=qt4VBpKN0mOcPzlw+NtXcZbmF28CLL+rbgoAP49dYuEfgLbg0AdnfxEXz3579vfRJAIN
- dHZjoQGYFUrsomi2LX5SgGs3uambuLRcuDo+vVp3hj93kcVTlCeFtlRosHzQnCLYMq3M
- bUXYOTCEI1J8NiqM+GwXPoUS6GfLajKhF+Al4s+p+gywEUuwTcctgnz59Cz+X6WZrF8O
- RAmsm2FUNlzHE1z9Ye4yddznXHttpACuNrjPZqt1iGOZvmuyoUWLuy0BMquFx1BhhxKe
- 5IZ1EOhtW9XkZoyte5rFiRdqnVx8t3q9Yd5v+izslTJXx0OJrDp2g5ALAA1+AnNdyFfW Jg== 
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3y4xab04wr-1
+	s=arc-20240116; t=1715785537; c=relaxed/simple;
+	bh=U7niQY55rvFzkJOC+RqcBOjATswiErUvW4E7z0V9IBg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YZQJR2n0TWDvbci8/JoDcDA/zYeT3e2Ap85Mu/biwJ6CZ5VtjBsUfBgCAQHZMmnbAraN2amSE7jGo3054gyQbkqPimBAVLU/UJTX6mxhRPy19+7fBvlyTFReTcWHRQGeuhYxtKfF0XpwnIw92c/3+ow3ASYcxlDWWgYsxrwOBRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EgVufc0X; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44F90bPA024822;
+	Wed, 15 May 2024 15:05:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=52vDSGdtcjDH8WF65be74
+	PgpKPFMf4YRwooDlqrX7dU=; b=EgVufc0XF77ElchlfAVZi4hndGoWs8fZ7VW08
+	hrgnrFOR/PQwd85RRnXUjAF5AGhSBD6jTIX1MBABRldJP4vILqGUVJ+CTvjlCOWY
+	er0KLIxAgD9v7ohndLm5La+uFP0OLLpjYcosSPQk2Gfj2iF3qnBidWJj6z0jN0Kv
+	34sYj7e7L2JP39yaEtNbneBKm0bumYHhY1wVSOHeev7GrT5zl2cBcZgyzfa8a3jv
+	1q+kZkqGrSfXyX7e+l6eVhNnA6kXzh5ygLjUIQ5Fz8l8one6RgpYjfMuphMVF9z/
+	AwLrq9a38jUWE+iSjN7ajy8MWeUSCDK/w4IGuBgw9gbePeLtw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y49gdtqsr-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 May 2024 15:02:52 +0000
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44FDlEHU018810;
-	Wed, 15 May 2024 15:02:51 GMT
-Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3y2k0tmevq-1
+	Wed, 15 May 2024 15:05:24 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44FF567h015633
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 May 2024 15:02:51 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
-	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44FF2nl028836554
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 15 May 2024 15:02:51 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id A52C058063;
-	Wed, 15 May 2024 15:02:47 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 2716958065;
-	Wed, 15 May 2024 15:02:47 +0000 (GMT)
-Received: from [9.61.107.19] (unknown [9.61.107.19])
-	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Wed, 15 May 2024 15:02:47 +0000 (GMT)
-Message-ID: <80713a00-9574-4ae0-8af7-3fe12affcfc1@linux.ibm.com>
-Date: Wed, 15 May 2024 10:02:46 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/9] dt-bindings: fsi: Document the FSI controller
- common properties
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-fsi@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
-        joel@jms.id.au, andrew@codeconstruct.com.au
-References: <20240514195435.155372-1-eajames@linux.ibm.com>
- <20240514195435.155372-6-eajames@linux.ibm.com>
- <9200e46a-3cb5-4363-a560-ee3d88e05ced@kernel.org>
- <a219f01e-a856-46cb-83c4-4fde99b8addd@linux.ibm.com>
- <eb6e2b5b-f341-404b-9215-6e80f21a6842@kernel.org>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <eb6e2b5b-f341-404b-9215-6e80f21a6842@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: pxzVAUxyJtQ1j4uWStUiK28reHAGBwcK
-X-Proofpoint-GUID: pxzVAUxyJtQ1j4uWStUiK28reHAGBwcK
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+	Wed, 15 May 2024 15:05:06 GMT
+Received: from hu-vvalluru-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 15 May 2024 08:05:03 -0700
+Date: Wed, 15 May 2024 20:34:59 +0530
+From: Prahlad Valluru <quic_vvalluru@quicinc.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_nankam@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <quic_abhinavk@quicinc.com>, <konrad.dybcio@linaro.org>,
+        <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+Message-ID: <20240515150459.GA32547@hu-vvalluru-hyd.qualcomm.com>
+References: <171405653305.2527744.3813895380659072690.robh@kernel.org>
+ <20240426142442.7769-1-quic_vvalluru@quicinc.com>
+ <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
+ <171517823376.1753082.4070659246393696781.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <171517823376.1753082.4070659246393696781.robh@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 6P98kOzxC02abmPA6fNy5xaHYv8ulUrU
+X-Proofpoint-ORIG-GUID: 6P98kOzxC02abmPA6fNy5xaHYv8ulUrU
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
  definitions=2024-05-15_07,2024-05-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- bulkscore=0 clxscore=1015 priorityscore=1501 mlxlogscore=999
- impostorscore=0 phishscore=0 adultscore=0 suspectscore=0
- lowpriorityscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2405010000 definitions=main-2405150106
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 clxscore=1015 priorityscore=1501 phishscore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405150106
 
+On Wed, May 08, 2024 at 09:31:24AM -0500, Rob Herring (Arm) wrote:
+> 
+> On Mon, 06 May 2024 18:14:10 -0500, Bjorn Andersson wrote:
+> > On Fri, Apr 26, 2024 at 07:54:42PM GMT, Prahlad Valluru wrote:
+> > > From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+> > >
+> > 
+> > Please don't thread new versions off existing version. b4 helps you with
+> > getting these things right, please check go/upstream for more details.
+> > 
+> > > Enable lt9611uxc bridge for qcs6490 rb3 gen2 platform.
+> > >
+> > 
+> > Even if it's clear what this is, I would prefer if you described the
+> > hardware a little bit in your commit message.
+> > "Rb3Gen2 has a HDMI connector, connected to DSI via a LT on i2cX.... reset and
+> > irq pins comes from x and y. Describe this."
+> > 
+> > > Signed-off-by: Prahlad Valluru <quic_vvalluru@quicinc.com>
+> > > ---
+> > > v2: Addressed dtschema errors
+> > > 	- Fixed lt9611-irq
+> > > 	- vdd-supply error to be ignored, as it is connected to
+> > > 	  input supply directly, on rb3gen2
+> 
+> The choice is either fix the dts or fix the binding. 
 
-On 5/15/24 09:35, Krzysztof Kozlowski wrote:
-> On 15/05/2024 16:28, Eddie James wrote:
->> On 5/15/24 09:18, Krzysztof Kozlowski wrote:
->>> On 14/05/2024 21:54, Eddie James wrote:
->>>> Since there are multiple FSI controllers documented, the common
->>>> properties should be documented separately and then referenced
->>>> from the specific controller documentation.
->>>>
->>>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->>>> ---
->>>> Changes since v4:
->>>>    - Add interrupt controller properties
->>>>    - Add clock-frequency property to FSI controller and CFAM
->>>>    - Add detail to chip-id property description
->>>>
->>>>    .../bindings/fsi/fsi-controller.yaml          | 66 +++++++++++++++++++
->>>>    1 file changed, 66 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controller.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/fsi/fsi-controller.yaml b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
->>>> new file mode 100644
->>>> index 0000000000000..8620e4da6de77
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
->>>> @@ -0,0 +1,66 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/fsi/fsi-controller.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: FSI Controller Common Properties
->>>> +
->>>> +maintainers:
->>>> +  - Eddie James <eajames@linux.ibm.com>
->>>> +
->>>> +description:
->>>> +  FSI (FRU (Field Replaceable Unit) Service Interface) is a two wire bus. The
->>>> +  FSI bus is connected to a CFAM (Common FRU Access Macro) which contains
->>>> +  various engines such as I2C controllers, SPI controllers, etc.
->>>> +
->>>> +properties:
->>>> +  "#address-cells":
->>>> +    const: 2
->>>> +
->>>> +  "#size-cells":
->>>> +    const: 0
->>>> +
->>>> +  '#interrupt-cells':
->>>> +    const: 1
->>>> +
->>>> +  clock-frequency:
->>>> +    minimum: 1
->>>> +    maximum: 200000000
->>> This is a deprecated property in general. Why did it appear? It does not
->>> exist in current bindings and nothing in commit msg suggests changes in
->>> the bindings themselves.
->>
->> OK, is there some document that describes what properties are
->> deprecated? Because it's used all over the place in the bindings. Anyway
-> dtschema: dtschema/schemas/clock/clock.yaml
->
-> buses anyway should use bus-frequency but it is also legacy one.
->
->> I need this property, I can rename it if you like. I can also update the
-> Why do you need it? Why clocks cannot be chosen by drivers and initial
-> state selected by assigned-clock-rates?
+vdd-supply is mandatory for lt9611. Only in case of rb3gen2, we are seeing this
+error, since it is connected to supply directly. Will add dummy vreg to address this.
 
-
-Well, I could use assigned-clock-rates, though it seems like I'd then 
-have to implement the clock provider framework for both the FSI 
-controller driver and the CFAM driver, which is a lot of extra work. FSI 
-controller isn't really a clock provider, it's a bus like i2c (which 
-uses clock-frequency), so it doesn't quite fit in my opinion...
-
-
-Thanks for your detailed review Krzysztof,
-
-Eddie
-
-
->
->
->> commit message to indicate that I'm adding it.
->
->
-> Best regards,
-> Krzysztof
->
+> 
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 86 ++++++++++++++++++++
+> > >  1 file changed, 86 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > > index a085ff5b5fb2..c14d4a4bb3ce 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > > @@ -51,6 +51,18 @@
+> > >  			};
+> > >  		};
+> > >  	};
+> > > +
+> > 
+> > There's a stray tab here, please run checkpatch --strict on your
+> > patches.
+> > 
+> > > +	hdmi-connector {
+> > > +		compatible = "hdmi-connector";
+> > > +		label = "HDMI";
+> > > +		type = "a";
+> > > +
+> > > +		port {
+> > > +			hdmi_con: endpoint {
+> > > +				remote-endpoint = <&lt9611_out>;
+> > > +			};
+> > > +		};
+> > > +	};
+> > >
+> > >  	reserved-memory {
+> > >  		xbl_mem: xbl@80700000 {
+> > > @@ -530,6 +542,45 @@
+> > [..]
+> > > @@ -602,6 +653,21 @@
+> > >  	status = "okay";
+> > >  };
+> > >
+> > > +&mdss_dsi {
+> > 
+> > We want to keep nodes sorted (by address if applicable, otherwise
+> > alphabetically on node names and on labels). "mdss_dsi" < "mdss_edp".
+> > 
+> > So please move this up where it belongs.
+> > 
+> > > +        vdda-supply = <&vreg_l6b_1p2>;
+> > > +        status = "okay";
+> > > +};
+> > > +
+> > > +&mdss_dsi0_out {
+> > > +        remote-endpoint = <&lt9611_a>;
+> > > +        data-lanes = <0 1 2 3>;
+> > > +};
+> > > +
+> > > +&mdss_dsi_phy {
+> > > +        vdds-supply = <&vreg_l10c_0p88>;
+> > > +        status = "okay";
+> > > +};
+> > > +
+> > >  &qupv3_id_0 {
+> > >  	status = "okay";
+> > >  };
+> > > @@ -711,3 +777,23 @@
+> > >  	function = "gpio";
+> > >  	bias-disable;
+> > >  };
+> > > +
+> > > +&pm7250b_gpios {
+> > > +        lt9611_rst_pin: lt9611-rst-state {
+> > > +                pins = "gpio2";
+> > > +                function = "normal";
+> > > +
+> > > +                output-high;
+> > > +                input-disable;
+> > > +                power-source = <0>;
+> > > +        };
+> > > +};
+> > > +
+> > > +&tlmm {
+> > > +        lt9611_irq_pin: lt9611-irq-state {
+> > > +                pins = "gpio24";
+> > > +                function = "gpio";
+> > > +                drive-strength = <8>;
+> > 
+> > I'd expect a 2 here, so please document why this is 8.
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> > > +                bias-disable;
+> > > +        };
+> > > +};
+> > > --
+> > > 2.17.1
+> > >
+> > 
+> > 
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y qcom/qcs6490-rb3gen2.dtb' for jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc:
+> 
+> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: hdmi-bridge@2b: 'vdd-supply' is a required property
+> 	from schema $id: http://devicetree.org/schemas/display/bridge/lontium,lt9611.yaml#
+> 
+> 
+> 
+> 
+> 
 
