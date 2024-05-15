@@ -1,199 +1,123 @@
-Return-Path: <devicetree+bounces-66990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B64A8C60E6
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F7808C619D
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 09:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12A341F2135B
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 06:42:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 593551F214B8
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 07:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4063FB89;
-	Wed, 15 May 2024 06:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5488D47F78;
+	Wed, 15 May 2024 07:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kurWJ3MS"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="znL/rNIC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD7A3EA9B;
-	Wed, 15 May 2024 06:41:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DE157333;
+	Wed, 15 May 2024 07:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715755318; cv=none; b=Wn6NxzcQir0TRKRvO2F2zpOr5hhhau6fpRHhS+7p2NpA5+nW0a/ILD1lZGMaAc+TQGNwW0CDKUUz9fkcXltldkm6eBsoJ6gqoxr3kNMyAsTp+IPx5utiVYKLt22Saw2HGXxIFlDRv7HfBAC+lBOvbne+QOsJK29ZvUZT/ixJLwA=
+	t=1715757726; cv=none; b=E+TA5sGeNH5xmqadQozLVypxGf8ncmVTsyV0TYxAWJ1QQlJzuhVSUGjZrOiinrDhNBkC6wlHqyt/0c9VJe5AVgXC12d6NJmmsykhWGbmpXLpx43NAcOeb/szN/MAoavvd7Jyf/vFeEHhg6D7VN/WAkRZPY1FBVfSmQ4W1jIgLT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715755318; c=relaxed/simple;
-	bh=GJ6J9YyFmj5g0mLE7msIu5MKiPfm2okuFb6jCKJOrlM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IjhhOHYHg4Dv7NPPfuOFAC5jeZhSQZlZG5H/QlM5VkuT4dulHGFe7S8NLUkzqWFifL7V8+EXfUqnWXhl/mY/WsIIP8RBMkfGf9qZ04ohmJGS1hgo5SLzmxghqKlRaCVDM2jl+TqVirpQw29/U8xXIMoRyX2xX09t+vWaThBnfhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kurWJ3MS; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1ecddf96313so55199835ad.2;
-        Tue, 14 May 2024 23:41:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715755315; x=1716360115; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2vbAesE2cgL0USUqqC14KPMjK7GiW9OFjlcB1Mo1yRY=;
-        b=kurWJ3MS3zNIzyBVKFOT4KL9L3YcSiej077cQKz3QzSq8MzpgZxUSVVv9GL42SRofy
-         kM3SITdGtgo/uGBM+SSQ0sYNXdj1u63NSpcc4sGASDdv1xDd4NMSlVIbK+0SP0e63bs3
-         7Y1WxHQ9W8xiads3Bi3r4iMFQVXuhWpBfpL5BsF8oDYUrUPW7EdM6o3+fNAkHXWmfNjF
-         /iGOY6doQTsAKE97nLqKqqNG0upwn3jFR2ME3Mb4gt32obhNUckZYf3Fs71I5j616NQt
-         wyE5XMfesv0EPYtsVPE0rgtAza0U28KL7GpNoSxvCgDvyEGC24H0Ia/s0Xlsqf7qx8Yn
-         bLPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715755315; x=1716360115;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2vbAesE2cgL0USUqqC14KPMjK7GiW9OFjlcB1Mo1yRY=;
-        b=ivLDYqf8uK7+Yr4TgUxQTiepF/bJQei5a4FWzFRjLBJLk/fDkYRRfTF/pxXoqOhV/e
-         to93dgyKhBLBBcDyd3O8tByoSsAiwxp9YLFibtQhCuw1ruCB637V2mMDFYJEptDBbhpz
-         TBdKMLBNkP8VVsaRwfpoW9+Q34/dlYDueTjM5CQgef69rCUqXEbhqsK7J09rzc/gA1Ir
-         2kuzf4OVdju3BSTDCuN62VgyMByBr8oFNRmIXLi7+hzgGtkocoN93LWDrSiAT7pR06ub
-         PIqgKRt24bS15VVdLkvOMOV0qwy0x/cnuwEsCOP98EuMNC/zTS4bfJkG07xOHEq7uqXN
-         2odQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVoMbv+GXzH/oLx4KSM7ViII0jzD3YMm0bpVX94zLQWJnk0QGz3B8nbalob2aqZ8BaW8TRFCDZYrBnfJB4I745JU25lA3ZMjhhqTr8tGkgBR7jYGmT96eEu4pluB7d+lSG1E2xCuBdXlZY=
-X-Gm-Message-State: AOJu0YxQzDvmyzXzSRteWGy4fFsGE5auWcQcB+IxFiR3LJc7Q4ee5YOI
-	4QTuUAqD/mr8U0qABoTnUUb6vm9lAIwtIHhnGH2120S01qglsSs3zze9Xkc9KeM=
-X-Google-Smtp-Source: AGHT+IE+WGr6yPwajwKZrvVsEuPpSp4fcpQ4EjJnE9CHFCSlun+DnehwrGK/Fql+9T0Sui9S+jpm/w==
-X-Received: by 2002:a17:902:ccc6:b0:1e9:470:87e3 with SMTP id d9443c01a7336-1ef43f4e323mr254736905ad.45.1715755315224;
-        Tue, 14 May 2024 23:41:55 -0700 (PDT)
-Received: from xiaxiShen-ThinkPad.gigstreem.net ([66.160.179.28])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f08c5f0294sm17177315ad.208.2024.05.14.23.41.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 23:41:54 -0700 (PDT)
-From: Xiaxi Shen <shenxiaxi26@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Cc: shenxiaxi26@gmail.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	javier.carrasco.cruz@gmail.com,
-	skhan@linuxfoundation.org
-Subject: [PATCH v3] ASoC: dt-bindings: ak4104: convert to dt schema
-Date: Tue, 14 May 2024 23:41:39 -0700
-Message-Id: <20240515064139.456735-1-shenxiaxi26@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <ab4186fa-5a2f-4f97-9aa7-75a6c55bc142@kernel.org>
-References: <ab4186fa-5a2f-4f97-9aa7-75a6c55bc142@kernel.org>
+	s=arc-20240116; t=1715757726; c=relaxed/simple;
+	bh=8rUH+otL33JPl6/eelDW+giyktscV7EVUM1KV0wegvg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g7KYT2xbwauQyhlwiZqYD7UNQf1+BBLr7k8mdBD61PKGLxXNI1xEiwqhNoibF0x40uJ/trvEmvzrCA5uvojNhEanWUU9Q24IcIKcNnf6zneguA8UP6HpILplNqEjBQf5eOUnfMvXD4B0U+C/2mlIVFXb9vpg5fnonU9X4SMZNQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=znL/rNIC; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1715757724; x=1747293724;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8rUH+otL33JPl6/eelDW+giyktscV7EVUM1KV0wegvg=;
+  b=znL/rNICLhUDzQYwEdv7R8UUShWnMxvgPb/o+5JtqLvfufK9lbrwOm6O
+   U3CFZKljz64+B5ib//+3R7axkuJgcWTNsWDs+9ueOycMUlN87WKjHo6ZC
+   6H++ZWXZf07smn6bsrpoQrgZnlSi82x80XU0UaeHz4F8pLvBIxxKDGgjx
+   3A/55kolpGiw4/zzH/YS/MiBtyU5qOF4x5RkTxJxlh4PS88P4PJLWKlp2
+   E3tJEhewU7nUPY2kELqgMtw3p6XmV3Faa0YMmhEAMgQjVqzFPCnG/8OmM
+   ha/wIobXbY7ehfyH3s6BX0ROroDNW8rEGBg0123j2uJ2O1lAVdWdU0nWX
+   w==;
+X-CSE-ConnectionGUID: xh7729e8TEGmLa/d6tPEtQ==
+X-CSE-MsgGUID: 4h9UeB2TTpyZiPvvgQObqg==
+X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; 
+   d="asc'?scan'208";a="255637101"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 May 2024 00:22:03 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 15 May 2024 00:21:30 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Wed, 15 May 2024 00:21:28 -0700
+Date: Wed, 15 May 2024 08:21:14 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Joshua Yeong <joshua.yeong@starfivetech.com>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<conor@kernel.org>, <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+	<aou@eecs.berkeley.edu>, <leyfoon.tan@starfivetech.com>,
+	<jeeheng.sia@starfivetech.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v4 0/2 RESEND] Add StarFive's StarLink Cache Controller
+Message-ID: <20240515-denture-matriarch-c775324379e5@wendy>
+References: <20240515050253.38061-1-joshua.yeong@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Fy8jGRKT4POCemEl"
+Content-Disposition: inline
+In-Reply-To: <20240515050253.38061-1-joshua.yeong@starfivetech.com>
 
-Convert ak4104 binding to DT schema
+--Fy8jGRKT4POCemEl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes in v3:
- - Use unevaluatedProperties instead
- - Fix indentations in the example
+On Wed, May 15, 2024 at 01:02:51PM +0800, Joshua Yeong wrote:
+> StarFive's StarLink Cache Controller flush/invalidates cache using non-
+> conventional RISC-V Zicbom extension instructions. This driver provides t=
+he
+> cache handling on StarFive RISC-V SoC.
+>=20
+> Changes in v4:
+> - Move cache controller initialization to arch_initcall()
+> - Link to v3: https://lore.kernel.org/all/20240424075856.145850-1-joshua.=
+yeong@starfivetech.com/
 
-Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
----
- .../devicetree/bindings/sound/ak4104.txt      | 25 ----------
- .../bindings/sound/asahi-kasei,ak4104.yaml    | 49 +++++++++++++++++++
- 2 files changed, 49 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/ak4104.txt
- create mode 100644 Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
+Why are you resending this? A resend with no context doesn't help me
+understand what you want done.
+There's been no action taken yet with the v4 that you had sent because
+there was not enough time between its arrival and when I had to send a
+PR with 6.10 material. Right now it is the merge window, so there's
+nothing that can be done here til that ends.
 
-diff --git a/Documentation/devicetree/bindings/sound/ak4104.txt b/Documentation/devicetree/bindings/sound/ak4104.txt
-deleted file mode 100644
-index ae5f7f057dc3..000000000000
---- a/Documentation/devicetree/bindings/sound/ak4104.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--AK4104 S/PDIF transmitter
--
--This device supports SPI mode only.
--
--Required properties:
--
--  - compatible : "asahi-kasei,ak4104"
--
--  - reg : The chip select number on the SPI bus
--
--  - vdd-supply : A regulator node, providing 2.7V - 3.6V
--
--Optional properties:
--
--  - reset-gpios : a GPIO spec for the reset pin. If specified, it will be
--		  deasserted before communication to the device starts.
--
--Example:
--
--spdif: ak4104@0 {
--	compatible = "asahi-kasei,ak4104";
--	reg = <0>;
--	spi-max-frequency = <5000000>;
--	vdd-supply = <&vdd_3v3_reg>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
-new file mode 100644
-index 000000000000..86f6061d3c50
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/asahi-kasei,ak4104.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/asahi-kasei,ak4104.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AK4104 S/PDIF transmitter
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+maintainers:
-+  - Daniel Mack <github@zonque.org>
-+  - Xiaxi Shen <shenxiaxi26@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: asahi-kasei,ak4104
-+
-+  reg:
-+    description: Chip select number on the SPI bus 
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: A regulator node providing between 2.7V and 3.6V.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Optional GPIO spec for the reset pin, deasserted 
-+                  before communication starts.
-+    
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@0 {
-+            compatible = "asahi-kasei,ak4104";
-+            reg = <0>;
-+            vdd-supply = <&vdd_3v3_reg>;
-+        };
-+    };
--- 
-2.34.1
+Cheers,
+Conor.
 
+--Fy8jGRKT4POCemEl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkRiagAKCRB4tDGHoIJi
+0omXAP9pIXYi4n5B7Ijb7oNal5DySb2TUY6bM7EGDeulPWO70gEA3Yt4/qVY17Q/
+pqEiBG0Ji10JgU4wA+T6k4C4ckqfEwc=
+=ZhD4
+-----END PGP SIGNATURE-----
+
+--Fy8jGRKT4POCemEl--
 
