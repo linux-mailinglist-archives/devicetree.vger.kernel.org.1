@@ -1,187 +1,121 @@
-Return-Path: <devicetree+bounces-66977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9907E8C5F7E
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 05:46:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FABE8C5FF6
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 06:58:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D672DB20B77
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 03:46:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D092028715C
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 04:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB4F381B9;
-	Wed, 15 May 2024 03:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBC939FD3;
+	Wed, 15 May 2024 04:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LONrvopU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BaiqBTXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E0D38F98;
-	Wed, 15 May 2024 03:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68577F7F2;
+	Wed, 15 May 2024 04:53:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715744775; cv=none; b=MGSawe8CX/HLe9S+R/ZGfv1Vwjfepq2vZMFSgOa/v/nx4vvCYkU2qN8WDizal/y6qyvCnr1vwDawFBzVUm3jJrRQ+vFI+e1nywnTy8Iab3xtbiEoTp3b16whGDI/OzZGHuZeEZRmzA7M+MbBMIUeOfm+3ktfllNzLo/DaweGGR8=
+	t=1715748795; cv=none; b=aEwyTefGN4ajaxKFJu6QTJVWFn5M/2EWUNBojmOAU7KjID5K3Nvxmgld8BJ90fYgD8LaVBv3V9n+clj5bffDc4Si7ZWgze6smyoDqkHypVdaWVYaEK//MS4TvR5xqn6lsE5ztTS6FINWw9BpiDDJ3tp5xNT2Ovhie8o1DIJ3bdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715744775; c=relaxed/simple;
-	bh=f0+RAJNpD4xwzDxXJtu5/ftCqWzFGWvy6Jlsa7uUy3Y=;
+	s=arc-20240116; t=1715748795; c=relaxed/simple;
+	bh=qPls4b+1xeuUeDRk+txLZyx8e0JGp6v+slpeddj2bgQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s/s9bXNuNdqEUoVrwc7GAiwO4j57Usix0x83YsfvR8cI0eIaMi5uiz1oPyDEnBfBccfD2KHPRCIhExACmZp7fjuDhxSLW58atZxJcUiNJFmvs82+hrVD6HPhKBi5vHtwOH0gRBHWSKmYj4UIOCFQaRMlWpzRYSeO8sDzZmTPins=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LONrvopU; arc=none smtp.client-ip=209.85.166.170
+	 To:Cc:Content-Type; b=qCXEB4BJpZq2OKkVxI9WZmCQ/LUyjQufAByi1uPpWBEJxYk58Jfv28eJKLTRAwIRqBMoEQFBuNQ5hvC43+V8YJvTLGZWMJYtejOLRqpLPCyPD0hN4XqIg18/2lN3+jwTPIlIYTlmc1wvo6fRdJS15qJfJGekIf9IQVWuJ9rccOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BaiqBTXV; arc=none smtp.client-ip=209.85.222.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-36db3304053so4848845ab.2;
-        Tue, 14 May 2024 20:46:12 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-7f16ec9798cso1574361241.3;
+        Tue, 14 May 2024 21:53:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715744772; x=1716349572; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1715748793; x=1716353593; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IK7QXti6gMaWIx9kOf1v+tHDmKiZibD5iL04jzdGCEc=;
-        b=LONrvopUYMM3QAm+y/b47vtN7lltEA51qsKpuvU0LY40IwEKd8uE9s4IpECJC/Gype
-         6X+mCYqhTLZRHQOP6H5e2lO4KB4wJM5uFVQ+wjvcbIDXR6m0+AjX0ZpVTXKXYUaKQ6vz
-         KZqMAHvN7wM45rzx8YJNDPz9KOf48Z4skhHVCOPfmIztQSFpHVaXcFFwVOLlKgQUq0/i
-         243Wd515s+zfNTkQcGmNGbdLuuVy9jKzeH7ijT8AZNDdBYUjbP3kBv16fU3MP7VDe9Zt
-         tv4PnBIQ80Xg3z12eQBM14DXEByU2V2hKxNgnGA/fDgiuz85ErdrPj7ZePPKUzZOPH5P
-         mFbA==
+        bh=aesBuOS+4Ftj63tZwTxdkb2ZpDV/W4tpYUDHgmuprMI=;
+        b=BaiqBTXV5Z0GntaxSPiIl8BdEP331lZfkoa/F9cPDE8JxpjVAL6uoC4a1JBo60SIcI
+         ZAg8FGXdYyn3hb4vYyfUoOy+p3O8gKfU0IyrVM0EzgR9jQSAvSjoHIIqKailWkgsGY//
+         q86OY2my25eILgHfkqVAnsioAEgEBDcbPa0ZiGXPcWjySoAhHs4WoUw/9CuAf+wkKzVu
+         P2EkEY1DlXqT8JDGornzm1Skerv/alqsjJ6Vpf+XUAWtcqZKIthZbUNBZxBQE88IADYB
+         fJsMncBkrGQ+F+LvhBJKbwFmCEMZ5Txyq3GKztTngENtRxrYD/CegiV1PAtLKUm7QQZ3
+         pj2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715744772; x=1716349572;
+        d=1e100.net; s=20230601; t=1715748793; x=1716353593;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IK7QXti6gMaWIx9kOf1v+tHDmKiZibD5iL04jzdGCEc=;
-        b=q9FMjnqFBAnjMTsfPZ/wiEO+Hsz7fsLBttD84l+3MMEricvOqc6JYELJc7Uy47EpOc
-         q5Riyl66lNKSHgaCH5XgqsJbOzeiaf7JMdE2JbRl9QNfPsoi7y/Y95K858+HCtKucIMS
-         DZ+ViNq5+Ed1bBdvtiWSWyZXtYs/Pr8RSiWdsaNazqOhgveLh+gdY9wjRuAEsskzwxuU
-         Smku2M9HjmjkiSLLuyEmHmKFPz4zhsu0Q2LXy3l/PDKJW0x418qneMyG3H0EOy5K2AFH
-         28/yJePXQ8WabAuvD/HZuBnE5Av04UX4TPzUrzfwOjoEv7jIMSDgjiCg5PFZr4VHLXG3
-         7lfg==
-X-Forwarded-Encrypted: i=1; AJvYcCWn/vI6RCv3NttF+uFjt45pH0QEjwwxRdeMJdVRE7m5DakE3QLm5tfUCbBhYDpayRhcBzxNv0VeKs59McWD0DHPXQMFYui3phJUs5WwVpk74IqS9cLF3FZETpnXkVjEqQG5LllnUYxV/n+qWbv3oN6k6doqdpO/lPVnVlBHHZDp0M78bQ==
-X-Gm-Message-State: AOJu0YxC9y3Jrg4GLhDsA5ZJ3tEOrG9lr9X1tRhQpV5p+43vem5hy9Kh
-	IHO/dViH/NKzudaF0Y+79l9tgJkL8rhNDcauOf8m19ejg712KhVW1CCGaZ6TlP5vOeXTQw7pC/B
-	62ZEUJu7+8b9ivR/5uYNCHU4zUx0=
-X-Google-Smtp-Source: AGHT+IGZ+P53lPWGkktNPznbZTqmgsikuFuzx6bUIb82YiQyAOuspBc445HOheK/8XONNLi1B1dXlpKVb5ds0xBfnxE=
-X-Received: by 2002:a92:c269:0:b0:36a:f9e8:5e7d with SMTP id
- e9e14a558f8ab-36cc14684f7mr178877585ab.7.1715744771891; Tue, 14 May 2024
- 20:46:11 -0700 (PDT)
+        bh=aesBuOS+4Ftj63tZwTxdkb2ZpDV/W4tpYUDHgmuprMI=;
+        b=SIGeoHDNZfNhXfxzfhZnmir++JeVfldoEcex3KGqfijZr00RN/ZueJCRc9QUBDjabQ
+         396VVTcL6o1iQZmhRORk0ssRn0n0gIWhKUGy+ZP3jMnVZCWs6gca80yrfMK60TMhyys5
+         Ocp4BVakykfUkK8tTAcvb/xbFhul/FYL7/Aqiup3Zz2q1Wi5gpPgBRd4atygZQ+mbZic
+         052hh0pSPM+Ph3SZc3gD69ytQz3UzrlqorqTY3wkwzW0pn4mkyw2+Z14Q1bGP6eIbhJi
+         q+32iUfFIgeQ55/Kmv3NNQLIWEvVwH1vRy7Y3X+ozgOJLkKl7D3Hweur/bJHhSR0p81X
+         yJ2A==
+X-Forwarded-Encrypted: i=1; AJvYcCXfMAMoYeWn845Bynz3baNGYMtvU7IwuxJhaYnFAMdtQ4eALDpg1WwtelAEJSvvRjesGisSYtq/DTmek/JY/AI5S3iSx7fNdmmZAUKSaY7l4Jin9+VkuxkBnpnE2Os1qIRqcSZYw/akvw==
+X-Gm-Message-State: AOJu0Yz/74N+Ag9qPdE1XhOIZbeWB6VXTZP5tJaOx6Akbss8lgHdac9r
+	JdO8cEm0TfhCjmXqukPrmEpFQRMQ7t6Yt7Bzon10xowWFM4ENGNmLbtQd5tmmhS1cCWs+XYHRUb
+	VKBgif1fc8GRIF5GRDitBNOzjHaqLwc37Q6U=
+X-Google-Smtp-Source: AGHT+IF2K1m0sHCmcxiXGK6ADeM63o/iTW26THXE/tTpqt+3SoPy7O/zfOt3/q5GgcYKxJwG1alNpwpjd/cBB4fDgWc=
+X-Received: by 2002:a05:6102:3709:b0:47b:dc91:e69 with SMTP id
+ ada2fe7eead31-48077e7b9a0mr12040050137.27.1715748791209; Tue, 14 May 2024
+ 21:53:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1715679210-9588-1-git-send-email-shengjiu.wang@nxp.com>
- <1715679210-9588-4-git-send-email-shengjiu.wang@nxp.com> <20240514-campus-sibling-21cdf4c78366@spud>
- <b86c83a520f0c45a60249468fa92b1de.sboyd@kernel.org> <CAA+D8ANTdvQJVtniyMtqjnJdT4qX+LDGjVuFO6H0RSO+GDw+ng@mail.gmail.com>
-In-Reply-To: <CAA+D8ANTdvQJVtniyMtqjnJdT4qX+LDGjVuFO6H0RSO+GDw+ng@mail.gmail.com>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Wed, 15 May 2024 11:46:00 +0800
-Message-ID: <CAA+D8AMaEEMk9F4bFYqYNez=XPhtF9VR8F-hcqYp_C2QKFq-4Q@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] dt-bindings: clock: imx8mp: Add reset-controller sub-node
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org, 
-	peng.fan@nxp.com, mturquette@baylibre.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
+References: <20240423150728.91527-1-sheharyaar48@gmail.com> <f60aac7f-dbba-4cba-8bb6-302b5c911b8c@linaro.org>
+In-Reply-To: <f60aac7f-dbba-4cba-8bb6-302b5c911b8c@linaro.org>
+From: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+Date: Wed, 15 May 2024 10:23:00 +0530
+Message-ID: <CAHTLo_=Gg-KN2zOtjOBCxQURq+Ap913Miph2FMhvkoV+GybFNA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: vt8500: replace "uhci" nodename with generic
+ name "usb"
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 15, 2024 at 10:47=E2=80=AFAM Shengjiu Wang <shengjiu.wang@gmail=
-.com> wrote:
+On Tue, Apr 23, 2024 at 8:46=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On Wed, May 15, 2024 at 5:09=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> w=
-rote:
+> On 23/04/2024 17:07, Mohammad Shehar Yaar Tausif wrote:
+> > Replace "uhci" nodenames with "usb" as it's generic and aligns with
+> > the schema binding.
 > >
-> > Quoting Conor Dooley (2024-05-14 11:06:14)
-> > > On Tue, May 14, 2024 at 05:33:27PM +0800, Shengjiu Wang wrote:
-> > > > diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomi=
-x.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > index 0a6dc1a6e122..a403ace4d11f 100644
-> > > > --- a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > +++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > @@ -15,7 +15,10 @@ description: |
-> > > >
-> > > >  properties:
-> > > >    compatible:
-> > > > -    const: fsl,imx8mp-audio-blk-ctrl
-> > > > +    items:
-> > > > +      - const: fsl,imx8mp-audio-blk-ctrl
-> > > > +      - const: syscon
-> > > > +      - const: simple-mfd
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -44,6 +47,11 @@ properties:
-> > > >        ID in its "clocks" phandle cell. See include/dt-bindings/clo=
-ck/imx8mp-clock.h
-> > > >        for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
-> > > >
-> > > > +  reset-controller:
-> > > > +    type: object
-> > > > +    $ref: /schemas/reset/fsl,imx8mp-audiomix-reset.yaml#
-> > > > +    description: The child reset devices of AudioMIX Block Control=
-.
-> > >
-> > > Why not just set #reset-cells =3D <1> in the existing node? IIRC it w=
-as
-> > > already suggested to you to do that and use auxdev to set up the rese=
-t
-> > > driver.
-> >
-> > Yes, do that.
+> > Signed-off-by: Mohammad Shehar Yaar Tausif <sheharyaar48@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/vt8500/vt8500.dtsi | 2 +-
+> >  arch/arm/boot/dts/vt8500/wm8505.dtsi | 2 +-
+> >  arch/arm/boot/dts/vt8500/wm8650.dtsi | 2 +-
+> >  arch/arm/boot/dts/vt8500/wm8750.dtsi | 4 ++--
+> >  arch/arm/boot/dts/vt8500/wm8850.dtsi | 4 ++--
+> >  5 files changed, 7 insertions(+), 7 deletions(-)
 >
-> Can I know why sub nodes can't be used? the relationship of parent and
-> child devices looks better with sub nodes.
 >
-> A further question is can I use the reset-ti-syscon? which is a generic r=
-eset
-> device for SoCs.  with it I don't even need to write a new reset device d=
-river.
-> it is more simple.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >
-The document link is:
-https://www.kernel.org/doc/Documentation/devicetree/bindings/reset/ti-sysco=
-n-reset.txt
+> Best regards,
+> Krzysztof
+>
 
-Then example is:
-examples:
-  # Clock Control Module node:
-  - |
-    #include <dt-bindings/clock/imx8mp-clock.h>
-    #include <dt-bindings/reset/ti-syscon.h>
+Hi,
 
-    clock-controller@30e20000 {
-        compatible =3D "fsl,imx8mp-audio-blk-ctrl", "syscon", "simple-mfd";
-        reg =3D <0x30e20000 0x10000>;
-        #clock-cells =3D <1>;
-        clocks =3D <&clk IMX8MP_CLK_AUDIO_ROOT>,
-                 <&clk IMX8MP_CLK_SAI1>,
-                 <&clk IMX8MP_CLK_SAI2>,
-                 <&clk IMX8MP_CLK_SAI3>,
-                 <&clk IMX8MP_CLK_SAI5>,
-                 <&clk IMX8MP_CLK_SAI6>,
-                 <&clk IMX8MP_CLK_SAI7>;
-        clock-names =3D "ahb",
-                      "sai1", "sai2", "sai3",
-                      "sai5", "sai6", "sai7";
-        power-domains =3D <&pgc_audio>;
+Is there any further feedback or update for this ? This patch is not
+yet merged but the related dt-binding patch that has been merged :
+https://lore.kernel.org/all/20240423150550.91055-1-sheharyaar48@gmail.com/.
+I understand that this is a trivial patch and the maintainers may be
+busy with important work.
 
-        reset-controller {
-            compatible =3D "ti,syscon-reset";
-            #reset-cells =3D <1>;
-            ti,reset-bits =3D <
-                0x200 0 0x200 0 0 0 (ASSERT_CLEAR | DEASSERT_SET | STATUS_N=
-ONE)
-                0x200 1 0x200 1 0 0 (ASSERT_CLEAR | DEASSERT_SET | STATUS_N=
-ONE)
-            >;
-        };
-    };
-
-Best regards
-Shengjiu Wang
+Regards,
+Shehar
 
