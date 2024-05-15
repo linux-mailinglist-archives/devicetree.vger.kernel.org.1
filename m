@@ -1,101 +1,105 @@
-Return-Path: <devicetree+bounces-67133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ADFB8C6A85
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:23:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7DB8C6A89
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:26:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C85C1C21FC7
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:23:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B9501F22135
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43447156652;
-	Wed, 15 May 2024 16:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D4C156241;
+	Wed, 15 May 2024 16:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a+aEZCGE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tWIXxFWq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B0715625D;
-	Wed, 15 May 2024 16:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3D813EFE5;
+	Wed, 15 May 2024 16:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715790226; cv=none; b=rUxCCQ+Sc0rWNKWBApg/Sfj9CuYWmli7VntxQHJ3i6jxef0KNA+P3Hbvm2XYEf5xfWVWUbQEin87MbLj4KEUG8f6I19kIgRMsRhEaFiVEkk1dqksMKt70W0h3PH6RTjv+XqSDNIe/f+1SPm3q3i1hooQb3d/e7D4rc/UzH0y+1g=
+	t=1715790368; cv=none; b=XcGAEklhiwXE/Q2+R4VeAMtIgFAZZsbmD6HPIKGLXq9sDM6Dc4H9GyzdEvsYPa+JKdUTJm38YZjvxCwO2B7AMo2mLhGSqAujySUQ6jE2O4exu+UPssv9YREUzwuNTMlRd8CUDk8fEpWvzezllview2cXh/S/5S2L2jxXIaavjNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715790226; c=relaxed/simple;
-	bh=YjDMjOj3t7nlqXXWdUrOCaRvlCnaAXkwCVDnWuIs0lE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rzebL0HBifVbcM4SqGIG61KIJX/QpCoMhcEfgoi9zGlh4XUAXRkmAFc2PgoM0M0sEk1LJRTKFlnCFd27vMuBjqITavzyN8t7U25DlavH00SvzSjeeoe1oijsKC7ZQQx8/ahf7aarOoSsPjHIOeqecVFlDXeEcMtjsrACS1EhKc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a+aEZCGE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85BB9C116B1;
-	Wed, 15 May 2024 16:23:42 +0000 (UTC)
+	s=arc-20240116; t=1715790368; c=relaxed/simple;
+	bh=/QLd5pElGb+brw7GOeOIfpCMWq2XW/fJcLnL4LqLKPw=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UYRIh2XVY49q4YE4cstFCGh62qJnnLzTWFrCsI0kvpsj8jxaziBfTJ4rxOhmeFB1qSDezAKIg55nexu0dhg8NMBsMCOkZRosS2QSfZiX4PaE+zR/+6h6MItg0Z27Vis2IYZHQBZTqShYU/vVINBZ+wbfzaUxnH/pGr/KV6Iz0hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tWIXxFWq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB0AAC116B1;
+	Wed, 15 May 2024 16:26:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715790225;
-	bh=YjDMjOj3t7nlqXXWdUrOCaRvlCnaAXkwCVDnWuIs0lE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a+aEZCGEd0sNnwNCNE3ADWqTtrugwLCBRnpvJwLHPwu5hNEMa/bNbnZUa3yAaIih6
-	 AqeykLP8/sm7Va9Z2o1psLTCWGtBjytq2LVqdzF51Vep+J+cv+2U2cqFp5nHT02JRJ
-	 qWjQN8vWMmTd+zg1JSM0gSwwIoMIQw/iRET3DeHe9IlFElY8Z1Rue88FoqZMy6MJSO
-	 sW4oqsWRY1D33GFaQ6wiktVIiufVaG2wq39pkmez3rfqGUT5ZZVES7jUW687Thp0Nd
-	 4Ts0KecCsLnP6O6D9B/vC64FTF7xN2VgcdlwGSuWWLfDYsTKw2W6JCgvhDT/ijZ23d
-	 55kFS7yKPcdnw==
-Date: Wed, 15 May 2024 17:23:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-clk@vger.kernel.org, p.zabel@pengutronix.de,
-	mturquette@baylibre.com, sboyd@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH 1/5] dt-bindings: clock: airoha: Add reset support to
- EN7581 clock binding
-Message-ID: <20240515-delegate-glancing-188fd99a95ff@spud>
-References: <cover.1715777643.git.lorenzo@kernel.org>
- <faaa220be22abcedecb0a63d5734f821167eb8b7.1715777643.git.lorenzo@kernel.org>
+	s=k20201202; t=1715790367;
+	bh=/QLd5pElGb+brw7GOeOIfpCMWq2XW/fJcLnL4LqLKPw=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=tWIXxFWqe023uzxYSpP2M5OJUGckwP0jQFy+9hVbYUnYBrcjAssiG2uwzjWJRVsAX
+	 reoYlgTu8kYwmowmJjfTEm/9EkL+XbKp71uI0X1402K/DrJLhb9r4t19DJkEqP4kNH
+	 VYL6ov26m57s3p2kWELK6gUPwxkPpWUme62Zq6FYmzJb7VpVW8SVd3D/YAtFZLz7hs
+	 xqbmPgADiMhEL81p0GPGfCXFHdyA7EMkf/zMTtI1+lu/M25cQjOc05Izxa+OnGOoHW
+	 YRVvMLVF3Ia8GdTGvIzadbI9qjFa9PIGe0w2O+099/b6F65bX/1SYd8pFexLHhmhLy
+	 pUt6KikYWp2xQ==
+Date: Wed, 15 May 2024 18:26:01 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
+Message-ID: <ZkTiGWxJK4tbOF5y@ryzen.lan>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+ <20240511080257.GF6672@thinkpad>
+ <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+ <20240515075954.GB4488@thinkpad>
+ <l62l4ksr2rkxxi7kwatd3pfwmwv4ytfumhwkthjsurgla2prno@felahg5h5g7o>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sr0wYddpRpyzyAXT"
-Content-Disposition: inline
-In-Reply-To: <faaa220be22abcedecb0a63d5734f821167eb8b7.1715777643.git.lorenzo@kernel.org>
-
-
---sr0wYddpRpyzyAXT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <l62l4ksr2rkxxi7kwatd3pfwmwv4ytfumhwkthjsurgla2prno@felahg5h5g7o>
 
-On Wed, May 15, 2024 at 02:58:47PM +0200, Lorenzo Bianconi wrote:
-> Introduce reset capability to EN7581 device-tree clock binding
-> documentation.
->=20
-> Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+On Wed, May 15, 2024 at 10:59:39AM +0200, Wolfram Sang wrote:
+> 
+> > > This is because that Renesas is not able to distribute the firmware freely.
+> > > 
+> > 
+> > Seriously? Are you saying that the user has to sign NDA to get this firmware?
+> 
+> No, the user has to buy the SoC and will get the firmware with the
+> documentation. Renesas is not allowed to distribute the firmware to
+> non-users of the SoC. So, linux-firmware cannot be used, sadly. We all
+> wish it would be different.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+If Renesas could bother to spend the effort to be legally allowed to
+include the firmware in linux-firmware, do we want to spend the effort
+to maintain the support for this PCIe controller in mainline?
 
-Cheers,
-Conor.
+Is there even an example of a device driver that *requires* firmware
+that is not in linux-firmware?
 
---sr0wYddpRpyzyAXT
-Content-Type: application/pgp-signature; name="signature.asc"
+(I know of some device drivers that does not have firmware in
+linux-firmware, but in that case the firmware is *optional*,
+so the device driver still works even without loading an updated
+firmware. For this patch series, the driver seems to error out if
+request_firmware fails.)
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkThjAAKCRB4tDGHoIJi
-0gLAAP98WPbIRNY0Yr+8X4xU8mgV5mIZNfpP+CfJJ7StNTt5ngD+INgo4mec3PYr
-f2P9Lvt1uJxdGokiRGfff08q/TzxFwM=
-=r6gg
------END PGP SIGNATURE-----
-
---sr0wYddpRpyzyAXT--
+Kind regards,
+Niklas
 
