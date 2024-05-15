@@ -1,159 +1,124 @@
-Return-Path: <devicetree+bounces-67007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E96E8C630F
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:52:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1268C634B
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 11:01:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B01BE1C22297
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:52:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F6A21F23870
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 09:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCEA74F20E;
-	Wed, 15 May 2024 08:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6A15DF1C;
+	Wed, 15 May 2024 08:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ehau8T/9"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="cGqTzRya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B7224EB2C;
-	Wed, 15 May 2024 08:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B385F873
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 08:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715763121; cv=none; b=dKE3XndicLvjYMs2vYF4/whqJmVRg7/gJlQvtwFgrruVO/Srajr5y+6Sxae7QZYA7pDQEWPdyH3fwbnKPl+RSKHmBOx2YkSCSVEiCCf0lQWj1TMqjD55u3DGiIuSt511wBVJKRubzH0d5bCQIptkuDXMmKln3J8rEu9PTfBjDno=
+	t=1715763588; cv=none; b=F8eX7oFB9KZUgbVf/YxvdNyo1SJw7kBRBpwRK5PzxW9Qh4ToBswPfVgbOO4TiHqW/mxj9B41a41qVSNleuXutw748lhXv5RP09sOtn+CeiBoKZ2ciFos42zvNqDHKhp0n55zm2Y9YFFDOGRjPmbO11qIHxTPlBDTojFdusojZQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715763121; c=relaxed/simple;
-	bh=oTabfecnA5D6rgAYnH/cITmgBhG9NMBzhJBXZpNVt9U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YVuxA94TSepeaZNFn1dxD40WrTMUQlpidBqoKPsJIBKQGUtd9rOewiGCHxdMJesnmG7JLUj+WNZs34VeWm8Ds12Kgr5ad+eR/KBxtT3qxLNtyjIeew1GcH4LKCazUa/HVpdYCQ2xGmRQ4ebcmD1dEkXk/D3PpIqHitZdsafXBac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ehau8T/9; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3504f34a086so4123575f8f.1;
-        Wed, 15 May 2024 01:51:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715763118; x=1716367918; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FPZC2tLZzoMwQUMQ/NsgDeMOgcmg6uOukKnCCk0Jz0k=;
-        b=ehau8T/9aqP24xoVvkdyLfjY72TLtg2sqIZzglkBztULwZWHgZzx2ZX9M/7LDH4w57
-         qEFXaLtHrygpeimU7vx8TbdMpcfF05SQ2Vpl0KarOlhN0MJaaq3Ei6otaT0oHVSWdyBY
-         9KVOSW55K//WW8anXsLPfHE/+Afyfff1mUb0qohFPEE3hrl4dN9zKR93o2bk8bmd2eUs
-         EgoGtMbhpVu8W+jBsMdwgNH7h3sy/PNTE/89ZtVt3mtCwmZDxm2HVrHnFXiO/j26N1ua
-         mEYSVDxxGYwsfx0ORBZZK+D5nrU4TxMAFAFuasgTt9AQJbxQmr+6uDEQ6ZDja8FbIbi3
-         WLww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715763118; x=1716367918;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FPZC2tLZzoMwQUMQ/NsgDeMOgcmg6uOukKnCCk0Jz0k=;
-        b=ipS0YFsrR87xpxubAWnon6b7yJMwwOcntdZWJM1bu5XgBSg2JPHLfMBH7AnxG3bGed
-         mftdAJ59nkkDMrOcJOwGQ9Q3Ph8dlH7m4Y09udH2VoK5Ety+ZlWx6YgbGLwkW/KODMWt
-         bYS/3MWZGqA0GNcst9yCKjZ1Lmkg+N6R3D1A1ixx0ruDYxpIou8D+2ckWognBj+j6QKR
-         A65D5cXRurSVG6K6Y82ElaG3MLy3iAB95Z0OHjGG+9wtxKzQgFFZdaSRBciwMWGAexT3
-         SDJtYzeJBsI18391jEPy7swGBWkrAW/lkZFrcwcweHqwxX5vGwvPl59TdVoxka9XO6rW
-         G8vQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTTxbJ9NB3PddSdUakpR7fcyXr7FRl3T8r5DRnezRDomRhO5ptJCE8PpTrXm7fyXOG7GDfeMp+NmlKvkxOYI3bL5OwmevDxk14tEapfk72eMnyT9mP16XRsQiRIA20Jy5V6C/a3Q==
-X-Gm-Message-State: AOJu0YyMdlxBiZwy8erGY2DCs607jDwMQHkCa4m97+eTkh9uveY406dt
-	YCL1MBU+iAxSld6dyOcRIpcBlhKAppZnTwceQAIt92GD1zkTrty2hlADpw==
-X-Google-Smtp-Source: AGHT+IG0SgB8ilO2X7vWlAcw0j1o8wIr1Ltsv+huCeg2g2aeWDyRUcSAab3sNsKxpfx63E9tmVfbbg==
-X-Received: by 2002:adf:fc08:0:b0:34c:cca6:3d18 with SMTP id ffacd0b85a97d-3504aa66a33mr10191172f8f.68.1715763113485;
-        Wed, 15 May 2024 01:51:53 -0700 (PDT)
-Received: from ALPER-PC.. ([178.233.24.52])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b8a8454sm15825034f8f.56.2024.05.15.01.51.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 May 2024 01:51:53 -0700 (PDT)
-From: Alper Nebi Yasak <alpernebiyasak@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	linux-clk@vger.kernel.org,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-mediatek@lists.infradead.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	Alper Nebi Yasak <alpernebiyasak@gmail.com>
-Subject: [RESEND PATCH v2 2/2] arm64: dts: mediatek: mt8173: Fix timer 13 MHz clock description
-Date: Wed, 15 May 2024 11:51:05 +0300
-Message-ID: <20240515085137.2842804-2-alpernebiyasak@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240515085137.2842804-1-alpernebiyasak@gmail.com>
-References: <20240515085137.2842804-1-alpernebiyasak@gmail.com>
+	s=arc-20240116; t=1715763588; c=relaxed/simple;
+	bh=D6GhC0YwDKVPvW1bVjTDGYlZXc/nCX9uJrXH9PR08RU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hMvjDARgPc9zm50Y9tV6S85lQkS7HI59Nhji5oZk/M+da9MemJcRGWioWiWsAxnfMPfmr/SEANuABifeAuOI1NfeUGhyPDPuKuvp28SepRqZJqF4it2EElTo/c0RWQmdM/0sIgO8ILktx3sqecx75m2xTsh6TRcJLFq6fqhvF50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=cGqTzRya; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=D6Gh
+	C0YwDKVPvW1bVjTDGYlZXc/nCX9uJrXH9PR08RU=; b=cGqTzRya/lQ6D3wep+Vc
+	NAmScBZ1RR1+gs1RClXRyJZuRnptCyxA+yzl25pAYdHZPEXYLOShMDmx5yddaGR+
+	nt4B10fFGBACwYRQ65dU/HSuuRIhfUYR2FGV8deRxbkk8/sJkhoAKuh7cFxSBCH3
+	1WFbtVHId2H7fJn4zz6JGT/Wh8jyu7nl8Y2q1kn2OJLnsTZWe99ApUQ8Kx7XGPsl
+	Vs8ZE+e+pB5Vfo/NRHYylgdTPnjUWb+pThnxotUgGhsWLn3dVw3MrsoVE+BWaYDZ
+	HZwuhbdiZC6yQ0gZef95y8pT1WQ5i019Q//wZg1X88Rwqe+gVdrLTqplTeh7xXCT
+	Tg==
+Received: (qmail 2768330 invoked from network); 15 May 2024 10:59:40 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 May 2024 10:59:40 +0200
+X-UD-Smtp-Session: l3s3148p1@C+awVnoY6NRehhtP
+Date: Wed, 15 May 2024 10:59:39 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, 
+	"robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>, "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
+Message-ID: <l62l4ksr2rkxxi7kwatd3pfwmwv4ytfumhwkthjsurgla2prno@felahg5h5g7o>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, 
+	"robh@kernel.org" <robh@kernel.org>, "bhelgaas@google.com" <bhelgaas@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>, "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+ <20240511080257.GF6672@thinkpad>
+ <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+ <20240515075954.GB4488@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gknpxbotva3zyy2v"
+Content-Disposition: inline
+In-Reply-To: <20240515075954.GB4488@thinkpad>
 
-A previous patch fixes an issue with the mt8173-infracfg clock driver
-when working as a module, but has the side effect of skipping set up of
-CLK_INFRA_CLK_13M in that case. This clock is used by the timer device.
 
-Similar to the MT8183, MT8192, MT8195 and MT8186 cases [1], change the
-input clock of the timer block a fixed factor divide-by-2 clock that
-takes the 26 MHz oscillator as its input.
+--gknpxbotva3zyy2v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also remove the RTC clock from the timer node while we're here. According
-to commit 59311b19d7f63 ("clocksource/drivers/timer-mediatek: Add system
-timer bindings") it is no longer used.
 
-[1] https://lore.kernel.org/all/20221201084229.3464449-1-wenst@chromium.org/
+> > This is because that Renesas is not able to distribute the firmware fre=
+ely.
+> >=20
+>=20
+> Seriously? Are you saying that the user has to sign NDA to get this firmw=
+are?
 
-Signed-off-by: Alper Nebi Yasak <alpernebiyasak@gmail.com>
----
-Tested on a MT8173 Chromebook. But I'm not sure I understand all of
-this, so review with a pinch of salt.
+No, the user has to buy the SoC and will get the firmware with the
+documentation. Renesas is not allowed to distribute the firmware to
+non-users of the SoC. So, linux-firmware cannot be used, sadly. We all
+wish it would be different.
 
-Changes in v2:
-- Add this patch
 
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+--gknpxbotva3zyy2v
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index 3458be7f7f61..809b379b6818 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -244,6 +244,15 @@ psci {
- 		cpu_on	 = <0x84000003>;
- 	};
- 
-+	clk13m: fixed-factor-clock-13m {
-+		compatible = "fixed-factor-clock";
-+		#clock-cells = <0>;
-+		clocks = <&clk26m>;
-+		clock-div = <2>;
-+		clock-mult = <1>;
-+		clock-output-names = "clk13m";
-+	};
-+
- 	clk26m: oscillator0 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -530,8 +539,7 @@ timer: timer@10008000 {
- 				     "mediatek,mt6577-timer";
- 			reg = <0 0x10008000 0 0x1000>;
- 			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW>;
--			clocks = <&infracfg CLK_INFRA_CLK_13M>,
--				 <&topckgen CLK_TOP_RTC_SEL>;
-+			clocks = <&clk13m>;
- 		};
- 
- 		pwrap: pwrap@1000d000 {
--- 
-2.43.0
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZEeXcACgkQFA3kzBSg
+KbY28g//fAiWwVXCIY0HZwM+kpVsJcyN2UfFcXhsZrMr1WG0+fFgI/40zx170hEd
+BMw4YylIudWqWb+SmiU9gdJ5LDYAq2WWcQxo7+kVPCXjwTqlvIKoKOoXX55XKnGK
+HZtaDZguzprFDB0Yn8DU/l+iZwdFcqoQmLfUODzSyHekpu1tr/ZY5cPlGM+5Ih4a
+uZ8Xg3ydcZ4w9q+ZcSYtAsdQJZqk6gFQTdOqXrzRsMK/sad2iIB//8YbgeyUzBi3
+zBd5lg+DD1QmxlsGMoLZ8rICO++yoxci06zjl3jj/q9IFocINKcq7c0R8jP5sMKv
+4n3eFd9kVQO1EUpXlqmlw3Y9IvKFNlshmkb9zFNIXKhSJwXsw/cr27o9A5vi1B+x
+e7gKKM2NYGeTWZ10ZZ6k7EU7crO3i6yyZWCBIwQd0PI0tnLpYhnAHJz77NY/HiKt
+xBNh8fZBrGBC9tiRb2RziLr3KDFKwVQCZH8zk0319wC1xj0HDH9l5Oibo1H3Mc7A
+w03NbuRJSYGAJAGa6I4gfU1MPgL2E7/uxdBqxWLL1yNLkTUD7Pq5jKwPg0kQUJTI
+b3GMZKj7ecBfJgR7pxFhZZ8dpkiGojRIx2THcQmD7Qu/vddJvDrKVgoeutzcSKkZ
+9ULoUFK0ck8DG+J41BPlyt0IC/2shadpziSGJOoYW5rUzixhCzE=
+=dwLH
+-----END PGP SIGNATURE-----
+
+--gknpxbotva3zyy2v--
 
