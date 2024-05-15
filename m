@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-66968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED308C5EEC
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 03:47:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413408C5EEE
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 03:47:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5B611F21F51
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 01:47:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE73B282A0D
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 01:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0F879C2;
-	Wed, 15 May 2024 01:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE002E413;
+	Wed, 15 May 2024 01:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="z4g1OXQp"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="f0A3XT3/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC76282F7
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 01:47:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D5B22F00
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 01:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715737627; cv=none; b=nBno/PILacadWT0ZEJvZOHDAlEbIcZI3KqnrA26pL8RqMnJPeH2NwX9vvFC4wDQThqSfffl0XslQU97Z1RH/cC7Lyx7fMVcQSHMdDkqVGCDDPMW+ubJ31Fq9MaQHd7PLYJU7KUr+8DHNjUEWpktbw1BOBWUAc1bcDUuGDy6Iod4=
+	t=1715737631; cv=none; b=iTPaSbUDiyXX43gzFLKRTKm+DAHfdIeJfS4xyRl5sieEE6yBg2hSNeScJqH9r8ZDMKUywRMbFAaZVsuiixOZjeKBlFYHlU/2J7BClKk9WilJm7GBV8aYxB0M8hjdkeVrJw1OapdBWnJqXbqqz66GcXIG9RvGaZmQK8Ybv8gNsQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715737627; c=relaxed/simple;
-	bh=4fLHwQPGk0QeNw9l9ZAq3BhROY3TA9pGgOZXf/44uJk=;
+	s=arc-20240116; t=1715737631; c=relaxed/simple;
+	bh=m8Izs/dC0mzqS1r91F1GUsRMXP8o6mG9BZCsgr5nR/w=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=USXLtG8X4B6AdnK0BGka70d8RDRu1G1LCDkH24gwsHsaRtU8/6yZURUP8rJWaWZB6Pc12i1QnrCF6YD2fpkWot+VGdMPlHaS4QoMYGgaNGinl9A2745xXZ8MZ0a9xMnBL20SAN1ngzBjEi5Pt+/McXRJZJGsIQIdcpRI0GEG2p4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=z4g1OXQp; arc=none smtp.client-ip=209.85.214.177
+	 MIME-Version; b=P8d1GjKY0WPrM03fGHsdUTZBVITP3bihxWyxZIGM7PYoETxhTl63sIY2XePQOB0atHyUMNyjptVI0xRgydM81EfbW/0LivKlKT4eyhkbLh36GFVLwaxL2GTLhJZIUgXEPmqQ6oIxxTzgA6wgdjHRJQZxdzAb0+QL9EZDyOiaVpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=f0A3XT3/; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1f05b669b6cso35089445ad.3
-        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 18:47:04 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1ed41eb3382so45574705ad.0
+        for <devicetree@vger.kernel.org>; Tue, 14 May 2024 18:47:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1715737624; x=1716342424; darn=vger.kernel.org;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1715737627; x=1716342427; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kdgMcjk2SUhSnewSfUlS0/MTnaKK3tPj0hOvx8EtZQk=;
-        b=z4g1OXQpAAXonlXDkeDM7F/pn44rdGTwzw/I7o28fudeYlV4j6PkVukic15klJHAz0
-         mvHKWriAmL0W4bnavxnkjQzyrKnmlDgrsmPK9qyRXL6oGQNzZK5n5fjTOZzet2o0EyWX
-         NVN6/iGF+AxyGe0YpYiaaNzpOoxglkaPwz1Ul8xJ9aC0btlRaujJPXl/RNMx1aV8ri+k
-         rQ0UQpq+jE7iY8rLkvvlfLBuLGo5lVQ2LVTt1dNLrhTtlHZfmv7QgcunLjewIByx7ir7
-         htPx0KaF5u/SoQOxyAFrRzz0QbFoCU0JsMGLMQvAXkvmYi80KnFz+LI392mg+Aa7qR90
-         LX2w==
+        bh=HY2J/IHNT9VBahxPZDvJ2CAQ+h9iFMMF2YRGy2pIyWc=;
+        b=f0A3XT3/pfLE4e/7PMuKXc4Y9Ygb0M4c7PgDhFSAGwhBgRofXh5zV32GF1u0qykq5m
+         r3hThXnsxB8XeAdjfS9GSi5h5w/cVaOe6TjGaltJv5gh8XpPSLXNlBZGW0yT/lisqBRR
+         4cqils2RlHxJnpPUeMOy85P9PR21hw3YH7kA3DbIVDFUFm0r4SnQL5ub8Z24xpsiXTQ3
+         ZjJQNp0aPI+7Q0gQgvUTH1c+DkjL2GrelNGgyFEPBYpHvZQ6khD3jLf2wj4AZgcky7wm
+         5QgQDjXdxcLTNSVvZjyXsRqUdT2QEvzcQofm+6XuelxCviozC0FqTP4/rRatfa8wN3CX
+         GbJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715737624; x=1716342424;
+        d=1e100.net; s=20230601; t=1715737627; x=1716342427;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kdgMcjk2SUhSnewSfUlS0/MTnaKK3tPj0hOvx8EtZQk=;
-        b=jStp1rWg/7uokOCNm/qB2BvfKIJOfDBJo2+3p/UiTqYqsd1b8HecKpuxHu4qVfbUiL
-         yc26OcrF8ubwWTTpCd0+7AD0zE8U8mSA5nr9HN6vk/wv9bJIt8bXyWMkMhNAeOgaD6uc
-         BtiuRZ0LQMv0EVN9pYt2kDXc0Pby7up79B0FUBLia+stmnhMloyiqrX++Xxkgn0B+R1R
-         SYAf8h66zay84xK38dqePBGd0HslUbAH1RUILXU3gVOCR+KC4628U8BdRXu0sBnmcJEX
-         WAlJgLWREcDe06AVAZpRwFQpGCEdg6SpHnPvSbX42yfqpuzlGpzLod9P+iUcTTxDEMV5
-         WBDg==
-X-Forwarded-Encrypted: i=1; AJvYcCVl7Ikywf6mYrglSHLMKMFAc5Md/8DsBfShbUAmDD1kxZxzhEEs3jfeeYaIW67GtXlGqAulNCSBh/HbdNlIBxAB7bLRkub0/gBwLg==
-X-Gm-Message-State: AOJu0Yy7SdRauDuqfzIHS8jcNq2RdDMUgfb/YBq9xaXy5UrAZCFLhicd
-	B1d4Qr7FTSbnDsyooTlWtgxIO7w1dXLvgVi1YQSTa01kiNPNNaOUTKQKaBSGnqQ=
-X-Google-Smtp-Source: AGHT+IF/Y5IjqSiHWK6hQBWVh1d+uba2aFO8m6/Dl7mHurcax/7WVutp1eMa6gbxtL9XATZHBr3qgg==
-X-Received: by 2002:a17:902:e847:b0:1e0:f473:fd8b with SMTP id d9443c01a7336-1ef43c0f5f4mr180045495ad.9.1715737624203;
-        Tue, 14 May 2024 18:47:04 -0700 (PDT)
+        bh=HY2J/IHNT9VBahxPZDvJ2CAQ+h9iFMMF2YRGy2pIyWc=;
+        b=ApokksU5pg/y0JkJYNpdBFPp00U8MFclTvtC/aZUrssJmMk8i6bXz3Q0oF/F4i/F25
+         0X84HGc9RqgdzHjLP5rMND3SBrZJEhMjnr6ZkgHvBgnqrbkwR6d8bVE0dUr19QS0H5jM
+         X+n/xN/5C2AqO/BIgv1J57aGbSU7mMkjA10XKuZcJVXROP1lulOycqMviyQB4sSJkV8Q
+         3vOocb0Xcn0PDDgq0O08A9AqQS7PWb0IjEokPpqyatgxlud2GFRJxe0bmOvhU3Ue/4et
+         +2RrqRR2t6k9fO8hslpOm11U/jzbGFoFjp7ZgMnChMuaKNofng0XowW88jB0bvP350QG
+         b1GA==
+X-Forwarded-Encrypted: i=1; AJvYcCXDzZLmWQUSyEvgx0ZFOzyXCs4GjytQwCpQhfIMcjquhpNyHwF16QxHDu3DnHebk4GpQYzLfLL0a8nluUdu0zeXqvuR0dcpQMcSsQ==
+X-Gm-Message-State: AOJu0YweT69/ePAwS7Cx5iSrAbhY8/tibBXKsMeeJOsXQ9CgGav1+d+y
+	6vPAlYSAMqBOuNCZ1kgjThsA4idcHJQDFAtAb85BtTRtPrMrrhTJZqmeYLPqELU=
+X-Google-Smtp-Source: AGHT+IHJXcRyQL6x73F2cBO7BZMI3F1AWn3WWlR71b6YQqfpI0410xlRBcxMXjI21oAZuo2Mb4BDQA==
+X-Received: by 2002:a17:902:e843:b0:1f0:82b7:71a7 with SMTP id d9443c01a7336-1f082b772camr65259705ad.22.1715737627355;
+        Tue, 14 May 2024 18:47:07 -0700 (PDT)
 Received: from localhost.localdomain ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0c1368desm105582145ad.233.2024.05.14.18.47.01
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0c1368desm105582145ad.233.2024.05.14.18.47.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 May 2024 18:47:03 -0700 (PDT)
+        Tue, 14 May 2024 18:47:07 -0700 (PDT)
 From: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 To: sam@ravnborg.org,
 	neil.armstrong@linaro.org,
@@ -82,10 +82,11 @@ Cc: dmitry.baryshkov@linaro.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	xuxinxiong@huaqin.corp-partner.google.com,
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [v7 3/7] arm64: defconfig: Enable HIMAX_HX83102 panel
-Date: Wed, 15 May 2024 09:46:39 +0800
-Message-Id: <20240515014643.2715010-4-yangcong5@huaqin.corp-partner.google.com>
+	Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [v7 4/7] dt-bindings: display: panel: Add compatible for BOE nv110wum-l60
+Date: Wed, 15 May 2024 09:46:40 +0800
+Message-Id: <20240515014643.2715010-5-yangcong5@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240515014643.2715010-1-yangcong5@huaqin.corp-partner.google.com>
 References: <20240515014643.2715010-1-yangcong5@huaqin.corp-partner.google.com>
@@ -97,28 +98,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-DRM_PANEL_HIMAX_HX83102 is being split out from DRM_PANEL_BOE_TV101WUM_NL6.
-Since the arm64 defconfig had the BOE panel driver enabled, let's also
-enable the himax driver.
+The BOE nv110wum-l60 is a 11.0" WUXGA TFT LCD panel with himax-hx83102
+controller. Hence, we add a new compatible with panel specific config.
 
 Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Chage since V7:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 2c30d617e180..687c86ddaece 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -864,6 +864,7 @@ CONFIG_DRM_PANEL_BOE_TV101WUM_NL6=m
- CONFIG_DRM_PANEL_LVDS=m
- CONFIG_DRM_PANEL_SIMPLE=m
- CONFIG_DRM_PANEL_EDP=m
-+CONFIG_DRM_PANEL_HIMAX_HX83102=m
- CONFIG_DRM_PANEL_ILITEK_ILI9882T=m
- CONFIG_DRM_PANEL_MANTIX_MLAF057WE51=m
- CONFIG_DRM_PANEL_RAYDIUM_RM67191=m
+- No change.
+
+V6: https://lore.kernel.org/all/20240511021326.288728-5-yangcong5@huaqin.corp-partner.google.com
+
+Chage since V6:
+
+- No change.
+
+V5: https://lore.kernel.org/all/20240509015207.3271370-5-yangcong5@huaqin.corp-partner.google.com
+
+Chage since V5:
+
+- No change.
+
+V4: https://lore.kernel.org/all/20240507135234.1356855-5-yangcong5@huaqin.corp-partner.google.com
+
+Chage since V4:
+
+- No change.
+
+V3: https://lore.kernel.org/all/20240424023010.2099949-5-yangcong5@huaqin.corp-partner.google.com
+
+Chage since V3:
+
+- Update commit message.
+
+V2: https://lore.kernel.org/all/20240422090310.3311429-5-yangcong5@huaqin.corp-partner.google.com
+
+---
+ .../devicetree/bindings/display/panel/himax,hx83102.yaml        | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
+index fc584b5088ff..baf8b053e375 100644
+--- a/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
++++ b/Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
+@@ -16,6 +16,8 @@ properties:
+   compatible:
+     items:
+       - enum:
++          # Boe nv110wum-l60 11.0" WUXGA TFT LCD panel
++          - boe,nv110wum-l60
+           # STARRY himax83102-j02 10.51" WUXGA TFT LCD panel
+           - starry,himax83102-j02
+       - const: himax,hx83102
 -- 
 2.25.1
 
