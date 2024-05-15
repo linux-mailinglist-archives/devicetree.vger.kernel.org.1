@@ -1,102 +1,136 @@
-Return-Path: <devicetree+bounces-67189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FAF8C6ED2
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 00:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 768308C6EE2
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 01:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 540E81F216B5
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 22:54:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F6041F210C6
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5CC3FE55;
-	Wed, 15 May 2024 22:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17ED142049;
+	Wed, 15 May 2024 23:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vwN/CmyK"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="pN4tAHtK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F8E3FB1B
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 22:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628623CF6A
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 23:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715813693; cv=none; b=l/FS9MVHzaza/e+JjUblEyf22HPHVj2t5J+ByBJLEMUxZIA43MfBjxchjea3qtOVB9GLs7ioB3AbuxXT77PKGyxIR00ktQF02b4+0B22myhr3uIDyaF6oKr/AzWaJ2y23do1iu0LNy09Zwoqd6Nj/LP9xc1QHMKVoIBNdTqhgtQ=
+	t=1715814503; cv=none; b=PMdF4oCp7+4XmXhMS/Hk8WoU7H82oHP6jLX2xOO/laXFxnkQx6s4GustcVmQN8/17OZTNK4Ukd5iBAm4InyzScDPAPxpSmmPtypcVVvRnBiVAKRFxPNHldEtO7ppQjvl+guFnXGm5GebV76GxgUqgbc/reJO600Tq0EZHkjb+V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715813693; c=relaxed/simple;
-	bh=NTl/aihEJcTuHdTWgEWUNqFvQPS1+TjI61Y+qlo2AzU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dmrVWxxhXGVBsoCGN5j9GHYzja6HuWDZdU+yFUqOMqReCjR9t3Xgl6OFwlB9yX5rRPJsxxa9EIiczktQ85OSskikoh/4U/ktbsa8NNz3yvPSWMpfjLD/U+XxfztCPwQo5zRuJRiFXDDWOOZ3+2xQZM+R7QdRlVbQugEfuiUIU94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vwN/CmyK; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6f449ea8e37so6390199b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 15:54:51 -0700 (PDT)
+	s=arc-20240116; t=1715814503; c=relaxed/simple;
+	bh=xDFUM0sIcSy0DOZxqgnugThNR7lVLaZaiQ6S4YAD66o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SvWAj8fN0QQJMycAB/O2TlXAmuwymp6s5oEz9PG4hoCu3cUCZQ+7dT/t1dTJmzF8Kug7Xp2geATLNvpwaBvJMFTasIYcziUD9t72fDBsHgcgrDQFvkIXyJZv5rhEQBG5XK3De/yROtiNxCF15tlB69YS4351FpAvqmOpYD6j9wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=pN4tAHtK; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6f447976de7so6551950b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 16:08:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715813691; x=1716418491; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JTR8dQhkwufEMJDvzAGSNaBiVeFMhzNSh23L6NaBC+Q=;
-        b=vwN/CmyKPuu+CL/bHNbWXwtFRxCpbdCScTZCHZnq0eRlfT/EXESbnG9f4WpIRyGH4V
-         SEhwZgGrYKRTnpv/3s2wiAWdlZ4/lluX6MOD8hi218Po+ixSRNzqXisOGBUp6TTMoSZ9
-         5b53un8s8JBrb+zXdQR3BcECT77NRzyziw2lkBs5oNWlqomIEF5AqOYAcV2U+c3vZez2
-         qMk+SvI+Mz/EQ+1vqpSUf6FXHs72q/7klLV547GQcSjlnGlmLwGy8F5Ueh566ygLw5Qn
-         s/CJ9SZ8LTTi10Tb0USWqWc2sgSySTwJPlwtt9/74oOhwZzcQnArhyaqBSFOxbTGUSwA
-         Bw1Q==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715814500; x=1716419300; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ke/O00Y/Kjm74N+9XrjAq0nbRjFhCTAJyeNXJqA3ng8=;
+        b=pN4tAHtKTaowkNW2IzLKHu4stbPP7AQZH/b7bNMltUj3UtSXCXZLWMX0ijcWoKuLcB
+         A4BEbPvv0nQz3nyC2zDC/D95hpMPexMv/Jds+flu28etBUMMM+JR5A8v6GmUcrASKPbV
+         Ywaz2tLHRbhitzcZw2eUWNt53bH/XeujPTNnfn1tgxx3+eJcKvAlv2EkYg98eUmp7GsR
+         INq4mpkHMvKhwwe0+AcvmU71Kme76jj1RbaTtPwNYRBFkalZ7ENbV/ijiPUBHfwcJhPN
+         GmkukInO/L4yISvaoWg4DrtavzhHBHuXI+8R54HLHHo+chD0JWeV8LFDyfaEHVs/79fi
+         jmjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715813691; x=1716418491;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JTR8dQhkwufEMJDvzAGSNaBiVeFMhzNSh23L6NaBC+Q=;
-        b=OsKaik84eCI9ebv4ZMO1VEe54L5awUXcerCRPY/6NEJM+bdZy7W0IAnemAORawWM8R
-         si7Q90tHKHCTJl/3oXuZJL0/JrWiVhAz25ZVcfQRhbXsN4fF97NKDtoIWMO0GAfvtFfC
-         hH57o5cD1mHvLnnEgB/PeBv79V6ZpIQJ/E7eRezMOu+gJz6Rg86QhL9IrYvuvwQ5IpY8
-         8QrSdE4ZcjKzGNc9AXM5dDLwM4/QhGxBZi5UwYUdT6gmuJiWeUkeVAYoJLav8JFWLR22
-         Rr9aRDps2w7uZlVP2/xsZPCciZ4cDXPVY815GSZ0GLMWLpAa0nuI6/kJRiIkOBa1NuAi
-         0qOA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaIza0vAnzMLSw3Toc0qo0tow2L4TlWMNMdRK/41fQMMbc9dKhQpcsAtCyGUcc8lOu6IEAhjPB0NJcWqKCMAVVxUI3stnwCnXmCw==
-X-Gm-Message-State: AOJu0Yy/IPa4Xr7obWtUmmum2sm0NHExOZ1nMV9kIIS71S+lK+4WcoDH
-	c4XGOr2+U/iK+rqvk8sJwOYDa5Ej7XnYG8C0rEYIqhciZUIFfoqh5BgTnChWy/di3GSBo5+jYpe
-	fVOF1qheLJYOUsMhThFmO/ImVDOu50AgjZJSCZw==
-X-Google-Smtp-Source: AGHT+IGPGnW+8Zu6/zpLCOms1wOIqtztMZPQ08nZZujHVz3O4sOz9IR+JCRhfpCQnXiukvs2jqZ1OMqB/SNY8Kp1lD4=
-X-Received: by 2002:a05:6a00:391a:b0:6f3:876a:c029 with SMTP id
- d2e1a72fcca58-6f4e02ac99bmr23987572b3a.10.1715813691341; Wed, 15 May 2024
- 15:54:51 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715814500; x=1716419300;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ke/O00Y/Kjm74N+9XrjAq0nbRjFhCTAJyeNXJqA3ng8=;
+        b=kJzw9ekP+MPcbOlA3wjpNkPRnJxaJM30k2BkcAhZKufBObDNnnjairx5J+HSzxDPJ4
+         EZKlvLfOUkkdhLioY/1QHzMLVriRxags+Fzy8DT+P8f+/9VY316rQge/KSHG//bDuCFa
+         d+4qZvnfIJk7ThC0JUKOmpQXfR2Gt5WuCMyeXbPrRxe/FeUfrNV9zuEEmhElc4rG9WiY
+         NZZfRJNAlq9vSw//HKvRzDN5otp0NpTC+ebqyCM3iQBnTfuihQWXf54JtK8w8uineSz8
+         jXkJ3jDngc1aiLEoVjVot5DPmhCtZGEP7zqa4p4Ho1P47eQKfuxZT8C65tLHIADmtGLI
+         1TUg==
+X-Forwarded-Encrypted: i=1; AJvYcCXAsI4aM66xFLpQFCi9pNRecQ/orbTwvfctktSOp6I83hP3niJf8xFgERBzSPjwh3AxF2xiXk4KOzFiOzHDsFr0MUYu0QUgXk7bQw==
+X-Gm-Message-State: AOJu0YyfYewczeJoFsQcOr2BaK0ClHLLJJeTnpP8bmKfTgLqLhRNcNgA
+	tnTobQIYv7hFsmY2K4IZf087ru1AwGMI58akNNqGaCPdsswIhyXyLtmectNZYNw=
+X-Google-Smtp-Source: AGHT+IHTKntYjRB2czmnJQoB0Xk0pGWlCXePk30+bd9e9xQZBoHIBEfG3OP/NhLnJ8eL/896yjKHZg==
+X-Received: by 2002:a05:6a00:174c:b0:6e7:b3c4:43a4 with SMTP id d2e1a72fcca58-6f4e035d2e8mr22362801b3a.25.1715814500626;
+        Wed, 15 May 2024 16:08:20 -0700 (PDT)
+Received: from ghost ([2601:647:5700:6860:144c:7973:ee0f:85cd])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2b2f9eesm11664479b3a.212.2024.05.15.16.08.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 May 2024 16:08:19 -0700 (PDT)
+Date: Wed, 15 May 2024 16:08:17 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Jessica Clarke <jrtc27@jrtc27.com>
+Cc: Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@sifive.com>,
+	linux-riscv <linux-riscv@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	LKML <linux-kernel@vger.kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH 0/2] riscv: Allow vlenb to be probed from DT
+Message-ID: <ZkVAYeNnvj99YHXt@ghost>
+References: <20240515-add_vlenb_to_dt-v1-0-4ebd7cba0aa1@rivosinc.com>
+ <A9EDD470-B8EC-4644-82A0-7444729EF885@jrtc27.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240514-ad4111-v2-0-29be6a55efb5@analog.com> <20240514-ad4111-v2-4-29be6a55efb5@analog.com>
-In-Reply-To: <20240514-ad4111-v2-4-29be6a55efb5@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 15 May 2024 17:54:38 -0500
-Message-ID: <CAMknhBGCoP8kOTYdVxjYMUjpN1jgBM_unoUe8wH-+tbQdgVBYw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/9] iio: adc: ad7173: refactor ain and vref selection
-To: dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Dumitru Ceclan <mitrutzceclan@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <A9EDD470-B8EC-4644-82A0-7444729EF885@jrtc27.com>
 
-On Tue, May 14, 2024 at 2:23=E2=80=AFAM Dumitru Ceclan via B4 Relay
-<devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->
->  Move validation of analog inputs and reference voltage selection to
-> separate functions to reduce the size of the channel config parsing
-> function and improve readability.
->
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> ---
+On Wed, May 15, 2024 at 11:25:16PM +0100, Jessica Clarke wrote:
+> On 15 May 2024, at 22:50, Charlie Jenkins <charlie@rivosinc.com> wrote:
+> > 
+> > The kernel currently requires all harts to have the same value in the
+> > vlenb csr that is present when a hart supports vector. In order to read
+> > this csr, the kernel needs to boot the hart. Adding vlenb to the DT will
+> > allow the kernel to detect the inconsistency early and not waste time
+> > trying to boot harts that it doesn't support.
+> 
+> That doesn’t seem sufficient justification to me. If it can be read
+> from the hardware, why should we have to put it in the FDT? The whole
+> point of the FDT is to communicate the hardware configuration that
+> isn’t otherwise discoverable.
 
-Reviewed-by: David Lechner <dlechner@baylibre.com>
+Yes you are correct in that vlenb is discoverable on any conforming
+chip. However, the motivation here is for making decisions about how to
+boot a hart before it is booted. By placing it in the device tree, we
+are able to disable vector before the chip is booted instead of trying
+to boot the chip with vector enabled only to disable it later. In both
+cases when there is different vlenb on different harts, all harts still
+boot and the outcome is that vector is disabled. The difference is that
+with the DT entry, no vector setup code needs to be ran on a booting
+hart when the outcome will be that vector is not enabled.
+
+> 
+> As for T-HEAD stuff, if they need it they can have a custom property.
+> Though naively I’d assume there’s a way to avoid it still...
+
+T-Head does not expose vlenb on all of their chips so I do not know of
+any other way of getting the vlenb without having it be provided in a
+DT. That was the motivation for this patch in the first place, but
+making this available to all vendors allows optimizations to happen
+during boot.
+
+- Charlie
+
+> 
+> Jess
+> 
 
