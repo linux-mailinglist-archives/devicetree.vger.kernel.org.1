@@ -1,153 +1,172 @@
-Return-Path: <devicetree+bounces-67083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9E38C681D
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:00:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D589C8C684A
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:08:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88EF2B24C3C
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:00:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A88F283B95
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BF11422C2;
-	Wed, 15 May 2024 13:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E7B13F015;
+	Wed, 15 May 2024 14:08:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwfJbMJr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TB983cTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE6C1420CC;
-	Wed, 15 May 2024 13:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51FD57CA1;
+	Wed, 15 May 2024 14:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715781487; cv=none; b=HQVnhEuWKx0IpOtHQC8Djt4NBwxrmJ3bSVwVpZh5+zsX85FNdkv+oj8fOkkexdr9vMic1qCOSQa91EB7yDNfKku9ZfPqGsBWzSFMByfVQ33qypD82WPi31EG4ze/ssqs90AGn8H6JJAgf5/JDxrO/LHBE4342TIxx11D1REyaTU=
+	t=1715782114; cv=none; b=VhjplV0mu/rxoYEjKqun+Y3UszcpSupDkMlOmsgWzI0G6H8QLfYFJjij9H1Mcj/wjo90Pp+TIhzabK6odSUNy2gg+7FTMrN+ZkhEqHQG8Iz/AKATw9CEgL6d7fHHLWobkNQBHJ5vKbs44/YLqDoBDkJGmH6NWh5SLFVjmGnEaHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715781487; c=relaxed/simple;
-	bh=N5UwfZ1hKMI6+ZrGSh9smBi+SvvW9VpZtds2AMuGHos=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=o8D51Wh/k2IJB0Y8ddDaI5l3C1gp2twFCqztAG+1lvm6GtrOp/o3qgZBx4ppqyh4BhqGfHSnHJ+aI/wNlc5eexL37L3MTXRNJya6tXKGiNd22AYt3eqGMlM7jSIdeJb8UrkIfdJizYNT8PvTsw/OaSZ1Cbk3vlcSMpiBGHtydnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwfJbMJr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE3B1C2BD11;
-	Wed, 15 May 2024 13:58:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715781487;
-	bh=N5UwfZ1hKMI6+ZrGSh9smBi+SvvW9VpZtds2AMuGHos=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=TwfJbMJr2eudO50gB4jtqCfWmhQ4amIjE1zaF6WRdIcpHwO5rxvJbZJuVPBjUSigc
-	 8TO0sFjBMWieujTeWTcuXI80s/WdCooRLCshP+Q/b0ITdjgasFFSNbNxExZovj+gwM
-	 MqxQyWjQ9L4GKUH5za52rqgOSxbjtXji1bS6WDBU09KLKF6xXnGxBua7W8KBwKwYTv
-	 kTyJG45a37w38lAwA6FHp1phbWKUmqeti4YPxDNtGMpGRIPOYhZd/GFlbyoIEyxavY
-	 r47jnKx51PjUmobjfH+JRFKkFOOn0ocJkOqbql9gO5OBozz9g9Hmqn6m9vT+dk6kVi
-	 oqdf60asXfERQ==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Wed, 15 May 2024 15:57:03 +0200
-Subject: [PATCH 8/8] dma-buf: heaps: carveout: Handle ECC flags
+	s=arc-20240116; t=1715782114; c=relaxed/simple;
+	bh=2o16aLD+vJUhmgKsy9/fcWJADcd6QUogtZiRFPAWens=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Gg9LMSfWllZN2YMIgQH8LRCVD4fQ/UPVagaO80zyyCCNHP8Y7Ata30RCS8wc2KQlTBS5HJIB2pdoflvUdI70xJ+3sdOF/nU+Mx/DGWQdfV45fo8uPEBt+UgY+a4jTXdFCpf9ccM7qNPE6FnpgbZNv+kFPO0GwSkpPO77BFNSMGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TB983cTZ; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51f40b5e059so8261712e87.0;
+        Wed, 15 May 2024 07:08:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715782111; x=1716386911; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iPRt+KH9PEWEf8y8D7biJqUDsvZAC9qRLt3CEmg7xEg=;
+        b=TB983cTZlNqAz7Z8NPWYvPxC4dfs0aX5Se3/IOGZ/JXSztIudKB3xh6W4T2jokw88U
+         7nBtyPGyKerh6jrwXw1jiD+OlAMzLRctPNDQ/yB+dHcvbmzv3iyOpEc87ok/JDexSQ0e
+         TXtw9BSAIgzxSRQ1hIeUyWq0cI+th3Gf6KJLvWU0Uq1ZxAVsbzmuyUSZKqMde3hOBqK0
+         KS44Mje6Dx2bIAMZO8jzyDMdtOb+JgDvahn3O8JYRUTo2SVyFrhZipFtLQjqp/Nw4ciU
+         d0fGdwCblc8EjRlc1Pr+h8KG4wzDWftV4g7sJ30C8aF8SHg3kSw75304qEGbv32jjrwa
+         mCUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715782111; x=1716386911;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iPRt+KH9PEWEf8y8D7biJqUDsvZAC9qRLt3CEmg7xEg=;
+        b=cUgVocDIV0nOB9nssmjKqea80Sd1dS3k+MvmB7ruwk/kUNIJIT4wxPTkXCNXFEUvZI
+         e5S2IAq9N6Z4SuaXpA9mzQ5V9fHrX5Tp0FQlR2wk2slUsbevrw/EreQoIkaC1m5xbdMB
+         U9S0xzsnn5VwxC6axcA7qKWf46XzYqfTo7w2HRp0olObKwGHqAUH+imL24F0GxsY06Hf
+         ykqKbVVBJ8AGLMM/kGdllsjxOTfnVQUECkck6rbyNjonIkU5U5q1x5n1XBb+t4y+1DNO
+         FjVNK5Kh/SHhnxBlNrWCkg7jPARoOdvWRhaqTGHVjlFooJZWzhd/2OZaK4MNj4mdNibs
+         9I1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUj7wW7k+Qn4Aughi8AoDoAOQNXExYP1RzeL1zZJ/hEVJeBzs5eI/H7U8WXWkFlOnxZ5TwU/5Auo4ENRek+PdeVDQwpwSWFABSs+UiEgRni/3+UNOBSvzLIH4djvMXVkU0p/KJEsbeV1g==
+X-Gm-Message-State: AOJu0YxhmsuPgbe3okwP6thhQWuF/O2hy9nwRY8sieHO1IZmvKHyHvbg
+	scX1EQjuOkipmk05CjC1QZY/rZHf4hIHCxwQoRcLQhGVUTjvgRoR
+X-Google-Smtp-Source: AGHT+IHusrVdtGaECVr/u6UpMBgta0LnZGfkVTiO27TcSRbMJwnJW7lVznPwNZDNH43jmxpv8r5CTA==
+X-Received: by 2002:ac2:5f49:0:b0:51f:b781:728f with SMTP id 2adb3069b0e04-5220fc72ffamr8682329e87.32.1715782110537;
+        Wed, 15 May 2024 07:08:30 -0700 (PDT)
+Received: from pratik-IdeaPad.lan (customer-145-40-29-195.stosn.net. [145.40.29.195])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-521f35ba4c9sm2523145e87.76.2024.05.15.07.08.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 May 2024 07:08:30 -0700 (PDT)
+From: Pratik Farkase <pratikfarkase94@gmail.com>
+X-Google-Original-From: Pratik Farkase <pratik.farkase@wsisweden.com>
+To: 
+Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pratik Farkase <pratikfarkase94@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] Convert the Broadcom OTP memory controller to newer DT schema. Created DT schema based on the .txt file which had `compatible`, `reg` `brcm,ocotp-size` as the required properties.
+Date: Wed, 15 May 2024 16:07:29 +0200
+Message-Id: <20240515140731.63927-1-pratik.farkase@wsisweden.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240515-dma-buf-ecc-heap-v1-8-54cbbd049511@kernel.org>
-References: <20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org>
-In-Reply-To: <20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
- "T.J. Mercier" <tjmercier@google.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linaro-mm-sig@lists.linaro.org, Maxime Ripard <mripard@kernel.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2094; i=mripard@kernel.org;
- h=from:subject:message-id; bh=N5UwfZ1hKMI6+ZrGSh9smBi+SvvW9VpZtds2AMuGHos=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDGku+wOVf9vPYLP0PMqdtrWoJ7LZR7Lp+cNXh60Z5vbwa
- D3c2HqlYyoLgzAng6yYIssTmbDTy9sXVznYr/wBM4eVCWQIAxenAExkbh5jnYYCo0VUtc+Dd+uE
- 2daUX+142sf9ZzNr7g5joTNPPvPvWLjxoFSLysFas91tCT8vZjzoYaxmSWWJajqzSnUrN69XyMV
- 0Lukrn8/LlLqZ6FROnnTgt2SU9adC6ZaXZtJ3NbLWr572kQ0A
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Content-Transfer-Encoding: 8bit
 
-Now that we have introduced ECC-related flags for the dma-heaps buffer
-allocations, let's honour these flags depending on the memory setup.
-
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
 ---
- drivers/dma-buf/heaps/carveout_heap.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../devicetree/bindings/nvmem/brcm,ocotp.txt  | 17 --------
+ .../devicetree/bindings/nvmem/brcm,ocotp.yaml | 41 +++++++++++++++++++
+ 2 files changed, 41 insertions(+), 17 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt
+ create mode 100644 Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml
 
-diff --git a/drivers/dma-buf/heaps/carveout_heap.c b/drivers/dma-buf/heaps/carveout_heap.c
-index 896ca67e6bd9..81b167785999 100644
---- a/drivers/dma-buf/heaps/carveout_heap.c
-+++ b/drivers/dma-buf/heaps/carveout_heap.c
-@@ -6,10 +6,11 @@
- #include <linux/of_reserved_mem.h>
- 
- struct carveout_heap_priv {
- 	struct dma_heap *heap;
- 	struct gen_pool *pool;
-+	bool ecc_enabled;
- };
- 
- struct carveout_heap_buffer_priv {
- 	struct mutex lock;
- 	struct list_head attachments;
-@@ -182,10 +183,16 @@ static struct dma_buf *carveout_heap_allocate(struct dma_heap *heap,
- 	struct dma_buf *buf;
- 	dma_addr_t daddr;
- 	void *buffer;
- 	int ret;
- 
-+	if (!heap_priv->ecc_enabled && (heap_flags & DMA_HEAP_FLAG_ECC_PROTECTED))
-+		return ERR_PTR(-EINVAL);
+diff --git a/Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt b/Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt
+deleted file mode 100644
+index 0415265c215a..000000000000
+--- a/Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-Broadcom OTP memory controller
+-
+-Required Properties:
+-- compatible: "brcm,ocotp" for the first generation Broadcom OTPC which is used
+-  in Cygnus and supports 32 bit read/write. Use "brcm,ocotp-v2" for the second
+-  generation Broadcom OTPC which is used in SoC's such as Stingray and supports
+-  64-bit read/write.
+-- reg: Base address of the OTP controller.
+-- brcm,ocotp-size: Amount of memory available, in 32 bit words
+-
+-Example:
+-
+-otp: otp@301c800 {
+-	compatible = "brcm,ocotp";
+-	reg = <0x0301c800 0x2c>;
+-	brcm,ocotp-size = <2048>;
+-};
+diff --git a/Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml b/Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml
+new file mode 100644
+index 000000000000..58091e69594e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/brcm,ocotp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	if (heap_priv->ecc_enabled && (heap_flags & DMA_HEAP_FLAG_ECC_UNPROTECTED))
-+		return ERR_PTR(-EINVAL);
++title: Broadcom OTP memory controller
 +
- 	buffer_priv = kzalloc(sizeof(*buffer_priv), GFP_KERNEL);
- 	if (!buffer_priv)
- 		return ERR_PTR(-ENOMEM);
- 
- 	INIT_LIST_HEAD(&buffer_priv->attachments);
-@@ -235,20 +242,29 @@ static int __init carveout_heap_setup(struct device_node *node)
- 	const struct reserved_mem *rmem;
- 	struct carveout_heap_priv *priv;
- 	struct dma_heap *heap;
- 	struct gen_pool *pool;
- 	void *base;
-+	u32 val = 0;
- 	int ret;
- 
- 	rmem = of_reserved_mem_lookup(node);
- 	if (!rmem)
- 		return -EINVAL;
- 
- 	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	of_property_read_u32(node, "ecc-correction-bits", &val);
-+	if (val <= 0) {
-+		if (of_memory_get_ecc_correction_bits() > 0)
-+			priv->ecc_enabled = true;
-+	} else {
-+		priv->ecc_enabled = true;
-+	}
++maintainers:
++  - Pratik Farkase <pratikfarkase94@gmail.com>
 +
- 	pool = gen_pool_create(PAGE_SHIFT, NUMA_NO_NODE);
- 	if (!pool) {
- 		ret = -ENOMEM;
- 		goto err_cleanup_heap;
- 	}
-
++allOf:
++  - $ref: nvmem.yaml#
++
++properties:
++  compatible:
++    enum:
++      - brcm,ocotp
++      - brcm,ocotp-v2
++
++  reg:
++    maxItems: 1
++
++  brcm,ocotp-size:
++    description: Amount of memory available, in 32 bit words
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++  - brcm,ocotp-size
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    otp@301c800 {
++        compatible = "brcm,ocotp";
++        reg = <0x0301c800 0x2c>;
++        brcm,ocotp-size = <2048>;
++    };
 -- 
-2.44.0
+2.34.1
 
 
