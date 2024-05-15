@@ -1,186 +1,111 @@
-Return-Path: <devicetree+bounces-67166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C6F8C6D52
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 22:35:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B90238C6D5F
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 22:43:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5707F1F23FC2
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 20:35:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54114B23543
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 20:43:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566F915B159;
-	Wed, 15 May 2024 20:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CEE15B15D;
+	Wed, 15 May 2024 20:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dDClOATh"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="T0CS6hQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A0615B14E;
-	Wed, 15 May 2024 20:35:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5B515B13F
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 20:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715805333; cv=none; b=aDoGSUBhGVFsmMgQpyuBga88oIcZzG37SgXctVoksmNYDzVUkjBTxbedxDactg+Z5nX5gDXETFa0LvEiugsu1w2R8ZZ9IBJJmTEw79FXgV7ZcG8mmWsjrNhd2G6rR6PdMJrbpW6/ysLkVNkE5LvXRSZRt9CzC4Sh8TdwP5o1g9k=
+	t=1715805796; cv=none; b=EegKlrn7vznieqsHHjA1W3mJAWwL1lPB57/p+AbECxMKOtKzXLVdH6q1Wp+CL0C1yAZv3PS8HwgH8JOWzsNLiMWS68KqlnVCoM0y136A59hIi+pIasz0KFpVusj0kb1uw0sWz+XKB3wN27CL14IY2+hfG4YgvIZOBMANzfnQq6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715805333; c=relaxed/simple;
-	bh=VbGJP2NaAz4tBqRFEIPiguZVuuL1Evp7KZQ6dB94Z3Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bWOIwOyVLfjxwlkgZPXom/ZHBuFarYUqkF1lwLfZANos2BvEhfuZdOhlBe/BsKtVYqy8pCQPmuJdbVwhZxgP/zZEsX4BRCsMSgN18ueGWMb5GGRXOAp9T/6tPID0e0uUnwnttgzt5YJnjlTRU6tsyp/eR7i6NulN7QAnm2VqAQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dDClOATh; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6f4ed9dc7beso3257313b3a.1;
-        Wed, 15 May 2024 13:35:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715805331; x=1716410131; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EhDrIIYuqrWkc8JCUvRQERr8uFUaepc3V2Gr+6xnLX4=;
-        b=dDClOATh6LxoRt6euC9hn3ObXHpBScNM6Qhj3zA04Lq/0Dj/1P/cLca3hRCFPy8KQP
-         n/5q89DZrmMws50grmEXZfy7FJ08OjM1KPiNK/O3B07IseNh1TEfj9G4CmmmryDTR0Yr
-         v0KqnYSRCp7t6CVvKlublPtf7B+Z19JFsVXB/gbdqmdako4Ve5I6Ob1UVv8qwABYAwn2
-         eurWwCj12GPsu3t1SwGgLnSj79f/RSN92577pP+2l/JxPKFNaZ/wtE6hHsP0bKxF9+iA
-         wPfMdqc+lAGGeDkIMDkVBBQsqh0fJrBwrrcRZ7Jzz2IfIpQbXkvnoz4HYvY8QgtTqWY0
-         R2lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715805331; x=1716410131;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EhDrIIYuqrWkc8JCUvRQERr8uFUaepc3V2Gr+6xnLX4=;
-        b=BM+WTbNQkqKsDceKrXrdpPZR6ytkd+n3CR8sFuSaWGTlpsL2fXifraJ+TDVAbcYRlr
-         gDhLIlLXYFYziOPgOV/kLceptyyxffW0Xfuf+XMVr6kqE2lacHYbyf62kizHBM94dpuj
-         GmexUXEvGE8UsjCQQUXtck52pLWU3KknONAvRjKwaTPLvWaMo2iwzaJuTYd+T0oSXHjz
-         QY8cq9Rs33qG1vZ/zzbnmJ2q4dEXzbvyHHHMDoK1AkivSgMX0yu9CFgT5kicVLG+fULm
-         qhzP4tm+OD9SYhbQmpwMKdvl1/LjZxgY0O81wdkPrQFiv5D7WhcpWFqShcrCGQAsfpy0
-         kQaA==
-X-Forwarded-Encrypted: i=1; AJvYcCUwK9B90Qdok1xFWx/V1wbfQMck9HcEaIF7HmCjUF5Da/KkB0f1UErKK6mfQ0cGBAdwkPZNlYIJTZK9t/xuPveH+sTEzwI/MbYeC9xm
-X-Gm-Message-State: AOJu0YzyWT/+QVGIy4+KBCV07OfQVBzfefDF3UzjEOI2RvIYIkpBbF3n
-	A4n9XjZVs1GOxD3jB8GgRTplZ4Np7NryekXm4sQpwlOxYGkAD4uf
-X-Google-Smtp-Source: AGHT+IF0o6WWf6UvTgF3lWv/RBGNu8xNI5DYiRd/Nmjl4X7DaPdiPg7wEsbu3KkqXkQYPdMRaVvzdw==
-X-Received: by 2002:a05:6a00:98d:b0:6f4:9fc7:d239 with SMTP id d2e1a72fcca58-6f4c9334e39mr31522883b3a.14.1715805331160;
-        Wed, 15 May 2024 13:35:31 -0700 (PDT)
-Received: from localhost.localdomain ([106.195.57.212])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2a66691sm11892785b3a.16.2024.05.15.13.35.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 May 2024 13:35:30 -0700 (PDT)
-From: Shresth Prasad <shresthprasad7@gmail.com>
-To: robh@kernel.org,
-	saravanak@google.com
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	skhan@linuxfoundation.org,
-	javier.carrasco.cruz@gmail.com,
-	julia.lawall@inria.fr,
-	Shresth Prasad <shresthprasad7@gmail.com>
-Subject: [PATCH][next] of: property: Remove calls to of_node_put
-Date: Thu, 16 May 2024 01:59:17 +0530
-Message-ID: <20240515202915.16214-3-shresthprasad7@gmail.com>
-X-Mailer: git-send-email 2.45.1
+	s=arc-20240116; t=1715805796; c=relaxed/simple;
+	bh=3R4LUKh3E8othza8TyroAgCHl+LIZz3OEQv47Ax76co=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JmDossguSwtwgOXGFIwh/5SQn1S4MFNPIJiF5K26U1FaYSE4YKrfqFTGddoZSQNdTooGN3R+iGGY+freud5WwN9+/P/C+zKvVFA9rtAYXJ6LfmaiBRDJATrA25kuLf1eI69bhW1xaSVtw+MipOL+8nAvHdSeJ5qHQNpA+F3tR/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=T0CS6hQF; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=3R4L
+	UKh3E8othza8TyroAgCHl+LIZz3OEQv47Ax76co=; b=T0CS6hQFU4aPC6+A/+Qf
+	E5hQJ2mcaoda0lNlPIHpIL1xkdjV6ibJb59as4CCCltEyHCokvBYEPSuVgPaaQ2f
+	885yfwvqJO4dy8qrurgK5miGr0WhBkeHGyBXNeOnYv/pak+goHii3wEZOgPAxDrr
+	wpCMtIT13+NMiaQ6vqllGJJ93JBdGgdYKQampXtS/VwU5iP8iWPHdGgv1KMTIMCz
+	gUsxllQivt7ITrkQjV+6DwX9bJh23tvpBYTf3zBFfXsol3/OAS2xhEwxKQeYbagH
+	iG1MBC9De6FL2WEm5HSFjs89InRRD0SJgZw7V/K1wqsAjlU0/LJmHer1qXXDrL5d
+	4Q==
+Received: (qmail 2941755 invoked from network); 15 May 2024 22:43:06 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 May 2024 22:43:06 +0200
+X-UD-Smtp-Session: l3s3148p1@bJFcKoQYvMFehhtP
+Date: Wed, 15 May 2024 22:43:05 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: gray-hawk-single: add aliases for
+ I2C busses
+Message-ID: <nsozpsifnhpmsbrzvpttmiu775mhm2oq54hycjvc2wa3qtoukh@wpigcux5tkyr>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+References: <20240515091925.24353-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s2jc5l5fb5e4n4q2"
+Content-Disposition: inline
+In-Reply-To: <20240515091925.24353-2-wsa+renesas@sang-engineering.com>
 
-Add __free cleanup handler to some variable initialisations, which
-ensures that the resource is freed as soon as the variable goes out of
-scope. Thus removing the need to manually free up the resource using
-of_node_put.
 
-Suggested-by: Julia Lawall <julia.lawall@inria.fr>
-Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
----
-I had submitted a similar patch a couple weeks ago addressing the same 
-issue, but as it turns out I wasn't thorough enough and had left a couple
-instances.
+--s2jc5l5fb5e4n4q2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I hope this isn't too big an issue.
----
- drivers/of/property.c | 27 +++++++++++----------------
- 1 file changed, 11 insertions(+), 16 deletions(-)
+On Wed, May 15, 2024 at 11:18:51AM +0200, Wolfram Sang wrote:
+> They are numbered like this in the schematics, so keep the names in
+> Linux the same.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 17b294e16c56..96a74f6a8d64 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -773,15 +773,14 @@ EXPORT_SYMBOL(of_graph_get_port_parent);
- struct device_node *of_graph_get_remote_port_parent(
- 			       const struct device_node *node)
- {
--	struct device_node *np, *pp;
-+	struct device_node *pp;
- 
- 	/* Get remote endpoint node. */
--	np = of_graph_get_remote_endpoint(node);
-+	struct device_node *np __free(device_node) =
-+			    of_graph_get_remote_endpoint(node);
- 
- 	pp = of_graph_get_port_parent(np);
- 
--	of_node_put(np);
--
- 	return pp;
- }
- EXPORT_SYMBOL(of_graph_get_remote_port_parent);
-@@ -835,17 +834,18 @@ EXPORT_SYMBOL(of_graph_get_endpoint_count);
- struct device_node *of_graph_get_remote_node(const struct device_node *node,
- 					     u32 port, u32 endpoint)
- {
--	struct device_node *endpoint_node, *remote;
-+	struct device_node *endpoint_node __free(device_node) =
-+			    of_graph_get_endpoint_by_regs(node, port, endpoint);
-+
-+	struct device_node *remote __free(device_node) =
-+			    of_graph_get_remote_port_parent(endpoint_node);
- 
--	endpoint_node = of_graph_get_endpoint_by_regs(node, port, endpoint);
- 	if (!endpoint_node) {
- 		pr_debug("no valid endpoint (%d, %d) for node %pOF\n",
- 			 port, endpoint, node);
- 		return NULL;
- 	}
- 
--	remote = of_graph_get_remote_port_parent(endpoint_node);
--	of_node_put(endpoint_node);
- 	if (!remote) {
- 		pr_debug("no valid remote node\n");
- 		return NULL;
-@@ -853,7 +853,6 @@ struct device_node *of_graph_get_remote_node(const struct device_node *node,
- 
- 	if (!of_device_is_available(remote)) {
- 		pr_debug("not available for remote node\n");
--		of_node_put(remote);
- 		return NULL;
- 	}
- 
-@@ -1064,19 +1063,15 @@ static void of_link_to_phandle(struct device_node *con_np,
- 			      struct device_node *sup_np,
- 			      u8 flags)
- {
--	struct device_node *tmp_np = of_node_get(sup_np);
-+	struct device_node *tmp_np __free(device_node) = of_node_get(sup_np);
- 
- 	/* Check that sup_np and its ancestors are available. */
- 	while (tmp_np) {
--		if (of_fwnode_handle(tmp_np)->dev) {
--			of_node_put(tmp_np);
-+		if (of_fwnode_handle(tmp_np)->dev)
- 			break;
--		}
- 
--		if (!of_device_is_available(tmp_np)) {
--			of_node_put(tmp_np);
-+		if (!of_device_is_available(tmp_np))
- 			return;
--		}
- 
- 		tmp_np = of_get_next_parent(tmp_np);
- 	}
--- 
-2.45.1
+Hmmm, Spider and WhiteHawk are also missing this. Shall I send v2 with
+these included or incremental patches?
 
+
+--s2jc5l5fb5e4n4q2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZFHlUACgkQFA3kzBSg
+KbYMOBAAocC1FyMK8HFZfwGn6akeoF+C8O1lKBZnjdg9GlVcrxlN7zk7PrkKUkzY
+46MqHQ6ojF4hKIC74rXzvUOe1Rmr3P3mdVBWHZ+84gZWIzrfroOWwDc7MjL2ZdXH
+HV6jFQ0skODn/uVEeIKgx2bfpiMty0Lgkii8VUYSKztvMc4oGlenycxbY7wbs8sO
+qjsDGo5oOA28oJiaik6qKtR+os622tbrpj8ORSNlBXrALuyqtH+Qbw3MA0ZRD23p
+2yeod71vcA+SttH/qjZh+c+FNVBna5t+2LPkkV/O+nqbgRvSeTRPWMQBrxOlaVfU
+WL1JwDVW7xk500GSOOpd51iN3cPKD0AOqRW04R2m/R/W0c2m7RgEXjoi1k9FJ+H2
+2GqXGt2r/BqEfyvXgI7CAltso4Ii8uKEV/dexOZgGG5ezjxkt7GKd1Bp1ckOvxM0
+K0iVSNacfPUiaj5dV4z3NdjKkaNEW/vrtFWfDZKtfX5XStLxU2NNPVES7qdczeia
+CX1eVWNdTMwDIiD7OG3kmah62s76x6vYa/FE+Fj1559Tz9gitDzsokKv4dNzH24Q
+Umd2Tz30VRYG+YObLUMaZ7XExpp9d1YyYO1PGbLpc5rHpOi69oVptJzecz93rMku
+loHTeHNSqU9XWBAXf/bl6mJZDRJYgzLGC9sXeGeXmvh6m8Qahh4=
+=wXgf
+-----END PGP SIGNATURE-----
+
+--s2jc5l5fb5e4n4q2--
 
