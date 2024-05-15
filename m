@@ -1,65 +1,71 @@
-Return-Path: <devicetree+bounces-67128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A3F8C6A28
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:04:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 386638C6A5D
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:16:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D7EE1C223B2
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:04:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69CAB1C203AD
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D3D2156241;
-	Wed, 15 May 2024 16:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDED3156251;
+	Wed, 15 May 2024 16:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GCcSlwu0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RUKFii8/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE31F156230;
-	Wed, 15 May 2024 16:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9647615624B;
+	Wed, 15 May 2024 16:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715789095; cv=none; b=OczOJo4lCs0JXWHcVr4gXqDcHQK5eBcK1cwaIRHMeilKQd2/JDAk5LbUIFiN4tBEqjupXx/gtyc3TmYm2yk5I9KHtitjMlJp7F9KsAVKshjqPPIkf0+3UNAaPGe9POgm2T0fqZugmAGfM3eNsOdye1GSuTOvVx/199/agKlfYy4=
+	t=1715789761; cv=none; b=r+vugSeHcD4JqT43enQ29PjipdYeSHCLxDbXzSeaofy+rz2vv9qMHUuUZVUnJqk1Vu/fvWXxkfRF1e6iQI5QoKyEt+6+vgs5URlEodIERdtX6GNoQ6s19vjrpR1Q9eTlRAKhFozkSXWSMQRsJIxsSyIk+xXXWDAHhxinyYT4iVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715789095; c=relaxed/simple;
-	bh=kycUkpRBcEikOS2uUOytIdiW0vootLzo+kRSUZqPy74=;
+	s=arc-20240116; t=1715789761; c=relaxed/simple;
+	bh=42K17Pixe7XXPK9EXtpix+bwi36V54XcX1AVcxIzguU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cpYCrJOPxRWOiSKwaW6iFmh3kvcSNhHOgZu/tLyknD1f9qZLtSLBAnbigJwBsaVKZeka7A7oWUsitj3SPhNo3Q0VCRHInf4KMZhdSwHRRe+R+Pjts0I/Y1Kkpjqh1IbIERFMSmuYb306E28riC7MhSxubYONr6it66fIvru9TKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GCcSlwu0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E32CDC116B1;
-	Wed, 15 May 2024 16:04:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jrOjOAjdeDPO26ApS6xcGck12ZWs7vuQBngJXkiGzC6uKFKpZE5kMTYqkvr2+stIX4qLdR6NzfYNBfw8kb47WVye4glQl/EqPPEIbfGldjwQpfgtXxZTHob2V0EFy/0QNToI/PORc2qAdFfrm8Wqnh29cER1QP49bGv3KcG8qTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RUKFii8/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6694DC2BD11;
+	Wed, 15 May 2024 16:15:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715789094;
-	bh=kycUkpRBcEikOS2uUOytIdiW0vootLzo+kRSUZqPy74=;
+	s=k20201202; t=1715789761;
+	bh=42K17Pixe7XXPK9EXtpix+bwi36V54XcX1AVcxIzguU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GCcSlwu0Q1/BIvPguL9ykFpvGDB2rB0mNxZugMR4JErdsSybEMwsnH+kD4jm55LOV
-	 S57Vv9wDidtYn/yVdM6wZD0NURFEddwGlz3slZ02HIR/giNMbynTMgxVnCVGW6WSbF
-	 ICWck8njLb+XWO79UraQpW/k6zSJDzw3CefFySezm7wWZVhw2Cqk1WsB60ixo7rrwK
-	 yK+IPO3c1UTjfm1S2w3SIAsOR+notDXFoyRpbxX/mYAhE1Nj0LWepFnsw52LJDWASe
-	 Uvnh/kNRZQpy0gzQo1refhavCN8Hk8CljYYjQhj1gzZdzFBCc2eyxkGQkK9RD5Wcj6
-	 6htRJ70HCYbGg==
-Date: Wed, 15 May 2024 17:04:48 +0100
+	b=RUKFii8/7p0ye6uTbavZiSXtpCpADTjXNc4JuqYMXL/DWJGc+MaVAoHh2BtYnHktK
+	 ebx8rN0S1pcglDZdethKl1TgooFBCGDv4XtdhS61qPFk8Xo5+/i/IpB1Gc5Dq6hPFs
+	 p/CWoznIdWcyZHg5jwLtAI9f5GDEua76zMTefc6ogdMN1dE/YAT1Jek4WhZd1Brp+J
+	 kjx1sbCfPCuBGBjdgy5NYiGBo+MqCUQqoiNirM3Llho7IVYPTLEJnAdkCloARMHK16
+	 d7jct0ZrqUfh9w0D2cIZcbAgseOyyLsGUfUeUiSOf7Qd+bl7VYWp0hmBH7m+Ml/1c+
+	 V9spvA0Sfj0Eg==
+Date: Wed, 15 May 2024 17:15:56 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>,
-	abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, marex@denx.de, linux-clk@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
+To: Marek Vasut <marex@denx.de>
+Cc: Patrick DELAUNAY <patrick.delaunay@foss.st.com>,
+	Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Pascal Paillet <p.paillet@foss.st.com>, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de
-Subject: Re: [PATCH v3 3/6] dt-bindings: clock: imx8mp: Add reset-controller
- sub-node
-Message-ID: <20240515-unbundle-bubble-8623b495a4f1@spud>
-References: <1715679210-9588-1-git-send-email-shengjiu.wang@nxp.com>
- <1715679210-9588-4-git-send-email-shengjiu.wang@nxp.com>
- <20240514-campus-sibling-21cdf4c78366@spud>
- <b86c83a520f0c45a60249468fa92b1de.sboyd@kernel.org>
- <CAA+D8ANTdvQJVtniyMtqjnJdT4qX+LDGjVuFO6H0RSO+GDw+ng@mail.gmail.com>
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: st,stm32mp1-pwr-reg: add
+ compatible for STM32MP13
+Message-ID: <20240515-edginess-evacuee-356bd6dd1dfa@spud>
+References: <20240513095605.218042-1-patrick.delaunay@foss.st.com>
+ <20240513115601.v3.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+ <615dfdcb-cbda-426f-895e-810f03a8ce60@denx.de>
+ <20240513-stabilize-proofread-81f0f9ee38b9@spud>
+ <d73d4435-75d6-4cea-b38e-07c7ceae3980@foss.st.com>
+ <20240514-entryway-idealize-fcd5ed0e1de7@spud>
+ <0c97408c-422d-46b3-8017-da9ebb0767e1@foss.st.com>
+ <20240515-monsoon-starfish-0dc59707e843@spud>
+ <9de93cbb-5868-473e-8b32-a6b6f50e128e@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,82 +73,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GkjvzzTYbAGBWol4"
+	protocol="application/pgp-signature"; boundary="vGXUQ+w0Hao4jwFN"
 Content-Disposition: inline
-In-Reply-To: <CAA+D8ANTdvQJVtniyMtqjnJdT4qX+LDGjVuFO6H0RSO+GDw+ng@mail.gmail.com>
+In-Reply-To: <9de93cbb-5868-473e-8b32-a6b6f50e128e@denx.de>
 
 
---GkjvzzTYbAGBWol4
-Content-Type: text/plain; charset=utf-8
+--vGXUQ+w0Hao4jwFN
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 15, 2024 at 10:47:57AM +0800, Shengjiu Wang wrote:
-> On Wed, May 15, 2024 at 5:09=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> w=
-rote:
-> >
-> > Quoting Conor Dooley (2024-05-14 11:06:14)
-> > > On Tue, May 14, 2024 at 05:33:27PM +0800, Shengjiu Wang wrote:
-> > > > diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomi=
-x.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > index 0a6dc1a6e122..a403ace4d11f 100644
-> > > > --- a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > +++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > @@ -15,7 +15,10 @@ description: |
-> > > >
-> > > >  properties:
-> > > >    compatible:
-> > > > -    const: fsl,imx8mp-audio-blk-ctrl
-> > > > +    items:
-> > > > +      - const: fsl,imx8mp-audio-blk-ctrl
-> > > > +      - const: syscon
-> > > > +      - const: simple-mfd
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -44,6 +47,11 @@ properties:
-> > > >        ID in its "clocks" phandle cell. See include/dt-bindings/clo=
-ck/imx8mp-clock.h
-> > > >        for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
-> > > >
-> > > > +  reset-controller:
-> > > > +    type: object
-> > > > +    $ref: /schemas/reset/fsl,imx8mp-audiomix-reset.yaml#
-> > > > +    description: The child reset devices of AudioMIX Block Control.
-> > >
-> > > Why not just set #reset-cells =3D <1> in the existing node? IIRC it w=
-as
-> > > already suggested to you to do that and use auxdev to set up the reset
-> > > driver.
-> >
-> > Yes, do that.
+On Wed, May 15, 2024 at 05:37:49PM +0200, Marek Vasut wrote:
+> On 5/15/24 5:35 PM, Conor Dooley wrote:
+> > On Wed, May 15, 2024 at 04:33:22PM +0200, Patrick DELAUNAY wrote:
+> > > with
+> > >=20
+> > >  =A0 compatible:
+> > >  =A0=A0=A0 oneOf:
+> > >  =A0=A0=A0=A0=A0=A0=A0 - items:
+> > >  =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: st,stm32mp1,pwr-reg
+> > >  =A0=A0=A0=A0=A0=A0=A0 - items:
+> > >  =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: st,stm32mp13-pwr-reg
+> > >  =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - const: st,stm32mp1,pwr-reg
+> >=20
+> > Other than the extra ,s this looks okay, thanks.
 >=20
-> Can I know why sub nodes can't be used? the relationship of parent and
-> child devices looks better with sub nodes.
+> I think the extra ,s are actually correct, those are the ones from the
+> original compatible which had TWO ,s (it does look a bit unusual).
 
-That's pretty subjective. I don't think it looks better to have a clock
-node that is also a syscon with a reset child node as it is rather
-inconsistent.
->=20
-> A further question is can I use the reset-ti-syscon? which is a generic r=
-eset
-> device for SoCs.  with it I don't even need to write a new reset device d=
-river.
-> it is more simple.
+Oh my bad then.
 
-That is for a TI SoC. You're working on an imx. I don't think that you
-should be using that...
-
---GkjvzzTYbAGBWol4
+--vGXUQ+w0Hao4jwFN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkTdIAAKCRB4tDGHoIJi
-0m6SAP9agCG57rgGJON9yd0a66dM6NoL7HfdAEzVst0qNsrwUwD+PuKQSxOna4Jj
-BC+nCXgi21EE+l22nlaOgorkcGibTA4=
-=3gXG
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkTfvAAKCRB4tDGHoIJi
+0p9iAPwN5XTdKgnKFAKBFLUCmGz50a3vlmMabr0JmpTLuLgpKAD/cZUlfPgi/276
+T/QPKGx911es1Agw6CvtZIZoWgzNOgk=
+=Bsop
 -----END PGP SIGNATURE-----
 
---GkjvzzTYbAGBWol4--
+--vGXUQ+w0Hao4jwFN--
 
