@@ -1,156 +1,172 @@
-Return-Path: <devicetree+bounces-67178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368F38C6DD7
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:43:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A84AA8C6DED
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:45:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF9EB282901
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:42:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2692A1F2245A
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:45:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038D715B54A;
-	Wed, 15 May 2024 21:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0822B15B54F;
+	Wed, 15 May 2024 21:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0QOtEJSq"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="ERT99NLN";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MgOwK9gW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wfhigh3-smtp.messagingengine.com (wfhigh3-smtp.messagingengine.com [64.147.123.154])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870CC1591EC
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 21:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A3F1591EC;
+	Wed, 15 May 2024 21:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715809374; cv=none; b=qk7bk6x9+nGCpoJLw9bsYK1nfRjiJBZ652DZdlVU+unrcOCCkzZMiN3q8AgroRlEXdnFMMwK79++hpxJwjSL4RUZjtjeVFvrgFQpz68AoDopZ7Cv+7+AvHT4+sybF+KkQiNhVpPKs8NPZdATIunPPxLJ4+BAROZBzqugs7INCmU=
+	t=1715809532; cv=none; b=PTZsex0EzKbFdXXYcJhUHHB1/saJvjQR65QGklzyjjEGbdg0Ksmi0t8tZMXHPEtvHE+nfM/il/IdTdYpvJ0qIl2epvDcgBrwymzx6je+KxUBNMWk5qCjX+ehpTqJfNAc3Smj0NveD0gQ8Q+VRRws4yv4kQfMeVyk/oNcX9gdfcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715809374; c=relaxed/simple;
-	bh=KiSQc1JiF1aFCWtXL6ki6+sQulb5IdXpzvrOpZ5e52g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u7xua+H89dOrGTZEIcgXtbxf0UyJzXssps+NDt/RPZgSjxMBhDv80wflRcFBGJRcEUM9cpJutsy/lHjZQroTyt7p1I9yrvVknINUXsVkIErI45SXif7hDcZrw/hQiwE+p2NYjyGSm8kXSDveN2F/uSftEK21SkP8yU/JuxUXy8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0QOtEJSq; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2df83058d48so714671fa.1
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 14:42:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715809370; x=1716414170; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P9TfeFMGzDggFyesSkjXt3hsg/J9ww73zqsP1azRQZA=;
-        b=0QOtEJSqS+Eg+xF9kTmTsbL5TKLrRVeRRfuTWB0SBxayVlCbJKCcZW7U4f6XrFCOka
-         iSeN5U22t2J1crAerabEFIWld2iWMr6A05MC02rwdgkZsY9eGV6ypBLUBfL4RGN1VQl2
-         wTFzLGtaBbDgg3V0+huoK9r0z5j0WH2yyaUwtNF+oZ9sPRhk+oHTy98PvB2sD9He37X2
-         aPTorNU7+QwJCHVIn+1wPTTys/SqXZjxk2mO3qbZyDvugbPgOCyue7opxINHDgozx9Ao
-         zdtikShOz0U2sTEp8FTdeK7snkX22NtCiv2fyWMugKZkNOvUc2zFokN+IaDaiOt0dD+X
-         rdOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715809370; x=1716414170;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P9TfeFMGzDggFyesSkjXt3hsg/J9ww73zqsP1azRQZA=;
-        b=eUaNAQ98ZGEYLYyCxFVKusPCadOeDQwTGFTddJeeo3sYoCZkyemK8rJ50M7njACDGw
-         TOEukbOjEHpcGPhLd/YASvGUDZTnHfLm+7ksDFzp9ip7Yjwf5TDZPKBooj7TSsg+gaaK
-         xnB5hIRm/Rhv2VTlFtVb2OHdiLts/v+in/C29xlMqTaDVJyVckG6kwIKeIQxOSOG+KWW
-         LuDLtGcgvHrC9TGYhsv2Y7VZe9NsYxKeDNDUo6IjP/pXPrk7AtNNuJ90uJTArGFv9Twq
-         29Mlhoy5JEt8OM2W80BUpfkXPkisrbouPM0xsZI4OUhCoysLsubKY6gCxOGbGBnKEH22
-         rMpA==
-X-Forwarded-Encrypted: i=1; AJvYcCXSj/bORvPat5pRzGoVhVKfgLRwjrH7ka6XH5zRveRq9EpjmWMJmHlsJ5GI05k8clSgJts+QUBDa1DGBCTaYY8VAs9U4CIEwpUS8g==
-X-Gm-Message-State: AOJu0YwyxqM38aNenDp1LSn4aFPPy6SLM2LMsZ3pFKTmUTZOIp2rqM18
-	BJDCLXfn2/VBnLo+aLEx057Odu3etWdomEmcZALILOXbmjBSEfLSHH36fT0iKz+vw6kMDAPGxWL
-	Nis6ORxW4hYFtPEzozLHRI2AptR8ybrg0Nsqwug==
-X-Google-Smtp-Source: AGHT+IGpxIiwcjdpifjmdvRLi4LFm9ed7boSODEZiMBXMdO6n9tTtimmmZlUZkosahIDXDhpvE+zOtAwD/uTbM4pshc=
-X-Received: by 2002:a2e:b88c:0:b0:2e0:4a32:1f41 with SMTP id
- 38308e7fff4ca-2e51fd46457mr124091161fa.19.1715809370626; Wed, 15 May 2024
- 14:42:50 -0700 (PDT)
+	s=arc-20240116; t=1715809532; c=relaxed/simple;
+	bh=yhT8qH87UFLaU0oO9HTe6eN8eKuVid3cRTVIc+jIXAs=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=VtG3pbbmcBRQx1HHLPYcw6UX8l21N6Q0TI48vf5lGFmzI6pSYHjb6OCDi0F7xaGItasSE+nD6W9s77vlA1ZDRTstlxVR4DzRusv5P7dqGePqwM/XTIiNKgZLlF5/KC2LcxK9gxu+JMwjdW+zYRP1zmDmVoDlMQyI6rpnN2w1+Pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=ERT99NLN; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=MgOwK9gW; arc=none smtp.client-ip=64.147.123.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailfhigh.west.internal (Postfix) with ESMTP id D8BAF1800132;
+	Wed, 15 May 2024 17:45:29 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Wed, 15 May 2024 17:45:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1715809529;
+	 x=1715895929; bh=DYfY0QLhy4/rRWL7kh0u1T/d2BAKUWKyXAVHHKbZmaw=; b=
+	ERT99NLNvaEezIzDDFT0UXdcx7BbZrozkgm/DkZWKZPaFV8X2xCknjdLXZ++Yqw3
+	EASsxozJqSkUSk30OPe1EU05gfmT9YHuDo1VDohHmW46QSj8BPz2WDyvnLlPKB5S
+	rrkSiI9hldImW0vLrX0MSzBhqPzK229MLjgjTAWbIq0NrNvTlhnCAAMJk8/8gkP6
+	DjNfFoL3fk0kysHYEMyAQHA57gWJ/+aJsUePENc8pJxm6OYI8XHxUvd5crB5O9qy
+	Vr1dKnUWLhrYvFChKZ9a0m1NBrASAQZ3T0C+7sWTlXY6y9NYYdyX3MiwCDrxBpae
+	LHVkXUQ2skkaJgSgxL3H3A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1715809529; x=
+	1715895929; bh=DYfY0QLhy4/rRWL7kh0u1T/d2BAKUWKyXAVHHKbZmaw=; b=M
+	gOwK9gW26E5deyuZdMckL0EHDqzk3qsrTm+f1m93fehvBwejE2fj7SYkakM5me7P
+	PFFFsPxaI3ucuzvKoh54GO91v426XAUnyKRMwFwYlOUjk6MVLyEaTXGRw4LfPriB
+	FxSBYe4YxurBUY2FXR7OyOBmFkg1lV/1YccJJwwq3EPu09zA/p+19lZ2JAhFLFdy
+	pFwuj9pAF/81//9q8L5ZYORBYz5McAT4tJ01xB6m9MwT6u7ITFxRnQo8/55i7fy7
+	p38aCy/zuXIylUskZAn/9groJVPY/nklfSx7cE2LugbvA3zjJ4M04APU5+cPEl7E
+	jnTpF6PQVwEAIGQmL9B3g==
+X-ME-Sender: <xms:-SxFZmLJbFR0nWQw2kNTOOGUcFn4KYJtr2WH83zzJJ0A5tFxLE97Ww>
+    <xme:-SxFZuLmjZn3itRQkRvsbv2CE46zFkyWDgUMkT4UxBYR7G69AP0e8t19wz__lXAed
+    Zp7k6xM0ovAO3QZ6BE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdegledgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
+    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
+    hmqeenucggtffrrghtthgvrhhnpeejuddtuefhvdejvefgheduiedtheeigfevleehffdu
+    udelhfekiefhheduhefgveenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgne
+    cuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgig
+    uhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:-SxFZmuykqqzXTbCa4HPtnYlXjtt0mN8Ex5UAbbDIC5RJXtpTTZPeg>
+    <xmx:-SxFZraFSfajIxYvKtjwR7FE6441EkFEXucinRsBjWKDNKrA-Nzynw>
+    <xmx:-SxFZtY2ez9qpnea6HDOpQTDQkFdD578P7gyd3U1rpm4Aj1LV6Cq-Q>
+    <xmx:-SxFZnA56Vy738mX7sTA1VUdGVOFoTkpWPTIoX4HxY09bFn9sibgiw>
+    <xmx:-SxFZvl_Qw_W4r3XPZe9UdcMK3N3r3_UKLs8VLkCi7AeAlpZKqM2yOWv>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 353AE36A0077; Wed, 15 May 2024 17:45:29 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-456-gcd147058c-fm-hotfix-20240509.001-g0aad06e4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240401-ad4111-v1-0-34618a9cc502@analog.com> <20240401-ad4111-v1-1-34618a9cc502@analog.com>
- <CAMknhBHeKAQ45=5-dL1T1tv-mZcPN+bNo3vxWJYgWpEPE+8p3Q@mail.gmail.com>
- <25cb3514-1281-49a8-9e9b-40ead9b050dc@gmail.com> <CAMknhBHu8DveBgV3cor8RP2Up4Zs-+QRx7S2aoHZ_3iKiErVjg@mail.gmail.com>
- <20240406155328.447b594f@jic23-huawei> <64b7fd83-f226-4b1f-a801-0fe1cf20f842@gmail.com>
- <20240413114825.74e7f3fa@jic23-huawei> <89e93f4d-e569-46ee-802d-a1668a01b882@gmail.com>
- <20240420153310.7876cb8a@jic23-huawei>
-In-Reply-To: <20240420153310.7876cb8a@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 15 May 2024 16:42:39 -0500
-Message-ID: <CAMknhBGxEfGJhi+0Pxi+XqCSKLAKLzhLOt_rZo+vP=XqQDqWGA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: adc: ad7173: add support for ad411x
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>, dumitru.ceclan@analog.com, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Message-Id: <61445fe0-9137-44a6-ab36-ffb8985254df@app.fastmail.com>
+In-Reply-To: <31769e8d-ab52-4f4c-84ca-2f546287d006@kernel.org>
+References: <20240513-boston-syscon-v1-0-93ff557d3548@flygoat.com>
+ <20240513-boston-syscon-v1-1-93ff557d3548@flygoat.com>
+ <c7317ea0-fcd6-40e0-9d90-bb1ff349c0e0@kernel.org>
+ <31769e8d-ab52-4f4c-84ca-2f546287d006@kernel.org>
+Date: Wed, 15 May 2024 22:44:28 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add img,boston-platform-regs
+Content-Type: text/plain;charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Apr 20, 2024 at 9:33=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Mon, 15 Apr 2024 21:42:50 +0300
-> "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
->
-> > On 13/04/2024 13:49, Jonathan Cameron wrote:
-> > > On Tue, 9 Apr 2024 11:08:28 +0300
-> > > "Ceclan, Dumitru" <mitrutzceclan@gmail.com> wrote:
-> > >
-> > >> On 06/04/2024 17:53, Jonathan Cameron wrote:
-> > >>> On Wed, 3 Apr 2024 10:40:39 -0500
-> > >>> David Lechner <dlechner@baylibre.com> wrote:
-> > >>>
-> > >>>> On Wed, Apr 3, 2024 at 2:43=E2=80=AFAM Ceclan, Dumitru <mitrutzcec=
-lan@gmail.com> wrote:
-> > >>>>>
-> > >>>>> On 01/04/2024 22:37, David Lechner wrote:
-> > >>>>>> On Mon, Apr 1, 2024 at 10:10=E2=80=AFAM Dumitru Ceclan via B4 Re=
-lay
-> > >>>>>> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
-> > >>>>>>>
-> > >>>>>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> > >>>>>
-> > ...
-> > >>
-> > >>>>> Other alternative that came to my mind: attribute "adi,current-ch=
-annel".
-> > >>>>
-> > >>>> Having a boolean flag like this would make more sense to me if we
-> > >>>> don't agree that the suggestion below is simpler.
-> > >>>>
-> >
-> > ...
-> >
-> > >
-> > > We do directly relate reg to channel numbers in drivers like the ad72=
-92 (where not
-> > > all channels are differential)  I'm not convinced either way on what =
-is best
-> > > here where reg is currently just an index into a channel specificatio=
-n, not
-> > > meaningful for which pins are involved.
-> > >
-> > > It doesn't seem worth adding an equivalent of diff-channels for a sin=
-gle channel
-> > > setup but I guess it would be more consistent.
-> > >
-> >
-> > Would you agree with the attribute adi,current-channel within the chann=
-el and
-> >  diff-channels set to the correspondent current inputs (13 10 for pair =
-IN2)?
->
-> From another thread today I've concluded we do need a single-channel
-> equivalent of diff-channels, but you are right that here it is a differen=
-tial
-> channel so <13 10> seems like the best option to me.
->
 
-Current inputs are differential? It seems like we would need 4 input
-pins for that.
+
+=E5=9C=A82024=E5=B9=B45=E6=9C=8814=E6=97=A5=E4=BA=94=E6=9C=88 =E4=B8=8A=E5=
+=8D=8810:11=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 14/05/2024 11:08, Krzysztof Kozlowski wrote:
+>> On 13/05/2024 20:58, Jiaxun Yang wrote:
+>>> This compatible has been used in arch/mips/boot/dts/img/boston.dts
+>>> for a while but never documented properly.
+>>>
+>>> Add it to simple syscon binding.
+>>>
+>>> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>>=20
+>> It is documented in clock/img,boston-clock.txt. Please fix/convert/wo=
+rk
+>> on that.
+>
+> No, that's different device.
+>
+> Anyway, this is wrong - does no work with your second patch. Please te=
+st
+> them before sending.
+
+Hi Krzysztof,
+
+Do you mind telling dumb as me how to test bindings properly?
+
+I tried to run make check_dtbs after applying this patch and that's all
+the warnings I got:
+```
+arch/mips/boot/dts/img/boston.dtb: Warning (interrupt_map): Failed prere=
+quisite 'interrupt_provider'
+/home/flygoat/linux-next/arch/mips/boot/dts/img/boston.dtb: /: 'model' i=
+s a required property
+        from schema $id: http://devicetree.org/schemas/root-node.yaml#
+arch/mips/boot/dts/img/boston.dtb: /: failed to match any schema with co=
+mpatible: ['img,boston']
+arch/mips/boot/dts/img/boston.dtb: /cpus/cpu@0: failed to match any sche=
+ma with compatible: ['img,mips']
+arch/mips/boot/dts/img/boston.dtb: /system-controller@17ffd000/clock: fa=
+iled to match any schema with compatible: ['img,boston-clock']
+/home/flygoat/linux-next/arch/mips/boot/dts/img/boston.dtb: uart@17ffe00=
+0: $nodename:0: 'uart@17ffe000' does not match '^serial(@.*)?$'
+        from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+```
+
+I think there is no new warning introduced by this patch.
+Did I miss anything here?
+
+Thanks
+- Jiaxun
+>
+> You need proper, dedicated schema.
+>
+> Best regards,
+> Krzysztof
+
+--=20
+- Jiaxun
 
