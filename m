@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-67098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A40518C688D
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:24:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AD38C689E
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:27:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA7D61C20F59
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:24:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECE01284528
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:26:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 749D013F450;
-	Wed, 15 May 2024 14:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0A813F459;
+	Wed, 15 May 2024 14:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="Iz3johUN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nh9yFLRi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378AA6214D;
-	Wed, 15 May 2024 14:24:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60AE13F458
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 14:26:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715783091; cv=none; b=f9g9gd60hM2f2A/gBu7UHkZ/FmtXB7heo/QDnLiFytWlzucoEU40gARswWqCvsBWlnPUqvBMkGd4FX3N1qjI71TG2v2ak3TRkuajWGU0a++W4X5Q5PVngd81U/C+XYqcBhFTumjU3npjal9GZ0OHju0ztQ/FcbdYEaRKHDfhEL4=
+	t=1715783215; cv=none; b=pOMaXaZBICKTTukgyVePA8ydZn93/WfhCbWLQZIsGGF5RtBQm0o6kVmOmTe9U+8qdXQWpFNP0gkPmMkkFAsvFeyiITmqt67lhC2cIyVIYOc9lv1pNYX8MZRoxDfvR6cBQjxHLCe+UpZK1i5b/1WMvtMx3c77Z30EFkndlEwGpno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715783091; c=relaxed/simple;
-	bh=jysTCSeSPP+d4LVZA/8WGJP2W+S2rHqhd5jJtb8il5I=;
+	s=arc-20240116; t=1715783215; c=relaxed/simple;
+	bh=IzXwnDzL5EFdH3+0tvu4yNaXUaqrwXNLa6apbrChqOA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fEsM+MlA3OYXQebIf3HosrbNBMAA9lK6KgVShn3Pb9uHl8m7r2Xkcv9jwbW4MVYHusS4CiCTyN5IS1fXDkAgbYkq+MBM7NFIUWTRyTxN4zWjZZrIOUfC50G9jVVb+oeYdFavsnSAGX4sb8FlvAI6K11MAFMvK//yKbOSDkun6Kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=Iz3johUN; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353722.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44FDrH1V024113;
-	Wed, 15 May 2024 14:24:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=UbWHN1sdtUzORelYPZPXsKZvcyObnhYrWi7LkONWmvs=;
- b=Iz3johUNNr3WMpuIiV7mlLfxroTo9Eu+dZeNDtWOR9AJ8Ho7MAS/7y31FOdhlRP4EpLl
- 7n7pglR2rWV5miv3St5ERjjM+aVqOzV2Tz62oDMqRiIpKfodOxGmEdL4nCaCP4XI9YiC
- VdhVFgFVm+kHnFvY4/uJXu8Z8VRxYXgwBV3KYh1hy+PYHRuD/J+hFTw1NbaLCyM3CpcK
- Rmai6+p5BAdX+PjGEMIjrhIgjYVnoGh1PbYI5Bx7r3pPXVQYBuSas7w4sLfA8aH21tDK
- 8QDLq4h2IB1jm2e3YjCH9O1p4optP5r/D4TL8VY54R5IXUvkkAmYNkOrRbgzYBPr2aq5 6Q== 
-Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3y4xau82eg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 May 2024 14:24:35 +0000
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma21.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44FC17Y3002257;
-	Wed, 15 May 2024 14:24:34 GMT
-Received: from smtprelay05.dal12v.mail.ibm.com ([172.16.1.7])
-	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3y2m0pc20c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 May 2024 14:24:34 +0000
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
-	by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44FEOVpQ21824184
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 15 May 2024 14:24:33 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 82A8858053;
-	Wed, 15 May 2024 14:24:31 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 0896058043;
-	Wed, 15 May 2024 14:24:31 +0000 (GMT)
-Received: from [9.61.107.19] (unknown [9.61.107.19])
-	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Wed, 15 May 2024 14:24:30 +0000 (GMT)
-Message-ID: <4c370b26-9b23-4d14-961d-885f88dc4cd5@linux.ibm.com>
-Date: Wed, 15 May 2024 09:24:30 -0500
+	 In-Reply-To:Content-Type; b=b5hxTHSryGRYqSVCxme4TgXsa8xX1pU36hG1NVns00mBAoQUEMP3OO+su9tH8fcjxNwQNcWWt6LcqICTfZkyRS9IBwhEeRZYi7MswjJtuMkfFC6pC6/GvUY/pduSQCBZUAIbFzj9pG66R6PiaIQt/FYYlzC931Xsi05EMbJHz8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nh9yFLRi; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42016c8daa7so22120905e9.2
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 07:26:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715783212; x=1716388012; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=IzXwnDzL5EFdH3+0tvu4yNaXUaqrwXNLa6apbrChqOA=;
+        b=Nh9yFLRi7p2qYkqiC6u6wCpamkhJjaAPJYoZ0oGJ5IqN+58y4CJw8TUrNpT41BZJuh
+         M+rVFa9SiXSdMWUHRN+5ePX/Jxzk+Rc34pi8c2lBF8rTIsfDCmmIddVNxrdvFBiOSxXX
+         iWoGElvRClelRKi/4GEg8PPRDMmFdGHpQHoa/3hy4dL46rlfmV+U96mp11csSkrYjSx2
+         NDVnBBE9RImzcYBVt8bP36wGFFPMILkgt/C8dRQAqsksRAnl8oGC8PCOCNtnfxddJXSC
+         1v4hGke1eKs/uhjKt1VAEVa9GGG9+i0QmT/5E4B/YuUXIz5gBXyRIDcThAlABGTQ929U
+         5Nhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715783212; x=1716388012;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IzXwnDzL5EFdH3+0tvu4yNaXUaqrwXNLa6apbrChqOA=;
+        b=bIyqun7pdJptTkThnHhVmiBrEecjztNfEdhJ4icDJ8G5PwPn3d1ijccX1R2jwSzSfk
+         mG7p+IuDcTDBY9aXBferkqVj7f9XbwMzycFca/sKKn49VAh01iszhr6ORMV2eZkC6S81
+         us5QWkh/cJgYVxUG7U/SjuRAMshe3RUNS3eg981wHY8/6QAJq8hm+WULS/4OH/sMuoKW
+         G/EHcNW9q6ViOkMp/mZnDEVkqGzulQEzDfvWDNSpL7629txehfXxb9jL078/LpBXLlmr
+         znTJRcBy1rgwKUHIaUPXs8bAmWYq9+IB8Ec0vz2EgWeiBbbxkhBudvVzFd2nTZNspXDQ
+         WmVw==
+X-Forwarded-Encrypted: i=1; AJvYcCX1VUj9A9x17HgW4x7sRyKbwSl9bEiaXYW4PiwhqSSIcS/tx2YZLKLxblBm0VPTHT+jIt5JkQn8DTce9IvBWPblWIXo+51ZUECZzA==
+X-Gm-Message-State: AOJu0YwA2IccxIOUnlAQavLdmkHBkylgHhjN6GByLLrDwDIUL7+4/WEX
+	oH2Caw/rT456AyxOmx88E1C6WV94BXr3lU7woTBR3BFZZIqozssPSg28yWJZyFc=
+X-Google-Smtp-Source: AGHT+IHRhmKOWpAr1PEsZht6byVh+04sk43uEaa1/eURhjKKvtgGcPggxS0xWe9o9pAJ1aXL3ORwtw==
+X-Received: by 2002:a05:600c:1794:b0:41e:454b:2f7 with SMTP id 5b1f17b1804b1-41feab40be5mr116658465e9.23.1715783211968;
+        Wed, 15 May 2024 07:26:51 -0700 (PDT)
+Received: from [10.91.0.75] ([149.14.240.163])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fccee92bcsm234751905e9.36.2024.05.15.07.26.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 May 2024 07:26:51 -0700 (PDT)
+Message-ID: <ce793976-c6ca-4547-aa5b-8845c7fe90f8@linaro.org>
+Date: Wed, 15 May 2024 16:26:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,58 +77,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 7/9] dt-bindings: fsi: ast2600-fsi-master: Convert to
- json-schema
-To: Krzysztof Kozlowski <krzk@kernel.org>, linux-fsi@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
-        joel@jms.id.au, andrew@codeconstruct.com.au
-References: <20240514195435.155372-1-eajames@linux.ibm.com>
- <20240514195435.155372-8-eajames@linux.ibm.com>
- <4f8a29a0-b31a-485a-90af-4a8df35fd48d@kernel.org>
+Subject: Re: [PATCH] Convert the Broadcom OTP memory controller to newer DT
+ schema. Created DT schema based on the .txt file which had `compatible`,
+ `reg` `brcm,ocotp-size` as the required properties.
+To: Pratik Farkase <pratikfarkase94@gmail.com>
+Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240515140731.63927-1-pratik.farkase@wsisweden.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <4f8a29a0-b31a-485a-90af-4a8df35fd48d@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240515140731.63927-1-pratik.farkase@wsisweden.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: K49QThoSX65Z30F_TC7A2QfmB094GXMf
-X-Proofpoint-ORIG-GUID: K49QThoSX65Z30F_TC7A2QfmB094GXMf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-15_07,2024-05-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 phishscore=0 clxscore=1015 mlxscore=0 suspectscore=0
- priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0
- lowpriorityscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2405010000 definitions=main-2405150100
 
+On 15/05/2024 16:07, Pratik Farkase wrote:
+> Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
 
-On 5/15/24 09:21, Krzysztof Kozlowski wrote:
-> On 14/05/2024 21:54, Eddie James wrote:
->> Convert to json-schema for the AST2600 FSI master documentation.
-> Nothing explains dropping fsi-master compatible. Every deviation from
-> conversion should be explained in the commit msg. Otherwise it is not
-> conversion but a change...
+That's not a proper commit... Read introduction to Git how to create
+commits.
 
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-The fsi-master compatible was not in the previous documentation. It was 
-in the example, not in the description of what compatible strings are 
-allowed, so this is a pure conversion.
+Code itself looked good.
 
+Best regards,
+Krzysztof
 
-Thanks,
-
-Eddie
-
-
->
->
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->> Changes since v4:
->>   - Remove the addition of the AST2700 compatible
-> Best regards,
-> Krzysztof
->
 
