@@ -1,98 +1,104 @@
-Return-Path: <devicetree+bounces-67123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E15CF8C69F5
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 17:47:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14698C69F9
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 17:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FEE0B221AB
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:47:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88F111F220BD
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CC4156227;
-	Wed, 15 May 2024 15:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95123156225;
+	Wed, 15 May 2024 15:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IM1BJLV4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iTsLC8ka"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7951E149DEE;
-	Wed, 15 May 2024 15:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D096156222;
+	Wed, 15 May 2024 15:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715788064; cv=none; b=DE8QjR+nkw9lsHpg6JlTS2bch4NPRky/43BDmSysQM6Od/Qv8vIN+B2G2eQ/EkHzBUErx5yrHvNsDJmfs8qehle/UnIxWVDAfRaxOu+c13+5Qshp7ktWMEVXCvfNgDx9Cr9lShnuChy6jO8/7jDkylQ2ARr8hn+su9AYLJSSHjI=
+	t=1715788116; cv=none; b=JE69J6z24KDNajo+Q0pmbHrySLFgBmq4wyFi0QD87KfYfTerdDAQKpXZuD93mttwoskPbeOUwNCmkNSTtZO1GhhxCgv+UUAwvJPJkzFraPjreesgQ3VIov9rEjbrE/6edD58JDf6NZB96o+CcL6DVX1rIUfmhDJaHBDWf+w6wBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715788064; c=relaxed/simple;
-	bh=6I+MGZNd4rB5QdCOoR+WpEcEO2EJbxQV0kEaZArJvlM=;
+	s=arc-20240116; t=1715788116; c=relaxed/simple;
+	bh=OCBUT1Jcs2k9WvSRYjd+XNw0GqtEDdjfXX7VG6tH8do=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N9R1oL1uF7Nnzixw383MtozqwCG+82h8rPYgVf32ycniQIfBLBouTc7YDW6/KbvNKYR9mO6U9hfODhPDZRv3Pf8VVF5AsHHAVC73f7NlgOokzqmBTDK9I+j8BaA8zYR3IjK6ioQ6XFwbq+8zUlyQQ01vgE7tFwTBYTB3B97hx4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IM1BJLV4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02B86C116B1;
-	Wed, 15 May 2024 15:47:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QSoDW0GjMKhQNrbvNs7StFGcwSYadDIge19T7fLU06ozZASVtJJVbGwxJ12G1agASWTC5pR+k29siys5G9gQRwbJfIFmfX/LnvLF9oIXT5MyrIjMZxTYjcE5GOnUrzIFQ9X+OSkMnL5jQN553ER5al/quenVG2Q3YtWqF+ZgPPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iTsLC8ka; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 443B4C116B1;
+	Wed, 15 May 2024 15:48:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715788064;
-	bh=6I+MGZNd4rB5QdCOoR+WpEcEO2EJbxQV0kEaZArJvlM=;
+	s=k20201202; t=1715788116;
+	bh=OCBUT1Jcs2k9WvSRYjd+XNw0GqtEDdjfXX7VG6tH8do=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IM1BJLV4yLTSFoY54Mhy5LccAi03DsafhNYwwUbkci4vKDoSBordczSmhlk9S6Li7
-	 MOLHTKJxxPer/o+0WVYPSqurRfcnagz/4ZKZJtP77rRO6l0bv8ZYVJE9alNfxjcGmB
-	 pcCaMVdEc3w4DHvfdMq7qhWnlmdFb3UjdlyondkppZm1mlc9XXil5HOI6f25fnchmT
-	 UQrRA2OEK6XKk0bFlDfrs4w2jfdKTK7q1h2psmfgRe1BcV/qRPllNz1+MJUPQ68dWx
-	 M7g+d1HulVzGGu/8EDkH+K1+YLudxFhXhhIvNmzsw++b7rCC7+OD/WpWKb9iLHLkKm
-	 pI327MDKoJvxA==
-Date: Wed, 15 May 2024 16:47:37 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Alina Yu <alina_yu@richtek.com>
-Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	johnny_lai@richtek.com, cy_huang@richtek.com
-Subject: Re: [PATCH v3 1/6] regulator: rtq2208: Fix invalid memory access
- when devm_of_regulator_put_matches is called
-Message-ID: <f86923b8-a8ab-480f-901a-f29b0dbb0df5@sirena.org.uk>
+	b=iTsLC8kalFElr7ib9J7KpeczH7H6X7GuALWbsfy10aE0nZO35/N6v9VRXb+oYDctn
+	 wCN3JNekIynZIaen4jIYtj5Oi5y6RrnhCmbplkQxGBZqRJ+BN9mzX19XGKkKwr0YAA
+	 48gAzL+J3LvhOM82FGrhihtvYf9UX3jzwlOp7d7Lu4Iv+rj9ubQy+YtwZwjdQqVi82
+	 eBRoG+IzvpYhHN6r/tPj34koz6ppMId8DV1K/2ExaXuOGd6DuHvbvMZoC460SPaGMQ
+	 tVkRTAld/JNny2e66XCnGYmqoYD2VGlGNyX7pigv5VuhgyziX2ULxhMyqAGCNSMaTS
+	 AsXbftLRJ+UNg==
+Date: Wed, 15 May 2024 16:48:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Alina Yu <alina_yu@richtek.com>, lgirdwood@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, johnny_lai@richtek.com,
+	cy_huang@richtek.com
+Subject: Re: [PATCH v3 6/6] regulator: dt-bindings: rtq2208: Add property to
+ get ldo of RTQ2208 is adjustable or not
+Message-ID: <20240515-rubdown-waffle-b0d59302d436@spud>
 References: <cover.1715340537.git.alina_yu@richtek.com>
- <636cbe817ad61a18f291b5ec8938e79043b8a646.1715340537.git.alina_yu@richtek.com>
+ <6a3a90d9aa2022dfb92e124e417f3e72c2f28b0b.1715340537.git.alina_yu@richtek.com>
+ <20240513-tissue-repave-13d2e3bf88fd@spud>
+ <d97752ed-4032-4681-b28f-17f149fdc3d4@sirena.org.uk>
+ <20240514-plunging-chair-803d9e342e6f@spud>
+ <90d5efcc-e85a-4daa-81cb-a877c4b8fff6@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LooefU3oAUw2ONnD"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="vZAWaGjY/4yR8mA2"
 Content-Disposition: inline
-In-Reply-To: <636cbe817ad61a18f291b5ec8938e79043b8a646.1715340537.git.alina_yu@richtek.com>
-X-Cookie: When in doubt, lead trump.
+In-Reply-To: <90d5efcc-e85a-4daa-81cb-a877c4b8fff6@sirena.org.uk>
 
 
---LooefU3oAUw2ONnD
+--vZAWaGjY/4yR8mA2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 10, 2024 at 08:06:20PM +0800, Alina Yu wrote:
-> In this patch, a software bug has been fixed.
-> rtq2208_ldo_match is no longer a local variable.
-> It prevents invalid memory access when devm_of_regulator_put_matches
->  is called.
+On Wed, May 15, 2024 at 01:10:31PM +0100, Mark Brown wrote:
+> On Tue, May 14, 2024 at 07:01:21PM +0100, Conor Dooley wrote:
+>=20
+> > It also doesn't seem like this sort of behaviour would be limited to
+> > Richtek either, should this actually be a common property in
+> > regulator.yaml w/o the vendor prefix?
+>=20
+> It's a pretty weird thing for hardware to do - usually if the regulator
+> is controllable it'll be qualified for use within whatever range it's
+> variable over and not some other completely disjoint value.
 
-This doesn't apply against current code, please check and resend (on
-Linus' tree rather than mine at this point given the merge window).
+Okay cool, just the commit message/description to be changed then.
+Thanks for the info
 
---LooefU3oAUw2ONnD
+--vZAWaGjY/4yR8mA2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZE2RgACgkQJNaLcl1U
-h9C5mAf/RLEHA17jLhOJTGLODiEwCkSBeMr4/xARXquSHhkRvqJBPasTnrkFoLm+
-YgnG7t4uYvWZPTNNWFfQRx0nFEw/S8EiWm/qOMOzVy49L4/wVgqIWrwfcOnXPB/s
-m0JSf58npdHGkdbFbfKK+z2WLYq/UyEYDL6SeqXaw1ThFrxuvOVYs6vEyfIrtb69
-5W9XgPgHOVpg+vIsij3BFSM/qv6+xVfmuD0eSNWzjoq8E54ZOKNQtdV+1hN0meKb
-NCa5CBxckJM012dbAMZ7tEqAvssevQczYnRxe4DgTwbJZvj/ad9CXeZpFfa9U0y6
-k9JdCFOb7+lydkN8NIS/PcZ6JUsp3Q==
-=0Dbw
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkTZUAAKCRB4tDGHoIJi
+0me0AQCObcUdcbElZj50IRONP1N/21RcBBlQsQmJBZAnm3RD2gEAg8EAf60FeGoJ
+AdfPQjGb7MEf+a+azjjLG1IZWyHIZgg=
+=ApU7
 -----END PGP SIGNATURE-----
 
---LooefU3oAUw2ONnD--
+--vZAWaGjY/4yR8mA2--
 
