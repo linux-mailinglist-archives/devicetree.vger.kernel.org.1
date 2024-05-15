@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-67092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F227F8C6869
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B5B8C6874
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43D09B20E58
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:19:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE03AB22409
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D661313F439;
-	Wed, 15 May 2024 14:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E50F13F44C;
+	Wed, 15 May 2024 14:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D3n3NFOK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="paGnbjoZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB692823D0;
-	Wed, 15 May 2024 14:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F2F6214D;
+	Wed, 15 May 2024 14:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715782740; cv=none; b=KyvBXkmSfU0WqiCaGbDsi3CWSf1vxVrK6k2/WIS+bCC1zO86DKcJpX14/YFjuaoY1+H9X9SX+WmgOITFxnZOfniu8ZTNTEXDZjyPw+nsKd4fUv0Z2DX5O7+rTn+a8k4tflZwu65RnvPd+7f9+sCsdI0WfzK8I845fuO+qbYPOdE=
+	t=1715782872; cv=none; b=SbBCm6qj6ivffEDnpT6orlqUXJblw5BKheGCdQIu86jppFDp/4u9AfaPzJ+wvXhnqA7Ni2APemcrnDkemoXMNgmKf+Qj0hdHaCEKaMLMVVni+iGsdIbgS2yoDcSHfboXgF1N3gfmHm0XwAX+6CN98EUpLFqGSuMLRhobFCuBeow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715782740; c=relaxed/simple;
-	bh=E42BsQeQDZg/eaVHhpYSmqZGLGWDVfeOmmmXTGcGqBU=;
+	s=arc-20240116; t=1715782872; c=relaxed/simple;
+	bh=a12Xk8w0WkLR0nfFp+L7SeZt5/M/Eq4WnOuazAt/UuA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C8EaUipArElJkLGQy+YxFiD/ekUcvScrp+ixJVx4mpntPB8fYmelzD20Ge6nSBDkyczEX64EiS34HFszKXXz+MUcw+YPKfe5sZzczgTZ4sMoWaq7LpmZj/eMk4hv4qhlT6DoDlm4IJGMuJbQLpHNPGAOqL95+L/uG+VitTYxriA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D3n3NFOK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA538C116B1;
-	Wed, 15 May 2024 14:18:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RJ0LrZX8xIMEUmZVHYDkkWyP3UySjkOLHQH2FCW4aoNkJmrds2WT5BMaBPf4oXiwYD/3KpaYFflnU6P9ltzmJie5Fp38AKmsJpuVT0bXUDy8NNuGSG6/tSTvKKsnscrwQgiPnkGmG84pbmkvVfRJ6GBaQT6iV2lj0Ipd0ARa35E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=paGnbjoZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 979D5C4AF11;
+	Wed, 15 May 2024 14:21:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715782740;
-	bh=E42BsQeQDZg/eaVHhpYSmqZGLGWDVfeOmmmXTGcGqBU=;
+	s=k20201202; t=1715782871;
+	bh=a12Xk8w0WkLR0nfFp+L7SeZt5/M/Eq4WnOuazAt/UuA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D3n3NFOK062edopSv1OKXfdNDdU3Iytl28LTskC9bgb7nxxAzOd2GU7ua6EtM+/5M
-	 ljPEM7e9A5w+/8sCkCErYVs2JshzebVTDGw4MWob1/0xcFjcO/S6SuE8zteEakkfm+
-	 Jf3X9N6UugunIKxyZirA9j+QBqefAy9na6sMcH1uK6hcds6VGgeFthbyz+KdPepPse
-	 Q/JvoJpRi22IOrzyBf8j19053a8vm+BYSGG0oAqVLPl7IqrkhDQAU/iMrjkXfk3J5c
-	 BPLqXiQIVIbmrn/JksasOcQeQAwt0hepWSvVLQwSEwJb/Ls9BR6b8Lh+g1OspWkeTa
-	 G+qhfFva1tSdg==
-Message-ID: <9200e46a-3cb5-4363-a560-ee3d88e05ced@kernel.org>
-Date: Wed, 15 May 2024 16:18:55 +0200
+	b=paGnbjoZLrOMv/H+SnRMOT9/JqKCYZy3M+yIxTS34sL2RNdpTsxv6INlII4q78wLM
+	 46CIUnbOVwfrRbBjUbEN88nBE93Gcft+bJEUiCAwu0+Xesg/p5Zs+jFNcEChQPbvWO
+	 clJviLelGIQ6ul41SE5SgG87913aRMvkNDIWKnVKk2R53B4Aux5UFqa+iRDHwQJUIq
+	 SgsinE7ulu1zxtZ0LN8uh7/aBe7nNzPBtQc4mvS/gxpGfIaw+LNXbCXuwB5BgJmlD7
+	 EPcxLQe0n75TVcLVZKj0qV2dPwTlwtvWMjEQOt45Tv/3qwuL8tiXj80bD56rCoaX35
+	 XVOcRa3VV2u4g==
+Message-ID: <4f8a29a0-b31a-485a-90af-4a8df35fd48d@kernel.org>
+Date: Wed, 15 May 2024 16:21:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/9] dt-bindings: fsi: Document the FSI controller
- common properties
+Subject: Re: [PATCH v5 7/9] dt-bindings: fsi: ast2600-fsi-master: Convert to
+ json-schema
 To: Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org, joel@jms.id.au,
  andrew@codeconstruct.com.au
 References: <20240514195435.155372-1-eajames@linux.ibm.com>
- <20240514195435.155372-6-eajames@linux.ibm.com>
+ <20240514195435.155372-8-eajames@linux.ibm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,90 +103,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240514195435.155372-6-eajames@linux.ibm.com>
+In-Reply-To: <20240514195435.155372-8-eajames@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/05/2024 21:54, Eddie James wrote:
-> Since there are multiple FSI controllers documented, the common
-> properties should be documented separately and then referenced
-> from the specific controller documentation.
+> Convert to json-schema for the AST2600 FSI master documentation.
+
+Nothing explains dropping fsi-master compatible. Every deviation from
+conversion should be explained in the commit msg. Otherwise it is not
+conversion but a change...
+
+
 > 
 > Signed-off-by: Eddie James <eajames@linux.ibm.com>
 > ---
 > Changes since v4:
->  - Add interrupt controller properties
->  - Add clock-frequency property to FSI controller and CFAM
->  - Add detail to chip-id property description
-> 
->  .../bindings/fsi/fsi-controller.yaml          | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/fsi/fsi-controller.yaml b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
-> new file mode 100644
-> index 0000000000000..8620e4da6de77
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fsi/fsi-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: FSI Controller Common Properties
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +
-> +description:
-> +  FSI (FRU (Field Replaceable Unit) Service Interface) is a two wire bus. The
-> +  FSI bus is connected to a CFAM (Common FRU Access Macro) which contains
-> +  various engines such as I2C controllers, SPI controllers, etc.
-> +
-> +properties:
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  clock-frequency:
-> +    minimum: 1
-> +    maximum: 200000000
-
-This is a deprecated property in general. Why did it appear? It does not
-exist in current bindings and nothing in commit msg suggests changes in
-the bindings themselves.
-
-> +
-> +  interrupt-controller: true
-> +
-> +  no-scan-on-init:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      The FSI controller cannot scan the bus during initialization.
-> +
-> +patternProperties:
-> +  "cfam@[0-9a-f],[0-9a-f]":
-> +    type: object
-> +    properties:
-> +      chip-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Processor index, a global unique chip ID which is used to identify
-> +          the physical location of the chip in a system specific way.
-> +
-> +      clock-frequency:
-> +        minimum: 1
-> +        maximum: 100000000
-
-Same question.
-
+>  - Remove the addition of the AST2700 compatible
 
 Best regards,
 Krzysztof
