@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-66999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4CC8C6280
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:06:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFCE68C6288
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2AB1B22459
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:06:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87567281B13
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6586B48CCD;
-	Wed, 15 May 2024 08:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98DFD4A9B0;
+	Wed, 15 May 2024 08:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="nzUFl2Kx"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="m3oS2t/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1188B4C62E;
-	Wed, 15 May 2024 08:06:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8684EB20;
+	Wed, 15 May 2024 08:08:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715760400; cv=none; b=Qe97Mu+6R47RSngnBB/jErRbu7Gr3R754IL6HvFWzCgXkWwN/E5Sedwm4OQxjB67uOpcTFJdHeXkz3GBBtQJLgUHd3azgQrQQCQJx64OZwDYqD7rTCU8pBtTTzTHSICAbJEda/86JcoG6KpVWrPtwpcNf35vy59+jx6KX1N4Y4w=
+	t=1715760499; cv=none; b=tMMmsfmjcMgbPzJPwxQjLBJ0Dgb/Lh8a89slUrmc3NWPAyoQt4h9ikqer/9/d1PZQOIynS/jqw7mw1LgdoJHmpYeMksyJuiXbKX+uShTd9ucb+MxRbG9O/9FZWRiWgUEv2Z2hRZhxH5Na20FPfbQM/6Ws/TLsXd3wtCByJhzo1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715760400; c=relaxed/simple;
-	bh=h0Sqhr4ifyZrC1b5lPNa6Gyug/wpM7myXaQxIuh3AZ4=;
+	s=arc-20240116; t=1715760499; c=relaxed/simple;
+	bh=ISZ3fTteUQt+jNRqMsfE9P36f5Ae8fxuIWCwjmwYRuU=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GqC11zrJcf19aZ6ktVGTNzOAAHSpsxEaeKL9zmcYHU63b8ffQdT6O4g3SwoP5TOefiN8NpechCAuu0psOoQI0JvtKK1pm83Xw0pBVYNsjIdW/ruYsXV1E8jE9GXnL4fPQsxajz/nP4Cu9uPmtqQSgQlf0kW4AUHsjf7gk1clDf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=nzUFl2Kx; arc=none smtp.client-ip=68.232.154.123
+	 Content-Type:Content-Disposition:In-Reply-To; b=rZKvQWYIUIr6OkYO0y4+8FrVc9TSls9c42zckU2spzeCkB+bXn19XtxaEu3lk58s55ZRqvqLRnP0Tg9bnBryHBRbdCUHLiLLC9fMhCUaqb2TqdCQ1EGD9SqneBV4jaggsXOZXCcOlaYwyorVThbJKIVrh9MObS9Eq8j76qiFgKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=m3oS2t/2; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1715760398; x=1747296398;
+  t=1715760497; x=1747296497;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=h0Sqhr4ifyZrC1b5lPNa6Gyug/wpM7myXaQxIuh3AZ4=;
-  b=nzUFl2KxHPlZyCxSu7RzeKN3iZy4YGBVDp/ohKEDRKIQu/j1Ia1QrFby
-   QCCdAQBsllYyRSV8S2wOBdj1Sf7aScUsbByFWD45upZr2UyUF2nvJTJF1
-   nztaDtcXU09yEpBEfHk/BwGMqlF9PVEmH4aZKpQbTh/CEMBYFksafRB31
-   uSRXnVH8k+mtOtVnfcRE9YufAkfLArWa8+SMJa2APjtKkWcAX4oVMMQWW
-   LcOpBp/mGajcFORdRfsw6ngR6V3Crtm8SenK9rzOG6GcBrt501SxkzfhX
-   IfFA8k/GEKMLWVLPwihI+amyN8Oxu4NJ8K08MkiGMa1plI42ELgz7IQCL
-   g==;
-X-CSE-ConnectionGUID: EvxhA01VQR6BcbhVcVTEIw==
-X-CSE-MsgGUID: gMj862SdQQKslckEPmEeNQ==
+  bh=ISZ3fTteUQt+jNRqMsfE9P36f5Ae8fxuIWCwjmwYRuU=;
+  b=m3oS2t/2uq5BenM+Rk94NOaUcZj/4vPxnyWjkSjzwsxexVCr9XgDtVFP
+   uhFPTUf9BxGvAxB8Jfv2+ixDmifWAQ8dJ3aV2ND2KKhcqnP9yDcPrWu/p
+   81wuGfo9iwKc/FusYkgKWS86AXVn5kcvjWmbTawkneozhF7nwwOd66fmD
+   PpYXd4KNcDX/VzdpXmUJMt8EdS26EwZZF4HZIHMQixl3D1TM0IZC/Anbw
+   JC+4lajEqARtfOSImzZ0KERRaFX6BuWNNcU3Llp/TM9/i9OCWcnj924VO
+   3T0lFnbghkb9oonEYljwbnGRt2IUcBn3JRiZ3ie+/2ccosA6UBv1dobQK
+   Q==;
+X-CSE-ConnectionGUID: 8FUt1So8SUq1alFbgrCf/g==
+X-CSE-MsgGUID: nFOsYrWkQwmyMdwyZsdujQ==
 X-IronPort-AV: E=Sophos;i="6.08,161,1712646000"; 
-   d="asc'?scan'208";a="25383960"
+   d="asc'?scan'208";a="27054082"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 May 2024 01:06:37 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 May 2024 01:08:16 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 15 May 2024 01:06:22 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ 15.1.2507.35; Wed, 15 May 2024 01:08:00 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Wed, 15 May 2024 01:06:20 -0700
-Date: Wed, 15 May 2024 09:06:06 +0100
+ Transport; Wed, 15 May 2024 01:07:57 -0700
+Date: Wed, 15 May 2024 09:07:44 +0100
 From: Conor Dooley <conor.dooley@microchip.com>
-To: Alina Yu <alina_yu@richtek.com>
-CC: Conor Dooley <conor@kernel.org>, Mark Brown <broonie@kernel.org>,
-	<lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<johnny_lai@richtek.com>, <cy_huang@richtek.com>
-Subject: Re: [PATCH v3 6/6] regulator: dt-bindings: rtq2208: Add property to
- get ldo of RTQ2208 is adjustable or not
-Message-ID: <20240515-wrinkle-engross-ab6b089baae3@wendy>
-References: <cover.1715340537.git.alina_yu@richtek.com>
- <6a3a90d9aa2022dfb92e124e417f3e72c2f28b0b.1715340537.git.alina_yu@richtek.com>
- <20240513-tissue-repave-13d2e3bf88fd@spud>
- <d97752ed-4032-4681-b28f-17f149fdc3d4@sirena.org.uk>
- <20240514-plunging-chair-803d9e342e6f@spud>
- <20240515073830.GA12525@linuxcarl2.richtek.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Conor Dooley <conor@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, Bart Van Assche
+	<bvanassche@acm.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andy
+ Gross <agross@kernel.org>, <cros-qcom-dts-watchers@chromium.org>,
+	<linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: ufs: qcom: Use 'ufshc' as the node name
+ for UFS controller nodes
+Message-ID: <20240515-untying-overbite-87bc0e55c673@wendy>
+References: <20240514-ufs-nodename-fix-v1-0-4c55483ac401@linaro.org>
+ <20240514-ufs-nodename-fix-v1-1-4c55483ac401@linaro.org>
+ <20240514-buggy-sighing-1573000e3f52@spud>
+ <20240515075005.GC2445@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,98 +85,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0FcHBb/wqZoBsRLq"
+	protocol="application/pgp-signature"; boundary="0PrHBhdITe+orsbZ"
 Content-Disposition: inline
-In-Reply-To: <20240515073830.GA12525@linuxcarl2.richtek.com>
+In-Reply-To: <20240515075005.GC2445@thinkpad>
 
---0FcHBb/wqZoBsRLq
+--0PrHBhdITe+orsbZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 15, 2024 at 03:38:30PM +0800, Alina Yu wrote:
-> On Tue, May 14, 2024 at 07:01:21PM +0100, Conor Dooley wrote:
-> > On Tue, May 14, 2024 at 11:34:29AM +0100, Mark Brown wrote:
-> > > On Mon, May 13, 2024 at 05:22:54PM +0100, Conor Dooley wrote:
-> > > > On Fri, May 10, 2024 at 08:06:25PM +0800, Alina Yu wrote:
-> > >=20
-> > > > > +            richtek,fixed-microvolt =3D <1200000>;
-> > > > >              regulator-min-microvolt =3D <1200000>;
-> > > > >              regulator-max-microvolt =3D <1200000>;
-> > >=20
-> > > > I'm dumb and this example seemed odd to me. Can you explain to me w=
-hy
-> > > > it is not sufficient to set min-microvolt =3D=3D max-microvolt to a=
-chieve
-> > > > the same thing?
-> > >=20
-> > > This is for a special mode where the voltage being configured is out =
-of
-> > > the range usually supported by the regulator, requiring a hardware
-> > > design change to achieve.  The separate property is because otherwise=
- we
-> > > can't distinguish the case where the mode is in use from the case whe=
-re
-> > > the constraints are nonsense, and we need to handle setting a fixed
-> > > voltage on a configurable regulator differently to there being a
-> > > hardware fixed voltage on a normally configurable regulator.
-> >=20
-> > Cool, I think an improved comment message and description would be
-> > helpful then to describe the desired behaviour that you mention here.
-> > The commit message in particular isn't great:
-> > | Since there is no way to check is ldo is adjustable or not.
-> > | As discussing in v2 series, 'richtek,fixed-microvolt' is added for th=
-at.
-> > | user is supposed to know whether vout of ldo is adjustable.
-> >=20
-> > It also doesn't seem like this sort of behaviour would be limited to
-> > Richtek either, should this actually be a common property in
-> > regulator.yaml w/o the vendor prefix?
-> >=20
-> > Cheers,
-> > Conor.
->=20
->=20
-> Hi Conor,
->=20
->=20
-> Should I update v4 to fix the commit message ?
-> I will modify it as follows.
->=20
->=20
-> There are two types of LDO VOUT: fixed voltage mode and adjustable voltag=
-e mode.
->=20
-> As the fixed voltage for the LDO is outside the range of the adjustable v=
-oltage mode,
-> the constraints for this scenario are not suitable to represent both mode=
+On Wed, May 15, 2024 at 09:50:05AM +0200, Manivannan Sadhasivam wrote:
+> On Tue, May 14, 2024 at 07:50:15PM +0100, Conor Dooley wrote:
+> > On Tue, May 14, 2024 at 03:08:40PM +0200, Manivannan Sadhasivam wrote:
+> > > Devicetree binding has documented the node name for UFS controllers as
+> > > 'ufshc'. So let's use it instead of 'ufs' which is for the UFS device=
 s.
+> >=20
+> > Can you point out where that's been documented?
+>=20
+> Typo here. s/Devicetree binding/Devicetree spec
+>=20
+> https://github.com/devicetree-org/devicetree-specification/blob/main/sour=
+ce/chapter2-devicetree-basics.rst#generic-names-recommendation
 
-That's definitely an improvement, yes. The property description could
-also do with an update to explain that this is for a situation where the
-fixed voltage is out of the adjustable range, it doesn't mention that at
-all right now.
+Ah, that makes sense. I grepped for it in the kernel tree and didn't see
+anything so I was a bit confused..
 
-> In version 3, a property has been added to specify the fixed voltage.
-
-Don't refer to previous versions of the patchset in your commit message,
-that doesn't help people reading a commit log in the future etc. If
-there's some relevant information in a previous version patchset, put it
-in the commit message directly.
-
-Cheers,
-Conor.
-
---0FcHBb/wqZoBsRLq
+--0PrHBhdITe+orsbZ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkRs7gAKCRB4tDGHoIJi
-0vH7AQD9Pv88a/PkA91egE2kjvXH7h48NPsjCN8xwJ8vNsM5XgEAuD17AiUn8eu7
-CNpGygjTUdxaBxaAC0nC6jR2+XMgXwg=
-=ELYJ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkRtUAAKCRB4tDGHoIJi
+0iVdAQDJP7Srq1zIAZLzGjcqUl3letkDDesMsZYgWhkHjOcebgEA32t2E/3vsLqw
+1x6/xtoqbnEcVFZArsEOJQLZghwMOg8=
+=TIvU
 -----END PGP SIGNATURE-----
 
---0FcHBb/wqZoBsRLq--
+--0PrHBhdITe+orsbZ--
 
