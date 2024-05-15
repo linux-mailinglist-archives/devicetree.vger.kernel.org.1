@@ -1,223 +1,160 @@
-Return-Path: <devicetree+bounces-67184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAFA88C6E00
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 23:50:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB9F68C6E6E
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 00:09:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97FE92826A9
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:50:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A5E7284668
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 22:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CAE15B567;
-	Wed, 15 May 2024 21:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C6015B571;
+	Wed, 15 May 2024 22:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="G2A75NTD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CN4ss0bZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F23615B985
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 21:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCA715B129;
+	Wed, 15 May 2024 22:09:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715809827; cv=none; b=bD2chAm+Tr/WtZ8n1Dlyeyq3VEvDdXt0KucU8aAGZG/Ux3l9ftoYKX9QSOy2wi8Va5rqQFXR465zhQTr7M2AlAuIlYoV02w/mWqh8H7huBOwFz0VfIEI/mRihlOUrbYN5atrShnLX99bvLpio1wukdGOxbpT3A9oaGYtx1Xsbho=
+	t=1715810942; cv=none; b=bT7sgUn/UkqzLUDMuLKhrzz0vk74EQsoE1KTO3AW1sVq1VLJX16DwEgr0tQp9YmznMUurKbe5lkFC4xsXDAiYMbrtidbHcpQh9Od93h7jhLJOg50vutGun9Zm0EDUGRAP57IrAOdH4H2KEQFik0IWZuNlbMJjltMf8eaCkMMWH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715809827; c=relaxed/simple;
-	bh=PJLl00JSXWHvsV/oHOhLKcWkE7dzVuiu0in04i+U0L8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oc+3hacx/mo96mDciSqAkP3Rx9wp79CM2Ga2sEBJ510AIlP6/FOnzmM4d8tTswrqCj7TYvmzxImKeeGI0cDZWE8hzGeL88pm/4a6QJNp8nc6uOY/jRUtFfEfJ+qkhQpCSNwaxHWWvvFPs5Re8am8G5M9pAJZcw43KnP00y+Ws/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=G2A75NTD; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6f666caf9abso2432969b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 14:50:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1715809825; x=1716414625; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SLs+h6zNZh7mF7wyHbnkfOw6GN1dWR7g2z29pkelkkw=;
-        b=G2A75NTDyOWEthf3RFlzqsbW+f36P+IZLbXHET+03El4Fs2viwLg0f28quC/HuG4pE
-         d6ZjauRfAxdAzCfNB9BAG+p8HoofjimWSixvs7nymmItMslpj+p67zs5zAngfjBBXkAR
-         t2MM6HmX0/zFc42N0h7HdHmfaZKqId+1G5UvhI7X5hP8lmJl2bvKd/a31ykQlZ6f9hwj
-         wObRKNkh46FBKeG4AoWY7IivoZyoGAWkz8Zjc4l5Ov34NOqb1dGzF0HcCocTPht19y9r
-         uVnWXpRLyrw5sgpaoJOi21gycUWwcRhpesOuuf4GZsG1/Dghgy9HWGcTYIJmPr+HQJAE
-         4cgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715809825; x=1716414625;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SLs+h6zNZh7mF7wyHbnkfOw6GN1dWR7g2z29pkelkkw=;
-        b=vxlIcJsjw2pizW8w7g+bPYWq4dTjUp6BIbu5RzM+egfKwOCdKaIn3VtcaaA9LaWC9u
-         6S8I4IVYodImbOUbWnXdfGWcSr20LBfpGQXjB7ggr+vq+AVyJS4llC0yP9meJvkz65Kx
-         kRh1D/8YN2uSr8TCioxNTmbniFyCTo9ZywYo6VmoYydWBrBTY1nvCYK5cUOnRRbyXar9
-         NFk3GnPlG04TXj2hHIFWVCmjt5deupiQeGvrdngBE4E3fTEUVMRdifgpWt4cN5+d8ipg
-         CUlqRU/XcIoGfODYsl5RDhe+IT3R94jKjNpFbjCmfbXasiTRWJwPMp47nz13OZA/snyw
-         BTSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjhFclrc1y1LQGvN0IO5HlFARgE+Vesf2MOCGCgUdSfCbITrWX72GIjBvtvO3dssDzwtMcQkaFJFqC5d17mOwCaYabXo/yV+7hnQ==
-X-Gm-Message-State: AOJu0Yz4VpAAGmxx29RNOPHCyy4n3U8TQ8wPhAVUBdMmY6Q4fqzLdB3C
-	1909Obuuyc4hCB+/mjqc+RZ0yA7VN0qUIbQMsSNwVJXrrT8jgoGwyIqm4jzwgi4=
-X-Google-Smtp-Source: AGHT+IGEAaUjSboxWJ2duwQsEeAptuaGBNQQH1TifXZ6d134LKtkLFEiWsZJaGRCLjJ0v/CqjmN2Tg==
-X-Received: by 2002:a05:6a21:788e:b0:1a7:7358:f108 with SMTP id adf61e73a8af0-1afde0b5c64mr19600162637.24.1715809825401;
-        Wed, 15 May 2024 14:50:25 -0700 (PDT)
-Received: from charlie.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f4d2a827fdsm11638629b3a.60.2024.05.15.14.50.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 May 2024 14:50:22 -0700 (PDT)
-From: Charlie Jenkins <charlie@rivosinc.com>
-Date: Wed, 15 May 2024 14:50:15 -0700
-Subject: [PATCH 2/2] riscv: vector: Use vlenb from DT
+	s=arc-20240116; t=1715810942; c=relaxed/simple;
+	bh=0MZIcUuawZGi6K+BymY9vuIR5HkbjpW1vBzGzyRWDxg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UrStTQMLaxs73oBJ3CGX4+L2EHmQ3udOrb1eOmKvBla1c+cvaGbTTsY7J3H7puForEaZndS4KGDIA1efNXMLhVZrYa2l/BZ/Wn3ONMZ/Pil93xpUD4OuDLSRPxoNYWz89b02GzADArrbz5UmKMDKzP/q/wqEVep9jgmFDXVBYpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CN4ss0bZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8E6AC4AF0A;
+	Wed, 15 May 2024 22:09:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715810941;
+	bh=0MZIcUuawZGi6K+BymY9vuIR5HkbjpW1vBzGzyRWDxg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=CN4ss0bZ/OrbxsYY87/Get/y83r9w6o+3mcjoSmkitZsDWY8Qr+b9xoTr+k4sI5we
+	 L2+3a+icYVaqirYA8k1c/RUx1vlMHHA9l6b7ELW/575ed0Fh93hxTwF5q/1Uov4Nie
+	 VlBh9rkl1oPTgtoSYEO2TuEhth/talxj4rwGGk9po6ntB9ERAtIGs/ldlXjAjxqMS4
+	 ULWEhg5yIANC3VLJBu4TusxWmNKwwGxDPABfRpGXMGyC7rq+2uFHWADX+fdN43yDfa
+	 1ngG2agHge7dDjE8EOIE1JOKBBln1PtHeMZlfrKJCOudR2HThvyggOjxl1LkJbapCp
+	 Fv/arGddl3QvA==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2e27277d2c1so906741fa.2;
+        Wed, 15 May 2024 15:09:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW8ZW/6UQYGbHNFPwS9H8tpQT1+dGcgTfU29pE/0+e3FJ4KgEmZXY3mSVsiXsuaHAW4WQWr1+Hm3Zd1c+OzlmSvMlGtgoVMtFlisbj+9cM6XD1hfJoH11lTjGSuH50whUl8jCd4N4dVpJtxiRYMI5nD3ctOzDHmGenUlwOQbNndnwhQtoqLxiKs5D4YlCxn9jWAXAlaEeYckkM4JCtgJQ8HdzQ3+A==
+X-Gm-Message-State: AOJu0YyVGd+KFaNGWL4I1eBGjqvo/wBWLGwIgTHryNK+q9f07MgLpO5a
+	mHSbfFIgE4zow98oPki+bmZhG9WN2pK+FARwXdPjiFN4aEjWqpkqpdfuogU6ZBDEPaSgtykPj6b
+	9Cid3J77EeHBaFNX50Z1Hn3XXnQ==
+X-Google-Smtp-Source: AGHT+IGzQttQC8UMU89GdfrYgHPoLKfcgLpWi8Xho2b4h4LtCH6dR5hoJ41H2FcllqnwQ6eag9/96nVB54HEREq3P58=
+X-Received: by 2002:a05:6512:3a8d:b0:523:9226:41ea with SMTP id
+ 2adb3069b0e04-52392264794mr2835870e87.42.1715810940008; Wed, 15 May 2024
+ 15:09:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240515-add_vlenb_to_dt-v1-2-4ebd7cba0aa1@rivosinc.com>
-References: <20240515-add_vlenb_to_dt-v1-0-4ebd7cba0aa1@rivosinc.com>
-In-Reply-To: <20240515-add_vlenb_to_dt-v1-0-4ebd7cba0aa1@rivosinc.com>
-To: Conor Dooley <conor@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Charlie Jenkins <charlie@rivosinc.com>, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1715809814; l=3496;
- i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
- bh=PJLl00JSXWHvsV/oHOhLKcWkE7dzVuiu0in04i+U0L8=;
- b=PPusZY5yDbyewn4LPOz6zzsAoeQVGhX8cVESMhQXQMjuHBGziZWmOGA/NEGK6N38Apa7YdlR0
- JGRVUT1Zr/bCCs7fZNijKg52638cniW+CprhQnJVbS0uErZnn/Wx36U
-X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
- pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
+References: <20240422232404.213174-1-sboyd@kernel.org> <CABVgOSmgUJp3FijpYGCphi1OzRUNvmYQmPDdL6mN59YnbkR2iQ@mail.gmail.com>
+ <b822c6a5488c4098059b6d3c35eecbbd.sboyd@kernel.org> <5c919f0d3d72fe1592a11c45545e8a60.sboyd@kernel.org>
+ <CAL_JsqK4EZ0RhYCw6ZaeYSJu5Ps1J+J25vjwQy2XvNa5F5d7Pw@mail.gmail.com> <f6d7574582592f3bfa50fc45fefc53be.sboyd@kernel.org>
+In-Reply-To: <f6d7574582592f3bfa50fc45fefc53be.sboyd@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 15 May 2024 17:08:47 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+M953w4FdOHmDWByqUbJmB+g_G=KxAuZ04zFqV6zBmzg@mail.gmail.com>
+Message-ID: <CAL_Jsq+M953w4FdOHmDWByqUbJmB+g_G=KxAuZ04zFqV6zBmzg@mail.gmail.com>
+Subject: Re: [PATCH v4 00/10] clk: Add kunit tests for fixed rate and parent data
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: David Gow <davidgow@google.com>, Michael Turquette <mturquette@baylibre.com>, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	patches@lists.linux.dev, kunit-dev@googlegroups.com, 
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, 
+	Brendan Higgins <brendan.higgins@linux.dev>, Rae Moar <rmoar@google.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, 
+	Christian Marangi <ansuelsmth@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Ripard <maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-If vlenb is provided in the device tree, prefer that over reading the
-vlenb csr.
+On Wed, May 15, 2024 at 4:15=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wro=
+te:
+>
+> Quoting Rob Herring (2024-05-15 06:06:09)
+> > On Tue, May 14, 2024 at 4:29=E2=80=AFPM Stephen Boyd <sboyd@kernel.org>=
+ wrote:
+> > >
+> > > powerpc doesn't mark the root node with OF_POPULATED_BUS. If I set th=
+at
+> > > in of_platform_default_populate_init() then the overlays can be appli=
+ed.
+> > >
+> > > ---8<----
+> > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > > index 389d4ea6bfc1..fa7b439e9402 100644
+> > > --- a/drivers/of/platform.c
+> > > +++ b/drivers/of/platform.c
+> > > @@ -565,6 +565,10 @@ static int __init of_platform_default_populate_i=
+nit(void)
+> > >                                 of_platform_device_create(node, buf, =
+NULL);
+> > >                 }
+> > >
+> > > +               node =3D of_find_node_by_path("/");
+> > > +               if (node)
+> > > +                       of_node_set_flag(node, OF_POPULATED_BUS);
+> >
+> > I think you want to do this in of_platform_bus_probe() instead to
+> > mirror of_platform_populate(). These are supposed to be the same
+> > except that 'populate' only creates devices for nodes with compatible
+> > while 'probe' will create devices for all child nodes. Looks like we
+> > are missing some devlink stuff too. There may have been some issue for
+> > PPC with it.
+>
+> Got it. So this patch?
+>
+> ---8<---
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 389d4ea6bfc1..acecefcfdba7 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -421,6 +421,7 @@ int of_platform_bus_probe(struct device_node *root,
+>         if (of_match_node(matches, root)) {
+>                 rc =3D of_platform_bus_create(root, matches, NULL, parent=
+, false);
+>         } else for_each_child_of_node(root, child) {
+> +               of_node_set_flag(root, OF_POPULATED_BUS);
 
-Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/include/asm/cpufeature.h |  2 ++
- arch/riscv/kernel/cpufeature.c      | 47 +++++++++++++++++++++++++++++++++++++
- arch/riscv/kernel/vector.c          | 12 +++++++++-
- 3 files changed, 60 insertions(+), 1 deletion(-)
+No, the same spot as of_platform_populate has it. I guess this would
+be the same, but no reason to do this in the for_each_child_of_node
+loop...
 
-diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm/cpufeature.h
-index 347805446151..0c4f08577015 100644
---- a/arch/riscv/include/asm/cpufeature.h
-+++ b/arch/riscv/include/asm/cpufeature.h
-@@ -31,6 +31,8 @@ DECLARE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
- /* Per-cpu ISA extensions. */
- extern struct riscv_isainfo hart_isa[NR_CPUS];
- 
-+extern u32 riscv_vlenb_of;
-+
- void riscv_user_isa_enable(void);
- 
- #if defined(CONFIG_RISCV_MISALIGNED)
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 3ed2359eae35..6c143ea9592b 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -35,6 +35,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __read_mostly;
- /* Per-cpu ISA extensions. */
- struct riscv_isainfo hart_isa[NR_CPUS];
- 
-+u32 riscv_vlenb_of;
-+
- /**
-  * riscv_isa_extension_base() - Get base extension word
-  *
-@@ -648,6 +650,46 @@ static int __init riscv_isa_fallback_setup(char *__unused)
- early_param("riscv_isa_fallback", riscv_isa_fallback_setup);
- #endif
- 
-+static int has_riscv_homogeneous_vlenb(void)
-+{
-+	int cpu;
-+	u32 prev_vlenb = 0;
-+	u32 vlenb;
-+
-+	/* Ignore vlenb if vector is not enabled in the kernel */
-+	if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
-+		return 0;
-+
-+	for_each_possible_cpu(cpu) {
-+		struct device_node *cpu_node;
-+
-+		cpu_node = of_cpu_device_node_get(cpu);
-+		if (!cpu_node) {
-+			pr_warn("Unable to find cpu node\n");
-+			return -ENOENT;
-+		}
-+
-+		if (of_property_read_u32(cpu_node, "riscv,vlenb", &vlenb)) {
-+			of_node_put(cpu_node);
-+
-+			if (prev_vlenb)
-+				return -ENOENT;
-+			continue;
-+		}
-+
-+		if (prev_vlenb && vlenb != prev_vlenb) {
-+			of_node_put(cpu_node);
-+			return -ENOENT;
-+		}
-+
-+		prev_vlenb = vlenb;
-+		of_node_put(cpu_node);
-+	}
-+
-+	riscv_vlenb_of = vlenb;
-+	return 0;
-+}
-+
- void __init riscv_fill_hwcap(void)
- {
- 	char print_str[NUM_ALPHA_EXTS + 1];
-@@ -671,6 +713,11 @@ void __init riscv_fill_hwcap(void)
- 			pr_info("Falling back to deprecated \"riscv,isa\"\n");
- 			riscv_fill_hwcap_from_isa_string(isa2hwcap);
- 		}
-+
-+		if (elf_hwcap & COMPAT_HWCAP_ISA_V && has_riscv_homogeneous_vlenb() < 0) {
-+			pr_warn("Unsupported heterogeneous vlen detected, vector extension disabled.\n");
-+			elf_hwcap &= ~COMPAT_HWCAP_ISA_V;
-+		}
- 	}
- 
- 	/*
-diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
-index 6727d1d3b8f2..e04586cdb7f0 100644
---- a/arch/riscv/kernel/vector.c
-+++ b/arch/riscv/kernel/vector.c
-@@ -33,7 +33,17 @@ int riscv_v_setup_vsize(void)
- {
- 	unsigned long this_vsize;
- 
--	/* There are 32 vector registers with vlenb length. */
-+	/*
-+	 * There are 32 vector registers with vlenb length.
-+	 *
-+	 * If the riscv,vlenb property was provided by the firmware, use that
-+	 * instead of probing the CSRs.
-+	 */
-+	if (riscv_vlenb_of) {
-+		this_vsize = riscv_vlenb_of * 32;
-+		return 0;
-+	}
-+
- 	riscv_v_enable();
- 	this_vsize = csr_read(CSR_VLENB) * 32;
- 	riscv_v_disable();
+>                 if (!of_match_node(matches, child))
+>                         continue;
+>                 rc =3D of_platform_bus_create(child, matches, NULL, paren=
+t, false);
+>
+>
+> This doesn't work though. I see that prom_init() is called, which
+> constructs a DTB and flattens it to be unflattened by
+> unflatten_device_tree(). The powerpc machine type used by qemu is
+> PLATFORM_PSERIES_LPAR. It looks like it never calls
+> of_platform_bus_probe() from the pseries platform code.
 
--- 
-2.44.0
+Huh. Maybe pseries doesn't have any platform devices?
 
+Ideally, we'd still do it in of_platform_default_populate_init(), but
+if you look at the history, you'll see that broke some PPC boards
+(damn initcall ordering).
+
+> What about skipping the OF_POPULATED_BUS check, or skipping the check
+> when the parent is the root node? This is the if condition that's
+> giving the headache.
+
+I don't think we should just remove it, but a root node check seems fine.
+
+Rob
 
