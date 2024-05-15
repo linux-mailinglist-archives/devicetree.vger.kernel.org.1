@@ -1,61 +1,72 @@
-Return-Path: <devicetree+bounces-67131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC5E8C6A63
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E43D98C6A6A
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:19:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A4D01C20E57
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:17:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 217EC1C208D0
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDCA9156257;
-	Wed, 15 May 2024 16:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821C2156255;
+	Wed, 15 May 2024 16:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TqIn4OBj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCbEkMsg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C417643144;
-	Wed, 15 May 2024 16:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A04C43144;
+	Wed, 15 May 2024 16:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715789841; cv=none; b=eNQ0+daUaZOSMHLR0GPw3ZxaEuW1Wz94Q46DJkGowKAW1TIC+GGRGotnsCFAqDRwS2jWe2H8iazFXDUmZR/fmEM07p6ABvPk8DC9XVYh+3ECWojCNyhACQAhRNIJjutMTPSDm8Hv5jkPdiUIDAt0RlqSmWisB6uTRwUb5T337zk=
+	t=1715789976; cv=none; b=KOQVpEPfFyo85n2b9aEI8r9Un9Q3eP0hR3B8u1Pl3E1qRQeT1k08B9mgeyjP1MMqnPp4LwGJd2KjdbtHS2Mc4SVTlz8+ic3InDnLJ5hQ6KLqB3Cu6KjJ6sjRmMd1hmwU/vQEgaMadTgap0iHPlBDl41RA+wPEmRX32rjdq/1quY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715789841; c=relaxed/simple;
-	bh=Up7Qd+RnNSE0g+RPd3RLKdbJ4Lsonuz8jKQ/5bGM+cI=;
+	s=arc-20240116; t=1715789976; c=relaxed/simple;
+	bh=/He7CAq7HiGjDS6udlxRywGS+srOIUjRiPK0TOJkqk4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Okw4Xsc2z1jRUsmzBdhR4jmoT/QGxcdpuKAZ32+Xo4tJi/82nsvkxMFLJNzHxX+Wh6dJRdLqtH+TOY2uRKN9cDeKw7Qtl3/9VmiGV2rNXZxg1DDKj5yUzSr3etsw1QdRBVyUIgENUYRkefYPWkJLWlu6DD7TlYWC0sOLjIetwfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TqIn4OBj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACF1FC116B1;
-	Wed, 15 May 2024 16:17:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A7LVsXawRWU72acXALHzqwDCc26hajYU/7k6SVLg7Joy+oAIi8i/oE9p2InEfkA8M5/o0XAYj90KYd11s1OXo2y2evHDgDX6CUh5pfv3BZYcbUGcXGWjRR7yTChFxEvCOnzYTMQtthsjkK20YQX4UBrkGItN475F60Ixx3iUEvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCbEkMsg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93EB4C116B1;
+	Wed, 15 May 2024 16:19:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715789841;
-	bh=Up7Qd+RnNSE0g+RPd3RLKdbJ4Lsonuz8jKQ/5bGM+cI=;
+	s=k20201202; t=1715789975;
+	bh=/He7CAq7HiGjDS6udlxRywGS+srOIUjRiPK0TOJkqk4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TqIn4OBj/Z4fZGbVuthGf2mXnKuXE6UMXatVzdZvXPJCD9CK1HjmGWm7z+ki+79JJ
-	 l+MtyvK3Kl2jOwq/EZJjn0qEouFRmSUfE1lXyqqxIwbGrqd/Amydg8nOsomcnHKq3z
-	 dtHevbEBNTf3hoHAVZBg8sh33QtY99heTNTfloY8vWzc3ryPB6gOMPC6x/tNuuTQv7
-	 IPG5x+lcwZY8/O7nFko/axF4L7aZhDOiBK5cpLnEYx8M0Cm/0O71d06xHLM6/G1I/E
-	 9Oz063wN+BCwtHfRdd80hMnw2sxn5Pdi9l1Apr2MNU8G8vxMsRQ09XsLWKO0OEw8ng
-	 Xo5KONvwKJXCA==
-Date: Wed, 15 May 2024 17:17:16 +0100
+	b=ZCbEkMsgY8TOtD4BoWYV4ytezczs/FHfE9OtBrCmlKm5e7OxMakHsokNybGeIogcs
+	 yqk/Tshaec1pcV0HOTV2rjbnc8G4I6vN+L/RzwxSFhX4Iy+TMfvCo2BVVnAbG4q7Uk
+	 DxVxd+yP7NCh3Znj9ExtkE3uZhelNmIqJFnCs+lwOhgcq8W1uiNphd5UNlJXkW+SrT
+	 s7g9NvY4NcQMKWfD04G3thdF/bYuCyPqeDBfzBb7F1zPFpUd8P4bwr5ASI4W7BqWa1
+	 BdZauP7TVWwIZtGiDG78EBBm1eT+aCMPC4Lelzf6tBDhrwy6j/2AkBJt7rPwyQQOR9
+	 095J9zLa17mmg==
+Date: Wed, 15 May 2024 17:19:29 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Dmitry Yashin <dmt.yashin@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Jianqun Xu <jay.xu@rock-chips.com>, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: rockchip: add rk3308b
-Message-ID: <20240515-exorcism-savage-14e78d3a8c61@spud>
-References: <20240515121634.23945-1-dmt.yashin@gmail.com>
- <20240515121634.23945-3-dmt.yashin@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: display: vop2: Add VP clock resets
+Message-ID: <20240515-risk-exes-13db315da6bb@spud>
+References: <20240514152328.21415-1-detlev.casanova@collabora.com>
+ <20240514152328.21415-4-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,36 +74,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lUv3gfX0lhAXHhn3"
+	protocol="application/pgp-signature"; boundary="P/Z/zOdIpdF94JWu"
 Content-Disposition: inline
-In-Reply-To: <20240515121634.23945-3-dmt.yashin@gmail.com>
+In-Reply-To: <20240514152328.21415-4-detlev.casanova@collabora.com>
 
 
---lUv3gfX0lhAXHhn3
+--P/Z/zOdIpdF94JWu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 15, 2024 at 05:16:33PM +0500, Dmitry Yashin wrote:
-> Add compatible string for rk3308b pin controller.
+On Tue, May 14, 2024 at 11:19:47AM -0400, Detlev Casanova wrote:
+> Add the documentation for VOP2 video ports reset clocks.
+> One reset can be set per video port.
 >=20
-> Signed-off-by: Dmitry Yashin <dmt.yashin@gmail.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Are these resets valid for all VOPs or just the one on 3588?
 
-Cheers,
-Conor.
+> ---
+>  .../display/rockchip/rockchip-vop2.yaml       | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-=
+vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop=
+2.yaml
+> index 2531726af306b..941fd059498d4 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.ya=
+ml
+> @@ -65,6 +65,22 @@ properties:
+>        - const: dclk_vp3
+>        - const: pclk_vop
+> =20
+> +  resets:
+> +    minItems: 3
+> +    items:
+> +      - description: Pixel clock reset for video port 0.
+> +      - description: Pixel clock reset for video port 1.
+> +      - description: Pixel clock reset for video port 2.
+> +      - description: Pixel clock reset for video port 3.
+> +
+> +  reset-names:
+> +    minItems: 3
+> +    items:
+> +      - const: dclk_vp0
+> +      - const: dclk_vp1
+> +      - const: dclk_vp2
+> +      - const: dclk_vp3
+> +
+>    rockchip,grf:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> @@ -128,6 +144,11 @@ allOf:
+>          clock-names:
+>            minItems: 7
+> =20
+> +        resets:
+> +          minItems: 4
+> +        reset-names:
+> +          minItems: 4
+> +
+>          ports:
+>            required:
+>              - port@0
+> @@ -183,6 +204,12 @@ examples:
+>                                "dclk_vp0",
+>                                "dclk_vp1",
+>                                "dclk_vp2";
+> +                resets =3D <&cru SRST_VOP0>,
+> +                         <&cru SRST_VOP1>,
+> +                         <&cru SRST_VOP2>;
+> +                reset-names =3D "dclk_vp0",
+> +                              "dclk_vp1",
+> +                              "dclk_vp2";
+>                  power-domains =3D <&power RK3568_PD_VO>;
+>                  iommus =3D <&vop_mmu>;
+>                  vop_out: ports {
+> --=20
+> 2.43.2
+>=20
 
---lUv3gfX0lhAXHhn3
+--P/Z/zOdIpdF94JWu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkTgDAAKCRB4tDGHoIJi
-0tumAQDKgVyAz45elnE7dPP9C+WkoMrgDSwJVx8keW09dm25cQD+PU11FfYGPlnI
-D0cSeptu8Pnbd8cnxtLpzL8qCyNJNAk=
-=vjeV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkTgkQAKCRB4tDGHoIJi
+0lwXAP9ODH1i6CX+87vgyTIDRUsnCdlaUgSTbNvl8Tlmwa+XDgD+L3V6TQMyak1G
++54i1z3/hchYtm3/A1uMHW3Irz9oKAQ=
+=h/hX
 -----END PGP SIGNATURE-----
 
---lUv3gfX0lhAXHhn3--
+--P/Z/zOdIpdF94JWu--
 
