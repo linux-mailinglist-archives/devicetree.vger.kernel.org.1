@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-67087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516B48C6846
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:07:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 120D68C6853
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C58A1F24DD8
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:07:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC1A61F20F8C
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C6C13F016;
-	Wed, 15 May 2024 14:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2F613F445;
+	Wed, 15 May 2024 14:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qdam2JMZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nSJEefZH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9201B6214D;
-	Wed, 15 May 2024 14:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A65CB64CFC;
+	Wed, 15 May 2024 14:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715782069; cv=none; b=IuMuQ61O6PoibkXYw+6K5c+U3h4o0X8h0mZRJB0n1o0gMUlvs12kaqwV4ShO5Rg+RjlTlldM8/0cyzMVu3kBlun+yVIGleWyu4y8HdqdTFxqiyMfi4fUkTyNJBc41nAqn2unIZ2TLmgZoNSlqs79vdzqweP2SnBkrH1oyhhRvdQ=
+	t=1715782236; cv=none; b=l7+M6CnbNHcjc8a6HIkW0eQJwIFCIsg2xnLTQV89c4OM2EZ4pH3IJrhk5IG5NV4bLKXeGfTtu/4woguKu0Th/vFANpWycVRNqnECWOa3dKOn6uk44W14yfuGsgPW4ie4N2oJL2nv+RjDZOfa+YdAUuP8BgXoIS+eYuekXfUjN58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715782069; c=relaxed/simple;
-	bh=5XK22oGF43aTBtYVtVevKA+9XL0Nm1J86+MOL1JE8cE=;
+	s=arc-20240116; t=1715782236; c=relaxed/simple;
+	bh=2iZbsSMpK18XkU5G9j3RLS8TjIj91E2Mq6HqBzYe3rc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rSayo4PXb9fGWpWOUYsM3UY8foEJ+dEyRwC5wiCXngiLAbtunVTUnDkfJi0Pc5tU1YGF0/GzgliqMOPELDFn2C5lxSyyhIqAyrCflW80wp8pecTTnq2wQUy2hDawV5cYzv1lhx3yJ6kHUKDGZJVKwUS0fhU0GKPkfhvFxAGggQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qdam2JMZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70162C116B1;
-	Wed, 15 May 2024 14:07:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=g9liRsgdrEaY3ElCLnUadiaa2H1/XGikXs+vfQPll5s1NdZD8kwb7l2UxeaAR1G7sIEIHyldxMA5lHwaGaVe5H94Jqx7E6wn5F6sfZ6MQgqrxtgtOPHCTyq+3LDZvMVA+mEAJVT6KJOXr3wKZTrOaO5wEYgW8dcSJIlJBjngJvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nSJEefZH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0AFAC116B1;
+	Wed, 15 May 2024 14:10:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715782069;
-	bh=5XK22oGF43aTBtYVtVevKA+9XL0Nm1J86+MOL1JE8cE=;
+	s=k20201202; t=1715782236;
+	bh=2iZbsSMpK18XkU5G9j3RLS8TjIj91E2Mq6HqBzYe3rc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Qdam2JMZWYlMg6fZG+OM1oyMX/91PgrGmn49nAz1gYci9A9PewiicfagGfN0hyfFv
-	 Xy9Sm0cKdUGaYFogJengnVdVQlK8JzvNmYgsipxVWfdDNwgcGTCTXfpBFbz7P57LS+
-	 kM9qU3t/u8n7fWGY0DciGbAKo+NbaK0Ih0op4Jfv4MYDwMCXulH2qbvuHFuek3uJIg
-	 +RCrQ9VNNfQshsE6ybhZm4jbpIJWKcALG3N+QSs8TTfsQfs31AhOVo4+s4OdwCtuhr
-	 otJJUh9soGqJo2VN0kUPnOPyZewV5AmS4k7yQelEuh8t67dNxAA7WcgLOCMByGQkqA
-	 WKAhytBBAoOFg==
-Message-ID: <4ae4d926-73f0-4f30-9d83-908a92046829@kernel.org>
-Date: Wed, 15 May 2024 16:07:43 +0200
+	b=nSJEefZHSZ5MatIZTMrfRMA8CyInT8G5NTYaWlWFJvKi0qicpYgs9tG6K4x0Sj76N
+	 lqbL4yesAiPr3dSuJ2rmcYoiN4sJ6ZnQF+aYC6JNbtzkbtph5h9GGZzwe7ZZG9NpQz
+	 A8tIi1C988jJKmlggiXZStlf0usEseFoagaA9ehdy9oyNVCfTVgISfR0SxVVgAa7MP
+	 6Mh18R/bsw3/9SulsmilzikywgJaENvfz8TojhyXC04PwMVS/ZOKs8WfL2imFnrDGo
+	 rot9HE+nRjA7aabeWeeSPBE0eLutqZ56uDsk9DcWWf7WSBVXFcVbKceB8+nMzpTjuJ
+	 JNPTmYVV0TpoA==
+Message-ID: <b99b61bd-a271-4dc8-b8fc-ab72df65dc1b@kernel.org>
+Date: Wed, 15 May 2024 16:10:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATH net-next 1/2] dt-bindings: net: xilinx_gmii2rgmii: Add
- clock support
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>, git@amd.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- harini.katakam@amd.com, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, michal.simek@amd.com
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240515094645.3691877-1-vineeth.karumanchi@amd.com>
- <20240515094645.3691877-2-vineeth.karumanchi@amd.com>
+Subject: Re: [PATCH v5 0/4] ARM: dts: aspeed: Add IBM P11 BMC systems
+To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, andrew@codeconstruct.com.au, joel@jms.id.au,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240514213510.159144-1-eajames@linux.ibm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,54 +101,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240515094645.3691877-2-vineeth.karumanchi@amd.com>
+In-Reply-To: <20240514213510.159144-1-eajames@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/05/2024 11:46, Vineeth Karumanchi wrote:
-> Add input clock support to gmii_to_rgmii IP.
+On 14/05/2024 23:35, Eddie James wrote:
+> This series was previously included in
+> https://lore.kernel.org/all/20240429210131.373487-1-eajames@linux.ibm.com/
+> The series now depends on
+> https://lore.kernel.org/all/20240514212555.158788-1-eajames@linux.ibm.com/
 
-Why? Wasn't it there before?
-
-> Add "clocks" and "clock_names" bindings, "clkin" is the input clock name.
-
-Please use standard email subjects, so with the PATCH keyword in the
-title. `git format-patch` helps here to create proper versioned patches.
-Another useful tool is b4. Skipping the PATCH keyword makes filtering of
-emails more difficult thus making the review process less convenient.
-
-Don't write it by yourself....
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-> 
-> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-> ---
->  .../devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml      | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml b/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
-> index 0f781dac6717..d84d13fb2c54 100644
-> --- a/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
-> +++ b/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
-> @@ -31,6 +31,13 @@ properties:
->    phy-handle:
->      $ref: ethernet-controller.yaml#/properties/phy-handle
->  
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: clkin
-> +    description: 200/375 MHz free-running clock is used as a input clock.
-
-Nope, just write the description as items in clocks, instead of
-maxItems. And drop clock-names, not needed and kind of obvious.
-
+No, it does not work like this. Bindings come with the user. Do not
+create fake dependencies and DTS must be send TOGETHER with the board
+binding.
 
 Best regards,
 Krzysztof
