@@ -1,103 +1,131 @@
-Return-Path: <devicetree+bounces-67044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0DA18C661C
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B7F8C6639
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EBC91F22F10
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 12:10:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69A4B1F22B44
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 12:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CB616F073;
-	Wed, 15 May 2024 12:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260C974416;
+	Wed, 15 May 2024 12:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jTj5JXde"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f/hDoivy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03341219E8;
-	Wed, 15 May 2024 12:10:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D4DA14AB4;
+	Wed, 15 May 2024 12:17:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715775037; cv=none; b=jGfRLtSOQId2zwVDvmIEWrWvH+8zbRGQakPZuMBCnw6ffMqWElZucGnJO0y/WfBBafuqgtaJaq2MLm4et/uspQkEkX3ttAwQ1ImmpLShLfIVTeU8hZ6hGhW6tsbLYPjK2oWhtQlENr1l+YQnNpzo95DW3IhHIacyxnbLruHmbvY=
+	t=1715775468; cv=none; b=HmJISdRmbCryjDon7rpkfFG1PEATBhIGVt+IABTf3VqAW8aRlOMLBlSrmiFPme+ckcNeKrDID3WPjXr3W682CTFU/kIyhI80y8MgfPZ5oTnRUmtQrlSLnhMff5Mk57f0ATAA7rtkDw3gmU/F7E2FTpGT7RowJ03YvWVfeWMjUwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715775037; c=relaxed/simple;
-	bh=qQxML4MZnARv3Z2b6FuMOQyd3ZUvitO3Ah4OB5i1l7s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MWNMcP4CQf6dUyqHh+McgKm83d+DPDsr2qoOXG4cEjnSD2GPCL7PsTCXxBHpIb5HwC8NrzUka6qmYS/8QHJOGmue65orw/ZM2S+uhkOBijPIP9Gqq+7LKLv94F+xIVJGGyMv7Hm6qp/7IDq++wf2UjtUpWTx1KYqj8mQVGbGBKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jTj5JXde; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44EC9C32786;
-	Wed, 15 May 2024 12:10:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715775036;
-	bh=qQxML4MZnARv3Z2b6FuMOQyd3ZUvitO3Ah4OB5i1l7s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jTj5JXdexmn/0ahw3hCXJNgvnXtr4Daq0xkuiSbTdhtIBacxfCc70qmkOQ8F997rt
-	 LoA1OMQy028S/6Wyuyvae2Go6mTLz/jduzaWHSDWUFQya6Ie/FLZc9tVqmDjVKHSaj
-	 M39lkgwE08CmZ9D7YOmbDImx/+bKltLX0KNKMzUYTiHaxaiDWXBHSL/RGPflr+J9BR
-	 6GXsrw9B/+5v3sry6qQm4jK+xgwlr1RIwHE5PvBLwezfVDcd3VjZGZPW+qs3L5fau1
-	 0wErANretlJxfrtHGt0/IsMJZO2f3tG2Hh5qz4Jdvk0IQMcPKClDOodqvtJLKH/vHt
-	 epG1qQblSbHsQ==
-Date: Wed, 15 May 2024 13:10:31 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Alina Yu <alina_yu@richtek.com>, lgirdwood@gmail.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, johnny_lai@richtek.com,
-	cy_huang@richtek.com
-Subject: Re: [PATCH v3 6/6] regulator: dt-bindings: rtq2208: Add property to
- get ldo of RTQ2208 is adjustable or not
-Message-ID: <90d5efcc-e85a-4daa-81cb-a877c4b8fff6@sirena.org.uk>
-References: <cover.1715340537.git.alina_yu@richtek.com>
- <6a3a90d9aa2022dfb92e124e417f3e72c2f28b0b.1715340537.git.alina_yu@richtek.com>
- <20240513-tissue-repave-13d2e3bf88fd@spud>
- <d97752ed-4032-4681-b28f-17f149fdc3d4@sirena.org.uk>
- <20240514-plunging-chair-803d9e342e6f@spud>
+	s=arc-20240116; t=1715775468; c=relaxed/simple;
+	bh=Q2y9O+8MQgFUY1TFrbqsl53M1XGtWJlJDpF/18mcmIE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j6yhMcGthOdiMrnaJaBPF6cEZwDDT5TOu12uc2vTldYaAL6xaG0qDNZfkbwF+MuGMn2tNone7AyO9qEuFUFYrrqYSOgGMECxg+wHqZNUl8+NUo4ZAgm8pXo3oJDUQoc7IK+WBrAZjbNuaLQhHUsFqq+o0NZO3D4eSweHuSbmnUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f/hDoivy; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-51f0b6b682fso7332565e87.1;
+        Wed, 15 May 2024 05:17:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715775464; x=1716380264; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d0aAEbXdgajt50FIPOAy30WPXnBHXkZn9O/zxN8IbEU=;
+        b=f/hDoivy6J3btMafQLocUW/DJo0FK3hK8YSYfgFG89B1R5voVaTP2dGcI2QHV4UGEB
+         pjOGe1EZng9xH2sE39CIjFIKeJy01X7dxe/ifNQbjTzbFA3EODuzFn9mUplP4IdHd5WA
+         FZ7fVwV3VYntfptsqaX5dMptaKKaveJBgJDH+F23ZWJm1QWYpPAkYKHtctsgOnzqqp7P
+         c+darUDx/kajHUJH/4aTnmnwT/1yM8NCjpXLrtvsLRoK96wuks59RjKAPrphY+VJGYnJ
+         y65F6bsmYISWjCJi+YOe5IFal6aI6Oz33OigJA99ETf1UhLqzBEud8uvn2rbTEguFNQB
+         S0Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715775464; x=1716380264;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d0aAEbXdgajt50FIPOAy30WPXnBHXkZn9O/zxN8IbEU=;
+        b=RuuQcugd7oqrEk/zjj2SYO5hrqIJmB6fWyxHn6V+iXrhOyknDMtanEj5wK9x4rT/mJ
+         71J+hI3h13CFmxXW10vh+kF40zZ+Ry7B5TlFe89lY2Xje16brjp4SOK6EknCf9viHl5p
+         Ohz3XOiO+VoRGFVsPx/310Z9ij6SEsDPbGL6gFvLWQQtMBQ6D4ByIVukQew2aTp47K13
+         5PZ1SYYdR3wWR5K02XO6TCtiLCG8KlzQiCKV7ZbMdwwk5t18pgf6+EM14AaioZgg2KbC
+         MgCe+rzXvNf1fS742iwRKmhz6hJicTunhUZYO6BBrsTNy+iuqtpXvCzR30/uuJwExyln
+         BnSg==
+X-Forwarded-Encrypted: i=1; AJvYcCVeyBeE43z7VoY5BsUvUOELe0hgcP+lQ10PSL6FCukRKAJbHReYffKR8vuvgOlt5s31j7Vq1Lr5b0Ylqnk2Y5oV+DnB258vOlVIO1He4yniQtxz8r81xZReyZTDZWcMNTr4igd2GAR4mPLLsTXjsnZWdJSoj6SOIplVgdIJ58w+DwQwXOg=
+X-Gm-Message-State: AOJu0YxgT2UM6P2aJb5jSYo65q7WgaGTktVSs2UW1P+ddzBRrtmsqkJj
+	27E93rv7oNO653KTwy05wk30ILBIX5OVk7M0rtFgD89e8puxa3PF
+X-Google-Smtp-Source: AGHT+IG4Hkq6991vIoxDDRYmbp1gvzhu/qj+0mxidX62jQ3RMGCze6F96qvW6K5C207sigpd1tp2RQ==
+X-Received: by 2002:a05:6512:124d:b0:516:cf23:588 with SMTP id 2adb3069b0e04-5220fc7bef6mr16714600e87.27.1715775464345;
+        Wed, 15 May 2024 05:17:44 -0700 (PDT)
+Received: from yoga-710.tas.nnz-ipc.net ([178.218.200.115])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f35ad684sm2515614e87.3.2024.05.15.05.17.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 May 2024 05:17:44 -0700 (PDT)
+From: Dmitry Yashin <dmt.yashin@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Jianqun Xu <jay.xu@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Dmitry Yashin <dmt.yashin@gmail.com>
+Subject: [PATCH 0/3] pinctrl: rockchip: add rk3308b SoC support
+Date: Wed, 15 May 2024 17:16:31 +0500
+Message-ID: <20240515121634.23945-1-dmt.yashin@gmail.com>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QIiOGJPNoadFqFau"
-Content-Disposition: inline
-In-Reply-To: <20240514-plunging-chair-803d9e342e6f@spud>
-X-Cookie: Oh Dad!  We're ALL Devo!
+Content-Transfer-Encoding: 8bit
+
+This patch series fixes iomux routes on rk3308 and adds support for
+pin controller found on rk3308b. According to rk3308b TRM, this pinctrl
+much the same as rk3308's, but with additional iomux routes and 3bit
+iomuxes selected via gpio##_sel_src_ctrl registers.
+
+Downstream kernel [1] managed this SoC's with rk3308b_soc_data_init,
+wich picked configuration based on cpuid. Upstream pinctrl patches
+droped soc init function.
+
+The function rk3308b_soc_sel_src_init sets up gpio##_sel_src_ctrl
+registers, making SoC to use 3bit iomuxes over some 2bit old ones.
+
+These patches have been tested on Radxa's ROCK Pi S, one based on rk3308
+and the other on rk3308b (from the latest batches). For the new boards
+fixes broken spi1 clk.
+
+Similar effort [2] was made several years ago, but without keeping base
+rk3308 SoC pinctrl support.
+
+[1] https://github.com/radxa/kernel/blob/stable-4.4-rockpis/drivers/pinctrl/pinctrl-rockchip.c#L4388
+[2] https://lore.kernel.org/linux-rockchip/20220930102620.1568864-1-jay.xu@rock-chips.com/
+
+Dmitry Yashin (3):
+  pinctrl: rockchip: update rk3308 iomux routes
+  dt-bindings: pinctrl: rockchip: add rk3308b
+  pinctrl: rockchip: add rk3308b SoC support
+
+ .../bindings/pinctrl/rockchip,pinctrl.yaml    |   1 +
+ drivers/pinctrl/pinctrl-rockchip.c            | 187 ++++++++++++++++++
+ drivers/pinctrl/pinctrl-rockchip.h            |   1 +
+ 3 files changed, 189 insertions(+)
 
 
---QIiOGJPNoadFqFau
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+base-commit: ed30a4a51bb196781c8058073ea720133a65596f
+-- 
+2.39.2
 
-On Tue, May 14, 2024 at 07:01:21PM +0100, Conor Dooley wrote:
-
-> It also doesn't seem like this sort of behaviour would be limited to
-> Richtek either, should this actually be a common property in
-> regulator.yaml w/o the vendor prefix?
-
-It's a pretty weird thing for hardware to do - usually if the regulator
-is controllable it'll be qualified for use within whatever range it's
-variable over and not some other completely disjoint value.
-
---QIiOGJPNoadFqFau
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZEpjYACgkQJNaLcl1U
-h9AQaQf9FRIL97KP2WvU1BzIYHUi/ili3Tpv3U/mZScKR47EXY/gLSLeXyaPCI/u
-/NzQV7TeJZZ6UpLzBY23ynA0xGZXSBmTmIaGNCmlJf9nnZ0UAH7bLquHCJPB0NDd
-EsGzJTgNX5dOvZeFJ5eT9XIdabDxsWWsvotYIwW3TJmApBctw58wKRAfbwPs9Qms
-ra0bjrqcx5TXOYldAZw3Avaew6eJ6pHpL5zYGXFtUlMOO9BvpmjLoI4Y77pykYz1
-jlYBwmBEmAH4zTMSlOm9XqQcwCxEd+b9TAB1bxP9ZA1HsEq9PKffMQnMftxMtHjl
-R1NcFJ9kVFWWzMx/Ui8UCB6WaV9Pww==
-=4cJk
------END PGP SIGNATURE-----
-
---QIiOGJPNoadFqFau--
 
