@@ -1,141 +1,224 @@
-Return-Path: <devicetree+bounces-67141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9C078C6BF1
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 20:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 659708C6BEF
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 20:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBFA21C20DF3
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:13:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88D141C20FBF
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADBB6433BC;
-	Wed, 15 May 2024 18:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F28158DB7;
+	Wed, 15 May 2024 18:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nlx76p6T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+A4LU6E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE00158DB2
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 18:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51188158DA8;
+	Wed, 15 May 2024 18:13:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715796817; cv=none; b=r3FmOSJWtdIRcjshYaJtDAhzTCvmD5F+dc/+qWSY9D/jPR7L4UMdQdKO9wu0DBRpHSaC+xL1SuP2Ew4gAtjKNthPY+du7AmX8Np0oXm9BuEFBSgseHObZ2aOpbasAq+e0yIlW3zX/NiyIFOUDMqgMQ4/raSfq8Oqdb3rlTJx/6M=
+	t=1715796791; cv=none; b=YzkwEubIyN3bQnQq3SsuZS1oLBHpzYl3BizUOeIX0nPxjFz76pnVQVKSwjpZGSgGnbKelLVHiI0gSvVIh08qhBg86Y7FfDNp+F+E+Y1QMsAkrNsF24GplCCYlDqJdME9E8VpnfJfWRoPVQIqmUyQn9L/4FB5DdJPaeqZi5FRPRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715796817; c=relaxed/simple;
-	bh=YSgAc8qPN8nfKDx0tSzSbiZ/RTmccxDUjlHCSNbLzCA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ehozh4CYtwS1JsY1DFQJt5k6sfT4TikSKZYScvfOsCeFybP/+XjDre46jongxJCeuAe14B6ml07DObaqaoyAb0RqE17nb0ZHSllZQtxP06Ax5GLoHNOzElset6FLFjdxEABT9wq7c7/HB15jql4seCeJQHxXs1KTL+B3lLukWgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nlx76p6T; arc=none smtp.client-ip=209.85.167.46
+	s=arc-20240116; t=1715796791; c=relaxed/simple;
+	bh=TfdF1bpqrHkn9OnfHOleyGznVY48Y0qsPHzXN5hBulw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gsF1z7Jn5rU+XO31PcLufL8Yu8WZqbAUdFefx6pNRZT6QCiqf65QhHA/hHiJawaspsA8y7EdbHjCMM3/0A25BzWbPu2zzxauQMD8pfLDsTOBFStTGMefczzJoX2XEoKsebS/6x7GYh+SoUJmHNnUFXxmZWvWXSQmNWXvbc6vtH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+A4LU6E; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-51f3a49ff7dso9417819e87.2
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 11:13:35 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5727dc6d3edso2302905a12.0;
+        Wed, 15 May 2024 11:13:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715796814; x=1716401614; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=v/Aoflc/DGDm8/A2kCo2iDxhhIJpaobrE1YRaQE+ZMw=;
-        b=Nlx76p6TwzaFQWY5uVBbUNP8XMnB1sk0yDC6BhZBvpaP7u76pWhbhE18zue9AWO3dg
-         ps3Zv2g+HZ+neNw0oTpZix1vlcl27JnorrUyrDlReRoCJR8BGDTSYtQZRgjE1Q7U2LoM
-         9Gj7Sz7PKYs9prz7PDdtXsKSjJQ/09+Ei9ilout2tcZPBBAwE1Y+bgk1fYdJVh5gLmR3
-         zQxaDRaiXCWQwCX37Wfyt3C/+a98OYtmRrTJVlCCGrYDqfFeTepcGBTh/MVBxhDC8ioU
-         soeazKx1KYvbe7uAfoC/JXlR23XAkFOV4jstK6SjkBGS21l2C6CR4XRqiomO4xik6Qhj
-         /fzQ==
+        d=gmail.com; s=20230601; t=1715796787; x=1716401587; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pch3Ih7LaL+PpkBrCQxVPogM1fubUEsmwW5xj0Btblo=;
+        b=J+A4LU6EhELacsZbVent+FxL8uFOd9YfNsF05ybr1lGFFzGRjBoOamPFz4OzxU598v
+         qwOg/e0coXwv6fPqwiTJ3BFro/BPUkig63tR8JfOTBln0qWiDwxZrNuXuulkcqWuRBAs
+         8Q0r262rSMTQdE8aeoqDASSXwt/ppxXPyfd1ln9824Z5kfovaDXKvsJRM2ZF9oJiLcZa
+         uOlakDIz9deH4VAKFmwoO4Cnwgtnz1gmkzSBPnTe3zOigGIOcBJ2u3ESBATOF/Dme0UF
+         hTNeIBmwNCzUVN3D/8jwLxB1IIaCVQmE0wbyvk/dqC6zb6RvPfsP40PvOjhnc45HxxNy
+         TZIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715796814; x=1716401614;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v/Aoflc/DGDm8/A2kCo2iDxhhIJpaobrE1YRaQE+ZMw=;
-        b=UMrfIlD2Rhwwit4mZdNFQLoin8Fc+9P5Q/6OYZ3uRlUQW/WmimMKn+d3w40KtFdt98
-         ymNGxKDLpUzNxQOdGiCh7aOfL8yuvFiMZk2FxhQMuBnEdr+RNpGkveRh7hV8nq8pML9P
-         oouV0I1YL12zm5OdIvjBgR5sBHhpvBA4WGN69GvG+cA/26W56yyeevOyC6lMDZU1ftVZ
-         0h9dwHm9fdqNbI88wAf4qen4tlgv8GKrbu0F+Muzb1p/8mLZKPjuea/6fa4MaDNDVA46
-         iItu6SyAYxO3EFxDR2mUmBJcjKQ31yDh16XuSp1XY/3nMqn+WxrIqnqXPIQjgSgfPT/c
-         Bb4Q==
-X-Gm-Message-State: AOJu0YxHL51rBGTPOwocfhvR8Ee/9lsEuGmBZLxzEavYdZAVYAyLz8qg
-	4B0Mo+dsbhaalMFT6wfBCNznLY+a9Vfm8ePEh/CDpP2QABqmemCgAV/a4oZSGPs=
-X-Google-Smtp-Source: AGHT+IH0DL/EZTEwatYC8DJpe00eB6UvK4nSHBG6/nHECXasNwsZqxHRnRIcHDaAdlv7YO66hHZuwQ==
-X-Received: by 2002:a05:6512:1086:b0:51c:d528:c333 with SMTP id 2adb3069b0e04-5220fc7d748mr12710033e87.20.1715796813905;
-        Wed, 15 May 2024 11:13:33 -0700 (PDT)
-Received: from localhost.localdomain ([5.13.174.222])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733bea65aasm9391992a12.5.2024.05.15.11.13.31
+        d=1e100.net; s=20230601; t=1715796788; x=1716401588;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Pch3Ih7LaL+PpkBrCQxVPogM1fubUEsmwW5xj0Btblo=;
+        b=Z1E8araKWrTO8F9wDOOI8oEkbfGW1efqGa3IyoenVAI57hMUoP4kBvYv2Tdsusefjp
+         cwF1aXY4SDW9cQHI6SAFY8Y6pCHjYpv6kWIpQxgaG22LZQVSeWzrpNQRrFZdj5AbDGVq
+         GoVb8FyyYglOaEQ1DxqAuymeSdcoICi3DgKbSfafe7A615gTsb8h+px4A/Y2CgfA6moI
+         rt0folOR7OuwjJo6asF4Y+c+tDBurA9pdMBjpJyGC5aFaKTrU5c8DhSyvuwdimi2p9va
+         TVa0Di8hbOvY+DFDYuArdYwVqMDt2gkJzVn6zbhn+snmWyHi1hCwc8UmbgtUfQaHeKIy
+         XfHA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjhVNqZnSEIqGzxxrL+4nUQqxHI6rzPQ7IcUb2yjOcnKkk1YZOL32bvMrW6RRg7oZmWjRNhh+9sjON5+FAbCAGK+Thz0974hULNmDryTA19k3up+JSwmEqLBy4aMkf/CN+h9ZmrkLGeg==
+X-Gm-Message-State: AOJu0YxzJm+03ZiVQdiJNA9cKR9nmXovx1TUhwpz1HTpssUG7gENndUR
+	yksisWSxjZ7Dgx/h0Df/mLy9sMp0Wc8NMOTxqPzMyHjQ4T8TfSJd
+X-Google-Smtp-Source: AGHT+IHgPNyYK5FYIjTE7nmsJggKHf4atXCrV0muQ+BI4PZ2Ak2naECuuuyZfglhJRj+gtpVN5yqIQ==
+X-Received: by 2002:a50:d710:0:b0:572:1589:eb98 with SMTP id 4fb4d7f45d1cf-5734d5b9098mr11072869a12.12.1715796787300;
+        Wed, 15 May 2024 11:13:07 -0700 (PDT)
+Received: from yohan.gigerstyle.selfhost.ch (84-72-24-4.dclient.hispeed.ch. [84.72.24.4])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-574ffe6d3f6sm321658a12.0.2024.05.15.11.13.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 May 2024 11:13:33 -0700 (PDT)
-From: Beniamin Sandu <beniaminsandu@gmail.com>
-To: devicetree@vger.kernel.org,
-	dinguyen@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Beniamin Sandu <beniaminsandu@gmail.com>
-Subject: [PATCH] arm64: dts: socfpga: stratix10: add L2 cache info
-Date: Wed, 15 May 2024 19:12:49 +0100
-Message-Id: <20240515181249.296131-1-beniaminsandu@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Wed, 15 May 2024 11:13:07 -0700 (PDT)
+Received: from mgi.gigerstyle.ch (mgi.gigerstyle.ch [192.168.0.5])
+	by yohan.gigerstyle.selfhost.ch (Postfix) with ESMTPSA id 6087A58E;
+	Wed, 15 May 2024 20:13:06 +0200 (CEST)
+Date: Wed, 15 May 2024 20:12:58 +0200
+From: Marc Giger <gigerstyle@gmail.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Shawn Lin <shawn.lin@rock-chips.com>, Jianfeng Liu
+ <liujianfeng1994@gmail.com>, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de,
+ sfr@canb.auug.org.au, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from
+ vcc3v3_pcie2x1l0 on rock-5b
+Message-ID: <20240515201258.090f754f@mgi.gigerstyle.ch>
+In-Reply-To: <273slx5qkz6ja5qlfjgcaukuzifzsxkdabsld3qodvxaekbzet@ipir56a6afj3>
+References: <20240401081302.942742-1-liujianfeng1994@gmail.com>
+	<432000a6-1de9-4452-beb7-6954677e34c8@rock-chips.com>
+	<273slx5qkz6ja5qlfjgcaukuzifzsxkdabsld3qodvxaekbzet@ipir56a6afj3>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.39; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-This removes cacheinfo warnings at boot, e.g.:
-cacheinfo: Unable to detect cache hierarchy for CPU 0
+Hi,
 
-Signed-off-by: Beniamin Sandu <beniaminsandu@gmail.com>
+On Fri, 12 Apr 2024 18:09:13 +0200
+Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
+
+> Hi,
+> 
+> On Wed, Apr 10, 2024 at 02:30:16PM +0800, Shawn Lin wrote:
+> > Hi Jianfeng,
+> > 
+> > On 2024/4/1 16:13, Jianfeng Liu wrote:
+> > > Property startup-delay-us is copied from vendor dts and it will
+> > > make kernel not detect pcie wifi device. If I run command:
+> > > "echo 1 > /sys/bus/pci/rescan", pcie wifi device is detected, but
+> > > my wifi device RTL8822CE failed to load driver. Another device
+> > > RTL8723BE can load driver but no wifi signal is detected.
+> > > 
+> > > Removing this property will fix issues above.
+> > > 
+> > > Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
+> > 
+> > startup-delay-us just make sure the power rail is stable before
+> > any action is taken to start the link, preventing the device from
+> > unable to work stably. So it shouldn't be the root cause I think.
+> > 
+> > Could you help try this patch to checkout if it works for you?
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > index d684214..df30127 100644
+> > --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+> > @@ -167,7 +167,7 @@ static int rockchip_pcie_start_link(struct
+> > dw_pcie *pci) struct rockchip_pcie *rockchip =
+> > to_rockchip_pcie(pci);
+> > 
+> >         /* Reset device */
+> > -       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
+> > +       //gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
+> 
+> Is this removal actually needed?
+> 
+> > 
+> >         rockchip_pcie_enable_ltssm(rockchip);
+> > 
+> > @@ -180,7 +180,7 @@ static int rockchip_pcie_start_link(struct
+> > dw_pcie *pci)
+> >          * We need more extra time as before, rather than setting
+> > just
+> >          * 100us as we don't know how long should the device need
+> > to reset. */
+> > -       msleep(100);
+> > +       msleep(300);
+> >         gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
+> > 
+> >         return 0;
+> > @@ -311,6 +311,8 @@ static int rockchip_pcie_probe(struct
+> > platform_device *pdev)
+> >         if (ret)
+> >                 return ret;
+> > 
+> > +       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
+> 
+> I suppose it makes sense to use GPIOD_OUT_LOW in
+> rockchip_pcie_resource_get(), so that the GPIO is requested low from
+> the start instead of being high for a very short amount of time.
+> 
+
+I see the very same issue as the original reporter on a Orange Pi 5
+(rk3588s) and a Orange Pi 5 plus (rk3588). In my case the onboard
+ethernet interfaces and/or the nvme drive are randomly not
+initialized properly. This is with Linux 6.8.9. Funny enough it seemed
+to work all the time on 6.8.4 without any issued (having the bifurcation
+patches applied).
+
+After applying the following patch (with the incorporated suggestions
+from Sebastian) everything seems to work on the Opi5 plus but on the
+Opi5 the nvme drive still wan't to properly initialize.
+
+In dmesg the only difference in repect to pcie/nvme I can see is that on
+a working system the following to lines are shown whereby they are
+missing when the nvme was not initialized properly:
+
+nvme nvme0: Shutdown timeout set to 10 seconds
+nvme nvme0: 8/0/0 default/read/poll queues
+
+
+
 ---
- arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index cbbc53c47921..0def0b0daaf7 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -34,6 +34,7 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			next-level-cache = <&l2_shared>;
- 			reg = <0x0>;
- 		};
+debian-linux.orig/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+2024-05-02 14:35:35.000000000 +0000 +++
+debian-linux/drivers/pci/controller/dwc/pcie-dw-rockchip.c
+2024-05-14 19:25:18.519434456 +0000 @@ -180,7 +180,7 @@
+ 	 * We need more extra time as before, rather than setting just
+ 	 * 100us as we don't know how long should the device need to
+reset. */
+-	msleep(100);
++	msleep(300);
+ 	gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
  
-@@ -41,6 +42,7 @@ cpu1: cpu@1 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			next-level-cache = <&l2_shared>;
- 			reg = <0x1>;
- 		};
+ 	return 0;
+@@ -240,7 +240,7 @@
+ 		return PTR_ERR(rockchip->apb_base);
  
-@@ -48,6 +50,7 @@ cpu2: cpu@2 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			next-level-cache = <&l2_shared>;
- 			reg = <0x2>;
- 		};
+ 	rockchip->rst_gpio = devm_gpiod_get_optional(&pdev->dev,
+"reset",
+-						     GPIOD_OUT_HIGH);
++						     GPIOD_OUT_LOW);
+ 	if (IS_ERR(rockchip->rst_gpio))
+ 		return PTR_ERR(rockchip->rst_gpio);
  
-@@ -55,8 +58,15 @@ cpu3: cpu@3 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-+			next-level-cache = <&l2_shared>;
- 			reg = <0x3>;
- 		};
+@@ -311,6 +311,8 @@
+ 	if (ret)
+ 		return ret;
+ 
++	gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
 +
-+		l2_shared: cache {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+		};
- 	};
- 
- 	firmware {
--- 
-2.34.1
+ 	/* DON'T MOVE ME: must be enable before PHY init */
+ 	rockchip->vpcie3v3 = devm_regulator_get_optional(dev,
+"vpcie3v3"); if (IS_ERR(rockchip->vpcie3v3)) {
 
+
+Thanks,
+
+Marc
 
