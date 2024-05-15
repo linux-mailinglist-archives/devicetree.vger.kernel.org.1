@@ -1,100 +1,177 @@
-Return-Path: <devicetree+bounces-67164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2A4C8C6CBA
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 21:18:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95ECB8C6D18
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 22:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 674C11F2332D
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 19:18:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E786B20AB5
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 20:10:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F40015ADA6;
-	Wed, 15 May 2024 19:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CF115B0E2;
+	Wed, 15 May 2024 20:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Ugk4nfFu"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="B0RN8miP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE2E1591FD
-	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 19:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CE615ADB1
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 20:10:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715800681; cv=none; b=nbMqHezUq4ZubDMtUZLnUGaJvzsLLHg7XDNVy6L2inE3OWDkh8d+UK/0pNZD8zJ7sbdlVKWneMs2Y/ZGk7og643PtOYB6dWK+sGDNg0lWGH5cl2sS3lLcLMXDuBycwkH+Ne80nR9GjSiDTbySBmvSbue45+wwppuzKDFHg6UtWc=
+	t=1715803821; cv=none; b=XTBs3Ni490qc5gWTc/FoqM+sBwYa+JUIfytfpDhGoi4GqlKOezeX8HK608ncZpFnVRSZpvZxtwalcQRfzWHyN0gFP0PAyTso2TgHCVN3l6vYSkAKyHcxvFu5htwrO+B/Xxs4pSYvqgyzEVwlOCobajiFUCtqo7WUf2Q8z75TJ1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715800681; c=relaxed/simple;
-	bh=CPp/HTGSY2HiQLDatrLtpTGFshesDpce0Bi4vdjYKoA=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u3R34VQBEC/qadkLeLeeyU/Wa+yXtjl4zdo422dQ+MlvoyFrxTLJPLfhVp8tFeDzv8gjevXT8pV6TMwtYXaq22tt8SCvSjCG8YXiTfCUDfd0lr7kEdJ7v4jaW2L7OuJ/bp+0Ukmu2CdoOScf2lm/MPFUNwLsjAfXPkNSgKASvDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Ugk4nfFu; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc6dcd9124bso6768074276.1
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 12:17:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1715800678; x=1716405478; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CPp/HTGSY2HiQLDatrLtpTGFshesDpce0Bi4vdjYKoA=;
-        b=Ugk4nfFudEGnmxbeMe3fqOScBd2csDTdrrIrc553IfAIMJtcBbrY9xyd11GfZa7zpq
-         9g8MesNTlkcq5BNdZyJdbG2ltgjJ6HeQHjF1PMlhJQW/o8QhHDmrJmwal5UtP/BQ5K9a
-         d/YRZnPsUJnZAGkfgFNMAcmo85SqcBJbmRw6U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715800678; x=1716405478;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CPp/HTGSY2HiQLDatrLtpTGFshesDpce0Bi4vdjYKoA=;
-        b=r3SX5Ke9oTYsAP+NcKGy6IFV+pNWXFgq0smW9bAtTFOhgUOL4Bhf1kzeVa15SBYlQ/
-         l8pIde1t3Pxcpuj2P7mPxRtkjveGjgwZkyCwvYofxeeKzE2vYg4jJUIIWdK0TW4r4Q7o
-         lYpXfpP7LwsBB9N7ohZ4QGMuPg1iVARM3O3lEMILKG5jvdjQ5SNnP1PqEley0miBeEEA
-         qhAq8+gCSh8qps2uVAGMBk4cNk07R1rYRRg5ppFW8M3FP3Yiy8nFYeUMBHe+6/wqGoSX
-         IAp3gpZ7kOsYEnFqAAENizQKb1joqoX4wHdmUU5hizn98IiThk1IoufIvZ2XZjMHxrbg
-         024Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVFm2MolMNucgUS5l0tsC4YZ7vvXp6ZqqpJ72PiJ5Q/YmgKiBz8+0+cmQ+kWDH3Krk1xdV/qSXd3ATQwyfxZVmB/ukM2EhZNZEChQ==
-X-Gm-Message-State: AOJu0YzEqWmB6lzBXDiA53N4PUHm2RUQ0MFkploB1XRq6GkcbV5RVuk/
-	Y5fyMUx2xX2po7W2J2kSiCrDyJ9eJkQbaTtbF8xMbvi7s5n307vpr/mv5Rd+ptM0wirkZwTcvVr
-	gsaVgiysa7T0kC3b9s3yo3DcY4L2qBigb2G5s
-X-Google-Smtp-Source: AGHT+IFwkFXVASVtHHXe54Bdbs+H/MUnSJ+K2O/gJn4A57/o9XwLM5LjW5jlvs0cYMn5hlnXOzinjk+dbmRrXQRVB6Q=
-X-Received: by 2002:a25:900b:0:b0:dce:fd56:b213 with SMTP id
- 3f1490d57ef6-dee4f324ab4mr16873966276.7.1715800677723; Wed, 15 May 2024
- 12:17:57 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 May 2024 12:17:57 -0700
+	s=arc-20240116; t=1715803821; c=relaxed/simple;
+	bh=s9TT8lsoEBdBtea51Akg86AkRCWiOEUvW+YMSo1GYDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kvgJBypcSkDUoTrOlrSHyQb8HrwH3uAawA5xGGj10sg8oRBaSulvt2ZybWPazgJouNekH0OKY4y0CwdqqeXTp66m4PT+etn3FgiNBQQB/bUroNFB0cxtjeUdy+t5WTScDA9Lq11wXhIJC724d9CNBHTfVeHzWSFv0LeGQamS0jQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=B0RN8miP; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=8FXO
+	08frs4hL17ofURhVpLDRG7xWgW1nb8MJfzBWYkI=; b=B0RN8miPsk0F4nH2tSfi
+	lGU6g7eRdF0cZB/w1chizm282Fvx7j5wWm66d5Ty68dz5G/3XH+sMd/0MQJhOiJF
+	sHFd78LujS2BYJh3NYCy4ZKgWKEdPguQRNbP85GwhyfGGUjZZbbsiM9zReplJGLG
+	FYww1wd9mAPitw0rZczzyPIP/nxoMAvUKzZzRMDZhbExBIGRRR0MN2z8pKqBnvHm
+	Mcz6MYSeJOnCprSDfo8IWPHOyPcEG1dAuuOt+aYwdKBOQeL2jHp6NtfMXbKXJAKo
+	THeSzJx3dDaziqeJAlB8LUkqi2v+IL6TFtEbqBnyQ4u1mh+jtKF8/lju+zSizW2v
+	CQ==
+Received: (qmail 2935422 invoked from network); 15 May 2024 22:10:14 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 May 2024 22:10:14 +0200
+X-UD-Smtp-Session: l3s3148p1@8mvetIMYjIdehhtP
+Date: Wed, 15 May 2024 22:10:13 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>, 
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"bhelgaas@google.com" <bhelgaas@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>, "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
+Message-ID: <53sfkav45djcaapqkzsps6ofsinf5lnxbhrjvgsevt3w6qcms6@e2vptwrj645q>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Niklas Cassel <cassel@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>, 
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"bhelgaas@google.com" <bhelgaas@google.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>, "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+ <20240511080257.GF6672@thinkpad>
+ <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+ <20240515075954.GB4488@thinkpad>
+ <l62l4ksr2rkxxi7kwatd3pfwmwv4ytfumhwkthjsurgla2prno@felahg5h5g7o>
+ <ZkTiGWxJK4tbOF5y@ryzen.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240514-ufs-nodename-fix-v1-2-4c55483ac401@linaro.org>
-References: <20240514-ufs-nodename-fix-v1-0-4c55483ac401@linaro.org> <20240514-ufs-nodename-fix-v1-2-4c55483ac401@linaro.org>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Wed, 15 May 2024 12:17:57 -0700
-Message-ID: <CAE-0n50nygK8+0yVUx6MQPwG7+07J+MuGcN1vx77RPZOipffPw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Use 'ufshc' as the node name for
- UFS controller nodes
-To: Alim Akhtar <alim.akhtar@samsung.com>, Andy Gross <agross@kernel.org>, 
-	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bwr76ejofef5m7kw"
+Content-Disposition: inline
+In-Reply-To: <ZkTiGWxJK4tbOF5y@ryzen.lan>
 
-Quoting Manivannan Sadhasivam (2024-05-14 06:08:41)
-> Devicetree binding has documented the node name for UFS controllers as
-> 'ufshc'. So let's use it instead of 'ufs' which is for the UFS devices.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+--bwr76ejofef5m7kw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+> If Renesas could bother to spend the effort to be legally allowed to
+> include the firmware in linux-firmware, do we want to spend the effort
+> to maintain the support for this PCIe controller in mainline?
+
+We (including me) have no indication if Renesas bothered or not. Maybe
+they tried but could not convince a third party. I don't know.
+
+> Is there even an example of a device driver that *requires* firmware
+> that is not in linux-firmware?
+
+Sure thing!
+
+=3D=3D=3D snip here
+
+$ cat Documentation/admin-guide/media/opera-firmware.rst
+=2E. SPDX-License-Identifier: GPL-2.0
+
+Opera firmware
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Author: Marco Gittler <g.marco@freenet.de>
+
+To extract the firmware for the Opera DVB-S1 USB-Box
+you need to copy the files:
+
+2830SCap2.sys
+2830SLoad2.sys
+
+=66rom the windriver disk into this directory.
+
+Then run:
+
+=2E. code-block:: none
+
+	scripts/get_dvb_firmware opera1
+
+and after that you have 2 files:
+
+dvb-usb-opera-01.fw
+dvb-usb-opera1-fpga-01.fw
+
+in here.
+
+Copy them into /lib/firmware/ .
+
+After that the driver can load the firmware
+(if you have enabled firmware loading
+in kernel config and have hotplug running).
+
+=3D=3D=3D snap
+
+And this is probably not the only driver where you need to get firmware
+out of a Windows driver (media drivers and webcam drivers are good
+candidates). And the redistribution of such drivers is likely to be
+limited as well.
+
+Happy hacking,
+
+   Wolfram
+
+
+--bwr76ejofef5m7kw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZFFqEACgkQFA3kzBSg
+Kbad1A/7Bk4NUul1dwzsSaW8EpeJchgIZuXPrS43xegnTA3B1HbO6gCsdplAZ8sc
+V2X9FBEguM3p4TIFIVasgxPYYars1xVtwVPwFiTmhIO6pJSOwQaZc8zWZnPBXNEK
+2hC5SyJqC0E5paMmFXD5iEhPDaO6JimOaI3hp2fR8FyqqXngEjB21A3bkfEeBlEJ
+/2lRT30UPnlXGfu3111MipK+sM+xBUClv2ZjItFi97fAfkn6q8dERedihkAP40Kg
+9rpz2O099S9QMUnJwxqnYF4pz7v8OISBCQ6QFoyCU+nTjNkFyM85wNq4gHaYO5h0
+aB5fh8b/w5LT4fVbrWSLfOHVNOInfMsLQJKiFjzgZoZcZ/v3KsxPiFjnVbekvzFv
+sqT2lfVzxb5yfn2o4iDdkx7m1fwv8nSfSCdaIOJ6fuh8FPI5UQrvpZ4HRBIQJFQG
+FHCtRq9W9Hl55ickgZLekwv0TRjF8xtfiAarmQBxrXcCwdETODa+UZPe59EKuMCh
+BbKyRADkTkx/z7LG2fIiSdlGNCpOm6s1z2Bnl4cNk6JhA7mIfULG3NwTX9a0Dx8A
+BiCsCXDJ8k20QbWxBA9P+oe0qHJAn4nz8ox9jVGleJgPO/ghvkn5wkabwy7S+xGf
+vpQlO1tb+R1k5t95ARMWyacEHo3zQpm9eGWngzVH+JolKWeMwPU=
+=Fgq4
+-----END PGP SIGNATURE-----
+
+--bwr76ejofef5m7kw--
 
