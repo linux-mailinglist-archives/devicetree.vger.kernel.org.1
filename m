@@ -1,196 +1,198 @@
-Return-Path: <devicetree+bounces-67112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD488C6917
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 16:59:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C723B8C692D
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 17:03:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DFC22838CB
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 14:59:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAD84B2205E
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 15:03:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5074E15573D;
-	Wed, 15 May 2024 14:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C990A155A5F;
+	Wed, 15 May 2024 15:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="qt4VBpKN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E537155723;
-	Wed, 15 May 2024 14:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8CF155A30;
+	Wed, 15 May 2024 15:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715785164; cv=none; b=Ln2sMhUECeV1ui4ApOtRyNHhL6PNdeZiKk4bLxvp5g/KIogsN3SHUofDHTeA/+F16zdRP3sa1gvy9cV1RedgavZ53jbtTGhI1Jnn3iWt1Ak9bR8bgjtVUtc8KM0Z5TJIRxrs+ReztUsSHYhtJl+smRFrdZ7Uro75ypVk31lpc9Q=
+	t=1715785412; cv=none; b=cnnEnkhrDPHfunI6mW1cexLceC5bvdUnAnERfTdcdNtMNYXO+FVDA7z8Y16w8/I8k4ShDgEhKQguvx3hDg4DFPhUHMocz5JDSVUtFozAuWo/1jUyBk39UMU+fmK5wpXN10l1ChJwFDb7BYil7T/JKDBQPtsETko3Ql5bxerg1XE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715785164; c=relaxed/simple;
-	bh=dne70KVe5rvpkC5ZaTrqZsZ4NhyJhBOKmob9vFvZ0F0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gEvUk8NxZALy0UWb/zGxmkKEDhLSmjK5Swrm7wk40eY7tbO8QyexpzAaqzatSUNA5dzQdgWNvvj1MOBmftULIx1xtVuBRVBzjcY9OnLZYbDZuFJ1U1rRtdBou6dAAl/s9gh4JA8D4UytDIJZkAfVAiis7VNBmUmJ4w5Ae7lUu+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CA8A81042;
-	Wed, 15 May 2024 07:59:44 -0700 (PDT)
-Received: from [10.57.5.6] (unknown [10.57.5.6])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AA1753F7A6;
-	Wed, 15 May 2024 07:59:13 -0700 (PDT)
-Message-ID: <48c39306-c226-4e7f-a013-d679ca80157e@arm.com>
-Date: Wed, 15 May 2024 15:59:13 +0100
+	s=arc-20240116; t=1715785412; c=relaxed/simple;
+	bh=FAyHswWUFcqlFWsTaHBnDaW6jjNPZ3Kxz4mJcJOdT88=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=QkAOxYuGD+GhnvREgV+EVYctxiXeTdXUnucKmt34jN/JTPbWXjNeeFd1OXaZbbaDRmkLlquyhMIiiJZ/N3I1SnGoVGB+qDqkvqmKEX0bla8f15ifJka53soyhMIsa6EP5V9gqJqkzE4dFqPLJ8RSHOiXtWlx/e3xzuVVTKqOoYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=qt4VBpKN; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353727.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44FEjE7u021827;
+	Wed, 15 May 2024 15:02:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=Eg8ZNW6inA9pj/zfkTYeWUoHB8TFL+NlKQ+DAnY0S+c=;
+ b=qt4VBpKN0mOcPzlw+NtXcZbmF28CLL+rbgoAP49dYuEfgLbg0AdnfxEXz3579vfRJAIN
+ dHZjoQGYFUrsomi2LX5SgGs3uambuLRcuDo+vVp3hj93kcVTlCeFtlRosHzQnCLYMq3M
+ bUXYOTCEI1J8NiqM+GwXPoUS6GfLajKhF+Al4s+p+gywEUuwTcctgnz59Cz+X6WZrF8O
+ RAmsm2FUNlzHE1z9Ye4yddznXHttpACuNrjPZqt1iGOZvmuyoUWLuy0BMquFx1BhhxKe
+ 5IZ1EOhtW9XkZoyte5rFiRdqnVx8t3q9Yd5v+izslTJXx0OJrDp2g5ALAA1+AnNdyFfW Jg== 
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3y4xab04wr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 May 2024 15:02:52 +0000
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44FDlEHU018810;
+	Wed, 15 May 2024 15:02:51 GMT
+Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3y2k0tmevq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 May 2024 15:02:51 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
+	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44FF2nl028836554
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 15 May 2024 15:02:51 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A52C058063;
+	Wed, 15 May 2024 15:02:47 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 2716958065;
+	Wed, 15 May 2024 15:02:47 +0000 (GMT)
+Received: from [9.61.107.19] (unknown [9.61.107.19])
+	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Wed, 15 May 2024 15:02:47 +0000 (GMT)
+Message-ID: <80713a00-9574-4ae0-8af7-3fe12affcfc1@linux.ibm.com>
+Date: Wed, 15 May 2024 10:02:46 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/9] dt-bindings: fsi: Document the FSI controller
+ common properties
+To: Krzysztof Kozlowski <krzk@kernel.org>, linux-fsi@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
+        joel@jms.id.au, andrew@codeconstruct.com.au
+References: <20240514195435.155372-1-eajames@linux.ibm.com>
+ <20240514195435.155372-6-eajames@linux.ibm.com>
+ <9200e46a-3cb5-4363-a560-ee3d88e05ced@kernel.org>
+ <a219f01e-a856-46cb-83c4-4fde99b8addd@linux.ibm.com>
+ <eb6e2b5b-f341-404b-9215-6e80f21a6842@kernel.org>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <eb6e2b5b-f341-404b-9215-6e80f21a6842@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: pxzVAUxyJtQ1j4uWStUiK28reHAGBwcK
+X-Proofpoint-GUID: pxzVAUxyJtQ1j4uWStUiK28reHAGBwcK
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/7] iommu/dma: Make limit checks self-contained
-To: Jon Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
- Christoph Hellwig <hch@lst.de>
-Cc: Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
- Dexuan Cui <decui@microsoft.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- Matthew Rosato <mjrosato@linux.ibm.com>,
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- Jean-Philippe Brucker <jean-philippe@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-References: <cover.1713523152.git.robin.murphy@arm.com>
- <e28a114243d1e79eb3609aded034f8529521333f.1713523152.git.robin.murphy@arm.com>
- <243d441d-dda8-442a-a495-83bf9725a14c@nvidia.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <243d441d-dda8-442a-a495-83bf9725a14c@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-15_07,2024-05-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ bulkscore=0 clxscore=1015 priorityscore=1501 mlxlogscore=999
+ impostorscore=0 phishscore=0 adultscore=0 suspectscore=0
+ lowpriorityscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2405010000 definitions=main-2405150106
 
-Hi Jon,
 
-On 2024-05-14 2:27 pm, Jon Hunter wrote:
-> Hi Robin,
-> 
-> On 19/04/2024 17:54, Robin Murphy wrote:
->> It's now easy to retrieve the device's DMA limits if we want to check
->> them against the domain aperture, so do that ourselves instead of
->> relying on them being passed through the callchain.
+On 5/15/24 09:35, Krzysztof Kozlowski wrote:
+> On 15/05/2024 16:28, Eddie James wrote:
+>> On 5/15/24 09:18, Krzysztof Kozlowski wrote:
+>>> On 14/05/2024 21:54, Eddie James wrote:
+>>>> Since there are multiple FSI controllers documented, the common
+>>>> properties should be documented separately and then referenced
+>>>> from the specific controller documentation.
+>>>>
+>>>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>>>> ---
+>>>> Changes since v4:
+>>>>    - Add interrupt controller properties
+>>>>    - Add clock-frequency property to FSI controller and CFAM
+>>>>    - Add detail to chip-id property description
+>>>>
+>>>>    .../bindings/fsi/fsi-controller.yaml          | 66 +++++++++++++++++++
+>>>>    1 file changed, 66 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/fsi/fsi-controller.yaml b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+>>>> new file mode 100644
+>>>> index 0000000000000..8620e4da6de77
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+>>>> @@ -0,0 +1,66 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/fsi/fsi-controller.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: FSI Controller Common Properties
+>>>> +
+>>>> +maintainers:
+>>>> +  - Eddie James <eajames@linux.ibm.com>
+>>>> +
+>>>> +description:
+>>>> +  FSI (FRU (Field Replaceable Unit) Service Interface) is a two wire bus. The
+>>>> +  FSI bus is connected to a CFAM (Common FRU Access Macro) which contains
+>>>> +  various engines such as I2C controllers, SPI controllers, etc.
+>>>> +
+>>>> +properties:
+>>>> +  "#address-cells":
+>>>> +    const: 2
+>>>> +
+>>>> +  "#size-cells":
+>>>> +    const: 0
+>>>> +
+>>>> +  '#interrupt-cells':
+>>>> +    const: 1
+>>>> +
+>>>> +  clock-frequency:
+>>>> +    minimum: 1
+>>>> +    maximum: 200000000
+>>> This is a deprecated property in general. Why did it appear? It does not
+>>> exist in current bindings and nothing in commit msg suggests changes in
+>>> the bindings themselves.
 >>
->> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
->> Tested-by: Hanjun Guo <guohanjun@huawei.com>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->> ---
->>   drivers/iommu/dma-iommu.c | 21 +++++++++------------
->>   1 file changed, 9 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
->> index a3039005b696..f542eabaefa4 100644
->> --- a/drivers/iommu/dma-iommu.c
->> +++ b/drivers/iommu/dma-iommu.c
->> @@ -660,19 +660,16 @@ static void iommu_dma_init_options(struct 
->> iommu_dma_options *options,
->>   /**
->>    * iommu_dma_init_domain - Initialise a DMA mapping domain
->>    * @domain: IOMMU domain previously prepared by iommu_get_dma_cookie()
->> - * @base: IOVA at which the mappable address space starts
->> - * @limit: Last address of the IOVA space
->>    * @dev: Device the domain is being initialised for
->>    *
->> - * @base and @limit + 1 should be exact multiples of IOMMU page 
->> granularity to
->> - * avoid rounding surprises. If necessary, we reserve the page at 
->> address 0
->> + * If the geometry and dma_range_map include address 0, we reserve 
->> that page
->>    * to ensure it is an invalid IOVA. It is safe to reinitialise a 
->> domain, but
->>    * any change which could make prior IOVAs invalid will fail.
->>    */
->> -static int iommu_dma_init_domain(struct iommu_domain *domain, 
->> dma_addr_t base,
->> -                 dma_addr_t limit, struct device *dev)
->> +static int iommu_dma_init_domain(struct iommu_domain *domain, struct 
->> device *dev)
->>   {
->>       struct iommu_dma_cookie *cookie = domain->iova_cookie;
->> +    const struct bus_dma_region *map = dev->dma_range_map;
->>       unsigned long order, base_pfn;
->>       struct iova_domain *iovad;
->>       int ret;
->> @@ -684,18 +681,18 @@ static int iommu_dma_init_domain(struct 
->> iommu_domain *domain, dma_addr_t base,
->>       /* Use the smallest supported page size for IOVA granularity */
->>       order = __ffs(domain->pgsize_bitmap);
->> -    base_pfn = max_t(unsigned long, 1, base >> order);
->> +    base_pfn = 1;
->>       /* Check the domain allows at least some access to the device... */
->> -    if (domain->geometry.force_aperture) {
->> +    if (map) {
->> +        dma_addr_t base = dma_range_map_min(map);
->>           if (base > domain->geometry.aperture_end ||
->> -            limit < domain->geometry.aperture_start) {
->> +            dma_range_map_max(map) < domain->geometry.aperture_start) {
->>               pr_warn("specified DMA range outside IOMMU capability\n");
->>               return -EFAULT;
->>           }
->>           /* ...then finally give it a kicking to make sure it fits */
->> -        base_pfn = max_t(unsigned long, base_pfn,
->> -                domain->geometry.aperture_start >> order);
->> +        base_pfn = max(base, domain->geometry.aperture_start) >> order;
->>       }
->>       /* start_pfn is always nonzero for an already-initialised domain */
->> @@ -1760,7 +1757,7 @@ void iommu_setup_dma_ops(struct device *dev, u64 
->> dma_base, u64 dma_limit)
->>        * underlying IOMMU driver needs to support via the dma-iommu 
->> layer.
->>        */
->>       if (iommu_is_dma_domain(domain)) {
->> -        if (iommu_dma_init_domain(domain, dma_base, dma_limit, dev))
->> +        if (iommu_dma_init_domain(domain, dev))
->>               goto out_err;
->>           dev->dma_ops = &iommu_dma_ops;
->>       }
-> 
-> 
-> I have noticed some random test failures on Tegra186 and Tegra194 and 
-> bisect is pointing to this commit. Reverting this along with the various 
-> dependencies does fix the problem. On Tegra186 CPU hotplug is failing 
-> and on Tegra194 suspend is failing. Unfortunately, on neither platform 
-> do I see any particular crash but the boards hang somewhere.
+>> OK, is there some document that describes what properties are
+>> deprecated? Because it's used all over the place in the bindings. Anyway
+> dtschema: dtschema/schemas/clock/clock.yaml
+>
+> buses anyway should use bus-frequency but it is also legacy one.
+>
+>> I need this property, I can rename it if you like. I can also update the
+> Why do you need it? Why clocks cannot be chosen by drivers and initial
+> state selected by assigned-clock-rates?
 
-That is... thoroughly bemusing :/ Not only is there supposed to be no 
-real functional change here - we should merely be recalculating the same 
-information from dev->dma_range_map that the callers were already doing 
-to generate the base/limit arguments - but the act of initially setting 
-up a default domain for a device behind an IOMMU should have no 
-connection whatsoever to suspend and especially not to CPU hotplug.
 
-> If you have any ideas on things we can try let me know.
+Well, I could use assigned-clock-rates, though it seems like I'd then 
+have to implement the clock provider framework for both the FSI 
+controller driver and the CFAM driver, which is a lot of extra work. FSI 
+controller isn't really a clock provider, it's a bus like i2c (which 
+uses clock-frequency), so it doesn't quite fit in my opinion...
 
-Since the symptom seems inexplicable, I'd throw the usual memory 
-debugging stuff like KASAN at it first. I'd also try 
-"no_console_suspend" to check whether any late output is being missed in 
-the suspend case (and if it's already broken, then any additional issues 
-that may be caused by the console itself hopefully shouldn't matter).
 
-For more base-covering, do you have the "arm64: Properly clean up 
-iommu-dma remnants" fix in there already as well? That bug has bisected 
-to patch #6 each time though, so I do still suspect that what you're 
-seeing is likely something else. It does seem potentially significant 
-that those Tegra platforms are making fairly wide use of dma-ranges, but 
-there's no clear idea forming out of that observation just yet...
+Thanks for your detailed review Krzysztof,
 
-Thanks,
-Robin.
+Eddie
+
+
+>
+>
+>> commit message to indicate that I'm adding it.
+>
+>
+> Best regards,
+> Krzysztof
+>
 
