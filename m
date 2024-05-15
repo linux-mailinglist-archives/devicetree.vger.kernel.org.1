@@ -1,224 +1,241 @@
-Return-Path: <devicetree+bounces-67140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659708C6BEF
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 20:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F4C8C6C20
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 20:28:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88D141C20FBF
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:13:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 234551C20F5C
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 18:28:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F28158DB7;
-	Wed, 15 May 2024 18:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81ED8158DC3;
+	Wed, 15 May 2024 18:28:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+A4LU6E"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="tdE9wxP2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2048.outbound.protection.outlook.com [40.107.220.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51188158DA8;
-	Wed, 15 May 2024 18:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715796791; cv=none; b=YzkwEubIyN3bQnQq3SsuZS1oLBHpzYl3BizUOeIX0nPxjFz76pnVQVKSwjpZGSgGnbKelLVHiI0gSvVIh08qhBg86Y7FfDNp+F+E+Y1QMsAkrNsF24GplCCYlDqJdME9E8VpnfJfWRoPVQIqmUyQn9L/4FB5DdJPaeqZi5FRPRY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715796791; c=relaxed/simple;
-	bh=TfdF1bpqrHkn9OnfHOleyGznVY48Y0qsPHzXN5hBulw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gsF1z7Jn5rU+XO31PcLufL8Yu8WZqbAUdFefx6pNRZT6QCiqf65QhHA/hHiJawaspsA8y7EdbHjCMM3/0A25BzWbPu2zzxauQMD8pfLDsTOBFStTGMefczzJoX2XEoKsebS/6x7GYh+SoUJmHNnUFXxmZWvWXSQmNWXvbc6vtH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+A4LU6E; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5727dc6d3edso2302905a12.0;
-        Wed, 15 May 2024 11:13:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715796787; x=1716401587; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pch3Ih7LaL+PpkBrCQxVPogM1fubUEsmwW5xj0Btblo=;
-        b=J+A4LU6EhELacsZbVent+FxL8uFOd9YfNsF05ybr1lGFFzGRjBoOamPFz4OzxU598v
-         qwOg/e0coXwv6fPqwiTJ3BFro/BPUkig63tR8JfOTBln0qWiDwxZrNuXuulkcqWuRBAs
-         8Q0r262rSMTQdE8aeoqDASSXwt/ppxXPyfd1ln9824Z5kfovaDXKvsJRM2ZF9oJiLcZa
-         uOlakDIz9deH4VAKFmwoO4Cnwgtnz1gmkzSBPnTe3zOigGIOcBJ2u3ESBATOF/Dme0UF
-         hTNeIBmwNCzUVN3D/8jwLxB1IIaCVQmE0wbyvk/dqC6zb6RvPfsP40PvOjhnc45HxxNy
-         TZIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715796788; x=1716401588;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Pch3Ih7LaL+PpkBrCQxVPogM1fubUEsmwW5xj0Btblo=;
-        b=Z1E8araKWrTO8F9wDOOI8oEkbfGW1efqGa3IyoenVAI57hMUoP4kBvYv2Tdsusefjp
-         cwF1aXY4SDW9cQHI6SAFY8Y6pCHjYpv6kWIpQxgaG22LZQVSeWzrpNQRrFZdj5AbDGVq
-         GoVb8FyyYglOaEQ1DxqAuymeSdcoICi3DgKbSfafe7A615gTsb8h+px4A/Y2CgfA6moI
-         rt0folOR7OuwjJo6asF4Y+c+tDBurA9pdMBjpJyGC5aFaKTrU5c8DhSyvuwdimi2p9va
-         TVa0Di8hbOvY+DFDYuArdYwVqMDt2gkJzVn6zbhn+snmWyHi1hCwc8UmbgtUfQaHeKIy
-         XfHA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjhVNqZnSEIqGzxxrL+4nUQqxHI6rzPQ7IcUb2yjOcnKkk1YZOL32bvMrW6RRg7oZmWjRNhh+9sjON5+FAbCAGK+Thz0974hULNmDryTA19k3up+JSwmEqLBy4aMkf/CN+h9ZmrkLGeg==
-X-Gm-Message-State: AOJu0YxzJm+03ZiVQdiJNA9cKR9nmXovx1TUhwpz1HTpssUG7gENndUR
-	yksisWSxjZ7Dgx/h0Df/mLy9sMp0Wc8NMOTxqPzMyHjQ4T8TfSJd
-X-Google-Smtp-Source: AGHT+IHgPNyYK5FYIjTE7nmsJggKHf4atXCrV0muQ+BI4PZ2Ak2naECuuuyZfglhJRj+gtpVN5yqIQ==
-X-Received: by 2002:a50:d710:0:b0:572:1589:eb98 with SMTP id 4fb4d7f45d1cf-5734d5b9098mr11072869a12.12.1715796787300;
-        Wed, 15 May 2024 11:13:07 -0700 (PDT)
-Received: from yohan.gigerstyle.selfhost.ch (84-72-24-4.dclient.hispeed.ch. [84.72.24.4])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-574ffe6d3f6sm321658a12.0.2024.05.15.11.13.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 May 2024 11:13:07 -0700 (PDT)
-Received: from mgi.gigerstyle.ch (mgi.gigerstyle.ch [192.168.0.5])
-	by yohan.gigerstyle.selfhost.ch (Postfix) with ESMTPSA id 6087A58E;
-	Wed, 15 May 2024 20:13:06 +0200 (CEST)
-Date: Wed, 15 May 2024 20:12:58 +0200
-From: Marc Giger <gigerstyle@gmail.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Shawn Lin <shawn.lin@rock-chips.com>, Jianfeng Liu
- <liujianfeng1994@gmail.com>, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de,
- sfr@canb.auug.org.au, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: remove startup-delay-us from
- vcc3v3_pcie2x1l0 on rock-5b
-Message-ID: <20240515201258.090f754f@mgi.gigerstyle.ch>
-In-Reply-To: <273slx5qkz6ja5qlfjgcaukuzifzsxkdabsld3qodvxaekbzet@ipir56a6afj3>
-References: <20240401081302.942742-1-liujianfeng1994@gmail.com>
-	<432000a6-1de9-4452-beb7-6954677e34c8@rock-chips.com>
-	<273slx5qkz6ja5qlfjgcaukuzifzsxkdabsld3qodvxaekbzet@ipir56a6afj3>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.39; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70FC158DA0;
+	Wed, 15 May 2024 18:28:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715797703; cv=fail; b=u3U+2I6F/A+1e4VTT3r+dYg7PeT8T++keCShjca4y1tWDtr+fypSOUKtQYKuMPIlsKJkvOrjTEpU1m8C6HWr8BZg/ZHTaOGEenEqj7qk6YYGZ+iHQ4boBm5wrN7nC/Xyd+Z+izj7WNiJm+Lw7dOs4o6X1TvwT81If4w35D9PKD8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715797703; c=relaxed/simple;
+	bh=pysV3N8x91W3W1F9tyHCGeXrsfvxvVl+uBXtviJSgHs=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=esOn1LWg4F33vPUnEFBtutEcQtOWRdi46t7q9flSsm+X6+ZfMMAb5VHi2cqTxaCTYA4nGzWNZ9z2gIm/tTSDeFvZ6pw4Wt8MWTSxOWp46NJR23TfE/b04kkfrWU9W/avSCJV4MooLjjeYIjthGYZo3jPFz/ZKCjw8nKcycX5840=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=tdE9wxP2; arc=fail smtp.client-ip=40.107.220.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hxE+XOKNQJ3kIoDGs7tFwhg4d3uRnVpC455WPUXgJhW7wHf0B/CtnD5ZWF/YBdzmq0g2lYewYG1AzOJrlqH1pkxfp3UTdbnqhMIrYnG8oTtAIEbaXgbDdi4se5Pe7nJheFiADzEX0eHGd02PFdlFHNGgQ9dm7THGfCwWwfZcIRab5kH1ZH8ETtH7zZ1PV/oGIRxw5g2pTzoCOPE5APeey1H4iaGGuQppguFEy5XEZ0O6CThdOlQS7T8N6Qlfo95gDZd0Du6/oiw4HN2jJ7QGNrTkrS31HODTuh2KBElgkkwXDTPx25hiv+TUB82TbVtMCZuCQM7JwZMtkLUnrarq9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7qmGePDoXF0g3n4jGx7cjZY7P6NO6GY+XpqzP56lelE=;
+ b=LvsSpVj22F775Mx+UatyNBlOxsZTPkyGfkaokD7V1oljxiBwreI6EJGuwOZhFcE1R1cSKriWPPLm6wk/en6Y2NW3BLRn7ygeRh/blFJxypEBCCp1s2IwWkx+joxv3dRWji/mdYmxkVi8V4/WxDGKjQZmr3v/3tJyN/Img45x0IgZz6ghKu4Zlz6HQSHYiKcyLCieM3s3y7sBe2MVJQeY+Hr9b4ax2FV1lvTD9ehU2slzJy7BT+hNTO4ou3vBRCO113IYOqbXoJsisYqqW2iYt5bA8IoI0PqFjD+kTl1Uy1rvh9hVLuft1pxEsqwQwDYbxzHwsN3Frkv2mCn3Vukm8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7qmGePDoXF0g3n4jGx7cjZY7P6NO6GY+XpqzP56lelE=;
+ b=tdE9wxP2tXGaVeGwazv+7t1PeLP70vI6AiyA1cX49gCKbqcrAkf+YynKDRLJ7INiuTl8t6SjahD8+xEGIRIvtUPv8JSztE2ebBWAL6bRp4mSftwDRaP64QxsgIlnMusgewoJo6rYlyGoHtzx9vmmCLSuDOW0sWibHEM5a1AySsovCrPZFsA5sYK9e6vKk7zt2ftX4vlgBGYJZ2bOFdK61whmVmshlTtalTxyi3h6paEoNqEEMJ1jGPEMFAE551STaC2c9JHJgho3V7ikwWSa0C5xE5wBFbY/2zm6jF+qrL7e+NxsZWvOWaFj+GCJmsvgfLZOkXa4qEN7epxDIkEp3w==
+Received: from PH8PR12MB6674.namprd12.prod.outlook.com (2603:10b6:510:1c1::18)
+ by SJ2PR12MB8112.namprd12.prod.outlook.com (2603:10b6:a03:4f8::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Wed, 15 May
+ 2024 18:28:15 +0000
+Received: from PH8PR12MB6674.namprd12.prod.outlook.com
+ ([fe80::780:77f6:e0af:5b5c]) by PH8PR12MB6674.namprd12.prod.outlook.com
+ ([fe80::780:77f6:e0af:5b5c%5]) with mapi id 15.20.7544.052; Wed, 15 May 2024
+ 18:28:15 +0000
+From: Vidya Sagar <vidyas@nvidia.com>
+To: Jean-Philippe Brucker <jean-philippe@linaro.org>, "will@kernel.org"
+	<will@kernel.org>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"liviu.dudau@arm.com" <liviu.dudau@arm.com>, "sudeep.holla@arm.com"
+	<sudeep.holla@arm.com>, "joro@8bytes.org" <joro@8bytes.org>
+CC: "robin.murphy@arm.com" <robin.murphy@arm.com>, Nicolin Chen
+	<nicolinc@nvidia.com>, Ketan Patil <ketanp@nvidia.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "iommu@lists.linux.dev"
+	<iommu@lists.linux.dev>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: RE: [PATCH 0/3] Enable PCIe ATS for devicetree boot
+Thread-Topic: [PATCH 0/3] Enable PCIe ATS for devicetree boot
+Thread-Index: AQHamipvCg6xt/mF1keAxYVUTIlyxrGYtfKw
+Date: Wed, 15 May 2024 18:28:15 +0000
+Message-ID:
+ <PH8PR12MB6674391D5067B469B0400C26B8EC2@PH8PR12MB6674.namprd12.prod.outlook.com>
+References: <20240429113938.192706-2-jean-philippe@linaro.org>
+In-Reply-To: <20240429113938.192706-2-jean-philippe@linaro.org>
+Accept-Language: en-US, en-IN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH8PR12MB6674:EE_|SJ2PR12MB8112:EE_
+x-ms-office365-filtering-correlation-id: 650ff3f6-540d-4277-2884-08dc750cc913
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230031|366007|376005|1800799015|7416005|38070700009|921011;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?W9OZKK6ivWEKBioCWayBwAUuKE/egcX3SBpDCuMkH6nH5P7tBhQ0OSOMZ2TD?=
+ =?us-ascii?Q?ovjXQW8+04QBcIdQAX2n3RxPTdjsBHm4LoYuJxqtXkyInzW7t1oWmGpv5Et7?=
+ =?us-ascii?Q?rMPPRHo5U9brV5/zV9Py7xRnz2h3rT4OCn3h9m6e5YhGUYBeiZNw5SSPwDTn?=
+ =?us-ascii?Q?zrxjJzLqcQ4U5QMCMjb+/UdaHmvKQ3yT8BJmUnNZ/OrYq8LZ4Hp3bGb1lSCS?=
+ =?us-ascii?Q?Gx/8eZv9dtChh27vJO8TGRierXcbkvqiJ+uGmo8ndj/cmnIoNfR8D9sVhWO3?=
+ =?us-ascii?Q?fjUTvDkTSLEcbeSHPOnHILCX7+EyoDO2GASCG/DEUao2QXt28yVMNy2dA8AX?=
+ =?us-ascii?Q?hFn1vD+sO0EJEKl7kLloB0+i335Rm09oIt3h9f59hYpQYySERUlz1BqVSj4m?=
+ =?us-ascii?Q?wHKWxCbKa9guRaXjNZibPnFkcqzYYKIPIDug9JORlSZrFGwOONGjyt4J7I7M?=
+ =?us-ascii?Q?tgHUH7lQoKKarIbG/XX6aEQV9wgnNFYxHswJPKng50Eo0n1vV/n/fpFeHEH0?=
+ =?us-ascii?Q?AvFsL6sGSd/s+cajOomdBpDMZqGCh3LO1el02BeC/BT2godQ9BiWo6M79xNy?=
+ =?us-ascii?Q?lueZnYaQ9GF6BrspIrKubtDT1b+d5VCbSIIt/0gPH/3sawL0qfPI7DmHUG6N?=
+ =?us-ascii?Q?kSymKOy89XV1Sh6MuVgiGDcIGMt8cjlsDuV0WaUMtcFzxhqyE19Tw0s42ejz?=
+ =?us-ascii?Q?jHX+pGDjmd9EJcXSAqKXAFFNq7kPkgQsfRfcTMZkcWMwbCFYgPqxch37fRtZ?=
+ =?us-ascii?Q?K8MBgFB3e7zFIbUkGYvezVb9cehkh1SMgvYviUqDet6G41TN9K2Dr4rp/y81?=
+ =?us-ascii?Q?Ht45dZG39WOCIV3NCTYHjDjlMNee8YAkPjC0+efImMhJYG5fkW70qbCqdKXY?=
+ =?us-ascii?Q?asRLQ9V3JdKekH6qAbtVqTIzHcMXWHxYaWQC/S6xuUMdq5Yi3G0IvmaG5TSu?=
+ =?us-ascii?Q?j9WhIo5OPwjXa4CPpzT3M1o1LLP1UiB+rO9AuC0MQZ5XiPi3pA/AqbtTn5S7?=
+ =?us-ascii?Q?3U+XstOz7eKcSdV31tERM7tRHSG38jacJJs9IxMYp/XWyabQWYV+wSrxskfz?=
+ =?us-ascii?Q?vhNEFANrfciqxxAEi+p1AljsC4kLWhAdr+OyRGOTFa9UE4jeGcx0mC9+AbEi?=
+ =?us-ascii?Q?KKUvaz1MAzCZ9hxIeJiFpaZ9MpxvXio9z2JcZDRp9cIexohn32eu4tpM0LT8?=
+ =?us-ascii?Q?ZWGcWB8fwFMBS4zacML+HiM5+ZlLBWXIkK7hcsOYqVeW8PaRdysoNtELASaD?=
+ =?us-ascii?Q?WarwsitZTIAmnHYAeisEs5dj4uT9ERjPEeucFRiyTBpaTG2B15x0NkQZZd9X?=
+ =?us-ascii?Q?06zdfpsNJ8uOY4B2iZIMk89m361mxhZwtR1CuPVxFlL+yDlELVPja4SmPANN?=
+ =?us-ascii?Q?+l+D2oY=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR12MB6674.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(7416005)(38070700009)(921011);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?zmkjZR2G450anMcLdUE44+ua0uj1EN/TZrgz3ZLYF1D8vujyYFJLDkCKg8ZY?=
+ =?us-ascii?Q?cEaxN2mrOjHnjPVwdfgnR8uuPyxivOfUySM4V9Au1Em9D2U18myiebUBBEjI?=
+ =?us-ascii?Q?SQUsRW0yFXLgZIznm5ZEaxVPGR1FKWjn9ud2kK3Ny1iUBuIxGI5PTpgUTyrh?=
+ =?us-ascii?Q?/5H6pzc8icUbO1qzlfjWRy5uF4L9HcyNuHOJpEIFD9Y8sJMJ1I3numxP/oe9?=
+ =?us-ascii?Q?Ixk42UoczMvEiJFGZNO/7aonL8HOxoamApboW64X5ei9i9vJAudWR9l5KK2l?=
+ =?us-ascii?Q?bUtbdAZBEqolp0eiz4MmnPdo9UBaE332INKQ2KfBtBe2AnTpNM+JwAQFQPlG?=
+ =?us-ascii?Q?JonI4VhNSLotUP5kywMxjCVwRCXo+UKTc+BtbDIBu5HnkFi5BX3H/qGAupnT?=
+ =?us-ascii?Q?YI2U/hSOsBCd0PI8BHqhd2QHUqrWuZiXjLDC2pF3cVK8GwsL+3ejWN1jGo0/?=
+ =?us-ascii?Q?zRMwNNSBW+5JjTJ4Tq9Nr1aM5m9zttsL893iKKPWWZOTyNESFK9Y7HjgtYKl?=
+ =?us-ascii?Q?V35aRdi9zNqEdKZ++ENaZ1Q0y9H2853aLxLr4Cf8ORFN92Si7BFbl74aDf+P?=
+ =?us-ascii?Q?VgJBQFe1FVyQVVBN/9o9lLMWTorySSjKseojGtGqi1MmkiNKBOIfkrrraQLi?=
+ =?us-ascii?Q?diQpcOaxmhvfVcoSr+2TM1xQEd3Nv3+nZ/OVN8gExc/VVLWCbimZQ7YeD24p?=
+ =?us-ascii?Q?lnFibhsfyjCUIPLd2bv1a8msEuDklj+151PeRuRx8TSBCAtUV6/iBhc5kEYb?=
+ =?us-ascii?Q?QlX9rDgWuABp+GJCbnTjYDwg+5267Fsr0TDYtXAT1UY6H6EQLGivnPsWfocg?=
+ =?us-ascii?Q?2od1Wkil3/jMRsKiBlMEyJxd4be3j9EFSRT8AAf5OOYlz3opRFuG9lBFCMGi?=
+ =?us-ascii?Q?H4axvAMhg+LYr9gntaLhR3BJjCAGBv3bJOIyIrSanVvzExxHE8dWKxt1Gndy?=
+ =?us-ascii?Q?OGposeSBkUgc/kCGnJQrRSvMuFRi3wYGG+ICaGwOklE5i1c4Y3iwak5Mt4ck?=
+ =?us-ascii?Q?oer1E7G/J1hcXdyLH17QgcT0wkD1CPa8fuqiFSvZhvvWWd8QXso8H3US40R2?=
+ =?us-ascii?Q?j/Cu2fDJ8eqxIHlEx4qplghS4lX23Hgt92PXEfiJXu5NcaBB4KUGrqkpn1Sy?=
+ =?us-ascii?Q?EbONp3IemWsI3Udvt3/zpPAMa4m++zq+vO/t5LUu7iLOfzxUb+nL8avR8u3C?=
+ =?us-ascii?Q?4gom8rCgpWxXRASrq9aLIuOyVdsXIVD6q2K9s1PaDMUH/oYdAXTjRaJmXOe7?=
+ =?us-ascii?Q?VIeHNS4MlsVoxLLdr2QriVYjKE+hUCG5zYaXbu/5dpHWBU6tdjC8C35nz5EB?=
+ =?us-ascii?Q?ZClxRxn4uxWRkFgqXbfSkNLX/gFhVKVV8Kgx5hKyRtJJYH5h/5ehOsyZrbJV?=
+ =?us-ascii?Q?k/8EgjHXyjEl2PRva6nXP8/RLzu4QngdQq6RBFFmmPnyvA57Ulp8HL7gLHK7?=
+ =?us-ascii?Q?EiYkSjjISu9AO2OVZcu6H/oKqVblsmObSbYdsIPkvwYtj7RotcaD/gWsI2es?=
+ =?us-ascii?Q?BLhXMo86wZQUr+mz9Pl88OvALRaJLWvP5lCND3wvtTwaex4+JwdNynLYxSV5?=
+ =?us-ascii?Q?48xaKqLU7MpzTBc6Cxo=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6674.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 650ff3f6-540d-4277-2884-08dc750cc913
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2024 18:28:15.3133
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tnoCfIF1C7jW5hXjWuhtYKfXfXR+E/6AF8Sf0uBx8pBTusQRMbifTG/xMPbwxrKxpFbqXiBn/3OYSbiEybPlJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8112
 
-Hi,
-
-On Fri, 12 Apr 2024 18:09:13 +0200
-Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
-
-> Hi,
-> 
-> On Wed, Apr 10, 2024 at 02:30:16PM +0800, Shawn Lin wrote:
-> > Hi Jianfeng,
-> > 
-> > On 2024/4/1 16:13, Jianfeng Liu wrote:
-> > > Property startup-delay-us is copied from vendor dts and it will
-> > > make kernel not detect pcie wifi device. If I run command:
-> > > "echo 1 > /sys/bus/pci/rescan", pcie wifi device is detected, but
-> > > my wifi device RTL8822CE failed to load driver. Another device
-> > > RTL8723BE can load driver but no wifi signal is detected.
-> > > 
-> > > Removing this property will fix issues above.
-> > > 
-> > > Signed-off-by: Jianfeng Liu <liujianfeng1994@gmail.com>
-> > 
-> > startup-delay-us just make sure the power rail is stable before
-> > any action is taken to start the link, preventing the device from
-> > unable to work stably. So it shouldn't be the root cause I think.
-> > 
-> > Could you help try this patch to checkout if it works for you?
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > index d684214..df30127 100644
-> > --- a/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > +++ b/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-> > @@ -167,7 +167,7 @@ static int rockchip_pcie_start_link(struct
-> > dw_pcie *pci) struct rockchip_pcie *rockchip =
-> > to_rockchip_pcie(pci);
-> > 
-> >         /* Reset device */
-> > -       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-> > +       //gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-> 
-> Is this removal actually needed?
-> 
-> > 
-> >         rockchip_pcie_enable_ltssm(rockchip);
-> > 
-> > @@ -180,7 +180,7 @@ static int rockchip_pcie_start_link(struct
-> > dw_pcie *pci)
-> >          * We need more extra time as before, rather than setting
-> > just
-> >          * 100us as we don't know how long should the device need
-> > to reset. */
-> > -       msleep(100);
-> > +       msleep(300);
-> >         gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
-> > 
-> >         return 0;
-> > @@ -311,6 +311,8 @@ static int rockchip_pcie_probe(struct
-> > platform_device *pdev)
-> >         if (ret)
-> >                 return ret;
-> > 
-> > +       gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-> 
-> I suppose it makes sense to use GPIOD_OUT_LOW in
-> rockchip_pcie_resource_get(), so that the GPIO is requested low from
-> the start instead of being high for a very short amount of time.
-> 
-
-I see the very same issue as the original reporter on a Orange Pi 5
-(rk3588s) and a Orange Pi 5 plus (rk3588). In my case the onboard
-ethernet interfaces and/or the nvme drive are randomly not
-initialized properly. This is with Linux 6.8.9. Funny enough it seemed
-to work all the time on 6.8.4 without any issued (having the bifurcation
-patches applied).
-
-After applying the following patch (with the incorporated suggestions
-from Sebastian) everything seems to work on the Opi5 plus but on the
-Opi5 the nvme drive still wan't to properly initialize.
-
-In dmesg the only difference in repect to pcie/nvme I can see is that on
-a working system the following to lines are shown whereby they are
-missing when the nvme was not initialized properly:
-
-nvme nvme0: Shutdown timeout set to 10 seconds
-nvme nvme0: 8/0/0 default/read/poll queues
-
-
-
----
-debian-linux.orig/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-2024-05-02 14:35:35.000000000 +0000 +++
-debian-linux/drivers/pci/controller/dwc/pcie-dw-rockchip.c
-2024-05-14 19:25:18.519434456 +0000 @@ -180,7 +180,7 @@
- 	 * We need more extra time as before, rather than setting just
- 	 * 100us as we don't know how long should the device need to
-reset. */
--	msleep(100);
-+	msleep(300);
- 	gpiod_set_value_cansleep(rockchip->rst_gpio, 1);
- 
- 	return 0;
-@@ -240,7 +240,7 @@
- 		return PTR_ERR(rockchip->apb_base);
- 
- 	rockchip->rst_gpio = devm_gpiod_get_optional(&pdev->dev,
-"reset",
--						     GPIOD_OUT_HIGH);
-+						     GPIOD_OUT_LOW);
- 	if (IS_ERR(rockchip->rst_gpio))
- 		return PTR_ERR(rockchip->rst_gpio);
- 
-@@ -311,6 +311,8 @@
- 	if (ret)
- 		return ret;
- 
-+	gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-+
- 	/* DON'T MOVE ME: must be enable before PHY init */
- 	rockchip->vpcie3v3 = devm_regulator_get_optional(dev,
-"vpcie3v3"); if (IS_ERR(rockchip->vpcie3v3)) {
-
+Thanks, Jean for this series.
+May I know the current status of it?
+Although it was actively reviewed, I see that its current status is set to=
+=20
+'Handled Elsewhere' in https://patchwork.kernel.org/project/linux-pci/list/=
+?series=3D848836&state=3D*
+What is the plan to get this series accepted?
 
 Thanks,
+Vidya Sagar
 
-Marc
+> -----Original Message-----
+> From: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> Sent: Monday, April 29, 2024 5:10 PM
+> To: will@kernel.org; lpieralisi@kernel.org; kw@linux.com; robh@kernel.org=
+;
+> bhelgaas@google.com; krzk+dt@kernel.org; conor+dt@kernel.org;
+> liviu.dudau@arm.com; sudeep.holla@arm.com; joro@8bytes.org
+> Cc: robin.murphy@arm.com; Nicolin Chen <nicolinc@nvidia.com>; Ketan Patil
+> <ketanp@nvidia.com>; linux-pci@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; iommu@lists.linux.dev; devicetree@vger.kernel=
+.org;
+> Jean-Philippe Brucker <jean-philippe@linaro.org>
+> Subject: [PATCH 0/3] Enable PCIe ATS for devicetree boot
+>=20
+> External email: Use caution opening links or attachments
+>=20
+>=20
+> Before enabling Address Translation Support (ATS) in endpoints, the OS ne=
+eds to
+> confirm that the Root Complex supports it. Obtain this information from t=
+he
+> firmware description since there is no architected method. ACPI provides =
+a bit via
+> IORT tables, so add the devicetree equivalent.
+>=20
+> It was discussed a while ago [1], but at the time only a software model s=
+upported
+> it. Respin it now that hardware is available [2].
+>=20
+> To test this with the Arm RevC model, enable ATS in the endpoint and note=
+ that
+> ATS is enabled. Address translation is transparent to the OS.
+>=20
+>         -C pci.pcie_rc.ahci0.endpoint.ats_supported=3D1
+>=20
+>     $ lspci -s 00:1f.0 -vv
+>         Capabilities: [100 v1] Address Translation Service (ATS)
+>                 ATSCap: Invalidate Queue Depth: 00
+>                 ATSCtl: Enable+, Smallest Translation Unit: 00
+>=20
+>=20
+> [1] https://lore.kernel.org/linux-iommu/20200213165049.508908-1-jean-
+> philippe@linaro.org/
+> [2] https://lore.kernel.org/linux-arm-kernel/ZeJP6CwrZ2FSbTYm@Asurada-
+> Nvidia/
+>=20
+> Jean-Philippe Brucker (3):
+>   dt-bindings: PCI: generic: Add ats-supported property
+>   iommu/of: Support ats-supported device-tree property
+>   arm64: dts: fvp: Enable PCIe ATS for Base RevC FVP
+>=20
+>  .../devicetree/bindings/pci/host-generic-pci.yaml        | 6 ++++++
+>  drivers/iommu/of_iommu.c                                 | 9 +++++++++
+>  arch/arm64/boot/dts/arm/fvp-base-revc.dts                | 1 +
+>  3 files changed, 16 insertions(+)
+>=20
+> --
+> 2.44.0
+>=20
+
 
