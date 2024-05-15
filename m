@@ -1,457 +1,173 @@
-Return-Path: <devicetree+bounces-66997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287448C6260
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:00:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A9C8C6279
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:03:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0D2C1F231D6
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:00:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4E1C1F22EB8
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FED4879B;
-	Wed, 15 May 2024 08:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B994D5AB;
+	Wed, 15 May 2024 08:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DeJr4pxL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rO6y9sDE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30094EB20;
-	Wed, 15 May 2024 08:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A887D4A990
+	for <devicetree@vger.kernel.org>; Wed, 15 May 2024 08:03:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715760000; cv=none; b=Lj2OPz3RH9HNGTH680DcNEvC+HfBNedaadbt9ME/N3qy5B4JBAbfv5p2fMGY8KeGtns273FDf5q9S9+VQwH0zgif7cUqiQfRquY3dnPsSHbEGUD7feJyNxAGxRr7i3UUew004ieDs3+nbsG+70y+odRTC/6w02ndb9hBUkpvBX4=
+	t=1715760224; cv=none; b=GacQaoQF9fQBtDX0OcIIf0oOEz9R9sbiIK1kYD3fC4KTizd1HrTAPuE0BBQy94pLlU06PeSi/JjzxkNNAmBrgE9wScuVbYfV9Z56eqHULbjrC0ME8OMKeI/czUSkNtNWlcq+3Wi4hWLLv3ONbZLgMvKC+p2fTe/IueErlm8x8co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715760000; c=relaxed/simple;
-	bh=r+0+Vq6qbg/imR9e3YB2vyU97C4EsrWijbTNlk08K5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HnDXxukCGU8I5ZzteFaeNry00QXFHiilmnyTWAhCaN4so50f8ai/VM1yl399/ifE6kGFIRoeLQEvZ5PMPbhQ1bAyOq3f9NNApksGTNvD073nKejs+EX1B/dmPb3IWCX1m1xGyNqbceypO9TfnzBy9L9Ze9D/HzyvMxGFcLIiBOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DeJr4pxL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B846C116B1;
-	Wed, 15 May 2024 07:59:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715760000;
-	bh=r+0+Vq6qbg/imR9e3YB2vyU97C4EsrWijbTNlk08K5o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DeJr4pxLAzdNk1vg2yM0wBa3yk2/2n3VBc5BTxc9xW+gNzcghL7nWBqZWxreT5DXf
-	 MI51aeQqYw/TuWBJnqyJuxOKFu1pDEtO0/lA1mXuwgvj7XnBEHpV9dz3RpWdIlPQtF
-	 mKRXq2hIk7wj/kBfuvxIvVyMVhCCpomLMcQqIGVqFACCSnH8VcdYGr/D6pMSDJ0GfD
-	 TVc3la18A/on2DV4cmTGts6Fs3nm0vA77N2+X1vWL0g1B6/CBtxE5m7p9X1HvX4LG2
-	 JXxky4lij2Ax823WQlsRbguOqz+DbcPT9IfltD7VYmkNYaw5DHYnIznrElelEk4MYX
-	 bEbq1am7WF0kA==
-Date: Wed, 15 May 2024 09:59:54 +0200
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
-Message-ID: <20240515075954.GB4488@thinkpad>
-References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
- <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
- <20240511080257.GF6672@thinkpad>
- <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1715760224; c=relaxed/simple;
+	bh=VH9txt46L4P36L40P+7h3wObatnHZuVpGod7pcvsnpg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=thqPPXkwvh4UEqMUs6dLbSLnBUNrLYZtT1CMsmYCm94aR327uXGlE1Ap26ax1xlu3ANRyVlUlzvAMlkhOFsHxZDmDmXrICWAPnz7b5tuvtU16xbGyJDq/Q0oxHRDdnAH6q9QllF8+Y/FY/XEqgAB/LjDpj/adR84HeBgify+6vM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rO6y9sDE; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2e6f2534e41so10348901fa.0
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 01:03:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715760219; x=1716365019; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=R04O4/+uapb3Pagg8ZXSnZwmMA9rR8+o1ejwqMPkjdk=;
+        b=rO6y9sDER7lQl7VEYZaDGtYgROFvUBW96HRWjFyGOlO/OTov6G1iQsWXrIWUrGGMCR
+         XhiqI2DnSgWzD5Ws3/x/ac6OQTp25CtbbThmt472C/0WXhNSrPLZ3aDe6bWD9He1Yr2l
+         05qqXe7SU40uZxFJmOw92re9GYaIZqCNynErvLvKI8OEWYJfh5qGvlrDJBu1dtKtMTUA
+         EC/Sk5EOEDbvWmMDKXR63Uqx/GjwQCFlID3bnEZpnfBpE6BBXObnMsmBaf5hC5RxXwR3
+         HLEc9HkGidxPGgu1oX+xAPPTkmtK0c97Kg6XdXzFqo+ZocXiWNdVF11Nz8oQqu20I316
+         ij5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715760219; x=1716365019;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R04O4/+uapb3Pagg8ZXSnZwmMA9rR8+o1ejwqMPkjdk=;
+        b=ZpV9i9vMZTKF4izRq+pxm0jwTjs8385rKjMT6exCmrAGYcYJ2Gb+A4iih7ZoIRLjXv
+         L0oF+phTP21WnEZVx8pJZG7v5k58x6qqyK8TxPWnenNTB3R2NuXA393YZiyl0TKts+Wz
+         7BRRamWBbQi2LQZ948zF5VRA1aXPJcXjoonbpO6n/rkcbWbEdm9T7zg9dcpuqFO1Lub8
+         VjAcf1hXtqn0hzJRcBE+vkrSNnNSWyiMsEETLfsWudU4zRE64pyJ6K9vmZi15CH+xx0f
+         F9M92pthyzCkWDYDnc6aMrC2LHlj9b8khhv4PuooEVX9CLo9BsfahulaGBA1mFxcnUkg
+         DWng==
+X-Forwarded-Encrypted: i=1; AJvYcCX3A7uCS082x4cOPaJy45eWleUT2GK6Nxo1FYoOspeAKxO8/PMozFdyQ8To7bhI7WPPeCt0SZyHS1L4tRjNAcqreWi6r417XG+raA==
+X-Gm-Message-State: AOJu0Yz0qAG2h8UoDzcAviGzZ6K8Iua3QSHKjzjitKayuVWXzCGXptHg
+	SwsQEli3xBFdjsgYo3g3mLNcfWGZucW5zotx3eHVkkRrbCfuay81VhlGtKJWYEY=
+X-Google-Smtp-Source: AGHT+IFtdXWk+XPXvaBplFUmiQVxNdck1a7Vh7kOUzVnhb7FDeeuJyPAnxtf1CxsBH0hkDIPvgRv2w==
+X-Received: by 2002:a2e:a98a:0:b0:2e6:f769:5124 with SMTP id 38308e7fff4ca-2e6f769532emr8715491fa.39.1715760218543;
+        Wed, 15 May 2024 01:03:38 -0700 (PDT)
+Received: from [10.91.0.75] ([149.14.240.163])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502bbbbec5sm15620651f8f.95.2024.05.15.01.03.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 May 2024 01:03:38 -0700 (PDT)
+Message-ID: <f6de4e1a-b3fa-457e-8819-041b2fb8739a@linaro.org>
+Date: Wed, 15 May 2024 10:03:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: ufs: qcom: Use 'ufshc' as the node name
+ for UFS controller nodes
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Conor Dooley <conor@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+ linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240514-ufs-nodename-fix-v1-0-4c55483ac401@linaro.org>
+ <20240514-ufs-nodename-fix-v1-1-4c55483ac401@linaro.org>
+ <20240514-buggy-sighing-1573000e3f52@spud> <20240515075005.GC2445@thinkpad>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240515075005.GC2445@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 14, 2024 at 11:27:30AM +0000, Yoshihiro Shimoda wrote:
-> Hi Manivannan,
+On 15/05/2024 09:50, Manivannan Sadhasivam wrote:
+> On Tue, May 14, 2024 at 07:50:15PM +0100, Conor Dooley wrote:
+>> On Tue, May 14, 2024 at 03:08:40PM +0200, Manivannan Sadhasivam wrote:
+>>> Devicetree binding has documented the node name for UFS controllers as
+>>> 'ufshc'. So let's use it instead of 'ufs' which is for the UFS devices.
+>>
+>> Can you point out where that's been documented?
 > 
-> > From: Manivannan Sadhasivam, Sent: Saturday, May 11, 2024 5:03 PM
-> > 
-> > On Mon, Apr 15, 2024 at 05:11:34PM +0900, Yoshihiro Shimoda wrote:
-> > > This driver previously supported r8a779f0 (R-Car S4-8). Add support
-> > > for r8a779g0 (R-Car V4H). PCIe features of both r8a779f0 and r8a779g0
-> > > are almost all the same. For example:
-> > >  - PCI Express Base Specification Revision 4.0
-> > >  - Root complex mode and endpoint mode are supported
-> > >
-> > > However, r8a779g0 requires specific firmware downloading, to
-> > > initialize the PHY. Otherwise, the PCIe controller cannot work.
-> > > The firmware is attached in the manual of the r8a779g0 as text.
-> > > So, convert it to a binary file by using a script.
-> > 
-> > The firmware is expected to be present in userspace. So where is it btw? Is it
-> > upstreamed to linux-firmware?
+> Typo here. s/Devicetree binding/Devicetree spec
 > 
-> I may misunderstand your question, but the firmware is in the SoC's datasheet as
-> a text file. So, we need to convert it to a binary file and store it into the rootfs.
-> (Also, for debug purpose, we can use built-in firmware from "CONFIG_EXTRA_FIRMWARE".)
-> 
-> > You cannot ask users to manually copy the text and convert it to a binary file.
-> > But if the firmware or sequence is not going to change, why can't you hardcode
-> > it in the driver itself?
-> 
-> This is because that Renesas is not able to distribute the firmware freely.
-> 
+> https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter2-devicetree-basics.rst#generic-names-recommendation
 
-Seriously? Are you saying that the user has to sign NDA to get this firmware?
+I read your explanation in DT spec commit:
 
-- Mani
+"In a lot of places, 'ufs' is used as the node name to identify the host
+    controller, but it is wrong since 'ufs' denotes 'UFS device'."
 
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > ---
-> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 201 +++++++++++++++++++-
-> > >  1 file changed, 200 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> > > index 980a916933d6..4e934e9156f2 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
-> > > @@ -5,8 +5,10 @@
-> > >   */
-> > >
-> > >  #include <linux/delay.h>
-> > > +#include <linux/firmware.h>
-> > >  #include <linux/interrupt.h>
-> > >  #include <linux/io.h>
-> > > +#include <linux/iopoll.h>
-> > >  #include <linux/module.h>
-> > >  #include <linux/of.h>
-> > >  #include <linux/pci.h>
-> > > @@ -20,9 +22,10 @@
-> > >  /* Renesas-specific */
-> > >  /* PCIe Mode Setting Register 0 */
-> > >  #define PCIEMSR0		0x0000
-> > > -#define BIFUR_MOD_SET_ON	BIT(0)
-> > > +#define APP_SRIS_MODE		BIT(6)
-> > >  #define DEVICE_TYPE_EP		0
-> > >  #define DEVICE_TYPE_RC		BIT(4)
-> > > +#define BIFUR_MOD_SET_ON	BIT(0)
-> > >
-> > >  /* PCIe Interrupt Status 0 */
-> > >  #define PCIEINTSTS0		0x0084
-> > > @@ -37,19 +40,47 @@
-> > >  #define PCIEDMAINTSTSEN		0x0314
-> > >  #define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
-> > >
-> > > +/* Port Logic Registers 89 */
-> > > +#define PRTLGC89		0x0b70
-> > > +
-> > > +/* Port Logic Registers 90 */
-> > > +#define PRTLGC90		0x0b74
-> > > +
-> > >  /* PCIe Reset Control Register 1 */
-> > >  #define PCIERSTCTRL1		0x0014
-> > >  #define APP_HOLD_PHY_RST	BIT(16)
-> > >  #define APP_LTSSM_ENABLE	BIT(0)
-> > >
-> > > +/* PCIe Power Management Control */
-> > > +#define PCIEPWRMNGCTRL		0x0070
-> > > +#define APP_CLK_REQ_N		BIT(11)
-> > > +#define APP_CLK_PM_EN		BIT(10)
-> > > +
-> > > +/*
-> > > + * The R-Car Gen4 documents don't describe the PHY registers' name.
-> > > + * But, the initialization procedure describes these offsets. So,
-> > > + * this driver makes up own #defines for the offsets.
-> > > + */
-> > > +#define RCAR_GEN4_PCIE_PHY_0f8	0x0f8
-> > > +#define RCAR_GEN4_PCIE_PHY_148	0x148
-> > > +#define RCAR_GEN4_PCIE_PHY_1d4	0x1d4
-> > > +#define RCAR_GEN4_PCIE_PHY_514	0x514
-> > > +#define RCAR_GEN4_PCIE_PHY_700	0x700
-> > > +
-> > 
-> > As I said before, these defines provide no information about the registers at
-> > all. So please use the offset directly and add a comment.
-> 
-> I got it.
-> 
-> > >  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
-> > >  #define RCAR_MAX_LINK_SPEED		4
-> > >
-> > >  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
-> > >  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
-> > >
-> > > +#define RCAR_GEN4_PCIE_FIRMWARE_NAME		"rcar_gen4_pcie.bin"
-> > > +#define RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR	0xc000
-> > > +
-> > > +MODULE_FIRMWARE(RCAR_GEN4_PCIE_FIRMWARE_NAME);
-> > > +
-> > >  struct rcar_gen4_pcie;
-> > >  struct rcar_gen4_pcie_drvdata {
-> > > +	void (*additional_common_init)(struct rcar_gen4_pcie *rcar);
-> > 
-> > What is this init for? Controller? PHY?
-> 
-> This init is for controller.
-> 
-> > >  	int (*ltssm_enable)(struct rcar_gen4_pcie *rcar);
-> > >  	enum dw_pcie_device_mode mode;
-> > >  };
-> > > @@ -57,12 +88,144 @@ struct rcar_gen4_pcie_drvdata {
-> > >  struct rcar_gen4_pcie {
-> > >  	struct dw_pcie dw;
-> > >  	void __iomem *base;
-> > > +	void __iomem *phy_base;
-> > >  	struct platform_device *pdev;
-> > >  	const struct rcar_gen4_pcie_drvdata *drvdata;
-> > >  };
-> > >  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
-> > >
-> > >  /* Common */
-> > > +static void rcar_gen4_pcie_phy_reg_update_bits(struct rcar_gen4_pcie *rcar,
-> > > +					       u32 offset, u32 mask, u32 val)
-> > > +{
-> > > +	u32 tmp;
-> > > +
-> > > +	tmp = readl(rcar->phy_base + offset);
-> > > +	tmp &= ~mask;
-> > > +	tmp |= val;
-> > > +	writel(tmp, rcar->phy_base + offset);
-> > > +}
-> > > +
-> > > +static int rcar_gen4_pcie_reg_check(struct rcar_gen4_pcie *rcar,
-> > > +				    u32 offset, u32 mask)
-> > > +{
-> > > +	struct dw_pcie *dw = &rcar->dw;
-> > > +
-> > > +	if (dw_pcie_readl_dbi(dw, offset) & mask)
-> > > +		return -EAGAIN;
-> > 
-> > What is this function checking actually? It is just a DBI read. Do you expect
-> > these register accesses to fail?
-> 
-> This function is checking whether the register's value with mask is zero or not.
-> - If non-zero, return -EAGAIN.
-> - If zero, return 0. (this is expected value.)
-> 
-> Perhaps, should I change the function name? For example, rcar_gen4_pcie_reg_test_bit()?
-> According to the datasheet, software needs to write registers again if the register
-> value(s) is(are) not expected value(s).
-> 
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int rcar_gen4_pcie_download_phy_firmware(struct rcar_gen4_pcie *rcar)
-> > > +{
-> > > +	const u32 check_addr[] = { 0x00101018, 0x00101118, 0x00101021, 0x00101121};
-> > 
-> > What does this check_addr corresponds to?
-> 
-> I don't know. The datasheet just said that like other magic numbers.
-> I'll add such a comment here.
-> 
-> > > +	struct dw_pcie *dw = &rcar->dw;
-> > > +	const struct firmware *fw;
-> > > +	unsigned int i, timeout;
-> > > +	u32 data;
-> > > +	int ret;
-> > > +
-> > > +	ret = request_firmware(&fw, RCAR_GEN4_PCIE_FIRMWARE_NAME, dw->dev);
-> > > +	if (ret) {
-> > > +		dev_err(dw->dev, "%s: Requesting firmware failed\n", __func__);
-> > 
-> > Print the firmware name in the case of error.
-> 
-> I got it.
-> 
-> > But as I said above, please try to hardcode the fw if it is not going to change.
-> > We do this in other drivers as well.
-> 
-> As I mentioned above, I would like to keep calling this function.
-> 
-> Best regards,
-> Yoshihiro Shimoda
-> 
-> > - Mani
-> > 
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	for (i = 0; i < (fw->size / 2); i++) {
-> > > +		data = fw->data[(i * 2) + 1] << 8 | fw->data[i * 2];
-> > > +		timeout = 100;
-> > > +		do {
-> > > +			dw_pcie_writel_dbi(dw, PRTLGC89, RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR + i);
-> > > +			dw_pcie_writel_dbi(dw, PRTLGC90, data);
-> > > +			if (rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30)) >= 0)
-> > > +				break;
-> > > +			if (!(--timeout)) {
-> > > +				ret = -ETIMEDOUT;
-> > > +				goto exit;
-> > > +			}
-> > > +			usleep_range(100, 200);
-> > > +		} while (1);
-> > > +	}
-> > > +
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(17), BIT(17));
-> > > +
-> > > +	for (i = 0; i < ARRAY_SIZE(check_addr); i++) {
-> > > +		timeout = 100;
-> > > +		do {
-> > > +			dw_pcie_writel_dbi(dw, PRTLGC89, check_addr[i]);
-> > > +			ret = rcar_gen4_pcie_reg_check(rcar, PRTLGC89, BIT(30));
-> > > +			ret |= rcar_gen4_pcie_reg_check(rcar, PRTLGC90, BIT(0));
-> > > +			if (ret >= 0)
-> > > +				break;
-> > > +			if (!(--timeout)) {
-> > > +				ret = -ETIMEDOUT;
-> > > +				goto exit;
-> > > +			}
-> > > +			usleep_range(100, 200);
-> > > +		} while (1);
-> > > +	}
-> > > +
-> > > +	ret = 0;
-> > > +exit:
-> > > +	release_firmware(fw);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int rcar_gen4_pcie_enable_phy(struct rcar_gen4_pcie *rcar)
-> > > +{
-> > > +	struct dw_pcie *dw = &rcar->dw;
-> > > +	u32 val;
-> > > +	int ret;
-> > > +
-> > > +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_FORCE);
-> > > +	val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
-> > > +	dw_pcie_writel_dbi(dw, PCIE_PORT_FORCE, val);
-> > > +
-> > > +	val = readl(rcar->base + PCIEMSR0);
-> > > +	val |= APP_SRIS_MODE;
-> > > +	writel(val, rcar->base + PCIEMSR0);
-> > > +
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(28), 0);
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(20), 0);
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(12), 0);
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_700, BIT(4), 0);
-> > > +
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> > > +					   GENMASK(23, 22), BIT(22));
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> > > +					   GENMASK(18, 16), GENMASK(17, 16));
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> > > +					   GENMASK(7, 6), BIT(6));
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_148,
-> > > +					   GENMASK(2, 0), GENMASK(11, 0));
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_1d4,
-> > > +					   GENMASK(16, 15), GENMASK(16, 15));
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_514, BIT(26), BIT(26));
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(16), 0);
-> > > +	rcar_gen4_pcie_phy_reg_update_bits(rcar, RCAR_GEN4_PCIE_PHY_0f8, BIT(19), BIT(19));
-> > > +
-> > > +	val = readl(rcar->base + PCIERSTCTRL1);
-> > > +	val &= ~APP_HOLD_PHY_RST;
-> > > +	writel(val, rcar->base + PCIERSTCTRL1);
-> > > +
-> > > +	ret = readl_poll_timeout(rcar->phy_base + RCAR_GEN4_PCIE_PHY_0f8, val,
-> > > +				 !(val & BIT(18)), 100, 10000);
-> > > +	if (ret < 0)
-> > > +		return ret;
-> > > +
-> > > +	ret = rcar_gen4_pcie_download_phy_firmware(rcar);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	val = readl(rcar->base + PCIERSTCTRL1);
-> > > +	val |= APP_LTSSM_ENABLE;
-> > > +	writel(val, rcar->base + PCIERSTCTRL1);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  static void rcar_gen4_pcie_ltssm_control(struct rcar_gen4_pcie *rcar,
-> > >  					 bool enable)
-> > >  {
-> > > @@ -200,6 +363,9 @@ static int rcar_gen4_pcie_common_init(struct rcar_gen4_pcie *rcar)
-> > >  	if (ret)
-> > >  		goto err_unprepare;
-> > >
-> > > +	if (rcar->drvdata->additional_common_init)
-> > > +		rcar->drvdata->additional_common_init(rcar);
-> > > +
-> > >  	return 0;
-> > >
-> > >  err_unprepare:
-> > > @@ -241,6 +407,10 @@ static void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
-> > >
-> > >  static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar)
-> > >  {
-> > > +	rcar->phy_base = devm_platform_ioremap_resource_byname(rcar->pdev, "phy");
-> > > +	if (IS_ERR(rcar->phy_base))
-> > > +		return PTR_ERR(rcar->phy_base);
-> > > +
-> > >  	/* Renesas-specific registers */
-> > >  	rcar->base = devm_platform_ioremap_resource_byname(rcar->pdev, "app");
-> > >
-> > > @@ -517,6 +687,31 @@ static int r8a779f0_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
-> > >  	return 0;
-> > >  }
-> > >
-> > > +static void rcar_gen4_pcie_additional_common_init(struct rcar_gen4_pcie *rcar)
-> > > +{
-> > > +	struct dw_pcie *dw = &rcar->dw;
-> > > +	u32 val;
-> > > +
-> > > +	/*
-> > > +	 * The SoC manual said the register setting is required. Otherwise,
-> > > +	 * linkup failed.
-> > > +	 */
-> > > +	val = dw_pcie_readl_dbi(dw, PCIE_PORT_LANE_SKEW);
-> > > +	val &= ~PORT_LANE_SKEW_INSERT_MASK;
-> > > +	if (dw->num_lanes < 4)
-> > > +		val |= BIT(6);
-> > > +	dw_pcie_writel_dbi(dw, PCIE_PORT_LANE_SKEW, val);
-> > > +
-> > > +	val = readl(rcar->base + PCIEPWRMNGCTRL);
-> > > +	val |= APP_CLK_REQ_N | APP_CLK_PM_EN;
-> > > +	writel(val, rcar->base + PCIEPWRMNGCTRL);
-> > > +}
-> > > +
-> > > +static int rcar_gen4_pcie_ltssm_enable(struct rcar_gen4_pcie *rcar)
-> > > +{
-> > > +	return rcar_gen4_pcie_enable_phy(rcar);
-> > > +}
-> > > +
-> > >  static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie = {
-> > >  	.ltssm_enable = r8a779f0_pcie_ltssm_enable,
-> > >  	.mode = DW_PCIE_RC_TYPE,
-> > > @@ -528,10 +723,14 @@ static struct rcar_gen4_pcie_drvdata drvdata_r8a779f0_pcie_ep = {
-> > >  };
-> > >
-> > >  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie = {
-> > > +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
-> > > +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
-> > >  	.mode = DW_PCIE_RC_TYPE,
-> > >  };
-> > >
-> > >  static struct rcar_gen4_pcie_drvdata drvdata_rcar_gen4_pcie_ep = {
-> > > +	.additional_common_init = rcar_gen4_pcie_additional_common_init,
-> > > +	.ltssm_enable = rcar_gen4_pcie_ltssm_enable,
-> > >  	.mode = DW_PCIE_EP_TYPE,
-> > >  };
-> > >
-> > > --
-> > > 2.25.1
-> > >
-> > >
-> > 
-> > --
-> > மணிவண்ணன் சதாசிவம்
+but isn't this the same as with MMC? We do not call the nodes "mmchc" or
+"mmch", even though all of them are hosts, because "mmc" is the card.
+The same for most of other storage devices. Or USB. The term
+"controller" appears only for few cases like clocks, resets and power.
 
--- 
-மணிவண்ணன் சதாசிவம்
+When looking at storage nodes, ufsHC is an exception here.
+
+Best regards,
+Krzysztof
+
 
