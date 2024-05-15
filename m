@@ -1,126 +1,118 @@
-Return-Path: <devicetree+bounces-66995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-66996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039DB8C6237
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 09:54:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C0B8C624C
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 09:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 306C11C20D94
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 07:54:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82A681C20F6B
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 07:56:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C6C481D0;
-	Wed, 15 May 2024 07:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B3A482C3;
+	Wed, 15 May 2024 07:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c7lEh7Cl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wln+llPp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED023374D1;
-	Wed, 15 May 2024 07:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27968374D1;
+	Wed, 15 May 2024 07:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715759688; cv=none; b=neGbr6iHMk8kibbJKMTGNt3gRCLlBY6zXf3UYl7zoD2+f3hqMzXbHE0qQyYti1AWn2lhqrANG+hqpeUHWSF+SMx13gA7LA2T5YFOWoJt0PS1G+hODbJceRblhzGcQAlR0sP5m06vTMXtqDvg1O40Z3++WEKFKnYlkXXxl0GiAY0=
+	t=1715759805; cv=none; b=dOeCwoG4gIDBWxwCeGX/J2i6RybOhs8Ytj7lsPZgnaLX80mDn8a4JQirc9Mn7OYNRvYj0vCE7duIBtuRfL6iAb2ccMsNDXvbmRH/HCPf2xPt3+zoX6vbWuJo9FRKYK+r5/dO0cqiArVrHQY8ASUE26hbshixeWalikLQ8g1iqUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715759688; c=relaxed/simple;
-	bh=zihY7Bcw/EswAtMwn0KVvYNpBlL/LMvWlPjfCHumeYY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M85JTL47/rQGqSayPPcgBtP1lbQ6MCQ+eihLeDQTcTC/mo1Oh5NfHNhDeqgPGNChINTmI9BtrCHDZWZnZzsmEWCgaFZio1hy9HGHrv8mhPF7wnJSOKFXefD154DkCeCCa0bKhPgL5L84rf8y/i8jdYU5BW060SF718zhnNUnvhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c7lEh7Cl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32487C116B1;
-	Wed, 15 May 2024 07:54:45 +0000 (UTC)
+	s=arc-20240116; t=1715759805; c=relaxed/simple;
+	bh=Y0XlzNbxDtavlVNRzIsISWqhEfC8KQa5L0AjukAbp60=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dk0m77YscB8tpCEyCibjQA6xQfqZGwEhvJIsSt47JdT4R7T4GXArW/0FDHJNMGrWqA/ArVK8QRCjdy/r13UxldCGtRJGoKrzyRjRu/A7cgSrlunCpNNn/wlExOj+jnZGwW2d38Tozme0cwmgQl9B6JRfFaqDeUgkcWkdWHor4mo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wln+llPp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4BC1C116B1;
+	Wed, 15 May 2024 07:56:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715759687;
-	bh=zihY7Bcw/EswAtMwn0KVvYNpBlL/LMvWlPjfCHumeYY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c7lEh7ClFb+A2IBNrtfDlwG+6A0ENnO4V3DYwMNNIh4WQUyajLx4IW2ISyw4dRhVU
-	 50iri1fAIrno5JqVoMPzDj+mHv9jTw1lrEbTa4lTYq/vcydV7A6BPnryYiYqzfZ4VN
-	 IFJ4j05dJiek1a8X6k4nyCWWYbEeMJxUCmNnLrqiR7gm0pURxce2Ht4qeeDTgzpcYB
-	 3Mvye1XeLKY0glNQhVhfP5SzeIowuqiCRhn3AuuK5/3VoVODFjE5mbNof5jdXwdVA3
-	 vXkaRPVYceeVMdnfYsXTcJZVuYd86JS39mDPoEl2UIIIbPu16qiCW7bdNrOemvsRox
-	 MGII/roNrL0UA==
-Message-ID: <ee193525-ea10-4006-a86e-977e2f0352ea@kernel.org>
-Date: Wed, 15 May 2024 09:54:43 +0200
+	s=k20201202; t=1715759804;
+	bh=Y0XlzNbxDtavlVNRzIsISWqhEfC8KQa5L0AjukAbp60=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Wln+llPpVG9vKFnLWPQa0pWmj/2zc+/TgoFJN1+sDrsxWU2w5INYB0pa6giuWvSQV
+	 dxNqksE8e6vupQFn8ZaqOAM+j62OMf8szaulSdNQG2lUsFJXJtYJcLeTCuGrIaaNo1
+	 O3O48bs/Yxv7l9jL1GhIJERgAxHum0krJue6X7WS4I41+h/sJRFvUeMCuCGG7ZEClc
+	 oMKKd1bWhaFyOJl0HMUgnVOidKamycHK3o0YqUek35MaRkCtDYT76l4zfj+tNW1N44
+	 G102wOunWFgdvDvycwvNbopiYGXBuGK+1GfoXymPJ5A2gBm/qCsElzCykZVh0sbHMk
+	 EEYzEFFRYYgzQ==
+Date: Wed, 15 May 2024 09:56:38 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jingoohan1@gmail.com,
+	marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v7 4/7] PCI: rcar-gen4: Add rcar_gen4_pcie_drvdata
+Message-ID: <20240515075638.GA4488@thinkpad>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-5-yoshihiro.shimoda.uh@renesas.com>
+ <20240511072702.GD6672@thinkpad>
+ <CAMuHMdVTGev4GmX9LFwXx1gn+69ZJFGLB+vsaJou5eLMMa7pkw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ASoC: dt-bindings: ak4104: convert to dt schema
-To: Xiaxi Shen <shenxiaxi26@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, javier.carrasco.cruz@gmail.com,
- skhan@linuxfoundation.org
-References: <ab4186fa-5a2f-4f97-9aa7-75a6c55bc142@kernel.org>
- <20240515064139.456735-1-shenxiaxi26@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240515064139.456735-1-shenxiaxi26@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdVTGev4GmX9LFwXx1gn+69ZJFGLB+vsaJou5eLMMa7pkw@mail.gmail.com>
 
-On 15/05/2024 08:41, Xiaxi Shen wrote:
-> Convert ak4104 binding to DT schema
+On Mon, May 13, 2024 at 11:20:56AM +0200, Geert Uytterhoeven wrote:
+> Hi Mani,
 > 
-> Changes in v3:
->  - Use unevaluatedProperties instead
->  - Fix indentations in the example
+> On Sat, May 11, 2024 at 9:37 AM Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > On Mon, Apr 15, 2024 at 05:11:32PM +0900, Yoshihiro Shimoda wrote:
+> > > In other to support future SoCs such as r8a779g0 and r8a779h0 that
+> > > require different initialization settings, let's introduce SoC
+> > > specific driver data with the initial member being the device mode.
+> > > No functional change.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> >
+> > One nitpick below. With that addressed,
+> >
+> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> 
+> > > --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> 
+> > > @@ -437,9 +441,9 @@ static void rcar_gen4_remove_dw_pcie_ep(struct rcar_gen4_pcie *rcar)
+> > >  /* Common */
+> > >  static int rcar_gen4_add_dw_pcie(struct rcar_gen4_pcie *rcar)
+> > >  {
+> > > -     rcar->mode = (uintptr_t)of_device_get_match_data(&rcar->pdev->dev);
+> > > +     rcar->drvdata = of_device_get_match_data(&rcar->pdev->dev);
+> >
+> > Even though rcar->drvdata won't be NULL, the lack of NULL check will cause
+> > folks to send fixup patch later. So please add a NULL check here itself.
+> 
+> I tend to disagree: this can never return NULL.
+> Less than half of the callers of of_device_get_match_data() check for
+> a NULL pointer, and many of them do so because they are used both
+> with and without DT.
+> 
 
-I think you got already feedback about this - changelog goes to
-changelog section, so ---.
+As I said, there is no way it can be NULL. But folks tend to send the 'fix'
+patches as the automated tools report these kind of non-existent issues. And I
+agree that we can decide not to accept those patches, but I just wanted to avoid
+that noise. As a maintainer, I try to avoid seeing those kind of patches if
+there is a way we can avoid it.
 
-I really suggest using b4 for contributions. It makes things much
-easier. Alternatively patman.
+But no strong preference here.
 
-Best regards,
-Krzysztof
+- Mani
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
