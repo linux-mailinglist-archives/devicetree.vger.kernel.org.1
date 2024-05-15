@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-67001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E9E8C6292
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AAB8C6299
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 10:14:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DB081F228A5
-	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:12:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D0021F21350
+	for <lists+devicetree@lfdr.de>; Wed, 15 May 2024 08:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815EE4AEDD;
-	Wed, 15 May 2024 08:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC054AEF4;
+	Wed, 15 May 2024 08:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hZlaLlzm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mzT2zhvS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7F45337A;
-	Wed, 15 May 2024 08:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816074AEE0;
+	Wed, 15 May 2024 08:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715760715; cv=none; b=gk5AyFmgWqK3U1c1+AkRF4HTVXSnZVLSvd+aoEGhT/L8tGEscBxBONIUIeAxlt18NP3EjgOIaKwns+vXOuA5WK/4qlS2+ZZtZzgjVsgPf10vtbBbSwM0nEJDbNRQRfuA2K/GzWyPnJilo8UZdW34vvfTvab7jwicKWS6e2m51FM=
+	t=1715760864; cv=none; b=D2Eqiu/qH9+Ue6FEGHtOLOLULCcPocnuTWUfq9arLBdXPWGK8P3GesmKrA3kixftKayp+A6j9OxjYccDiE1dyFYNncSMi/WM1u6ZO3cMCRoBtrADJGHV7WCxMzRkQrRIdnAoE6nx3RvLUBONIaFimbQ5HRe7QtFMgi+vB6+WXBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715760715; c=relaxed/simple;
-	bh=xlZElKdHr4a3u0ZpkMceEK9THjOVXhJE1vBAP3K8u0s=;
+	s=arc-20240116; t=1715760864; c=relaxed/simple;
+	bh=f1VW3XjbE/dtDIgTLPQjTfTGxckD9xNYEPvqyoeVKVg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zzy1FB6sA+MPZywEyGHl78OH/SYqQn6S1x/LGx3q2yP1nQFqytdP925kXGXvVEeNoyGlBq4OAfOwmntGsnr1U35hWRCBYaTHRgtSORbkRlBgI0aPvJcJNBvaheSyseDfP0QTww905hVi6NybdambywrHEKkoP7lWPew5vOhDtH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hZlaLlzm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0EC3C116B1;
-	Wed, 15 May 2024 08:11:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bcEy2jouNCGjdQY/U8Dzw7AxxolgfDdipEgfEwOlwdJtmZ5bY++MKeO1ZKL2n+sVF6H4hOibbf5lvoHtSMKX+9s97Hc4jWl6WvZK2WDLPu8qCxR9KzB42Pn+0+PMqSTtYZd33XoIl4DMwuY/HQvyeRDSMEHmoV3oBexTEtAyP2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mzT2zhvS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 317FBC116B1;
+	Wed, 15 May 2024 08:14:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715760714;
-	bh=xlZElKdHr4a3u0ZpkMceEK9THjOVXhJE1vBAP3K8u0s=;
+	s=k20201202; t=1715760864;
+	bh=f1VW3XjbE/dtDIgTLPQjTfTGxckD9xNYEPvqyoeVKVg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hZlaLlzmHdg1FD6Hzwp2yBFdQCy39R26PEzGd+jnOwJbE54ltKIh6Z56QuHnt3JZP
-	 caX2lD+hUwAcD8dp/DfhKaxJEPCGNQMpXe7Ab9u4yo6fXgPOkRh7kjIE5h5Sp9f4bj
-	 YSuOMhIkvu9eT4V23I/TJ3EmO5hQ556DFFPUOSAiArkUWfvdimjkaX9xAYIPORd3S6
-	 uf7fkKmyfoiR7zPO6TlRtsag16KPN1v7nZYo3jthhKy+0BI1BWrekSPCSyn4OUEnla
-	 UKhRat+ZZq1wIkWIHDUOUV+FrX+fpI9NOFnTD1Q2Qq+fuO4RAxiijNoA8HLb9nkmDq
-	 PGLteRhZKhjIg==
-Message-ID: <cbb8d16b-4de2-44fa-8420-62b826df0756@kernel.org>
-Date: Wed, 15 May 2024 10:11:49 +0200
+	b=mzT2zhvS5fUlD1VkKXhAO0K107ramFrkdTb7EqD45HsvcHzJk5hdjzl+OCuLyYdP0
+	 0udLrOvV6r8h1YNTVNzK9R53/hO0HHaZ27/rFgbsUZftHSOcYeBjNM2rHneWX563Fi
+	 fUpbQLZ8aFWCBUFozXDxolc4F0uK8eMx3+87MALKxssyStsqtKU+mlBcE7O0nPDcHP
+	 KuXMBbiqTfGbpb0nwQ7U7TMNmibb+r8ZmY57Aqb4hiDkFWpcKYXrq6YAfKJXtkfztS
+	 SofhQ1LIT70eW2ipSch5EgZ0J/NRQ2naL10LxIQnaUMcESI9yFr41iqYNKyfqO4/Kp
+	 1+zElpkoF5IrQ==
+Message-ID: <5e8eb8a7-c497-4960-8c1c-e58586f53c9f@kernel.org>
+Date: Wed, 15 May 2024 10:14:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] dt-bindings: net: qcom: ethernet: Allow
- dma-coherent
-To: Sagar Cheluvegowda <quic_scheluve@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Andrew Halaney <ahalaney@redhat.com>, Vinod Koul <vkoul@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240514-mark_ethernet_devices_dma_coherent-v4-0-04e1198858c5@quicinc.com>
- <20240514-mark_ethernet_devices_dma_coherent-v4-2-04e1198858c5@quicinc.com>
+Subject: Re: [PATCH v5 1/9] dt-bindings: fsi: fsi2spi: Document SPI controller
+ child nodes
+To: Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au
+References: <20240514195435.155372-1-eajames@linux.ibm.com>
+ <20240514195435.155372-2-eajames@linux.ibm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,21 +103,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240514-mark_ethernet_devices_dma_coherent-v4-2-04e1198858c5@quicinc.com>
+In-Reply-To: <20240514195435.155372-2-eajames@linux.ibm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/05/2024 02:06, Sagar Cheluvegowda wrote:
-> On SA8775P, Ethernet DMA controller is coherent with the CPU.
-> allow specifying that.
-> 
-> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On 14/05/2024 21:54, Eddie James wrote:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>  properties:
+>    compatible:
+> @@ -24,6 +23,17 @@ properties:
+>      items:
+>        - description: FSI slave address
+>  
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^spi@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/spi/ibm,spi-fsi.yaml
+
+Are you sure you do not have dependencies? Nothing was explained about
+this in the cover letter or changelog.
 
 Best regards,
 Krzysztof
