@@ -1,183 +1,167 @@
-Return-Path: <devicetree+bounces-67278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC508C74E6
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:56:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C0E8C74F7
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:06:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94F0B285943
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 10:56:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7571BB2175A
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C8414534A;
-	Thu, 16 May 2024 10:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D8514534B;
+	Thu, 16 May 2024 11:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="Fz/smocq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kBO1aKQa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642D4143C56
-	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 10:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B5B143747;
+	Thu, 16 May 2024 11:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715856994; cv=none; b=CG3v1fp6CE/b/eLKmTUHSFjwstoZASjc32Qw5jsw5YJxluEs0ThRy6qWSvqf5iY0Hyef9sgU4NrsMLTOpQhuPHEIcE2TSScV/AWWhHoZeOohxX7caAl7UFG5PWNpFuTllalo4Lu7lzy/XPSbIfzEKAgcAigtgutvLE4M5eYCLo8=
+	t=1715857602; cv=none; b=UClyclkrs3o41j1PMhImU/+OEdl+FUMhwntP9IjXN+spzyCCxC4p5kTI4HDOTA56fHZTTDLrF6UTK8PzljZ/kH2rqbLsiH8qkAM1DFA+qhGNSZoAMFnmmpyzFnrFbGhawAz3pA9MadbHLLfB7oHuidAkJBb5LjVgzJlDGeljwuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715856994; c=relaxed/simple;
-	bh=BsLbCZn+JhmXnJxcv1qH56cu7tkHuVfRZhl7UEiWLEY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z7A6llBkbYXimA4kCAgK0dMXG4a/bw81Ja0ihM8S9X0YvyPgaJQEL0t6nuteJ0zauyihnmrDY9bHmhtAjwfeJnX2w9f0+c0EVARkIQGpweXiv9YDx4Yi5DV78L6t/s5ztIXYmLu4k/BSE5SEjAAdMKeVXdxNaX8npig2DsmiCAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch; spf=none smtp.mailfrom=ffwll.ch; dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b=Fz/smocq; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ffwll.ch
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52387b64206so136570e87.2
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2024 03:56:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google; t=1715856990; x=1716461790; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:mail-followup-to:message-id:subject:cc:to
-         :from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CYCaZIYD32X8OWqTmuj/FbQa01MUdFxdF5XvoFGLFW0=;
-        b=Fz/smocqGZqvipuDuJ5GR6bdGTERMK1Tq5TyxPLD9dJVMnK0ANHuWKWjfXeDvUYH2O
-         f8sJcJJc5Ru6hniW49DaMvZl9Oy/5jAIrwXyydOIuglZ+BJkcs6ayC5dX7fjZup4RCwb
-         AD122Vh1lt9tdDezNiNNvx3SlhhpsnenfDcJs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715856990; x=1716461790;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:mail-followup-to:message-id:subject:cc:to
-         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CYCaZIYD32X8OWqTmuj/FbQa01MUdFxdF5XvoFGLFW0=;
-        b=DhIMtpkuU6g29r/qN+VZvD0fIhWfmIeE67Ye/By3IOnEF+INXY/+M1M57xZgMnD5FL
-         R6TjvX/Sd8PMGFkAegs0leufYrWITQEBq6kMDwQRBD+bb91bqWxSPhGaYikGRBbP/SWB
-         s+ZS5bcMIqy0/N8HdTn7haUmFuU5pSenHhVuUMkkdcezKbN9ZKvE27nXHNH1DrGqPzpH
-         ogZvqh02mWm2tjjaOogPiogvqh2H8wmaLi358KNVkQt/FI6hCblL8lEiSnvAK2RXjXMM
-         RLNUuaf3QSqoZ5p4zA5XLkx/cwarlY8C935SC1kzHP7VTGPebAOnL7Bi9iaKt75ZR9tx
-         eOgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVM3M3w/zgec8/XVlmXi3l48/6dr/k1yVK4s09BmrUPYuJB9/HMYdWm/GU5aUzPmN+kHzNswhcpruLN69F6Az4AN0Ca6q2G/cgFHg==
-X-Gm-Message-State: AOJu0YzcJEJdiPPH8L+aHNnQyKnBIE5qQTe2+jI49d8zZ1EsSj2lmVvW
-	ZnSwkMrae4nJAcbiwt7vK9jTArg/Vt93FYXTORc7TqErdWqIzkjsTKZUhZqwdXE=
-X-Google-Smtp-Source: AGHT+IEjj4yl40IXE4RuRX4OV/v0GH5bFkfz02Pq4c/NaDR61cTtFuwAhcTUObONlIdIlDgvDa0lTA==
-X-Received: by 2002:a2e:9b8b:0:b0:2e2:1647:8308 with SMTP id 38308e7fff4ca-2e51fd4b33emr121987831fa.2.1715856990407;
-        Thu, 16 May 2024 03:56:30 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-351c6f295e2sm6725490f8f.39.2024.05.16.03.56.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 May 2024 03:56:29 -0700 (PDT)
-Date: Thu, 16 May 2024 12:56:27 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: John Stultz <jstultz@google.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	"T.J. Mercier" <tjmercier@google.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH 0/8] dma-buf: heaps: Support carved-out heaps and ECC
- related-flags
-Message-ID: <ZkXmWwmdPsqAo7VU@phenom.ffwll.local>
-Mail-Followup-To: John Stultz <jstultz@google.com>,
-	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	"T.J. Mercier" <tjmercier@google.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org
-References: <20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org>
- <CANDhNCoOKwtpstFE2VDcUvzdXUWkZ-Zx+fz6xrdPWTyciVXMXQ@mail.gmail.com>
+	s=arc-20240116; t=1715857602; c=relaxed/simple;
+	bh=mX2e7DP96WI4HwI8WkMRPyTUF2BgOcmfhWebFXswwEw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=j24dwhXdpNio9LWG+xQS/mipCY4wk0UC0/tAGOV/W2ghAITRgsJTDOgX7CldPOyJaX7PZP18E5z+eHG8Im/QuhzHVlnjnOJ/wdQ1pcvE+5lhRn1+cF4SCGTb+WMjDS+r7DKt+ZhGolmK6Afx6LO2yxuQcH0DqT5u/yXRjcOYGYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kBO1aKQa; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44GB6F2G035545;
+	Thu, 16 May 2024 06:06:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715857575;
+	bh=3Gx2v5SXrefBPGo2GfUcCnROLjCL96tax4zOhCy0y/E=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=kBO1aKQa779E+rLvQC1B7i7KMBm3pHr7JM0+Ky62ASIXOIZVUvuXfZORueNIMbX0f
+	 bY3hkH5Cke9hg70V3/kfpNnbpVkrO8FDFj1K4QmRAgygiw8E3F5miXnnOkww8tsTlJ
+	 h7ZuSS5pCDDS0U/tF+D4P/oGeO15KrSnelmD8DfM=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44GB6Fxx012222
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 16 May 2024 06:06:15 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 16
+ May 2024 06:06:14 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 16 May 2024 06:06:14 -0500
+Received: from [172.24.227.31] (uda0496377.dhcp.ti.com [172.24.227.31])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44GB67pi065202;
+	Thu, 16 May 2024 06:06:08 -0500
+Message-ID: <cecb865d-2f59-4cdf-991a-4607b200d503@ti.com>
+Date: Thu, 16 May 2024 16:36:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANDhNCoOKwtpstFE2VDcUvzdXUWkZ-Zx+fz6xrdPWTyciVXMXQ@mail.gmail.com>
-X-Operating-System: Linux phenom 6.6.15-amd64 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] dt-bindings: display: simple: Add Microtips &
+ Lincolntech Dual-LVDS Panels
+To: Liu Ying <victor.liu@nxp.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Maxime
+ Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Tomi Valkeinen
+	<tomi.valkeinen@ideasonboard.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>
+CC: DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List
+	<devicetree@vger.kernel.org>,
+        Linux Kernel List
+	<linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>, Jai Luthra
+	<j-luthra@ti.com>
+References: <20240515095133.745492-1-a-bhatia1@ti.com>
+ <20240515095133.745492-4-a-bhatia1@ti.com>
+ <9f3c1825-0438-464e-bd6d-88da6a9c3b3b@nxp.com>
+Content-Language: en-US
+From: Aradhya Bhatia <a-bhatia1@ti.com>
+In-Reply-To: <9f3c1825-0438-464e-bd6d-88da6a9c3b3b@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, May 15, 2024 at 11:42:58AM -0700, John Stultz wrote:
-> On Wed, May 15, 2024 at 6:57 AM Maxime Ripard <mripard@kernel.org> wrote:
-> > This series is the follow-up of the discussion that John and I had a few
-> > months ago here:
-> >
-> > https://lore.kernel.org/all/CANDhNCquJn6bH3KxKf65BWiTYLVqSd9892-xtFDHHqqyrroCMQ@mail.gmail.com/
-> >
-> > The initial problem we were discussing was that I'm currently working on
-> > a platform which has a memory layout with ECC enabled. However, enabling
-> > the ECC has a number of drawbacks on that platform: lower performance,
-> > increased memory usage, etc. So for things like framebuffers, the
-> > trade-off isn't great and thus there's a memory region with ECC disabled
-> > to allocate from for such use cases.
-> >
-> > After a suggestion from John, I chose to start using heap allocations
-> > flags to allow for userspace to ask for a particular ECC setup. This is
-> > then backed by a new heap type that runs from reserved memory chunks
-> > flagged as such, and the existing DT properties to specify the ECC
-> > properties.
-> >
-> > We could also easily extend this mechanism to support more flags, or
-> > through a new ioctl to discover which flags a given heap supports.
-> 
-> Hey! Thanks for sending this along! I'm eager to see more heap related
-> work being done upstream.
-> 
-> The only thing that makes me a bit hesitant, is the introduction of
-> allocation flags (as opposed to a uniquely specified/named "ecc"
-> heap).
-> 
-> We did talk about this earlier, and my earlier press that only if the
-> ECC flag was general enough to apply to the majority of heaps then it
-> makes sense as a flag, and your patch here does apply it to all the
-> heaps. So I don't have an objection.
-> 
-> But it makes me a little nervous to add a new generic allocation flag
-> for a feature most hardware doesn't support (yet, at least). So it's
-> hard to weigh how common the actual usage will be across all the
-> heaps.
-> 
-> I apologize as my worry is mostly born out of seeing vendors really
-> push opaque feature flags in their old ion heaps, so in providing a
-> flags argument, it was mostly intended as an escape hatch for
-> obviously common attributes. So having the first be something that
-> seems reasonable, but isn't actually that common makes me fret some.
-> 
-> So again, not an objection, just something for folks to stew on to
-> make sure this is really the right approach.
+Hi Liu,
 
-Another good reason to go with full heap names instead of opaque flags on
-existing heaps is that with the former we can use symlinks in sysfs to
-specify heaps, with the latter we need a new idea. We haven't yet gotten
-around to implement this anywhere, but it's been in the dma-buf/heap todo
-since forever, and I like it as a design approach. So would be a good idea
-to not toss it. With that display would have symlinks to cma-ecc and cma,
-and rendering maybe cma-ecc, shmem, cma heaps (in priority order) for a
-SoC where the display needs contig memory for scanout.
+Thanks for reviewing the patch.
 
-> Another thing to discuss, that I didn't see in your mail: Do we have
-> an open-source user of this new flag?
+On 16/05/24 07:49, Liu Ying wrote:
+> On 5/15/24 17:51, Aradhya Bhatia wrote:
+>> Add the Microtips Technology USA's MF-101HIEBCAF0 10.1"[0] panel,
+>> MF-103HIEB0GA0 10.25"[1] panel, and Lincoln Technology Solutions'
+>> LCD185-101CT 10.1"[2] panel.
+>>
+>> Thes are all dual-lvds panels.
+>>
+>> Panel Links:
+>> [0]: https://simplespec.microtipsusa.com/uploads/spec/datasheetFile/2588/13-101HIEBCAF0-S_V1.1_20221104.pdf
+>> [1]: https://simplespec.microtipsusa.com/uploads/spec/datasheetFile/2660/13-103HIEB0GA0-S_V1.0_20211206.pdf
+> 
+> This one mentions some controls in '3. PIN DESCRIPTION' which
+> don't comply with this binding, like RL, TB, STBYB and RESET.
+> Note this binding only allows compatible, ports, backlight,
+> enable-gpios and power-supply properties, nothing more.
+>
 
-I think one option might be to just start using these internally, but not
-sure the dma-api would understand a fallback cadence of allocators (afaik
-you can specify specific cma regions already, but that doesn't really
-covere the case where you can fall back to pages and iommu to remap to
-contig dma space) ... And I don't think abandonding the dma-api for
-allocating cma buffers is going to be a popular proposal.
--Sima
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Maybe the internal module _can_ support these control options but the
+actual panel hardware does not expose any of these controls on its
+connector pin-out, and hence has no possibility for additional SW
+control. Even for the usage, the device-tree node for the panel only has
+"compatible" and "ports" properties defined.
+
+The panel is being used within the confines of a simple panel.
+
+Regards
+Aradhya
+
+> 
+>> [2]: https://lincolntechsolutions.com/wp-content/uploads/2023/04/LCD185-101CTL1ARNTT_DS_R1.3.pdf
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>  .../display/panel/panel-simple-lvds-dual-ports.yaml         | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+>> index 716ece5f3978..e78160d1aa24 100644
+>> --- a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+>> @@ -41,6 +41,12 @@ properties:
+>>        - auo,g190ean01
+>>          # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
+>>        - koe,tx26d202vm0bwa
+>> +        # Lincoln Technology Solutions, LCD185-101CT 10.1" TFT 1920x1200
+>> +      - lincolntech,lcd185-101ct
+>> +        # Microtips Technology MF-101HIEBCAF0 10.1" WUXGA (1920x1200) TFT LCD panel
+>> +      - microtips,mf-101hiebcaf0
+>> +        # Microtips Technology MF-103HIEB0GA0 10.25" 1920x720 TFT LCD panel
+>> +      - microtips,mf-103hieb0ga0
+>>          # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
+>>        - nlt,nl192108ac18-02d
+>>  
+> 
 
