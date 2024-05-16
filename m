@@ -1,133 +1,104 @@
-Return-Path: <devicetree+bounces-67286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E108B8C7547
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFF18C7551
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:36:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 270DD1C234AA
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:32:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D6701C20943
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79DC0145A0C;
-	Thu, 16 May 2024 11:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="KJHUUIku"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995211459F6;
+	Thu, 16 May 2024 11:36:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.adeep.su (mx.adeep.su [185.250.0.168])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB871145A0B;
-	Thu, 16 May 2024 11:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.250.0.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CCBE14535D
+	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 11:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715859113; cv=none; b=o9e7X0oyDvHL+E9Etps9pHC1g4MzNAgy7gF/GWVA+AR5aCt1AdrOE92uoHuMpL085BIrGeTH7iFCKnQ+HSxOarHDcMaEb5N+k0Dzxv2ZzpOT3iAd1MEUXMXgdVBEGeNz2z/X1vItonnzrRIjCqjV73HIMH8XIZ5TMRCPA81ofHU=
+	t=1715859379; cv=none; b=pk8H2zmLPIAcyx5Kuxk0F5BnptAishyI+KB4DeokKDSZbZjbc3X2wNYlX3tD72vKhNVZfFlFw8o46FgA5Zm2Yzx5B/Z7aHV6MWUPurqG5FEeRoRue3guVH+DBBGReUcptMjywOEGKENfFc/tbQSNJtJbVOmCxzEbKdlEv0JnXo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715859113; c=relaxed/simple;
-	bh=M+mo9Y0CHfPVQLKoZETkdBfevQ2LMWQyIi/HAshdRT4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eMHjfDDarPCkTX9jk+yeXdbA3n+/jIY+SGnngDEYF5kcttHz6zec4Z7G+GqtezWHQD6wsHn8XcPDaGj2VItc1b4xoP3leUycY56KrplGtGzFhyp0aGJGzUJD9bLT8/+Y9v7N26PCrMrrV0lmZkVZ8G/6FHWbQiJf7v8bg0xW+Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in; spf=pass smtp.mailfrom=lexina.in; dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b=KJHUUIku; arc=none smtp.client-ip=185.250.0.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lexina.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lexina.in
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2AC6D181D4E;
-	Thu, 16 May 2024 14:31:47 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-	t=1715859107; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=+UBrzMeNJuIEWIdnDs+QZQBlvEK3sk7AsllHTSelVpQ=;
-	b=KJHUUIkuFggKkNXicjirmIFtaVHZGg5FPC2mBRdnou0pM5QdihSvTlOe8YW0FcZwjVAQPP
-	uv+IsQ+vuUVRY3KiCo6js/RSRadNtAApvmKu0QD5aLQWdYGDZjNs+s3rm+ka5rUbZf0wLU
-	0ZZk+OFqJ7CSlJ53AWX3zoCz+fGfvWfNuuII/8Tx/QZW+Hx/1UWQsQjrFhyWoaQqizBVJp
-	DeYgYrLLh6XG8TGLwNNzMLySYxZA7jb1t5iCdgxgHgRK85Gz+dyMNHEvERNFvOGPQM+uoL
-	kjnLrDkwJj2yXe046L+haIZnwjfHgRR8qm32VCce8f7SKtJXYe97oXDujyf1Ig==
-From: Viacheslav Bocharov <adeep@lexina.in>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v4 4/4] arm64: dts: meson: add dts links to secure-monitor for soc driver in a1, axg, gx, g12
-Date: Thu, 16 May 2024 14:26:51 +0300
-Message-ID: <20240516112849.3803674-8-adeep@lexina.in>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240516112849.3803674-2-adeep@lexina.in>
-References: <20240516112849.3803674-2-adeep@lexina.in>
+	s=arc-20240116; t=1715859379; c=relaxed/simple;
+	bh=xnCHpjWJCxd1ThpugjVih1IsrG1enpQdqddYfJNlRLA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f+6tXl/kbeqRZVdXjiHIgdfWYNhUfORPsmobyV1vy1eQ1lvbZU3os7rbIy8gQ3piInwiZGpCUiwczIRjPioGE/vAj8Xj/6KU5fuFukvYj2JyFROyH1dhTYkrR92ZT+94X1rArWJgFucYEsxT9p4Ks37IglARo4dX8JTUDny2L3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1s7ZOz-0007RY-PT; Thu, 16 May 2024 13:36:01 +0200
+Message-ID: <b354724f-5235-4519-8361-b8209ab99d36@pengutronix.de>
+Date: Thu, 16 May 2024 13:36:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2 and
+ PDK3
+To: Marek Vasut <marex@denx.de>, Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, kernel@dh-electronics.com,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Fabio Estevam
+ <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
+References: <20240514010706.245874-1-marex@denx.de>
+ <20240516080008.GA9338@francesco-nb>
+ <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
+Content-Language: en-US
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add links to secure-monitor in soc driver section for A1, AXG, GX, G12
-Amlogic family for use with meson-socinfo-sm driver.
+Hello Marek,
 
-Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 1 +
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 1 +
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 1 +
- 4 files changed, 4 insertions(+)
+On 16.05.24 13:14, Marek Vasut wrote:
+> On 5/16/24 10:00 AM, Francesco Dolcini wrote:
+>> Hello Marek,
+> 
+> Hi,
+> 
+>> On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
+>>> Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
+>>> I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
+>>> of HDMI DDC mode to permit connection of other I2C devices on those buses.
+>>
+>> Are you able to read the HDMI EDID with such configuration? I have the
+>> patch ready for verdin imx8mp, I just did not have time to figure out
+>> this last details.
+> 
+> Yes with ddc-i2c-bus in hdmi_tx{} node, no with ddc-i2c-bus in connector node. Maybe that's what you're running into ? The DW HDMI core needs the ddc-i2c-bus property in hdmi_tx{} node if you use non-native I2C bus for the DDC channel.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index c03e207ea6c5..d47f056117fc 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -407,6 +407,7 @@ hwrng: rng@5118 {
- 			sec_AO: ao-secure@5a20 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x5a20 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 6d12b760b90f..45791ec6694a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1689,6 +1689,7 @@ mux {
- 			sec_AO: ao-secure@140 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x140 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 9d5eab6595d0..a8c1c72543b7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2026,6 +2026,7 @@ cec_AO: cec@100 {
- 			sec_AO: ao-secure@140 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x140 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 2673f0dbafe7..656e08b3d872 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -471,6 +471,7 @@ cec_AO: cec@100 {
- 			sec_AO: ao-secure@140 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x140 0x0 0x140>;
-+				secure-monitor = <&sm>;
- 				amlogic,has-chip-id;
- 			};
- 
+What benefit does the hdmi-connector provide over just omitting it?
+Just for documentation purposes?
+
+Thanks,
+Ahmad
+
+
+
+> 
+> 
+
 -- 
-2.43.2
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
 
