@@ -1,129 +1,98 @@
-Return-Path: <devicetree+bounces-67293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D538C7572
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:47:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A5C48C757F
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:58:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42F55B2185C
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:47:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD6BCB20AC2
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E39B145A10;
-	Thu, 16 May 2024 11:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EDB5145A12;
+	Thu, 16 May 2024 11:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QcnJO5Gz"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="FBeHeafd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFEE1459E2;
-	Thu, 16 May 2024 11:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C00426AD0;
+	Thu, 16 May 2024 11:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715860027; cv=none; b=WOT6hwKBtAfpl5ErCS2vL4Q4lJZ4VUzjXBMW2WG3ZowIFMIACDNQZuUbhhMCJ8grb0g6r+PTk4Tmmk+qoUJZRkb0fEM146xmSq4uQdI+mrvXunYGRMAxKvye4SM3xrIRmHQXlMr15sv3UgUaXJWq5HrXmIBK52rqXNIcKLJEgTo=
+	t=1715860673; cv=none; b=YuG8ypid//2rilgiegIJnaIrVCR+ydx0feaV60mGIQadUoY6n0dCQpsuKBIpHdxmEL+GItKifVXA2X1p23dEKYEK1xXptv3xxy+v/WM3We7KJKuGOQnzdmnWxa3VN6h4r5I2c98QPP7OWNBU8/aKqNOlZxHzVjX1lmJG12g2p5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715860027; c=relaxed/simple;
-	bh=wu41wYwUT3ZQ/LMwpK4vTqW07C2TaCMbGkW8wWLqctM=;
+	s=arc-20240116; t=1715860673; c=relaxed/simple;
+	bh=zb3thMvUhgoGD+gDyV0KsfAFSV/xaogkAu6yb5KZ9No=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dom6qXzgUq5l0jyqZYh/97lh4U1q7wmfQTp28irbWD53kWkForKfOBDqvvmStsXAb3qqIsXn7i1zwW6tTwJJV14uV5tHlU7cxsrbIIC1d2x2t/T2bVACvNgANgL08YabrPMdTAcb1DJCo8CvFFZVz1QGeTnzfAkZTWn897o78uU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QcnJO5Gz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E24EC113CC;
-	Thu, 16 May 2024 11:47:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715860026;
-	bh=wu41wYwUT3ZQ/LMwpK4vTqW07C2TaCMbGkW8wWLqctM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QcnJO5Gze6rEySLsD5MoX2CcuqLtdZ8oTEU6W7LJ4ME+mJm6XdQUy3uUAlk37Oyuj
-	 Wpqb9DkM7lhXwG5H1qnM9RPO4tLeD8Y4FzzKOzUC8WS7Ob4h96Ymg+MPoz4wUu1Q2I
-	 AXK4zi2mL5jPQ3jAbhbV/p+TUgB5a5UjcnomXQjHy/XDgBZxNvGGunD620k/qwsitZ
-	 yzbPLR17N5pzcEhv+iOG5vDg4AJm00f+KY6Cs3b0AKxr5QimIQgj9fl2JRKS3mYC+k
-	 jycmvVl9DdjnVr9NqVI9N0TVL68NjRqrsgrKgZnYZBidC8sLf6EJFSIrPEEG3WQsVF
-	 zUk6nkFH8Wikw==
-Date: Thu, 16 May 2024 12:47:00 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=hfsi3XAVSvEceUaxFGsjw21YTYZ9jYZOKAQEw249IDz5Z90rR4FGQCX/YzZd+dS/eG66Hw3YM9lJyv2OoSX2TUCPPKjgoRDMUt8qJAG5fI6UVzVSlRrZXs/rrD63vh8kTDcfgnT5Sg4kF/GBTaTyuvEV8h7TiE6gedyBEiqhAa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=FBeHeafd; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 221DA1F938;
+	Thu, 16 May 2024 13:57:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1715860668;
+	bh=qMf3X2Q4oRj/C7hAFJyFwgIdc7153KsOrkW8sYZ0UHQ=; h=From:To:Subject;
+	b=FBeHeafdXEDBYor8B4j+QLg8SJaTMZrCHWYDfvM801Ild6jZBnK+f4YgEfzdV3vu1
+	 x1af9xBDvgbLpeHwSsz2ClhZrWHzxgrGatUaJtaAClPi99qVT+2BZV+uFK699a11Pp
+	 1cqI/SVUWLB5HIXKiebTyxUXIKLBdy/+76GXxNv1IUrk7BVv3IeSbwk521iDUw2Ima
+	 ALnCOd13SMvhewS7IXNONU66iyzGKFOvMI0JIugmyJR4oHxCHmvmQ1QgbYlVdkWqUW
+	 KNdqzSjwNNaVBXUKRpiwvvxXmRSeIIVX9us9lfv/2yi6FjSn/s03px5vFu3jKZ+aMp
+	 6ubj+BU1UNmcw==
+Date: Thu, 16 May 2024 13:57:43 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Marek Vasut <marex@denx.de>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	linux-arm-kernel@lists.infradead.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-	quic_pkumpatl@quicinc.com
-Subject: Re: [PATCH v4 2/7] ASoC: codecs: wcd937x-sdw: add SoundWire driver
-Message-ID: <91f581ef-58ea-4b98-80e2-dd9b14a61c60@sirena.org.uk>
-References: <20240516044801.1061838-1-quic_mohs@quicinc.com>
- <20240516044801.1061838-3-quic_mohs@quicinc.com>
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, kernel@dh-electronics.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2
+ and PDK3
+Message-ID: <20240516115743.GA6663@francesco-nb>
+References: <20240514010706.245874-1-marex@denx.de>
+ <20240516080008.GA9338@francesco-nb>
+ <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6TMXXQ4QPf3seqeB"
-Content-Disposition: inline
-In-Reply-To: <20240516044801.1061838-3-quic_mohs@quicinc.com>
-X-Cookie: I'm having a MID-WEEK CRISIS!
-
-
---6TMXXQ4QPf3seqeB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
 
-On Thu, May 16, 2024 at 10:17:56AM +0530, Mohammad Rafi Shaik wrote:
+Hello,
 
-> +static const struct reg_default wcd937x_defaults[] = {
+On Thu, May 16, 2024 at 01:14:04PM +0200, Marek Vasut wrote:
+> On 5/16/24 10:00 AM, Francesco Dolcini wrote:
+> > On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
+> > > Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
+> > > I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
+> > > of HDMI DDC mode to permit connection of other I2C devices on those buses.
+> > 
+> > Are you able to read the HDMI EDID with such configuration? I have the
+> > patch ready for verdin imx8mp, I just did not have time to figure out
+> > this last details.
+> 
+> Yes with ddc-i2c-bus in hdmi_tx{} node, no with ddc-i2c-bus in connector
+> node. Maybe that's what you're running into ? The DW HDMI core needs the
+> ddc-i2c-bus property in hdmi_tx{} node if you use non-native I2C bus for the
+> DDC channel.
 
-> +	{ WCD937X_DIGITAL_EFUSE_REG_0,				0x00 },
-> +	{ WCD937X_DIGITAL_EFUSE_REG_1,				0xff },
-> +	{ WCD937X_DIGITAL_EFUSE_REG_2,				0xff },
-> +	{ WCD937X_DIGITAL_EFUSE_REG_3,				0xff },
+Yes, that's it. Thanks!
 
-Given the name I'd expect these to vary per device so not have default
-values.  In general ID, status or volatile registers probably shouldn't
-have defaults since they should be read from the device.
+Francesco
 
-> +static bool wcd937x_readonly_register(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-
-> +	case WCD937X_DIGITAL_CHIP_ID0:
-> +	case WCD937X_DIGITAL_CHIP_ID1:
-> +	case WCD937X_DIGITAL_CHIP_ID2:
-> +	case WCD937X_DIGITAL_CHIP_ID3:
-
-> +	case WCD937X_DIGITAL_EFUSE_REG_0:
-> +	case WCD937X_DIGITAL_EFUSE_REG_1:
-> +	case WCD937X_DIGITAL_EFUSE_REG_2:
-
-> +	.readable_reg = wcd937x_readable_register,
-> +	.writeable_reg = wcd937x_rdwr_register,
-> +	.volatile_reg = wcd937x_readonly_register,
-
-It's not a bug per se since things will work but you should probably
-have separate volatile and read only checks, things like the ID and
-efuse registers are read only but they shouldn't vary at runtime so
-could be cached and not volatile.
-
---6TMXXQ4QPf3seqeB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZF8jMACgkQJNaLcl1U
-h9C/Agf/dxl2QvSF6O91HT9LEA+eXsV+RD+If0rb6NqB7TD6GqF4NT8biCZgRABj
-+5j0XCauKqigxtMYyzxxdJE80SL5L9z93e7OLemzzOfxpspvFbNcnktzgCN2zPTc
-HNDtykLiV7SvrRm8e2J7aU3aqhSBBp1d2e970CmaOnVuyvfbyZVoPjsvicMgHZP9
-3CB0Pa1C1+By8DrFR7vI6yembohfU4wFeB/66qzYovFSCI/hOuMYo2usgNhsaT8d
-hUjon+Xz5e9/yaNPVIRjWuOsEa2yL1lo21HwR9drPjRtZNeTlxxhKrXoDd3goJLS
-EdleAlXH/IcsXx7gjcdXQDal8syQPg==
-=W/m3
------END PGP SIGNATURE-----
-
---6TMXXQ4QPf3seqeB--
 
