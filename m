@@ -1,142 +1,173 @@
-Return-Path: <devicetree+bounces-67305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E118C7698
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:38:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1654B8C76A5
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:41:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF044B20B59
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:38:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA36C2821D3
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:41:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91684145B12;
-	Thu, 16 May 2024 12:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75693145B3D;
+	Thu, 16 May 2024 12:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Y8vovFk3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HW+z3how"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E2C1E511;
-	Thu, 16 May 2024 12:37:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45ED77E763;
+	Thu, 16 May 2024 12:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715863082; cv=none; b=jcg/Plctlgno473CLODoApPyJ2d1a9Ioh0Z/SIwTeh433vGBwFPD7mrnbMjnHwKDVOchB3ZghJ8GqAlIINf03XyX/zwVlGZlXxfMTgF4yBLa77EdOIdQUWKAk5jXBBfvGv/isvvPoKSDgJ/ai10204lay3bUS0LwD5mf8R1/d/U=
+	t=1715863274; cv=none; b=sCMpH1WtJnH67XrPEFbJ5wfkGQglRckZ0oq4IxzUTljbe5FOwFNxr60VZw727ZxWLPKfgKntoEKS8Hb6tcMPi4eahTohTGVxgQlH5PopXlG6GkAtZtnFRzCxNucS/V15Ols1eiQ2d3IwrS5YK67zl4KBeUHuiv9DA9/vR1FwwKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715863082; c=relaxed/simple;
-	bh=GBIWyZ3c4f4UnYM7hn+XFJ9uS7Ayf/152KOhFezWhn0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tQFGKRy0XF7erdkQJF5YPQiwsFVsXKbHhqUb7DbkLGZvtWWLm8QkqucwEfXi0J9RzCO1GUfaJk535GdSCiHkLTBaEohfVBizYWKCdLRKSyBCXIHYZS9cDYXShJOXGoLLKKJolnSDxfdBC/qlVUx+4KG+J6nYB0vSxRWQ+DZ6Djk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Y8vovFk3; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EC60B24000E;
-	Thu, 16 May 2024 12:37:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1715863071;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=I2IJp/lOWwL7BaonI5QmnyhkYo/GQ2MhT9mFOjFAyKo=;
-	b=Y8vovFk3HOSEwSLHAci+g/leO4eYGpTKlxO3HSM0Bc4rI4WhmVHdF1xjJ7BVx5vFJZqCnG
-	TMMC3gi3cOZj3yN92T9Ho5Ub8cxzO5G8AaeTxv755Ih4s8uipRi78fKXzbkJMm0D1M3ure
-	RDxdyw9NUbPlWUabLN9VJQilSj0J1i3gDRtvWBmuo5w62qtuqrsLm8JvKiucWc8IClHve5
-	B88JH/AX5p7YWuIv2OcnU9nZYrp1zWmlc2MEL8Y60dEV9f25b9+DGFHWF9BlV3RGjgLI6j
-	A2queElZnkS3uUKXom5FI7PgMpGfhCgvTIeosHsRrYPhzs+5HUNadmSNxSeAvA==
-Date: Thu, 16 May 2024 14:37:48 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
- richard@nod.at, vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org, quic_srichara@quicinc.com,
- quic_varada@quicinc.com, Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Subject: Re: [PATCH v5 4/7] drivers: mtd: nand: Add qpic_common API file
-Message-ID: <20240516143748.2aa6de80@xps-13>
-In-Reply-To: <20240508083637.3744003-5-quic_mdalam@quicinc.com>
-References: <20240508083637.3744003-1-quic_mdalam@quicinc.com>
-	<20240508083637.3744003-5-quic_mdalam@quicinc.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1715863274; c=relaxed/simple;
+	bh=eQHIiIL1ALm5PPVQ3Io9cb7gr9OV/haIlOC1+pSXKVU=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nKs+aAP64TWRr6huehkCNnMS8/c/WSjJFAuYHOXlZKPZoWE2ucDOaNHk2vABxxnj2A0RuuJcVcGHz+OfsTVVhJoZTDDmJHENAFgTyLAuh0KI1Hq250X26TQl+xKZiZjXtBE9TBjwB5N+ACoVKud2qIXH4qVt17GfLyGuJAhEA+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HW+z3how; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51309C32786;
+	Thu, 16 May 2024 12:41:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715863273;
+	bh=eQHIiIL1ALm5PPVQ3Io9cb7gr9OV/haIlOC1+pSXKVU=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=HW+z3howijTGOOcAphkl82HP7uOZEOoSZva4jxoHROFt0mSevv4rTFk8gICxCfvk/
+	 7oNOzLU8oefihbItRwr2yBUhfYOVn7knvCS1vQMIROkobA1ZRdWkObtk3+lsksUT4Y
+	 M3/B++hwmb42oQvcuubJhZOt2q/FyH5cQAF8yG5h3uTmALEG/DbnWjc+FobKIRfsI1
+	 Cs1B0SiV4LAp4wu31y71LUjghKuTDhOfJJ6+Hw92G4aF7MxB93h1dc5w/eAY/7C6mj
+	 KUmU1fiFlJq/E7Qv/CWqyNgqqdUPZyQIy0FSYoUsmMByvMNnLzZbNmoG6R6lruvx5t
+	 ucCkeNHAJmgjw==
+Date: Thu, 16 May 2024 14:41:10 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: John Stultz <jstultz@google.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+	Mattijs Korpershoek <mkorpershoek@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH 0/8] dma-buf: heaps: Support carved-out heaps and ECC
+ related-flags
+Message-ID: <20240516-melodic-quick-dalmatian-fa7b41@penduick>
+References: <20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org>
+ <CANDhNCoOKwtpstFE2VDcUvzdXUWkZ-Zx+fz6xrdPWTyciVXMXQ@mail.gmail.com>
+ <ZkXmWwmdPsqAo7VU@phenom.ffwll.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="suucgit7csl7uhjz"
+Content-Disposition: inline
+In-Reply-To: <ZkXmWwmdPsqAo7VU@phenom.ffwll.local>
+
+
+--suucgit7csl7uhjz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello,
+On Thu, May 16, 2024 at 12:56:27PM +0200, Daniel Vetter wrote:
+> On Wed, May 15, 2024 at 11:42:58AM -0700, John Stultz wrote:
+> > On Wed, May 15, 2024 at 6:57=E2=80=AFAM Maxime Ripard <mripard@kernel.o=
+rg> wrote:
+> > > This series is the follow-up of the discussion that John and I had a =
+few
+> > > months ago here:
+> > >
+> > > https://lore.kernel.org/all/CANDhNCquJn6bH3KxKf65BWiTYLVqSd9892-xtFDH=
+HqqyrroCMQ@mail.gmail.com/
+> > >
+> > > The initial problem we were discussing was that I'm currently working=
+ on
+> > > a platform which has a memory layout with ECC enabled. However, enabl=
+ing
+> > > the ECC has a number of drawbacks on that platform: lower performance,
+> > > increased memory usage, etc. So for things like framebuffers, the
+> > > trade-off isn't great and thus there's a memory region with ECC disab=
+led
+> > > to allocate from for such use cases.
+> > >
+> > > After a suggestion from John, I chose to start using heap allocations
+> > > flags to allow for userspace to ask for a particular ECC setup. This =
+is
+> > > then backed by a new heap type that runs from reserved memory chunks
+> > > flagged as such, and the existing DT properties to specify the ECC
+> > > properties.
+> > >
+> > > We could also easily extend this mechanism to support more flags, or
+> > > through a new ioctl to discover which flags a given heap supports.
+> >=20
+> > Hey! Thanks for sending this along! I'm eager to see more heap related
+> > work being done upstream.
+> >=20
+> > The only thing that makes me a bit hesitant, is the introduction of
+> > allocation flags (as opposed to a uniquely specified/named "ecc"
+> > heap).
+> >=20
+> > We did talk about this earlier, and my earlier press that only if the
+> > ECC flag was general enough to apply to the majority of heaps then it
+> > makes sense as a flag, and your patch here does apply it to all the
+> > heaps. So I don't have an objection.
+> >=20
+> > But it makes me a little nervous to add a new generic allocation flag
+> > for a feature most hardware doesn't support (yet, at least). So it's
+> > hard to weigh how common the actual usage will be across all the
+> > heaps.
+> >=20
+> > I apologize as my worry is mostly born out of seeing vendors really
+> > push opaque feature flags in their old ion heaps, so in providing a
+> > flags argument, it was mostly intended as an escape hatch for
+> > obviously common attributes. So having the first be something that
+> > seems reasonable, but isn't actually that common makes me fret some.
+> >=20
+> > So again, not an objection, just something for folks to stew on to
+> > make sure this is really the right approach.
+>=20
+> Another good reason to go with full heap names instead of opaque flags on
+> existing heaps is that with the former we can use symlinks in sysfs to
+> specify heaps, with the latter we need a new idea. We haven't yet gotten
+> around to implement this anywhere, but it's been in the dma-buf/heap todo
+> since forever, and I like it as a design approach. So would be a good idea
+> to not toss it. With that display would have symlinks to cma-ecc and cma,
+> and rendering maybe cma-ecc, shmem, cma heaps (in priority order) for a
+> SoC where the display needs contig memory for scanout.
 
-> --- a/drivers/mtd/nand/Kconfig
-> +++ b/drivers/mtd/nand/Kconfig
-> @@ -61,6 +61,14 @@ config MTD_NAND_ECC_MEDIATEK
->  	help
->  	  This enables support for the hardware ECC engine from Mediatek.
-> =20
-> +config QPIC_COMMON
-> +	tristate "QPIC common api file"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	help
-> +	  This enables support for common api for qpic nand controller.
-> +	  common apis will be used by both raw nand driver and serial nand
-> +	  driver.
+I guess it depends what we want to use the heaps for exactly. If we
+create a heap by type, then the number of heaps is going to explode and
+their name is going to be super weird and inconsistent.
 
-This should probably not be a standalone selectable item. Make it
-automatically selected by the users including the common header.
+Using the ECC setup here as an example, it means that we would need to
+create system (with the default ECC setup for the system), system-ecc,
+system-no-ecc, cma, cma-ecc, cma-no-ecc.
 
-> +
->  endmenu
-> =20
->  endmenu
-> diff --git a/drivers/mtd/nand/Makefile b/drivers/mtd/nand/Makefile
-> index 19e1291ac4d5..c0c1f8bd0220 100644
-> --- a/drivers/mtd/nand/Makefile
-> +++ b/drivers/mtd/nand/Makefile
-> @@ -3,6 +3,7 @@
->  nandcore-objs :=3D core.o bbt.o
->  obj-$(CONFIG_MTD_NAND_CORE) +=3D nandcore.o
->  obj-$(CONFIG_MTD_NAND_ECC_MEDIATEK) +=3D ecc-mtk.o
-> +obj-$(CONFIG_QPIC_COMMON) +=3D qpic_common.o
-> =20
->  obj-y	+=3D onenand/
->  obj-y	+=3D raw/
-> diff --git a/drivers/mtd/nand/qpic_common.c b/drivers/mtd/nand/qpic_commo=
-n.c
-> new file mode 100644
-> index 000000000000..d48892141365
-> --- /dev/null
-> +++ b/drivers/mtd/nand/qpic_common.c
-> @@ -0,0 +1,741 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-> + */
-> +#include <linux/bitops.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/dmaengine.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/dma/qcom_adm.h>
-> +#include <linux/dma/qcom_bam_dma.h>
-> +#include <linux/module.h>
-> +#include <linux/mtd/partitions.h>
-> +#include <linux/mtd/rawnand.h>
+Let's say we introduce caching next. do we want to triple the number of
+heaps again?
 
-No raw NAND include in the common file. If there is something raw NAND
-specific, it should not be here.
+So I guess it all boils down to whether we want to consider heaps as
+allocators, and then we need the flags to fine-tune the attributes/exact
+semantics, or the combination of an allocator and the semantics which
+will make the number of heaps explode (and reduce their general
+usefulness, I guess).
 
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <linux/mtd/nand-qpic-common.h>
+Maxime
 
-Thanks,
-Miqu=C3=A8l
+--suucgit7csl7uhjz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZkX+5gAKCRAnX84Zoj2+
+dlm2AX4zDrlbmQnJLk98W+IofB6hK8ZzSAe2eROyf8ACySG5WHvFn9Thj2UsUYxC
+Y3jkMxEBgOqPayZCO59a/ow4sVm+Bk7F7/fvmM03D3EhW8fjpGGViti3Ap52OpI/
+YONnWKwxQA==
+=GS0k
+-----END PGP SIGNATURE-----
+
+--suucgit7csl7uhjz--
 
