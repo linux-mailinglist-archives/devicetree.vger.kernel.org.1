@@ -1,155 +1,97 @@
-Return-Path: <devicetree+bounces-67301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21A708C763F
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:27:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 466A98C7646
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:28:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC09C1F229EA
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:27:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01D2E2861E9
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C0B1474B0;
-	Thu, 16 May 2024 12:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB3814AD3F;
+	Thu, 16 May 2024 12:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jSjoRR0b"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DufbBNmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4461474A6;
-	Thu, 16 May 2024 12:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16F814600D;
+	Thu, 16 May 2024 12:23:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715862119; cv=none; b=pHbEJbarqldN1CJYjoKVCL3UHGyvgbsrOC7YeTrk2SGzoMoHttEkMvPYTcNzwISSpssWMx8NtwCPJfupXes1iEH4G0P8Ve+3GkyqvyZlDs1gmymEkEcwDG4U/qPwZYfkky4Yj3ma4PgI51dLmuz5qJCVxLN5b0xmNE9TOxejtpw=
+	t=1715862198; cv=none; b=tp+cnm3192ucJPFswa19hISD5GGo4rKTXBIYkSIMbed0u8PfDMEDpdmEeH2SV4o43z3O17TCn3BVLRKpyVettqq1b7EuJ1aNwQtFrich6MYWAOSikqz1uDdaAptMsB7L/2vMyltgICtdwfReYP7VOg17ZCCIYVVB+nZHZIxf2yI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715862119; c=relaxed/simple;
-	bh=og2Nqqaql9Pj5FhU3UnTUi0Dq2iCUYzxBGOkcdtvLyI=;
+	s=arc-20240116; t=1715862198; c=relaxed/simple;
+	bh=qzak7sMWjW1eI0tpMtEBkZV5nI1gneKQVu4D3TQXJXQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LW4gZy92RgUkJGSphow/BBTM0xFWpo53V223SaIoRNa+BHvWP1yz/O6BfkPw+QbA6Td4Wd2fj0KGF6Vxh0MpzD/X3H7rjxWezLrJrfwO8bXFuvcBVoJeVYE0vorVhtcI038joFGsCxnQP2ZaMzezOkaZQyjCC/VY2GOu0NTUx1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jSjoRR0b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18360C2BD11;
-	Thu, 16 May 2024 12:21:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715862118;
-	bh=og2Nqqaql9Pj5FhU3UnTUi0Dq2iCUYzxBGOkcdtvLyI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jSjoRR0bdV7cvpZVVM41FV1kAcxVnP3ZkQ7KWgn7qAQaco1R7LaFpSWK+y53DTQHz
-	 Gbrr8X5h9mMRQNE1BLYdh52u5xgCdJM5Q97tEoX4NWBWZ/GDBLqATfRPPqyU3Y08d0
-	 ekRwpEKYYNDJ3oOKEQ2wEC1pJfgH5NSZYik1C/KHezwvSbnZgrsaTUQPz/XzFV3K7k
-	 Mif5MjrrWIyHQO4sx1x4qBDazGCUr4pyyvfg0McFPsTKDp3igMKJMy/BnYQi1OXoG6
-	 Ha6hCRXavz2UUhJmSzE+bZTYmbIF1IAikT7MTxPrXznj9BRKGKj9HOGrQWp7emJoYp
-	 xybjPdYK+PUjw==
-Date: Thu, 16 May 2024 14:21:45 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: John Stultz <jstultz@google.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, "T.J. Mercier" <tjmercier@google.com>, 
-	Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Mattijs Korpershoek <mkorpershoek@baylibre.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH 0/8] dma-buf: heaps: Support carved-out heaps and ECC
- related-flags
-Message-ID: <20240516-truthful-fair-kudu-adb6df@penduick>
-References: <20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org>
- <CANDhNCoOKwtpstFE2VDcUvzdXUWkZ-Zx+fz6xrdPWTyciVXMXQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N/bzgSa2F+3XxrFZpNHcM1fAzQHpeWiMf0XlPvc4ZBYnVf85vUSzhYtdP1AUEaySMXQmqEmVbdsVRGIp4vkCBfr210mqBeSM02Z5i6aiEmzYny1LoTiKyolcilBFBS4Tdft55ZHFSdp/eSche+YNFcNljZclIbi83l+aQdTI4pA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DufbBNmQ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=17qpjYbzklDpeN+YSOUwARueA/UNvwjrGY4gKlNC5dE=; b=DufbBNmQt2ByDUKFL2nLJEOyCO
+	EKpvCZHk2g5cL5wbPaYrf/2rZZTZgXORzFBLNLT6Wy2E6Yk0zVSaQdFvQhwRFunVK9ugicqHe/WQN
+	p92zW0tIEAVVBiOSlA99e7ZNEJotdLU9Uk/WZT3v3Ax+B/UXcpxqzndaPTiRf/RoOvkA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1s7a8M-00FVje-Td; Thu, 16 May 2024 14:22:54 +0200
+Date: Thu, 16 May 2024 14:22:54 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc: Marek Vasut <marex@denx.de>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 10/11] ARM: dts: stm32: add ethernet1 and ethernet2
+ for STM32MP135F-DK board
+Message-ID: <4b17d7e4-c135-4d91-8565-9a8b2c6341d2@lunn.ch>
+References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
+ <20240426125707.585269-11-christophe.roullier@foss.st.com>
+ <43024130-dcd6-4175-b958-4401edfb5fd8@denx.de>
+ <8bf3be27-3222-422d-bfff-ff67271981d8@foss.st.com>
+ <9c1d80eb-03e7-4d39-b516-cbcae0d50e4a@denx.de>
+ <5544e11b-25a8-4465-a7cc-f1e9b1d0f0cc@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="npe44gq3m5hshith"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CANDhNCoOKwtpstFE2VDcUvzdXUWkZ-Zx+fz6xrdPWTyciVXMXQ@mail.gmail.com>
+In-Reply-To: <5544e11b-25a8-4465-a7cc-f1e9b1d0f0cc@foss.st.com>
 
+> > I suspect it might make sense to add this WoL part separately from the
+> > actual ethernet DT nodes, so ethernet could land and the WoL
+> > functionality can be added when it is ready ?
+> 
+> If at the end we want to have this Wol from PHY then I agree we need to
+> wait. We could push a WoL from MAC for this node before optee driver patches
+> merge but not sure it makes sens.
 
---npe44gq3m5hshith
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In general, it is better if the PHY does WoL, since the MAC can then
+be powered down. MAC WoL should only be used when the PHY does not
+support the requested WoL configuration, but the MAC can. And
+sometimes you need to spread it over both the PHY and the MAC.
 
-Hi John,
-
-Thanks for your feedback
-
-On Wed, May 15, 2024 at 11:42:58AM -0700, John Stultz wrote:
-> On Wed, May 15, 2024 at 6:57=E2=80=AFAM Maxime Ripard <mripard@kernel.org=
-> wrote:
-> > This series is the follow-up of the discussion that John and I had a few
-> > months ago here:
-> >
-> > https://lore.kernel.org/all/CANDhNCquJn6bH3KxKf65BWiTYLVqSd9892-xtFDHHq=
-qyrroCMQ@mail.gmail.com/
-> >
-> > The initial problem we were discussing was that I'm currently working on
-> > a platform which has a memory layout with ECC enabled. However, enabling
-> > the ECC has a number of drawbacks on that platform: lower performance,
-> > increased memory usage, etc. So for things like framebuffers, the
-> > trade-off isn't great and thus there's a memory region with ECC disabled
-> > to allocate from for such use cases.
-> >
-> > After a suggestion from John, I chose to start using heap allocations
-> > flags to allow for userspace to ask for a particular ECC setup. This is
-> > then backed by a new heap type that runs from reserved memory chunks
-> > flagged as such, and the existing DT properties to specify the ECC
-> > properties.
-> >
-> > We could also easily extend this mechanism to support more flags, or
-> > through a new ioctl to discover which flags a given heap supports.
->=20
-> Hey! Thanks for sending this along! I'm eager to see more heap related
-> work being done upstream.
->=20
-> The only thing that makes me a bit hesitant, is the introduction of
-> allocation flags (as opposed to a uniquely specified/named "ecc"
-> heap).
->=20
-> We did talk about this earlier, and my earlier press that only if the
-> ECC flag was general enough to apply to the majority of heaps then it
-> makes sense as a flag, and your patch here does apply it to all the
-> heaps. So I don't have an objection.
->=20
-> But it makes me a little nervous to add a new generic allocation flag
-> for a feature most hardware doesn't support (yet, at least). So it's
-> hard to weigh how common the actual usage will be across all the
-> heaps.
->=20
-> I apologize as my worry is mostly born out of seeing vendors really
-> push opaque feature flags in their old ion heaps, so in providing a
-> flags argument, it was mostly intended as an escape hatch for
-> obviously common attributes. So having the first be something that
-> seems reasonable, but isn't actually that common makes me fret some.
->=20
-> So again, not an objection, just something for folks to stew on to
-> make sure this is really the right approach.
-
-I understand your hesitation and concern :) Is there anything we could
-provide that would help moving the discussion forward?
-
-> Another thing to discuss, that I didn't see in your mail: Do we have
-> an open-source user of this new flag?
-
-Not at the moment. I guess it would be one of the things that would
-reduce your concerns, but is it a requirement?
-
-Thanks!
-Maxime
-
---npe44gq3m5hshith
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZkX6VAAKCRAnX84Zoj2+
-dvFkAX4hPR+OmB6uyCvlMnPDpOA7eFAD+O5/7X+BRKTf5Cmdj+Cie8BhtyQAl7C8
-Hky2TnoBgM2pwhStelk3c11olIba3Ix/Pi7eLLvudC0t/wilucjcMDy5wbyzQGJw
-YksYgv+49Q==
-=UGuj
------END PGP SIGNATURE-----
-
---npe44gq3m5hshith--
+	Andrew
 
