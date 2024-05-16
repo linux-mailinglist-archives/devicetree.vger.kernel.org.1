@@ -1,127 +1,141 @@
-Return-Path: <devicetree+bounces-67296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ABEC8C75A0
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:07:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE358C75A6
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 366631C21580
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:07:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D216A1F219E5
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC1B145B01;
-	Thu, 16 May 2024 12:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E65145A1F;
+	Thu, 16 May 2024 12:07:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WzozJMDv"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NbGJocm/";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="NwdinzhA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C941459E2;
-	Thu, 16 May 2024 12:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52624EB30;
+	Thu, 16 May 2024 12:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715861212; cv=none; b=aTG8mU87EM+bs4vrqaFxidD/AsM9IkCMPOjFlW3NMONDzgICvGBMadqs7jgdQAz2QDvmy2TaMF+zkQh0ZciGoTnbrBxDwn+1qKm/QiMK9ld/TKTMwq1uBWswegOYVYNG7uOvc8PPzIoKCyWeMXMbVVZ/teuUuvOsRLx8+ouoWzM=
+	t=1715861260; cv=none; b=siHZ62iT2o5SI0qcpHRGPfGmW0St/jSIVvdMlycrnjqfE0w2phZY2Oq2YaQSnmls+VSZV5uAd0RNdGmMZTg33Kc1Aw+OVrqYMrXw3g19anyk31t9NwbbTnvRX7GmQN1mT3Ta8Y45ua+LOZLQxVTEb9CWDnCg1Jr43vlElmDVGmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715861212; c=relaxed/simple;
-	bh=iOUIrdlu87CHnC7pAPLPHYIfXVJw3A6l8WecuIe9HRU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=J5vOemJ995AUsDXjzu+XWNx4Cvhhg6T3zLoYK/JCgwzwm2JdrSQXGUJSXcLtkJQQRhTpYeGaSmrFq747KN3SApPWL1+0Pm7HEFEX3aXVeHAzyBHtZJK1v3m6xZ1GMuvt2SpyW4C4/d+/zeWvaWyeykV8n7x0c9akuvV21xNoevs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WzozJMDv; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2e3e18c240fso8214281fa.0;
-        Thu, 16 May 2024 05:06:50 -0700 (PDT)
+	s=arc-20240116; t=1715861260; c=relaxed/simple;
+	bh=vcdsIGqZ5qz1syFN4U6rshX8LYDZBqv5t9KYXC8SXXE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IuJAYv7XZXzr1VONFq1CxWoCZLyhRF4Zr9VdtmXcE2oz/2ABckpaWNnEkou+w4sUyGr0dotGnJIwFgr7a2m/eWnLdoQfeHzsNVGX7soMh6UHrIf01O/WPcpgEg6W5LSck/VFoIy1XlYHPjILtGPTNsfAjUHyFHtKNeCzO2JTL48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=NbGJocm/; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=NwdinzhA reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715861209; x=1716466009; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=d/+iOXfE5JhcsldrJn15mneL9tsGrRwJenKZ7TfkMY0=;
-        b=WzozJMDvx8fx9C0seY2dgyyzOT8V3TFnVzJpVR1jqakpfY/jGfK+V/jUIrOea+ZYPj
-         ovt08twrTKjE6Zt73tYiQwk4e40QoLjJT3SG+ebmh7iGC+remWCqI8cbvffYAejXUvcL
-         uB7ldqFZNlHTqlwtxOFW5Q1U3+0B/qqJ297FlBXbtQsrqZxIVfQi2mGMCeHxaORcIWkc
-         UJLac2Bavsu0jEaeBM0IqlFp6gyMUbl7IzdQ9ZnG5ETN/8IzpfqOTqThAabh9ZCDFe42
-         uAhTYmPW7rIkzrSKxFMd95mIdlwpFNA0v9N7Iy9TgMA9QP90F3eYqUi+l/1j8K0Yu8ji
-         DquQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715861209; x=1716466009;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d/+iOXfE5JhcsldrJn15mneL9tsGrRwJenKZ7TfkMY0=;
-        b=pSha17KRw6iW3ODSD2IySAYj6pV6QFxSKvFHm/6tOmLOkFNVH74I+OGIJRRyZBQYKu
-         czXGORQPiYVUGTaMrN9QW3Zj8nCSxxAivlG+bxNtak86K+QJYJPbm6fbsyRa8xoUb/8s
-         fVgsYQngwoGbdixclCY8xmWaZr61Q93Y18XxaFGjZCJvJgE7Hu7lW6383Bv+vaskpjkq
-         V4jnjkAZsAvy4s4xIeCL9H0vngiEw8TB5lPMTBO0MMqfKdjAiHyPbbmGGYTni7nqUjOg
-         hoKkzB0C7pNGx8s77TXVl0kR60xf2XBwL6zQmu1XWkMjWpDcHpJdmjDUVSbwp4AIz+89
-         q1og==
-X-Forwarded-Encrypted: i=1; AJvYcCWQEiqcF/bGpB7Xf2wPJ0rygFR1AAgDWTHTxB9LhQYdsqMkbYImIrXCWqq80Y1/GDtH0dJWK4SbHsQlbtXsPEOYziXh9gX3FVTCZ1VM7FObbwt9FZpApSgkqIjKNBqwwyWpcQCK22i4VkodNTS9mThpzg0g7vf61VH28PZFkP0G99ZeKkI=
-X-Gm-Message-State: AOJu0YwKPHZfx/c9RPZpAA4ggP/KmhpH1J5wMB8PZkuaIe8+ndNaWlJ0
-	GmsJdkiVh6+lquv7dB6yGZ3/MlIPmbO4qeR7vMqvjfBPC68ouet+uMmVwUss
-X-Google-Smtp-Source: AGHT+IGRXdu4e46HW+sJ65tDSzWCXInDmL+maJuMRLPwnyxExOFx8EFCPUqneDMLyHGHRnj5Mj8LLA==
-X-Received: by 2002:a05:651c:546:b0:2df:1e3e:3280 with SMTP id 38308e7fff4ca-2e51ff5da7dmr204135241fa.28.1715861208838;
-        Thu, 16 May 2024 05:06:48 -0700 (PDT)
-Received: from [192.168.0.107] ([91.90.219.38])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e4d15155fdsm24154071fa.83.2024.05.16.05.06.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 May 2024 05:06:48 -0700 (PDT)
-Message-ID: <81aa0e4e-a3c7-41d1-8cd2-4d060730b37a@gmail.com>
-Date: Thu, 16 May 2024 17:06:46 +0500
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1715861257; x=1747397257;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=vcdsIGqZ5qz1syFN4U6rshX8LYDZBqv5t9KYXC8SXXE=;
+  b=NbGJocm/nYhNY8ItDCPxBLvGN/h2O8pG6Tb61+itiGHWN5Di3vh6mmHp
+   x/V/t1HW2vTb9q8l4eOndww+mbnvRiH0bWOUhL9tCS5bdLoADUBMEHVwX
+   TJc57BscwaO+X89w9y/yWfk/f9HmGMVEcZGelYBtIiV/oM/N0kAHXXMKf
+   8you2V+8FWx2WhDHp3LpS74Z6TIUSFNS5kS9vFS3J/2FSaW2YEZjxXjR9
+   v0C6AWlpHmdaBwZ2b0Ua23KIZosWEypKUwaVYopftLn4jwtO+z01BTmjE
+   U1zcSz96LBITVUuUFvTndyvAdfC60aghjEjnmCS+Xtwg4fQ2nX6WnvveQ
+   g==;
+X-CSE-ConnectionGUID: RksVlVebSziJVsdXvJdhKg==
+X-CSE-MsgGUID: tlJ8O3lfQa60hJSqAFcjvg==
+X-IronPort-AV: E=Sophos;i="6.08,164,1712613600"; 
+   d="scan'208";a="36937146"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 16 May 2024 14:07:34 +0200
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 23DB6174204;
+	Thu, 16 May 2024 14:07:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1715861250;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=vcdsIGqZ5qz1syFN4U6rshX8LYDZBqv5t9KYXC8SXXE=;
+	b=NwdinzhA0JeGGqgMmGZt/8JCtKF1X2eXOUGriZ8xtAglud6v3UTZWqQ8nz3R/y1Cw84O0/
+	U4AYI1vUo8hItVABU9FgsRWutlaKB1BUaGlmIa8/tNLu1QkzFNsg/zrg/Q8vn7H8rzM1Ux
+	1czmd7PK1P2/3MC4JvPrYFlmQQkmPknYAlF2fYkaaR41LZd7yHXpNBJ7Eb5Iybqo90jzKv
+	2K17rWErAszcPe/4kSGnP4KvdiZjQ+b9A7eq7qF/NTwAJPdIslPYmPxO3xgXloZc9MSB7j
+	Ms7+cYsk+KncudPPRocDPTasNeoBkmM+AavZOKM8V2OfnqXP6he/PKkW80BAAg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Marek Vasut <marex@denx.de>, Francesco Dolcini <francesco@dolcini.it>, linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org, imx@lists.linux.dev, kernel@dh-electronics.com, Pengutronix Kernel Team <kernel@pengutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2 and PDK3
+Date: Thu, 16 May 2024 14:07:34 +0200
+Message-ID: <5724851.tdWV9SEqCh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <69c3517c-0fa4-4e0d-9515-21adfb6730a8@pengutronix.de>
+References: <20240514010706.245874-1-marex@denx.de> <fa01ef26-d4d4-4c62-9c12-1f8bed1cfdab@denx.de> <69c3517c-0fa4-4e0d-9515-21adfb6730a8@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Dmitry Yashin <dmt.yashin@gmail.com>
-Subject: Re: [PATCH 3/3] pinctrl: rockchip: add rk3308b SoC support
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Jianqun Xu <jay.xu@rock-chips.com>, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Dmitry Yashin <dmt.yashin@gmail.com>
-References: <20240515121634.23945-1-dmt.yashin@gmail.com>
- <20240515121634.23945-4-dmt.yashin@gmail.com> <20240515182954.03c4a475@booty>
-Content-Language: en-US
-In-Reply-To: <20240515182954.03c4a475@booty>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Luca,
+Hi everyone,
 
-On 15.05.24 21:29, Luca Ceresoli wrote:
-> I'm skeptical about this being bound to a new DT compatible. As far as I
-> know the RK3308 and RK3308B are mostly equivalent, so it looks as the
-> pinctrl implementation could be detected at runtime. This would let
-> products to be built with either chip version and work on any without
-> any DT change.
+Am Donnerstag, 16. Mai 2024, 13:46:33 CEST schrieb Ahmad Fatoum:
+> On 16.05.24 13:44, Marek Vasut wrote:
+> > On 5/16/24 1:36 PM, Ahmad Fatoum wrote:
+> >> Hello Marek,
+> >=20
+> > Hi,
+> >=20
+> >> On 16.05.24 13:14, Marek Vasut wrote:
+> >>> On 5/16/24 10:00 AM, Francesco Dolcini wrote:
+> >>>> Hello Marek,
+> >>>
+> >>> Hi,
+> >>>
+> >>>> On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
+> >>>>> Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2=
+ and
+> >>>>> I2C mux port 1 on PDK3 respectively are used in regular I2C mode in=
+stead
+> >>>>> of HDMI DDC mode to permit connection of other I2C devices on those=
+ buses.
+> >>>>
+> >>>> Are you able to read the HDMI EDID with such configuration? I have t=
+he
+> >>>> patch ready for verdin imx8mp, I just did not have time to figure out
+> >>>> this last details.
+> >>>
+> >>> Yes with ddc-i2c-bus in hdmi_tx{} node, no with ddc-i2c-bus in connec=
+tor node. Maybe that's what you're running into ? The DW HDMI core needs th=
+e ddc-i2c-bus property in hdmi_tx{} node if you use non-native I2C bus for =
+the DDC channel.
+> >>
+> >> What benefit does the hdmi-connector provide over just omitting it?
+> >> Just for documentation purposes?
+> >=20
+> > I was under the impression describing the hardware in DT in full was th=
+e best practice (TM), hence it is in full here.
+>=20
+> Sure, I am just wondering what effect, if any, it has in how Linux interp=
+rets
+> the device tree. I have an i.MX8MP board with HDMI as well, but without
+> connector (yet).
 
+AFAICT having a hdmi-connector has no effect at all. Linux drivers are
+not using it.
 
-Thanks for your feedback.
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Indeed, these SoC's have a lot in common, but as I can see the rk3308b
-has more blocks, like extra PWM's (rk3308 datasheet 1.5 [0] shows only
-1x PWM 4ch, when rk3308b and rk3308b-s have 3x PWM 4ch), 1-wire and
-CAN controller (mentioned in the TRM, but dropped from rk3308b
-datasheet for some reason).
-
-So, in my view, it really makes sense to add rk3308b.dtsi, where extra
-PWM's, pinctrl compatible and its pin functions can be moved. And if
-its not worth it, then I will try to adapt the entire series to runtime
-config based on cpuid like you suggested.
-
-Additional thoughts on this would be appreciated.
-
-[0] https://rockchip.fr/RK3308%20datasheet%20V1.5.pdf
-
--- 
-Thanks,
-Dmitry
 
 
