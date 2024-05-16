@@ -1,195 +1,125 @@
-Return-Path: <devicetree+bounces-67242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144A88C7216
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 09:34:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48DF58C7217
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 09:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04353B20C16
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 07:34:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC1C31F21A59
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 07:35:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED5F2D054;
-	Thu, 16 May 2024 07:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367243E470;
+	Thu, 16 May 2024 07:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mhv0Nre2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AC/g7Ror"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8569728DD1;
-	Thu, 16 May 2024 07:34:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85FBC3B297
+	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 07:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715844886; cv=none; b=OjTLCcheM93MXBeGdBgfhrq/IEwipncgI/DxbL5d4etO3LyKwwkmOkLoLg/RS1JN9VoiszC37guk6zsfS5/K/DG1xZm0LSF3OkoCyspUDmtH0FmP2SrHmO6wUzYoTC+txAXDDNwjkBWcc5C4KlCNlHhhLyZ8ERFcFJWhfPjIesk=
+	t=1715844905; cv=none; b=BgLo1m+GIL+5iU5kYYm2jIIYXKVVvy4M7wf3wx53yX5N1xYRzj+Ah7V2GZTlk/wNzVDKwX/SKYpI06w2sjvH0mIfFqvwL+wKsHYs4pnJ3GMDyQUM703PYwHhdNKu1dBb8bsk1VE/q/uINE/ADqjmSJpx4xLP3wpFFfBusZ/c8QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715844886; c=relaxed/simple;
-	bh=HjjWktb2E+qwmQh3WN8NAfnd2hZ98UJFlbhLh4iTajc=;
+	s=arc-20240116; t=1715844905; c=relaxed/simple;
+	bh=ZMACuTR3vRKSoU4pHT19THsZk5hrQ3AyoJYvIvgJUUQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CqOt/+6UvEWr32M3BqDXSwy8FnUpKR63ksGEHqSmIDlCFo0F7DLjNYL1xoPDwvlWE4cW+SaILXmJ+2XprAYa14QFIK1fyuApaRG+Q1WNTnBpyNLH6cULcqugpYBFifPU4Sf/L+ECz3MPBhjPddA/QHXnNgt01rI3Ua2reH32KS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mhv0Nre2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55A5AC113CC;
-	Thu, 16 May 2024 07:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715844885;
-	bh=HjjWktb2E+qwmQh3WN8NAfnd2hZ98UJFlbhLh4iTajc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mhv0Nre2XAy+CUz7ZsMJMdG8rL84beCFbY557hdgnKJs9B8GomZgtYk6OKrcBptxU
-	 BrMUwFk8DExe0n8gVHokINdK0KznI6Vx03UcY+dOHVVlKUv2wu8RT/2in+t0RQ3/BD
-	 7ekNHvh8bJaXZXitUUIDHGMld3JlI/VjnzhI8BgnGikGS4KCJFBHNwqzF3Llozqp2M
-	 UvENit/g4pp+vbya+Z184Q2UNEZvlZd+kHruN2xx6sCHGWTdthde+wWTiEGu19F4iA
-	 8Dnzevm75lFAjjQ5DomfSMajmmnK8Xwu1kjMH1Po05J2DTZJsVkcyQhnTmDoRY2Ur9
-	 cAffreYqxcZjw==
-Date: Thu, 16 May 2024 09:34:42 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, p.zabel@pengutronix.de,
-	mturquette@baylibre.com, sboyd@kernel.org,
-	lorenzo.bianconi83@gmail.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, nbd@nbd.name,
-	john@phrozen.org, dd@embedd.com, catalin.marinas@arm.com,
-	will@kernel.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH 2/5] dt-bindings: reset: Add reset definitions for EN7581
- SoC.
-Message-ID: <ZkW3Evc77TbQGNQF@lore-desk>
-References: <cover.1715777643.git.lorenzo@kernel.org>
- <acb6aa6fe473c485605c108e551d6d28ceb27a60.1715777643.git.lorenzo@kernel.org>
- <20240515-imperfect-candle-6179aa934427@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oeb5ix9nuNpNH45rMqxGQMV5NxxKPEtc+jkyLV1gyD5BjV9jqKNOJiy40hSP6Be8ZIz9HUQ3haGiYmQaPtRAPbTEVaBJdm5/ZiMTXQJPqxJzY7tndyIXHvFwD+vylHUzFOjKw8Vp/CYMmo6JajqdzftYFHyuXEnte0g3U2DxI60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AC/g7Ror; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-34d9c9f2cf0so6470540f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2024 00:35:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1715844902; x=1716449702; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RosNd3B/hfPPJgEd8do/IrHkaPKjQ1tjjKxBt5s2vzw=;
+        b=AC/g7RorFPd04Pl/gyEXV+Rljc9/h+JehxgabfwoadJwDtDdNw6Z2Ue5GgE70HauPv
+         OyineWSiFfGBtCbQDJdMRno6zfC8rg/KCzzApEm87A7N/jhAjkPLliOy2/XzFdiOU7d7
+         UPsL87v2DQ75ASG1cCsELAk7kNtkez+xydX5wJqQDKsd2ZekFJ9AUO/rZo5yw/b1rRzT
+         D1989pV60JQI5w4Opms5yJlwiaVuq2ricM6m003AJATOiZUz4ndsnrbbEUqE2OR3Y9KQ
+         Ewvu2ke2k3+8TE8yfJgljF2Qc2EbjhfCW3F3fTyXCi3E1Ppvy9/XhsLPesOWgm8RhfpY
+         Jy5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715844902; x=1716449702;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RosNd3B/hfPPJgEd8do/IrHkaPKjQ1tjjKxBt5s2vzw=;
+        b=S+FKXI3Ic5dUsC7O9fy2HNPeXoGRd0f0JAV+8R90zUdAqKR86U95DLTyQr/AjTaNbq
+         fZVNJOE8Rszi4zPz+MRYkSU4OGoaEUNZsDAgLmjZs8kpCWsKJPrRZDwOlntLvw0xTE71
+         elDkSV0CusSJWj175oOwOpM7ihZdsEa7Ne23etH6bO7eVegEt97NYfsdHtkR7wK0yCdt
+         rmaOs7xpvQY+2T7vAQ3BMydu2aiRevSAw/kVhL9LpfuudN9DnTRuOmavnkQpq5A/jag8
+         X5jneYc9hMOmfn1Uowjvem9ITRdtdKdeQheiS3bx7JK9L9i95UHwREnCT44L2zTIT20h
+         rk5A==
+X-Forwarded-Encrypted: i=1; AJvYcCVcZKbYrVKKl9qaRJi/qfpw7Vn+7x+wOrkQJQH9EbXD1pE37JQvjfU5Efk0fJcAzUO+Xa29xxrJhKzvs8KUU6Yoq5SdqqPvRQoUzg==
+X-Gm-Message-State: AOJu0YyJXOfHt02h8bYsy+ckazs6yhJCGWxV8ZGjoa1/XJvxEWTS4lwx
+	q/S8j76gsfTdFI3CUVZufjoligGIASHIF3m/VHtnKmFtkvUKpujFycB7UGdW/u4=
+X-Google-Smtp-Source: AGHT+IFyT+2cX3CUvKGm2EXv4WIaX+r6Q5SkjvFFmDYOtCk8+G42oZ2PPreRy/IsRw9tSFPb0TzkOw==
+X-Received: by 2002:a05:6000:a88:b0:34c:e62a:db70 with SMTP id ffacd0b85a97d-3504aa63447mr17873757f8f.67.1715844901762;
+        Thu, 16 May 2024 00:35:01 -0700 (PDT)
+Received: from myrica ([2.221.137.100])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fe004eae9sm244071795e9.1.2024.05.16.00.35.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 May 2024 00:35:01 -0700 (PDT)
+Date: Thu, 16 May 2024 08:35:00 +0100
+From: Jean-Philippe Brucker <jean-philippe@linaro.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Vidya Sagar <vidyas@nvidia.com>, "will@kernel.org" <will@kernel.org>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"liviu.dudau@arm.com" <liviu.dudau@arm.com>,
+	"sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+	"joro@8bytes.org" <joro@8bytes.org>,
+	"robin.murphy@arm.com" <robin.murphy@arm.com>,
+	Nicolin Chen <nicolinc@nvidia.com>, Ketan Patil <ketanp@nvidia.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/3] Enable PCIe ATS for devicetree boot
+Message-ID: <20240516073500.GA3563602@myrica>
+References: <PH8PR12MB6674391D5067B469B0400C26B8EC2@PH8PR12MB6674.namprd12.prod.outlook.com>
+ <20240515185241.GA2131384@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="H2XUFYL7Gi/l0bRz"
-Content-Disposition: inline
-In-Reply-To: <20240515-imperfect-candle-6179aa934427@spud>
-
-
---H2XUFYL7Gi/l0bRz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240515185241.GA2131384@bhelgaas>
 
-> On Wed, May 15, 2024 at 02:58:48PM +0200, Lorenzo Bianconi wrote:
-> > Introduce reset binding definitions for reset controller available in
-> > the Airoha EN7581 clock module.
-> >=20
-> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
->=20
-> Heh, what is there to test in a header of made up numbers?
->=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-> Just squash this into patch 1.
+Hi,
 
-ack, I will do in v2.
+On Wed, May 15, 2024 at 01:52:41PM -0500, Bjorn Helgaas wrote:
+> On Wed, May 15, 2024 at 06:28:15PM +0000, Vidya Sagar wrote:
+> > Thanks, Jean for this series.
+> > May I know the current status of it?
+> > Although it was actively reviewed, I see that its current status is set to 
+> > 'Handled Elsewhere' in https://patchwork.kernel.org/project/linux-pci/list/?series=848836&state=*
+> > What is the plan to get this series accepted?
+> 
+> I probably marked it "handled elsewhere" in the PCI patchwork because
+> it doesn't touch PCI files (the binding has already been reviewed by
+> Rob and Liviu), so I assumed the iommu folks would take the series.
+> I don't know how they track patches.
 
-Regards,
-Lorenzo
+Yes I think this can go through the IOMMU tree. Since patch 3 is still
+missing an Ack, I'm resendng the series next cycle.
 
->=20
-> Cheers,
-> Conor.
->=20
-> > ---
-> >  .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++++++++
-> >  1 file changed, 66 insertions(+)
-> >  create mode 100644 include/dt-bindings/reset/airoha,en7581-reset.h
-> >=20
-> > diff --git a/include/dt-bindings/reset/airoha,en7581-reset.h b/include/=
-dt-bindings/reset/airoha,en7581-reset.h
-> > new file mode 100644
-> > index 000000000000..1b7ee62ed164
-> > --- /dev/null
-> > +++ b/include/dt-bindings/reset/airoha,en7581-reset.h
-> > @@ -0,0 +1,66 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (c) 2024 AIROHA Inc
-> > + * Author: Lorenzo Bianconi <lorenzo@kernel.org>
-> > + */
-> > +
-> > +#ifndef __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
-> > +#define __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
-> > +
-> > +/* RST_CTRL2 */
-> > +#define EN7581_XPON_PHY_RST		0
-> > +#define EN7581_CPU_TIMER2_RST		2
-> > +#define EN7581_HSUART_RST		3
-> > +#define EN7581_UART4_RST		4
-> > +#define EN7581_UART5_RST		5
-> > +#define EN7581_I2C2_RST			6
-> > +#define EN7581_XSI_MAC_RST		7
-> > +#define EN7581_XSI_PHY_RST		8
-> > +#define EN7581_NPU_RST			9
-> > +#define EN7581_I2S_RST			10
-> > +#define EN7581_TRNG_RST			11
-> > +#define EN7581_TRNG_MSTART_RST		12
-> > +#define EN7581_DUAL_HSI0_RST		13
-> > +#define EN7581_DUAL_HSI1_RST		14
-> > +#define EN7581_HSI_RST			15
-> > +#define EN7581_DUAL_HSI0_MAC_RST	16
-> > +#define EN7581_DUAL_HSI1_MAC_RST	17
-> > +#define EN7581_HSI_MAC_RST		18
-> > +#define EN7581_WDMA_RST			19
-> > +#define EN7581_WOE0_RST			20
-> > +#define EN7581_WOE1_RST			21
-> > +#define EN7581_HSDMA_RST		22
-> > +#define EN7581_TDMA_RST			24
-> > +#define EN7581_EMMC_RST			25
-> > +#define EN7581_SOE_RST			26
-> > +#define EN7581_PCIE2_RST		27
-> > +#define EN7581_XFP_MAC_RST		28
-> > +#define EN7581_USB_HOST_P1_RST		29
-> > +#define EN7581_USB_HOST_P1_U3_PHY_RST	30
-> > +/* RST_CTRL1 */
-> > +#define EN7581_PCM1_ZSI_ISI_RST		32
-> > +#define EN7581_FE_PDMA_RST		33
-> > +#define EN7581_FE_QDMA_RST		34
-> > +#define EN7581_PCM_SPIWP_RST		36
-> > +#define EN7581_CRYPTO_RST		38
-> > +#define EN7581_TIMER_RST		40
-> > +#define EN7581_PCM1_RST			43
-> > +#define EN7581_UART_RST			44
-> > +#define EN7581_GPIO_RST			45
-> > +#define EN7581_GDMA_RST			46
-> > +#define EN7581_I2C_MASTER_RST		48
-> > +#define EN7581_PCM2_ZSI_ISI_RST		49
-> > +#define EN7581_SFC_RST			50
-> > +#define EN7581_UART2_RST		51
-> > +#define EN7581_GDMP_RST			52
-> > +#define EN7581_FE_RST			53
-> > +#define EN7581_USB_HOST_P0_RST		54
-> > +#define EN7581_GSW_RST			55
-> > +#define EN7581_SFC2_PCM_RST		57
-> > +#define EN7581_PCIE0_RST		58
-> > +#define EN7581_PCIE1_RST		59
-> > +#define EN7581_CPU_TIMER_RST		60
-> > +#define EN7581_PCIE_HB_RST		61
-> > +#define EN7581_XPON_MAC_RST		63
-> > +
-> > +#endif /* __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_ */
-> > --=20
-> > 2.45.0
-> >
+Thanks,
+Jean
 
-
-
---H2XUFYL7Gi/l0bRz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZkW3EgAKCRA6cBh0uS2t
-rMf/AQDnEDXwOXQ4+Z0hdyKgdFTbidsOI1DOqHwXGWARQ38diAEAq6q44ps9mkRc
-W/Eg6ZoMDROqWto0BEtBz1kytx0zuwM=
-=FKy2
------END PGP SIGNATURE-----
-
---H2XUFYL7Gi/l0bRz--
+> 
+> The merge window is open now, so likely they would wait until the next
+> cycle so it would have some time in linux-next, but that's up to them.
 
