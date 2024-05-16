@@ -1,98 +1,167 @@
-Return-Path: <devicetree+bounces-67294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5C48C757F
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:58:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD788C7583
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:58:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD6BCB20AC2
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:57:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFAA31F227C5
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EDB5145A12;
-	Thu, 16 May 2024 11:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E179145A12;
+	Thu, 16 May 2024 11:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="FBeHeafd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pvISL2g5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C00426AD0;
-	Thu, 16 May 2024 11:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF9926AD0;
+	Thu, 16 May 2024 11:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715860673; cv=none; b=YuG8ypid//2rilgiegIJnaIrVCR+ydx0feaV60mGIQadUoY6n0dCQpsuKBIpHdxmEL+GItKifVXA2X1p23dEKYEK1xXptv3xxy+v/WM3We7KJKuGOQnzdmnWxa3VN6h4r5I2c98QPP7OWNBU8/aKqNOlZxHzVjX1lmJG12g2p5M=
+	t=1715860727; cv=none; b=dsMjmsDeK8hIHVkHrucIy66EK1HAMZMpSO7F0WZ5FdAYEw6lG1IHgFViy2XWUm6O4imajL/d4o7baEFWumWbd+2ZVzWKBhnfwDHmbhtVM+KXjFXH3+YdLZF+/GcM7bzXyDj/bpA2L7ej6614tA1RYOinRe/Pu//GYtt8P2nrJug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715860673; c=relaxed/simple;
-	bh=zb3thMvUhgoGD+gDyV0KsfAFSV/xaogkAu6yb5KZ9No=;
+	s=arc-20240116; t=1715860727; c=relaxed/simple;
+	bh=E7UsGb6Za+wHEcmHsLVrZiP4f3obI82j8AUAXJwI+Oc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hfsi3XAVSvEceUaxFGsjw21YTYZ9jYZOKAQEw249IDz5Z90rR4FGQCX/YzZd+dS/eG66Hw3YM9lJyv2OoSX2TUCPPKjgoRDMUt8qJAG5fI6UVzVSlRrZXs/rrD63vh8kTDcfgnT5Sg4kF/GBTaTyuvEV8h7TiE6gedyBEiqhAa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=FBeHeafd; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 221DA1F938;
-	Thu, 16 May 2024 13:57:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1715860668;
-	bh=qMf3X2Q4oRj/C7hAFJyFwgIdc7153KsOrkW8sYZ0UHQ=; h=From:To:Subject;
-	b=FBeHeafdXEDBYor8B4j+QLg8SJaTMZrCHWYDfvM801Ild6jZBnK+f4YgEfzdV3vu1
-	 x1af9xBDvgbLpeHwSsz2ClhZrWHzxgrGatUaJtaAClPi99qVT+2BZV+uFK699a11Pp
-	 1cqI/SVUWLB5HIXKiebTyxUXIKLBdy/+76GXxNv1IUrk7BVv3IeSbwk521iDUw2Ima
-	 ALnCOd13SMvhewS7IXNONU66iyzGKFOvMI0JIugmyJR4oHxCHmvmQ1QgbYlVdkWqUW
-	 KNdqzSjwNNaVBXUKRpiwvvxXmRSeIIVX9us9lfv/2yi6FjSn/s03px5vFu3jKZ+aMp
-	 6ubj+BU1UNmcw==
-Date: Thu, 16 May 2024 13:57:43 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Marek Vasut <marex@denx.de>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=qexafKz+5Kf6nlLs44I4OHBRYbp58TFKdkic74pQu9ZEzyIPbShr/CDDQCqLruimZ27aAP+gpVjg4qf0JkA5n4kU3NRaUXQd8JkX9lNWwzyLo2v7JenevQY7Ipf89m6vBetlXWvd6Nb6ePsAHCw7o7P2tJYnuCor3d5NQS/MsKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pvISL2g5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F72C113CC;
+	Thu, 16 May 2024 11:58:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715860726;
+	bh=E7UsGb6Za+wHEcmHsLVrZiP4f3obI82j8AUAXJwI+Oc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pvISL2g5xA9A7ryhfZ4/mtSa5WAkWW7GkBPMWB7qu6TEZ90UmAWOOerEh3/Cl2Ph0
+	 +TDkQY81351Z8KKw8h27YPRDj4Og2lsD9wH8zIVlH/tCkCfqVe6UN8XdUdx1XO5Gm/
+	 YPEyc8Ijvy2zull41IQX+Sdfzo88p/rXYUNmzTm6718wMQeVdtUDuRt85tvlgcjaED
+	 ueOH0onP7/5O8fFYXJ9/EFeE5Y2I8QTkT5XXwUd59T0H9JrvFb/zkFXpZWsauxOTwL
+	 Sqy5Kfvp7ltuVMUDfp8e3KYMT7VyK6BoI50J912bQDEpY5p4XBvRGuRpB2u9S82VG+
+	 wdR+ks55in61w==
+Date: Thu, 16 May 2024 12:58:40 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, kernel@dh-electronics.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2
- and PDK3
-Message-ID: <20240516115743.GA6663@francesco-nb>
-References: <20240514010706.245874-1-marex@denx.de>
- <20240516080008.GA9338@francesco-nb>
- <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+	quic_pkumpatl@quicinc.com
+Subject: Re: [PATCH v4 4/7] ASoC: codecs: wcd937x: add basic controls
+Message-ID: <f766e8fc-64e7-4579-ac5a-4afcdae067cc@sirena.org.uk>
+References: <20240516044801.1061838-1-quic_mohs@quicinc.com>
+ <20240516044801.1061838-5-quic_mohs@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bEuBL+UqcAprloOC"
+Content-Disposition: inline
+In-Reply-To: <20240516044801.1061838-5-quic_mohs@quicinc.com>
+X-Cookie: I'm having a MID-WEEK CRISIS!
+
+
+--bEuBL+UqcAprloOC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
 
-Hello,
+On Thu, May 16, 2024 at 10:17:58AM +0530, Mohammad Rafi Shaik wrote:
 
-On Thu, May 16, 2024 at 01:14:04PM +0200, Marek Vasut wrote:
-> On 5/16/24 10:00 AM, Francesco Dolcini wrote:
-> > On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
-> > > Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
-> > > I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
-> > > of HDMI DDC mode to permit connection of other I2C devices on those buses.
-> > 
-> > Are you able to read the HDMI EDID with such configuration? I have the
-> > patch ready for verdin imx8mp, I just did not have time to figure out
-> > this last details.
-> 
-> Yes with ddc-i2c-bus in hdmi_tx{} node, no with ddc-i2c-bus in connector
-> node. Maybe that's what you're running into ? The DW HDMI core needs the
-> ddc-i2c-bus property in hdmi_tx{} node if you use non-native I2C bus for the
-> DDC channel.
+> +static int wcd937x_rx_hph_mode_put(struct snd_kcontrol *kcontrol,
+> +				   struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct snd_soc_component *component =
+> +				snd_soc_kcontrol_component(kcontrol);
+> +	struct wcd937x_priv *wcd937x = snd_soc_component_get_drvdata(component);
+> +	u32 mode_val;
+> +
+> +	mode_val = ucontrol->value.enumerated.item[0];
+> +	if (!mode_val) {
+> +		dev_warn(component->dev, "Invalid HPH Mode, default to class_AB\n");
+> +		mode_val = CLS_AB;
 
-Yes, that's it. Thanks!
+This should be silent (or return an error) otherwise people can DoS the
+logs by just spamming in invalid values.
 
-Francesco
+> +	}
+> +
+> +	wcd937x->hph_mode = mode_val;
 
+I would expect there's more validation needed here, this will blindly
+assign any non-zero mode.  Please run the mixer-test selftests on a card
+with this device in it and show the results on future submissions, this
+will detect this and other issues for you.
+
+Several of the other controls look like they're also missing validation.
+
+> +static int wcd937x_set_swr_port(struct snd_kcontrol *kcontrol,
+> +				struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct soc_mixer_control *mixer = (struct soc_mixer_control *)kcontrol->private_value;
+> +	struct snd_soc_component *comp = snd_soc_kcontrol_component(kcontrol);
+> +	struct wcd937x_priv *wcd937x = snd_soc_component_get_drvdata(comp);
+> +	struct wcd937x_sdw_priv *wcd;
+> +	int dai_id = mixer->shift;
+> +	int ch_idx = mixer->reg;
+> +	int portidx;
+> +	bool enable;
+> +
+> +	wcd = wcd937x->sdw_priv[dai_id];
+> +
+> +	portidx = wcd->ch_info[ch_idx].port_num;
+> +
+> +	enable = !!ucontrol->value.integer.value[0];
+> +
+> +	wcd->port_enable[portidx] = enable;
+> +	wcd937x_connect_port(wcd, portidx, ch_idx, enable);
+> +
+> +	return 1;
+> +}
+
+This unconditionally reports that the value changed so will generate
+spurious events.
+> +
+> +static const char * const rx_hph_mode_mux_text[] = {
+> +	"CLS_H_INVALID", "CLS_H_HIFI", "CLS_H_LP", "CLS_AB", "CLS_H_LOHIFI",
+> +	"CLS_H_ULP", "CLS_AB_HIFI",
+> +};
+
+It would be more idiomatic to write these in a more human readable form.
+
+> +static const char * const wcd937x_ear_pa_gain_text[] = {
+> +	"G_6_DB", "G_4P5_DB", "G_3_DB", "G_1P5_DB", "G_0_DB",
+> +	"G_M1P5_DB", "G_M3_DB", "G_M4P5_DB",
+> +	"G_M6_DB", "G_7P5_DB", "G_M9_DB",
+> +	"G_M10P5_DB", "G_M12_DB", "G_M13P5_DB",
+> +	"G_M15_DB", "G_M16P5_DB", "G_M18_DB",
+> +};
+
+Why is this an enum and not TLV information?
+
+--bEuBL+UqcAprloOC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZF9PAACgkQJNaLcl1U
+h9BE5gf+MZfo6xckou+1xaQ1x8WUvInmUJO84njGHB6R6hSHjjnEG+XIuVw/g7EZ
+yZ9OiZFuYfRQlTp2Gw/GYO+9DG/+gLGcBZQ7TGVFU8mP/i8hSVF0U7wNXRF1+uG1
+qbpx4Qqh2Nl5Rr3SHsSaxscGjNKvOI27Vm9eb2Dq9uVuy/nfDymCUiFwrVUQGleE
+2XUfQeW3IlyZI1INfjNcQ1e/I5a36bh1mFtD+GHk1jbGp/YLImU2sGbJPBmQwpzQ
+F9eKub3szoFc2Xh9kMoc8Vlxi0mYOphxhK21yNk+aVaWTV74teJcBC66oumbC/nI
+xpHyAPFWN0WtuFOXrz40J+//3ils/w==
+=TStU
+-----END PGP SIGNATURE-----
+
+--bEuBL+UqcAprloOC--
 
