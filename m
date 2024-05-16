@@ -1,73 +1,72 @@
-Return-Path: <devicetree+bounces-67351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A393B8C7A8B
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:42:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA918C7A8E
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:42:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DD301F212FA
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:42:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFCE3B22438
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:42:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3632D1DFE4;
-	Thu, 16 May 2024 16:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688471EA87;
+	Thu, 16 May 2024 16:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b="l+zMY4tk"
+	dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b="LnDRW9sO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DF81DFD9
-	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 16:42:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF86079DF
+	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 16:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715877742; cv=none; b=on5bPhemMhYoD7DrkjWszbTnjYkZIJUa8PlDjOutBuy+ZmQCBZe6qZBCwunNGsQl6pBPxPGnFj3lMFwjqigBzLb1nL1XUfYgnrCiXJSweY0Lty0RLAkWf+aAdnbuCNIC56iYxDC4A14d68A3LTOaVNeXNkcf0FndC6DseJUc0Ww=
+	t=1715877745; cv=none; b=lA5PW1wEd46G/t5q2PCSCiuG9cTbz7rqqExAwMYxQQi3E1wgWTDuqs7nS/K16b9vB7G58pGb+KG7yjG/icC7aQnWtOKOAvOSac23pLtQdIo2Jww8yo6cYmLsd/8QePVM275CyeI8UHg0NAxQhSJghpI7tg6Qj7NSUqaKoCSDuOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715877742; c=relaxed/simple;
-	bh=jGqzhaOd16cpVcsnK4AsE1lanw1GigLr24tQMLYItF0=;
+	s=arc-20240116; t=1715877745; c=relaxed/simple;
+	bh=UwgZknUu6CAOz/IR9be36P6hpO03NDzOxnGjt8+Y30I=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZsHD5XpKn/UoUqO3Gj7vdHlAzlmq4XlH5Qg00mio8OOZTtsv8JgeKJ7VApVLqAU/tVYb25S3L2WRAiMgdqu0GSzGCE26GyCaLvMTsuuIxc3IC4PEMeH2/7rvZtDaOiYUZiJJ4B+LWPPubPNl1+Q90P7VuwwsguO9CeFVv+JfDSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=melexis.com; spf=pass smtp.mailfrom=melexis.com; dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b=l+zMY4tk; arc=none smtp.client-ip=209.85.218.54
+	 MIME-Version; b=glIlzGPHtrDrig0J7CJIx4w/IX6jJMhceqzVGKxYkgVxJ2ahxXvaFN0eD5k3Ceng7feHOHuJbGPkeTQ569+dk9m+J0vXSdJXNsSl2McrgCdfsJKF+wUNkFWVytfFfbV17k5ua/Q2HqoiQnljg9hpY1rbaLkOXrttsGRH85GXZug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=melexis.com; spf=pass smtp.mailfrom=melexis.com; dkim=pass (2048-bit key) header.d=melexis.com header.i=@melexis.com header.b=LnDRW9sO; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=melexis.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=melexis.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a59b81d087aso316247366b.3
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2024 09:42:20 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a59cf8140d0so312852266b.3
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2024 09:42:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google; t=1715877739; x=1716482539; darn=vger.kernel.org;
+        d=melexis.com; s=google; t=1715877742; x=1716482542; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=x86b2pC0BGkgc9pZoaWR80EZrkXbOTilbfMfMb6B3+0=;
-        b=l+zMY4tkmNN5KtTmuSr8WOU1UOtakVjcklz6+t6vTCUw4WAnXhIZFivVRSoEeTWzoH
-         XJroM9cgdafAJkkdM0Oosk9zrV+GY9Kx5uoBL0ds/uzaCWuO2FUEhvff7PccWGZt1+42
-         GePwwn6H1ezBNFaz2RwD0DdPejCvf0YGiINeWs1lQHzHSnypZmldPxZLLDOnJLR2bH2c
-         adp0HmkBp/rgYkuPsokNLJdW6STZqd8kyg+iZKNcdFq3cZEKBH4zKzlKA72S8I4/PagN
-         +hVlzvzfAUbqMFGQr0bSX6JUtREW2yVnfr+HXyBnIF1d2aJ08XH797/ytEm6PtLbfZm0
-         k3wg==
+        bh=8dfDoFjby3SyG/aRSMt4bJnHeuy60vGajFgy+PGk0RM=;
+        b=LnDRW9sOcAzbgiinfza8PjVTnmLmCzl+CbVJ8rP1KXbIL7jn/FpurtjlBEvzn5JWCk
+         aL1UMskdCNJCbdObuckYMUpznBzfV43O4sCUBe82VWLfOC6kgiwOCE0Y4k9X1pqLejZJ
+         P9M0A+CPTLy4dquCLxTQijw6o15tfsnCUZ0aUw+c2YaIwjp3CPJJxrkrlxp/9A12SKvh
+         3MggeZxtfYb55gaI23XSzDnzsen4OK+FwcxlVaMz8I0K+q8ZwMReBTskatOWwMiV4sOt
+         Ys34YvLop5YRZ6wVGEmJLcg1Hnp6OlmjnsfODpDRqTpih55nStVXuRbx1aI83gYrOllC
+         K+ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715877739; x=1716482539;
+        d=1e100.net; s=20230601; t=1715877742; x=1716482542;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=x86b2pC0BGkgc9pZoaWR80EZrkXbOTilbfMfMb6B3+0=;
-        b=o8veJJQzbXME5Ae3RyJfn66JqpNqDnx0fyBpSZOUko8RCUPoxkBk1wq3Pt8eYZYrE/
-         /xN2KHyMS4Yh+yH7QwVgE4Faw31DS2T2exKhaKkuYLRdkZxbxMfBUBT3JbLv9Zo1WSe8
-         R3CUkITIQjD8qSiNmO/Myq7XrrbbmuXM1BHjmg8lfPhwukkEINseRWPIl/6mlTMIj+K2
-         Mqg/F1ex3E/oE1WREvTYWUA/C0nhH2qscuZqxVAutZmI6yPbWeLI9sfwkBMZwogzVzIz
-         cQrJWXktTETN6CreXMtsV9Xn1rUEgowHqtjJ36C0q1a9lRVtvDJEFBsyVKg8x4+Hm1KQ
-         o6eg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWBTCvmPv7biVlq6ga269KbgBoEk5qqXO82SE0JyL1rfkyNXSyrdccNxwrz6zPdZHxDNrcsYT7BgmWmEHAuuQXuMtf4WxCkthSjw==
-X-Gm-Message-State: AOJu0YySRTG2c81nDjf+7TtHr7RKeKIc6+WktaLYVZwKqsPsfg7R9nyC
-	4kcQqQX06fNZL5JZqHIQ2H3YBQHdC32S4w7ZjxmtKH5nh/LETOMLzxdpuptmGvljoZzjWTHiLd7
-	IiTe5
-X-Google-Smtp-Source: AGHT+IHMA/7KS4nXZp1n19NAbIpGBUaNCGnqr2Ma53AhWlNvJ1WlcykMbVpaHMIG+C8VAROpqCcqWQ==
-X-Received: by 2002:a17:906:c452:b0:a59:9da0:cc1 with SMTP id a640c23a62f3a-a5a2d65fcf7mr2046631566b.58.1715877739202;
-        Thu, 16 May 2024 09:42:19 -0700 (PDT)
+        bh=8dfDoFjby3SyG/aRSMt4bJnHeuy60vGajFgy+PGk0RM=;
+        b=O0Z0cLXH/tyO0JSZndG/uKjeBFDbwYvmX3VYN0znIgPlR0WakNfVHgFboAcR+OgbHg
+         62+W3S+9x4TaZRokWrsUO1qw1UsEMEeEtG0T+kjfV7Gj3l4Hd8xm0cJc+Qc6nYTIlEso
+         kTmPaY0Nw9sVnhYZV6n8Ia5sk6w/ppkLNQ8m76Vh1lvt4qTHDcsqyzgEVn1OsR1JnQJd
+         CbEcg6PgyX0LxAT8dceENGrVqOtk5VF9lXVmAF6p8k+As9xqNSNyHl+bVp3PrybbqWhU
+         0rF5eKuNp0OFGi/6ddsNaP79Y2sxL5aFrCsGrlOD+HKe91IDBaoruuTDIBtXeO2k+zFa
+         AF2g==
+X-Forwarded-Encrypted: i=1; AJvYcCXA5/pbNq94AG3zI8LZYMbbqUIGN1z3P6FMP9rPaTYd15AVz3cNBtM9ecRs5VcivM6tLM33xyNgzw+NYAgNALuRc7zsOG9qfEyuvQ==
+X-Gm-Message-State: AOJu0YyG0Sb4/HN/il3yaDHIoNZ4cuBVxA0x9J7REMilLHFyH8shX0y0
+	OKsXMzlHKLsZwDtQb3JMAvTxfS1fe3BNuyQK4Ey4CTVtpTkPVnHNsMoBoH6t2Q==
+X-Google-Smtp-Source: AGHT+IHHSSq+yHl61xDILgBVZtLr68A2+EBy/A0zA/FYVAkD1jgORtv0oxqn9sts+GSSH2kJCM/fPQ==
+X-Received: by 2002:a17:907:7d8b:b0:a5a:669c:286b with SMTP id a640c23a62f3a-a5a669c290emr975549666b.19.1715877742286;
+        Thu, 16 May 2024 09:42:22 -0700 (PDT)
 Received: from melexis ([91.192.181.19])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a179c7e9bsm996991266b.134.2024.05.16.09.42.18
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781d342sm1006647266b.6.2024.05.16.09.42.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 May 2024 09:42:19 -0700 (PDT)
+        Thu, 16 May 2024 09:42:22 -0700 (PDT)
 From: Volodymyr Kharuk <vkh@melexis.com>
 To: <linux-media@vger.kernel.org>
 Cc: Andrii Kyselov <ays@melexis.com>,
@@ -80,9 +79,9 @@ Cc: Andrii Kyselov <ays@melexis.com>,
 	Sakari Ailus <sakari.ailus@linux.intel.com>,
 	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
 	Volodymyr Kharuk <vkh@melexis.com>
-Subject: [PATCH v6 06/10] media: v4l: ctrls-api: Allow array update in __v4l2_ctrl_modify_range
-Date: Thu, 16 May 2024 19:41:51 +0300
-Message-Id: <7789f15cfbad2c145e5b4b99b790be2da01fbf32.1715871189.git.vkh@melexis.com>
+Subject: [PATCH v6 07/10] media: v4l: ctrls: Add user control base for mlx7502x
+Date: Thu, 16 May 2024 19:41:52 +0300
+Message-Id: <4fa9a631f1435c799324cc5689e12f454ee6c904.1715871189.git.vkh@melexis.com>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <cover.1715871189.git.vkh@melexis.com>
 References: <cover.1715871189.git.vkh@melexis.com>
@@ -94,67 +93,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-For V4L2_CID_TOF_TINT, which is dynamic array, it is required to use
-__v4l2_ctrl_modify_range.  So the idea is to use type_ops instead of u64
-from union. It will allow to work with any type.
+Add a control base for mlx7502x and reserve 16 controls.
 
 Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 ---
- drivers/media/v4l2-core/v4l2-ctrls-api.c | 25 ++++++++++++------------
- 1 file changed, 13 insertions(+), 12 deletions(-)
+ include/uapi/linux/v4l2-controls.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/media/v4l2-core/v4l2-ctrls-api.c b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-index e5a364efd5e6..f65d6114592c 100644
---- a/drivers/media/v4l2-core/v4l2-ctrls-api.c
-+++ b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-@@ -934,17 +934,18 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
- 	lockdep_assert_held(ctrl->handler->lock);
+diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
+index 3ac204818bdf..224a0f6b888c 100644
+--- a/include/uapi/linux/v4l2-controls.h
++++ b/include/uapi/linux/v4l2-controls.h
+@@ -216,6 +216,12 @@ enum v4l2_colorfx {
+  */
+ #define V4L2_CID_USER_THP7312_BASE		(V4L2_CID_USER_BASE + 0x11c0)
  
- 	switch (ctrl->type) {
-+	case V4L2_CTRL_TYPE_MENU:
-+	case V4L2_CTRL_TYPE_INTEGER_MENU:
-+		if (ctrl->is_array)
-+			return -EINVAL;
-+		fallthrough;
- 	case V4L2_CTRL_TYPE_INTEGER:
- 	case V4L2_CTRL_TYPE_INTEGER64:
- 	case V4L2_CTRL_TYPE_BOOLEAN:
--	case V4L2_CTRL_TYPE_MENU:
--	case V4L2_CTRL_TYPE_INTEGER_MENU:
- 	case V4L2_CTRL_TYPE_BITMASK:
- 	case V4L2_CTRL_TYPE_U8:
- 	case V4L2_CTRL_TYPE_U16:
- 	case V4L2_CTRL_TYPE_U32:
--		if (ctrl->is_array)
--			return -EINVAL;
- 		ret = check_range(ctrl->type, min, max, step, def);
- 		if (ret)
- 			return ret;
-@@ -962,16 +963,16 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
- 	}
- 	cur_to_new(ctrl);
- 	if (validate_new(ctrl, ctrl->p_new)) {
--		if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
--			*ctrl->p_new.p_s64 = def;
--		else
--			*ctrl->p_new.p_s32 = def;
-+		WARN_ON(ctrl->is_array); /* This shouldn't happen, as
-+					  * INTEGER/Ux/BOOLEAN/BITMASK will not
-+					  * return an error.
-+					  * In case it happened, all array will
-+					  * set to default value
-+					  */
-+		ctrl->type_ops->init(ctrl, 0, ctrl->p_new);
- 	}
- 
--	if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
--		value_changed = *ctrl->p_new.p_s64 != *ctrl->p_cur.p_s64;
--	else
--		value_changed = *ctrl->p_new.p_s32 != *ctrl->p_cur.p_s32;
-+	value_changed = !ctrl->type_ops->equal(ctrl, ctrl->p_cur, ctrl->p_new);
- 	if (value_changed)
- 		ret = set_ctrl(NULL, ctrl, V4L2_EVENT_CTRL_CH_RANGE);
- 	else if (range_changed)
++/*
++ * The base for Melexis ToF 7502x driver controls.
++ * We reserve 16 controls for this driver.
++ */
++#define V4L2_CID_USER_MLX7502X_BASE		(V4L2_CID_USER_BASE + 0x11d0)
++
+ /* MPEG-class control IDs */
+ /* The MPEG controls are applicable to all codec controls
+  * and the 'MPEG' part of the define is historical */
 -- 
 BR,
 Volodymyr Kharuk
