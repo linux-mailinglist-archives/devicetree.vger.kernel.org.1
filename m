@@ -1,170 +1,125 @@
-Return-Path: <devicetree+bounces-67370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6EA8C7DB5
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 22:31:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 555228C7DC1
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 22:41:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CF471C21385
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 20:31:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C86A61F220E5
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 20:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A048208A8;
-	Thu, 16 May 2024 20:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25B5157A58;
+	Thu, 16 May 2024 20:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dDAWhmUD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A+UM4qUh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A27139F;
-	Thu, 16 May 2024 20:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56032139F;
+	Thu, 16 May 2024 20:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715891472; cv=none; b=C4WanZoJVEq0EZ/whcMMb0yHtlZBxzOacfRF1e9eDf2fzwLbfNi+5pmrs9xXsy+Ng8R5DmghgpWkiPeNWrpufNDZv10BHU6QNEl3VlNVUNPKj1Xelv4DPSUDSM3x00mjxtKMIavFHwN7oPTPiMm4N1OaDRzhAd1gRjAqfD5Mwww=
+	t=1715892085; cv=none; b=sOVTwzb/iVu+2Jk2jBoYBbVLL1Uqqq7L9weLjN4s/19IVTnoLJac98vRnJ7UJLhjdkMl76hiXXQT02Lles0ZvFnQgabAzjHp5e0vGyML16nJAd208RYYCC9Wa3D+zUnlZakuvPZfl4SKdo6IVXYrMCnnSSOtLED5VqtiP2oI6/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715891472; c=relaxed/simple;
-	bh=vOAyXMvMO4/iJmPTXPfyexrttf8zBjbSgvoi5gnjzLA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tNLvogHrO0c2p570qXRzxGXHHuGBINs51B5/j+66FIsxhHVvE5evJwhrafD6i+wMXcN2+KEOqgc04iM+wlFzcBvo+/5HHjz3JCqCnvPz4JRAXU9gtkiWjLzs3sPFpZxvS6cnLdwsBMFyk9MuC1ZJcx4o/9LX2iCg7eDSMT6lQr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dDAWhmUD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5EBAC113CC;
-	Thu, 16 May 2024 20:31:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715891471;
-	bh=vOAyXMvMO4/iJmPTXPfyexrttf8zBjbSgvoi5gnjzLA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dDAWhmUDmLUiJb54Uja30vFjFw9q6NBXP74EOnCuKC8gHyhMuGeRboksCf13pFIJQ
-	 rUG5cbU3P18kx+EqmNzzOa9xJsYGNRBuXzKmlMFge9ZqMr6Wh9rJRQgUfPm5AMqGP0
-	 GRqELF2/2r8X5G7YT1C0WY7xdp7oodx3Z47FIVS4O+uOLNKfohAPMByTt+u7Sz0LWS
-	 WDd62ipGaHqfNN3abosA1QOOV7K+aYDI2KEZs1kaUQTGR9+CbXOZsgapkjBtIeuWri
-	 AN9qyObaZ2Cv/3jMm51bZl3nI90Yvvna1Ko2XgxVzEJqsgvt0JZt/EiSMcYUoo+x0W
-	 qk2FTzTBilR5g==
-Date: Thu, 16 May 2024 21:31:04 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Andy Chiu <andy.chiu@sifive.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1715892085; c=relaxed/simple;
+	bh=qRyVDG9XREkfXRtKtAq1+qOIBN+sICTKn2RdcjtLrms=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JkbI1noiedil155pWk4MsemEDYLDBJDUgYbvpFbqIdeB60jpvqp/WslibX1Fvu+CLFa36g8Gt8CruTJBtTnRD5ZbxfyRX9/E/S59eau+ROnSYXUNkBWbSrJ+V53SOoO5x/fVuuTOHNDgkKh1YWMM5mRIbVkTx0VSdmIaeCFP+ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A+UM4qUh; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-572c65cea55so7113671a12.0;
+        Thu, 16 May 2024 13:41:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715892083; x=1716496883; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hfEGtxZOwWbYAEnG2Y0hgMrgm7NoPpGTjppO5Go7vv8=;
+        b=A+UM4qUhKOXPUguCpxCDt2IShSR/5MLX9r8BAl/uBIQa1HYt2blcO4VA+dzhxjsVrW
+         yUL9zEGw1rT7TNvMV1BC1V6QZJbuej2OiJGHYMbOk2loiK+1AqD3m/eIBCuwdPziGMqf
+         avY96FXDmqNw4Cz7ub+Dhu3ZQuNLKnz3eocYlh2m7BD74Ju5pBKfmJPyPcOSi0YRidEb
+         OwCqtYT0OngtiKF4wwcqBPp2GAuI9hU9JOia+um9+ZIuzlrQLpB0ZBNcJdVIK5Ow9Ruw
+         hf29e7sEQxwvgZ0aqAcooTzSC3oELwhGztI6BT9+Zo7c8RnQM4ykOzxBNMf1tp/SzrJ7
+         CE6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715892083; x=1716496883;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hfEGtxZOwWbYAEnG2Y0hgMrgm7NoPpGTjppO5Go7vv8=;
+        b=dWzvy2XMrhoc7lsyc3npRI7lb3QSnC1qvo2iaMs+Vy0tjIU7+oYlcepVy2YLrpwNVu
+         0zIhCaRUEkFhzoV3Tc3ntp3tpjxV7ztF7zUGJvtIbWxlPPLz+dqkdVjK2ngGrf0Vvue/
+         KPsl78zj3xwhBpAga0lOvx1YYWOW2DXL0OSdw+81CknbeGywdiKzOQChqX4z7oIGGmwG
+         9z9Nmd7zeYtjR3NnlsknvC+uAtlhtQj7EFL+/CqEc7OzToef7B2iZ/aiKdhkR9F1DreH
+         pb1zbnNx72X5yJ8AhOO9FHtoFBN2a8OKd1eyQD22CqIuOJiHc+f38tu1f1ib1Ql1342E
+         yDqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVxldLnx+DxB6NLhKH8MjIafrXYoXWRtftJM1RSMQInimmxhBDfWLxzjv8qrcg9aANKi6YV3WhK4ErDxTqGhdAJ0lAqvE9/oCfLvDYYzlhXYSVYOX2WpvdP1FbEUFyGD2ZzXQfunOwAMg==
+X-Gm-Message-State: AOJu0Yz5SDcHHEvxKeY9tkFIOGU6MYLN5aarX/kSQXLwySnKWKovvnwn
+	rW3g0Kh0OgO5LyBlHxDyNu2OqefNrhz/Vtn+Q3KjdCzOSecY6sTj
+X-Google-Smtp-Source: AGHT+IFjova7aUv21pnribbviNXI9uhtkJ+qKzW6NfePPjfYjxJ1ILWWZ0Ax5zrU68mh6c4a6ARE2g==
+X-Received: by 2002:a50:c18a:0:b0:571:bf62:81ce with SMTP id 4fb4d7f45d1cf-5734d5e35c5mr17006879a12.9.1715892082576;
+        Thu, 16 May 2024 13:41:22 -0700 (PDT)
+Received: from localhost.localdomain ([188.25.209.252])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733c2b8f7fsm10859828a12.66.2024.05.16.13.41.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 May 2024 13:41:21 -0700 (PDT)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v6 03/17] riscv: vector: Use vlenb from DT
-Message-ID: <20240516-sleek-wound-f835b3bf23cf@spud>
-References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
- <20240503-dev-charlie-support_thead_vector_6_9-v6-3-cb7624e65d82@rivosinc.com>
- <CABgGipXg68VEGt=oZZSENmbqs4-g3PB=CBobNwgqQjLHfxo+VQ@mail.gmail.com>
- <20240516-grandkid-monday-86c698ca4aed@spud>
- <ZkZV3yxbxab4W6I4@ghost>
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liu Ying <victor.liu@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: laurentiu.mihalcea@nxp.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Add support for imx8ulp's SIM
+Date: Thu, 16 May 2024 23:40:27 +0300
+Message-Id: <20240516204031.171920-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HJGHkHICZT5TWk2k"
-Content-Disposition: inline
-In-Reply-To: <ZkZV3yxbxab4W6I4@ghost>
+Content-Transfer-Encoding: 8bit
 
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
---HJGHkHICZT5TWk2k
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+i.MX8ULP's SIM (System Integration Module) allows
+control and configuration of certain components
+from the domain it's assigned to. Add DT node
+and schema for it. The children shall also be
+included. For the reset controller child, this
+also includes a schema and a driver.
 
-On Thu, May 16, 2024 at 01:28:45PM -0700, Charlie Jenkins wrote:
-> On Thu, May 16, 2024 at 05:24:25PM +0100, Conor Dooley wrote:
-> > On Thu, May 16, 2024 at 10:00:12PM +0800, Andy Chiu wrote:
-> > > On Sat, May 4, 2024 at 2:21=E2=80=AFAM Charlie Jenkins <charlie@rivos=
-inc.com> wrote:
-> >=20
-> > > > +               if (elf_hwcap & COMPAT_HWCAP_ISA_V && has_riscv_hom=
-ogeneous_vlenb() < 0) {
-> > > > +                       pr_warn("Unsupported heterogeneous vlen det=
-ected, vector extension disabled.\
-> > > > +                       elf_hwcap &=3D ~COMPAT_HWCAP_ISA_V;
-> > > > +               }
-> > >=20
-> > > We only touch COMPAT_HWCAP_ISA_V and the failed case only turns off t=
-he
-> > > rectified V. So here we have nothing to do with the Xtheadvector.
-> >=20
-> > There's nothing t-head related in the tree at this point, so doing
-> > anything with it would cause build issues.
-> >=20
-> > > However, I am still confused because I think Xtheadvector would also
-> > > need to call into this check, so as to setup vlenb.
-> >=20
-> >=20
-> > > Apart from that, it seems like some vendor stating Xtheadvector is
-> > > actually vector-0.7.
-> >=20
-> > The T-Head implementation is 0.7.x, but I am not really sure what you
-> > mean by this comment.
->=20
-> Andy, the idea of this patch was to be able to support this binding on
-> more than just xtheadvector.
->=20
-> You are correct though Andy, this is a problem that a later patch in
-> this series doesn't disable xtheadvector when vlenb is not homogeneous.
-> I am going to wait to send out any more versions until after this merge
-> window but I will fix this in the next version. Thank you!=20
+Laurentiu Mihalcea (4):
+  dt-bindings: reset: add schema for imx8ulp SIM reset
+  reset: add driver for imx8ulp SIM reset controller
+  dt-bindings: mfd: add schema for 8ulp's SIM
+  arm64: dts: imx8ulp: add AVD-SIM node
 
-Agreed on all counts :)
+ .../bindings/mfd/nxp,imx8ulp-sim.yaml         | 71 ++++++++++++++
+ .../bindings/reset/nxp,imx8ulp-sim-reset.yaml | 43 ++++++++
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi    | 17 ++++
+ drivers/reset/Kconfig                         |  7 ++
+ drivers/reset/Makefile                        |  1 +
+ drivers/reset/reset-imx8ulp-sim.c             | 98 +++++++++++++++++++
+ include/dt-bindings/reset/imx8ulp-sim-reset.h | 16 +++
+ 7 files changed, 253 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/nxp,imx8ulp-sim.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/nxp,imx8ulp-sim-reset.yaml
+ create mode 100644 drivers/reset/reset-imx8ulp-sim.c
+ create mode 100644 include/dt-bindings/reset/imx8ulp-sim-reset.h
 
-> > > Please correct me if I speak anything wrong. One
-> > > thing I noticed is that Xtheadvector wouldn't trap on reading
-> > > th.vlenb but vector-0.7 would. If that is the case, should we require
-> > > Xtheadvector to specify `riscv,vlenb` on the device tree?
-> >=20
-> > In the world of Linux, "vector-0.7" isn't a thing. There's only 1.0, and
-> > after this patchset, "xtheadvector". My understanding, from discussion
-> > on earlier versions of this series the trap is actually accessing
-> > th.vlenb register, despite the documentation stating that it is
-> > unprivileged:
-> > https://github.com/T-head-Semi/thead-extension-spec/blob/master/xtheadv=
-ector.adoc
-> > I assume Charlie tried it but was trapping, as v1 had a comment:
-> > +		 * Although xtheadvector states that th.vlenb exists and
-> > +		 * overlaps with the vector 1.0 extension overlaps, an illegal
-> > +		 * instruction is raised if read. These systems all currently
-> > +		 * have a fixed vector length of 128, so hardcode that value.
->=20
-> On my board with a c906 attempting to read th.vlenb (which is supposed
-> to have the same encoding as vlenb) raises an illegal instruction
-> exception from S-mode even though the documentation states that it
-> shouldn't. Because the documentation states that vlenb is available, I
-> haven't made it required for xtheadvector, I am not sure the proper
-> solution for that.
+-- 
+2.34.1
 
-Would you mind raising an issue on the T-Head extension spec repo about
-this?
-
-Thanks,
-Conor.
-
---HJGHkHICZT5TWk2k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkZtCAAKCRB4tDGHoIJi
-0iqUAQDoE9mZU3cwwi2L0msRdNJfiKf3sHdTRqTyprp8fMkE0QEA+E4AIm1pM5DV
-TplcpCK2uFfwFdtBhcs80nkZCt5chgo=
-=Mu0n
------END PGP SIGNATURE-----
-
---HJGHkHICZT5TWk2k--
 
