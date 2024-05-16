@@ -1,145 +1,145 @@
-Return-Path: <devicetree+bounces-67342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CBB28C7A4C
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:25:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4F38C7A6A
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:33:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 243AA1F222F1
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:25:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBB81281A0E
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:33:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F5E14E2D7;
-	Thu, 16 May 2024 16:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7F7B1FB5;
+	Thu, 16 May 2024 16:33:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ckTBUbeU"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dM2SFDJz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4029C2421A;
-	Thu, 16 May 2024 16:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1AF4A15;
+	Thu, 16 May 2024 16:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715876672; cv=none; b=AGQ4QSbJzZNuJUjaI7qO4TDjRiB85Cax7aSh5HXr3l1L55u7LIRY2rWQBZ5Ghc9U8TYfcIGYOqwQhE39Pidq5hDwtDdzjeBI1XpEorIg+ms268c+Arkunr8ShhY4g0UBYz0lfxW1TY9Qz4SDmTpcY5GhcT2rOMK2wcOlOI//qxw=
+	t=1715877229; cv=none; b=NKt4pRh2kQwa4TIs7UfUL5dtukZxXL9jRQlJvQYXyhScclQ2KqLCCZf6RDATCsYtFd3T3zIbpE/zCU9F6cIFtgCN9pCWzQLZRwfnAjTMaOzbUA+NnzoeHCOacBPEYfXrS9kQGuggvN/Jqpfe89ek31Mc1cnQCnVKzkN/wbQfvzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715876672; c=relaxed/simple;
-	bh=YPQd9Pwq5Y5I0Bij2ansbmtYi61hje5cM4D0fSaH4v0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=diAcRdWbPrmEFmxVwEK16Ew48amhIX8WXWUAxZuFt85ECVWESz4W3x/kG51PK312Iq6iWL4T5DlpkkZzxd9q2L5zfufUZhDpCXnM3tuAP0VZzSHwLbFCyXgs7xemtQ7KmE+YgpmkhSVGVpo6WF8sZ1iPWJF8pjrp7c4FPiJVV9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ckTBUbeU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F557C113CC;
-	Thu, 16 May 2024 16:24:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715876672;
-	bh=YPQd9Pwq5Y5I0Bij2ansbmtYi61hje5cM4D0fSaH4v0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ckTBUbeU+U4d8pK30I5KoZpbLoTF1F3+e6xfJWjXJ4EJQyFcHH8LKaim31594OV8N
-	 mLeuX/YVDzdBjW8zJiShYpRnbVPc9rQznt1jj3VJ7+lyGmQU9EzEUWQp4cCxD2urfV
-	 vMlxsjpdY4l9sInSsA0QnW2dCTO258v55LpfqzLuFxP4QXecHPkpPW0MG3lFZ6xH4m
-	 UAtqVq37k3D3kP9GRlXGON/IS+3TCIn9S7HqoBAPo44+HK9rT90qyAo6ZIykI2epHX
-	 j6l3mUoL4XBcQpMJOXoE9B88N7CTanz7fRCGviNd7CG7INHguA1X2uMTnfFsvvzL24
-	 dCPsaC40p8iQg==
-Date: Thu, 16 May 2024 17:24:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andy Chiu <andy.chiu@sifive.com>
-Cc: Charlie Jenkins <charlie@rivosinc.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v6 03/17] riscv: vector: Use vlenb from DT
-Message-ID: <20240516-grandkid-monday-86c698ca4aed@spud>
-References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
- <20240503-dev-charlie-support_thead_vector_6_9-v6-3-cb7624e65d82@rivosinc.com>
- <CABgGipXg68VEGt=oZZSENmbqs4-g3PB=CBobNwgqQjLHfxo+VQ@mail.gmail.com>
+	s=arc-20240116; t=1715877229; c=relaxed/simple;
+	bh=jc+p0uqi6u3V3KnhrnLdMf7Zn9A5zPWqZdmw9MFR0Pk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=A3aacuBkb5xf8aq3vol1itzlhen4boskK3z8kzRyWX6YkdEy7+AdFkzRlpYkU85zAfcZDAmE8BzhQCad4pAg60RwORI5kFypLaAsXfPM1jibznR8rdhQuJwhyt3WgGH6FLMOdj7BQSvf63CZqP8MMWcEZwsavvFDQux6hudYQ4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dM2SFDJz; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44GDhYe5005402;
+	Thu, 16 May 2024 18:33:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=2pRzvEKsr2u9WywjaryEnBZCx349KN6Wpc4RHZd+rck=; b=dM
+	2SFDJzSYm9AtY55y2HwV2Jyh8tSKydE5jusko5MbfwttReZjEn3YHFd0zMgY6lso
+	aEk774snO5txwIxya4PGQGt+fuci8ATwfzLqhyI/SE0iwLLTI3QEP0x686iIuE0p
+	yls1WTxNB6EaUDH6CvG0Wst0kOvj55xLoR4yZZemdhAXyIPoCS0SCbzP2Sa6NzEO
+	DEQi6AKSAP83EEPGS+sUrFGdfDqdRrfk5JCl/EoXB1PhBEyoHlBjJoYuFSgu+iLN
+	q27l4PC/TM7XcBuykhDDbui/wxORAI6++7wO21esoE1U5MHvwxW3Ezrkq3EXJMHz
+	eJ0ta5KxTtYs+IhVaoDg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3y4syme8rc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 May 2024 18:33:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E36A340045;
+	Thu, 16 May 2024 18:33:07 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E8359226FC6;
+	Thu, 16 May 2024 18:32:17 +0200 (CEST)
+Received: from [10.48.87.205] (10.48.87.205) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 16 May
+ 2024 18:32:17 +0200
+Message-ID: <2e5ad8c3-4889-4062-964b-acf4ec75986c@foss.st.com>
+Date: Thu, 16 May 2024 18:32:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="54mb6NLQMPiDuRTG"
-Content-Disposition: inline
-In-Reply-To: <CABgGipXg68VEGt=oZZSENmbqs4-g3PB=CBobNwgqQjLHfxo+VQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: st,stm32mp1-pwr-reg: add
+ compatible for STM32MP13
+To: Conor Dooley <conor@kernel.org>, Marek Vasut <marex@denx.de>
+CC: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Pascal
+ Paillet <p.paillet@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240513095605.218042-1-patrick.delaunay@foss.st.com>
+ <20240513115601.v3.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+ <615dfdcb-cbda-426f-895e-810f03a8ce60@denx.de>
+ <20240513-stabilize-proofread-81f0f9ee38b9@spud>
+ <d73d4435-75d6-4cea-b38e-07c7ceae3980@foss.st.com>
+ <20240514-entryway-idealize-fcd5ed0e1de7@spud>
+ <0c97408c-422d-46b3-8017-da9ebb0767e1@foss.st.com>
+ <20240515-monsoon-starfish-0dc59707e843@spud>
+ <9de93cbb-5868-473e-8b32-a6b6f50e128e@denx.de>
+ <20240515-edginess-evacuee-356bd6dd1dfa@spud>
+Content-Language: en-US
+From: Patrick DELAUNAY <patrick.delaunay@foss.st.com>
+In-Reply-To: <20240515-edginess-evacuee-356bd6dd1dfa@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-16_07,2024-05-15_01,2023-05-22_02
+
+Hi,
+
+On 5/15/24 18:15, Conor Dooley wrote:
+> On Wed, May 15, 2024 at 05:37:49PM +0200, Marek Vasut wrote:
+>> On 5/15/24 5:35 PM, Conor Dooley wrote:
+>>> On Wed, May 15, 2024 at 04:33:22PM +0200, Patrick DELAUNAY wrote:
+>>>> with
+>>>>
+>>>>     compatible:
+>>>>       oneOf:
+>>>>           - items:
+>>>>              - const: st,stm32mp1,pwr-reg
+>>>>           - items:
+>>>>              - const: st,stm32mp13-pwr-reg
+>>>>              - const: st,stm32mp1,pwr-reg
+>>> Other than the extra ,s this looks okay, thanks.
+>> I think the extra ,s are actually correct, those are the ones from the
+>> original compatible which had TWO ,s (it does look a bit unusual).
+> Oh my bad then.
 
 
---54mb6NLQMPiDuRTG
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, May 16, 2024 at 10:00:12PM +0800, Andy Chiu wrote:
-> On Sat, May 4, 2024 at 2:21=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.=
-com> wrote:
-
-> > +               if (elf_hwcap & COMPAT_HWCAP_ISA_V && has_riscv_homogen=
-eous_vlenb() < 0) {
-> > +                       pr_warn("Unsupported heterogeneous vlen detecte=
-d, vector extension disabled.\
-> > +                       elf_hwcap &=3D ~COMPAT_HWCAP_ISA_V;
-> > +               }
->=20
-> We only touch COMPAT_HWCAP_ISA_V and the failed case only turns off the
-> rectified V. So here we have nothing to do with the Xtheadvector.
-
-There's nothing t-head related in the tree at this point, so doing
-anything with it would cause build issues.
-
-> However, I am still confused because I think Xtheadvector would also
-> need to call into this check, so as to setup vlenb.
+Ok, I prepare a V4 with fallback
 
 
-> Apart from that, it seems like some vendor stating Xtheadvector is
-> actually vector-0.7.
+and comma in compatible "st,stm32mp1,pwr-reg" was clearly an error
 
-The T-Head implementation is 0.7.x, but I am not really sure what you
-mean by this comment.
+but it is too late to change it, see [1]
 
-> Please correct me if I speak anything wrong. One
-> thing I noticed is that Xtheadvector wouldn't trap on reading
-> th.vlenb but vector-0.7 would. If that is the case, should we require
-> Xtheadvector to specify `riscv,vlenb` on the device tree?
+[1] ARM: st: use a correct pwr compatible for stm32mp15
 
-In the world of Linux, "vector-0.7" isn't a thing. There's only 1.0, and
-after this patchset, "xtheadvector". My understanding, from discussion
-on earlier versions of this series the trap is actually accessing
-th.vlenb register, despite the documentation stating that it is
-unprivileged:
-https://github.com/T-head-Semi/thead-extension-spec/blob/master/xtheadvecto=
-r.adoc
-I assume Charlie tried it but was trapping, as v1 had a comment:
-+		 * Although xtheadvector states that th.vlenb exists and
-+		 * overlaps with the vector 1.0 extension overlaps, an illegal
-+		 * instruction is raised if read. These systems all currently
-+		 * have a fixed vector length of 128, so hardcode that value.
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=847733&state=* 
 
-Cheers,
-Conor.
 
---54mb6NLQMPiDuRTG
-Content-Type: application/pgp-signature; name="signature.asc"
+regards
 
------BEGIN PGP SIGNATURE-----
+Patrick
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkYzOQAKCRB4tDGHoIJi
-0rSDAQDYSejV6VHTrL2jnxNTvkydaJkpuoNoUR0KH7Woyb0A7wEAoRBty/hTiap0
-kvVFRs7XwEEn0QBitKVO7a6zx8YNQA4=
-=DNuY
------END PGP SIGNATURE-----
 
---54mb6NLQMPiDuRTG--
 
