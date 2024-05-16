@@ -1,92 +1,67 @@
-Return-Path: <devicetree+bounces-67375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A188C7DC9
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 22:42:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9FB98C7DD2
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 22:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D302D1F222D5
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 20:42:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CBF8B21CA5
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 20:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42F20158D60;
-	Thu, 16 May 2024 20:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D99A157E61;
+	Thu, 16 May 2024 20:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gjS/hsgi"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="NAoYzGbq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF90158A1C;
-	Thu, 16 May 2024 20:41:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA49315CB;
+	Thu, 16 May 2024 20:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715892098; cv=none; b=j9TtnSl1g1juI8jSznlYXWIxZJgSgg24nNdwl5bNm4/4KP5aoOxH+lHa3OhjI0YALCSUKj4d0sVLqksdW3gBtsmqiB1f1In09RfdwpFz8xKf18nRLPrLEiIEWuAfNOaWbdCvq6GUMZPU1mLIHxEH7vpeVgjCW3dlvsEIMExYR/w=
+	t=1715892543; cv=none; b=KD77K3r+np2IjQFT5bkrGd1bV1DLoPKqehME5s4/2fAhcggnaAumdzqPyMweQ8PAEa34IPw6CTBgtaNXJRo3mhi0ifMbkPsZ63+TF5WFuUCRrxDPvmRrRODt1BBOfZqcz1yzq6B2EV9eU79KIrHNgqZBPQAJAE3Vr3gMMGKZXkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715892098; c=relaxed/simple;
-	bh=4oadGygxYA7bjkv7TT+WWegMW5gp9hz2kjni4oNe4jQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=GraBeKmfDqEBroeElnNvTNRO5BRGgs9BX63Loi4obvwHP1AHd4UgpgAeqQd/cPbZK/wqWnWAFO6aPrZVmjeFX2n/pUG28UJ39in/MXo7r//sx/NuvTTj7HEITdA0kb2gH6vIq+MwzAbUHFn5+0fivTeCqr07hs9seUjvZcejJik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gjS/hsgi; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42011507a57so42890365e9.1;
-        Thu, 16 May 2024 13:41:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715892095; x=1716496895; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1Kwo/PJKWqwFR8G1QKaJWay+TAo/b1R/praQRuQi8t8=;
-        b=gjS/hsgigOsaA04kuRHUv54zYJ1+IPXEgyX0RK6HSOLWBZC1rOhBEzJNAs+OcX1w1G
-         TaPFBl1UF8F3pAVpKYslfms4yTq2YOBSn1tN1KR/Se0jPsXi0sN+mka1+OibcJxtivHS
-         gQ6bi2L0p46NASNa1XHFH08WIwD7aM1UVENDc2kXdLcLnFo1rsspwy1BUISuTOZ0eLa8
-         ZOX7dJf7R3GPOX/w1HnOrhQP5DjZ1uAUOFRnkAAvFFz2JLhel2uHNwGgPDnbnGpREevq
-         s2+nV5LSnAcLzMRFXX8SsNnZ9zCfjuVK2olpC93SZV7rotwhAfItv/gIXmjhdJ1BBzZm
-         u8VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715892095; x=1716496895;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1Kwo/PJKWqwFR8G1QKaJWay+TAo/b1R/praQRuQi8t8=;
-        b=G40JXb7V1kRRnpvCgsCC+RGoSXp+2eaI4mvN7XXJK43EE81tjq3V7q4Q9AgezPso4h
-         FykPCSylTNgW6lPHG4O/eqtx5amAmAi9QkwQ42dN3C3C+rFjsnDOKAZj/byNBegPf/UB
-         Sd0VZ3KN2ckehqvIkrSpCC99GNpOqishEZR1OQGhyb3BEz1Lh0+LFqZZFMnwsQWosRi3
-         T0QlwmcilAaflITnkd12zGCCQf8qTAxQJT7y3nhKLOSJmYZ3yiReVo4aJfAEVHJ20CRm
-         5zFyb8MAQ4OcPN5GRSjz/mTbdmb6mumFywGT52rQ9sMRvzggN0wTw3L0+3EabmchTP3H
-         GkpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVI8Ri47RvtT8ZILRgSjdogk1yiVpFISXFBDcKbUGye3eQtYBEgz+R1BZf72RdFemAYXHJ0aJdvltcT3UWrlgKt6khWV5bsY+fXOqKSLoiFQ9R1BO065S84hQ6G2HzpwAv0PHuL5e2a5A==
-X-Gm-Message-State: AOJu0Yy0VAxsy1Xvbc5TH/Quy4H6QyrfCpQyTqRJxj6ByJ7L8VckEmWQ
-	WKZTBzbsa/e/L5PekxJYJwPlOeJ5WVJ6o+RQBhB3iTDT+yA9jf5k
-X-Google-Smtp-Source: AGHT+IFNas3/3kPAsfpD5yX3BBvTnf6Ycfw16x5JhHOqISi3MwmXqWdKiNWT3OlLuArijC+XTR2qiw==
-X-Received: by 2002:a05:600c:198a:b0:41b:fc3a:f1ef with SMTP id 5b1f17b1804b1-41feac5a3damr136908115e9.33.1715892095152;
-        Thu, 16 May 2024 13:41:35 -0700 (PDT)
-Received: from localhost.localdomain ([188.25.209.252])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733c2b8f7fsm10859828a12.66.2024.05.16.13.41.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 May 2024 13:41:34 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+	s=arc-20240116; t=1715892543; c=relaxed/simple;
+	bh=IhbzVCScejN+uy4eriSpL6mMKt93sIYcmotB80A9HVo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EJYxQ9d/Pm+pZoOi30h8ruct674oh4EO1/7ac5WwLuPhtbtm9dwVdbPEFD+1luidFr+eDTmXUoMpMJGi2MfpyZi+tXccwXaDCGxPGtd6gU5UztKOWKjnZiEamh6ZymD/Eigk5FtgudLje97s01/JhiuL2s1LeoUziUu8GU/N5Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=NAoYzGbq; arc=none smtp.client-ip=134.0.28.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+	by mxout3.routing.net (Postfix) with ESMTP id 1B73461658;
+	Thu, 16 May 2024 20:48:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1715892533;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=tR8y4TTXWd6kXPaYF35icLZ9jxpPFrPwkSYPwNH+R38=;
+	b=NAoYzGbq3DCCUtMwezrvwC+hOXbGmm2xTa6+LzZD9Cr16erduYCqRoJow9RzvCAN9i8vAh
+	tt4uMFWSkLb5GY++LbUw8a2tX/TuLSTTDBx23nt8F8nx6ZqgmOG4BEfUF1/NkNs1OB36+O
+	BJKfzE6OOY5SxPZU5wys7V8Wf/2m+vY=
+Received: from frank-G5.. (fttx-pool-80.245.75.58.bambit.de [80.245.75.58])
+	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 290DD36005E;
+	Thu, 16 May 2024 20:48:52 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
 To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liu Ying <victor.liu@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: laurentiu.mihalcea@nxp.com,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: imx8ulp: add AVD-SIM node
-Date: Thu, 16 May 2024 23:40:31 +0300
-Message-Id: <20240516204031.171920-5-laurentiumihalcea111@gmail.com>
+	linux-mediatek@lists.infradead.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH] arm64: dts: mt7622: fix switch probe on bananapi-r64
+Date: Thu, 16 May 2024 22:48:47 +0200
+Message-Id: <20240516204847.171029-1-linux@fw-web.de>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240516204031.171920-1-laurentiumihalcea111@gmail.com>
-References: <20240516204031.171920-1-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,45 +69,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Mail-ID: 33360a91-7797-4ed3-a399-1e50c12d7bc1
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Add node for imx8ulp's AVD-SIM. This also includes its children.
+After commit 868ff5f4944a
+("net: dsa: mt7530-mdio: read PHY address of switch from device tree")
+the mt7531 switch on Bananapi-R64 was not detected.
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+mt7530-mdio mdio-bus:00: reset timeout
+mt7530-mdio mdio-bus:00: probe with driver mt7530-mdio failed with error -110
+
+Fix this by adding phy address in devicetree.
+
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 ---
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index c4a0082f30d3..5135d98dc6f2 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -520,6 +520,23 @@ per_bridge5: bus@2d800000 {
- 			#size-cells = <1>;
- 			ranges;
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+index 224bb289660c..811b227d6f50 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+@@ -149,9 +149,9 @@ mdio: mdio-bus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
  
-+			avd_sim: syscon@2da50000 {
-+				compatible = "nxp,imx8ulp-avd-sim", "syscon";
-+				reg = <0x2da50000 0x38>;
-+				clocks = <&pcc5 IMX8ULP_CLK_AVD_SIM>;
-+
-+				mux: mux-controller {
-+					compatible = "mmio-mux";
-+					#mux-control-cells = <1>;
-+					mux-reg-masks = <0x8 0x00000200>;
-+				};
-+
-+				avd_sim_rst: reset-controller {
-+					compatible = "nxp,imx8ulp-avd-sim-reset";
-+					#reset-cells = <1>;
-+				};
-+			};
-+
- 			cgc2: clock-controller@2da60000 {
- 				compatible = "fsl,imx8ulp-cgc2";
- 				reg = <0x2da60000 0x10000>;
+-		switch@0 {
++		switch@1f {
+ 			compatible = "mediatek,mt7531";
+-			reg = <0>;
++			reg = <0x1f>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <1>;
+ 			interrupts-extended = <&pio 53 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.34.1
 
