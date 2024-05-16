@@ -1,112 +1,145 @@
-Return-Path: <devicetree+bounces-67341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6738C7A25
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:15:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CBB28C7A4C
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:25:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC3831C212FA
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:15:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 243AA1F222F1
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAC914E2E1;
-	Thu, 16 May 2024 16:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F5E14E2D7;
+	Thu, 16 May 2024 16:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kzHJV/Sy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ckTBUbeU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F60014E2C1;
-	Thu, 16 May 2024 16:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4029C2421A;
+	Thu, 16 May 2024 16:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715876110; cv=none; b=J1gox7R7gavoSMPPPcCS/EeyHxfX6Pw2T2EdTNvXKRPWhpJBLWUNRV9FGmSPKhWNPxRkQ60HN3kP+OqyhLfTTGwuAz0N5P1HOz9SoGD9acOYEkY0HawJGptxCbdpSL403FsNaPCgBJsAX5l+jSWbOVhX2VhKA+5zZPd/PqOfk7Y=
+	t=1715876672; cv=none; b=AGQ4QSbJzZNuJUjaI7qO4TDjRiB85Cax7aSh5HXr3l1L55u7LIRY2rWQBZ5Ghc9U8TYfcIGYOqwQhE39Pidq5hDwtDdzjeBI1XpEorIg+ms268c+Arkunr8ShhY4g0UBYz0lfxW1TY9Qz4SDmTpcY5GhcT2rOMK2wcOlOI//qxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715876110; c=relaxed/simple;
-	bh=Mh0u9Y06mcntjSNlKFJ57KMfOKSfioL1lnQzZWm3pu0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=czo2L/8Xv+c/sKfZUHLTBqkA/LgVWIxJHcjlTtTLuRYXyfNQ6Zt/fOX0JqdKIpWCAhfQV0be3MqlAv6y7XvN2NldMRFeDI6dbqjk7hy9ENKofjHmbuTU6HzH8rAHPMojRfphXnuhQtWyfGHlAH4zIhcAE6CC+fY6l0QG7y/w9TQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kzHJV/Sy; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-792b8d98a56so745216185a.2;
-        Thu, 16 May 2024 09:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715876108; x=1716480908; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xe39QYa7TfsWXzNNingUD+O1lJhMRi830tLy3GV8ajM=;
-        b=kzHJV/SyfkKLyjkYNSKJkewDlss+EOzRlrH4RzYrg6Sq+kC21tiRG5517RRBHei6uD
-         dfOTKk5O5FPU+XH9jZjXlyiLgtrDf2A/Tsp689y8jKtvuIaE5nzxkfcwAmUyu7ZB/E5X
-         JrIwVpW4hfohPhtH7gzndjnMnmuQnQFD5qkGKvOny4kh0GfFU53CWm5HbJkTQrKyjgpX
-         znXhnc2Y40YYLpXbFIVfDMcs9sEfP886QjK60B9UA/IncyWuTlIWfRZCvLsdwWyyD62X
-         TJYI6gnyMNxMu8KZTJAAmcBiATXEzFroKho8wuTHCtUFIjz18G2IESzDgulYZhLFn7I9
-         C5eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715876108; x=1716480908;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xe39QYa7TfsWXzNNingUD+O1lJhMRi830tLy3GV8ajM=;
-        b=HgOZe37ZDdF2VhtS9EYdafDeW1V+qaeKjtMM47+ZIXU6uVZOqLIowCTiuWIOkAnPhE
-         aeUg+pQG/IkOm2YKzYysqB4knPNQfgdxhxlMVZ68GJkKAfJbvDq38zTYTxZpsnsw9/A+
-         NfhmwWZxc1IWnpcjbfu+q+QORoEr4G9LocQ8BfWKiqC2+tZI6sLyKnOkYztVjfUdbZUZ
-         1So0btKRqrXPXY15SQ0dqJDeDoYhNNvnfvQJV+2YmfLfVBJ8NzXDvjr6+4+ucgnJimMI
-         vq9Lmw9Sg0osiqXWywBnDs71LZwZoPejzeo7S4wV+cqUnLBOlDny5TAmEXTkkqQNBVgg
-         oZRw==
-X-Forwarded-Encrypted: i=1; AJvYcCX19f5a8QMNGS64Q5haW681a57spmxZy1VuETrdvAaA0g1au4cqeAHHhhG06UF+0lV0JPY3BHmTyaKTS0jJkCRCDDj68vKsyCqykbRWOT+SNB+NFHIWLx/+7CUtZamBPQguBNSgSSvoT8q7wcAhCLztXieSv1wk1g5ZPwE/rLQVbIXy3A==
-X-Gm-Message-State: AOJu0YwNTUtni9TR7cyGTai/XiCr625FSNPtyJ2vb9fvAG9nnGyi9Gv4
-	541+nsHjiOFfQGmcFB9sE5FntAOtFdPJREvU9hwx6YB+OPbHsF+q
-X-Google-Smtp-Source: AGHT+IFUuxxxvJDDRP5xjeDBCKJXwzIYIXtYwwHtRWhzgkosnjs7D4tlbQURdVVrLy5sbsofDmkh9Q==
-X-Received: by 2002:a37:e209:0:b0:790:9a32:651 with SMTP id af79cd13be357-792c75f47e3mr2216024685a.55.1715876108240;
-        Thu, 16 May 2024 09:15:08 -0700 (PDT)
-Received: from [192.168.0.137] ([188.24.105.36])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-792bf315009sm816795585a.118.2024.05.16.09.15.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 May 2024 09:15:07 -0700 (PDT)
-Message-ID: <7705589b-d135-48c2-b4d2-866138a82918@gmail.com>
-Date: Thu, 16 May 2024 19:15:04 +0300
+	s=arc-20240116; t=1715876672; c=relaxed/simple;
+	bh=YPQd9Pwq5Y5I0Bij2ansbmtYi61hje5cM4D0fSaH4v0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=diAcRdWbPrmEFmxVwEK16Ew48amhIX8WXWUAxZuFt85ECVWESz4W3x/kG51PK312Iq6iWL4T5DlpkkZzxd9q2L5zfufUZhDpCXnM3tuAP0VZzSHwLbFCyXgs7xemtQ7KmE+YgpmkhSVGVpo6WF8sZ1iPWJF8pjrp7c4FPiJVV9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ckTBUbeU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F557C113CC;
+	Thu, 16 May 2024 16:24:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715876672;
+	bh=YPQd9Pwq5Y5I0Bij2ansbmtYi61hje5cM4D0fSaH4v0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ckTBUbeU+U4d8pK30I5KoZpbLoTF1F3+e6xfJWjXJ4EJQyFcHH8LKaim31594OV8N
+	 mLeuX/YVDzdBjW8zJiShYpRnbVPc9rQznt1jj3VJ7+lyGmQU9EzEUWQp4cCxD2urfV
+	 vMlxsjpdY4l9sInSsA0QnW2dCTO258v55LpfqzLuFxP4QXecHPkpPW0MG3lFZ6xH4m
+	 UAtqVq37k3D3kP9GRlXGON/IS+3TCIn9S7HqoBAPo44+HK9rT90qyAo6ZIykI2epHX
+	 j6l3mUoL4XBcQpMJOXoE9B88N7CTanz7fRCGviNd7CG7INHguA1X2uMTnfFsvvzL24
+	 dCPsaC40p8iQg==
+Date: Thu, 16 May 2024 17:24:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andy Chiu <andy.chiu@sifive.com>
+Cc: Charlie Jenkins <charlie@rivosinc.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Evan Green <evan@rivosinc.com>,
+	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v6 03/17] riscv: vector: Use vlenb from DT
+Message-ID: <20240516-grandkid-monday-86c698ca4aed@spud>
+References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
+ <20240503-dev-charlie-support_thead_vector_6_9-v6-3-cb7624e65d82@rivosinc.com>
+ <CABgGipXg68VEGt=oZZSENmbqs4-g3PB=CBobNwgqQjLHfxo+VQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/9] Add support for AD411x
-To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20240514-ad4111-v2-0-29be6a55efb5@analog.com>
- <CAMknhBGUHB65FALiy4pC2kHs0hXuF-51uwL5CTXOVWaBh_QpDg@mail.gmail.com>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <CAMknhBGUHB65FALiy4pC2kHs0hXuF-51uwL5CTXOVWaBh_QpDg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="54mb6NLQMPiDuRTG"
+Content-Disposition: inline
+In-Reply-To: <CABgGipXg68VEGt=oZZSENmbqs4-g3PB=CBobNwgqQjLHfxo+VQ@mail.gmail.com>
 
-On 16/05/2024 01:35, David Lechner wrote:
-> On Tue, May 14, 2024 at 2:23 AM Dumitru Ceclan via B4 Relay
-> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
->>
->> This patch series adds support for the Analog Devices AD4111, AD4112,
->>  AD4114, AD4115, AD4116 within the existing AD7173 driver.
->>
-> 
-> It looks like most of the patches in this series are cleanups and
-> fixes of the existing driver unrelated to adding AD411x. Perhaps it
-> would be better to split those out into a separate series so we can
-> focus on that first? Especially since several of them need to be sent
-> as fixes for the v6.10 kernel to avoid breaking usespace or bindings
-> in the next release.
 
-Sure
+--54mb6NLQMPiDuRTG
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, May 16, 2024 at 10:00:12PM +0800, Andy Chiu wrote:
+> On Sat, May 4, 2024 at 2:21=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.=
+com> wrote:
+
+> > +               if (elf_hwcap & COMPAT_HWCAP_ISA_V && has_riscv_homogen=
+eous_vlenb() < 0) {
+> > +                       pr_warn("Unsupported heterogeneous vlen detecte=
+d, vector extension disabled.\
+> > +                       elf_hwcap &=3D ~COMPAT_HWCAP_ISA_V;
+> > +               }
+>=20
+> We only touch COMPAT_HWCAP_ISA_V and the failed case only turns off the
+> rectified V. So here we have nothing to do with the Xtheadvector.
+
+There's nothing t-head related in the tree at this point, so doing
+anything with it would cause build issues.
+
+> However, I am still confused because I think Xtheadvector would also
+> need to call into this check, so as to setup vlenb.
+
+
+> Apart from that, it seems like some vendor stating Xtheadvector is
+> actually vector-0.7.
+
+The T-Head implementation is 0.7.x, but I am not really sure what you
+mean by this comment.
+
+> Please correct me if I speak anything wrong. One
+> thing I noticed is that Xtheadvector wouldn't trap on reading
+> th.vlenb but vector-0.7 would. If that is the case, should we require
+> Xtheadvector to specify `riscv,vlenb` on the device tree?
+
+In the world of Linux, "vector-0.7" isn't a thing. There's only 1.0, and
+after this patchset, "xtheadvector". My understanding, from discussion
+on earlier versions of this series the trap is actually accessing
+th.vlenb register, despite the documentation stating that it is
+unprivileged:
+https://github.com/T-head-Semi/thead-extension-spec/blob/master/xtheadvecto=
+r.adoc
+I assume Charlie tried it but was trapping, as v1 had a comment:
++		 * Although xtheadvector states that th.vlenb exists and
++		 * overlaps with the vector 1.0 extension overlaps, an illegal
++		 * instruction is raised if read. These systems all currently
++		 * have a fixed vector length of 128, so hardcode that value.
+
+Cheers,
+Conor.
+
+--54mb6NLQMPiDuRTG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkYzOQAKCRB4tDGHoIJi
+0rSDAQDYSejV6VHTrL2jnxNTvkydaJkpuoNoUR0KH7Woyb0A7wEAoRBty/hTiap0
+kvVFRs7XwEEn0QBitKVO7a6zx8YNQA4=
+=DNuY
+-----END PGP SIGNATURE-----
+
+--54mb6NLQMPiDuRTG--
 
