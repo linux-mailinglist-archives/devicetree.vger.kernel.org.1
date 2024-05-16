@@ -1,40 +1,55 @@
-Return-Path: <devicetree+bounces-67287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BFF18C7551
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:36:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DA358C7557
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:38:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D6701C20943
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:36:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85D4D1C20B64
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:38:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995211459F6;
-	Thu, 16 May 2024 11:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3181459F6;
+	Thu, 16 May 2024 11:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EnW+unrU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CCBE14535D
-	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 11:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87221DFCB;
+	Thu, 16 May 2024 11:38:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715859379; cv=none; b=pk8H2zmLPIAcyx5Kuxk0F5BnptAishyI+KB4DeokKDSZbZjbc3X2wNYlX3tD72vKhNVZfFlFw8o46FgA5Zm2Yzx5B/Z7aHV6MWUPurqG5FEeRoRue3guVH+DBBGReUcptMjywOEGKENfFc/tbQSNJtJbVOmCxzEbKdlEv0JnXo0=
+	t=1715859517; cv=none; b=jlMs+4cqIJsq5HgSeIdFRSVvSoGRdmdJGOurQ6V5DqMDo9RM4n5Mvh+l1Su5V7PPrOhf/0Cvp16eYlERGB3H6PxBjLkR6JtuO8mk4jui52S/22/JXgkohqkYSgaQG4CLoqnLgGNuGSBj2iFX5LdyZthALXlsZpL7syrfGYlzO1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715859379; c=relaxed/simple;
-	bh=xnCHpjWJCxd1ThpugjVih1IsrG1enpQdqddYfJNlRLA=;
+	s=arc-20240116; t=1715859517; c=relaxed/simple;
+	bh=6YlANbTSJp+DD89N4n3iOkjqTuHNDTJa4CMV9yVdZkM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f+6tXl/kbeqRZVdXjiHIgdfWYNhUfORPsmobyV1vy1eQ1lvbZU3os7rbIy8gQ3piInwiZGpCUiwczIRjPioGE/vAj8Xj/6KU5fuFukvYj2JyFROyH1dhTYkrR92ZT+94X1rArWJgFucYEsxT9p4Ks37IglARo4dX8JTUDny2L3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1s7ZOz-0007RY-PT; Thu, 16 May 2024 13:36:01 +0200
-Message-ID: <b354724f-5235-4519-8361-b8209ab99d36@pengutronix.de>
-Date: Thu, 16 May 2024 13:36:00 +0200
+	 In-Reply-To:Content-Type; b=E7u7bATG85IhO8//wX90UYZGx82bceZ6DwDNudc4Wmmm/+wFMOEYqBGjNfmvbxYjJ1+n8WyJRwt083ETECs6/5nYJNZt4tf8xSUy9v0ODjAvuXpxNbZqEf8inCql0YuZr6CZll23v5rt/fgBOpdZoO6cn0VDf6TkOAwRrWQz9E8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EnW+unrU; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1715859513;
+	bh=6YlANbTSJp+DD89N4n3iOkjqTuHNDTJa4CMV9yVdZkM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EnW+unrUCcxibLwEbfR1jJVHOgS3THUQZzkyGgnVBV2r8SX3rWjQ5hjDbDaeep5uc
+	 nuO/SOHzZ1g3XKmounte9suRLuquEUfoX+mMZRKKFv7f0VP4kr/Ui4UW9IWOmD/NxH
+	 3s4rqZlKExzQ+vTdC0ZprCl1JgIvBCzcZCLC1g54BtTzekmkqKNI5cwMBx1RSuv4Rw
+	 s1Nmb0phK8jnffAlbg3Yi0rslYT8Twphh1cbYANvEZt3avsIhFYESj6Xy5isK4Mj/w
+	 W6H2PQUVjYCAyLFajFQi3vQc4eKFfYV8SWdTfk/fVSBBdCHq8EZVwTf9d27ZKMRvEG
+	 h9lOwBaTP0knA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 898683782186;
+	Thu, 16 May 2024 11:38:32 +0000 (UTC)
+Message-ID: <d6b7aa1e-ce0d-4ea3-9f2d-c256a296dd1f@collabora.com>
+Date: Thu, 16 May 2024 13:38:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,63 +57,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2 and
- PDK3
-To: Marek Vasut <marex@denx.de>, Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, kernel@dh-electronics.com,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Fabio Estevam
- <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
-References: <20240514010706.245874-1-marex@denx.de>
- <20240516080008.GA9338@francesco-nb>
- <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
+Subject: Re: [PATCH 2/5] dt-bindings: reset: Add reset definitions for EN7581
+ SoC.
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: linux-clk@vger.kernel.org, p.zabel@pengutronix.de,
+ mturquette@baylibre.com, sboyd@kernel.org, lorenzo.bianconi83@gmail.com,
+ conor@kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com,
+ catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com
+References: <cover.1715777643.git.lorenzo@kernel.org>
+ <acb6aa6fe473c485605c108e551d6d28ceb27a60.1715777643.git.lorenzo@kernel.org>
+ <b1e0db1a-2bcb-4d11-a386-e395c2946591@collabora.com>
+ <ZkXqoG6xIsrrLyh4@lore-desk>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <ZkXqoG6xIsrrLyh4@lore-desk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hello Marek,
-
-On 16.05.24 13:14, Marek Vasut wrote:
-> On 5/16/24 10:00 AM, Francesco Dolcini wrote:
->> Hello Marek,
-> 
-> Hi,
-> 
->> On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
->>> Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
->>> I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
->>> of HDMI DDC mode to permit connection of other I2C devices on those buses.
+Il 16/05/24 13:14, Lorenzo Bianconi ha scritto:
+>> Il 15/05/24 14:58, Lorenzo Bianconi ha scritto:
+>>> Introduce reset binding definitions for reset controller available in
+>>> the Airoha EN7581 clock module.
+>>>
+>>> Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+>>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>>> ---
+>>>    .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++++++++
+>>>    1 file changed, 66 insertions(+)
+>>>    create mode 100644 include/dt-bindings/reset/airoha,en7581-reset.h
+>>>
+>>> diff --git a/include/dt-bindings/reset/airoha,en7581-reset.h b/include/dt-bindings/reset/airoha,en7581-reset.h
+>>> new file mode 100644
+>>> index 000000000000..1b7ee62ed164
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/reset/airoha,en7581-reset.h
+>>> @@ -0,0 +1,66 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Copyright (c) 2024 AIROHA Inc
+>>> + * Author: Lorenzo Bianconi <lorenzo@kernel.org>
+>>> + */
+>>> +
+>>> +#ifndef __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
+>>> +#define __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
+>>> +
+>>> +/* RST_CTRL2 */
+>>> +#define EN7581_XPON_PHY_RST		0
 >>
->> Are you able to read the HDMI EDID with such configuration? I have the
->> patch ready for verdin imx8mp, I just did not have time to figure out
->> this last details.
+>> ** sarcasm mode on **
+>>
+>> Count with me: 0... 1... 2...
 > 
-> Yes with ddc-i2c-bus in hdmi_tx{} node, no with ddc-i2c-bus in connector node. Maybe that's what you're running into ? The DW HDMI core needs the ddc-i2c-bus property in hdmi_tx{} node if you use non-native I2C bus for the DDC channel.
-
-What benefit does the hdmi-connector provide over just omitting it?
-Just for documentation purposes?
-
-Thanks,
-Ahmad
-
-
-
+> :)
 > 
+>>
+>> ** sarcasm mode off **
+>>
+>> There's a jump here, you have a reset index 0 and an index 2,
+>> but you're missing index 1, that's not right :-)
+>>
+>> Please fix.
+> 
+> it is because BIT(1) is marked as 'reserved' in the documentation so I skipped it.
+> Do you prefer to have it in that way?
 > 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+This is not my preference, it's rather a requirement for the bindings...
+
+That's why in the MediaTek reset controller part of the clk driver there is
+a way to map those numbers (which are always sequential) to actual reset bits
+in the controller...
+
+Cheers!
+
+> Regards,
+> Lorenzo
+> 
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> +#define EN7581_CPU_TIMER2_RST		2
+>>> +#define EN7581_HSUART_RST		3
+>>> +#define EN7581_UART4_RST		4
+>>> +#define EN7581_UART5_RST		5
+>>> +#define EN7581_I2C2_RST			6
+>>> +#define EN7581_XSI_MAC_RST		7
+>>> +#define EN7581_XSI_PHY_RST		8
+>>> +#define EN7581_NPU_RST			9
+>>> +#define EN7581_I2S_RST			10
+>>> +#define EN7581_TRNG_RST			11
+>>> +#define EN7581_TRNG_MSTART_RST		12
+>>> +#define EN7581_DUAL_HSI0_RST		13
+>>> +#define EN7581_DUAL_HSI1_RST		14
+>>> +#define EN7581_HSI_RST			15
+>>> +#define EN7581_DUAL_HSI0_MAC_RST	16
+>>> +#define EN7581_DUAL_HSI1_MAC_RST	17
+>>> +#define EN7581_HSI_MAC_RST		18
+>>> +#define EN7581_WDMA_RST			19
+>>> +#define EN7581_WOE0_RST			20
+>>> +#define EN7581_WOE1_RST			21
+>>> +#define EN7581_HSDMA_RST		22
+>>> +#define EN7581_TDMA_RST			24
+>>> +#define EN7581_EMMC_RST			25
+>>> +#define EN7581_SOE_RST			26
+>>> +#define EN7581_PCIE2_RST		27
+>>> +#define EN7581_XFP_MAC_RST		28
+>>> +#define EN7581_USB_HOST_P1_RST		29
+>>> +#define EN7581_USB_HOST_P1_U3_PHY_RST	30
+>>> +/* RST_CTRL1 */
+>>> +#define EN7581_PCM1_ZSI_ISI_RST		32
+>>> +#define EN7581_FE_PDMA_RST		33
+>>> +#define EN7581_FE_QDMA_RST		34
+>>> +#define EN7581_PCM_SPIWP_RST		36
+>>> +#define EN7581_CRYPTO_RST		38
+>>> +#define EN7581_TIMER_RST		40
+>>> +#define EN7581_PCM1_RST			43
+>>> +#define EN7581_UART_RST			44
+>>> +#define EN7581_GPIO_RST			45
+>>> +#define EN7581_GDMA_RST			46
+>>> +#define EN7581_I2C_MASTER_RST		48
+>>> +#define EN7581_PCM2_ZSI_ISI_RST		49
+>>> +#define EN7581_SFC_RST			50
+>>> +#define EN7581_UART2_RST		51
+>>> +#define EN7581_GDMP_RST			52
+>>> +#define EN7581_FE_RST			53
+>>> +#define EN7581_USB_HOST_P0_RST		54
+>>> +#define EN7581_GSW_RST			55
+>>> +#define EN7581_SFC2_PCM_RST		57
+>>> +#define EN7581_PCIE0_RST		58
+>>> +#define EN7581_PCIE1_RST		59
+>>> +#define EN7581_CPU_TIMER_RST		60
+>>> +#define EN7581_PCIE_HB_RST		61
+>>> +#define EN7581_XPON_MAC_RST		63
+>>> +
+>>> +#endif /* __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_ */
+>>
 
 
