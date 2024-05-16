@@ -1,130 +1,154 @@
-Return-Path: <devicetree+bounces-67200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812EF8C6F7B
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 02:24:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DBD8C6FBF
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 02:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2243F1F2242A
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 00:24:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81ACD1F246C8
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 00:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF8BD3C38;
-	Thu, 16 May 2024 00:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B1110F1;
+	Thu, 16 May 2024 00:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ayMHRsU9"
+	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="fRfd419z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D29217E1;
-	Thu, 16 May 2024 00:24:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D29EDE
+	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 00:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715819048; cv=none; b=e9R1koynFzTaE+50EcKg8TKOKhfVDe3Pm45KCnO8wr18MkF/d+xxMHvBf32zWVG7MmqkP2XN/NoQSi6iOOY9SR2Vs4Et74g5awhaK7cbA5zX9qy9agVrFUycan1idmRZ4PGXaevCbvuaw9BLkuGidGgT5DnrXnLbP9ENhEy0HKc=
+	t=1715821124; cv=none; b=CewFyoLpl1OibFf5ypS+A9K7UUcnw/A7/8cqC/nTckAgib+j4Pz0oWiMvN4AdZXLc9A3qKSDNGYIlnxJEFlw7CJpTHkrG5H72cpaVPgeKugjt9WEqiVlZULWagDgdB3oEKT6tFe8LBYSCa4m51xorOYTsmjqnFf7Ee18fymzJwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715819048; c=relaxed/simple;
-	bh=LQrgsqIByN2f+qZpuZYvsf4zHse06e3f1SdS7MR9PyE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YkAEbvM2YjjZ0eova3+6OGPzXtIM6oAKx/WM7ENAucLWnTu4jKLFgegaYxVdQL5oM7Ke7wUz6BJhGIVtBRzK3nUWLPAvsFpv4/bL5UD3jAAjDx007ahYc29r0XQzHALlZYr6uyafyiVctil5Ur9GT5uyM6B3qpNXQ0Aq9hF4gGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ayMHRsU9; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 4250B87EF7;
-	Thu, 16 May 2024 02:23:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1715819038;
-	bh=jG1kyEHStM/G4Bx69cnZ9ynPKSC8S8yZPDjm5wi4i4Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ayMHRsU9bOUstMRI7s2hcFPlwsAQONW2aXEHzKPB8nCX3D6FtQMDFRMmx1mxxi+BP
-	 5ky2+jR2Jr3j7N0oAkQuIMB+5Gl5K26MjsPPaWL7KqmRCLUOMfwxgfCTPMONCIvkqL
-	 SqGAcXwUuRuUAmMzIxvfEr7IXpjwl7iDxtsZw+IJPQOcqufFWg/DUrlpKxNbAkGhJ0
-	 aN6/aP1dRQ5VlfzYKYii3cU7PolA1UvwvCtDYMZNtnquw2M7qcDXLoe0wBC6ECr1QU
-	 FdLw9aAbGx587PlLFTMQT5i+kTGmfznpVsaumkZFEwNZ0Aa56qrto+S+bHv6g0/6WD
-	 1TfGLe9G7saKw==
-Message-ID: <9c1d80eb-03e7-4d39-b516-cbcae0d50e4a@denx.de>
-Date: Thu, 16 May 2024 02:23:56 +0200
+	s=arc-20240116; t=1715821124; c=relaxed/simple;
+	bh=SW/q7stGvy6OMoCA218cQyZGjRLhnAtQ3Ys6NaaQOAE=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=lz2YPuGbWYTKnFE+/X6RynOn2HH9IPk/smSOvxgHBeyDXsABS3/5DtWsnRPiwwH25eej46/KFNaliJeBpvjQVzURK3W+2IiL2J2dGCJxNbDGxocj00HYHqD7pn+jehOr7UryF0v63g9Tvbce1/8I2GpS+HGwGte/G0LAvYMFCQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=fRfd419z; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41fd5dc0508so51170465e9.0
+        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 17:58:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jrtc27.com; s=gmail.jrtc27.user; t=1715821121; x=1716425921; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SW/q7stGvy6OMoCA218cQyZGjRLhnAtQ3Ys6NaaQOAE=;
+        b=fRfd419z0bzTM54X2iBLP1bLXlj30vlD9S269IfYyZrkaHDMu2SVLI94s3L02HD3AL
+         ZrwhHDTwbt2m0IY9In0utVuHWpiRqfX1F9Ot/KdFxrreCJghrysEl1qG0/SDmUcm4n3Q
+         bpCCAiAAmnalKB5QY37vA5sDvpO19IFScqIawAhQcJj4Az+RurBGuqrvBbgI6xg5SGIW
+         v3ppHqQ+FVG4JPGTVKE/pCdLjlXaJ1ZZDESMNr1OGkv38riRDJo7jFElgFufbEr80jRb
+         wOiE83CJTi/O8TeQhf4gqVI3azMoYs32HFe1/mLHNC2KkQHmYzIgwdbHCobW2bW7qbtY
+         JMdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715821121; x=1716425921;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SW/q7stGvy6OMoCA218cQyZGjRLhnAtQ3Ys6NaaQOAE=;
+        b=qEnyqdxxQyCRyia68f5Y+sVKEfQRuPYMCPykvs38oJlfWKSIyb9G/bzSOlpSd1Ap6J
+         HhabfVnZQg+uqgub9ePWu/y59eqe+h13TpybXPmOPZNc4yLFwmb02w9tt0bzp8HICIkW
+         pcdbSG00II4L19fD9cU+5d5YVHC5fual+hn8szedP47PiYPTgnxmbhdKuVyjUIyzcKIv
+         zkV8dVcFnnpue1qrm/ZrmByFI+cIRIZY8/LT6rYuwGI/qSp/17N7e/QZbMNrVqMHnukh
+         1FHoGNzWrgkenEgWNDR6HAyzQbNFA801mlE8QHHgJqAUtkCZZaP6PtJ8UJkwgaBKng5S
+         swwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0e506UJIDwpBLrtbUaEkpg6HkKA9Iu40g3eNE3cps7jDqG9YvcmxvDPa8YpnAnsX/RR2hkJbHYqqGJCx8NKoI6n4epVwBV8fbbg==
+X-Gm-Message-State: AOJu0YyggAYSr6reztNhdhbS4IjHjxWvzx/roV2/5ykIkIBFNhqT8PX9
+	ymJ/XpBR+pSjENSrMQa+UbHmgTC4kmB6xWEkuP+T5E3CY6dz1QXhMwgolyWqHK0=
+X-Google-Smtp-Source: AGHT+IG8/7wKols6oq37R5OJvGqZTKvcrgWEhHIDZA0YIaNJ+IfZHMO7lXNZePnotDSmTCdPiS6z1w==
+X-Received: by 2002:a05:600c:35d6:b0:41a:a4b1:c098 with SMTP id 5b1f17b1804b1-4200fcb9e94mr90424695e9.19.1715821120656;
+        Wed, 15 May 2024 17:58:40 -0700 (PDT)
+Received: from smtpclient.apple ([131.111.5.246])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fccbe8fc6sm248541215e9.4.2024.05.15.17.58.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 May 2024 17:58:40 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/11] ARM: dts: stm32: add ethernet1 and ethernet2 for
- STM32MP135F-DK board
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
- Christophe Roullier <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240426125707.585269-1-christophe.roullier@foss.st.com>
- <20240426125707.585269-11-christophe.roullier@foss.st.com>
- <43024130-dcd6-4175-b958-4401edfb5fd8@denx.de>
- <8bf3be27-3222-422d-bfff-ff67271981d8@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <8bf3be27-3222-422d-bfff-ff67271981d8@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
+Subject: Re: [PATCH 0/2] riscv: Allow vlenb to be probed from DT
+From: Jessica Clarke <jrtc27@jrtc27.com>
+In-Reply-To: <ZkVAYeNnvj99YHXt@ghost>
+Date: Thu, 16 May 2024 01:58:29 +0100
+Cc: Conor Dooley <conor@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Palmer Dabbelt <palmer@sifive.com>,
+ linux-riscv <linux-riscv@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6DDF33DF-07D6-4230-8674-F91A91660686@jrtc27.com>
+References: <20240515-add_vlenb_to_dt-v1-0-4ebd7cba0aa1@rivosinc.com>
+ <A9EDD470-B8EC-4644-82A0-7444729EF885@jrtc27.com> <ZkVAYeNnvj99YHXt@ghost>
+To: Charlie Jenkins <charlie@rivosinc.com>
+X-Mailer: Apple Mail (2.3774.500.171.1.1)
 
-On 5/13/24 6:01 PM, Alexandre TORGUE wrote:
-> Hi Marek
+On 16 May 2024, at 00:08, Charlie Jenkins <charlie@rivosinc.com> wrote:
+>=20
+> On Wed, May 15, 2024 at 11:25:16PM +0100, Jessica Clarke wrote:
+>> On 15 May 2024, at 22:50, Charlie Jenkins <charlie@rivosinc.com> =
+wrote:
+>>>=20
+>>> The kernel currently requires all harts to have the same value in =
+the
+>>> vlenb csr that is present when a hart supports vector. In order to =
+read
+>>> this csr, the kernel needs to boot the hart. Adding vlenb to the DT =
+will
+>>> allow the kernel to detect the inconsistency early and not waste =
+time
+>>> trying to boot harts that it doesn't support.
+>>=20
+>> That doesn=E2=80=99t seem sufficient justification to me. If it can =
+be read
+>> from the hardware, why should we have to put it in the FDT? The whole
+>> point of the FDT is to communicate the hardware configuration that
+>> isn=E2=80=99t otherwise discoverable.
+>=20
+> Yes you are correct in that vlenb is discoverable on any conforming
+> chip. However, the motivation here is for making decisions about how =
+to
+> boot a hart before it is booted. By placing it in the device tree, we
+> are able to disable vector before the chip is booted instead of trying
+> to boot the chip with vector enabled only to disable it later. In both
+> cases when there is different vlenb on different harts, all harts =
+still
+> boot and the outcome is that vector is disabled. The difference is =
+that
+> with the DT entry, no vector setup code needs to be ran on a booting
+> hart when the outcome will be that vector is not enabled.
 
-Hi,
+Why does vlen get this special treatment? You could make exactly the
+same argument for the number of asid bits. The precedent in the kernel,
+whether RISC-V or other architectures, is to not do this. You can
+detect it, so you should, especially since optimising for an
+exceptional, unexpected error case is not worthwhile.
 
-> On 4/26/24 17:44, Marek Vasut wrote:
->> On 4/26/24 2:57 PM, Christophe Roullier wrote:
->>> Add dual Ethernet:
->>> -Ethernet1: RMII with crystal
->>> -Ethernet2: RMII without crystal
->>> PHYs used are SMSC (LAN8742A)
->>>
->>> With Ethernet1, we can performed WoL from PHY instead of GMAC point
->>> of view.
->>> (in this case IRQ for WoL is managed as wakeup pin and configured
->>> in OS secure).
->>
->> How does the Linux PHY driver process such a PHY IRQ ?
->>
->> Or is Linux unaware of the PHY IRQ ? Doesn't that cause issues ?
-> 
-> In this case, we want to have an example to wakeup the system from 
-> Standby low power mode (VDDCPU and VDD_CORE off) thanks to a magic 
-> packet detected by the PHY. The PHY then assert his interrupt output 
-> signal.
-> On MP13 DK platform, this PHY signal is connected to a specific GPIO
-> aka "Wakeup pins" (only 6 wakeup pins an MP13). Those specific GPIOs are 
-> handled by the PWR peripheral which is controlled by the secure OS.
+>> As for T-HEAD stuff, if they need it they can have a custom property.
+>> Though naively I=E2=80=99d assume there=E2=80=99s a way to avoid it =
+still...
+>=20
+> T-Head does not expose vlenb on all of their chips so I do not know of
+> any other way of getting the vlenb without having it be provided in a
+> DT. That was the motivation for this patch in the first place, but
+> making this available to all vendors allows optimizations to happen
+> during boot.
 
-What does configure the PHY for this wakeup mode ?
+How does userspace read it then? But if T-HEAD need it, that means it
+should be a thead,vlen, not a riscv,vlen.
 
-> On WoL packet, the Secure OS catches the PHY interrupt and uses 
-> asynchronous notification mechanism to warn Linux (on our platform we 
-> use a PPI). On Linux side, Optee core driver creates an irq 
-> domain/irqchip triggered on the asynchronous notification. Each device 
-> which use a wakeup pin need then to request an IRQ on this "Optee irq 
-> domain".
-> 
-> This OPTEE irq domain will be pushed soon.
+Jess
 
-I suspect it might make sense to add this WoL part separately from the 
-actual ethernet DT nodes, so ethernet could land and the WoL 
-functionality can be added when it is ready ?
 
