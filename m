@@ -1,141 +1,117 @@
-Return-Path: <devicetree+bounces-67297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FE358C75A6
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:07:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9DC8C75B2
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:11:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D216A1F219E5
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:07:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 945EF2843CC
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E65145A1F;
-	Thu, 16 May 2024 12:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60953145B12;
+	Thu, 16 May 2024 12:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="NbGJocm/";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="NwdinzhA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MFGv9a8x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52624EB30;
-	Thu, 16 May 2024 12:07:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310DC145A06;
+	Thu, 16 May 2024 12:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715861260; cv=none; b=siHZ62iT2o5SI0qcpHRGPfGmW0St/jSIVvdMlycrnjqfE0w2phZY2Oq2YaQSnmls+VSZV5uAd0RNdGmMZTg33Kc1Aw+OVrqYMrXw3g19anyk31t9NwbbTnvRX7GmQN1mT3Ta8Y45ua+LOZLQxVTEb9CWDnCg1Jr43vlElmDVGmQ=
+	t=1715861478; cv=none; b=N8e+DfsEPVKYITHXdaCxO+tWZGkVQoicepEQyS0b84MVZG//f1NOVrJDJP++yRJ7npwjUrQmke4qE76s7ziVYqmowJkQClyZSJn5lTQNRS/ctzhBkOddzzlc8RcBuHJ7/J5BLgWMcFmgLqvXKSw9hLOrRdMQ3y34QHe81UphAaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715861260; c=relaxed/simple;
-	bh=vcdsIGqZ5qz1syFN4U6rshX8LYDZBqv5t9KYXC8SXXE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IuJAYv7XZXzr1VONFq1CxWoCZLyhRF4Zr9VdtmXcE2oz/2ABckpaWNnEkou+w4sUyGr0dotGnJIwFgr7a2m/eWnLdoQfeHzsNVGX7soMh6UHrIf01O/WPcpgEg6W5LSck/VFoIy1XlYHPjILtGPTNsfAjUHyFHtKNeCzO2JTL48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=NbGJocm/; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=NwdinzhA reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1715861257; x=1747397257;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=vcdsIGqZ5qz1syFN4U6rshX8LYDZBqv5t9KYXC8SXXE=;
-  b=NbGJocm/nYhNY8ItDCPxBLvGN/h2O8pG6Tb61+itiGHWN5Di3vh6mmHp
-   x/V/t1HW2vTb9q8l4eOndww+mbnvRiH0bWOUhL9tCS5bdLoADUBMEHVwX
-   TJc57BscwaO+X89w9y/yWfk/f9HmGMVEcZGelYBtIiV/oM/N0kAHXXMKf
-   8you2V+8FWx2WhDHp3LpS74Z6TIUSFNS5kS9vFS3J/2FSaW2YEZjxXjR9
-   v0C6AWlpHmdaBwZ2b0Ua23KIZosWEypKUwaVYopftLn4jwtO+z01BTmjE
-   U1zcSz96LBITVUuUFvTndyvAdfC60aghjEjnmCS+Xtwg4fQ2nX6WnvveQ
-   g==;
-X-CSE-ConnectionGUID: RksVlVebSziJVsdXvJdhKg==
-X-CSE-MsgGUID: tlJ8O3lfQa60hJSqAFcjvg==
-X-IronPort-AV: E=Sophos;i="6.08,164,1712613600"; 
-   d="scan'208";a="36937146"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 16 May 2024 14:07:34 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 23DB6174204;
-	Thu, 16 May 2024 14:07:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1715861250;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=vcdsIGqZ5qz1syFN4U6rshX8LYDZBqv5t9KYXC8SXXE=;
-	b=NwdinzhA0JeGGqgMmGZt/8JCtKF1X2eXOUGriZ8xtAglud6v3UTZWqQ8nz3R/y1Cw84O0/
-	U4AYI1vUo8hItVABU9FgsRWutlaKB1BUaGlmIa8/tNLu1QkzFNsg/zrg/Q8vn7H8rzM1Ux
-	1czmd7PK1P2/3MC4JvPrYFlmQQkmPknYAlF2fYkaaR41LZd7yHXpNBJ7Eb5Iybqo90jzKv
-	2K17rWErAszcPe/4kSGnP4KvdiZjQ+b9A7eq7qF/NTwAJPdIslPYmPxO3xgXloZc9MSB7j
-	Ms7+cYsk+KncudPPRocDPTasNeoBkmM+AavZOKM8V2OfnqXP6he/PKkW80BAAg==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Marek Vasut <marex@denx.de>, Francesco Dolcini <francesco@dolcini.it>, linux-arm-kernel@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org, imx@lists.linux.dev, kernel@dh-electronics.com, Pengutronix Kernel Team <kernel@pengutronix.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2 and PDK3
-Date: Thu, 16 May 2024 14:07:34 +0200
-Message-ID: <5724851.tdWV9SEqCh@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <69c3517c-0fa4-4e0d-9515-21adfb6730a8@pengutronix.de>
-References: <20240514010706.245874-1-marex@denx.de> <fa01ef26-d4d4-4c62-9c12-1f8bed1cfdab@denx.de> <69c3517c-0fa4-4e0d-9515-21adfb6730a8@pengutronix.de>
+	s=arc-20240116; t=1715861478; c=relaxed/simple;
+	bh=vzWty9Z112mKSwQmpKl9H1kFTMkTlX2pGHRLOpUzc/8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=URDSjOkF1eXVuTQuYwEzPDldd8g+Xq6U5wZs7HRJWORej7VQkgBa2xxjeDeSOBA/PI9njQwaikK+zoyjcJ/Tgvxif/x4ZukvaS2Ot3KMWplfSYCACBoACplF0IMLl5IMuyPx+cZbIKwZcBf7oZc96vJm5xOBzIOdXPaHbJJzC0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MFGv9a8x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EE16C113CC;
+	Thu, 16 May 2024 12:11:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715861477;
+	bh=vzWty9Z112mKSwQmpKl9H1kFTMkTlX2pGHRLOpUzc/8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MFGv9a8xqo8bIibuLTC9Sb22GP+YNQKltzSiK5BkAxKn0wNtLMgfSglvsKWq8NCFn
+	 2p66bCe8JEZjQtBko0q30KPK5AEzNRLzP8+9Ybw2o/zP2GFmWoqGXdtMT+7ullrGHM
+	 KsFRznanFdd7euh+hybdzmSQGcdITWEBsycbxu8GmiVmHbk/jrJXQUsgtR4MGWKPYi
+	 aeKu03Xzz8FiBxjPfCL5MqFn9JRzfSdeGQ3b3a2r9C+qwOjRBWfTQRJFP/nHf9LdVA
+	 Ujd3ycfgTKc6iR/hkJDzhkWpL6UkTirq8EiK1I5/EnNlQcy9QyxtdmikyTkTapXMno
+	 cU/ARVbKxuyEQ==
+Date: Thu, 16 May 2024 13:11:11 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCHv4 9/9] ASoC: dt-bindings: fsl-asoc-card: add compatible
+ for generic codec
+Message-ID: <ce9a87c6-4a5c-4f0a-a8df-1fdce8c1f5df@sirena.org.uk>
+References: <20240515135411.343333-1-elinor.montmasson@savoirfairelinux.com>
+ <20240515135411.343333-10-elinor.montmasson@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
-
-Hi everyone,
-
-Am Donnerstag, 16. Mai 2024, 13:46:33 CEST schrieb Ahmad Fatoum:
-> On 16.05.24 13:44, Marek Vasut wrote:
-> > On 5/16/24 1:36 PM, Ahmad Fatoum wrote:
-> >> Hello Marek,
-> >=20
-> > Hi,
-> >=20
-> >> On 16.05.24 13:14, Marek Vasut wrote:
-> >>> On 5/16/24 10:00 AM, Francesco Dolcini wrote:
-> >>>> Hello Marek,
-> >>>
-> >>> Hi,
-> >>>
-> >>>> On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
-> >>>>> Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2=
- and
-> >>>>> I2C mux port 1 on PDK3 respectively are used in regular I2C mode in=
-stead
-> >>>>> of HDMI DDC mode to permit connection of other I2C devices on those=
- buses.
-> >>>>
-> >>>> Are you able to read the HDMI EDID with such configuration? I have t=
-he
-> >>>> patch ready for verdin imx8mp, I just did not have time to figure out
-> >>>> this last details.
-> >>>
-> >>> Yes with ddc-i2c-bus in hdmi_tx{} node, no with ddc-i2c-bus in connec=
-tor node. Maybe that's what you're running into ? The DW HDMI core needs th=
-e ddc-i2c-bus property in hdmi_tx{} node if you use non-native I2C bus for =
-the DDC channel.
-> >>
-> >> What benefit does the hdmi-connector provide over just omitting it?
-> >> Just for documentation purposes?
-> >=20
-> > I was under the impression describing the hardware in DT in full was th=
-e best practice (TM), hence it is in full here.
->=20
-> Sure, I am just wondering what effect, if any, it has in how Linux interp=
-rets
-> the device tree. I have an i.MX8MP board with HDMI as well, but without
-> connector (yet).
-
-AFAICT having a hdmi-connector has no effect at all. Linux drivers are
-not using it.
-
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="XZeYRrKEjeLfbFL9"
+Content-Disposition: inline
+In-Reply-To: <20240515135411.343333-10-elinor.montmasson@savoirfairelinux.com>
+X-Cookie: I'm having a MID-WEEK CRISIS!
 
 
+--XZeYRrKEjeLfbFL9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, May 15, 2024 at 03:54:11PM +0200, Elinor Montmasson wrote:
+
+> Add documentation about new dts bindings following new support
+> for compatible "fsl,imx-audio-generic".
+
+>    audio-codec:
+> -    $ref: /schemas/types.yaml#/definitions/phandle
+> -    description: The phandle of an audio codec
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      The phandle of an audio codec.
+> +      If using the "fsl,imx-audio-generic" compatible, give instead a pair of
+> +      phandles with the spdif_transmitter first (driver SPDIF DIT) and the
+> +      spdif_receiver second (driver SPDIF DIR).
+> +    items:
+> +      maxItems: 1
+
+This description (and the code) don't feel like they're actually generic
+- they're clearly specific to the bidrectional S/PDIF case.  I'd expect
+something called -generic to cope with single CODECs as well as double,
+and not to have any constraints on what those are.
+
+--XZeYRrKEjeLfbFL9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZF994ACgkQJNaLcl1U
+h9B7owf/abYbh4drI6QTSdLIrmNMdhFX4cLfs8jwRLolmoqXOy0BxV3+SchLf/aR
+T+1Cls7jAUyeAqoS8Z4NyDeCa/5Y17c7+QVmcgr53BmGgWjkKhxiyOjrl6q6gEXy
+VMZBcrNghdW1k5rzO3OCOiO38eFODTZ6RzBL0sh3iThDf+qQLKwgKWeZgL7tsuNz
+zJWwE0UVPkuiX9iR2pNWfWb0Q4VuEY9LieR9Onw5+rusb0xLF1PxGD6FaZIHLBBT
+CeeFfhBmLKorYQzK0o8oROWKEIx2o+HFCt/VO4aVmT+xFS5qK2wAOm4u/GtwnQLD
+6C87130dv/yD0+qYIIG6L3mTkpJ29A==
+=nO6y
+-----END PGP SIGNATURE-----
+
+--XZeYRrKEjeLfbFL9--
 
