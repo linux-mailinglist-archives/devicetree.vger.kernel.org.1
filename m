@@ -1,113 +1,129 @@
-Return-Path: <devicetree+bounces-67292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1EA98C756F
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:46:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8D538C7572
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:47:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B369283555
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:46:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42F55B2185C
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDEF1459FE;
-	Thu, 16 May 2024 11:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E39B145A10;
+	Thu, 16 May 2024 11:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QcnJO5Gz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B6926AD0
-	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 11:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFEE1459E2;
+	Thu, 16 May 2024 11:47:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715860001; cv=none; b=UMNKyW8JYa0sUyhp/6d6XCqbmsnqsrCYNIhDdJa7rmAamItNWE6vNkFLH6InLE6EkTfz7vWBfmzOo9mQEDmAjvxzHG4RmQB0PVWeeEucXvkRzXlccZBkMZfyXhRXlyOq2QLts8mcmtU9ErdwoEy6WXR35RjvueEyRLpbl8C2+SM=
+	t=1715860027; cv=none; b=WOT6hwKBtAfpl5ErCS2vL4Q4lJZ4VUzjXBMW2WG3ZowIFMIACDNQZuUbhhMCJ8grb0g6r+PTk4Tmmk+qoUJZRkb0fEM146xmSq4uQdI+mrvXunYGRMAxKvye4SM3xrIRmHQXlMr15sv3UgUaXJWq5HrXmIBK52rqXNIcKLJEgTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715860001; c=relaxed/simple;
-	bh=V3cPfKCp7Bs3KeBZiiyUOSH7VeC6lMnZrnTClFJmYHs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OfKFL/MYN811cqnn85TcM/ea7eRSPdleEIIcbh6nMeFh/xEoQ/GmLt2Ny5uIcfm/tR3Xf7lBM52oYWROZycpJ3OjioRGsT2HSd4NaZcrMG+OgrkmN9UZTRszkBwcrQptl1HhD6EudHySOPtzu75Q+5qhfFgk6DO9NW8fzE3eNts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1s7ZZC-0002GH-Qk; Thu, 16 May 2024 13:46:34 +0200
-Message-ID: <69c3517c-0fa4-4e0d-9515-21adfb6730a8@pengutronix.de>
-Date: Thu, 16 May 2024 13:46:33 +0200
+	s=arc-20240116; t=1715860027; c=relaxed/simple;
+	bh=wu41wYwUT3ZQ/LMwpK4vTqW07C2TaCMbGkW8wWLqctM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dom6qXzgUq5l0jyqZYh/97lh4U1q7wmfQTp28irbWD53kWkForKfOBDqvvmStsXAb3qqIsXn7i1zwW6tTwJJV14uV5tHlU7cxsrbIIC1d2x2t/T2bVACvNgANgL08YabrPMdTAcb1DJCo8CvFFZVz1QGeTnzfAkZTWn897o78uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QcnJO5Gz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E24EC113CC;
+	Thu, 16 May 2024 11:47:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715860026;
+	bh=wu41wYwUT3ZQ/LMwpK4vTqW07C2TaCMbGkW8wWLqctM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QcnJO5Gze6rEySLsD5MoX2CcuqLtdZ8oTEU6W7LJ4ME+mJm6XdQUy3uUAlk37Oyuj
+	 Wpqb9DkM7lhXwG5H1qnM9RPO4tLeD8Y4FzzKOzUC8WS7Ob4h96Ymg+MPoz4wUu1Q2I
+	 AXK4zi2mL5jPQ3jAbhbV/p+TUgB5a5UjcnomXQjHy/XDgBZxNvGGunD620k/qwsitZ
+	 yzbPLR17N5pzcEhv+iOG5vDg4AJm00f+KY6Cs3b0AKxr5QimIQgj9fl2JRKS3mYC+k
+	 jycmvVl9DdjnVr9NqVI9N0TVL68NjRqrsgrKgZnYZBidC8sLf6EJFSIrPEEG3WQsVF
+	 zUk6nkFH8Wikw==
+Date: Thu, 16 May 2024 12:47:00 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
+	quic_pkumpatl@quicinc.com
+Subject: Re: [PATCH v4 2/7] ASoC: codecs: wcd937x-sdw: add SoundWire driver
+Message-ID: <91f581ef-58ea-4b98-80e2-dd9b14a61c60@sirena.org.uk>
+References: <20240516044801.1061838-1-quic_mohs@quicinc.com>
+ <20240516044801.1061838-3-quic_mohs@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mp: Enable HDMI on i.MX8MP DHCOM PDK2 and
- PDK3
-To: Marek Vasut <marex@denx.de>, Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, kernel@dh-electronics.com,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Fabio Estevam
- <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
-References: <20240514010706.245874-1-marex@denx.de>
- <20240516080008.GA9338@francesco-nb>
- <76b3cee8-1fe3-4192-b8c9-7a9c2b7165f0@denx.de>
- <b354724f-5235-4519-8361-b8209ab99d36@pengutronix.de>
- <fa01ef26-d4d4-4c62-9c12-1f8bed1cfdab@denx.de>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <fa01ef26-d4d4-4c62-9c12-1f8bed1cfdab@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6TMXXQ4QPf3seqeB"
+Content-Disposition: inline
+In-Reply-To: <20240516044801.1061838-3-quic_mohs@quicinc.com>
+X-Cookie: I'm having a MID-WEEK CRISIS!
 
-On 16.05.24 13:44, Marek Vasut wrote:
-> On 5/16/24 1:36 PM, Ahmad Fatoum wrote:
->> Hello Marek,
-> 
-> Hi,
-> 
->> On 16.05.24 13:14, Marek Vasut wrote:
->>> On 5/16/24 10:00 AM, Francesco Dolcini wrote:
->>>> Hello Marek,
->>>
->>> Hi,
->>>
->>>> On Tue, May 14, 2024 at 03:06:42AM +0200, Marek Vasut wrote:
->>>>> Enable HDMI output on i.MX8MP DHCOM PDK2 and PDK3. The I2C5 on PDK2 and
->>>>> I2C mux port 1 on PDK3 respectively are used in regular I2C mode instead
->>>>> of HDMI DDC mode to permit connection of other I2C devices on those buses.
->>>>
->>>> Are you able to read the HDMI EDID with such configuration? I have the
->>>> patch ready for verdin imx8mp, I just did not have time to figure out
->>>> this last details.
->>>
->>> Yes with ddc-i2c-bus in hdmi_tx{} node, no with ddc-i2c-bus in connector node. Maybe that's what you're running into ? The DW HDMI core needs the ddc-i2c-bus property in hdmi_tx{} node if you use non-native I2C bus for the DDC channel.
->>
->> What benefit does the hdmi-connector provide over just omitting it?
->> Just for documentation purposes?
-> 
-> I was under the impression describing the hardware in DT in full was the best practice (TM), hence it is in full here.
 
-Sure, I am just wondering what effect, if any, it has in how Linux interprets
-the device tree. I have an i.MX8MP board with HDMI as well, but without
-connector (yet).
+--6TMXXQ4QPf3seqeB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Cheers,
-Ahmad
+On Thu, May 16, 2024 at 10:17:56AM +0530, Mohammad Rafi Shaik wrote:
 
-> 
+> +static const struct reg_default wcd937x_defaults[] = {
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> +	{ WCD937X_DIGITAL_EFUSE_REG_0,				0x00 },
+> +	{ WCD937X_DIGITAL_EFUSE_REG_1,				0xff },
+> +	{ WCD937X_DIGITAL_EFUSE_REG_2,				0xff },
+> +	{ WCD937X_DIGITAL_EFUSE_REG_3,				0xff },
 
+Given the name I'd expect these to vary per device so not have default
+values.  In general ID, status or volatile registers probably shouldn't
+have defaults since they should be read from the device.
+
+> +static bool wcd937x_readonly_register(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+
+> +	case WCD937X_DIGITAL_CHIP_ID0:
+> +	case WCD937X_DIGITAL_CHIP_ID1:
+> +	case WCD937X_DIGITAL_CHIP_ID2:
+> +	case WCD937X_DIGITAL_CHIP_ID3:
+
+> +	case WCD937X_DIGITAL_EFUSE_REG_0:
+> +	case WCD937X_DIGITAL_EFUSE_REG_1:
+> +	case WCD937X_DIGITAL_EFUSE_REG_2:
+
+> +	.readable_reg = wcd937x_readable_register,
+> +	.writeable_reg = wcd937x_rdwr_register,
+> +	.volatile_reg = wcd937x_readonly_register,
+
+It's not a bug per se since things will work but you should probably
+have separate volatile and read only checks, things like the ID and
+efuse registers are read only but they shouldn't vary at runtime so
+could be cached and not volatile.
+
+--6TMXXQ4QPf3seqeB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZF8jMACgkQJNaLcl1U
+h9C/Agf/dxl2QvSF6O91HT9LEA+eXsV+RD+If0rb6NqB7TD6GqF4NT8biCZgRABj
++5j0XCauKqigxtMYyzxxdJE80SL5L9z93e7OLemzzOfxpspvFbNcnktzgCN2zPTc
+HNDtykLiV7SvrRm8e2J7aU3aqhSBBp1d2e970CmaOnVuyvfbyZVoPjsvicMgHZP9
+3CB0Pa1C1+By8DrFR7vI6yembohfU4wFeB/66qzYovFSCI/hOuMYo2usgNhsaT8d
+hUjon+Xz5e9/yaNPVIRjWuOsEa2yL1lo21HwR9drPjRtZNeTlxxhKrXoDd3goJLS
+EdleAlXH/IcsXx7gjcdXQDal8syQPg==
+=W/m3
+-----END PGP SIGNATURE-----
+
+--6TMXXQ4QPf3seqeB--
 
