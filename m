@@ -1,266 +1,226 @@
-Return-Path: <devicetree+bounces-67336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D717D8C79DF
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 17:55:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4785A8C79F0
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33A1AB23167
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 15:55:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB2451F21E9C
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7825514D71E;
-	Thu, 16 May 2024 15:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8BFE14D452;
+	Thu, 16 May 2024 16:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HccA8G+Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/fbyDWI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731F014D713;
-	Thu, 16 May 2024 15:55:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE94114D431;
+	Thu, 16 May 2024 16:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715874912; cv=none; b=c3kyr3V2G0flH/gbIfuQmeKQmMjm6gswBbUbo5F2UwmZB6aMAmQ6mEkS8BIEdgr6Aw8t2j/2IhIclInXeK+VJ3EJo7QrsHr5yxvRBjObibdOXn11zUNtNj50m9dz9lAmr1JXXBx/NmQKGtchv8flXU4+tqPrsqFwxcmZFzSjsxA=
+	t=1715875200; cv=none; b=ZbZJicmGIDU6H24Akrwd5dmp+kniyHQA4dIOXqH/P3bzNLxHwwRSfP9cQ3e13wF+sQ4ZQ+9YFSfOCisjeHQhcSjLiNDXxusz6AM3dCR8TG2EUsr/iLXzLZyX2xVL56J+aPh15uFayAh9IhaYa3wRFcrXrfqHJDDKrwIkkrIGInI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715874912; c=relaxed/simple;
-	bh=12vt83DDQ9W1vK1XXPC3vvTvH4RQzN7F1BBnruNYXew=;
+	s=arc-20240116; t=1715875200; c=relaxed/simple;
+	bh=4/gi6rbxuk3sno82iZjHcKkwDvcnwcT2fdJHUnfyx4s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lNfuJ+SezedCqw8kLavE2y3/LXXTfcLTbl+wW+vSh2wpTT+Ry8CZ8HrxGoR37rI5L+qw2RZgWFotGVRRc1vDuGq0ukq7jiRdxluvIEsd6wkUpowc/tNmeR61X1mJJuWflIMQyloAvX2UJCYZOkF6VZG5ZTxgZnPrlDbspZpcWqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HccA8G+Q; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715874910; x=1747410910;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=12vt83DDQ9W1vK1XXPC3vvTvH4RQzN7F1BBnruNYXew=;
-  b=HccA8G+QU4MZw88m94pnX/HLKpF9dZqpt8WFR17eE536nN1sFM33wAM3
-   ti6+wpPbRoB4D3qE2csWhIxI5QZd51ahMNNYy6llhboOxYFprLQkyhqZu
-   vXr6CxAMVK93mk4d2Lmcf9NmuFeM4cq3TTncRrvJ3IUWRwXhwiMN56xvR
-   AXC/2k8ci7cmTf2jYTq3CUbjRS7JEmumQem4gThxXt4CVtyHNwU8bte+l
-   kqvE4yxaZ3Q+2b8MJqQ20mk0gg/lOl/w2Mh/mrm33Jv9V0knDW4ioygS1
-   IS9ZNWgHsivgckn0MC4xp4uD+CQ9gtRRfyTH6YUgqHJVZyuphci4W5xA6
-   Q==;
-X-CSE-ConnectionGUID: E1EE79brSnaQWuGacEwo2A==
-X-CSE-MsgGUID: 5rgZJShETgKu9XhdqTIMAA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="22600387"
-X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; 
-   d="scan'208";a="22600387"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2024 08:55:10 -0700
-X-CSE-ConnectionGUID: QW/JcknhS0yz25vN+Jm6Ng==
-X-CSE-MsgGUID: gTmiFC6JTV+qrfeYB3sspA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,165,1712646000"; 
-   d="scan'208";a="62683601"
-Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 16 May 2024 08:55:07 -0700
-Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s7dRh-000EQ7-1j;
-	Thu, 16 May 2024 15:55:05 +0000
-Date: Thu, 16 May 2024 23:54:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Dimitri Fedrau <dima.fedrau@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] pwm: add support for NXPs high-side switch
- MC33XS2410
-Message-ID: <202405162306.aFLe0sSZ-lkp@intel.com>
-References: <20240515112034.298116-3-dima.fedrau@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KZoamZnhQBa3UWLBvvVmf8JT02PVNYC35ajbKVXwkGqyD8o0oxEx1feXZRmO+ifJRLt2/E62wEM+jG88yE/btRjXxypwvZvnlztHDaroef07+c+80RjRWcK24Fs4l3TcAldRJWhGZSJ5vlvpSHtPHrgIFgbUSo5+P3u/eflEXSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/fbyDWI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A69C113CC;
+	Thu, 16 May 2024 15:59:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715875200;
+	bh=4/gi6rbxuk3sno82iZjHcKkwDvcnwcT2fdJHUnfyx4s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R/fbyDWIdw/BlYva1qA8M7jHYRc2BbLagdyT8ozD04xSBrvT+rIdFxIBzewHLZPdv
+	 quPuDIZsgxW99btEGdZSwOF8KbLJOmAj8LPZ6u+xgD9DFjlvXVKmuDgrrHq8/ymMjT
+	 cTdubTUXJWz39X5hBYl02/9L8X9pIb+qP8zGRqJccw8GE2vvuJbruEX/roO11P+sEQ
+	 NaxKEhI7MvSmge6pJNXskqLKZfDGqm6OsvGfoHAI+U7yXt2znBlFJqJx7Cu/Ta+lc4
+	 37jH+RcBgG81ULOdluy69/5J+FDB6VXqzcn3Gi2W6RJ+eiqSOAIuFKEO/x+mSm+G6o
+	 5OglkRznj34Tg==
+Date: Thu, 16 May 2024 17:59:56 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-clk@vger.kernel.org, p.zabel@pengutronix.de,
+	mturquette@baylibre.com, sboyd@kernel.org,
+	lorenzo.bianconi83@gmail.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH 2/5] dt-bindings: reset: Add reset definitions for EN7581
+ SoC.
+Message-ID: <ZkYtfJJHIL1z2-vv@lore-desk>
+References: <cover.1715777643.git.lorenzo@kernel.org>
+ <acb6aa6fe473c485605c108e551d6d28ceb27a60.1715777643.git.lorenzo@kernel.org>
+ <b1e0db1a-2bcb-4d11-a386-e395c2946591@collabora.com>
+ <ZkXqoG6xIsrrLyh4@lore-desk>
+ <d6b7aa1e-ce0d-4ea3-9f2d-c256a296dd1f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="UFOJValw8646IkIF"
+Content-Disposition: inline
+In-Reply-To: <d6b7aa1e-ce0d-4ea3-9f2d-c256a296dd1f@collabora.com>
+
+
+--UFOJValw8646IkIF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240515112034.298116-3-dima.fedrau@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Dimitri,
+> Il 16/05/24 13:14, Lorenzo Bianconi ha scritto:
+> > > Il 15/05/24 14:58, Lorenzo Bianconi ha scritto:
+> > > > Introduce reset binding definitions for reset controller available =
+in
+> > > > the Airoha EN7581 clock module.
+> > > >=20
+> > > > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> > > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > > ---
+> > > >    .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++=
+++++++
+> > > >    1 file changed, 66 insertions(+)
+> > > >    create mode 100644 include/dt-bindings/reset/airoha,en7581-reset=
+=2Eh
+> > > >=20
+> > > > diff --git a/include/dt-bindings/reset/airoha,en7581-reset.h b/incl=
+ude/dt-bindings/reset/airoha,en7581-reset.h
+> > > > new file mode 100644
+> > > > index 000000000000..1b7ee62ed164
+> > > > --- /dev/null
+> > > > +++ b/include/dt-bindings/reset/airoha,en7581-reset.h
+> > > > @@ -0,0 +1,66 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > +/*
+> > > > + * Copyright (c) 2024 AIROHA Inc
+> > > > + * Author: Lorenzo Bianconi <lorenzo@kernel.org>
+> > > > + */
+> > > > +
+> > > > +#ifndef __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
+> > > > +#define __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
+> > > > +
+> > > > +/* RST_CTRL2 */
+> > > > +#define EN7581_XPON_PHY_RST		0
+> > >=20
+> > > ** sarcasm mode on **
+> > >=20
+> > > Count with me: 0... 1... 2...
+> >=20
+> > :)
+> >=20
+> > >=20
+> > > ** sarcasm mode off **
+> > >=20
+> > > There's a jump here, you have a reset index 0 and an index 2,
+> > > but you're missing index 1, that's not right :-)
+> > >=20
+> > > Please fix.
+> >=20
+> > it is because BIT(1) is marked as 'reserved' in the documentation so I =
+skipped it.
+> > Do you prefer to have it in that way?
+> >=20
+>=20
+> This is not my preference, it's rather a requirement for the bindings...
+>=20
+> That's why in the MediaTek reset controller part of the clk driver there =
+is
+> a way to map those numbers (which are always sequential) to actual reset =
+bits
+> in the controller...
 
-kernel test robot noticed the following build errors:
+ack, fine. I will look into it. Thx for the pointer.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.9 next-20240516]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Regards,
+Lorenzo
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dimitri-Fedrau/dt-bindings-pwm-add-support-for-MC33XS2410/20240515-192237
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240515112034.298116-3-dima.fedrau%40gmail.com
-patch subject: [PATCH v3 2/2] pwm: add support for NXPs high-side switch MC33XS2410
-config: openrisc-allmodconfig (https://download.01.org/0day-ci/archive/20240516/202405162306.aFLe0sSZ-lkp@intel.com/config)
-compiler: or1k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240516/202405162306.aFLe0sSZ-lkp@intel.com/reproduce)
+>=20
+> Cheers!
+>=20
+> > Regards,
+> > Lorenzo
+> >=20
+> > >=20
+> > > Cheers,
+> > > Angelo
+> > >=20
+> > > > +#define EN7581_CPU_TIMER2_RST		2
+> > > > +#define EN7581_HSUART_RST		3
+> > > > +#define EN7581_UART4_RST		4
+> > > > +#define EN7581_UART5_RST		5
+> > > > +#define EN7581_I2C2_RST			6
+> > > > +#define EN7581_XSI_MAC_RST		7
+> > > > +#define EN7581_XSI_PHY_RST		8
+> > > > +#define EN7581_NPU_RST			9
+> > > > +#define EN7581_I2S_RST			10
+> > > > +#define EN7581_TRNG_RST			11
+> > > > +#define EN7581_TRNG_MSTART_RST		12
+> > > > +#define EN7581_DUAL_HSI0_RST		13
+> > > > +#define EN7581_DUAL_HSI1_RST		14
+> > > > +#define EN7581_HSI_RST			15
+> > > > +#define EN7581_DUAL_HSI0_MAC_RST	16
+> > > > +#define EN7581_DUAL_HSI1_MAC_RST	17
+> > > > +#define EN7581_HSI_MAC_RST		18
+> > > > +#define EN7581_WDMA_RST			19
+> > > > +#define EN7581_WOE0_RST			20
+> > > > +#define EN7581_WOE1_RST			21
+> > > > +#define EN7581_HSDMA_RST		22
+> > > > +#define EN7581_TDMA_RST			24
+> > > > +#define EN7581_EMMC_RST			25
+> > > > +#define EN7581_SOE_RST			26
+> > > > +#define EN7581_PCIE2_RST		27
+> > > > +#define EN7581_XFP_MAC_RST		28
+> > > > +#define EN7581_USB_HOST_P1_RST		29
+> > > > +#define EN7581_USB_HOST_P1_U3_PHY_RST	30
+> > > > +/* RST_CTRL1 */
+> > > > +#define EN7581_PCM1_ZSI_ISI_RST		32
+> > > > +#define EN7581_FE_PDMA_RST		33
+> > > > +#define EN7581_FE_QDMA_RST		34
+> > > > +#define EN7581_PCM_SPIWP_RST		36
+> > > > +#define EN7581_CRYPTO_RST		38
+> > > > +#define EN7581_TIMER_RST		40
+> > > > +#define EN7581_PCM1_RST			43
+> > > > +#define EN7581_UART_RST			44
+> > > > +#define EN7581_GPIO_RST			45
+> > > > +#define EN7581_GDMA_RST			46
+> > > > +#define EN7581_I2C_MASTER_RST		48
+> > > > +#define EN7581_PCM2_ZSI_ISI_RST		49
+> > > > +#define EN7581_SFC_RST			50
+> > > > +#define EN7581_UART2_RST		51
+> > > > +#define EN7581_GDMP_RST			52
+> > > > +#define EN7581_FE_RST			53
+> > > > +#define EN7581_USB_HOST_P0_RST		54
+> > > > +#define EN7581_GSW_RST			55
+> > > > +#define EN7581_SFC2_PCM_RST		57
+> > > > +#define EN7581_PCIE0_RST		58
+> > > > +#define EN7581_PCIE1_RST		59
+> > > > +#define EN7581_CPU_TIMER_RST		60
+> > > > +#define EN7581_PCIE_HB_RST		61
+> > > > +#define EN7581_XPON_MAC_RST		63
+> > > > +
+> > > > +#endif /* __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_ */
+> > >=20
+>=20
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405162306.aFLe0sSZ-lkp@intel.com/
+--UFOJValw8646IkIF
+Content-Type: application/pgp-signature; name="signature.asc"
 
-All errors (new ones prefixed by >>):
+-----BEGIN PGP SIGNATURE-----
 
-   drivers/pwm/pwm-mc33xs2410.c: In function 'mc33xs2410_xfer_regs':
->> drivers/pwm/pwm-mc33xs2410.c:123:34: error: implicit declaration of function 'FIELD_GET' [-Werror=implicit-function-declaration]
-     123 |                         val[i] = FIELD_GET(MC33XS2410_RD_DATA_MASK,
-         |                                  ^~~~~~~~~
-   drivers/pwm/pwm-mc33xs2410.c: In function 'mc33xs2410_pwm_get_freq':
->> drivers/pwm/pwm-mc33xs2410.c:206:16: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
-     206 |         return FIELD_PREP(MC33XS2410_PWM_FREQ_STEP_MASK, step) |
-         |                ^~~~~~~~~~
-   cc1: some warnings being treated as errors
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZkYtfAAKCRA6cBh0uS2t
+rGFhAQDAYBya1TZrQ7qULTFv41plUuJk73mvvx61a908F//wDAD/UvJzzr1aPkzR
+5We0gdkRDcqRGucjOeWf3Yen0jl39Qs=
+=Nrb/
+-----END PGP SIGNATURE-----
 
-
-vim +/FIELD_GET +123 drivers/pwm/pwm-mc33xs2410.c
-
-    74	
-    75	static int mc33xs2410_xfer_regs(struct spi_device *spi, bool read, u8 *reg,
-    76					u16 *val, bool *ctrl, int len)
-    77	{
-    78		struct spi_transfer t[MC33XS2410_MAX_TRANSFERS] = { { 0 } };
-    79		u8 tx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-    80		u8 rx[MC33XS2410_MAX_TRANSFERS * MC33XS2410_WORD_LEN];
-    81		int i, ret, reg_i, val_i;
-    82	
-    83		if (!len)
-    84			return 0;
-    85	
-    86		if (read)
-    87			len++;
-    88	
-    89		if (len > MC33XS2410_MAX_TRANSFERS)
-    90			return -EINVAL;
-    91	
-    92		for (i = 0; i < len; i++) {
-    93			reg_i = i * MC33XS2410_WORD_LEN;
-    94			val_i = reg_i + 1;
-    95			if (read) {
-    96				if (i < len - 1) {
-    97					tx[reg_i] = reg[i];
-    98					tx[val_i] = ctrl[i] ? MC33XS2410_RD_CTRL : 0;
-    99					t[i].tx_buf = &tx[reg_i];
-   100				}
-   101	
-   102				if (i > 0)
-   103					t[i].rx_buf = &rx[reg_i - MC33XS2410_WORD_LEN];
-   104			} else {
-   105				tx[reg_i] = reg[i] | MC33XS2410_WR;
-   106				tx[val_i] = val[i];
-   107				t[i].tx_buf = &tx[reg_i];
-   108			}
-   109	
-   110			t[i].len = MC33XS2410_WORD_LEN;
-   111			t[i].cs_change = 1;
-   112		}
-   113	
-   114		t[len - 1].cs_change = 0;
-   115	
-   116		ret = spi_sync_transfer(spi, &t[0], len);
-   117		if (ret < 0)
-   118			return ret;
-   119	
-   120		if (read) {
-   121			for (i = 0; i < len - 1; i++) {
-   122				reg_i = i * MC33XS2410_WORD_LEN;
- > 123				val[i] = FIELD_GET(MC33XS2410_RD_DATA_MASK,
-   124						   get_unaligned_be16(&rx[reg_i]));
-   125			}
-   126		}
-   127	
-   128		return 0;
-   129	}
-   130	
-   131	static
-   132	int mc33xs2410_write_regs(struct spi_device *spi, u8 *reg, u16 *val, int len)
-   133	{
-   134	
-   135		return mc33xs2410_xfer_regs(spi, false, reg, val, NULL, len);
-   136	}
-   137	
-   138	static int mc33xs2410_read_regs(struct spi_device *spi, u8 *reg, bool *ctrl,
-   139					u16 *val, u8 len)
-   140	{
-   141		return mc33xs2410_xfer_regs(spi, true, reg, val, ctrl, len);
-   142	}
-   143	
-   144	
-   145	static int mc33xs2410_write_reg(struct spi_device *spi, u8 reg, u16 val)
-   146	{
-   147		return mc33xs2410_write_regs(spi, &reg, &val, 1);
-   148	}
-   149	
-   150	static
-   151	int mc33xs2410_read_reg(struct spi_device *spi, u8 reg, u16 *val, bool ctrl)
-   152	{
-   153		return mc33xs2410_read_regs(spi, &reg, &ctrl, val, 1);
-   154	}
-   155	
-   156	static int mc33xs2410_read_reg_ctrl(struct spi_device *spi, u8 reg, u16 *val)
-   157	{
-   158		return mc33xs2410_read_reg(spi, reg, val, true);
-   159	}
-   160	
-   161	static
-   162	int mc33xs2410_modify_reg(struct spi_device *spi, u8 reg, u16 mask, u16 val)
-   163	{
-   164		u16 tmp;
-   165		int ret;
-   166	
-   167		ret = mc33xs2410_read_reg_ctrl(spi, reg, &tmp);
-   168		if (ret < 0)
-   169			return ret;
-   170	
-   171		tmp &= ~mask;
-   172		tmp |= val & mask;
-   173	
-   174		return mc33xs2410_write_reg(spi, reg, tmp);
-   175	}
-   176	
-   177	static u8 mc33xs2410_pwm_get_freq(u64 period)
-   178	{
-   179		u8 step, count;
-   180	
-   181		/*
-   182		 * Check if period is within the limits of each of the four frequency
-   183		 * ranges, starting with the highest frequency(lowest period). Higher
-   184		 * frequencies are represented with better resolution by the device.
-   185		 * Therefore favor frequency range with the better resolution to
-   186		 * minimize error introduced by the frequency steps.
-   187		 */
-   188	
-   189		switch (period) {
-   190		case MC33XS2410_MIN_PERIOD_STEP(3) + 1 ... MC33XS2410_MAX_PERIOD_STEP(3):
-   191			step = 3;
-   192			break;
-   193		case MC33XS2410_MAX_PERIOD_STEP(3) + 1 ... MC33XS2410_MAX_PERIOD_STEP(2):
-   194			step = 2;
-   195			break;
-   196		case MC33XS2410_MAX_PERIOD_STEP(2) + 1 ... MC33XS2410_MAX_PERIOD_STEP(1):
-   197			step = 1;
-   198			break;
-   199		case MC33XS2410_MAX_PERIOD_STEP(1) + 1 ... MC33XS2410_MAX_PERIOD_STEP(0):
-   200			step = 0;
-   201			break;
-   202		}
-   203	
-   204		count = DIV_ROUND_UP(MC33XS2410_MAX_PERIOD_STEP(step), period) - 1;
-   205	
- > 206		return FIELD_PREP(MC33XS2410_PWM_FREQ_STEP_MASK, step) |
-   207		       FIELD_PREP(MC33XS2410_PWM_FREQ_COUNT_MASK, count);
-   208	}
-   209	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--UFOJValw8646IkIF--
 
