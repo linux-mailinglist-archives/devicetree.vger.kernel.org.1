@@ -1,149 +1,256 @@
-Return-Path: <devicetree+bounces-67310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E17D8C76E2
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:51:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E598C76E8
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:51:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8436C282299
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:51:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B136B2820C7
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E7714601B;
-	Thu, 16 May 2024 12:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F588145FE2;
+	Thu, 16 May 2024 12:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="eBSLS7j8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fafO1B9c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 218D928680
-	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 12:50:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15C1E28680;
+	Thu, 16 May 2024 12:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715863858; cv=none; b=Yv651CBKiIe4lYt3Q+/lMet1M+71rJ+67fYOKXc05Ft2sZHx+DCDpzvBJQL0YicjKaf8FAxE4d6hZZp8+tK2U6n3+ZzMOQDLMiNzzDFmzqqtUuz5qDMlwTkN2t/zPgls4S9PRFtKzh2OCAGz36Jb/8lNbcVJYBE08G8SJ0nNn20=
+	t=1715863896; cv=none; b=LnGPZsKx7CnpKpFjv6EvhuLKl+pPze+tk3QbVgFzGivvCAm8IyqgD53ii1ZWj6SvGsFJ8n3bKoZ9ZFxxXGKX+KtN6GSzPTqvXBYtTpBe/WLgsq+ZzZw6hjd9gJHiZh1oX6xGmctnnvuk/VXRmgaQFbV6Fl9t+lzW4JhiveOudig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715863858; c=relaxed/simple;
-	bh=kZU55I/RDRwDthGYCDmfPc+xZ2lz+hR5qGvHj4RkRqY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OjVGkibad/hvW6xWawRXUie1Xzn9sUTAzCdhKNeP9E7PxVrMT3Sv/XxBy3yXJWKQ7loXnfkTsFI+nJaNgmERvtUKCuGlHAxtBeIdmq5dAVKEy2iGwL3LNoKeNGJqo65w1xt9wNOvx/k9CSPlid16+Vrul0bOKxsx2ZJdcTYadmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=eBSLS7j8; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-62036051972so89411767b3.1
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2024 05:50:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1715863856; x=1716468656; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+Od+pJB6mZAnjsfvS954bc7TMJjR9/PUts1oYAKpTsg=;
-        b=eBSLS7j8sF2FCizeCUCxtHWs1+I0yYcNl+5SKyakicYBlPNYYkJb9bsmn2bmNHn+Kj
-         bSeaj3XTbD7GD1qbi0t59VL2/hINVjg+DpC4o8IgCu1DJdIOyWs1wmJH1eBgwedbuf7Z
-         k2bhuC0G9GX1mzhxaTjBwZFcBbbe+b5YJJSSk7gwAlg6yflflUVHG/ZuQOnNcoMx/Vpr
-         rLl3wY/Y+g3Rh6OIXP1mXwFrLxxlD9jDvvBXnFqt9sLm3bCl/nqPxG6tRag00m+zhgOy
-         U8cyjrlYSHwMfNwog5uZOKuLmonDYnVQabAA447CY3pQ16bkGJzPqs5LF0upOW8zM7vF
-         6l8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715863856; x=1716468656;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+Od+pJB6mZAnjsfvS954bc7TMJjR9/PUts1oYAKpTsg=;
-        b=ttQnVEHome3KkPscn8Ev/otsxbdvIoGzzZEVcFPasQ8F0hMf8+VCqPnayhLuTu4HnV
-         1p2IEX7YpWu6ZnXabjwIz9u7OxogndAR5BDAK/nLTxTqoBKL0hWkGc72VB07CZmfPD76
-         NzQZ9OZcFalo1YSD2oTiA7MPhnIGlpFOnb6t55rBOGZ3C7wW81vx3RoeitFt7p/Cg+ys
-         6gRISkphuDQ7qxLYycU5Sh8etv8zlkVDMoeYotynAFbvr8iBFqUoSxxTGxdvwOcjGjbc
-         9f1RnrOUr3hPqqfW1w9mALVUP8uE/i7CpBR0oWp9W3RWwOugfnA55k6rMIL3fmAJwdUw
-         TE5w==
-X-Forwarded-Encrypted: i=1; AJvYcCUBF1nizExqOka2JE+eUX2m5Xt7ubI4AsAno7v2WeOgBUtMgTgJOev+tHrJLMcTbAUbUGLl4V5hVulK3tLbb39Qch0sNhEuEzbW1Q==
-X-Gm-Message-State: AOJu0YwsewiR6x2xx3D6niAWnxv8R36NyRJDSyTS2j/h65LP+eOZNbc5
-	HSJSTBxf3tv7d3WDBy8nVKhnwG6Hv0jKiWTVbKsJvCI73SkQjqMxSPgCNXBTcuSWBegF00guIzP
-	HpkRKpZnA4Vdl7y3ZWZU4wSjeXe7EE1svyO4WiA==
-X-Google-Smtp-Source: AGHT+IGs7lVMK92YN+1HJCcotmujY/ztr2anQuNr3U+Iebkb2i92DLwZmM+D3pTVHWKs6H4058jiuMgZuuev28xE+eY=
-X-Received: by 2002:a0d:cb52:0:b0:615:46dc:44db with SMTP id
- 00721157ae682-622b013ca1bmr180898027b3.35.1715863856375; Thu, 16 May 2024
- 05:50:56 -0700 (PDT)
+	s=arc-20240116; t=1715863896; c=relaxed/simple;
+	bh=gIP397vOaMszVFwOZPjH+lMPcE1/OwOTTyKbzqbf08o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DZ58w4ikJ9IE+aoVNKEhnnAHHB2F6VJ9IlPij8HcTND3o8tPqvEfIyeCjKmQV4cBXrwFxwM9n1Nmux5B+D7vsBaPLpz8wBoD3eEaZujF+bxY46RXJ5Dwurl894Hk1qP5RHb4NRQV4Yj7402uunXWw0Zf0p836IKrgFMITFNK67M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fafO1B9c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2FA5C2BD11;
+	Thu, 16 May 2024 12:51:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715863895;
+	bh=gIP397vOaMszVFwOZPjH+lMPcE1/OwOTTyKbzqbf08o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fafO1B9cA1pOqRnw4BP1JQpah+6FiMvYbhzZeE3qIqCjifVrAlSOGOu2kJwDHH8pI
+	 b5Bor0cPDq5md71nBqaGGb83WHhN058uEOaXdeyMHk7MIvRyDi/sAFHVoK0SgsTdjB
+	 5zCebWWLLnw+Ugkm3+DG9ewBW41KONdj9/mWa9MtZzMfmViMauyvxSPUXiRYbFNwb9
+	 PF9NnPFGdGCI5J30zx3mzvH1APnvdoDJJSZ49qr5jEHeLosyWmwEKLyCoSSAGowmzw
+	 oFlJrpCmy9KlTQ4Akp+zEqIalTnpZoekRMM+9IYk4mu2o/gLYKX8W2z7lpuLIBzsk4
+	 KD5mKuA3z6RRA==
+Date: Thu, 16 May 2024 14:51:30 +0200
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+	"marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v7 6/7] PCI: rcar-gen4: Add support for r8a779g0
+Message-ID: <20240516125130.GB11261@thinkpad>
+References: <20240415081135.3814373-1-yoshihiro.shimoda.uh@renesas.com>
+ <20240415081135.3814373-7-yoshihiro.shimoda.uh@renesas.com>
+ <20240511080257.GF6672@thinkpad>
+ <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
- <20240503-dev-charlie-support_thead_vector_6_9-v6-2-cb7624e65d82@rivosinc.com>
-In-Reply-To: <20240503-dev-charlie-support_thead_vector_6_9-v6-2-cb7624e65d82@rivosinc.com>
-From: Andy Chiu <andy.chiu@sifive.com>
-Date: Thu, 16 May 2024 20:50:45 +0800
-Message-ID: <CABgGipXNoiQ-+R3CzFS_hGT+d9L9vhqyB1famkDmm=v8XcYavg@mail.gmail.com>
-Subject: Re: [PATCH v6 02/17] dt-bindings: riscv: cpus: add a vlen register
- length property
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Conor Dooley <conor.dooley@microchip.com>, Evan Green <evan@rivosinc.com>, 
-	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Palmer Dabbelt <palmer@rivosinc.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TYCPR01MB110409C8FC92A7C466627E0A2D8E32@TYCPR01MB11040.jpnprd01.prod.outlook.com>
 
-On Sat, May 4, 2024 at 3:33=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.co=
-m> wrote:
->
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Add a property analogous to the vlenb CSR so that software can detect
-> the vector length of each CPU prior to it being brought online.
-> Currently software has to assume that the vector length read from the
-> boot CPU applies to all possible CPUs. On T-Head CPUs implementing
-> pre-ratification vector, reading the th.vlenb CSR may produce an illegal
-> instruction trap, so this property is required on such systems.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+On Tue, May 14, 2024 at 11:27:30AM +0000, Yoshihiro Shimoda wrote:
+> Hi Manivannan,
+> 
+> > From: Manivannan Sadhasivam, Sent: Saturday, May 11, 2024 5:03 PM
+> > 
+> > On Mon, Apr 15, 2024 at 05:11:34PM +0900, Yoshihiro Shimoda wrote:
+> > > This driver previously supported r8a779f0 (R-Car S4-8). Add support
+> > > for r8a779g0 (R-Car V4H). PCIe features of both r8a779f0 and r8a779g0
+> > > are almost all the same. For example:
+> > >  - PCI Express Base Specification Revision 4.0
+> > >  - Root complex mode and endpoint mode are supported
+> > >
+> > > However, r8a779g0 requires specific firmware downloading, to
+> > > initialize the PHY. Otherwise, the PCIe controller cannot work.
+> > > The firmware is attached in the manual of the r8a779g0 as text.
+> > > So, convert it to a binary file by using a script.
+> > 
+> > The firmware is expected to be present in userspace. So where is it btw? Is it
+> > upstreamed to linux-firmware?
+> 
+> I may misunderstand your question, but the firmware is in the SoC's datasheet as
+> a text file. So, we need to convert it to a binary file and store it into the rootfs.
+> (Also, for debug purpose, we can use built-in firmware from "CONFIG_EXTRA_FIRMWARE".)
+> 
 
-Reviewed-by: Andy Chiu <andy.chiu@sifive.com>
+So how does the conversion need to happen? Does it require any tool or just copy
+the content to a file and pass it as a firmware?
 
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
-ation/devicetree/bindings/riscv/cpus.yaml
-> index d87dd50f1a4b..edcb6a7d9319 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -94,6 +94,12 @@ properties:
->      description:
->        The blocksize in bytes for the Zicboz cache operations.
->
-> +  riscv,vlenb:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      VLEN/8, the vector register length in bytes. This property is requ=
-ired in
-> +      systems where the vector register length is not identical on all h=
-arts.
-> +
->    # RISC-V has multiple properties for cache op block sizes as the sizes
->    # differ between individual CBO extensions
->    cache-op-block-size: false
->
-> --
-> 2.44.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Whatever the method is, it should be documented in the commit message (also in
+the driver).
+
+> > You cannot ask users to manually copy the text and convert it to a binary file.
+> > But if the firmware or sequence is not going to change, why can't you hardcode
+> > it in the driver itself?
+> 
+> This is because that Renesas is not able to distribute the firmware freely.
+> 
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/pcie-rcar-gen4.c | 201 +++++++++++++++++++-
+> > >  1 file changed, 200 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> > > index 980a916933d6..4e934e9156f2 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> > > @@ -5,8 +5,10 @@
+> > >   */
+> > >
+> > >  #include <linux/delay.h>
+> > > +#include <linux/firmware.h>
+> > >  #include <linux/interrupt.h>
+> > >  #include <linux/io.h>
+> > > +#include <linux/iopoll.h>
+> > >  #include <linux/module.h>
+> > >  #include <linux/of.h>
+> > >  #include <linux/pci.h>
+> > > @@ -20,9 +22,10 @@
+> > >  /* Renesas-specific */
+> > >  /* PCIe Mode Setting Register 0 */
+> > >  #define PCIEMSR0		0x0000
+> > > -#define BIFUR_MOD_SET_ON	BIT(0)
+> > > +#define APP_SRIS_MODE		BIT(6)
+> > >  #define DEVICE_TYPE_EP		0
+> > >  #define DEVICE_TYPE_RC		BIT(4)
+> > > +#define BIFUR_MOD_SET_ON	BIT(0)
+> > >
+> > >  /* PCIe Interrupt Status 0 */
+> > >  #define PCIEINTSTS0		0x0084
+> > > @@ -37,19 +40,47 @@
+> > >  #define PCIEDMAINTSTSEN		0x0314
+> > >  #define PCIEDMAINTSTSEN_INIT	GENMASK(15, 0)
+> > >
+> > > +/* Port Logic Registers 89 */
+> > > +#define PRTLGC89		0x0b70
+> > > +
+> > > +/* Port Logic Registers 90 */
+> > > +#define PRTLGC90		0x0b74
+> > > +
+> > >  /* PCIe Reset Control Register 1 */
+> > >  #define PCIERSTCTRL1		0x0014
+> > >  #define APP_HOLD_PHY_RST	BIT(16)
+> > >  #define APP_LTSSM_ENABLE	BIT(0)
+> > >
+> > > +/* PCIe Power Management Control */
+> > > +#define PCIEPWRMNGCTRL		0x0070
+> > > +#define APP_CLK_REQ_N		BIT(11)
+> > > +#define APP_CLK_PM_EN		BIT(10)
+> > > +
+> > > +/*
+> > > + * The R-Car Gen4 documents don't describe the PHY registers' name.
+> > > + * But, the initialization procedure describes these offsets. So,
+> > > + * this driver makes up own #defines for the offsets.
+> > > + */
+> > > +#define RCAR_GEN4_PCIE_PHY_0f8	0x0f8
+> > > +#define RCAR_GEN4_PCIE_PHY_148	0x148
+> > > +#define RCAR_GEN4_PCIE_PHY_1d4	0x1d4
+> > > +#define RCAR_GEN4_PCIE_PHY_514	0x514
+> > > +#define RCAR_GEN4_PCIE_PHY_700	0x700
+> > > +
+> > 
+> > As I said before, these defines provide no information about the registers at
+> > all. So please use the offset directly and add a comment.
+> 
+> I got it.
+> 
+> > >  #define RCAR_NUM_SPEED_CHANGE_RETRIES	10
+> > >  #define RCAR_MAX_LINK_SPEED		4
+> > >
+> > >  #define RCAR_GEN4_PCIE_EP_FUNC_DBI_OFFSET	0x1000
+> > >  #define RCAR_GEN4_PCIE_EP_FUNC_DBI2_OFFSET	0x800
+> > >
+> > > +#define RCAR_GEN4_PCIE_FIRMWARE_NAME		"rcar_gen4_pcie.bin"
+> > > +#define RCAR_GEN4_PCIE_FIRMWARE_BASE_ADDR	0xc000
+> > > +
+> > > +MODULE_FIRMWARE(RCAR_GEN4_PCIE_FIRMWARE_NAME);
+> > > +
+> > >  struct rcar_gen4_pcie;
+> > >  struct rcar_gen4_pcie_drvdata {
+> > > +	void (*additional_common_init)(struct rcar_gen4_pcie *rcar);
+> > 
+> > What is this init for? Controller? PHY?
+> 
+> This init is for controller.
+> 
+
+Why do you need a callback for this? There is just a single function that is
+used as of now, so please move the contents to rcar_gen4_pcie_common_init().
+
+> > >  	int (*ltssm_enable)(struct rcar_gen4_pcie *rcar);
+> > >  	enum dw_pcie_device_mode mode;
+> > >  };
+> > > @@ -57,12 +88,144 @@ struct rcar_gen4_pcie_drvdata {
+> > >  struct rcar_gen4_pcie {
+> > >  	struct dw_pcie dw;
+> > >  	void __iomem *base;
+> > > +	void __iomem *phy_base;
+> > >  	struct platform_device *pdev;
+> > >  	const struct rcar_gen4_pcie_drvdata *drvdata;
+> > >  };
+> > >  #define to_rcar_gen4_pcie(_dw)	container_of(_dw, struct rcar_gen4_pcie, dw)
+> > >
+> > >  /* Common */
+> > > +static void rcar_gen4_pcie_phy_reg_update_bits(struct rcar_gen4_pcie *rcar,
+> > > +					       u32 offset, u32 mask, u32 val)
+> > > +{
+> > > +	u32 tmp;
+> > > +
+> > > +	tmp = readl(rcar->phy_base + offset);
+> > > +	tmp &= ~mask;
+> > > +	tmp |= val;
+> > > +	writel(tmp, rcar->phy_base + offset);
+> > > +}
+> > > +
+> > > +static int rcar_gen4_pcie_reg_check(struct rcar_gen4_pcie *rcar,
+> > > +				    u32 offset, u32 mask)
+> > > +{
+> > > +	struct dw_pcie *dw = &rcar->dw;
+> > > +
+> > > +	if (dw_pcie_readl_dbi(dw, offset) & mask)
+> > > +		return -EAGAIN;
+> > 
+> > What is this function checking actually? It is just a DBI read. Do you expect
+> > these register accesses to fail?
+> 
+> This function is checking whether the register's value with mask is zero or not.
+> - If non-zero, return -EAGAIN.
+> - If zero, return 0. (this is expected value.)
+> 
+> Perhaps, should I change the function name? For example, rcar_gen4_pcie_reg_test_bit()?
+> According to the datasheet, software needs to write registers again if the register
+> value(s) is(are) not expected value(s).
+> 
+
+Well, I was asking under what circumstances the write may result in non-zero
+value?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
