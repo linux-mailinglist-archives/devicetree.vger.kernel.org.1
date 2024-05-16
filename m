@@ -1,247 +1,233 @@
-Return-Path: <devicetree+bounces-67315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DE928C7751
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 15:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D01988C7761
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 15:18:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B5E828111E
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:11:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86A6B281E15
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:18:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44743146D51;
-	Thu, 16 May 2024 13:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE5BC146A8A;
+	Thu, 16 May 2024 13:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="HKkIiKKg"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2kug9SF1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E070145FE8
-	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 13:11:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D068145FE8
+	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 13:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715865108; cv=none; b=sINZPJj2f/CQSQ/8Jj/qvl4QnXMZs4wW9fVObDzFdPAh79dpnsuDjn+2EmYNSgxti1xBILlBTT+IM/QSzS/PuSPcN52fhDJMEnMbQD701jjoIVl/imaQYnwt534pBDN/f5F6OXkp4zDZk/NbBmB+unDGKJ6CL3plicbEQbZlxuY=
+	t=1715865482; cv=none; b=EoT4tXVubzBvStv9Mnvun6M09zQubbFC/FPaIR5XStYm/TG0BzNL/0KnN09PaTDGZKDt0+OBMISMZp64zMOWlSLjMMZqcQjyfqHdC+mfeeb5VMaCEjvpiw7jsCnjYdRoooawTrv1vt+GN6dNDNB/oTuEtakpZQfARbcLeu4LeBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715865108; c=relaxed/simple;
-	bh=Wi6fPWBM2N13lqz1ePjmrOpqRQ8zl8M+Hd0GZZShN44=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mItJRC6x2p99V5YqGMi+kMI2Hh21Mvj8qY9Ly9t24Z9U9sQHAP/MYoeHlDyjoDwCzrBqyuFKRW2qpUwQecqfZhZgGhaKXe7mz0w/Razhnkk+JLtcWct59rF68HnWIEBuaqzLqZ/OenEnnxoGaXWin8qDFIzbPDxu3/fGX87gcWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=HKkIiKKg; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-62027fcf9b1so68209997b3.0
-        for <devicetree@vger.kernel.org>; Thu, 16 May 2024 06:11:46 -0700 (PDT)
+	s=arc-20240116; t=1715865482; c=relaxed/simple;
+	bh=eWIwOv9Zvvo6YEpALZ/ZPdwbeGaIZJVB3BlqIwm1sn8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nbWH9wqLKSr7xz4eAcxL4J8WViyj3Tq2Q4uhFGKYyadhk2miCb4hCQ8SjgHN/n9qUSXyZZGu05gsQoDI3Oe/llXecyzkuShvcAlvhCjcoDYggi5SnAm0AvKYu4wVXotfAmeCObZyzWPfB/17VNKZLPYgz6G/gUMdwvNlgN8ljz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2kug9SF1; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6a3652a740aso1539826d6.3
+        for <devicetree@vger.kernel.org>; Thu, 16 May 2024 06:18:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1715865106; x=1716469906; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4V904prVi6oQ5IyZz7aDLXAgfOChEzLZtTfRAaiZkwU=;
-        b=HKkIiKKglEbZ0hNaJB/6vEr2kjrfTrAMUPaj+Ct9bWmyMQA8SkQKvrQg76KjBrhUDw
-         q8pq4iGam6QFNqGlYJ8XhdLlsbe8rwle8BtK8Yzs15RQbF855DfywMB7pBLjcnaj2wOl
-         rcktK0svtAULtALURw4vcFxNsJzMgU7QBe9+zLUlTZ+3n+Mxl55MoOIu3uNbJWmth10o
-         rYXY1FBNrUN1miG65K942JxmgsxAIQeibboAPzgXzJB2qYI5aq7GaJG1fSZkC/2DMdMY
-         q+PZrMLZtF1XCXtv6AwqUtmKFy/mVByqlYuE14B6xeelv2axt6X0fNVBPYacEP7tdK92
-         rx0Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715865479; x=1716470279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=K3ryDiibw2FEZDxAgyeJcOHx0hxqbPorlVehc70NqQc=;
+        b=2kug9SF1l0uiFvM1Q4XoD3ppYBRvefSEWzClos+oi+yBwP8A9DLyJSHiyOgxQ7gmWH
+         mpaJdWUhyLtwrllzxU/OCr9X4q2zrx+dJKm1B2OD2fByA5PMLvQvQnlKYCd4vfkMZDOf
+         6/N77N+/lZRWvGPqZdyFBiWIDS0H5/iXcosafMTvPuDv164gjZXbrJwv6zZWhMh6I9Mw
+         ztF5E+amsNkCSIkZxmFOu9RhJwbmqWwZEfDpWiU7oJPqGj6evZgyarjhY45SN3gnlOYZ
+         UCVjFXMlBH4laopFV3cECtg2zOFHfxQHpoWO7cG1KmmrtGM5kX16oVYRZG/RsWhohUoZ
+         Zu3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715865106; x=1716469906;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4V904prVi6oQ5IyZz7aDLXAgfOChEzLZtTfRAaiZkwU=;
-        b=DuKq2KkHZXC8qEmjlZRLxSDA18oGd3hVBw/I7bwYfMOv421i4J0pJmFek+A/CxP5is
-         e78J/eVdE522YeymAo5E9CpxR0XY59F8xc6P7CLneul+DElAWlnVsgvZgqc/xMOdsbt6
-         Sj6TcGDp7OwoAVOCOzv7nQ9FVZ9KytBlJ4mlx59l4jIx7Rf/c0TTeq0u54lPJZMyQpet
-         MpN9lVH8WVdjkhuw6i2aqxwSuYMC4YwYlwe9+/TOe6vFvomIkrGjDnwLAK5jbFzQ1BIi
-         2iV2G2XNI9iar9j61Qf0cXBUJOotZikmo3b5k/OTZqghm0WbvhL4EKHq65kaRBHx5Tla
-         cJkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVC8T9UcRHx3OlvDU6bfTcPzf72ZQPCp88SS6P4RDOm+qQGvlUFZQKKMJISQZR+5Zg7ZPbWl/y/Cx802YkJxQ4BpUYa8DHB6X4RyQ==
-X-Gm-Message-State: AOJu0Yw4VQ07WzVMYF3e0ZOppnV/M9kQ8r6y/tnb1kbM4D7TQJYkQbfk
-	6RjwjkbK7T4KUJUy3dM+FttPLVcYmTmaUDsPhb/9A+e3mmgTMW8ADUKDhDlx7KsscpPRxoFy1Ht
-	n83AMaV5yJ3a0xq/ScCrSqYxnpbmd5qVmS4kZEg==
-X-Google-Smtp-Source: AGHT+IH5FRDo7BDlg+tWZAgAOlCiAfHazME5mq8JEMAmJ+ns26s+bWNHf5N3/miLQXMAqpV9jaca9Qw0iocuCcuU1Ac=
-X-Received: by 2002:a81:77c2:0:b0:618:9198:1a9b with SMTP id
- 00721157ae682-622af7af307mr115191067b3.3.1715865105680; Thu, 16 May 2024
- 06:11:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1715865479; x=1716470279;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K3ryDiibw2FEZDxAgyeJcOHx0hxqbPorlVehc70NqQc=;
+        b=MoZmzVEdPs8AH+NfgH0gZfnto0j/oSHuZDopnLasrN050UfL4uwpnzfFj2rVvxv8cE
+         v4iD2TtOQHtVNpGELO/U1Hd2igJyVP//9eakB/IxzxR5xZo9rGtjWGBIU3XWzkqxNyvg
+         0jZD+xmn+dUMy4jOHd9Sn0HBTWOo6CHRrP7/uQV5aXeSB4Hy1xJ7EHQ/M4m0bgURNRC6
+         nGY837A1SIWHLzEgijFATsXRCtQjiOaC/Fc2OAkulgPwN1FFrLRNC5168S/X3QNp+er0
+         pCJc8HAVQNV+0zG/fUKveOGncj7xuAoQsFys8EDI8r47lZ2iv8uEuiLNx4xoPRJJ1g8z
+         nLxA==
+X-Forwarded-Encrypted: i=1; AJvYcCUeQlb/gd5AlWO9JWmLxs7VyuBASTAxeEXbtVpe3ZfOy2PRWo/h28LCNQi5W2CwM3EguZ+K4VA0KtJXo2El4LMsnUwWmzAKezO2kA==
+X-Gm-Message-State: AOJu0YzLFwxCAZ2P+gMiE1JlzifKz4wjg6NjG6CP2VRMUww9YiDhBPRN
+	je+rAzpeJbKFou6qo4m5oy5HvW8wuhxQ1Vwy4Hu4KLg0kYJZaqXqiQDMV3s5tww=
+X-Google-Smtp-Source: AGHT+IEujLLB/2OVCOaeopynbDG1eVKKcIAgIkn7Cc16JQ9OK5R5FdeAk2/xUtVCzZYR2ptdOJ8EbA==
+X-Received: by 2002:a05:6214:2b96:b0:6a0:984d:7ff7 with SMTP id 6a1803df08f44-6a1681792e4mr226857446d6.4.1715865479521;
+        Thu, 16 May 2024 06:17:59 -0700 (PDT)
+Received: from [192.168.0.2] (host-79-16-6-145.retail.telecomitalia.it. [79.16.6.145])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6a35969bcd5sm16517186d6.53.2024.05.16.06.17.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 May 2024 06:17:58 -0700 (PDT)
+Message-ID: <2943205c-e7dc-4ca1-a174-15df2244c77b@baylibre.com>
+Date: Thu, 16 May 2024 15:17:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com>
- <20240503-dev-charlie-support_thead_vector_6_9-v6-3-cb7624e65d82@rivosinc.com>
-In-Reply-To: <20240503-dev-charlie-support_thead_vector_6_9-v6-3-cb7624e65d82@rivosinc.com>
-From: Andy Chiu <andy.chiu@sifive.com>
-Date: Thu, 16 May 2024 21:11:33 +0800
-Message-ID: <CABgGipUJ1hk_N6Vka2j12o80bxpDbAadJVBHdoLncrQEaBPoaw@mail.gmail.com>
-Subject: Re: [PATCH v6 03/17] riscv: vector: Use vlenb from DT
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Conor Dooley <conor.dooley@microchip.com>, Evan Green <evan@rivosinc.com>, 
-	=?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Palmer Dabbelt <palmer@rivosinc.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] iio: dac: ad3552r: add support for ad3541r and
+ ad3551r
+To: David Lechner <dlechner@baylibre.com>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nuno.sa@analog.com, lars@metafoo.de,
+ Michael.Hennerich@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240510141836.1624009-1-adureghello@baylibre.org>
+ <20240510141836.1624009-2-adureghello@baylibre.org>
+ <CAMknhBFrOdzvo+aEFjMSf_3FGmbhVp42Oymt_DEF2L-CdWiSmQ@mail.gmail.com>
+Content-Language: en-US
+From: Angelo Dureghello <adureghello@baylibre.com>
+In-Reply-To: <CAMknhBFrOdzvo+aEFjMSf_3FGmbhVp42Oymt_DEF2L-CdWiSmQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sat, May 4, 2024 at 2:21=E2=80=AFAM Charlie Jenkins <charlie@rivosinc.co=
-m> wrote:
->
-> If vlenb is provided in the device tree, prefer that over reading the
-> vlenb csr.
->
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+Hi David,
 
-I agree with Conor that we need a mechanism to turn off v and all
-depending extensions with has_riscv_homogeneous_vlenb(). And that can
-come after this.
+On 10/05/24 5:42 PM, David Lechner wrote:
+> On Fri, May 10, 2024 at 9:19 AM Angelo Dureghello
+> <adureghello@baylibre.com> wrote:
+>> From: Angelo Dureghello <adureghello@baylibre.com>
+>>
+>> Add support for single-output dac variants.
+>>
+>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+>> ---
+>>   drivers/iio/dac/ad3552r.c | 39 +++++++++++++++++++++++++++++----------
+>>   1 file changed, 29 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/iio/dac/ad3552r.c b/drivers/iio/dac/ad3552r.c
+>> index a492e8f2fc0f..0dd6f995c3e2 100644
+>> --- a/drivers/iio/dac/ad3552r.c
+>> +++ b/drivers/iio/dac/ad3552r.c
+>> @@ -140,7 +140,9 @@ enum ad3552r_ch_vref_select {
+>>   };
+>>
+>>   enum ad3542r_id {
+>> +       AD3541R_ID = 0x400b,
+>>          AD3542R_ID = 0x4009,
+>> +       AD3551R_ID = 0x400a,
+>>          AD3552R_ID = 0x4008,
+>>   };
+>>
+>> @@ -745,7 +747,8 @@ static void ad3552r_calc_gain_and_offset(struct ad3552r_desc *dac, s32 ch)
+>>          } else {
+>>                  /* Normal range */
+>>                  idx = dac->ch_data[ch].range;
+>> -               if (dac->chip_id == AD3542R_ID) {
+>> +               if (dac->chip_id == AD3541R_ID ||
+>> +                   dac->chip_id == AD3542R_ID) {
+>>                          v_min = ad3542r_ch_ranges[idx][0];
+>>                          v_max = ad3542r_ch_ranges[idx][1];
+>>                  } else {
+>> @@ -780,7 +783,7 @@ static int ad3552r_find_range(u16 id, s32 *vals)
+>>          int i, len;
+>>          const s32 (*ranges)[2];
+>>
+>> -       if (id == AD3542R_ID) {
+>> +       if (id == AD3541R_ID || id == AD3542R_ID) {
+>>                  len = ARRAY_SIZE(ad3542r_ch_ranges);
+>>                  ranges = ad3542r_ch_ranges;
+>>          } else {
+>> @@ -955,9 +958,10 @@ static int ad3552r_configure_device(struct ad3552r_desc *dac)
+>>                          dev_err(dev, "mandatory reg property missing\n");
+>>                          goto put_child;
+>>                  }
+>> -               if (ch >= AD3552R_NUM_CH) {
+>> -                       dev_err(dev, "reg must be less than %d\n",
+>> -                               AD3552R_NUM_CH);
+>> +               if (ch >= AD3552R_NUM_CH ||
+>> +                       (dac->chip_id == AD3541R_ID && ch) ||
+>> +                       (dac->chip_id == AD3551R_ID && ch)) {
+>> +                       dev_err(dev, "channel %d is not supported\n", ch);
+>>                          err = -EINVAL;
+>>                          goto put_child;
+>>                  }
+>> @@ -987,9 +991,10 @@ static int ad3552r_configure_device(struct ad3552r_desc *dac)
+>>                                  goto put_child;
+>>
+>>                          dac->ch_data[ch].range = val;
+>> -               } else if (dac->chip_id == AD3542R_ID) {
+>> +               } else if (dac->chip_id == AD3541R_ID ||
+>> +                          dac->chip_id == AD3542R_ID) {
+>>                          dev_err(dev,
+>> -                               "adi,output-range-microvolt is required for ad3542r\n");
+>> +                               "adi,output-range-microvolt is required for ad354xr\n");
+>>                          err = -EINVAL;
+>>                          goto put_child;
+>>                  } else {
+>> @@ -1088,10 +1093,20 @@ static int ad3552r_probe(struct spi_device *spi)
+>>                  return err;
+>>
+>>          /* Config triggered buffer device */
+>> -       if (dac->chip_id == AD3552R_ID)
+>> -               indio_dev->name = "ad3552r";
+>> -       else
+>> +       switch (dac->chip_id) {
+>> +       case AD3541R_ID:
+>> +               indio_dev->name = "ad3541r";
+>> +               break;
+>> +       case AD3542R_ID:
+>>                  indio_dev->name = "ad3542r";
+>> +               break;
+>> +       case AD3551R_ID:
+>> +               indio_dev->name = "ad3551r";
+>> +               break;
+>> +       case AD3552R_ID:
+>> +               indio_dev->name = "ad3552r";
+>> +               break;
+>> +       }
+>>          indio_dev->dev.parent = &spi->dev;
+>>          indio_dev->info = &ad3552r_iio_info;
+>>          indio_dev->num_channels = dac->num_ch;
+>> @@ -1110,14 +1125,18 @@ static int ad3552r_probe(struct spi_device *spi)
+>>   }
+>>
+>>   static const struct spi_device_id ad3552r_id[] = {
+>> +       { "ad3541r", AD3541R_ID },
+>>          { "ad3542r", AD3542R_ID },
+>> +       { "ad3551r", AD3551R_ID },
+>>          { "ad3552r", AD3552R_ID },
+>>          { }
+>>   };
+>>   MODULE_DEVICE_TABLE(spi, ad3552r_id);
+>>
+>>   static const struct of_device_id ad3552r_of_match[] = {
+>> +       { .compatible = "adi,ad3541r"},
+>>          { .compatible = "adi,ad3542r"},
+>> +       { .compatible = "adi,ad3551r"},
+>>          { .compatible = "adi,ad3552r"},
+>>          { }
+>>   };
+>> --
+>> 2.45.0.rc1
+>>
+>>
+> It looks like it is time for a chip_info struct here instead of the if
+> and switch statements to get chip-specific data. Most other IIO
+> drivers have this already and it is the preferred way to look up this
+> kind of information in the IIO subsystem. I prefer the drivers that
+> don't put all of the info structs in an array (that way the code is
+> less verbose). So I would suggest looking at e.g. adc/aspeed_adc,
+> starting with aspeed_adc_matches, to see what I mean and how to
+> implement it. (So one patch to add the info structs and a second patch
+> to add the single channel chips)
 
-Thanks for adding the homogeneous vlen checking!
+Ack, will change in that way.
 
-Reviewed-by: Andy Chiu <andy.chiu@sifive.com>
 
-> ---
->  arch/riscv/include/asm/cpufeature.h |  2 ++
->  arch/riscv/kernel/cpufeature.c      | 47 +++++++++++++++++++++++++++++++=
-++++++
->  arch/riscv/kernel/vector.c          | 12 +++++++++-
->  3 files changed, 60 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/include/asm/cpufeature.h b/arch/riscv/include/asm=
-/cpufeature.h
-> index 347805446151..0c4f08577015 100644
-> --- a/arch/riscv/include/asm/cpufeature.h
-> +++ b/arch/riscv/include/asm/cpufeature.h
-> @@ -31,6 +31,8 @@ DECLARE_PER_CPU(struct riscv_cpuinfo, riscv_cpuinfo);
->  /* Per-cpu ISA extensions. */
->  extern struct riscv_isainfo hart_isa[NR_CPUS];
->
-> +extern u32 riscv_vlenb_of;
-> +
->  void riscv_user_isa_enable(void);
->
->  #if defined(CONFIG_RISCV_MISALIGNED)
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> index 3ed2359eae35..6c143ea9592b 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -35,6 +35,8 @@ static DECLARE_BITMAP(riscv_isa, RISCV_ISA_EXT_MAX) __r=
-ead_mostly;
->  /* Per-cpu ISA extensions. */
->  struct riscv_isainfo hart_isa[NR_CPUS];
->
-> +u32 riscv_vlenb_of;
-> +
->  /**
->   * riscv_isa_extension_base() - Get base extension word
->   *
-> @@ -648,6 +650,46 @@ static int __init riscv_isa_fallback_setup(char *__u=
-nused)
->  early_param("riscv_isa_fallback", riscv_isa_fallback_setup);
->  #endif
->
-> +static int has_riscv_homogeneous_vlenb(void)
-> +{
-> +       int cpu;
-> +       u32 prev_vlenb =3D 0;
-> +       u32 vlenb;
-> +
-> +       /* Ignore vlenb if vector is not enabled in the kernel */
-> +       if (!IS_ENABLED(CONFIG_RISCV_ISA_V))
-> +               return 0;
-> +
-> +       for_each_possible_cpu(cpu) {
-> +               struct device_node *cpu_node;
-> +
-> +               cpu_node =3D of_cpu_device_node_get(cpu);
-> +               if (!cpu_node) {
-> +                       pr_warn("Unable to find cpu node\n");
-> +                       return -ENOENT;
-> +               }
-> +
-> +               if (of_property_read_u32(cpu_node, "riscv,vlenb", &vlenb)=
-) {
-> +                       of_node_put(cpu_node);
-> +
-> +                       if (prev_vlenb)
-> +                               return -ENOENT;
-> +                       continue;
-> +               }
-> +
-> +               if (prev_vlenb && vlenb !=3D prev_vlenb) {
-> +                       of_node_put(cpu_node);
-> +                       return -ENOENT;
-> +               }
-> +
-> +               prev_vlenb =3D vlenb;
-> +               of_node_put(cpu_node);
-> +       }
-> +
-> +       riscv_vlenb_of =3D vlenb;
-> +       return 0;
-> +}
-> +
->  void __init riscv_fill_hwcap(void)
->  {
->         char print_str[NUM_ALPHA_EXTS + 1];
-> @@ -671,6 +713,11 @@ void __init riscv_fill_hwcap(void)
->                         pr_info("Falling back to deprecated \"riscv,isa\"=
-\n");
->                         riscv_fill_hwcap_from_isa_string(isa2hwcap);
->                 }
-> +
-> +               if (elf_hwcap & COMPAT_HWCAP_ISA_V && has_riscv_homogeneo=
-us_vlenb() < 0) {
-> +                       pr_warn("Unsupported heterogeneous vlen detected,=
- vector extension disabled.\n");
-> +                       elf_hwcap &=3D ~COMPAT_HWCAP_ISA_V;
-> +               }
->         }
->
->         /*
-> diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
-> index 6727d1d3b8f2..e04586cdb7f0 100644
-> --- a/arch/riscv/kernel/vector.c
-> +++ b/arch/riscv/kernel/vector.c
-> @@ -33,7 +33,17 @@ int riscv_v_setup_vsize(void)
->  {
->         unsigned long this_vsize;
->
-> -       /* There are 32 vector registers with vlenb length. */
-> +       /*
-> +        * There are 32 vector registers with vlenb length.
-> +        *
-> +        * If the riscv,vlenb property was provided by the firmware, use =
-that
-> +        * instead of probing the CSRs.
-> +        */
-> +       if (riscv_vlenb_of) {
-> +               this_vsize =3D riscv_vlenb_of * 32;
-> +               return 0;
-> +       }
-> +
->         riscv_v_enable();
->         this_vsize =3D csr_read(CSR_VLENB) * 32;
->         riscv_v_disable();
->
-> --
-> 2.44.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Regards,
+angelo
+
+
 
