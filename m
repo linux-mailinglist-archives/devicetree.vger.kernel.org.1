@@ -1,154 +1,232 @@
-Return-Path: <devicetree+bounces-67201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0DBD8C6FBF
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 02:58:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1BD8C7037
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 04:19:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81ACD1F246C8
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 00:58:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F89C1C21332
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 02:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B1110F1;
-	Thu, 16 May 2024 00:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58500138C;
+	Thu, 16 May 2024 02:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b="fRfd419z"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="n9Qp89D9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2056.outbound.protection.outlook.com [40.107.21.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D29EDE
-	for <devicetree@vger.kernel.org>; Thu, 16 May 2024 00:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715821124; cv=none; b=CewFyoLpl1OibFf5ypS+A9K7UUcnw/A7/8cqC/nTckAgib+j4Pz0oWiMvN4AdZXLc9A3qKSDNGYIlnxJEFlw7CJpTHkrG5H72cpaVPgeKugjt9WEqiVlZULWagDgdB3oEKT6tFe8LBYSCa4m51xorOYTsmjqnFf7Ee18fymzJwE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715821124; c=relaxed/simple;
-	bh=SW/q7stGvy6OMoCA218cQyZGjRLhnAtQ3Ys6NaaQOAE=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=lz2YPuGbWYTKnFE+/X6RynOn2HH9IPk/smSOvxgHBeyDXsABS3/5DtWsnRPiwwH25eej46/KFNaliJeBpvjQVzURK3W+2IiL2J2dGCJxNbDGxocj00HYHqD7pn+jehOr7UryF0v63g9Tvbce1/8I2GpS+HGwGte/G0LAvYMFCQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com; spf=pass smtp.mailfrom=jrtc27.com; dkim=pass (2048-bit key) header.d=jrtc27.com header.i=@jrtc27.com header.b=fRfd419z; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jrtc27.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jrtc27.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-41fd5dc0508so51170465e9.0
-        for <devicetree@vger.kernel.org>; Wed, 15 May 2024 17:58:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1715821121; x=1716425921; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SW/q7stGvy6OMoCA218cQyZGjRLhnAtQ3Ys6NaaQOAE=;
-        b=fRfd419z0bzTM54X2iBLP1bLXlj30vlD9S269IfYyZrkaHDMu2SVLI94s3L02HD3AL
-         ZrwhHDTwbt2m0IY9In0utVuHWpiRqfX1F9Ot/KdFxrreCJghrysEl1qG0/SDmUcm4n3Q
-         bpCCAiAAmnalKB5QY37vA5sDvpO19IFScqIawAhQcJj4Az+RurBGuqrvBbgI6xg5SGIW
-         v3ppHqQ+FVG4JPGTVKE/pCdLjlXaJ1ZZDESMNr1OGkv38riRDJo7jFElgFufbEr80jRb
-         wOiE83CJTi/O8TeQhf4gqVI3azMoYs32HFe1/mLHNC2KkQHmYzIgwdbHCobW2bW7qbtY
-         JMdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715821121; x=1716425921;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SW/q7stGvy6OMoCA218cQyZGjRLhnAtQ3Ys6NaaQOAE=;
-        b=qEnyqdxxQyCRyia68f5Y+sVKEfQRuPYMCPykvs38oJlfWKSIyb9G/bzSOlpSd1Ap6J
-         HhabfVnZQg+uqgub9ePWu/y59eqe+h13TpybXPmOPZNc4yLFwmb02w9tt0bzp8HICIkW
-         pcdbSG00II4L19fD9cU+5d5YVHC5fual+hn8szedP47PiYPTgnxmbhdKuVyjUIyzcKIv
-         zkV8dVcFnnpue1qrm/ZrmByFI+cIRIZY8/LT6rYuwGI/qSp/17N7e/QZbMNrVqMHnukh
-         1FHoGNzWrgkenEgWNDR6HAyzQbNFA801mlE8QHHgJqAUtkCZZaP6PtJ8UJkwgaBKng5S
-         swwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU0e506UJIDwpBLrtbUaEkpg6HkKA9Iu40g3eNE3cps7jDqG9YvcmxvDPa8YpnAnsX/RR2hkJbHYqqGJCx8NKoI6n4epVwBV8fbbg==
-X-Gm-Message-State: AOJu0YyggAYSr6reztNhdhbS4IjHjxWvzx/roV2/5ykIkIBFNhqT8PX9
-	ymJ/XpBR+pSjENSrMQa+UbHmgTC4kmB6xWEkuP+T5E3CY6dz1QXhMwgolyWqHK0=
-X-Google-Smtp-Source: AGHT+IG8/7wKols6oq37R5OJvGqZTKvcrgWEhHIDZA0YIaNJ+IfZHMO7lXNZePnotDSmTCdPiS6z1w==
-X-Received: by 2002:a05:600c:35d6:b0:41a:a4b1:c098 with SMTP id 5b1f17b1804b1-4200fcb9e94mr90424695e9.19.1715821120656;
-        Wed, 15 May 2024 17:58:40 -0700 (PDT)
-Received: from smtpclient.apple ([131.111.5.246])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fccbe8fc6sm248541215e9.4.2024.05.15.17.58.40
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 May 2024 17:58:40 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC7E10FA;
+	Thu, 16 May 2024 02:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715825946; cv=fail; b=ni2TsAbUmRUPJjfFInmuXrSKZCI7DFQhSoAlLqX6jYwr8hZTCQfFZQxjs/o40dE5gki2pe/Sy9atqXWZTbR1Gm6ODUbYnkPY+D+rp7XiEhkM7K8bejd5sro1IG/bpa8sXJmQOtPMaUOrEBAll6/6aMONhleLMzB1HaHHu6Rw40g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715825946; c=relaxed/simple;
+	bh=dgI2k5HB9szMryJgrONNTVHWXvWLt0EaAOVZPDW6rOo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Uf58YKGE27ki6wZDEaKwPOn2n0vjHNFOtutYq/2xgM8C9UFYI5gfEVaKacGwEQM05HKiYtUqc/SJNlptiM1xwI/70ssl1c9r+MPlYK3fVisRIfN1zqlYpKDQzOcDMoTT4S5a2seEiKnCqs4/EsNti8DKZ4vF5B8TTg8gfq+EYzM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=n9Qp89D9; arc=fail smtp.client-ip=40.107.21.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cab581aK1W745uP1Ww2FtqCV4Io08JNUZzGxnak5pWNwIuCY/KbF4czpzl5hBnVGcGVLuqeOpJc5pIKHNYqJPpxpWMQfg4XURzM3xTSwlZWwH0ZJG/ZQB+GWmpD9j/zKADWnQG6aIjoW4/p4jZboVnoCbqhlcj4vCXksBXVhruZoTIlLw3Nm50VkC491tj48Fx4EdDkR3a/OKLgroZRM6hNJJbj5/QVr/NROGKm24bKHJ+R/FtvyWeXAY2RCHxuZSPhVGf1E80jaWapjzJ04MVL0IhL4JyQaAQ8v3/Vgu912cfQ3V+CSsAXUkFk0HPxaorGLqVDiLNJ2tSwmBLZyeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nGI+0lMdP1nuFendXkb1tmle5zfWEMSEC7mQeo/rnBU=;
+ b=Og6HYCJf117o86RXsb4GgLt3eY64KJXWddLQZgJdUWoRRNYl2WnbdJqlhR2exFJYovgXRwHfNZrr62xsxEZTB3E5lan2rmKT4omWK0ooeP0wDNZ+HJ2iDWC8PverEmdhouSiKc2GfD3ROUa1jSUz8rShMzx78Q9JE9rbPoEnMDmv8r08osFQ6F5v8ZoFhum82JdDHl0ZzDOsBXN5gLG6tylpNSj01/1N4mw+jjA+ZvORISYVaowwGpQ4ajA90ZiwAGfHetbqonf/W94CQu50Z8reYSM5XSAtqDmBtC8WnfTuCAjMUR7MjV1PJEu/A6QBxYlm5v7q1PO4ihoP/sT96A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nGI+0lMdP1nuFendXkb1tmle5zfWEMSEC7mQeo/rnBU=;
+ b=n9Qp89D9AHCqbbcDXjdNQ9PSrBEn4VGByKPDYmHxHt43tyTxQ8MQchXQqrJMSjuUf8qY48AE/anMPLl5mCMrxEbz4iivi8wEHV11tb+9XCYTZTTfxdQrk+nBiWjqQJE5DeerQWVoapk0x5eAtVWPvhw+vGyGa/4s7zSd48dycOA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by DBBPR04MB7900.eurprd04.prod.outlook.com (2603:10a6:10:1e8::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.28; Thu, 16 May
+ 2024 02:19:00 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%3]) with mapi id 15.20.7587.028; Thu, 16 May 2024
+ 02:18:58 +0000
+Message-ID: <9f3c1825-0438-464e-bd6d-88da6a9c3b3b@nxp.com>
+Date: Thu, 16 May 2024 10:19:12 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] dt-bindings: display: simple: Add Microtips &
+ Lincolntech Dual-LVDS Panels
+To: Aradhya Bhatia <a-bhatia1@ti.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Devarsh Thakkar <devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>
+References: <20240515095133.745492-1-a-bhatia1@ti.com>
+ <20240515095133.745492-4-a-bhatia1@ti.com>
+Content-Language: en-US
+From: Liu Ying <victor.liu@nxp.com>
+In-Reply-To: <20240515095133.745492-4-a-bhatia1@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2P153CA0008.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::19) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
-Subject: Re: [PATCH 0/2] riscv: Allow vlenb to be probed from DT
-From: Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <ZkVAYeNnvj99YHXt@ghost>
-Date: Thu, 16 May 2024 01:58:29 +0100
-Cc: Conor Dooley <conor@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- Palmer Dabbelt <palmer@sifive.com>,
- linux-riscv <linux-riscv@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
- LKML <linux-kernel@vger.kernel.org>,
- Conor Dooley <conor.dooley@microchip.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <6DDF33DF-07D6-4230-8674-F91A91660686@jrtc27.com>
-References: <20240515-add_vlenb_to_dt-v1-0-4ebd7cba0aa1@rivosinc.com>
- <A9EDD470-B8EC-4644-82A0-7444729EF885@jrtc27.com> <ZkVAYeNnvj99YHXt@ghost>
-To: Charlie Jenkins <charlie@rivosinc.com>
-X-Mailer: Apple Mail (2.3774.500.171.1.1)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DBBPR04MB7900:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6446b2d9-bc4d-47f5-31c5-08dc754e8b55
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230031|366007|376005|1800799015|7416005|921011;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?R3NmNGhPcWVrL2NtWEdqZjFtYWJWdVZuWlZTSFhoM2hiL0tGcndUTzF6aXdt?=
+ =?utf-8?B?WlNGK3RpS0hNLzYwQ2ZKMTY5TFpvam5pdmdUQUY4aUNma1AydjFlTXUreG9G?=
+ =?utf-8?B?VFpYMFgvNGtLakVEN1F5a2VlSlpadHNvc0duVE1rRUxzZ29XRmxxODZrRE9M?=
+ =?utf-8?B?cURxdTVKSC9sUzU3V2c1NWVrSU1LZmdxN0wva1AvM3NaVTVFaWZPdXo0bEtT?=
+ =?utf-8?B?NDE0Skh5cTdqanA2TDRISmhtcDRZN0k1Q0Q2QmYrVWpPMkpTT1ZlRzJiRkZh?=
+ =?utf-8?B?bnUycFVoU0ZjV0VaTW40dk1xMUhxTTROYkhlL2g4enA4MjYzNEw5MUU0TGdE?=
+ =?utf-8?B?aEZ5Z3gvRmtsN2ZRbnRJMUNESExPSFFHeXo4UEVzbVMvS0dBVFg4OU5CS3U2?=
+ =?utf-8?B?T2pDWWxQRkd5Y1VDK1k5aVF6NmtyRkdHNDdCRkJDVVRJekc3SWlxOGlKanUy?=
+ =?utf-8?B?ZFVaN3JUdFZKaityOFc2RlpBZ0VVelNoK0hpZVM3aHJQeDN4NnRzVDNZMTBs?=
+ =?utf-8?B?TGZ3QUx5Zm4rbzV5OGdsRkE0SzhjMTdDSGxYeiszUytiMVVUVC9ObG9lVlYx?=
+ =?utf-8?B?T3ZaZnZ2VEt5QkZVSWtGUVR6d0ZFandSTHN3NnVzNVJ2RXljRlNkRXEzcGRu?=
+ =?utf-8?B?TDVsNlhya3pKK1QzVzRFVjFmZ0FUTENQR2tRNmZ6WWIzbVBpQjhBUDlNTmI4?=
+ =?utf-8?B?R3ZobGtlbXh5eURiOHM2RUVCa2o0cEUzUlR4TDZ6NkNSRTdQd1IzbzU4d3Zs?=
+ =?utf-8?B?NFI0RWlrSzNYMkFpa0V5UmVaTWJ6a0UxeGpwdUJFMzU1enI1azFiYnVWallx?=
+ =?utf-8?B?MFZ0YkpvRFVJazNONllPWTl4Y0dJM3lPRDFnZVlmNlB1MmdhS1ZYaTlQQjJM?=
+ =?utf-8?B?cmMrajFtTUY3VXZVd0RzcXI2UFJwZDNlakVoWEg2SnVYbHZ3WUlrWFNPSU9t?=
+ =?utf-8?B?c3UrT2RBYmxkN1p5QzRqTGQwVlZMbVk1U2dsbXhMU3FNQXlVcWozdnNuZGFp?=
+ =?utf-8?B?WUlyaDZqeEoyYWZVdHJFY3RNb3M0NFJPT2xMUTRRVlBScnFrSnRjWnhNTEE4?=
+ =?utf-8?B?U2M0M0g2QnZCVmova3UwV0k0SGNCSEJ0cFR5eTBLWHFRbE9CY08ralMwSHNr?=
+ =?utf-8?B?RnZRb3E5YkFJZnI0d3VMRk9DTEZTbUJqakF6NXNVRUVBejZ5SVpwMzdZRUpI?=
+ =?utf-8?B?QTYyMmlxelJ0cmg1Y1RENnVGNkpITEM5MG1uTERBTXZZQ3ZxYytDNllyZ3lx?=
+ =?utf-8?B?YjBIVGhxQXFOVDc0Uy9adFRIWk5aazhpeG1pYzBsYzhWMXp0TjNQWmIwMkk0?=
+ =?utf-8?B?T0grMUpMMVdrajZQeXVjRFJINGpGWEpHa0JmOHdodFdtTWNzL2ZGcFpnekJv?=
+ =?utf-8?B?WGF4b0NuemdXZEY1YXAzRGxyU2FZSFVVMHNrcUVVZTVWTTEySHltYTFoa0th?=
+ =?utf-8?B?Sy9GelZsbVpqd2FjRHJYbng5eHBodEozZWlKK3k4Uk00QlRHeFhtcW1oNEpC?=
+ =?utf-8?B?NmJjM25WYnBYcGMxdkhwcUU0YkhaVTg4b1FzZmcvaGpEbHlJbGFBOWdHVGJS?=
+ =?utf-8?B?dzNzbW1ZbFZtRnE4LzF1cno5eXkxMzFEZVFFc09pckVreHVabXVUNjhRRlVz?=
+ =?utf-8?B?YWw1eFp6amc5VTlab0k5ZE9LTjFlbnhlVWVXYkhlV3ovV2pyZkVIZ2pheEx2?=
+ =?utf-8?B?QjZBdHpkSnpBSXV1bU5VWUd4djd6MHNPRzlRckVHYi81ZCtWUGRwRXFBPT0=?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(7416005)(921011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?Uk9ET3JwN0d4T2ppU2hVRkJJb3YzK01NWDhxamNxZVVjRnhpRXo5ekF0aG1y?=
+ =?utf-8?B?c2hHSFBJbmx3ZlFZNWl2ZzBJVWdhMlBxSG1zeE8remtpV0NKU3o1dnlvK0VD?=
+ =?utf-8?B?eDVNSkpUZUJCdEZmSE1YczZvSnNnTlIxaS9qYXpKL04rN1IvaVFpSGVlZUN0?=
+ =?utf-8?B?Ylg5amFjVlJpUmw1UGE3Y2piU3k1VEFSUVlrb2x0WEtNUjY4d0JkeVBEcVJD?=
+ =?utf-8?B?K2pzR2doRGYzVUJXamJYV2FlZ3VzczhBemFOQkhuK2pFM3U1K2RVN2JhUDRo?=
+ =?utf-8?B?QmtrSDlTb3llQWRVSHRnRk5abUNITjMwdzFvV1FMVUR5VFBKWVdUakYzbm1j?=
+ =?utf-8?B?OGFCQnJLOXM5enFmSFh5QWdiT0NubTNZbUljNlRLU1FPUFRWbUpMQ0JCaVhU?=
+ =?utf-8?B?cU90cUwrWUIySE8rYmN5NlB0WWVZVlFtN2ZOL0VkaTdMZnc2VDByY1NxY3Qw?=
+ =?utf-8?B?d0N6Q2U4WEtoenJjamh0aURNK2c0cFA4bko5Q3ZBWEIySnY3M2pWMERBV05T?=
+ =?utf-8?B?dFhuL0QxOEdqenRNT1pSazhWVHgrN0dRWkhxMHJpM25NSEkvL2RBZDc1TUNr?=
+ =?utf-8?B?aUxLektvcnMzMURUU29iR1ArQ3hWM0c3SHBDdWZnK1lhcUdNeHRzMjhHWXVY?=
+ =?utf-8?B?dm9Ca1ZheXBoQVhNL3RvcjlTVVZxK3hub2hqQlRjWUFVeENFT2x3STRRTkNB?=
+ =?utf-8?B?anRFN3RXaEQ2THp2TGpxS29Mc1FrL3ZkeEI4QnRXTEExNHlnV2VMbm1LV09L?=
+ =?utf-8?B?aHhBVlZtMk9YVkhTOThQV05uVEdjL0g3amFsOTdJZ3l1eUF5QTFlbDZ6KzlP?=
+ =?utf-8?B?dTVEQVVoY1V5QjJSZFUvekx3dHlITUFYdjI1MzZTV01yRXdGcGFWaHVlaEgx?=
+ =?utf-8?B?VlE4QkJPSytVZm5Wa0toQmpIV0lBM29UWittWi8rRjJ2aGs5dDFVT3h1cWhO?=
+ =?utf-8?B?bElWNnBhWUkxMDY5eFoycXFuUWVXRE1mUTJxc3NvQS9DOUFUWVN0NkdXbkNr?=
+ =?utf-8?B?THlDaFI1YlFwby94K0FOb3NIR1FoRk9EQlFNWkR2dEw3OVUzVkw1Mm8ycEpS?=
+ =?utf-8?B?SXVzZEJWNDlKc0Jra1czdmZyeGNHanR3eVA2NW5ZcisrbkVFK2tTaE11NG5o?=
+ =?utf-8?B?L1hUZWhvZlVoZ0hPRDBlMGMxN1p6MXpMeWp4ZXpGV1EzekhaRng5Qm5VK0cz?=
+ =?utf-8?B?anJldHA1VHhyeURQcldxKzkyaDI4ZkxQajFFS25COE9oWll1a1N3ZVFiNVI0?=
+ =?utf-8?B?SUs3bkt6QUlvWmE4U0VQVjF6VUZIRDI4QXk2cEFadW1RanA2ZndqY1JjUkxZ?=
+ =?utf-8?B?WjNjeHp2QnhIRTdwS0dkd2F0ZE5iRDVoc3Ixd0VaRHp4K0VoZUVJUUtUWE9E?=
+ =?utf-8?B?dlFuYktMRmQyVXE4QVNCeW1nd2UrOXJmcHQrNkk2RzY5eCtLNzZTa0ZnWFNV?=
+ =?utf-8?B?MkQ2aytZQk5lRkw2TnRwU1U3VTZrVjd5RUF2L0hWb0N4VXFuM2xibko3bWlm?=
+ =?utf-8?B?ZzJmSU9kQXR3ek5FZFd6VFBLQU02T0FUdmRDd1VlR2drbm9wdUdvNGNvU3cx?=
+ =?utf-8?B?RjBJV2ZiUWNnQU1HSGYxN3BaRHZYQVpnTkpwanVvMmExakg1VnpXTTlRZ0xw?=
+ =?utf-8?B?aVZNV2o5Sm1TRzlxcGR3TXJZV1NXSFdwM2M1dWFZelA4Q1BpdzBvMGVUMGc5?=
+ =?utf-8?B?eXMycUQ4MlF3eFNpV3VyTWE4YWNBTlkzVlJIRk0vblRxcC9ZTUxWRUhMSHYz?=
+ =?utf-8?B?TGU2ckw5S25sajlwVWNaSzZnaFNyam5qS0lZbFN4ZUhVVDNnSGVPaFI0MUhi?=
+ =?utf-8?B?c2djRUdRTjBmN2p4TzNHZWRRZitFQnVlRm03aG91MGFoYVBvMXUzNUw0MGdY?=
+ =?utf-8?B?c3hNQjFXL0dFODFIbFFLSXQvbGJGSFQxQm9KTmlMOWFuVUVXTVVZU0dmTlR5?=
+ =?utf-8?B?TWY1TjFpTlBjTDJ6SVFlNFdDcUNKM2FiV0xKQ2dxYnJpTjdwK0dIb2FjYW9Z?=
+ =?utf-8?B?Vmdodk43bTViZlRXQWROL0VFYnZLTkM1UnNRbGpiMEdMOS9KNmk2ZEFTREI5?=
+ =?utf-8?B?am5Lc3p1OHpGclVmU3l5RnJqNUhWMG5OOGx1RUVqVVBkbTJ2R2ZjQ0NTbkRm?=
+ =?utf-8?Q?DGzJkr0SvZ6+3HlsCCTJtCxFp?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6446b2d9-bc4d-47f5-31c5-08dc754e8b55
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2024 02:18:58.6619
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jKZ/P5Q8xrVKtNYBvF+GCoN4yQCiCfcuzkMMSUkhda9JmkpPopvPGI63uPmz+xWrH7hT+AGiTtq2zznpk7lC8g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7900
 
-On 16 May 2024, at 00:08, Charlie Jenkins <charlie@rivosinc.com> wrote:
->=20
-> On Wed, May 15, 2024 at 11:25:16PM +0100, Jessica Clarke wrote:
->> On 15 May 2024, at 22:50, Charlie Jenkins <charlie@rivosinc.com> =
-wrote:
->>>=20
->>> The kernel currently requires all harts to have the same value in =
-the
->>> vlenb csr that is present when a hart supports vector. In order to =
-read
->>> this csr, the kernel needs to boot the hart. Adding vlenb to the DT =
-will
->>> allow the kernel to detect the inconsistency early and not waste =
-time
->>> trying to boot harts that it doesn't support.
->>=20
->> That doesn=E2=80=99t seem sufficient justification to me. If it can =
-be read
->> from the hardware, why should we have to put it in the FDT? The whole
->> point of the FDT is to communicate the hardware configuration that
->> isn=E2=80=99t otherwise discoverable.
->=20
-> Yes you are correct in that vlenb is discoverable on any conforming
-> chip. However, the motivation here is for making decisions about how =
-to
-> boot a hart before it is booted. By placing it in the device tree, we
-> are able to disable vector before the chip is booted instead of trying
-> to boot the chip with vector enabled only to disable it later. In both
-> cases when there is different vlenb on different harts, all harts =
-still
-> boot and the outcome is that vector is disabled. The difference is =
-that
-> with the DT entry, no vector setup code needs to be ran on a booting
-> hart when the outcome will be that vector is not enabled.
+On 5/15/24 17:51, Aradhya Bhatia wrote:
+> Add the Microtips Technology USA's MF-101HIEBCAF0 10.1"[0] panel,
+> MF-103HIEB0GA0 10.25"[1] panel, and Lincoln Technology Solutions'
+> LCD185-101CT 10.1"[2] panel.
+> 
+> Thes are all dual-lvds panels.
+> 
+> Panel Links:
+> [0]: https://simplespec.microtipsusa.com/uploads/spec/datasheetFile/2588/13-101HIEBCAF0-S_V1.1_20221104.pdf
+> [1]: https://simplespec.microtipsusa.com/uploads/spec/datasheetFile/2660/13-103HIEB0GA0-S_V1.0_20211206.pdf
 
-Why does vlen get this special treatment? You could make exactly the
-same argument for the number of asid bits. The precedent in the kernel,
-whether RISC-V or other architectures, is to not do this. You can
-detect it, so you should, especially since optimising for an
-exceptional, unexpected error case is not worthwhile.
+This one mentions some controls in '3. PIN DESCRIPTION' which
+don't comply with this binding, like RL, TB, STBYB and RESET.
+Note this binding only allows compatible, ports, backlight,
+enable-gpios and power-supply properties, nothing more.
 
->> As for T-HEAD stuff, if they need it they can have a custom property.
->> Though naively I=E2=80=99d assume there=E2=80=99s a way to avoid it =
-still...
->=20
-> T-Head does not expose vlenb on all of their chips so I do not know of
-> any other way of getting the vlenb without having it be provided in a
-> DT. That was the motivation for this patch in the first place, but
-> making this available to all vendors allows optimizations to happen
-> during boot.
+Regards,
+Liu Ying
 
-How does userspace read it then? But if T-HEAD need it, that means it
-should be a thead,vlen, not a riscv,vlen.
 
-Jess
+> [2]: https://lincolntechsolutions.com/wp-content/uploads/2023/04/LCD185-101CTL1ARNTT_DS_R1.3.pdf
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  .../display/panel/panel-simple-lvds-dual-ports.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+> index 716ece5f3978..e78160d1aa24 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+> @@ -41,6 +41,12 @@ properties:
+>        - auo,g190ean01
+>          # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
+>        - koe,tx26d202vm0bwa
+> +        # Lincoln Technology Solutions, LCD185-101CT 10.1" TFT 1920x1200
+> +      - lincolntech,lcd185-101ct
+> +        # Microtips Technology MF-101HIEBCAF0 10.1" WUXGA (1920x1200) TFT LCD panel
+> +      - microtips,mf-101hiebcaf0
+> +        # Microtips Technology MF-103HIEB0GA0 10.25" 1920x720 TFT LCD panel
+> +      - microtips,mf-103hieb0ga0
+>          # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
+>        - nlt,nl192108ac18-02d
+>  
 
 
