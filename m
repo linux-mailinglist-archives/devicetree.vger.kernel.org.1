@@ -1,226 +1,238 @@
-Return-Path: <devicetree+bounces-67337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4785A8C79F0
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:00:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 877658C79FD
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 18:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB2451F21E9C
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:00:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14F3E1F22409
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 16:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8BFE14D452;
-	Thu, 16 May 2024 16:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AC514D6FE;
+	Thu, 16 May 2024 16:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/fbyDWI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hyGTErEQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE94114D431;
-	Thu, 16 May 2024 16:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FF8F14D2AE;
+	Thu, 16 May 2024 16:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715875200; cv=none; b=ZbZJicmGIDU6H24Akrwd5dmp+kniyHQA4dIOXqH/P3bzNLxHwwRSfP9cQ3e13wF+sQ4ZQ+9YFSfOCisjeHQhcSjLiNDXxusz6AM3dCR8TG2EUsr/iLXzLZyX2xVL56J+aPh15uFayAh9IhaYa3wRFcrXrfqHJDDKrwIkkrIGInI=
+	t=1715875395; cv=none; b=MTeCdTfaxCFkxGV6XzP7gBovj81T+pwGgdCqxCdCo6S2iwv6ZzJFHqSRPqv/FbxYCxV4owY7K5CWIcr8BppxgLXrFjCEtBAF8TTMfor4lmQyIKCvX0fRmNvPuV8AYpIFSceop8DlpC5Y+N01tACDoDxPBjvwFzz98+b0e5NSjG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715875200; c=relaxed/simple;
-	bh=4/gi6rbxuk3sno82iZjHcKkwDvcnwcT2fdJHUnfyx4s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KZoamZnhQBa3UWLBvvVmf8JT02PVNYC35ajbKVXwkGqyD8o0oxEx1feXZRmO+ifJRLt2/E62wEM+jG88yE/btRjXxypwvZvnlztHDaroef07+c+80RjRWcK24Fs4l3TcAldRJWhGZSJ5vlvpSHtPHrgIFgbUSo5+P3u/eflEXSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/fbyDWI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A69C113CC;
-	Thu, 16 May 2024 15:59:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715875200;
-	bh=4/gi6rbxuk3sno82iZjHcKkwDvcnwcT2fdJHUnfyx4s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R/fbyDWIdw/BlYva1qA8M7jHYRc2BbLagdyT8ozD04xSBrvT+rIdFxIBzewHLZPdv
-	 quPuDIZsgxW99btEGdZSwOF8KbLJOmAj8LPZ6u+xgD9DFjlvXVKmuDgrrHq8/ymMjT
-	 cTdubTUXJWz39X5hBYl02/9L8X9pIb+qP8zGRqJccw8GE2vvuJbruEX/roO11P+sEQ
-	 NaxKEhI7MvSmge6pJNXskqLKZfDGqm6OsvGfoHAI+U7yXt2znBlFJqJx7Cu/Ta+lc4
-	 37jH+RcBgG81ULOdluy69/5J+FDB6VXqzcn3Gi2W6RJ+eiqSOAIuFKEO/x+mSm+G6o
-	 5OglkRznj34Tg==
-Date: Thu, 16 May 2024 17:59:56 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-clk@vger.kernel.org, p.zabel@pengutronix.de,
-	mturquette@baylibre.com, sboyd@kernel.org,
-	lorenzo.bianconi83@gmail.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH 2/5] dt-bindings: reset: Add reset definitions for EN7581
- SoC.
-Message-ID: <ZkYtfJJHIL1z2-vv@lore-desk>
-References: <cover.1715777643.git.lorenzo@kernel.org>
- <acb6aa6fe473c485605c108e551d6d28ceb27a60.1715777643.git.lorenzo@kernel.org>
- <b1e0db1a-2bcb-4d11-a386-e395c2946591@collabora.com>
- <ZkXqoG6xIsrrLyh4@lore-desk>
- <d6b7aa1e-ce0d-4ea3-9f2d-c256a296dd1f@collabora.com>
+	s=arc-20240116; t=1715875395; c=relaxed/simple;
+	bh=XfbK26HHwTXb9D6hf85Wv5JSchZA7ZbGTeN/kOh0rRw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dGULdCkYYkWKO3bRe3v7Vs1XhB80f9tTp00REYe5D9nDB7LtArgPjeWHBD7obd3DkhIl/dxONJ/hiAJXlVfcBG6wgMJ5giDc3w8RwwcjGjY7RB1F3ZPYCZBqLpZz4cV5AKEvQzjC9HMB4KphSU5KCr6PIApQ+00ngO8MLOJTACs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hyGTErEQ; arc=none smtp.client-ip=209.85.160.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-43df44ef3e3so33174691cf.2;
+        Thu, 16 May 2024 09:03:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715875392; x=1716480192; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=quQEENvi+8m2W7cBE5Cl749lOV0EoC/dR++hJ/4pzdI=;
+        b=hyGTErEQFmXvFTZKsDMCaA5I3ANYEZweCWknpV9mi5taZz0bkBwO+f8Tlf3pKpP8AT
+         xYr7pTCAKJOcJM3w05M/je0jq7ffozvkXNr8jB+5MFUJNMcz1FWdrOM4HCbF/4iyWinz
+         Gqt3YVyPSijQtraH3ZmNqxZI9pKQeQAVlZNu910S6eTIoVp87xPeOq9/uY0CuDWWv/7u
+         9h433goprZqKl2d93BGOJpgSMaoUAeOdtjt0HjoXemMwW05fl4kIOGx/ZNiJSU75xIqv
+         9woM0/W0XooQ6i6F9mzJUamuZgw8t6NT6/ZPntVR9cm/8NdfMbBPQpnd7aIeicyXO3UV
+         2H8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715875392; x=1716480192;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=quQEENvi+8m2W7cBE5Cl749lOV0EoC/dR++hJ/4pzdI=;
+        b=wSvjOSO2LM0/WMrgu8LaHgmapz9+i5x0n67GAm2LzhHIzsfS58IoyiarWmdMOu3oHZ
+         fkbQnTwbm4rH1LPDBhLjx5L23LcrYEWksgF+CbfKaw1QB1B9cOGBt9TW4SyAy6vgh6UH
+         QVAv3YqJu4Zqc4+NpY9LAEAas4PNB527L5VVV7xvggIxXrIwZ1L98Hq+3rqAxAsjJx1D
+         1UFLtZmuuVS85YAo+Y+GLV+WZ0umR3pkBHqo3FEGk0B9AHonWpMgLtHh9kX6G9c7xrWa
+         WiCDXdXCamWWli2op8LRyoZl+gMaUtgCAsCvZs8gYszErzR6WqydBgRJDGCEqGVqukn/
+         1MHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWmyfZ6A8xgVz4N99qjR/A8dDYhOtp1bmaVOFMkDvlT/uNA27FkY2NzXi4Wtlh8fgdJM0+C9dec70LTVeVXMVhIsXnCdEA04wZXdifS3Xi4p5zp7hhixHEnFtAygzHAuepVWiA8s3cnOMYkn/LBbRewLH1IUYlAV1okky2/shyfKQA/rg==
+X-Gm-Message-State: AOJu0Yzz3REoeEpRzAgGKkjWMYRl/vN1QVyche4T37TqfofAPHNWpShW
+	TrNo8R+YM7+gfdcedgLjNcSoagq+hyDxrzxxsaax1YOFWij2ZawT
+X-Google-Smtp-Source: AGHT+IHUQiwlM/E+TmpEM0zYayXuGOsA78RdCCnlxaFfplbOFlUmqLjP2bBU4RWTImAmH4BW4JkH8w==
+X-Received: by 2002:ac8:5a8c:0:b0:439:f51a:2c1 with SMTP id d75a77b69052e-43dfda9664bmr233981201cf.1.1715875392075;
+        Thu, 16 May 2024 09:03:12 -0700 (PDT)
+Received: from [192.168.0.137] ([188.24.105.36])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-43df54f216esm99899601cf.31.2024.05.16.09.03.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 May 2024 09:03:11 -0700 (PDT)
+Message-ID: <9c58e5d3-d31c-4dd2-b89d-3acf744b3a28@gmail.com>
+Date: Thu, 16 May 2024 19:03:07 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UFOJValw8646IkIF"
-Content-Disposition: inline
-In-Reply-To: <d6b7aa1e-ce0d-4ea3-9f2d-c256a296dd1f@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/9] iio: adc: ad7173: add support for special inputs
+To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240514-ad4111-v2-0-29be6a55efb5@analog.com>
+ <20240514-ad4111-v2-5-29be6a55efb5@analog.com>
+ <CAMknhBF8D3YCro4duKrBoEkdc-SiCGwvHTg4SFb17ympUsG1nA@mail.gmail.com>
+Content-Language: en-US
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <CAMknhBF8D3YCro4duKrBoEkdc-SiCGwvHTg4SFb17ympUsG1nA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 16/05/2024 02:27, David Lechner wrote:
+> On Tue, May 14, 2024 at 2:23 AM Dumitru Ceclan via B4 Relay
+> <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+>>
+>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>>
+>>  Add support for selecting REF+ and REF- inputs on all models.
+>>  Add support for selecting ((AVDD1 − AVSS)/5) inputs
+>>   on supported models.
+>>
+>> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+>> ---
+>>  drivers/iio/adc/ad7173.c | 21 +++++++++++++++++++++
+>>  1 file changed, 21 insertions(+)
+>>
+>> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+>> index fb33534d63a9..1e9ba3070770 100644
+>> --- a/drivers/iio/adc/ad7173.c
+>> +++ b/drivers/iio/adc/ad7173.c
+>> @@ -65,6 +65,10 @@
+>>          FIELD_PREP(AD7173_CH_SETUP_AINNEG_MASK, neg))
+>>  #define AD7173_AIN_TEMP_POS    17
+>>  #define AD7173_AIN_TEMP_NEG    18
+>> +#define AD7173_AIN_COM_IN_POS  19
+>> +#define AD7173_AIN_COM_IN_NEG  20
+>> +#define AD7173_AIN_REF_POS     21
+>> +#define AD7173_AIN_REF_NEG     22
+>>
+>>  #define AD7172_2_ID                    0x00d0
+>>  #define AD7175_ID                      0x0cd0
+>> @@ -145,6 +149,8 @@ struct ad7173_device_info {
+>>         unsigned int id;
+>>         char *name;
+>>         bool has_temp;
+>> +       /* ((AVDD1 − AVSS)/5) */
+>> +       bool has_common_input;
+>>         bool has_input_buf;
+>>         bool has_int_ref;
+>>         bool has_ref2;
+>> @@ -215,6 +221,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
+>>                 .has_temp = true,
+>>                 .has_input_buf = true,
+>>                 .has_int_ref = true,
+>> +               .has_common_input = true,
+>>                 .clock = 2 * HZ_PER_MHZ,
+>>                 .sinc5_data_rates = ad7173_sinc5_data_rates,
+>>                 .num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
+>> @@ -228,6 +235,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
+>>                 .has_temp = false,
+>>                 .has_input_buf = true,
+>>                 .has_ref2 = true,
+>> +               .has_common_input = true,
+>>                 .clock = 2 * HZ_PER_MHZ,
+>>                 .sinc5_data_rates = ad7173_sinc5_data_rates,
+>>                 .num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
+>> @@ -243,6 +251,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
+>>                 .has_input_buf = true,
+>>                 .has_int_ref = true,
+>>                 .has_ref2 = true,
+>> +               .has_common_input = false,
+>>                 .clock = 2 * HZ_PER_MHZ,
+>>                 .sinc5_data_rates = ad7173_sinc5_data_rates,
+>>                 .num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
+>> @@ -257,6 +266,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
+>>                 .has_temp = true,
+>>                 .has_input_buf = true,
+>>                 .has_int_ref = true,
+>> +               .has_common_input = true,
+>>                 .clock = 16 * HZ_PER_MHZ,
+>>                 .sinc5_data_rates = ad7175_sinc5_data_rates,
+>>                 .num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
+>> @@ -271,6 +281,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
+>>                 .has_input_buf = true,
+>>                 .has_int_ref = true,
+>>                 .has_ref2 = true,
+>> +               .has_common_input = true,
+>>                 .clock = 16 * HZ_PER_MHZ,
+>>                 .sinc5_data_rates = ad7175_sinc5_data_rates,
+>>                 .num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
+>> @@ -285,6 +296,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
+>>                 .has_temp = false,
+>>                 .has_input_buf = false,
+>>                 .has_int_ref = true,
+>> +               .has_common_input = false,
+>>                 .clock = 16 * HZ_PER_MHZ,
+>>                 .sinc5_data_rates = ad7175_sinc5_data_rates,
+>>                 .num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
+>> @@ -298,6 +310,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
+>>                 .has_temp = true,
+>>                 .has_input_buf = true,
+>>                 .has_int_ref = true,
+>> +               .has_common_input = true,
+>>                 .clock = 16 * HZ_PER_MHZ,
+>>                 .odr_start_value = AD7177_ODR_START_VALUE,
+>>                 .sinc5_data_rates = ad7175_sinc5_data_rates,
+>> @@ -920,6 +933,14 @@ static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
+>>                 if (ain[i] < st->info->num_inputs)
+>>                         continue;
+>>
+>> +               if (ain[i] == AD7173_AIN_REF_POS || ain[i] == AD7173_AIN_REF_NEG)
+>> +                       continue;
+>> +
+>> +               if ((ain[i] == AD7173_AIN_COM_IN_POS ||
+>> +                    ain[i] == AD7173_AIN_COM_IN_NEG) &&
+>> +                   st->info->has_common_input)
+>> +                       continue;
+>> +
+> 
+> If there is only one valid combination, it seems like these should be
+> fixed channels like the temperature input rather than something coming
+> from the device tree.
+> 
+As I've said, I do not agree with forcing one channel slot to be used.
+I could add a property that spawns this channel. Although as I see under,
+I think I'll permit these inputs to be mixed and matched.
 
---UFOJValw8646IkIF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> It looks like on AD411x, it is the case that there is only one valid
+> option for the reference input in the channel configuration. But in
+> the case of AD717x since both REF+ and REF- are listed as possible
+> inputs for both AINPOS0 and AINNEG0, it seems like they could be mixed
+> and matched with other channels. The datasheet doesn't seem very clear
+> on this though.
+> 
+This is imposed artificially, AD411x has the same cross-point mux that
+can mix and match all the inputs.
 
-> Il 16/05/24 13:14, Lorenzo Bianconi ha scritto:
-> > > Il 15/05/24 14:58, Lorenzo Bianconi ha scritto:
-> > > > Introduce reset binding definitions for reset controller available =
-in
-> > > > the Airoha EN7581 clock module.
-> > > >=20
-> > > > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-> > > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > > > ---
-> > > >    .../dt-bindings/reset/airoha,en7581-reset.h   | 66 +++++++++++++=
-++++++
-> > > >    1 file changed, 66 insertions(+)
-> > > >    create mode 100644 include/dt-bindings/reset/airoha,en7581-reset=
-=2Eh
-> > > >=20
-> > > > diff --git a/include/dt-bindings/reset/airoha,en7581-reset.h b/incl=
-ude/dt-bindings/reset/airoha,en7581-reset.h
-> > > > new file mode 100644
-> > > > index 000000000000..1b7ee62ed164
-> > > > --- /dev/null
-> > > > +++ b/include/dt-bindings/reset/airoha,en7581-reset.h
-> > > > @@ -0,0 +1,66 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > +/*
-> > > > + * Copyright (c) 2024 AIROHA Inc
-> > > > + * Author: Lorenzo Bianconi <lorenzo@kernel.org>
-> > > > + */
-> > > > +
-> > > > +#ifndef __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
-> > > > +#define __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_
-> > > > +
-> > > > +/* RST_CTRL2 */
-> > > > +#define EN7581_XPON_PHY_RST		0
-> > >=20
-> > > ** sarcasm mode on **
-> > >=20
-> > > Count with me: 0... 1... 2...
-> >=20
-> > :)
-> >=20
-> > >=20
-> > > ** sarcasm mode off **
-> > >=20
-> > > There's a jump here, you have a reset index 0 and an index 2,
-> > > but you're missing index 1, that's not right :-)
-> > >=20
-> > > Please fix.
-> >=20
-> > it is because BIT(1) is marked as 'reserved' in the documentation so I =
-skipped it.
-> > Do you prefer to have it in that way?
-> >=20
->=20
-> This is not my preference, it's rather a requirement for the bindings...
->=20
-> That's why in the MediaTek reset controller part of the clk driver there =
-is
-> a way to map those numbers (which are always sequential) to actual reset =
-bits
-> in the controller...
+> If it is valid to combine, say AIN0 with REF+ though, then the
+> validation would need to be relaxed. But I'm guessing that is not
+> actually the case?
+>
 
-ack, fine. I will look into it. Thx for the pointer.
+I think it is the case.
 
-Regards,
-Lorenzo
+>>                 return dev_err_probe(dev, -EINVAL,
+>>                         "Input pin number out of range for pair (%d %d).\n",
+>>                         ain[0], ain[1]);
+>>
+>> --
+>> 2.43.0
+>>
+>>
 
->=20
-> Cheers!
->=20
-> > Regards,
-> > Lorenzo
-> >=20
-> > >=20
-> > > Cheers,
-> > > Angelo
-> > >=20
-> > > > +#define EN7581_CPU_TIMER2_RST		2
-> > > > +#define EN7581_HSUART_RST		3
-> > > > +#define EN7581_UART4_RST		4
-> > > > +#define EN7581_UART5_RST		5
-> > > > +#define EN7581_I2C2_RST			6
-> > > > +#define EN7581_XSI_MAC_RST		7
-> > > > +#define EN7581_XSI_PHY_RST		8
-> > > > +#define EN7581_NPU_RST			9
-> > > > +#define EN7581_I2S_RST			10
-> > > > +#define EN7581_TRNG_RST			11
-> > > > +#define EN7581_TRNG_MSTART_RST		12
-> > > > +#define EN7581_DUAL_HSI0_RST		13
-> > > > +#define EN7581_DUAL_HSI1_RST		14
-> > > > +#define EN7581_HSI_RST			15
-> > > > +#define EN7581_DUAL_HSI0_MAC_RST	16
-> > > > +#define EN7581_DUAL_HSI1_MAC_RST	17
-> > > > +#define EN7581_HSI_MAC_RST		18
-> > > > +#define EN7581_WDMA_RST			19
-> > > > +#define EN7581_WOE0_RST			20
-> > > > +#define EN7581_WOE1_RST			21
-> > > > +#define EN7581_HSDMA_RST		22
-> > > > +#define EN7581_TDMA_RST			24
-> > > > +#define EN7581_EMMC_RST			25
-> > > > +#define EN7581_SOE_RST			26
-> > > > +#define EN7581_PCIE2_RST		27
-> > > > +#define EN7581_XFP_MAC_RST		28
-> > > > +#define EN7581_USB_HOST_P1_RST		29
-> > > > +#define EN7581_USB_HOST_P1_U3_PHY_RST	30
-> > > > +/* RST_CTRL1 */
-> > > > +#define EN7581_PCM1_ZSI_ISI_RST		32
-> > > > +#define EN7581_FE_PDMA_RST		33
-> > > > +#define EN7581_FE_QDMA_RST		34
-> > > > +#define EN7581_PCM_SPIWP_RST		36
-> > > > +#define EN7581_CRYPTO_RST		38
-> > > > +#define EN7581_TIMER_RST		40
-> > > > +#define EN7581_PCM1_RST			43
-> > > > +#define EN7581_UART_RST			44
-> > > > +#define EN7581_GPIO_RST			45
-> > > > +#define EN7581_GDMA_RST			46
-> > > > +#define EN7581_I2C_MASTER_RST		48
-> > > > +#define EN7581_PCM2_ZSI_ISI_RST		49
-> > > > +#define EN7581_SFC_RST			50
-> > > > +#define EN7581_UART2_RST		51
-> > > > +#define EN7581_GDMP_RST			52
-> > > > +#define EN7581_FE_RST			53
-> > > > +#define EN7581_USB_HOST_P0_RST		54
-> > > > +#define EN7581_GSW_RST			55
-> > > > +#define EN7581_SFC2_PCM_RST		57
-> > > > +#define EN7581_PCIE0_RST		58
-> > > > +#define EN7581_PCIE1_RST		59
-> > > > +#define EN7581_CPU_TIMER_RST		60
-> > > > +#define EN7581_PCIE_HB_RST		61
-> > > > +#define EN7581_XPON_MAC_RST		63
-> > > > +
-> > > > +#endif /* __DT_BINDINGS_RESET_CONTROLLER_AIROHA_EN7581_H_ */
-> > >=20
->=20
-
---UFOJValw8646IkIF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZkYtfAAKCRA6cBh0uS2t
-rGFhAQDAYBya1TZrQ7qULTFv41plUuJk73mvvx61a908F//wDAD/UvJzzr1aPkzR
-5We0gdkRDcqRGucjOeWf3Yen0jl39Qs=
-=Nrb/
------END PGP SIGNATURE-----
-
---UFOJValw8646IkIF--
 
