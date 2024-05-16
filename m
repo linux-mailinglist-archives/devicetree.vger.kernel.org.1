@@ -1,167 +1,127 @@
-Return-Path: <devicetree+bounces-67295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD788C7583
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 13:58:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ABEC8C75A0
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 14:07:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFAA31F227C5
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 11:58:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 366631C21580
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 12:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E179145A12;
-	Thu, 16 May 2024 11:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC1B145B01;
+	Thu, 16 May 2024 12:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pvISL2g5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WzozJMDv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AF9926AD0;
-	Thu, 16 May 2024 11:58:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C941459E2;
+	Thu, 16 May 2024 12:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715860727; cv=none; b=dsMjmsDeK8hIHVkHrucIy66EK1HAMZMpSO7F0WZ5FdAYEw6lG1IHgFViy2XWUm6O4imajL/d4o7baEFWumWbd+2ZVzWKBhnfwDHmbhtVM+KXjFXH3+YdLZF+/GcM7bzXyDj/bpA2L7ej6614tA1RYOinRe/Pu//GYtt8P2nrJug=
+	t=1715861212; cv=none; b=aTG8mU87EM+bs4vrqaFxidD/AsM9IkCMPOjFlW3NMONDzgICvGBMadqs7jgdQAz2QDvmy2TaMF+zkQh0ZciGoTnbrBxDwn+1qKm/QiMK9ld/TKTMwq1uBWswegOYVYNG7uOvc8PPzIoKCyWeMXMbVVZ/teuUuvOsRLx8+ouoWzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715860727; c=relaxed/simple;
-	bh=E7UsGb6Za+wHEcmHsLVrZiP4f3obI82j8AUAXJwI+Oc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qexafKz+5Kf6nlLs44I4OHBRYbp58TFKdkic74pQu9ZEzyIPbShr/CDDQCqLruimZ27aAP+gpVjg4qf0JkA5n4kU3NRaUXQd8JkX9lNWwzyLo2v7JenevQY7Ipf89m6vBetlXWvd6Nb6ePsAHCw7o7P2tJYnuCor3d5NQS/MsKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pvISL2g5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2F72C113CC;
-	Thu, 16 May 2024 11:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715860726;
-	bh=E7UsGb6Za+wHEcmHsLVrZiP4f3obI82j8AUAXJwI+Oc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pvISL2g5xA9A7ryhfZ4/mtSa5WAkWW7GkBPMWB7qu6TEZ90UmAWOOerEh3/Cl2Ph0
-	 +TDkQY81351Z8KKw8h27YPRDj4Og2lsD9wH8zIVlH/tCkCfqVe6UN8XdUdx1XO5Gm/
-	 YPEyc8Ijvy2zull41IQX+Sdfzo88p/rXYUNmzTm6718wMQeVdtUDuRt85tvlgcjaED
-	 ueOH0onP7/5O8fFYXJ9/EFeE5Y2I8QTkT5XXwUd59T0H9JrvFb/zkFXpZWsauxOTwL
-	 Sqy5Kfvp7ltuVMUDfp8e3KYMT7VyK6BoI50J912bQDEpY5p4XBvRGuRpB2u9S82VG+
-	 wdR+ks55in61w==
-Date: Thu, 16 May 2024 12:58:40 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com,
-	quic_pkumpatl@quicinc.com
-Subject: Re: [PATCH v4 4/7] ASoC: codecs: wcd937x: add basic controls
-Message-ID: <f766e8fc-64e7-4579-ac5a-4afcdae067cc@sirena.org.uk>
-References: <20240516044801.1061838-1-quic_mohs@quicinc.com>
- <20240516044801.1061838-5-quic_mohs@quicinc.com>
+	s=arc-20240116; t=1715861212; c=relaxed/simple;
+	bh=iOUIrdlu87CHnC7pAPLPHYIfXVJw3A6l8WecuIe9HRU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=J5vOemJ995AUsDXjzu+XWNx4Cvhhg6T3zLoYK/JCgwzwm2JdrSQXGUJSXcLtkJQQRhTpYeGaSmrFq747KN3SApPWL1+0Pm7HEFEX3aXVeHAzyBHtZJK1v3m6xZ1GMuvt2SpyW4C4/d+/zeWvaWyeykV8n7x0c9akuvV21xNoevs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WzozJMDv; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2e3e18c240fso8214281fa.0;
+        Thu, 16 May 2024 05:06:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715861209; x=1716466009; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=d/+iOXfE5JhcsldrJn15mneL9tsGrRwJenKZ7TfkMY0=;
+        b=WzozJMDvx8fx9C0seY2dgyyzOT8V3TFnVzJpVR1jqakpfY/jGfK+V/jUIrOea+ZYPj
+         ovt08twrTKjE6Zt73tYiQwk4e40QoLjJT3SG+ebmh7iGC+remWCqI8cbvffYAejXUvcL
+         uB7ldqFZNlHTqlwtxOFW5Q1U3+0B/qqJ297FlBXbtQsrqZxIVfQi2mGMCeHxaORcIWkc
+         UJLac2Bavsu0jEaeBM0IqlFp6gyMUbl7IzdQ9ZnG5ETN/8IzpfqOTqThAabh9ZCDFe42
+         uAhTYmPW7rIkzrSKxFMd95mIdlwpFNA0v9N7Iy9TgMA9QP90F3eYqUi+l/1j8K0Yu8ji
+         DquQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715861209; x=1716466009;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d/+iOXfE5JhcsldrJn15mneL9tsGrRwJenKZ7TfkMY0=;
+        b=pSha17KRw6iW3ODSD2IySAYj6pV6QFxSKvFHm/6tOmLOkFNVH74I+OGIJRRyZBQYKu
+         czXGORQPiYVUGTaMrN9QW3Zj8nCSxxAivlG+bxNtak86K+QJYJPbm6fbsyRa8xoUb/8s
+         fVgsYQngwoGbdixclCY8xmWaZr61Q93Y18XxaFGjZCJvJgE7Hu7lW6383Bv+vaskpjkq
+         V4jnjkAZsAvy4s4xIeCL9H0vngiEw8TB5lPMTBO0MMqfKdjAiHyPbbmGGYTni7nqUjOg
+         hoKkzB0C7pNGx8s77TXVl0kR60xf2XBwL6zQmu1XWkMjWpDcHpJdmjDUVSbwp4AIz+89
+         q1og==
+X-Forwarded-Encrypted: i=1; AJvYcCWQEiqcF/bGpB7Xf2wPJ0rygFR1AAgDWTHTxB9LhQYdsqMkbYImIrXCWqq80Y1/GDtH0dJWK4SbHsQlbtXsPEOYziXh9gX3FVTCZ1VM7FObbwt9FZpApSgkqIjKNBqwwyWpcQCK22i4VkodNTS9mThpzg0g7vf61VH28PZFkP0G99ZeKkI=
+X-Gm-Message-State: AOJu0YwKPHZfx/c9RPZpAA4ggP/KmhpH1J5wMB8PZkuaIe8+ndNaWlJ0
+	GmsJdkiVh6+lquv7dB6yGZ3/MlIPmbO4qeR7vMqvjfBPC68ouet+uMmVwUss
+X-Google-Smtp-Source: AGHT+IGRXdu4e46HW+sJ65tDSzWCXInDmL+maJuMRLPwnyxExOFx8EFCPUqneDMLyHGHRnj5Mj8LLA==
+X-Received: by 2002:a05:651c:546:b0:2df:1e3e:3280 with SMTP id 38308e7fff4ca-2e51ff5da7dmr204135241fa.28.1715861208838;
+        Thu, 16 May 2024 05:06:48 -0700 (PDT)
+Received: from [192.168.0.107] ([91.90.219.38])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e4d15155fdsm24154071fa.83.2024.05.16.05.06.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 May 2024 05:06:48 -0700 (PDT)
+Message-ID: <81aa0e4e-a3c7-41d1-8cd2-4d060730b37a@gmail.com>
+Date: Thu, 16 May 2024 17:06:46 +0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bEuBL+UqcAprloOC"
-Content-Disposition: inline
-In-Reply-To: <20240516044801.1061838-5-quic_mohs@quicinc.com>
-X-Cookie: I'm having a MID-WEEK CRISIS!
+User-Agent: Mozilla Thunderbird
+From: Dmitry Yashin <dmt.yashin@gmail.com>
+Subject: Re: [PATCH 3/3] pinctrl: rockchip: add rk3308b SoC support
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Jianqun Xu <jay.xu@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Dmitry Yashin <dmt.yashin@gmail.com>
+References: <20240515121634.23945-1-dmt.yashin@gmail.com>
+ <20240515121634.23945-4-dmt.yashin@gmail.com> <20240515182954.03c4a475@booty>
+Content-Language: en-US
+In-Reply-To: <20240515182954.03c4a475@booty>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Luca,
+
+On 15.05.24 21:29, Luca Ceresoli wrote:
+> I'm skeptical about this being bound to a new DT compatible. As far as I
+> know the RK3308 and RK3308B are mostly equivalent, so it looks as the
+> pinctrl implementation could be detected at runtime. This would let
+> products to be built with either chip version and work on any without
+> any DT change.
 
 
---bEuBL+UqcAprloOC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks for your feedback.
 
-On Thu, May 16, 2024 at 10:17:58AM +0530, Mohammad Rafi Shaik wrote:
+Indeed, these SoC's have a lot in common, but as I can see the rk3308b
+has more blocks, like extra PWM's (rk3308 datasheet 1.5 [0] shows only
+1x PWM 4ch, when rk3308b and rk3308b-s have 3x PWM 4ch), 1-wire and
+CAN controller (mentioned in the TRM, but dropped from rk3308b
+datasheet for some reason).
 
-> +static int wcd937x_rx_hph_mode_put(struct snd_kcontrol *kcontrol,
-> +				   struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *component =
-> +				snd_soc_kcontrol_component(kcontrol);
-> +	struct wcd937x_priv *wcd937x = snd_soc_component_get_drvdata(component);
-> +	u32 mode_val;
-> +
-> +	mode_val = ucontrol->value.enumerated.item[0];
-> +	if (!mode_val) {
-> +		dev_warn(component->dev, "Invalid HPH Mode, default to class_AB\n");
-> +		mode_val = CLS_AB;
+So, in my view, it really makes sense to add rk3308b.dtsi, where extra
+PWM's, pinctrl compatible and its pin functions can be moved. And if
+its not worth it, then I will try to adapt the entire series to runtime
+config based on cpuid like you suggested.
 
-This should be silent (or return an error) otherwise people can DoS the
-logs by just spamming in invalid values.
+Additional thoughts on this would be appreciated.
 
-> +	}
-> +
-> +	wcd937x->hph_mode = mode_val;
+[0] https://rockchip.fr/RK3308%20datasheet%20V1.5.pdf
 
-I would expect there's more validation needed here, this will blindly
-assign any non-zero mode.  Please run the mixer-test selftests on a card
-with this device in it and show the results on future submissions, this
-will detect this and other issues for you.
+-- 
+Thanks,
+Dmitry
 
-Several of the other controls look like they're also missing validation.
-
-> +static int wcd937x_set_swr_port(struct snd_kcontrol *kcontrol,
-> +				struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct soc_mixer_control *mixer = (struct soc_mixer_control *)kcontrol->private_value;
-> +	struct snd_soc_component *comp = snd_soc_kcontrol_component(kcontrol);
-> +	struct wcd937x_priv *wcd937x = snd_soc_component_get_drvdata(comp);
-> +	struct wcd937x_sdw_priv *wcd;
-> +	int dai_id = mixer->shift;
-> +	int ch_idx = mixer->reg;
-> +	int portidx;
-> +	bool enable;
-> +
-> +	wcd = wcd937x->sdw_priv[dai_id];
-> +
-> +	portidx = wcd->ch_info[ch_idx].port_num;
-> +
-> +	enable = !!ucontrol->value.integer.value[0];
-> +
-> +	wcd->port_enable[portidx] = enable;
-> +	wcd937x_connect_port(wcd, portidx, ch_idx, enable);
-> +
-> +	return 1;
-> +}
-
-This unconditionally reports that the value changed so will generate
-spurious events.
-> +
-> +static const char * const rx_hph_mode_mux_text[] = {
-> +	"CLS_H_INVALID", "CLS_H_HIFI", "CLS_H_LP", "CLS_AB", "CLS_H_LOHIFI",
-> +	"CLS_H_ULP", "CLS_AB_HIFI",
-> +};
-
-It would be more idiomatic to write these in a more human readable form.
-
-> +static const char * const wcd937x_ear_pa_gain_text[] = {
-> +	"G_6_DB", "G_4P5_DB", "G_3_DB", "G_1P5_DB", "G_0_DB",
-> +	"G_M1P5_DB", "G_M3_DB", "G_M4P5_DB",
-> +	"G_M6_DB", "G_7P5_DB", "G_M9_DB",
-> +	"G_M10P5_DB", "G_M12_DB", "G_M13P5_DB",
-> +	"G_M15_DB", "G_M16P5_DB", "G_M18_DB",
-> +};
-
-Why is this an enum and not TLV information?
-
---bEuBL+UqcAprloOC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZF9PAACgkQJNaLcl1U
-h9BE5gf+MZfo6xckou+1xaQ1x8WUvInmUJO84njGHB6R6hSHjjnEG+XIuVw/g7EZ
-yZ9OiZFuYfRQlTp2Gw/GYO+9DG/+gLGcBZQ7TGVFU8mP/i8hSVF0U7wNXRF1+uG1
-qbpx4Qqh2Nl5Rr3SHsSaxscGjNKvOI27Vm9eb2Dq9uVuy/nfDymCUiFwrVUQGleE
-2XUfQeW3IlyZI1INfjNcQ1e/I5a36bh1mFtD+GHk1jbGp/YLImU2sGbJPBmQwpzQ
-F9eKub3szoFc2Xh9kMoc8Vlxi0mYOphxhK21yNk+aVaWTV74teJcBC66oumbC/nI
-xpHyAPFWN0WtuFOXrz40J+//3ils/w==
-=TStU
------END PGP SIGNATURE-----
-
---bEuBL+UqcAprloOC--
 
