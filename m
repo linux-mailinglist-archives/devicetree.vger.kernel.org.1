@@ -1,145 +1,231 @@
-Return-Path: <devicetree+bounces-67226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF318C7173
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 07:52:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F9838C717B
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 07:55:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDEF8281713
-	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 05:52:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A08EA1F21803
+	for <lists+devicetree@lfdr.de>; Thu, 16 May 2024 05:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816121C695;
-	Thu, 16 May 2024 05:52:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1ADB29A9;
+	Thu, 16 May 2024 05:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TOTYgMIf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="llxG7/7+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C4E20317;
-	Thu, 16 May 2024 05:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D611C695;
+	Thu, 16 May 2024 05:55:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715838758; cv=none; b=uQ/zeQf4eV3A2ct6mrl9DgDxLtow5hK77tIFVzCrGWC1X8Gz3Is42jl9cWxoAuLD9ZgGTNhe7y+kc5rREvHfcOntOOYn4DjvxAGnqx80iDFjm+3ET/ztcV3S3ILfinwz1VkVpHQywSQRv8+CuuLqm2fkWc7uL8ZRXylfWOof72U=
+	t=1715838940; cv=none; b=OEhBaPPJ3nDQuzhj26Wq5H3B7t4Agv/tYUvF1tky2pfK18Rp3tf2VD+cAGzLvr5E/t70d62hb3z6GG7JvEX72tsaExhtLz9cU3Ljg5WN5+jT5W1/iAgkv4h5nTjSYUfA20JV7bPLxga6KDBcs4BvOfho36OO+nK+76WjwLlkTIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715838758; c=relaxed/simple;
-	bh=/+Ow78sUbpOddw6QMkRuc13wUjQlwvOjuOngn+eapoc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ciPTMD8frsE/pVuT1cwZeYtVUf36fNla6DIaBnTHzPDGqb75skgLleSLBtZlV7rHdMrRD+0JuJYPeD8Xl9w0e/2SRv9gw6I1VmErF4q7ANgKnbhEJ+JrnNGxEwNEw6Z7ofClRsnrQyovPKZiUhl8jlPqHqY8csuRRbXlupzpkzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TOTYgMIf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44FKGVP8012294;
-	Thu, 16 May 2024 05:52:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Q1+UqqKqXZ+UrIGBtfXi/73W9Q+v3r9ONSYGA+nWMLY=; b=TO
-	TYgMIfJsI1BwJBEbVpIxXXiwRZtzUUIPp2dkJkvUFS0UwULZuB/e+f4fsCFxsR8E
-	RPMNEeabR6rF4wlbM9LAKjdyKBGGS+cetONu2Hdl1GPF8wPMuQ9ZJQnocQr+vANO
-	HiC4TL1gIzT8p3zfzwLkSIEU/7UpI6LUk8VNGSqOZ/yTSy66agsheJFEcjGZ5GKY
-	/067ext+Ws2r9PeQvmj8h5GCCeM/pyBazCj5O5+goqMpEa+jCu/+HImbnllMwWhQ
-	vRqt7UpRKD3acFlQwSKeqbe4OXQ+HStP41XJDXfZODPmTPywFdOaMhfL83jWBreU
-	C5qyIARLq65e4zE0kReQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y3j28qdqj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 May 2024 05:52:30 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44G5qTPW030672
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 May 2024 05:52:29 GMT
-Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 May
- 2024 22:52:25 -0700
-Message-ID: <1c214d8b-9c59-7266-4c80-4b548ad6c7f9@quicinc.com>
-Date: Thu, 16 May 2024 11:22:15 +0530
+	s=arc-20240116; t=1715838940; c=relaxed/simple;
+	bh=R58SNveZIj3aSv3Z2D6thaQAbSttnQhJAJZ3CW/vfFI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gfFs1rqKisC1ZsieV+XKjJ/e9PjIlI4m8BqjTn0KJGj41Vn0/xOl9TesW8/lBfbgKdbZDKJv6dMnog5gx940wR4ls+ha5eiVygck665/dnGzbANMrkh4lewlh7GvFYNfiZ4WGLTAk9imRLrMCOC5qjoZs4qAJndcp5D0tQxCyyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=llxG7/7+; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715838938; x=1747374938;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=R58SNveZIj3aSv3Z2D6thaQAbSttnQhJAJZ3CW/vfFI=;
+  b=llxG7/7+HickZWY9G7Skorj8+bDX3z3CC5uYLoeHvUZyxRr0o9dfT17V
+   sllBFHkcOHn4iLHJvnWq6s3J2VZnFU3aPO3cpwB1JD37w3hpM0MPL1Pfv
+   ZxV5et/3t4BfIT7hI2aLaWUs73GX3HHKpTLnIUlKV3P1MrAmuSmwmhscc
+   gbTAyRM3Ucmu8byDHi10kkjt5a2nhGgg+9O+jK4r+oXQI+M9S2z5RGBuW
+   ymwK27Iwd94CGZxWlKqEUOMlr7rBMydKdQWys7exk3PMIwfsd9xIai65L
+   iqVYsGvoiVyNe7JgLGQL4s+O/ihLQ13xQ0mbEjaesYBwGVlT0WTczI8bf
+   w==;
+X-CSE-ConnectionGUID: epVkDTrJRYiUU46inOp3jg==
+X-CSE-MsgGUID: OY6DvdACQ1uN0AGk2ix7QQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11793745"
+X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; 
+   d="scan'208";a="11793745"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 May 2024 22:55:37 -0700
+X-CSE-ConnectionGUID: P5KtU3vyTj62DIkhrBvbbg==
+X-CSE-MsgGUID: mRpI8vHgScSrDtXBQNQ8pw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,163,1712646000"; 
+   d="scan'208";a="31434644"
+Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 15 May 2024 22:55:33 -0700
+Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1s7U5S-000Dgt-0P;
+	Thu, 16 May 2024 05:55:30 +0000
+Date: Thu, 16 May 2024 13:55:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>,
+	"T.J. Mercier" <tjmercier@google.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org, Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH 7/8] dma-buf: heaps: cma: Handle ECC flags
+Message-ID: <202405161341.XBePS2s0-lkp@intel.com>
+References: <20240515-dma-buf-ecc-heap-v1-7-54cbbd049511@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: qcom: qdu/qru1000-idp: Fix the voltage
- setting
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Melody Olvera <quic_molvera@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240514131038.28036-1-quic_kbajaj@quicinc.com>
- <45e0aee9-87d5-434f-8ffe-d3270def0f72@kernel.org>
-Content-Language: en-US
-From: Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <45e0aee9-87d5-434f-8ffe-d3270def0f72@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5WAsNb2OR303Ri9Gh11NWI1ZjBV1Nocm
-X-Proofpoint-GUID: 5WAsNb2OR303Ri9Gh11NWI1ZjBV1Nocm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-16_02,2024-05-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- impostorscore=0 malwarescore=0 phishscore=0 bulkscore=0 suspectscore=0
- mlxscore=0 clxscore=1011 priorityscore=1501 mlxlogscore=689
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405160039
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240515-dma-buf-ecc-heap-v1-7-54cbbd049511@kernel.org>
+
+Hi Maxime,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Ripard/dma-buf-heaps-Introduce-a-new-heap-for-reserved-memory/20240515-215850
+base:   a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
+patch link:    https://lore.kernel.org/r/20240515-dma-buf-ecc-heap-v1-7-54cbbd049511%40kernel.org
+patch subject: [PATCH 7/8] dma-buf: heaps: cma: Handle ECC flags
+config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20240516/202405161341.XBePS2s0-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240516/202405161341.XBePS2s0-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202405161341.XBePS2s0-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/dma-buf/heaps/cma_heap.c: In function 'cma_heap_allocate':
+>> drivers/dma-buf/heaps/cma_heap.c:293:24: warning: returning 'int' from a function with return type 'struct dma_buf *' makes pointer from integer without a cast [-Wint-conversion]
+     293 |                 return -EINVAL;
+         |                        ^
+   drivers/dma-buf/heaps/cma_heap.c:296:24: warning: returning 'int' from a function with return type 'struct dma_buf *' makes pointer from integer without a cast [-Wint-conversion]
+     296 |                 return -EINVAL;
+         |                        ^
+   drivers/dma-buf/heaps/cma_heap.c: In function '__add_cma_heap':
+   drivers/dma-buf/heaps/cma_heap.c:386:13: error: implicit declaration of function 'of_memory_get_ecc_correction_bits' [-Werror=implicit-function-declaration]
+     386 |         if (of_memory_get_ecc_correction_bits() > 0)
+         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
 
 
+vim +293 drivers/dma-buf/heaps/cma_heap.c
 
-On 5/14/2024 6:57 PM, Krzysztof Kozlowski wrote:
-> On 14/05/2024 15:10, Komal Bajaj wrote:
->> Fixing the regulator voltages for qdu/qru1000 idp boards.
->> In particular -
->> - smps4 is 1.574V min and 2.04V max
->> - smps5 is 1.2V min and 1.4V max
->> - smps6 is 0.382V min and 1.12V max
-> 
-> Wait, why? This looks, at least partially, you are changing from fixed
-> voltage choice to full range, without clear explanation.
-> 
+   275	
+   276	static struct dma_buf *cma_heap_allocate(struct dma_heap *heap,
+   277						 unsigned long len,
+   278						 unsigned long fd_flags,
+   279						 unsigned long heap_flags)
+   280	{
+   281		struct cma_heap *cma_heap = dma_heap_get_drvdata(heap);
+   282		struct cma_heap_buffer *buffer;
+   283		DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
+   284		size_t size = PAGE_ALIGN(len);
+   285		pgoff_t pagecount = size >> PAGE_SHIFT;
+   286		unsigned long align = get_order(size);
+   287		struct page *cma_pages;
+   288		struct dma_buf *dmabuf;
+   289		int ret = -ENOMEM;
+   290		pgoff_t pg;
+   291	
+   292		if (!cma_heap->ecc_enabled && (heap_flags & DMA_HEAP_FLAG_ECC_PROTECTED))
+ > 293			return -EINVAL;
+   294	
+   295		if (cma_heap->ecc_enabled && (heap_flags & DMA_HEAP_FLAG_ECC_UNPROTECTED))
+   296			return -EINVAL;
+   297	
+   298		buffer = kzalloc(sizeof(*buffer), GFP_KERNEL);
+   299		if (!buffer)
+   300			return ERR_PTR(-ENOMEM);
+   301	
+   302		INIT_LIST_HEAD(&buffer->attachments);
+   303		mutex_init(&buffer->lock);
+   304		buffer->len = size;
+   305	
+   306		if (align > CONFIG_CMA_ALIGNMENT)
+   307			align = CONFIG_CMA_ALIGNMENT;
+   308	
+   309		cma_pages = cma_alloc(cma_heap->cma, pagecount, align, false);
+   310		if (!cma_pages)
+   311			goto free_buffer;
+   312	
+   313		/* Clear the cma pages */
+   314		if (PageHighMem(cma_pages)) {
+   315			unsigned long nr_clear_pages = pagecount;
+   316			struct page *page = cma_pages;
+   317	
+   318			while (nr_clear_pages > 0) {
+   319				void *vaddr = kmap_atomic(page);
+   320	
+   321				memset(vaddr, 0, PAGE_SIZE);
+   322				kunmap_atomic(vaddr);
+   323				/*
+   324				 * Avoid wasting time zeroing memory if the process
+   325				 * has been killed by by SIGKILL
+   326				 */
+   327				if (fatal_signal_pending(current))
+   328					goto free_cma;
+   329				page++;
+   330				nr_clear_pages--;
+   331			}
+   332		} else {
+   333			memset(page_address(cma_pages), 0, size);
+   334		}
+   335	
+   336		buffer->pages = kmalloc_array(pagecount, sizeof(*buffer->pages), GFP_KERNEL);
+   337		if (!buffer->pages) {
+   338			ret = -ENOMEM;
+   339			goto free_cma;
+   340		}
+   341	
+   342		for (pg = 0; pg < pagecount; pg++)
+   343			buffer->pages[pg] = &cma_pages[pg];
+   344	
+   345		buffer->cma_pages = cma_pages;
+   346		buffer->heap = cma_heap;
+   347		buffer->pagecount = pagecount;
+   348	
+   349		/* create the dmabuf */
+   350		exp_info.exp_name = dma_heap_get_name(heap);
+   351		exp_info.ops = &cma_heap_buf_ops;
+   352		exp_info.size = buffer->len;
+   353		exp_info.flags = fd_flags;
+   354		exp_info.priv = buffer;
+   355		dmabuf = dma_buf_export(&exp_info);
+   356		if (IS_ERR(dmabuf)) {
+   357			ret = PTR_ERR(dmabuf);
+   358			goto free_pages;
+   359		}
+   360		return dmabuf;
+   361	
+   362	free_pages:
+   363		kfree(buffer->pages);
+   364	free_cma:
+   365		cma_release(cma_heap->cma, cma_pages, pagecount);
+   366	free_buffer:
+   367		kfree(buffer);
+   368	
+   369		return ERR_PTR(ret);
+   370	}
+   371	
 
-When we started using one of these regulators for USB enablement as sent 
-in the patch series [1], we saw a sudden reboot.
-After adding more debug logs, came to know the configuration for smps5 
-was incorrect.
-
-Therefore, cross verified the configurations for all the regulators and 
-got to know that these are incorrectly configured.
-This fixes some manual errors introduced in the initial patch (mentioned 
-in fixes tag).
-
-[1] 
-https://lore.kernel.org/linux-arm-msm/20240502090326.21489-1-quic_kbajaj@quicinc.com/
-
-Thanks,
-Komal.
-
-
->> - smps8 is fixed at 0.752V
-> 
-> 
->>
->> Fixes: d1f2cfe2f669 ("arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs")
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
