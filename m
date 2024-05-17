@@ -1,134 +1,115 @@
-Return-Path: <devicetree+bounces-67449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A578C82FC
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 11:09:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C44D28C8307
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 11:10:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97F2C1F21AEE
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 09:09:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50AE3B228F8
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 09:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599901CFBC;
-	Fri, 17 May 2024 09:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C65A1DA58;
+	Fri, 17 May 2024 09:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nexus-software-ie.20230601.gappssmtp.com header.i=@nexus-software-ie.20230601.gappssmtp.com header.b="fCQKzEXp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Z3XVq7HT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7200923754
-	for <devicetree@vger.kernel.org>; Fri, 17 May 2024 09:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33541EB26;
+	Fri, 17 May 2024 09:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715936925; cv=none; b=NCaaPcI5VrcEzr+gut3qMphhXN9Llwt2RdX8rsyy/b3X2Uvkm9lmPkpHLdaB+Iqi43gB1rwqTVyjqdZG65d/o5aTiS7BsaHHGYvLncUBF9jh5RniBRHkco4ND5IhSnULxxiDcwV0uPW4P04hhJlysO4JECBItE9egAChUdhbLqI=
+	t=1715937023; cv=none; b=V5LYY2u3rCLUGvZB7p9vIe07xbp57IvujZlk8ZG4V5K0p0M5QA1G/0WYDqjkXV8LEv08RV4gmsX2p67RGYEY4Ay2Bq+iTVqQ+YW3TdEpBONZ/I2Y1GCv6kNFF7XJ0oL5wxoQ+yUz+TjhpHXx16btiHpToHXmYz9xJSlom0SfBNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715936925; c=relaxed/simple;
-	bh=TEHtCpgbdlqVzF1zXyzG1Szb517FKtFzCdajAHVAtmg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d5FIIgRa1JMIef/17PXR8Yn7QCpbSqTxA1HTW2rhU1NsxXeDHvrrLmfKfxhdFkdkTeEhBCJxq8W58nAylLqPgoYJCtKWvsy6C2mvW3GBXt4MRgiA3NQnYNg9D26rkSYmVd7con6CMD9inGa1gRgqK2u4qdHVnW14xPMWUOQ87IY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexus-software.ie; spf=none smtp.mailfrom=nexus-software.ie; dkim=pass (2048-bit key) header.d=nexus-software-ie.20230601.gappssmtp.com header.i=@nexus-software-ie.20230601.gappssmtp.com header.b=fCQKzEXp; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nexus-software.ie
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nexus-software.ie
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a59b097b202so335334466b.0
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2024 02:08:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20230601.gappssmtp.com; s=20230601; t=1715936922; x=1716541722; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xwh3lnhUhd7oHBvNUUgJZI2n83eK0ml7NC11m5y4KDs=;
-        b=fCQKzEXpavPM+TuuR2ydaqtoyHospQaCnY360d1397CsR/nVbCTa1Qy0Q6YgjGqt/L
-         tkD71mYnNkf4JPg+za0s+krI91AaiQcmsYTm4eo+hR1+6FJ+qk/r5PdHGmxxoOu+1SCX
-         F9V6iL22RWAp6X/30O+cd43S0eAmvVGbO5AUngW1ROKKRaBdzP0CjmFdyCyKzmBiHMny
-         XTxVCY32sQO2rL7jTXyskzCSalfN9RyM42mpoT51TCTfzB3+een6ul3CRmKuVeFabpZG
-         jAaJH9a6IS9HafT9TBmAZe1RcPATh6djiTWWBCIZnVzt7R7M4BGByqqfEZGdWKs9ZCyh
-         SsOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715936922; x=1716541722;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xwh3lnhUhd7oHBvNUUgJZI2n83eK0ml7NC11m5y4KDs=;
-        b=mbpTvuBnMGlI8XHqBqNiSgLeJJpLV4XSuJQZeKmfsAgcU3Qk3WMQFhhh0R9aCadVFu
-         ul0Fmmq/YT+a2mfRKh1PRuE0rpvDWk1LEVlj+UiHsJnH+ZUjaoJ7Nqbnlm1CRrqjFW2V
-         tAh07wYibNwn42N4OpGrN91EOMOQffJJRsWT6owzAfomjp/ai+0v4nG6xGoX43+uraNc
-         ngLViGX5EqJ0XQAZm8xJZ4Sl/LHbMAIivxkOozFTgmzu3mhBEdQyorO0rpu83dFOJekP
-         O91tPQPqkqBS2ont7VLD6k4njjTTKpEeLhp72lZPvOgye+lwA2cFYooUbIdJESt0ZpPR
-         Mz8w==
-X-Forwarded-Encrypted: i=1; AJvYcCW5Bs5xHcs3LGvTkw1lHXjKP0YNtiBxQWAWG+VTDWIpKWMhn27ULy+8bhA6jIH8HDg8IMbprQTiY2rl8jmEvtwRiXSMaR4NdyBNAQ==
-X-Gm-Message-State: AOJu0Yx7u6bhMps9ZJzQcWW7fh0rvV0pp3oSXEuOjGtzQfVWPJwbSv0V
-	ApJg8s+CPzU4A6IB905/zSqUkd2LEBpEmRVcc04FOP3g2SAj8ZFKQZX193+oPUc=
-X-Google-Smtp-Source: AGHT+IEgG+ysyN5p95zBEB/teN7eTbSrbUtVmUotuv5u7b9gbXK+Nvx5y+aX5ItM1vbciitmK35z4g==
-X-Received: by 2002:a17:906:4886:b0:a59:a83b:d435 with SMTP id a640c23a62f3a-a5a2d55aa50mr1373772366b.18.1715936921554;
-        Fri, 17 May 2024 02:08:41 -0700 (PDT)
-Received: from [10.91.1.133] ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b17886sm1097162266b.210.2024.05.17.02.08.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 May 2024 02:08:40 -0700 (PDT)
-Message-ID: <40730e9f-ae2b-4b56-89bd-f839876271fe@nexus-software.ie>
-Date: Fri, 17 May 2024 11:08:38 +0200
+	s=arc-20240116; t=1715937023; c=relaxed/simple;
+	bh=BMycXKMVC3HpLwk8KGm1ckRBUv6vbXZF1bf3OI+h9x0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ubj3HNy/Kwwsmg+b/qsgOzoQt0z79rYyQ13UksqNBjzb+UEMWRV8eBLaRJSZPs1JzAdw+yqOww6uUFQiJoMix2C2G91wAtCLzVUiGQGVtYcIX2xOvwbeiPsitIjIomhItuTW4/ZzdgJNeaCUFHwAlLwYt/KBudXPWDtnjxu6Dfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Z3XVq7HT; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2A19320003;
+	Fri, 17 May 2024 09:10:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1715937013;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=E9YI5IhJQd+9CPiNZ2Juj0hyKn1eM6koEnskZ7nXuGk=;
+	b=Z3XVq7HTZDQDQNn5t+fzpekKxhSYeQR0NMJsT0E7v0NazyG3Hhd6Ij3FodPhpxYXezfIJR
+	2iP1ZwBWYEj0iyUI8ijZEwnm48MU51UBF03xMCZoYiUDom7zrRfo1hVhg5btwgXAtzgOhI
+	pmN/L9ci8XIRqwztOOBo8FPD9KAh0SSVD8rK6Nx83JFtMi4WwT1BPClN9Ns8R3uxdmfVG+
+	X3o+kD1tMz9+rUJuLHDj7wDntCwSCawoO0D58y5bLO4+5lUT/mj40cIaUkmxMke2JovFD+
+	G8vxkgmp4Wo1KEBaFpH+hY33JP/IK31HHo6WnSDonQ7Us7wvzslv4xCJG3adXw==
+From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Subject: [PATCH v2 0/3] Add I2C support on TH1520
+Date: Fri, 17 May 2024 11:09:52 +0200
+Message-Id: <20240517-i2c-th1520-v2-0-d364d135ccc6@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] remoteproc: qcom_q6v5_pas: Add hwspinlock bust on
- stop
-Content-Language: en-US
-To: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
- Boqun Feng <boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, Richard Maina <quic_rmaina@quicinc.com>
-References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
- <20240516-hwspinlock-bust-v1-6-47a90a859238@quicinc.com>
-From: Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <20240516-hwspinlock-bust-v1-6-47a90a859238@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOAeR2YC/1XMQQ7CIBCF4as0sxYDI6TElfcwXRRKZRIFA4RoG
+ u4u1pXL/yXv2yC7RC7DedgguUqZYuiBhwGsn8PNMVp6A3KUXKJihJYVLxRyttqTdWLWRo4I/fB
+ MbqXXjl2n3p5yiem92xW/649R4o+pyDgzRokF9agk1xcTY7lTONr4gKm19gGCJDUwpgAAAA==
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+ Drew Fustini <dfustini@tenstorrent.com>, 
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+ Conor Dooley <conor@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+X-Mailer: b4 0.13.0
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-On 17/05/2024 00:58, Chris Lew wrote:
-> From: Richard Maina <quic_rmaina@quicinc.com>
-> 
-> When remoteproc goes down unexpectedly this results in a state where any
-> acquired hwspinlocks will remain locked possibly resulting in deadlock.
-> In order to ensure all locks are freed we include a call to
-> hwspin_lock_bust() during remoteproc shutdown.
-> 
-> For qcom_q6v5_pas remoteprocs, each remoteproc has an assigned id that
-> is used to take the hwspinlock. Remoteproc should use this id to try and
-> bust the lock on remoteproc stop.
-> 
-> This edge case only occurs with q6v5_pas watchdog crashes. The error
-> fatal case has handling to clear the hwspinlock before the error fatal
-> interrupt is triggered.
-> 
-> Signed-off-by: Richard Maina <quic_rmaina@quicinc.com>
-> Signed-off-by: Chris Lew <quic_clew@quicinc.com>
-> ---
+This adds I2C support in the device tree of the T-Head TH1520 RISCV-SoC
+and a default configuration for the BeagleV-Ahead. It appears that the
+TH1520 I2C is already supported in the upstream kernel through the
+Synopsis Designware I2C adapter driver.
 
-> +	if (adsp->hwlock) {
-> +		ret = hwspin_lock_bust(adsp->hwlock, adsp->hwlock_id);
-> +		if (ret)
-> +			dev_info(adsp->dev, "failed to bust hwspinlock\n");
+This patch depends on the clock patch from Drew Fustini
+Link: https://lore.kernel.org/linux-riscv/20240426-th1520-clk-v2-v2-0-96b829e6fcee@tenstorrent.com
+and the pinctrl patch from Emil Renner Berthing
+Link: https://lore.kernel.org/linux-riscv/20240103132852.298964-1-emil.renner.berthing@canonical.com
 
-qcom_hwspinlock_bust() already prints an error on failure, you're 
-printing a second error here.
+Changed from v1:
+1. Remove redundant example for Synopsis DesignWare-I2C bindings
+2. Remove Node Ordering commit as it has already been taken
+3. Remove EEPROM label
+4. Rebase on pinctrl and clock driver patches
+5. Add pinctrl configuration
+6. Replaced the fixed-clock with a correct configuration
 
-Choose at most one.
-
+Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
 ---
-bod
+Thomas Bonnefille (3):
+      dt-bindings: i2c: dw: Document compatible thead,th1520-i2c
+      riscv: dts: thead: Add TH1520 I2C nodes
+      riscv: dts: thead: Enable I2C on the BeagleV-Ahead
+
+ .../bindings/i2c/snps,designware-i2c.yaml          |  4 ++
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 84 ++++++++++++++++++++++
+ arch/riscv/boot/dts/thead/th1520.dtsi              | 50 +++++++++++++
+ 3 files changed, 138 insertions(+)
+---
+base-commit: e1fb0b71c746f863fa49ff359d58c949538ce181
+change-id: 20240425-i2c-th1520-fc3ce1a8b472
+
+Best regards,
+-- 
+Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+
 
