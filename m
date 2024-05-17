@@ -1,390 +1,332 @@
-Return-Path: <devicetree+bounces-67559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5768C8A56
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 18:52:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E688C8A6C
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:00:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D9DF1C20AA9
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 16:52:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA549281957
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7036413D887;
-	Fri, 17 May 2024 16:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37DC513D8AC;
+	Fri, 17 May 2024 17:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="L4EYPxk2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ojeVfbUO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D3613D89D
-	for <devicetree@vger.kernel.org>; Fri, 17 May 2024 16:52:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7D812F5A3;
+	Fri, 17 May 2024 17:00:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715964735; cv=none; b=nRVQQM0vFPTSoLRnkxbxr8EMwwVnRTiLmYc7Zsqap+jjfa5/J7Pvb107o9Ph7jh2+XroF+SMr5+dazMUVxurjC7yzgYtWjr/nQQIKFOLcYtFxpfDuSoLJ05Hs3azvFABeV+uCBw0PoVEtQmazEQTm4ZEIFruxGUfavZV4Zo+tng=
+	t=1715965211; cv=none; b=hGhzhGznOzQH7Z57WOkrkH0Ie6qSlXj+a9UmiX/DsA/1hlFIoPalCtD04bWrIBV28WixvMRhO4aQ0dQhMM+GwlznDBtdgh+9L8GsiASc+u4aEIJEp4uvERYIItU8S7vqKwkFnIsmwV4QrDqRfmMuNqQ/ycVgCx3Feuijf1kvOj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715964735; c=relaxed/simple;
-	bh=wCdQPm3TWk40mZIVA9NiXHxECOGHT7CZs9DpADjc9MA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KFM18K7fjjTAMshbESdvzb4aF3OzVeTP9xDfjSioXhGI01Jd7qTDS2U1u48bpVZsvInH3px3/gF4QbMCtSLJ0VXP2sy53Uo3Z15pgaZ2KpJO1oMUQiRkB03sNykL7Jwde9BVBHfmDGsgbHM4XpzETm8ue8VTz3KqW8hbcmJZt8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=L4EYPxk2; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2e6f33150bcso23053371fa.2
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2024 09:52:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1715964730; x=1716569530; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TmNPF6G5eFiHm3shVWK0oE4Q5mdESrJ/689hVEQXFGs=;
-        b=L4EYPxk25fQMngx0qg+btji6kM/nd91XsRHlRJ3zKwyXQhzhJZKL4d6LoWIw/bvt6P
-         EiDsb1kkodVJYY8X06G1nNW8C8UVRiPHcJWatScyutvsq822vxdIJjuFP4MPTmPJjx2s
-         tbKsqPA3Dp7Pl7fbjf2ELJ6InqTh03op1me+3pK+F1zZJVB/DTB8BW5ahd9qYriz77pN
-         8/TUWfruIVdkExR0gKj9LFwEgez42JD/EXO2bHx7s+lOfKb+2WL7SH7HZ1V92d/HN+LU
-         w49nGexhXsNnvqx9HUG7DjhjSMVQf7r225jM8i6mss9i0k1UFOSSetjiwZgvHIKwA+if
-         V3gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715964730; x=1716569530;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TmNPF6G5eFiHm3shVWK0oE4Q5mdESrJ/689hVEQXFGs=;
-        b=Y6mmwJaDuuyduWNeeaQnxx4cWdrM8mYDrg4b0qX1562t5typa5lKZ0/RmZ6A0Ic26u
-         4GJIcNJSIdsP1VI9vwyoxzdeYbnMYRGlG7eF5IOqxMeK/cQg/kGGf4DA/Pitw5LovDNh
-         YzFIqcPRuAs1sBdyJR+uvgwLxMmr8Oe1pOLO78pLwo7eVrqy5iUPvWhAWsvalm7I1u5A
-         UV3NZjB7yHBFY/kKKfgCI8lzggRVTRKIi0xx8O0RPNTlS5Wo+a0cAPeoGpK+0UcijlfR
-         v6RcfJBnJ56ctWosdDva5a8Dys8SiuNYA4kjCwFkhuZgP/fmIsgK0uyF/w8b7DqsPk0I
-         kcOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjyjBs4kUfDxDfxk7J7xoTnnDL3sF70j6HdH+Ote8aq50zDWzV8inf/Cb6FTQ9cpheO0ZnpyX/KTPRAnioUY7YlToVLh8R4tGVRw==
-X-Gm-Message-State: AOJu0Yzc4XHX2Hk0MbBoN1SziV4MJWLb3bmwjgAxcHc1Zo9A4BKdSaK9
-	7zwPAMZQ7jUtI7YpIeLR19bysS7sqvqJrGlUy3RmmtqM5Xq+0bs9FRim/DPycKfceco5UyQKVBS
-	uRwz2XVga/OU1ZWavjJT7t89oZ/lYrFpWSP2I+w==
-X-Google-Smtp-Source: AGHT+IG+3UsPHUtMCRzvR9f7I4JA+MpHdvVRvgfwtyVmBmUsAlmk4WcxA4fg1b2fKeSx5lO4y/iJ5vJuwZ8FcMI7MOY=
-X-Received: by 2002:a2e:b0db:0:b0:2d6:dba1:6d37 with SMTP id
- 38308e7fff4ca-2e51fd2d389mr141339221fa.11.1715964729777; Fri, 17 May 2024
- 09:52:09 -0700 (PDT)
+	s=arc-20240116; t=1715965211; c=relaxed/simple;
+	bh=rsQ1avTjcXONNAiKfYvcQsGWVH+WUA9EkQwyYwUy1bo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SEfdIVWygMgcl2wxShn+5IP2R0jqIlYQ6KUEm6icZQU1yeiZJyQDVPXFyGZHNgHvZz74DPHQDK58I//5ZOlGxnLB637EeZMSpK/SioRAXbgFQkLaaN4aBeycMy47iYu4Nym6I4O8l8wMGtlqHdv58GgjBNTw9vLAReIL+eso4kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ojeVfbUO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86B45C2BD10;
+	Fri, 17 May 2024 17:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715965210;
+	bh=rsQ1avTjcXONNAiKfYvcQsGWVH+WUA9EkQwyYwUy1bo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ojeVfbUOrUIybBIRl6iXpe77NPTEue+x3Mtmrzaxwk5Psphke0hAKwY3IjDAMKY7b
+	 qvZG5Wdb8GEEZRrlEPpt3xPKQBS53QygfBWmT1yOdefyzlACSZzXG6aBE1TcsK5xMz
+	 /rXO5sBhQu0a/bxboWURYz03Mq8AWXkxt5hK+7fO4PpDtIs8PleBf4ciWiq1F1FLf+
+	 dkT0ygkBI8FZP+F14iXYL+hnihza9TtjZDXflW5ibOWBcvV4reWivmHW1YpM6StN46
+	 fOyzG/pfdgYDUXGttXoJc0pCpjvAvuUGxbi/6FSbAHEmTtLLwA/uyMPMUyF6wRoP/K
+	 VAtj1COrpJNXQ==
+Date: Fri, 17 May 2024 18:00:06 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	"jdelvare@suse.com" <jdelvare@suse.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Document adt7475 PWM initial
+ duty cycle
+Message-ID: <20240517-pointer-cloning-3889f3d6f744@spud>
+References: <20240508215504.300580-1-chris.packham@alliedtelesis.co.nz>
+ <20240508215504.300580-2-chris.packham@alliedtelesis.co.nz>
+ <fe5b3af9-b307-45e1-b190-ba2b3327a8df@kernel.org>
+ <d11093bb-230b-4918-a8cd-4f4eb760ccf3@alliedtelesis.co.nz>
+ <94c843e2-4415-4786-bfd4-a77fdbbfab07@roeck-us.net>
+ <35361786-ef5f-4d81-83e8-e347f47c83ed@alliedtelesis.co.nz>
+ <df40a387-37db-4a4d-b43f-ae22905789b5@roeck-us.net>
+ <58fb36f5-4d4b-495b-a7cd-6129ab1ed454@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com>
- <20240510-dlech-mainline-spi-engine-offload-2-v2-1-8707a870c435@baylibre.com>
- <20240513-headsman-hacking-d51fcc811695@spud> <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
- <20240514-aspire-ascension-449556da3615@spud> <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
- <20240516-rudder-reburial-dcf300504c0a@spud>
-In-Reply-To: <20240516-rudder-reburial-dcf300504c0a@spud>
-From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 17 May 2024 11:51:58 -0500
-Message-ID: <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
- spi-offloads property
-To: Conor Dooley <conor@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	David Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="E0zBh/oCqKg5WlFd"
+Content-Disposition: inline
+In-Reply-To: <58fb36f5-4d4b-495b-a7cd-6129ab1ed454@alliedtelesis.co.nz>
+
+
+--E0zBh/oCqKg5WlFd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 16, 2024 at 4:32=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> Yo,
->
-> Sorry for the delay, long reply deserved some time to sit and think
-> about it.
->
-> On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wrote:
-> > On Tue, May 14, 2024 at 1:46=E2=80=AFPM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > On Mon, May 13, 2024 at 12:06:17PM -0500, David Lechner wrote:
-> > > > On Mon, May 13, 2024 at 11:46=E2=80=AFAM Conor Dooley <conor@kernel=
-.org> wrote:
-> > > > >
-> > > > > On Fri, May 10, 2024 at 07:44:24PM -0500, David Lechner wrote:
-> > > > > > This adds a new property to the spi-peripheral-props binding fo=
-r use
-> > > > > > with peripherals connected to controllers that support offloadi=
-ng.
-> > > > > >
-> > > > > > Here, offloading means that the controller has the ability to p=
-erform
-> > > > > > complex SPI transactions without CPU intervention in some shape=
- or form.
-> > > > > >
-> > > > > > This property will be used to assign controller offload resourc=
-es to
-> > > > > > each peripheral that needs them. What these resources are will =
-be
-> > > > > > defined by each specific controller binding.
-> > > > > >
-> > > > > > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > > > > > ---
-> > > > > >
-> > > > > > v2 changes:
-> > > > > >
-> > > > > > In v1, instead of generic SPI bindings, there were only control=
-ler-
-> > > > > > specific bindings, so this is a new patch.
-> > > > > >
-> > > > > > In the previous version I also had an offloads object node that=
- described
-> > > > > > what the offload capabilities were but it was suggested that th=
-is was
-> > > > > > not necessary/overcomplicated. So I've gone to the other extrem=
-e and
-> > > > > > made it perhaps over-simplified now by requiring all informatio=
-n about
-> > > > > > how each offload is used to be encoded in a single u32.
-> > > > >
-> > > > > The property is a u32-array, so I guess, not a single u32?
-> > > >
-> > > > It is an array to handle cases where a peripheral might need more t=
-han
-> > > > one offload. But the idea was it put everything about each individu=
-al
-> > > > offload in a single u32. e.g. 0x0101 could be offload 1 with hardwa=
-re
-> > > > trigger 1 and 0x0201 could be offload 1 with hardware trigger 2. Th=
-en
-> > > > a peripheral could have spi-offloads =3D <0x0101>, <0x0201>; if it
-> > > > needed to select between both triggers at runtime.
-> > > >
-> > > > >
-> > > > > > We could of course consider using #spi-offload-cells instead fo=
-r
-> > > > > > allowing encoding multiple parameters for each offload instance=
- if that
-> > > > > > would be preferable.
-> > > > >
-> > > > > A -cells property was my gut reaction to what you'd written here =
-and
-> > > > > seems especially appropriate if there's any likelihood of some fu=
-ture
-> > > > > device using some external resources for spi-offloading.
-> > > > > However, -cells properties go in providers, not consumers, so it =
-wouldn't
-> > > > > end up in spi-periph-props.yaml, but rather in the controller bin=
-ding,
-> > > > > and instead there'd be a cell array type property in here. I thin=
-k you
-> > > > > know that though and I'm interpreting what's been written rather =
-than
-> > > > > what you meant.
-> > > >
-> > > > Indeed you guess correctly. So the next question is if it should be
-> > > > the kind of #-cells that implies a phandle like most providers or
-> > > > without phandles like #address-cells?
-> > >
-> > > I'm trying to understand if the offload could ever refer to something
-> > > beyond the controller that you'd need the phandle for. I think it wou=
-ld
-> > > be really helpful to see an example dt of a non-trivial example for h=
-ow
-> > > this would work. The example in the ad7944 patch has a stub controlle=
-r
-> > > node & the clocks/dmas in the peripheral node so it is difficult to
-> > > reason about the spi-offloads property there.
+On Fri, May 17, 2024 at 01:09:03AM +0000, Chris Packham wrote:
+>=20
+> On 13/05/24 04:58, Guenter Roeck wrote:
+> > On 5/10/24 08:51, Chris Packham wrote:
+> >>
+> >> On 10/05/24 15:36, Guenter Roeck wrote:
+> >>> Chris,
+> >>>
+> >>> On Thu, May 09, 2024 at 06:19:12PM +0000, Chris Packham wrote:
+> >>>> Hi Krzysztof,
+> >>>>
+> >>>> On 9/05/24 19:06, Krzysztof Kozlowski wrote:
+> >>>>> On 08/05/2024 23:55, Chris Packham wrote:
+> >>>>>> Add documentation for the pwm-initial-duty-cycle and
+> >>>>>> pwm-initial-frequency properties. These allow the starting state=
+=20
+> >>>>>> of the
+> >>>>>> PWM outputs to be set to cater for hardware designs where=20
+> >>>>>> undesirable
+> >>>>>> amounts of noise is created by the default hardware state.
+> >>>>>>
+> >>>>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> >>>>>> ---
+> >>>>>>
+> >>>>>> Notes:
+> >>>>>> =A0=A0=A0=A0=A0=A0 Changes in v2:
+> >>>>>> =A0=A0=A0=A0=A0=A0 - Document 0 as a valid value (leaves hardware =
+as-is)
+> >>>>>>
+> >>>>>> =A0=A0=A0 .../devicetree/bindings/hwmon/adt7475.yaml=A0=A0=A0 | 27=
+=20
+> >>>>>> ++++++++++++++++++-
+> >>>>>> =A0=A0=A0 1 file changed, 26 insertions(+), 1 deletion(-)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/hwmon/adt7475.yaml=
+=20
+> >>>>>> b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> >>>>>> index 051c976ab711..97deda082b4a 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> >>>>>> +++ b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> >>>>>> @@ -51,6 +51,30 @@ properties:
+> >>>>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 enum: [0, 1]
+> >>>>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 default: 1
+> >>>>>> =A0=A0=A0 +=A0 adi,pwm-initial-duty-cycle:
+> >>>>>> +=A0=A0=A0 description: |
+> >>>>>> +=A0=A0=A0=A0=A0 Configures the initial duty cycle for the PWM out=
+puts. The=20
+> >>>>>> hardware
+> >>>>>> +=A0=A0=A0=A0=A0 default is 100% but this may cause unwanted fan n=
+oise at=20
+> >>>>>> startup. Set
+> >>>>>> +=A0=A0=A0=A0=A0 this to a value from 0 (0% duty cycle) to 255 (10=
+0% duty=20
+> >>>>>> cycle).
+> >>>>>> +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/uint32-array
+> >>>>>> +=A0=A0=A0 minItems: 3
+> >>>>>> +=A0=A0=A0 maxItems: 3
+> >>>>>> +=A0=A0=A0 items:
+> >>>>>> +=A0=A0=A0=A0=A0 minimum: 0
+> >>>>>> +=A0=A0=A0=A0=A0 maximum: 255
+> >>>>>> +=A0=A0=A0=A0=A0 default: 255
+> >>>>>> +
+> >>>>>> +=A0 adi,pwm-initial-frequency:
+> >>>>> Frequency usually has some units, so use appropriate unit suffix and
+> >>>>> drop $ref.=A0 Maybe that's just target-rpm property?
+> >>>>>
+> >>>>> But isn't this duplicating previous property? This is fan controlle=
+r,
+> >>>>> not PWM provider (in any case you miss proper $refs to pwm.yaml or
+> >>>>> fan-common.yaml), so the only thing you initially want to=20
+> >>>>> configure is
+> >>>>> the fan rotation, not specific PWM waveform. If you you want to
+> >>>>> configure specific PWM waveform, then it's a PWM provider... but=20
+> >>>>> it is
+> >>>>> not... Confused.
+> >>>> There's two things going on here. There's a PWM duty cycle which is
+> >>>> configurable from 0% to 100%. It might be nice if this was=20
+> >>>> expressed as
+> >>>> a percentage instead of 0-255 but I went with the latter because=20
+> >>>> that's
+> >>>> how the sysfs ABI for the duty cycle works.
+> >>>>
+> >>>> The frequency (which I'll call adi,pwm-initial-frequency-hz in v3)
+> >>>> affects how that duty cycle is presented to the fans. So you could=
+=20
+> >>>> still
+> >>>> have a duty cycle of 50% at any frequency. What frequency is best
+> >>>> depends on the kind of fans being used. In my particular case the=20
+> >>>> lower
+> >>>> frequencies end up with the fans oscillating annoyingly so I use the
+> >>>> highest setting.
+> >>>>
+> >>> My udnerstanding is that we are supposed to use standard pwm provider
+> >>> properties. The property description is provider specicic, so I think
+> >>> we can pretty much just make it up.
+> >>>
+> >>> Essentially you'd first define a pwm provider which defines all the
+> >>> pwm parameters needed, such as pwm freqency, default duty cycle,
+> >>> and flags such as PWM_POLARITY_INVERTED. You'd then add something like
+> >>>
+> >>> =A0=A0=A0=A0pwms =3D <&pwm index frequency duty_cycle ... flags>;
+> >>>
+> >>> to the node for each fan, and be done.
+> >>>
+> >>> That doesn't mean that we would actually have to register the chip
+> >>> as pwm provider with the pwm subsystem; all we would have to do is to
+> >>> interpret the property values.
+> >>
+> >> We've already got the pwm-active-state as a separate property so that
+> >> might be tricky to deal with, I guess it could be deprecated in favour
+> >> of something else. Looking at pwm.yaml and fan-common.yaml I can't qui=
+te
+> >> see how that'd help here. Were you thinking maybe something like
+> >>
+> >> pwm: hwmon@2e {
+> >> =A0 =A0=A0=A0 compatible =3D "adi,adt7476";
+> >> =A0 =A0=A0=A0 reg =3D <0x2e>;
+> >> =A0 =A0=A0=A0 #pwm-cells =3D <4>;
+> >> =A0 =A0=A0=A0 fan-0 {
+> >> =A0 =A0=A0=A0 =A0=A0=A0 pwms =3D <&pwm 0 255 22500 PWM_POLARITY_INVERT=
+ED>;
+> >> =A0 =A0=A0=A0 =A0=A0=A0 pwm-names =3D "PWM1";
+> >> =A0 =A0=A0=A0 =A0=A0=A0 tach-ch =3D <0>;
+> >> =A0 =A0=A0=A0 };
+> >> =A0 =A0=A0=A0 fan-1 {
+> >> =A0 =A0=A0=A0 =A0=A0=A0 // controlled by pwm 0
+> >> =A0 =A0=A0=A0 =A0=A0=A0 tach-ch =3D <1>
+> >> =A0 =A0=A0=A0 };
+> >> =A0 =A0=A0=A0 fan-0 {
+> >> =A0 =A0=A0=A0=A0=A0=A0=A0 pwms =3D <&pwm 2 255 22500 PWM_POLARITY_INVE=
+RTED>;
+> >> =A0 =A0=A0=A0 =A0=A0=A0 pwm-names =3D "PWM3";
+> >> =A0 =A0=A0=A0=A0=A0=A0=A0 tach-ch <2>;
+> >> =A0 =A0=A0=A0 };
+> >> =A0 =A0=A0=A0 fan-1 {
+> >> =A0 =A0=A0=A0=A0=A0=A0=A0 // controlled by pwm 2
+> >> =A0 =A0=A0=A0=A0=A0=A0=A0 tach-ch =3D <3>
 > >
-> > The fully implemented and tested version of the .dts corresponding to
-> > the hardware pictured in the cover letter can be found at [1].
+> > I think that would have to be
 > >
-> > [1]: https://github.com/dlech/linux/blob/axi-spi-engine-offload-v2/arch=
-/arm/boot/dts/xilinx/zynq-zed-adv7511-ad7986.dts
->
-> Unfortunately this is a trivial example, so there's not much to be
-> gained in new information from the example in the bindings :/ Your
-> examples below are good though, which makes up for that and more.
->
-> > To be clear though, the idea that I am proposing here is that if there
-> > is something beyond the SPI controller directly connected to the
-> > offload, then we would add those things in the peripheral node along
-> > with the spi-offloads property that specifies the offload those other
-> > things are connected to.
+> > =A0=A0=A0=A0...
+> > =A0=A0=A0=A0fan-0 {
+> > =A0=A0=A0=A0=A0=A0=A0 pwms =3D <&pwm 0 255 22500 PWM_POLARITY_INVERTED>;
+> > =A0=A0=A0=A0=A0=A0=A0 tach-ch =3D <1 2>;
+> > =A0=A0=A0=A0};
+> > =A0=A0=A0=A0fan-1 {
+> > =A0=A0=A0=A0=A0=A0=A0 tach-ch =3D <3>
+> > =A0=A0=A0=A0};
+> > =A0=A0=A0=A0...
 > >
-> > Tangent on phandle vs. no phandle:
->
-> Yeah, I think not having a phandle makes sense based on what you've
-> said.
->
-> > Back to "something beyond the SPI controller":
+> > Context: pwm-names is optional and does not add value here unless I am=
+=20
+> > missing
+> > something. Also, if I understand the bindings correctly, all=20
+> > tachometer channels
+> > controlled by a single pwm are supposed to be listed in a single node.=
+=20
+> > With the
+> > above, you'd then have fan1, fan2, and fan3 plus pwm1 and pwm3 (pwm2=20
+> > would be
+> > disabled/unused).
 > >
-> > Here are some examples of how I envision this would work.
+> > Code-wise, I think you'd then call
 > >
-> > Let's suppose we have a SPI controller that has some sort of offload
-> > capability with a configurable trigger source. The trigger can either
-> > be an internal software trigger (i.e. writing a register of the SPI
-> > controller) or and external trigger (i.e. a input signal from a pin on
-> > the SoC). The SPI controller has a lookup table with 8 slots where it
-> > can store a series of SPI commands that can be played back by
-> > asserting the trigger (this is what provides the "offloading").
+> > =A0=A0=A0=A0struct of_phandle_args args;
+> > =A0=A0=A0=A0...
+> > =A0=A0=A0=A0err =3D of_parse_phandle_with_args(np, "pwms", "#pwm-cells"=
+, 0, &args)
 > >
-> > So this SPI controller would have #spi-offload-cells =3D <2>; where the
-> > first cell would be the index in the lookup table 0 to 7 and the
-> > second cell would be the trigger source 0 for software or 1 for
-> > hardware.
-> >
-> > Application 1: a network controller
-> >
-> > This could use two offloads, one for TX and one for RX. For TX, we use
-> > the first slot with a software trigger because the data is coming from
-> > Linux. For RX we use the second slot with a hardware trigger since
-> > data is coming from the network controller (i.e. a data ready signal
-> > that would normally be wired to a gpio for interrupt but wired to the
-> > SPI offload trigger input pin instead). So the peripheral bindings
-> > would be:
-> >
-> > #define SOFTWARE_TRIGGER 0
-> > #define HARDWARE_TRIGGER 1
-> >
-> > can@0 {
-> >     ...
-> >     spi-offloads =3D <0 SOFTWARE_TRIGGER>, <1 HARDWARE_TRIGGER>;
-> >     /* maybe we need names too? */
-> >     spi-offload-names =3D "tx", "rx";
-> > };
-> >
-> > In this case, there is nothing extra beyond the SPI controller and the
-> > network controller, so no extra bindings beyond this are needed.
-> >
-> > Application 2: an advanced ADC + FPGA
-> >
-> > This is basically the same as the ad7944 case seen already with one
-> > extra feature. In this case, the sample data also contains a CRC byte
-> > for error checking. So instead of SPI RX data going directly to DMA,
-> > the FPGA removes the CRC byte from the data stream an only the sample
-> > data goes to the DMA buffer. The CRC is checked and if bad, an
-> > interrupt is asserted.
-> >
-> > Since this is an FPGA, most everything is hardwired rather than having
-> > any kind of mux selection so #spi-offload-cells =3D <1>; for this
-> > controller.
-> >
-> > By adding spi-offloads to the peripheral node, it also extends the
-> > peripheral binding to include the additional properties needed for the
-> > extra features provided by the FPGA. In other words, we are saying
-> > this DT node now represents the ADC chip plus everything connected to
-> > the offload instance used by the ADC chip.
->
-> It seems very strange to me that the dmas and the clock triggers are
-> going into the spi device nodes. The description is
-> | +  dmas:
-> | +    maxItems: 1
-> | +    description: RX DMA Channel for receiving a samples from the SPI o=
-ffload.
-> But as far as I can tell this device is in a package of its own and not
-> some IP provided by Analog that an engine on the FPGA can actually do
-> DMA to, and the actual connection of the device is "just" SPI.
-> The dmas and clock triggers etc appear to be resources belonging to the
-> controller that can "assigned" to a particular spi device. If the adc
-> gets disconnected from the system, the dmas and clock triggers are still
-> connected to the spi controller/offload engine, they don't end up n/c,
-> right? (Well maybe they would in the case of a fancy SPI device that
-> provides it's own sampling clock or w/e, but then it'd be a clock
-> provider of sorts). I'd be expecting the spi-offloads property to be
-> responsible for selecting which of the various resources belonging to
-> the controller are to be used by a device.
-> Maybe it overcomplicates the shit out of things and Rob or Mark are
-> gonna start screaming at me but w/e, looking at it from the point of
-> view of how the hardware is laid out (or at least how it is described
-> in your FPGA case above) the dma/clock properties looks like they're
-> misplaced. IOW, I don't think that adding the spi-offloads property
-> should convert a node from representing an ADC in a qfn-20 or w/e
-> to "the ADC chip plus everything connected to the offload instance
-> used by the ADC chip".
+> > with np pointing to the fan node. This should return the parameters in=
+=20
+> > 'args'.
+>=20
+> On that point. How would I explain in the bindings that cell 2 is the=20
+> duty cycle, cell 3 is the frequency and cell 4 is the flags?
 
-This is the same reasoning that led me to the binding proposed in v1.
-Rob suggested that these extras (dmas/clocks) should just be
-properties directly of the SPI controller. But the issue I have with
-that is that since this is an FPGA, these properties are not fixed.
-Maybe there are more clocks or no clocks or interrupts or something we
-didn't think of yet. So it doesn't really seem possible to write a
-binding for the SPI controller node to cover all of these cases. These
-extras are included in the FPGA bitstream only for a specific type of
-peripheral, not for general use of the SPI controller with any type of
-peripheral.
+In the pwm-cells property in the pwm provider binding . You might want to
+order it as <index freq flags duty> as usually that's the ordering done
+in most (all?) pwm provider bindings that I have seen.
+The pwm bindings I think are really unhelpful though - they all say "see
+pwm.yaml for info on the cells in #pwm-cells, but then pwm.yaml has no
+information. The information is actually in pwm.text, but the binding
+conversion did s/pwm.text/pwm.yaml/ in pwm controller bindings.
+I'll send a patch that fixes up pwm.yaml.
 
-Another idea I had was to perhaps use the recently added IIO backend
-framework for the "extras". The idea there is that we are creating a
-"composite" IIO device that consists of the ADC chip (frontend) plus
-these extra hardware trigger and hardware buffer functions provided by
-the FPGA (backend).
-
-offload_backend: adc0-backend {
-    /* http://analogdevicesinc.github.io/hdl/projects/pulsar_adc/index.html=
- */
-    compatible =3D "adi,pulsar-adc-offload";
-    #io-backend-cells =3D <0>;
-    dmas =3D <&dma 0>;
-    dma-names =3D "rx";
-    clocks =3D <&trigger_clock>;
-};
-
-spi {
-    ...
-    adc@0 {
-        ...
-        spi-offloads =3D <0>;
-        io-backends =3D <&offload_backend>;
-    };
-};
-
-While this could be a solution for IIO devices, this wouldn't solve
-the issue in general though for SPI offloads used with non-IIO
-peripherals. So I don't think it is the right thing to do here. But, I
-think this idea of a "composite" device helps explain why we are
-pushing for putting the "extras" with the peripheral node rather than
-the controller node, at least for the specific case of the AXI SPI
-Engine controller.
-
->
-> > adc@0 {
-> >     ...
-> >     spi-offloads =3D <0>;
-> >     dmas =3D <&dma 0>; /* channel receiving split out sample data */
-> >     dma-names =3D "rx";
-> >     interrupts =3D <&intc 99>; /* interrupt for bad CRC */
-> >     interrupt-names =3D "crc";
-> > };
+>=20
+> The other complication is that one of the systems I have is x86 so I=20
+> need to express this with the ACPI Device Properties compatibility code.=
+=20
+> I think I can figure out the ACPI table stuff but I can't call=20
+> of_parse_phandle_with_args() directly.
+>=20
 > >
-> > >
-> > > > Asking because I got pushback on
-> > > > v1 for using a phandle with offloads (although in that case, the
-> > > > phandle was for the offload instance itself instead for the SPI
-> > > > controller, so maybe this is different in this case?).
-> > >
-> > > Do you have a link to this v1 pushback?
+> > However, unless you have a use case, I'd suggest not to implement=20
+> > support for
+> > "multiple fans controlled by single pwm" since that would require extra
+> > code and you would not actually be able to test it. A mandatory 1:1=20
+> > mapping
+> > is fine with me. Support for 1:n mapping can be implemented if / when=
+=20
+> > there
+> > is a use case.=20
+>=20
+> The system I'm dealing with has exactly that. But we don't adjust the=20
+> fan RPM directly so I think we're OK (just maybe some comments so people=
+=20
+> aren't confused by missing fans). The ADT7476 will adjust the PWM duty=20
+> cycle based on the temperature, the fan RPM is just something we report=
+=20
+> (and generate an alarm if it goes too low).
+>=20
+> > The same is true for registering the driver with the pwm
+> > subsystem - that would only be necessary if anyone ever uses one of the
+> > pwm channels for non-fan use.
+>=20
+> Agreed. I won't plumb anything into the pwm subsystem. Although it would=
+=20
+> be kind of neat to see a LED that changes as the system gets hotter,=20
+> kind of like an electronic thermochromic crystal.
+>=20
 > >
-> > Hmm... maybe that was from some internal review before v1 that I was
-> > remembering and confusing with the resistance of different aspects you
-> > mention below.
+> > That makes me wonder if we actually need tach-ch in the first place or =
+if
+> > something like
 > >
-> > > I had looked at the v1's binding
-> > > comments and didn't see that type of property being resisted - althou=
-gh
-> > > I did see some resistance to the spi peripheral node containing any o=
-f
-> > > the information about the offloads it had been assigned and instead
-> > > doing that mapping in the controller so that the cs was sufficient. I
-> > > don't think that'd work with the scenario you describe above though
-> > > where there could be two different triggers per device tho.
-> >
-> > I think most of the objection was to having an offloads object node
-> > with offload@ subnodes in the SPI controller node along side the
-> > peripheral nodes.
->
-> I dunno, that was my reading of Rob's comments at least. I know he had
-> more than one objection though, so maybe we're just looking at different
-> portions of it - I did note that you removed the offload@ though.
->
-> Cheers,
-> Conor.
+> > =A0=A0=A0=A0fan-0 {
+> > =A0=A0=A0=A0=A0=A0=A0 pwms =3D <&pwm 0 255 22500 PWM_POLARITY_INVERTED>;
+> > =A0=A0=A0=A0};
+> > =A0=A0=A0=A0fan-1 {
+> > =A0=A0=A0=A0=A0=A0=A0 pwms =3D <&pwm 1 255 22500 0>;
+> > =A0=A0=A0=A0};
+> > =A0=A0=A0=A0...
+> > would do for this chip.=20
+>=20
+> Yeah that'd be fine for me.
+
+--E0zBh/oCqKg5WlFd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkeNFgAKCRB4tDGHoIJi
+0gsGAP9TfXE9mwcLmxdXm0MAVsD4MB7yThich6osnhWuZPnK4AEAs+1P42LT+6YL
+sBlu222Rd2+6WB+AcbYBiL0UTpBYJwA=
+=NlYM
+-----END PGP SIGNATURE-----
+
+--E0zBh/oCqKg5WlFd--
 
