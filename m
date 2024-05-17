@@ -1,106 +1,95 @@
-Return-Path: <devicetree+bounces-67598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EA0D8C8D47
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:30:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8B88C8D53
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 402031C221DA
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:30:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95C0E2864E4
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:38:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06901411CB;
-	Fri, 17 May 2024 20:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4351A41C6E;
+	Fri, 17 May 2024 20:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oFZPW4VJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="US2jN4iC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871981411C5;
-	Fri, 17 May 2024 20:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB5F14F61;
+	Fri, 17 May 2024 20:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715977807; cv=none; b=j9d2TFUdG/HnAPCOPfHEq7EVFDJ//UUVjcuKhb6sdkoBhtj3zixuZLhZ5gK6wPu9mdRxTPLPaWL0q8pmp5yR8cGbCn0ykHhWQRzin3W7WOgl/W5BXI/bgknUYE2dbZn7Z2hLKvNR0wybQ9oGIVyCcK5M6P0Z5Az06pFYTqZii2M=
+	t=1715978310; cv=none; b=c342xzxG/sFxIn7fB564todz+YdfceShQYh1xnxvFhHURmgq2IN15TDmjbFQtquX4dBXYIr6kwh1N6k9LAqZ81FBPOIfKgCijXjuldtG4aDa+/dhHi2F8mrnWei2sxub6L50t7Ydy4vGYoi47UX0C03To+S0XeCgQzoOjc1zlI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715977807; c=relaxed/simple;
-	bh=pADEbApVXIv0FappvvSpMuC23lIc4IlKvDPrdkdJIb4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JgbQC/tFYX1vrUjoOlf1dmEaG6rCnxq10Y1+5sUzy93u2fFo+isHoN58RLi46kYReO73TxapElzPaEvWT4ziwF9ZoEvO/CclSVNVmdz/6NCtQtAm68OVdF64qtHvSaJRLvzyYGHF99BPB7BdSRlQchpcwvwOOD+gQJqPJBiTbJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oFZPW4VJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA1D1C2BD10;
-	Fri, 17 May 2024 20:30:06 +0000 (UTC)
+	s=arc-20240116; t=1715978310; c=relaxed/simple;
+	bh=jXVxvuA4QzVhcG150evLa4DPe5FRaUxxzqJ1vrqUjXM=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=UGoxC/4/01srW18hUUsKgmqUrcsB3nn2/UaYvUqUzw77Eodu/L+3gl77D5Q5n9VZu3MyZA1jTrSD0aJfomw3329MGfGRmdIzsird7B8V7H9/QuO6hjwHjfr4miUnPWo3cHXFPj2oplJ03bmSufcgcrSkXA/jTiq4xQaSOF1TnlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=US2jN4iC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B01F8C4AF07;
+	Fri, 17 May 2024 20:38:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715977807;
-	bh=pADEbApVXIv0FappvvSpMuC23lIc4IlKvDPrdkdJIb4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oFZPW4VJ53opmg/YsvEmyH0NZre+FNsoZBUM16wU0fJNuxjAABNH/TBGZRneldfju
-	 qEpFdyCq2PJyl2u40NSwi23Q0nED63v3c8Zh44txo9vYe8ywbNvqE8H8AqY3oBbGT3
-	 iTt8mWXbS8OVV3ltCss+hRbUpRN8YoGKIdcJoM0k6QBaMqmObd3fA9njoByEPxl1R5
-	 qcQArEDk6c/E6y129aB/2D3zia2K/YNAijwh9Bp9rx6Cd5/lGiwW45ospYUGFAzuV0
-	 XhIfNrUUHzz8NKRIs8/FzY7x0b6OH9+r+UGeETDiJIVDHmLAjwWnrVcckjg9aM3B9z
-	 V4/pRYwZSjolQ==
-Date: Fri, 17 May 2024 15:30:05 -0500
-From: Rob Herring <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liu Ying <victor.liu@nxp.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Robert Foss <rfoss@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
-	kernel@dh-electronics.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: display: synopsys,dw-hdmi: Document
- ddc-i2c-bus in core
-Message-ID: <20240517203005.GA2893366-robh@kernel.org>
-References: <20240515062753.111746-1-marex@denx.de>
- <20240515134705.GA12169@pendragon.ideasonboard.com>
+	s=k20201202; t=1715978309;
+	bh=jXVxvuA4QzVhcG150evLa4DPe5FRaUxxzqJ1vrqUjXM=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=US2jN4iC9DaCYchkJRVpWp0LeTeKNvi+WQYi5HnrY+68uhO8yIZ10aQ4H72wqtwcq
+	 RbpDPGyfzoAz5MtUYnJGU365hbpO3iLEcZXA1cYIUTpIjioh49MUjv9HSyTjYQsWyK
+	 DPR3LiTYJ0ZiJqcV9BhhZroD9/lfnt6EfHkIc3iYwC4Z1KPsvNRTYqfHqr+6Z3WcQn
+	 osPyc4GXGY4fRcQDUa3/LtiJ0RAnvExZGOO0x0up98rGbxwjFJeRDhPlbKMvKT1906
+	 RZmM34B2y2O7F1QdWTI2jZNju1Uyx1E8ujThG59U3MefJ2vtzoSTyTdWaHck3wtRAY
+	 j3od/WUYgonFQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id A2577C54BB2;
+	Fri, 17 May 2024 20:38:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240515134705.GA12169@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: ti: Update maintainers list
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <171597830966.5541.17091174323354972426.git-patchwork-notify@kernel.org>
+Date: Fri, 17 May 2024 20:38:29 +0000
+References: <20240516054932.27597-1-r-gunasekaran@ti.com>
+In-Reply-To: <20240516054932.27597-1-r-gunasekaran@ti.com>
+To: Ravi Gunasekaran <r-gunasekaran@ti.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, s-vadapalli@ti.com, rogerq@kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 
-On Wed, May 15, 2024 at 04:47:05PM +0300, Laurent Pinchart wrote:
-> Hi Marek,
+Hello:
+
+This patch was applied to netdev/net.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Thu, 16 May 2024 11:19:32 +0530 you wrote:
+> Update the list with the current maintainers of TI's CPSW ethernet
+> peripheral.
 > 
-> Thank you for the patch.
-> 
-> On Wed, May 15, 2024 at 08:27:44AM +0200, Marek Vasut wrote:
-> > The DW HDMI driver core is responsible for parsing the 'ddc-i2c-bus' property,
-> > move the property description into the DW HDMI common DT schema too, so this
-> > property can be used on all devices integrating the DW HDMI core.
-> 
-> De-duplicating documentation is good :-)
+> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> ---
+>  Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml        | 1 -
+>  Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml | 1 -
+>  Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml      | 1 -
+>  3 files changed, 3 deletions(-)
 
-Generally, yes.
+Here is the summary with links:
+  - [net-next] dt-bindings: net: ti: Update maintainers list
+    https://git.kernel.org/netdev/net/c/ce08eeb59df0
 
-> I see no reason why this property should be disallowed on any of the
-> platforms that integrate a DW HDMI (unless that platform has no other
-> I2C controller, but I think we can ignore that in the bindings).
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-The main reason is Because this property should be in a connector node 
-as the I2C bus is connected to the connector not the HDMI block.
 
-I would suggest this gets marked 'deprecated'. Can be a separate patch.
-
-Rob
 
