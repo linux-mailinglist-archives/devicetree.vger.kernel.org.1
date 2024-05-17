@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-67554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBA68C89DA
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 18:15:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 817FB8C89E3
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 18:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C45291F23A3D
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 16:15:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2BCA1C2185D
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 16:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3725C12FB28;
-	Fri, 17 May 2024 16:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A8912FB07;
+	Fri, 17 May 2024 16:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qGBhi2/R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aO3rRbTs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0653D12F590;
-	Fri, 17 May 2024 16:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA1812F5A7;
+	Fri, 17 May 2024 16:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715962503; cv=none; b=K1CP2cwRk2krucczot/xB9b78Yne4zqlxIN/tl4II/vWadfIXWNfqmdOYIPSgRqWEJx3XdEeDmT65ZLRhNDxN4nx6KL1WzIK1T/vQ9Wgw3DtIAI00aQQFOltcDfI7AYdiWIWNx6RcjqDcg7Wp0r2U9fA+SqMyecp9xrRA3F4/ko=
+	t=1715962611; cv=none; b=tMd/WJuEmLrruorLlKU8lxFjObz81CMNE1qAWB1OwtkiZt3UqaqJ9S211hrFsqAbucQIP36yNN+n0DCdBlgtY1YNlis6HH/zX9L8XJbQQjbp56stRXJj+8CCB1VE1pfe0zYI7xtpeCJonCHH2yuquNHWwYPXjQarAhNy/NtButg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715962503; c=relaxed/simple;
-	bh=0f3VHO7RMXtFaZP126+RB4mZ3zyGDNwOOkBNFAvaZv4=;
+	s=arc-20240116; t=1715962611; c=relaxed/simple;
+	bh=sYIW6xiRFDKpO0E7qs68ZN7uyOIsz2AfW+6kxgmPMW4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kEB7qCQJAAdVoPIF7sIkLTimtDotUybEGLgsvoL9kt4hf7CvsrFaUTU5RqW0Gg0QImCCrebeIrnlPg77Jj3yMRzqsFF+CfiZZJ5Wc94wpRHTnGiQD+eZcfAiyrLCAmrYm18GGGOlOleHSbvlWWhbEkhUXbZx2pHSL6L9Xcu3djQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qGBhi2/R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE84EC2BD10;
-	Fri, 17 May 2024 16:14:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=e67F7o6ue7QN4bAcn5kwxl+cS9tYDBTmBHKk9/8AU4d2R4nncjQCX8bjPvrytWH+f/pj0VDZpG+AG21Q12LKWSlv/4s3D9cNiRhMWyl1OnCd5w+zD/cG8BEzcQk4mNqCu4k4+sWv7SL5YI2HTo5CsQljizYKFrjmg19izZqNF+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aO3rRbTs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B40C2BD10;
+	Fri, 17 May 2024 16:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715962502;
-	bh=0f3VHO7RMXtFaZP126+RB4mZ3zyGDNwOOkBNFAvaZv4=;
+	s=k20201202; t=1715962610;
+	bh=sYIW6xiRFDKpO0E7qs68ZN7uyOIsz2AfW+6kxgmPMW4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qGBhi2/R7jd5bbFZeGp93256IL1NfP37VfriCxbtPRXXBM/UO46rHwSnkq9GwlT7q
-	 1/WifOsWUEVrtOv9GvCbaan5KIZUTW2zbkqnR3CzZ2ArvVQ/eXxBibJ1Icsfoji45y
-	 BLUczPx09k4B1wDNUELj2utnlqphZu+y2aPFhhVwlAeDdcEqHmqbJFeQfVvAFz6J6a
-	 5jqZvhaJXFfqXcs3skFv/wyRkIIjoAJfroTVgvOzMRj1StYwDRGUG/ef62SqONbrGV
-	 KzVvPlmpXiGtlLJbU4BXpV5m5xFcci1jkUfOMgHdzt5VZgTh03xNbEHmntBd0zQWN7
-	 yhCFadwIohJTQ==
-Date: Fri, 17 May 2024 17:14:56 +0100
+	b=aO3rRbTsGNqJTNoEOosC7U8ZPlbZsUJn4QsQ0FYLQ4lV+L6hIZ8E7tZGEmOgCp+3S
+	 nx5sfSd6N3BjMVdy8MVnQPR0Xa1o1RwD8Msu53pdvMJOtYpiXn3JzCckwCricC3iy7
+	 E0GSeOILvH+9HAhs/mkdsvTXPBNUv/4ZiO3XV818Pvtrtfu8jepDNVg/QNtYf7ufMy
+	 3KZr6h6F9eozJmMX5qAJn0xS7maVdDSeAt7Uz1lSbEUS4Y5gcRfRDEGmqz/XiKKceL
+	 MqKg/px5GKaE9M00BlqwYqo0RkDxgL0B7fobm1ncnMS1Wd/ztFdun0zeKujKjVgiyZ
+	 pY8V39DEjDnMg==
+Date: Fri, 17 May 2024 17:16:45 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Drew Fustini <dfustini@tenstorrent.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: i2c: dw: Document compatible
- thead,th1520-i2c
-Message-ID: <20240517-mummified-judicial-3e25bf4b760f@spud>
-References: <20240517-i2c-th1520-v2-0-d364d135ccc6@bootlin.com>
- <20240517-i2c-th1520-v2-1-d364d135ccc6@bootlin.com>
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: serial: snps-dw-apb-uart: Add one
+ more reset signal for StarFive JH7110 SoC
+Message-ID: <20240517-lion-supplier-f4d15b0edcff@spud>
+References: <20240517061713.95803-1-hal.feng@starfivetech.com>
+ <20240517061713.95803-2-hal.feng@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,37 +68,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="71HbPEXGH1oiwxL1"
+	protocol="application/pgp-signature"; boundary="ET0G0aOiXXDFM+f4"
 Content-Disposition: inline
-In-Reply-To: <20240517-i2c-th1520-v2-1-d364d135ccc6@bootlin.com>
+In-Reply-To: <20240517061713.95803-2-hal.feng@starfivetech.com>
 
 
---71HbPEXGH1oiwxL1
+--ET0G0aOiXXDFM+f4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 17, 2024 at 11:09:53AM +0200, Thomas Bonnefille wrote:
-> Add documentation for compatible string thead,th1520-i2c which can be
-> used specifically for the TH1520 SoC.
+On Fri, May 17, 2024 at 02:17:11PM +0800, Hal Feng wrote:
+> The UART of StarFive JH7110 has two reset signals.
+> Both of them are necessary for JH7110 to initialize UART.
 >=20
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  .../bindings/serial/snps-dw-apb-uart.yaml          | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.ya=
+ml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> index 1001d2a6ace8..a6396c5cbfb1 100644
+> --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> @@ -13,6 +13,16 @@ allOf:
+>    - $ref: serial.yaml#
+>    - $ref: rs485.yaml#
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-uart
+> +    then:
+> +      properties:
+> +        resets:
+> +          minItems: 2
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+else:
+  properties:
+    resets:
+      maxItems: 1
 
-Cheers,
+Thanks,
 Conor.
 
---71HbPEXGH1oiwxL1
+> +
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -48,6 +58,7 @@ properties:
+>            - enum:
+>                - starfive,jh7100-hsuart
+>                - starfive,jh7100-uart
+> +              - starfive,jh7110-uart
+>            - const: snps,dw-apb-uart
+>        - const: snps,dw-apb-uart
+> =20
+> @@ -82,7 +93,8 @@ properties:
+>      type: boolean
+> =20
+>    resets:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> =20
+>    reg-shift: true
+> =20
+> --=20
+> 2.43.2
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+--ET0G0aOiXXDFM+f4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkeCgAAKCRB4tDGHoIJi
-0gf6AQCpyToQ+uzYUl89vhM5TD0TeV1Wj/3Dy1R7kpdK3ljLMwEAl/QQkdxlsEzs
-53qFdL5/5XDkqkdArBN22iyImZG/1gs=
-=1DWo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkeC7QAKCRB4tDGHoIJi
+0vZ0AP0SDG3gdkl/SROzsnRuQ3RQz0FByypwdFgIWR36PF1aywD/fUifiJN9EkJS
+DWNaC36x9nDD0qUF9URCjGhdPH1TMws=
+=KlsG
 -----END PGP SIGNATURE-----
 
---71HbPEXGH1oiwxL1--
+--ET0G0aOiXXDFM+f4--
 
