@@ -1,123 +1,92 @@
-Return-Path: <devicetree+bounces-67517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C2D68C8802
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 16:25:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8AD68C882C
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 16:39:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DCDC1F2721D
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 14:25:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E77AF1C21E53
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 14:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889D05F860;
-	Fri, 17 May 2024 14:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02BB1A2C26;
+	Fri, 17 May 2024 14:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hCAAGTvD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2tmIfLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC145C603
-	for <devicetree@vger.kernel.org>; Fri, 17 May 2024 14:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D05657C6;
+	Fri, 17 May 2024 14:39:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715955771; cv=none; b=qIUTmFlvzDMhaK6zGs1uW3E86KZwxTrG6Q0kyhFcGKVuxDeYCEYHqj7+KUMRqc6biksYib88BudwWALX7flBtIb+G7d/6r2ufoYnC2AxsWpX1cP7a7Q1Zuc5kaOxipvboHugN47FcwMdJ/MYg2KGTX7kHjYHtBZ4tvBjFj294+E=
+	t=1715956765; cv=none; b=rM+aowf6aP1aVx7/QIYJDaq4NuoiakGlkRpeYq6L1N76TQ9EQmLIopkRk47HcVm2o7SjXGd4gDM6B265CaianR67UygRb1rXcmvss9wkHB/K5cpef/j+7XvMsVJt/aaNGfS6rpiO+GNKuL+d7pVoYSpMC84yUo0fWyg2ABQsV4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715955771; c=relaxed/simple;
-	bh=3HO4qcYXJgZg4FhjGTJW3cruo/JKZwmUPV9ToBYsSAo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fKIw5lFCbzXdJyEagDR8iNuphmq7T9AMwi9AXgzxRd62dGKnIt5/ihYYvFYd4zMNB9BPFKDGPYRm2JFUv/kfZB3wtl0Bl8R0svymWpSrDftofPow38qm0aMCc/6SQeAgcwbdM78lj78EKp7luOtQg16V0mWmPwX7Wj1/GSVf4L4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hCAAGTvD; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-571be483ccaso4956730a12.2
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2024 07:22:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715955768; x=1716560568; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wof1SP6Ref2uPP1r74EXX3SjtI/nnHeBDVdJ5oPu2bE=;
-        b=hCAAGTvDgjrhIms6gFi5YbRnJFYWE33SskuofW9QFge6pabMYIOKG3ax1z50604RHO
-         cUNiQj4GRFWQFF+4Q/08w40uvi4AvsNzh3jQxi4yXSbcnHoYmAyOKryYRDhpylUouhqb
-         WzDKMWbigNKWp0SGBH5gUAVMxNVt/uUWzFcItRA9puBQYqHt5juiohiRRPLG1nDQUGXi
-         0NWQMNoS/tY3OSkiTHpu8Mk30fXiwDWNSEZOaqzhsHjVhuqLoXGEqjujQ+VguSmYD9V4
-         9tGcIhjyhashpviINBhxrfODMyBC85oF/pJn+LrdJ3BNkh8ljVQR/o9BTRmZabHS6fgY
-         d/vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715955768; x=1716560568;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wof1SP6Ref2uPP1r74EXX3SjtI/nnHeBDVdJ5oPu2bE=;
-        b=RxGDQrzeK/EtSgInHBL61tQvEcRj1PHYmFq9KvQidrsAMd3xAwYGWDSQsq0BDX5vKe
-         D6KekcrnnOhK7bPOOl9MBGgSl150WFlsKWtUqXXra74UGHfb+56YNjEN9Jhhb+bYohFF
-         rhObwmg9MDtXtY5ufuk/TGS8K1xRAQB06C5wzLoDo/r6rUQnJy2JO/YekoMLX4IjPeT1
-         l97Cfwi3J0Cd6w49Hlo+HADMXfgEbkLQUPVLnrMX2wlUj/Ih7Mk4NnSBIybnkE48TBJN
-         FBTaVZQFjR4PqvBzE6x9CasR1oJTqRmhxFbBXCZs6Iy0Pwm6hY0q0eMeeHImke6gobGy
-         5wIw==
-X-Forwarded-Encrypted: i=1; AJvYcCW7e40s5tE4cMyfiruV/6YGFTmWU9LZ3pZwjqdraANM/axU1zqKgouOu9gbOsLsoMtm/o81Qbwi/fTwfdVA6dDCO9j3qP0xT84iiw==
-X-Gm-Message-State: AOJu0YxQoMcwyR4byXJVeHFd14sBpVnnq+cGgiR6WeBvb9IVAWZYEaaP
-	99GZ6NuirdiZZluP9HmXG7Ll38DVNOA8sfe6mmaMHXhUuEjtVNMyKT0katyzBmI=
-X-Google-Smtp-Source: AGHT+IEkGFHVxFI3gRZzrlJGe980Qfv7LG73mPGQFgV214HRmjJFEmkOWFb/l5SnJ8wpr5zF8KkFKw==
-X-Received: by 2002:a50:cdcd:0:b0:575:954:7ef with SMTP id 4fb4d7f45d1cf-57509540de0mr3627635a12.3.1715955768236;
-        Fri, 17 May 2024 07:22:48 -0700 (PDT)
-Received: from krzk-bin.. ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733bea65aasm12016784a12.5.2024.05.17.07.22.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 May 2024 07:22:47 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: soc: sti: st,sti-syscon: document codec node
-Date: Fri, 17 May 2024 16:22:45 +0200
-Message-ID: <20240517142245.178556-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1715956765; c=relaxed/simple;
+	bh=3cdbI//fG9tefYk9dE1HYEleskFp8c3t8dyT3UHix8M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AKQWkaKo+n5AkNwsJOWMdRcgbmD9lv33Os64JC1dcdZzCI3bMToRJy27e54xkMTAUP0DIhiOJAUZdMZU0DkAGSw/nyUUhRGKeCOzWMvnRiqL2qRGE1pfupYl8t1ICp0J5OGzEdFukDzrB+DEr2OodBl5jA7w3CGXBvfhCLW1QSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2tmIfLw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41BD3C2BD10;
+	Fri, 17 May 2024 14:39:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715956765;
+	bh=3cdbI//fG9tefYk9dE1HYEleskFp8c3t8dyT3UHix8M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O2tmIfLw5UuLh29Odt878FWDbCbSZLoYg0RSTNlyySrGFGMRApFn8XmrVAGWrWGqX
+	 6uAgH/40n+pQ6I0S0BQ4goJkw1YCaEAQSlDW6I3/bCg2FESY4wcHDCA4+kTkiR9aMn
+	 RNOM4PhSRClOzhXvWnAEx9y5jq9dY5Q4UPbuQ0Ep1lKFYdVtrmLwLRFr2OAyT9nwT8
+	 6fDs55X0g5id9d2OqWU01mjyQLlBbD63wGQxT9TOyZjFKJl6aKqmWUb5Z2vmyE9t83
+	 WGEMAT/sfSlBfCsMbzC1ZwnF/a8exox9jhFkMF6BMXrK7afj2F3GCllwhKitgCESYM
+	 tA4wEyWfRx+7A==
+Date: Fri, 17 May 2024 15:39:20 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Udit Kumar <u-kumar1@ti.com>
+Cc: vigneshr@ti.com, nm@ti.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Kip Broadhurst <kbroadhurst@ti.com>
+Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
+ GPL-2.0
+Message-ID: <20240517-poster-purplish-9b356ce30248@spud>
+References: <20240517104226.3395480-1-u-kumar1@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BFsU5jMUN2WDtALy"
+Content-Disposition: inline
+In-Reply-To: <20240517104226.3395480-1-u-kumar1@ti.com>
 
-st,stih407-core-syscfg syscon block comes with a child - the audio
-codec, whose binding is still in TXT format.  Document the child to fix
-dtbs_check validation errors, while allowing later the binding to be
-converted to DT schema:
 
-  stih410-b2260.dtb: core-syscfg@92b0000: 'sti-sasg-codec' does not match any of the regexes: 'pinctrl-[0-9]+'
+--BFsU5jMUN2WDtALy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/soc/sti/st,sti-syscon.yaml       | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for TI specific phy header files. This allows for Linux
+> kernel files to be used in other Operating System ecosystems
+> such as Zephyr or FreeBSD.
 
-diff --git a/Documentation/devicetree/bindings/soc/sti/st,sti-syscon.yaml b/Documentation/devicetree/bindings/soc/sti/st,sti-syscon.yaml
-index 5f97d9ff17fb..fc933d70d138 100644
---- a/Documentation/devicetree/bindings/soc/sti/st,sti-syscon.yaml
-+++ b/Documentation/devicetree/bindings/soc/sti/st,sti-syscon.yaml
-@@ -30,6 +30,15 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  sti-sasg-codec:
-+    description: STi internal audio codec
-+    type: object
-+    additionalProperties: true
-+
-+    properties:
-+      compatible:
-+        const: st,stih407-sas-codec
-+
- required:
-   - compatible
-   - reg
--- 
-2.43.0
+What's wrong with BSD-2-Clause, why not use that?
 
+--BFsU5jMUN2WDtALy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkdsGAAKCRB4tDGHoIJi
+0kciAQDK14E8urYqaI3ZlTzZh6PZzWSnKCy3CCLh+0+DDJIULwEAymLHRIHihVUF
+V8M02LksJM6/Ar0BzCk+9r/bSAOmzgE=
+=0N2C
+-----END PGP SIGNATURE-----
+
+--BFsU5jMUN2WDtALy--
 
