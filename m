@@ -1,236 +1,245 @@
-Return-Path: <devicetree+bounces-67600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D8878C8D81
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:59:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F388C8D88
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 23:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A916B21287
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:59:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A112281CD5
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 21:09:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB7ED12FB10;
-	Fri, 17 May 2024 20:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8EB38DE0;
+	Fri, 17 May 2024 21:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="19TyXORL"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Aoi8VpKP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2071.outbound.protection.outlook.com [40.107.247.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0508B140E3C
-	for <devicetree@vger.kernel.org>; Fri, 17 May 2024 20:59:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715979590; cv=none; b=taUSo8t/XpObsASHtvtkuS4QjqxydpBXOM1uGivVhe81LVRmVOhtgvfsRnrXUZy+7U6WVfoXgoYMk/14SAjzo5yxN5oQywOx9dEV4/wtUoTV0FMSMJThPz87uZLrXQxVHB/tc4yVVLSn6g8lFXa4Rzbfj/pt8ADhRiQVYaxSSAM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715979590; c=relaxed/simple;
-	bh=0TZxtabTN9ES/yjWEVp1TeEISsbnCtrQpRlL28vKIKM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uQK0+C8+p07P0qeMFrc8Z8PxiKOzwGM6TcYfT+Sj1CP7OYuHBZysnRGMINIDuPZokARsiX9i4f5xYqRl6slZbuKEkSsq2DfaBnBhTRc0SiErxm/C9Nal+vvccMr7pxpVOgK4tjNHWXOpkEYW5GtYDay3Zu5Y7YCDQklFbHiYqqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=19TyXORL; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-351ae94323aso458482f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2024 13:59:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1715979587; x=1716584387; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V6O0tC8na6Pj3c9nhuKHr2BFcOQR/Gezv9wh+gJUdbU=;
-        b=19TyXORLVN8H/DqVeZgeOXtDnQuVz+vPzIFm3loOT3S+jPuOrdXO1qEwxPofs3+EF1
-         Ak10nByMEpyGD124SHrQIs33bXErLLaGyTSC8GGMLnKdLOCb4m/y8p2S521wFmKzKuLR
-         ORGaRtBXlHXxcfk5muYKDOj6cVN8SxMCQOXnQ9Dwhx9EVrqcuGN1mxYP1j/yL4eM3KpE
-         TFhgfGlRE4Fm1/CUKYran0nBYXDNBHGJCkdFzWfDOO0giYuAfPYxxSKZYiMGqtUFB3Ob
-         4wcbYRnXZrKuOibejN7GVlLOz3+w6PC0sZ19GLNfR8k9rR3exUaRQV0VkpMXFSizWMUM
-         fA/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715979587; x=1716584387;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V6O0tC8na6Pj3c9nhuKHr2BFcOQR/Gezv9wh+gJUdbU=;
-        b=k2NuZrhlR/EfqyhriBrWzCey8zBlUsgnlOMR3qiUW8Rq2F/ULt6pr3s3UMuBzFpCkr
-         DazMj5ZPf2DGmSOJKKDN7g4bViRKmcPaOcje7+fWBGpx0YaWvHCPmXnIBx/N/Ze2g1wz
-         Ajp5xkclptaMgVkpVsJCoQxo1cooMIFg1/BmYjCB42R3E2Wb7xJDdDYHwfCyBsTZqNkQ
-         dr/T0+Ml/Mu6BcC05N6dGQbWqhf1s+blUpgsk+LSLCbEZq89if3FMzEnzMdR3p5zp0Ne
-         dMAl5MpFL6bp0CERpiKtVn2DCtWSEWFqciU9ImPiBNinf44/y+VZTD2teefI0GpGv3ge
-         FA1A==
-X-Forwarded-Encrypted: i=1; AJvYcCWUOkC7574Ufxn6ZxneVwNyErTubny2OvmnN/XphKDHp5FbI79ZmASbr572m/rRn/mlLvU45Q8Kc7u+Cy/CfDeYSyBt/ryTNCOuig==
-X-Gm-Message-State: AOJu0YwR+qrrGm9Y4FgyHK1CpsPoZGcJl6hejq/WnlOyODumYEbcg1mx
-	N0T1V7NOHFZ4HUFmWz6HmwVgOHRR/qRZSbUbiVnqmrW8/jYuVI64WUczywRc9x3adm/js3YbRw7
-	MVIpKdcoygM7GQCC1PtgWQAjKLqBju6YdjoR7
-X-Google-Smtp-Source: AGHT+IGhIiX3M7zHX/c/sT/HHbRWZo1wnXb6C38RXtq2uUkXk2rK+mfOp74wDEFz8G/GWAFGkLyz6440mpHNuoZxsyA=
-X-Received: by 2002:a5d:4451:0:b0:349:cd18:abbd with SMTP id
- ffacd0b85a97d-3504a96895dmr16923988f8f.46.1715979586981; Fri, 17 May 2024
- 13:59:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE167E76D;
+	Fri, 17 May 2024 21:09:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715980176; cv=fail; b=rGb131KBXWbQ0l49/XXXnhwN7OISzeuTn3VBWr0myK4cSXqIOzTMfjESK7oJhAMIoc3FSl1BisY520ymMvdxEyHYKWtm/TdJngH1KyFMt+Wqx0i0B90L2ZRqoeBQlsosREHnmvEfyO6L1+OqonL0ScVVZZetcuqnCEg+p+FwKWI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715980176; c=relaxed/simple;
+	bh=boFMxbHIy1XB30+eFCCeqYI50shUL0zNwPLxcJAyxT4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=doUQfdtxutyKIOVLEZkqMflaPenqkSaiG4/DMvJZ3Z7ABSsD4Djw6SH28Bf69PZdX2m1D/YAhnObCxCbhbCR4OlRwFiYIqY/9fyJx4EfsjZ/TAkIi+J+UkvFv49lc/3VbgmFT7SW/Xk1J5oHsdFYV+pVSXg1LmlGwi5s7/C+muY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=fail (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Aoi8VpKP reason="signature verification failed"; arc=fail smtp.client-ip=40.107.247.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V6XbpmWB6A1ZkvABxOjhb3ol7E95vYBsz/J68Gi76OFvP9/yKYM89ztwnKDiPH85GFL1CcO673Jn84yf+5CZmYcBsOyRBSYDdByOrQUR8IlU2Y/+cw01dz1ndBhcPrqoNQfZjRY+xvD/WRig3YXXnfrppUsFHsqxSI4n0dt+dxm9uPAyxg56npOg7cpLSKpPJuhrp0183lVPKENTNHRuE4Igj2Jfd08G2BwdyMNUH7LIi9GognoRKnIow1G/oWamIXhJ3inYIIhoE7BmCSDfrwG4hXlGhOoAj8N7ekx46YHXRHqGRLe+SUUwWNsHxYe01WR2gshLnWUtQtHCaIFWaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LqNPSzCRMHWx+5iWddn8r1TvXQ1QU7NJ2NJRGs9zZF8=;
+ b=ZEUJI35VwtA37jcbKFp7zYHqSBE4E9WuWjmTSmjYDyRgk3C41iei/XuALpdct6j4IP/1/JxNUJQJaNmAgC1l7PN21+/mV25J3Uc8mT0nyFeJ7EV9maefAZQOk0mA4xBUAvR0oOFh8UUMHoYRAeKsBIGeIcjWhVzQgmLTQPt+b33pS/gdoFnNDwVkqT9cK9Ivbi50OJyi2GJuSngBdgtvT0OsF2VCigY3TdMKXpo4c7pDAZZp4znkfdwKKHlQPEbFl5PSNuBOtoMR4sYaZGmxM5uXD59tpKlhkUoDfp8RSkpwNKwp82uv8ziSdp7ClIVza7rilYuXdNzQwscWctnefQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LqNPSzCRMHWx+5iWddn8r1TvXQ1QU7NJ2NJRGs9zZF8=;
+ b=Aoi8VpKPrc80L8TiDLAPFumD2tztn4bLPHrfHbWBQeaeBhCyMD2ZMNdkNlzLLgPnsX8kgDB87avGV0AIfY5X5Ps5/chQsxBVCJ0JeB18pXYD7RCvy8uzh3D2TMtadsfSrWwhwGt3WlDKTWjbg+Ar7BVH/iQfAvTMqz0QJ+rd40A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS5PR04MB10020.eurprd04.prod.outlook.com (2603:10a6:20b:682::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.27; Fri, 17 May
+ 2024 21:09:29 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7587.026; Fri, 17 May 2024
+ 21:09:29 +0000
+Date: Fri, 17 May 2024 17:09:20 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Han Xu <han.xu@nxp.com>,
+	Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/5] dt-bindings: mtd: gpmi-nand: Add
+ 'fsl,imx8qxp-gpmi-nand' compatible string
+Message-ID: <ZkfHgGhc5821c9Ma@lizhi-Precision-Tower-5810>
+References: <20240517-gpmi_nand-v1-0-73bb8d2cd441@nxp.com>
+ <20240517-gpmi_nand-v1-1-73bb8d2cd441@nxp.com>
+ <20240517203621.72b8b9c7@xps-13>
+ <Zkes3n6ZLjIFFQUK@lizhi-Precision-Tower-5810>
+ <20240517215055.02622324@xps-13>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240517215055.02622324@xps-13>
+X-ClientProxiedBy: BY3PR05CA0054.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::29) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127004321.1902477-1-davidai@google.com> <20240127004321.1902477-2-davidai@google.com>
- <20240131170608.GA1441369-robh@kernel.org> <CAGETcx8S0oS67oMZsPKk6_MGAtygoHEf_LN1gbcNDEBqRJ4PPg@mail.gmail.com>
- <20240202155352.GA37864-robh@kernel.org> <20240215112626.zfkiq2i2imbqcdof@bogus>
- <CABN1KCLbhh9Rf9R2J2UoTS+6Dzc8yysOedKgXizPbQvYuG8tqQ@mail.gmail.com> <ZjoAwVKvyHzX4_QW@bogus>
-In-Reply-To: <ZjoAwVKvyHzX4_QW@bogus>
-From: David Dai <davidai@google.com>
-Date: Fri, 17 May 2024 13:59:35 -0700
-Message-ID: <CABN1KCJbuZ-+VmvF4OhtngZr095F6RZ5BipGvF8chqKkoZkG4g@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: cpufreq: add virtual cpufreq device
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Quentin Perret <qperret@google.com>, Masami Hiramatsu <mhiramat@google.com>, Will Deacon <will@kernel.org>, 
-	Peter Zijlstra <peterz@infradead.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
-	Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
-	Dietmar Eggemann <dietmar.eggemann@arm.com>, Pavan Kondeti <quic_pkondeti@quicinc.com>, 
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>, kernel-team@android.com, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS5PR04MB10020:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0236998b-f49b-4c1c-7794-08dc76b5a3fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|7416005|52116005|376005|366007|1800799015|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?iso-8859-1?Q?3JNW9WxeqDyK184yCywP2dh/sqNDlvKnpjOsa/tBmNmXRSj633G8TiCdcG?=
+ =?iso-8859-1?Q?sXopiIWDftNQqZc0Sm/t1ocvREHTY3eFVEIED+gt95FE3ImRFUgBo6aHWt?=
+ =?iso-8859-1?Q?gv3PT/nvN0exfNg71WugqZbxheEfN4fSsVFDucImon6+S0E0hu3yF89T8U?=
+ =?iso-8859-1?Q?fHrhuyv/yalNy6XQF/2y4f5BY3HId9x3oq9AThKnElHewZTmgDelBnXo88?=
+ =?iso-8859-1?Q?mP33AVNAtQRK1OoGdE5Pw617nnlqlSZnjxOmh6p1do7YUkQQcUxi+nA6RG?=
+ =?iso-8859-1?Q?s1X+AyEjSjeaKTu+btXezB5X7mYtM2K45vzzFA6APvAz9duwvuHpMZYCwE?=
+ =?iso-8859-1?Q?pmjsWLchtwy5bWIaQKJ7eEBVwDdamb8SymtnD8MxRA4je+iz1+8NAhLhbW?=
+ =?iso-8859-1?Q?WuK/DwlbTZpj4Ej/243Hti11PND8yBSrxZ7/84fx5DO68v8b6ATr8XRrkQ?=
+ =?iso-8859-1?Q?bSldOJJ4aD3X3qDWkd2SUltmv3Gd5CRMM0K52oylnjtuHZBXIDktsBE6G8?=
+ =?iso-8859-1?Q?ifFewRh/Cf3gqTBuzOV3mTPj0Q4GoN83OxgdvkAD1jIS0y7a9vzygb53Fw?=
+ =?iso-8859-1?Q?ctE2SvM4mwkylEUGoaElKoduUyKY+mWMiuMIXYh76i5xDwOQkigFIHLSom?=
+ =?iso-8859-1?Q?JHXCJuebfFs59ISHu9nT/BNpJhbvM3cZ6ibgDytUJSP65L6JmkMcIlVqS3?=
+ =?iso-8859-1?Q?6O/y+N2OZb936/r7Roby1DTfxUAAntEE+HxYjBkOH6/f83hnntKnimzbRw?=
+ =?iso-8859-1?Q?AEvgzTkuFE0BYDgRV/QhqLGXKjzgUhUIzKfLsKaNecSJyg2mp3y24yC5C0?=
+ =?iso-8859-1?Q?wLPCyBB2mV7okAWtezRaCCDnnrxHi6yvIlQ3zxPqW3MMlxdmlhodTlCnTz?=
+ =?iso-8859-1?Q?+plpuwOJUKyYCFTUeqK2Hw82pp9dGl0lmhvfaRlYUFsuaAJ+KTMR8cUyLJ?=
+ =?iso-8859-1?Q?MyvxHKc7axcC9zzdbp2S3dDesh9WYgbbYXSUOo0DFgzNfqvs+3To0vj7N7?=
+ =?iso-8859-1?Q?bq5we9h6K3J86NsIYiLQa2orDMZwN87zfvNCJMiqRAyY8exXRK2ExukT1C?=
+ =?iso-8859-1?Q?tdYEXD/5pq7NBUN4pqmmWWG7tkCTpACmowBuJDXOa2icemhqktfI/YOh03?=
+ =?iso-8859-1?Q?cU0QWN6LRwzY1PAkDJucZJN0F5FRXsDJ6WVAWiztDOv1KvytxaF4AFJyp3?=
+ =?iso-8859-1?Q?ayE6BNnVhpoI2Sdu4WpgntT7OPBI3N7VAY+54HTl08lUJxOxCJMgYpm55j?=
+ =?iso-8859-1?Q?9ynsyHI3LkZAyH81TiGEOrYoWSLgtLAP8TahFjs8HRpxfugr+orxrVu/39?=
+ =?iso-8859-1?Q?WR/4i01+yqXnk01GupvpzBTBnzfOkA4pighs8kD3kiCwPqekZEtD9w5JlO?=
+ =?iso-8859-1?Q?2JxngFaXeE6M+zA/vrzRy2H2wygFyGCA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(52116005)(376005)(366007)(1800799015)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?AHxWyhhk754Ho2y6jukQ+kGkvwIhpYS3co2e92QxIr80hsxduXONj6Nco4?=
+ =?iso-8859-1?Q?b/1EIqauwfDziTh+t8wYCcfrXpemGI2+Z2Ppd7I4I28YG1Sazd7LqeRmp8?=
+ =?iso-8859-1?Q?KPAZSLDH0oJ5rK1omfRjZF1WlHDQFuefZ1D+RQec0pfHEh6xQ7rLHnLpbU?=
+ =?iso-8859-1?Q?tFjZHm+slEPNf6qp2sajD0uqd3qEogFaNQeS+F4XE1RHV0LaoYt9zqJ5Ki?=
+ =?iso-8859-1?Q?gDmRC7djDfdTm+fNO+hja04nt+MyA8w9t4ZumiTJxw8SwIMeQzEro0cgii?=
+ =?iso-8859-1?Q?hkmyddiZbxjEfxmasQrERJs4Hb7r0VWYXYsfsd9V1SpF9iA849ZWDJcjaW?=
+ =?iso-8859-1?Q?1IuhcskILCEMbOd5wsGtP3VFJP3R8Sik7ZQrwgea+/zBmYx15QWolTMJFV?=
+ =?iso-8859-1?Q?HqKltGDDREqoaVpd+J2S0gwN9+3Y2kUDumcWob7NKogvhPERmsfVsryEYM?=
+ =?iso-8859-1?Q?cJzrNzdW0iz1tiqJ4wzJxEZhP4lJXqZHEaUkZqzAr33f2duFQzB08pevha?=
+ =?iso-8859-1?Q?Aui89I1TYlahVYT7gmxH2CPknC7PbOxnQuN2HF35yqapcgEZT34M8Oba1h?=
+ =?iso-8859-1?Q?9lGhUpS7XTqPC93weHAW5VPfZWtcJY7hLtOhD1yODDffs5IriXNpGwVjyN?=
+ =?iso-8859-1?Q?UG64KkGzMHB5Z+9mwqrhGaKIiRPwU2hysxymmTiLxvu7SecsvYf0psJlKp?=
+ =?iso-8859-1?Q?B+B5smKwUxJacqXVVnLZ8FOJK0fVeSxGqenST1OXwe65FMBn+YC//GFVb4?=
+ =?iso-8859-1?Q?RWyGKRlnVieYpVlPSJhVCVU2ScFTx+j43GlKrf7LQGlsTYFUIVs3Xm2o4Y?=
+ =?iso-8859-1?Q?QJb7CCNesJWvwqxEBlJDY1PU1JPZExa4kuqVEYukn7J0nb6vbd/IfiiHf/?=
+ =?iso-8859-1?Q?DFtKLo2w4qt2ul7fuc042F1DDuo1yHmQMinqXmkPkH8NiSs8Oo4rfVAKa9?=
+ =?iso-8859-1?Q?bRbkAzlrQ29BkpJZ9tBahxZEqR6ymRBK2Lzogu4MJXnGNmYFvC4iQl9PUT?=
+ =?iso-8859-1?Q?XgbQSsvdOmjVwrQwtJXmxq9xcB/If0H/0qY64KPioRNjNWRSOxvsGoy45i?=
+ =?iso-8859-1?Q?jEN7x3KRXG8+iVjR+/50ASie17QY1U2rZ848hqYHeo3AfxYMsm7yCEbhGv?=
+ =?iso-8859-1?Q?32bs8TEwDLCmt9cCTCHEZlIt+WEUIv+2CxpH3xhi5Tb55179WpBizLH+jY?=
+ =?iso-8859-1?Q?NYpIg8yxFzMyM/iNv84fvRwiHN3l2SwhJ+XNYxdcjGg8VqOOkDs3q4LCLd?=
+ =?iso-8859-1?Q?7/l4u9K28NfHh52pHo95VD5G4TpB4f38RdWwUXpoU/RokRg/pJtMBpwSxl?=
+ =?iso-8859-1?Q?cqvet2EdiZWM/Igr4BvKyScbhViazuEM3eaKXLyiBfxl9O0lpxOCfsBHHR?=
+ =?iso-8859-1?Q?8XvhwyG4srpyLHIOGz8qShJs4IQTiAQ6ahbTh/v70pRth+rR8EaSkAspQ3?=
+ =?iso-8859-1?Q?6202Oa4VvJ/kYAflU4ylKu1Y+XTmb0Ydz3e/roWmzPyMSma9oK98K9m3LL?=
+ =?iso-8859-1?Q?lGV9gTntaH3xQD5lmLMKWHC+z7rOTf6FQMKDhrEHItc/pnAb14TzsnAB/6?=
+ =?iso-8859-1?Q?hV5nLQxxtbgHjZZWfcx2wW1m4u/g7CF3ldgvx9UAFZZ1Hibhm3Ijk08ZBc?=
+ =?iso-8859-1?Q?qcY4Mr/8ooIWQpNwBJQyudE28p3KSzaPRh?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0236998b-f49b-4c1c-7794-08dc76b5a3fc
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2024 21:09:29.3745
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oQxRNba2UrgUhoSFThYh9Yxm/R6V6t6vrOa95pp1IS62i6fc07iHVY+DjJAC+5nes9AAfcjqo99F4SIG3585rg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB10020
 
-On Tue, May 7, 2024 at 3:21=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com> =
-wrote:
->
-> On Thu, May 02, 2024 at 01:17:57PM -0700, David Dai wrote:
-> > On Thu, Feb 15, 2024 at 3:26=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.=
-com> wrote:
-> > >
-> > > On Fri, Feb 02, 2024 at 09:53:52AM -0600, Rob Herring wrote:
-> > > > On Wed, Jan 31, 2024 at 10:23:03AM -0800, Saravana Kannan wrote:
-> > > > >
-> > > > > We also need the OPP tables to indicate which CPUs are part of th=
-e
-> > > > > same cluster, etc. Don't want to invent a new "protocol" and just=
- use
-> > > > > existing DT bindings.
-> > > >
-> > > > Topology binding is for that.
-> > > >
-> > > > What about when x86 and other ACPI systems need to do this too? You
-> > > > define a discoverable interface, then it works regardless of firmwa=
-re.
-> > > > KVM, Virtio, VFIO, etc. are all their own protocols.
-> > > >
-> > >
-> > > +1 for the above. I have mentioned the same couple of times but I am =
-told
-> > > it can be taken up later which I fail to understand. Once we define D=
-T
-> > > bindings, it must be supported for long time which doesn't provide an=
-y
-> > > motivation to such a discoverable interface which works on any virtua=
-l
-> > > platforms irrespective of the firmware.
-> > >
-> >
-> > Hi Sudeep,
-> >
-> > We are thinking of a discoverable interface like this, where the
-> > performance info and performance domain mappings are discoverable
-> > through the device registers. This should make it more portable across
-> > firmwares. Would this address your concerns?
->
-> Yes.
->
-> > Also, you asked to  document this.
-> > Where exactly would you want to document this?
->
-> IMO it could go under Documentation/firmware-guide ? Unless someone
-> has any other suggestions.
->
-> > AFAIK the DT bindings documentation is not supposed to include this lev=
-el of
-> > detail. Would a comment in the driver be sufficient?
->
-> Agree, DT bindings is not the right place. May be even comment in the
-> driver would be sufficient.
+On Fri, May 17, 2024 at 09:50:55PM +0200, Miquel Raynal wrote:
+> Hi Frank,
+> 
+> Frank.li@nxp.com wrote on Fri, 17 May 2024 15:15:42 -0400:
+> 
+> > On Fri, May 17, 2024 at 08:36:21PM +0200, Miquel Raynal wrote:
+> > > Hi Frank,
+> > > 
+> > > Frank.Li@nxp.com wrote on Fri, 17 May 2024 14:09:48 -0400:
+> > >   
+> > > > Add 'fsl,imx8qxp-gpmi-nand' compatible string and clock-names restriction.
+> > > > 
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > ---
+> > > >  .../devicetree/bindings/mtd/gpmi-nand.yaml         | 22 ++++++++++++++++++++++
+> > > >  1 file changed, 22 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml b/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+> > > > index 021c0da0b072f..f9eb1868ca1f4 100644
+> > > > --- a/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+> > > > @@ -24,6 +24,7 @@ properties:
+> > > >            - fsl,imx6q-gpmi-nand
+> > > >            - fsl,imx6sx-gpmi-nand
+> > > >            - fsl,imx7d-gpmi-nand
+> > > > +          - fsl,imx8qxp-gpmi-nand
+> > > >        - items:
+> > > >            - enum:
+> > > >                - fsl,imx8mm-gpmi-nand
+> > > > @@ -151,6 +152,27 @@ allOf:
+> > > >              - const: gpmi_io
+> > > >              - const: gpmi_bch_apb
+> > > >  
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        compatible:
+> > > > +          contains:
+> > > > +            enum:
+> > > > +              - fsl,imx8qxp-gpmi-nand
+> > > > +    then:
+> > > > +      properties:
+> > > > +        clocks:
+> > > > +          items:
+> > > > +            - description: SoC gpmi io clock
+> > > > +            - description: SoC gpmi apb clock  
+> > > 
+> > > I believe these two clocks are mandatory?  
+> > 
+> > minItems default is equal to items numbers, here is 4. So all 4 clock are
+> > mandatory.
+> > 
+> > Anything wrong here?
+> 
+> I'd say that the two "bch" clocks are only used if you decide to
+> configure the on-host hardware ECC engine and thus are not needed with
+> software corrections, but I'm fine keeping the fourth described in all
+> cases if that's simpler.
+> 
+> Also,here the diff just shows that "if we provide a clocks property
+> with this compatible, then we need to provide 4 members", I believe the
+> "required" property is already filled somewhere with the
+> clocks/clock-names properties?
 
-Alright, I=E2=80=99ll make this into a comment in the driver itself.
+yes, before allOf
 
->
-> Overall it looks good and on the right path IMO.
->
+required:
+...                                                                 
+  - clocks                                                                 
+  - clock-names                                                            
+...
 
-Okay, I=E2=80=99ll submit V6 patches and continue from there.
-
-> >
-> > CPU0..CPUn
-> > +-------------+-------------------------------+--------+-------+
-> > | Register    | Description                   | Offset |   Len |
-> > +-------------+-------------------------------+--------+-------+
-> > | cur_perf    | read this register to get     |    0x0 |   0x4 |
-> > |             | the current perf (integer val |        |       |
-> > |             | representing perf relative to |        |       |
-> > |             | max performance)              |        |       |
-> > |             | that vCPU is running at       |        |       |
-> > +-------------+-------------------------------+--------+-------+
-> > | set_perf    | write to this register to set |    0x4 |   0x4 |
-> > |             | perf value of the vCPU        |        |       |
-> > +-------------+-------------------------------+--------+-------+
-> > | perftbl_len | number of entries in perf     |    0x8 |   0x4 |
-> > |             | table. A single entry in the  |        |       |
-> > |             | perf table denotes no table   |        |       |
-> > |             | and the entry contains        |        |       |
-> > |             | the maximum perf value        |        |       |
-> > |             | that this vCPU supports.      |        |       |
-> > |             | The guest can request any     |        |       |
-> > |             | value between 1 and max perf. |        |       |
->
-> Does this have to be per cpu ? It can be simplified by keeping
-> just cur_perf, set_perf and perf_domain in per-cpu entries and this
-> per domain entries separate. But I am not against per cpu entries
-> as well.
-
-I think separating out the perf domain entries may make the device
-emulation and the driver slightly more complicated. Emulating the perf
-domain regions per CPU is a simpler layout if we need to install eBPF
-programs to handle the backend per vCPU. Each vCPU looking up its own
-frequency information in its own MMIO region is a bit easier too when
-initializing the driver. Also each vCPU will be in its own perf domain
-for the majority of the use cases, so it won=E2=80=99t make much of a
-difference most of the time.
-
->
-> Also why do you need the table if the guest can request any value from
-> 1 to max perf ? The table will have discrete OPPs ? If so, how to they
-> map to the perf range [1 - maxperf] ?
-
-Let me clarify this in the comment, the perf range [1 - maxperf] is
-only applicable in the case where the frequency table is not
-supported. The cpufreq driver will still vote for discrete levels if
-tables are used. The VMM(Virtual Machine Manager) may choose to use
-tables depending on the use case and the driver will support both
-cases.
-
-Thanks,
-David
-
->
-> > +---------------------------------------------+--------+-------+
-> > | perftbl_sel | write to this register to     |    0xc |   0x4 |
-> > |             | select perf table entry to    |        |       |
-> > |             | read from                     |        |       |
-> > +---------------------------------------------+--------+-------+
-> > | perftbl_rd  | read this register to get     |   0x10 |   0x4 |
-> > |             | perf value of the selected    |        |       |
-> > |             | entry based on perftbl_sel    |        |       |
-> > +---------------------------------------------+--------+-------+
-> > | perf_domain | performance domain number     |   0x14 |   0x4 |
-> > |             | that this vCPU belongs to.    |        |       |
-> > |             | vCPUs sharing the same perf   |        |       |
-> > |             | domain number are part of the |        |       |
-> > |             | same performance domain.      |        |       |
-> > +-------------+-------------------------------+--------+-------+
->
-> The above are couple of high level questions I have ATM.
->
-> --
-> Regards,
-> Sudeep
+> 
+> Thanks,
+> Miquèl
 
