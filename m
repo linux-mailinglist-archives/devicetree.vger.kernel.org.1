@@ -1,142 +1,131 @@
-Return-Path: <devicetree+bounces-67438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8762E8C8266
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 10:08:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256498C8293
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 10:31:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B7D71C21855
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 08:08:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B38B01F21B92
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 08:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571E020B0E;
-	Fri, 17 May 2024 08:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D224A3D;
+	Fri, 17 May 2024 08:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WQWyUfhp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ue1P2tJJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 398F73BBD7
-	for <devicetree@vger.kernel.org>; Fri, 17 May 2024 08:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA117462;
+	Fri, 17 May 2024 08:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715933277; cv=none; b=q1st3Q4IacNC9Gd0zkhrCRvhgXRm9Vpjf5MZgMvtQHAvZTKBDF9ThYVaMv2c+BjA5wK7g8mLGQrRihT3j9A67KVDsOwkmnigjWyqPgzgsQdB0MKdZR2aUhPsCANP+J/9NKXxN9iFzpV3uE8fWyJ+QPvfATXEJvchsJc+Q52/8f0=
+	t=1715934705; cv=none; b=ZYg8lJX0Dw3W0J59SmOC5lVuyHkFWuMcya9aZsbWl2tjIEpoFLPZckrtEyEMHfMmFyLuwRJgWZl7loUt5ZGIEAMfUtAZ/xavGwUDtHwqYQlj/zCSvY2u7AFfNM05fsL3OrXcNxrERfObbPDwnvJfWG8aPzBY9M+blxX7VizqU54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715933277; c=relaxed/simple;
-	bh=67kJhvVJgfr3fdLhnw6mtmsME4ghMjbF6tKsfeoLtJE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BhfprBW3P8i1Jt8YZpyEEAAt+roW0iPszGeQfW8I2KdOhJ0P/PEMBPg0CL26FDJcsv1VVsmtoLvOL5Aa6t7zZzOcab/4ZNVAiFf8XkFZXvHEgrU/esA5JN2AdFUeyp8J/FkwdpfEMBaHiq4EBr6l3Taxk2oiq9qTNyMDFO6d40M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WQWyUfhp; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-56e37503115so3293426a12.1
-        for <devicetree@vger.kernel.org>; Fri, 17 May 2024 01:07:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1715933272; x=1716538072; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ADMoLBL5cnEifhHVW0n3dyo7J3ncObAka0zVx8KrFmM=;
-        b=WQWyUfhp+XHzzN1zHf+gqxgRF7xECOlJuPrB+F4QcszkKIYJl98OFMfwwrRmN7myXh
-         1wvYO4Jd/k0YgxOu1vX2mu60VTD9TdYtKYYvolds9YoVpA5lpesrSAwmF7txEhV2zxuO
-         OezUTQMm5HD+xiGUicgv3muZPUICGCxr552pQXAdDE2cqOKd408WYV7NHTF3egMkOK1n
-         5nkRcD3zzhpspbHhF92q4zhRaQgpftQ6DAip5/SidGckTtmvfupQPqL+s5PoulFGwEKP
-         7hx2IJGav6244guVZjisu+34Ho+t177lg5664BNCxqNKyqFQTplb6N1dL2HkxS9SkzrZ
-         y7hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715933272; x=1716538072;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ADMoLBL5cnEifhHVW0n3dyo7J3ncObAka0zVx8KrFmM=;
-        b=tfXyl07Ew972LIFGEEHpJSiIYjFD0cR4Mr+Z0Ts9aGLCMK9BXDepxJJ6xmAgzYCn7n
-         Jj3bBfPP50F9HrgSg5dP4AWKG8znZnF5QvcoF+raIDQErsRDOkmwHX9USRf+5Qzw3/wA
-         LkCi12wbbyeneApsK9GMf1EagMjF3Ui7nmbZHmxzrlXEoeAUmUqdpLztX/DjtlZts6ki
-         UCTezn4TTqfHtYei3gf44CDPhbCeyTRpBG8i7Pm4lAcD18nU/SmMsPcbPv10YHOWRdxP
-         Jo9Son8BgCqrBgBp6BRbaiGza2oA81nzc3gDzVq3fmUJnT08Q+Opl2oNLN7XfkTCb3OW
-         ureQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUzWBX61Yn5oE1FZPhngUrLLb5gyikNJVkF1EXl9yjggp3pePlJmGLY9OpVhKg354IfpTSbU+LRYeZNH5kpZeqYgyljaHeiRMpq+A==
-X-Gm-Message-State: AOJu0Yw1O2pL4wzZfpHV05KquNo7t1lRX/vMQOXLayySE+hHGTNWOWU4
-	t5vhSac1hAcKeB075t8ZOXAsPVeuyFPyV/mBZa5OXhl7+XaT/dRGosXxAmW3q58=
-X-Google-Smtp-Source: AGHT+IE2fmU8pDp6UlRMGDlXg5CeGrnSfA6SEVVbOUx4aG63KRG891PKcbwDpqb4LC/Ug/MAPPvzjQ==
-X-Received: by 2002:a50:d654:0:b0:572:6cd5:f8d with SMTP id 4fb4d7f45d1cf-5734d5ce1b1mr15053517a12.22.1715933272636;
-        Fri, 17 May 2024 01:07:52 -0700 (PDT)
-Received: from [10.91.2.68] ([149.14.240.163])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-574eba4bc3dsm4452608a12.94.2024.05.17.01.07.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 May 2024 01:07:52 -0700 (PDT)
-Message-ID: <77b01a97-de2d-4e10-91f6-915ec414eede@linaro.org>
-Date: Fri, 17 May 2024 10:07:50 +0200
+	s=arc-20240116; t=1715934705; c=relaxed/simple;
+	bh=prBf8znSTTc5nFl7RT8skuny43hVLa6n01mcp7KkR9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ID6BBh4AgHpCCqio0pCbMnbmc3GcgHXHg457AEBAr7PuORsOke812rRBSS3AtXPV9HqrWdTBEcblbE6rlIRCIRS24Gj7PLngeIDZ6CFyRZwHGK7KEPjrK5+TGUVTdSsQVllwPrV98GumAiGeUfe/h3z4GCyUAvj2rZGbYDSAswg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ue1P2tJJ; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715934704; x=1747470704;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=prBf8znSTTc5nFl7RT8skuny43hVLa6n01mcp7KkR9U=;
+  b=Ue1P2tJJ6tv7iN9QCIUGPMPWM3dcCytPc98QMgNbaj+yBDHQyvr0ZGUR
+   jDd4TCSmDHSUvZy+7D0KLH9qEIZdPdu2LOI/9BCGBW9yWr22x3jZ95VEu
+   TfAvigapfwEQV4wmpmhaAnM64t6ySIdHD9l2y45+YyJbNOTWqf0ZQ/3JM
+   o0AmU93/R/sJm9HFf8BHGTSv4e7bfGz+tkY6/tGahtbv8vdeZ7iPG4ujv
+   Z+sb/LU8qheTjSyrOe6Kg2hxhz5MqVFpyKzpzmlFXkSB5ulduve6jpRwr
+   QQXCcCyuyksbd6XEmzC0NjupRgvPRkimDdaKeB7X4L5AbR35zxOwc1NtC
+   A==;
+X-CSE-ConnectionGUID: rgbCTEznTFCnP0hkFvxykg==
+X-CSE-MsgGUID: tPkWu0kiRN6hYpKP+2NSCg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="12288398"
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; 
+   d="scan'208";a="12288398"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2024 01:31:43 -0700
+X-CSE-ConnectionGUID: x28zoPStSP6A+QH9cXVSTw==
+X-CSE-MsgGUID: ynVcaboxT9OjyDZ+LLrCzw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,167,1712646000"; 
+   d="scan'208";a="62545875"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2024 01:31:38 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 914DD11FA44;
+	Fri, 17 May 2024 11:31:35 +0300 (EEST)
+Date: Fri, 17 May 2024 08:31:35 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: git@luigi311.com
+Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pavel@ucw.cz, phone-devel@vger.kernel.org,
+	Ondrej Jirman <megi@xff.cz>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 21/25] dt-bindings: media: imx258: Add binding for
+ powerdown-gpio
+Message-ID: <ZkcV5xWZz2jCszxA@kekkonen.localdomain>
+References: <20240501152442.1072627-1-git@luigi311.com>
+ <20240501152442.1072627-22-git@luigi311.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] hwspinlock: Introduce hwspin_lock_bust()
-Content-Language: en-US
-To: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
- Boqun Feng <boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, Richard Maina <quic_rmaina@quicinc.com>
-References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
- <20240516-hwspinlock-bust-v1-3-47a90a859238@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240516-hwspinlock-bust-v1-3-47a90a859238@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240501152442.1072627-22-git@luigi311.com>
 
-On 17/05/2024 00:58, Chris Lew wrote:
-> From: Richard Maina <quic_rmaina@quicinc.com>
+Hi Luis,
+
+On Wed, May 01, 2024 at 09:24:38AM -0600, git@luigi311.com wrote:
+> From: Ondrej Jirman <megi@xff.cz>
 > 
-> When a remoteproc crashes or goes down unexpectedly this can result in
-> a state where locks held by the remoteproc will remain locked possibly
-> resulting in deadlock. This new API hwspin_lock_bust() allows
-> hwspinlock implementers to define a bust operation for freeing previously
-> acquired hwspinlocks after verifying ownership of the acquired lock.
+> Add powerdown-gpio binding as it is required for some boards.
+
+I thought the conclusion was that this wasn't a property of the sensor? If
+it needs to be controlled, then this should take place somewhere else than
+in the sensor driver.
+
 > 
-> Signed-off-by: Richard Maina <quic_rmaina@quicinc.com>
-> Signed-off-by: Chris Lew <quic_clew@quicinc.com>
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> Signed-off-by: Luis Garcia <git@luigi311.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Pavel Machek <pavel@ucw.cz>
 > ---
->   Documentation/locking/hwspinlock.rst     | 11 +++++++++++
->   drivers/hwspinlock/hwspinlock_core.c     | 30 +++++++++++++++++++++++++++++-
-
-Shouldn't this be added to drivers/hwspinlock/qcom_hwspinlock.c ?
-
->   drivers/hwspinlock/hwspinlock_internal.h |  3 +++
->   include/linux/hwspinlock.h               |  6 ++++++
->   4 files changed, 49 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/locking/hwspinlock.rst b/Documentation/locking/hwspinlock.rst
-> index c1c2c827b575..6ee94cc6d3b7 100644
-> --- a/Documentation/locking/hwspinlock.rst
-> +++ b/Documentation/locking/hwspinlock.rst
-> @@ -85,6 +85,17 @@ is already free).
->   
->   Should be called from a process context (might sleep).
->   
-> +::
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> index c978abc0cdb3..33338139e6e8 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> @@ -36,6 +36,10 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  powerdown-gpios:
+> +    description:
+> +      Reference to the GPIO connected to the PWDN pin, if any.
 > +
-> +  int hwspin_lock_bust(struct hwspinlock *hwlock, unsigned int id);
+>    reset-gpios:
+>      description: |-
+>        Reference to the GPIO connected to the XCLR pin, if any.
 
-I don't think this is a geat name "bust" looks alot like "burst" and I 
-don't think aligns well with the established namespace.
+-- 
+Regards,
 
-Why not simply qcom_hwspinlock_unlock_force() - which is what you are 
-doing - forcing the hw spinlock to unlock.
-
----
-bod
+Sakari Ailus
 
