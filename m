@@ -1,165 +1,129 @@
-Return-Path: <devicetree+bounces-67445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21C048C82DA
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 10:58:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0032B8C82EB
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 11:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A64EB215E5
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 08:58:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 957311F216F2
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 09:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECEC41AAA5;
-	Fri, 17 May 2024 08:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24421DA3A;
+	Fri, 17 May 2024 09:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SiHrLayR"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="yJbKu2bb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCE317C69;
-	Fri, 17 May 2024 08:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0291F1AAA5;
+	Fri, 17 May 2024 09:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715936324; cv=none; b=ZefisB7wP1iH0uVsiQCphOMdrtT/dyAR/ZtnCvjYrCstrVjNGjUbc6qeR5qYkoG45vSlRzFrPdgv2zolTS5k9Bv4HsLzIKfw7u8zKa1hhx5H/qbGCxPUFH5oRZZom0p9k7Jjb4YszZWpPT/uZqcTk5dBEi9v4NqyODYpkrjaLyo=
+	t=1715936747; cv=none; b=I5C4OFYxtRjkF8rBb0sSXM9iH1UimlSEXV0c+yuzBApxvB3ng2PC2tl7/b95wh8x24h983keDKW2lolSAsc5ecEUOF6HyyEFgnKcOTVewNht4FyQ1du+uQS13XThgjh8Mtri3i8MnvF32TfUPbGP9Nw/JokcIq76ni42RJssS7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715936324; c=relaxed/simple;
-	bh=8Kgv5BwTK2Y7GAjTmsKhljnzTNcH+UD8/8m35O4evaI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lCEfWOUxHmMJ7npH7M3b0cxU18ZJAGIRIda0kG4gPj/ziLJ0/vZB7lNM+HOu/aBhwL37ep/6tnRS7TiDxT6vM806ZpYGZ6uqlhh3T6n1kKtKo0ZBTxEG2NHE7BpYa1lhRNKnNEhvg3FF6OuefptMLwdDrJDIdyGAYGRpqLJoXSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SiHrLayR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F891C2BD10;
-	Fri, 17 May 2024 08:58:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715936324;
-	bh=8Kgv5BwTK2Y7GAjTmsKhljnzTNcH+UD8/8m35O4evaI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SiHrLayRWenu+VLSkBqHOuYaZNvWvJi9oVOMvzCfwZ9tPB2d84/FLj+qxq8RMVv2Y
-	 ED8dta6hF5sTbd0IZ3pUWE42xzK1gERCEpiFzRnLLNftCYTnszEv3HxAWpOpnhCDna
-	 c9nbiXLoQhKAEXBZU4HwroP2CNjB3adtFtlESDdaOsDtpKK8IFyY5ZUiEZyfeBSP6K
-	 ec+tEUODa4KxfJjSKZCTpy33E9ZjVTjDDmURnOzvMegzdSH618gaRP1DDUcOOM7nEF
-	 C0cIPqbfIRqSFxXA0U0zgfXFy4KXjNNe8ya9FUOtAWXCdV1UtasCZW4DRsCr+3xe+3
-	 Q7DxNmWQ1e/CA==
-Message-ID: <2245e750-0b5d-49d1-88f3-7c1c75f275e7@kernel.org>
-Date: Fri, 17 May 2024 10:58:38 +0200
+	s=arc-20240116; t=1715936747; c=relaxed/simple;
+	bh=Cg9MTPT9tWRh/8PAEQ/0bLqgcKcVgIar/eyWrNXcBzY=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=pEchBRsDV5kjm1sEYVtRIkgErr1ZNkPQP88S8hnVLaX6oMEyCWYSSqEOJOOsS5z2QJF8kp6oQkjCqxJk7dLuvRNy/k6Vq1C/agrP/6q0vyUgWskdAUdnuY+P/f61ec93EMTa0DHoYvsBIskx2ZOyrOGQlj8qV3j/cGs3/gIplUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=yJbKu2bb; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id BE8889C585F;
+	Fri, 17 May 2024 05:05:36 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id OzTJfta_rJ3O; Fri, 17 May 2024 05:05:36 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 157C59C591E;
+	Fri, 17 May 2024 05:05:36 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 157C59C591E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1715936736; bh=eDu4DXcZYZmRMzTsE23CtiqrrOlfxWxDABDYJj8qWVA=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=yJbKu2bbAaZIR1lR4fB9rs8ae78l/ej/Pp4GgndaChfrPjM47VvPNd7mTV47IFukQ
+	 X//+44ZJ4DRw9DkSHZQf+v4uy4/XKYtuUAaLvLFOebJCl7icu265xkvxy38LLcQmS7
+	 Uyg52oLkXf5YOc/GhiY3eH6K1tqG//Rc45iBqqEkBeuftfDcDzCCis0t5jONcc0Oyu
+	 HuRL8xxkCfNNH2TA3XiBbsjIWxvlyZmJi19c0PW2BlDRhMuiH8f3EfoiH8ednXXhWm
+	 KV3s2SR/VuND91x4ULBGel4DWWFLJ+utgH1gix+qQFlQ/twAETDwd9o1xrq4N0stDE
+	 CWzLmI6/TPfag==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 8CeRVN1p2hdp; Fri, 17 May 2024 05:05:35 -0400 (EDT)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id B02AA9C585F;
+	Fri, 17 May 2024 05:05:35 -0400 (EDT)
+Date: Fri, 17 May 2024 05:05:35 -0400 (EDT)
+From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	shengjiu wang <shengjiu.wang@gmail.com>, 
+	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
+	Nicolin Chen <nicoleotsuka@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound <linux-sound@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	alsa-devel <alsa-devel@alsa-project.org>, 
+	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Message-ID: <822567441.349330.1715936735603.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <ffb3624f-2170-4642-aaa5-fb6736a75d59@sirena.org.uk>
+References: <20240515135411.343333-1-elinor.montmasson@savoirfairelinux.com> <20240515135411.343333-8-elinor.montmasson@savoirfairelinux.com> <ffb3624f-2170-4642-aaa5-fb6736a75d59@sirena.org.uk>
+Subject: Re: [PATCHv4 7/9] ASoC: fsl-asoc-card: add DT clock "cpu_sysclk"
+ with generic codec
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: syscon: Add
- img,boston-platform-regs
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-References: <20240513-boston-syscon-v1-0-93ff557d3548@flygoat.com>
- <20240513-boston-syscon-v1-1-93ff557d3548@flygoat.com>
- <c7317ea0-fcd6-40e0-9d90-bb1ff349c0e0@kernel.org>
- <31769e8d-ab52-4f4c-84ca-2f546287d006@kernel.org>
- <61445fe0-9137-44a6-ab36-ffb8985254df@app.fastmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <61445fe0-9137-44a6-ab36-ffb8985254df@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - GC112 (Linux)/8.8.15_GA_4581)
+Thread-Topic: ASoC: fsl-asoc-card: add DT clock "cpu_sysclk" with generic codec
+Thread-Index: iBqosQBSuRfSSp+1CUZcAzEUlctHMQ==
 
-On 15/05/2024 23:44, Jiaxun Yang wrote:
+From: "Mark Brown" <broonie@kernel.org>
+Sent: Thursday, 16 May, 2024 14:13:19
+> On Wed, May 15, 2024 at 03:54:09PM +0200, Elinor Montmasson wrote:
 > 
+>> Add an optional DT clock "cpu_sysclk" to get the CPU DAI system-clock
+>> frequency when using the generic codec.
+>> It is set for both Tx and Rx.
+>> The way the frequency value is used is up to the CPU DAI driver
+>> implementation.
 > 
-> 在2024年5月14日五月 上午10:11，Krzysztof Kozlowski写道：
->> On 14/05/2024 11:08, Krzysztof Kozlowski wrote:
->>> On 13/05/2024 20:58, Jiaxun Yang wrote:
->>>> This compatible has been used in arch/mips/boot/dts/img/boston.dts
->>>> for a while but never documented properly.
->>>>
->>>> Add it to simple syscon binding.
->>>>
->>>> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->>>
->>> It is documented in clock/img,boston-clock.txt. Please fix/convert/work
->>> on that.
->>
->> No, that's different device.
->>
->> Anyway, this is wrong - does no work with your second patch. Please test
->> them before sending.
+>> +		struct clk *cpu_sysclk = clk_get(&pdev->dev, "cpu_sysclk");
+>> +		if (!IS_ERR(cpu_sysclk)) {
+>> +			priv->cpu_priv.sysclk_freq[TX] = clk_get_rate(cpu_sysclk);
+>> +			priv->cpu_priv.sysclk_freq[RX] = priv->cpu_priv.sysclk_freq[TX];
+>> +			clk_put(cpu_sysclk);
+>> +		}
 > 
-> Hi Krzysztof,
-> 
-> Do you mind telling dumb as me how to test bindings properly?
-> 
-> I tried to run make check_dtbs after applying this patch and that's all
-> the warnings I got:
-> ```
-> arch/mips/boot/dts/img/boston.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
-> /home/flygoat/linux-next/arch/mips/boot/dts/img/boston.dtb: /: 'model' is a required property
->         from schema $id: http://devicetree.org/schemas/root-node.yaml#
-> arch/mips/boot/dts/img/boston.dtb: /: failed to match any schema with compatible: ['img,boston']
-> arch/mips/boot/dts/img/boston.dtb: /cpus/cpu@0: failed to match any schema with compatible: ['img,mips']
-> arch/mips/boot/dts/img/boston.dtb: /system-controller@17ffd000/clock: failed to match any schema with compatible: ['img,boston-clock']
-> /home/flygoat/linux-next/arch/mips/boot/dts/img/boston.dtb: uart@17ffe000: $nodename:0: 'uart@17ffe000' does not match '^serial(@.*)?$'
->         from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
-> ```
-> 
-> I think there is no new warning introduced by this patch.
-> Did I miss anything here?
+> I don't really understand the goal here - this is just reading whatever
+> frequency happens to be set in the hardware when the driver starts up
+> which if nothing else seems rather fragile?
 
-Indeed there might be no warning for this, because syscon allows a lot,
-including children. You need custom binding anyway.
+The driver allow to set the sysclk frequency
+of the CPU DAI through `priv->cpu_priv.sysclk_freq` when calling
+`fsl_asoc_card_hw_params()`.
+Currently it is hard-coded per use-case in the driver.
+
+My reasoning was that with a generic codec/compatible, there might
+be use-cases needing to use this parameter, so I exposed it here via DT.
+
+Is it a bad idea to expose this parameter ? This is not a requirement for the
+driver to work, most of the current compatibles do not use this parameter.
+It is currently used only for `fsl,imx-audio-cs42888`.
+In that case I can remove this commit.
 
 Best regards,
-Krzysztof
-
+Elinor Montmasson
 
