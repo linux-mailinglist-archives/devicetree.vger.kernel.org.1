@@ -1,175 +1,272 @@
-Return-Path: <devicetree+bounces-67565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E128C8AA5
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:13:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E348C8ABB
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:16:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7BAD1C20DBD
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:13:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AC5A1F27D24
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C891813DB90;
-	Fri, 17 May 2024 17:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FB4813DBBB;
+	Fri, 17 May 2024 17:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p2eDkI91"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hfZTxmgh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 977FD12F5A3;
-	Fri, 17 May 2024 17:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D2C13DBA7;
+	Fri, 17 May 2024 17:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715966007; cv=none; b=t8wchxe/LXBa0f8m89trit/sAREICHYwUhqOEj+OFJZyOckG8BJHW5nUaJwDEOzQfEfeXNdqtX9n3Sjemq1WoY7inNQhKrr48XK6OVrQCdWplas/UFQDssB00mUcz4P7Fa8xQ9/jii+u6unQx4p3QfXzviTDpUk5jfFmxbyqcKM=
+	t=1715966169; cv=none; b=excKuu9LzBQdr9CwvoGWAbmgBL5TCB+ScMga6nstULOdQEr2+XDo+CmIYFITm9XM+nAs0BRpZOvSvKfRes6jwiIBlcYTFTiryGIqa7N6HT3hGbio72sxUzKO5sSgriqYIA49QB5iajpgPBif7sTSYthhmkgJ89ermIXdNj/Zj1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715966007; c=relaxed/simple;
-	bh=eIB82ShxELVgBdcB/A5n4OiJqzz7D53HQjPat52aDwI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gu1im1nCzNKcs5ZLSR3P0NlS6ipjfcYn7H+rJR4fKYGt2daNh4fKP7HuwmupYP9yKChAJtcLmEk9i85XIH7GB5HTnFQgauxzykDHYERRTlkiecX5spr9sUb/7vC0Nesnfg+Ksy7CIZIREB4cA/om5Psw/zGMfHHqkeUcM99Jn48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p2eDkI91; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36F22C2BD10;
-	Fri, 17 May 2024 17:13:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715966007;
-	bh=eIB82ShxELVgBdcB/A5n4OiJqzz7D53HQjPat52aDwI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p2eDkI91pFS3fnmKgUUxrplDIkMWNwGS9C/lVsb1VRSG9t8FutGodJhWxij5EFYWs
-	 aFw2m0F8zvZFEsx8B6TyjoHMTNxQOzr9HTpxniV2Hs09lGjAFA2+WKlASEU3JVKKqa
-	 25N5906X9zGn44TPQBbp+lyquyPK3uxzP5RKp+wXfCp6mUepK502VzQgOWMkHCNccp
-	 Dn/6+hvv8OMF8kk6Z3zVbvrsl7BtBXXbcNuqNAUrXZLPXlSzgjTNKWOBpI1txPlnvz
-	 0wwfcinM1IDUM6NDIz4KMxscp4lkUtuTLygOqPYT28lbGqlweNPRWcnhXyZf+K4ncD
-	 ozRd1UhOlRziQ==
-Date: Fri, 17 May 2024 18:13:21 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
-	peng.fan@nxp.com, mturquette@baylibre.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
-Subject: Re: [PATCH v3 3/6] dt-bindings: clock: imx8mp: Add reset-controller
- sub-node
-Message-ID: <20240517-afterglow-sandstone-076e593fedf8@spud>
-References: <1715679210-9588-4-git-send-email-shengjiu.wang@nxp.com>
- <20240514-campus-sibling-21cdf4c78366@spud>
- <b86c83a520f0c45a60249468fa92b1de.sboyd@kernel.org>
- <CAA+D8ANTdvQJVtniyMtqjnJdT4qX+LDGjVuFO6H0RSO+GDw+ng@mail.gmail.com>
- <20240515-unbundle-bubble-8623b495a4f1@spud>
- <ZkT+4yUgcUdB/i2t@lizhi-Precision-Tower-5810>
- <20240516-reversing-demeanor-def651bc82ac@spud>
- <ZkbVa5KvvbnH/tNQ@lizhi-Precision-Tower-5810>
- <20240517-gristle-dealt-56b5299b9cb8@spud>
- <ZkePbZBufOHWQdzM@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1715966169; c=relaxed/simple;
+	bh=5SF0CeCWwV6LZXuz1ZpmJ/axrMdJGeySKiV+1NdDH7k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WPv2vwkgUUISc2uPuX8jzkTO4rV7k5GK68e45VRB+0BuEKXDSkGmwj5PZRUbpHs0qWDfuW8kWZhGRJc+apQXVmC542QPX/cXsf+T5N33YIk8OwDhfVtG8kCbtHN9T9sz08XRiSYTwx7seFXCwk9/GhRrE8vBNmokFJfUxSDLxLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hfZTxmgh; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44HHFXro002873;
+	Fri, 17 May 2024 12:15:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1715966134;
+	bh=t8moko48WHwLaYXtZeG1loeYfbAEGTbnPD1sU1i82L0=;
+	h=From:To:CC:Subject:Date;
+	b=hfZTxmghkPiT6kevmt5lLE+qDkrLgEXUkuDnSqsVsdcqrdKDdo0zTHYmfZYxoFSVO
+	 OvIm5W5WBWEAh6ogEX84zkVIrEpELDT3/Hd5qlHg8t21Rp8bpC/WuuI7WJHcKoVYZq
+	 4pcnnFrta/mEgc/UKcsp19Z2EAgDehiB/3jCHoQE=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44HHFXWd126445
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 17 May 2024 12:15:33 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
+ May 2024 12:15:33 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 17 May 2024 12:15:33 -0500
+Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44HHFWXr106902;
+	Fri, 17 May 2024 12:15:33 -0500
+From: Devarsh Thakkar <devarsht@ti.com>
+To: <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <benjamin.gaignard@collabora.com>, <sebastian.fricke@collabora.com>
+CC: <laurent.pinchart@ideasonboard.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>, <devarsht@ti.com>, <andrzej.p@collabora.com>,
+        <nicolas@ndufresne.ca>, <akpm@linux-foundation.org>,
+        <gregkh@linuxfoundation.org>, <andriy.shevchenko@linux.intel.com>,
+        <adobriyan@gmail.com>, <p.zabel@pengutronix.de>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <jani.nikula@intel.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-rockchip@lists.infradead.org>, <davidgow@google.com>,
+        <dlatypov@google.com>
+Subject: [PATCH v8 00/10] Add V4L2 M2M Driver for E5010 JPEG Encoder
+Date: Fri, 17 May 2024 22:45:32 +0530
+Message-ID: <20240517171532.748684-1-devarsht@ti.com>
+X-Mailer: git-send-email 2.39.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xt3yTz/9sLzzf4YV"
-Content-Disposition: inline
-In-Reply-To: <ZkePbZBufOHWQdzM@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+This adds support for V4L2 M2M based driver for E5010 JPEG Encoder
+which is a stateful JPEG encoder from Imagination technologies
+and is present in TI AM62A SoC.
 
---xt3yTz/9sLzzf4YV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+While adding support for it, following additional framework changes were
+made:
+ - Moved reference quantization and huffman tables provided in
+   ITU-T-REC-T.81 to v4l2-jpeg.c as suggested in mailing list [1].
+ - Add macros to round to closest integer (either higher or lower) while
+   rounding in order of 2.
+ - Add KUnit tests for math functions.
 
-On Fri, May 17, 2024 at 01:10:05PM -0400, Frank Li wrote:
-> On Fri, May 17, 2024 at 05:21:32PM +0100, Conor Dooley wrote:
-> > On Thu, May 16, 2024 at 11:56:27PM -0400, Frank Li wrote:
-> >=20
-> > > Look like it is easy to register auxdev "reset" devices. But I have a
-> > > problem. How to use it by DT phandle?  "reset" devices is service pro=
-vider.
-> > > Some client will use it.
-> > >=20
-> > > Generally, reset node will used by other devices nodes. like
-> > >=20
-> > > ABC: reset {
-> > > 	compatible=3D"simple-reset";
-> > > 	...
-> > > }
-> > >=20
-> > > other node will use "reset =3D <&ABC 0>".  If use auxdev, how to get =
-&ABC
-> > > in dts file.
-> >=20
-> > Whether or not you use auxdev or any other method etc, does not matter
-> > in a DT system, the consumer will always have a phandle to the provider
-> > node:
-> >=20
-> > ABC: whatever {
-> > 	compatible =3D "whatever";
-> > 	#clock-cells =3D <...>;
-> > 	#reset-cells =3D <...>;
-> > }
-> >=20
-> > something-else {
-> > 	clocks =3D <&ABC ...>;
-> > 	resets =3D <&ABC ...>;
-> > }
->=20
->=20
-> It goes back to old problem, "reset-cells" will be in "clock-controller".
->=20
-> clock-controller@30e20000 {
->         compatible =3D "fsl,imx8mp-audio-blk-ctrl", "syscon", "simple-mfd=
-";
->         reg =3D <0x30e20000 0x10000>;
-> 	...
-> =09
-> 	#reset-cells =3D <...>;
-> 	^^^
->     };
->=20
-> If create new "whatever" auxdev bus driver which included two aux devices=
-,=20
-> (clock and reset).=20
->=20
-> it will be similar with mfd. Still need change
-> clock-controller@30e20000 drivers.
->=20
-> "Which is I suspect is gonna require a change to your clock driver,
-> because the range in the existing clock nodes:
-> 	audio_blk_ctrl: clock-controller@30e20000 {
-> 		compatible =3D "fsl,imx8mp-audio-blk-ctrl";
-> 		reg =3D <0x30e20000 0x10000>;
-> 	};
-> would then have to move to the mfd parent node, and your clock child
-> would have a reg property that overlaps the reset region. You'd need to
-> then define a new binding that splits the range in two - obviously
-> doable, but significantly more work and more disruptive than using an
-> auxdev."
->=20
-> So I don't know why auxdev will be better than mfd.
+v4l2-compliance test :
+Link: https://gist.github.com/devarsht/1f039c631ca953a57f405cfce1b69e49
 
-I think Stephen and I have spent enough time trying to explain why using
-auxdev is beneficial here. I, at least, won't be wasting any more of my
-(metaphorical) breath.
+E5010 JPEG Encoder Manual tests :
 
-> A possible benefit may be that Auxdev needn't binding doc for clock and
-> reset node devices.
+Performance:
+Link: https://gist.github.com/devarsht/c40672944fd71c9a53ab55adbfd9e28b
 
+Functionality:
+Link: https://gist.github.com/devarsht/8e88fcaabff016bb2bac83d89c9d23ce
 
---xt3yTz/9sLzzf4YV
-Content-Type: application/pgp-signature; name="signature.asc"
+Compression Quality:
+Link: https://gist.github.com/devarsht/cbcc7cd97e8c48ba1486caa2b7884655
 
------BEGIN PGP SIGNATURE-----
+Multi Instance:
+Link: https://gist.github.com/devarsht/22c2fca08cd3441fb40f2c7a4cebc95a
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkeQMQAKCRB4tDGHoIJi
-0gYFAPwKc+FHcmVmGrUDsNpNdPs1BSVvTRRziCDnTk17ziMFeAEA6IsAjmQ6/TRJ
-PymGCZBH+JT2QFCLdgg7f7nFHjsA2go=
-=fmDE
------END PGP SIGNATURE-----
+Crop support:
+Link: https://gist.github.com/devarsht/de6f5142f678bb1a5338abfd9f814abd
 
---xt3yTz/9sLzzf4YV--
+Runtime PM:
+Link: https://gist.github.com/devarsht/70cd95d4440ddc678489d93885ddd4dd
+
+Math lib KUnit tests:
+Link: https://gist.github.com/devarsht/3f9042825be3da4e133b8f4eda067876
+
+[1]: 
+https://lore.kernel.org/all/de46aefe-36da-4e1a-b4fa-b375b2749181@xs4all.nl/
+
+Changelog:
+V7->V8:
+ - Add KUnit tests for math functions
+ - Add roundclosest() for supporting rounding for non-multiple of 2
+ - Update commit message as suggested
+ - Add Reviewed-by and Acked-by tags to patches as received
+
+V6->V7:
+ - Fix cropping support
+ - Move reference huffman and quantization tables to v4l2-jpeg.c
+ - Fix suspend/resume use-case
+ - Add Reviewed-by
+
+V5->V6:
+ - Fix sparse warnings
+
+V4->V5:
+ - Sort the #includes in driver file alphabetically
+ - Rename huffman and quantization tables to not use '_'
+ - Add Reviewed-by tag
+
+V3->V4:
+- Use ti-specific compatible ti,am62a-jpeg-enc as secondary one in
+  dt-binding
+- Remove clock-names as only single clock in dt-binding
+- Fix issue with default params setting
+- Correct v4l2 error prints
+- Simplify register write functions with single statement return values
+- Remove unrequired error checks from get_queue()
+- Drop explicit device_caps setting as it is already taken care by v4l2
+  core
+- Remove unrequired multiplanar checks and memset from s_fmt, g_fmt
+  callback functions
+- Fix try_fmt callback to not update the queues
+- Remove unrequired contiguous format attribute from queue_init
+- Use dynamic allocation for video_device and remove unrequired
+  assignments in probe()
+- Remove unrequired checks from queue_setup function
+- Return queued buffers back if start_streaming fails
+- Use ARRAY_SIZE in place of hard-coding
+- Use huffman and quantization tables from reference header file
+
+V2->V3:
+- Add DONOTMERGE patches for dts and defconfig
+- Update driver with below changes :
+  - Correct license headers
+  - Use more generic name core instead of jasper for base registers
+  - Add Comment for forward declarations
+  - Simplify quantization table calculations
+  - Use v4l2_apply_frmsize_constraints for updating framesize and remove
+    unrequired functions
+  - Place TODO at top of file and in commit message too
+  - Use dev_err_probe helper in probe function
+  - Fix return value checking for failure scenarios in probe function
+  - Use v4l2_err/info/warn helpers instead of dev_err/info/warn helpers
+  - Fix unexpected indentation
+  - Correct commit message
+- Update dt-bindings with below changes :
+  - Add vendor specific compatible 
+  - Fix commit title and message
+  - Update reg names
+  - Update clocks to 1
+  - Fix dts example with proper naming
+
+V1->V2:
+ - Send dt-bindings and driver together
+
+Patch-Diff between the series :
+V7->V8 Range diff :
+https://gist.github.com/devarsht/3fd6c4e8031ab114248f93d01c8dfc74
+
+V6->V7 Range diff :
+https://gist.github.com/devarsht/1db185b1e187eaf397e9e4c37066777e
+
+V5->V6 Range diff :
+https://gist.github.com/devarsht/c89180ac2b0d2814614f2b59d0705c19
+
+V4->V5 Range diff :
+https://gist.github.com/devarsht/298790af819f299a0a05fec89371097b
+
+V3->V4 Range diff :
+https://gist.github.com/devarsht/22a744d999080de6e813bcfb5a596272
+
+Previous patch series:
+V7: https://lore.kernel.org/all/20240510082603.1263256-1-devarsht@ti.com/
+V6: https://lore.kernel.org/all/20240228141140.3530612-1-devarsht@ti.com/
+V5: https://lore.kernel.org/all/20240215134641.3381478-1-devarsht@ti.com/
+V4: https://lore.kernel.org/all/20240205114239.924697-1-devarsht@ti.com/
+V3: https://lore.kernel.org/all/20230816152210.4080779-1-devarsht@ti.com/
+V2: https://lore.kernel.org/all/20230727112546.2201995-1-devarsht@ti.com/
+
+Daniel Latypov (1):
+  lib: add basic KUnit test for lib/math
+
+Devarsh Thakkar (9):
+  media: dt-bindings: Add Imagination E5010 JPEG Encoder
+  media: imagination: Add E5010 JPEG Encoder driver
+  media: v4l2-jpeg: Export reference quantization and huffman tables
+  media: imagination: Use exported tables from v4l2-jpeg core
+  media: verisilcon : Use exported tables from v4l2-jpeg for hantro
+    codec
+  math.h: Add macros for rounding to closest value
+  lib: math_kunit: Add tests for new macros related to rounding to
+    nearest value
+  media: imagination: Round to closest multiple for cropping region
+  gpu: ipu-v3: Use generic macro for rounding closest to specified value
+
+ .../bindings/media/img,e5010-jpeg-enc.yaml    |   75 +
+ MAINTAINERS                                   |    7 +
+ drivers/gpu/ipu-v3/ipu-image-convert.c        |    4 +-
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/imagination/Kconfig    |   12 +
+ drivers/media/platform/imagination/Makefile   |    3 +
+ .../platform/imagination/e5010-core-regs.h    |  585 ++++++
+ .../platform/imagination/e5010-jpeg-enc-hw.c  |  267 +++
+ .../platform/imagination/e5010-jpeg-enc-hw.h  |   42 +
+ .../platform/imagination/e5010-jpeg-enc.c     | 1646 +++++++++++++++++
+ .../platform/imagination/e5010-jpeg-enc.h     |  168 ++
+ .../platform/imagination/e5010-mmu-regs.h     |  311 ++++
+ .../media/platform/verisilicon/hantro_jpeg.c  |  128 +-
+ drivers/media/v4l2-core/v4l2-jpeg.c           |  162 +-
+ include/linux/math.h                          |   65 +
+ include/media/v4l2-jpeg.h                     |   11 +
+ lib/math/Kconfig                              |   11 +
+ lib/math/Makefile                             |    1 +
+ lib/math/math_kunit.c                         |  326 ++++
+ 20 files changed, 3708 insertions(+), 118 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+ create mode 100644 drivers/media/platform/imagination/Kconfig
+ create mode 100644 drivers/media/platform/imagination/Makefile
+ create mode 100644 drivers/media/platform/imagination/e5010-core-regs.h
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc-hw.c
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc-hw.h
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc.c
+ create mode 100644 drivers/media/platform/imagination/e5010-jpeg-enc.h
+ create mode 100644 drivers/media/platform/imagination/e5010-mmu-regs.h
+ create mode 100644 lib/math/math_kunit.c
+
+-- 
+2.39.1
+
 
