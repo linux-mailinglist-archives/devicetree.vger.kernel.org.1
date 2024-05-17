@@ -1,347 +1,233 @@
-Return-Path: <devicetree+bounces-67577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48CD48C8BDA
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:57:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F22758C8C15
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:10:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5AAE1F28B89
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:57:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 057711C22222
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 18:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A2E13F45B;
-	Fri, 17 May 2024 17:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F81413DDBA;
+	Fri, 17 May 2024 18:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bs1jXnmj"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="O4J6KS8S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2085.outbound.protection.outlook.com [40.107.21.85])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6242A13E880;
-	Fri, 17 May 2024 17:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715968330; cv=none; b=Ob2wC5HWVtwFrwoTa49ViI3GaHVyke9fUzhbT523j8+n5DUmD1m4udkdsQMj5Xscps1ZujcC+ScI5UJfUSjLZE9kiZnbXCKwzIsce4nrjMHPtFYu1AyTDPdRc/3VMcPr26oMhmHXF36A1XFdagdKEenaKmnj4/noJ4wKJV8NSjo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715968330; c=relaxed/simple;
-	bh=k4u+Zs1U5N5Nbd0SXueo37qjRvG5FXkDRxl57ceJgZU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DYbI1fz/WuVb8KleEQn+MNKR5Gx7z30RhHoc9XVVx3Qq/YmyFgxnTanjLcI1Dcvf91cZzogijaQzqpiR9KTr0ymzn9lrSWNsMdh5SScycXmqHYqAe5hWAjVBOP6T3hkdHedK/Ea1vj1bNv04XyQD+VLw4Kt58SlwKO6oe8L1Bug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bs1jXnmj; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-572d83e3c7eso5712990a12.3;
-        Fri, 17 May 2024 10:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715968327; x=1716573127; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ks0RlD7UTKMn34Olp6UQuBmkLnxzPxuIP1wwEzn+Rp0=;
-        b=bs1jXnmjXFjcXrKOaLthBUDh2dPpQB24X+P61pZwrwk1fHISg5ywNHReXkXu1N1kig
-         dxsTZURJFIdj4KhhXJn0xw/CREzPYlExSePSEJPjp55nITT0/aANhiLpnPhm5m/nl5hq
-         TyRVDzb7Xm1SfVn5KzUsT8PHadHKEHo4z3vuhUBwgLimRkN5PzVqSoswzoX7OxLhMZAs
-         QyYpynBklLoiZIG5ejqCCqmMOd/VwDZLZpG3lc2ZgP8z09Kq68l3K2nkw9LZTBFLzw75
-         QqmCrTJWdiUIY1IYeVTmVY38lrnORAxLH+DbwFQXapdQV3+WSz3WeyP/cojjL72fm+HF
-         huHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715968327; x=1716573127;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ks0RlD7UTKMn34Olp6UQuBmkLnxzPxuIP1wwEzn+Rp0=;
-        b=Qqtqy2eYyC5QrQ3debAUCR90YSrbG7FA9W5x+1x1WwQZAMJCV1EktPO5kWg0eXbjkR
-         BJTmh7av7dljEJP+fWOKHtaNciaq6vwbkfbGggV4NjUjp++i16s9UtCrA2nD2v27lhc4
-         2NMq8/hbS88+p/iWQALVoH6nQ0WD8i3R9SwUmUh2Aolpwozb/iaqb16LQs8oQnWCCS3X
-         eBuO1HRQ8yoOnTGjgP1T9adXQGTwHtQZWrzZsgPeiZBNUpYzg398R5vRWYOQ/YS8i6oD
-         1JdhSFBYeh07QdlOO2Ph9vBD16RsIs2AfSgT3fVm1bfq7XcSbFHM5FJyGEfNkwGFRX+X
-         ljzw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbGoH93d2zD33Sl++/2khj36a9PW0kWa+kkF/h2XpNDRWLGX4LRhFpNXvfYyCLSw2iEqLCdNQhMGf5xusx7ivW3/8+8Mjo67c47XexEv+XC7Ei8z55W4ArTgHzNg2VWbOdHaTTWQOs0w==
-X-Gm-Message-State: AOJu0YxmOvo88L0K+AMwzKoOGjeDZWtHeJmBM0icZoE3TSAKkkfvRvmw
-	+77a05+XoejwPpcxpklEg7T3kolMxbl14vZuVFxylYhCs31zV3DsE7S0IhsEqFToGPIHFV7fxYd
-	PotdsArnHSt+Vn3B1l3HRUYesM7A=
-X-Google-Smtp-Source: AGHT+IGXBPfaWm4BNOrHGUznqjJZtFazRkWx3XGlwExdCUBUotfg2iervWCPbfcVUWeQDOqX38MLpTsRoflhFz9VyZw=
-X-Received: by 2002:a50:9b41:0:b0:572:a123:5ed0 with SMTP id
- 4fb4d7f45d1cf-5734d5cccf3mr15047824a12.21.1715968326396; Fri, 17 May 2024
- 10:52:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20EFFEEC5;
+	Fri, 17 May 2024 18:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.85
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1715969427; cv=fail; b=OwJfUJNEKz/G9TaDvWF1/S+uyhhUSiXnLTbjnhOSn/NvBvsR1JnI/cK9roJOAjbMAp826Avkk3TOVXHtIy49U2gJYMBc2gUdiqgjUs+ZR7pc6gQWvjfxipUPZ+NMGBcTFEmuiZMekjFaVU3XbF3Iql3fCBqUs1iLvccWKPcEqm8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1715969427; c=relaxed/simple;
+	bh=pqXIC7WuTd9QbL6qS2aYOEz/tYGaAAcuvreq5hwo9mk=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=B3nCVd62/jFDDHnf92Eo/8eL71pS6X7yu99MVqEj4BwEd0/zBs2A1DDVAmFWjZDWc5ddiyYs/KKDi/J9rXdDiqYBcWq8YDKUbqrNnppCe7rzZIhep37Zk/w497SqfSERMveukZEM/BlcNrX6AAvTb2auW4TBOxRFlKbN0emuP9E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=O4J6KS8S; arc=fail smtp.client-ip=40.107.21.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WFJN9noXEUPS1gzUeDlfBafInYTYS9AqmXDExmq5+ZTp2QFwBELQSdp1JcwlXczQ9JkubLDxQ3IS9pyU8z9MXk+rc6/7PKBM+b5Cx65RG7DHp1aBcnKmMgB5dBaX/40PsB8t25fIUqI5wxxrNlwmdzeW07uHFny/hPuHm4eWDea8B0KXliakK6HlqvdAfp8bpCie5JKvcxj8OcxhTrUsDP7+A42ZqCo6wvixjHrh7ZI7Lx1ET0y65lrVc/469UZYqD1ICDB6b4FP4hMuOLLqvOuyvXpkyfg1NjTZZhAYbRdwdQ5XqC87Mo9JTGpQLyB45NMOTX/W0E2ajDazp8fBwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/pFpJoOmviIvR8Ff1VbG4ofTFueWJ4ICEeSQnE2rOlw=;
+ b=TH0VRLqaAxhhY+iodfe84Yq5bZoHpwnJ/gnFKj+oktBT22u0/GfHFU409xpzmSeokisxleg8VWoWD2VuYoeIQEw+1me63n4+7n+S/q3XKg/3V13luzucxl1qoztVIvV1tNXvHC71NB6l/nw728Vk9bbSCFIJ33TBsTvYBnsah0QIHMG+WUTuobDzi4nH9brFf8+1CxFZfhdObfi82qYQvojNPmWZ9wxyqQjzLwIlrQ7aeEgiTH5SukCyYQGDc+6pfC9tg1ryiEdT2XwIB+Ho+VGvPCHt8d6R+UrGD6HXR8WFJphjjiHZdvc+UOJJt0hSpImhIAhQv8zjovyxpoXdhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/pFpJoOmviIvR8Ff1VbG4ofTFueWJ4ICEeSQnE2rOlw=;
+ b=O4J6KS8Svis/qtM1+HvskvUpwtTPlnqrq62qlBfn27JN6if3hrcay84zM6sBeJgqf9K3Wxw4gZbz+jiRBrT4IbM4aAPMSId1c1G4cIIuqe2GQJhNV2lGiJPHn7an9Wrk3OBWieGooCHIgpZwfAGQ8ICWZVuhmgnqAopSLBCgElU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8422.eurprd04.prod.outlook.com (2603:10a6:20b:3ea::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7544.55; Fri, 17 May
+ 2024 18:10:22 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::1e67:dfc9:d0c1:fe58%7]) with mapi id 15.20.7587.026; Fri, 17 May 2024
+ 18:10:21 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH 0/5] mtd: nand: gpmi-nand: add imx8qxp gpmi nand support
+Date: Fri, 17 May 2024 14:09:47 -0400
+Message-Id: <20240517-gpmi_nand-v1-0-73bb8d2cd441@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGudR2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDU0Mz3fSC3Mz4vMS8FN1UQ0Mjc6PkpJS0xFQloPqCotS0zAqwWdGxtbU
+ AZYdK/1sAAAA=
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Han Xu <han.xu@nxp.com>, 
+ Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1715969417; l=1891;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=pqXIC7WuTd9QbL6qS2aYOEz/tYGaAAcuvreq5hwo9mk=;
+ b=JOnCvYouR8h2OGgkFxEwLpS6Y76bIXye/hfInC5LEQgXUULFdxEOvf6haUzATsqfFQ/I/CsDH
+ D2+QcZd7FZtCIO51C71l194DY8vRsg6uOjcI8LKzTlx3Xkr1q0oEzMf
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BYAPR07CA0068.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::45) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240517150741.181303-1-kanakshilledar111@protonmail.com> <20240517-disfigure-disperser-1fa6b36729ec@spud>
-In-Reply-To: <20240517-disfigure-disperser-1fa6b36729ec@spud>
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-Date: Fri, 17 May 2024 23:21:54 +0530
-Message-ID: <CAGLn_=s4ghNODpVhPdk61Jt4XLteXp4W7oFS9WOb9O2-9BiXWQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: riscv,cpu-intc:
- convert to dtschema
-To: Conor Dooley <conor@kernel.org>
-Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Samuel Holland <samuel.holland@sifive.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8422:EE_
+X-MS-Office365-Filtering-Correlation-Id: f967b972-5b34-4264-42f8-08dc769c9e05
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|52116005|366007|376005|7416005|1800799015|921011|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?MlhFMEZRK2FTazZ2ajhTNXVPVnZMMkFZaHBna01DSWNEYkdHVXhzd0NHYTNB?=
+ =?utf-8?B?bmlOc2JRWjl5QVB1eXhQRDhwdUJrc05nQzJwWnRpWmJITnZaMFV1UDhRSjE0?=
+ =?utf-8?B?a0tCQTczT253TDkzN1ZuQlVJZkZIQkxxeS9BeVdLenY1RnYzRS9vallWNDJl?=
+ =?utf-8?B?SXV2MXk0VTlUWHBzT1ZESVRSYTN2cE81WDR0ZkdVR3pSN2lwZi9yYnNWdmxE?=
+ =?utf-8?B?dFkyN0czTDZlNUUvM2hBcEJrcUZMcy9DQWQvb3VXbHhML0wrT0xNSWMzVnJk?=
+ =?utf-8?B?V0kwa2hiV1luYTNHazN1Q3Ztd3BRZmVrd29pVDR3OG94ZWFSMUJMZExmMmtE?=
+ =?utf-8?B?WmpweWo3QW9WVGNpK253TXAwNmdsM0ZoWjljeEdhc1FlSzYzWnY4WGxVK2xJ?=
+ =?utf-8?B?Qkd3OFBKdEpvbU5CZEM5SnQzREYwTXlDaitnU250K09jclVWdkJtNUVNZlFE?=
+ =?utf-8?B?QVkwL0xXK2NwWkZOOVlaUVpDdUszU3c2RUZINW12M2JXQVhPdmFFSDNzd1E5?=
+ =?utf-8?B?dW5uUmxJNlVSWUNxR0duVFVrNWxPYmtSSmNFOVp2czYrNWxjdHR2by9Qb0dl?=
+ =?utf-8?B?OGI2UHFudDd6UnpNOXFEQjFzcHI4U3VHTlRGUUpFRkdzamM3THJUMjQrNkZ0?=
+ =?utf-8?B?YTlNVDRVUzB6ZEhGL3dsY2NybHBvNG5YZVhWQmNTL1gwakYwRnRYYUNYMDc0?=
+ =?utf-8?B?UDZVR2Rya2wvRHZFaGorRmFKcmptdWd1ZXhLQ2JqUnlGNmcvbDFGVHpsZVZN?=
+ =?utf-8?B?cUhkR2s5dTdkQlgrcmhiMVZ2YmxZbVNET1BaK2lnaXhHeTIreWpvUDdOdjY1?=
+ =?utf-8?B?RXVYZitBcE5QRXUvK2NVSFdidmJNa2NVRDZsaU1CQTNjUHFsc0o2RVQ4dGht?=
+ =?utf-8?B?MXVBT3Exd3FCcTBxQWNGbFA0eFBMd0h3TkdVVy9MN3VHOWlaWStwU3hOaWlW?=
+ =?utf-8?B?U0t0TG5TY2RMMDRUS25aMUhaZnY0dnpoR0EycU5FbDNBdit2VUhvWlJtcGxF?=
+ =?utf-8?B?bVlCUFBtSDVZbytUVWxiSStZc0twblZRcExOY2l6Wm1YREhHWG9pa0V2QWdV?=
+ =?utf-8?B?VXRLVFlEbzNiL1RjRDZTSmdnd0N4K2h0bm85aGx2TVJuWkhnNlV3MVVIUnpv?=
+ =?utf-8?B?QXZRdHhCQ0VwUFpiNXk2NG5WMURUVlhZcGJBUFVKeXJlamxxaldvMXcvRmZx?=
+ =?utf-8?B?YThVSnF6dllkKzhTS2V5bVZ2cHpCNmEvQXhUNGVVY29RY0NOODhMYVExQ2JT?=
+ =?utf-8?B?cEJpNkk4NWc1QzlmNEZaQ1d3YWVLbUpSL0NoQmk5RmYxZm11VWdIOXRkWnMx?=
+ =?utf-8?B?bUppMkJDVTIvUXBlanhUWmppUWNNeUhXWjAycVEyWG5ENFZxSXdUQ09rZlFa?=
+ =?utf-8?B?TXJ3cytTMlE1dG5ZRkQxcHdNS2Ywd0RaRVhPUjZ5ZUpGN24zVkw4bnFJaWlJ?=
+ =?utf-8?B?NVBjbGdDTXBCNHdaZXNidVVEYzEyS3F3bElpRGpnM3lIWllCWER2RG10Sy9B?=
+ =?utf-8?B?ei9PUWRwa3ZXRnAwemdvSmxzMHNVQU1KajRIc09XRnNrRXNTb3F6T1lGa1hF?=
+ =?utf-8?B?Y1QwVFc3Ni9lWXZmSHBSd3ptck1vUnlTK2RTT3h0N2ordCsyYU4veHhBNVZt?=
+ =?utf-8?B?eXJqa2RIZWlFSVMzTEdvZEhiSkxaK3MxYm9GZGNTU3E2KzY5L0J1KzlyeDl6?=
+ =?utf-8?B?bFpxRGJIYk5zRFVXOTl4MHk3NjkxbWtjWUY4RWp6KzV0L0pOZWlOVjFlNDk5?=
+ =?utf-8?B?MWRvVDRIb3dRU1hjNXQ0dnFsOEVRYlV5bnhSN3M2Q3ozcFJGZFp3KzhGQ3g2?=
+ =?utf-8?Q?o6x+/emnLk/Vix4eFGfW9IQlPrMIKqKHiWFu4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(52116005)(366007)(376005)(7416005)(1800799015)(921011)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YmU5YmIyVEI4QlBnWUthVkc4NllPdi80U0VuWWk2SVJWSTZRZzVWa2FyNXAv?=
+ =?utf-8?B?ZXdrSTgzdXArUFdMVVh3M0htK09KYWRFRTE0MGFrYnpUQktScDU5YjAvWmg5?=
+ =?utf-8?B?UEpUc09NakNuWjUvUmE1Qm5HZDZMRTdwZXpSYzh0MTMwSzFaWmdKNS8xL3dy?=
+ =?utf-8?B?bHJ6MDNKNVAzRVZqTWNPMDIxa0ZKeERJc0Foa0wrQnhQS0lCQm9BNkpudGJ1?=
+ =?utf-8?B?S0hvODhUdk04Z0E5ZXZIc2t2VDE3VVFyUnMwUVVjdTZqT0JnUlJuYTduc1E3?=
+ =?utf-8?B?bjZvZ1NndHl0Yk1oUkdlWFlxOUhBVXczYVUreUlNc3poT3RFaDZmamlMQjVR?=
+ =?utf-8?B?cDNiTHNIRzBDWDMwdklZRUM0enBmR2JHZWhBeDlxalpsbmxwcXc5MzZ6R2Zm?=
+ =?utf-8?B?dkVyZkxwYmUvS1JoMWV6YmI0QkwyejVscjcvMEZmdVg0RkxuWnJFMXdkRW5G?=
+ =?utf-8?B?OUNZb09kTHZwcTdzUUs2ME56WEtXVEpOTWRiM1ZNeUljeGI5MklHN3gxNFB6?=
+ =?utf-8?B?S2tyR0lpTGNJNkFra01UWGd4UXkrb1hVMFhIWmxnMENmcU9QOEc1SmxMQ096?=
+ =?utf-8?B?Rk00dlJaVTFWQUQ3b1d2dDNkRnAzYmFtcXVrQ0k3U2RMT2FJUTBxQ2hUVGpR?=
+ =?utf-8?B?YjZmamxSUTJ5Ukd1cGxDK1RvZkZmVXZUQ3JxQjFXaTdUeFlUOGtPQ1A3SHhi?=
+ =?utf-8?B?NUNxV1gvcXRNQUxrT3JXSkg0ZkRRN2RkU3JUYitZa1pZWWdvQWdqdTBvRVZJ?=
+ =?utf-8?B?OWRqRXFWN2pwN3FobkxhVlBpaGg2VlRTTTdSRUpZdXVhaFUyU0I4VWtlc0xr?=
+ =?utf-8?B?RlI0c2FtWnlrQ3hlcnd3ZFZ6ZFAzbXhvSkZtbmE3aXY2ekhWeFYrRzgvcE5q?=
+ =?utf-8?B?dDg2VWQzZjI3YmxKVndhaTJBclNXYU12dTM0b2lzek9mODhBOWJZUy9zRzNP?=
+ =?utf-8?B?QTlyK29MRHRMN05GRkFyMkNZWlhHWGh2QkpVdW9GNjBRdFVnWDI4dld1VTN4?=
+ =?utf-8?B?N2pmNWlIdzFZQ0haNU9yZlUrWTZsenhEbkdzTkFldWNsemdieVRxcjExUTMr?=
+ =?utf-8?B?K2o0MEZtVlgwbi9sSWFSWHRFUjVNekUvRHpSZHFmc2JkZlRjQnpKVE1BVU1z?=
+ =?utf-8?B?OXNKZWJ4NmlteCtTVmsyYXFHdDlGU2tBQm9jazNRNjJJdzUzd2R4WngrVTFx?=
+ =?utf-8?B?VzhzaHh5QkZvZXVKOXlzbFA1NzV4bmxXRWdLdWZpTVFWZ1FubTFBdG5BU3Bl?=
+ =?utf-8?B?eWlGYTJJMW9ZYkxBZmhxbnVMaUJLZXMxa2toWjlIQmR6YVljcjFHZmdraGl3?=
+ =?utf-8?B?anFtUkRTbGtoajg1RmNVcVJHVXFEY1NZWlNBNTN3NFpweUFiZFNBczh6Q21O?=
+ =?utf-8?B?VWFNTVh3NFV6WHltZmFHQ2ZnSFdqbXZXRXhuTW5IaG1LRFBnMllsYlBUNUtj?=
+ =?utf-8?B?T1RDdGR0S283empLVGlwR3FtVWgrdllONUtwbVJJQXNVZE5rdE93M04yQkdo?=
+ =?utf-8?B?SjJscm1KQ1F4QnJFQnJWUk1aQkFEbnFMNEwyR1lLcE8xMHBQRlR6K3RpdUNK?=
+ =?utf-8?B?YWszU0Nxbm5QZEY1UTNhUURWbS9KQlk0eCtUUkJqTFVCWTBreGdnUFVSSW8w?=
+ =?utf-8?B?YnpEWHNYT3BERFkvakNaSUhXRmVVQXhrRm90ZjBYd1AyMlQwL3R5dWY1OXJy?=
+ =?utf-8?B?NDlWNDdhbnBIVUVUN1B6ZGUySityVFlJdW9iOGZkSEtSTnZxOWhkTUJ1aG55?=
+ =?utf-8?B?VXllbktHaVMzeTRPNStzQUMyTEJRTUhKOWpoRkxGTWVqZWlhV0pKc0ROMU40?=
+ =?utf-8?B?ZGpLOEFZV09DQ0t3SHdjWlU2SkszWVdOZDdDVUpJci9pS0dxdVg1djZOenFU?=
+ =?utf-8?B?MENwNFhMS25UbXhrT0FXaW8zVWF2dVpSQlc3TTVZWFppa0hmczNBVTlTMFVZ?=
+ =?utf-8?B?cjAzMGN6L29pUVIreDc3aVZ3cXhEdTdOY013VGNkVGh4akhMZ3NMUlEzaXJ2?=
+ =?utf-8?B?S3pFdDJGQW9paCtkV3hvRWRBTnp4WmdPN1lVdnRkaU5QekRDcWhJODFGdWNZ?=
+ =?utf-8?B?NlJEQUw3djNtSHdKT3JFTlRGRmpiWFc5SllDbUNhWndPSGhCN3Fpek1FeFhD?=
+ =?utf-8?Q?mLbiV+/QPtkfpMd8AOW+unD3y?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f967b972-5b34-4264-42f8-08dc769c9e05
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2024 18:10:21.8923
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MosWaewTKbo4cl7tBhjIi6tGpn+EFuQ8Q1V3HpmpbXddiQdQzrGHk+LQrxuniMe/FmhpiWdpcRizrQxDb+eSXQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8422
 
-On Fri, May 17, 2024 at 9:34=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> Yo,
->
-> On Fri, May 17, 2024 at 08:37:40PM +0530, Kanak Shilledar wrote:
-> > Convert the RISC-V Hart-Level Interrupt Controller (HLIC) to newer
-> > DT schema, Created DT schema based on the .txt file which had
-> > `compatible`, `#interrupt-cells` and `interrupt-controller` as
-> > required properties.
-> > Changes made with respect to original file:
-> > - Changed the example to just use interrupt-controller instead of
-> > using the whole cpu block
-> > - Changed the example compatible string.
-> >
-> > Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
-> > ---
-> >  .../interrupt-controller/riscv,cpu-intc.txt   | 52 -----------------
-> >  .../interrupt-controller/riscv,cpu-intc.yaml  | 57 +++++++++++++++++++
-> >  2 files changed, 57 insertions(+), 52 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/interrupt-control=
-ler/riscv,cpu-intc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
-ler/riscv,cpu-intc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ris=
-cv,cpu-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/ri=
-scv,cpu-intc.txt
-> > deleted file mode 100644
-> > index 265b223cd978..000000000000
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-=
-intc.txt
-> > +++ /dev/null
-> > @@ -1,52 +0,0 @@
-> > -RISC-V Hart-Level Interrupt Controller (HLIC)
-> > ----------------------------------------------
-> > -
-> > -RISC-V cores include Control Status Registers (CSRs) which are local t=
-o each
-> > -CPU core (HART in RISC-V terminology) and can be read or written by so=
-ftware.
-> > -Some of these CSRs are used to control local interrupts connected to t=
-he core.
-> > -Every interrupt is ultimately routed through a hart's HLIC before it
-> > -interrupts that hart.
-> > -
-> > -The RISC-V supervisor ISA manual specifies three interrupt sources tha=
-t are
-> > -attached to every HLIC: software interrupts, the timer interrupt, and =
-external
-> > -interrupts.  Software interrupts are used to send IPIs between cores. =
- The
-> > -timer interrupt comes from an architecturally mandated real-time timer=
- that is
-> > -controlled via Supervisor Binary Interface (SBI) calls and CSR reads. =
- External
-> > -interrupts connect all other device interrupts to the HLIC, which are =
-routed
-> > -via the platform-level interrupt controller (PLIC).
-> > -
-> > -All RISC-V systems that conform to the supervisor ISA specification ar=
-e
-> > -required to have a HLIC with these three interrupt sources present.  S=
-ince the
-> > -interrupt map is defined by the ISA it's not listed in the HLIC's devi=
-ce tree
-> > -entry, though external interrupt controllers (like the PLIC, for examp=
-le) will
-> > -need to define how their interrupts map to the relevant HLICs.  This m=
-eans
-> > -a PLIC interrupt property will typically list the HLICs for all presen=
-t HARTs
-> > -in the system.
-> > -
-> > -Required properties:
-> > -- compatible : "riscv,cpu-intc"
->
-> > -- #interrupt-cells : should be <1>.  The interrupt sources are defined=
- by the
-> > -  RISC-V supervisor ISA manual, with only the following three interrup=
-ts being
-> > -  defined for supervisor mode:
-> > -    - Source 1 is the supervisor software interrupt, which can be sent=
- by an SBI
-> > -      call and is reserved for use by software.
-> > -    - Source 5 is the supervisor timer interrupt, which can be configu=
-red by
-> > -      SBI calls and implements a one-shot timer.
-> > -    - Source 9 is the supervisor external interrupt, which chains to a=
-ll other
-> > -      device interrupts.
->
-> I don't think that we should remove this test from the binding.
+Update binding doc to support imx8qxp NAND.
+Add new compatible string "fsl,imx8qxp-gpmi-nand".
+Update dts for imx8qxp and imx8dxl
 
-Do you suggest adding it as a description for the `#interrupt-cells` proper=
-ty?
+Run dt_binding_check: fsl,mxs-dma.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  DTEX    Documentation/devicetree/bindings/dma/fsl,mxs-dma.example.dts
+  DTC_CHK Documentation/devicetree/bindings/dma/fsl,mxs-dma.example.dtb
+Run dt_binding_check: gpmi-nand.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  DTEX    Documentation/devicetree/bindings/mtd/gpmi-nand.example.dts
+  DTC_CHK Documentation/devicetree/bindings/mtd/gpmi-nand.example.dtb
 
-> > -- interrupt-controller : Identifies the node as an interrupt controlle=
-r
-> > -
-> > -Furthermore, this interrupt-controller MUST be embedded inside the cpu
-> > -definition of the hart whose CSRs control these local interrupts.
-> > -
-> > -An example device tree entry for a HLIC is show below.
-> > -
-> > -     cpu1: cpu@1 {
-> > -             compatible =3D "riscv";
-> > -             ...
-> > -             cpu1-intc: interrupt-controller {
-> > -                     #interrupt-cells =3D <1>;
-> > -                     compatible =3D "sifive,fu540-c000-cpu-intc", "ris=
-cv,cpu-intc";
-> > -                     interrupt-controller;
-> > -             };
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ris=
-cv,cpu-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/r=
-iscv,cpu-intc.yaml
-> > new file mode 100644
-> > index 000000000000..6fe86d243633
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-=
-intc.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,cpu-intc=
-.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: RISC-V Hart-Level Interrupt Controller (HLIC)
-> > +
-> > +description:
-> > +  RISC-V cores include Control Status Registers (CSRs) which are local=
- to
-> > +  each CPU core (HART in RISC-V terminology) and can be read or writte=
-n by
-> > +  software. Some of these CSRs are used to control local interrupts co=
-nnected
-> > +  to the core. Every interrupt is ultimately routed through a hart's H=
-LIC
-> > +  before it interrupts that hart.
-> > +
-> > +  The RISC-V supervisor ISA manual specifies three interrupt sources t=
-hat are
-> > +  attached to every HLIC namely software interrupts, the timer interru=
-pt, and
-> > +  external interrupts. Software interrupts are used to send IPIs betwe=
-en
-> > +  cores.  The timer interrupt comes from an architecturally mandated r=
-eal-
-> > +  time timer that is controlled via Supervisor Binary Interface (SBI) =
-calls
-> > +  and CSR reads. External interrupts connect all other device interrup=
-ts to
-> > +  the HLIC, which are routed via the platform-level interrupt controll=
-er
-> > +  (PLIC).
-> > +
-> > +  All RISC-V systems that conform to the supervisor ISA specification =
-are
-> > +  required to have a HLIC with these three interrupt sources present. =
- Since
-> > +  the interrupt map is defined by the ISA it's not listed in the HLIC'=
-s device
-> > +  tree entry, though external interrupt controllers (like the PLIC, fo=
-r
-> > +  example) will need to define how their interrupts map to the relevan=
-t HLICs.
-> > +  This means a PLIC interrupt property will typically list the HLICs f=
-or all
-> > +  present HARTs in the system.
-> > +
->
-> > +maintainers:
-> > +  - Kanak Shilledar <kanakshilledar111@protonmail.com>
->
-> Are you knowledgeable about the cpu-intc on RISC-V? If you put yourself
-> down just to satisfy dt_binding_check, I would suggest that you put down
-> Palmer and Paul here as the maintainers of the architecture instead.
+No warning:
 
-I am adding Palmer and Paul as maintainers in the v2 patch.
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  -j8 CHECK_DTBS=y freescale/imx8dxl-evk.dtb
+  SYNC    include/config/auto.conf.cmd
+  UPD     include/config/kernel.release
+  DTC_CHK arch/arm64/boot/dts/freescale/imx8dxl-evk.dtb
 
-> > +properties:
-> > +  compatible:
-> > +    const: "riscv,cpu-intc"
->
-> A new warning with dtbs_check from your patch:
-> /stuff/linux/build/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: in=
-terrupt-controller: compatible:0: 'riscv,cpu-intc' was expected
->         from schema $id: http://devicetree.org/schemas/interrupt-controll=
-er/riscv,cpu-intc.yaml#
-> /stuff/linux/build/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: in=
-terrupt-controller: compatible: ['andestech,cpu-intc', 'riscv,cpu-intc'] is=
- too long
->         from schema $id: http://devicetree.org/schemas/interrupt-controll=
-er/riscv,cpu-intc.yaml#
->
-> There's a duplicate description in riscv/cpus.yaml:
->   interrupt-controller:
->     type: object
->     additionalProperties: false
->     description: Describes the CPU's local interrupt controller
->
->     properties:
->       '#interrupt-cells':
->         const: 1
->
->       compatible:
->         oneOf:
->           - items:
->               - const: andestech,cpu-intc
->               - const: riscv,cpu-intc
->           - const: riscv,cpu-intc
->
->       interrupt-controller: true
->
-> I think the one in cpus.yaml should be converted to a ref and the
-> andestech compatible added here.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Frank Li (4):
+      dt-bindings: mtd: gpmi-nand: Add 'fsl,imx8qxp-gpmi-nand' compatible string
+      dt-bindings: dma: fsl-mxs-dma: Add compatible string "fsl,imx8qxp-dma-apbh"
+      arm64: dts: imx8-ss-conn: add gpmi nand node
+      arm64: dts: imx8dxl-ss-conn: add gpmi nand
 
-I am working on the v2 patch, in which I didn't provide any ref to the
-cpus.yaml and just replaced my compatible section with the one above
-to resolve the issue with `/renesas/r9a07g043f01-smarc.dtb`. I tested
-with others and didn't get any warnings.
+Han Xu (1):
+      mtd: rawnand: gpmi: add iMX8QXP support.
 
-> > +  interrupt-controller: true
-> > +
-> > +  '#interrupt-cells': true
->
-> `const: 1` to match the text binding being removed.
->
-> Cheers,
-> Conor.
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#interrupt-cells'
-> > +  - interrupt-controller
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    interrupt-controller {
-> > +        #interrupt-cells =3D <1>;
-> > +        compatible =3D "riscv,cpu-intc";
-> > +        interrupt-controller;
-> > +    };
-> > --
-> > 2.34.1
-> >
+ .../devicetree/bindings/dma/fsl,mxs-dma.yaml       | 15 +++++
+ .../devicetree/bindings/mtd/gpmi-nand.yaml         | 22 +++++++
+ arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi    | 69 ++++++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi | 11 ++++
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c         | 20 ++++++-
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.h         |  4 ++
+ 6 files changed, 138 insertions(+), 3 deletions(-)
+---
+base-commit: dbd9e2e056d8577375ae4b31ada94f8aa3769e8a
+change-id: 20240516-gpmi_nand-e11272cbdfae
 
-Thanks and Regards,
-Kanak Shilledar
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
+
 
