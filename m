@@ -1,226 +1,154 @@
-Return-Path: <devicetree+bounces-67570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83C08C8AE3
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:23:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA9B8C8ACD
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:20:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E6C1281289
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:23:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10141F24F30
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561F613DDC9;
-	Fri, 17 May 2024 17:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05EA13DB9B;
+	Fri, 17 May 2024 17:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LuCMXl4n"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SXv+eT33"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D63A13DBA2;
-	Fri, 17 May 2024 17:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FF713DB83;
+	Fri, 17 May 2024 17:20:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715966578; cv=none; b=mTRIvXqqDHMW/39Pt1aZNznjGaWXZHKdMC8wEAwsRE8Ri850jnwyDSe3GEfF0cbTi8m66W6noc2pnURYEpAycXYAHuIZBmm5OIdQXSDilFoYDt01AXYsUXLguQnXI5q60RyQ3C5A22iOdvyqanhkL+D8qqS5A6ozAUUctiXwkJA=
+	t=1715966440; cv=none; b=pvw6P7HXUE640TJxBDS9pifhddFS/n4sqkaaYdS1PfCb56gxF3GUbN7jTEe2/8HdLDUpZkcshy/S8luQcaBy9C54lXemgpBWKYQFfk+HlLh7sszmV2O6UEvIK/aPJJ+OR8pJ8kycsrskDpaJOK7r++EFZAOYt1yb5QCxF9emzq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715966578; c=relaxed/simple;
-	bh=A62SrEGUNgarYEucEPNWv0b881kKQnR5p/TPQqVl/x8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FqoagCZ4fiht6mljQ7Cg/Ut0+zFdbz5oxemk8Lyo2sTSZ1DJW7781HmcKknjQ4RPYCi1sw/xo/2m24fcGGNo+V2d0/ARUBCCeia2GVxxYBIUx1UATkQapXyF0w7lZ8qeucD5ZPmN6+NAOX3XwYi/ZF3v/qtesrxGJgeLoXi3R5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LuCMXl4n; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44HHJZ65112962;
-	Fri, 17 May 2024 12:19:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1715966375;
-	bh=pDGiysoKPG8xVLvKSAMkH4XMIv+M54T2DqtUo9PttQE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=LuCMXl4nZ9ad43UjnEEZwVI6K8Bwlocl+/wuxDGHH3pfc/db3rrsMrV0tVVvc3QnK
-	 q1VLzVjfIADmh42UDV58mT13p5oHhfNFcjPv4MpYwuxboWXjLLkYHER9YXNm0hb8T+
-	 3YMby0K8ANmWiWAdcdSE0a8BECQcl1KTbKr9Tjag=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44HHJZoL107039
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 May 2024 12:19:35 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
- May 2024 12:19:35 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 17 May 2024 12:19:35 -0500
-Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44HHJYJA106120;
-	Fri, 17 May 2024 12:19:35 -0500
-From: Devarsh Thakkar <devarsht@ti.com>
-To: <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <benjamin.gaignard@collabora.com>, <sebastian.fricke@collabora.com>
-CC: <laurent.pinchart@ideasonboard.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
-        <vijayp@ti.com>, <andrzej.p@collabora.com>, <nicolas@ndufresne.ca>
-Subject: [PATCH v8 01/10] media: dt-bindings: Add Imagination E5010 JPEG Encoder
-Date: Fri, 17 May 2024 22:49:34 +0530
-Message-ID: <20240517171934.758643-1-devarsht@ti.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20240517171532.748684-1-devarsht@ti.com>
-References: <20240517171532.748684-1-devarsht@ti.com>
+	s=arc-20240116; t=1715966440; c=relaxed/simple;
+	bh=bGx5fE8ig9g3KHDsz9s7MhC3JHjF6v+ZqWiEcDWnt5k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=h0NhKE7OdofOwVC1HSq8KZsmSPQcunhyQ1Z4rluwwiJvOUDm7h/dMWTZjDKxzT9NRtf/MXfXOLhL4gcoNRGmKPAxJ7Z/0ei5/7iwDmN80tiFCQ5svH/BiezgSTywnOno0Jlb9p++WLxUIilO4Q7FSdjIvyTan+H+boAv6QtRFKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SXv+eT33; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44H98KK7007278;
+	Fri, 17 May 2024 17:20:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=QEQp5msevNm4J4LDm9KOVT44ZsbOilXU6qGhunnZvBw=; b=SX
+	v+eT33slzj66rpBelip6MvHlnUed3GkAQ4pD0Zi5tc3Tx8iL/MEa7eBwUHs/8SUY
+	IHLugdQ1FWZi8MOd8d5dqpBBXuXHX1niQ+ki1Nd9+X4SehbxC8IgpIXQzQSFVMb5
+	RnW2DZ18Qr/3+PvhvZ5hJ/UIeiH5+qVMu5uKLxhh/kxYPwEEnZnqh+McwInskgfc
+	rZ/ElEC0CVWEutgl6jIBMXDqZgWPABeli3Zi3SKUFHbLMcLM0P66IpoltPJ1sxzL
+	nfKR4E6QjBZ9X/hikxXtYOM5/H/nfanjl+TeELqsExTpkwQqQToGBNUs0QIqQFU4
+	dxr05YbfILxoN483upBw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y49ge0m58-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 May 2024 17:20:16 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44HHKFuP008062
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 May 2024 17:20:15 GMT
+Received: from [10.110.27.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 17 May
+ 2024 10:20:13 -0700
+Message-ID: <b264bd9c-c355-4b08-8e52-7adc23cb0b20@quicinc.com>
+Date: Fri, 17 May 2024 10:20:11 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] remoteproc: qcom_q6v5_pas: Add hwspinlock bust on
+ stop
+To: Bryan O'Donoghue <pure.logic@nexus-software.ie>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Peter
+ Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+        Will Deacon
+	<will@kernel.org>, Waiman Long <longman@redhat.com>,
+        Boqun Feng
+	<boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>
+CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Richard Maina <quic_rmaina@quicinc.com>
+References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
+ <20240516-hwspinlock-bust-v1-6-47a90a859238@quicinc.com>
+ <40730e9f-ae2b-4b56-89bd-f839876271fe@nexus-software.ie>
+Content-Language: en-US
+From: Chris Lew <quic_clew@quicinc.com>
+In-Reply-To: <40730e9f-ae2b-4b56-89bd-f839876271fe@nexus-software.ie>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YKCFMaI2rJ-_gTZA9j16KUiazNOWtQPz
+X-Proofpoint-ORIG-GUID: YKCFMaI2rJ-_gTZA9j16KUiazNOWtQPz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-17_07,2024-05-17_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 clxscore=1011 priorityscore=1501 phishscore=0 spamscore=0
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405170134
 
-Add dt-bindings for Imagination E5010 JPEG Encoder [1] which is implemented
-as stateful V4L2 M2M driver.
 
-The device supports baseline encoding with two different quantization
-tables and compression ratio as demanded.
 
-Minimum resolution supported is 64x64 and Maximum resolution supported is
-8192x8192.
+On 5/17/2024 2:08 AM, Bryan O'Donoghue wrote:
+> On 17/05/2024 00:58, Chris Lew wrote:
+>> From: Richard Maina <quic_rmaina@quicinc.com>
+>>
+>> When remoteproc goes down unexpectedly this results in a state where any
+>> acquired hwspinlocks will remain locked possibly resulting in deadlock.
+>> In order to ensure all locks are freed we include a call to
+>> hwspin_lock_bust() during remoteproc shutdown.
+>>
+>> For qcom_q6v5_pas remoteprocs, each remoteproc has an assigned id that
+>> is used to take the hwspinlock. Remoteproc should use this id to try and
+>> bust the lock on remoteproc stop.
+>>
+>> This edge case only occurs with q6v5_pas watchdog crashes. The error
+>> fatal case has handling to clear the hwspinlock before the error fatal
+>> interrupt is triggered.
+>>
+>> Signed-off-by: Richard Maina <quic_rmaina@quicinc.com>
+>> Signed-off-by: Chris Lew <quic_clew@quicinc.com>
+>> ---
+> 
+>> +    if (adsp->hwlock) {
+>> +        ret = hwspin_lock_bust(adsp->hwlock, adsp->hwlock_id);
+>> +        if (ret)
+>> +            dev_info(adsp->dev, "failed to bust hwspinlock\n");
+> 
+> qcom_hwspinlock_bust() already prints an error on failure, you're 
+> printing a second error here.
+> 
+> Choose at most one.
+> 
 
-[1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
-Link: https://www.ti.com/lit/pdf/spruj16
+Ack, will remove the error print here and leave the one in 
+qcom_hwspinlock_bust()
 
-Co-developed-by: David Huang <d-huang@ti.com>
-Signed-off-by: David Huang <d-huang@ti.com>
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-V8:
- - No change
-V7:
- - No change
-V6:
- - No change
-V5:
- - Add Reviewed-By tag
-V4:
- - Use ti-specific compatible ti,am62a-jpeg-enc as secondary one
- - Update commit message and title
- - Remove clock-names as only single clock
-V3:
-- Add vendor specific compatible
-- Update reg names
-- Update clocks to 1
-- Fix dts example with proper naming
-V2: No change
----
- .../bindings/media/img,e5010-jpeg-enc.yaml    | 75 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 80 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-new file mode 100644
-index 000000000000..085020cb9e61
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Imagination E5010 JPEG Encoder
-+
-+maintainers:
-+  - Devarsh Thakkar <devarsht@ti.com>
-+
-+description: |
-+  The E5010 is a JPEG encoder from Imagination Technologies implemented on
-+  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
-+  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
-+  8Kx8K resolution.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: ti,am62a-jpeg-enc
-+          - const: img,e5010-jpeg-enc
-+      - const: img,e5010-jpeg-enc
-+
-+  reg:
-+    items:
-+      - description: The E5010 core register region
-+      - description: The E5010 mmu register region
-+
-+  reg-names:
-+    items:
-+      - const: core
-+      - const: mmu
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+      jpeg-encoder@fd20000 {
-+          compatible = "img,e5010-jpeg-enc";
-+          reg = <0x00 0xfd20000 0x00 0x100>,
-+                <0x00 0xfd20200 0x00 0x200>;
-+          reg-names = "core", "mmu";
-+          clocks = <&k3_clks 201 0>;
-+          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
-+          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 90754a451bcf..f35d1861cc27 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10766,6 +10766,11 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
- F:	drivers/auxdisplay/img-ascii-lcd.c
- 
-+IMGTEC JPEG ENCODER DRIVER
-+M:	Devarsh Thakkar <devarsht@ti.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-+
- IMGTEC IR DECODER DRIVER
- S:	Orphan
- F:	drivers/media/rc/img-ir/
--- 
-2.39.1
-
+> ---
+> bod
 
