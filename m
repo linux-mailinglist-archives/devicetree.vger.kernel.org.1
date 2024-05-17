@@ -1,275 +1,236 @@
-Return-Path: <devicetree+bounces-67542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F0A8C88FB
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:04:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80CA38C8905
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11E1428742A
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 15:04:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2F17B21FA5
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 15:08:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF6065E20;
-	Fri, 17 May 2024 15:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951D1664DD;
+	Fri, 17 May 2024 15:08:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I/pUygbm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1EC464CE1;
-	Fri, 17 May 2024 15:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2428479;
+	Fri, 17 May 2024 15:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715958249; cv=none; b=J5LKj+d3FHBQGUvAdF4/LjinAJUzHWKp4vh2BAw7MvcQwaDi23COzfofEPKKWFdK8nCQ0eSUOiY9sS4Vg1QlhFFGUm85G3S4LrQddDyvT6vvSYujv1tbelkr3bCJG0ng7YFG3WBxdkBOgLtxVE0qwJpfvEY6YnsA5YpdpW6tu9k=
+	t=1715958507; cv=none; b=aOK2yW6SL/7PPFBnPgdkuQHLU6QOh5/OQF8aPKAw/aOr3wpuCmcX4lLICvWHr49Uspnm6ITYQsEEMYWiSsTa7+I5bkt5OJeO8nLLlw0v5bQx9VvR1sdAUg0UAEBMV7XOjkRD+o2QDQirMjkO26WTBpLZcZGU4YR4eiVZPiRuI7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715958249; c=relaxed/simple;
-	bh=rmCP6QYgkI9Sl3Ub1SJ2idoZZMhLo/H/14aEl6gI9G4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TTJZ1hv1o4fOvSqIDRVSO7ZGsOlk1WH+TDYX/sKSSr87SuE3Wp+rxKZINuKQbWuNfcLAUmKWybO3ys4WkSBF1Zznig4vhazkwEBNcCiQMrWFkZm7xR+DYC4G480WIvaveXZoHDBuFQ0+rGWX+JsSZbDklu7cKpsdYDBwpc8iw70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E2BE01424;
-	Fri, 17 May 2024 08:04:27 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 85E6D3F762;
-	Fri, 17 May 2024 08:03:59 -0700 (PDT)
-Message-ID: <981c85f3-6d43-4c2b-a440-88bf81a18e55@arm.com>
-Date: Fri, 17 May 2024 16:03:57 +0100
+	s=arc-20240116; t=1715958507; c=relaxed/simple;
+	bh=ntipFH19OKh0e6p03a5BVC6XD+eZwfY4p57qddiFvRA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VtGVvpfk067F64y109WY6+YJix/Jo/3/Vh1R5dncVA4ypdVhjaTtAOwG527NnH1rZXdP8GPGwawyBZcJZgmGmTUTnVNglodwiIZfRHtPa3slNZgku+plkVbNZXLvUSkvOZept2seCGk5a367527jWfBkgTpDJ9OQC+Gv/gMIypg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I/pUygbm; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1edf506b216so11249695ad.2;
+        Fri, 17 May 2024 08:08:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715958505; x=1716563305; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iv54+/RYiMmMOtNi1mq/Z0D5fhkYk22Dy/dLYDtHm+c=;
+        b=I/pUygbm4xAiTinknMw13RloN6rTD9p4gQy7Kr4Fa8N2/mWsqqqyHeMPDN+TCTr/F+
+         hd5oyYIx8D/qV2zCzb/DkxToOOdPj+rpxSfwB2cPcRYnSZ/la0iJAAMkz4fu6zBa+MMe
+         AI/ONsk7irgT+XRyHagfbQ6RYzi60dNLdyMhk1XP36IO2b/Bpo/Uzt+AqSUaMC9cmc7S
+         2z02SdEpSSSm/v1fDFkBZ1L+eNVdwe25yk9ceQpFqtdiXrRP2bAHVgKZA7PnuL2F5Qqg
+         WqgDinjeu8ER6MzABs7Nf02+fHk/uyBsj15A6jkx4V1vKkSj9EMiq3mJMH93NylleZNF
+         9Cyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715958505; x=1716563305;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Iv54+/RYiMmMOtNi1mq/Z0D5fhkYk22Dy/dLYDtHm+c=;
+        b=jt067XvTDe/chPC2BwIdOfP7VumSsA9cEIbOVpV9oqlg4Yf9LaUfE8ZJnHZKyyV5lH
+         zxKqrzvSEgebnHZcGhuxuRGBMzlG9aq0ta+r1yaiKqSeSUDvm8wsdmM679KTXedwHvsL
+         o+snrcVGRcBc0guNaYLuX8xNEl5uJNsWBWTdZspcWYxf7XEu0CyDdCnZAA+LtELMQUQv
+         tXpqJjTsSe6vz8gWH0AjLBkFRr6+3K9udiXmEQd//kWkBMUJ56BBPb5tCnSINk57u7Jt
+         gzk3q9zw47A1Tr+HJB6+DgmwTLJ30FZw9VMuFZC8Kt+RIB2fomICiMEQZwEap7Cp3MoB
+         3CFg==
+X-Forwarded-Encrypted: i=1; AJvYcCXqtqyPj6+dPpumD2TMlQwl+lQIxfGoWIOguWtR0IXVpQK1U5oVsehwldJEvOhNFTW9+5RR9yPadO9JJumd7WJ2kogAqzU2Lq+BiueybjPgT0WJM/O1FQ1Zh712CX0nLfmCdiyt9Uuu3A==
+X-Gm-Message-State: AOJu0YyNU3SsN4DI3aPSdUI8JFWeu0gUopSlXoLCCraTmy9P7jB4t3zE
+	Am5XL0h9YlVyroDawpfzkmjCUFGH5uaByOpMk/0KIpLG7+8AlDps
+X-Google-Smtp-Source: AGHT+IFOk1Z8tKHx4PNlsmj1SdqKmikqavDjQTEj4ooLTFLGPr7uF21G5WM/AlInMnfWHnhIFhKhsg==
+X-Received: by 2002:a17:902:e892:b0:1e5:9dff:a52c with SMTP id d9443c01a7336-1ef43d2e258mr262962585ad.10.1715958505178;
+        Fri, 17 May 2024 08:08:25 -0700 (PDT)
+Received: from localhost.localdomain ([223.178.82.123])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-64f61b921ddsm6563371a12.89.2024.05.17.08.08.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 May 2024 08:08:24 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+X-Google-Original-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+To: 
+Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH] dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dtschema
+Date: Fri, 17 May 2024 20:37:40 +0530
+Message-Id: <20240517150741.181303-1-kanakshilledar111@protonmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/7] iommu/dma: Make limit checks self-contained
-To: Jon Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
- Christoph Hellwig <hch@lst.de>
-Cc: Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
- Dexuan Cui <decui@microsoft.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- Matthew Rosato <mjrosato@linux.ibm.com>,
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- Jean-Philippe Brucker <jean-philippe@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-References: <cover.1713523152.git.robin.murphy@arm.com>
- <e28a114243d1e79eb3609aded034f8529521333f.1713523152.git.robin.murphy@arm.com>
- <243d441d-dda8-442a-a495-83bf9725a14c@nvidia.com>
- <48c39306-c226-4e7f-a013-d679ca80157e@arm.com>
- <46fc1b7f-7d10-4233-b089-aa173ad3bbeb@nvidia.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <46fc1b7f-7d10-4233-b089-aa173ad3bbeb@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 17/05/2024 3:21 pm, Jon Hunter wrote:
-> 
-> On 15/05/2024 15:59, Robin Murphy wrote:
->> Hi Jon,
->>
->> On 2024-05-14 2:27 pm, Jon Hunter wrote:
->>> Hi Robin,
->>>
->>> On 19/04/2024 17:54, Robin Murphy wrote:
->>>> It's now easy to retrieve the device's DMA limits if we want to check
->>>> them against the domain aperture, so do that ourselves instead of
->>>> relying on them being passed through the callchain.
->>>>
->>>> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
->>>> Tested-by: Hanjun Guo <guohanjun@huawei.com>
->>>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->>>> ---
->>>>   drivers/iommu/dma-iommu.c | 21 +++++++++------------
->>>>   1 file changed, 9 insertions(+), 12 deletions(-)
->>>>
->>>> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
->>>> index a3039005b696..f542eabaefa4 100644
->>>> --- a/drivers/iommu/dma-iommu.c
->>>> +++ b/drivers/iommu/dma-iommu.c
->>>> @@ -660,19 +660,16 @@ static void iommu_dma_init_options(struct 
->>>> iommu_dma_options *options,
->>>>   /**
->>>>    * iommu_dma_init_domain - Initialise a DMA mapping domain
->>>>    * @domain: IOMMU domain previously prepared by 
->>>> iommu_get_dma_cookie()
->>>> - * @base: IOVA at which the mappable address space starts
->>>> - * @limit: Last address of the IOVA space
->>>>    * @dev: Device the domain is being initialised for
->>>>    *
->>>> - * @base and @limit + 1 should be exact multiples of IOMMU page 
->>>> granularity to
->>>> - * avoid rounding surprises. If necessary, we reserve the page at 
->>>> address 0
->>>> + * If the geometry and dma_range_map include address 0, we reserve 
->>>> that page
->>>>    * to ensure it is an invalid IOVA. It is safe to reinitialise a 
->>>> domain, but
->>>>    * any change which could make prior IOVAs invalid will fail.
->>>>    */
->>>> -static int iommu_dma_init_domain(struct iommu_domain *domain, 
->>>> dma_addr_t base,
->>>> -                 dma_addr_t limit, struct device *dev)
->>>> +static int iommu_dma_init_domain(struct iommu_domain *domain, 
->>>> struct device *dev)
->>>>   {
->>>>       struct iommu_dma_cookie *cookie = domain->iova_cookie;
->>>> +    const struct bus_dma_region *map = dev->dma_range_map;
->>>>       unsigned long order, base_pfn;
->>>>       struct iova_domain *iovad;
->>>>       int ret;
->>>> @@ -684,18 +681,18 @@ static int iommu_dma_init_domain(struct 
->>>> iommu_domain *domain, dma_addr_t base,
->>>>       /* Use the smallest supported page size for IOVA granularity */
->>>>       order = __ffs(domain->pgsize_bitmap);
->>>> -    base_pfn = max_t(unsigned long, 1, base >> order);
->>>> +    base_pfn = 1;
->>>>       /* Check the domain allows at least some access to the 
->>>> device... */
->>>> -    if (domain->geometry.force_aperture) {
->>>> +    if (map) {
->>>> +        dma_addr_t base = dma_range_map_min(map);
->>>>           if (base > domain->geometry.aperture_end ||
->>>> -            limit < domain->geometry.aperture_start) {
->>>> +            dma_range_map_max(map) < 
->>>> domain->geometry.aperture_start) {
->>>>               pr_warn("specified DMA range outside IOMMU 
->>>> capability\n");
->>>>               return -EFAULT;
->>>>           }
->>>>           /* ...then finally give it a kicking to make sure it fits */
->>>> -        base_pfn = max_t(unsigned long, base_pfn,
->>>> -                domain->geometry.aperture_start >> order);
->>>> +        base_pfn = max(base, domain->geometry.aperture_start) >> 
->>>> order;
->>>>       }
->>>>       /* start_pfn is always nonzero for an already-initialised 
->>>> domain */
->>>> @@ -1760,7 +1757,7 @@ void iommu_setup_dma_ops(struct device *dev, 
->>>> u64 dma_base, u64 dma_limit)
->>>>        * underlying IOMMU driver needs to support via the dma-iommu 
->>>> layer.
->>>>        */
->>>>       if (iommu_is_dma_domain(domain)) {
->>>> -        if (iommu_dma_init_domain(domain, dma_base, dma_limit, dev))
->>>> +        if (iommu_dma_init_domain(domain, dev))
->>>>               goto out_err;
->>>>           dev->dma_ops = &iommu_dma_ops;
->>>>       }
->>>
->>>
->>> I have noticed some random test failures on Tegra186 and Tegra194 and 
->>> bisect is pointing to this commit. Reverting this along with the 
->>> various dependencies does fix the problem. On Tegra186 CPU hotplug is 
->>> failing and on Tegra194 suspend is failing. Unfortunately, on neither 
->>> platform do I see any particular crash but the boards hang somewhere.
->>
->> That is... thoroughly bemusing :/ Not only is there supposed to be no 
->> real functional change here - we should merely be recalculating the 
->> same information from dev->dma_range_map that the callers were already 
->> doing to generate the base/limit arguments - but the act of initially 
->> setting up a default domain for a device behind an IOMMU should have 
->> no connection whatsoever to suspend and especially not to CPU hotplug.
-> 
-> 
-> Yes it does look odd, but this is what bisect reported ...
-> 
-> git bisect start
-> # good: [a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6] Linux 6.9
-> git bisect good a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
-> # bad: [6ba6c795dc73c22ce2c86006f17c4aa802db2a60] Add linux-next 
-> specific files for 20240513
-> git bisect bad 6ba6c795dc73c22ce2c86006f17c4aa802db2a60
-> # good: [29e7f949865a023a21ecdfbd82d68ac697569f34] Merge branch 'main' 
-> of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
-> git bisect good 29e7f949865a023a21ecdfbd82d68ac697569f34
-> # skip: [150e6cc14e51f2a07034106a4529cdaafd812c46] Merge branch 'next' 
-> of git://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git
-> git bisect skip 150e6cc14e51f2a07034106a4529cdaafd812c46
-> # good: [f5d75327d30af49acf2e4b55f35ce2e6c45d1287] drm/amd/display: Fix 
-> invalid Copyright notice
-> git bisect good f5d75327d30af49acf2e4b55f35ce2e6c45d1287
-> # skip: [f1ec9a9ffc526df7c9523006c2abbb8ea554cdd8] Merge branch 
-> 'for-next' of 
-> git://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git
-> git bisect skip f1ec9a9ffc526df7c9523006c2abbb8ea554cdd8
-> # bad: [f091e93306e0429ebb7589b9874590b6a9705e64] dma-mapping: Simplify 
-> arch_setup_dma_ops()
-> git bisect bad f091e93306e0429ebb7589b9874590b6a9705e64
-> # good: [91cfd679f9e8b9a7bf2f26adf66eff99dbe2026b] ACPI/IORT: Handle 
-> memory address size limits as limits
-> git bisect good 91cfd679f9e8b9a7bf2f26adf66eff99dbe2026b
-> # bad: [ad4750b07d3462ce29a0c9b1e88b2a1f9795290e] iommu/dma: Make limit 
-> checks self-contained
-> git bisect bad ad4750b07d3462ce29a0c9b1e88b2a1f9795290e
-> # good: [fece6530bf4b59b01a476a12851e07751e73d69f] dma-mapping: Add 
-> helpers for dma_range_map bounds
-> git bisect good fece6530bf4b59b01a476a12851e07751e73d69f
-> # first bad commit: [ad4750b07d3462ce29a0c9b1e88b2a1f9795290e] 
-> iommu/dma: Make limit checks self-contained
-> 
-> There is a couple skips in there and so I will try this again.
-> 
->>> If you have any ideas on things we can try let me know.
->>
->> Since the symptom seems inexplicable, I'd throw the usual memory 
->> debugging stuff like KASAN at it first. I'd also try 
->> "no_console_suspend" to check whether any late output is being missed 
->> in the suspend case (and if it's already broken, then any additional 
->> issues that may be caused by the console itself hopefully shouldn't 
->> matter).
->>
->> For more base-covering, do you have the "arm64: Properly clean up 
->> iommu-dma remnants" fix in there already as well? That bug has 
->> bisected to patch #6 each time though, so I do still suspect that what 
->> you're seeing is likely something else. It does seem potentially 
->> significant that those Tegra platforms are making fairly wide use of 
->> dma-ranges, but there's no clear idea forming out of that observation 
->> just yet...
-> 
-> I was hoping it was the same issue other people had reported,
-> but the fix provided did not help. I have also tried today's
-> -next and I am still seeing the issue.
-> 
-> I should have more time next week to look at this further. Let
-> me confirm which change is causing this and add more debug.
+Convert the RISC-V Hart-Level Interrupt Controller (HLIC) to newer
+DT schema, Created DT schema based on the .txt file which had
+`compatible`, `#interrupt-cells` and `interrupt-controller` as
+required properties.
+Changes made with respect to original file:
+- Changed the example to just use interrupt-controller instead of
+using the whole cpu block
+- Changed the example compatible string.
 
-Thanks. From staring at the code I think I've spotted one subtlety which
-may not be quite as intended - can you see if the diff below helps? It
-occurs to me that suspend and CPU hotplug may not *cause* the symptom,
-but they could certainly stall if one or more relevant CPUs is *already*
-stuck in a loop somewhere...
+Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+---
+ .../interrupt-controller/riscv,cpu-intc.txt   | 52 -----------------
+ .../interrupt-controller/riscv,cpu-intc.yaml  | 57 +++++++++++++++++++
+ 2 files changed, 57 insertions(+), 52 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
 
-Thanks,
-Robin.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+deleted file mode 100644
+index 265b223cd978..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-RISC-V Hart-Level Interrupt Controller (HLIC)
+----------------------------------------------
+-
+-RISC-V cores include Control Status Registers (CSRs) which are local to each
+-CPU core (HART in RISC-V terminology) and can be read or written by software.
+-Some of these CSRs are used to control local interrupts connected to the core.
+-Every interrupt is ultimately routed through a hart's HLIC before it
+-interrupts that hart.
+-
+-The RISC-V supervisor ISA manual specifies three interrupt sources that are
+-attached to every HLIC: software interrupts, the timer interrupt, and external
+-interrupts.  Software interrupts are used to send IPIs between cores.  The
+-timer interrupt comes from an architecturally mandated real-time timer that is
+-controlled via Supervisor Binary Interface (SBI) calls and CSR reads.  External
+-interrupts connect all other device interrupts to the HLIC, which are routed
+-via the platform-level interrupt controller (PLIC).
+-
+-All RISC-V systems that conform to the supervisor ISA specification are
+-required to have a HLIC with these three interrupt sources present.  Since the
+-interrupt map is defined by the ISA it's not listed in the HLIC's device tree
+-entry, though external interrupt controllers (like the PLIC, for example) will
+-need to define how their interrupts map to the relevant HLICs.  This means
+-a PLIC interrupt property will typically list the HLICs for all present HARTs
+-in the system.
+-
+-Required properties:
+-- compatible : "riscv,cpu-intc"
+-- #interrupt-cells : should be <1>.  The interrupt sources are defined by the
+-  RISC-V supervisor ISA manual, with only the following three interrupts being
+-  defined for supervisor mode:
+-    - Source 1 is the supervisor software interrupt, which can be sent by an SBI
+-      call and is reserved for use by software.
+-    - Source 5 is the supervisor timer interrupt, which can be configured by
+-      SBI calls and implements a one-shot timer.
+-    - Source 9 is the supervisor external interrupt, which chains to all other
+-      device interrupts.
+-- interrupt-controller : Identifies the node as an interrupt controller
+-
+-Furthermore, this interrupt-controller MUST be embedded inside the cpu
+-definition of the hart whose CSRs control these local interrupts.
+-
+-An example device tree entry for a HLIC is show below.
+-
+-	cpu1: cpu@1 {
+-		compatible = "riscv";
+-		...
+-		cpu1-intc: interrupt-controller {
+-			#interrupt-cells = <1>;
+-			compatible = "sifive,fu540-c000-cpu-intc", "riscv,cpu-intc";
+-			interrupt-controller;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+new file mode 100644
+index 000000000000..6fe86d243633
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/riscv,cpu-intc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RISC-V Hart-Level Interrupt Controller (HLIC)
++
++description:
++  RISC-V cores include Control Status Registers (CSRs) which are local to
++  each CPU core (HART in RISC-V terminology) and can be read or written by
++  software. Some of these CSRs are used to control local interrupts connected
++  to the core. Every interrupt is ultimately routed through a hart's HLIC
++  before it interrupts that hart.
++
++  The RISC-V supervisor ISA manual specifies three interrupt sources that are
++  attached to every HLIC namely software interrupts, the timer interrupt, and
++  external interrupts. Software interrupts are used to send IPIs between
++  cores.  The timer interrupt comes from an architecturally mandated real-
++  time timer that is controlled via Supervisor Binary Interface (SBI) calls
++  and CSR reads. External interrupts connect all other device interrupts to
++  the HLIC, which are routed via the platform-level interrupt controller
++  (PLIC).
++
++  All RISC-V systems that conform to the supervisor ISA specification are
++  required to have a HLIC with these three interrupt sources present.  Since
++  the interrupt map is defined by the ISA it's not listed in the HLIC's device
++  tree entry, though external interrupt controllers (like the PLIC, for
++  example) will need to define how their interrupts map to the relevant HLICs.
++  This means a PLIC interrupt property will typically list the HLICs for all
++  present HARTs in the system.
++
++maintainers:
++  - Kanak Shilledar <kanakshilledar111@protonmail.com>
++
++properties:
++  compatible:
++    const: "riscv,cpu-intc"
++
++  interrupt-controller: true
++
++  '#interrupt-cells': true
++
++required:
++  - compatible
++  - '#interrupt-cells'
++  - interrupt-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller {
++        #interrupt-cells = <1>;
++        compatible = "riscv,cpu-intc";
++        interrupt-controller;
++    };
+-- 
+2.34.1
 
------>8-----
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index 89a53c2f2cf9..85eb1846c637 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -686,6 +686,7 @@ static int iommu_dma_init_domain(struct iommu_domain *domain, struct device *dev
-  	/* Check the domain allows at least some access to the device... */
-  	if (map) {
-  		dma_addr_t base = dma_range_map_min(map);
-+		base = max(base, (dma_addr_t)1 << order);
-  		if (base > domain->geometry.aperture_end ||
-  		    dma_range_map_max(map) < domain->geometry.aperture_start) {
-  			pr_warn("specified DMA range outside IOMMU capability\n");
 
