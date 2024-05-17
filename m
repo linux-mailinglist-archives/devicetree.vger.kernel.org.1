@@ -1,114 +1,142 @@
-Return-Path: <devicetree+bounces-67476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20588C8538
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 13:06:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1BF8C8548
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 13:09:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFB7C1C21BAA
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 11:06:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B8B52833CF
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 11:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66F793BB20;
-	Fri, 17 May 2024 11:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA973D576;
+	Fri, 17 May 2024 11:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lhCtg23U"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UeGDtSxF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A81F3D0A3;
-	Fri, 17 May 2024 11:06:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC113D3BB;
+	Fri, 17 May 2024 11:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715943971; cv=none; b=MTCQS+1kOEMnderc5h7zKYin6ni5RyOwq8hhd/5+mPUMt3VXG9kiqqfAI4pc8how89mlJze5LNzrQgug+dY4mNw/A8bzLy5j0RkFWXLK6CpShNqyHx25sofHv5jVZopUWImnmZ41lieqnnCVcJdFEkAC0sWF7O7z0kMDVgFEuS8=
+	t=1715944184; cv=none; b=PLdmuc8+vjinFuXy+qbR1xgrXALwSID31l5DKoqp2/OEM2DG/WAyZ7UyZ2iArqxWPxxL1qSPXvg6HY3XWY4AEsy7CDuMFdNFtQuwaMKsrcmZXnnDEfQ7jn34ue7H4D4V5CtGIByVxzhlQOtkndId8JfllNPNxCblg6L1VYGxwJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715943971; c=relaxed/simple;
-	bh=cyel7fIdwl4HctMWrrdTp1YOPgFDo9/NgLEnSREBmac=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dzP+DodLerBDnjn2zLuX5bRqlQ2hlFqAgx17PCSxVO2cJFanplnSpEl/NfeYTyYUtHVmh6+mEAvNzQUL9oS13g3H6HPr82o7tBXaLCHyKwPhQdExu01v9wIsWFgKAvs4Ignjfq3zmR9SqVUxTfrYlCELO/eBDywIoy3BKu/e3MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lhCtg23U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1CBAC2BD10;
-	Fri, 17 May 2024 11:06:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715943970;
-	bh=cyel7fIdwl4HctMWrrdTp1YOPgFDo9/NgLEnSREBmac=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lhCtg23UXxfH8GFvpV0bBhTuuNC/yOVcyf8r+/SBwHRDykFO8ucIH2zOi4Lsfxh4d
-	 jgUm1njcrxzwkFc5ERNxH12t8OuT6FilvS5TVUDj2I26qEA62JOrg9ddHttNLHU92I
-	 WwwqESVPuv7qE7Dt0G1BbgYEuXiM/bp8Kp5wUtlatKoOVFCm7wjeV73X76XhNJgovE
-	 jrSu3So5EIc69ImofyM9j3891OZ3tYqgklB+lrMan8iv6hEsQ/mi44SN+vCPxdjeUx
-	 FK4gKAgevr+QDU7R6Lgh1WAy9nUhkn4UvE+ABj0uOQr0qIz3E3Ic29+uUjVaNb4a7w
-	 1mCgljVttOEiQ==
-Date: Fri, 17 May 2024 12:06:03 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	shengjiu wang <shengjiu.wang@gmail.com>,
-	Xiubo Lee <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound <linux-sound@vger.kernel.org>,
-	devicetree <devicetree@vger.kernel.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>,
-	alsa-devel <alsa-devel@alsa-project.org>,
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Subject: Re: [PATCHv4 8/9] ASoC: fsl-asoc-card: add DT property
- "cpu-system-clock-direction-out"
-Message-ID: <aa212906-6579-4884-82b5-6d0eb8b0b7a0@sirena.org.uk>
-References: <20240515135411.343333-1-elinor.montmasson@savoirfairelinux.com>
- <20240515135411.343333-9-elinor.montmasson@savoirfairelinux.com>
- <20d8eb96-6346-4341-95ee-74729001c01a@sirena.org.uk>
- <1607626951.349332.1715936738428.JavaMail.zimbra@savoirfairelinux.com>
+	s=arc-20240116; t=1715944184; c=relaxed/simple;
+	bh=eQsSSkyQqaAlOfXHMd7JuuXRGlCI2iIQbiFoNl5dTLg=;
+	h=Subject:To:CC:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=h1JfjuYaz5KnXx9tfk3AqUETv5RMTax/INrxby3jxklcoBt3Mo5qMbtb5WnrZbWzqMJ94l7OlIv8a2mNPEQieEi0aq4Y50GscbTkbAXO1iN2OLdaOddVwmfWXVCYwilO7WzBD20QeDiNuauobO0WV2Ad2Qc2rHsbe4fY0ivmewg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UeGDtSxF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44HA2WdH014892;
+	Fri, 17 May 2024 11:09:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	subject:to:cc:references:from:message-id:date:mime-version
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Bph/qlNQ/PYBP8C80X56Bd0SlXNXZWoQ/O9Sy/b+pcU=; b=Ue
+	GDtSxF74zTER+9UMCT+8MvCiyFH5RQipX8YGeFDMvRtfRm/ObAEg3+5e6KLf5hZ5
+	kNczVCVC8B05UwKNE0v4mjWadSBR2h3PM12miD7Fvfh6qhvEvbHYxHJ0f4hsa30w
+	nG3B6SDDi5OW5Afa/lWpkx4FFFosR47Ht3BJo48H69INzEm1f7SHayeb07E5j/Z9
+	2eMuEYUIlBVmScbkzmFeRQ3AL9skqGzE7Z1cSHTIecHCloAQWW4PppnroZzGKIp7
+	cQjyd99HhLmMmGr8N4DjJBejMLyx63MikYWw2VrgaGvWcXaeaqyFAw/quJQceKIE
+	OzjbloOLs8zW8dS0u0ug==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y5e9cu1d0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 May 2024 11:09:39 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44HB9ckw022789
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 17 May 2024 11:09:38 GMT
+Received: from [10.216.42.234] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 17 May
+ 2024 04:09:34 -0700
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdx75-idp: add SDHCI for SD Card
+To: Krzysztof Kozlowski <krzk@kernel.org>, <ulf.hansson@linaro.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <bhupesh.sharma@linaro.org>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20240515120958.32032-1-quic_nainmeht@quicinc.com>
+ <20240515120958.32032-4-quic_nainmeht@quicinc.com>
+ <a5833628-65f3-493d-9de5-33ba87a18875@kernel.org>
+ <2ed5326a-b2ea-220a-2a9b-0478df0c6f12@quicinc.com>
+ <743c2a10-0ce6-4b84-8127-f3d762976366@kernel.org>
+From: Naina Mehta <quic_nainmeht@quicinc.com>
+Message-ID: <7a8e4e2d-8ab6-53cc-f98e-285ed22eca1e@quicinc.com>
+Date: Fri, 17 May 2024 16:39:31 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cuAZOLW+M2wSeAZZ"
-Content-Disposition: inline
-In-Reply-To: <1607626951.349332.1715936738428.JavaMail.zimbra@savoirfairelinux.com>
-X-Cookie: Function reject.
+In-Reply-To: <743c2a10-0ce6-4b84-8127-f3d762976366@kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ilv4kMFtBlcF-t8wiHI_sidD9IJI99IW
+X-Proofpoint-ORIG-GUID: ilv4kMFtBlcF-t8wiHI_sidD9IJI99IW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-17_03,2024-05-17_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ adultscore=0 lowpriorityscore=0 mlxscore=0 clxscore=1015 mlxlogscore=941
+ priorityscore=1501 bulkscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405170089
 
 
---cuAZOLW+M2wSeAZZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Fri, May 17, 2024 at 05:05:38AM -0400, Elinor Montmasson wrote:
+On 5/17/2024 2:22 PM, Krzysztof Kozlowski wrote:
+> On 16/05/2024 07:21, Naina Mehta wrote:
+>>
+>>
+>> On 5/15/2024 7:53 PM, Krzysztof Kozlowski wrote:
+>>> On 15/05/2024 14:09, Naina Mehta wrote:
+>>>> Enable SDHCI on sdx75-idp to support SD card.
+>>>> Also add the required regulators.
+>>>>
+>>>> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/sdx75-idp.dts | 45 ++++++++++++++++++++++++++
+>>>>    1 file changed, 45 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+>>>> index f76e72fb2072..6f94278cf837 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+>>>> @@ -41,6 +41,29 @@
+>>>>
+>>>>    		vin-supply = <&vph_ext>;
+>>>>    	};
+>>>> +
+>>>> +	vreg_sd_vccb: sd-vccb {
+>>>
+>>> Please use name for all fixed regulators which matches current format
+>>> recommendation: 'regulator-[0-9]+v[0-9]+'
+>>
+>> Did you mean that vreg_sd_vdd should be updated according to the
+>> suggested format because vreg_sd_vccb is not a fixed regulator?
+>>
+> 
+> Yeah, it should be about sd-vdd, but then this one should be named as
+> well with a similar prefix to have it consistent.
 
-> This new compatible is intended to be used when there is no codec
-> device/driver. There is technically no codec device/driver for which
-> the clock input can be set.
+Sure, I will update in next revision.
 
-This is obviously not true, there clearly is a driver.
-
-> Is it a bad idea to allow setting the cpu sysclk direction only ?
-> Should the compatible be limited to use-cases where the cpu sysclk
-> direction cannot be set by the machine driver ?
-
-When I said "this should use the clock bindings" I meant that we should
-use the clock bindings for configuration here.
-
---cuAZOLW+M2wSeAZZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZHOhoACgkQJNaLcl1U
-h9B5+wf8DiGSZ5ltF8WMKf7h2wg97OfIIvLbAgLOdxagHZRUlW/dW/+Yb3DRoVUx
-bWVR5k6wCU7A6Qwi1k/l7vnJ0gi+7ZqpHvuecyUqUZzymYsReuFY+p73Hm+4vZOq
-hCopfIw0bE96SL2v3NQZKSoIiXX/yKxVU6NboIhgjeZuUWeabzwTkJczdvahes8z
-Wqa5Jfd22U7vq//vQQIViaVycQujM1QOA2vIbGAP0sF2XGNUzo1UmmE5mtbDlbLE
-Cn3ijtOv8bhzkca7J5XKbiWo6JmN/7ormEDq7cpF2fWvfJnxd2L/L8ciKH4ylk8z
-MQjb0jAheAGAERAKoilEwWJkgcCJ/Q==
-=Bx3M
------END PGP SIGNATURE-----
-
---cuAZOLW+M2wSeAZZ--
+Thanks,
+Naina
 
