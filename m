@@ -1,58 +1,70 @@
-Return-Path: <devicetree+bounces-67603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9A38C8DAA
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 23:27:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 091F08C8E36
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 00:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE9551C21399
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 21:27:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADAAA285989
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A973A140E38;
-	Fri, 17 May 2024 21:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB7114036B;
+	Fri, 17 May 2024 22:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EboZcV6I"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="oBVgypP0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6A013DDB8;
-	Fri, 17 May 2024 21:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D1A4C69;
+	Fri, 17 May 2024 22:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715981223; cv=none; b=rcG9jD7nc3jYlkd1gYylyQpSBTvkUFa8E5+sNQt4WEHdy9oIdB6BGFrw4UoNm82YkmCbWEy30VFpXSfLw3JxTmm4lWB4CWy2x1xQMtBbrDlqhD8ahYm8TLm1FFsbGx3YXpRNZNa0f2FlIigKmvglJHvOk89+CpN+3bnWwMmjvZA=
+	t=1715983245; cv=none; b=oLaBQmVFSacrbu5aG+mBKSqdUA4UKaKSo5EwXPJnm2QgOpnSENkIvLEWptX0G/O5QSH2SJd3ufYXobxtid1Xd40OE7uBBpiuw87ubTdNkg7ZLbayzf6O5dwoN+XEDa9lptdgU6ayVhefOwDygoXL2gX/a/nvMgSCgcCFq2MrPqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715981223; c=relaxed/simple;
-	bh=PJfFobmO7oLu8nBoq8HcGEfemzdhWXV3xccoH2kXskY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xr7V1bmx/EhYUyBMwn7qL+FieyFAh75wnb47NuIlfbasHCu1e8Dp9TWYJoIHcCuaKGCqv7AtHpJ5gkCZxw+8nyCs9nfoinIxSYK1cacrj86TsBZO9Fw9TWPWZAPecNN7sRiONIiTDRiAO84xKrxTBKZiEhClEQQ7pFEOjN/GiG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EboZcV6I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDC35C32782;
-	Fri, 17 May 2024 21:27:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715981223;
-	bh=PJfFobmO7oLu8nBoq8HcGEfemzdhWXV3xccoH2kXskY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EboZcV6IDm9TJNHpHC9g6zKZ2TH93UF+ldmtcTA0UjDARo6ioYCa2eQhxNSc3UmtJ
-	 2WGR2xS/IQpwvvR2r+4QtJjDp8NL5gnfRKjxXRDzFcA8VeZ1iOPnxGxtohYp1MxzIc
-	 meZT/iTn8QbuXSMGwkvnh+71fQmLiNDaKRo0Se0bASu/BmJq/f5yDg5Vt6zRc4mtZ2
-	 4zewBr94V6/bhIWO7rkz25OXhfWHqX++apOCGSD7qCOL+MTIZr7Xs0f2+Jf4rgWFFi
-	 iOBs/LucA8OrvRVCpRug8VV+c5LN9Awv9EAWF2OiTWY5b+dfzQIul1PiGXiSlgwIMZ
-	 uNfm+dEV3Itlw==
-Date: Fri, 17 May 2024 16:27:01 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1715983245; c=relaxed/simple;
+	bh=0yxqIjgr6bvtqQ/rzyd8UYI0B7lEklxten+qoHj5f44=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=oW5I3mZdEv0oG0MmUEkXaJz/hZFCdoKoE2Z/9D32Au/LtRdDz3g4NhHL3Qp7g3U+AXZSXQ8IWDBXE0TCEVPNfkJ2p/pHH1CkMQMQmcf7GCKiPi1POqUAWc7SnhOSKN4XBugu62/167c/NLo7Ig3SC1jLVjvx5abemOK/Sm7PITI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=oBVgypP0; arc=none smtp.client-ip=192.19.144.205
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id A3159C0000FC;
+	Fri, 17 May 2024 15:00:36 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com A3159C0000FC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1715983236;
+	bh=0yxqIjgr6bvtqQ/rzyd8UYI0B7lEklxten+qoHj5f44=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=oBVgypP0BsjU2kHvbHGEnmBgjya0DaZxwIeNVJ1ZF+WbJVNoN7VLB5UKqRoM7dI6M
+	 +AyMWvGrFLx00FQ/KKyJpsb6+eWPFC5ZvVxpVusLdwCQILnu3gSfoKHWZ+LIxJJqPQ
+	 hU8zdbDf8AzzF+rzUdr3qtMAt/2bvVEg1pCdcT+Y=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 9BEDA18041CAC4;
+	Fri, 17 May 2024 15:00:34 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>,
+	devicetree@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Florian Fainelli <f.fainelli@gmail.com>
 Subject: Re: [PATCH] dt-bindings: soc: bcm: document brcm,bcm2711-avs-monitor
-Message-ID: <20240517212701.GA2977461-robh@kernel.org>
+Date: Fri, 17 May 2024 15:00:35 -0700
+Message-Id: <20240517220035.2017272-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240517125138.53441-1-krzysztof.kozlowski@linaro.org>
 References: <20240517125138.53441-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -60,11 +72,11 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240517125138.53441-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Fri, May 17, 2024 at 02:51:38PM +0200, Krzysztof Kozlowski wrote:
+From: Florian Fainelli <f.fainelli@gmail.com>
+
+On Fri, 17 May 2024 14:51:38 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > Document alreasdy used binding for Syscon / AVS monitor:
 > brcm,bcm2711-avs-monitor to fix dt_binding_check and dtbs_check warnings
 > like:
@@ -73,12 +85,8 @@ On Fri, May 17, 2024 at 02:51:38PM +0200, Krzysztof Kozlowski wrote:
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../soc/bcm/brcm,bcm2711-avs-monitor.yaml     | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2711-avs-monitor.yaml
 
-I was about to start just deleting the remaining examples causing 
-warnings.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
 
