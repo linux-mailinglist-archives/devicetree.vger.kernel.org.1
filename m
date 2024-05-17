@@ -1,145 +1,102 @@
-Return-Path: <devicetree+bounces-67596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 989938C8D29
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:00:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E520B8C8D41
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:20:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 134A6B24AA2
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:00:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A119281138
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631251426E;
-	Fri, 17 May 2024 20:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A226512FF78;
+	Fri, 17 May 2024 20:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uO0fxI8F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MlL1C+Mt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BDCD1A2C20;
-	Fri, 17 May 2024 20:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E15C65C;
+	Fri, 17 May 2024 20:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715976024; cv=none; b=OlNZNW0VeZtaf75p85r/z76SFWeASki5z/zkwsK0sXYcwtHwTBbO7cUb7PlBuO4+xNN+mTQ0u+mm171dPOA+L0u44hbXfWFGOdK8IA85pNue4O2HhUVSELzqHAWTJu+iY50Wb/9pudLSLIbgwDOSBAm7SI++Uk1fq/QBAIDQd/c=
+	t=1715977206; cv=none; b=e4jz0TxTqMFd54kWk9Q8TiR8HIiWCwJhx/oqG9sOX9JbaacBgIldbDKovFaEG6ebPuu4b2JZyApyr37E22g8w126/nXk3Ms9C766wRoJOyrZ5aGR0pLrNL7W2FB4cNDtOJa1AEA9riXrnO3yBs59mddFgzF6JqnDiegOveCTojY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715976024; c=relaxed/simple;
-	bh=mO7CseUBhealxcctlNPit4cFTmehA1i4nglslSvX8Xk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IqUwzMPc2mO0LmDSrV/ZzPaeqKBcz08uFTS5pAaNPCC+KLmus542ImYDHrLJPLvNgBTqBi5K6E6tQAmXMFGVgV0igPXHNy+dQ0i+PYVuNgfnA9gs2fMyU7+m/Fbg6slBMOFYziDMdSat0zTX4XbXYWYIT7cXGuSC755UzxnLjxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uO0fxI8F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D682CC2BD10;
-	Fri, 17 May 2024 20:00:19 +0000 (UTC)
+	s=arc-20240116; t=1715977206; c=relaxed/simple;
+	bh=BGwNRIISgQSkHmoJSBhmrJrk4vCNSWwuXR4DAyTef54=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qQZDnUdCDRTEslaNfZZbA1kRhRyAX1HSxus0tIjVHiR1AExU9RYaoSH9iL9vrY71cg+VodSisdxZmPufFh/gA6GOedhUue5i8rqR9Tseiwr7C7zjGLBD4oEhO6xbph5P2j9OCofx9Wt9uDVrFOIZe/JjDzaU807hiLp4hVe+9/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MlL1C+Mt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08EA8C32782;
+	Fri, 17 May 2024 20:20:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715976023;
-	bh=mO7CseUBhealxcctlNPit4cFTmehA1i4nglslSvX8Xk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uO0fxI8FFLkYVRhck0Wkwx/iUrrEBPSCiE1OLZUMOTKhIS+nXvu1wE+JoKWtqMEtA
-	 LXJ5vd6gSyk8beFp1jqgCWWEHoYSMKILQksgqSed+SLOCXZ8siJx9RvnbFxYL9oPcE
-	 YZ/PS0lL2aLLwNdh5F5w7oqBH4DqJ3UuOUUqqJ4hmNpfO6PFnHwdB3AHvfCIT08gKP
-	 9gr/2lLLvdSP1GDtTLKySmBavbprNQNj1rnAcJw4nPbaxI7Rd0S++A6+oGrL+bZJE3
-	 wRjdxVd3SheJRPYXMsUIYfTRjQ8ZW+5hjhOZG72KO8sw73dk0W4LhsxVZ1S58FbsBp
-	 8zNIkWQplmvZw==
-Date: Fri, 17 May 2024 21:00:17 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: riscv,cpu-intc:
- convert to dtschema
-Message-ID: <20240517-browsing-trespass-a46ef27fc115@spud>
-References: <20240517150741.181303-1-kanakshilledar111@protonmail.com>
- <20240517-disfigure-disperser-1fa6b36729ec@spud>
- <CAGLn_=s4ghNODpVhPdk61Jt4XLteXp4W7oFS9WOb9O2-9BiXWQ@mail.gmail.com>
+	s=k20201202; t=1715977206;
+	bh=BGwNRIISgQSkHmoJSBhmrJrk4vCNSWwuXR4DAyTef54=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=MlL1C+Mt1DHtArvmks8rMrGPGlLmFUY6LrvweiQXmY1q7TdqQ+pxQNvPpeE+e28wW
+	 /JiFz0xGlmi/XCpG5dy9HAPdmWCeLq0qKkEuyl2mExnrp3kw73ozfFw5QdP7+my/x4
+	 8g0ZS+z7+wikeaYLkvKjVPS+xLLVdD+sZm4tpvnt5bx7K1V8IDsImagEiHExOe6Tni
+	 uIqiPz1SArZ92Luxm+YzhsTYlM6tY+dlZFbX69FPKHLetgGzBae9sFkM+JenFQFJ2v
+	 jcW/p3QtAZZSIMAKFFpipRuhzpEwIXJ0vFWDBGw9tLCKXH88mK02xjDoTyyNmNOyF0
+	 R4GF6XI+YNWWw==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e4939c5323so30491931fa.2;
+        Fri, 17 May 2024 13:20:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUNythbaiK2OPZJnVcqMVi6LI1zWB+DHb/2cUjb9k292hZIgFGMC0/lU+EiMvRExVkyzxAad4G4Qalqm9JOLCmeO58m9reIZ9kLRN6Rrpz7Sa9VEJggOFH/TZuoPlCoOHQlFn0NQl3hHBcOc/ddBCauv9uJ32149v2JY09QK9Bo+MsDlZesXW6MlnR4WKMu+RvZJGizPtLCbYsvjP9dvDy4QA==
+X-Gm-Message-State: AOJu0YzZAnMO4ns1FTn5W0gPukIvANLeT8OOD3DroNCZWf1quc+us3pm
+	UjxGcFBwt0yTLyVsVl2jPA6wtr0KAUct7Ixny0eoM22L8JGPvQ+lRnOSFIzh2AHGVI8K9+C3giQ
+	8ZOrdBYmYtqRNzVP8fr7Jf9o7Bg==
+X-Google-Smtp-Source: AGHT+IFk8AjiL1RWAIi95XurBPNyz5qdQJF8LP4PkZuThVdVGLwtwTKQfKkVOXDZgkpoqwIbIwtecqPeys5N59CT7Bo=
+X-Received: by 2002:a2e:a54c:0:b0:2e2:9416:a63f with SMTP id
+ 38308e7fff4ca-2e5205ec6bamr234086661fa.53.1715977204296; Fri, 17 May 2024
+ 13:20:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="D4u/o0+VChCwFfPF"
-Content-Disposition: inline
-In-Reply-To: <CAGLn_=s4ghNODpVhPdk61Jt4XLteXp4W7oFS9WOb9O2-9BiXWQ@mail.gmail.com>
-
-
---D4u/o0+VChCwFfPF
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20240517171103.221856-1-andriy.shevchenko@linux.intel.com>
+ <e81d43f8-a3ba-41b4-a86f-af2d6943e917@sirena.org.uk> <Zke2yG-WPkaWg5PV@smile.fi.intel.com>
+In-Reply-To: <Zke2yG-WPkaWg5PV@smile.fi.intel.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 17 May 2024 15:19:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKA7AnY7w3sjrT+khrat348v7uNpAP1+FZ=mdYMhJkf3Q@mail.gmail.com>
+Message-ID: <CAL_JsqKA7AnY7w3sjrT+khrat348v7uNpAP1+FZ=mdYMhJkf3Q@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] spi: pxa2xx: Move PXA SSP bindings to the correct folder
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-spi@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 17, 2024 at 11:21:54PM +0530, Kanak Shilledar wrote:
-> On Fri, May 17, 2024 at 9:34=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> > On Fri, May 17, 2024 at 08:37:40PM +0530, Kanak Shilledar wrote:
-> > > +properties:
-> > > +  compatible:
-> > > +    const: "riscv,cpu-intc"
+On Fri, May 17, 2024 at 2:58=E2=80=AFPM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Fri, May 17, 2024 at 06:24:37PM +0100, Mark Brown wrote:
+> > On Fri, May 17, 2024 at 08:11:03PM +0300, Andy Shevchenko wrote:
+> > > SSP stands for Serial Synchronous Protocol and has nothing to do with
+> > > UART, also known as USART, where 'A' stands for Asynchronous.
+> > >
+> > > Move the SSP bindings to where it belongs.
 > >
-> > A new warning with dtbs_check from your patch:
-> > /stuff/linux/build/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: =
-interrupt-controller: compatible:0: 'riscv,cpu-intc' was expected
-> >         from schema $id: http://devicetree.org/schemas/interrupt-contro=
-ller/riscv,cpu-intc.yaml#
-> > /stuff/linux/build/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: =
-interrupt-controller: compatible: ['andestech,cpu-intc', 'riscv,cpu-intc'] =
-is too long
-> >         from schema $id: http://devicetree.org/schemas/interrupt-contro=
-ller/riscv,cpu-intc.yaml#
-> >
-> > There's a duplicate description in riscv/cpus.yaml:
-> >   interrupt-controller:
-> >     type: object
-> >     additionalProperties: false
-> >     description: Describes the CPU's local interrupt controller
-> >
-> >     properties:
-> >       '#interrupt-cells':
-> >         const: 1
-> >
-> >       compatible:
-> >         oneOf:
-> >           - items:
-> >               - const: andestech,cpu-intc
-> >               - const: riscv,cpu-intc
-> >           - const: riscv,cpu-intc
-> >
-> >       interrupt-controller: true
-> >
-> > I think the one in cpus.yaml should be converted to a ref and the
-> > andestech compatible added here.
->=20
-> I am working on the v2 patch, in which I didn't provide any ref to the
-> cpus.yaml and just replaced my compatible section with the one above
-> to resolve the issue with `/renesas/r9a07g043f01-smarc.dtb`. I tested
-> with others and didn't get any warnings.
+> > It's a serial device which is also used for other applications (the
+> > other one upstream being audio) so I can see where the current binding
+> > comes from and it's not super obvious that spi is especially better
+> > here.
+>
+> Hmm... okay. Then it's question to DT people. Consider this as a report.
+> Because UART (aka serial) is definitely not the place for SPI/SSP binding=
+s
+> either.
 
-Please don't do that, we shouldn't have two different places that each
-are defining compatibles etc for the hardware.
+Move it when it is converted. Until then, I don't care too much. SPI
+seems better than serial at least. The sound part is its own
+binding/node (something we wouldn't do today).
 
-Thanks,
-Conor.
-
-
---D4u/o0+VChCwFfPF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZke3UQAKCRB4tDGHoIJi
-0q6PAPwKVqnbhecYJjHe4HwYA3O0NAWGknlpQcOFDft4MhEAGgEAhNhFfkElcT02
-xQCzM1ohYrPWjt9F8QeIP9AviRyqswU=
-=03KH
------END PGP SIGNATURE-----
-
---D4u/o0+VChCwFfPF--
+Rob
 
