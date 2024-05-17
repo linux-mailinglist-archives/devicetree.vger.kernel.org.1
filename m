@@ -1,102 +1,106 @@
-Return-Path: <devicetree+bounces-67597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E520B8C8D41
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:20:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA0D8C8D47
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:30:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A119281138
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:20:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 402031C221DA
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 20:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A226512FF78;
-	Fri, 17 May 2024 20:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06901411CB;
+	Fri, 17 May 2024 20:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MlL1C+Mt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oFZPW4VJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E15C65C;
-	Fri, 17 May 2024 20:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871981411C5;
+	Fri, 17 May 2024 20:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715977206; cv=none; b=e4jz0TxTqMFd54kWk9Q8TiR8HIiWCwJhx/oqG9sOX9JbaacBgIldbDKovFaEG6ebPuu4b2JZyApyr37E22g8w126/nXk3Ms9C766wRoJOyrZ5aGR0pLrNL7W2FB4cNDtOJa1AEA9riXrnO3yBs59mddFgzF6JqnDiegOveCTojY=
+	t=1715977807; cv=none; b=j9d2TFUdG/HnAPCOPfHEq7EVFDJ//UUVjcuKhb6sdkoBhtj3zixuZLhZ5gK6wPu9mdRxTPLPaWL0q8pmp5yR8cGbCn0ykHhWQRzin3W7WOgl/W5BXI/bgknUYE2dbZn7Z2hLKvNR0wybQ9oGIVyCcK5M6P0Z5Az06pFYTqZii2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715977206; c=relaxed/simple;
-	bh=BGwNRIISgQSkHmoJSBhmrJrk4vCNSWwuXR4DAyTef54=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qQZDnUdCDRTEslaNfZZbA1kRhRyAX1HSxus0tIjVHiR1AExU9RYaoSH9iL9vrY71cg+VodSisdxZmPufFh/gA6GOedhUue5i8rqR9Tseiwr7C7zjGLBD4oEhO6xbph5P2j9OCofx9Wt9uDVrFOIZe/JjDzaU807hiLp4hVe+9/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MlL1C+Mt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08EA8C32782;
-	Fri, 17 May 2024 20:20:06 +0000 (UTC)
+	s=arc-20240116; t=1715977807; c=relaxed/simple;
+	bh=pADEbApVXIv0FappvvSpMuC23lIc4IlKvDPrdkdJIb4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JgbQC/tFYX1vrUjoOlf1dmEaG6rCnxq10Y1+5sUzy93u2fFo+isHoN58RLi46kYReO73TxapElzPaEvWT4ziwF9ZoEvO/CclSVNVmdz/6NCtQtAm68OVdF64qtHvSaJRLvzyYGHF99BPB7BdSRlQchpcwvwOOD+gQJqPJBiTbJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oFZPW4VJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA1D1C2BD10;
+	Fri, 17 May 2024 20:30:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715977206;
-	bh=BGwNRIISgQSkHmoJSBhmrJrk4vCNSWwuXR4DAyTef54=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=MlL1C+Mt1DHtArvmks8rMrGPGlLmFUY6LrvweiQXmY1q7TdqQ+pxQNvPpeE+e28wW
-	 /JiFz0xGlmi/XCpG5dy9HAPdmWCeLq0qKkEuyl2mExnrp3kw73ozfFw5QdP7+my/x4
-	 8g0ZS+z7+wikeaYLkvKjVPS+xLLVdD+sZm4tpvnt5bx7K1V8IDsImagEiHExOe6Tni
-	 uIqiPz1SArZ92Luxm+YzhsTYlM6tY+dlZFbX69FPKHLetgGzBae9sFkM+JenFQFJ2v
-	 jcW/p3QtAZZSIMAKFFpipRuhzpEwIXJ0vFWDBGw9tLCKXH88mK02xjDoTyyNmNOyF0
-	 R4GF6XI+YNWWw==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e4939c5323so30491931fa.2;
-        Fri, 17 May 2024 13:20:05 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUNythbaiK2OPZJnVcqMVi6LI1zWB+DHb/2cUjb9k292hZIgFGMC0/lU+EiMvRExVkyzxAad4G4Qalqm9JOLCmeO58m9reIZ9kLRN6Rrpz7Sa9VEJggOFH/TZuoPlCoOHQlFn0NQl3hHBcOc/ddBCauv9uJ32149v2JY09QK9Bo+MsDlZesXW6MlnR4WKMu+RvZJGizPtLCbYsvjP9dvDy4QA==
-X-Gm-Message-State: AOJu0YzZAnMO4ns1FTn5W0gPukIvANLeT8OOD3DroNCZWf1quc+us3pm
-	UjxGcFBwt0yTLyVsVl2jPA6wtr0KAUct7Ixny0eoM22L8JGPvQ+lRnOSFIzh2AHGVI8K9+C3giQ
-	8ZOrdBYmYtqRNzVP8fr7Jf9o7Bg==
-X-Google-Smtp-Source: AGHT+IFk8AjiL1RWAIi95XurBPNyz5qdQJF8LP4PkZuThVdVGLwtwTKQfKkVOXDZgkpoqwIbIwtecqPeys5N59CT7Bo=
-X-Received: by 2002:a2e:a54c:0:b0:2e2:9416:a63f with SMTP id
- 38308e7fff4ca-2e5205ec6bamr234086661fa.53.1715977204296; Fri, 17 May 2024
- 13:20:04 -0700 (PDT)
+	s=k20201202; t=1715977807;
+	bh=pADEbApVXIv0FappvvSpMuC23lIc4IlKvDPrdkdJIb4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oFZPW4VJ53opmg/YsvEmyH0NZre+FNsoZBUM16wU0fJNuxjAABNH/TBGZRneldfju
+	 qEpFdyCq2PJyl2u40NSwi23Q0nED63v3c8Zh44txo9vYe8ywbNvqE8H8AqY3oBbGT3
+	 iTt8mWXbS8OVV3ltCss+hRbUpRN8YoGKIdcJoM0k6QBaMqmObd3fA9njoByEPxl1R5
+	 qcQArEDk6c/E6y129aB/2D3zia2K/YNAijwh9Bp9rx6Cd5/lGiwW45ospYUGFAzuV0
+	 XhIfNrUUHzz8NKRIs8/FzY7x0b6OH9+r+UGeETDiJIVDHmLAjwWnrVcckjg9aM3B9z
+	 V4/pRYwZSjolQ==
+Date: Fri, 17 May 2024 15:30:05 -0500
+From: Rob Herring <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liu Ying <victor.liu@nxp.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Robert Foss <rfoss@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+	kernel@dh-electronics.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: display: synopsys,dw-hdmi: Document
+ ddc-i2c-bus in core
+Message-ID: <20240517203005.GA2893366-robh@kernel.org>
+References: <20240515062753.111746-1-marex@denx.de>
+ <20240515134705.GA12169@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240517171103.221856-1-andriy.shevchenko@linux.intel.com>
- <e81d43f8-a3ba-41b4-a86f-af2d6943e917@sirena.org.uk> <Zke2yG-WPkaWg5PV@smile.fi.intel.com>
-In-Reply-To: <Zke2yG-WPkaWg5PV@smile.fi.intel.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 17 May 2024 15:19:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKA7AnY7w3sjrT+khrat348v7uNpAP1+FZ=mdYMhJkf3Q@mail.gmail.com>
-Message-ID: <CAL_JsqKA7AnY7w3sjrT+khrat348v7uNpAP1+FZ=mdYMhJkf3Q@mail.gmail.com>
-Subject: Re: [PATCH v1 1/1] spi: pxa2xx: Move PXA SSP bindings to the correct folder
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-spi@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240515134705.GA12169@pendragon.ideasonboard.com>
 
-On Fri, May 17, 2024 at 2:58=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Fri, May 17, 2024 at 06:24:37PM +0100, Mark Brown wrote:
-> > On Fri, May 17, 2024 at 08:11:03PM +0300, Andy Shevchenko wrote:
-> > > SSP stands for Serial Synchronous Protocol and has nothing to do with
-> > > UART, also known as USART, where 'A' stands for Asynchronous.
-> > >
-> > > Move the SSP bindings to where it belongs.
-> >
-> > It's a serial device which is also used for other applications (the
-> > other one upstream being audio) so I can see where the current binding
-> > comes from and it's not super obvious that spi is especially better
-> > here.
->
-> Hmm... okay. Then it's question to DT people. Consider this as a report.
-> Because UART (aka serial) is definitely not the place for SPI/SSP binding=
-s
-> either.
+On Wed, May 15, 2024 at 04:47:05PM +0300, Laurent Pinchart wrote:
+> Hi Marek,
+> 
+> Thank you for the patch.
+> 
+> On Wed, May 15, 2024 at 08:27:44AM +0200, Marek Vasut wrote:
+> > The DW HDMI driver core is responsible for parsing the 'ddc-i2c-bus' property,
+> > move the property description into the DW HDMI common DT schema too, so this
+> > property can be used on all devices integrating the DW HDMI core.
+> 
+> De-duplicating documentation is good :-)
 
-Move it when it is converted. Until then, I don't care too much. SPI
-seems better than serial at least. The sound part is its own
-binding/node (something we wouldn't do today).
+Generally, yes.
+
+> I see no reason why this property should be disallowed on any of the
+> platforms that integrate a DW HDMI (unless that platform has no other
+> I2C controller, but I think we can ignore that in the bindings).
+
+The main reason is Because this property should be in a connector node 
+as the I2C bus is connected to the connector not the HDMI block.
+
+I would suggest this gets marked 'deprecated'. Can be a separate patch.
 
 Rob
 
