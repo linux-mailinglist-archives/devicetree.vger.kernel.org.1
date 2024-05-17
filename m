@@ -1,123 +1,347 @@
-Return-Path: <devicetree+bounces-67576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB188C8B44
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:39:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48CD48C8BDA
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:57:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF9051C21382
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:39:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5AAE1F28B89
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB3213DDC5;
-	Fri, 17 May 2024 17:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A2E13F45B;
+	Fri, 17 May 2024 17:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qgKkClbJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bs1jXnmj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFA513DDBA;
-	Fri, 17 May 2024 17:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6242A13E880;
+	Fri, 17 May 2024 17:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715967561; cv=none; b=oreC4Lh5U28y1CCugDjwRAVx2yQedye3dA3fQalD5NT6CPgXWPCTA5jLybhQBi6ayzMq4snzWLTsL/AFvaCyARSqvHCazyYAsrlwWrCOtEC8zwG5lapIHsXVh+wM80BB/DiiOdvmzVWdD79DauBd1xEaELujDQz9ZIpb9PBTxns=
+	t=1715968330; cv=none; b=Ob2wC5HWVtwFrwoTa49ViI3GaHVyke9fUzhbT523j8+n5DUmD1m4udkdsQMj5Xscps1ZujcC+ScI5UJfUSjLZE9kiZnbXCKwzIsce4nrjMHPtFYu1AyTDPdRc/3VMcPr26oMhmHXF36A1XFdagdKEenaKmnj4/noJ4wKJV8NSjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715967561; c=relaxed/simple;
-	bh=tQOjsUD1QNNPdmrsBIqeqqeA294m5b+0eJ2vo742SP0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U9xqvbC5EBpD8xzDoavmZ9EPTdEkQ3O+t0Tcpeo5oicDBU8ot5kEnPF8tzfg99ikBwqD7U8pQIbqFMZBD6Tk0EyT0MEFocQKew3H/45PRYm3Qs0A5MohX3G1gGnwGW4SjcgD2LwouvZluSoAHo7yMUQwAXsaqmdT/GRBstIN+1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qgKkClbJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFD9DC2BD10;
-	Fri, 17 May 2024 17:39:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715967560;
-	bh=tQOjsUD1QNNPdmrsBIqeqqeA294m5b+0eJ2vo742SP0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qgKkClbJGWKrWh9OKsOPKK3kboH6boQ1WyzS99x6s6Ag1ExaUi5cTlR1KsA/SJRX7
-	 RkQgHw7E5mxTui9FG/Q3Air3GRYzVuAl29hahZXYsFfI0mczO++A2577yDqZp+HTv2
-	 qwGaPLfTJKijYjZpbNzZDykfJS0e/ZgwX/3tvDbIBPC/W6tTRd/b1lwdMVb7/FgIGx
-	 tL5AMkdOCVgatLR1QIl3EAe4BuV/XypFXfPVKRP5fFt/xd+yRWyU1iggVdLZ2oI8nY
-	 EMeOKBkIodjzVvhD4Lmqp+HqpI/Mj8yACd63tppRo5aFiMqhon7uSWu4biZviK1LE1
-	 KItkRwvJXMqeQ==
-Date: Fri, 17 May 2024 18:39:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	"jdelvare@suse.com" <jdelvare@suse.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Document adt7475 PWM initial
- duty cycle
-Message-ID: <20240517-recognize-broaden-43ba03c9f78c@spud>
-References: <20240508215504.300580-1-chris.packham@alliedtelesis.co.nz>
- <20240508215504.300580-2-chris.packham@alliedtelesis.co.nz>
- <fe5b3af9-b307-45e1-b190-ba2b3327a8df@kernel.org>
- <d11093bb-230b-4918-a8cd-4f4eb760ccf3@alliedtelesis.co.nz>
- <94c843e2-4415-4786-bfd4-a77fdbbfab07@roeck-us.net>
- <35361786-ef5f-4d81-83e8-e347f47c83ed@alliedtelesis.co.nz>
- <df40a387-37db-4a4d-b43f-ae22905789b5@roeck-us.net>
- <58fb36f5-4d4b-495b-a7cd-6129ab1ed454@alliedtelesis.co.nz>
- <20240517-pointer-cloning-3889f3d6f744@spud>
- <20240517-pellet-visa-a2d469dc5f34@spud>
+	s=arc-20240116; t=1715968330; c=relaxed/simple;
+	bh=k4u+Zs1U5N5Nbd0SXueo37qjRvG5FXkDRxl57ceJgZU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DYbI1fz/WuVb8KleEQn+MNKR5Gx7z30RhHoc9XVVx3Qq/YmyFgxnTanjLcI1Dcvf91cZzogijaQzqpiR9KTr0ymzn9lrSWNsMdh5SScycXmqHYqAe5hWAjVBOP6T3hkdHedK/Ea1vj1bNv04XyQD+VLw4Kt58SlwKO6oe8L1Bug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bs1jXnmj; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-572d83e3c7eso5712990a12.3;
+        Fri, 17 May 2024 10:52:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715968327; x=1716573127; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ks0RlD7UTKMn34Olp6UQuBmkLnxzPxuIP1wwEzn+Rp0=;
+        b=bs1jXnmjXFjcXrKOaLthBUDh2dPpQB24X+P61pZwrwk1fHISg5ywNHReXkXu1N1kig
+         dxsTZURJFIdj4KhhXJn0xw/CREzPYlExSePSEJPjp55nITT0/aANhiLpnPhm5m/nl5hq
+         TyRVDzb7Xm1SfVn5KzUsT8PHadHKEHo4z3vuhUBwgLimRkN5PzVqSoswzoX7OxLhMZAs
+         QyYpynBklLoiZIG5ejqCCqmMOd/VwDZLZpG3lc2ZgP8z09Kq68l3K2nkw9LZTBFLzw75
+         QqmCrTJWdiUIY1IYeVTmVY38lrnORAxLH+DbwFQXapdQV3+WSz3WeyP/cojjL72fm+HF
+         huHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715968327; x=1716573127;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ks0RlD7UTKMn34Olp6UQuBmkLnxzPxuIP1wwEzn+Rp0=;
+        b=Qqtqy2eYyC5QrQ3debAUCR90YSrbG7FA9W5x+1x1WwQZAMJCV1EktPO5kWg0eXbjkR
+         BJTmh7av7dljEJP+fWOKHtaNciaq6vwbkfbGggV4NjUjp++i16s9UtCrA2nD2v27lhc4
+         2NMq8/hbS88+p/iWQALVoH6nQ0WD8i3R9SwUmUh2Aolpwozb/iaqb16LQs8oQnWCCS3X
+         eBuO1HRQ8yoOnTGjgP1T9adXQGTwHtQZWrzZsgPeiZBNUpYzg398R5vRWYOQ/YS8i6oD
+         1JdhSFBYeh07QdlOO2Ph9vBD16RsIs2AfSgT3fVm1bfq7XcSbFHM5FJyGEfNkwGFRX+X
+         ljzw==
+X-Forwarded-Encrypted: i=1; AJvYcCXbGoH93d2zD33Sl++/2khj36a9PW0kWa+kkF/h2XpNDRWLGX4LRhFpNXvfYyCLSw2iEqLCdNQhMGf5xusx7ivW3/8+8Mjo67c47XexEv+XC7Ei8z55W4ArTgHzNg2VWbOdHaTTWQOs0w==
+X-Gm-Message-State: AOJu0YxmOvo88L0K+AMwzKoOGjeDZWtHeJmBM0icZoE3TSAKkkfvRvmw
+	+77a05+XoejwPpcxpklEg7T3kolMxbl14vZuVFxylYhCs31zV3DsE7S0IhsEqFToGPIHFV7fxYd
+	PotdsArnHSt+Vn3B1l3HRUYesM7A=
+X-Google-Smtp-Source: AGHT+IGXBPfaWm4BNOrHGUznqjJZtFazRkWx3XGlwExdCUBUotfg2iervWCPbfcVUWeQDOqX38MLpTsRoflhFz9VyZw=
+X-Received: by 2002:a50:9b41:0:b0:572:a123:5ed0 with SMTP id
+ 4fb4d7f45d1cf-5734d5cccf3mr15047824a12.21.1715968326396; Fri, 17 May 2024
+ 10:52:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fU8lYHpRVmPB+Kfl"
-Content-Disposition: inline
-In-Reply-To: <20240517-pellet-visa-a2d469dc5f34@spud>
-
-
---fU8lYHpRVmPB+Kfl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240517150741.181303-1-kanakshilledar111@protonmail.com> <20240517-disfigure-disperser-1fa6b36729ec@spud>
+In-Reply-To: <20240517-disfigure-disperser-1fa6b36729ec@spud>
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+Date: Fri, 17 May 2024 23:21:54 +0530
+Message-ID: <CAGLn_=s4ghNODpVhPdk61Jt4XLteXp4W7oFS9WOb9O2-9BiXWQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: riscv,cpu-intc:
+ convert to dtschema
+To: Conor Dooley <conor@kernel.org>
+Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Samuel Holland <samuel.holland@sifive.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 17, 2024 at 06:02:33PM +0100, Conor Dooley wrote:
-> On Fri, May 17, 2024 at 06:00:06PM +0100, Conor Dooley wrote:
-> > > On that point. How would I explain in the bindings that cell 2 is the=
-=20
-> > > duty cycle, cell 3 is the frequency and cell 4 is the flags?
-> >=20
-> > In the pwm-cells property in the pwm provider binding . You might want =
-to
-> > order it as <index freq flags duty> as usually that's the ordering done
-> > in most (all?) pwm provider bindings that I have seen.
-> > The pwm bindings I think are really unhelpful though - they all say "see
-> > pwm.yaml for info on the cells in #pwm-cells, but then pwm.yaml has no
-> > information. The information is actually in pwm.text, but the binding
-> > conversion did s/pwm.text/pwm.yaml/ in pwm controller bindings.
-> > I'll send a patch that fixes up pwm.yaml.
->=20
-> Possibly cell 4 should be standardised as the period for all pwm
-> providers and then all you'd have to do for your provider is set
-> #pwm-cells:
->   minItems: 4
+On Fri, May 17, 2024 at 9:34=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> Yo,
+>
+> On Fri, May 17, 2024 at 08:37:40PM +0530, Kanak Shilledar wrote:
+> > Convert the RISC-V Hart-Level Interrupt Controller (HLIC) to newer
+> > DT schema, Created DT schema based on the .txt file which had
+> > `compatible`, `#interrupt-cells` and `interrupt-controller` as
+> > required properties.
+> > Changes made with respect to original file:
+> > - Changed the example to just use interrupt-controller instead of
+> > using the whole cpu block
+> > - Changed the example compatible string.
+> >
+> > Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+> > ---
+> >  .../interrupt-controller/riscv,cpu-intc.txt   | 52 -----------------
+> >  .../interrupt-controller/riscv,cpu-intc.yaml  | 57 +++++++++++++++++++
+> >  2 files changed, 57 insertions(+), 52 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/interrupt-control=
+ler/riscv,cpu-intc.txt
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
+ler/riscv,cpu-intc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ris=
+cv,cpu-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/ri=
+scv,cpu-intc.txt
+> > deleted file mode 100644
+> > index 265b223cd978..000000000000
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-=
+intc.txt
+> > +++ /dev/null
+> > @@ -1,52 +0,0 @@
+> > -RISC-V Hart-Level Interrupt Controller (HLIC)
+> > ----------------------------------------------
+> > -
+> > -RISC-V cores include Control Status Registers (CSRs) which are local t=
+o each
+> > -CPU core (HART in RISC-V terminology) and can be read or written by so=
+ftware.
+> > -Some of these CSRs are used to control local interrupts connected to t=
+he core.
+> > -Every interrupt is ultimately routed through a hart's HLIC before it
+> > -interrupts that hart.
+> > -
+> > -The RISC-V supervisor ISA manual specifies three interrupt sources tha=
+t are
+> > -attached to every HLIC: software interrupts, the timer interrupt, and =
+external
+> > -interrupts.  Software interrupts are used to send IPIs between cores. =
+ The
+> > -timer interrupt comes from an architecturally mandated real-time timer=
+ that is
+> > -controlled via Supervisor Binary Interface (SBI) calls and CSR reads. =
+ External
+> > -interrupts connect all other device interrupts to the HLIC, which are =
+routed
+> > -via the platform-level interrupt controller (PLIC).
+> > -
+> > -All RISC-V systems that conform to the supervisor ISA specification ar=
+e
+> > -required to have a HLIC with these three interrupt sources present.  S=
+ince the
+> > -interrupt map is defined by the ISA it's not listed in the HLIC's devi=
+ce tree
+> > -entry, though external interrupt controllers (like the PLIC, for examp=
+le) will
+> > -need to define how their interrupts map to the relevant HLICs.  This m=
+eans
+> > -a PLIC interrupt property will typically list the HLICs for all presen=
+t HARTs
+> > -in the system.
+> > -
+> > -Required properties:
+> > -- compatible : "riscv,cpu-intc"
+>
+> > -- #interrupt-cells : should be <1>.  The interrupt sources are defined=
+ by the
+> > -  RISC-V supervisor ISA manual, with only the following three interrup=
+ts being
+> > -  defined for supervisor mode:
+> > -    - Source 1 is the supervisor software interrupt, which can be sent=
+ by an SBI
+> > -      call and is reserved for use by software.
+> > -    - Source 5 is the supervisor timer interrupt, which can be configu=
+red by
+> > -      SBI calls and implements a one-shot timer.
+> > -    - Source 9 is the supervisor external interrupt, which chains to a=
+ll other
+> > -      device interrupts.
+>
+> I don't think that we should remove this test from the binding.
 
-`const: 4`, d'oh.
+Do you suggest adding it as a description for the `#interrupt-cells` proper=
+ty?
 
+> > -- interrupt-controller : Identifies the node as an interrupt controlle=
+r
+> > -
+> > -Furthermore, this interrupt-controller MUST be embedded inside the cpu
+> > -definition of the hart whose CSRs control these local interrupts.
+> > -
+> > -An example device tree entry for a HLIC is show below.
+> > -
+> > -     cpu1: cpu@1 {
+> > -             compatible =3D "riscv";
+> > -             ...
+> > -             cpu1-intc: interrupt-controller {
+> > -                     #interrupt-cells =3D <1>;
+> > -                     compatible =3D "sifive,fu540-c000-cpu-intc", "ris=
+cv,cpu-intc";
+> > -                     interrupt-controller;
+> > -             };
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ris=
+cv,cpu-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/r=
+iscv,cpu-intc.yaml
+> > new file mode 100644
+> > index 000000000000..6fe86d243633
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-=
+intc.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,cpu-intc=
+.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V Hart-Level Interrupt Controller (HLIC)
+> > +
+> > +description:
+> > +  RISC-V cores include Control Status Registers (CSRs) which are local=
+ to
+> > +  each CPU core (HART in RISC-V terminology) and can be read or writte=
+n by
+> > +  software. Some of these CSRs are used to control local interrupts co=
+nnected
+> > +  to the core. Every interrupt is ultimately routed through a hart's H=
+LIC
+> > +  before it interrupts that hart.
+> > +
+> > +  The RISC-V supervisor ISA manual specifies three interrupt sources t=
+hat are
+> > +  attached to every HLIC namely software interrupts, the timer interru=
+pt, and
+> > +  external interrupts. Software interrupts are used to send IPIs betwe=
+en
+> > +  cores.  The timer interrupt comes from an architecturally mandated r=
+eal-
+> > +  time timer that is controlled via Supervisor Binary Interface (SBI) =
+calls
+> > +  and CSR reads. External interrupts connect all other device interrup=
+ts to
+> > +  the HLIC, which are routed via the platform-level interrupt controll=
+er
+> > +  (PLIC).
+> > +
+> > +  All RISC-V systems that conform to the supervisor ISA specification =
+are
+> > +  required to have a HLIC with these three interrupt sources present. =
+ Since
+> > +  the interrupt map is defined by the ISA it's not listed in the HLIC'=
+s device
+> > +  tree entry, though external interrupt controllers (like the PLIC, fo=
+r
+> > +  example) will need to define how their interrupts map to the relevan=
+t HLICs.
+> > +  This means a PLIC interrupt property will typically list the HLICs f=
+or all
+> > +  present HARTs in the system.
+> > +
+>
+> > +maintainers:
+> > +  - Kanak Shilledar <kanakshilledar111@protonmail.com>
+>
+> Are you knowledgeable about the cpu-intc on RISC-V? If you put yourself
+> down just to satisfy dt_binding_check, I would suggest that you put down
+> Palmer and Paul here as the maintainers of the architecture instead.
 
+I am adding Palmer and Paul as maintainers in the v2 patch.
 
---fU8lYHpRVmPB+Kfl
-Content-Type: application/pgp-signature; name="signature.asc"
+> > +properties:
+> > +  compatible:
+> > +    const: "riscv,cpu-intc"
+>
+> A new warning with dtbs_check from your patch:
+> /stuff/linux/build/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: in=
+terrupt-controller: compatible:0: 'riscv,cpu-intc' was expected
+>         from schema $id: http://devicetree.org/schemas/interrupt-controll=
+er/riscv,cpu-intc.yaml#
+> /stuff/linux/build/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: in=
+terrupt-controller: compatible: ['andestech,cpu-intc', 'riscv,cpu-intc'] is=
+ too long
+>         from schema $id: http://devicetree.org/schemas/interrupt-controll=
+er/riscv,cpu-intc.yaml#
+>
+> There's a duplicate description in riscv/cpus.yaml:
+>   interrupt-controller:
+>     type: object
+>     additionalProperties: false
+>     description: Describes the CPU's local interrupt controller
+>
+>     properties:
+>       '#interrupt-cells':
+>         const: 1
+>
+>       compatible:
+>         oneOf:
+>           - items:
+>               - const: andestech,cpu-intc
+>               - const: riscv,cpu-intc
+>           - const: riscv,cpu-intc
+>
+>       interrupt-controller: true
+>
+> I think the one in cpus.yaml should be converted to a ref and the
+> andestech compatible added here.
 
------BEGIN PGP SIGNATURE-----
+I am working on the v2 patch, in which I didn't provide any ref to the
+cpus.yaml and just replaced my compatible section with the one above
+to resolve the issue with `/renesas/r9a07g043f01-smarc.dtb`. I tested
+with others and didn't get any warnings.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkeWRAAKCRB4tDGHoIJi
-0s0VAQDSqIpwkV+XgvuoKwnRFDEwmwN4obNBWez9Gf8X0VfxpQD/cNJjz8iKe1Cx
-EBjxNXyPjLRZyHdRPUETZZRnFhkObg4=
-=GLZn
------END PGP SIGNATURE-----
+> > +  interrupt-controller: true
+> > +
+> > +  '#interrupt-cells': true
+>
+> `const: 1` to match the text binding being removed.
+>
+> Cheers,
+> Conor.
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#interrupt-cells'
+> > +  - interrupt-controller
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    interrupt-controller {
+> > +        #interrupt-cells =3D <1>;
+> > +        compatible =3D "riscv,cpu-intc";
+> > +        interrupt-controller;
+> > +    };
+> > --
+> > 2.34.1
+> >
 
---fU8lYHpRVmPB+Kfl--
+Thanks and Regards,
+Kanak Shilledar
 
