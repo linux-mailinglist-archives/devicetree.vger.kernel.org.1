@@ -1,107 +1,119 @@
-Return-Path: <devicetree+bounces-67392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ECC78C7F48
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 02:39:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872708C7F5F
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 03:07:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B053E1C20A29
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 00:39:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12E171F221AD
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 01:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964F9801;
-	Fri, 17 May 2024 00:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844AB7FD;
+	Fri, 17 May 2024 01:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oCYkYbWW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L3STPNMZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616107E2;
-	Fri, 17 May 2024 00:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37278622;
+	Fri, 17 May 2024 01:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715906348; cv=none; b=Ir7MkpLVcP6LDpfX9nCtmxGg/v4J0yQ4fmBDfpf470+mIXt3Aj01ip8dtXRLLjRc1aYmamhzuxVf4JG6NeR8xb0IO12lH9bhegqD/5hke1/B3LYmSmy/zDGdgWRmuzqs/1YnOj6vJBW9O9CQdPSbG3iARAOxqGia3UN2Uj44eGs=
+	t=1715908017; cv=none; b=VTHP0L6WN3i64nGwEXiH+2WSm8IAtDNCH8Cw3BwevQUkeEIk4vVMif44xlc1ITjuJlC0P5bwEVo2qC26hkqDW8Kas+6qFggXifBucmb1VHK8xZDeNKKpA9HvN42Y9tgYPBYFZ6XlS84od1OJVVrvYcETZ/jdowhlO8BnhV3jRJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715906348; c=relaxed/simple;
-	bh=gG0rBTgAalNSQOb8EKbB7cQc3gWTqoJxB0I5m2D5WKk=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=IYTf7xa1Zegm0miC4TEcHJA6xwEGVOIYSbxtV2gjp7c+RgwAWsEIPv1qIpUlz4z6dXRMYkuDYNeig+u1INkjK/x8zbPpTBlPe1VMadh4E4Q6kGP9xkCSkuaNLALRsZuObmyIaZcWRt0Kd+Tqieth+AAibTCeLzrASatc4b0IEGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oCYkYbWW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA5AEC113CC;
-	Fri, 17 May 2024 00:39:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1715906347;
-	bh=gG0rBTgAalNSQOb8EKbB7cQc3gWTqoJxB0I5m2D5WKk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=oCYkYbWWJrT/g+j+licSCJUG9wbvqC7HbhZH4ZCD25oWKeU6B3cbmxH7gN6bi/f2h
-	 89cpqVIVSUYYxUP9IH3kJnVkdlp6vxXBRdTNEom3nAFWkHcFUBmxEkRIOo7lXt+Ff0
-	 uz+Umd7NWSQW2hEkiQvCTUyp7c1ln0z32zQQE5MggQogEzO352UV4PfKavAYt6cB6Q
-	 82b2T1oHS19T0HvxE1ZAY0ov6haZRAmmpbznRCdJoCeTDNBrIL+wAJ73WKygsA6wrm
-	 kKt+iOqhmnSV0tp1UBWqqs5YJJzIfFJ4SaDf2jo3lU6G1CViMIC+bUpAe1tbDrkUkj
-	 HKDX9N/V9sYIA==
-Message-ID: <b91dbdad0beb145a0797459c4ba9a98b.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1715908017; c=relaxed/simple;
+	bh=6n1sbF7/4b4JqOGlapOQrVWAyJBowv28nqLWZTDggdI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BQ+/gh0F/hqKm/U81sKwAC9qoPelsbQKxvvPLRYYORuXybMvYdYGceqVPfZH++fxRb+m+5gek8ZqKOx7/bWL0Wh0ZWJDHhUldjEtiG0izMOj/w3dAVTuRqF+QToeWd44lQT+VKSIAO8KTDXZPxdfhsA6qE9h4hRmb5h7dc08+Kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L3STPNMZ; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1715908016; x=1747444016;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6n1sbF7/4b4JqOGlapOQrVWAyJBowv28nqLWZTDggdI=;
+  b=L3STPNMZNoFWV03iCyfh544sVZGJ/6KiGoeXjpfFl9fPRSoZ9RI2P811
+   cgBIqyP7Dq0tt5WQXk75DnosebAywNkfa/M0YlvnR8UV26R5srGwvVXjg
+   ykeozIov04MNxV7X2ki0nosTU1vwtRMNCSeOjS6/kCuXaKI4JANTWduw6
+   WmF4uv/hY3NCZAgaOivuUWbXbSZX/gHMKl8KEk65PelPuBeF81Rz7lQV9
+   G8WCp2VADJUljuL29Wu0EUL04/GkyFK6+EMODD1U9q+nPbFninzqeBFYS
+   Z+nHRcd0jrPaCk/aedyyKsAtaCyPkODM3Up+Aqemz5BLaTmiLZgKnU4xb
+   A==;
+X-CSE-ConnectionGUID: PIAIjC6sSba+uuAVe2JyNA==
+X-CSE-MsgGUID: i+Eppp3zT3K0z2TpQKk24w==
+X-IronPort-AV: E=McAfee;i="6600,9927,11074"; a="11565762"
+X-IronPort-AV: E=Sophos;i="6.08,166,1712646000"; 
+   d="scan'208";a="11565762"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2024 18:06:55 -0700
+X-CSE-ConnectionGUID: qZIvFWG3R+C/Nq/b3q1eVA==
+X-CSE-MsgGUID: TtATRyHEQ5iGQX4TsjsseA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,166,1712646000"; 
+   d="scan'208";a="31628614"
+Received: from lkp-server01.sh.intel.com (HELO f8b243fe6e68) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 16 May 2024 18:06:52 -0700
+Received: from kbuild by f8b243fe6e68 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1s7m3e-000F3x-06;
+	Fri, 17 May 2024 01:06:50 +0000
+Date: Fri, 17 May 2024 09:06:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, Dimitri Fedrau <dima.fedrau@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] pwm: add support for NXPs high-side switch
+ MC33XS2410
+Message-ID: <202405170826.pUFGJfD7-lkp@intel.com>
+References: <20240515112034.298116-3-dima.fedrau@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAA+D8ANTdvQJVtniyMtqjnJdT4qX+LDGjVuFO6H0RSO+GDw+ng@mail.gmail.com>
-References: <1715679210-9588-1-git-send-email-shengjiu.wang@nxp.com> <1715679210-9588-4-git-send-email-shengjiu.wang@nxp.com> <20240514-campus-sibling-21cdf4c78366@spud> <b86c83a520f0c45a60249468fa92b1de.sboyd@kernel.org> <CAA+D8ANTdvQJVtniyMtqjnJdT4qX+LDGjVuFO6H0RSO+GDw+ng@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] dt-bindings: clock: imx8mp: Add reset-controller sub-node
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Thu, 16 May 2024 17:39:05 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240515112034.298116-3-dima.fedrau@gmail.com>
 
-Quoting Shengjiu Wang (2024-05-14 19:47:57)
-> On Wed, May 15, 2024 at 5:09=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> w=
-rote:
-> >
-> > Quoting Conor Dooley (2024-05-14 11:06:14)
-> > > On Tue, May 14, 2024 at 05:33:27PM +0800, Shengjiu Wang wrote:
-> > > > diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomi=
-x.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > index 0a6dc1a6e122..a403ace4d11f 100644
-> > > > --- a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > +++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> > > > @@ -15,7 +15,10 @@ description: |
-> > > >
-> > > >  properties:
-> > > >    compatible:
-> > > > -    const: fsl,imx8mp-audio-blk-ctrl
-> > > > +    items:
-> > > > +      - const: fsl,imx8mp-audio-blk-ctrl
-> > > > +      - const: syscon
-> > > > +      - const: simple-mfd
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -44,6 +47,11 @@ properties:
-> > > >        ID in its "clocks" phandle cell. See include/dt-bindings/clo=
-ck/imx8mp-clock.h
-> > > >        for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
-> > > >
-> > > > +  reset-controller:
-> > > > +    type: object
-> > > > +    $ref: /schemas/reset/fsl,imx8mp-audiomix-reset.yaml#
-> > > > +    description: The child reset devices of AudioMIX Block Control.
-> > >
-> > > Why not just set #reset-cells =3D <1> in the existing node? IIRC it w=
-as
-> > > already suggested to you to do that and use auxdev to set up the reset
-> > > driver.
-> >
-> > Yes, do that.
->=20
-> Can I know why sub nodes can't be used? the relationship of parent and
-> child devices looks better with sub nodes.
+Hi Dimitri,
 
-Don't make nodes for drivers. Only make nodes for devices. This device
-is multi-function, but is still only a single device.
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.9 next-20240516]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Dimitri-Fedrau/dt-bindings-pwm-add-support-for-MC33XS2410/20240515-192237
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240515112034.298116-3-dima.fedrau%40gmail.com
+patch subject: [PATCH v3 2/2] pwm: add support for NXPs high-side switch MC33XS2410
+config: arm-randconfig-r121-20240517 (https://download.01.org/0day-ci/archive/20240517/202405170826.pUFGJfD7-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240517/202405170826.pUFGJfD7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202405170826.pUFGJfD7-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   arm-linux-gnueabi-ld: drivers/pwm/pwm-mc33xs2410.o: in function `mc33xs2410_pwm_apply':
+>> pwm-mc33xs2410.c:(.text+0x3c0): undefined reference to `__aeabi_uldivmod'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
