@@ -1,217 +1,150 @@
-Return-Path: <devicetree+bounces-67440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086DF8C829F
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 10:37:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1440A8C82B3
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 10:47:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0826281E07
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 08:37:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 378DE1C20DF8
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 08:47:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4925179D0;
-	Fri, 17 May 2024 08:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71BB8C11;
+	Fri, 17 May 2024 08:47:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eZv+grV+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xeaiurc4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BCF41DDC9;
-	Fri, 17 May 2024 08:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880371EB35
+	for <devicetree@vger.kernel.org>; Fri, 17 May 2024 08:47:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715935019; cv=none; b=qRVnpeTUiXeGwzM84bSNsTXiT5Z7Fbs917Y3B9Rg8ha7FtMwRzk4tA3/xIS5gj49S7GhX8RmX5+fmhsdN8pXOyOrf+bqEdROW7gNBJMb1gs06EM+K7Igh7x+pABIWNvqz8ZRZVff5Mb7poYz30HNdL0ezU94RhjnunEqgRsgFiE=
+	t=1715935634; cv=none; b=P3LtlAxl+rwAaGwrxkwfcRdwD9AqAaH3rhwsichF/6JjY3sVcKGTmtxuo+fKk1kjpXIjZ6K8Bhz9lMyANpeqyRsqwXLJPviCeWaxxvUnva5F6KQ9ajR6phfvTKwdTK38sUtYAWuzVnvS0aDqzSixoy4neR3hXmCSC1617uoWULA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715935019; c=relaxed/simple;
-	bh=/jxaQ8vLqvY8UNZjqUOZ0SnrmjfJMgE4oN2iNYTKwWM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dw0y570jXOTee8FWSmqir4fBtz1APQtdCLo+2M1opJ4FLMMmCO/sqT1O0mmsYsqE4ZA1B82eXvVEpxDdO6lCRfxSe2t2B700wnYxRBsvXwzyHLd8fwTnGpMSJZTJiSr3NMerdvT1WL9J/CujPNXQ0Ot70B+lcdhmV4Ctfu7i1JA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eZv+grV+; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6f4178aec15so1045457b3a.0;
-        Fri, 17 May 2024 01:36:56 -0700 (PDT)
+	s=arc-20240116; t=1715935634; c=relaxed/simple;
+	bh=4OdmYv1WRNhO/gn86tq8/H6wXNfdPJ5uk/aGer4Pte8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=koA5bW7pSFFFZJOwJ8BvZlRKDl+sbnnc6ovlxYNU2zHEMmJAc2j6jV15aTM33msCvKmsIHYZkntf4oHksmgkc6lk4pYK00/ebeGOZyTCVLa3/JYBjAyiwr373RCmodFD9/89wYCnZt0CxoCk5b9WzLC0B7fQ+uw0jONaHow5AB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xeaiurc4; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-573061776e8so4526991a12.1
+        for <devicetree@vger.kernel.org>; Fri, 17 May 2024 01:47:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1715935016; x=1716539816; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WMzhjD0vszw7czUjF6cG9OPyULjgr/IpXRMnsfCQ3do=;
-        b=eZv+grV+ap3KPKy5mmmYm/8WcKOLy8IhM97APEE7YLGlcRqctU6PtMUKYezBWGmNIa
-         2hPyM55OyHkwJpqtvfHMZqeKJmcIoDpGfJwX/iWAFbWdinWo/1bAdT4N6OkuVzwcpNF+
-         Fwe8xrHm08mH98gL23NCJup2xj+LNf2B0crqCJ7GPLQxWJGtZpDfuxT6Wpzi90VoOuvL
-         TwtOrj7UOo7h0gBk5zbnb21VH2A1OBC2qhgzHOgWEo9JqhoEbnS/rUXQ26+18sErO7FD
-         tdz+WZOP138YEEF33mFaNYTwZHq5pDwmJsVwi95h7B0v/vjuCYnBbNJzFN2Ndju4j2cY
-         GVSA==
+        d=linaro.org; s=google; t=1715935631; x=1716540431; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BNXEI5RgnF6KxXraKabW6jmWWMmCoWMSZc+WDDccCZU=;
+        b=xeaiurc4gxOUkPWGu6Poj2aEnyt1rEba1IKvACCEjDS3jZxIekz+E0KxJ57LbA8Sne
+         bG9xhuBxB9Nx/OogkX6FwSRP7oZkamnEBkdtTK6zYoAHHvsFKax8QpHXB5fqUKYdP1yW
+         gAV6SnAA8Zb8IYbURDSObhiaYeYsMB4Kp8p0vWlaqfIC5uylNkIJi2kCv6OMGngLyU+h
+         2yHiqH83OdVObPQUU3ZFrtVextzKP1XXO6mQBTrC3AYjlQWhRm+nY3cRdnGSOVqetF5F
+         eZZmIPdYsuNC06t1vJfIcBwMhCJsbLJfFWZPPzxjjvyiNLasqkTh4xeFnLS24++7Mg3s
+         13Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1715935016; x=1716539816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WMzhjD0vszw7czUjF6cG9OPyULjgr/IpXRMnsfCQ3do=;
-        b=E9OS9gqqLwCayOxxIYf1mMgUa9gnAMwqir3fyahLnR+clgxiHoj+PDboZIAt9T3xm9
-         TIj+EKAfbsZnAn4fx2JXgiZGlU3H1XBCoiNwMk/jOStW4P6yNakrxh5nMseUqUCHP/Xz
-         XrZJAe6q/ZciD9bUcDZUKk65DuE7JNRQMqHYTkOo+jNG2qsvYk/aV/bkD3WzN46gowRq
-         bwqLwhilKjF4vtc/78AERS9eAmHKyzxPxAdbi5rzFaZdubdd6ogzqMG90M6wM82jDcTG
-         hLFsF4ZoLVjDNWr6UE5+FPyWfFDgsXcioi+sAXos/raazlGuLWkmIiEzm9nLVz/9Jo9o
-         h8Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCU/fsb5g7NYQuOOd5PaquGBWdwCCLhzOB1sZ1VzivjivSFzZqcDHOqPOTEwvaiTnPP8ucz1lclSltcmoGSQygwUEgbQQaMMI3B4bPPLzskF+DqXnctVlPW6umTlM26T4VQsitmS2U+8YoExz2FY77poc87Gi9yBeq/CYGj6xdYyvuY0z8cF
-X-Gm-Message-State: AOJu0YyBwg+JOxibvVb6jK8Xtl4WoeboBvGzxC0UameTURbgosfmdlYW
-	xF5mot4ZZG2odmOqkA0pWxpgHVgsTwZY2a9Y3Q5wtVT1KyrxUNYy
-X-Google-Smtp-Source: AGHT+IFpjSBvT/CF+oyFxdYCYRHFBWlKSN7PvOdZrINbkRp3zvEQ4SUctsA1n/96IQp2lStiw8clfw==
-X-Received: by 2002:a05:6a20:1581:b0:1af:cb7c:cc98 with SMTP id adf61e73a8af0-1afde1fb700mr23111165637.55.1715935016404;
-        Fri, 17 May 2024 01:36:56 -0700 (PDT)
-Received: from localhost.localdomain ([45.64.12.212])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ef0c035dc3sm151234005ad.197.2024.05.17.01.36.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 May 2024 01:36:55 -0700 (PDT)
-From: Mighty <bavishimithil@gmail.com>
-To: 
-Cc: Mithil Bavishi <bavishimithil@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lopez Cruz <misael.lopez@ti.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-Date: Fri, 17 May 2024 14:06:44 +0530
-Message-Id: <20240517083644.3920-1-bavishimithil@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1715935631; x=1716540431;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BNXEI5RgnF6KxXraKabW6jmWWMmCoWMSZc+WDDccCZU=;
+        b=d46rJjgTQsmFliWe0giZS0U7raX08oUeivIvDWT2l5U0oq7EilRzgq1NKB/T/Ri1FE
+         i7KDWEb1SsV5RhWCSHOes3AfbHSBGB0AO5nRP4Pajckb4Zl1jONxnXejnrrIMt+mpbn7
+         Orbo9vua16BzlhhD3XTNs9/nHO+GH6NkRpcepHrf1MIL8CMz57nxWTVLyo4zoTDV1L/v
+         Eon0XnP1c3KWzaYjfuEWqBWoRmzcNqM+bS90zNVfcDvqqpFEpfAd0m07mRyyvgPazmtU
+         cnC5yGfAYIQ5zKqOVJJGJqXS/TYWhLncsrWlHFt6oB/nMUroxRty2sJ4ZypS0kHqLz7h
+         PC8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUdGVHibMQzCZ8kv4+QEiiM0lYBTALvh96gevj9GqZOYtdLwTjPxxlyEM7NJXWMj/TheOV+Zg1rep2i9ERzp6mYPBeccj5Fms0xRg==
+X-Gm-Message-State: AOJu0Yw0bGnfBfCglJplJdUMs0GvNz0KSx/mcC1YLBJ6CwkMmb7CI2yF
+	uZ1tpOR8KtYQYr+0YSU9NLfndw7WoMfjHxyY6Ngeq+3nE/C8fzKBe26/Rn2tdzA=
+X-Google-Smtp-Source: AGHT+IEsXSC8UA8owVGxLFHqf8ran6U8r8csZ9/3h3jTJTAH+g/2KmzDOTIWwv7GrubPcDFiE5M46w==
+X-Received: by 2002:a50:f60d:0:b0:571:fc6b:966c with SMTP id 4fb4d7f45d1cf-5734d5bec1amr13207770a12.13.1715935630962;
+        Fri, 17 May 2024 01:47:10 -0700 (PDT)
+Received: from [10.91.1.133] ([149.14.240.163])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-574f26d1574sm4164356a12.36.2024.05.17.01.47.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 May 2024 01:47:10 -0700 (PDT)
+Message-ID: <5a19d2bd-340b-48f0-a64b-e5003b0064e3@linaro.org>
+Date: Fri, 17 May 2024 10:47:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] hwspinlock: Introduce hwspin_lock_bust()
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+ Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, Richard Maina <quic_rmaina@quicinc.com>
+References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
+ <20240516-hwspinlock-bust-v1-3-47a90a859238@quicinc.com>
+ <77b01a97-de2d-4e10-91f6-915ec414eede@linaro.org>
+In-Reply-To: <77b01a97-de2d-4e10-91f6-915ec414eede@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Mithil Bavishi <bavishimithil@gmail.com>
+On 17/05/2024 10:07, Bryan O'Donoghue wrote:
+> On 17/05/2024 00:58, Chris Lew wrote:
+>> From: Richard Maina <quic_rmaina@quicinc.com>
+>>
+>> When a remoteproc crashes or goes down unexpectedly this can result in
+>> a state where locks held by the remoteproc will remain locked possibly
+>> resulting in deadlock. This new API hwspin_lock_bust() allows
+>> hwspinlock implementers to define a bust operation for freeing previously
+>> acquired hwspinlocks after verifying ownership of the acquired lock.
+>>
+>> Signed-off-by: Richard Maina <quic_rmaina@quicinc.com>
+>> Signed-off-by: Chris Lew <quic_clew@quicinc.com>
+>> ---
+>>   Documentation/locking/hwspinlock.rst     | 11 +++++++++++
+>>   drivers/hwspinlock/hwspinlock_core.c     | 30 
+>> +++++++++++++++++++++++++++++-
+> 
+> Shouldn't this be added to drivers/hwspinlock/qcom_hwspinlock.c ?
+> 
+>>   drivers/hwspinlock/hwspinlock_internal.h |  3 +++
+>>   include/linux/hwspinlock.h               |  6 ++++++
+>>   4 files changed, 49 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/locking/hwspinlock.rst 
+>> b/Documentation/locking/hwspinlock.rst
+>> index c1c2c827b575..6ee94cc6d3b7 100644
+>> --- a/Documentation/locking/hwspinlock.rst
+>> +++ b/Documentation/locking/hwspinlock.rst
+>> @@ -85,6 +85,17 @@ is already free).
+>>   Should be called from a process context (might sleep).
+>> +::
+>> +
+>> +  int hwspin_lock_bust(struct hwspinlock *hwlock, unsigned int id);
+> 
+> I don't think this is a geat name "bust" looks alot like "burst" and I 
+> don't think aligns well with the established namespace.
+> 
+> Why not simply qcom_hwspinlock_unlock_force() - which is what you are 
+> doing - forcing the hw spinlock to unlock.
 
-Convert the OMAP4+ McPDM bindings to DT schema.
+hmm looking again, I think _core is the right place and bust() is 
+consistent with bust_spinlocks();
 
-Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+meh
+
 ---
-Changelog v4:
-- Changed maintainer name
-- Use $ref and enum in ti-hwmods property
-- Make clocks property only have maxItems, no description
-- Add items to clock-names
-- Fix address of node in example
-- Remove extra line
-
- .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ----------
- .../bindings/sound/ti,omap4-mcpdm.yaml        | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 30 deletions(-)
- delete mode 100644
-Documentation/devicetree/bindings/sound/omap-mcpdm.txt
- create mode 100644 Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-deleted file mode 100644
-index ff98a0cb5..000000000
---- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--* Texas Instruments OMAP4+ McPDM
--
--Required properties:
--- compatible: "ti,omap4-mcpdm"
--- reg: Register location and size as an array:
--       <MPU access base address, size>,
--       <L3 interconnect address, size>;
--- interrupts: Interrupt number for McPDM
--- ti,hwmods: Name of the hwmod associated to the McPDM
--- clocks:  phandle for the pdmclk provider, likely <&twl6040>
--- clock-names: Must be "pdmclk"
--
--Example:
--
--mcpdm: mcpdm@40132000 {
--	compatible = "ti,omap4-mcpdm";
--	reg = <0x40132000 0x7f>, /* MPU private access */
--	      <0x49032000 0x7f>; /* L3 Interconnect */
--	interrupts = <0 112 0x4>;
--	interrupt-parent = <&gic>;
--	ti,hwmods = "mcpdm";
--};
--
--In board DTS file the pdmclk needs to be added:
--
--&mcpdm {
--	clocks = <&twl6040>;
--	clock-names = "pdmclk";
--	status = "okay";
--};
-diff --git a/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-new file mode 100644
-index 000000000..23e0e9567
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,omap4-mcpdm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OMAP McPDM
-+
-+maintainers:
-+  - Misael Lopez Cruz <misael.lopez@ti.com>
-+
-+description:
-+  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
-+
-+properties:
-+  compatible:
-+    const: ti,omap4-mcpdm
-+
-+  reg:
-+    items:
-+      - description: MPU access base address
-+      - description: L3 interconnect address
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum: [mcpdm]
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: pdmclk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ti,hwmods
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pdm@40132000 {
-+      compatible = "ti,omap4-mcpdm";
-+      reg = <0x40132000 0x7f>, /* MPU private access */
-+            <0x49032000 0x7f>; /* L3 Interconnect */
-+      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-+      interrupt-parent = <&gic>;
-+      ti,hwmods = "mcpdm";
-+      clocks = <&twl6040>;
-+      clock-names = "pdmclk";
-+    };
--- 
-2.34.1
+bod
 
 
