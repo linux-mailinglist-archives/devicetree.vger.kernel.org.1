@@ -1,142 +1,119 @@
-Return-Path: <devicetree+bounces-67477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1BF8C8548
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 13:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001A68C8557
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 13:13:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B8B52833CF
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 11:09:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFA21281B1E
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 11:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA973D576;
-	Fri, 17 May 2024 11:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BBA93BBE2;
+	Fri, 17 May 2024 11:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UeGDtSxF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jLpuI2+S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC113D3BB;
-	Fri, 17 May 2024 11:09:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC8D3B78B;
+	Fri, 17 May 2024 11:13:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715944184; cv=none; b=PLdmuc8+vjinFuXy+qbR1xgrXALwSID31l5DKoqp2/OEM2DG/WAyZ7UyZ2iArqxWPxxL1qSPXvg6HY3XWY4AEsy7CDuMFdNFtQuwaMKsrcmZXnnDEfQ7jn34ue7H4D4V5CtGIByVxzhlQOtkndId8JfllNPNxCblg6L1VYGxwJQ=
+	t=1715944400; cv=none; b=tWmkY935qzggHdHvzy4WNtDecOIRoLRR+svxHnUO5vcHER7nDuC9W3CXM3U4dPhyDR3yhhuhVzJ4HdznMARIWQCEcD5qY3zVq11klO+3x/Za7/LdArOwgf5nQYTCBywKuWDu7XkG6OOiES7JgeJpVcOQyI3lBQTrMUiJrkaFO60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715944184; c=relaxed/simple;
-	bh=eQsSSkyQqaAlOfXHMd7JuuXRGlCI2iIQbiFoNl5dTLg=;
-	h=Subject:To:CC:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=h1JfjuYaz5KnXx9tfk3AqUETv5RMTax/INrxby3jxklcoBt3Mo5qMbtb5WnrZbWzqMJ94l7OlIv8a2mNPEQieEi0aq4Y50GscbTkbAXO1iN2OLdaOddVwmfWXVCYwilO7WzBD20QeDiNuauobO0WV2Ad2Qc2rHsbe4fY0ivmewg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UeGDtSxF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44HA2WdH014892;
-	Fri, 17 May 2024 11:09:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	subject:to:cc:references:from:message-id:date:mime-version
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Bph/qlNQ/PYBP8C80X56Bd0SlXNXZWoQ/O9Sy/b+pcU=; b=Ue
-	GDtSxF74zTER+9UMCT+8MvCiyFH5RQipX8YGeFDMvRtfRm/ObAEg3+5e6KLf5hZ5
-	kNczVCVC8B05UwKNE0v4mjWadSBR2h3PM12miD7Fvfh6qhvEvbHYxHJ0f4hsa30w
-	nG3B6SDDi5OW5Afa/lWpkx4FFFosR47Ht3BJo48H69INzEm1f7SHayeb07E5j/Z9
-	2eMuEYUIlBVmScbkzmFeRQ3AL9skqGzE7Z1cSHTIecHCloAQWW4PppnroZzGKIp7
-	cQjyd99HhLmMmGr8N4DjJBejMLyx63MikYWw2VrgaGvWcXaeaqyFAw/quJQceKIE
-	OzjbloOLs8zW8dS0u0ug==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y5e9cu1d0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 May 2024 11:09:39 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44HB9ckw022789
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 May 2024 11:09:38 GMT
-Received: from [10.216.42.234] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 17 May
- 2024 04:09:34 -0700
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdx75-idp: add SDHCI for SD Card
-To: Krzysztof Kozlowski <krzk@kernel.org>, <ulf.hansson@linaro.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <bhupesh.sharma@linaro.org>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20240515120958.32032-1-quic_nainmeht@quicinc.com>
- <20240515120958.32032-4-quic_nainmeht@quicinc.com>
- <a5833628-65f3-493d-9de5-33ba87a18875@kernel.org>
- <2ed5326a-b2ea-220a-2a9b-0478df0c6f12@quicinc.com>
- <743c2a10-0ce6-4b84-8127-f3d762976366@kernel.org>
-From: Naina Mehta <quic_nainmeht@quicinc.com>
-Message-ID: <7a8e4e2d-8ab6-53cc-f98e-285ed22eca1e@quicinc.com>
-Date: Fri, 17 May 2024 16:39:31 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.0
+	s=arc-20240116; t=1715944400; c=relaxed/simple;
+	bh=ypJWPAXdkM5itiG5UVH9IVJusTPRaIOKFrtWmyuLtV8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JHyxBJ90yXWvCCNFZZV+3Hid/kY04zM7WC+6jJ/ZB0jTQV6+IMb/lssrslv8GIumD3H1ffsUKTx0pLYHbGkUfmyVeTBHjC6kunLnIUAI6bAw5UX8jepNiIxOrWCH+pinH49sDcKJLfHvodH8AcHUX73nYQ0VtbCrbIjFNwFmjrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jLpuI2+S; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a5a1054cf61so507059066b.1;
+        Fri, 17 May 2024 04:13:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1715944397; x=1716549197; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F0jVkMtFf3CbTZAlgcnmUWY97LIc8kU/RGoW8WnJqv0=;
+        b=jLpuI2+SNu3lQQfyF82LV7PMcVN05kMdhiGHQqxxVQ8rxrHOzG82jUl3IyFk5HqEfu
+         BdPTL2ujrkoAtaKRwx8IFDeLAlwPMrr+lo1CtWvFxQAn+QUNJnW5u/Nt0Bt9Mkc6eEIg
+         I+Fn9Le8/t9WP358DymASy2SJ9YwgARvEbDo7zFKwHrSPSn7hS1FrWd9UH9YjsUN7fps
+         Xnk9a1YCLX6NiLXS91nNojG9V8veD222osng8o/HHUXX6GIDxrJ4JCubfc4MCdEqsHc0
+         0qevu+lC+6NuyB1jucdQMO1+2to1O5hsLk2PnPvs4UNGy+HTtg19oiEFIx5BuWWc5Ux7
+         SKDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715944397; x=1716549197;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F0jVkMtFf3CbTZAlgcnmUWY97LIc8kU/RGoW8WnJqv0=;
+        b=Wcnr3OPLIRrtJs/6D4MbmxBZ9A0pynb0qQuWr8V3YnNBNBbN8K3NXmoao/9Bwz2t5z
+         OIaOvO5QlWC8Fh/PfaYc6eHZPgq0F4J3UGvWtr95DFfwHnkGJIScJnmfbNbz2jIuDGZO
+         5ZCaNdvuD3V0JzD9XGUPq5KnVr1qRY4HcQWX5Yn40FAceTXGW3pOhNjDqYVG1gW2hn/B
+         8oaTjdR6nRq7TikK6GQupHr8goCS+yyPrbIS0WRRblRhqJ5deElSje//e87QDNGWziWy
+         ijZtgFB8Nb6lyguqd3Q2aEYqzcArvaKIeQbRlyUKabFal5b6A8Pk0mLmQIo8LLW4LMfD
+         6UXA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRCDZp34Etk4+LdV1IRRW6vp8hw4EKo4D1Ot1NyX0eg67oZjnEapRQRQ+9+UZnPwV3NDtcBkOe2pJzFOXevxva7fdZk6NpLzxS2R5dfBomavQ21NvicX88NVBIZYds3fGz8YE4vVoMd2AaDZ0cj1Jwfy2RwEEdx663O5PekLatkbWJkA==
+X-Gm-Message-State: AOJu0YzcmqIhfI7NhaYMI7HKbGoSZZQXOFPCD5seLK/WvUMuJU5Z/LUm
+	fh4mASxRoBZXDgi10fFpPzXreAjXbFmSsSgH4tbStBYdpLW2kIWf
+X-Google-Smtp-Source: AGHT+IGIrnMJoafj6+anhAcQkvz0Z2a09SBsigRf595GGX82+EkMCcs70KvD27O3korKTEZjfi+1OQ==
+X-Received: by 2002:a17:906:aec7:b0:a5a:7a4e:7e85 with SMTP id a640c23a62f3a-a5a7a4e7f2fmr1205784866b.24.1715944396821;
+        Fri, 17 May 2024 04:13:16 -0700 (PDT)
+Received: from partp-nb.corp.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b01399sm1127891666b.172.2024.05.17.04.13.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 May 2024 04:13:16 -0700 (PDT)
+From: Parth Pancholi <parth105105@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: Parth Pancholi <parth.pancholi@toradex.com>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: gpio-sbu-mux: Add an entry for TMUXHS4212
+Date: Fri, 17 May 2024 13:11:40 +0200
+Message-Id: <20240517111140.859677-1-parth105105@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <743c2a10-0ce6-4b84-8127-f3d762976366@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ilv4kMFtBlcF-t8wiHI_sidD9IJI99IW
-X-Proofpoint-ORIG-GUID: ilv4kMFtBlcF-t8wiHI_sidD9IJI99IW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-17_03,2024-05-17_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- adultscore=0 lowpriorityscore=0 mlxscore=0 clxscore=1015 mlxlogscore=941
- priorityscore=1501 bulkscore=0 malwarescore=0 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405170089
+Content-Transfer-Encoding: 8bit
 
+From: Parth Pancholi <parth.pancholi@toradex.com>
 
+Add a compatible entry for the TI TMUXHS4212 GPIO-based
+bidirectional 2:1 mux/1:2 demux which can be used for
+switching orientation of the SBU lines in USB Type-C
+applications.
 
-On 5/17/2024 2:22 PM, Krzysztof Kozlowski wrote:
-> On 16/05/2024 07:21, Naina Mehta wrote:
->>
->>
->> On 5/15/2024 7:53 PM, Krzysztof Kozlowski wrote:
->>> On 15/05/2024 14:09, Naina Mehta wrote:
->>>> Enable SDHCI on sdx75-idp to support SD card.
->>>> Also add the required regulators.
->>>>
->>>> Signed-off-by: Naina Mehta <quic_nainmeht@quicinc.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/sdx75-idp.dts | 45 ++++++++++++++++++++++++++
->>>>    1 file changed, 45 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
->>>> index f76e72fb2072..6f94278cf837 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
->>>> @@ -41,6 +41,29 @@
->>>>
->>>>    		vin-supply = <&vph_ext>;
->>>>    	};
->>>> +
->>>> +	vreg_sd_vccb: sd-vccb {
->>>
->>> Please use name for all fixed regulators which matches current format
->>> recommendation: 'regulator-[0-9]+v[0-9]+'
->>
->> Did you mean that vreg_sd_vdd should be updated according to the
->> suggested format because vreg_sd_vccb is not a fixed regulator?
->>
-> 
-> Yeah, it should be about sd-vdd, but then this one should be named as
-> well with a similar prefix to have it consistent.
+TMUXHS4212 datasheet: https://www.ti.com/lit/ds/symlink/tmuxhs4212.pdf
 
-Sure, I will update in next revision.
+Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
+---
+ Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks,
-Naina
+diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+index 88e1607cf053..48680721abc1 100644
+--- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
++++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+@@ -22,6 +22,7 @@ properties:
+           - nxp,cbdtu02043
+           - onnn,fsusb43l10x
+           - pericom,pi3usb102
++          - ti,tmuxhs4212
+       - const: gpio-sbu-mux
+ 
+   enable-gpios:
+-- 
+2.34.1
+
 
