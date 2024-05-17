@@ -1,104 +1,119 @@
-Return-Path: <devicetree+bounces-67563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B2568C8A97
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:11:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E578C8AA0
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 19:12:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B61191F24F59
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:11:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A490C1C2156C
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 17:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1571313D8B9;
-	Fri, 17 May 2024 17:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AGasy3Xc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5FD13DB83;
+	Fri, 17 May 2024 17:12:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A02713D63B;
-	Fri, 17 May 2024 17:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B957013D8B9;
+	Fri, 17 May 2024 17:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715965872; cv=none; b=PuDny9CWdyhN+gSCOKj17Rhk8H4F5HU2IcqfSkQ+NIV7lfrXIaxLeTprGy5COYFDsjM5ohYfsBId080kT0HL+o6/nbhzECWxehNUWG6NT56E6ky9qolihmQ/3sFe4pXW+oPF3nHqU8KuF5e/AFFpIpO4ByWdOeYRw9imD6NwvPA=
+	t=1715965938; cv=none; b=WqcmmQ5BvrN5uORvEi3hckPdd5AxJnuTkjk+rmXKeytryMBBwK6zdi/eVQ3GSG9MhkiftyaLjNdHobTg36H7oxejyM3EdtDOSvIv0gRhUQPnJxJx5vR2VEFm/xzVJ8iqXbhcjlCqpuY7LTVn92UJ8xvadJqKer05FoOT1+l5cis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715965872; c=relaxed/simple;
-	bh=Q39OZJ1/kqSWkZy2OroNdgyPzEqNTwwlwHlGAT9vlhc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SW50py79uW6lXj6pisQ9iz6kh4943w3Hlmc5dygvoTJDqaRAxttjLD6bZ1tubAW+cHtugK4n//wyxACMU14NhUuf4bcH8UOAA63434d+CGwYJ5wtKzOzdSb6XLDnWsyujjr2fs6PPMF5iGHiorJgs91nGYilpS8x7UpB9tCNdnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AGasy3Xc; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1715965870; x=1747501870;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Q39OZJ1/kqSWkZy2OroNdgyPzEqNTwwlwHlGAT9vlhc=;
-  b=AGasy3XcJ+DtN/fKxzu54vNT0qKO7UmsFGqjNRqvfHgPCJsiXUmOJ0OP
-   QN4kcKzVhuj1acpbjVtYqKPOKFa/8vHr5goVB7aArvlrCuxHe30S2tXLy
-   ZEerPdC8buDVM4yHyaueolFilWO3nN2adUf0Dw5var/WsyoYNOFZIgdG/
-   PoH7L7DAVVSCrtedW52cfhLC+KZGKRwmaQlmJ5jvF2y9OEahLfoEpSgbo
-   Lj+3LOUUcBDcTJd0Pz7sBEx1qe1f+kMhcyTDdiGR5v9UXW4vxt3rBUJLN
-   xLn5X6JQtREHt+DX0Nc9V3tai2SmF9/RG/RwdTQoeTlrMYvQ22Z6M2bQe
-   A==;
-X-CSE-ConnectionGUID: jywtw2a0SXGShE9NW3PdEA==
-X-CSE-MsgGUID: Y18bQlQVRque+jnH0NwOgw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="15985632"
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; 
-   d="scan'208";a="15985632"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2024 10:11:09 -0700
-X-CSE-ConnectionGUID: ODBIwRM3QLq8K0mB4IUPEA==
-X-CSE-MsgGUID: /C55syMrQheaD0v3/At6Pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,168,1712646000"; 
-   d="scan'208";a="36272330"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by fmviesa005.fm.intel.com with ESMTP; 17 May 2024 10:11:06 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id 42B291F1; Fri, 17 May 2024 20:11:05 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
+	s=arc-20240116; t=1715965938; c=relaxed/simple;
+	bh=V7Moi5gWFU3OYOWp1ODvyUp0cpccJTi4lzeR8bBjtxc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TArLqOkx5p9i9RFaM/R13vFXnZuLfUCzju9K3OwFyzGicPWGslOoRzM2RTfxqHWqzCFKTekbzr71ZlMki+mVUeXGCCtY0fjfiDl/8gBk3Sm9UGFZWN9rXhjgMSOa45WmZucT+YWwuK7RZtygjuG3ks2jHq4rlLuNVMdD0rFk7Ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5f80aa2d4a3so90824a12.0;
+        Fri, 17 May 2024 10:12:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1715965936; x=1716570736;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sJP3Bvi4LZvT2V50/zdiKAgCKlmfC4y7jjdKq6zUFW0=;
+        b=bxOSrHTCPlneyUptUHRlx+YbJTqKK/J7pSpxOgypsUogf7eMGFSHI8ltP72Lbf7Cu2
+         X3iocQhu35dVNzNZHQCBMeuXxZuw6D+BpoJhkFkTn8XMjyBnbx2pIr5E20M1ht+pksE6
+         zx6WI3nEfg4f6LCDjF83DjdXqLgUt2ZFnlaf4jaYtx8YVFe/VO18CFSkkLuGEyjZ544w
+         0sKgUESGUkICPHc2dylyWgIePv1KzsrtaO4ZT/LQKoBfLGqkdb45YBs88c2krVknKps2
+         wfm5ge6rDDWNdmZC3mqqvVeL718etRF+wD25ijXPN1NAMaZpAOQkdGAHGNh8dJ7N7TuZ
+         wHdw==
+X-Forwarded-Encrypted: i=1; AJvYcCUJ7Wl6cyxr1xoMeshLiNlZzMtIo5KcyflUEt3BP2IZINNoMFdJvd481TK2XTybHlyahka986XSileTXi7g7kKtDFvUDjtwnCffb3k3tZyQKRpRNy/+Qp5KepfbaaGQxeMOYJW10YnaBgCgFyvrrxYW4c8iCGoD95V7QHSSj8zNyx3gqQ==
+X-Gm-Message-State: AOJu0YyQRqM1RTD60IE3llmL6j1I5eGJ/req8i0FlURmo5C7zduUEhgk
+	LGrezRbrDMvSR1C6vFOL6yWTnjlQ+Um2t0WQQ0j58qMhDsJdAH3Y
+X-Google-Smtp-Source: AGHT+IERiv3eoMFHKpAJyk5tOavTPrH9L+4rFoAlwWFeIVmvoquPL58lrRrbGXcz8+OzDTGfJm4bUQ==
+X-Received: by 2002:a05:6a00:21c6:b0:6f4:9fc7:daf2 with SMTP id d2e1a72fcca58-6f4e02a5f45mr26551627b3a.7.1715965936009;
+        Fri, 17 May 2024 10:12:16 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6340b57ed97sm15246657a12.23.2024.05.17.10.12.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 May 2024 10:12:15 -0700 (PDT)
+Date: Sat, 18 May 2024 02:12:13 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>
-Subject: [PATCH v1 1/1] spi: pxa2xx: Move PXA SSP bindings to the correct folder
-Date: Fri, 17 May 2024 20:11:03 +0300
-Message-ID: <20240517171103.221856-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.43.0.rc1.1336.g36b5255a03ac
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Serge Semin <fancer.lancer@gmail.com>
+Subject: Re: [PATCH v8 0/5] PCI: dwc: Add common pme_turn_off message by
+ using outbound iATU
+Message-ID: <20240517171213.GE1947919@rocinante>
+References: <20240418-pme_msg-v8-0-a54265c39742@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418-pme_msg-v8-0-a54265c39742@nxp.com>
 
-SSP stands for Serial Synchronous Protocol and has nothing to do with
-UART, also known as USART, where 'A' stands for Asynchronous.
+> Involve an new and common mathod to send pme_turn_off() message. Previously
+> pme_turn_off() implement by platform related special register to trigge    
+> it.                                                                        
+>                                                                            
+> But Yoshihiro give good idea by using iATU to send out message. Previously 
+> Yoshihiro provide patches to raise INTx message by dummy write to outbound 
+> iATU.                                                                      
+>                                                                            
+> Use similar mathod to send out pme_turn_off message.                       
+>                                                                            
+> Previous two patches is picked from Yoshihiro' big patch serialise.        
+>  PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()                 
+>  PCI: Add INTx Mechanism Messages macros                                   
+>                                                                            
+> PCI: Add PME_TURN_OFF message macro                                        
+> dt-bindings: PCI: dwc: Add 'msg" register region, Add "msg" region to use  
+> to map PCI msg.                                                            
+>                                                                            
+> PCI: dwc: Add common pme_turn_off message method                           
+> Using common pme_turn_off() message if platform have not define their.
 
-Move the SSP bindings to where it belongs.
+Applied to controller/dwc, thank you!
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- .../devicetree/bindings/{serial => spi}/mrvl,pxa-ssp.txt          | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename Documentation/devicetree/bindings/{serial => spi}/mrvl,pxa-ssp.txt (100%)
+[01/05] PCI: Add INTx Mechanism Messages macros
+        https://git.kernel.org/pci/pci/c/182e6ef0df77
+[02/05] PCI: dwc: Consolidate args of dw_pcie_prog_outbound_atu() into a structure
+        https://git.kernel.org/pci/pci/c/523d5018701d
+[03/05] PCI: dwc: Add outbound MSG TLPs support
+        https://git.kernel.org/pci/pci/c/a683a0065ac1
+[04/05] PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+        https://git.kernel.org/pci/pci/c/a61a1c5932b0
+[05/05] PCI: dwc: Add generic MSG TLP support for sending PME_Turn_Off when system suspend
+        https://git.kernel.org/pci/pci/c/33af7f463b68
 
-diff --git a/Documentation/devicetree/bindings/serial/mrvl,pxa-ssp.txt b/Documentation/devicetree/bindings/spi/mrvl,pxa-ssp.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/serial/mrvl,pxa-ssp.txt
-rename to Documentation/devicetree/bindings/spi/mrvl,pxa-ssp.txt
--- 
-2.43.0.rc1.1336.g36b5255a03ac
-
+	Krzysztof
 
