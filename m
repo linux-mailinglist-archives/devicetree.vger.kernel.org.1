@@ -1,175 +1,126 @@
-Return-Path: <devicetree+bounces-67411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC458C8100
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 08:41:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0378C811F
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 08:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 404A42825D2
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 06:41:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 076D11C20B6A
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 06:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A111D1427B;
-	Fri, 17 May 2024 06:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AFF414AA3;
+	Fri, 17 May 2024 06:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="vJtot80U";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="cYQzvJUx"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="f8KVFHeN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh8-smtp.messagingengine.com (fhigh8-smtp.messagingengine.com [103.168.172.159])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372471118A;
-	Fri, 17 May 2024 06:41:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A4E14A8D;
+	Fri, 17 May 2024 06:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715928104; cv=none; b=EBGeGegRtl8UO5vzzcrecXEieJjSAB0GF1u5hHeN5mFx6K7fue4xKjWH4lJUKC3PfMEIU151dnmJYyVzvrUI5ORxmL/GrPjbWImtq8PskqVmkJUB/05sA+2CoNOttBzcqy44S9rT4fdact3WnE6BiOtmLwe3svW44OQz7ekJhM0=
+	t=1715929126; cv=none; b=VLqn52wxqx/2rWfxCVjPvSWNA0ws7zGM2WsqVc62CcuYmYZUesucRBMVBVX61IKsLLW/+32ztB2ZVuceL3D8dSUCM8wGm21pwsCt4zniahz+C+ktxmbw8vY5HkCXRUE4gXIR26GChD+wd+b8XZ3qkXJRA+5uoNV87+sLhfIYf6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715928104; c=relaxed/simple;
-	bh=kXXN/aTx3k3ZypXowdLpxDPWR/Jfgdf02xxcdWguIjQ=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=HIStb3QROF8YG+8TvXWFRgVBV0elG6TASh0X2UbXmWNI3Hue/bSXrcpkxNPrhHsc2GP6fw6kTeNOuXWltC/exWeKEkxJVUoNeDkGq7j8pOY8GlHbEbQqbq5r3i6IYH4CyrJqasiDdvUEVfTucpmp4Y55Q/MenX6Fd0V5G8LY5Lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=vJtot80U; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=cYQzvJUx; arc=none smtp.client-ip=103.168.172.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfhigh.nyi.internal (Postfix) with ESMTP id 3D2E411400B2;
-	Fri, 17 May 2024 02:41:41 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Fri, 17 May 2024 02:41:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1715928101;
-	 x=1716014501; bh=IXSF04BpNNiHimS2MUOTJTPECp7w5ZrYeZxP+k3YYl8=; b=
-	vJtot80UARFs1ibMZr7mzwiD7xd2lzmi5PXwXYGFo1GfY1KtjcOJLKODQy8pH7Pn
-	N9n7OQbryir42YXJW335XyRGJnNSAD/HMmw9NKveBlyF6JNMDUhoRTx9Wld/i/WJ
-	Pf+MqdXowxTPWJ+ZkUD6OVaNf4JTeIwOKSCI0radKfmZuyH5g4bUXhCQbGlIZTxf
-	yH73fXnook6D6ok0Nqt2tg+H11tBDKSjtCCDiFO6Mx6C4XqRh0bFfV9Oe19iKehY
-	tW/7xWtG+AgKnMjvlTzR9H3xhl2Md5rcg/cUwgPE/YGWBWj07eok8Ztq0ng6hw7d
-	Iq56lT5wVbC/WxroIGTlSg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1715928101; x=
-	1716014501; bh=IXSF04BpNNiHimS2MUOTJTPECp7w5ZrYeZxP+k3YYl8=; b=c
-	YQzvJUxRo+9dcOmu6NMsRtHf7j6N1s+vo6bSCMcPYRS1WEoQFlpuS3ICfAIFEf1w
-	d9OkV7R9lGg+CUiGDvCFGqKE3RUcF5x6zcvRHn1DZmeKWeQOn1nVoNvaU7nP4xMF
-	6gMrNyhLR6fZsHFrBsiwkUiw7ypxRqSHb+2He3WuD+c31pd6vsEKnuPMbEHGRkxH
-	7udIIx3fjJDkQBGDkX3OZSXUIDpFoyy2zwfQo8i0x1Do/zMPXWeMcclBZQ/bWwKd
-	oCWpmZ6pv6xQIeMvLYJfCUIt9OPtIpD8Jp3TkLAyf1GNzT3KUYxBkyiVVnRnh47m
-	KafDtqApo/P2AASCzSADg==
-X-ME-Sender: <xms:JPxGZmf3jE2Oj-B8KHvHwSfftQUNwkFkkDErIkE7aIH_eRvmeIZ4BQ>
-    <xme:JPxGZgP9NVifkymnlfoEKwsxVxLakluHxtnHZ_Ve6B7THNptMPmOnwz7UoqsLsDzJ
-    TU2XyPWVfZ-DYOMEhA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdehfedggeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:JPxGZnjEceD2N0wBCxDTsli6aNdYvj6v_vRZPUkDsCPV7n2DB6Fxdw>
-    <xmx:JPxGZj_jdzrFI7bpKDne796LuU2qyO4BP9gUMESRNQmm1gsCBTLfWQ>
-    <xmx:JPxGZisgjvf2tDQ9NwGZvdbIWW19E8dWhnp1rxKKoPKuRbyGH18SsA>
-    <xmx:JPxGZqHw9Ip2ugpgOuvwfN5ntbouoMBwhiUdoXAXlTvIZsjqefrqng>
-    <xmx:JfxGZiER68OBjCi1sT5K9LFim_wp1bCTa0MegLy1aqdhayMGOUOCvgbm>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 87017B6008D; Fri, 17 May 2024 02:41:40 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-456-gcd147058c-fm-hotfix-20240509.001-g0aad06e4
+	s=arc-20240116; t=1715929126; c=relaxed/simple;
+	bh=vEIiADZtH0GuW0hNucCCzsAmTERzBSekKmZgJqaVvNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nph3ncLbh8XeRstBi9VATrS+5C6qrz7DDAS/gXA5YvEhxHo55o0w9Q9grVnw1sLFLt+1j09RErRrWIViR6xa67/Vn5OWwSilpSSO/kBaqWLewrePWkLhqstJrdRW46dhlyTomJkYHq2YVGzVY4RmVs6IT5KHio+QB6HXcAvyhWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=f8KVFHeN; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5366060016;
+	Fri, 17 May 2024 06:58:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1715929116;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8+WtpG+JowVcU8bh3DYjQQ6K0ukhxfEGwefCmJzc8YA=;
+	b=f8KVFHeNh2VvHZZ6hzRy0KYo2z1+B2wGwXn7zUG349l2A4tKLI0ZDhpexlh3IUzFtK/cnH
+	G4vfuEDwNMPNJmSzzVKJTqJkec3UDkhb7Ri4LEuTyTyQUy6andM+Hdr7ASxso739ADCNPf
+	Ko2E4NMePCqgMC1A7+eqx3f8QeIF3NA3fUwPrU+0d2wbbE4Xl5hJJ2PXaQO6+G79OZlB49
+	Vj8Yl1i5JyjqZXeJ6PFT0cGNZNX4RmNQb3gU6C55uHf8H9w8r1JsdI8Hp2gyLKvg/YudPM
+	6YxX7AHARvGW/6A5RRP+N28w/ZyAq10mTdiG1jEHqlveht7usBO2Q8V8FqmNjQ==
+Date: Fri, 17 May 2024 08:58:32 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Dmitry Yashin <dmt.yashin@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, Jianqun Xu
+ <jay.xu@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] pinctrl: rockchip: add rk3308b SoC support
+Message-ID: <20240517085832.365ac878@booty>
+In-Reply-To: <81aa0e4e-a3c7-41d1-8cd2-4d060730b37a@gmail.com>
+References: <20240515121634.23945-1-dmt.yashin@gmail.com>
+	<20240515121634.23945-4-dmt.yashin@gmail.com>
+	<20240515182954.03c4a475@booty>
+	<81aa0e4e-a3c7-41d1-8cd2-4d060730b37a@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <361d50be-1e28-4f18-b7b3-74d65afab260@app.fastmail.com>
-In-Reply-To: 
- <CAD=FV=W0Gq8mkdbF_94=H=G9k6UwjUa43eaxCjU-vZwMxSg+8g@mail.gmail.com>
-References: 
- <20240515014643.2715010-1-yangcong5@huaqin.corp-partner.google.com>
- <20240515014643.2715010-4-yangcong5@huaqin.corp-partner.google.com>
- <0fcdb0ac-2e4a-44b2-a5d6-a67a1d747df8@linaro.org>
- <CAD=FV=XkBkQUN-93eQDKZcw_66uSeNBBhbiq2hRLcFN+Ck71RQ@mail.gmail.com>
- <CAHwB_N+foZpCjqUy0dJdS2wBbUjHVRQQP0p7S_eTG1Yrh0bgPw@mail.gmail.com>
- <7b488473-7fd1-4f4f-8c32-72e84420b478@linaro.org>
- <CAD=FV=W6mkTwAp6qMVYbPFDYBroAW19-qgvct1dw11ksaW3cYw@mail.gmail.com>
- <CAD=FV=W0Gq8mkdbF_94=H=G9k6UwjUa43eaxCjU-vZwMxSg+8g@mail.gmail.com>
-Date: Fri, 17 May 2024 06:41:14 +0000
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Doug Anderson" <dianders@chromium.org>,
- "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: "cong yang" <yangcong5@huaqin.corp-partner.google.com>,
- "Sam Ravnborg" <sam@ravnborg.org>, "Daniel Vetter" <daniel@ffwll.ch>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- krzysztof.kozlowski+dt@linaro.org, "Rob Herring" <robh+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Dave Airlie" <airlied@gmail.com>,
- "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, xuxinxiong@huaqin.corp-partner.google.com
-Subject: Re: [v7 3/7] arm64: defconfig: Enable HIMAX_HX83102 panel
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On Thu, May 16, 2024, at 14:09, Doug Anderson wrote:
-> On Thu, May 16, 2024 at 6:43=E2=80=AFAM Doug Anderson <dianders@chromi=
-um.org> wrote:
->> On Wed, May 15, 2024 at 11:55=E2=80=AFPM <neil.armstrong@linaro.org> =
-wrote:
->> > On 16/05/2024 08:43, cong yang wrote:
->> >
->> > Yeah we usually don't mess with arch specific defconfig from drm tr=
-ee
->>
->> In general I agree that makes sense. In this case, though, the new
->> config symbol was introduced in the previous patch and split off an
->> existing symbol. Updating "all" of the configs (AKA just arm64) that
->> had the old symbol to also have the new symbol seems like the nice
->> thing to do and it feels like it makes sense to land in the same tree
->> that did the "split" just to cause the least confusion to anyone
->> affected.
->>
->> In any case, if it's going to land in some other tree then I guess the
->> question is whether it needs to wait a few revisions to land there or
->> if it should land right away. Nobody would get a compile error if it
->> landed in a different tree right away since unknown config symbols are
->> silently ignored, but it feels a little weird to me.
->>
->> ...of course, I'm also OK just dropping the config patch. I personally
->> don't use the upstream "defconfig". It just seemed courteous to update
->> it for those who do.
->
-> Hmmm, probably should have put Arnd on this thread. Added now in case
-> he has any opinions. I also did manage to find when this last came up
-> where I was involved. At that time Will Deacon (who get_maintainer.pl
-> reports is the official maintainer of this file) said [1]:
->
->> But yes, although there are a few things I really care about
->> in defconfig (e.g. things like page size!), generally speaking we don=
-'t
->> need to Ack everything that changes in there.
->
+Hello Dmitry,
 
-My preferred way of getting arm/arm64 defconfig updates is to have
-them picked up by the platform maintainer, the same way we handle
-updates to dts files. The platform maintainers are familiar with the
-process and will send the patches on to me for integration through
-the soc tree.
+On Thu, 16 May 2024 17:06:46 +0500
+Dmitry Yashin <dmt.yashin@gmail.com> wrote:
 
-If a change is not specific to any particular platform, I recommend
-to send it to:soc@kernel.org, cc:lakml. This makes it show up in
-my patchwork, so I will eventually get around to picking it up.
+> Hi Luca,
+> 
+> On 15.05.24 21:29, Luca Ceresoli wrote:
+> > I'm skeptical about this being bound to a new DT compatible. As far as I
+> > know the RK3308 and RK3308B are mostly equivalent, so it looks as the
+> > pinctrl implementation could be detected at runtime. This would let
+> > products to be built with either chip version and work on any without
+> > any DT change.  
+> 
+> 
+> Thanks for your feedback.
+> 
+> Indeed, these SoC's have a lot in common, but as I can see the rk3308b
+> has more blocks, like extra PWM's (rk3308 datasheet 1.5 [0] shows only
+> 1x PWM 4ch, when rk3308b and rk3308b-s have 3x PWM 4ch), 1-wire and
+> CAN controller (mentioned in the TRM, but dropped from rk3308b
+> datasheet for some reason).
+> 
+> So, in my view, it really makes sense to add rk3308b.dtsi, where extra
+> PWM's, pinctrl compatible and its pin functions can be moved. And if
+> its not worth it, then I will try to adapt the entire series to runtime
+> config based on cpuid like you suggested.
 
-When you do this, it's helpful to me if you include an explanation
-(after the --- line) why this patch does not get picked up by
-a platform maintainer, and it also helps me to include whether
-I should include it in the current (6.10) fixes or queue it for
-the next merge window.
+Having a rk3308b.dtsi would probably make sense, yes, as there are
+several differences as you described. However for the pinctrl it seems
+probably not necessary.
 
-     Arnd
+I've seen actual products being manufactured with two different RK3308
+variants in different lots of production, but with the same DT that has
+rockchip,rk3308-pinctrl in it. Those would need a _selective_ DT
+upgrade in order to benefit from your changes.
+
+And even if a product had always used the B variant, it would need DT
+upgrade when upgrading to a kernel with your changes. Otherwise with
+patch 1/3 of this series the pictrl driver would lose many routes after
+upgrading the kernel (but not the DT): can this lead to
+previously-working devices to stop working? I think this is a
+fundamental question to reply.
+
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
