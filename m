@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-67513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6058C879B
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 15:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 198048C87BB
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 16:07:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BF081C223A1
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 13:56:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 487BB1C22912
+	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 14:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340CA54FBD;
-	Fri, 17 May 2024 13:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5D758119;
+	Fri, 17 May 2024 14:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="AZE/axk+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OOfFO3mK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A511254FAF;
-	Fri, 17 May 2024 13:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55D91E507;
+	Fri, 17 May 2024 14:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715954170; cv=none; b=IGUaqRL6rtIg2v00WLe/b+M42Tm7b1KkqCIGOhucN/ZgOhZkkMJVq3W01AwkyZaB+TL9jphqpIMEssbW5aYHElCNm5p4QBuQWorcpFICVw0SXBbC6mfplhn37uswtl0gnkkLtK/G6Zw7I6xxoQZAFuMggvaA65KhY+LXPFvKMp0=
+	t=1715954834; cv=none; b=fFU1ahdWAr2uezDXGNkQxRyYluiiIGldZsEC3DLhIfC7AF7P3JvWGT21/StiRyk/6XaMGLATW9okL6H0XXPiK1OEiFDSqQTDHv9qKRs3L1kE9pNvfgBtJzZueeLvKNw69YNlKLc3hy2e4UGECNz4xzTSuoy/04sfvZ2VAOv7jps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715954170; c=relaxed/simple;
-	bh=LEFMBsPh4x85fiALpW4Jhs0qhfd/PS/cLG9AMrTavD8=;
+	s=arc-20240116; t=1715954834; c=relaxed/simple;
+	bh=58zpZNrKH2bAbX6lE62TvJuqFc/Sa70l+BacQmg0IuE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kP219Y0Cj9KJ6hwShGLkcww8RWccQA2X6t+KxQp1QyGfbxkUaclvMmigjeHv2v5SKRPGkdSq0hGbGEvCUL3ryD+acNn1xqO3qVa0kRma/rVUGFfIhUAQ76zjk4p/TAPPNLJCjqaHKMM9eVQLRYEQ+UYzL6xRLFN9hBpxRF3GOdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=AZE/axk+; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=JwbJAmXjLEbmvSRQcO3P9POhwuw2E7AnI1OwfQC3jHSx68OxZ26oFsedAj/gPuem3gzYPcscgBR1vXAe6NGFRwLHUcsJfeedLy13ZtOGzF2i9gXuhWl2huAwRZ1OfcYgXOXbPujUgjrXaNTtAZLo8wC+Wegn5gN4zuyncCys1bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=OOfFO3mK; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,24 +36,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Pk/W9e89sqlkjRFyy/G4QXKaCAzosUOTniNUWw5lh80=; b=AZE/axk+2en4FQ+tO3zZeqtkGS
-	OCjIoIK3wrU6ktnmLymgHJHYSsQZ3CZiNqSx+WUFhYqGrBhbYYcjFYJ6z9r1V6rxJLPjk+QE/6rds
-	1DMW9XzEa8prH6ICGlwaWBdW/J92MHP+mjwZQ9MwU2ocqwYBW7TgZRvgAAPB1TZRK26I=;
+	bh=KlplUe8Ht1enlQJkqiZ1Vrv1E6x10yAgj42W7lSPNo0=; b=OOfFO3mKJHphCnd2wpvhhgeC3a
+	tf33ucAw550xP77EhoxjPIV+u5LmiBv8Fhs2OZMIW5zkfSPlvYuvNrFBF0uR3Tc7a4Ek0Ux9SCUdG
+	/n9zjJcQXSSguYSperSvp+M7avM7A+45fI5Qyy/HbAhsWbtooRwbkedzuRpEYdKFGVYE=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1s7y43-00FZvK-3j; Fri, 17 May 2024 15:56:03 +0200
-Date: Fri, 17 May 2024 15:56:03 +0200
+	id 1s7yEm-00FZwy-BQ; Fri, 17 May 2024 16:07:08 +0200
+Date: Fri, 17 May 2024 16:07:08 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Udit Kumar <u-kumar1@ti.com>
-Cc: vigneshr@ti.com, nm@ti.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kip Broadhurst <kbroadhurst@ti.com>
-Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
- GPL-2.0
-Message-ID: <41e30085-937a-410a-ac6a-189307a59319@lunn.ch>
-References: <20240517104226.3395480-1-u-kumar1@ti.com>
+To: "Leon M. Busch-George" <leon@georgemail.de>
+Cc: linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 1/2] net: add option to ignore 'local-mac-address'
+ property
+Message-ID: <7471f037-f396-4924-8c8d-e704507de361@lunn.ch>
+References: <20240517123909.680686-1-leon@georgemail.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,47 +60,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240517104226.3395480-1-u-kumar1@ti.com>
+In-Reply-To: <20240517123909.680686-1-leon@georgemail.de>
 
-On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
-> Modify license to include dual licensing as GPL-2.0-only OR MIT
-> license for TI specific phy header files. This allows for Linux
-> kernel files to be used in other Operating System ecosystems
-> such as Zephyr or FreeBSD.
+On Fri, May 17, 2024 at 02:39:07PM +0200, Leon M. Busch-George wrote:
+> From: "Leon M. Busch-George" <leon@georgemail.eu>
 > 
-> While at this, update the TI copyright year to sync with current year
-> to indicate license change.
+> Here is the definition of a mac that looks like its address would be
+> loaded from nvmem:
 > 
-> Cc: Kip Broadhurst <kbroadhurst@ti.com>
-> Signed-off-by: Udit Kumar <u-kumar1@ti.com>
-> ---
->  include/dt-bindings/net/ti-dp83867.h | 4 ++--
->  include/dt-bindings/net/ti-dp83869.h | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
+>   mac@0 {
+>     compatible = "mediatek,eth-mac";
+>     reg = <0>;
+>     phy-mode = "2500base-x";
+>     phy-handle = <&rtl8221b_phy>;
 > 
-> diff --git a/include/dt-bindings/net/ti-dp83867.h b/include/dt-bindings/net/ti-dp83867.h
-> index 6fc4b445d3a1..2b7bc9c692f2 100644
-> --- a/include/dt-bindings/net/ti-dp83867.h
-> +++ b/include/dt-bindings/net/ti-dp83867.h
-> @@ -1,10 +1,10 @@
-> -/* SPDX-License-Identifier: GPL-2.0-only */
-> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
->  /*
->   * Device Tree constants for the Texas Instruments DP83867 PHY
->   *
->   * Author: Dan Murphy <dmurphy@ti.com>
->   *
-> - * Copyright:   (C) 2015 Texas Instruments, Inc.
-> + * Copyright:   (C) 2015-2024 Texas Instruments, Inc.
->   */
+>     nvmem-cell-names = "mac-address";
+>     nvmem-cells = <&macaddr_bdinfo_de00 1>; /* this is ignored */
+>   };
+> 
+> Because the boot program inserts a 'local-mac-address', which is preferred
+> over other detection methods, the definition using nvmem is ignored.
+> By itself, that is only a mild annoyance when dealing with device trees.
+> After all, the 'local-mac-address' property exists primarily to pass MAC
+> addresses to the kernel.
+> 
+> But it is also possible for this address to be randomly generated (on each
+> boot), which turns an annoyance into a hindrance. In such a case, it is no
+> longer possible to set the correct address from the device tree. This
+> behaviour has been observed on two types of MT7981B devices from different
+> vendors (Cudy M3000, Yuncore AX835).
+> 
+> Restore the ability to set addresses through the device tree by adding an
+> option to ignore the 'local-mac-address' property.
 
-IANAL
+I'm not convinced you are fixing the right thing here.
 
-but about 1/4 of this file was written by Wadim Egorov
-<w.egorov@phytec.de>. It would be good to Cc: him and make sure he
-does not object.
+To me, this is the bootloader which is broken. You should be fixing
+the bootloader.
 
-The other file is fine, it was all Dan Murphy's work.
+One concession might be, does the bootloader correctly generate a
+random MAC address? i.e. does it have the locally administered bit
+set? If that bit is set, and there are other sources of a MAC address,
+then it seems worth while checking them to see if there is a better
+MAC address available, which as global scope.
 
-     Andrew
+    Andrew
 
