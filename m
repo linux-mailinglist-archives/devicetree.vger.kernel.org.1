@@ -1,102 +1,152 @@
-Return-Path: <devicetree+bounces-67622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33FCC8C90B6
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 13:59:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D85B8C90BB
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 14:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98FFC1F21E35
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 11:59:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7705A1C20EA8
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 12:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A092BCFF;
-	Sat, 18 May 2024 11:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478312E403;
+	Sat, 18 May 2024 12:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N5mokFHO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aA79+6Ft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F28139AD6;
-	Sat, 18 May 2024 11:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839DA1094E;
+	Sat, 18 May 2024 12:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716033561; cv=none; b=O1AGu9lsqSbPxDnrMIsySMeYLRAsVvRgd/NKycluFT3eCBlEdkCMYm9c2X+tAgmUaX/xkF5niCJ6sM21PueHuQ4EWakkOg5DfjV7VCgKbLFqojQMfy7FUYfOzqD1ihGzAue3sjIiJ/LSYs1FxlILvlU2GpbjUc81rGB+RipsjtI=
+	t=1716034372; cv=none; b=fYiHq3R1cL+EYOJDLOmw8zQSvvF6jwaSJGkovtpqe5h8tsMZHRt2d6WD1pp5AVVpQRymIHrOHW0fg40Oo++AEENB4Xau1Z7592Vru1wfvgJum55DuJ56mNe19QrXxzoFCMujVUthemOYl7e2Rl/fYdT7A2AJeku3zh1sWbnS2TM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716033561; c=relaxed/simple;
-	bh=h/YDw9e+GvAmjq4NsLkeVDATVHfq7hH7wvoAYef2hM8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UoJsX+afs+aB3bhH+WyuFyUlwaocdLFLYLOzzdUT8raB2XsepioRAIHRwWye3jaggAhGuaU0kr1+YFqQH/3v9IQyjPy1aCAmDfBz2gKx3CYMk6ggRDYkxkX8KspazD/xCsJgMExiuwXQXO/IK60utFM4uW2SfLfc4VqucXCZ/q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N5mokFHO; arc=none smtp.client-ip=209.85.167.41
+	s=arc-20240116; t=1716034372; c=relaxed/simple;
+	bh=r0t6CFjvmenX7VMTCLm+I26+KFRJnJj9fycDvnMM4gM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f05OkQmcWJe2D1sbcyPu6qF0SVw8N/BwRkbrcfNLd8cefBGqQR7Mp+WWpRD/cayjyWGmaZfY/HeLuR7Zz4hVLz1rkRmRI3+84WgylzsSDrkd3aPjPEoOC3IMzEhTUZeNyxBQr/5vGmoZWhefDneGcY756t8Z3mez/BCdaT3l3yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aA79+6Ft; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5241b49c0daso207807e87.0;
-        Sat, 18 May 2024 04:59:19 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-351d4909711so525614f8f.1;
+        Sat, 18 May 2024 05:12:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716033557; x=1716638357; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wc19eVviu7JJuAUpj9uZHiIfNgeyna6FnUnwirddH64=;
-        b=N5mokFHOMVOwD5HpqCZKoCyv5zXZbEY6lx+XF9Hab1QhULOxyxOrAGxrCFAE/sl7L4
-         pernaazSjnfh4beoM29RP/mQv9Dhx2KyWYOJbqJkTAivE97/rFoQXouMlA5JxAOZSWpK
-         gCw7SPpiHhQPrJ6GIZUrwKBHdUbvHXyreFCYsZns6U59n0pzMeh9YvA9868H/V5lXTdt
-         KrLQbgh90MEcbX9mGh03IOHdpv8e/pXDpw2gSGfarcqsM1rMqv3SYDFvobAw+J2TVbV7
-         gxlR0QSNX2yyrJtAaDQs27b+EE7t3uPiC11lq0HoLaNdieLnMhQCwf4ZRGAOxkTSj8+u
-         0RnQ==
+        d=gmail.com; s=20230601; t=1716034369; x=1716639169; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VjQuoZFHMHA8S1ZSu4KweX7Wc6yX45qb5CUfF3JC+3g=;
+        b=aA79+6FtC6DpTgnVfl0JNsp61zCxh3pOWU2uT9UbpuHXBazYrLgXnk2f1CVeUjzbUh
+         NFAcaDzTmShxo1aQ8HyScIa98uXmgfDaiDAYuHAbReoYcXM9ygKCMBZqqnWx2QpW/Ubt
+         QfX505S8hMsbnFQATsfDBwZI7OcQnfDyWxd7KhkjGNDXqb7Cs5b++f5TDXeRJFT9c7qQ
+         NW8tNjFunbUF/ZKG9ZyTrsSJPh8DLf0Sbv+LOSGL15CurGwUnMycn2+WmZ54Ie6myheK
+         u/zuWx+HD0d6lJoEXgHXUfujK8QGi4AJ0i4leiUgjFqybLpklXldERH6H3vaQOQ8nNFU
+         +/YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716033557; x=1716638357;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1716034369; x=1716639169;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Wc19eVviu7JJuAUpj9uZHiIfNgeyna6FnUnwirddH64=;
-        b=IwZDJuPB8QFRGCvKPrSqkYf4sWKu/EKr/BgDfAxR0A54cYPnftNE05Px8RUDYXenGr
-         9Fnv53hIRWkKe41sfJ0loFZAYGvc1wfPwHjwUUHeuKMvG6j3E/RCrtv0A1yQxp+/v9hZ
-         s/STJ4wekOd0TbTEcVzPO9f1QNiImEmc9cd+8/0iOkcO8RszzBHUB1IeLqcsguRPys/1
-         NunSOgSE+pRG26Ttpbc5qJaMdGX9uwfjg/Y3Ot29KzK243UW5ziTEBOjdm6dpN0Mwban
-         MpC7TRGou86CP8CzeaMCTt7L8V7xHhpjhzNBwTxkNPt68tKEyVIBsatK7uQwJTVHXj4I
-         77+w==
-X-Forwarded-Encrypted: i=1; AJvYcCXfpX2igiZShn9+PXhmovLM2iNYYgWhxv9+g6XS6JLml16zvnnVd248ssAFgRFdbR595jge3jI4UsEHarrlmEd3AsKA6oL7XNsaete/XkUqXUDnGOmL3Z0ySswof+VZ2AJPr0ERqUCeLA==
-X-Gm-Message-State: AOJu0Ywb4JR5Tjj3v3Us/r0Zc5ugvAL7WoxL1Vd+riGBk33E0pR7vnYR
-	jlciI7JO7r9Kkq5L2NB8F+EoiIecg6vw2HatfY8Wwr3mSlME//mZaogcSyArH/HqzRVTM+ggqKm
-	ZmwqBapLOYgwKDnf3JfTd5Qb2Uj0=
-X-Google-Smtp-Source: AGHT+IHvl79K6tstzDrDN68qonDbKlQ1IcFQ6PlUtbJxtnwIiOvlNg9vIel8q3/tO1WcfjQuW2IKXfzhYf2oLzvITt8=
-X-Received: by 2002:a05:6512:3f03:b0:520:9df8:f245 with SMTP id
- 2adb3069b0e04-5220fb7688fmr21340642e87.1.1716033557338; Sat, 18 May 2024
- 04:59:17 -0700 (PDT)
+        bh=VjQuoZFHMHA8S1ZSu4KweX7Wc6yX45qb5CUfF3JC+3g=;
+        b=v+kAJjh5TImS8xHl1z9E8Jw+9e0c9gnBu+xosa8dm+2kdfSjKDxlJQ9J39BW2DCA5v
+         SEYpSwXsc7OjTldL+Ikz4M1V9+JRWAs5BHo1y5i6HFvqIMPjjIdi6RKVmQvn+LbLmCIE
+         qsFtM7w8G4G1Ig21+PoQOhSt44icj1J+1EIicN1ntZGd7rW/l9jsJ6UXz/jU0gy9TmOq
+         hEzTHgKlW6ATtZ3lAgu1vzB6LgesT/T24Xe32JJLmokR8SayEVmv1x5UNDuCCgM02Oh3
+         1S2kTH1FW/lWfgkBc3rWJbCfn0gitMV/hK2RFjtoDSfu9VApZZZdFFZPUk7oA9r75cxl
+         dRyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWveb12L4r1rodXCTLq2aC/vhDGoSzQ4SnLz1u3bqHQKFVGKYNm9GMgNANj84gLgL/1ZIo0TB7y7Hi1odm4BL+xs6Prtn6y0PTiPRk2qxUzsOpCK/VAoFrJBG4GPAY9L0FzRjz7yA1Hdg==
+X-Gm-Message-State: AOJu0Ywx7KJ02ikzsL4f0H/0ofeTo8czYje/xcWmAKc8Ll2UEC4nK9Ya
+	apjsrJmV+2ZtiSgQqvHYooYl0gqEtXd+aVi21c+7rCddozTokQOc
+X-Google-Smtp-Source: AGHT+IGPNIPUXCl8p9mcn96OQDjPifRyietNIMcyjKmJFSVcHTvDZHbrKpLqRbHX7v2igTtLoYFISQ==
+X-Received: by 2002:a5d:4484:0:b0:34c:e0d6:bea6 with SMTP id ffacd0b85a97d-354b8e3733bmr1436214f8f.29.1716034368352;
+        Sat, 18 May 2024 05:12:48 -0700 (PDT)
+Received: from localhost ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b8a76e6sm24059321f8f.62.2024.05.18.05.12.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 May 2024 05:12:48 -0700 (PDT)
+From: Raphael Gallais-Pou <rgallaispou@gmail.com>
+Subject: [PATCH 0/3] Add thermal management support for STi platform
+Date: Sat, 18 May 2024 14:12:03 +0200
+Message-Id: <20240518-thermal-v1-0-7dfca3ed454b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240517083644.3920-1-bavishimithil@gmail.com> <171593784468.974781.7311451940963803133.robh@kernel.org>
-In-Reply-To: <171593784468.974781.7311451940963803133.robh@kernel.org>
-From: Mithil <bavishimithil@gmail.com>
-Date: Sat, 18 May 2024 17:29:05 +0530
-Message-ID: <CAGzNGRkdD4YEa1PyPfd094D4po9wC8DLHr7u3eeQZu=WETRxCw@mail.gmail.com>
-Subject: Re: [PATCH v4] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Lopez Cruz <misael.lopez@ti.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABObSGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDU0ML3ZKM1KLcxBxdizQzI1MTI4vE5DRLJaDqgqLUtMwKsEnRsbW1AJA
+ ZiwxZAAAA
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Patrice Chotard <patrice.chotard@foss.st.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.13.0
 
->         'description' is a dependency of '$ref'
->         '/schemas/types.yaml#/definitions/string' does not match '^#/(definitions|\\$defs)/'
->                 hint: A vendor property can have a $ref to a a $defs schema
->         hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
->         from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> Error: Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.example.dts:28.25-26 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.example.dtb] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
-> make: *** [Makefile:240: __sub-make] Error 2
->
-Alright will add desc, otherwise is it good to go?
+This patch series enhances the st_thermal driver in order to enable
+support for thermal zones. The changes include:
 
-Regards,
-Mithil
+1. Replace deprecated PM runtime macros with their updated counterparts.
+2. Implementing devm_* based thermal of zone functions within the driver.
+3. Updating the stih418 device-tree.
+
+The device-tree patch depends on an earlier patch sent to the mailing
+list [1].
+
+As it is currently implemented, an alert threshold of 85°C is set to
+trigger the CPU throttling, and when the temperature exceeds the
+critical threshold of 95°C, the system shuts down. There is for now no
+active cooling device on the platform, which explains the use of the
+cpufreq framework.
+
+[1] https://lore.kernel.org/lkml/20240320-thermal-v3-2-700296694c4a@gmail.com
+
+To: Rafael J. Wysocki <rafael@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Zhang Rui <rui.zhang@intel.com>
+To: Lukasz Luba <lukasz.luba@arm.com>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+To: Alexandre Torgue <alexandre.torgue@foss.st.com>
+To: Patrice Chotard <patrice.chotard@foss.st.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+
+Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+---
+Raphael Gallais-Pou (3):
+      thermal: st: switch from CONFIG_PM_SLEEP guards to pm_sleep_ptr()
+      thermal: sti: depend on THERMAL_OF subsystem
+      ARM: dts: sti: add thermal-zones support on stih418
+
+ arch/arm/boot/dts/st/stih407-family.dtsi |  6 +++--
+ arch/arm/boot/dts/st/stih418.dtsi        | 41 +++++++++++++++++++++++++++++---
+ drivers/thermal/st/Kconfig               |  1 +
+ drivers/thermal/st/st_thermal.c          | 24 +++++++++----------
+ drivers/thermal/st/st_thermal_memmap.c   |  2 +-
+ drivers/thermal/st/stm_thermal.c         |  8 +++----
+ 6 files changed, 58 insertions(+), 24 deletions(-)
+---
+base-commit: c75962170e49f24399141276ae119e6a879f36dc
+change-id: 20240518-thermal-8f625428acf9
+
+Best regards,
+-- 
+Raphael Gallais-Pou <rgallaispou@gmail.com>
+
 
