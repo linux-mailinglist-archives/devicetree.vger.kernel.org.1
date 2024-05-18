@@ -1,191 +1,109 @@
-Return-Path: <devicetree+bounces-67611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D8E8C8FFA
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 10:17:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE308C900D
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 10:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A77D1F21A88
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 08:17:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 098AC282D90
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 08:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514A679E1;
-	Sat, 18 May 2024 08:17:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C471A107B6;
+	Sat, 18 May 2024 08:49:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DLs4UKQj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YBTt22nx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D069E8479;
-	Sat, 18 May 2024 08:17:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B81101C5;
+	Sat, 18 May 2024 08:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716020226; cv=none; b=rlzajCW5Zo4afy+8aURFl8TGqeAUdHaI5y2yWkJe+IaoU3Lo+vaEJv4RD0Um0U6CUz3oPbA93OcX+RcZ7KMFCvDRKn/SpxkVThZ9ovJEpG09nKMXt3mDRZxC3EXkWFtZiD6vab8Lz8F00OrI4OxJ2JU0j6HcpPYkg0n5wGuT+jk=
+	t=1716022163; cv=none; b=Kaey154bstIZdWbrSgRXtiPSGcevoEABnv2m+i+ut1T/XgxbQU6sB0+4TxthewSES8HxHQypoYXew6MgbJ2J0oYm8CI090wRxx2aF01itcGh6yNStyXfhJ0m6IC4niwWynvGLM/pkMp6k3ctCsSKYoozPiL7TQifjhOsf5Xjgxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716020226; c=relaxed/simple;
-	bh=b/By+qlaoHXuYxguwQzmC0rOTdsZjjVfrK/a8IvLpTw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=I2MHJtuAJAHmSnevGip6UuiBBYoqryWvGS1BEjclYE/+hRgijD89UqWHL+8dN8b8UgtOyirm4KnFOQC7jUqbQHeYtoA3rOvEOk9iN0bxGL4jouIQVLKrfo7LncdBaGq5enIOgHMazs709WlaSWV+Vx4Ye4LZnXptYqGoJFpPnKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DLs4UKQj; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1ee38966529so9326515ad.1;
-        Sat, 18 May 2024 01:17:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716020224; x=1716625024; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eEo3Oc4cs0XxLO515UB83B0dN8f7TDFENOMb1E+m+II=;
-        b=DLs4UKQja5WEFcHUNA1McVVmzRXq5PIA3nnjYIQhKURxklVnqfYxecF6Ke2J+dIOYz
-         fGOyCrtlSp49KowFP3lgb2/z+Bo3MSqOXLtoLxeGRXYjD8gyrXqAKJhukle/3AdGbn1H
-         fg0lgfLPkXqoJnLAMYD0M8qNcdcozDPXEMcPZ3cNmUSjBOVTAqPTPkQdRFoNBmOMbZQh
-         xXzCs6yZBHLI+hvtvkjpQmkF5NLQEN4Kt7uz2xJ4qmpBQcYIEt7ozRuRxQaof2RWLElT
-         /QVwD0mDFMmbXZhHoo49i9dLYPLiTTQUyb8HoIr7HOBUvrxvNAxxx5sY2Jz8O99X9T2h
-         r7Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716020224; x=1716625024;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eEo3Oc4cs0XxLO515UB83B0dN8f7TDFENOMb1E+m+II=;
-        b=rpBVyZSltPJ47Nl94ikhNIMXpAcDpfuMmdZgW0KCfMlIKLvqk5RzO6JBsP9ObDZ1Nf
-         ZryhJWm7AYBbt+xX5JH5hZdZGP6StiMIXLyZmVk+9Jp+578vnuM7jXBMlIi5I6WSv5qO
-         Gkj0KR25gdldPGxUGjDRFWok8Nw6vrilOaQRl6b+r7SecVposrl70/W1oDXqZ7CVU1IM
-         duP+y08+UrtBqYo0PouIG1ypHPZkN+iuDQB6A0LqMlRSsV7aa4LgSc7coeJ2e9IC0JUr
-         DadhDdJicZVBBCNOU56KQzMXCDiymCiK0B5+w3TCaUu0us8RYmV3hy6jjaKpRnSuVRFW
-         1i3g==
-X-Forwarded-Encrypted: i=1; AJvYcCV7g2uEG40FHRQMelRqbWWB0H855oIvqwEsaWgLDt1CUl6ax7wSbpiJl4y6kKCIXiUCWEWOrC6xI9E2JDCuRDjzVkS/hW4T6h+uXtwLM+B+v3JYQ4qAEwh382EVPOrDGJ8idor6U/s2n6iq4Acuu9erMqfeTay+arBqMAcb97sVi53CvyaY
-X-Gm-Message-State: AOJu0Ywbcn18zaN/FSVi7c9yKAcOx/2Qd2kwpin1gfDMdN7ufXYQKFqw
-	vqFd6A1gOyv178UsAC0csVloNxnNuyayyBgS8OLzD5LFQmcwyBuTd3u56IAxlrc=
-X-Google-Smtp-Source: AGHT+IEYClpcc2JB0wkn40mXXwzYlNasuTlZSZlGFYWxAd2QzUJBsoDR4nrPV/Qk0HVeQiS8uVPOSg==
-X-Received: by 2002:a17:90a:e616:b0:2b6:214a:71ac with SMTP id 98e67ed59e1d1-2bd60353110mr1829100a91.3.1716020223591;
-        Sat, 18 May 2024 01:17:03 -0700 (PDT)
-Received: from localhost ([103.139.191.219])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-2b67158c36dsm16543849a91.38.2024.05.18.01.16.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 May 2024 01:17:03 -0700 (PDT)
-From: Kartik Agarwala <agarwala.kartik@gmail.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com
-Cc: Kartik Agarwala <agarwala.kartik@gmail.com>,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH] ASoC: dt-bindings: mt6358: Convert to dtschema
-Date: Sat, 18 May 2024 13:46:22 +0530
-Message-Id: <20240518081621.63386-1-agarwala.kartik@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1716022163; c=relaxed/simple;
+	bh=IjIvSDsBIS7GEwEEgejfx1W7LzjfEQqGgg6tgJLkiEI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fR0b0/6BK9B5E4MdHiNGS8AgVErOxsTueVIGRIcKOBM9PksxS/8hth7DQpo40+a6DMVBHJhJBEDFo8Dzcf7/pdj8NlvLfBvu94tGc6nwPzExiw//L4sU4NUuCwhBN6tw4Mkr7TcG3Tq6Z31mh0UHe/ZA62hwtfFJd2cLnKEZrfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YBTt22nx; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44I8n2f0019546;
+	Sat, 18 May 2024 03:49:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716022143;
+	bh=RiVGj+qep057xak5y+IC3HmFOlnTGitw34djuHIjJkk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=YBTt22nxQfVts6M0idawB4no+WP/s9q00yanaiL4pC3OvPLuhWsacn8X+8gbJDjtT
+	 Y99d3QfK7VG35zsqCr5wTpfOCiJXc1UNVPvb0fCRWx98/cTj0Ka7WNUpC7ZZjmiPdg
+	 DLt66Hf7QFjgW7/Bfhcck575caGLHTnw+1RfRYX0=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44I8n2km054452
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 18 May 2024 03:49:02 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 18
+ May 2024 03:49:02 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 18 May 2024 03:49:02 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44I8muuj129612;
+	Sat, 18 May 2024 03:48:57 -0500
+Message-ID: <8e56ea52-9e58-4291-8f7f-4721dd74c72f@ti.com>
+Date: Sat, 18 May 2024 14:18:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
+ GPL-2.0
+To: Conor Dooley <conor@kernel.org>
+CC: <vigneshr@ti.com>, <nm@ti.com>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Kip Broadhurst <kbroadhurst@ti.com>,
+        <w.egorov@phytec.de>
+References: <20240517104226.3395480-1-u-kumar1@ti.com>
+ <20240517-poster-purplish-9b356ce30248@spud>
+ <20240517-fastball-stable-9332cae850ea@spud>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240517-fastball-stable-9332cae850ea@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Convert Mediatek MT6358 Audio Codec bindings from text to dtschema.
+Hi Conor
 
-Signed-off-by: Kartik Agarwala <agarwala.kartik@gmail.com>
----
- .../bindings/sound/mediatek,mt6358.yaml       | 47 +++++++++++++++++++
- .../devicetree/bindings/sound/mt6358.txt      | 26 ----------
- 2 files changed, 47 insertions(+), 26 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/mt6358.txt
+On 5/17/2024 8:11 PM, Conor Dooley wrote:
+> On Fri, May 17, 2024 at 03:39:20PM +0100, Conor Dooley wrote:
+>> On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
+>>> Modify license to include dual licensing as GPL-2.0-only OR MIT
+>>> license for TI specific phy header files. This allows for Linux
+>>> kernel files to be used in other Operating System ecosystems
+>>> such as Zephyr or FreeBSD.
+>> What's wrong with BSD-2-Clause, why not use that?
+> I cut myself off, I meant to say:
+> What's wrong with BSD-2-Clause, the standard dual license for
+> bindings, why not use that?
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
-new file mode 100644
-index 000000000..f57ef2aa5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mediatek,mt6358.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek MT6358 Audio Codec
-+
-+maintainers:
-+  - Kartik Agarwala <agarwala.kartik@gmail.com>
-+
-+description: |
-+  The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
-+  For more detail, please visit Mediatek PMIC wrapper documentation.
-+  Must be a child node of PMIC wrapper.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt6358-sound
-+      - mediatek,mt6366-sound
-+
-+  Avdd-supply:
-+    description: power source of AVDD
-+
-+  mediatek,dmic-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Indicates how many data pins are used to transmit two channels of PDM
-+      signal. 0 means two wires, 1 means one wire. Default value is 0.
-+    enum:
-+      - 0 # one wire
-+      - 1 # two wires
-+
-+required:
-+  - compatible
-+  - Avdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    mt6358_snd {
-+        compatible = "mediatek,mt6358-sound";
-+        Avdd-supply = <&mt6358_vaud28_reg>;
-+        mediatek,dmic-mode = <0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/mt6358.txt b/Documentation/devicetree/bindings/sound/mt6358.txt
-deleted file mode 100644
-index fbe9e55c6..000000000
---- a/Documentation/devicetree/bindings/sound/mt6358.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Mediatek MT6358 Audio Codec
--
--The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
--For more detail, please visit Mediatek PMIC wrapper documentation.
--
--Must be a child node of PMIC wrapper.
--
--Required properties:
--
--- compatible - "string" - One of:
--    "mediatek,mt6358-sound"
--    "mediatek,mt6366-sound"
--- Avdd-supply : power source of AVDD
--
--Optional properties:
--- mediatek,dmic-mode : Indicates how many data pins are used to transmit two
--	channels of PDM signal. 0 means two wires, 1 means one wire. Default
--	value is 0.
--
--Example:
--
--mt6358_snd {
--	compatible = "mediatek,mt6358-sound";
--	Avdd-supply = <&mt6358_vaud28_reg>;
--	mediatek,dmic-mode = <0>;
--};
--- 
-2.34.1
+want to be inline with License of top level DTS, which is including this 
+header file
+
+eg
+
+https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/ti/k3-j722s-evm.dts#L1 
+
 
 
