@@ -1,154 +1,237 @@
-Return-Path: <devicetree+bounces-67609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F58C8C8FD8
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 08:48:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B9A8C8FF4
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 10:01:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ED38B21A20
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 06:48:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A7001F21A27
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 08:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B4FBE49;
-	Sat, 18 May 2024 06:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51414C8C0;
+	Sat, 18 May 2024 08:01:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PYW0iaNw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lea7RDgo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC33ABE68;
-	Sat, 18 May 2024 06:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128AB4A29;
+	Sat, 18 May 2024 08:01:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716014886; cv=none; b=nh9mNdSbOjv5XTsR95Uzs8fdeMH41g0iUysuMz6zm2TJItfegPDGjfdBk9Ce1QiPh9NMAG3ow8NBDQUDUpWfxMltmJM9NWHi9BzhCeKlddLg3/kxLzpy9HgMHJg5asNBx5BIT6XHY8VhQcTJ88lyuw1wmTRTA8TR/7tqgZpxZ1k=
+	t=1716019302; cv=none; b=OUDUhJ+yE3B8k+tkBclZ0jcZmpTwVSzk519czmmOj9/nSHPgGiaEHMs6LA+1tlY0f1dWRhSo2Kb7Xv6m1pjL0GJSxeMoqe1ixv2Q7kkH2SdBUhyV4Ix2VrtUsj009DrZe0Ui+q3SxFs1G9lB4BBv24QCM2s4eKtJ+zMC/Y6+Qhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716014886; c=relaxed/simple;
-	bh=FqnqE+UrA/fKF5auAZ7YdoJp5gk2IOZmUMnphQzmxF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LNyYHVmY5Q2v/h99ff1bwwe6jCYO1kVcf4KTRdfakh0V1/6oSQ3uNHl356Tf4pdKkbE20RrVJtE7OJJSdni43r/GnQhpNOy1w1x5St0vfnvh0eVWhy26P6BSY/tklg2C7Xhe+LinfB4z8rA5c6nPuJkY7QxVPM7E+24yPlhYD/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PYW0iaNw; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1716014884; x=1747550884;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FqnqE+UrA/fKF5auAZ7YdoJp5gk2IOZmUMnphQzmxF8=;
-  b=PYW0iaNwQztAkd3gw2pXHFxAw3cEewTMc0e5H0NE4m5AFqD0DCP19Ezb
-   3vhpVSCFbFThoFXOi3+bMgmIARgBC5JL78a5mhMhPWyRvZKS/jZildCrr
-   4KZl12vCtLR29iSfjHim3ioYH2MmOFbsnmJnuwuO3L4LlFgD+RrhSPatB
-   M4WNZ/h/l59CCNwqaipnYyga87GYHUSZ0SwTr0orXuUDUC+wKuuTD3EQM
-   QqzON8WNY3WiW4Y6rQRIS2Gqmuf8/cp6I4+Gb9TjQCMmucn0NkPL9XzUx
-   a1yvmkm3nGXdij/K6ND3fKaAuztsNNPKLasnBuuJ0NTIzae2M8YeXp4Un
-   Q==;
-X-CSE-ConnectionGUID: 7wnIvbooS8y8Y7phEgAxaA==
-X-CSE-MsgGUID: 6suTzOH2Qwq1wFj30dbc3g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="29717423"
-X-IronPort-AV: E=Sophos;i="6.08,170,1712646000"; 
-   d="scan'208";a="29717423"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2024 23:48:04 -0700
-X-CSE-ConnectionGUID: Cf6NzLpSRaC16HiIPZ+7IQ==
-X-CSE-MsgGUID: GZ4fJXaAQTSnnddtE/LBFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,170,1712646000"; 
-   d="scan'208";a="32037538"
-Received: from unknown (HELO 108735ec233b) ([10.239.97.151])
-  by fmviesa006.fm.intel.com with ESMTP; 17 May 2024 23:48:00 -0700
-Received: from kbuild by 108735ec233b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s8DrK-0001hk-1r;
-	Sat, 18 May 2024 06:47:58 +0000
-Date: Sat, 18 May 2024 14:47:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
-	linux-kernel@vger.kernel.org, jic23@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org, nuno.sa@analog.com
-Cc: oe-kbuild-all@lists.linux.dev,
-	Ramona Gradinariu <ramona.bolboaca13@gmail.com>
-Subject: Re: [PATCH v3 9/9] drivers: iio: imu: Add support for adis1657x
- family
-Message-ID: <202405181400.174vWAhr-lkp@intel.com>
-References: <20240517074750.87376-10-ramona.bolboaca13@gmail.com>
+	s=arc-20240116; t=1716019302; c=relaxed/simple;
+	bh=mjeHR5Roo0IlU1RPiAKg2mRj8Xi3Ay+IxDGYeC81bCA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=maPy1pxrgRJVgMuQBRmFmxK6eWJp5iNPfBRly0pPusotqWi0PKNq8Q16a6LAlUgwPSunpQRUZLQnjmn/gBnkfPiNstc9RpBSpk0MVotfQDpZ4PgLNjEuqgVodHEiYGljlKqyimmN9Xp5+Mc0X0V27AlhsAhZmK035fvJsPy8zkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lea7RDgo; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-572af0b12b8so5529297a12.2;
+        Sat, 18 May 2024 01:01:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716019298; x=1716624098; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x5PBYmiAOhnAHeUKcKjWhYrDASdZVdAh3fVeiRlLusQ=;
+        b=Lea7RDgoLSwsnxgp7/M9e9YboZph2sYXOfDYH5ZgIBAZcqNlPqSPjzQ2gQ9a2nUAHI
+         H9lxi782I9TornmpA4Qj/jM6zdeSFL9jA1sHRFX1GnJjlz8eoQSfKSgrDJKDwgT3PCNS
+         2fq44PO/kKwvvB4PGSj/AmXN6qJFU0WXLD+38Sd79jPIzs5pWhnkY0yLb4Iqr/k73GCF
+         SiXfzBFNVLp3xX+0EPcsyobLMV6mgLrs4VMFAL0RrGoICpmoDy2KXqCmGDQ6H5eQMN+y
+         PiKGsduRYW1tu48oeIsr3/xQDoLsv6y3Z5PgRHgNcRYxef6e17lpE6MGFt69q6UP4Dgt
+         bqLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716019298; x=1716624098;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=x5PBYmiAOhnAHeUKcKjWhYrDASdZVdAh3fVeiRlLusQ=;
+        b=hiXv/MOJ/m6X8ywCeaQ7BUZucMR9jI5ueFrHgCC7VAlhJG/ZXjeUS/WnSsaaLO1t+3
+         n40IdisXv2S/6CUsJgpnEWqywuvlwaQPdaF5qi57J1z0s3R9L+bUFDoL59JZaIdnpsVV
+         gHQNix4AkeJmPDNY5a/xc7kRQGxcGDfZTyhsp8fscb/yQEUt8tEACdYv7kwcdLQh30et
+         iEDDNtfCckNhkTvwWqkXNENN31fF6pkrHQe7ZOq837HNg3DZ065JPjlh2IzR6CQIFuil
+         mah8sQ5MxuiJHN/ErXgZxCX6YlXIVxxsYd4dxeBdKsoz/VlAEPfP4oMwpofG2x662MPu
+         QtHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFfqTLdexi4VxPsfZFKV43oR6rKGwOeHMmF7DsGQGzLoIndTBjcKfz5cbEJQMnNN+/+JInqre7enefh2Rc1cwfYlthoNldwtokQUbhqRKU8oxl1+c8xfUDq8tD1Ks/bhqZiHaLZlDBYHEPzGqbA0AmdSDal045VHz1sCWepUXW2ccubxw=
+X-Gm-Message-State: AOJu0YwlnSLOq1bjo60FqKfHLXnB9Z5OiY8iSzpgDzRqe1kkiGljpkeV
+	qpd/MQLFC090e0GPOZsroMaSFWlZC/HL1E+ITYw8HbigIk1+fwtItVqHmISmdidy1whNmJqaq4D
+	4C0RfXJdcL1BjGnIYDoIBu/DpCRc=
+X-Google-Smtp-Source: AGHT+IFRurVLH0wLwb3bHvY0pj+mDe+IQvHfHOR+KR2jbk6X+fEXiwm/QrNqX6PbS5ITDgN3Dj/Bj35XZRBxiB42JAg=
+X-Received: by 2002:a50:8adb:0:b0:574:ec96:69d8 with SMTP id
+ 4fb4d7f45d1cf-574ec9671femr8429714a12.33.1716019298230; Sat, 18 May 2024
+ 01:01:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240517074750.87376-10-ramona.bolboaca13@gmail.com>
+References: <20240430-loongson1-nand-v7-0-60787c314fa4@gmail.com>
+ <20240430-loongson1-nand-v7-1-60787c314fa4@gmail.com> <20240506091444.59228fa9@xps-13>
+In-Reply-To: <20240506091444.59228fa9@xps-13>
+From: Keguang Zhang <keguang.zhang@gmail.com>
+Date: Sat, 18 May 2024 16:01:01 +0800
+Message-ID: <CAJhJPsV1aCvji1G2F94A=pJa8+x6Aw7ndkQUBPtFeeKSxJK9Nw@mail.gmail.com>
+Subject: Re: [PATCH v7 1/3] dt-bindings: mtd: Add Loongson-1 NAND Controller
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ramona,
+On Mon, May 6, 2024 at 3:14=E2=80=AFPM Miquel Raynal <miquel.raynal@bootlin=
+.com> wrote:
+>
+> Hello,
+>
+> devnull+keguang.zhang.gmail.com@kernel.org wrote on Tue, 30 Apr 2024
+> 19:11:10 +0800:
+>
+> > From: Keguang Zhang <keguang.zhang@gmail.com>
+> >
+> > Add devicetree binding document for Loongson-1 NAND Controller.
+> >
+> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > ---
+> > Changes in v7:
+> > - rename the file to loongson,ls1b-nfc.yaml
+> >
+> > Changes in v6:
+> > - A newly added patch
+> > ---
+> >  .../devicetree/bindings/mtd/loongson,ls1b-nfc.yaml | 66 ++++++++++++++=
+++++++++
+> >  1 file changed, 66 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mtd/loongson,ls1b-nfc.ya=
+ml b/Documentation/devicetree/bindings/mtd/loongson,ls1b-nfc.yaml
+> > new file mode 100644
+> > index 000000000000..a69f22b9fd9e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/loongson,ls1b-nfc.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/loongson,ls1b-nfc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Loongson-1 NAND Controller
+> > +
+> > +maintainers:
+> > +  - Keguang Zhang <keguang.zhang@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: nand-controller.yaml
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: loongson,ls1b-nfc
+>
+> What is the rationale behind this choice? Seems like the b variant has
+> two possible implementations and should always be preceded by a more
+> specific compatible.
+>
+> As there is currently no description of this controller upstream, I
+> would not care too much about any out-of-tree description and directly
+> go for a clean description.
+>
+Excuse me, should I add a description for this property?
 
-kernel test robot noticed the following build errors:
+> > +      - items:
+> > +          - enum:
+> > +              - loongson,ls1a-nfc
+> > +              - loongson,ls1c-nfc
+> > +          - const: loongson,ls1b-nfc
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  dmas:
+> > +    maxItems: 1
+> > +
+> > +  dma-names:
+> > +    const: rxtx
+> > +
+> > +patternProperties:
+> > +  "^nand@[0-3]$":
+> > +    type: object
+> > +    $ref: raw-nand-chip.yaml
+> > +
+> > +    unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - dmas
+> > +  - dma-names
+>
+> Should DMA props be required?
+>
+Yes. This NAND controller only works with DMA, which means the DMA is neces=
+sary.
 
-[auto build test ERROR on jic23-iio/togreg]
-[cannot apply to linus/master v6.9 next-20240517]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    nand-controller@1fe78000 {
+> > +        compatible =3D "loongson,ls1b-nfc";
+> > +        reg =3D <0x1fe78000 0x40>;
+> > +
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        dmas =3D <&dma 0>;
+> > +        dma-names =3D "rxtx";
+>
+> There is a preferred spacing for DT nodes, see:
+> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+>
+Sorry. I don't get the meaning of preferred spacing.
+https://docs.kernel.org/devicetree/bindings/writing-schema.html says
+"For DTS examples in the schema, preferred is four-space indentation."
+Then I used four-space indentation.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ramona-Gradinariu/dt-bindings-iio-imu-Add-ADIS16501-compatibles/20240517-155051
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240517074750.87376-10-ramona.bolboaca13%40gmail.com
-patch subject: [PATCH v3 9/9] drivers: iio: imu: Add support for adis1657x family
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240518/202405181400.174vWAhr-lkp@intel.com/config)
-compiler: gcc-13 (Ubuntu 13.2.0-4ubuntu3) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240518/202405181400.174vWAhr-lkp@intel.com/reproduce)
+> > +
+> > +        nand@0 {
+> > +            reg =3D <0>;
+> > +            nand-use-soft-ecc-engine;
+> > +            nand-ecc-algo =3D "hamming";
+>
+> These two properties are not needed. Unless there is no hardware ECC
+> capability on this controller and in this case you need to ensure the
+> properties are present in the schema.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405181400.174vWAhr-lkp@intel.com/
+Exactly. This NAND controller doesn't support hardware ECC.
+'nand-use-soft-ecc-engine' and 'nand-ecc-algo' are present in nand-chip.yam=
+l.
+Is there anything else I should do?
 
-All errors (new ones prefixed by >>):
-
->> drivers/iio/imu/adis16475.c:523:9: error: initialization of 'const struct iio_dev_attr *' from incompatible pointer type 'struct attribute *' [-Werror=incompatible-pointer-types]
-     523 |         &iio_dev_attr_hwfifo_watermark_min.dev_attr.attr,
-         |         ^
-   drivers/iio/imu/adis16475.c:523:9: note: (near initialization for 'adis16475_fifo_attributes[0]')
-   drivers/iio/imu/adis16475.c:524:9: error: initialization of 'const struct iio_dev_attr *' from incompatible pointer type 'struct attribute *' [-Werror=incompatible-pointer-types]
-     524 |         &iio_dev_attr_hwfifo_watermark_max.dev_attr.attr,
-         |         ^
-   drivers/iio/imu/adis16475.c:524:9: note: (near initialization for 'adis16475_fifo_attributes[1]')
-   drivers/iio/imu/adis16475.c:525:9: error: initialization of 'const struct iio_dev_attr *' from incompatible pointer type 'struct attribute *' [-Werror=incompatible-pointer-types]
-     525 |         &iio_dev_attr_hwfifo_watermark.dev_attr.attr,
-         |         ^
-   drivers/iio/imu/adis16475.c:525:9: note: (near initialization for 'adis16475_fifo_attributes[2]')
-   drivers/iio/imu/adis16475.c:526:9: error: initialization of 'const struct iio_dev_attr *' from incompatible pointer type 'struct attribute *' [-Werror=incompatible-pointer-types]
-     526 |         &iio_dev_attr_hwfifo_enabled.dev_attr.attr,
-         |         ^
-   drivers/iio/imu/adis16475.c:526:9: note: (near initialization for 'adis16475_fifo_attributes[3]')
-   cc1: some warnings being treated as errors
+Thanks for your view!
+>
+> > +        };
+> > +    };
+> >
+>
+>
+> Thanks,
+> Miqu=C3=A8l
 
 
-vim +523 drivers/iio/imu/adis16475.c
 
-   514	
-   515	static IIO_DEVICE_ATTR_RO(hwfifo_watermark_min, 0);
-   516	static IIO_DEVICE_ATTR_RO(hwfifo_watermark_max, 0);
-   517	static IIO_DEVICE_ATTR(hwfifo_watermark, 0444,
-   518			       adis16475_get_fifo_watermark, NULL, 0);
-   519	static IIO_DEVICE_ATTR(hwfifo_enabled, 0444,
-   520			       adis16475_get_fifo_enabled, NULL, 0);
-   521	
-   522	static const struct iio_dev_attr *adis16475_fifo_attributes[] = {
- > 523		&iio_dev_attr_hwfifo_watermark_min.dev_attr.attr,
-   524		&iio_dev_attr_hwfifo_watermark_max.dev_attr.attr,
-   525		&iio_dev_attr_hwfifo_watermark.dev_attr.attr,
-   526		&iio_dev_attr_hwfifo_enabled.dev_attr.attr,
-   527		NULL
-   528	};
-   529	
+--=20
+Best regards,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Keguang Zhang
 
