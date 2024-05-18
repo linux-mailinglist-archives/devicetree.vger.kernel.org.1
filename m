@@ -1,92 +1,79 @@
-Return-Path: <devicetree+bounces-67604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 091F08C8E36
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 00:00:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D4F8C8F3E
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 03:54:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADAAA285989
-	for <lists+devicetree@lfdr.de>; Fri, 17 May 2024 22:00:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D847DB216B3
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 01:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB7114036B;
-	Fri, 17 May 2024 22:00:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11451373;
+	Sat, 18 May 2024 01:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="oBVgypP0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LwrBdJkz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D1A4C69;
-	Fri, 17 May 2024 22:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788995C96;
+	Sat, 18 May 2024 01:54:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1715983245; cv=none; b=oLaBQmVFSacrbu5aG+mBKSqdUA4UKaKSo5EwXPJnm2QgOpnSENkIvLEWptX0G/O5QSH2SJd3ufYXobxtid1Xd40OE7uBBpiuw87ubTdNkg7ZLbayzf6O5dwoN+XEDa9lptdgU6ayVhefOwDygoXL2gX/a/nvMgSCgcCFq2MrPqQ=
+	t=1715997245; cv=none; b=b42FNxB68l1FOCxFj3N0X/Iqc/YWBRW85Z0uFzoolNqb8q0Ah8AcCTXGcsRt4+9gNXzayMbm4b24uMHp+bzfmaaR1Eqh+MQ3p5FPkf+TYJKjwPMg8gPPFxYJA0hV6fZDVTXGFuGAHlRWVngTIW4tqLp6HJ+r/DJTm9AuW8EZ3Rg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1715983245; c=relaxed/simple;
-	bh=0yxqIjgr6bvtqQ/rzyd8UYI0B7lEklxten+qoHj5f44=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oW5I3mZdEv0oG0MmUEkXaJz/hZFCdoKoE2Z/9D32Au/LtRdDz3g4NhHL3Qp7g3U+AXZSXQ8IWDBXE0TCEVPNfkJ2p/pHH1CkMQMQmcf7GCKiPi1POqUAWc7SnhOSKN4XBugu62/167c/NLo7Ig3SC1jLVjvx5abemOK/Sm7PITI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=oBVgypP0; arc=none smtp.client-ip=192.19.144.205
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id A3159C0000FC;
-	Fri, 17 May 2024 15:00:36 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com A3159C0000FC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1715983236;
-	bh=0yxqIjgr6bvtqQ/rzyd8UYI0B7lEklxten+qoHj5f44=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oBVgypP0BsjU2kHvbHGEnmBgjya0DaZxwIeNVJ1ZF+WbJVNoN7VLB5UKqRoM7dI6M
-	 +AyMWvGrFLx00FQ/KKyJpsb6+eWPFC5ZvVxpVusLdwCQILnu3gSfoKHWZ+LIxJJqPQ
-	 hU8zdbDf8AzzF+rzUdr3qtMAt/2bvVEg1pCdcT+Y=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 9BEDA18041CAC4;
-	Fri, 17 May 2024 15:00:34 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH] dt-bindings: soc: bcm: document brcm,bcm2711-avs-monitor
-Date: Fri, 17 May 2024 15:00:35 -0700
-Message-Id: <20240517220035.2017272-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240517125138.53441-1-krzysztof.kozlowski@linaro.org>
-References: <20240517125138.53441-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1715997245; c=relaxed/simple;
+	bh=cIokRFyV6U9Xl4rstYdCwhL4xA3XHYrRZW38rqJ2QSI=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=CK2mPgQk2yEmRk6NflE8yz5Lb/xbAV/NnnxxtKyUOR4z7ZyvOqYhI3pJfdDGIXq1VIaEW0hTNr9gg2yD/VWmBKc/nlP+LXOlvDbPjTuySEgxUqDvodMykwXxPV2TzJbNT8V9AxDPFjQ6VPYw5dZfFZi715PS6ijec7A6+g7SGK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LwrBdJkz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 544A7C2BD10;
+	Sat, 18 May 2024 01:54:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1715997245;
+	bh=cIokRFyV6U9Xl4rstYdCwhL4xA3XHYrRZW38rqJ2QSI=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=LwrBdJkzNfkwcZsnfynwYzEH2uwguAbAAqLovhVfwU3od72Hn/AHA4cpTLhjGIz4Z
+	 glF1cjJO5JT+w8ddBB5j3jlZ+Ixq/VcPDli/ozj0FDjxhRrwyzh+L4q2DNJsbR9BLi
+	 Oeofz5q9wM3JxpbggT+vhB6f8r46mvx0gMBmPGpzLzf+a//C0QjK+Q8imcW7jU3zmU
+	 ZDJxHml4IIr2cbIm8bZPcBTTqCIITiFbharJKrrRANQH24S46O+lwuejySHWQk0m8L
+	 qOSoaQnDnPTkbTWc7n4vCio0hdtnhdVO/OuHgdQpUxMv2atrZTwxGnke0M9hKLt/tc
+	 WEhENVp6LsS0g==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4AA7EC54BB2;
+	Sat, 18 May 2024 01:54:05 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree updates for v6.10
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20240516173625.GA3518068-robh@kernel.org>
+References: <20240516173625.GA3518068-robh@kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20240516173625.GA3518068-robh@kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.10
+X-PR-Tracked-Commit-Id: d976c6f4b32c2d273d44ff9ad7099efe16279a39
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 06f054b1fee83415fe35204845708988fc16ef22
+Message-Id: <171599724529.22868.12357077037121326544.pr-tracker-bot@kernel.org>
+Date: Sat, 18 May 2024 01:54:05 +0000
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+The pull request you sent on Thu, 16 May 2024 12:36:25 -0500:
 
-On Fri, 17 May 2024 14:51:38 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> Document alreasdy used binding for Syscon / AVS monitor:
-> brcm,bcm2711-avs-monitor to fix dt_binding_check and dtbs_check warnings
-> like:
-> 
->   brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: failed to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.10
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/06f054b1fee83415fe35204845708988fc16ef22
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
