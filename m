@@ -1,147 +1,123 @@
-Return-Path: <devicetree+bounces-67613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001208C9013
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 11:08:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E978C9061
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 12:14:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 311241C20CF4
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 09:08:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37FEDB214FC
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 10:14:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B672D10A01;
-	Sat, 18 May 2024 09:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5927D1B950;
+	Sat, 18 May 2024 10:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b="JIXWx0jc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="lGxkYnWM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outpost1.zedat.fu-berlin.de (outpost1.zedat.fu-berlin.de [130.133.4.66])
+Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58337C8D1;
-	Sat, 18 May 2024 09:08:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=130.133.4.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB8C1773A;
+	Sat, 18 May 2024 10:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716023334; cv=none; b=Mf3ugzPE8j8UldbYwNSdm/4Eqq9n/tXVOt7ZkbgIbnpUwgZjWVsTP24mT/1UNuI1++6gc2w+dEoD7ykgS5tSaZ/rvYgTZpM+nS8eetV/PddhIGJ6f2KayAatSgFKF+6HJuRYVVENP1NM6qI1vw8nR6REot0fRe1KN0QC09Y3F2s=
+	t=1716027229; cv=none; b=L3l2N8+kEjZossdXAthfgFzNQjErpqFWUW+BzhcVNYMixpGNou5RZ4CItqr6FP+mHW9HzNXyRoWN6p2Qg75bsYwz7/ECs1cvTg04US7cXGwnZVBT4Uu0jSgJgJbWEQraJVesBUv/uDTtzUpnkoogAuaQFqC6bBdbP6JC/wS7tNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716023334; c=relaxed/simple;
-	bh=bVysb/cwrM9Pn6QGUWbl+Ro5RzhkM5yqNN7jrETzyyA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hzi8UEq1HgrIRhFvMWjJJEhZGpAggC1EABncXm70uas0u6kgENz6mvwS+kksvCBfHtDGeWSWGdmPeF5mcYjZP8l8/ULYI241RUD79bMps69JGWhaOVvdNfUFBdCk0dXSN9C08cXePOpsmk1mW01+R36jXKt3gxQBxF7X3082B9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de; spf=pass smtp.mailfrom=zedat.fu-berlin.de; dkim=pass (2048-bit key) header.d=fu-berlin.de header.i=@fu-berlin.de header.b=JIXWx0jc; arc=none smtp.client-ip=130.133.4.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=physik.fu-berlin.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zedat.fu-berlin.de
+	s=arc-20240116; t=1716027229; c=relaxed/simple;
+	bh=JEEGJe7P7TsOOE2g5iqa8BKS6lSw1rmKWvrEVpgafAk=;
+	h=Date:From:To:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RbkVrUhyvVC3P864oZQVUcJuvbCpMtLqszJpFqL3NqCvu6ziac1fO5xuWVRiYbHXb56oxkxjaiX9U4liawbQgiXsZCWiLghGdBBHYqD1TRoAVPL5ctXubs3fH3isHVtz5T1KMKIQrHufxbOtEwDoCkRM97P2w9CinRxbbn2RZsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=lGxkYnWM; arc=none smtp.client-ip=161.97.139.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1s8GZ6-006VvV-0f;
+	Sat, 18 May 2024 11:41:21 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=fu-berlin.de; s=fub01; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:To:From:Date:Sender:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
 	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=1a0C79DkdyNfWuSIhpXXfpQISUKfKWxaR+an4LJg0Cw=; t=1716023330; x=1716628130; 
-	b=JIXWx0jctZvXnqcErr+3sSV5apKLlSgTQjonmBZVS45oZcpMNbwEebER5UZJBEzSMGhZDCP7PJN
-	h5jiab7J2xtO7IWJdAdJ1aBJr82y6tZpQ8r7xy+H5ViKn9mzObyFUNO/F9FgWOGFMOhRz2gR0vVr5
-	0/zNv4s2F8amm03ZFsrEnj/EfmsVG+ExiraqgiYRrKam9IKGg+UCC0i2EQDexL4Qz77kXbesE6eUx
-	itj9aMYp28rMvdB7y5sbfMwyGk4kMm6XSyjPdpG9H8EhFTS66NPvRGkOA2beiqLBDPiFkqLGgBQsI
-	L4gAr4tS2+2d1U/BI1N6cAKfkJZU1xRUxXMQ==;
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.97)
-          with esmtps (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1s8G3N-00000002L83-1Dc1; Sat, 18 May 2024 11:08:33 +0200
-Received: from dynamic-077-188-054-221.77.188.pool.telefonica.de ([77.188.54.221] helo=[192.168.178.20])
-          by inpost2.zedat.fu-berlin.de (Exim 4.97)
-          with esmtpsa (TLS1.3)
-          tls TLS_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1s8G3M-00000003h1e-3i5d; Sat, 18 May 2024 11:08:33 +0200
-Message-ID: <455e40c03314294f9c2e64480aa69f8261a3f2d5.camel@physik.fu-berlin.de>
-Subject: Re: [RESEND v7 00/37] Device Tree support for SH7751 based board
-From: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-To: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
-Cc: Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, David Airlie
- <airlied@gmail.com>,  Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner
- <tglx@linutronix.de>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo
- Pieralisi <lpieralisi@kernel.org>, Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?=
- <kw@linux.com>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri
- Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,  Daniel
- Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, Lee
- Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, Heiko Stuebner
- <heiko.stuebner@cherry.de>, Shawn Guo <shawnguo@kernel.org>,  Sebastian
- Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, Linus
- Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, David
- Rientjes <rientjes@google.com>, Hyeonggon Yoo <42.hyeyoo@gmail.com>,
- Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, Andrew
- Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>,
- Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell
- <sfr@canb.auug.org.au>,  Javier Martinez Canillas <javierm@redhat.com>, Guo
- Ren <guoren@kernel.org>, Azeem Shaikh <azeemshaikh38@gmail.com>, Max
- Filippov <jcmvbkbc@gmail.com>, Jonathan Corbet <corbet@lwn.net>, Jacky
- Huang <ychuang3@nuvoton.com>, Herve Codina <herve.codina@bootlin.com>,
- Manikanta Guntupalli <manikanta.guntupalli@amd.com>,  Anup Patel
- <apatel@ventanamicro.com>, Biju Das <biju.das.jz@bp.renesas.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Sam
- Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, Laurent
- Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-pci@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-fbdev@vger.kernel.org
-Date: Sat, 18 May 2024 11:08:30 +0200
-In-Reply-To: <cover.1712205900.git.ysato@users.sourceforge.jp>
-References: <cover.1712205900.git.ysato@users.sourceforge.jp>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 
+	bh=GZdz7DcQuZNUr0jvTXCmmPFf3gkI4Rtn8V9Cae9sto0=; b=lGxkYnWMYZypqxVrxAGzVjAiff
+	Kjo2o2LPO6tHTj1Oklu3HEz2yTvA23u9m/QBmLKX19/P11xwu4r7KBsnqnHHQprUHybYC0HR0Riwu
+	5vdd5O00bpSO4Vj16/gMC/OG8uu1zgA0sVzzEcd93e+1ZSPi0BkCC1L8Va0hCsZnrSwI7uwgsYmEA
+	/EDOf5MZZFSIP2kUzCvYxWvn7AEn0Z0atDbQVRAznvulNo209aun+PKhbP9d7wEKOnbw7UB0EqpV3
+	W/F2XBoAPR/17liJxkpsDqOwDVp1Pj5/EsSl8Va00Mu0qBXTUXNqRyxlOl4Upqis987gA7gM41iK8
+	O1F0n2+Q==;
+Received: from p200300c20737c2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:c2:737:c200:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1s8GZ4-001KiF-0X;
+	Sat, 18 May 2024 11:41:19 +0200
+Date: Sat, 18 May 2024 11:41:17 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, marex@denx.de, leoyang.li@nxp.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] ARM: dts: imx: Add Kobo Clara HD rev b
+Message-ID: <20240518114117.54d7aa75@aktux>
+In-Reply-To: <20240504215344.861327-3-andreas@kemnade.info>
+References: <20240504215344.861327-1-andreas@kemnade.info>
+	<20240504215344.861327-3-andreas@kemnade.info>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-ZEDAT-Hint: PO
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Yoshinori,
+On Sat,  4 May 2024 23:53:44 +0200
+Andreas Kemnade <andreas@kemnade.info> wrote:
 
-On Thu, 2024-04-04 at 14:14 +0900, Yoshinori Sato wrote:
-> Sorry. previus mail is thread broken.
->=20
-> This is an updated version of something I wrote about 7 years ago.
-> Minimum support for R2D-plus and LANDISK.
-> I think R2D-1 will work if you add AX88796 to dts.
-> And board-specific functions and SCI's SPI functions are not supported.
->=20
-> You can get it working with qemu found here.
-> https://gitlab.com/yoshinori.sato/qemu/-/tree/landisk
->=20
-> v7 changes.
-> - sh/kernel/setup.c: fix kernel parameter handling.
-> - clk-sh7750.c: cleanup.
-> - sh_tmu.c: cleanup.
-> - irq-renesas-sh7751.c: IPR definition move to code.
-> - irq-renesas-sh7751irl.c: update register definition.
-> - pci-sh7751.c: Register initialization fix.=20
-> - sm501 and sm501fb: Re-design Device Tree properties.
+> There is a variation of the Kobo Clara HD containing a PMIC with different
+> default settings for the regulators in the OTP and therefore also
+> regulators wired up in a different way, so add a proper devicetree for it
+> to avoid some magic smoke.
+> 
+[...]
+> +&cpu0 {
+> +	arm-supply = <&dcdc5_reg>;
+> +	soc-supply = <&dcdc2_reg>;
+> +};
+> +
+Vendor devicetree has also this snippet for that revision:
 
-Could you push your v7 version to your Gitlab [1] repository so I can fetch
-it from there?
+       cpus {
+                cpu0: cpu@0 {
+                        operating-points = <    /* Core2_1V3_ARM */
+                                /* kHz    uV */
+                                996000  1062500
+                                792000  1062500
+                                396000  1062500
+                                198000  975000
+                        >;
+                        fsl,soc-operating-points = <    /* Core2_1V3_SOC */
+                                /* ARM kHz      SOC-PU uV */
+                                996000          987500
+                                792000          987500
+                                396000          987500
+                                198000          900000
+                        >;
+                };
 
-Thanks,
-Adrian
+        };
 
-> [1] https://gitlab.com/yoshinori.sato/linux
+Apparently we run into https://gitlab.com/postmarketOS/pmaports/-/issues/2811
+but I cannot find any documentation an alternative voltage ranges for that SoC
+(i.MX6SLL). So not all 6SLLs are created equal? At least we do not mix up 1.XV regulators
+with 3.3 regulators now, that is more healthy.
 
---=20
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer
-`. `'   Physicist
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+Regards,
+Andreas
 
