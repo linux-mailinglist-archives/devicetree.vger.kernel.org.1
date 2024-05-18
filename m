@@ -1,100 +1,102 @@
-Return-Path: <devicetree+bounces-67621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 720C18C90A1
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 13:32:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33FCC8C90B6
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 13:59:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3D5AB21081
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 11:32:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98FFC1F21E35
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 11:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3474128684;
-	Sat, 18 May 2024 11:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A092BCFF;
+	Sat, 18 May 2024 11:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1frlWGi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N5mokFHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10EF323746
-	for <devicetree@vger.kernel.org>; Sat, 18 May 2024 11:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F28139AD6;
+	Sat, 18 May 2024 11:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716031961; cv=none; b=AnTKFu38Sd/cKC5IEoiUjZQFJo0afycoZbYYsieNVd2c/zREKBp3TTsdGHofcmXMxxvIHpRxyg6nxkO1kLY0+oKWmXA2hZJC5R1LdjDWgJCAHXs7OHDVlyzdmi5vgba19L5rZwCuZZcj3UxGWrjUQgmsPA5nV4ABs/5V8JqVqBQ=
+	t=1716033561; cv=none; b=O1AGu9lsqSbPxDnrMIsySMeYLRAsVvRgd/NKycluFT3eCBlEdkCMYm9c2X+tAgmUaX/xkF5niCJ6sM21PueHuQ4EWakkOg5DfjV7VCgKbLFqojQMfy7FUYfOzqD1ihGzAue3sjIiJ/LSYs1FxlILvlU2GpbjUc81rGB+RipsjtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716031961; c=relaxed/simple;
-	bh=FOaNOhnQCAYUzSOEttbjHnYtDiKqnkUNaK+WVRAR68c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DS8wk/dUlE3Z7HrXMlqOCvEdvV4fd6Q2IrRD8xiUhfDMkjcCEhVLLXHmwcK05YYJuEXXWXSAZ9hY5SDV1EouCj/wsEnbq52bOHFRDYCfDjwdTGsPMfkbgDKrkWmMkCo/4KoUHruoqIKci0wSJY8QEHDQJ85TjrLFzbM9nQEj8bY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1frlWGi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EE82C113CC;
-	Sat, 18 May 2024 11:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716031960;
-	bh=FOaNOhnQCAYUzSOEttbjHnYtDiKqnkUNaK+WVRAR68c=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=d1frlWGiVW7vgjT+FZK0Lx46iPYZGF/nPPhSB/QxLlzsJfDLmvxxefDOit9xBfY1Y
-	 vuuENYvVhu872YdhALPLTvzRjsGf2FlmiQ2uDdmDfdCusrERRsaKzAEF5wbSuIzOBl
-	 GWVoXPPjAZNKedfdv8Y/UJZI5q1I8u2rfMxHT0Tc7z44HvzXIJo+vx2n7pBeHc+jMf
-	 RZ5xEDeCTvfyicR5ZhTi9xNwmlc5tLe4yudCi5HaRU6+u7/6Q5QkeHTLkLpuiAWl4R
-	 RDCAqFdWqhloyCp0NW7AeSuCdn52blLWrLRfV0Mb/9oRyub4m+kcrMIG+FL9zxaG1Q
-	 N5y6INwp1Km7g==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-phy@lists.infradead.org
-Cc: vkoul@kernel.org,
-	kishon@kernel.org,
-	lorenzo.bianconi83@gmail.com,
-	conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	amitsinght@marvell.com
-Subject: [PATCH v3 4/4] arm64: defconfig: Enable Airoha pcie phy driver
-Date: Sat, 18 May 2024 13:31:44 +0200
-Message-ID: <10f28b494988882187ec4c870c70ed09edc9c064.1716031610.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <cover.1716031610.git.lorenzo@kernel.org>
-References: <cover.1716031610.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1716033561; c=relaxed/simple;
+	bh=h/YDw9e+GvAmjq4NsLkeVDATVHfq7hH7wvoAYef2hM8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UoJsX+afs+aB3bhH+WyuFyUlwaocdLFLYLOzzdUT8raB2XsepioRAIHRwWye3jaggAhGuaU0kr1+YFqQH/3v9IQyjPy1aCAmDfBz2gKx3CYMk6ggRDYkxkX8KspazD/xCsJgMExiuwXQXO/IK60utFM4uW2SfLfc4VqucXCZ/q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N5mokFHO; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5241b49c0daso207807e87.0;
+        Sat, 18 May 2024 04:59:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716033557; x=1716638357; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wc19eVviu7JJuAUpj9uZHiIfNgeyna6FnUnwirddH64=;
+        b=N5mokFHOMVOwD5HpqCZKoCyv5zXZbEY6lx+XF9Hab1QhULOxyxOrAGxrCFAE/sl7L4
+         pernaazSjnfh4beoM29RP/mQv9Dhx2KyWYOJbqJkTAivE97/rFoQXouMlA5JxAOZSWpK
+         gCw7SPpiHhQPrJ6GIZUrwKBHdUbvHXyreFCYsZns6U59n0pzMeh9YvA9868H/V5lXTdt
+         KrLQbgh90MEcbX9mGh03IOHdpv8e/pXDpw2gSGfarcqsM1rMqv3SYDFvobAw+J2TVbV7
+         gxlR0QSNX2yyrJtAaDQs27b+EE7t3uPiC11lq0HoLaNdieLnMhQCwf4ZRGAOxkTSj8+u
+         0RnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716033557; x=1716638357;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wc19eVviu7JJuAUpj9uZHiIfNgeyna6FnUnwirddH64=;
+        b=IwZDJuPB8QFRGCvKPrSqkYf4sWKu/EKr/BgDfAxR0A54cYPnftNE05Px8RUDYXenGr
+         9Fnv53hIRWkKe41sfJ0loFZAYGvc1wfPwHjwUUHeuKMvG6j3E/RCrtv0A1yQxp+/v9hZ
+         s/STJ4wekOd0TbTEcVzPO9f1QNiImEmc9cd+8/0iOkcO8RszzBHUB1IeLqcsguRPys/1
+         NunSOgSE+pRG26Ttpbc5qJaMdGX9uwfjg/Y3Ot29KzK243UW5ziTEBOjdm6dpN0Mwban
+         MpC7TRGou86CP8CzeaMCTt7L8V7xHhpjhzNBwTxkNPt68tKEyVIBsatK7uQwJTVHXj4I
+         77+w==
+X-Forwarded-Encrypted: i=1; AJvYcCXfpX2igiZShn9+PXhmovLM2iNYYgWhxv9+g6XS6JLml16zvnnVd248ssAFgRFdbR595jge3jI4UsEHarrlmEd3AsKA6oL7XNsaete/XkUqXUDnGOmL3Z0ySswof+VZ2AJPr0ERqUCeLA==
+X-Gm-Message-State: AOJu0Ywb4JR5Tjj3v3Us/r0Zc5ugvAL7WoxL1Vd+riGBk33E0pR7vnYR
+	jlciI7JO7r9Kkq5L2NB8F+EoiIecg6vw2HatfY8Wwr3mSlME//mZaogcSyArH/HqzRVTM+ggqKm
+	ZmwqBapLOYgwKDnf3JfTd5Qb2Uj0=
+X-Google-Smtp-Source: AGHT+IHvl79K6tstzDrDN68qonDbKlQ1IcFQ6PlUtbJxtnwIiOvlNg9vIel8q3/tO1WcfjQuW2IKXfzhYf2oLzvITt8=
+X-Received: by 2002:a05:6512:3f03:b0:520:9df8:f245 with SMTP id
+ 2adb3069b0e04-5220fb7688fmr21340642e87.1.1716033557338; Sat, 18 May 2024
+ 04:59:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240517083644.3920-1-bavishimithil@gmail.com> <171593784468.974781.7311451940963803133.robh@kernel.org>
+In-Reply-To: <171593784468.974781.7311451940963803133.robh@kernel.org>
+From: Mithil <bavishimithil@gmail.com>
+Date: Sat, 18 May 2024 17:29:05 +0530
+Message-ID: <CAGzNGRkdD4YEa1PyPfd094D4po9wC8DLHr7u3eeQZu=WETRxCw@mail.gmail.com>
+Subject: Re: [PATCH v4] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Lopez Cruz <misael.lopez@ti.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Mark Brown <broonie@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Enables the PHY_AIROHA_PCIE config by default.
+>         'description' is a dependency of '$ref'
+>         '/schemas/types.yaml#/definitions/string' does not match '^#/(definitions|\\$defs)/'
+>                 hint: A vendor property can have a $ref to a a $defs schema
+>         hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+>         from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> Error: Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.example.dts:28.25-26 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+> make: *** [Makefile:240: __sub-make] Error 2
+>
+Alright will add desc, otherwise is it good to go?
 
-Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index a53c58584bcf..de3feacde776 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1479,6 +1479,7 @@ CONFIG_RESET_QCOM_AOSS=y
- CONFIG_RESET_QCOM_PDC=m
- CONFIG_RESET_RZG2L_USBPHY_CTRL=y
- CONFIG_RESET_TI_SCI=y
-+CONFIG_PHY_AIROHA_PCIE=m
- CONFIG_PHY_XGENE=y
- CONFIG_PHY_CAN_TRANSCEIVER=m
- CONFIG_PHY_SUN4I_USB=y
--- 
-2.45.1
-
+Regards,
+Mithil
 
