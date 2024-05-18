@@ -1,150 +1,107 @@
-Return-Path: <devicetree+bounces-67616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1993D8C9079
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 13:01:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0F08C909D
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 13:32:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 901012826EA
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 11:01:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 738772828B4
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 11:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0090F208D1;
-	Sat, 18 May 2024 11:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947A724B34;
+	Sat, 18 May 2024 11:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="igg2Ld53"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D5qMrziY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289251BC59;
-	Sat, 18 May 2024 11:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70918EDE
+	for <devicetree@vger.kernel.org>; Sat, 18 May 2024 11:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716030063; cv=none; b=BhUcEcOC0U3PqwZpnNOql1k27fpvmqL8kUyAWzgbsPqbp6YTih/o2weg1BxojxHm5cBF4C7GNHDjXYZCQ8gi98uka55UaFY57MSLZAKHKLUUHAKwuskQcntGI9TVlMz0QMO7DnW5h3it2C63Gjyxwt1WlmmHAynfm7bp5m8LSNk=
+	t=1716031945; cv=none; b=sxltjpplAbiQ/eldrIciVzR7qT8OmQe+stW15vzFuIr1mOvlCsJvTFeiCraXw9hqRSem4C40OhaNSbA5lQR0WhFMPJprtsjPMRRAwWb9IYnEzqOVc/bbCirLrVxA3r3P3rnjLeDouxAh+zY+oju5dYInsu/JmsTZtEyeGSDLbc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716030063; c=relaxed/simple;
-	bh=IYkSHNbOk5pFgx8fb3hLqTIA1sWMOKEj2tGHHJKWubI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hJy2vWKxqoYEyJ4PnRjxhGy9LeFdgBFp5I06927Pp1QFbOa6CF+d+LNVVtdhXZBvjBdU+FtaiHXiNpdCOFa5EHEa60oJUuca3ZYv5YnOJrvkPTmHLKmJPB4o01w7FNm+uF5SRTsZU+FI0Qazue9LQ/CUNr47xs9q95LilKLn/NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=igg2Ld53; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1716030062; x=1747566062;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IYkSHNbOk5pFgx8fb3hLqTIA1sWMOKEj2tGHHJKWubI=;
-  b=igg2Ld53b+lFvReFbUQwiiDQlu6mG7X/ogX68Ny0a7KoeYGlcnXynzAX
-   /+m813uNyl7+co+Vy4w0MlJL/JQDX8BbM41mohKnvgMgTdVh2IwHp5QW1
-   HvT/ND7PTj5FX5MJtASHIKRpOma2LJoCYg+r1LKLXNhYeppcOYcB1JPZV
-   CDj7d8jCajxssw2vuNS1PkGbVhmRrfBDSdUrnURcdwT0+xcErexA6r2Do
-   +9dFfLYABd0cK6r14quALAh5sepckveYchYlKe3MEKscaxUd4V9vdgEM9
-   7IyFebeDHFJm6dmoGfVYdnpPEK6foY4bo7McCSdNRBkbIan9512W34tAP
-   g==;
-X-CSE-ConnectionGUID: R/lz5lvmQoCklWpWq33tdg==
-X-CSE-MsgGUID: uk/dSYFFRw+eyUJUw3at/g==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="34725133"
-X-IronPort-AV: E=Sophos;i="6.08,170,1712646000"; 
-   d="scan'208";a="34725133"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2024 04:01:02 -0700
-X-CSE-ConnectionGUID: +Jm/iyHFS6e00adlVPVeHA==
-X-CSE-MsgGUID: VFtEGmy5TrKGn9EMpzA2WQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,170,1712646000"; 
-   d="scan'208";a="32468882"
-Received: from unknown (HELO 108735ec233b) ([10.239.97.151])
-  by orviesa006.jf.intel.com with ESMTP; 18 May 2024 04:00:58 -0700
-Received: from kbuild by 108735ec233b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s8Ho8-00027H-1t;
-	Sat, 18 May 2024 11:00:56 +0000
-Date: Sat, 18 May 2024 19:00:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
-	linux-kernel@vger.kernel.org, jic23@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org, nuno.sa@analog.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Ramona Gradinariu <ramona.bolboaca13@gmail.com>
-Subject: Re: [PATCH v3 9/9] drivers: iio: imu: Add support for adis1657x
- family
-Message-ID: <202405181841.ESCYTmmL-lkp@intel.com>
-References: <20240517074750.87376-10-ramona.bolboaca13@gmail.com>
+	s=arc-20240116; t=1716031945; c=relaxed/simple;
+	bh=cq6oYTfrjIb+Xk/7RzKkDlliIQz7C/Ni8hMuGFl2CfY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iOlOuIscS8CfyG1+ruNQvY0hyr95f2bP54a3vOR1XOyIq+RgRVNsmSx0Wfu2hpogBWM+T45BNcMknyoerpmxSHuy2t+qBtExLK3019Tu8dy7OUDIoxqHPCQ2Ub4IE0CCbGwrpwETfL9/g7fd7AURIJ8else8HmLcPMtMnUQoAR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D5qMrziY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74B5EC113CC;
+	Sat, 18 May 2024 11:32:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716031945;
+	bh=cq6oYTfrjIb+Xk/7RzKkDlliIQz7C/Ni8hMuGFl2CfY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=D5qMrziYWaDuXwa6o+HXPJSG+KZtkX7wVH/41DWqXghthubNsWFFKlZqoRufC7z67
+	 SKxNq44Ch6IKBkujr0XE73LX7Wg+1GXjO+F+YZFIxuSUo2W5G1GAX3pZzOfC0Cc1FW
+	 yhmivzAvdzZp2CXc4MUxMJrVGYOyp7PFvdSNH4IIGY/629EZ/z4rGf81/E6owYDtD3
+	 yH7w/SurWO3A3uv6WyMT57+fAukO+JHkmLqA4LNNfV/rv22hwv71q0n6nMCpKMDD6w
+	 MU/uqzWjvAkYOw5wA2qTDhJvPa/eZcpC1Gko96t9VkaDz4E8iiWeljfzSQcCXKi2FW
+	 PnugGuTlXAdeA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-phy@lists.infradead.org
+Cc: vkoul@kernel.org,
+	kishon@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	amitsinght@marvell.com
+Subject: [PATCH v3 0/4] Introduce PCIe PHY driver for EN7581 SoC
+Date: Sat, 18 May 2024 13:31:40 +0200
+Message-ID: <cover.1716031610.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240517074750.87376-10-ramona.bolboaca13@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Ramona,
+Add support for Airoha PCIe PHY controller available in the EN7581 SoC.
 
-kernel test robot noticed the following build errors:
+Changes since v2:
+- introduce registers description in dts binding
+- compile PCIe PHY controller driver as module by default
+- improve code readability
+Changes since v1:
+- add patch 4/4 to enable PCIe PHY driver
+- rename documentation binding in airoha,en7581-pcie-phy.yaml
+- fix kernel doc
 
-[auto build test ERROR on jic23-iio/togreg]
-[cannot apply to linus/master v6.9 next-20240517]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Lorenzo Bianconi (4):
+  dt-bindings: phy: airoha: Add binding doc for PCIe PHY driver
+  arm64: dts: airoha: Add EN7581 pcie-phy node
+  phy: airoha: Add PCIe PHY driver for EN7581 SoC.
+  arm64: defconfig: Enable Airoha pcie phy driver
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ramona-Gradinariu/dt-bindings-iio-imu-Add-ADIS16501-compatibles/20240517-155051
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20240517074750.87376-10-ramona.bolboaca13%40gmail.com
-patch subject: [PATCH v3 9/9] drivers: iio: imu: Add support for adis1657x family
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240518/202405181841.ESCYTmmL-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240518/202405181841.ESCYTmmL-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405181841.ESCYTmmL-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/iio/imu/adis16475.c:523:2: error: incompatible pointer types initializing 'const struct iio_dev_attr *' with an expression of type 'struct attribute *' [-Werror,-Wincompatible-pointer-types]
-     523 |         &iio_dev_attr_hwfifo_watermark_min.dev_attr.attr,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iio/imu/adis16475.c:524:2: error: incompatible pointer types initializing 'const struct iio_dev_attr *' with an expression of type 'struct attribute *' [-Werror,-Wincompatible-pointer-types]
-     524 |         &iio_dev_attr_hwfifo_watermark_max.dev_attr.attr,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iio/imu/adis16475.c:525:2: error: incompatible pointer types initializing 'const struct iio_dev_attr *' with an expression of type 'struct attribute *' [-Werror,-Wincompatible-pointer-types]
-     525 |         &iio_dev_attr_hwfifo_watermark.dev_attr.attr,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iio/imu/adis16475.c:526:2: error: incompatible pointer types initializing 'const struct iio_dev_attr *' with an expression of type 'struct attribute *' [-Werror,-Wincompatible-pointer-types]
-     526 |         &iio_dev_attr_hwfifo_enabled.dev_attr.attr,
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   4 errors generated.
-
-
-vim +523 drivers/iio/imu/adis16475.c
-
-   514	
-   515	static IIO_DEVICE_ATTR_RO(hwfifo_watermark_min, 0);
-   516	static IIO_DEVICE_ATTR_RO(hwfifo_watermark_max, 0);
-   517	static IIO_DEVICE_ATTR(hwfifo_watermark, 0444,
-   518			       adis16475_get_fifo_watermark, NULL, 0);
-   519	static IIO_DEVICE_ATTR(hwfifo_enabled, 0444,
-   520			       adis16475_get_fifo_enabled, NULL, 0);
-   521	
-   522	static const struct iio_dev_attr *adis16475_fifo_attributes[] = {
- > 523		&iio_dev_attr_hwfifo_watermark_min.dev_attr.attr,
-   524		&iio_dev_attr_hwfifo_watermark_max.dev_attr.attr,
-   525		&iio_dev_attr_hwfifo_watermark.dev_attr.attr,
-   526		&iio_dev_attr_hwfifo_enabled.dev_attr.attr,
-   527		NULL
-   528	};
-   529	
+ .../bindings/phy/airoha,en7581-pcie-phy.yaml  |   58 +
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/airoha/en7581.dtsi        |    9 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/phy/Kconfig                           |   10 +
+ drivers/phy/Makefile                          |    1 +
+ drivers/phy/phy-airoha-pcie-regs.h            |  477 +++++++
+ drivers/phy/phy-airoha-pcie.c                 | 1247 +++++++++++++++++
+ 8 files changed, 1811 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/airoha,en7581-pcie-phy.yaml
+ create mode 100644 drivers/phy/phy-airoha-pcie-regs.h
+ create mode 100644 drivers/phy/phy-airoha-pcie.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.1
+
 
