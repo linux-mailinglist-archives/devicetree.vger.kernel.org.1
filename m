@@ -1,154 +1,260 @@
-Return-Path: <devicetree+bounces-67607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D53D8C8F89
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 05:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C9E18C8FCD
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 08:23:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF4211F2269A
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 03:52:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A05D31F21C89
+	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 06:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CF54A2D;
-	Sat, 18 May 2024 03:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3772CA9;
+	Sat, 18 May 2024 06:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y9GoexT1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l7riXalN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E58CA4C8B;
-	Sat, 18 May 2024 03:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B544D1A2C10;
+	Sat, 18 May 2024 06:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716004372; cv=none; b=fSo/ItIYP95mwFuid08RXANFaIIk3gMn4VF1Oo08lD/3UD4hVrX0uYlUKTqncZ1AYiwg50wgBf/2rSUym7UdUl7maflp4s46HTv1Zqb/S8erJ9/2a2lFaMjGmH7eRyyRT0ClU9h/A4uW2/RdyUKYaFkPc7UrF5FbecIJPdjv+VU=
+	t=1716013423; cv=none; b=kP64Cs61blWZ9ZOn51Wu1QKjbsH3NZilLNvARCZosEpDEdkSS1xP7FbpHIQ9SEs1TGn0H3TOiyShuezSRSDa6FjlZQyHJj6npDZgRmdCY6F/p/ZhuFccVglJpvuDo5VmckzTWxJeqhKJlY/bcKxokh8NrEFzHCqzylvou5l8wUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716004372; c=relaxed/simple;
-	bh=ab6MQkKmf/FpFVjYsqm0i/fTOZrW9aKA/pnX5yb138c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BW7Mm8GT3FVLdVuPcsiVrFyPnGVAXBtj4dG78fFGspONtY9ouJbcI0GjDlKiYbW50OVsh/EZfsp0laZzI4/mFvkR4bULl4czuO8n/ZKV2MiuOSrZw5RxqnwZum8J6e5V/3e5yVMOVimI/NUUa4fcH2osaeQH5AjKWAlo5x6EsBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y9GoexT1; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1716004370; x=1747540370;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ab6MQkKmf/FpFVjYsqm0i/fTOZrW9aKA/pnX5yb138c=;
-  b=Y9GoexT13FzNOlAycX7567MUQs3SibRpo47boiSORTC0lBe72JZq6Q1H
-   jYzT/eOJuPd8OSI+McwBu70NWhwPkiyeqgFo6llnwbNyGZChTSShUKYBw
-   mF5w7DDLWQEIov4FatB1F+NaOOgfmnDt02XkKAWYRm8ZPMe6cyxts7Ha4
-   XYQEByje5QS0MFJ6dQFy0HlOrHvZZBVc2L7x+J70zcHbunwAz4kgSEAYx
-   JkRPjOpJk1tI7aoL811BJ0T7pbcUYdfeMaMywZf6WcPzGL126xjjq+K0+
-   TisP0gsRQTurGFLcesGqylnpG+uXOI9JdCx5CDnHczbqxMxZxWl6UDTpb
-   g==;
-X-CSE-ConnectionGUID: sgKQGzKcQiKjxnkK+vJhEQ==
-X-CSE-MsgGUID: nJW7Z4kwQ5ee6iBKH29NEg==
-X-IronPort-AV: E=McAfee;i="6600,9927,11075"; a="22811541"
-X-IronPort-AV: E=Sophos;i="6.08,169,1712646000"; 
-   d="scan'208";a="22811541"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2024 20:52:48 -0700
-X-CSE-ConnectionGUID: fB8ulryDSsmV9gw4qhzAQw==
-X-CSE-MsgGUID: JIKEBwkfR+Ssv7slZ8UuUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,169,1712646000"; 
-   d="scan'208";a="36731169"
-Received: from unknown (HELO 108735ec233b) ([10.239.97.151])
-  by orviesa003.jf.intel.com with ESMTP; 17 May 2024 20:52:45 -0700
-Received: from kbuild by 108735ec233b with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s8B7h-0001bE-2F;
-	Sat, 18 May 2024 03:52:42 +0000
-Date: Sat, 18 May 2024 11:52:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Andrii Kyselov <ays@melexis.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	devicetree@vger.kernel.org, Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Volodymyr Kharuk <vkh@melexis.com>
-Subject: Re: [PATCH v6 10/10] media: i2c: Add driver for mlx7502x ToF sensor
-Message-ID: <202405181143.nHERYo41-lkp@intel.com>
-References: <6f666d475da17b3469fd0471531bc615f6fd797a.1715871189.git.vkh@melexis.com>
+	s=arc-20240116; t=1716013423; c=relaxed/simple;
+	bh=Gs4ZaFZ1pd9n4/qqUHeAwX0aMvkzFoGaz4hwJXK1Huo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kUlSufmesFJd/gSM/cnCyhM2ml4yo2Ng32wXmAUotRc117S01Emx1Ty5TFb0+W3WBisCmLQFu10gE3nLQ38IczfJKutoK1psMj70Q9FoJhZUc57XmB2pAxrFJYsI75fDWojXdbBOiDplx02DkCXbWGJWrTvLsaEL9rRj3vEarjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l7riXalN; arc=none smtp.client-ip=209.85.160.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-2454bad9957so1174149fac.2;
+        Fri, 17 May 2024 23:23:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716013420; x=1716618220; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lChIbpiKLjP/99jCI9/LiFKYC4nQkzM10+P+N1G1jz4=;
+        b=l7riXalNBHyAwp1wJPFTz8CPiDEJeQ4DV0ww0xIbcUX4D1bb0LVLFX91Ua1RwiuU3V
+         p9ytpehBek+EOV6b2lQJexd/b+jAzGby5u1pmnnFqW2Ce6UhByvnZ5Me70BwD2KGyjSI
+         AJe0JjJAQjc1hJW5xgvQv6CT/vRka/YwcR5toy6X9yThBZbXWlH6mXWXLQa3zSXNzF7P
+         7C+raZwSEus5QitRntnLbyBlhGoU0JJQs84SQ05JxGabUZjRllM+4jNexzS3bMaRl5hO
+         tWkWi6eiXugU/z+buI263dSQojZooVL63aqjIZmktlDCHVPRjtukKFzhVx4v8mq9CNmS
+         M/ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716013420; x=1716618220;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lChIbpiKLjP/99jCI9/LiFKYC4nQkzM10+P+N1G1jz4=;
+        b=g2WUXUCytPSQ33i8s4+6xsJPjOwUC5XDssmPducnKroWGeN3kc7OMQG0EEARdpR2Ow
+         Ercufxa58DWEydUdr1P2W5wGEO4DHa59DMG45Jke5JOUTeO1VdcEr+JhImXS2B8hEPqz
+         OC8jbKSq65M3c0Ll1KdHrQx3Qc/qOZaVhTV7CB6QX9wtCun4dvs4b+y/bO9GiV1Fdnnu
+         tD0M742YbdSg5X2Kg2A8s8Ep+0m9bjwi+6Ve4oDObo3U4xK86H7SkWTqLUlPVSG11CzT
+         UZjQDYhw1k5e+U9CXf3lDB9FfcPjlnnzMAz5+f0c1bSxmTZm/dgRcnT+0znOkJKHcXP1
+         wXKA==
+X-Forwarded-Encrypted: i=1; AJvYcCX6mFi4/62kqd7xzmcFq3JpSu3F9+GDXDTVZlEPRmVTh/DTwBj7I1gnhtgGsSLY/Uiy8Boihtt7W3aKjWuRsKT8ZRRjXALUWTRs5uN0O79/XAoH9rV88y+AtOvyW43O/HhJaZKFQqn8kg==
+X-Gm-Message-State: AOJu0YyNaIV5ZHaQI3UhoWgYZCIxxPdKEBcjbWpngJQib2dxLuh5CNmp
+	lIBPloUICU0bw8nqVKvrWQfjSr/UT4TgSEVl9ctTIuY0KRkSc2J/
+X-Google-Smtp-Source: AGHT+IHs0B7rpGA8YYCnNcrbM/HW2ScrpVogeU4D5lviCUZIwCnatilzhab0d1p6drNssb7I4s0+gg==
+X-Received: by 2002:a05:6871:8002:b0:245:2ccf:becf with SMTP id 586e51a60fabf-2452ccfc883mr10283944fac.37.1716013419743;
+        Fri, 17 May 2024 23:23:39 -0700 (PDT)
+Received: from localhost.localdomain ([223.178.82.123])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-6f4d2a6669dsm15691233b3a.31.2024.05.17.23.23.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 May 2024 23:23:39 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+X-Google-Original-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+To: 
+Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dtschema
+Date: Sat, 18 May 2024 11:49:21 +0530
+Message-Id: <20240518061925.43549-1-kanakshilledar111@protonmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6f666d475da17b3469fd0471531bc615f6fd797a.1715871189.git.vkh@melexis.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Volodymyr,
+Convert the RISC-V Hart-Level Interrupt Controller (HLIC) to newer
+DT schema, Created DT schema based on the .txt file which had
+`compatible`, `#interrupt-cells` and `interrupt-controller` as
+required properties.
+Changes made with respect to original file:
+- Changed the example to just use interrupt-controller instead of
+using the whole cpu block
+- Changed the example compatible string.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+---
+Changes in v2:
+- Update the maintainers list.
+- Add reference to `interrupt-controller` in `riscv/cpus.yaml`.
+- Update compatible property with the reference in `cpus.yaml`.
+- Include description for '#interrupt-cells' property.
+- Change '#interrupt-cells' property to have `const: 1` as per the
+text binding.
+- Fixed the warning thrown by `/renesas/r9a07g043f01-smarc.dtb`.
+---
+ .../interrupt-controller/riscv,cpu-intc.txt   | 52 --------------
+ .../interrupt-controller/riscv,cpu-intc.yaml  | 72 +++++++++++++++++++
+ 2 files changed, 72 insertions(+), 52 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
 
-[auto build test WARNING on 8771b7f31b7fff91a998e6afdb60650d4bac59a5]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Volodymyr-Kharuk/media-uapi-ctrls-Add-camera-trigger-controls/20240517-004536
-base:   8771b7f31b7fff91a998e6afdb60650d4bac59a5
-patch link:    https://lore.kernel.org/r/6f666d475da17b3469fd0471531bc615f6fd797a.1715871189.git.vkh%40melexis.com
-patch subject: [PATCH v6 10/10] media: i2c: Add driver for mlx7502x ToF sensor
-config: csky-randconfig-r123-20240518 (https://download.01.org/0day-ci/archive/20240518/202405181143.nHERYo41-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240518/202405181143.nHERYo41-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405181143.nHERYo41-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/media/i2c/mlx7502x.c:480:12: warning: 'mlx7502x_read' defined but not used [-Wunused-function]
-     480 | static int mlx7502x_read(struct v4l2_subdev *sd, u16 reg, u8 *val, int val_size)
-         |            ^~~~~~~~~~~~~
-
-
-vim +/mlx7502x_read +480 drivers/media/i2c/mlx7502x.c
-
-   479	
- > 480	static int mlx7502x_read(struct v4l2_subdev *sd, u16 reg, u8 *val, int val_size)
-   481	{
-   482		int ret;
-   483		unsigned char data_w[2];
-   484		struct i2c_client *client = v4l2_get_subdevdata(sd);
-   485	
-   486		struct i2c_msg msg[] = {
-   487			{
-   488				.addr = client->addr,
-   489				.flags = 0,
-   490				.len = 2,
-   491				.buf = data_w,
-   492			}, {
-   493				.addr = client->addr,
-   494				.flags = I2C_M_RD,
-   495				.len = val_size,
-   496				.buf = val,
-   497			}
-   498		};
-   499	
-   500		/* write reg address into first msg */
-   501		put_unaligned_be16(reg, data_w);
-   502	
-   503		/* Using transfer allows skip STOP between messages
-   504		 * so we have repeated Start here
-   505		 */
-   506		ret = i2c_transfer(client->adapter, msg, 2);
-   507	
-   508		return ret != 2 ? -EIO : 0;
-   509	}
-   510	
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+deleted file mode 100644
+index 265b223cd978..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-RISC-V Hart-Level Interrupt Controller (HLIC)
+----------------------------------------------
+-
+-RISC-V cores include Control Status Registers (CSRs) which are local to each
+-CPU core (HART in RISC-V terminology) and can be read or written by software.
+-Some of these CSRs are used to control local interrupts connected to the core.
+-Every interrupt is ultimately routed through a hart's HLIC before it
+-interrupts that hart.
+-
+-The RISC-V supervisor ISA manual specifies three interrupt sources that are
+-attached to every HLIC: software interrupts, the timer interrupt, and external
+-interrupts.  Software interrupts are used to send IPIs between cores.  The
+-timer interrupt comes from an architecturally mandated real-time timer that is
+-controlled via Supervisor Binary Interface (SBI) calls and CSR reads.  External
+-interrupts connect all other device interrupts to the HLIC, which are routed
+-via the platform-level interrupt controller (PLIC).
+-
+-All RISC-V systems that conform to the supervisor ISA specification are
+-required to have a HLIC with these three interrupt sources present.  Since the
+-interrupt map is defined by the ISA it's not listed in the HLIC's device tree
+-entry, though external interrupt controllers (like the PLIC, for example) will
+-need to define how their interrupts map to the relevant HLICs.  This means
+-a PLIC interrupt property will typically list the HLICs for all present HARTs
+-in the system.
+-
+-Required properties:
+-- compatible : "riscv,cpu-intc"
+-- #interrupt-cells : should be <1>.  The interrupt sources are defined by the
+-  RISC-V supervisor ISA manual, with only the following three interrupts being
+-  defined for supervisor mode:
+-    - Source 1 is the supervisor software interrupt, which can be sent by an SBI
+-      call and is reserved for use by software.
+-    - Source 5 is the supervisor timer interrupt, which can be configured by
+-      SBI calls and implements a one-shot timer.
+-    - Source 9 is the supervisor external interrupt, which chains to all other
+-      device interrupts.
+-- interrupt-controller : Identifies the node as an interrupt controller
+-
+-Furthermore, this interrupt-controller MUST be embedded inside the cpu
+-definition of the hart whose CSRs control these local interrupts.
+-
+-An example device tree entry for a HLIC is show below.
+-
+-	cpu1: cpu@1 {
+-		compatible = "riscv";
+-		...
+-		cpu1-intc: interrupt-controller {
+-			#interrupt-cells = <1>;
+-			compatible = "sifive,fu540-c000-cpu-intc", "riscv,cpu-intc";
+-			interrupt-controller;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+new file mode 100644
+index 000000000000..e2da595ee389
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/riscv,cpu-intc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RISC-V Hart-Level Interrupt Controller (HLIC)
++
++description:
++  RISC-V cores include Control Status Registers (CSRs) which are local to
++  each CPU core (HART in RISC-V terminology) and can be read or written by
++  software. Some of these CSRs are used to control local interrupts connected
++  to the core. Every interrupt is ultimately routed through a hart's HLIC
++  before it interrupts that hart.
++
++  The RISC-V supervisor ISA manual specifies three interrupt sources that are
++  attached to every HLIC namely software interrupts, the timer interrupt, and
++  external interrupts. Software interrupts are used to send IPIs between
++  cores.  The timer interrupt comes from an architecturally mandated real-
++  time timer that is controlled via Supervisor Binary Interface (SBI) calls
++  and CSR reads. External interrupts connect all other device interrupts to
++  the HLIC, which are routed via the platform-level interrupt controller
++  (PLIC).
++
++  All RISC-V systems that conform to the supervisor ISA specification are
++  required to have a HLIC with these three interrupt sources present.  Since
++  the interrupt map is defined by the ISA it's not listed in the HLIC's device
++  tree entry, though external interrupt controllers (like the PLIC, for
++  example) will need to define how their interrupts map to the relevant HLICs.
++  This means a PLIC interrupt property will typically list the HLICs for all
++  present HARTs in the system.
++
++maintainers:
++  - Palmer Dabbelt <palmer@dabbelt.com>
++  - Paul Walmsley <paul.walmsley@sifive.com>
++
++allOf:
++  - $ref: /schemas/riscv/cpus.yaml#/properties/interrupt-controller
++
++properties:
++  compatible:
++    $ref: /schemas/riscv/cpus.yaml#/properties/interrupt-controller/properties/compatible
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 1
++    description: |
++      The interrupt sources are defined by the RISC-V supervisor ISA manual,
++      with only the following three interrupts being defined for
++      supervisor mode:
++        - Source 1 is the supervisor software interrupt, which can be sent by
++          an SBI call and is reserved for use by software.
++        - Source 5 is the supervisor timer interrupt, which can be configured
++          by SBI calls and implements a one-shot timer.
++        - Source 9 is the supervisor external interrupt, which chains to all
++          other device interrupts.
++
++required:
++  - compatible
++  - '#interrupt-cells'
++  - interrupt-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller {
++        #interrupt-cells = <1>;
++        compatible = "riscv,cpu-intc";
++        interrupt-controller;
++    };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
