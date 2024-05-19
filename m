@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-67675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 856B58C9493
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 13:58:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 558258C9496
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 14:02:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DFA71C20B5F
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 11:58:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB90C1F212A1
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 12:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7F345977;
-	Sun, 19 May 2024 11:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44359446AB;
+	Sun, 19 May 2024 12:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bvP2t5vj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hawj10/X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581152A1D2;
-	Sun, 19 May 2024 11:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C29E175AE;
+	Sun, 19 May 2024 12:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716119915; cv=none; b=VlfAehjLVfS+54BowgXs1XB+iJmtC6vxeUEx65YH94FFmGJHnvm1lnrFEc9UZPGcL9rI54uSaAgvfYtetGv/hry8gDkni4hY7I1DUI7iu/qJPf2LAefcfSYja60d9swKIfPBV4VZF4IqJrV+5uht4oBNa+lp7nbxQs9FmnBe+JY=
+	t=1716120174; cv=none; b=dFf2J1eTmXylgotfRDD0W7QX6vqsv/2yp/QvpDuODgqGyphOiZmu6e1Qs93jyiB45HlE3IQCw20CFURjcOTIcJhxyykJdH69nKMdzwcZIXm/2FnJrLDL5JJevISSBXehIok/C5a9R7L/vVLaCjhTpklw58ZvkaDC4FZTmhQK2dY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716119915; c=relaxed/simple;
-	bh=dcVEt97hUxkGKz1aWzRDKQTnNqLSCp0T8noaZJtuUzc=;
+	s=arc-20240116; t=1716120174; c=relaxed/simple;
+	bh=QEDQ8TVAXqlyhLNMWKZ5Zw3pAPKwxRatynyS3tTCohA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZM/mrq4EGQjmrjaox2DNIgAC5FOiwRhkAqRfQEzfJT7VpQtlr74OrCO+lFTua8G1GPb0OxTSeSmpuwP+5eDJk2mbqmcQZPrrtwVJ72BLV3eWL3ZuR4gPqi7MRwBSCyZgx1Hazg+L++hzwXCnWHhIazspthBV5SHMztmBMLze91g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bvP2t5vj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B85DC32781;
-	Sun, 19 May 2024 11:58:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hCr5Sbq286ur3df7TI2pi3VrKOR9DwJ0FjWbg4A/GK6AODhJS+sw0BFHmv9It60WU4oPQVEVeySw0Q35/59pbawXz5m0PRsUxYw+uevZ2mMXKmxOpoVSpg3DkRzAIK+b+wIweQbHjGwH/zhs6M6qnlt+Idw5gZ9qZboBt+uH1MA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hawj10/X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 639DDC32781;
+	Sun, 19 May 2024 12:02:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716119914;
-	bh=dcVEt97hUxkGKz1aWzRDKQTnNqLSCp0T8noaZJtuUzc=;
+	s=k20201202; t=1716120173;
+	bh=QEDQ8TVAXqlyhLNMWKZ5Zw3pAPKwxRatynyS3tTCohA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bvP2t5vj1ksvtvlcenwM+cQPxcydvPT89O86WQreTgAy27RGmvJZf9wz7pmSXItGs
-	 eXmsHk3HScT6KmOacZkZlbj2Y/ivzBFrWRfWw/jtOqzbHDdiakUjGLIBF5nw0qQpBf
-	 Uw+0FGDT+8DbNIYOKV5WJa9XA5W4mOptqXYDiiRDFac78wpDh2UorIZNdCTQwtEzR3
-	 P14cQR6uPtiG83G4QWYEokKt8GTJJ4THc/+CPODCfySIt58o3WOAKq2YCKF8GEzaoc
-	 G1H3sSiEImi0+hjTzIcg21O3Q5OdNNVsGS9tcYR+2L4UbxtY0d4vkImhCCK/kjVhzZ
-	 cqxLRYE5cBYGA==
-Date: Sun, 19 May 2024 12:58:30 +0100
+	b=Hawj10/Xob3iRht5nWc4C5tmP1LWiNlplQEbLss4z9IQ9OpdFzt1DZhCUC26CxJll
+	 1huFboAja1cHlksDjlgEcrqtVmLiV7+FuXZJ7v+wCFGwIA8c38IUIRY4ibaPCn6b36
+	 BO9hRbGz5Ldd/fZJtMZg2X3qlzA90veReCKJvxYoNC9xK2/eLU3AnXeLJg6LmVmwwR
+	 eashi/FpORGeYg1Obn41i+9oK9vw4noWJRFzPOFp+CmKMpB1vf+nl8jukAmgz5Ce/z
+	 Hfgd0HsoLsWz0xFIMeU1ADiTI0dWMH/FvxPLc3CUNI9gdKexJHlfAw9MhGYbmDCVIq
+	 Q8UqXvluwZBoA==
+Date: Sun, 19 May 2024 13:02:50 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: riscv,cpu-intc:
- convert to dtschema
-Message-ID: <20240519-ideology-nervous-eb30a92e1e42@spud>
-References: <20240518061925.43549-1-kanakshilledar111@protonmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Arthur Becker <arthur.becker@sentec.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: iio: light: add veml6040 RGBW-LS bindings
+Message-ID: <20240519-irritable-richness-0a07286d289f@spud>
+References: <ZR1P278MB1117B205886E023F9F72A2E881E22@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
+ <20240513-repulsive-fiftieth-884b3805472f@spud>
+ <20240519125705.49967e97@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,40 +60,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zy1Bb1+InXaHquRd"
+	protocol="application/pgp-signature"; boundary="ozr55vnr3ViejvHB"
 Content-Disposition: inline
-In-Reply-To: <20240518061925.43549-1-kanakshilledar111@protonmail.com>
+In-Reply-To: <20240519125705.49967e97@jic23-huawei>
 
 
---zy1Bb1+InXaHquRd
+--ozr55vnr3ViejvHB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, May 18, 2024 at 11:49:21AM +0530, Kanak Shilledar wrote:
-> +allOf:
-> +  - $ref: /schemas/riscv/cpus.yaml#/properties/interrupt-controller
-> +
-> +properties:
-> +  compatible:
-> +    $ref: /schemas/riscv/cpus.yaml#/properties/interrupt-controller/properties/compatible
+On Sun, May 19, 2024 at 12:57:05PM +0100, Jonathan Cameron wrote:
+> On Mon, 13 May 2024 17:26:12 +0100
+> Conor Dooley <conor@kernel.org> wrote:
+>=20
+> > On Mon, May 13, 2024 at 02:35:44PM +0000, Arthur Becker wrote:
+> > > This commit adds device tree bindings for the veml6040 RGBW Light Sen=
+sor
+> > >=20
+> > > signed-off-by: Arthur Becker <arthur.becker@sentec.com> =20
+> >=20
+> > If you're writing a standalone binding for this and not putting it into
+> > trivial-devices.yaml you should document the supply for this device.
+>=20
+> It's a broken email thread. Driver is there, but soemthing has gone
+> wrong with sending.
 
+To be clear, the bit about "standalone" was compared to putting it in
+trivial-devices.yaml, not to do with the threading and it being a patch
+without a driver.
 
-Unfortunately, this is still not what I was asking you to do :/
-I said to make the copy in cpus.yaml a reference to this binding.
-
-Cheers,
-Conor.
-
---zy1Bb1+InXaHquRd
+--ozr55vnr3ViejvHB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZknpYgAKCRB4tDGHoIJi
-0ipvAQCE3mguMXiwmqezXEUwqtkp5cDzTgZtQWbNBe5f5n+cfAEAnohxuGJ3V23p
-6rPB3lvwGKhNzA2dPsrKc1nFDlLqcAI=
-=4iLx
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZknqagAKCRB4tDGHoIJi
+0vBjAP47K6pxApuYF8YvXKyyXY8f/ohMsK4Q7q1kmHslGRnHIgEA4qcOlXKUYfK1
+T+namC/PMik30yLiNIJak0PXtCxNzQU=
+=6zea
 -----END PGP SIGNATURE-----
 
---zy1Bb1+InXaHquRd--
+--ozr55vnr3ViejvHB--
 
