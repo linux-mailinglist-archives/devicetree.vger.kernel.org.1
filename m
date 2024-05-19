@@ -1,134 +1,205 @@
-Return-Path: <devicetree+bounces-67691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8117A8C957C
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 19:14:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 637A18C9583
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 19:18:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 323971F21C40
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 17:14:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09D40281029
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 17:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99084D9F4;
-	Sun, 19 May 2024 17:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B994045BEC;
+	Sun, 19 May 2024 17:18:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jzst70TO"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VYoStaD9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEF94D108;
-	Sun, 19 May 2024 17:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0701DFCB
+	for <devicetree@vger.kernel.org>; Sun, 19 May 2024 17:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716138842; cv=none; b=Ktvw7jRp0c0I9VoKNlZKKxEXyzIqhI5MertgvKP1F/gv7efd6Dh+bqBrHqHMlXS7HwU4MRUrlorjke5nZPEy8Cs8IemNduaREemTSkW8/RxilDXXzmD+fQzHG9d9vJbjYf7rtseiJCMvjloWagA3GdmzdkM3hCkjnr+8+Of65QE=
+	t=1716139089; cv=none; b=t1jrpjgiRuNYKnu5+3Xfg0DhLnjGvWP2+7NSp8xRX2C/ekv1qkBNL/Krznz4be1xXN/1uuWHSwupbqv8Q549DFb1Iq747Xe2t8YA5FpG3TaXOjhi7TU5fhwFMoPy8Ea88NbGGPBs2PfwBzTtNVXoKbr3weRlqSzAeE26p2Yjzdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716138842; c=relaxed/simple;
-	bh=rzQUip3ttnHtdiXBV8Xar/0z+hrxGmJ12YoZERJc1o8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S71iEg6/IZPb9MYbHGT7u3hAyWq12bUEzIgSuCXkTy2hgq9LQumKgg4r4wyVgK7KztnLHzz9zedf8JzfhSZKWwOpe+iU2Y+MAYKC2NQNNa9TGZ7Xho8gNTFjIbMuksYkt8qrUY5yk83svj7fGn7ocF/c22OeygThwR8R3+nzhLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jzst70TO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37739C32781;
-	Sun, 19 May 2024 17:13:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716138842;
-	bh=rzQUip3ttnHtdiXBV8Xar/0z+hrxGmJ12YoZERJc1o8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jzst70TOK9rMnMkhl4Baw4PRnR93itFBWpkQ1m7a2l+M+UGgahpjYyWc0h87VDjdk
-	 acfpcMYbFGKkXT3vQlOY3cQw6gNBuKZM93Wi9v/4I5tRo+F1+dVEiDOgemI7BTLxQ/
-	 ttMwwsGHgkB/t6IWlv5yi3iIilWpnVHAb9Mx/YnIkrIvPfCJ4MF8DBkkIYiM0XuyKZ
-	 eTQGNAkUU06cqMk1xofz3kIpEdqhFpmSO69UK1kQH9uTRnK9xVKtGZ+DZ/10b/ip6o
-	 L2cl1mE3vS7XgAs1WZHgzCalGckiAPHmiDQBwxgKXetCiHZDxy78zez9sS8SnCeUfM
-	 fZoykaOLzSm7g==
-Date: Sun, 19 May 2024 18:13:49 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dumitru Ceclan via B4 Relay
- <devnull+dumitru.ceclan.analog.com@kernel.org>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: Re: [PATCH v2 8/9] iio: adc: ad7173: Add support for AD411x devices
-Message-ID: <20240519181349.0209271c@jic23-huawei>
-In-Reply-To: <20240514-ad4111-v2-8-29be6a55efb5@analog.com>
-References: <20240514-ad4111-v2-0-29be6a55efb5@analog.com>
-	<20240514-ad4111-v2-8-29be6a55efb5@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1716139089; c=relaxed/simple;
+	bh=NU+GexzKZQLtxHZ60Cin+MhIbRiBpdnrsff+oEBMq+Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NBPJeqns3hKZX4egfXttXEw2LHrnKPuFZ/wsUXz7CsNiqoQ89OqYJ2RJ/7lUKybPYqb6GYv20xBnHbqYNz+11Ll02G8uzig4Duo92hunlRCvYCOh+n6HfZz2nXtvtqSMXGBCQOG1Jg9kHBm+u3+fDw0PLcwm+2Rw0zAMhWJ5XmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VYoStaD9; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-351cda41b53so1398859f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 19 May 2024 10:18:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716139085; x=1716743885; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZFfFHRscCa8sWyp/mI5Ke4tlOhkyrUjzyPT9JQYiZXs=;
+        b=VYoStaD9lZNIKFnxqD4crEBNDkYM9UB4DW4m3MLm1tka+1dod8u5c9NYL0v64KnZfA
+         ySlREF9Q0oveG0S5ljH8EJn/oXsIN2rAlFFqIofFUEvQoyk7kUwwQs+eGGT+K5wBYJ2Y
+         cuz12TZSXurYaXxm0KUi2w6t4cN9oVjI6b0lwHkru4BRLomZIW/KdEJWA84ciCdjr1E8
+         2dKGzkwOezhhpxgxuINCdVGOLJZmYxmQvXrsiqv0hZb9CvZfVhcQYr6B6GcThatq2Gnb
+         cjFSLwr6jFr3SImb0w7o8UM/oyDQS3BXSBQ2bI3JmYV42RMdEoycOdM4Tb3fbeyf0SkH
+         28Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716139085; x=1716743885;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZFfFHRscCa8sWyp/mI5Ke4tlOhkyrUjzyPT9JQYiZXs=;
+        b=RmiKylVp8bR305FZWDkd3gDivo/2/6Em3OTfrWleIESNuI87JVjGkTnI9ElSRVmL79
+         sWDlG3v9T8bd5v7GStOQm8jULJyH6Q82EN2QtYOZR6Di5e3Lkeh/5FmGSejo0odpmtzp
+         RwYJDgJny7NQ8Pez2PtwdVEWvicvIWgdfbB5rLkyp48Jhdvvr72bPHeY71CpddNHCvTQ
+         VKWtohx+1K1sT2Ct36tqLm/07/qszWKjDERkW29TtYIa6pR/tIxY9hnOPpfmUuqOoxf1
+         lQkIzogBKvKvLKiIRUg4Si7R1G0tvvEe/jKIMinZUT3Btsh7XYc/OFNFJXqHsiApKKKu
+         0FJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVrFsX5/e7rY9F6oRoMBLDu1IIfJ2gcyknBcolUNJ7lli1X/ph8QHUyAMRRkgIKOpRd6mLDEhXNsmRBVyRM6lG1kd4QaTeZGFbv/Q==
+X-Gm-Message-State: AOJu0YwNVGpar4JMp3za+BkWXZ4+RkmUvuHh38a4c3kzlCFTCV+L9jMk
+	vVy7F4OkD7ri/PrglwIwGqR1/AQ4aIP3kH8VJzjzjMld6f9CNWx1QNkAtDRx2KE=
+X-Google-Smtp-Source: AGHT+IEVe3OJrvn9s1tUxcavG0nrrG8NUEl7NTZuN0MfcIVSegrUuefd4sCREc8FAj/4MId4r0LPwQ==
+X-Received: by 2002:a5d:6350:0:b0:351:dea5:f808 with SMTP id ffacd0b85a97d-351dea6093bmr7250421f8f.26.1716139085076;
+        Sun, 19 May 2024 10:18:05 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b896a89sm26871478f8f.31.2024.05.19.10.18.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 May 2024 10:18:04 -0700 (PDT)
+Message-ID: <ce1de395-3f60-4f7f-9424-bf036134de94@baylibre.com>
+Date: Sun, 19 May 2024 19:18:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
+ support for board path
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ chunkuang.hu@kernel.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
+ ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ wenst@chromium.org, kernel@collabora.com
+References: <20240516081104.83458-1-angelogioacchino.delregno@collabora.com>
+ <20240516081104.83458-3-angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20240516081104.83458-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Tue, 14 May 2024 10:22:53 +0300
-Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
+Hi Angelo,
 
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> 
-> Add support for AD4111/AD4112/AD4114/AD4115/AD4116.
-> 
-> The AD411X family encompasses a series of low power, low noise, 24-bit,
-> sigma-delta analog-to-digital converters that offer a versatile range of
-> specifications.
-> 
-> This family of ADCs integrates an analog front end suitable for processing
-> both fully differential and single-ended, bipolar voltage inputs
-> addressing a wide array of industrial and instrumentation requirements.
-> 
-> - All ADCs have inputs with a precision voltage divider with a division
->   ratio of 10.
-> - AD4116 has 5 low level inputs without a voltage divider.
-> - AD4111 and AD4112 support current inputs (0 mA to 20 mA) using a 50ohm
->   shunt resistor.
-> 
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-A couple of trivial things inline. Otherwise lgtm
+On 16/05/2024 10:11, AngeloGioacchino Del Regno wrote:
+> +    oneOf:
+> +      - required:
+> +          - endpoint@0
+> +      - required:
+> +          - endpoint@1
+> +      - required:
+> +          - endpoint@2
 
-> @@ -1058,17 +1296,26 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
->  		chan->scan_index = chan_index;
->  		chan->channel = ain[0];
->  		chan->channel2 = ain[1];
-> -		chan->differential = true;
-> -
->  		chan_st_priv->ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
->  		chan_st_priv->chan_reg = chan_index;
-> -		chan_st_priv->cfg.input_buf = st->info->has_input_buf;
->  		chan_st_priv->cfg.odr = 0;
-> -
->  		chan_st_priv->cfg.bipolar = fwnode_property_read_bool(child, "bipolar");
-> +
->  		if (chan_st_priv->cfg.bipolar)
->  			chan->info_mask_separate |= BIT(IIO_CHAN_INFO_OFFSET);
->  
-> +		if (is_current_chan)
-> +			chan->type = IIO_CURRENT;
-> +		else
-> +			chan_st_priv->cfg.input_buf = st->info->has_input_buf;
-> +
-> +		ret = fwnode_property_match_property_string(child,
-> +							    "adi,channel-type",
-> +							    ad7173_channel_types,
-> +							    ARRAY_SIZE(ad7173_channel_types));
-> +		chan->differential = (ret < 0 || ret == AD7173_CHAN_DIFFERENTIAL)
-> +					? true : false;
+I'm not sure this is what you expect because I must remove this part to pass the dt-validate.
 
-That's not a boolean. So better to set 1 or 0.
+I have 2 possible display at the same time (DSI and DPI), then I add this in my DTSI:
 
+		mmsys: syscon@14000000 {
+			compatible = "mediatek,mt8365-mmsys", "syscon";
+			reg = <0 0x14000000 0 0x1000>;
+			#clock-cells = <1>;
+			port {
+				#address-cells = <1>;
+				#size-cells = <0>;
 
+				mmsys_main: endpoint@0 {
+					reg = <0>;
+					remote-endpoint = <&ovl0_in>;
+				};
+				mmsys_ext: endpoint@1 {
+					reg = <1>;
+					remote-endpoint = <&rdma1_in>;
+				};
+			};
+		};
+
+But the DTS check returns me an error:
+
+dt-validate -s Documentation/devicetree/bindings arch/arm64/boot/dts/mediatek/mt8365-evk.dtb
+/home/*******/linux-upstream/arch/arm64/boot/dts/mediatek/mt8365-evk.dtb: syscon@14000000: port: 
+More than one condition true in oneOf schema:
+         {'$ref': '/schemas/graph.yaml#/properties/port', 
+
+          'oneOf': [{'required': ['endpoint@0']}, 
+
+                    {'required': ['endpoint@1']}, 
+
+                    {'required': ['endpoint@2']}], 
+
+          'properties': {'endpoint@0': {'$ref': '/schemas/graph.yaml#/properties/endpoint'}, 
+
+                         'endpoint@1': {'$ref': '/schemas/graph.yaml#/properties/endpoint'},
+                         'endpoint@2': {'$ref': '/schemas/graph.yaml#/properties/endpoint'}}} 
+
+         from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#
 
 
-> +MODULE_DESCRIPTION("Analog Devices AD717x and AD411x ADC driver");
+In other hand, if I use "ports" to keep only one endpoint for each port:
 
-I'm scared of wildcards even in descriptive fields as they often end up covering
-something unintended. I'd just go with 'and similar'.
+		mmsys: syscon@14000000 {
+			compatible = "mediatek,mt8365-mmsys", "syscon";
+			reg = <0 0x14000000 0 0x1000>;
+			#clock-cells = <1>;
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
 
->  MODULE_LICENSE("GPL");
-> 
+				port@0 {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					reg = <0>;
+					mmsys_main: endpoint@0 {
+						reg = <0>;
+						remote-endpoint = <&ovl0_in>;
+					};
+				};
 
+				port@1 {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					reg = <1>;
+					mmsys_ext: endpoint@1 {
+						reg = <1>;
+						remote-endpoint = <&rdma1_in>;
+					};
+				};
+			};
+		};
+
+The DTS check returns another error:
+
+dt-validate -s Documentation/devicetree/bindings arch/arm64/boot/dts/mediatek/mt8365-evk.dtb
+/home/*******/linux-upstream/arch/arm64/boot/dts/mediatek/mt8365-evk.dtb: syscon@14000000: 'ports' 
+does not match any of the regexes: 'pinctrl-[0-9]+'
+         from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#
+
+Additionally, with the last DTS example, displays aren't working, probably because "ports" isn't 
+well parsed.
+
+So, I don't know how you want to manage multiple display, but IMHO there are 2 ways:
+- removing the current "oneOf".
+- adding the "ports" support in the documentation and driver (to be parsed).
+
+Still possible I missed something and I doing shit :)
+
+-- 
+Regards,
+Alexandre
 
