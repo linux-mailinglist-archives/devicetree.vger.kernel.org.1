@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-67692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 637A18C9583
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 19:18:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0D58C9588
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 19:33:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09D40281029
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 17:18:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A105F1C20C78
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 17:33:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B994045BEC;
-	Sun, 19 May 2024 17:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346704CB28;
+	Sun, 19 May 2024 17:33:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VYoStaD9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UixxaUzx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0701DFCB
-	for <devicetree@vger.kernel.org>; Sun, 19 May 2024 17:18:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BE326AC3;
+	Sun, 19 May 2024 17:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716139089; cv=none; b=t1jrpjgiRuNYKnu5+3Xfg0DhLnjGvWP2+7NSp8xRX2C/ekv1qkBNL/Krznz4be1xXN/1uuWHSwupbqv8Q549DFb1Iq747Xe2t8YA5FpG3TaXOjhi7TU5fhwFMoPy8Ea88NbGGPBs2PfwBzTtNVXoKbr3weRlqSzAeE26p2Yjzdc=
+	t=1716140009; cv=none; b=rbAOF6ekilIHVOAmBLQiw6/hLktLvYMsB9C7yX5BJl1VeyvCULLUV1hzz/rmwIFgyjRzIcy6CDDc9oia5WU2BBBmQVfXAhK0G6RTJZUX6Qc5HvVKJeRUX1Ynx0TPcllKAsI4FRWdGU0sEYRxpFywgI4pU1Ex0pJN/pWyoHMJ24o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716139089; c=relaxed/simple;
-	bh=NU+GexzKZQLtxHZ60Cin+MhIbRiBpdnrsff+oEBMq+Y=;
+	s=arc-20240116; t=1716140009; c=relaxed/simple;
+	bh=4mz2FMIueUw7JkUkL+3bRYfmmsVUn6W+IyGaW34EyBQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NBPJeqns3hKZX4egfXttXEw2LHrnKPuFZ/wsUXz7CsNiqoQ89OqYJ2RJ/7lUKybPYqb6GYv20xBnHbqYNz+11Ll02G8uzig4Duo92hunlRCvYCOh+n6HfZz2nXtvtqSMXGBCQOG1Jg9kHBm+u3+fDw0PLcwm+2Rw0zAMhWJ5XmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VYoStaD9; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-351cda41b53so1398859f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 19 May 2024 10:18:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716139085; x=1716743885; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZFfFHRscCa8sWyp/mI5Ke4tlOhkyrUjzyPT9JQYiZXs=;
-        b=VYoStaD9lZNIKFnxqD4crEBNDkYM9UB4DW4m3MLm1tka+1dod8u5c9NYL0v64KnZfA
-         ySlREF9Q0oveG0S5ljH8EJn/oXsIN2rAlFFqIofFUEvQoyk7kUwwQs+eGGT+K5wBYJ2Y
-         cuz12TZSXurYaXxm0KUi2w6t4cN9oVjI6b0lwHkru4BRLomZIW/KdEJWA84ciCdjr1E8
-         2dKGzkwOezhhpxgxuINCdVGOLJZmYxmQvXrsiqv0hZb9CvZfVhcQYr6B6GcThatq2Gnb
-         cjFSLwr6jFr3SImb0w7o8UM/oyDQS3BXSBQ2bI3JmYV42RMdEoycOdM4Tb3fbeyf0SkH
-         28Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716139085; x=1716743885;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZFfFHRscCa8sWyp/mI5Ke4tlOhkyrUjzyPT9JQYiZXs=;
-        b=RmiKylVp8bR305FZWDkd3gDivo/2/6Em3OTfrWleIESNuI87JVjGkTnI9ElSRVmL79
-         sWDlG3v9T8bd5v7GStOQm8jULJyH6Q82EN2QtYOZR6Di5e3Lkeh/5FmGSejo0odpmtzp
-         RwYJDgJny7NQ8Pez2PtwdVEWvicvIWgdfbB5rLkyp48Jhdvvr72bPHeY71CpddNHCvTQ
-         VKWtohx+1K1sT2Ct36tqLm/07/qszWKjDERkW29TtYIa6pR/tIxY9hnOPpfmUuqOoxf1
-         lQkIzogBKvKvLKiIRUg4Si7R1G0tvvEe/jKIMinZUT3Btsh7XYc/OFNFJXqHsiApKKKu
-         0FJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrFsX5/e7rY9F6oRoMBLDu1IIfJ2gcyknBcolUNJ7lli1X/ph8QHUyAMRRkgIKOpRd6mLDEhXNsmRBVyRM6lG1kd4QaTeZGFbv/Q==
-X-Gm-Message-State: AOJu0YwNVGpar4JMp3za+BkWXZ4+RkmUvuHh38a4c3kzlCFTCV+L9jMk
-	vVy7F4OkD7ri/PrglwIwGqR1/AQ4aIP3kH8VJzjzjMld6f9CNWx1QNkAtDRx2KE=
-X-Google-Smtp-Source: AGHT+IEVe3OJrvn9s1tUxcavG0nrrG8NUEl7NTZuN0MfcIVSegrUuefd4sCREc8FAj/4MId4r0LPwQ==
-X-Received: by 2002:a5d:6350:0:b0:351:dea5:f808 with SMTP id ffacd0b85a97d-351dea6093bmr7250421f8f.26.1716139085076;
-        Sun, 19 May 2024 10:18:05 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b896a89sm26871478f8f.31.2024.05.19.10.18.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 May 2024 10:18:04 -0700 (PDT)
-Message-ID: <ce1de395-3f60-4f7f-9424-bf036134de94@baylibre.com>
-Date: Sun, 19 May 2024 19:18:03 +0200
+	 In-Reply-To:Content-Type; b=ujhDxPNU2VRP62A0GmXr9BCv1hvnavdX4vBJCUBSaM5PUCEX0Hb3uC7m8rpkxSN3SFTwqafiLdHs8cfSFvP/qpu7jSVeZ+jXorAYmd4bgBarGxLueEgKLy0jyemlEbUPuc058b45YHEFiOBraBFjvsJ4agl/IN2oRwYzQxAH/QE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UixxaUzx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8858AC32781;
+	Sun, 19 May 2024 17:33:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716140008;
+	bh=4mz2FMIueUw7JkUkL+3bRYfmmsVUn6W+IyGaW34EyBQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UixxaUzxN4bgA1Rmqdx/m1rRW/nH0K/4ob5ioRLKoU5CzgQyzNT8nCsETI1rpr8hQ
+	 PqyHNfdJ92sAgkU2z+5Woh5PoTZvuN5f+Zt/tXx7R02iYWcI6l0sMAiqw/FfV5kKbY
+	 esy+72QOXELWzbwrvQFfPu8E53hKawAu9Bn6oZOqyUiicJThD/lJZ3SHFLAwkMmfy5
+	 x5EWEFAnbEzApKrK7kmlHGanLnMP/I3ND/pUznEaS6JFLWcinqRU8PIWYyUTildHe6
+	 EZWmcRd/yg6pO9TmkSjvJOAz10FyCaRo1IRWIk8lZhnCWw5WJ5NEYfpDtPbYpjJBPE
+	 BhqHj4EyH50mQ==
+Message-ID: <18746508-f7d6-4a1c-9758-1e9e1fb35c64@kernel.org>
+Date: Sun, 19 May 2024 19:33:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,130 +50,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
- support for board path
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com
-References: <20240516081104.83458-1-angelogioacchino.delregno@collabora.com>
- <20240516081104.83458-3-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: xilinx_gmii2rgmii: Add
+ clock support
+To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>, git@amd.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ harini.katakam@amd.com, andrew@lunn.ch, hkallweit1@gmail.com,
+ linux@armlinux.org.uk, michal.simek@amd.com
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240517054745.4111922-1-vineeth.karumanchi@amd.com>
+ <20240517054745.4111922-2-vineeth.karumanchi@amd.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20240516081104.83458-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240517054745.4111922-2-vineeth.karumanchi@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Angelo,
+On 17/05/2024 07:47, Vineeth Karumanchi wrote:
+> Add input clock support to gmii_to_rgmii IP.
+> Add "clocks" bindings for the input clock.
 
-On 16/05/2024 10:11, AngeloGioacchino Del Regno wrote:
-> +    oneOf:
-> +      - required:
-> +          - endpoint@0
-> +      - required:
-> +          - endpoint@1
-> +      - required:
-> +          - endpoint@2
+Both sentences look like saying the same... confused.
 
-I'm not sure this is what you expect because I must remove this part to pass the dt-validate.
+> 
+> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+> ---
+>  Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml b/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
+> index 0f781dac6717..672bff6dae28 100644
+> --- a/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
+> +++ b/Documentation/devicetree/bindings/net/xlnx,gmii-to-rgmii.yaml
+> @@ -31,6 +31,9 @@ properties:
+>    phy-handle:
+>      $ref: ethernet-controller.yaml#/properties/phy-handle
+>  
+> +  clocks:
+> +    description: 200/375 MHz free-running clock is used as input clock.
 
-I have 2 possible display at the same time (DSI and DPI), then I add this in my DTSI:
-
-		mmsys: syscon@14000000 {
-			compatible = "mediatek,mt8365-mmsys", "syscon";
-			reg = <0 0x14000000 0 0x1000>;
-			#clock-cells = <1>;
-			port {
-				#address-cells = <1>;
-				#size-cells = <0>;
-
-				mmsys_main: endpoint@0 {
-					reg = <0>;
-					remote-endpoint = <&ovl0_in>;
-				};
-				mmsys_ext: endpoint@1 {
-					reg = <1>;
-					remote-endpoint = <&rdma1_in>;
-				};
-			};
-		};
-
-But the DTS check returns me an error:
-
-dt-validate -s Documentation/devicetree/bindings arch/arm64/boot/dts/mediatek/mt8365-evk.dtb
-/home/*******/linux-upstream/arch/arm64/boot/dts/mediatek/mt8365-evk.dtb: syscon@14000000: port: 
-More than one condition true in oneOf schema:
-         {'$ref': '/schemas/graph.yaml#/properties/port', 
-
-          'oneOf': [{'required': ['endpoint@0']}, 
-
-                    {'required': ['endpoint@1']}, 
-
-                    {'required': ['endpoint@2']}], 
-
-          'properties': {'endpoint@0': {'$ref': '/schemas/graph.yaml#/properties/endpoint'}, 
-
-                         'endpoint@1': {'$ref': '/schemas/graph.yaml#/properties/endpoint'},
-                         'endpoint@2': {'$ref': '/schemas/graph.yaml#/properties/endpoint'}}} 
-
-         from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#
+Missing constraints. Probably you wanted items above description.
 
 
-In other hand, if I use "ports" to keep only one endpoint for each port:
+Best regards,
+Krzysztof
 
-		mmsys: syscon@14000000 {
-			compatible = "mediatek,mt8365-mmsys", "syscon";
-			reg = <0 0x14000000 0 0x1000>;
-			#clock-cells = <1>;
-			ports {
-				#address-cells = <1>;
-				#size-cells = <0>;
-
-				port@0 {
-					#address-cells = <1>;
-					#size-cells = <0>;
-					reg = <0>;
-					mmsys_main: endpoint@0 {
-						reg = <0>;
-						remote-endpoint = <&ovl0_in>;
-					};
-				};
-
-				port@1 {
-					#address-cells = <1>;
-					#size-cells = <0>;
-					reg = <1>;
-					mmsys_ext: endpoint@1 {
-						reg = <1>;
-						remote-endpoint = <&rdma1_in>;
-					};
-				};
-			};
-		};
-
-The DTS check returns another error:
-
-dt-validate -s Documentation/devicetree/bindings arch/arm64/boot/dts/mediatek/mt8365-evk.dtb
-/home/*******/linux-upstream/arch/arm64/boot/dts/mediatek/mt8365-evk.dtb: syscon@14000000: 'ports' 
-does not match any of the regexes: 'pinctrl-[0-9]+'
-         from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#
-
-Additionally, with the last DTS example, displays aren't working, probably because "ports" isn't 
-well parsed.
-
-So, I don't know how you want to manage multiple display, but IMHO there are 2 ways:
-- removing the current "oneOf".
-- adding the "ports" support in the documentation and driver (to be parsed).
-
-Still possible I missed something and I doing shit :)
-
--- 
-Regards,
-Alexandre
 
