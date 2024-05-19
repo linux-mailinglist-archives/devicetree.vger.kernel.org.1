@@ -1,83 +1,111 @@
-Return-Path: <devicetree+bounces-67725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 228A88C9609
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 21:17:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A788C9610
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 21:32:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B732A1F210C4
-	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 19:17:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8144E28107B
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 19:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B575312B71;
-	Sun, 19 May 2024 19:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67625487AE;
+	Sun, 19 May 2024 19:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AB4JTvUL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RV+ciD7z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8952E6F066;
-	Sun, 19 May 2024 19:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400D6168BE;
+	Sun, 19 May 2024 19:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716146256; cv=none; b=Fq3+fjopT36lYKf7f1fBDiPZZH8opzwsX0tufpoAYlrH37SDt7L5CgVPEe+cJ1qzBXbP04GjrWSnmIHp1G+5H/vk+BGKzDbai2XQAAMkW6RXGOvATJVjXadRDj8jcSk+Hsrvbh7oIjlxl9ALiKdZ4rXpyTIylaSC2tL8ZL3puqI=
+	t=1716147156; cv=none; b=dMu2ZA/XMPxIrcdl0nUBojk9CpL5ERVT66HWoSEyQGa6botQoOXScqBXkalbijUbf2HIcH3ipcT1ZKkCm6GgMtaHnZ/8EWemLyBqcJWDmPaw10Hb4fGNi8dtpNfF5wfiGhhmaPHtw8XQpSoGNx2haUnXyuwwsgbBJTYRyg6VqN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716146256; c=relaxed/simple;
-	bh=rirKKuH61jvwiHS0rkmvT98moSQpU+reBVvI8WR3kcE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SyywMM5e41rrqSFSGCfPh0zNWAIrraWcvVk15ErQ1JD1dmDCj7pBRthLLWOceyetvJ2cjuSXcXWlAbYKoGTmxicJLqZRSJJBNW2QoNPd2DkaFBiWvpfPx53jlEvG36dst7B1fApoqiSEJbosp8HNzwqaCHeLY02mr7iEyqjgQBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AB4JTvUL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0147C32781;
-	Sun, 19 May 2024 19:17:31 +0000 (UTC)
+	s=arc-20240116; t=1716147156; c=relaxed/simple;
+	bh=1GvbBfv2XOQYFaJwoRDiUHVxHSxTdIHoGwILpB6AiwQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=FpDt+tV7InXXmNU6tYGUAofpd51+Zipeda50cr3xRUXGUc6FePVVHlTtq0vOiHzEOKbL8iD4ZG54ZqOgWE7yBzfiluI7O2oh/DQ7ZJzFK2Ny/AUSX9UkH3bwQEKRL6KKyeiMXu+eyv9Gf6lRiCe2xdVshzLWosbHootDa9CefU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RV+ciD7z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 781EEC32781;
+	Sun, 19 May 2024 19:32:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716146256;
-	bh=rirKKuH61jvwiHS0rkmvT98moSQpU+reBVvI8WR3kcE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AB4JTvULGuWNeXkM8SGrq8V4/Z1l7qjxuxyMOu0S6XY5+pZ+x37HOmCci5QYMmlzc
-	 VKfxdZhBZr9+7xKT7fjAxhLmL8ETlGDvW73X60gUpBK759xxP/cyiag6v/wBrWv4i8
-	 aUublmUmJEFmIxYncF2yZfU3Q/MgqTZm8YaYIzot2h7XBznSdRT9GS8o0TqsWOLVxt
-	 jp1FKWMlRw/gMGbr3Z5vqCGYpJd6dp+cVZ+VlXQZdmmKSOnD3eNly9gyRmJWMwB7MN
-	 F7ezdYbEUHmJq6fjr51BCoETGpJTOICxjtIAde7NadM7Awi45Pl1qSMG9S6IO5A1bW
-	 aSjJ/r+p+fi2A==
-Date: Sun, 19 May 2024 20:17:24 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dumitru Ceclan via B4 Relay
- <devnull+dumitru.ceclan.analog.com@kernel.org>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: Re: [PATCH v2 4/9] iio: adc: ad7173: refactor ain and vref
- selection
-Message-ID: <20240519201724.01f190a4@jic23-huawei>
-In-Reply-To: <20240514-ad4111-v2-4-29be6a55efb5@analog.com>
-References: <20240514-ad4111-v2-0-29be6a55efb5@analog.com>
-	<20240514-ad4111-v2-4-29be6a55efb5@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=k20201202; t=1716147155;
+	bh=1GvbBfv2XOQYFaJwoRDiUHVxHSxTdIHoGwILpB6AiwQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=RV+ciD7zn2cE5WPaK6Rr58GtDcZbvGDrRevdKoGmzdpmxR4IwAS90F+AJ8NNUNZlF
+	 aqmzascLg5BYDyR6OfAfji8wCDwULp7NONZlZyaGTSKaNj/NI+qk/df77ipsb49oEK
+	 oH/Cq96ycdom81nSHCQwDQ+2SAelCcbCw0ilsAfbajpC4c1JbSAb4CP98H/n9neURg
+	 3o1ekOeseaBGKMa4uv2enWt2CkciNc6R5bCzlZkq0HVHZ5vCVXVvPiMaX46VmWRFyf
+	 Q63Dse0E3zv3p+06Ov1PH3IZvTbQox7eKspaOjRbhl7cY9Y+Qv5R+m5ZnXb+Q9giao
+	 2oG3+xER9iqcg==
+Date: Sun, 19 May 2024 14:32:34 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kanak Shilledar <kanakshilledar@gmail.com>
+Cc: linux-riscv@lists.infradead.org, 
+ Kanak Shilledar <kanakshilledar111@protonmail.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <20240519175906.138410-3-kanakshilledar111@protonmail.com>
+References: <20240519175906.138410-1-kanakshilledar111@protonmail.com>
+ <20240519175906.138410-3-kanakshilledar111@protonmail.com>
+Message-Id: <171614715439.2941344.11264816105918092609.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: riscv: cpus: add ref to
+ interrupt-controller
 
-On Tue, 14 May 2024 10:22:49 +0300
-Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org> wrote:
 
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+On Sun, 19 May 2024 23:29:06 +0530, Kanak Shilledar wrote:
+> removed the redundant properties for interrupt-controller
+> and provide reference to the riscv,cpu-intc.yaml which defines
+> the interrupt-controller. making the properties for riscv
+> interrupt-controller at a central place.
 > 
->  Move validation of analog inputs and reference voltage selection to
-
-Odd space before M
-
-> separate functions to reduce the size of the channel config parsing
-> function and improve readability.
+> Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+> ---
+>  .../devicetree/bindings/riscv/cpus.yaml       | 22 +------------------
+>  1 file changed, 1 insertion(+), 21 deletions(-)
 > 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.yaml: properties:interrupt-controller: 'oneOf' conditional failed, one must be fixed:
+	Additional properties are not allowed ('$ref' was unexpected)
+	'type' is a required property
+		hint: DT nodes ("object" type in schemas) can only use a subset of json-schema keywords
+	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240519175906.138410-3-kanakshilledar111@protonmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
