@@ -1,130 +1,113 @@
-Return-Path: <devicetree+bounces-67654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F7128C9298
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 23:50:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09AC88C9399
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 08:45:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18246280FF9
-	for <lists+devicetree@lfdr.de>; Sat, 18 May 2024 21:50:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91A0C1F21362
+	for <lists+devicetree@lfdr.de>; Sun, 19 May 2024 06:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641F76BB5C;
-	Sat, 18 May 2024 21:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC6017579;
+	Sun, 19 May 2024 06:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="p4MioMuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mout.web.de (mout.web.de [212.227.17.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99763FB9F
-	for <devicetree@vger.kernel.org>; Sat, 18 May 2024 21:50:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DFD1798C;
+	Sun, 19 May 2024 06:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716069011; cv=none; b=g3PnWoWNLiroeU4tpH/i7Wm+O3cXwbbQjk9+5JobzD/3L3n6Foh2s2g+Go8ZIvyJ4e52/O2oNlaVvDq1dBapABd42xg56v99KylawvPl3YO1/IghqXlc0VUL/PHHSWUboC+8DEQKQfdErPa2govFVlsNreGotinumuFINkHg6m8=
+	t=1716101103; cv=none; b=lA5Efh5JeNHnujjXN/sLkXyOkUM73ebyIWEhx2WxQDEyz0gCFOAJqs9J1wZu8UIUyVVWDHWjuEeu798GmPiSEW2IhrQ1gmN8TRgJ6wsu8fF5w+rfFNJccRtnTslm5/NYpjb8E0Lnq9M/HoAMX8f8m2hlCBhzLRabIy2In7cg9+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716069011; c=relaxed/simple;
-	bh=LkalhpTJtKj/V/7cnlafYnegl4avMRdy03KcF5HoN0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WCN2BuSP2RBOhjVexl+HDNiUV+6oFS2vv4fzBuyWNBWwYAQd+3W5AfNADOpzrQ+O276T+UPP1RbZtxCtl3jURP1oWWPnPvSAcyNOiU0ceN1pIRSJAVW40DtJRc10hi1tZUZMQrS8+0QIHpwiGfhk7VTCf3uYH9/DL/aAV/nvjWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s8Rvv-0004h9-1D; Sat, 18 May 2024 23:49:39 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s8Rvs-0022tH-Ml; Sat, 18 May 2024 23:49:36 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s8Rvs-007rW5-1z;
-	Sat, 18 May 2024 23:49:36 +0200
-Date: Sat, 18 May 2024 23:49:36 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Chris Packham <Chris.Packham@alliedtelesis.co.nz>, Guenter Roeck <linux@roeck-us.net>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: pwm: describe the cells in #pwm-cells in
- pwm.yaml
-Message-ID: <oan6mlql2co4jsmnh3ghbomakdphab352fyq3plupellevkvly@f3jhiwidtkv3>
-References: <20240517-patient-stingily-30611f73e792@spud>
+	s=arc-20240116; t=1716101103; c=relaxed/simple;
+	bh=foDH3v96Rt8qLe3b1e0Q8Zg751Smptuk+sSdTARttOc=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=A0E/m78wXXmxA0K1i2+GSP4gWNXZXjJNjE+BJdMioCE1cxTWEe3X+/1QasQy6bpwfSOZeS6PB4Q66kSpUfSEHRY0vCZAhPhnjGj7RMNKBtHQ26ae6Cskbmz1cq8MVw887c+4xmWF4JUSuKCXcz59PCfhrLNHLJYdXW80rYTHJRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=p4MioMuX; arc=none smtp.client-ip=212.227.17.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1716101068; x=1716705868; i=markus.elfring@web.de;
+	bh=pd86gvRHXgTjz+8IOcII5+ruIiH2fACD6NYai6/iRRQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=p4MioMuXYu1eZDe/5SNsUdVx5l06xivMwFHukfqzUqkq0weMbw8Q80rnLICx3A/g
+	 ZIF60PKHcvBT/dhbWskaQdnImWn+khoLUPEd/WWcV3d2OuMvWb0r8DvdmpXL3cK8M
+	 7fkLXRWYNetCmL+ZyflJ+NG2K2E5NocmnhF97DtPk5ia8wnuirc6sH4xqnMkxTMH1
+	 em0eArWGYl4SibM/YDnNKxcWheI1IXVoBXo21ImzESJV1Zz8G2/R/t3IFvKoey+jr
+	 2YTkYuLaZRHrqkNm/4+y3XSkY6D+SzG1XeiDhQQ4QcLGIBHuCsQYvHzD/7kiy8aIM
+	 jx58Ve09ly/ng6N44A==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.82.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1M6YN9-1sATxd0G7d-00COij; Sun, 19
+ May 2024 08:44:28 +0200
+Message-ID: <0eba5037-fede-4394-94b0-b652797ebe45@web.de>
+Date: Sun, 19 May 2024 08:44:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k5mzdz6sjp46o5pa"
-Content-Disposition: inline
-In-Reply-To: <20240517-patient-stingily-30611f73e792@spud>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---k5mzdz6sjp46o5pa
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+To: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+ devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-clk@vger.kernel.org
+Cc: LKML <linux-kernel@vger.kernel.org>, =?UTF-8?Q?Alvin_=C5=A0ipraga?=
+ <alvin@pqrs.dk>, Emil Svendsen <emas@bang-olufsen.dk>,
+ Andi Shyti <andi.shyti@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jaroslav Kysela <perex@perex.cz>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Mark Brown <broonie@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Stephen Boyd <sboyd@kernel.org>,
+ Takashi Iwai <tiwai@suse.com>
+References: <20240517-a2b-v1-0-b8647554c67b@bang-olufsen.dk>
+Subject: Re: [PATCH 00/13] Analog Devices Inc. Automotive Audio Bus (A2B)
+ support
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240517-a2b-v1-0-b8647554c67b@bang-olufsen.dk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:d/iiRC5QJRic14p7QJ6N3VfkYwyyGCbH4WVB1eIzMiHdoYypPQP
+ ql7ZRLKdDFm9Ypsktm0n59n6MY5OAh5959Fjwc7Uk+28sQKUhrb63j1w+Gyrl3c+4Txd/My
+ fsweztoNl8USNfBD61Ph2qzumXcxqJ4n/EvoFSoOUavQzbUtjc3oL1S++nah1+sS8mMn/sV
+ Sga/AIDMLm+boLr8BFA9g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:jh3/DQZ8T6M=;KVkNMRa9ZK94MY5gRlZ8HsQOc4k
+ ymClhjW9gL54NptDiJ0eCs7TXHGIbABcRIhHp2iFVQiXR9sZFwOBtUo+igemEcIt549AW+8bQ
+ SY5SlI5FH7aeq0dukuLWS4ATswBUOhY7jS9/3xmgvaU4C3xxKK2T0uPISjk+a4UaALsDcMH4H
+ B1XHP0K3LUPcmQNTRLszIhYZAMXyz08VHnRXNKW3hOLJMDUN2Vw6XF3YnXtIQkltLInCgGZ2Q
+ fKoqL3enGAWrcNeHZhEh3vKPOqL5lTvfseLJxobOu0QPpSwKOC7JNvkP3Y5A2LMx81qrNB5sE
+ r7MPV/TkTkEVMdW6uKx+0na2A0q3gTgxDClItdrEDOVehjPFDkpiPhzspKH2s4BuFu4JSvQCX
+ xAnbSzgYDb+P1xj308Zzxdax4fg5eAyEGoOBGcaL3kI8ew+mfaIgzpDjZHsUqKiSVJqxwf1jq
+ wvpcrncNbORIHQlIswUKKXWXm3eSSyj9jSDHzear45TtxhORKzYcZ8RyHhPfW/kLwEmwpZPo2
+ u7UcTZbOlJusqZbIiuVK+NmyvJ/YIqoiz+MIic0MOa8mvyLSextsRTcE/2EKhEUAAm+/Bbt8o
+ dZW953jIZ4bY+ZdgxYmBGP0TQxv1yFNQEZcEKTBjc+55AxIg9h6JAdxyEuGZ0i4dOtZoBYKG1
+ CP5vZidWSDU93tdCLhwViHJlA64RfPq1oe5OzAh9WzBEyKvmmh0dNiOzcylKLn5JdBe0M8ght
+ 9eEcpv487v0a6sLubFSVYUOlyfoHBj2VhlriDbMUzbC64Sp1KnZfmXIbeWnVGeU0d4pA/h7cz
+ m1ZxZIY2MJaPZsp74XHqTMJIMeKmLgAIw57/7+WEW2J0o=
 
-On Fri, May 17, 2024 at 06:38:46PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> When commit 89650a1e3b6f ("dt-bindings: pwm: Convert PWM bindings
-> to json-schema") converted the pwm provider section of the text binding
-> to dt-schema it also updated all references to pwm.txt in pwm provider
-> bindings to pwm.yaml.
->=20
-> Most pwm provider bindings had a reference to pwm.txt as it contains a
-> description of what the cells in #pwm-cells are, albeit in the consumer
-> section of the document. Only information in the provider section of the
-> document was moved to the yaml binding, and it contains no information
-> about the cell format, making all references to it for the cell format
-> unhelpful.
->=20
-> Fixes: 89650a1e3b6f ("dt-bindings: pwm: Convert PWM bindings to json-sche=
-ma")
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->=20
-> I yoinked the wording from pwm.txt. Having "Typically" feels a bit
-> clumsy, but a given provider is free to override that order AFAIU.
+=E2=80=A6
+> A2B buses consist of a seires of daisy-chained A2B transceiver ICs known
+=E2=80=A6
+>   This is the main feature of A2B, whence the name Audio Bus. Each node
+=E2=80=A6
 
-All drivers that have 3 cells use that order, some drivers use less and
-skip different values.
+I suggest to avoid a few typos also in such a detailed cover letter.
 
-The patch looks fine, thanks. Will apply it after the merge window.
-
-Thanks
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---k5mzdz6sjp46o5pa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZJIm8ACgkQj4D7WH0S
-/k7DTwgAraN3fJOaIOLC5VKHDnwJQlMIaZjEL5SGJiFHDYb/4B17nm6oWl2fOpLb
-w/2Fky3ybzg8/wqbDWQOOm9/3qK7MD5cF+pZWr3P9DH+tXVh4u/719TJ9YkaSKJ1
-KW/gRT1PaDyibyJ7Qp4og+DNfpK0wg9W3dd3JE/Ggczi+jDf2+L0tNlj5Gmf7NuE
-f767PhkURNijgxwZagcwgYlO0oHahLW6ORnt4k+48sYLdmTBVGwzj92jIVpd2K6d
-LqAd3iHHHdneIXwX7BX1F3k7Zfjg1Rg1umaJ5I+roEmcxYsynn3ULCjPeVhN7CKV
-WAcG4VDTeF8RaqPeQ60EuPQeJoVnog==
-=RAwU
------END PGP SIGNATURE-----
-
---k5mzdz6sjp46o5pa--
+Regards,
+Markus
 
