@@ -1,319 +1,180 @@
-Return-Path: <devicetree+bounces-67740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C59A78C9866
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 05:35:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8E6C8C97E5
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 04:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F78F1F21D87
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 03:35:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8EF21C2156C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 02:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBD117591;
-	Mon, 20 May 2024 03:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aOoVPTBC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6984746E;
+	Mon, 20 May 2024 02:21:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2123.outbound.protection.partner.outlook.cn [139.219.17.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB082137F;
-	Mon, 20 May 2024 03:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716176036; cv=none; b=GMHb+Ck9Grtn9j4kslvvrg+GYSjmrlYjWro7OOf7Jtr3l068Xu3FnGqTz1rsjiO5WJ4xEDronKypfYRCYT1DJwPzotCoZ0JsL8fWiFaUkMp9EjrJbaIYFFlgUuSj9DWvTZLMi0p2NEyrA51cL/Y5HBjy5XYFBD3qbg+wzkJOR28=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716176036; c=relaxed/simple;
-	bh=plnloc4R0cYuJTqztotY3co4+cXcUvKeJz08cZEan/M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=XNNd0wIp3LvxM0Wu/RzphWWW6tOrtpqQKWVyG9tOFoCC3BltmLmC8urKTnGGltwyI9K21kuChZX8YL9DiwF+A2vV6vhZIR0GIvGnjR7yuc4EbLQxf9zJjVoA6c1bCle+slBCl3w7mboxKRkXYToEimL2aqNuaq1wq1jsZZ60OB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aOoVPTBC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44JNH9nD010621;
-	Mon, 20 May 2024 03:33:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=tK+IxES2keQIqJt2/7o7hcJdHnAPmhKQEhHTNnNaVsw
-	=; b=aOoVPTBCIWgub/STIe8fINAW1zC9DGIYYrHUAK+22DEyed+jZJDBVkU5vyP
-	GKuLq6fkwAUkVnrLhLpcGcUkeNdzvtmVMntgh7P+KndPWGNvrapTPZ3orIarWK5k
-	trI0AebBMfuoS40FQVZlJvfgsPjLZwHC0VQeybmVvNYVIu+pZTxE4nOUm/ALUgxJ
-	cgNar8JTR3ty5N+GeXOSDVvXMfNlAeOSQit1wiHCVf3v7HB7NadMYmDFDoa34tt5
-	oClNAmuFqttEa8UAagGO4Uo4V0slMawrULRonWjw+YKTxv2v3tYRaN5z63+JhL/Z
-	i3/8hZFaGTVQCGhkQq5TgcH78gA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6psna7v7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 May 2024 03:33:43 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44K3XgWW027058
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 May 2024 03:33:42 GMT
-Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 19 May 2024 20:33:36 -0700
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Date: Sat, 18 May 2024 19:01:47 +0530
-Subject: [PATCH v13 6/6] PCI: qcom: Add OPP support to scale performance
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CB7A937;
+	Mon, 20 May 2024 02:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716171699; cv=fail; b=tc4pXuW0VMjOjN+HK+9B/YgFlR5NhnJJe5EbLQVmUAqmjR/CcXIL2MDBCMuajkbtsFOxL4BQkhNUvdUz/TEmdLKnqFjkI2QpRJwuSZ8PPoE5MfcahIE7ixxPbfJ3sPZe7IC1Jm0YfhlZiE+8FF+WI8eifndefS+c5ekXptN5SSg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716171699; c=relaxed/simple;
+	bh=J0O+1ofwQMSIDgG+AX34v2/U75QKsXvVUr5eqvQBS0g=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pqAlT6k+JnwxiB2drp54lAOI8B9G+E+JgpaFGNSbHOWWByPsNLM4k6Eteb0/P+ShxgqSvNjSpaWGeOH5Z1FTaS1W+WyEAlzoBxw2IO1uttbjIbLpOPrxs/Gpr1dzjXGkCj8984bF7/rZAUgwdARZE12BDc+oyxAbB28Yd7yN0Kw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dzV7LYo/c12ZolieE7ro9G/VZ/RKZdLFzOXnH6aOwa7dERoFY+xDn/FDmx4aM5O3wA1tKn4zx9MoCOjOHuhJs9ZtZ7KDnb7ZUjlfKv068lNrIri6AjEL7HJ3UcBTTBeIWrYwK8fT7On9/QH12TJ28YGk4tfTsgCnCF6GyAV/WJ0DrDHiPwTO/Kt03+vNmpdGHtf7khAsEcR4NsWcrDj5/H+ZQF1bQS9w5zFrwmfkCjZhF1Ut/+TAsMoluINQmLLn4S9tN+nAjkOT5d2FHlYeSgrhgMUEij+Nzqu/BGTFUcTkcI+xDMTnj2ObuKuuENTD32MGKl2J2Q0c7Wnh+ZE1sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vVBS9DS0R+fOFyJNUnKA8QOp5fHBabIVD3/mWUEwA0Q=;
+ b=goJlgZVNRTjDucQxeci+RmtgKgBkDh/zukkYU0DNVtj6FCkgmdtFJ7M2W9N5ehYZO3DwfYw4HCfgiSW5GxkyyBwVfySL1SLVVfLbAp+8rsE01OeCU3I+yJEXnNGPnd8QIdskCJDBrIi9cTLaB4mp97BXtnfjE4F2xi3PyBiwkKpx7K6Mt/iniHA6Sy9t4XqdB2emX0YCRJKK+jLuSvKFxsViLgKy20F9mDjNr6a6tBtXuaI+qvAGD0ZTsxJoCLriuQjcdpinoD5D5vob4HaAcaSlaDm8SCyByAVOM4b2QqM9xQNtYoGgMuniq/JEKWtne08voR3tSXEctib3xWRR5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1163.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Mon, 20 May
+ 2024 02:06:45 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::5de:15b9:3114:4f45]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::5de:15b9:3114:4f45%5]) with mapi id 15.20.7472.044; Mon, 20 May 2024
+ 02:06:45 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+	<jirislaby@kernel.org>, =?iso-8859-1?Q?Ilpo_J=E4rvinen?=
+	<ilpo.jarvinen@linux.intel.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>, Emil
+ Renner Berthing <emil.renner.berthing@canonical.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v1 1/3] dt-bindings: serial: snps-dw-apb-uart: Add one
+ more reset signal for StarFive JH7110 SoC
+Thread-Topic: [PATCH v1 1/3] dt-bindings: serial: snps-dw-apb-uart: Add one
+ more reset signal for StarFive JH7110 SoC
+Thread-Index: AQHaqCHgtz79W1ezuki878Bx/wUczbGbmvWAgAPIpRA=
+Date: Mon, 20 May 2024 02:06:45 +0000
+Message-ID:
+ <ZQ2PR01MB13078FDA1D4A37D85F97B4C2E6E92@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+References: <20240517061713.95803-1-hal.feng@starfivetech.com>
+ <20240517061713.95803-2-hal.feng@starfivetech.com>
+ <20240517-lion-supplier-f4d15b0edcff@spud>
+In-Reply-To: <20240517-lion-supplier-f4d15b0edcff@spud>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1163:EE_
+x-ms-office365-filtering-correlation-id: 952465af-f1cc-4095-a440-08dc78717fe5
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ 9k5lPWH+vPTvFsARkz8OGSNhI1ys9+qh2xZMbritMzAblBDGG1H/1/iqbIvwnusKvR+ldCjqHbwe5IBQ0TWEAe2tPLI/+j7pYnAuIYm2NWLwmZBhiwkNVu3cBGroYLp2yOGUtzckA1Kz1xAkebcL7N+VlvIzwwKRhn6enrF+CA0UPoTP8TX9/fI1MSFTD19rY0xkBhsxSIjLrmTTKQJTWQcl9yDTtChRv1NQANqUesDeZ0iZWDRS/YrvLbH91QMcmMSBoGZf6TUL2/ye78xMrGNIEjHjyXMSpmrjo65SOTZrbQOzMsmJJafE765ViTh65u9Qg8cOeSvNdQN9XyKtNbmJxiTxsYazT2WLYCfG7u1sMGGdgrEji8mfiRyaoJ39SezSNbbMZfHa1NbBrFvHnET0fmXt6ABdpOvHqbztv1Ti8rqjou50dnwSBzKeSnkCCbjbPokvlqzoFX0HoIn6tk3Mh8N5383TuXEYwIpJicIG2E7SKLx/YLvXH6neVlEI2XuhTxLy+X0hoTyVtToNt/wk/tRwMNmXN2A223MKW4R6oo3Y/eKItBCLSJiIMCT8NOGxixVZHUe4C35Bud2tBJKIq7dUSQq8pxe4CLH0nP/3wcnlwpRroEGf4siC/Ai/
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(7416005)(1800799015)(366007)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?qKa9waZlakTBGpNhwyn+2noJEn1KcKeYKM+y2MVriYfkakhD1cxcsq6vvC?=
+ =?iso-8859-1?Q?0Q7CE2lO/qgtVPuecX3q5dfJxOyEojucGkUEMXWAfZdssF5Cud8EcVPMWf?=
+ =?iso-8859-1?Q?ahiF+yKXFKr5lirpGdbBkptO6rb8GnRLudUzZVAxKlX88v5x7/JZg1mo07?=
+ =?iso-8859-1?Q?rDjqbDfFgk7c0p6GRDkWHWAdF02lQYU7kI5tCuHFTQvGMq89Fjsvg+GahO?=
+ =?iso-8859-1?Q?ipO6S4q3pAEs8KViqkn0x1BBt4nxseUErWkDBiNEJhdU19SGU2AT7AKoER?=
+ =?iso-8859-1?Q?yLaGLJWkFPG8qVveMTwVVux2wWBDu+eAZsKbYcJIa60EcH/1k5Iuq+emnR?=
+ =?iso-8859-1?Q?POIMVYvDTsaTl/SAW2Q/ziN5utJoc7m2zNNXZ96s4tsSbtGbON4QXcrEUM?=
+ =?iso-8859-1?Q?q9/uqbF0W1adGWS+ArtAZIRKuiUaRtVNfgXArxMW/Bvb4MPZEQXEPvrRkZ?=
+ =?iso-8859-1?Q?r6vKUNv7d4qfIP3s3W6wRSDAw1vr3nbLBXth0h0DXhEEeZKZx4hg/vymiN?=
+ =?iso-8859-1?Q?pDKV1bpVw4L1+Pckm//rLOk2gzqh3jUgf5Bj+U/srouBl6pTOuxd+FQEkI?=
+ =?iso-8859-1?Q?8X91ZqrJ9w53IiRKe36Kv+1Y29MXsGcT93441LznAUWRIFPloxSe9VOxFx?=
+ =?iso-8859-1?Q?+cDZ/VxBR9r7p0YY4uSXdOuhdSYfibK31Jq3QnWJVyvL1vUG7bX1Uqt9/w?=
+ =?iso-8859-1?Q?6aa8smCMtNz7X1VHUW/n5RSWwZ8/CuM4H5cnlJpsWwS4uYxvfEggojqaSP?=
+ =?iso-8859-1?Q?NZ0NkrIuWwhVo7zoyCnqRHb8M0ndMOntAWXQX1N3v237Nhwn0uoJ+kPR4e?=
+ =?iso-8859-1?Q?/NGvTIAZ8h54PSKVKXANVL1Iu3D+hj8URavkNRr218Pzh8Acfouls2XZnj?=
+ =?iso-8859-1?Q?5P7iwOmHWDi9OuYtX8WYoEsU9jWdIdeGGbViGvyW6K7pwR0Kad9z/qcmzx?=
+ =?iso-8859-1?Q?uMzoOOfy0JF4fB8/1XAhgaILHwFvKe+0nfVn+U8Kn1F8tTS1PZWp97VN0p?=
+ =?iso-8859-1?Q?ulcqyC1ojjIT5kQQc9yhyeJZbk4aXi3AwBk2Llqe7X5rVrwb00tINps6RI?=
+ =?iso-8859-1?Q?N6DEfUW/TzC6BQ2nLB0sxDm0IslUeEbSppuxdxc4AIMm5JXFOfHyOSeDZU?=
+ =?iso-8859-1?Q?rkob0wYRPttWGtnUV7u7Uy1Jnd3yv3ukxfMuzYomQ+h8HOkMdBl/pcWpuc?=
+ =?iso-8859-1?Q?oQVqcAFvRzN8GwFyGgAYoXWAZUTHlsJ3nyebdQE8nMYWxIUZgsw1hosOZ4?=
+ =?iso-8859-1?Q?mAXlnH/e/ANJtDTBh8yipkI2xl1iDqrZgb2CXzh/FJUFc+ROJSYq6jFuKw?=
+ =?iso-8859-1?Q?y9zL1EO3BPV6zKbT7tOnBUEk+6I6iZnHNyizPEUA3HupHLOAcmszbEPfgo?=
+ =?iso-8859-1?Q?Fh/mXVX09mIo8jOznctQxEWV3O7oXz1/K5soRn+ramZIa9TI2QsnLyEWYA?=
+ =?iso-8859-1?Q?2BkPiisyY8wkiWQ64UsWyuUy6OO/GpfPtnaRmMJBm1ubs75NsUOsx1G53t?=
+ =?iso-8859-1?Q?5p50ptcds9lmBr8HtfvrbLbpucmJ/6YUCKGc2UXTnMozeTeJ4sadEME8Ox?=
+ =?iso-8859-1?Q?VrG8of3lqCvC1twmVE7szBEh8qDPjh6tb22EKM17wv0ngxCnXjokv/WDj1?=
+ =?iso-8859-1?Q?4cAaFjrFJgl1Mix/3UGrog9OD6yrobQ4tp?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240518-opp_support-v13-6-78c73edf50de@quicinc.com>
-References: <20240518-opp_support-v13-0-78c73edf50de@quicinc.com>
-In-Reply-To: <20240518-opp_support-v13-0-78c73edf50de@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, <johan+linaro@kernel.org>,
-        <bmasney@redhat.com>, <djakov@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_parass@quicinc.com>, <quic_krichai@quicinc.com>,
-        <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716175976; l=6490;
- i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
- bh=plnloc4R0cYuJTqztotY3co4+cXcUvKeJz08cZEan/M=;
- b=gdcwmO9dCytn6YX/OaHvM0h3rKRUtzwl+0pN4Yw3PCj8mXDgsGBSd6xgWwoev46Q0ITpvHGot
- ZbS8uod/XBpAueTRHmuwrPDRqwYNCUT9wrPVi9h0VyqEba1OfuXmOIv
-X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: h5i1Jvwuna5DTwgxA4K43T-aCwOM4RDl
-X-Proofpoint-ORIG-GUID: h5i1Jvwuna5DTwgxA4K43T-aCwOM4RDl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-20_02,2024-05-17_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 bulkscore=0 phishscore=0 impostorscore=0 adultscore=0
- mlxlogscore=999 clxscore=1015 priorityscore=1501 suspectscore=0
- spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405200028
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 952465af-f1cc-4095-a440-08dc78717fe5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2024 02:06:45.1813
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Peb/C4SSXRRbhlnso1gkx95RYSiP3v3nj3jB2IW+rlo3jzXwDI+UpRCIInr0TdqlDQz0SpqWiWps2WepPoGKZnLlGDX1IUGJVOHUg/+bK9A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1163
 
-QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-maintains hardware state of a regulator by performing max aggregation of
-the requests made by all of the clients.
+> On 18.05.24 00:17, Conor Dooley wrote:=20
+> On Fri, May 17, 2024 at 02:17:11PM +0800, Hal Feng wrote:
+> > The UART of StarFive JH7110 has two reset signals.
+> > Both of them are necessary for JH7110 to initialize UART.
+> >
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > ---
+> >  .../bindings/serial/snps-dw-apb-uart.yaml          | 14 +++++++++++++-
+> >  1 file changed, 13 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.=
+yaml
+> b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> > index 1001d2a6ace8..a6396c5cbfb1 100644
+> > --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> > @@ -13,6 +13,16 @@ allOf:
+> >    - $ref: serial.yaml#
+> >    - $ref: rs485.yaml#
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: starfive,jh7110-uart
+> > +    then:
+> > +      properties:
+> > +        resets:
+> > +          minItems: 2
+>=20
+> else:
+>   properties:
+>     resets:
+>       maxItems: 1
 
-PCIe controller can operate on different RPMh performance state of power
-domain based on the speed of the link. And this performance state varies
-from target to target, like some controllers support GEN3 in NOM (Nominal)
-voltage corner, while some other supports GEN3 in low SVS (static voltage
-scaling).
+Will fix it later. Thanks for your review.
 
-The SoC can be more power efficient if we scale the performance state
-based on the aggregate PCIe link bandwidth.
-
-Add Operating Performance Points (OPP) support to vote for RPMh state based
-on the aggregate link bandwidth.
-
-OPP can handle ICC bw voting also, so move ICC bw voting through OPP
-framework if OPP entries are present.
-
-As we are moving ICC voting as part of OPP, don't initialize ICC if OPP
-is supported.
-
-Before PCIe link is initialized vote for highest OPP in the OPP table,
-so that we are voting for maximum voltage corner for the link to come up
-in maximum supported speed.
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 93 +++++++++++++++++++++++++++-------
- 1 file changed, 75 insertions(+), 18 deletions(-)
-
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index ed4453db3e56..9896545edc90 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -22,6 +22,7 @@
- #include <linux/of.h>
- #include <linux/of_gpio.h>
- #include <linux/pci.h>
-+#include <linux/pm_opp.h>
- #include <linux/pm_runtime.h>
- #include <linux/platform_device.h>
- #include <linux/phy/pcie.h>
-@@ -1444,15 +1445,13 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
- 	return 0;
- }
- 
--static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
-+static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
- {
-+	int speed, width, ret, freq_mbps;
- 	struct dw_pcie *pci = pcie->pci;
-+	unsigned long freq_kbps;
-+	struct dev_pm_opp *opp;
- 	u32 offset, status;
--	int speed, width;
--	int ret;
--
--	if (!pcie->icc_mem)
--		return;
- 
- 	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
-@@ -1464,10 +1463,26 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
- 	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
- 	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
- 
--	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
--	if (ret) {
--		dev_err(pci->dev, "Failed to set bandwidth for PCIe-MEM interconnect path: %d\n",
--			ret);
-+	if (pcie->icc_mem) {
-+		ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-+		if (ret) {
-+			dev_err(pci->dev, "Failed to set bandwidth for PCIe-MEM interconnect path: %d\n",
-+				ret);
-+		}
-+	} else {
-+		freq_mbps = pcie_link_speed_to_mbps(pcie_link_speed[speed]);
-+		if (freq_mbps < 0)
-+			return;
-+
-+		freq_kbps = freq_mbps * 1000;
-+		opp = dev_pm_opp_find_freq_exact(pci->dev, freq_kbps * width, true);
-+		if (!IS_ERR(opp)) {
-+			ret = dev_pm_opp_set_opp(pci->dev, opp);
-+			if (ret)
-+				dev_err(pci->dev, "Failed to set OPP for freq (%ld): %d\n",
-+					freq_kbps * width, ret);
-+		}
-+		dev_pm_opp_put(opp);
- 	}
- }
- 
-@@ -1511,7 +1526,9 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
- static int qcom_pcie_probe(struct platform_device *pdev)
- {
- 	const struct qcom_pcie_cfg *pcie_cfg;
-+	unsigned long max_freq = INT_MAX;
- 	struct device *dev = &pdev->dev;
-+	struct dev_pm_opp *opp;
- 	struct qcom_pcie *pcie;
- 	struct dw_pcie_rp *pp;
- 	struct resource *res;
-@@ -1579,9 +1596,42 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_pm_runtime_put;
- 	}
- 
--	ret = qcom_pcie_icc_init(pcie);
--	if (ret)
-+	/* OPP table is optional */
-+	ret = devm_pm_opp_of_add_table(dev);
-+	if (ret && ret != -ENODEV) {
-+		dev_err_probe(dev, ret, "Failed to add OPP table\n");
- 		goto err_pm_runtime_put;
-+	}
-+
-+	/*
-+	 * Before PCIe link is initialized vote for highest OPP in the OPP table,
-+	 * so that we are voting for maximum voltage corner for the link to come up
-+	 * in maximum supported speed. At the end of the probe(), OPP will be
-+	 * updated using qcom_pcie_icc_opp_update().
-+	 */
-+	if (!ret) {
-+		opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-+		if (IS_ERR(opp)) {
-+			dev_err_probe(pci->dev, PTR_ERR(opp),
-+				      "Unable to find max freq OPP\n");
-+			goto err_pm_runtime_put;
-+		} else {
-+			ret = dev_pm_opp_set_opp(dev, opp);
-+		}
-+
-+		dev_pm_opp_put(opp);
-+		if (ret) {
-+			dev_err_probe(pci->dev, ret,
-+				      "Failed to set OPP for freq %ld\n",
-+				      max_freq);
-+			goto err_pm_runtime_put;
-+		}
-+	} else {
-+		/* Skip ICC init if OPP is supported as it is handled by OPP */
-+		ret = qcom_pcie_icc_init(pcie);
-+		if (ret)
-+			goto err_pm_runtime_put;
-+	}
- 
- 	ret = pcie->cfg->ops->get_resources(pcie);
- 	if (ret)
-@@ -1601,7 +1651,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_phy_exit;
- 	}
- 
--	qcom_pcie_icc_update(pcie);
-+	qcom_pcie_icc_opp_update(pcie);
- 
- 	if (pcie->mhi)
- 		qcom_pcie_init_debugfs(pcie);
-@@ -1626,10 +1676,14 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
- 	 * Set minimum bandwidth required to keep data path functional during
- 	 * suspend.
- 	 */
--	ret = icc_set_bw(pcie->icc_mem, 0, kBps_to_icc(1));
--	if (ret) {
--		dev_err(dev, "Failed to set bandwidth for PCIe-MEM interconnect path: %d\n", ret);
--		return ret;
-+	if (pcie->icc_mem) {
-+		ret = icc_set_bw(pcie->icc_mem, 0, kBps_to_icc(1));
-+		if (ret) {
-+			dev_err(dev,
-+				"Failed to set bandwidth for PCIe-MEM interconnect path: %d\n",
-+				ret);
-+			return ret;
-+		}
- 	}
- 
- 	/*
-@@ -1662,6 +1716,9 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
- 		ret = icc_disable(pcie->icc_cpu);
- 		if (ret)
- 			dev_err(dev, "Failed to disable CPU-PCIe interconnect path: %d\n", ret);
-+
-+		if (!pcie->icc_mem)
-+			dev_pm_opp_set_opp(pcie->pci->dev, NULL);
- 	}
- 	return ret;
- }
-@@ -1687,7 +1744,7 @@ static int qcom_pcie_resume_noirq(struct device *dev)
- 		pcie->suspended = false;
- 	}
- 
--	qcom_pcie_icc_update(pcie);
-+	qcom_pcie_icc_opp_update(pcie);
- 
- 	return 0;
- }
-
--- 
-2.42.0
-
+Best regards,
+Hal
 
