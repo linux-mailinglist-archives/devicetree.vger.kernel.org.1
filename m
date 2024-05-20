@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-67747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227928C9919
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 09:05:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BA38C991E
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 09:09:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 820531F2150D
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 07:05:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0886281877
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 07:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FE911CBD;
-	Mon, 20 May 2024 07:05:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D1B17BA0;
+	Mon, 20 May 2024 07:09:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J59zZh3o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fpS9T45R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E88318EA1
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 07:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2B517991
+	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 07:09:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716188728; cv=none; b=UWjqdiFn0Qooh7fBlpR+FY/3EGGOiZV2p2qnbRX/6x51T7IavGrElxNNe7wHWSOL30C8IZolp4J7x5RmOpaXbYKFIq9vLU9/WenzfpcKIv8+H5vKCm36CfB68RzBc899cBv+C2kEwpITKdnUXNcyBXuKZcRU5t3/zC3+JBkzvUE=
+	t=1716188950; cv=none; b=n3mPCnujpax21FGiaMK9XbEwaHXvVX9S1pVrfycOAeoZgTmYzda6/lt+hhSBxsSUVlfkdw855AOqgU6HURgq4zf+3w6ypjYE/iBCqrdlpoVJNil3BSSCYEqA8O8LLpmcQY1lYUvcij+P/E7OQoPoF5XFV+oc6m1BLSVDXng3r28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716188728; c=relaxed/simple;
-	bh=/Wl5uXlOud/2QNc/7hml6aKCi7xG1xLos7eyCVSM0Tc=;
+	s=arc-20240116; t=1716188950; c=relaxed/simple;
+	bh=0xb9rGqPLMCZSoyt+zr1CoKXYGv7ul1gL18MO6t3qVY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vr730G6XnBR4KMc5A5xZ8ggDgwnLMyFxy7rebKpkKGNjPTPioAuO0gE38KRfsnSx/QVBkf7dByxoi4k5segx0CeiREDIw9Ce5Qpeu0fFPofbyXIyxycs++JiQFQuEhwC2puNhy/VxXhXPfEbe2583VpZqaK5ZcOSEgid4JS6v+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J59zZh3o; arc=none smtp.client-ip=209.85.208.51
+	 In-Reply-To:Content-Type; b=qIactd/ftADIwo4yIyI7qJHzlmlnIaYmkGRqymzY1Ru9BvIXdLIST6X9ldu8a8I7iX1COQqjwoe1pLJBSSUfYvLiZ8hO1Fp+cwFfIyxngG1nZpFGGMGyNF+MRRvp/dBfOFPcFocz0u3l0j1YG8UBT+DSH+lbqLYMWhws89fP6vI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fpS9T45R; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5708d8beec6so6630598a12.0
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 00:05:26 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51ffff16400so6287143e87.2
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 00:09:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716188725; x=1716793525; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716188947; x=1716793747; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cRVZNfZtnmaJeYJkRps1wdFDiSJDHs+PkMH3mG03nAE=;
-        b=J59zZh3oUDgM787VknJIkPfgsxImK5EbRQ2Wsd25FgioA/ReLbTkv7LfBpbmW5n2mU
-         MktUyVWgepPxqoKINMFOMOD51vb+Y4uFvEipYHJeoN6i/VnpI8H+0dyMEVAUUEMoD9v4
-         K2PgSo9ZltK8Fxnf7R9VuoKWdMtpwKoG7UiOSv1ptxbj19z08MHEUFWJrzYNY3CK9xSY
-         aTIaHOQIDmSvgB5zsdtSbj7IgX05QlbL90nnbGVICCVvh+Pxuddain9DMPIqE0FT0aPG
-         DoGNEqHnd5Tc+mY75qd3OYPsk2gkieSMgajLxXhLfa65QdJECFAoeRk+0UQ6p6QDDCaX
-         FKRQ==
+        bh=kiyrjpf20boahfYODaVgUoaaasy74zM8DfkCEcceeFU=;
+        b=fpS9T45RsGkFNwxXH6m8FARFrPAAULZ8H6gxTeU4E6/JzC3S6ljS07WextxEWJ5PNK
+         3dU523IDEhbDGV9mIhHE2tCy/HCWND2R2DdMmozKXsChac60DiEkSsDPWncejD6sUfms
+         UJ9+KVktVUdPjDyNuWJAj4NwCCSiXkzdK7pNFdS0riowdlvxATlHzNjGMI44y9ZdudCg
+         HY8hrTVD8yeQiS611q5cdP//pFCZruR4wEbaiaxXUrv7SnqyGSBVNzge0fT22iQUfbQC
+         UmlRMI5y7g3A6rudpOT7ib9d+fcrg5H4u6CeVN6/Q+Iqom9ZKNRQPQNtkV2XOMceTlsP
+         dlUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716188725; x=1716793525;
+        d=1e100.net; s=20230601; t=1716188947; x=1716793747;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cRVZNfZtnmaJeYJkRps1wdFDiSJDHs+PkMH3mG03nAE=;
-        b=D/hpjr0j8sOUH1MVmoAb8PKAjseBzmXhZtRvIh6Up/lbB1dJcdYPQTzl2QIRI0y2QE
-         HnYvIQKYtlWSX6yeM9dNsFh+WriYL0dxNAMZjKyAbgWncM3YZtYUthQ3+q/VFvAdh5aq
-         ejVGJ9A1PmGnY/5nLBamvz/UEktQVRNYR/PRChMU70o+jFWj5PmEAZnX2X+V49/a5Qds
-         Nr2cs+8dug7D2KosmwunXfWbT9nGfFHT0WOnoGD/3v9A67pezc7OBEN7tOSsY68tcO1v
-         kEcyVpqllZ+m5+Ha2heH6++Ba5VuIxZ5GrAfmgMoTybLJR01YcRPPgcqtAtfhzaOyKQF
-         aNIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXP3BqopxLO8QoZC3b1+hNHMmWfoUNjEP61Nrd52E0lCE2TPxt4eVxHAJ61Ul2OqmpCDr5lrfSY0rczZRVPY4pGDNZnV2taDlQaFw==
-X-Gm-Message-State: AOJu0YxP1J+VvYz8LhNVLGyL7T7f3fGYfU7koxVPBjnOhOn5MKo61s7f
-	X0eX/exQPsjUiyASJUrmPzE8TTO4O0vOmyEq5ZQJGYW++QnOeXySFhqFcZql2/I=
-X-Google-Smtp-Source: AGHT+IFGiTsaRf1Oo+UFD6DcNK7cD33s99ReDtkCZnpJvG9qN1wi2uN10ul2H6xxYTQJ0ydj+Wchtg==
-X-Received: by 2002:a17:907:7d8e:b0:a60:c514:31d9 with SMTP id a640c23a62f3a-a60c514327bmr336027666b.6.1716188725064;
-        Mon, 20 May 2024 00:05:25 -0700 (PDT)
+        bh=kiyrjpf20boahfYODaVgUoaaasy74zM8DfkCEcceeFU=;
+        b=p6OTW4/3WIHx1Jm9PT9m4xVB/Qa9G6/ZV9Mm+WD+IwF49c09dY18agfd+lxkqB92Mn
+         3+UKOeUUCIW1wr7Xym8D79XE3jaI4bhlrDOjH09CtSyWManmZQEO8RnSmg30EGp31bF5
+         iqXH4Q0gzQfv8ykjy+7EJK1d/A9MZxl++bp1vISK5SL8ZTV4dZ5pitkP7Er4zBAUl6MD
+         ddszCGoEc7kwrqznqyBiOrWXDyhG4l4UeHG0SBC23XgubBA7ft4hhsdg0nTHsjnSFQAn
+         stAZYMrVzWLbE63RP9IVuiYlTpCDK0CNuT9k+LbnbZ8ZYnhIrHAyA5wSK/A6OiGcS9I+
+         Y/qg==
+X-Forwarded-Encrypted: i=1; AJvYcCWQs06tIMaA2LCTNBpbgxIXnkdTC2BpnVEtWerJyf5sam0V5G5caAZ+9ED/z2dHcB/yxSZlJ6VmSMsEVECk36/Pu1gQ+AnOo1whtQ==
+X-Gm-Message-State: AOJu0YxXJyHaoV1J4COAtLZZA36mMTVlLCfdUJgqWXHMU/96Ale+KaFt
+	11BhFffHWa+PDcHtpChtm1HoXQSZIhRRwDfdTMp9jT+49WsFyZowFfvb4/aaccs=
+X-Google-Smtp-Source: AGHT+IG9x+WQxBXG1YbU6a8p0uWmG6wF2P3iHkbOXX4aiVI1y2Kcd8p8Av8hc4p+8nJRchqXusKteg==
+X-Received: by 2002:a05:6512:4003:b0:522:221:d19d with SMTP id 2adb3069b0e04-5220fd7bfccmr26640844e87.15.1716188946600;
+        Mon, 20 May 2024 00:09:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781e97bsm1410525766b.32.2024.05.20.00.05.23
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781d6bfsm1419329466b.31.2024.05.20.00.09.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 May 2024 00:05:24 -0700 (PDT)
-Message-ID: <6f5b26d6-c452-4490-9d34-d0a4207139ba@linaro.org>
-Date: Mon, 20 May 2024 09:05:22 +0200
+        Mon, 20 May 2024 00:09:06 -0700 (PDT)
+Message-ID: <c05f91f5-a878-4f36-b325-0ac8e038a7e5@linaro.org>
+Date: Mon, 20 May 2024 09:09:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: phy: airoha: Add binding doc for PCIe
- PHY driver
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-phy@lists.infradead.org
-Cc: vkoul@kernel.org, kishon@kernel.org, lorenzo.bianconi83@gmail.com,
- conor@kernel.org, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org, dd@embedd.com,
- catalin.marinas@arm.com, will@kernel.org, upstream@airoha.com,
- angelogioacchino.delregno@collabora.com, amitsinght@marvell.com
-References: <cover.1716031610.git.lorenzo@kernel.org>
- <82688bbe03ae2d68af838c2bc7fd20491a7d42b1.1716031610.git.lorenzo@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: mt6358: Convert to dtschema
+To: Kartik Agarwala <agarwala.kartik@gmail.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20240518081621.63386-1-agarwala.kartik@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -134,29 +131,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <82688bbe03ae2d68af838c2bc7fd20491a7d42b1.1716031610.git.lorenzo@kernel.org>
+In-Reply-To: <20240518081621.63386-1-agarwala.kartik@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/05/2024 13:31, Lorenzo Bianconi wrote:
-> Introduce device-tree binding documentation for Airoha EN7581 PCIe PHY
-> driver.
+On 18/05/2024 10:16, Kartik Agarwala wrote:
+> Convert Mediatek MT6358 Audio Codec bindings from text to dtschema.
 > 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+> Signed-off-by: Kartik Agarwala <agarwala.kartik@gmail.com>
+> ---
+>  .../bindings/sound/mediatek,mt6358.yaml       | 47 +++++++++++++++++++
+>  .../devicetree/bindings/sound/mt6358.txt      | 26 ----------
+>  2 files changed, 47 insertions(+), 26 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/mt6358.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+> new file mode 100644
+> index 000000000..f57ef2aa5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/mediatek,mt6358.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek MT6358 Audio Codec
+> +
+> +maintainers:
+> +  - Kartik Agarwala <agarwala.kartik@gmail.com>
+> +
+> +description: |
 
-How the binding was tested?
+Do not need '|' unless you need to preserve formatting.
 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> +  The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
+> +  For more detail, please visit Mediatek PMIC wrapper documentation.
+> +  Must be a child node of PMIC wrapper.
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Did you update the PMIC wrapper binding with ref to this?
 
-Subject: drop driver. This is for hardware, not drivers.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt6358-sound
+> +      - mediatek,mt6366-sound
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You did not test the DTS.
+
+I think I raised the issue already: please make necessary fixes to the
+binding (with explanation) or to the DTS, when converting the binding.
+
+> +
+> +  Avdd-supply:
+> +    description: power source of AVDD
+> +
+> +  mediatek,dmic-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      Indicates how many data pins are used to transmit two channels of PDM
+> +      signal. 0 means two wires, 1 means one wire. Default value is 0.
+> +    enum:
+> +      - 0 # one wire
+> +      - 1 # two wires
+> +
+> +required:
+> +  - compatible
+> +  - Avdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mt6358_snd {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Definitely no underscores. Probably this is "codec" or "audio-codec".
 
 Best regards,
 Krzysztof
