@@ -1,251 +1,109 @@
-Return-Path: <devicetree+bounces-67830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AB618C9DA0
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:43:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2553F8C9DAC
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DFAD1C241F8
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:43:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB3941F227B4
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2CB55E72;
-	Mon, 20 May 2024 12:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AD91339B1;
+	Mon, 20 May 2024 12:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Y5RCrHfE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Qvmb8sGu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3BA350275;
-	Mon, 20 May 2024 12:43:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393BF51005;
+	Mon, 20 May 2024 12:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716209022; cv=none; b=n8MW+8Ygs+cjsVwRO3Pmpkl7y0o3pIdl2NXvQOlVTuxyCDsA0+v7vb8KqTosEznLmYRgFj+4+x4Wa09o2Jzj7EvG/09YL0VLJ1wuZDmR1R4oFVUgYMK5/8uC9oKxJ+oRFOQrXx9LAn0/JTwfQrvYuuDpBvateIAUMLFMXOtD9Tg=
+	t=1716209427; cv=none; b=AIv/XHOmghYwZHug1FuI5fnUOxKObkmYHUpBqVdpInYoyea2dt3ylUKDrQV6YWOlmlQSLnvEHqYbaN8mA5Pqf42+LtCRajiTVXDJhjJ1Vekf/ba+YXO/0D43GYYqGDcbyQEVAZB3XNVRPpfXwwxyE9BvK61vf1BWsQ7InUw7LU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716209022; c=relaxed/simple;
-	bh=xN6NLJLMQbPFOVmGkO2AhqBxqsJOhKBpovNMWJiLCxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oQIcm8dI9TMvr1mEGldd+GyjePLPRqfei41zuAZYl0A9jXeNIw6KifGZY684KPMlWTNmSbWv0y1tYipCZ47kHpIOAOB5p0TFtabdW/k1oS4qSTKJzjY6i2MP1OEBNr9U4vnFDNWIZ3Us2Iuh+sQP5EI591APLEvBklIYo6gdqCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Y5RCrHfE; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 031BD40003;
-	Mon, 20 May 2024 12:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1716209017;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=d/bZqhMhLpFnI8MSy/Le7u2at2ACghAX1DiKyzwBhx8=;
-	b=Y5RCrHfEI9cp4Rpl09xzDfPx1BWhLVhhOLEHYb9opBCpXwTY1wA5YxT1DhMtxvkIF0z72P
-	sndEaNXUhO6IWJKkXjVfarump5Qgmku1xG1cfRL4aeyW+XeiSW7mXqIsQ3H/dMTJNP6i9i
-	s6jjZqgodugbXGRncI0V7qGyQNohiLEuZjEBKjHgjuwRTlmAR8byVTLlFTjfQSwL7D7GaC
-	VrUdT0F9boligLRphJRAvWpjC8TeuDKcXpD1TO2Gn44cSajLA55V/NnkDTDxBGJtsiafks
-	yjx02pqWu8EuaTDIscuobgmBOeRbhNIAfBszQDWIOCFv1BzwkqcsZZ0q4tbBKA==
-Date: Mon, 20 May 2024 14:43:34 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
- <richard@nod.at>, <vigneshr@ti.com>, <manivannan.sadhasivam@linaro.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mtd@lists.infradead.org>, <quic_srichara@quicinc.com>,
- <quic_varada@quicinc.com>, Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Subject: Re: [PATCH v5 5/7] spi: spi-qpic: add driver for QCOM SPI NAND
- flash Interface
-Message-ID: <20240520144334.79c754e3@xps-13>
-In-Reply-To: <434590e3-9298-dde9-f527-6596dbd1952b@quicinc.com>
-References: <20240508083637.3744003-1-quic_mdalam@quicinc.com>
-	<20240508083637.3744003-6-quic_mdalam@quicinc.com>
-	<20240516145642.644a7f1c@xps-13>
-	<434590e3-9298-dde9-f527-6596dbd1952b@quicinc.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1716209427; c=relaxed/simple;
+	bh=09r44g0dLFLCn3HIOUabAtGornPeuQTWckmaYZEOAZY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VpybGep+e8N0AfLtFeA09Tr1VrAFgJfatXDJeoBbjJkbnMnx5dlgMgh/K6HKkm8rwvLaIc2VPIP4cZYc5u1WVwbW27t3NZA4sBS7TimVxZLDpMhnJHWACjtVtgHMIAXVnW5G6JINBJLvb2UbS66cgtMErERY7+luwC1EBomeChY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Qvmb8sGu; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716209426; x=1747745426;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=09r44g0dLFLCn3HIOUabAtGornPeuQTWckmaYZEOAZY=;
+  b=Qvmb8sGugLtQ4vW76uottZDZZGBDhHONjY8MdyPCj/l2y7wq0rt+85qM
+   VZAWJQJURj3K0N/LbHWhJ1FNLT7XAafO4ZQnvLzvlOcfm0wfJN9Yo9jhA
+   XEgWZErTtjYmUYWWiC4sJiOVJQqKshd87jiKTdDojlcr5dpqm8tR++/5+
+   W57oqepeeKlVlqBlH+AhVw/qOaEzf16YA6rDM6QYlLeFrTc2lePfkL8yW
+   DvW2lRAbco/Wo34DtPO7REyLBYIaTR/P0iTrm32toYl60f13Lse05ahZM
+   uW9B+I09FWrvF7s25tYg07ht0HryPWqOKuUzG+UgRlxxd2DOrRjWieIBC
+   Q==;
+X-CSE-ConnectionGUID: 7gudUnPKSMeW7yyEf9MbnA==
+X-CSE-MsgGUID: CwTinAMRRiaAiMEHW5eOlQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12177337"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
+   d="scan'208";a="12177337"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 05:50:25 -0700
+X-CSE-ConnectionGUID: TwOdcVZdQvelBTTXEsLsrg==
+X-CSE-MsgGUID: CSDPXRkpR0+VC9MmrQqCZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
+   d="scan'208";a="37118760"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 05:50:21 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id C074411F830;
+	Mon, 20 May 2024 15:50:18 +0300 (EEST)
+Date: Mon, 20 May 2024 12:50:18 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: git@luigi311.com
+Cc: linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pavel@ucw.cz, phone-devel@vger.kernel.org,
+	Ondrej Jirman <megi@xff.cz>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 21/25] dt-bindings: media: imx258: Add binding for
+ powerdown-gpio
+Message-ID: <ZktHCpsW8SaVdTBk@kekkonen.localdomain>
+References: <20240501152442.1072627-1-git@luigi311.com>
+ <20240501152442.1072627-22-git@luigi311.com>
+ <ZkcV5xWZz2jCszxA@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZkcV5xWZz2jCszxA@kekkonen.localdomain>
 
-Hi,
+On Fri, May 17, 2024 at 08:31:35AM +0000, Sakari Ailus wrote:
+> Hi Luis,
+> 
+> On Wed, May 01, 2024 at 09:24:38AM -0600, git@luigi311.com wrote:
+> > From: Ondrej Jirman <megi@xff.cz>
+> > 
+> > Add powerdown-gpio binding as it is required for some boards.
+> 
+> I thought the conclusion was that this wasn't a property of the sensor? If
+> it needs to be controlled, then this should take place somewhere else than
+> in the sensor driver.
 
-> >> +static int qcom_spi_io_op(struct qcom_nand_controller *snandc, const =
-struct spi_mem_op *op)
-> >> +{
-> >> +	int ret, val, opcode;
-> >> +	bool copy =3D false, copy_ftr =3D false;
-> >> +
-> >> +	ret =3D qcom_spi_send_cmdaddr(snandc, op);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	snandc->buf_count =3D 0;
-> >> +	snandc->buf_start =3D 0;
-> >> +	qcom_clear_read_regs(snandc);
-> >> +	qcom_clear_bam_transaction(snandc);
-> >> +	opcode =3D op->cmd.opcode;
-> >> +
-> >> +	switch (opcode) {
-> >> +	case SPINAND_READID:
-> >> +		snandc->buf_count =3D 4;
-> >> +		qcom_read_reg_dma(snandc, NAND_READ_ID, 1, NAND_BAM_NEXT_SGL);
-> >> +		copy =3D true;
-> >> +		break;
-> >> +	case SPINAND_GET_FEATURE:
-> >> +		snandc->buf_count =3D 4;
-> >> +		qcom_read_reg_dma(snandc, NAND_FLASH_FEATURES, 1, NAND_BAM_NEXT_SGL=
-);
-> >> +		copy_ftr =3D true;
-> >> +		break;
-> >> +	case SPINAND_SET_FEATURE:
-> >> +		snandc->regs->flash_feature =3D *(u32 *)op->data.buf.out;
-> >> +		qcom_write_reg_dma(snandc, &snandc->regs->flash_feature,
-> >> +				   NAND_FLASH_FEATURES, 1, NAND_BAM_NEXT_SGL);
-> >> +		break;
-> >> +	default:
-> >> +		return 0; =20
-> >=20
-> > No error state? =20
->    We can't return return error here , since this API is not for checking=
- supported command.
+I'll take patches up to the previous and then 24 and 25 from this version.
+The rest will need some rework.
 
-I no longer remember exactly where this is called, but if there are
-possible unhandled cases, I want an error to be returned.
-
->    We can return error only if we submitted the descriptor. That already =
-we are handling.
-
-...
-
-> >> --- a/include/linux/mtd/nand-qpic-common.h
-> >> +++ b/include/linux/mtd/nand-qpic-common.h
-> >> @@ -315,11 +315,56 @@ struct nandc_regs {
-> >>   	__le32 read_location_last1;
-> >>   	__le32 read_location_last2;
-> >>   	__le32 read_location_last3;
-> >> +	__le32 spi_cfg;
-> >> +	__le32 num_addr_cycle;
-> >> +	__le32 busy_wait_cnt;
-> >> +	__le32 flash_feature; =20
-> >>   >>   	__le32 erased_cw_detect_cfg_clr; =20
-> >>   	__le32 erased_cw_detect_cfg_set;
-> >>   }; =20
-> >>   >> +/* =20
-> >> + * ECC state struct
-> >> + * @corrected:		ECC corrected
-> >> + * @bitflips:		Max bit flip
-> >> + * @failed:		ECC failed
-> >> + */
-> >> +struct qcom_ecc_stats {
-> >> +	u32 corrected;
-> >> +	u32 bitflips;
-> >> +	u32 failed;
-> >> +};
-> >> +
-> >> +struct qpic_ecc {
-> >> +	struct device *dev;
-> >> +	const struct qpic_ecc_caps *caps;
-> >> +	struct completion done;
-> >> +	u32 sectors;
-> >> +	u8 *eccdata;
-> >> +	bool use_ecc;
-> >> +	u32 ecc_modes;
-> >> +	int ecc_bytes_hw;
-> >> +	int spare_bytes;
-> >> +	int bbm_size;
-> >> +	int ecc_mode;
-> >> +	int bytes;
-> >> +	int steps;
-> >> +	int step_size;
-> >> +	int strength;
-> >> +	int cw_size;
-> >> +	int cw_data;
-> >> +	u32 cfg0, cfg1;
-> >> +	u32 cfg0_raw, cfg1_raw;
-> >> +	u32 ecc_buf_cfg;
-> >> +	u32 ecc_bch_cfg;
-> >> +	u32 clrflashstatus;
-> >> +	u32 clrreadstatus;
-> >> +	bool bch_enabled;
-> >> +};
-> >> +
-> >> +struct qpic_ecc;
-> >> +
-> >>   /*
-> >>    * NAND controller data struct
-> >>    *
-> >> @@ -329,6 +374,7 @@ struct nandc_regs {
-> >>    *
-> >>    * @core_clk:			controller clock
-> >>    * @aon_clk:			another controller clock
-> >> + * @iomacro_clk:		io macro clock
-> >>    *
-> >>    * @regs:			a contiguous chunk of memory for DMA register
-> >>    *				writes. contains the register values to be
-> >> @@ -338,6 +384,7 @@ struct nandc_regs {
-> >>    *				initialized via DT match data
-> >>    *
-> >>    * @controller:			base controller structure
-> >> + * @ctlr:			spi controller structure
-> >>    * @host_list:			list containing all the chips attached to the
-> >>    *				controller
-> >>    *
-> >> @@ -375,6 +422,7 @@ struct qcom_nand_controller { =20
-> >>   >>   	struct clk *core_clk; =20
-> >>   	struct clk *aon_clk;
-> >> +	struct clk *iomacro_clk; =20
-> >>   >>   	struct nandc_regs *regs; =20
-> >>   	struct bam_transaction *bam_txn;
-> >> @@ -382,6 +430,7 @@ struct qcom_nand_controller {
-> >>   	const struct qcom_nandc_props *props; =20
-> >>   >>   	struct nand_controller controller; =20
-> >> +	struct spi_controller *ctlr;
-> >>   	struct list_head host_list; =20
-> >>   >>   	union { =20
-> >> @@ -418,6 +467,21 @@ struct qcom_nand_controller { =20
-> >>   >>   	u32 cmd1, vld; =20
-> >>   	bool exec_opwrite;
-> >> +	struct qpic_ecc *ecc;
-> >> +	struct qcom_ecc_stats ecc_stats;
-> >> +	struct nand_ecc_engine ecc_eng;
-> >> +	u8 *data_buf;
-> >> +	u8 *oob_buf;
-> >> +	u32 wlen;
-> >> +	u32 addr1;
-> >> +	u32 addr2;
-> >> +	u32 cmd;
-> >> +	u32 num_cw;
-> >> +	u32 pagesize;
-> >> +	bool oob_rw;
-> >> +	bool page_rw;
-> >> +	bool raw_rw;
-> >> +	bool read_last_cw;
-> >>   }; =20
-> >=20
-> > If all these definitions are only used by the spi controller, I don't
-> > see why you want to put them in the common file. =20
->   We are using qcom_nand_controller{..} structure as common b/w raw nand
->   and spi nand. These all variables will be used by spi nand only , but
->   qcom_nand_controller structure is passed across all the SPI API, thats
->   why define these all variables inside qcom_nand_controller structure.
->   so that i can access directlty.
-
-Maybe you can move the spi-nand specific variables in a struct, and the
-raw NAND specific variables in another, and then use an enum in this
-structure. This way only the useful fields are available. Or maybe you
-can have two pointers and only populate the relevant one from the
-relevant driver with the fields that are missing. But this is a generic
-include, so don't put specific fields there just because it is
-convenient.
-
-Thanks,
-Miqu=C3=A8l
+-- 
+Sakari Ailus
 
