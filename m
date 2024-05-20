@@ -1,62 +1,55 @@
-Return-Path: <devicetree+bounces-67928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F398CA2A3
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:18:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC7AC8CA2AB
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CA6EB216C8
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:18:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A6321F223D7
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B718137C42;
-	Mon, 20 May 2024 19:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88283137C4E;
+	Mon, 20 May 2024 19:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XHXdF8FM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lt2ig/R9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D508134CC;
-	Mon, 20 May 2024 19:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6CF137916;
+	Mon, 20 May 2024 19:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716232700; cv=none; b=nVMINjI+PXxExIWbz/GnVl/KWNi0JakbXZfH/iyWSQPbOwPYDDa8imSMU0U5fCiJiWRJoIXQ1ACupI4TPMC1tkOUmWvRFFrBrqG/2XGjZVC+1SnSwp4MkrrhkUxVuu2ASEU8n1k6LKuii475XJuIXR3XpFTzYMTKhOAiaR5AI8Q=
+	t=1716232845; cv=none; b=IBDiy0Zy95JHm2DfC0l5Ip+RCvzk8T4d93cTVOXptKuBFxxuc2LJqfzRapv5GezTXofOzBz+kAA/gAJ6O0eKW5v4S7jL6DNWM+zSrtWwwM6D1M577+Ee144Hr/w7VVlLY/n5ddK804uX777RHLQZsVRFapE5m+v0PVzgdA7AIaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716232700; c=relaxed/simple;
-	bh=NsdyDPhe9XNdTyGY6aXb+OutlJY67HHrwCd3VMvCSek=;
+	s=arc-20240116; t=1716232845; c=relaxed/simple;
+	bh=oFOkhPb/obahsAYRZ9KsMVQHApqTJjpvtfnG0CAlpL4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WQk37JSw+S7bXXpwCsnIcCLmmMGhCyX9I8b/BkGuWhi/H27irbzXekTCwmT5IWKYhFaldHxi0D0uIJXLw10sMNb/qzjOFGcicue0jsbuSAUZ/JypEhq0WqpBYGTtpvhomwCaBCMTEixrL3c/E4yxjtPeSAaWV/PeJ6BkJoRK9Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XHXdF8FM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0ACC2BD10;
-	Mon, 20 May 2024 19:18:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PeJayvSoACwloymUYO+mK6QAyn5/CQ1PD2Rf/7uITHdV+yarDFFMvUBKTb4rk+untUteksKm1E1lXq1DrM9AkJXjxcig5iWRewruTD6BxQohRUv3HZnT8K+zRrHxaqGRqdim1pSbEdaAIw0ej+Q5fJqLRcNwwCH1oGOXV5KwplI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lt2ig/R9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFCBDC32789;
+	Mon, 20 May 2024 19:20:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716232700;
-	bh=NsdyDPhe9XNdTyGY6aXb+OutlJY67HHrwCd3VMvCSek=;
+	s=k20201202; t=1716232844;
+	bh=oFOkhPb/obahsAYRZ9KsMVQHApqTJjpvtfnG0CAlpL4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XHXdF8FMdVp7iBwZ9pPPBsDFyWzuWCSmStBF1zA2hnOFX16Qz1BLebp8ffvNRgpYv
-	 CWvl0izIHD6g3m7biIYQ9L3mUKcnWT9I6Du0rFCL207sOjdaO3NRUMKenZkQvlHHA2
-	 EpeV1duBfapg3dN0zNNDuKmAV0ZMvhjcG+bcPQJQ6iufIuZWdLfW5wKuWU9vvEkhpG
-	 aRJkUu9wZRsIgEPKP9UMBNysC7md7qCTFsymg+MPZ2jsAz5d4DwwImWNxZ/2SpWBKU
-	 1PbXJdu0/y9HGbsHc3ehjyoG85oY8wc2yLaE2PLTuwZvgzF4pZocg0OYwgkCSRuLka
-	 lXj522wiktF9w==
-Date: Mon, 20 May 2024 14:18:18 -0500
+	b=Lt2ig/R9v5B6a1wGEekuUUBqXgEerDXXUrGoa8lJHvufZ51MMeCMHexhklXZbZhg8
+	 vfNC1H1ooY4LcBXOl3+rHwdPa4vjnV9xCqa2TkR3RP6wjE6nt0I0Ev/wu0/8NAFLXW
+	 aGL6iOT8jKAHauOPvxlSlOtXiGY0T/NLOwSzs/+qFOspLziNcER+wgLZON3rinocWg
+	 08JOYx58n3YhEH85EAUmuiPG690CaBLY2hSnUp+galvrh+aE048NmxbI7kny6CdqPy
+	 kUADJod8DxBjFyaWszuhydhgWVTl/SgXtZm6OlOAERCm0mHb+EPlvAQ9JCIovH/sgi
+	 uXOAdIKwl1o/Q==
+Date: Mon, 20 May 2024 14:20:43 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Rokosov <ddrokosov@salutedevices.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	jian.hu@amlogic.com, rockosov@gmail.com, devicetree@vger.kernel.org,
-	linux-amlogic@lists.infradead.org, sboyd@kernel.org,
-	robh+dt@kernel.org, neil.armstrong@linaro.org, jbrunet@baylibre.com,
-	khilman@baylibre.com, kernel@sberdevices.ru,
-	mturquette@baylibre.com
-Subject: Re: [PATCH v3 4/7] dt-bindings: clock: meson: a1: peripherals:
- support sys_pll input
-Message-ID: <171623269646.1341930.17315530317168492239.robh@kernel.org>
-References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
- <20240515185103.20256-5-ddrokosov@salutedevices.com>
+To: Shresth Prasad <shresthprasad7@gmail.com>
+Cc: julia.lawall@inria.fr, javier.carrasco.cruz@gmail.com,
+	devicetree@vger.kernel.org, saravanak@google.com,
+	linux-kernel@vger.kernel.org, skhan@linuxfoundation.org
+Subject: Re: [PATCH][next] of: property: Remove calls to of_node_put
+Message-ID: <171623283323.1344625.8429412262018055075.robh@kernel.org>
+References: <20240515202915.16214-3-shresthprasad7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +58,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240515185103.20256-5-ddrokosov@salutedevices.com>
+In-Reply-To: <20240515202915.16214-3-shresthprasad7@gmail.com>
 
 
-On Wed, 15 May 2024 21:47:27 +0300, Dmitry Rokosov wrote:
-> The 'sys_pll' input is an optional clock that can be used to generate
-> 'sys_pll_div16', which serves as one of the sources for the GEN clock.
+On Thu, 16 May 2024 01:59:17 +0530, Shresth Prasad wrote:
+> Add __free cleanup handler to some variable initialisations, which
+> ensures that the resource is freed as soon as the variable goes out of
+> scope. Thus removing the need to manually free up the resource using
+> of_node_put.
 > 
-> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> Suggested-by: Julia Lawall <julia.lawall@inria.fr>
+> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
 > ---
->  .../bindings/clock/amlogic,a1-peripherals-clkc.yaml      | 9 +++++++--
->  include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h  | 1 +
->  2 files changed, 8 insertions(+), 2 deletions(-)
+> I had submitted a similar patch a couple weeks ago addressing the same
+> issue, but as it turns out I wasn't thorough enough and had left a couple
+> instances.
+> 
+> I hope this isn't too big an issue.
+> ---
+>  drivers/of/property.c | 27 +++++++++++----------------
+>  1 file changed, 11 insertions(+), 16 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
