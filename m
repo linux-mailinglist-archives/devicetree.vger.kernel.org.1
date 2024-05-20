@@ -1,74 +1,55 @@
-Return-Path: <devicetree+bounces-67801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029CD8C9BA0
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:48:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE5BA8C9BA9
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:53:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C53C1C21D6B
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 10:48:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10452B21983
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 10:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F99535D2;
-	Mon, 20 May 2024 10:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B806551C2A;
+	Mon, 20 May 2024 10:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZCKcgOwp"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="I/oDXq0u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1470052F70
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 10:47:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146B7182DF;
+	Mon, 20 May 2024 10:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716202062; cv=none; b=j45jG25q4wBFO9ufPoc62kkrI93BQ/vxyQ1N0FxkGAGFjLAiEJJ6l6fRSh9/vsjP3J1sFrtHbg7EfvtbqvcM5elIExC94bfw9wklHS4rUZw2HKyhXRv1v4aFrn+WzwSxR/GLgSYaQ0AkcpTNkLPIQixDHh0kGXHhPSeVZF+gcbU=
+	t=1716202413; cv=none; b=MrzsPeCnCye/Hs6Wnyj9Nedh1lriIK5toLSBaFmWvzChJM3oIh3UBAlof69YjS2SXWiaSBbCIirnZhkj+vwbWKizCbWxwDFpzTRduP1eEJ3uBC1m/4T84Q0jM+AKoa3+VaCv+WdxGHtZ9P5Bn2ihJEMdp7AnaP90NX4se1kiixs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716202062; c=relaxed/simple;
-	bh=tL1bHXt9/YAqmnqPjn/s8RxMKcWc/S/C/wlJtqQ+WVI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=pMX3ARB0o3ZMJVLw3b15qxxeiR42iviki+UlBoqWIwrX+7TU23nvFFdhOEVHvPV72RLB8n8ryivb7pxeuNFQ2EgVKRQ5i4LbWdJMmw9Ua5mcg73oJkh0FomFbbvHIPAsok40rp2RsqMPt/DRLOoNiOBObh2lj4QeFQZMILyCukI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZCKcgOwp; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4202c0d316cso11646705e9.1
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 03:47:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716202057; x=1716806857; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X/prEkk7NlB/e4K/D05nDd1aUEil2ACTKtIqCg4p2NQ=;
-        b=ZCKcgOwp41+KhJE+b1DEB6HlvosHuSBH/C5utwBNVV6YVYDGrrUHRZDOJWm5c4jGul
-         wUukQyZG9BOoWezeaFrB3FJ9LdEHoh3SnoIc8fo1GZJ1qt7EW04bGLSyu69VpLwVH1af
-         OzDoZllGY81lR3IvAosDmPhqaYx5fYvAR9Bgq4BZweIPTkE0gz//6Y05A+HwEt3yAcPg
-         WCi3rvDUZ4Bwbc6mg0cvJBQa3Lm052XR1JoKpNfP2Rl2Pd8lfvyXaAcVUWbUZdfs7wLG
-         6u9BOWyl5CYcWz3HfAdb/vosyhrStRx5nZcuip/13Uo9mFrp9Q2oq257sIB35GsbyRfc
-         1DlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716202057; x=1716806857;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X/prEkk7NlB/e4K/D05nDd1aUEil2ACTKtIqCg4p2NQ=;
-        b=J6ckgH3w5S01KlNB10cdiE5dV/UD/vjT2kb55qesmFJlvGEuR6aspuQu3KRgWKMk8Y
-         fnqU7QEYwNkDRrqJp7x6bE5JaXZ3wV6bHE7c/MNTw/rDjKIuQ45PrvNkjnbVx8k9pfBI
-         4jHRJdOV8CYfg9C9DvT/lfV9/UkR795HsP5x3v3Zbigh6Xle2QRXRHoIlCJY9yOboHcd
-         38gONoP9UmS40eZmeaiErOFt/8cKAixEOSPub7FRolbm2wA6m/y5mhghDLmhSyNpIYtI
-         uE03YIbv5efw7945tlUzM8OwcUcHFpU5/AvFJIT9NpeVyccXf1mrtbyOEyJt+0xcUUrj
-         qqhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVnL3tXIGYF4yXE5u+IMSKgO3WJi9YZ1Cznd5EU5DbBA0IwLmrx2MUe7XHHKxoN1P2wQVctZl96Ez7Ybai59S1JFz+3j7v6bI+99Q==
-X-Gm-Message-State: AOJu0YzqwHYefw87Z05jq9RCMAwlSKxXZDtYLRScec82qqZvw0XwlmMk
-	BSRRS+66Wt7UGYht8UvJ+b0jTq2BV1ly8yNdRtJmhUVTjizatgkjPWRqVQaI+Jw=
-X-Google-Smtp-Source: AGHT+IF8d/xOk/RNnnP7/4WfSzB76iIM3cflEPGPzlqVTR7AQEzeW1/6VwsH+L7iXQzc7YUlsDhB5A==
-X-Received: by 2002:a05:600c:4f49:b0:420:12df:1f7e with SMTP id 5b1f17b1804b1-420e19e46d4mr48893585e9.9.1716202057408;
-        Mon, 20 May 2024 03:47:37 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fccfe1277sm405621845e9.42.2024.05.20.03.47.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 May 2024 03:47:36 -0700 (PDT)
-Message-ID: <4727a091-bc64-46ea-8652-db6797dd93d2@linaro.org>
-Date: Mon, 20 May 2024 12:47:35 +0200
+	s=arc-20240116; t=1716202413; c=relaxed/simple;
+	bh=WQTGyraacCkp953Pb1xBtyAnVlrhrQtJheAU+E27X1Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mAoE/n9CwWg8sMFymhwg9pyDxMfioerKE2EQ7lbzpneTzAG9cJbnVQU5csVkBwsKuTNyMr1+lIz2sYJ/xrL7oy/PwCMg3JDmRP4fLkHNQ5nkcX/zmWMqW1LoO5z6hI1+0S6fPMjy1uY6I5/Ai+y0vh1DQoQc5bv/rvDs0adVWck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=I/oDXq0u; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1716202409;
+	bh=WQTGyraacCkp953Pb1xBtyAnVlrhrQtJheAU+E27X1Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=I/oDXq0uYxlX0E45oaELAZ8sisGTPoVZ3frcYvoOquOWHQAETecxFN6l6jY4sXCAy
+	 z3HoFWVsDY55Je+68wcfuHbs5kbUGDm5rwngyQHkFaCTDvQBD0sAVWg7Jjv+PuWH3O
+	 8PnoA4MUreTvXn5K3DFvZguFmCjNQZbRxj/A54XQcboL2eNm3UCSPgZUqbB64J98rH
+	 kD/NmLNPr1/k1tHPTkOfWKE+sjMzO83jq0HeKUdZ9jOIgwoV+YnqgdCo6MeKMmeYTA
+	 BMlLNvwp5paeRUbn3H6qcNxoUPYt0CT9BsO7VpAgjck0DA8S7nPmpu15tE6aTa+EZI
+	 8eqQ5BnV4mBdg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7A90C37821B2;
+	Mon, 20 May 2024 10:53:28 +0000 (UTC)
+Message-ID: <7dbe08cf-47a1-4da6-9035-6b0932cf8426@collabora.com>
+Date: Mon, 20 May 2024 12:53:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,121 +57,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl,mqs: Add i.MX95 platform
- support
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
- broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, shengjiu.wang@gmail.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
- perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
- linuxppc-dev@lists.ozlabs.org
-References: <1715939146-13031-1-git-send-email-shengjiu.wang@nxp.com>
- <1715939146-13031-2-git-send-email-shengjiu.wang@nxp.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 2/3] dt-bindings: arm: mediatek: mmsys: Add OF graph
+ support for board path
+To: Alexandre Mergnat <amergnat@baylibre.com>, chunkuang.hu@kernel.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
+ ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ wenst@chromium.org, kernel@collabora.com
+References: <20240516081104.83458-1-angelogioacchino.delregno@collabora.com>
+ <20240516081104.83458-3-angelogioacchino.delregno@collabora.com>
+ <ce1de395-3f60-4f7f-9424-bf036134de94@baylibre.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1715939146-13031-2-git-send-email-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <ce1de395-3f60-4f7f-9424-bf036134de94@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 17/05/2024 11:45, Shengjiu Wang wrote:
-> In order to support the MQS module on i.MX95, a new property
-> "fsl,mqs-ctrl" needs to be added, as there are two MQS instances
-> on the i.MX95 platform, the definition of bit positions in the
-> control register is different. This new property is to distinguish
-> these two instances.
+Il 19/05/24 19:18, Alexandre Mergnat ha scritto:
+> Hi Angelo,
 > 
-> Without this property, the difference of platforms except the
-> i.MX95 was handled by the driver itself. But this new property can
-> also be used for previous platforms.
+> On 16/05/2024 10:11, AngeloGioacchino Del Regno wrote:
+>> +    oneOf:
+>> +      - required:
+>> +          - endpoint@0
+>> +      - required:
+>> +          - endpoint@1
+>> +      - required:
+>> +          - endpoint@2
 > 
-> The MQS only has one control register, the register may be
-> in General Purpose Register memory space, or MQS its own
-> memory space, or controlled by System Manager.
-> The bit position in the register may be different for each
-> platform, there are four parts (bits for module enablement,
-> bits for reset, bits for oversampling ratio, bits for divider ratio).
-> This new property includes all these things.
+> I'm not sure this is what you expect because I must remove this part to pass the 
+> dt-validate.
+> 
+> I have 2 possible display at the same time (DSI and DPI), then I add this in my DTSI:
+> 
+>          mmsys: syscon@14000000 {
+>              compatible = "mediatek,mt8365-mmsys", "syscon";
+>              reg = <0 0x14000000 0 0x1000>;
+>              #clock-cells = <1>;
+>              port {
+>                  #address-cells = <1>;
+>                  #size-cells = <0>;
+> 
+>                  mmsys_main: endpoint@0 {
+>                      reg = <0>;
+>                      remote-endpoint = <&ovl0_in>;
+>                  };
+>                  mmsys_ext: endpoint@1 {
+>                      reg = <1>;
+>                      remote-endpoint = <&rdma1_in>;
+>                  };
+>              };
+>          };
+> 
+> But the DTS check returns me an error:
+> 
+> dt-validate -s Documentation/devicetree/bindings 
+> arch/arm64/boot/dts/mediatek/mt8365-evk.dtb
+> /home/*******/linux-upstream/arch/arm64/boot/dts/mediatek/mt8365-evk.dtb: 
+> syscon@14000000: port: More than one condition true in oneOf schema:
+>          {'$ref': '/schemas/graph.yaml#/properties/port',
+>           'oneOf': [{'required': ['endpoint@0']},
+>                     {'required': ['endpoint@1']},
+>                     {'required': ['endpoint@2']}],
+>           'properties': {'endpoint@0': {'$ref': 
+> '/schemas/graph.yaml#/properties/endpoint'},
+>                          'endpoint@1': {'$ref': 
+> '/schemas/graph.yaml#/properties/endpoint'},
+>                          'endpoint@2': {'$ref': 
+> '/schemas/graph.yaml#/properties/endpoint'}}}
+>          from schema $id: 
+> http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#
+> 
+> 
+> In other hand, if I use "ports" to keep only one endpoint for each port:
+> 
+>          mmsys: syscon@14000000 {
+>              compatible = "mediatek,mt8365-mmsys", "syscon";
+>              reg = <0 0x14000000 0 0x1000>;
+>              #clock-cells = <1>;
+>              ports {
+>                  #address-cells = <1>;
+>                  #size-cells = <0>;
+> 
+>                  port@0 {
+>                      #address-cells = <1>;
+>                      #size-cells = <0>;
+>                      reg = <0>;
+>                      mmsys_main: endpoint@0 {
+>                          reg = <0>;
+>                          remote-endpoint = <&ovl0_in>;
+>                      };
+>                  };
+> 
+>                  port@1 {
+>                      #address-cells = <1>;
+>                      #size-cells = <0>;
+>                      reg = <1>;
+>                      mmsys_ext: endpoint@1 {
+>                          reg = <1>;
+>                          remote-endpoint = <&rdma1_in>;
+>                      };
+>                  };
+>              };
+>          };
+> 
+> The DTS check returns another error:
+> 
+> dt-validate -s Documentation/devicetree/bindings 
+> arch/arm64/boot/dts/mediatek/mt8365-evk.dtb
+> /home/*******/linux-upstream/arch/arm64/boot/dts/mediatek/mt8365-evk.dtb: 
+> syscon@14000000: 'ports' does not match any of the regexes: 'pinctrl-[0-9]+'
+>          from schema $id: 
+> http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#
+> 
+> Additionally, with the last DTS example, displays aren't working, probably because 
+> "ports" isn't well parsed.
+> 
+> So, I don't know how you want to manage multiple display, but IMHO there are 2 ways:
+> - removing the current "oneOf".
 
-...
+...eh I think this should be anyOf instead :-)
 
->  
->    clocks:
->      minItems: 1
-> @@ -45,6 +46,22 @@ properties:
->    resets:
->      maxItems: 1
->  
-> +  fsl,mqs-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 6
-> +    maxItems: 6
-> +    description: |
-> +      Contains the control register information, defined as,
-> +      Cell #1: register type
-> +               0 - the register in owned register map
-> +               1 - the register in general purpose register map
-> +               2 - the register in control of system manager
-> +      Cell #2: offset of the control register from the syscon
-> +      Cell #3: shift bits for module enable bit
-> +      Cell #4: shift bits for reset bit
-> +      Cell #5: shift bits for oversampling ratio bit
-> +      Cell #6: shift bits for divider ratio control bit
+I'll check later and send a v5.
 
-Thanks for detailed explanation in commit msg, but no, please do not
-describe layout of registers in DTS. For the syscon phandles, you can
-pass an argument (although not 6 arguments...). Usually this is enough.
-For some cases, like you have differences in capabilities of this device
-or its programming model, maybe you need different compatible.
+Cheers,
+Angelo
 
-If these are different capabilities, sometimes new properties are
-applicable (describing hardware, not register bits...).
+> - adding the "ports" support in the documentation and driver (to be parsed).
+> 
+> Still possible I missed something and I doing shit :)
+> 
 
-Best regards,
-Krzysztof
 
 
