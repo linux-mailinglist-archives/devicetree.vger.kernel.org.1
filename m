@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-67808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DCB8C9C39
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:40:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E018C9C3E
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:41:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2FA2280AB7
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:40:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44E0C1C21C31
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D51E053805;
-	Mon, 20 May 2024 11:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF98A53805;
+	Mon, 20 May 2024 11:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A37SLlAn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EiP1nCzH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5D951C28;
-	Mon, 20 May 2024 11:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980B054BE8;
+	Mon, 20 May 2024 11:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716205242; cv=none; b=ROG2wCa+aXF0LbuC8c8KxISUoMzx+ui4S78mwXmgW0+8xVctv90owTuqk6kOjSPoQ3abW01Ty8vYUdquZgOlxOdTGBIFh+N5NL8V+V3y36FslH2JkYP+l9qXUwnP2vWssOD3HtmehRO7d4Y3e+fjmqzU7gFXExKBA9wTlj541Mc=
+	t=1716205303; cv=none; b=UR+79MXWP9vxUMxSpZCiYooQsIJ5Q/rZegxuoc3k/JkA9jAz4LZ+Ap7TlXxshwYraYl/6lehNR9k9cmBkTd8P9e2yxxUuQ6oOCPsNvqkBbiWOsG2X9i3tM5h9/5Zsn+Jy9Z9MvWwLITTfRBu0qQlsNpo/ET7RbOrWIXFxnONrgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716205242; c=relaxed/simple;
-	bh=1CxBRe10np86Umr/5juEyiv66Fz5dDdZI72dPAmGDC0=;
+	s=arc-20240116; t=1716205303; c=relaxed/simple;
+	bh=u130tbWpT6LvE50q6tsnZs3h7loPdMb44w2PkpTnAbc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i1i/jknt+EwmWp17YCXsoC4+tRhAOxe4RSpTUubOFBzoX2PBdLgG79HDtji9uXCGjliyeMq9ziRSxQSbM2V3gRJV/msR+fxTxHWt9C7QxRILHZzsluaGOcnFLMV1+HR9O2RQMKxzrXbYa5z0TXqpg/fw16a2Ormxyw2n37L8dMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A37SLlAn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EA9BC2BD10;
-	Mon, 20 May 2024 11:40:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iQW6Em04gepbJYmmkLRmU6JsJSjPyO294Pb2JFad5OUtL2Fk+iNSfxQ2fHJ/b2HtWrOkRXtmoCgWkx/voIOVw4qF2fOuSfPd9kJDCFAYFCsyDyUEQ12CIDKq5LeaPIAyIeUeju8Uooyx8+AM91yIpcMZzZ4fvHSPRiazGUtlbWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EiP1nCzH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3016AC2BD10;
+	Mon, 20 May 2024 11:41:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716205242;
-	bh=1CxBRe10np86Umr/5juEyiv66Fz5dDdZI72dPAmGDC0=;
+	s=k20201202; t=1716205303;
+	bh=u130tbWpT6LvE50q6tsnZs3h7loPdMb44w2PkpTnAbc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=A37SLlAngFF8mOaT9XXxG2buur3/HwE3y7TavFi96pzp3UdfOgQ5AlU4GTgat/45W
-	 Kwe/y2x61toVlr9x21pkhTCxk3vaBDz0DDCNaghEu0WCzQwG1EpqOUmtaNJtIygFUr
-	 zwp9z2uDd47J/EgPs5P9t0FVx9gF9IHyaWaCjYANBXEoxaRJQtcpxgdPoo3mE6KBhs
-	 +DWQptKIcraGuMZXbKIFpUHaMKS0VuWHeXJyGaz1NSzZXq+w5xo+eJUfYOSeW59jMa
-	 2bbLd0SeMx6rTBFl2phqKbQfOvy+hWHhLJJro7ar1G7fRDNe8W67sCRcO+u21pYAK1
-	 w6XouHaJPoAfw==
-Message-ID: <d922f7b7-0e9f-4485-b746-0cf968dca570@kernel.org>
-Date: Mon, 20 May 2024 14:40:36 +0300
+	b=EiP1nCzHxOEa+BR7Kpdt3rojQ2goPIuUi6CR+1vWHvRUjXLnPYaw6gBMEjffQLnbz
+	 +/CFIgAxdyc7dbPVPNpj2EsuQJEwlY75/Hw+i2f0aoida5RtbXnnOYcHntdzi/AeJq
+	 7OmzLIRjjxYW/MhMyv+NRbQ9Dj91lttRf8tNy++iUVluN+BC5Omqckl7dxWtjLLfo8
+	 JKD6UeguXk62LjHE+TtjJPIlNgOD/iZt75WkjbbFvPUYhimLhVu8gkCXgGDcmX0Q76
+	 8ln0fn+EsWqm7r3OKtiR/x6fRdIhUn5+y45OO1ZEUJ+TVSLhlRYDCMED1u/qHchR2c
+	 60A7bnWsGH9Ow==
+Message-ID: <6f9f87d3-9570-4eb0-a3d0-f087308d9815@kernel.org>
+Date: Mon, 20 May 2024 14:41:37 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: ti: k3-am62a: use a specific MCU
- controller compatible
+Subject: Re: [PATCH 2/5] dt-bindings: soc: ti: am645-system-controller: add
+ AM654 syscon
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
@@ -60,27 +60,94 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20240518-dt-bindings-ti-soc-mfd-v1-0-b3952f104c9a@linaro.org>
- <20240518-dt-bindings-ti-soc-mfd-v1-5-b3952f104c9a@linaro.org>
+ <20240518-dt-bindings-ti-soc-mfd-v1-2-b3952f104c9a@linaro.org>
 Content-Language: en-US
 From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240518-dt-bindings-ti-soc-mfd-v1-5-b3952f104c9a@linaro.org>
+In-Reply-To: <20240518-dt-bindings-ti-soc-mfd-v1-2-b3952f104c9a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
 On 18/05/2024 23:07, Krzysztof Kozlowski wrote:
-> SoCs (and associated MCUs) should use dedicated compatibles for their
-> nodes, not re-use one coming from an another SoC.  Using an incorrect
-> compatible does not allow to properly match/validate children of the
-> MCU device and causes dtbs_check warnings:
-> 
->   k3-am62a7-sk.dtb: syscon@43000000: 'syscon@4008', 'syscon@4018' do not match any of the regexes:
->     '^chipid@[0-9a-f]+$', '^clock-controller@[0-9a-f]+$', '^mux-controller@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> Add dedicated binding for the AM654 MCU SCM system controller registers,
+> already used in the DTS to properly describe its children.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../soc/ti/ti,am654-system-controller.yaml         | 60 ++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> new file mode 100644
+> index 000000000000..e79803e586ca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/ti/ti,am654-system-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI AM654 System Controller Registers R/W
+> +
+> +maintainers:
+> +  - Kishon Vijay Abraham I <kishon@ti.com>
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+Please update the email address to Kishon Vijay Abraham I <kishon@kernel.org>
+
+> +  - Roger Quadros <rogerq@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - ti,am654-system-controller
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^phy@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/phy/ti,phy-gmii-sel.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@40f00000 {
+> +        compatible = "ti,am654-system-controller", "syscon", "simple-mfd";
+> +        reg = <0x40f00000 0x20000>;
+> +        ranges = <0x0 0x40f00000 0x20000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        phy@4040 {
+> +            compatible = "ti,am654-phy-gmii-sel";
+> +            reg = <0x4040 0x4>;
+> +            #phy-cells = <1>;
+> +        };
+> +    };
+> 
 
 -- 
 cheers,
