@@ -1,193 +1,130 @@
-Return-Path: <devicetree+bounces-67904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5938F8CA093
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 18:16:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D188CA0DB
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 18:49:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1531628504C
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 16:16:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB6BD1F218FD
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 16:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2473753E0A;
-	Mon, 20 May 2024 16:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D18CF136E39;
+	Mon, 20 May 2024 16:49:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVIH+1ZK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dIWN85ZY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5B220EB;
-	Mon, 20 May 2024 16:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC14E552;
+	Mon, 20 May 2024 16:49:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716221764; cv=none; b=HTgXyoKnLjiXP0wncfNH2Z38PwR6gFzss/KqR6+Ylg6/89RmLDxyXClCn+85MNJRKZI35brYl54JCa3DTFgwJ4fSFkvxo9NEFgmLJ/xHXQ1OLXOADeTpXpwiF1kpUp2uGhj0dd82736EVLglfecOc9WLM28E5Dek4op8dpf0yDs=
+	t=1716223784; cv=none; b=UroIKQyfViMpT/2yluVSxtYxW0RGhc4RFuN9Eau6m2PjGfvt7c705xFBJV7lImx+xRk89RW4iTPJKgyTldSrZuY+cfYaE5O7PCw/ABkbbJZJwpCZnDyr/0T3lwcwkxt05MPY32pLKhYRZ3s2cHIaDwW4RclCvpZahQRJfNKXje4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716221764; c=relaxed/simple;
-	bh=UOi1n2UYMr/FQbVKWQcyqklCKnrURV8Jm+y0d+1xmXU=;
+	s=arc-20240116; t=1716223784; c=relaxed/simple;
+	bh=7lK2EaXV5Z2wVlx+P0QHezS3v+W1rlKWdQ50owAmfzc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oOoMKyPAPg8a9VgiMjSnQwnyV1daJ3KvI5CZdHuiEiDhSTF0B9vrXyvmQalUbIB06SC+VbPxjZQQkWBzLUfpBPkwJRRDHoRdeVWMNYSbxdMrPcJyH12LTa2m88jNXEgRH+kp3PGlx70HWhWwu184yvF2Onoi9d9jqjPb7OcW8Zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVIH+1ZK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40BCFC2BD10;
-	Mon, 20 May 2024 16:16:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IyDjLLDPQVXmjJlqnpLGQ3ykQUmmlhmvEd+MWr2lqqJxrvE3/Y/qy440SiXzUpaRTQeT9k2Jxy5mevGmASF2J0TDdx2MA+LvrrvFzs7bkZAjYXzKwwd1c6qEGaUKVfi+Muo60khV7tMgNaCyfJqrTJ7LS4gs7jgIeHV8WBU3ZZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dIWN85ZY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E16C2C2BD10;
+	Mon, 20 May 2024 16:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716221763;
-	bh=UOi1n2UYMr/FQbVKWQcyqklCKnrURV8Jm+y0d+1xmXU=;
+	s=k20201202; t=1716223784;
+	bh=7lK2EaXV5Z2wVlx+P0QHezS3v+W1rlKWdQ50owAmfzc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZVIH+1ZKPc7nCIgzITvynSYYWTuhtNjvapabvfzI39kdCUv/cP4aImgHpSanyEI85
-	 fc0TB8ke+DtxyB2CtlKbVnrDZ+ddR8fPUrDgiu1uANtDlzM7XYr/LabR/5B7Owbk9B
-	 4hWwZd/6EdR6d5bT8cObim94znIZbhwjsgTCCHrNHbap8pX+INKZ4MMCPgO7PIan7o
-	 hDxrSRyQfKhn+fdEOfUX72EyR2VWY0B4ikj9one8DIBkv4VQ6jLc7h/YSffPOXtIrt
-	 0+kuwP0OcIO4tSATpnsSyiEcc58emRDd1LfmGCTInzD7GPHZ57rqhnUe52uXrVT0eP
-	 VBwc46NopDv5A==
-Date: Mon, 20 May 2024 11:16:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shengjiu.wang@gmail.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-	perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible
- string for i.MX95
-Message-ID: <20240520161602.GA733483-robh@kernel.org>
-References: <1715656329-8061-1-git-send-email-shengjiu.wang@nxp.com>
- <1715656329-8061-2-git-send-email-shengjiu.wang@nxp.com>
+	b=dIWN85ZYJBApTFKC24qc0/xj4LqoSoDqHlEmH5dJV5XMR31IE6caPYKGbUlK3MTnZ
+	 hM/d2FPtwGk+52vmTUq1rO0PBzB9fIt4uJtipi6SctsUldq0++WlZMXtmpJCcRhCuJ
+	 8PIhy3FMp1gphcDy9WrDKDrTK6R/CRUG9XmwuFtrR/VEUA+/akzpqV0DgUQRFcZp0O
+	 Ax+3H2qtu3kA5bNbdPZ7Xz1NjHsn8f0utn8h+D6XvjOdthMyB6kgr734KFeQ50MLc4
+	 iyVom14jUEHu16DC7l3M/n1Znli2o96gWYJfBNZ1TowBtvZjZY+vQsdQC1NcpDpSWj
+	 BpAqzkB9nXyhA==
+Date: Mon, 20 May 2024 17:49:39 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: jdelvare@suse.com, linux@roeck-us.net, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, ukleinek@kernel.org,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
+Message-ID: <20240520-pendant-charity-a66a8d738690@spud>
+References: <20240520030321.3756604-1-chris.packham@alliedtelesis.co.nz>
+ <20240520030321.3756604-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FcZ+YKiVPcvShcYO"
+Content-Disposition: inline
+In-Reply-To: <20240520030321.3756604-2-chris.packham@alliedtelesis.co.nz>
+
+
+--FcZ+YKiVPcvShcYO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1715656329-8061-2-git-send-email-shengjiu.wang@nxp.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 14, 2024 at 11:12:08AM +0800, Shengjiu Wang wrote:
-> Add compatible string "fsl,imx95-xcvr" for i.MX95 platform.
-> 
-> The difference between each platform is in below table.
-> 
-> +---------+--------+----------+--------+
-> |  SOC	  |  PHY   | eARC/ARC | SPDIF  |
-> +---------+--------+----------+--------+
-> | i.MX8MP |  V1    |  Yes     |  Yes   |
-> +---------+--------+----------+--------+
-> | i.MX93  |  N/A   |  N/A     |  Yes   |
-> +---------+--------+----------+--------+
-> | i.MX95  |  V2    |  N/A     |  Yes   |
-> +---------+--------+----------+--------+
-> 
-> On i.MX95, there are two PLL clock sources, they are the parent
-> clocks of the XCVR root clock. one is for 8kHz series rates, named
-> as 'pll8k', another one is for 11kHz series rates, named as 'pll11k'.
-> They are optional clocks, if there are such clocks, then the driver
-> can switch between them to support more accurate sample rates.
-> 
-> As 'pll8k' and 'pll11k' are optional, then add 'minItems: 4'
-> for clocks and clock-names properties.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+On Mon, May 20, 2024 at 03:03:19PM +1200, Chris Packham wrote:
+> Add fan child nodes that allow describing the connections for the
+> ADT7475 to the fans it controls. This also allows setting some
+> initial values for the pwm duty cycle and frequency.
+>=20
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->  .../devicetree/bindings/sound/fsl,xcvr.yaml   | 55 +++++++++++++++----
->  1 file changed, 45 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> index 0eb0c1ba8710..70bcde33e986 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> @@ -22,6 +22,7 @@ properties:
->      enum:
->        - fsl,imx8mp-xcvr
->        - fsl,imx93-xcvr
-> +      - fsl,imx95-xcvr
->  
->    reg:
->      items:
-> @@ -44,18 +45,12 @@ properties:
->      minItems: 1
->  
->    clocks:
-> -    items:
-> -      - description: Peripheral clock
-> -      - description: PHY clock
-> -      - description: SPBA clock
-> -      - description: PLL clock
+>=20
+> Notes:
+>     Changes in v3:
+>     - Use the pwm provider/consumer bindings
+>     Changes in v2:
+>     - Document 0 as a valid value (leaves hardware as-is)
+>=20
+>  .../devicetree/bindings/hwmon/adt7475.yaml    | 25 ++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/adt7475.yaml b/Docum=
+entation/devicetree/bindings/hwmon/adt7475.yaml
+> index 051c976ab711..99bd689ae0cd 100644
+> --- a/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> @@ -51,6 +51,15 @@ properties:
+>        enum: [0, 1]
+>        default: 1
+> =20
+> +  "#pwm-cells":
+> +    const: 4
+> +    description: |
+> +      Number of cells in a PWM specifier.
+> +      - 0: The pwm channel
+> +      - 1: The pwm frequency in hertz - 0, 11, 14, 22, 29, 35, 44, 58, 8=
+8, 22500
 
-Leave these here and add pll8k and pll11k.
+The standard binding is period in nanoseconds, not frequency in Hz.
+What's gained from deviating from that?
 
-> +    minItems: 4
+> +      - 2: PWM flags 0 or PWM_POLARITY_INVERTED
+> +      - 3: The default pwm duty cycle - 0-255
 
-Keep this.
+Same here I guess, why not match the units used for the period for the
+duty cycle?
 
-> +    maxItems: 6
->  
->    clock-names:
-> -    items:
-> -      - const: ipg
-> -      - const: phy
-> -      - const: spba
-> -      - const: pll_ipg
-> +    minItems: 4
-> +    maxItems: 6
+Cheers,
+Conor.
 
-Same here.
+--FcZ+YKiVPcvShcYO
+Content-Type: application/pgp-signature; name="signature.asc"
 
->  
->    dmas:
->      items:
-> @@ -97,6 +92,46 @@ allOf:
->        properties:
->          interrupts:
->            maxItems: 1
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx95-xcvr
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: Peripheral clock
-> +            - description: PHY clock
-> +            - description: SPBA clock
-> +            - description: PLL clock
-> +            - description: PLL clock source for 8kHz series
-> +            - description: PLL clock source for 11kHz series
-> +          minItems: 4
-> +        clock-names:
-> +          items:
-> +            - const: ipg
-> +            - const: phy
-> +            - const: spba
-> +            - const: pll_ipg
-> +            - const: pll8k
-> +            - const: pll11k
-> +          minItems: 4
+-----BEGIN PGP SIGNATURE-----
 
-Drop all this.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkt/IwAKCRB4tDGHoIJi
+0mfnAP9s9FF6jnmkLsPw4HMFWexogPLNAzkTcCtHtu3/XsAZmgEA6sGT8IN0+hkD
++T0zrkoU4WrbZN3jfYN5xXzTqQpeWwY=
+=o2BQ
+-----END PGP SIGNATURE-----
 
-> +    else:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: Peripheral clock
-> +            - description: PHY clock
-> +            - description: SPBA clock
-> +            - description: PLL clock
-> +        clock-names:
-> +          items:
-> +            - const: ipg
-> +            - const: phy
-> +            - const: spba
-> +            - const: pll_ipg
-
-And for this case, you just need 'maxItems: 4'.
-
-Rob
+--FcZ+YKiVPcvShcYO--
 
