@@ -1,113 +1,122 @@
-Return-Path: <devicetree+bounces-67858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E5898C9F60
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:12:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED328C9F75
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:16:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF0B0280F2A
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:12:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFE0E1C20C49
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:16:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D0F136E05;
-	Mon, 20 May 2024 15:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4870D27A;
+	Mon, 20 May 2024 15:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ltclPiRv"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PEM5ajG0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DADAA1369AF;
-	Mon, 20 May 2024 15:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE0F4C66;
+	Mon, 20 May 2024 15:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716217929; cv=none; b=ZHrzV4dxY8TCVNMoPX1+9vcqQSFYktbtyT0NA6z6zhbT0S6LW2FCRHotFx03JyYAQfVlRpfc85TWSLiJpqMy8eRw3OCha/EGmdobkYhXRc+caUnf/N+gg0nBgvDJh8OtYnMHyBFbgJ1wKyBkcD629p27roDzOZ6iLQBYUT2fYBk=
+	t=1716218206; cv=none; b=Bhk7zG/VYaXZOkC9eIqEGIwvag2BSG07ziO9SuLsPryHb1UINKKaVFz18ZkEOuphSDTWioBiw6HGwJGeJurcZ6KBPGdTxV1Kz+tdSf1f9KOzEIRvmDu2qwWGQ7NQdm8Htr+cVMk5vZCN7zqzqOPV7iC6InM2593Soq4RZbpOoIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716217929; c=relaxed/simple;
-	bh=CqITRP3HvOUhv+CLwPKkqznN2CVoZFJoOynUjb76pHE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H0LqAli+ObfTFkqvkw7P7FycZyY1rFNzCE1Hg6k/Yw30ekCzjThpgvc8/EZuPnOrLt7OGHyFecuGJiobwlbTfy6mAP5BTJnNUNBrW5x6xM2FDjdjYmNKdTyoSV2WjZmdvzM0TeIqddAAGR9tLmFisxSo79AXrt102UwRNXnC+uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ltclPiRv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31117C2BD10;
-	Mon, 20 May 2024 15:12:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716217928;
-	bh=CqITRP3HvOUhv+CLwPKkqznN2CVoZFJoOynUjb76pHE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ltclPiRv0EHCt0sEpJJLkNKcb0Y1LQb30bqAXOTMUhxgVlFClbHgN8yE6D5epWZ6M
-	 mjqTuUfmAK4tYtDW0pCvgtN7P+42kH/P59Kl2cr3l8N/D+UJSd7TQ9hvsUjMXm+hGk
-	 mB4aHvGZ5ZwpeOCwW0JrB2w/Nm28B6Nt/sIjmDuUIcpGvcgRf6gqb7DfIR70f7UQPE
-	 ULPeI8JZ8Ggl3u9FEJbnCtQmmTbupBP1pov8wp8KRzWRkd2XOV0/BBueQLwJzRzw/k
-	 jpysawP7sE5pjCgeTqEm96CzFoezfFiX9M7VRyi982cUDMVx7v8ydxriE20FZEVM5z
-	 gE1GN4vy0eoFg==
-Date: Mon, 20 May 2024 10:12:07 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Arnd Bergmann <arnd@arndb.de>, Helge Deller <deller@gmx.de>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Baoquan He <bhe@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	David Bauer <mail@david-bauer.net>, Liviu Dudau <liviu@dudau.co.uk>,
-	Serge Semin <fancer.lancer@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH 0/4] of: bootargs handling improvement
-Message-ID: <20240520151207.GA541701-robh@kernel.org>
-References: <20240512132513.2831-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1716218206; c=relaxed/simple;
+	bh=iT54/HpDZG8UdWdWEo4UM/5Vmmtz6kPS3fZOIckwce0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OGs/llFh4UI/Ny1NvEI1pzv9hgoHMHPFZJMb1Bd40RLJz8VQuAdczbTHAsKmt0s+0UJUrEloS3nnpaML4e3jkht9wa0YuY4u8k5RVVniq7diXBJIAaPi6kfTcdj6l38NLjjHr0BFCreWkZpid3h7IAToyF87p5vnpHFpee2ZYBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PEM5ajG0; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1716218203;
+	bh=iT54/HpDZG8UdWdWEo4UM/5Vmmtz6kPS3fZOIckwce0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PEM5ajG07x1wmKTgoTEoazS/bTJarTiT+sxB/IglZCSJOMS1Y+itH3w3KGVoenTrF
+	 /bmBaeMBVyFHFkHWnGKJ4O81QJ3IY+QFcxKCuB7EnzXY7Xl7c5DkO+E6BxEMNbFlle
+	 wskUYdjGCsSjekpTct7zzgAq7M30OxnzHZODxegIu/e1BNect8Rl8x/RnAHXEbaSaC
+	 PxqKtOqf0jOYnK89+356X5iClHu4Xx4Ey0zWk7QqTN3GYPia0zXRlGkc+J82DldF1n
+	 rnIaH7lRpT2HPR3zLfkmQMJibPtKKqxh9ppmk3c+1Q79F9i82UWrNvU6/0Jl7NpNMH
+	 GScbg2diT5X2g==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9C549378000A;
+	Mon, 20 May 2024 15:16:42 +0000 (UTC)
+Message-ID: <db915f6f-fa78-4747-9b1f-b36851d657f6@collabora.com>
+Date: Mon, 20 May 2024 17:16:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240512132513.2831-1-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 00/15] Mediatek thermal sensor driver support for
+ MT8186 and MT8188
+To: Julien Panis <jpanis@baylibre.com>, Nicolas Pitre <nico@fluxnic.net>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, linux-pm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Nicolas Pitre <npitre@baylibre.com>
+References: <20240402032729.2736685-1-nico@fluxnic.net>
+ <981a8748-16d0-4744-b097-aa9dd14c63a8@collabora.com>
+ <eae892e8-f888-4d15-85a5-c89b6b6825f7@baylibre.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <eae892e8-f888-4d15-85a5-c89b6b6825f7@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, May 12, 2024 at 03:25:07PM +0200, Christian Marangi wrote:
-> This is a very simple series that try to solve a very simple problem.
+Il 20/05/24 14:53, Julien Panis ha scritto:
+> On 4/23/24 11:22, AngeloGioacchino Del Regno wrote:
+>> Il 02/04/24 05:25, Nicolas Pitre ha scritto:
+>>> This is a bunch of patches to support the MT8186 and MT8188 thermal
+>>> sensor configurations. Several changes are needed to cope with oddities
+>>> these SOCs implement.
+>>>
+>>> All values (calibration data offsets, etc.) were lifted and adapted from
+>>> the vendor driver source code.
+>>>
+>>
+>> I picked patches 7 and 12 (and also fixed them) introducing the nodes for the
+>> LVTS controllers, but will not pick 9 and 15, as they're either missing thermal
+>> zones and/or using the wrong names; let's wait for the next cycle for those, as
+>> I will also be able to add the SVS on top (needs a bit of time for testing),
+>> getting both SoCs complete on the LVTS side, without rushing.
+>>
+>> Cheers,
+>> Angelo
+>>
 > 
-> Many emebedded devices have very hacked (by OEMS) bootloader that do all
-> kind of modification and makes the kernel unbootable with the very first
-> small modification. And also many times these broken bootloader have
-> hardcoded values that can't be modified and would require risky
-> procedure that can brick the device.
+> Hello Angelo.
 > 
-> One of the common modification done is hardcoding bootargs in the
-> appended kernel DT trashing the bootargs set in the /chosen.
+> I took over Nico's work, so I might have missed a few things, but I'm
+> a little bit confused with patches 7 and 13 (you wrote '12' but meant
+> '13' I guess, didn't you ?).
 > 
-> The main usage of this is to have dynamic stuff to support dual
-> partition scheme and make the kernel load a dedicated rootfs. But the
-> other usage of this is to effectively lockup the device and cause kernel
-> panic on modification like using squashfs instead of legacy jffs2.
+> It seems to me that patches 7 and 13 were applied in next-20240503
+> (f5bcf8ab0950 and d3dbc472ac66). But I don't find them any more in
+> next-20240520. It's likely that I don't understand well the process, but
+> I prefer being sure...Should I resend them in next series ?
+
+Yes, please.
+
 > 
-> The simple solution to this is to let the bootloader override the
-> bootargs in /chosen and make the kernel parse a different property.
+> Just a comment about d3dbc472ac66. There's a typo error, I think:
+> nvmem-cell-names = "lvts-calib-data1";
+> ...should be replaced with
+> nvmem-cell-names = "lvts-calib-data-1";
+> ...according to the related yaml.
 
-What happens when bootloaders start using these new "standard" bootarg 
-properties and you need to override them? Perhaps name it something the 
-OEM wouldn't use (maybe): 
-"use-this-bootargs-instead-for-the-broken-bootloader"
+Yes, that was a typo :-)
 
-> >From long time on OpenWRT we use bootargs-override as the alternative
-> property for this task fixing the problem of overridden bootargs.
-> 
-> The second feature is bootargs-append. This is self-explanatory,
-> sometimes bootargs from bootloader might be good but lack of some
-> crucial things that needs to be appended, like rootfstype or rootfs
-> path.
+Cheers,
+Angelo
 
-It is unfortunate that the kernel's handling of appending or prepending 
-to bootargs is ambiguous. And MIPS is a further mess with handling 
-cmdline from multiple sources.
 
-I'm not really interested in adding any more complexity to the cmdline 
-handling until it is made common. There's been at least 2 approaches to 
-doing that.
-
-Rob
 
