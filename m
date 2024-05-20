@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-67775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 847368C9AD2
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:58:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7410F8C9AD7
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:59:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2271EB20BE0
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 09:58:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A55D11C2090F
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 09:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF2148CC7;
-	Mon, 20 May 2024 09:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5C03481C0;
+	Mon, 20 May 2024 09:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pEp44sC8"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="vThg0w5G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47AB6481AA;
-	Mon, 20 May 2024 09:58:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55B824D9F6;
+	Mon, 20 May 2024 09:59:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716199099; cv=none; b=L7ITdvg2AYeD/WZPzxwph8EZ61lG+wdfneLeeiR/qcJyCNtJyDhkpnQD/mGXHn7qjAbs5BEq9Kssgxtoz+sb1bPXJ8rfyEv6t5lVABmDIGzwyPGYzGu3olZY4pbhxuCJznjEGS8TTlJI5mc5W/GiQY7nlcnlVEfKfqYA9HmWoy8=
+	t=1716199149; cv=none; b=rvfBm5P3rYuHjQBMbqKxRhyL5Po9/J+hZq0MgdJapuwyW9zvoYN13ahWGz3PV63PB9fpHjfN1TobEFq10Y2UBXadKpIdOps0D0zRYjllo4t8TtPCvI04hxmk0kkoFFXOL4KL3YjdbYFXIpBmXbuRWAoDOErwGVLEtXm8pZaK7lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716199099; c=relaxed/simple;
-	bh=9GSZX+aKLnx8y8TUWKzJzkq8VGJDTGApJAWDt61fS7U=;
+	s=arc-20240116; t=1716199149; c=relaxed/simple;
+	bh=YXr5OkApT26+XTrMA/rnWYnu5JA55GQIUti3yFLD6rE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=WiQEwLdvy76wGpnc5PdIhHCJn6eH6n2JCh4s7tmZo9wjPoX38/MzdrwkEmbnMsdzL3OqR1d2W4u0TAvZzACg+ifAv9IhN6uc2HqU7fsvxFkp/BMcXLtlddgwJumqdye87ROT4Wq/Y9OVEZewaew8mzWb47vFkCanvvbHfgdeXkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pEp44sC8; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=P7x5RWzboN3a2pBf7qlYZu/AwnTfkx2uxsSNYg0etENZuBcJGk8DzD7bDIV7IJ7FwzriNLyi0zYpOMo4bShjdgSw3ojYGDmCkN9fWJqfJNvmKSqDaSZw+4pdX4jqec8QWudCc/vfDXuTlFYNA8l5pNeWu/oBMGll62rMt+TLEMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=vThg0w5G; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716199096;
-	bh=9GSZX+aKLnx8y8TUWKzJzkq8VGJDTGApJAWDt61fS7U=;
+	s=mail; t=1716199146;
+	bh=YXr5OkApT26+XTrMA/rnWYnu5JA55GQIUti3yFLD6rE=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=pEp44sC8Kg7b5wvV8lTZxd1j2+1nCYixzWpOUBTyDht6mzgSywYdW3sNAopDUn58i
-	 i6qXK/vRW0yMdqdoL1hDe2fSVYa39bo0eN+DshkXDOYp7gooJ9pjpl4X8EFPAy8FbA
-	 +DyACb7P6HMurzFKbpVT/NgpylCb5edcJK48oxfuBfAYyU4hMJNnA7r472ElyhA3Qw
-	 Ieqi3gIR1K357QSiTdOZReaFjC1z99t88w8SwBNKJQGLgO1XfsbCfaM0nmnAk23tB3
-	 uJRd4fp1EOnPl1z09eVhne8VZNnCIGP93pVxSkOVDTRiNyHbpsaDPEuWNoTMntLWaB
-	 V0X+JjMN2aM0Q==
+	b=vThg0w5GsICMH+h606V0YqDGp5cHx2istjfTQxTxSjOMhxyn8xYYhWoPKPswYI8qG
+	 xTNGLq8cVs7WWpvnlXR5/sT+v7C65wnK2ZHNZ5HlZiG54vUVvo8vcCh1+e2UIxPPqa
+	 e6RjOHpchfDDm9PLk9ICdPbrG0JsdB8lPa/6C15wQWYm/0K9jGzy+/p38i6/QVhy5Q
+	 AFo0SG8OApHsJ1SgpG6hE9fZL2X5uHEHIyqeXTA2/Ug0oDB5aHD3jPSjEa3QvGVUw5
+	 vku4tNZd+J0hYSwmrIYvOEOgqeFvXcu4ZRMGAsB7PrHtCRDQkiaEMdxijIj+jYKXC6
+	 YD2B+9DSdhs2g==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D611537820CD;
-	Mon, 20 May 2024 09:58:15 +0000 (UTC)
-Message-ID: <3b1be547-ac49-40fb-909f-96952c299545@collabora.com>
-Date: Mon, 20 May 2024 11:58:15 +0200
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 05C1237820CD;
+	Mon, 20 May 2024 09:59:05 +0000 (UTC)
+Message-ID: <38422eed-cc98-488e-a3d7-a01b6f3ba1fb@collabora.com>
+Date: Mon, 20 May 2024 11:59:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: mediatek: mt8365: drop incorrect
- power-domain-cells
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: mediatek,mt8195-scpsys: add
+ mediatek,mt8365-scpsys
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -67,45 +67,21 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-mediatek@lists.infradead.org
 References: <20240518211159.142920-1-krzysztof.kozlowski@linaro.org>
- <20240518211159.142920-3-krzysztof.kozlowski@linaro.org>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20240518211159.142920-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240518211159.142920-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 18/05/24 23:11, Krzysztof Kozlowski ha scritto:
-> The top SCPSYS node is not a power domain provider.  It's child
-> "power-controller" is instead.  Fix dtbs_check warnings like:
-> 
->    mt8365-evk.dtb: syscon@10006000: '#power-domain-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> Add a new mediatek,mt8365-scpsys compatible, for the SCPSYS syscon block
+> having power controller.  Previously the DTS was re-using SYSCFG
+> compatible, but that does not seem right, because SYSCFG does not have
+> children.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Well if you're fixing that by migrating to scpsys compatible, you might as well
-resolve all of the warnings in one commit, removing that power-domain-cells
-property in patch [2/4], otherwise this one is technically a fix for that.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Please squash [2/4] and [3/4], like that it just makes more sense.
-
-Cheers,
-Angelo
-
-> ---
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> index d3da5a22c2d2..eb449bfa8803 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-> @@ -302,7 +302,6 @@ syscfg_pctl: syscfg-pctl@10005000 {
->   		scpsys: syscon@10006000 {
->   			compatible = "mediatek,mt8365-scpsys", "syscon", "simple-mfd";
->   			reg = <0 0x10006000 0 0x1000>;
-> -			#power-domain-cells = <1>;
->   
->   			/* System Power Manager */
->   			spm: power-controller {
 
 
