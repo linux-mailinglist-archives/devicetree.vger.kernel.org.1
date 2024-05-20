@@ -1,113 +1,113 @@
-Return-Path: <devicetree+bounces-67913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0658CA125
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:18:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95B6A8CA12C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:20:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D2DA1C211A6
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:18:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35E311F21610
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBA4137C47;
-	Mon, 20 May 2024 17:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA7E9137C26;
+	Mon, 20 May 2024 17:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GLFOZCVL"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="LuU/fEMP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3203953E13;
-	Mon, 20 May 2024 17:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECF653E13;
+	Mon, 20 May 2024 17:20:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716225477; cv=none; b=TSMETg1RuGHk6Uq1Ytr5F1k3ZYz2ID+WyKLlDuB2Ajzp8Pr+sOdwmR+itOvxQBHtqwqXCywcOPtDvxbldnPBQ+W20KzPvDe8KwyohxMhMTWxujyvsVK7JoD+3JXa2V6elPJcqrprRAUYnVI5N868AjUNue5gKcAYqC+vD0pwN3k=
+	t=1716225640; cv=none; b=QpvEbEgvsY0yfKsafXjIPuZu8uXeYNLTh3WaLkkPNt/wWVCQ5DVIGMez2vFEUVRUVbBj7uM9faHO7ofF7SAFcDYunzNWuOf4U3IfiOfzNJXP3AI/fG6xKIQd/T+9+6zwId3Tk/WkEV9svd3cX2Ga30F/5sO3i/DX7O8cHlf3zaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716225477; c=relaxed/simple;
-	bh=dcRbeZXXPhsr3+R4ot9MrqpKhfby+5UfDHXnDXLmTf8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QsQ6na8Rljg4EOA9SBz1cG2YhWp/e2TyQPVZbvUJVV/jK1jhTn+ihXHyaRbps3PtPD+CoZqxaQWaYy9lqrpYw+hiUDAU6Vhp21aa8qeVQ5U5MBH09nduZYRHS+hI8/wm5rlH2dHR5oactSWnPl/CrvdhHE8HX6lJeRgiltbYk7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GLFOZCVL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2514EC2BD10;
-	Mon, 20 May 2024 17:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716225477;
-	bh=dcRbeZXXPhsr3+R4ot9MrqpKhfby+5UfDHXnDXLmTf8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GLFOZCVLaHTVAadnpMqrFdDPJX9WTFJBxD4XO8BM0QSZPh5vvkHfu2k2z3p2Yppqn
-	 51G/WWUBzwP+2b87UhibetcDxKR1TNUnCB08PDJZieh7Gjo7PmT4ruk+hJMv1s7Jpj
-	 9PU0bVD1+EzXdqvQXhH7k7rn7h3XF/TSAC1kBrELO/doaj6VIeuSTujPNsXZHKA+pU
-	 u4TltHlq2aqR80Ed5WDihbMg++nnYCH/1Q5gRMzN0t8o2P/bqyxQYIY5kdRO0P5NGz
-	 g1Eb9LCsd0fwmI0W1pQgtGG3lUlFdlpHpPseqCsccLput9IQmUQcErFOC8MA7aMpNs
-	 E/sgRobiyYUzg==
-Date: Mon, 20 May 2024 18:17:52 +0100
-From: Conor Dooley <conor@kernel.org>
-To: "Kumar, Udit" <u-kumar1@ti.com>
-Cc: vigneshr@ti.com, nm@ti.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Kip Broadhurst <kbroadhurst@ti.com>, w.egorov@phytec.de
-Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
- GPL-2.0
-Message-ID: <20240520-discard-fanatic-f8e686a4faad@spud>
-References: <20240517104226.3395480-1-u-kumar1@ti.com>
- <20240517-poster-purplish-9b356ce30248@spud>
- <20240517-fastball-stable-9332cae850ea@spud>
- <8e56ea52-9e58-4291-8f7f-4721dd74c72f@ti.com>
+	s=arc-20240116; t=1716225640; c=relaxed/simple;
+	bh=ujOZdM12m2SkEuErdLg31UfXALUkOK8fYQRRZe+CGPo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=a63vvnYNAPjHErnZgEGQg8mAH8uQSP4n7XYdo0B6EYuljDCPASut4n1Q99ZRQsZ7hscvEHt04tPByXecsjAHBYAnBeTHaZokqtHgwwRQvqYe+f7asFiz8QBDcHESY5gCSUCCPnUkrll+IiVGsg3x+tB4AFk2ZbDZkegzgSV92j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=LuU/fEMP; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1716225634;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=M5mdKrQZ6Ky+oql5N4jU0irfjSORSwfq+zI30MiBIko=;
+	b=LuU/fEMPZL0GHan6Z1Z0f2BpKu+NaY/w0OmOAbO9PaNcTiGPihIk+jEt/FfcthR7H3nL49
+	x0+z0UXxgVjOsQ4RV0z7dVY7wGEnxexYc38rqFz+VW8Q0eiaW30/JLEPmHl3CDuf1HQyEO
+	vQWrQpGOneFSwbcwMw5LlRhcEP625t/+cISm+aHJxTkkqXMI8YQW3FfrJbZ/mK4k/ld1Az
+	mbK/ui3vFhOZ7TavIMGZZARU9c1zlI1CAE3K66gHAQFECNsbCdWbfmMZfbBijvGrfDJyp6
+	U0+HQ8NnpQ2MyISitkaJU2fd9duUnbjUApV4peHrnyaDa9IoRvxzApTeaBgvEw==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH] arm64: dts: rockchip: Fix the DCDC_REG2 minimum voltage on Quartz64 Model B
+Date: Mon, 20 May 2024 19:20:28 +0200
+Message-Id: <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="UePwvSjabeybRF4C"
-Content-Disposition: inline
-In-Reply-To: <8e56ea52-9e58-4291-8f7f-4721dd74c72f@ti.com>
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Correct the specified regulator-min-microvolt value for the buck DCDC_REG2
+regulator, which is part of the Rockchip RK809 PMIC, in the Pine64 Quartz64
+Model B board dts.  According to the RK809 datasheet, version 1.01, this
+regulator is capable of producing voltages as low as 0.5 V on its output,
+instead of going down to 0.9 V only, which is additionally confirmed by the
+regulator-min-microvolt values found in the board dts files for the other
+supported boards that use the same RK809 PMIC.
 
---UePwvSjabeybRF4C
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This allows the DVFS to clock the GPU on the Quartz64 Model B below 700 MHz,
+all the way down to 200 MHz, which saves some power and reduces the amount of
+generated heat a bit, improving the thermal headroom and possibly improving
+the bursty CPU and GPU performance on this board.
 
-On Sat, May 18, 2024 at 02:18:55PM +0530, Kumar, Udit wrote:
-> Hi Conor
->=20
-> On 5/17/2024 8:11 PM, Conor Dooley wrote:
-> > On Fri, May 17, 2024 at 03:39:20PM +0100, Conor Dooley wrote:
-> > > On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
-> > > > Modify license to include dual licensing as GPL-2.0-only OR MIT
-> > > > license for TI specific phy header files. This allows for Linux
-> > > > kernel files to be used in other Operating System ecosystems
-> > > > such as Zephyr or FreeBSD.
-> > > What's wrong with BSD-2-Clause, why not use that?
-> > I cut myself off, I meant to say:
-> > What's wrong with BSD-2-Clause, the standard dual license for
-> > bindings, why not use that?
->=20
-> want to be inline with License of top level DTS, which is including this
-> header file
+This also eliminates the following warnings in the kernel log:
 
-Unless there's a specific reason to use MIT (like your legal won't even
-allow you to use BSD-2-Clause) then please just use the normal license
-for bindings here.
+  core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, not supported by regulator
+  panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (200000000)
+  core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, not supported by regulator
+  panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (300000000)
+  core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, not supported by regulator
+  panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (400000000)
+  core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, not supported by regulator
+  panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (600000000)
 
-Cheers,
-Conor.
+Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B device tree")
+Cc: stable@vger.kernel.org
+Reported-By: Diederik de Haas <didi.debian@cknow.org>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---UePwvSjabeybRF4C
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkuFvwAKCRB4tDGHoIJi
-0jFQAP9VmADFwFETab2Xw6u8RNuEmVRMP4CsXPoUSZDuZyWVrwEAypOI3tz6MeUd
-1duYMmtHWNxu9vJjZAZ0lCOfDKr95wg=
-=WAqU
------END PGP SIGNATURE-----
-
---UePwvSjabeybRF4C--
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+index 26322a358d91..b908ce006c26 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+@@ -289,7 +289,7 @@ vdd_gpu: DCDC_REG2 {
+ 				regulator-name = "vdd_gpu";
+ 				regulator-always-on;
+ 				regulator-boot-on;
+-				regulator-min-microvolt = <900000>;
++				regulator-min-microvolt = <500000>;
+ 				regulator-max-microvolt = <1350000>;
+ 				regulator-ramp-delay = <6001>;
+ 
 
