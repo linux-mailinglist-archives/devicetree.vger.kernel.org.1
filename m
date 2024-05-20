@@ -1,177 +1,191 @@
-Return-Path: <devicetree+bounces-67930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69AE8CA2BA
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:29:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D1B8CA2D0
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F54AB21D0D
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:29:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 647BC1C206A2
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:41:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB871384A8;
-	Mon, 20 May 2024 19:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F24E1B28D;
+	Mon, 20 May 2024 19:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FhEYg9TS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JLA5TykB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFBE138496;
-	Mon, 20 May 2024 19:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46C71E878;
+	Mon, 20 May 2024 19:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716233347; cv=none; b=NzFlnp4sTbiZL1ez4fCScyulppBnudDuXYfZIB9uppmP2RUJRvqpwrDMOLUIc/SJOGkvrlDGbKxYTnOLnw+jaN8MaF5x+v+oZ1+pyDq8NkPdSsaLDNFK755Q8LWPC85Y2EwWpLtnbCmnbfxLmHmUhYDPIuLabcrHkW/6YPUJgtc=
+	t=1716234096; cv=none; b=JDgIjsIJtURyzH7Yb8tniFsVvqcdVoWYAxKp2Tm4VmtFgJMOJQEtAm5ZHGu+wpJV+zDYT6w5Ci1RxlPB/bks+ZnAS6oba9BLXP7I6YmCmkqq/9JyBoDTmqai1F+Ipp8m4gpoIj+LTCiHn22OjQDDkeDfDJvFsqQKAeMi3g+ZFH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716233347; c=relaxed/simple;
-	bh=XUJS0Nr3vYVX0F8uk+6ZJ1bmsN6ximLLLBQTiJ2ot4E=;
+	s=arc-20240116; t=1716234096; c=relaxed/simple;
+	bh=ad/ng2ZfVJZUt5PIHKSAUXGS1BayQ+Hcf7vtMyIKGJY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VfKUS3WVp4YhsWbWgHXL4yUj6Y6PpefL2AyqIxsD5Cgzn0Sroc0iTCALgwLCc1EJ/zdr0OZYvAX4RbDOTQdiBzPMaHAy8ucai121MaBiq9lKrfU0LWQ3fkPvGJEiDuyqJe7392GAFa+y/ZQ02QO56QRIL1GeLlTnHTbj/V/RcDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FhEYg9TS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 910FBC2BD10;
-	Mon, 20 May 2024 19:29:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lX7NQloFx4VpAvCN4amnm3hh4McwgGAhYlhDoPXjIYjrzCH7JfG6EnjJn8ZM9qanZzZRFxioMlVa7qzztKATJ/ucW12NiN5UEJS1vCiJLR/x0Pa2eYNMUfsBeR8npIdPnCVxiY4WdQGvo8OIGaB/OZ39PMrFKtHJTSGFCH+LIHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JLA5TykB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E6E2C2BD10;
+	Mon, 20 May 2024 19:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716233346;
-	bh=XUJS0Nr3vYVX0F8uk+6ZJ1bmsN6ximLLLBQTiJ2ot4E=;
+	s=k20201202; t=1716234095;
+	bh=ad/ng2ZfVJZUt5PIHKSAUXGS1BayQ+Hcf7vtMyIKGJY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FhEYg9TSNmjmqsi4z5nUbjshugz1fFBtkFH2PhPoUnp6gGAGsjyZC6Mg9+o9NMDEE
-	 Y/gcdIwhMguzNueJwnw0GgYHoBUBuvU+3CVKqGXKBdHD1mhHXwzYFmZKsN3tsaLCSU
-	 Zpom41x7pESpNRUxUfMw8FxCP4MJptcduDANtfdd1oLaaoM3pizIr6JCl5klPQq12M
-	 /++/5H7iwoD+Lp8p56BLpH0yXkecBBes0MZutT1l3o6T5blQ5B7HrYgYZnCsaNS+Kf
-	 Rv34ZUkPgBHQHEoH3U2klhWMaNUxCRFD0o5tHLonTogbTfAWy74SOq0N5IwTaYrjq4
-	 1jFUl/FrKH+nA==
-Date: Mon, 20 May 2024 14:29:05 -0500
-From: Rob Herring <robh@kernel.org>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-	Melody Olvera <quic_molvera@quicinc.com>,
-	Shivendra Pratap <quic_spratap@quicinc.com>,
+	b=JLA5TykBP9W7YuF4TUzV+f0T4WKzyYSwK65imF+k9wOT6AMlZmS9DqIHOJvCKREQL
+	 h54VCE50/Ljzd6xwdttjXVd7A/KlLAK/pVlCWkLCenAxGuSQdo4bxuHWqb9EMDhnmu
+	 L72ztfunxdQiF3ueYTWUSWDP6mtN1GHpOC2xX0mYE4OmEEIlkoeSCfHM3w1dbrLT/G
+	 vz5y8fXIGRmVnblqmCIDJWSUqaVGb0NH8vOyzLdIEKNJIECVa9aOuIFYKLTMt9j2DP
+	 9JRjUI0a2y28vCNTI9EFV40XErzS0L7EGfnomRUcAyQPYWYqe6E36yR0ltBvdiuEyS
+	 rVWLPkz3G2xyQ==
+Date: Mon, 20 May 2024 20:41:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	ukleinek@kernel.org, linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: power: reset: Convert mode-.*
- properties to array
-Message-ID: <20240520192905.GA1345016-robh@kernel.org>
-References: <20240515-arm-psci-system_reset2-vendor-reboots-v3-0-16dd4f9c0ab4@quicinc.com>
- <20240515-arm-psci-system_reset2-vendor-reboots-v3-1-16dd4f9c0ab4@quicinc.com>
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
+Message-ID: <20240520-badly-islamist-dcae9fe1303b@spud>
+References: <20240520030321.3756604-1-chris.packham@alliedtelesis.co.nz>
+ <20240520030321.3756604-2-chris.packham@alliedtelesis.co.nz>
+ <20240520-pendant-charity-a66a8d738690@spud>
+ <62c3c546-5172-4417-a15a-d13419d42be3@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="EwebWdOmCCvPoTdW"
+Content-Disposition: inline
+In-Reply-To: <62c3c546-5172-4417-a15a-d13419d42be3@roeck-us.net>
+
+
+--EwebWdOmCCvPoTdW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240515-arm-psci-system_reset2-vendor-reboots-v3-1-16dd4f9c0ab4@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 15, 2024 at 04:09:44PM -0700, Elliot Berman wrote:
-> PSCI reboot mode will map a mode name to multiple magic values instead
-> of just one. Convert the mode-.* property to an array. Users of the
-> reboot-mode schema will need to specify the maxItems of the mode-.*
-> properties. Existing users will all be 1.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->  .../devicetree/bindings/power/reset/nvmem-reboot-mode.yaml |  4 ++++
->  .../devicetree/bindings/power/reset/qcom,pon.yaml          |  4 ++++
->  .../devicetree/bindings/power/reset/reboot-mode.yaml       | 14 ++++++++++++--
->  .../bindings/power/reset/syscon-reboot-mode.yaml           |  4 ++++
->  4 files changed, 24 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
-> index 627f8a6078c2..03b3b9be36de 100644
-> --- a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
-> @@ -30,6 +30,10 @@ properties:
->  
->  allOf:
->    - $ref: reboot-mode.yaml#
-> +  - patternProperties:
-> +      "^mode-.*$":
-> +        items:
-> +          maxItems: 1
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-> index fc8105a7b9b2..95964e04d5d6 100644
-> --- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-> @@ -68,6 +68,10 @@ allOf:
->      then:
->        allOf:
->          - $ref: reboot-mode.yaml#
-> +        - patternProperties:
-> +            "^mode-.*$":
-> +              items:
-> +                maxItems: 1
->  
->        properties:
->          reg:
-> diff --git a/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml b/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml
-> index ad0a0b95cec1..feb70609bb5f 100644
-> --- a/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/reboot-mode.yaml
-> @@ -28,13 +28,23 @@ description: |
->  
->  properties:
->    mode-normal:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> +    $ref: "#/patternProperties/^mode-.*$"
->      description:
->        Default value to set on a reboot if no command was provided.
->  
->  patternProperties:
->    "^mode-.*$":
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    # Limit to 1 outer cell, e.g. no mode-normal = <0>, <1>;
-> +    maxItems: 1
+On Mon, May 20, 2024 at 12:03:42PM -0700, Guenter Roeck wrote:
+> On 5/20/24 09:49, Conor Dooley wrote:
+> > On Mon, May 20, 2024 at 03:03:19PM +1200, Chris Packham wrote:
+> > > Add fan child nodes that allow describing the connections for the
+> > > ADT7475 to the fans it controls. This also allows setting some
+> > > initial values for the pwm duty cycle and frequency.
+> > >=20
+> > > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> > > ---
+> > >=20
+> > > Notes:
+> > >      Changes in v3:
+> > >      - Use the pwm provider/consumer bindings
+> > >      Changes in v2:
+> > >      - Document 0 as a valid value (leaves hardware as-is)
+> > >=20
+> > >   .../devicetree/bindings/hwmon/adt7475.yaml    | 25 ++++++++++++++++=
+++-
+> > >   1 file changed, 24 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/hwmon/adt7475.yaml b/D=
+ocumentation/devicetree/bindings/hwmon/adt7475.yaml
+> > > index 051c976ab711..99bd689ae0cd 100644
+> > > --- a/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> > > +++ b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> > > @@ -51,6 +51,15 @@ properties:
+> > >         enum: [0, 1]
+> > >         default: 1
+> > > +  "#pwm-cells":
+> > > +    const: 4
+> > > +    description: |
+> > > +      Number of cells in a PWM specifier.
+> > > +      - 0: The pwm channel
+> > > +      - 1: The pwm frequency in hertz - 0, 11, 14, 22, 29, 35, 44, 5=
+8, 88, 22500
+> >=20
+> > The standard binding is period in nanoseconds, not frequency in Hz.
+> > What's gained from deviating from that?
+> >=20
+>=20
+> I'd strongly suspect that Chris didn't know and didn't expect it,
+> just like me.
 
-So it's an array, not a matrix...
+I did point out on v2 that the information on the standard binding was
+in pwm.txt, but I also said "order it has <index freq flags duty>" which
+likely didn't help. I did however CC you both on a patch the other day
+where I fixed pwm.yaml so that it actually contained the information on
+what the cells represented.
+> > > +      - 2: PWM flags 0 or PWM_POLARITY_INVERTED
+> > > +      - 3: The default pwm duty cycle - 0-255
+> >=20
+> > Same here I guess, why not match the units used for the period for the
+> > duty cycle?
+> >=20
+>=20
+> Same here. I am used to pwm frequency in Hz and duty cycle as percentage.
+> Using the period instead is somewhat unusual, and I must admit that I
+> have never encountered it while dealing with a variety of fan controllers.
 
-> +    # Note: to reference this schema, the allOf should include hint about
-> +    # maxItems for the inner cell
-> +    # allOf:
+If it is what makes sense to use, because it's what everyone and their
+mother documents, then sure. My rationale I suppose was threefold:
+- Consistency with the period
+- Time would be more portable between providers, if 8 bits of precision
+  is deemed insufficient for some providers.
+- Last & least, the PWM APIs in the kernel use time for the dutycycle
 
-Don't need allOf here.
+If you're going to use percentages rather than time, would it not
+make more sense to either use percent itself with a 0-100 range or use
+basis points if percent doesn't provide sufficient granularity?
 
-> +    # - $ref: /schemas/power/reset/reboot-mode.yaml#
-> +    # - patternProperties:
-> +    #     "^mode-.*$":
-> +    #       items:
-> +    #         maxItems: 1
->  
->  additionalProperties: true
->  
-> diff --git a/Documentation/devicetree/bindings/power/reset/syscon-reboot-mode.yaml b/Documentation/devicetree/bindings/power/reset/syscon-reboot-mode.yaml
-> index b6acff199cde..bf6d68355e7f 100644
-> --- a/Documentation/devicetree/bindings/power/reset/syscon-reboot-mode.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/syscon-reboot-mode.yaml
-> @@ -31,6 +31,10 @@ properties:
->  
->  allOf:
->    - $ref: reboot-mode.yaml#
-> +  - patternProperties:
-> +      "^mode-.*$":
-> +        items:
-> +          maxItems: 1
->  
->  unevaluatedProperties: false
->  
-> 
-> -- 
-> 2.34.1
-> 
+I think it'd be good of Uwe chimed in, given we're discussing a PWM
+provider binding after all.
+
+> Just to make sure I understand this correctly - duty cycles would
+
+s/duty cycles/periods/
+
+> be (rounded):
+>=20
+> Hz	ns
+> 11	90,909,091
+> 14	71,428,571
+> 22	45,454,545
+> 29:	34,482,759
+> 35:	28,571,429
+> 44:	22,727,273
+> 58:	17,241,379
+> 88:	11,363,636
+> 22500	44,444
+>=20
+> Examples for duty cycles would be
+>=20
+> 20%: 0,2s or 200,000,000
+> 50%: 0.5s or 500,000,000
+> 80%: 0.8s or 800,000,000
+>=20
+> Is that correct ?
+
+Assuming a 1 second period, those look as expected.
+
+Cheers,
+Conor.
+
+
+--EwebWdOmCCvPoTdW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkunawAKCRB4tDGHoIJi
+0teKAP9QTzAM4I9Knk/VlftfV7eyBojkQ7JhiscMPJjToa6SRwEAhBt2VrLVWnNN
+mXPi0eWlRwYyQS6o04gwdQPgcfbFjgE=
+=Mg3Z
+-----END PGP SIGNATURE-----
+
+--EwebWdOmCCvPoTdW--
 
