@@ -1,155 +1,205 @@
-Return-Path: <devicetree+bounces-67809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E018C9C3E
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:41:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 449328C9C48
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:44:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44E0C1C21C31
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:41:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B77AFB20CE5
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF98A53805;
-	Mon, 20 May 2024 11:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539E153815;
+	Mon, 20 May 2024 11:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EiP1nCzH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FdrfVpyt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980B054BE8;
-	Mon, 20 May 2024 11:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE7936134;
+	Mon, 20 May 2024 11:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716205303; cv=none; b=UR+79MXWP9vxUMxSpZCiYooQsIJ5Q/rZegxuoc3k/JkA9jAz4LZ+Ap7TlXxshwYraYl/6lehNR9k9cmBkTd8P9e2yxxUuQ6oOCPsNvqkBbiWOsG2X9i3tM5h9/5Zsn+Jy9Z9MvWwLITTfRBu0qQlsNpo/ET7RbOrWIXFxnONrgA=
+	t=1716205451; cv=none; b=BkPHHmoyO6ts2BLqUGqXXjL3BGrh1I5qsa5s+Be071PMJLq8P1P6luaogopoz3/neA3cNv0zJ2g9jF9dPCTYvdH46sjqsLACD9F6UCwCSmBfuON7VPhAl8tsSt2ggd3BwGsvduWylobjwEWFbK9p9p4ezpHJiSZ4DGAJSTAw07g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716205303; c=relaxed/simple;
-	bh=u130tbWpT6LvE50q6tsnZs3h7loPdMb44w2PkpTnAbc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iQW6Em04gepbJYmmkLRmU6JsJSjPyO294Pb2JFad5OUtL2Fk+iNSfxQ2fHJ/b2HtWrOkRXtmoCgWkx/voIOVw4qF2fOuSfPd9kJDCFAYFCsyDyUEQ12CIDKq5LeaPIAyIeUeju8Uooyx8+AM91yIpcMZzZ4fvHSPRiazGUtlbWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EiP1nCzH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3016AC2BD10;
-	Mon, 20 May 2024 11:41:39 +0000 (UTC)
+	s=arc-20240116; t=1716205451; c=relaxed/simple;
+	bh=JrKEV3MF4JISD4JRKbt9/nLI81LbwnOvu1GLB3l2fNU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jInXotTqNF1l3iasUvVFEo8W9Hrn3UjEDT8xWeAgn6SeIDqT/iQay/3jFLcKQQyA7GZftxBUsN7iuBV6buD6SALSqcdyq+J54f8qloF4VE4o21qimMF0DqscTaTWisWD8oQ4AsF/tFGi1aflzIgK6olZrOh50tr1YrFwOzAx49A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FdrfVpyt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99253C2BD10;
+	Mon, 20 May 2024 11:44:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716205303;
-	bh=u130tbWpT6LvE50q6tsnZs3h7loPdMb44w2PkpTnAbc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EiP1nCzHxOEa+BR7Kpdt3rojQ2goPIuUi6CR+1vWHvRUjXLnPYaw6gBMEjffQLnbz
-	 +/CFIgAxdyc7dbPVPNpj2EsuQJEwlY75/Hw+i2f0aoida5RtbXnnOYcHntdzi/AeJq
-	 7OmzLIRjjxYW/MhMyv+NRbQ9Dj91lttRf8tNy++iUVluN+BC5Omqckl7dxWtjLLfo8
-	 JKD6UeguXk62LjHE+TtjJPIlNgOD/iZt75WkjbbFvPUYhimLhVu8gkCXgGDcmX0Q76
-	 8ln0fn+EsWqm7r3OKtiR/x6fRdIhUn5+y45OO1ZEUJ+TVSLhlRYDCMED1u/qHchR2c
-	 60A7bnWsGH9Ow==
-Message-ID: <6f9f87d3-9570-4eb0-a3d0-f087308d9815@kernel.org>
-Date: Mon, 20 May 2024 14:41:37 +0300
+	s=k20201202; t=1716205450;
+	bh=JrKEV3MF4JISD4JRKbt9/nLI81LbwnOvu1GLB3l2fNU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FdrfVpytjcxGNGVDPVM8RdaPNXxGXcvni6qzf356GNvbFx/CVWMxAkrVW7P7m8Ydo
+	 5QzfzSBBEuwyw109jarhFNUFF1TVcQ6NsGP/i66cbxOgUuBHoHU1TinEb3viwydYn9
+	 GDyFwe2dw1zEukYjAhwlgOi31gHRvgZv8mXPs7c7fpW6v+3q7/CN2jp3xfgYolO4an
+	 o9hrWd+PG9SP3+HGvIrBtKlz1rJ9RyrlK8JC+TrFlC9DHZkip3e94tmGZR5gWJqr2r
+	 DXsiBU1cFUS18mficfXtS9l3+hWbnfus8ENNWgxJXgfgjkibd/Y1IRVppOdoioZkiL
+	 F5a+7CwldBNJQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1s91R0-000000004DR-0DSE;
+	Mon, 20 May 2024 13:44:06 +0200
+Date: Mon, 20 May 2024 13:44:06 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Doug Anderson <dianders@chromium.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
+Subject: Re: [PATCH v2 4/7] HID: i2c-hid: elan: fix reset suspend current
+ leakage
+Message-ID: <Zks3hp5iUhTe3rLH@hovoldconsulting.com>
+References: <20240507144821.12275-1-johan+linaro@kernel.org>
+ <20240507144821.12275-5-johan+linaro@kernel.org>
+ <CAD=FV=V59t_tZ9Xk=uhbgOdTRYLKu+kZt8cpaksTkJo+D4yt8Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: soc: ti: am645-system-controller: add
- AM654 syscon
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240518-dt-bindings-ti-soc-mfd-v1-0-b3952f104c9a@linaro.org>
- <20240518-dt-bindings-ti-soc-mfd-v1-2-b3952f104c9a@linaro.org>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240518-dt-bindings-ti-soc-mfd-v1-2-b3952f104c9a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=V59t_tZ9Xk=uhbgOdTRYLKu+kZt8cpaksTkJo+D4yt8Q@mail.gmail.com>
 
+Hi Doug,
 
+and sorry about the late reply. Was travelling last week.
 
-On 18/05/2024 23:07, Krzysztof Kozlowski wrote:
-> Add dedicated binding for the AM654 MCU SCM system controller registers,
-> already used in the DTS to properly describe its children.
+On Fri, May 10, 2024 at 04:36:08PM -0700, Doug Anderson wrote:
+> On Tue, May 7, 2024 at 7:48 AM Johan Hovold <johan+linaro@kernel.org> wrote:
+> >
+> > @@ -40,17 +41,17 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
+> >                 container_of(ops, struct i2c_hid_of_elan, ops);
+> >         int ret;
+> >
+> > +       gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../soc/ti/ti,am654-system-controller.yaml         | 60 ++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
+> Could probably use a comment above it saying that this is important
+> when we have "no_reset_on_power_off" and doesn't do anything bad when
+> we don't so we can just do it unconditionally.
+
+Possibly, but I'd prefer not to add comments for things like this, which
+should be apparent from just looking at the code. And explicitly
+asserting reset before deasserting it is not unusual in any way.
+
+> > +
+> >         if (ihid_elan->vcc33) {
+> >                 ret = regulator_enable(ihid_elan->vcc33);
+> >                 if (ret)
+> > -                       return ret;
+> > +                       goto err_deassert_reset;
+> >         }
+> >
+> >         ret = regulator_enable(ihid_elan->vccio);
+> > -       if (ret) {
+> > -               regulator_disable(ihid_elan->vcc33);
+> > -               return ret;
+> > -       }
+> > +       if (ret)
+> > +               goto err_disable_vcc33;
+> >
+> >         if (ihid_elan->chip_data->post_power_delay_ms)
+> >                 msleep(ihid_elan->chip_data->post_power_delay_ms);
+> > @@ -60,6 +61,15 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
+> >                 msleep(ihid_elan->chip_data->post_gpio_reset_on_delay_ms);
+> >
+> >         return 0;
+> > +
+> > +err_disable_vcc33:
+> > +       if (ihid_elan->vcc33)
+> > +               regulator_disable(ihid_elan->vcc33);
+> > +err_deassert_reset:
+> > +       if (ihid_elan->no_reset_on_power_off)
+> > +               gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
-> new file mode 100644
-> index 000000000000..e79803e586ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/ti/ti,am654-system-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI AM654 System Controller Registers R/W
-> +
-> +maintainers:
-> +  - Kishon Vijay Abraham I <kishon@ti.com>
+> Small nit about the error label: it sounds as if when you go here you
+> _will_ deassert reset when in actuality you might or might not
+> (depending on no_reset_on_power_off).
 
-Please update the email address to Kishon Vijay Abraham I <kishon@kernel.org>
+Yes, this is similar to how err_disable_vcc33 may or may not disable the
+optional regulator.
 
-> +  - Roger Quadros <rogerq@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - ti,am654-system-controller
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^phy@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/phy/ti,phy-gmii-sel.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@40f00000 {
-> +        compatible = "ti,am654-system-controller", "syscon", "simple-mfd";
-> +        reg = <0x40f00000 0x20000>;
-> +        ranges = <0x0 0x40f00000 0x20000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        phy@4040 {
-> +            compatible = "ti,am654-phy-gmii-sel";
-> +            reg = <0x4040 0x4>;
-> +            #phy-cells = <1>;
-> +        };
-> +    };
+> Personally I prefer to label
+> error jumps based on things I've done instead of things that the error
+> jump needs to do, so you could call them "err_enabled_vcc33" and
+> "err_asserted_reset"...
+
+Naming labels after what they do is less error prone and also explicitly
+recommended by the coding style.
+
+> I don't feel that strongly about it, though, so if you love the label
+> you have then no need to change it.
+
+So I'd prefer keeping things this way.
+ 
+> > @@ -67,7 +77,14 @@ static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
+> >         struct i2c_hid_of_elan *ihid_elan =
+> >                 container_of(ops, struct i2c_hid_of_elan, ops);
+> >
+> > -       gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
+> > +       /*
+> > +        * Do not assert reset when the hardware allows for it to remain
+> > +        * deasserted regardless of the state of the (shared) power supply to
+> > +        * avoid wasting power when the supply is left on.
+> > +        */
+> > +       if (!ihid_elan->no_reset_on_power_off)
+> > +               gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
+> > +
+> >         if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
+> >                 msleep(ihid_elan->chip_data->post_gpio_reset_off_delay_ms);
 > 
+> Shouldn't  the above two lines be inside the "if
+> (!ihid_elan->no_reset_on_power_off)" test? If you're not setting the
+> reset GPIO then you don't need to do the delay, right?
 
--- 
-cheers,
--roger
+Yes, I guess you're right. The off-delay is weird and not normally used,
+but apparently it is needed by some panel-follower use case. AFAICT it's
+not even related to the reset line, just a hack to add a delay before
+the panel is reset by some other driver (see f2f43bf15d7a ("HID:
+i2c-hid: elan: Add ili9882t timing")).
+
+I think that's why I just looked the other way and left this little
+oddity here unchanged.
+
+> > @@ -79,6 +96,7 @@ static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
+> >  static int i2c_hid_of_elan_probe(struct i2c_client *client)
+> >  {
+> >         struct i2c_hid_of_elan *ihid_elan;
+> > +       int ret;
+> >
+> >         ihid_elan = devm_kzalloc(&client->dev, sizeof(*ihid_elan), GFP_KERNEL);
+> >         if (!ihid_elan)
+> > @@ -93,21 +111,38 @@ static int i2c_hid_of_elan_probe(struct i2c_client *client)
+> >         if (IS_ERR(ihid_elan->reset_gpio))
+> >                 return PTR_ERR(ihid_elan->reset_gpio);
+> >
+> > +       ihid_elan->no_reset_on_power_off = of_property_read_bool(client->dev.of_node,
+> > +                                               "no-reset-on-power-off");
+> 
+> Personally, I'd rather you query for the property before you request
+> the GPIO and then request the GPIO in the "powered off" state just to
+> keep everything in the most consistent state possible.
+
+No, I don't know what state the reset line is in before the driver
+probes. So either I leave it unchanged as I did in v1 or I assert it
+here unconditionally as I do in v2 (e.g. to avoid deasserting reset
+before the supply is stable).
+
+Johan
 
