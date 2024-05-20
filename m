@@ -1,157 +1,175 @@
-Return-Path: <devicetree+bounces-67842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A33C28C9E45
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:37:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFB48C9E6D
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:52:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 051A7B20D6D
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:37:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0A9A282DF7
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C53136652;
-	Mon, 20 May 2024 13:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B3C136657;
+	Mon, 20 May 2024 13:52:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J1XB+4eM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="arDADyHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9820D136648
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 13:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B5253815;
+	Mon, 20 May 2024 13:52:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716212269; cv=none; b=TKnl72+dYTO0+aJ7bg+K50iC7LvsXw8ROPihGRh9Gsxy/oaoCk8vmdlZ1hUFyXsmFPpIiozlcXD3gpKXO9+1Jois4qMCm47BYkWLKzsb3B53AbW9akK4TkHp3mR4hr0DIG4lSjBs5JMc3oqFgvg14xa3nwgJwtyGXTQVnB5R8Xs=
+	t=1716213153; cv=none; b=ItJzHpJWaPMRkegz/dEwfjmO2RMckCMUl0flPLu+IyH0KX7O4H90Mj2LltmV7JDyzxULDpS2hZrFWROhhFVzCTBWWSIcrjpNLK66ixzYJKfj1cwCGUJnD60npr9om6T9d3Ipx4sMxKK9j1D7Sr3RWvpPspsUJWBXXuNY73lEwmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716212269; c=relaxed/simple;
-	bh=tenZe5PUCM8bWtglkhmhlBwCcE/VGwl7nmqDXmXecsw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OY8VY1r3e4r4z4sBGRh8Jva019kXoQrDYq4TJBGEogSS0Q8TBJVCPCD3sdK5iODBlBgcDjgek64YJ3Gf4E6HeXZh3kSwJ6HUzKXImc0ANGl+FKrvbjo7KFQ870kGljjy8jErHp8CFl5UJHMj/o7SOq1ZC3k7QUEt4wp2qjmUokw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J1XB+4eM; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-34e28e32ea4so2002899f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 06:37:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716212266; x=1716817066; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WtJyx18Oev4H/D/FuP0FY8kBcDndJh3yqCcIoMGyUmM=;
-        b=J1XB+4eMkLpurtwl0VIGR8g5jRmMw762kfKCWnESh+PIx8XrR17vrCUeqb8Xo3bss5
-         Owy84pIWLxMNj8YsXrlm5RwF7ngPaCc72eLnv8DBZvsIlGlf8qzTc/SuWDfnNBFSk1yT
-         Ads70Gws6mYLU4aElM3U27LdugxUSvvW3rXrTBEsQm21ebE+lPLrBaPhi5EKW25Kn/0J
-         BwJO6+xHPcunzvimenMGt7HTpfu5xjbLVnmzhObwAh/LlO6SghIfyHpz5DiTXYIrInuj
-         HFGL7FaWuZDba7iP94qIKNZ79o3EaSZI9OiYDLdU4xt2HL/lYWCAdPsqNBLWN6mKDqMT
-         Gy5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716212266; x=1716817066;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WtJyx18Oev4H/D/FuP0FY8kBcDndJh3yqCcIoMGyUmM=;
-        b=f8EQcc6mYSHEj6JOhCB0lP4+lIaezQMHNsCA2lXiZahX28Eq1n5TX3JwP3ifADZnws
-         ug9sCd8RGTyQWNDij9xTt2DIIIOa0VAxy2MU/vIw+2IjWqbdcMV5o91GQwakJtp1gEmG
-         vXkzU26oDTtnB2c2CUkon2Rfje6roHwamTrMcOM7jLltHvdDAFI+MEH5rDMa1lnWzM9Q
-         /l7MrCAgNM39SuS3kd2fjLGT3/XIudgkDE2k+rDTDz5bb9srcvDgmn4lmoy2QBxpj2Zb
-         nseOYwI6mRy61AKdONLho/Z6vnOHzERuP3FPLWGpcnBWDubilEl2Lno12/5sMiBDhJSs
-         DhfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXF/XUZ8GUOwt9K/y0+Gj08NzVwJzKoqqP5VwHUzw3eVbQZ1NQRBgUZj/izk7vfPNiH8MaE7VJ8TqthjRdMzNW5fWJnAHkWkc0YvA==
-X-Gm-Message-State: AOJu0YwZ2lSC+gJK5YelaCFi7yduNweNjQQb+1dQCj0SSaZW4+fTYzZ/
-	b4eqCrnoR8/KjksmfzFkPvQ24BauYkjx9p4+HhyZy+d17/rKmKlPYR03pPISUNA=
-X-Google-Smtp-Source: AGHT+IGPtzL6P2tlnyPsh0P1ZgrwP9h5JG72y05Qi5ynRbRPJzFgW/QE0s8Vbs88qtemijnXuw9sCg==
-X-Received: by 2002:a5d:550b:0:b0:343:3542:b6aa with SMTP id ffacd0b85a97d-3504aa63c1emr18812746f8f.58.1716212265998;
-        Mon, 20 May 2024 06:37:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-354c58c1768sm3214858f8f.52.2024.05.20.06.37.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 May 2024 06:37:45 -0700 (PDT)
-Message-ID: <30675fad-2185-4098-b184-a5ad572eef14@linaro.org>
-Date: Mon, 20 May 2024 15:37:43 +0200
+	s=arc-20240116; t=1716213153; c=relaxed/simple;
+	bh=hDGQ/f9tnKzEsLVgBqkboz6ShsWwZfM5TWALVwDYV6Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L9CrOrF1raz8mg2UdBco2GYeO1RGk7Zfvcz/22orZXBtW0loDhyosKv5m7XZba/ZG02Fj99iFvz5tyGZY3jf2z3dD9GPE7JoU7TvxMPo+b4n74Lm3JdPtuFF6BBxwN2muvyKk8A8ZeuvJcWrKC8z/g9c7+uOPO6BeYDI33e1OgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=arDADyHg; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716213151; x=1747749151;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hDGQ/f9tnKzEsLVgBqkboz6ShsWwZfM5TWALVwDYV6Q=;
+  b=arDADyHg8gU1QzfRT/RuCBAl4qCElvzvR8azTR68N8DT+ZAaiu27Ova2
+   +B+a5l7OiYrgJ2hGLvofCgzwTk3RP9LSE7n9lQxriQiA0kl4Ip4UUsKmA
+   Etqj7YAMSbtRnT2OtDh6KQB/HNCAYZZtN3KIqNm+QkYDO7pmszrUis35v
+   EOiw/k+zhkMZZtRCqPHNQPsSBqWcnvra3xOPFlpXartweBeiWWqG3QG0l
+   C2S65x6cSOeglzn0mKW8rJ7wNQVJtZp0ULwib16vXuZgS/B1Sq5FnC2NV
+   LA1atqTqArKYaktpPjr2ehLvy5iQqZgw2FcTWQbXmGYJVNZ5X8Q1aXQ9+
+   A==;
+X-CSE-ConnectionGUID: oW3pvki2S4SmD1b4jh0M1A==
+X-CSE-MsgGUID: witET3DnTDyFewDbCEflZg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="23749406"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
+   d="scan'208";a="23749406"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 06:52:31 -0700
+X-CSE-ConnectionGUID: IZ/kxZVCRu+B/+d4yLGwsA==
+X-CSE-MsgGUID: 0q2of9YaRviqgGI9BTjUrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
+   d="scan'208";a="32446141"
+Received: from unknown (HELO 108735ec233b) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 20 May 2024 06:52:26 -0700
+Received: from kbuild by 108735ec233b with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1s93R9-0004si-2j;
+	Mon, 20 May 2024 13:52:23 +0000
+Date: Mon, 20 May 2024 21:51:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
+	peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, marex@denx.de, linux-clk@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	p.zabel@pengutronix.de, shengjiu.wang@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v4 2/5] clk: imx: clk-audiomix: Add reset controller
+Message-ID: <202405202110.K51viYoO-lkp@intel.com>
+References: <1716188963-16175-3-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm: bcm: Add BCM2712 SoC support
-To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org
-References: <cover.1715332922.git.andrea.porta@suse.com>
- <e60ee068f06cb2325e3d09c27b27002ba6db8572.1715332922.git.andrea.porta@suse.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e60ee068f06cb2325e3d09c27b27002ba6db8572.1715332922.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1716188963-16175-3-git-send-email-shengjiu.wang@nxp.com>
 
-On 10/05/2024 16:34, Andrea della Porta wrote:
-> The BCM2712 SoC is found on Raspberry Pi 5. Add compatible string to
-> acknowledge its new chipset.
-> 
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
+Hi Shengjiu,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+kernel test robot noticed the following build errors:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on abelvesa/clk/imx]
+[also build test ERROR on linus/master next-20240520]
+[cannot apply to pza/reset/next shawnguo/for-next robh/for-next pza/imx-drm/next v6.9]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Shengjiu-Wang/dt-bindings-clock-imx8mp-Add-reset-cells-property/20240520-153230
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelvesa/linux.git clk/imx
+patch link:    https://lore.kernel.org/r/1716188963-16175-3-git-send-email-shengjiu.wang%40nxp.com
+patch subject: [PATCH v4 2/5] clk: imx: clk-audiomix: Add reset controller
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20240520/202405202110.K51viYoO-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240520/202405202110.K51viYoO-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202405202110.K51viYoO-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/clk/imx/clk-imx8mp-audiomix.c: In function 'clk_imx8mp_audiomix_reset_adev_release':
+>> drivers/clk/imx/clk-imx8mp-audiomix.c:235:9: error: implicit declaration of function 'kfree'; did you mean 'vfree'? [-Werror=implicit-function-declaration]
+     235 |         kfree(adev);
+         |         ^~~~~
+         |         vfree
+   drivers/clk/imx/clk-imx8mp-audiomix.c: In function 'clk_imx8mp_audiomix_reset_controller_register':
+>> drivers/clk/imx/clk-imx8mp-audiomix.c:244:16: error: implicit declaration of function 'kzalloc'; did you mean 'vzalloc'? [-Werror=implicit-function-declaration]
+     244 |         adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+         |                ^~~~~~~
+         |                vzalloc
+   drivers/clk/imx/clk-imx8mp-audiomix.c:244:14: warning: assignment to 'struct auxiliary_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     244 |         adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+         |              ^
+   cc1: some warnings being treated as errors
+
+
+vim +235 drivers/clk/imx/clk-imx8mp-audiomix.c
+
+   230	
+   231	static void clk_imx8mp_audiomix_reset_adev_release(struct device *dev)
+   232	{
+   233		struct auxiliary_device *adev = to_auxiliary_dev(dev);
+   234	
+ > 235		kfree(adev);
+   236	}
+   237	
+   238	static int clk_imx8mp_audiomix_reset_controller_register(struct device *dev,
+   239								 struct clk_imx8mp_audiomix_priv *priv)
+   240	{
+   241		struct auxiliary_device *adev;
+   242		int ret;
+   243	
+ > 244		adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+   245		if (!adev)
+   246			return -ENOMEM;
+   247	
+   248		adev->name = "reset";
+   249		adev->dev.parent = dev;
+   250		adev->dev.release = clk_imx8mp_audiomix_reset_adev_release;
+   251	
+   252		ret = auxiliary_device_init(adev);
+   253		if (ret) {
+   254			kfree(adev);
+   255			return ret;
+   256		}
+   257	
+   258		ret = auxiliary_device_add(adev);
+   259		if (ret) {
+   260			auxiliary_device_uninit(adev);
+   261			kfree(adev);
+   262			return ret;
+   263		}
+   264	
+   265		return devm_add_action_or_reset(dev, clk_imx8mp_audiomix_reset_unregister_adev, adev);
+   266	}
+   267	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
