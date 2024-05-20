@@ -1,107 +1,84 @@
-Return-Path: <devicetree+bounces-67927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36B7B8CA287
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:05:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1F398CA2A3
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:18:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7586282324
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:05:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CA6EB216C8
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1887F1386C9;
-	Mon, 20 May 2024 19:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B718137C42;
+	Mon, 20 May 2024 19:18:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="pVacRy8l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XHXdF8FM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0F4137934;
-	Mon, 20 May 2024 19:05:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D508134CC;
+	Mon, 20 May 2024 19:18:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716231904; cv=none; b=ALrLs41ra5FTESHzWIEnOipbIJ1tqbFctTiaksmMisrxFj06PNeCq8+HZJYCTh10F88Oj7JDVWYyDY5CYWby009VlAPfT+1DIeOmgVwN1dAugI8+yDRMx4Gf+QuAszRogDU1SmB0y2Gy+GdorZgh7oID8q87VWLr/svRSKM1goE=
+	t=1716232700; cv=none; b=nVMINjI+PXxExIWbz/GnVl/KWNi0JakbXZfH/iyWSQPbOwPYDDa8imSMU0U5fCiJiWRJoIXQ1ACupI4TPMC1tkOUmWvRFFrBrqG/2XGjZVC+1SnSwp4MkrrhkUxVuu2ASEU8n1k6LKuii475XJuIXR3XpFTzYMTKhOAiaR5AI8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716231904; c=relaxed/simple;
-	bh=Whkq+hKM/qmDNnBMj3dbzvPDG5j50Xp2GcuxKj7WaHI=;
+	s=arc-20240116; t=1716232700; c=relaxed/simple;
+	bh=NsdyDPhe9XNdTyGY6aXb+OutlJY67HHrwCd3VMvCSek=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hUZ+0yHUhkPA7BzqTVtJ8ioLK6Z0qcBsu4wcoO9oRFbDRNhC+75M8bw/i6cAZ45mdX3UgBYwC5H2tH7zTbmm+hnG/VJ5fEW5RIaQVrKcQz/NqWTtceVxdBP/6uDUyKaj1iQjcLA1JIKu+wIYyLU3vJAt7fm8AsG+tuOQQg1XkRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=pVacRy8l; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1716231898; bh=Whkq+hKM/qmDNnBMj3dbzvPDG5j50Xp2GcuxKj7WaHI=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=pVacRy8loO5jQ12YSQrnC47BXn66ePeAvKoHrFsTNZbUZuDE9I/8bc/37EdRZIQWN
-	 YJSS60cvLymNAglX+885beRZOfcbFcd8IxTR0nbDIJBtt2kVkGu2XfCUnR8pgUXis6
-	 ouo8co6qtt2wJAvS0kjSU1RuzrFrBuSb+cJmZbIE=
-Date: Mon, 20 May 2024 21:04:58 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, git@luigi311.com, 
-	linux-media@vger.kernel.org, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
-	phone-devel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 21/25] dt-bindings: media: imx258: Add binding for
- powerdown-gpio
-Message-ID: <6egxnvqjz4z57bwd7jeubikfiew2myjo74hw3x6dimcdm6nuq3@qnk2tliwfxps>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, git@luigi311.com, 
-	linux-media@vger.kernel.org, jacopo.mondi@ideasonboard.com, mchehab@kernel.org, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, pavel@ucw.cz, 
-	phone-devel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20240501152442.1072627-1-git@luigi311.com>
- <20240501152442.1072627-22-git@luigi311.com>
- <ZkcV5xWZz2jCszxA@kekkonen.localdomain>
- <q5nbk3qcxsjsqp4mdyx5nlrn4oie6oynunwodm7r2nwtywc2ey@kxsgcatwt5b2>
- <CAPY8ntCfQvp9rCt=fqTFKYEOamLZwKmJDv9agxerQtDvsGKB0g@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WQk37JSw+S7bXXpwCsnIcCLmmMGhCyX9I8b/BkGuWhi/H27irbzXekTCwmT5IWKYhFaldHxi0D0uIJXLw10sMNb/qzjOFGcicue0jsbuSAUZ/JypEhq0WqpBYGTtpvhomwCaBCMTEixrL3c/E4yxjtPeSAaWV/PeJ6BkJoRK9Ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XHXdF8FM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA0ACC2BD10;
+	Mon, 20 May 2024 19:18:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716232700;
+	bh=NsdyDPhe9XNdTyGY6aXb+OutlJY67HHrwCd3VMvCSek=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XHXdF8FMdVp7iBwZ9pPPBsDFyWzuWCSmStBF1zA2hnOFX16Qz1BLebp8ffvNRgpYv
+	 CWvl0izIHD6g3m7biIYQ9L3mUKcnWT9I6Du0rFCL207sOjdaO3NRUMKenZkQvlHHA2
+	 EpeV1duBfapg3dN0zNNDuKmAV0ZMvhjcG+bcPQJQ6iufIuZWdLfW5wKuWU9vvEkhpG
+	 aRJkUu9wZRsIgEPKP9UMBNysC7md7qCTFsymg+MPZ2jsAz5d4DwwImWNxZ/2SpWBKU
+	 1PbXJdu0/y9HGbsHc3ehjyoG85oY8wc2yLaE2PLTuwZvgzF4pZocg0OYwgkCSRuLka
+	 lXj522wiktF9w==
+Date: Mon, 20 May 2024 14:18:18 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	jian.hu@amlogic.com, rockosov@gmail.com, devicetree@vger.kernel.org,
+	linux-amlogic@lists.infradead.org, sboyd@kernel.org,
+	robh+dt@kernel.org, neil.armstrong@linaro.org, jbrunet@baylibre.com,
+	khilman@baylibre.com, kernel@sberdevices.ru,
+	mturquette@baylibre.com
+Subject: Re: [PATCH v3 4/7] dt-bindings: clock: meson: a1: peripherals:
+ support sys_pll input
+Message-ID: <171623269646.1341930.17315530317168492239.robh@kernel.org>
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+ <20240515185103.20256-5-ddrokosov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPY8ntCfQvp9rCt=fqTFKYEOamLZwKmJDv9agxerQtDvsGKB0g@mail.gmail.com>
+In-Reply-To: <20240515185103.20256-5-ddrokosov@salutedevices.com>
 
-Hi Dave,
 
-On Mon, May 20, 2024 at 02:20:28PM GMT, Dave Stevenson wrote:
-> Hi Ondřej
->
-> [...]
+On Wed, 15 May 2024 21:47:27 +0300, Dmitry Rokosov wrote:
+> The 'sys_pll' input is an optional clock that can be used to generate
+> 'sys_pll_div16', which serves as one of the sources for the GEN clock.
 > 
-> From v3 [1] Luis reported testing dropping the powerdown-gpio on a PPP
-> and it working fine.
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> ---
+>  .../bindings/clock/amlogic,a1-peripherals-clkc.yaml      | 9 +++++++--
+>  include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h  | 1 +
+>  2 files changed, 8 insertions(+), 2 deletions(-)
 > 
-> I linked to the IMX258 datasheet in the same thread[2], and that
-> datasheet does not include such a signal on the imx258 sensor itself.
-> 
-> If your module has a powerdown gpio, then you'll have to ask the
-> module vendor what it is actually connected to. Potentially it relates
-> to the VCM driver rather than the sensor.
 
-I've tested it in various ways (inverting the signal, etc.) and it doesn't
-seem to do anything. So these patches related to powerdown-gpio can
-be dropped.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Kind regards,
-	o.
-
->   Dave
-> 
-> [1] https://www.spinics.net/lists/linux-media/msg252519.html
-> [2] https://www.spinics.net/lists/linux-media/msg252496.html
 
