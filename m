@@ -1,171 +1,128 @@
-Return-Path: <devicetree+bounces-67840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 701518C9E0A
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:20:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB588C9E3B
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 932C91C219E0
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:20:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3946EB20C8D
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A632136649;
-	Mon, 20 May 2024 13:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988DD7D419;
+	Mon, 20 May 2024 13:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Gi413aOO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RF5aj7j5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF611CD18
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 13:20:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7078D481C2;
+	Mon, 20 May 2024 13:33:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716211248; cv=none; b=r4BonLmSObga4P+Ca/LEYDxiPHIkkKrZBrka0Ve0YRQd3vVNe2LHzBqJpiboofw0qTsLeugyh5gMjw8bC0sif4MEIZonFJX/3HIteYWNfJZ64wXx9vDExnts3581FoNxbTEToDL/WPsamkJ6KNIYv3NIdiOhplGM7JpHaGHsFTw=
+	t=1716212035; cv=none; b=R0YtJfCE5PO0P0O0qFlL+TnnKQDwdebptupGkgxncl/GegxT0hQjAXxEB7NCGPwlCPgCZzs90E0adx/gbozoTsOK+ShrL7UXYccf9l/0RpY7XqcQt0mJ/DW2aXfszjfGs4OHRJfCwMHoRDicNCmVsVnMmLUwJlUlouLdOBTZw8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716211248; c=relaxed/simple;
-	bh=ZtzndvGkIGuejxzhOSScRg7IFRuZt6nV23246Vkm7LU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=IbRgNAYFQgbiFlZNdZglbsGSm7W6CmUYJVN7BzR9u8XtVyCuuEd9sPxPQO15wdBRDgw5nvd/l+A9uLwUsmJ64fkv5a/zNBcT8/d+F+07GQZOpZRvL+rn3XfpKR0tLWrdAMasmcx0dBadCRDsX35yGKhO6yafiqDJuPpNYdx6e1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=Gi413aOO; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-df475159042so2028468276.1
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 06:20:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1716211244; x=1716816044; darn=vger.kernel.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hpoD7IfFyo0fRXVXGRhMKLv7hvGmowk4hNOwLuLBHAQ=;
-        b=Gi413aOOHZC8oi/vIxiokZn6wPLk1GwKQisEgY9YXEYwHF4JEYQCv6oxrMMDZH8zxn
-         sZ3pkNx+z3MffKoEv4oZo4Dug06YaSMPc7WuoBu+rDzK7es9E2GGVhNPy+VSvsK6Ipnv
-         Ma7FAcwb7N/rw/jKevDJ6MUwossqrJ+maZyrTSMORnkqarhEv1MCDO4XCyGXGEX/wBIf
-         FX8wY8poBv96TLV8D6Qr8xIRmCGTddAANkVJsZUvonmPWYyk7x74py7qITor9xWLLrq7
-         HEE9Cu6Bf0ohpJy0xNYC9ecUaH4YA/5/L+XwKSkvmZ1kUxnLmEeiWVR6M2/sU6uE4XeI
-         NJWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716211244; x=1716816044;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hpoD7IfFyo0fRXVXGRhMKLv7hvGmowk4hNOwLuLBHAQ=;
-        b=GmRb0p9I33GubfHNUuDJDmafp6awFrbek17loFzA5cY17kkfuHwGitJOeYobgAjEHB
-         lHPXn5N8JroMRw44YpdQHSYkwcAavxk4xCUU9kl6h4sb9sTmeIX5LBkUZN2W2LK1hnDY
-         T9T6D0NAtOUANTbOxG1mucCIl1C11Iw+Wh47ZlWZyToV3bAHCT5lfbEPzDPaZbVdFaVV
-         SR+cn4B2Ii1eVrbZsUr0YeJJNvc08v0Es/DZd+fFyt3a/ba2UG+QQgAj3qaseH2S0JbS
-         xPH9TME/mswhxZO8hJlxDrDks6/muC8jES1albPKTqfzKDlPzlYG+xO06Sl4oztaiu1B
-         YcWg==
-X-Forwarded-Encrypted: i=1; AJvYcCX6gElGtE9kVW715tEGmbnTzdBZsQqIAVZqN224EjVw9kZi/Gr50DqFK1Em9R8fICXZmdnEOKawHlYoKLkIAMXUxICzk7PUJX1/tA==
-X-Gm-Message-State: AOJu0YwC9luSB6X/D9XzKRngs+OqCJWKL30GuCAXmUcBr65DY2hN1vd+
-	baoGgir0SAMhVA285r8B4XwyEyXXxIUMphuHKwR9AjhALk59YDg4dsNVT3bqpK5c/u+OAQ+aB0c
-	vZGQif0k5aqgTAGz5XXRgU0Tk9d4vieNpOkpY+MAtGXt4KA4Qa3w=
-X-Google-Smtp-Source: AGHT+IGLhrSKkPUoJZ62vutQInuJJOzTJYTiNFbmW3RNzAPYbVG1k0r6chzGp7BB1txzsNkSl4SqFlkWTloKih5W6g8=
-X-Received: by 2002:a5b:3ce:0:b0:de5:51d0:9a8d with SMTP id
- 3f1490d57ef6-dee4f334373mr26443106276.55.1716211243868; Mon, 20 May 2024
- 06:20:43 -0700 (PDT)
+	s=arc-20240116; t=1716212035; c=relaxed/simple;
+	bh=DjxBH1hk7nqIlIRu7o8c2uGzw9yEe52HIFQOB/6OAZw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VQqHg7C9u4VHN9c7oXzKtlKVazvGMG82qbt2TYSsKzTiSW3+1qusOZXv6FbDsKoa48B/HjVc8gCFUbrwTlX8ajXij9XfGyqFgqwEhLNYeQ8lz2ExbpcK0hCW6FpjzseJh+TWu1RBuQp63HA7NfVxiixj9Qomv4nPlk4FJvBUlnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RF5aj7j5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B9BEC4AF09;
+	Mon, 20 May 2024 13:33:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716212035;
+	bh=DjxBH1hk7nqIlIRu7o8c2uGzw9yEe52HIFQOB/6OAZw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RF5aj7j50AUMjWSVqpgkGMbg4mfKsBOUUPEsfoMwcC6rAMaoRbQN0i6LtJrUL41vq
+	 y6yi9+c7Ro5s7FEloTcLNZmKPYe8C5RDfmXSnrcAj4gFVk44+TpnxvmfwP9xYmLadz
+	 D24tMNHiVKFCPnKU7kSU8n8haLBza/iLhB+oAi5AC/X2/SByh2v6Z2zLfkGmeb6TRl
+	 1EOojmOLskRh/BxwfzcktscyIl1EDmWoUwA7nfcq42Cz1ABWn8DOefZoVOwoKxzyJQ
+	 /INzAtSCitG3DR8JNpY3/Nwkkn1/hd+RfvhQLGTe7r7Kjfzo64fhtYpMAkiD56abyF
+	 btcTVaA8R6Puw==
+Message-ID: <12533e91-c352-43c5-8b8a-5133c3bfa963@kernel.org>
+Date: Mon, 20 May 2024 15:33:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240501152442.1072627-1-git@luigi311.com> <20240501152442.1072627-22-git@luigi311.com>
- <ZkcV5xWZz2jCszxA@kekkonen.localdomain> <q5nbk3qcxsjsqp4mdyx5nlrn4oie6oynunwodm7r2nwtywc2ey@kxsgcatwt5b2>
-In-Reply-To: <q5nbk3qcxsjsqp4mdyx5nlrn4oie6oynunwodm7r2nwtywc2ey@kxsgcatwt5b2>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Mon, 20 May 2024 14:20:28 +0100
-Message-ID: <CAPY8ntCfQvp9rCt=fqTFKYEOamLZwKmJDv9agxerQtDvsGKB0g@mail.gmail.com>
-Subject: Re: [PATCH v5 21/25] dt-bindings: media: imx258: Add binding for powerdown-gpio
-To: =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, git@luigi311.com, 
-	linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com, 
-	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	pavel@ucw.cz, phone-devel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: soc: ti: Move
+ ti,j721e-system-controller.yaml to soc/ti
+To: Roger Quadros <rogerq@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>
+Cc: "Andrew F. Davis" <afd@ti.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240520-for-v6-11-j721e-syscon-v1-1-f57a93e12cad@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240520-for-v6-11-j721e-syscon-v1-1-f57a93e12cad@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Ond=C5=99ej
+On 20/05/2024 14:05, Roger Quadros wrote:
+> soc/ti is the more appropriate location for the system controller
+> device tree binding documentation so move there.
+> 
+> Update Kishon's email address to a working one.
+> 
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  .../bindings/{mfd => soc/ti}/ti,j721e-system-controller.yaml          | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-On Mon, 20 May 2024 at 13:55, Ond=C5=99ej Jirman <megi@xff.cz> wrote:
->
-> On Fri, May 17, 2024 at 08:31:35AM GMT, Sakari Ailus wrote:
-> > Hi Luis,
-> >
-> > On Wed, May 01, 2024 at 09:24:38AM -0600, git@luigi311.com wrote:
-> > > From: Ondrej Jirman <megi@xff.cz>
-> > >
-> > > Add powerdown-gpio binding as it is required for some boards.
-> >
-> > I thought the conclusion was that this wasn't a property of the sensor?=
- If
-> > it needs to be controlled, then this should take place somewhere else t=
-han
-> > in the sensor driver.
->
-> It's a property of the sensor modules. It's just optional on
-> some, eg. (pin 8):
->
->   https://assets-global.website-files.com/63b65bd4974577341e1fe194/654290=
-d4d0fb173e87f754ed_IMX_258_FF_drawing.png
->
-> Where else should it be so that the module is described properly in the
-> DT and the powerdown signal can be used as part of powerup/down sequence
-> of the sensor?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-From v3 [1] Luis reported testing dropping the powerdown-gpio on a PPP
-and it working fine.
+Best regards,
+Krzysztof
 
-I linked to the IMX258 datasheet in the same thread[2], and that
-datasheet does not include such a signal on the imx258 sensor itself.
-
-If your module has a powerdown gpio, then you'll have to ask the
-module vendor what it is actually connected to. Potentially it relates
-to the VCM driver rather than the sensor.
-
-  Dave
-
-[1] https://www.spinics.net/lists/linux-media/msg252519.html
-[2] https://www.spinics.net/lists/linux-media/msg252496.html
-
-> regards,
->         o.
->
-> > >
-> > > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> > > Signed-off-by: Luis Garcia <git@luigi311.com>
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Reviewed-by: Pavel Machek <pavel@ucw.cz>
-> > > ---
-> > >  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 4 +++=
-+
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.=
-yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
-> > > index c978abc0cdb3..33338139e6e8 100644
-> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
-> > > @@ -36,6 +36,10 @@ properties:
-> > >    reg:
-> > >      maxItems: 1
-> > >
-> > > +  powerdown-gpios:
-> > > +    description:
-> > > +      Reference to the GPIO connected to the PWDN pin, if any.
-> > > +
-> > >    reset-gpios:
-> > >      description: |-
-> > >        Reference to the GPIO connected to the XCLR pin, if any.
-> >
-> > --
-> > Regards,
-> >
-> > Sakari Ailus
 
