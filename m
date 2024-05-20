@@ -1,97 +1,128 @@
-Return-Path: <devicetree+bounces-67933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B28E8CA2DF
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:49:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C248CA2FA
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:59:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99EEAB214CC
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:49:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 107B21C211C7
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D93B137771;
-	Mon, 20 May 2024 19:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D206F1386C0;
+	Mon, 20 May 2024 19:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LokIiB5c"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MgBA7YSN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBAF8C06;
-	Mon, 20 May 2024 19:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3D754735;
+	Mon, 20 May 2024 19:59:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716234584; cv=none; b=PgxbWxFvnsxAE+8JbUos170QUDy4Ctx+rDWpgkx0PI/e4r+ZuMwkI6dz+vd2KkK+ZdQiAV6dUAPpUOkLbqvlaTnRyJ2AVHNH+T4x54Koo6M4Guytc2KiqUUZ85WIepLbT5DtXsttgSS6gbSpsSjJ55thg+IfQZduNx3r8eWjuHY=
+	t=1716235194; cv=none; b=ePTQs1NK4qcJbMAhMYcKp9d7Y6natXGBPxdmsITuhT8KfhxFo2EwcNp1UvI4zOL39kTm/yeD8+b50bQE74T/QUrlII+jf6WSzEqSSENCXiCIMmTWVfRVXm+i6utQ2QWI8B/5X1cpIoVSNB1UVXupw/m/AGWXtcswehbBalRTo9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716234584; c=relaxed/simple;
-	bh=sxGLsR90KSF7S/Z2DpAE5FYChE2YFZRSsoBsCOYL/jQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b7vzoFuZiJO1y2FmL7h7YGpGNqBBzRUPcwyJvgxCjRZwY84w3fTnIC+hKKZOrIgy3PM95BB/hRrexFk7qb0bb1ecwj1BEsgZ0nrTJpCLjPymtdcVp4CBSx5JNUzQ1CMDj2sSgbeFt3x99vMcynistdPcbTZfjs+G6YD6tSjCzDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LokIiB5c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CB53C2BD10;
-	Mon, 20 May 2024 19:49:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716234583;
-	bh=sxGLsR90KSF7S/Z2DpAE5FYChE2YFZRSsoBsCOYL/jQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LokIiB5cDH+jczaMcXHV9n9aGU9hsuiS5ZCmmORHHX7LpVIA9pTpyxJFYadpst+ov
-	 jQtiJclC0PLGotuHkrM4D0+xd+pfg6RZZU40vSSbh17BUhJXeoHpYScXa2Fs0EagWw
-	 FXkueSw0JGnvcDPyVlmIvyZmJLTk0bMhMYC3WuloQ6m4af5jasnNdDU0xwz5kyVQlm
-	 1cCJyrQ8PGZIDhjBQDzKpRuikbIowuooKYcpCW+DoNOxiYA4Vsm0FMip4mk2d7JGKf
-	 9t2hE/w1mhW+bypcMJ43PGzWB15qQNLniui7JfBCVidjebVlLCYQrD0IT+G9EvwxsO
-	 qLeuiIdz6h9NA==
-Date: Mon, 20 May 2024 14:49:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: linus.walleij@linaro.org, sudeep.holla@arm.com,
-	cristian.marussi@arm.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, festevam@gmail.com,
-	imx@lists.linux.dev, aisheng.dong@nxp.com,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [RFC] dt-bindings: firmware: arm,scmi: Add properties for i.MX95
- Pinctrl OEM extensions
-Message-ID: <20240520194942.GA1374705-robh@kernel.org>
-References: <20240516073012.1699795-1-peng.fan@oss.nxp.com>
+	s=arc-20240116; t=1716235194; c=relaxed/simple;
+	bh=qrk44uOhfAMSRJpAW63tdWL3WDheju7jjKOR4llVcmU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Urzkas0lw6tDx1OsBVu6GgFwgvQ7DZV2e2gm07UPewn1jR7yM6S74F7Wq+JdaR26kanzda7HSbfYF7C8+3Nq66YLgmzY3ry7fJ2me+GkZyRfTktUqX6KRL3w7f5iJJENNOy0C1Sjfm6Pm8s6r/l8gYtrxpVwq+/Ee377Clv0mlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=MgBA7YSN; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3644CD49;
+	Mon, 20 May 2024 21:59:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1716235179;
+	bh=qrk44uOhfAMSRJpAW63tdWL3WDheju7jjKOR4llVcmU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=MgBA7YSNXu+cKhX28C4TMm1kkq3uziRTsBMK2szRuy4Lif4ii8HVgOocifsvU8MU6
+	 lzLOIKvpD6PjGjVKgNJUAXP0z0Ob7Tlxb1Jf9hIf5ytdLDauv/Rul89XA1xw3bR73E
+	 pvGOO3uUM5op43psOlHiakyw0DjolaSgx6XbE4uU=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Cc: Alexandru Ardelean <alexandru.ardelean@analog.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Subject: [PATCH 0/5] ADP5585 GPIO expander, PWM and keypad controller support
+Date: Mon, 20 May 2024 22:59:36 +0300
+Message-ID: <20240520195942.11582-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.44.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240516073012.1699795-1-peng.fan@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 16, 2024 at 03:30:12PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX95 Pinctrl is managed by System Control Management Interface(SCMI)
-> firmware using OEM extensions. No functions, no groups are provided by
-> the firmware. So add i.MX95 specific properties.
-> 
-> To keep aligned with current i.MX pinctrl bindings, still use "fsl,pins"
-> for i.MX95.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-> 
-> V1:
->  There is already a v6 version for i.MX95 pinctrl with binding got reviewed by
->  Rob, https://lore.kernel.org/all/20240513-pinctrl-scmi-oem-v3-v6-1-904975c99cc4@nxp.com/
->  But after NXP internal discussion, to keep "fsl,pins" for i.MX95 would make
->  it aligned with current i.MX93/8M/7 bindings which people are familiar with,
->  and easy to understand.
-> 
->  Sorry to bring back so late after your reviewing in previous generic binding
->  patch. This is not to reject the v6 patch, just wanna to see whether you are
->  happy with "fsl,pins" for i.MX95. If people are happy to accept, I will post
->  out driver together with this patch in new patchset to reject v6. If people are
->  not happy, we could continue with v6.
+Hello,
 
-It is fine for me.
+This patch series introduces support for the Analog Devices ADP5585, a
+GPIO expander, PWM and keyboard controller. It models the chip as an MFD
+device, and includes DT bindings (2/5), an MFD driver (3/5) and drivers
+for the GPIO (4/5) and PWM (5/5) functions.
 
-Rob
+Support for the keypad controller is left out, as I have no means to
+test it at the moment. The chip also includes a tiny reset controller,
+as well as a 3-bit input programmable logic block, which I haven't tried
+to support (and also have no means to test).
+
+The driver is based on an initial version from the NXP BSP kernel, then
+extensively and nearly completely rewritten, with added DT bindings. I
+have nonetheless retained original authorship. Clark, Haibo, if you
+would prefer not being credited and/or listed as authors, please let me
+know.
+
+Clark Wang (1):
+  pwm: adp5585: Add Analog Devices ADP5585 support
+
+Haibo Chen (2):
+  mfd: adp5585: Add Analog Devices ADP5585 core support
+  gpio: adp5585: Add Analog Devices ADP5585 support
+
+Laurent Pinchart (2):
+  dt-bindings: trivial-devices: Drop adi,adp5585 and adi,adp5585-02
+  dt-bindings: Add bindings for the Analog Devices ADP5585
+
+ .../bindings/gpio/adi,adp5585-gpio.yaml       |  36 +++
+ .../devicetree/bindings/mfd/adi,adp5585.yaml  | 117 +++++++++
+ .../bindings/pwm/adi,adp5585-pwm.yaml         |  35 +++
+ .../devicetree/bindings/trivial-devices.yaml  |   4 -
+ MAINTAINERS                                   |  11 +
+ drivers/gpio/Kconfig                          |   7 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-adp5585.c                   | 232 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/adp5585.c                         | 207 ++++++++++++++++
+ drivers/pwm/Kconfig                           |   7 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-adp5585.c                     | 230 +++++++++++++++++
+ include/linux/mfd/adp5585.h                   | 120 +++++++++
+ 15 files changed, 1016 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/adi,adp5585-gpio.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
+ create mode 100644 Documentation/devicetree/bindings/pwm/adi,adp5585-pwm.yaml
+ create mode 100644 drivers/gpio/gpio-adp5585.c
+ create mode 100644 drivers/mfd/adp5585.c
+ create mode 100644 drivers/pwm/pwm-adp5585.c
+ create mode 100644 include/linux/mfd/adp5585.h
+
+
+base-commit: a38297e3fb012ddfa7ce0321a7e5a8daeb1872b6
+-- 
+Regards,
+
+Laurent Pinchart
+
 
