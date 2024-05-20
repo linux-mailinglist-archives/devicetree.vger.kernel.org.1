@@ -1,152 +1,140 @@
-Return-Path: <devicetree+bounces-67764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E76C8C9A3E
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:21:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4C78C9A84
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:40:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 403821F21183
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 09:21:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D4F11C2193C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 09:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A3091BC58;
-	Mon, 20 May 2024 09:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D4E2CCBE;
+	Mon, 20 May 2024 09:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="6eIga6Ok"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QnFda0hw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0303134B2;
-	Mon, 20 May 2024 09:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E789424B4A;
+	Mon, 20 May 2024 09:39:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716196868; cv=none; b=SA3L69sirbafnK33NbjRaEAcyizf4jerakSRzHnhxy0N8xR5CHhVFBYc6kIH8P7L1WTmShpOgpnNDeOzlHQPrvt66j8ZhTjtx68xtNTrH35Yt75KlawxheBbDmtjrI4FaUC0oZhuFI1YDGRLs6LhrTvIHzjIipNC+/ZjfkuB8QI=
+	t=1716197999; cv=none; b=CmaPcr1Zf2G2e9sVQ0xxhML6AiLsLEdJIfMERZAiXsrgwM4W24p9JHBUqlLhtELWymf37lG03QqqjbCXBlV3JQaesLjIMcDPM8l5FvMV2l33erc3JIUDAbXuOY67D18+1flTZY9P/GEdR98BsoEcOmCUoPuXGQtuHICX5PnVcCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716196868; c=relaxed/simple;
-	bh=j4c7zoLAnYNxtHCPteAdUK0C9SL0pMlyMbJkDlqjIXk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jzCX/qxeDLXoLmD7cZZMhOUMjDRinq0OGx2cOj+9DwBfM5cIAPTP90sjGfyQSmFjVtCsVI6HEvMf93sPhRkvKvdRCO0SPGGDUmfL554GmAZ9CWluzK4yw51hroAkrP/e6joqtqytQSajLVX/lwnJbWHn5ySrblKC62i8BtFR39g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=6eIga6Ok; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44K82FKW026847;
-	Mon, 20 May 2024 11:20:38 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=2Kbi0KIRjA/taZJ7NgP1Vk2ndp0QZAWJS6cVSNCQBAc=; b=6e
-	Iga6OkMD7hTRH8fM7tzlvwdKuNrq/jujbCDI6jCQcn7zSzdCzQpIIcuXTTEyRg4O
-	75BUOSiHYP0r8U+YYD1G4rzr+cYOStUbch8gbReHIJq739/CaCBL1V4gZcswVhu2
-	o55Kkt3/1ufMpCpfmmEi+oW4UvxS/EVXOj4UCS2+C47Zf8RulYi6/HWvA/SP/Scw
-	otPhphgsNpGgerZclNmwhemkxCTf0fioD0onqqHsTS+AwGwpV9zYCy1cFdV0cCZ+
-	0ZNOFnDmeX7cZi3Awi+658hgBiP2G97e16ALWzJUA9K5LHok8k5QeVMQyoNZa3Sx
-	FnXMrosZR08xW9V8zvAA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3y6n2fehja-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 May 2024 11:20:38 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1CE6940045;
-	Mon, 20 May 2024 11:20:26 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DCD1A214D1F;
-	Mon, 20 May 2024 11:19:40 +0200 (CEST)
-Received: from [10.130.72.241] (10.130.72.241) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 20 May
- 2024 11:19:40 +0200
-Message-ID: <c717987e-a5cd-4dae-bec7-9b946ee10b1e@foss.st.com>
-Date: Mon, 20 May 2024 11:19:39 +0200
+	s=arc-20240116; t=1716197999; c=relaxed/simple;
+	bh=qiB8xlmpcLdNrroFuhShUQxYvOUzN7pauknySfo1KXA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uQlI7jowzViCOMQWxYScV4Q3W6YGDsoEcafLwat6J2IikdoBN/j6yaaVf6dsv0z8591XXi9GjjPAwx/MTEtT0Yxomt7dfRNqpN/4RqZanYnd/e2xGTGKn3+48eI0P69+FXRkHTarKApWnhd28sF0j2dnNV9JWT9ISlcy7fEtiFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QnFda0hw; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-572b37afd73so8026934a12.2;
+        Mon, 20 May 2024 02:39:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716197996; x=1716802796; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TE4Bjv61tGt6MfM/w4KNZws90Cz9+Zg1L5iuglgNgRU=;
+        b=QnFda0hw9AN5F3vh21vEkwQd8lJmB2gFkZzUAr13+md0NVaqhVEERcNHpWVbAfFZ+N
+         PAu69zUV3vhvBI9cOZEYNtRAsQpzyO8T+KTbxMqPLSG86JobMLYDtbfHCKFsfVrRZKtg
+         P0jntSY+WirnMlkB3owo8WKYtfTGPjou771lk/PEZgqgegNEiHFYrmdn1qKOXDVhcsb7
+         gyjtMkgoSx2xeOddgsKDXqgKPzSl359LVP+CU+DSs7w7qwNlul5nfcSlmgJXa7KpvJHU
+         mbmJlnwwvtApDd28M/nIha5J0hOYQ4A8Z3kqdbKWjDnX56NpCovPZ1E2R9aQBDRVTWir
+         uTCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716197996; x=1716802796;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TE4Bjv61tGt6MfM/w4KNZws90Cz9+Zg1L5iuglgNgRU=;
+        b=Zs9vXU/HiIOj6PjVY6XsBthdPACD2Hn7ezmo3/E0vMM+rk7e2tg7NfnuKZz9ZdKIwv
+         kFrSfTrWT38RvXOqxal4+lNGRmqLVyq9Xhz43tOqOpqO0WA6UfK4Nzlh70Ht1uvsG5AZ
+         SQxQ9CiwuHVI6uRDOya30ejl1UU+7D1gxRsY1/zQCkqDtX6sVEkwGhNQsa4TMXteV0IR
+         3MGdE+kqQgodzg4wcrvS3VnprquAbkrgheN6zbOqk+wM+Eju9kB7hdK+tQv8m+C7NbIH
+         4gGhX4EqYWl+plHbTSLVvQVbS2mrHLSApcDVTPqdRWQalM5wejPY2zH1iYu4fr0i1HuY
+         LdRA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNheAom4QZF9oURL+meG9KHgA2Vf49awiqLpCCmFq0B1Flzol9mJZhwjiBaGfo6wLE6j8BkxUs2nvE1J5uCGPSW6oXuJ2eQAgXsUvAemBC8rDk+E30V1JZXr69dCnEozgmoD1bBw/jqw==
+X-Gm-Message-State: AOJu0YxnymGHvnY9UanwpWnPLfTgWmMjh/dl31vuwAXmpX8lofv4mZXq
+	JMaHI7wELLGoLYjBxEBMZDIhUlwoyg0gbK3C1jhkS9QCoIsaI8qe6b1SD7d4DFNiTbntBawaNdG
+	PAxx8+NO7/cqpMk5l5K1yWFyxFMQ=
+X-Google-Smtp-Source: AGHT+IFTjPcbAOBoZPuDA+2ZVhZiSxbh5DItcS/p4qaB3QtONbnWddERDXFwXh2FDVKJSw9VKN4cMxjpfjWNaBqlbQ4=
+X-Received: by 2002:a50:f60d:0:b0:571:fc6b:966c with SMTP id
+ 4fb4d7f45d1cf-5734d5bec1amr18121585a12.13.1716197996125; Mon, 20 May 2024
+ 02:39:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/10] media: uapi: ctrls: Add camera trigger controls
-To: Volodymyr Kharuk <vkh@melexis.com>, <linux-media@vger.kernel.org>
-CC: Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>,
-        <devicetree@vger.kernel.org>, Hans
- Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus
-	<sakari.ailus@linux.intel.com>,
-        Dave Stevenson
-	<dave.stevenson@raspberrypi.com>
-References: <cover.1715871189.git.vkh@melexis.com>
- <de44db636f0e3f5bea2357aa6a34531fe0c34f08.1715871189.git.vkh@melexis.com>
-Content-Language: en-US
-From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-In-Reply-To: <de44db636f0e3f5bea2357aa6a34531fe0c34f08.1715871189.git.vkh@melexis.com>
+References: <20240519175906.138410-1-kanakshilledar111@protonmail.com>
+ <20240519175906.138410-3-kanakshilledar111@protonmail.com> <171614715439.2941344.11264816105918092609.robh@kernel.org>
+In-Reply-To: <171614715439.2941344.11264816105918092609.robh@kernel.org>
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+Date: Mon, 20 May 2024 15:09:44 +0530
+Message-ID: <CAGLn_=tLdJU1F-i9YV5aCZQbS0L7y7Wu+_k6Dn=6HwH5JmZoMQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: riscv: cpus: add ref to interrupt-controller
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-riscv@lists.infradead.org, 
+	Kanak Shilledar <kanakshilledar111@protonmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Samuel Holland <samuel.holland@sifive.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-20_05,2024-05-17_03,2023-05-22_02
+Content-Transfer-Encoding: quoted-printable
 
-Hi Volodymyr,
+On Mon, May 20, 2024 at 1:02=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+>
+> On Sun, 19 May 2024 23:29:06 +0530, Kanak Shilledar wrote:
+> > removed the redundant properties for interrupt-controller
+> > and provide reference to the riscv,cpu-intc.yaml which defines
+> > the interrupt-controller. making the properties for riscv
+> > interrupt-controller at a central place.
+> >
+> > Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
+> > ---
+> >  .../devicetree/bindings/riscv/cpus.yaml       | 22 +------------------
+> >  1 file changed, 1 insertion(+), 21 deletions(-)
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/r=
+iscv/cpus.yaml: properties:interrupt-controller: 'oneOf' conditional failed=
+, one must be fixed:
+>         Additional properties are not allowed ('$ref' was unexpected)
+>         'type' is a required property
+>                 hint: DT nodes ("object" type in schemas) can only use a =
+subset of json-schema keywords
+>         from schema $id: http://devicetree.org/meta-schemas/interrupts.ya=
+ml#
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202405=
+19175906.138410-3-kanakshilledar111@protonmail.com
 
-Thank you for your patch.
+I have fixed the above warning.
 
-On 5/16/24 18:41, Volodymyr Kharuk wrote:
-> Add V4L2_CID_CAMERA_TRIGGER_MODE as a menu item control to set
-> trigger mode. Also proposed some standard modes.
-> Another item is V4L2_CID_CAMERA_TRIGGER as a button to send
-> trigger in V4L2_TRIGGER_MODE_INTERNAL mode.
-> 
-> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
 
-This is very interesting.
+Can you please clarify this part? Is my base commit ID incorrect?
+I am currently using the 6.9.0-rc3 kernel version form
+https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/ repo.
 
-As I understand this control allows to change what triggers sensor
-acquisition.
-May I ask what the different modes do ?
-
-We had a discussion previously with Laurent, Sakari and Dave (adding him
-as cc btw) about a "slave mode" control [1] for the vgxy61, is it
-something similar to the trigger mode ?
-
-[1]
-https://lore.kernel.org/linux-media/c610a2c9-31b1-1950-00fa-a6b3fd3517a1@foss.st.com/
-
-> ---
->  include/uapi/linux/v4l2-controls.h | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-> index 99c3f5e99da7..7901f40a1bd8 100644
-> --- a/include/uapi/linux/v4l2-controls.h
-> +++ b/include/uapi/linux/v4l2-controls.h
-> @@ -1087,6 +1087,14 @@ enum v4l2_auto_focus_range {
->  
->  #define V4L2_CID_HDR_SENSOR_MODE		(V4L2_CID_CAMERA_CLASS_BASE+36)
->  
-> +#define V4L2_CID_CAMERA_TRIGGER			(V4L2_CID_CAMERA_CLASS_BASE + 37)
-> +#define V4L2_CID_CAMERA_TRIGGER_MODE		(V4L2_CID_CAMERA_CLASS_BASE + 38)
-> +enum v4l2_trigger_mode {
-> +	V4L2_TRIGGER_MODE_CONTINUOUS		= 0,
-> +	V4L2_TRIGGER_MODE_INTERNAL		= 1,
-> +	V4L2_TRIGGER_MODE_EXTERNAL		= 2,
-> +};
-> +
->  /* FM Modulator class control IDs */
->  
->  #define V4L2_CID_FM_TX_CLASS_BASE		(V4L2_CTRL_CLASS_FM_TX | 0x900)
-
--- 
-Regards,
-
-Benjamin
+Thanks and Regards,
+Kanak Shilledar
 
