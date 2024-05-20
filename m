@@ -1,124 +1,110 @@
-Return-Path: <devicetree+bounces-67911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B308CA117
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:15:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25AB68CA11C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:15:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9A6E2819FA
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:15:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 570AB1C211F7
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:15:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 168C9137C41;
-	Mon, 20 May 2024 17:15:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92F5135A71;
+	Mon, 20 May 2024 17:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFm2fAhp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SR2x9wwg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22511369B9;
-	Mon, 20 May 2024 17:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DAB7138487;
+	Mon, 20 May 2024 17:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716225304; cv=none; b=gU18CjM7DHp8bOazfRSsl7MbQGL1oygq6pdHi7InTXtEn9tZsum2Nv3clBIK7W0zTDfK9xpJao3y41geWvRq7w8naJAJpar9jc32/EaZzvr2FPZIhcoRfmhh5iUMnTJ4XakDEbEO0nT3UhdPabdKRFo7xkQaJ5I61EjBdsxnFvU=
+	t=1716225350; cv=none; b=L6IXdXK6jy0Or1xHQl3QnoGKmO3GRClGxCb2Rl5WEJgfLiksY54YTDgu7s4bG/OHyi7gaKj4bECRwLqOyLF5JMgaUBs6rJbYxUws47lWCHY6IpwEE084LHza9nZg89A03FmdaLKPB+jyEQbdd48Du/MHlowYxEGLNpkb19lapc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716225304; c=relaxed/simple;
-	bh=SMjqjtoCZgEa/aF+xDyzzTnAdHHH5RU9pSsvYcESxi0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qA3oCqbcOzBEyc4JsOLNOwP0oIPTE+Pojd2Asik7L4hYon88J0MjMfsi5O1YfU8ZtayC0Lkpl6A2HEf3IrKVSagSEy284FH2SltleVrK8IK96PHbCx/hPVYHQ8rEQLkRpILZsE1NCMjbKJx8bANDI5Co1UUadn2TTo6PRR8Jumw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFm2fAhp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9735C32789;
-	Mon, 20 May 2024 17:15:00 +0000 (UTC)
+	s=arc-20240116; t=1716225350; c=relaxed/simple;
+	bh=9OHh++1FUQFyyipccjCfWvE0th+xdBKW3ji9fykzPJc=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Lz6fP+vWgd/bYVLBgXy45cLP3CGMXPt0cbxbDN+D1ySLClkEdAc+9aBhZoEAGXKbgvE1uDvwXGkZdWXAOiX4Iqewb/2rpSOZzSv334y1cINw2GtAM9giq8g9/GYVNIxvvfYDvfphmVFBwyC3gxi9sb+144xPmq5gUwtX4tJANf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SR2x9wwg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BDD0C2BD10;
+	Mon, 20 May 2024 17:15:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716225303;
-	bh=SMjqjtoCZgEa/aF+xDyzzTnAdHHH5RU9pSsvYcESxi0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BFm2fAhp2kK4hwgAxUE8dPZ3alXKVzLERviGfnOgM+oaAVjDsxnPlhx905BnJOs8C
-	 7ebgrSgvgZriA7u4NGaKlkk74fzRVeQNwWzgxsJqF2Go5FpV+WZkkPS197JjwBpI0A
-	 nfz+TKzeGKtETFxRxbuHbONurDS7NSKKxLFgh38mTW7To/HA9SYEw00igMO0g+1pgR
-	 OUNWRuPzdKGyGDprgwIWAnxAVCho6cH2mUoadi19efRa/ZZh7RPO1NiX+HRutcUeLp
-	 C/oXgjxV0wFK+ynCSdEv77liMWCDsxgP9ugJp+P2/lP6NLFVKBJ3StsBHsjL47NAFL
-	 mF/ugBYfiCQSw==
-Date: Mon, 20 May 2024 18:14:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Roger Quadros <rogerq@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/5] dt-bindings: soc: ti: am645-system-controller: add
- AM654 syscon
-Message-ID: <20240520-deskwork-unpinned-fb6b87cc7ffa@spud>
-References: <20240518-dt-bindings-ti-soc-mfd-v1-0-b3952f104c9a@linaro.org>
- <20240518-dt-bindings-ti-soc-mfd-v1-2-b3952f104c9a@linaro.org>
+	s=k20201202; t=1716225350;
+	bh=9OHh++1FUQFyyipccjCfWvE0th+xdBKW3ji9fykzPJc=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=SR2x9wwgsHzxb93Yd2U+znlvDRB6PlhYj66mRnsYtAF6bFT4fcBY92CwO7QYaetJ4
+	 rwsUVgEgmnX07A8VF13/IZ20ZKk7EsZBbPmJMlLwAx7a15JCV0dknXGbOY1Ta4JrDv
+	 Mrb8f0vlKYpIgoWstHsjLxcOGcZN5h5gCE702aXmTxAjOTpfT1yo4T4YiiUAWinWSe
+	 wmIpgQiD6xQ+K3uR9esRlG6eIXGtLgMlpAdifZMwUDDYGtE0PoFI14YwaKfQmEsPN+
+	 5bhnCbRJ960sOIQ3BETn1aZHmxczudi9sEfJjcovh9iQnPGN2tNpdV55K7tp55DqnM
+	 30dqNFR7LusWw==
+Date: Mon, 20 May 2024 12:15:49 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0al9K0Y79EnPUy/+"
-Content-Disposition: inline
-In-Reply-To: <20240518-dt-bindings-ti-soc-mfd-v1-2-b3952f104c9a@linaro.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Pratik Farkase <pratikfarkase94@gmail.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Pratik Farkase <pratik.farkase@wsisweden.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20240520154711.7991-1-pratik.farkase@wsisweden.com>
+References: <20240520154711.7991-1-pratik.farkase@wsisweden.com>
+Message-Id: <171622534905.1035434.3869181780414186085.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: gpio: lsi,zevio-gpio: convert to
+ dtschema
 
 
---0al9K0Y79EnPUy/+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, May 18, 2024 at 10:07:17PM +0200, Krzysztof Kozlowski wrote:
-> Add dedicated binding for the AM654 MCU SCM system controller registers,
-> already used in the DTS to properly describe its children.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, 20 May 2024 17:47:08 +0200, Pratik Farkase wrote:
+> Convert Zevio GPIO Controller from text to dtschema.
+> 
+> Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
 > ---
->  .../soc/ti/ti,am654-system-controller.yaml         | 60 ++++++++++++++++=
-++++++
->  1 file changed, 60 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-con=
-troller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-con=
-troller.yaml
-> new file mode 100644
-> index 000000000000..e79803e586ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller=
-=2Eyaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/ti/ti,am654-system-controller.yam=
-l#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI AM654 System Controller Registers R/W
+> Changes in v2:
+> - Renamed file from `gpio-zevio.yaml` to `lsi,zevio-gpio.yaml`
+> - Fixed the space indentation in example
+> ---
+> ---
+>  .../devicetree/bindings/gpio/gpio-zevio.txt   | 16 --------
+>  .../bindings/gpio/lsi,zevio-gpio.yaml         | 41 +++++++++++++++++++
+>  2 files changed, 41 insertions(+), 16 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-zevio.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+> 
 
-"R/W"? Is that a copy-paste mistake from the register map for this SoC?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+yamllint warnings/errors:
 
-Cheers,
-Conor.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/gpio/gpio-zevio.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
 
---0al9K0Y79EnPUy/+
-Content-Type: application/pgp-signature; name="signature.asc"
+doc reference errors (make refcheckdocs):
 
------BEGIN PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240520154711.7991-1-pratik.farkase@wsisweden.com
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkuFEgAKCRB4tDGHoIJi
-0m6dAP93xYp8ADQ/ZttCjnuveWAIRutjhPRI5gZc1jAbhGcspgD/WN2Lb9H7PkgN
-XKd0YnLVM+On2SryiO2Ibp2Q/xvshgI=
-=iMTG
------END PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---0al9K0Y79EnPUy/+--
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
