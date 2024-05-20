@@ -1,128 +1,129 @@
-Return-Path: <devicetree+bounces-67838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD0B98C9E02
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:19:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC3E8C9E04
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:19:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 728EC283E22
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:19:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D29041F21F01
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200A41304AD;
-	Mon, 20 May 2024 13:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0362A135A46;
+	Mon, 20 May 2024 13:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jsSxg2fb"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D5DwRzne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E65653805
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 13:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2EC1CD18;
+	Mon, 20 May 2024 13:19:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716211184; cv=none; b=o3KJ1cljt0A0SvBA6neHc3WL3fHeVWHOwkHQW1a6QjxjvEDs7j1cxRjyokSFqPlFz9SJfZMkEgghKhpi61ln4sttgHRbAcZhot3C1xBp2BPYSGKSI0v9xRpqoBHSKsoxvIBLuJS/5soHNf6kWvGjimyzP05mTvBDTC+myF27F6o=
+	t=1716211189; cv=none; b=QuPbXys9GI0GJWJ+NmQVl0P4h0PI6H8wvi6bdmBOG6H+o9O3p/pGz2+vE5bYCDzsyxOdD29HmqNi02UAvpKSQJNTOxtd6XgeAwknI60C8WYQLBJkGyKqzzEJdS0UQJzv13KaUfvXTlxGczX8ZJymmIMu/XYkgj4a7WO0N9UnZl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716211184; c=relaxed/simple;
-	bh=IgqbNXBP/0P8QHcQL0i7iv0mKwRs9caTUkz/Xf4zihM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MVtJEe1aoyOgT0iaW45NtaoNhnDthegpAKtPr0rNIb0/+OkC/Q9KnROy/zmqKWHwk3vwYxcopl47RBQ7T8FZ2QEvJbysFJRc4rasnsByyWlU2AhwCWJOhdqILwH/EYC1o31Ca4L9KlzKbiN8rk9Wpc3khvKLGs530BS5tYZcdyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jsSxg2fb; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2e6f2534e41so27580721fa.0
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 06:19:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716211180; x=1716815980; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7aASBHYEJ2GmCl53uLDmFJwacwwec87xHdsVfr2Oydk=;
-        b=jsSxg2fboU0TAoB0X5oTsmDj9oCUxzlSyK1Js4P+CDw0S4nhUbttYWAeLSECr7sFt+
-         2HAC9NO6XylPtTPNAkggdMocS0w7tsi4qVoILw8TbSoT4M6ETuL+xlMI158gh0n5DHxN
-         1IC05+ISxAB5kF6qvtcdRyl3CCOtWO57B6hQUptPZM/dBXK5s8HU2SQcXzX4gXgt4Xgx
-         Q0V0SSzM89wUWn8chvXc4r5sSMTtm8ZB1cje1H6UfZvy1Bonf6+LICuX50u+DMNUG68/
-         tb623yYj+3G9QHSEs0sSAsLaZT3YZjdK1KkgYd7qNeR+DW+nYa5yIJPOHVHOYWLonazj
-         YL3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716211180; x=1716815980;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7aASBHYEJ2GmCl53uLDmFJwacwwec87xHdsVfr2Oydk=;
-        b=sjYxJcEYETXURtKPKy5rB9kQFBkpjn+5WOUrhRTGD32peXFTp4nS0XCkjfP/BXL0Ym
-         wr+PB4RMp4M84hC+AufiwvaVsYbDNnCkGn8HrpodsQHCxzx8ymxQI7gTgUqBDodt/v+9
-         CCQVligWWsOBnXUPMLLEHZUGBf9ZGx7FZ4IduGPvTbEEnu4t1Ada2MlMvUg6uimAmCT5
-         k7Qq8jlqto26raETbxa24ByIjp7mjbuSUXJdQlIUW16HWRXGN5qaxKzVZ9uTzdM3lOR1
-         I0MCa3q6w3rkvCnWzGvztovKRa0ap8/tU1tEoxCO3x7omLb9pKAvS898aQN4XPmx5LkQ
-         tOqw==
-X-Forwarded-Encrypted: i=1; AJvYcCWPoxLVlC0L/GM8fkVS7RZU04pGKX+s8muqjdlGoX/1u7OPhOd6dg3wBTaTWpdnlsEHQkGWKuflE8qaDjJLp/S/5jUHfVtXRb+D8A==
-X-Gm-Message-State: AOJu0YypjcIv8FOIWPhAnBnK9hs3c32dA6WT1YDcGMY44NO47noWqWZb
-	+zJ+VPdr6fNA6myQUx5WJZPU+cnXAXXzEuUTa5zQtkXmOAeE43V3dDok8y3pHRM=
-X-Google-Smtp-Source: AGHT+IHUPykzDKwW1LbytWT4wZMwyTT0C5peIVfK/LqhFmf7eVbVhlrgRZ2xa8GpF4TZkCY6CYmKhQ==
-X-Received: by 2002:ac2:5f49:0:b0:51f:b781:728f with SMTP id 2adb3069b0e04-5220fc72ffamr15400487e87.32.1716211180523;
-        Mon, 20 May 2024 06:19:40 -0700 (PDT)
-Received: from ?IPV6:2a01:cb1d:433:4e00:3518:6eec:d551:4012? ([2a01:cb1d:433:4e00:3518:6eec:d551:4012])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502b79bd4fsm29437399f8f.7.2024.05.20.06.19.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 May 2024 06:19:40 -0700 (PDT)
-Message-ID: <aa4c1439-bf9a-4710-b534-27d5f845e6e9@baylibre.com>
-Date: Mon, 20 May 2024 15:19:38 +0200
+	s=arc-20240116; t=1716211189; c=relaxed/simple;
+	bh=NuEonSsy9BHcGw03XtsY8/+H2cm/AtrmCekQjk+olEY=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fNKU34ZUy1BVnwW3TnzMyA4p8qz5AKiYgllUXW4hKCChgXvCcQWbYWvuCBEU/Gvne7/7WatL5A85icjqljNPBVvg1mrXmwl/S/icCYKTAepvLKwgX16PlG1CjC6f7/+sHZoyHqiPs42NkXgrkLIA81mzmn1nJ68Fgzad73iZvqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D5DwRzne; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716211188; x=1747747188;
+  h=date:from:to:subject:message-id:references:mime-version:
+   content-transfer-encoding:in-reply-to;
+  bh=NuEonSsy9BHcGw03XtsY8/+H2cm/AtrmCekQjk+olEY=;
+  b=D5DwRzne7fetmP2UI6rmdbUsG+9+K1jB5fmJz9DcWqT/lP8biKzVN/QN
+   p8SfYO79z4NcIDK+17eKNmvHJGbt5MuhxbajRMCLUvjBtJgtSL1vAxUyO
+   545dlcZnRVC/EA/NX7+Lf3lU9Q/eLCl/FsdLNPPi8pJgkwPd/9zB06m+Q
+   aPBQGHoBsE58/DhKRBtwII0/h3uYD0XoyziKMR8Zfd184Gn2YVNRSNNAX
+   rLpOLwo6udwhDNgiqdR2cAGVfTRXxRehPXhRK0M2/p1lmK/D4Y0ihTebT
+   sTRuFSXBQ1iwjLDaaJFQir9upTSTpfzAf+bfBqxK2UTh8F5ahEg72VWZo
+   Q==;
+X-CSE-ConnectionGUID: KJtdniVvTfONm0krfltTZA==
+X-CSE-MsgGUID: kJiaBLkhTuGIdhy/OwDfGQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="15285546"
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
+   d="scan'208";a="15285546"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 06:19:47 -0700
+X-CSE-ConnectionGUID: 6tFvXyVtRRKL8lxX7jfCRQ==
+X-CSE-MsgGUID: H2tDu6cjS8i01DNr1Lex/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
+   d="scan'208";a="32519214"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 06:19:42 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id B6A0811F855;
+	Mon, 20 May 2024 16:19:40 +0300 (EEST)
+Date: Mon, 20 May 2024 13:19:40 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, git@luigi311.com,
+	linux-media@vger.kernel.org, dave.stevenson@raspberrypi.com,
+	jacopo.mondi@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	pavel@ucw.cz, phone-devel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 21/25] dt-bindings: media: imx258: Add binding for
+ powerdown-gpio
+Message-ID: <ZktN7EcXiqupI9Qd@kekkonen.localdomain>
+References: <20240501152442.1072627-1-git@luigi311.com>
+ <20240501152442.1072627-22-git@luigi311.com>
+ <ZkcV5xWZz2jCszxA@kekkonen.localdomain>
+ <q5nbk3qcxsjsqp4mdyx5nlrn4oie6oynunwodm7r2nwtywc2ey@kxsgcatwt5b2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 15/15] arm64: dts: mediatek: mt8188: add default
- thermal zones
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
- Nicolas Pitre <nico@fluxnic.net>, linux-pm@vger.kernel.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Nicolas Pitre <npitre@baylibre.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20240402032729.2736685-1-nico@fluxnic.net>
- <20240402032729.2736685-16-nico@fluxnic.net>
- <aab10d22-b1a1-45e9-85bc-a4334aa6c497@linaro.org>
-Content-Language: en-US
-From: Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <aab10d22-b1a1-45e9-85bc-a4334aa6c497@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <q5nbk3qcxsjsqp4mdyx5nlrn4oie6oynunwodm7r2nwtywc2ey@kxsgcatwt5b2>
 
-On 4/4/24 17:16, Daniel Lezcano wrote:
->
-> Hi Nico,
->
-> a few comments about this description.
->
-> On 02/04/2024 05:25, Nicolas Pitre wrote:
->> From: Nicolas Pitre <npitre@baylibre.com>
->>
->> Inspired by the vendor kernel but adapted to the upstream thermal
->> driver version.
->
-> [ ... ]
->
->> +    thermal_zones: thermal-zones {
->> +        cpu-little0-thermal {
->> +            polling-delay = <1000>;
->
-> Except if I'm wrong, the driver supports the interrupt mode, so it not necessary to poll 
-> constantly when there is no mitigation. You can remove the line and everywhere else.
+Hi Ondřej,
 
-Hello Daniel,
+On Mon, May 20, 2024 at 02:55:26PM +0200, Ondřej Jirman wrote:
+> On Fri, May 17, 2024 at 08:31:35AM GMT, Sakari Ailus wrote:
+> > Hi Luis,
+> > 
+> > On Wed, May 01, 2024 at 09:24:38AM -0600, git@luigi311.com wrote:
+> > > From: Ondrej Jirman <megi@xff.cz>
+> > > 
+> > > Add powerdown-gpio binding as it is required for some boards.
+> > 
+> > I thought the conclusion was that this wasn't a property of the sensor? If
+> > it needs to be controlled, then this should take place somewhere else than
+> > in the sensor driver.
+> 
+> It's a property of the sensor modules. It's just optional on
+> some, eg. (pin 8):
+> 
+>   https://assets-global.website-files.com/63b65bd4974577341e1fe194/654290d4d0fb173e87f754ed_IMX_258_FF_drawing.png
+> 
+> Where else should it be so that the module is described properly in the 
+> DT and the powerdown signal can be used as part of powerup/down sequence
+> of the sensor?
 
-By reading at the comment in the driver, above lvts_irq_handler(),
-I'm not sure actually. Here is what I read:
-"The interrupt is configured for thermal events when crossing the
-hot temperature limit".
-IOW, lvts_irq_handler() is not meant to notify some "data ready"
-event, as far as I understand.
-Don't you think we should keep this polling-delay ?
+That's an interesting case. The document does suggest the PWDN pin isn't
+connected though.
 
-Julien
+Is this pin used for something? If so, what is it? The sensor doesn't have
+it and generally the module in this respect just contains wiring.
 
+Someone earlier suggested this could have been related to the VCM.
+
+-- 
+Regards,
+
+Sakari Ailus
 
