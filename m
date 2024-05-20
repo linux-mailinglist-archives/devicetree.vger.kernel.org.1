@@ -1,202 +1,158 @@
-Return-Path: <devicetree+bounces-67730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057798C9815
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 05:03:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BADE8C98E1
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 08:02:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4737281774
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 03:03:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 875FE1C20E12
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 06:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECD7DDAB;
-	Mon, 20 May 2024 03:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5F914285;
+	Mon, 20 May 2024 06:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="Zaoofn8G"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cG04EhBC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EA34A33
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 03:03:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCB410958
+	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 06:02:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716174218; cv=none; b=PJF+ht09mtW271EuEa4ZT9wP7Jc4p8U9BqavEyoErQ16PQzAlNCysHrWqkBAi4NO7kU89tbOHJZVOnnXqAfI4FxJgreeaqV7JaDLNy3Yf9bKptN1kxViWMT+icK0vdEW7X18XdEjZq6HTUmaA+L6YJQA0SbwmetKXDHh5YhQG7A=
+	t=1716184955; cv=none; b=HrPkch1xBHSb550PXA+XdHN+6NrJkgBE43erMBKwD+XxHniVbiqUab0NQFabHqVVYvUp1+bjPjc5M2iSLPwpxI8gsfKSWIVgypnbdf37Y3f3nZKOiu0mIC1Ilqjw3RC49EmlvbhEQHLdaTfmrHZTf2oOU/HFL1sRKf2sgPQmZXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716174218; c=relaxed/simple;
-	bh=IGj5kRKmq3n+WvTh+8fKpl07otq/0zDRJPWb+zfXshc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SxRzZ+NTsauvWUPx2vEZ+d8cXMAMi9N0fuo2VTCU6M9HZZ6dT043C4L0rd8Ctv7aalKXWtzV5PsXyySPI7UpTiW/8Sh3rSF+VnPXSSnsWbVwCIZ9WqKdtEQKKtkdAdzufm650ZRcOpJlmkx1vNGHsd+4tf9FndZ72oMfUh7U3WQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=Zaoofn8G; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id C27472C061C;
-	Mon, 20 May 2024 15:03:26 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1716174206;
-	bh=b9qzEaQJl1Fq0z1Dc4J4cdeNmSzNgDpWQiImhbo4eN0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Zaoofn8G6Br/cFFjD9ge1Zd/mw0CpDVC4UOctapKzSpw42vpkowtEWD7zzDIc+Srh
-	 vVnXewdi2+OPKhwIdvaPzB462kjRXkp3r5Fv+W8/eUgjf+dFyayj/kHO/4r61JNjqN
-	 cxmIB7gsDyWZwA+x+TsOu0ZaGz8tqLIpuvgBa5/OWeyH17zHT2YibVh1RgXWaHt8y8
-	 HmyrMYJZsewn4J3IqW++jex50oHyxqKeGPKkh3bCn4RDBbv+QVARF2MlgE053/8ASd
-	 6OvCXsHUE54c5+NRIgEaWuZM+fIBkTdvBLXqIdl/g66hVLBoyinc1RM253Pn0cppq/
-	 53+TyvOD5Ug4A==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B664abd7e0003>; Mon, 20 May 2024 15:03:26 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 67C8913EE4F;
-	Mon, 20 May 2024 15:03:26 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 651FA280C1C; Mon, 20 May 2024 15:03:26 +1200 (NZST)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: jdelvare@suse.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	ukleinek@kernel.org
-Cc: linux-hwmon@vger.kernel.org,
+	s=arc-20240116; t=1716184955; c=relaxed/simple;
+	bh=Kk+hKlkm8j3/4MUcgS0+ybEk+JXXrdmv8W1xFjpJZeI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=UiVDMmNZOB4gcuOIUuNRhSAPW9RMML1IC7OWBZR9j5pC/IWc/TuJUBOj+PV9EWJBxmCFZfCXVsPT9II3851wdKdfRwcKVnd6KssgslC1toITqaTJpf9775qzPW+gkX2yqB3cs3p1JAx7g6NM8kCx1Zc61boKML5soZoZLRVQBhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cG04EhBC; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51f0f6b613dso5003173e87.1
+        for <devicetree@vger.kernel.org>; Sun, 19 May 2024 23:02:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716184951; x=1716789751; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1LQlzhEzOG8t8n4JgFMN8rtNdoenYFCDtUlbUryUBdc=;
+        b=cG04EhBCQpZ6tLosO8BVGMFkQNMdqYkEEuK+6G8KAgnh9TmhKD4K99+TukUpxuC66i
+         EMGwKSXJx3fRBUe2gyzoPZI8MQDEMb0a518W2qd80kFsRFOXAcwgWq5UWwb+NszGlXyL
+         mA2Cxh3McPELDO5EtqFPvMC7JG5uqoYRcFD598oh69lOdpSEOSViGPUfRyxTG7OcwZ19
+         8ABe886gGFtlTFMQQg0Nbana9DSo/a6wNgPF22xx+9dFTuFJz3oLxEZVBPfLfmXr8GL+
+         nCM6Fal+oUNMJ4GvZrptjPGHg8hasT5NyfAjondwHcP5VVmOECy7xkcRM6MZXW46tDYb
+         t+2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716184951; x=1716789751;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1LQlzhEzOG8t8n4JgFMN8rtNdoenYFCDtUlbUryUBdc=;
+        b=k8wHkjAYRtAnfxiNGZridKJ4QUd2ikM1iD3ZYNOQiAYXRzNRZuY19XP5MqvDI7fEHm
+         vuLOiXjyxlmQXyrny1S22ZzCUS5HZaFa39LsMvvRXJsdz38w4dUcE5v/yB6OIlIQeaif
+         2WW+ugnpkORk601lriubsgM703bX4wXCCBbcvNNaPX8yOXIb5isRqJAOTkQvE/jzcrjL
+         RAFcxg8ipjIF6fuQOeWGE7Q0+x94iDmW7g1pxgVxKEYSYk388RP5fwnSgaPK4TQIv+Sq
+         zhgCQEeyWChHnKbqZWMTEv+CPPNOotD0n93SagTnzEnjXLbVmHCGaqQELHBx+4ByEQ3Z
+         0INw==
+X-Forwarded-Encrypted: i=1; AJvYcCXNPch9j1MJK0hKiXkFJO/4qoL5D5R2qopU7CDSHLxHbbZ5h3fdgJOhnc9hezFgy5rx20zMhmW24t/1UBXZhFQXlBo0nttmSfmRNw==
+X-Gm-Message-State: AOJu0Yx1h2+900P/k7DG4ixoJJLJCZ0xkjkUKSj/KKYWzDDjFmAcJ9PX
+	B9ZkbhepO+PioRfa2cDdzZsSkkLnKLSULWF/OMqbyEiW9kAjxyUA
+X-Google-Smtp-Source: AGHT+IEUMxwsdn95GJ80iOIBJ473ZyoaAkcwkF09a1jEP5o+o5PJFPWaXYkUTeHTv6cakuKO48xQ/A==
+X-Received: by 2002:ac2:5f89:0:b0:51f:6a38:be0c with SMTP id 2adb3069b0e04-5220fc7d370mr17303695e87.22.1716184951262;
+        Sun, 19 May 2024 23:02:31 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733c323887sm14759024a12.89.2024.05.19.23.02.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 May 2024 23:02:30 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v3 3/3] hwmon: (adt7475) Add support for configuring initial PWM state
-Date: Mon, 20 May 2024 15:03:21 +1200
-Message-ID: <20240520030321.3756604-4-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240520030321.3756604-1-chris.packham@alliedtelesis.co.nz>
-References: <20240520030321.3756604-1-chris.packham@alliedtelesis.co.nz>
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: nxp: imx6: convert NVMEM content to layout syntax
+Date: Mon, 20 May 2024 08:02:22 +0200
+Message-Id: <20240520060222.2980-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=F9L0dbhN c=1 sm=1 tr=0 ts=664abd7e a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=TpHVaj0NuXgA:10 a=p7mM90n0AGoxUC-S2eYA:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-By default the PWM duty cycle in hardware is 100%. On some systems this
-can cause unwanted fan noise. Add the ability to specify the fan
-connections and initial state of the PWMs via device properties.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Use cleaner (and non-deprecated) bindings syntax. See commit
+bd912c991d2e ("dt-bindings: nvmem: layouts: add fixed-layout") for
+details.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
+ arch/arm/boot/dts/nxp/imx/imx6qdl-mba6a.dtsi | 12 ++++++++----
+ arch/arm/boot/dts/nxp/imx/imx6qdl-mba6b.dtsi | 12 ++++++++----
+ 2 files changed, 16 insertions(+), 8 deletions(-)
 
-Notes:
-    Changes in v3:
-    - Use the pwm provider/consumer bindings
-    Changes in v2:
-    - Use correct device property string for frequency
-    - Allow -EINVAL and only warn on error
-    - Use a frequency of 0 to indicate that the hardware should be left a=
-s-is
-
- drivers/hwmon/adt7475.c | 63 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
-
-diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
-index 4224ffb30483..2b8f39c1d76f 100644
---- a/drivers/hwmon/adt7475.c
-+++ b/drivers/hwmon/adt7475.c
-@@ -21,6 +21,8 @@
- #include <linux/of.h>
- #include <linux/util_macros.h>
-=20
-+#include <dt-bindings/pwm/pwm.h>
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6a.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6a.dtsi
+index 238f3af42822..807f3c95e3ce 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6a.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6a.dtsi
+@@ -22,12 +22,16 @@ m24c64_57: eeprom@57 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x57>;
+ 		pagesize = <32>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+ 		vcc-supply = <&reg_mba6_3p3v>;
+ 
+-		mba_mac_address: mac-address@20 {
+-			reg = <0x20 0x6>;
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
 +
- /* Indexes for the sysfs hooks */
-=20
- #define INPUT		0
-@@ -1662,6 +1664,63 @@ static int adt7475_set_pwm_polarity(struct i2c_cli=
-ent *client)
- 	return 0;
- }
-=20
-+static int adt7475_fan_pwm_config(struct i2c_client *client)
-+{
-+	struct adt7475_data *data =3D i2c_get_clientdata(client);
-+	struct fwnode_handle *child;
-+	struct of_phandle_args args =3D {};
-+	int ret, pwm, duty, freq, flags;
-+	u8 val;
++			mba_mac_address: mac-address@20 {
++				reg = <0x20 0x6>;
++			};
+ 		};
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6b.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6b.dtsi
+index a587bc88f76f..789733a45b95 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6b.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-mba6b.dtsi
+@@ -32,12 +32,16 @@ m24c64_57: eeprom@57 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x57>;
+ 		pagesize = <32>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+ 		vcc-supply = <&reg_mba6_3p3v>;
+ 
+-		mba_mac_address: mac-address@20 {
+-			reg = <0x20 0x6>;
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
 +
-+	device_for_each_child_node(&client->dev, child) {
-+		if (!is_of_node(child))
-+			continue;
-+
-+		ret =3D of_parse_phandle_with_args(to_of_node(child), "pwms", "#pwm-ce=
-lls", 0, &args);
-+		if (ret)
-+			return ret;
-+
-+		if (args.args_count !=3D 4)
-+			return -EINVAL;
-+
-+		pwm =3D args.args[0];
-+		freq =3D find_closest(args.args[1], pwmfreq_table, ARRAY_SIZE(pwmfreq_=
-table));
-+		flags =3D args.args[2];
-+		duty =3D clamp_val(args.args[3], 0, 0xFF);
-+
-+		if (pwm >=3D ADT7475_PWM_COUNT)
-+			return -EINVAL;
-+
-+		ret =3D adt7475_read(PWM_CONFIG_REG(pwm));
-+		if (ret < 0)
-+			return ret;
-+		val =3D ret;
-+		if (flags & PWM_POLARITY_INVERTED)
-+			val |=3D BIT(4);
-+		else
-+			val &=3D ~BIT(4);
-+
-+		ret =3D i2c_smbus_write_byte_data(client, PWM_CONFIG_REG(pwm), val);
-+		if (ret)
-+			return ret;
-+
-+		data->pwm[pwm][0] =3D duty;
-+		ret =3D i2c_smbus_write_byte_data(client, PWM_REG(pwm), data->pwm[pwm]=
-[0]);
-+		if (ret)
-+			return ret;
-+
-+		data->range[pwm] =3D adt7475_read(TEMP_TRANGE_REG(pwm));
-+		data->range[pwm] &=3D ~0xf;
-+		data->range[pwm] |=3D freq;
-+
-+		ret =3D i2c_smbus_write_byte_data(client, TEMP_TRANGE_REG(pwm), data->=
-range[pwm]);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int adt7475_probe(struct i2c_client *client)
- {
- 	enum chips chip;
-@@ -1778,6 +1837,10 @@ static int adt7475_probe(struct i2c_client *client=
-)
- 	if (ret && ret !=3D -EINVAL)
- 		dev_warn(&client->dev, "Error configuring pwm polarity\n");
-=20
-+	ret =3D adt7475_fan_pwm_config(client);
-+	if (ret)
-+		dev_warn(&client->dev, "Error %d configuring fan/pwm\n", ret);
-+
- 	/* Start monitoring */
- 	switch (chip) {
- 	case adt7475:
---=20
-2.45.1
++			mba_mac_address: mac-address@20 {
++				reg = <0x20 0x6>;
++			};
+ 		};
+ 	};
+ 
+-- 
+2.35.3
 
 
