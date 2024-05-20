@@ -1,452 +1,174 @@
-Return-Path: <devicetree+bounces-67804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6C108C9BC7
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:02:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ABF78C9C24
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 13:36:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39194B2277D
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:02:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6F2B1F22715
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 11:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CA050A8F;
-	Mon, 20 May 2024 11:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91FE535D9;
+	Mon, 20 May 2024 11:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nVIBQDl0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8767C4DA09
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 11:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF14D535B8;
+	Mon, 20 May 2024 11:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716202965; cv=none; b=g/G1ZEMEiec+aQ4hpi/DC8zhJLF4ubOxUgLTDeaFlDS5PJzXQn1ONFzgaRrpkVwoKZuoucXg9MJANraDxIWKO0f7IGMW/RARg186cWj68xXdGhPTL7E5wv6hdxKWL1TKk+p0VCCNnkvVm+e2A5cAs129d6Clc2AiCE6SAfwy7CQ=
+	t=1716204959; cv=none; b=njpaOu4lTuROa3ba4P9wv9dwU+aMhs5hgNYpEV/rkwK6ZX+f1rK6ZAviV++z9tBUfPo7cP53eHSnHruHpf7ekovdZZflEPEN8eAZx8A0NOnKjpS2A9jxJbimmsUr4qtmgRuMQv/xnxT4x0y6nLdu6/z5JB4CekD44PBL0x8XDuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716202965; c=relaxed/simple;
-	bh=HfVSPCkIpBgqSPj4OEA1+CzolRA2i1yxTJWqE1IWoyY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jPDE76Uq87ZImO17kysM4G4WAm9ornqH8p1zeEgzNNJWx0jX0gyrU01kP78WH7A/SX23CVTd+XsmaaQlJFbYZF+pKpN0gmS5yg2bw4tgTDAp6lT4u+LWHiLg0zz593329TM1/uV8m9v3Z2Hhj44IlPbWibGQqhyFuYQ8K4TSssY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1s90mW-0007PH-Eo; Mon, 20 May 2024 13:02:16 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1s90mT-002FDk-08; Mon, 20 May 2024 13:02:13 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 88E852D40C2;
-	Mon, 20 May 2024 11:02:12 +0000 (UTC)
-Date: Mon, 20 May 2024 13:02:12 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: RE: [EXT] Re: [PATCH 4/4] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Message-ID: <20240520-accurate-intrepid-kestrel-8eb361-mkl@pengutronix.de>
-References: <20240510-imx-se-if-v1-0-27c5a674916d@nxp.com>
- <20240510-imx-se-if-v1-4-27c5a674916d@nxp.com>
- <20240513-pretty-quartz-lemming-14d9ea-mkl@pengutronix.de>
- <AM9PR04MB86044FBF697375EB2C8D285B95EE2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1716204959; c=relaxed/simple;
+	bh=Hr/sWpeUV4cl98aDq73+/+6wpJS0JdebCeE2AtUog1k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MhJITpvJv3FxmKcNJd8Em/T/Xh4O7P1ziyNCIEXrLKDHkGYkCYL0+zlZisaP9yBGCblE2JTLiYI5fJWIxTRpqXdqkAkyxZ6XXjbDC9HeC8QJ+ggo4BdTIWEqpATXx7mJ8TT7sU6bqVoyKYfunVqJvNDdi1enbyXW+HXTCtKqfWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVIBQDl0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 862B4C2BD10;
+	Mon, 20 May 2024 11:35:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716204959;
+	bh=Hr/sWpeUV4cl98aDq73+/+6wpJS0JdebCeE2AtUog1k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nVIBQDl0Nk1gGYdr5G236zMGr3nqnH80mYQZX4OsdOgz5Zz5rfwLB11Xr2On2CoNB
+	 YBBVy5IpKjQaVkwuoc2Q3rlQ4aXtQroy1TSQIlGYj6SEclPW9aapiQnSEqE07CeBfE
+	 4MDo+Mjm45zvxXAYpbYmSsc/njUqzC4qGWIX31ee7V2yE4qpaxgIdJY9TxV93HXXoQ
+	 U9FW64E+dqgtI/vGzw56x9CzZdCTZqGf8zS84bRgCkBZX7ykpKoMe/tUO7kEC5OohL
+	 dDiYyVS4thGxzCS2CsCOTjGPdlYbV0lF5aqyM0Om6isKGyjcTtfbDST5jTZM/2SUJW
+	 sXgcN5zCwXinw==
+Message-ID: <b3145cd3-f6d4-4778-938c-33eb6ed6de5d@kernel.org>
+Date: Mon, 20 May 2024 14:35:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dvuxbbj5nymmnkgy"
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB86044FBF697375EB2C8D285B95EE2@AM9PR04MB8604.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: soc: ti: am62-system-controller: add
+ AM62 syscon
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240518-dt-bindings-ti-soc-mfd-v1-0-b3952f104c9a@linaro.org>
+ <20240518-dt-bindings-ti-soc-mfd-v1-1-b3952f104c9a@linaro.org>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240518-dt-bindings-ti-soc-mfd-v1-1-b3952f104c9a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---dvuxbbj5nymmnkgy
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 17.05.2024 11:24:46, Pankaj Gupta wrote:
-> > > new file mode 100644
-> > > index 000000000000..0463f26d93c7
-> > > --- /dev/null
-> > > +++ b/drivers/firmware/imx/ele_base_msg.c
-> > > @@ -0,0 +1,287 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+
-> > > +/*
-> > > + * Copyright 2024 NXP
-> > > + */
-> > > +
-> > > +#include <linux/types.h>
-> > > +#include <linux/completion.h>
-> > > +#include <linux/dma-mapping.h>
-> > > +
-> > > +#include "ele_base_msg.h"
-> > > +#include "ele_common.h"
-> > > +
-> > > +int ele_get_info(struct device *dev, struct soc_info *s_info)
-> > > +{
-> > > +	struct se_if_priv *priv =3D dev_get_drvdata(dev);
-> > > +	struct se_api_msg *tx_msg __free(kfree);
-> > > +	struct se_api_msg *rx_msg __free(kfree);
-> > > +	phys_addr_t get_info_addr;
-> > > +	u32 *get_info_data;
-> > > +	u32 status;
-> > > +	int ret;
-> > > +
-> > > +	if (!priv || !s_info)
-> > > +		goto exit;
-> >=20
-> > You should code properly, so that this doesn't happen, your cleanup is
-> > broken, it will work on uninitialized data, as Sascha already mentioned.
->=20
-> The API(s) part of this file will be later exported and might get used by=
- driver/crypto/ele/*.c.
-> Still if you think, this check should be removed, I will do it in v2.
+On 18/05/2024 23:07, Krzysztof Kozlowski wrote:
+> Add dedicated binding for AM62 and AM62A wakeup system controller
+> registers, already used in the DTS to properly describe their children.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/soc/ti/ti,am62-system-controller.yaml | 77 ++++++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am62-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am62-system-controller.yaml
+> new file mode 100644
+> index 000000000000..d3bd67717999
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am62-system-controller.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/ti/ti,am62-system-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI AM62 System Controller Registers R/W
+> +
+> +maintainers:
+> +  - Kishon Vijay Abraham I <kishon@ti.com>
 
-It makes no sense to call these functions with NULL pointers, if you do
-so, it's a mistake by the caller. If it's used by some other part of the
-ele driver that should be coded properly.
+Above email might be invalid. Please use this instead
 
-> > > +
-> > > +	memset(s_info, 0x0, sizeof(*s_info));
-> > > +
-> > > +	if (priv->mem_pool_name)
-> > > +		get_info_data =3D get_phy_buf_mem_pool(dev,
-> > > +						     priv->mem_pool_name,
-> > > +						     &get_info_addr,
-> > > +						     ELE_GET_INFO_BUFF_SZ);
-> > > +	else
-> > > +		get_info_data =3D dmam_alloc_coherent(dev,
-> > > +						    ELE_GET_INFO_BUFF_SZ,
-> > > +						    &get_info_addr,
-> > > +						    GFP_KERNEL);
-> >=20
-> > It's better style to move the init of the dma memory into the probe
-> > function.
->=20
-> It is not DMA init. It is DMA allocation.
+Kishon Vijay Abraham I <kishon@kernel.org>
 
-It's better style to move the allocation of the dma memory into the
-probe function.
+> +  - Roger Quadros <rogerq@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - ti,am62-system-controller
+> +          - ti,am62a-system-controller
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^chipid@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/hwinfo/ti,k3-socinfo.yaml#
+> +
+> +  "^syscon@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/mfd/syscon.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: ti,am62-usb-phy-ctrl
+> +          - const: syscon
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@43000000 {
+> +        compatible = "ti,am62-system-controller", "syscon", "simple-mfd";
+> +        reg = <0x43000000 0x20000>;
+> +        bootph-all;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x43000000 0x20000>;
+> +
+> +        chipid@14 {
+> +            compatible = "ti,am654-chipid";
+> +            reg = <0x14 0x4>;
+> +            bootph-all;
+> +        };
+> +
+> +        syscon@4008 {
+> +            compatible = "ti,am62-usb-phy-ctrl", "syscon";
+> +            reg = <0x4008 0x4>;
+> +        };
+> +    };
+> 
 
-
-[...]
-
-> > > +	priv->rx_msg =3D rx_msg;
-> > > +	ret =3D imx_ele_msg_send_rcv(priv, tx_msg);
-> >=20
-> > This API looks strange, why put the tx_msg as a parameter the rx_msg
-> > into the private struct?
->=20
-> The rx_msg is the populated in the interrupt context. Hence, it kept
-> as part of private structure; which is in-turn associated with
-> mbox_client.
-
-These are implementation details, it just feels strange to pass one
-parameter via an arguments and put the other in the private pointer.
-
-> Though, in v2 moving the rx_msg setting to imx_ele_msg_send_rcv(priv,
-> tx_msg, rx_msg);
-
-fine
-
-[...]
-
-> > > +	if (status !=3D priv->success_tag) {
-> > > +		dev_err(dev, "Command Id[%d], Response Failure =3D 0x%x",
-> > > +			ELE_GET_INFO_REQ, status);
-> > > +		ret =3D -1;
-> > > +	}
-> > > +
-> > > +	s_info->imem_state =3D (get_info_data[ELE_IMEM_STATE_WORD]
-> > > +				& ELE_IMEM_STATE_MASK) >> 16;
-> >=20
-> > can you use a struct for get_info_data and use FIELD_GET() (if needed)
->=20
-> Re-write the structure soc_info, matching the information provided in
-> response to this api.
-
-Looks better. Please compile the driver and check with "pahole" that the
-layout of these structures doesn't contain any unwanted padding.
-Otherwise add "__packed" and if you can guarantee "__aligned(4)".
-
-> struct dev_info {
->         uint8_t  cmd;
->         uint8_t  ver;
->         uint16_t length;
->         uint16_t soc_id;
->         uint16_t soc_rev;
->         uint16_t lmda_val;
->         uint8_t  ssm_state;
->         uint8_t  dev_atts_api_ver;
->         uint8_t  uid[MAX_UID_SIZE];
->         uint8_t  sha_rom_patch[DEV_GETINFO_ROM_PATCH_SHA_SZ];
->         uint8_t  sha_fw[DEV_GETINFO_FW_SHA_SZ];
-> };
->=20
-> struct dev_addn_info {
->         uint8_t  oem_srkh[DEV_GETINFO_OEM_SRKH_SZ];
->         uint8_t  trng_state;
->         uint8_t  csal_state;
->         uint8_t  imem_state;
->         uint8_t  reserved2;
-> };
->=20
-> struct soc_info {
->         struct dev_info d_info;
->         struct dev_addn_info d_addn_info;
-> };
-
-[...]
-
-> > > +int imx_ele_msg_send(struct se_if_priv *priv, void *mssg)
-> > > +{
-> > > +	bool is_cmd_lock_tobe_taken =3D false;
-> > > +	int err;
-> > > +
-> > > +	if (!priv->waiting_rsp_dev || priv->no_dev_ctx_used) {
-> > > +		is_cmd_lock_tobe_taken =3D true;
-> > > +		mutex_lock(&priv->se_if_cmd_lock);
-> > > +	}
-> > > +	scoped_guard(mutex, &priv->se_if_lock);
-> > > +
-> > > +	err =3D mbox_send_message(priv->tx_chan, mssg);
-> > > +	if (err < 0) {
-> > > +		dev_err(priv->dev, "Error: mbox_send_message failure.\n");
-> > > +		if (is_cmd_lock_tobe_taken)
-> > > +			mutex_unlock(&priv->se_if_cmd_lock);
-> >=20
-> > Only dropping the lock in case of failure doesn't look right to me.
->=20
-> The callers of this function, takes the execution flow to aborting the
-> operation on getting return code < 0. No next action is expected under
-> this aborted operation. Unlocking the lock here is not an issue
->=20
-> > It seems you should better move the lock to the callers of this functio=
-n.
->
-> Accepted, and moved to the caller of the function for:
->    - locking
->    - unlocking in case of error.
->=20
-> Unlocking in the read API, once response is successfully received and
-> read.
-
-A better design would be: imx_ele_msg_rcv() imx_ele_msg_send() are
-expected to be called locked. Add lockdep_assert_held() to these
-function to document/check this.
-
-The callers of imx_ele_msg_rcv() and imx_ele_msg_send() have to take
-care of the locking.
-
-[...]
-
-> > > +static const struct imx_se_node_info_list imx8ulp_info =3D {
-> > > +	.num_mu =3D 1,
-> > > +	.soc_id =3D SOC_ID_OF_IMX8ULP,
-> > > +	.info =3D {
-> > > +			{
-> > > +				.se_if_id =3D 2,
-> > > +				.se_if_did =3D 7,
-> > > +				.max_dev_ctx =3D 4,
-> > > +				.cmd_tag =3D 0x17,
-> > > +				.rsp_tag =3D 0xe1,
-> > > +				.success_tag =3D 0xd6,
-> > > +				.base_api_ver =3D MESSAGING_VERSION_6,
-> > > +				.fw_api_ver =3D MESSAGING_VERSION_7,
-> > > +				.se_name =3D "hsm1",
-> > > +				.mbox_tx_name =3D "tx",
-> > > +				.mbox_rx_name =3D "rx",
-> > > +				.pool_name =3D "sram",
-> > > +				.fw_name_in_rfs =3D IMX_ELE_FW_DIR\
-> >                                                                 ^
-> >                                                            not needed
->=20
-> It is needed for i.MX8ULP, dual FW support.
-
-The backslash is not needed.
-
->=20
-> > > +						  "mx8ulpa2ext-ahab- container.img",
->=20
->=20
-> > > +				.soc_register =3D true,
-> > > +				.reserved_dma_ranges =3D true,
-> > > +				.imem_mgmt =3D true,
-> > > +			},
-> > > +	},
-> > > +};
-> > > +
-> > > +static const struct imx_se_node_info_list imx93_info =3D {
-> > > +	.num_mu =3D 1,
-> > > +	.soc_id =3D SOC_ID_OF_IMX93,
-> > > +	.info =3D {
-> > > +			{
-> > > +				.se_if_id =3D 2,
-> > > +				.se_if_did =3D 3,
-> > > +				.max_dev_ctx =3D 4,
-> > > +				.cmd_tag =3D 0x17,
-> > > +				.rsp_tag =3D 0xe1,
-> > > +				.success_tag =3D 0xd6,
-> > > +				.base_api_ver =3D MESSAGING_VERSION_6,
-> > > +				.fw_api_ver =3D MESSAGING_VERSION_7,
-> > > +				.se_name =3D "hsm1",
-> > > +				.mbox_tx_name =3D "tx",
-> > > +				.mbox_rx_name =3D "rx",
-> > > +				.reserved_dma_ranges =3D true,
-> > > +				.imem_mgmt =3D true,
-> > > +				.soc_register =3D true,
-> > > +			},
-> > > +	},
-> >=20
-> >=20
-> > Some (most?) members of these structs are the same. Why do you have this
-> > abstraction if it's not needed right now?
->
-> It is needed as the values is different for different NXP SoC
-> compatible. It will be needed for NXP i.MX95 platform, whose code will
-> be next in pipeline.
-
-How does the imx95 .info look like?
-
-[...]
-
-> > > +static int imx_fetch_soc_info(struct device *dev)
-> > > +{
-> > > +	struct se_if_priv *priv =3D dev_get_drvdata(dev);
-> > > +	struct imx_se_node_info_list *info_list;
-> > > +	const struct imx_se_node_info *info;
-> > > +	struct soc_device_attribute *attr;
-> > > +	struct soc_device *sdev;
-> > > +	struct soc_info s_info;
-> > > +	int err =3D 0;
-> > > +
-> > > +	info =3D priv->info;
-> > > +	info_list =3D (struct imx_se_node_info_list *)
-> > > +				device_get_match_data(dev->parent);
-> >=20
-> > I think cast is not needed.
->
-> It returns memory reference with const attribute. SoC revision member
-> of 'info_list', is required to be updated. Thus type casted.
-
-Have you considered that this memory is marked as const for a reason?
-It's const, you cannot change it. Place any values that have to changed
-into your priv.
-
-> > > +	if (info_list->soc_rev)
-> > > +		return err;
-> >=20
-> > What does this check do? You'll only get data you put in the info_list
-> > in the first place.
-
-> info_list->soc_rev, is equal to zero for the first call to this
-> function. To return from this function if this function is already
-> executed.
-
-This looks wrong, see above.
-
-> > > +	err =3D ele_get_info(dev, &s_info);
-> > > +	if (err)
-> > > +		s_info.major_ver =3D DEFAULT_IMX_SOC_VER;
-> >=20
-> > Why continue here in case of error?
->
-> To continue with SoC registration for the default values (without
-> fetching information from ELE).
-
-Have you tested the driver that it will work, if this fails?
-
-> > > +
-> > > +	info_list->soc_rev =3D s_info.soc_rev;
-> > > +
-> > > +	if (!info->soc_register)
-> > > +		return 0;
-> > > +
-> > > +	attr =3D devm_kzalloc(dev, sizeof(*attr), GFP_KERNEL);
-> > > +	if (!attr)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	if (s_info.minor_ver)
-> > > +		attr->revision =3D devm_kasprintf(dev, GFP_KERNEL, "%x.%x",
-> > > +					   s_info.major_ver,
-> > > +					   s_info.minor_ver);
-> > > +	else
-> > > +		attr->revision =3D devm_kasprintf(dev, GFP_KERNEL, "%x",
-> > > +					   s_info.major_ver);
-> > > +
-> > > +	switch (s_info.soc_id) {
-> > > +	case SOC_ID_OF_IMX8ULP:
-> > > +		attr->soc_id =3D devm_kasprintf(dev, GFP_KERNEL,
-> > > +					      "i.MX8ULP");
-> > > +		break;
-> > > +	case SOC_ID_OF_IMX93:
-> > > +		attr->soc_id =3D devm_kasprintf(dev, GFP_KERNEL,
-> > > +					      "i.MX93");
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	err =3D of_property_read_string(of_root, "model",
-> > > +				      &attr->machine);
-> > > +	if (err) {
-> > > +		devm_kfree(dev, attr);
-> >=20
-> > Why do you do a manual cleanup of devm managed resources? Same applies
-> > to the other devm managed resources, too.
-> >=20
-> Used devm managed memory, as this function is called as part probe.
-> Post device registration, this devm managed memory is un-necessarily
-> blocked. It is better to release it as part of clean-up, under this
-> function only.
-
-Why do you allocate the memory with devm in the first place, if it's not
-needed after probe?
-
-> Other devm managed memory clean-up, under se_probe_cleanup, will be
-> removed, as suggested.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---dvuxbbj5nymmnkgy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmZLLbEACgkQKDiiPnot
-vG+SOgf/YGBZgMjP3BeqAQYz56cPSTV61/SRUZP4EvHDzma8EH83xkVAElGkxUzy
-7yZeHijx/zqnSfe2IR5/dwTPJWXGxBPLms7psmBogYitZd3WnX4P/fgTI78ah3qC
-IO+3kt231mk5aHnOI8o3hbZeMRlUPbdLqRzl300zsZeGPy8PlsC5F3jj5pXKfkQU
-K/7N4IOajyIrsiAkWiaJxcfBvQFoPW5VA1zveDxDZvPp1uoz80xzeSSsEYWCt/zh
-WkNdyIfPw3IMXYgrirubuy9HZF1zJimFPYvTJqbx5+6bEgfU6peTwPr/NBXNaLu3
-907OtaYVSrtwVTtax03Wn9LeOLLjOw==
-=vcYe
------END PGP SIGNATURE-----
-
---dvuxbbj5nymmnkgy--
+-- 
+cheers,
+-roger
 
