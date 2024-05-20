@@ -1,144 +1,149 @@
-Return-Path: <devicetree+bounces-67825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDFB38C9D04
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:15:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A10508C9D0D
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:19:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B0451C21105
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:15:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C40D11C20F2E
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BE85466B;
-	Mon, 20 May 2024 12:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1C050A6A;
+	Mon, 20 May 2024 12:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hYvHRt5w"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DbXJFNB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3E55337F;
-	Mon, 20 May 2024 12:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783D452F74;
+	Mon, 20 May 2024 12:19:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716207298; cv=none; b=T1U7TcSblaem5IEiFZ0rjEv4F4OeeBYt3M7V7hio3YLvvZvF+YKks5P3sGhyygY2rowMN3/Pq/i09p4dQ9MFQ8HdNU237w+/hMwVFD8rnCFSufKZWF9nTx4I3Q6eMZX++zgyO4bSR/U8HQaBdTT1orHm3we+XcURm6UVyRafvD8=
+	t=1716207562; cv=none; b=LGiCQ8AJM9bA3OoRts4OC61SWXGCjusq7rqlVoNfv7vJ3/vd1G1eSy5exPwt6KIxDEFBEEIDXXEbXpAISBI5Ybj3un+P/kqZyANBmkuoPgdoAksSRJGo1Jx4qngoM/38R8T47SWdaZIcoYNC8feWrJQybI5/r+atqwp0HqLnzrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716207298; c=relaxed/simple;
-	bh=yyFjEETTLseT7dtN9+rXSzvJfQ09dPUxjbBDMLKEHP4=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c6875BkbklQmpFveUMXL9q+CCeYjtqYUt6/abZ8mg5OB/EhNCPdDKbqAnSUFN4tlbAfdaCUNvwJ5CppXqjFIopvfFRPI2HTsyv5UkHi67oXnvrbNz3fGXrgfKv3JEHC+mIRMIGtOYXqUafxvSL/c81LeWJR5C3obpmnoPMxgEko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hYvHRt5w; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44KCEgvI125427;
-	Mon, 20 May 2024 07:14:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1716207282;
-	bh=jqq3vLkhd8TaxcAmaBUSEYP9cRLD6oJAMLwozEckBg8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=hYvHRt5wNHzHrsMXSyIAM6G/j8ACXQodgDkxoo7WTTfbC2pHksrI+qrXKfEeglSst
-	 qaUKBb6sk56Ost7ziQPAAMd3I8GrQu+p9+PJfAR2+PacTfyT06Z2WPlxSuJ6G+CIfq
-	 tKSRKrGa/F1TeLio4Zg/ivA3ofJhcdPrAmuJjscE=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44KCEgmI091100
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 20 May 2024 07:14:42 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
- May 2024 07:14:41 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 20 May 2024 07:14:41 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44KCEfNj128247;
-	Mon, 20 May 2024 07:14:41 -0500
-Date: Mon, 20 May 2024 07:14:41 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Francesco Dolcini <francesco@dolcini.it>,
-        Parth Pancholi
-	<parth105105@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Parth
- Pancholi <parth.pancholi@toradex.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>
-Subject: Re: [PATCH] dt-bindings: usb: gpio-sbu-mux: Add an entry for
- TMUXHS4212
-Message-ID: <20240520121441.svp6oabjyev4vmih@magazine>
-References: <20240517111140.859677-1-parth105105@gmail.com>
- <1675a33d-47af-4de9-a0e7-177cbe208e2b@kernel.org>
- <20240519202754.GA3334@francesco-nb>
- <469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org>
+	s=arc-20240116; t=1716207562; c=relaxed/simple;
+	bh=D410+6pWdx9JqhyYG8MLNmeKDqTQGDaLv0VbhWAv/Kc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dn2efjXBzxEWr2EabcCzcCka28quwbahP3fDFycs/nPbYH8HFnxl5Nk/dQpFjlnOScnI2IO530XEOGtoDOxpSilOWlsqHawU58gQflfybeGWEf/2vVmuaXXTitowZ+ZjIngDtlas7SA6Aybw/FH7h1IKVni+uMlTgCahR063s5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DbXJFNB2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44K0v6ub007480;
+	Mon, 20 May 2024 12:19:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=5q3G3ghBpvp/fL41NIdzDrzlOBNV41F9L6d5JbyyIbI=; b=Db
+	XJFNB20OFaw5Ka2dkSw7ki2cZap4xEQP7QfrqvCKq009gW0rAMvc5w98zKkBYXub
+	FdxU7a2gmTmlq+2CKkGbZZmnW6Ds8sS8WjJUmaQoKAozTctWuBw32pe4kctciYSU
+	C7jXqxi9hg6emkdxw2b0n5qf+u/tEsqu95pdJLG82vWQ8XqO54QkR99Rx1rl4j22
+	u78j5e5XbE9Cl7XKbDvwh9sG3UrVk660eJxcraBzuu8O65bOyVEkRLCOPtzv2Eq8
+	on85bl/tuGaBPTVzljiCOBqEDl2P/zm91RMjUWKIwm3/788slEe3U1c5V4uN/5f1
+	FHN6Y/5/G++eNCPUwp2Q==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6n4gbatq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 May 2024 12:19:13 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44KCJBoT011344
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 May 2024 12:19:11 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 20 May
+ 2024 05:19:07 -0700
+Message-ID: <4bd22d28-63d9-d700-2a0c-eb08ceb66a9c@quicinc.com>
+Date: Mon, 20 May 2024 17:49:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH] arm64: dts: qcom: qdu/qru1000-idp: Fix the voltage
+ setting
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Melody Olvera <quic_molvera@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240514131038.28036-1-quic_kbajaj@quicinc.com>
+ <45e0aee9-87d5-434f-8ffe-d3270def0f72@kernel.org>
+ <1c214d8b-9c59-7266-4c80-4b548ad6c7f9@quicinc.com>
+ <5c7409df-692c-4f22-aea6-56865e801a30@kernel.org>
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <5c7409df-692c-4f22-aea6-56865e801a30@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SrkH2OH6Woqmoyqe6ETTA8DW0o3WKso3
+X-Proofpoint-ORIG-GUID: SrkH2OH6Woqmoyqe6ETTA8DW0o3WKso3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-20_05,2024-05-17_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0 mlxlogscore=903
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405200102
 
-On 08:53-20240520, Krzysztof Kozlowski wrote:
-> On 19/05/2024 22:27, Francesco Dolcini wrote:
 
-[...]
-> > If it's not the case we'll send the patch later on, however some
-> > DT files maintainers (e.g. arch/arm64/boot/dts/ti/) have a policy to
-> > just accept DT file in which the binding changes are already merged
-> > therefore I was trying to be a little bit proactive here.
+
+On 5/17/2024 2:20 PM, Krzysztof Kozlowski wrote:
+> On 16/05/2024 07:52, Komal Bajaj wrote:
+>>
+>>
+>> On 5/14/2024 6:57 PM, Krzysztof Kozlowski wrote:
+>>> On 14/05/2024 15:10, Komal Bajaj wrote:
+>>>> Fixing the regulator voltages for qdu/qru1000 idp boards.
+>>>> In particular -
+>>>> - smps4 is 1.574V min and 2.04V max
+>>>> - smps5 is 1.2V min and 1.4V max
+>>>> - smps6 is 0.382V min and 1.12V max
+>>>
+>>> Wait, why? This looks, at least partially, you are changing from fixed
+>>> voltage choice to full range, without clear explanation.
+>>>
+>>
+>> When we started using one of these regulators for USB enablement as sent
+>> in the patch series [1], we saw a sudden reboot.
+>> After adding more debug logs, came to know the configuration for smps5
+>> was incorrect.
+>>
+>> Therefore, cross verified the configurations for all the regulators and
+>> got to know that these are incorrectly configured.
+>> This fixes some manual errors introduced in the initial patch (mentioned
+>> in fixes tag).
+>>
+>> [1]
+>> https://lore.kernel.org/linux-arm-msm/20240502090326.21489-1-quic_kbajaj@quicinc.com/
 > 
-> TI? Never heard something like this from them... Such requirement would
-> seriously slow down any work, so it's not really reasonable. Expectation
-> is to post both binding change and an user, so DTS, in case of USB in
-> separate patchsets.
+> All this should be explained in commit msg.
 
-There is a reason we have set that "soft rule":
-- Driver subsystem merges have known to be broken from time to time and
-  the dt maintainer is left holding compatibles that have not made to
-  master.
-- ARM subsystem merges prefers not to see checkpatch warnings -
-  typically, this happens with new compatibles in the driver subsystem.
-- Off chance that driver subsystem maintainer picks up the dt changes as
-  well (should not happen, but has happened)
+Got it. Will add all this info into the commit message of the next version.
 
-We have however flexed the rule when:
-a) driver maintainer is willing to provide us an immutable tag that we
-   can merge in and base the dts on top.
-b) We felt that the chances of the driver not making it is very very low
-   (typically after 1+ month in next) and the dts change is in the wider
-   interest of the community. In such case, we have to explicitly take
-   the action of letting the patch submitter, driver subsystem to let us
-   know if something bad happens to the PR, also in our PR to SoC
-   maintainers, we have to call it out along with rationale why this is
-   OK. This is a bunch of work from a lot of folks, so prefer only to
-   trigger this path in case of exceptional cases - there have been a
-   few far in between.
+Thanks
+Komal
 
-Again, the default rule (driver in one window, binding in next) has
-kept us out of trouble for a few years now at the detriment of pace
-of merges, but that took care of a lot of conflicts that we had seen
-during initial days of k3 - there are few chains in the lakml list
-where this was the direction we ended up in after discussion.
-
-But, yes - as you mentioned, send the patches of the "user" of the dt
-binding and driver gives the subsystem and dt maintainers a chance to
-review in the context of usage prior to the driver and binding merge.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
