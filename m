@@ -1,182 +1,179 @@
-Return-Path: <devicetree+bounces-67880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5058CA003
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:48:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 084258C9FFC
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:47:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 930541F20FCE
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:48:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 301DC1F20CD4
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4103137766;
-	Mon, 20 May 2024 15:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BC254D9EA;
+	Mon, 20 May 2024 15:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="etSTpdh6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MosCYrxE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91AB4C66;
-	Mon, 20 May 2024 15:47:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535014C66;
+	Mon, 20 May 2024 15:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716220072; cv=none; b=s5qD8Jhw8BDO9edzH4Vh+TJre2I3dGk/+DC2F+JIZXghXbO1mZID1cwdpxjaeOXUAg+GvEe6QpCR2wNpDk8DjopBg1aDKqWJYmF/Yqmf6VG/dr0Mric8N6pkqZ3eTx/aRWz0KyMkpYOT9ndzBH4816Y1Q3TDG98xZPq3fEbqXjU=
+	t=1716220038; cv=none; b=gD+UZJ+YratiyRVJXitIMDEpv4TfoUSm3AXkXzqF+PRUhonDmewzYJuCpSvsRjnUmHt1VlBNHTBDXUQFmSdK+8q/2FfzxDvXI8lc0HbtVFSDawdSq3Wi6fZytOS/w3e64Vm3tYaFHepuOMwTLhqEmYtEIWYMtnZSbLkVgFi7rdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716220072; c=relaxed/simple;
-	bh=dIcfYS3DCP/xjxi7EfvzQOb0zFFG/+yZtonMvUoMFk0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sXzxWvhf+N+tHl5bmVV3Vb7BYXutXRHmxqQc3McaDB+H605xB9iS6yDVc04YUavhd3k6bNYtdYEjMo+V0MNF5EY+DqpEcqNlESMb1SeqGgXNWS/pEADIxa0g2ZvlA+hf7auBWueNJoDF6mgktftG6J7p1Iqw6+kfU194YSN8yPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=etSTpdh6; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44KEFpPL001175;
-	Mon, 20 May 2024 17:47:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=ePwcetJBFPJNqN1k/NmMRCLaktJ9x89GqxfjwisczSg=; b=et
-	STpdh6HCBaAQOn5r1LuJJ+p7H73HYH3NLdfWnSXwDPaXzF6veWaax/FHxotV7Hz9
-	Iug5T35OXjY5QEIjG8yDhn+T1eg1FAmHxRjRHGGccSpX7MxbXucbRK7lvcOHWkX8
-	4XWmGmrFyJBQRySmILY2ZDQYkGvG8RlVLktS/TmPgL9akwyhbvZBVlzfyRRolKlS
-	Hu+I4MPHbqguL4x908H5dv0hPnHQt6PdxxFSEhutUtTrbQc6zYOCoTihdDO1/URN
-	SmrQABJC3q5Z/SH1Yk4hl5voLKWBm3I+YWRMyxScil4saD8BZ+FOGPl6SqacQgZD
-	vXiSrqMQ73KNZa44njAw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3y75w05yb0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 May 2024 17:47:33 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B4F714002D;
-	Mon, 20 May 2024 17:47:29 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DDB9E21D3B0;
-	Mon, 20 May 2024 17:46:43 +0200 (CEST)
-Received: from [10.252.8.132] (10.252.8.132) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 20 May
- 2024 17:46:43 +0200
-Message-ID: <61b68534-700d-489c-a5e0-029e46e03b1f@foss.st.com>
-Date: Mon, 20 May 2024 17:46:42 +0200
+	s=arc-20240116; t=1716220038; c=relaxed/simple;
+	bh=uQyTUDBrb2M4ToZZB76OHhpsj6zKCUibocapiCL/n+o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hKLud25cgqUxiJ0CSnQ5FSfuor+Xa+b1fnzLjaBPr3JUb9WCfg/ANmDUVHO0jgnUAQxI3wb0sTIdv2ZvIHHZAeLd5ETVVLHGdS+FwA/Nqpt0wUJdcjDl8ho+a+sEOaOnPZj3cq7BnzqqTch29Zj2LkFRrddY41jmul+8evud2FM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MosCYrxE; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5210684cee6so3961055e87.0;
+        Mon, 20 May 2024 08:47:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716220034; x=1716824834; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F3SMiS49AyJkdxBHc7WIBbANno/llp+H6SaO+b8OMQA=;
+        b=MosCYrxEXdUNb7C9Txh7i8+ELcUGNxO/x9nK9Y2r+glGjoEf3QaC02lEyRue2yl7M0
+         BgzEv5C6wpBXSflu9/S4j01TjLr+yQX1fsLW/486Q0yg+vIeyyo5a4vlOnx34jsq4v1/
+         ewAGC/fVDqib3WvppfIxvKpK3CM8hk7GMc4fLA0u9SvSJq5N/Wfp2T+eCu2AtvJDuapX
+         xiwJxd6EVws4EF3veRdxRQBySkMx0DXp5OBq7aSlUnu17XC7j0mYeZzaw0uPMJrBJe8B
+         86henWGECYmrRHqyi5/vqXtB9dhJ1yG2ZXrSBqO/4VegMzfLWTMTJUPNbh+IgBrRiWXq
+         oPNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716220034; x=1716824834;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F3SMiS49AyJkdxBHc7WIBbANno/llp+H6SaO+b8OMQA=;
+        b=KLKL9iWpXsVQjulg/Ux/Hpkrl0DRG7/pJ/J2Oe1+lXLgS2T95uaBcmZXqZ4F4QD3Ry
+         sEpTxn1r5E8ZT/2SRH22T2H6TaVDEsLA16+7J5wLpURm/9K5k68I4JYkbS5BrO72IhGx
+         6Qly0mFSZle9mvjM8SGAaebeJRWD0tQpc/F5zVg/Qu+w0nT1/Reqw3hy5LK1B98pRUVV
+         TMRe9X+8EZooYkd9hooADLVq7LQzLf81nfxpIdiEFt0lehRYZJXn24eTaH+xHgEH61Qz
+         6Sf5stPoxofS7Nfd8D0hd+FP53X99mmo5UJZLOg1AQEis1eq8MkHnm2Oan5tGGcITzEf
+         hY8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVa/3BDOg4Wu0+UjGid0iJPW9+/4veUVF7LbxkB1cPYfDben/X88+Y0CVAYWzlCEKmYg76ZAF4CrZs/bpaqqZg2GuaADW8yshjHIWF/rNwsxdw06dKndU5EdovWvvogL7w0uH6BE/zL+5JFedMAk3m0uNp57bhSmUWH7MCt41BewUqqslI=
+X-Gm-Message-State: AOJu0YysiDI6seSB6QLN32UI7XoBC3hIPuC2xpW5NaRzUepCuNWEMlTd
+	Wi4A0IW1vdQWqYV36KMMgGJGHvoHtrE0QLUjInzrcr/hw+rob9Uu
+X-Google-Smtp-Source: AGHT+IG62mY91gEpiAarmSHeHjUwItNwi5VJN0X/TlHTjt2kNSZCxj4kp8AqtGbIWbuVJ3Tc+FEtPA==
+X-Received: by 2002:a05:6512:3091:b0:51e:f1a6:ac39 with SMTP id 2adb3069b0e04-5220fa71b46mr24154338e87.12.1716220034251;
+        Mon, 20 May 2024 08:47:14 -0700 (PDT)
+Received: from pratik-IdeaPad.lan (customer-145-40-29-195.stosn.net. [145.40.29.195])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-521f35ba754sm4301267e87.107.2024.05.20.08.47.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 May 2024 08:47:13 -0700 (PDT)
+From: Pratik Farkase <pratikfarkase94@gmail.com>
+X-Google-Original-From: Pratik Farkase <pratik.farkase@wsisweden.com>
+To: 
+Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pratik Farkase <pratikfarkase94@gmail.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: gpio: lsi,zevio-gpio: convert to dtschema
+Date: Mon, 20 May 2024 17:47:08 +0200
+Message-Id: <20240520154711.7991-1-pratik.farkase@wsisweden.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/12] Introduce STM32 DMA3 support
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>
-CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>
-References: <20240520154213.689699-1-amelie.delaunay@foss.st.com>
-Content-Language: en-US
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-In-Reply-To: <20240520154213.689699-1-amelie.delaunay@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-20_05,2024-05-17_03,2024-05-17_01
+Content-Transfer-Encoding: 8bit
 
-Drop this incomplete series, issue with mail server.
+Convert Zevio GPIO Controller from text to dtschema.
 
-On 5/20/24 17:42, Amelie Delaunay wrote:
-> STM32 DMA3 is a direct memory access controller with different features
-> depending on its hardware configuration. It is either called LPDMA (Low
-> Power), GPDMA (General Purpose) or HPDMA (High Performance), and it can
-> be found in new STM32 MCUs and MPUs.
-> 
-> In STM32MP25 SoC [1], 3 HPDMAs and 1 LPDMA are embedded. Only HPDMAs are
-> used by Linux.
-> 
-> Before adding this new driver, this series gathers existing STM32 DMA
-> drivers and bindings under stm32/ subdirectory and adds an entry in
-> MAINTAINERS file.
-> 
-> To ease review, the initial "dmaengine: Add STM32 DMA3 support" has been
-> split into functionnalities.
-> Patches 6 to 9 can be squashed into patch 5.
-> 
-> Patch 10 has already been proposed [2], the API is now used in stm32-dma3
-> driver. Indeed, STM32 DMA3 channels can be individually reserved either
-> because they are secure, or dedicated to another CPU. These channels are
-> not registered in dmaengine, so id is not incremented, but, using the new
-> API to specify the channel name, channel name matches the name in the
-> Reference Manual and ease requesting a channel thanks to its name.
-> 
-> [1] https://www.st.com/resource/en/reference_manual/rm0457-stm32mp25xx-advanced-armbased-3264bit-mpus-stmicroelectronics.pdf
-> [2] https://lore.kernel.org/lkml/20231213174021.3074759-1-amelie.delaunay@foss.st.com/
-> 
-> v3:
-> - address Rob's remarks about st,stm32-dma3.yaml
->    (wrap at 80, remove useless '|')
-> - address Frank's remarks about patch 5: improve commit message and
->    ensure descriptors availability before starting the channel
-> 
-> v2:
-> - fix reference in spi/st,stm32-spi.yaml with an updated description of the
->    dmas property to reflect the new path of STM32 DMA controllers bindings.
-> - address Rob's remarks about st,stm32-dma3.yaml
-> - address Vinod's remarks about stm32-dma3.c
-> 
-> Amelie Delaunay (12):
->    dt-bindings: dma: New directory for STM32 DMA controllers bindings
->    dmaengine: stm32: New directory for STM32 DMA controllers drivers
->    MAINTAINERS: Add entry for STM32 DMA controllers drivers and
->      documentation
->    dt-bindings: dma: Document STM32 DMA3 controller bindings
->    dmaengine: Add STM32 DMA3 support
->    dmaengine: stm32-dma3: add DMA_CYCLIC capability
->    dmaengine: stm32-dma3: add DMA_MEMCPY capability
->    dmaengine: stm32-dma3: add device_pause and device_resume ops
->    dmaengine: stm32-dma3: improve residue granularity
->    dmaengine: add channel device name to channel registration
->    dmaengine: stm32-dma3: defer channel registration to specify channel
->      name
->    arm64: dts: st: add HPDMA nodes on stm32mp251
-> 
->   .../dma/{ => stm32}/st,stm32-dma.yaml         |    4 +-
->   .../bindings/dma/stm32/st,stm32-dma3.yaml     |  135 ++
->   .../dma/{ => stm32}/st,stm32-dmamux.yaml      |    4 +-
->   .../dma/{ => stm32}/st,stm32-mdma.yaml        |    4 +-
->   .../devicetree/bindings/spi/st,stm32-spi.yaml |    2 +-
->   MAINTAINERS                                   |    9 +
->   arch/arm64/boot/dts/st/stm32mp251.dtsi        |   69 +
->   drivers/dma/Kconfig                           |   34 +-
->   drivers/dma/Makefile                          |    4 +-
->   drivers/dma/dmaengine.c                       |   16 +-
->   drivers/dma/idxd/dma.c                        |    2 +-
->   drivers/dma/stm32/Kconfig                     |   47 +
->   drivers/dma/stm32/Makefile                    |    5 +
->   drivers/dma/{ => stm32}/stm32-dma.c           |    2 +-
->   drivers/dma/stm32/stm32-dma3.c                | 1847 +++++++++++++++++
->   drivers/dma/{ => stm32}/stm32-dmamux.c        |    0
->   drivers/dma/{ => stm32}/stm32-mdma.c          |    2 +-
->   include/linux/dmaengine.h                     |    3 +-
->   18 files changed, 2137 insertions(+), 52 deletions(-)
->   rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-dma.yaml (97%)
->   create mode 100644 Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
->   rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-dmamux.yaml (89%)
->   rename Documentation/devicetree/bindings/dma/{ => stm32}/st,stm32-mdma.yaml (96%)
->   create mode 100644 drivers/dma/stm32/Kconfig
->   create mode 100644 drivers/dma/stm32/Makefile
->   rename drivers/dma/{ => stm32}/stm32-dma.c (99%)
->   create mode 100644 drivers/dma/stm32/stm32-dma3.c
->   rename drivers/dma/{ => stm32}/stm32-dmamux.c (100%)
->   rename drivers/dma/{ => stm32}/stm32-mdma.c (99%)
-> 
+Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
+---
+Changes in v2:
+- Renamed file from `gpio-zevio.yaml` to `lsi,zevio-gpio.yaml`
+- Fixed the space indentation in example
+---
+---
+ .../devicetree/bindings/gpio/gpio-zevio.txt   | 16 --------
+ .../bindings/gpio/lsi,zevio-gpio.yaml         | 41 +++++++++++++++++++
+ 2 files changed, 41 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-zevio.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt b/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
+deleted file mode 100644
+index a37bd9ae2730..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Zevio GPIO controller
+-
+-Required properties:
+-- compatible: Should be "lsi,zevio-gpio"
+-- reg: Address and length of the register set for the device
+-- #gpio-cells: Should be two. The first cell is the pin number and the
+-  second cell is used to specify optional parameters (currently unused).
+-- gpio-controller: Marks the device node as a GPIO controller.
+-
+-Example:
+-	gpio: gpio@90000000 {
+-		compatible = "lsi,zevio-gpio";
+-		reg = <0x90000000 0x1000>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+new file mode 100644
+index 000000000000..b5aae8124311
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-zevio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Zevio GPIO controller
++
++maintainers:
++  - Pratik Farkase <pratikfarkase94@gmail.com>
++
++properties:
++  compatible:
++    items:
++      - const: lsi,zevio-gpio
++
++  reg:
++    maxItems: 1
++
++  "#gpio-cells":
++    const: 2
++
++  gpio-controller: true
++
++required:
++  - compatible
++  - reg
++  - "#gpio-cells"
++  - gpio-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio@90000000 {
++        compatible = "lsi,zevio-gpio";
++        reg = <0x90000000 0x1000>;
++        gpio-controller;
++        #gpio-cells = <2>;
++    };
+-- 
+2.34.1
+
 
