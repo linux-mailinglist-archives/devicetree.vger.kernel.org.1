@@ -1,49 +1,74 @@
-Return-Path: <devicetree+bounces-67816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9288C9CD8
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:05:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B768C9CE4
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80BA91C20B77
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:05:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5B8BB21FDC
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200B75337F;
-	Mon, 20 May 2024 12:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0548554675;
+	Mon, 20 May 2024 12:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NW353wGB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nFm1ByPZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93E147F64;
-	Mon, 20 May 2024 12:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3375B5337F
+	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 12:12:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716206748; cv=none; b=Mv1IFEUQ+v8J8WxuCs/IeU11VykXAl85qW2432+CVC1D4+yrqv9wvO8ZeNLwNpnIBzvtcgK3TGGtA31W/WwZTPaQL5Px5YymlZvs6VNvrKqUb4knmWwwfYygg9B9BnKXpNIreBgdUreA5ov048RQFk1TO9kanW3WixJN5cDQZ+A=
+	t=1716207169; cv=none; b=GwKJ0ZFduKnpA6yCoefdw7JQOo5q4lf2VMSjyz77iXqyMDkxgxXj7dWNnqnyaqHnzaMDDDURwFNsNNH7I+Eoy1NpinmhakNKTnU3+MZQpqNlo/5dDMRPq/vnPtk9BUNrhqmNA/y0P0WGUPD7XPy6fjygi0+SubiIkTfJZEN36qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716206748; c=relaxed/simple;
-	bh=ihphf3e+2xoqjMycX7UjOAanljK01aQaycW292KC3Ew=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=YKoivFFm5AlfeF1kGOGsJIzXVtIp6C//2cDxHMalG+QXLZZKSzZ6dgrk/7r6eNGYtIW+z1JOeeCYh/PUl3pF99WkpiulnfMCA4bCnrQWqX6QxRFD/lk9qgy4hJn+i73XCS8vY+Ae2+zBGRzAg8wNXLB5RFPFldDajpiqQnQKkns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NW353wGB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A91A8C2BD10;
-	Mon, 20 May 2024 12:05:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716206747;
-	bh=ihphf3e+2xoqjMycX7UjOAanljK01aQaycW292KC3Ew=;
-	h=From:Date:Subject:To:Cc:From;
-	b=NW353wGBz//sqIPuFiU0kLKhZe2yu5PTD4UB84EsVyeZbflUkizsvHj4AyHUxJtq/
-	 vXDu5tum8/6mZmhQFxQQ8U1x9vv5LNjPvx0z6S5CfojpsdEL7J8T2RTnuA9bNRh1DK
-	 xRO+yh/+6gzsAESxVA0K6Lk1wZwZvpiOMHGLBsbAR9rOjmfvoWW2xcx394Hun2SqHf
-	 7DHc3Pe4eQF/7O9lCqNM+KcnPANgCvFrulRUE68HGMNsORenuIKOEzfZkSSgmMjNCu
-	 8NRRsCJOcccsLMCCLshW3zaEN6bHx+7XuUesV4Ota/Dpg7T7ZQUVrj2CSpKDZ3OvvJ
-	 CHYI5rtMrUPyQ==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Mon, 20 May 2024 15:05:41 +0300
-Subject: [PATCH] dt-bindings: soc: ti: Move ti,j721e-system-controller.yaml
- to soc/ti
+	s=arc-20240116; t=1716207169; c=relaxed/simple;
+	bh=DX93PVbvVm550XJ59hPJYzMq0R5QP/h0qcUJAnqZViU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kC1qaYfZ3QvrYIk4urajeBjJp0r3dSIbWTZSYl3tuFLNufUVUntupBtO4FQFApG7seuyDt4I1D45vH9Y4YxR1GNM98+0Qq6f6nrLTBFWqVkd8ASl5PDlpMmwGQh95tCj9c38K/F9fhp2FZYDe1Nx8cjK8nd3tKJ9wo0OhjfBXtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nFm1ByPZ; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52232d0e5ceso3677964e87.0
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 05:12:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716207166; x=1716811966; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bH/LloORtAdJqakmZhy23BG1cTvef7l0ekgFCknTjPw=;
+        b=nFm1ByPZmbrlmEw+b05gshkP1ECE1nUEVHqv/UiMM1NVn4eNC1K/vN9fgR6ck9uILh
+         8OqIvRGfHB+jCJ8SAKLAPDIwRy8SzppV85q3T3tpyUAbYUujR2o1hfnJ9qG2u3PAqvTt
+         u9ubfwaTX2jO8Tiv0k6SbCj8HcjrgeTHMjKAkF9XItpCHCbNK2nyhZ86BjiolC/E9ZKH
+         0kdEcz1TzxpD4Q/9hHFr1/2aOR96RRL/Y3onJKHHEN1oRG/Vkoh+S51bxqZIUOOwITFM
+         PHAV/Aa4kTID5fwIHoIpu+hZiDiqblvX4/hU5VhlkuoDaZECyX604QDrRRcxJs+OuBlc
+         nxaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716207166; x=1716811966;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bH/LloORtAdJqakmZhy23BG1cTvef7l0ekgFCknTjPw=;
+        b=IQQZLbRUYNjiXA1yjXi4ZIBOt/ljFp0HZ0dQGdPbQGUCT0QRe4USsgHwTxuwJUKRPc
+         D8OciryiPxXXNnbdzjfOPGDux7YWxPwGTYsM1D3s32yKj4GikBULV4bs7a282E3cYk8j
+         VSypj8cpKJTcifvpe3txKCNi40QfB/FsCRYXolufD5rT0NVsLXz7phZBfG+tQGDEBmZJ
+         XCg77sdBEPxFGpiiV3QAUnti3Dq+ZjJQItbNs2Q5jLP/WlVW0Ll9D/Inpuha/0WR27e+
+         2HBD4pBEsm79hnbYTUPu67ycyw/wQSx/NT70JsX4+/UkDJDm7VR9dYDuuBgArzMlx2Ny
+         xbMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVo38iN+8srk+kRuH2k0Wqw2jFWYQGeMkYLWmUKkwDB/ZQGkMUHU1GfQwi4Web3j+lnkFMWEx9u6yBDMoWQ3mwRIlBBgudRSZfXqg==
+X-Gm-Message-State: AOJu0YyIZt0sl3xRzByuHnHhtJhnB2aIvFxqCTww126oeSJDxvU2pzdc
+	sMmmdFiJaZ9pZocIHXcrfZ4XR4Kvj/ATMEvgPsMn8kLhh1rasIAMTGQycGURwDc=
+X-Google-Smtp-Source: AGHT+IFLqYhkFTSfEMengeFM9Uixm1e8E4F2WchZdLT/7cV4/a/D9WE0HWBrmfZuNn4yGUJDqaS60w==
+X-Received: by 2002:a05:6512:3ca4:b0:51d:67a0:2433 with SMTP id 2adb3069b0e04-52210074979mr23298869e87.46.1716207166288;
+        Mon, 20 May 2024 05:12:46 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f35ad6c0sm4273682e87.30.2024.05.20.05.12.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 May 2024 05:12:45 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/7] drm/msm/dpu: handle non-default TE source pins
+Date: Mon, 20 May 2024 15:12:42 +0300
+Message-Id: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,77 +77,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240520-for-v6-11-j721e-syscon-v1-1-f57a93e12cad@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAJQ8S2YC/x3MPQqAMAxA4atIZgNt/cWriIOtqcahlQZEEe9uc
- fyG9x4QSkwCQ/FAopOFY8jQZQFum8NKyEs2GGVq1RiFPiY8W9Qa985oQrnFxYCd9a3rK29rZSH
- HRyLP1z8ep/f9AOaC3QtoAAAA
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>, 
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>
-Cc: "Andrew F. Davis" <afd@ti.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1693; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=ihphf3e+2xoqjMycX7UjOAanljK01aQaycW292KC3Ew=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBmSzyYloFG0cbNYoIvsMeschthmd/vhp1TpuXm2
- 1CgDcsy/OGJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZks8mAAKCRDSWmvTvnYw
- k+mjEADBkrgshJf8w/RM1hI/HIBC00dlgNdQwaPBHGmdwQcbI/ceY8CHGgx67jK//UtYTlbd+O2
- wMYnoh+Xidv5+FATS9RK3LAEVIlmLtqnDcTxVB/Az6p4I8gOcxPK4COEl9XyoisdSPk7j+Hmdlj
- cEJQebHr8EYcRA6DXPt41221zjqmkGdp4wL/GJ7aJaUNqv9RuRMwDvrOsDfFZ8pXn2rpvo2OfA2
- bZUvD9m+2uGc6J8oPf+ShlTxKeVd8LNtgnwWnAEjltw11bESqMGIjEF9SbVPLXCBJ83eTiTn3vM
- 2qZpBfia5daaE42IYbwr4rh03d9E0FQqQx30SA9ULBkItjd01rirYii3Eg2rIwTvhSQ7kzw0Wux
- /8zwZdNkq7JRUDmkc0gQyHgoYwuc8dn2/9an5KxOxbFf6omBeh3vRPenTXu+9Zfii8165Gqr4RP
- ofbVY8HFZInh+7ZlN2L0U/oXX9AlaWMpf/RBAeFif3EDWO7RmLJWucDKHhVksQBWQRZwlmROeQd
- /uzewpiwcLs9QXbrz8rc2GcWmQlDLUPjBpauVrDujakrk8V2X1pGFodAhX8zdzRpP+wDYY5sp4z
- m/zv8fBG2v2dRoH5v0PZ47OT+ibqX5TWoZo7N+dM37ySfKkxaCK5gAjkUj49LbRNttSD/5fE73u
- DzF+FkoEq/ooEow==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
+X-B4-Tracking: v=1; b=H4sIADo+S2YC/x2MQQqAIBAAvxJ7bkHNIvpKdDDdakFMtCKI/p50H
+ IaZBzIlpgxD9UCiizPvoYCsK7CbCSshu8KghNKilRpdPLEI5wkPwsxrMB571XWNFUrK2UFJY6K
+ F7387Tu/7Ab5JQl9mAAAA
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1857;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=DX93PVbvVm550XJ59hPJYzMq0R5QP/h0qcUJAnqZViU=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ5q3nc2rPoM8cbUfKw6Z8B5c9+LDB33zPGWRzaH3z+7hS
+ Hm2PaS4k9GYhYGRi0FWTJHFp6Blasym5LAPO6bWwwxiZQKZwsDFKQATiXnL/j9yqUNBoLjfdW3N
+ PXxeK15W8Va0J/3cIbd2dfrSRMHSJq+vwpu9Q5ZW9vZcu3TP9uyJH4vK8+fvirBwN1cMYvC7NYl
+ 900H1thDroFkmuRPWrP/lMOdMSLS2yHSPLrZTlaed9zJd5pL2toidc/3VaduWHYURah9NV6Zt+e
+ V/5vGa75OjjLySrN3qOkoLa+/e/C2Vrvkurc7mzmKzNoUL+4+Kb0s83V2oeyCsq8sk6MWGJaZZP
+ Mc+7Lcuj3kVypHT4KHLlf5C6AGzwGJdzTsiBWVC2x57njoR92NDi8210pBrgvkrmZUXljzgXahl
+ yRsk0DxrhrvnO9PwZ+zuhxhSopQrVHr6Xfw6NymX3/wFAA==
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-soc/ti is the more appropriate location for the system controller
-device tree binding documentation so move there.
+Command-mode DSI panels need to signal the display controlller when
+vsync happens, so that the device can start sending the next frame. Some
+devices (Google Pixel 3) use a non-default pin, so additional
+configuration is required. Add a way to specify this information in DT
+and handle it in the DSI and DPU drivers.
 
-Update Kishon's email address to a working one.
-
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../bindings/{mfd => soc/ti}/ti,j721e-system-controller.yaml          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Dmitry Baryshkov (7):
+      dt-bindings: display/msm/dsi: allow specifying TE source
+      drm/msm/dpu: convert vsync source defines to the enum
+      drm/msm/dsi: drop unused GPIOs handling
+      drm/msm/dpu: pull the is_cmd_mode out of _dpu_encoder_update_vsync_source()
+      drm/msm/dpu: rework vsync_source handling
+      drm/msm/dsi: parse vsync source from device tree
+      drm/msm/dpu: support setting the TE source
 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-similarity index 96%
-rename from Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-rename to Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-index e6289fbe6907..378e9cc5fac2 100644
---- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-+++ b/Documentation/devicetree/bindings/soc/ti/ti,j721e-system-controller.yaml
-@@ -2,7 +2,7 @@
- # Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com/
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/mfd/ti,j721e-system-controller.yaml#
-+$id: http://devicetree.org/schemas/soc/ti/ti,j721e-system-controller.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: TI J721e System Controller Registers R/W
-@@ -19,7 +19,7 @@ description: |
-   and access the registers directly.
- 
- maintainers:
--  - Kishon Vijay Abraham I <kishon@ti.com>
-+  - Kishon Vijay Abraham I <kishon@kernel.org>
-   - Roger Quadros <rogerq@kernel.org>
- 
- properties:
-
+ .../bindings/display/msm/dsi-controller-main.yaml  | 16 ++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        | 11 ++---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h        |  5 +--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c        |  2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h        |  2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h        | 26 ++++++------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h         |  2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            | 44 ++++++++++++++++++++
+ drivers/gpu/drm/msm/dsi/dsi.h                      |  1 +
+ drivers/gpu/drm/msm/dsi/dsi_host.c                 | 48 +++++-----------------
+ drivers/gpu/drm/msm/dsi/dsi_manager.c              |  5 +++
+ drivers/gpu/drm/msm/msm_drv.h                      |  6 +++
+ 12 files changed, 106 insertions(+), 62 deletions(-)
 ---
-base-commit: dd5a440a31fae6e459c0d6271dddd62825505361
-change-id: 20240520-for-v6-11-j721e-syscon-7bf6c83fb40b
+base-commit: 75fa778d74b786a1608d55d655d42b480a6fa8bd
+change-id: 20240514-dpu-handle-te-signal-82663c0211bd
 
 Best regards,
 -- 
-Roger Quadros <rogerq@kernel.org>
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
