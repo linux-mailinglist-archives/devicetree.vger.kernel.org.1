@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-67792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E5A8C9B41
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C8B8C9B48
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:29:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E33412812DD
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 10:28:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03A872812ED
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 10:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B52644F895;
-	Mon, 20 May 2024 10:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7495029B;
+	Mon, 20 May 2024 10:29:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oH2UqPcV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cJJ3U3DS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C6450286;
-	Mon, 20 May 2024 10:28:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50B4F1CFBD;
+	Mon, 20 May 2024 10:29:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716200910; cv=none; b=KpfDTf6sb7Cn/sqXWgPDJMRcdLOo9EMlNYNCGuUz/5uq1K0zGMAgH0WW17Z53oBx0/FtKHLLEiu5VBty8mrLy9YF/07L/gV2ceUGGDUCwZcBosCxSU3Cyx6oWIU+CHbQmCKhJdW1MdeVoX9EL7WrU4Wj0ISkZOdjxU1iyMllkvw=
+	t=1716200986; cv=none; b=cRXtJifNbsyZf9ADjqrO6kItJyuv1x/cF2W35sNsifJ45MW3cMcVOMt3G1JkMwiTzM2MOwEy34RjGHpOd4LAVe7TLVuYUPJDUbZ/crZ8hfnWx9vgQCHcyMSqVGZIn8umbT1d7AbaA/qMxypDs86+GavtB4fwBXL9LK1cI6Ph9nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716200910; c=relaxed/simple;
-	bh=bRKzyqcLlrX4+PGCOXat0+khakBlpiwK24ehTi1z8yM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Spy0kwcIKHDNIyzic4yu2MuNuBFltOTpDvWix//MGjJeZvo3mHHH7D/R1b0Pd8D+px7U6jX8toLEzZf1D1ZYzJgBILfvmthEDnXZmT5CaTndDx+mXSbcZ4SoV6cUGb+Iff1VuqPxMDGE2rZuXuXdDDw+HMoN0znkTwQ6H+4J95s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oH2UqPcV; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716200907;
-	bh=bRKzyqcLlrX4+PGCOXat0+khakBlpiwK24ehTi1z8yM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oH2UqPcVf6XjzjCSoqpkEqHstieql7cPzcsJsWmHIXOChB7KUapE0PdJGKSIRy41J
-	 CXWTBi+k2jE8u/cFQL2b1EM+QEJu/jIQU5dsC83XXrIuCf5NL4M1xrLnzgvK/9VpGp
-	 0lFlw7NDXoq4SjbEIn96ZNluNpPQiYuz3cPKdEmlRIQudJQHUNE39e9LPi6GjaMJ00
-	 v9BjDdn3thsHM3OCvIrScN/zKKGJNbU/t227ZVc4FUrDP1Lia4DyfgRxTyodCfIHVH
-	 1Xei0WncqWb5WcAePLRDmSSLDNSV4FAo3FQFR6Q78RqO24etRNvRJCzXx/tIRPj94M
-	 8r5mmvtLAMauw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2E64137821B2;
-	Mon, 20 May 2024 10:28:26 +0000 (UTC)
-Message-ID: <08b60894-0023-4ad7-9c6b-b1e99b1b4cd8@collabora.com>
-Date: Mon, 20 May 2024 12:28:25 +0200
+	s=arc-20240116; t=1716200986; c=relaxed/simple;
+	bh=LC2qoJdIGtupvpcVS0QLE1dFznneOVovlqEbNjd4DRI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=N/YH0ODZS1T+S7S9QBdhl0h2SDHdmhfegcS4GeZkd7zVQ+76GSipeyVunCmGRPBDSSdC/n7VP43YNz1ObVbZHzWs7H16CWXKQ60GeUOZVED/Zikw1JYCi7hEjjm40rO2KL5RA3+j5Bu3slQZwVpEim6IIK0oZElWbkzFtpSjgoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cJJ3U3DS; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44KATcdJ084310;
+	Mon, 20 May 2024 05:29:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716200978;
+	bh=LC2qoJdIGtupvpcVS0QLE1dFznneOVovlqEbNjd4DRI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=cJJ3U3DS4TR9Bo+O2IbYOiMNp0pr8clySXxSfiXLO9wV4PoCfsnEstBtzLKguMu5e
+	 asvRZU00K4Vcy7fSPfM0wnjXkD1aqiW/wucNJSncJI+Td260c4LHuJ2Dl6aXee1gAT
+	 BDci6+zd2s7hrnHAcralRKu5jVqZRml9E4D6zy1I=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44KATci6077230
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 20 May 2024 05:29:38 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
+ May 2024 05:29:38 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 20 May 2024 05:29:37 -0500
+Received: from [172.24.30.180] (lt5cd2489kgj.dhcp.ti.com [172.24.30.180])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44KATYeS084169;
+	Mon, 20 May 2024 05:29:34 -0500
+Message-ID: <f10425b1-8b7c-45e2-9f69-285b3ae08c45@ti.com>
+Date: Mon, 20 May 2024 15:59:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,116 +65,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/16] ASoC: mediatek: mt8365: Add PCM DAI support
-To: Alexandre Mergnat <amergnat@baylibre.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Lee Jones <lee@kernel.org>,
- Flora Fu <flora.fu@mediatek.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-References: <20240226-audio-i350-v4-0-082b22186d4c@baylibre.com>
- <20240226-audio-i350-v4-9-082b22186d4c@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Add support for multiple
+ CAN instances
+To: Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
+        <nm@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>
+References: <20240411201747.18697-1-b-kapoor@ti.com>
+ <85ea2b33-05ac-400f-8017-5539d21ebe32@ti.com>
+ <8d9a6dc7-7590-412d-aa81-18a6cf5d09ca@ti.com>
+ <9c7f0e3d-4558-4a73-bbb1-ceb7ebe02cd9@ti.com>
+ <e9e3ac5d-a048-4058-a5a1-205ded24cb8d@ti.com>
+ <8ce03ffe-6440-432c-9bed-77e3a01ae150@ti.com>
+ <ed7d36ba-56ab-43bd-8f3a-7556a2cba684@ti.com>
 Content-Language: en-US
-In-Reply-To: <20240226-audio-i350-v4-9-082b22186d4c@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <ed7d36ba-56ab-43bd-8f3a-7556a2cba684@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Il 26/04/24 19:22, Alexandre Mergnat ha scritto:
-> Add Pulse Code Modulation Device Audio Interface support for MT8365 SoC.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->   sound/soc/mediatek/mt8365/mt8365-dai-pcm.c | 293 +++++++++++++++++++++++++++++
->   1 file changed, 293 insertions(+)
-> 
-> diff --git a/sound/soc/mediatek/mt8365/mt8365-dai-pcm.c b/sound/soc/mediatek/mt8365/mt8365-dai-pcm.c
-> new file mode 100644
-> index 000000000000..a5de47c69620
-> --- /dev/null
-> +++ b/sound/soc/mediatek/mt8365/mt8365-dai-pcm.c
-> @@ -0,0 +1,293 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Mediatek 8365 ALSA SoC Audio DAI PCM Control
-> + *
-> + * Copyright (c) 2024 MediaTek Inc.
-> + * Authors: Jia Zeng <jia.zeng@mediatek.com>
-> + *          Alexandre Mergnat <amergnat@baylibre.com>
-> + */
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/regmap.h>
-> +#include <sound/pcm_params.h>
-> +#include "mt8365-afe-clk.h"
-> +#include "mt8365-afe-common.h"
-> +
-> +struct mt8365_pcm_intf_data {
-> +	bool slave_mode;
-> +	bool lrck_inv;
-> +	bool bck_inv;
-> +	unsigned int format;
-> +};
-> +
-> +/* DAI Drivers */
-> +
-> +static void mt8365_dai_enable_pcm1(struct mtk_base_afe *afe)
-> +{
-> +	regmap_update_bits(afe->regmap, PCM_INTF_CON1,
-> +			   PCM_INTF_CON1_EN, PCM_INTF_CON1_EN);
-> +}
-> +
-> +static void mt8365_dai_disable_pcm1(struct mtk_base_afe *afe)
-> +{
-> +	regmap_update_bits(afe->regmap, PCM_INTF_CON1,
-> +			   PCM_INTF_CON1_EN, 0x0);
-> +}
-> +
-> +static int mt8365_dai_configure_pcm1(struct snd_pcm_substream *substream,
-> +				     struct snd_soc_dai *dai)
-> +{
-> +	struct mtk_base_afe *afe = snd_soc_dai_get_drvdata(dai);
-> +	struct mt8365_afe_private *afe_priv = afe->platform_priv;
-> +	struct mt8365_pcm_intf_data *pcm_priv = afe_priv->dai_priv[MT8365_AFE_IO_PCM1];
-> +	bool slave_mode = pcm_priv->slave_mode;
-> +	bool lrck_inv = pcm_priv->lrck_inv;
-> +	bool bck_inv = pcm_priv->bck_inv;
-> +	unsigned int fmt = pcm_priv->format;
-> +	unsigned int bit_width = dai->sample_bits;
-> +	unsigned int val = 0;
-> +
-> +	if (!slave_mode) {
-> +		val |= PCM_INTF_CON1_MASTER_MODE |
-> +		       PCM_INTF_CON1_BYPASS_ASRC;
-> +
-> +		if (lrck_inv)
-> +			val |= PCM_INTF_CON1_SYNC_OUT_INV;
-> +		if (bck_inv)
-> +			val |= PCM_INTF_CON1_BCLK_OUT_INV;
-> +	} else {
-> +		val |= PCM_INTF_CON1_SLAVE_MODE;
-> +
-> +		if (lrck_inv)
-> +			val |= PCM_INTF_CON1_SYNC_IN_INV;
-> +		if (bck_inv)
-> +			val |= PCM_INTF_CON1_BCLK_IN_INV;
-> +
-> +		// TODO: add asrc setting
+Hi Bhavya
 
-/* TODO ... */
+On 4/23/2024 12:35 PM, Bhavya Kapoor wrote:
+> Hi Udit
+>
+> On 19/04/24 15:11, Kumar, Udit wrote:
+>> [...]
 
-after which:
+>> Let me check if that can be done .
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+if you are planning to manage it through overlay then for this patch
+
+LGTM,
 
 
+>>> Regards
+>>>
+>>>>> Thanks.
+>>>>>
+>>>>> ~B-Kapoor
+>>>>>
+>>>>>>> CAN instance 4 in the main domain is brought on the evm through header
+>>>>>>> J45. The CAN High and Low lines from the SoC are routed through a mux
+>>>>>>> on the evm. The select lines need to be set for the CAN signals to
+>>>>>>> reach to its transceiver on the evm. Therefore, add transceiver 3
+>>>>>>> dt node to add support for this CAN instance.
+>>>>>>>
+>>>>>>> [..]
 
