@@ -1,184 +1,144 @@
-Return-Path: <devicetree+bounces-67824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C98C8C9CFC
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:13:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDFB38C9D04
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:15:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30749282624
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:13:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B0451C21105
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:15:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6985645B;
-	Mon, 20 May 2024 12:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BE85466B;
+	Mon, 20 May 2024 12:14:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lmAfbrYG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hYvHRt5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE09653E25
-	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 12:12:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3E55337F;
+	Mon, 20 May 2024 12:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716207175; cv=none; b=IUBV/wooTEtPSZG7UC2WrsFX9w1tuZuEndP29pjIvlVunpM/GJVpBL9OsxCqp16T9mnjST1igsnuiXXMRpjb/INyk08rhbAa8PDhuXtmDmFAPJxDr+MUpcqdhbKomBZ2x7lphxGVunGit2FVfqdOD4tREMmy2TVMZUTVSTmhH1E=
+	t=1716207298; cv=none; b=T1U7TcSblaem5IEiFZ0rjEv4F4OeeBYt3M7V7hio3YLvvZvF+YKks5P3sGhyygY2rowMN3/Pq/i09p4dQ9MFQ8HdNU237w+/hMwVFD8rnCFSufKZWF9nTx4I3Q6eMZX++zgyO4bSR/U8HQaBdTT1orHm3we+XcURm6UVyRafvD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716207175; c=relaxed/simple;
-	bh=7toqt7l/FlYTMysY7uvgS2eGA3+iqhKd5LCxscTShxo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XOsazGd9H0XW6/fRa01GZ/hdHNsV0nnLjiFBJK4eodSbVQDPHd+yTEpjsri9X6FYIKFrQUxUQc7SFUl4IxlCnwKBEInGJkTtDfc07u6rQXt0Bq7/m2l2OkdsMXWKSKTsJ4LcNnF8N/IHF71hlPEltiqfSzjVv7f2pr7nEtIF8cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lmAfbrYG; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51f174e316eso3178424e87.0
-        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 05:12:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716207172; x=1716811972; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ULxxOqfo9Pk/FYLX1o7pjkmz9b8tvWaEdfCGOVJ/5lk=;
-        b=lmAfbrYG1PGEt4YgNS8puJ2NQzU5wN/0YCMc+B2FAU2Wux440AJc2X94OYjDBtBEUZ
-         iQk1qwmYPPGmP43SdrdzqCjYSCvNn5MlXBHrA1W5sA09CIbS3vmWzfZhb7fTGC3b2vgP
-         zebAUAXj7AF3wCQw8k+6ST0dVHfRhG+g0cfuVc/gnzRvjHUMPqeo+Rg5VtkWm+MTckKb
-         +JNSWBfVwbfLKQn/0rct+5vpnc4r87R7cOhC2R2pUV7TQqrNfwi/f0j04SF32/P7XgQj
-         9uCwW4ElpC1MXguxX29Ugiu63sregWR3glJ/ShELrtxF7oKT5mlwjPT8eqUITXd9kH8E
-         DGVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716207172; x=1716811972;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ULxxOqfo9Pk/FYLX1o7pjkmz9b8tvWaEdfCGOVJ/5lk=;
-        b=WnS1imWQSIM1SRRDdb7MbxlrbpAir34TQI1V79fxiVL13QJkej3zLH5kCNUeS78C+0
-         KVbYcy3O6PaP6M0pRTqh8AT2DZ9DOuguhYN09cG5O/58hkckGxNWGLapI0MAKuJo7MaO
-         PLGq7sq3fE3Nv0zlP0erS1rMblnjhaDZVRyR+wCusdXH7wArqL7iuQOT3ClZrXAtyXWm
-         ABlf2jR3Nv/B41gT7OpxTVjnhJTVDF5JAAegRJl4CpJqOKHcB0R8tIsU0SHQUVu0tpoQ
-         yivG9bVh9QEtVeqlp25D6Fz2cLe1bqal2HjdELc0Op15H6F2e/MQMQfoSiUN/ZKzXDu2
-         81Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCXCAFMxgp3X3Z9IwmfN+Z1OuSFnH9ARKOglFJgTvwr70jfsd8LTvuM3C3f+EZwfJQNOO0yG0kfNbTYwUysBumdu3zPAecdDTpNpRw==
-X-Gm-Message-State: AOJu0Yycx0Sd6nc4jxh7/mG36VCWKRNVLUx7EuC8cAT7b4egL32yYkv4
-	Ix4DcPY46prrHNoHmr2+4npbV5VEMiAFW5Td3Qdr5+t4Th9CncTXLcE6484wxYI=
-X-Google-Smtp-Source: AGHT+IEDFC64P7lE2vW5UORuevJHqYD3lJ0Q6Zft1XJ6vcIYM0CJ08aXQGuk8wnlRo9yyagOOlQICw==
-X-Received: by 2002:a05:6512:131d:b0:523:6354:881e with SMTP id 2adb3069b0e04-523635488aemr15069284e87.39.1716207172166;
-        Mon, 20 May 2024 05:12:52 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f35ad6c0sm4273682e87.30.2024.05.20.05.12.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 May 2024 05:12:51 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 20 May 2024 15:12:49 +0300
-Subject: [PATCH 7/7] drm/msm/dpu: support setting the TE source
+	s=arc-20240116; t=1716207298; c=relaxed/simple;
+	bh=yyFjEETTLseT7dtN9+rXSzvJfQ09dPUxjbBDMLKEHP4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c6875BkbklQmpFveUMXL9q+CCeYjtqYUt6/abZ8mg5OB/EhNCPdDKbqAnSUFN4tlbAfdaCUNvwJ5CppXqjFIopvfFRPI2HTsyv5UkHi67oXnvrbNz3fGXrgfKv3JEHC+mIRMIGtOYXqUafxvSL/c81LeWJR5C3obpmnoPMxgEko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hYvHRt5w; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44KCEgvI125427;
+	Mon, 20 May 2024 07:14:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716207282;
+	bh=jqq3vLkhd8TaxcAmaBUSEYP9cRLD6oJAMLwozEckBg8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=hYvHRt5wNHzHrsMXSyIAM6G/j8ACXQodgDkxoo7WTTfbC2pHksrI+qrXKfEeglSst
+	 qaUKBb6sk56Ost7ziQPAAMd3I8GrQu+p9+PJfAR2+PacTfyT06Z2WPlxSuJ6G+CIfq
+	 tKSRKrGa/F1TeLio4Zg/ivA3ofJhcdPrAmuJjscE=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44KCEgmI091100
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 20 May 2024 07:14:42 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
+ May 2024 07:14:41 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 20 May 2024 07:14:41 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44KCEfNj128247;
+	Mon, 20 May 2024 07:14:41 -0500
+Date: Mon, 20 May 2024 07:14:41 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Francesco Dolcini <francesco@dolcini.it>,
+        Parth Pancholi
+	<parth105105@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Parth
+ Pancholi <parth.pancholi@toradex.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>
+Subject: Re: [PATCH] dt-bindings: usb: gpio-sbu-mux: Add an entry for
+ TMUXHS4212
+Message-ID: <20240520121441.svp6oabjyev4vmih@magazine>
+References: <20240517111140.859677-1-parth105105@gmail.com>
+ <1675a33d-47af-4de9-a0e7-177cbe208e2b@kernel.org>
+ <20240519202754.GA3334@francesco-nb>
+ <469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240520-dpu-handle-te-signal-v1-7-f273b42a089c@linaro.org>
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
-In-Reply-To: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2472;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=7toqt7l/FlYTMysY7uvgS2eGA3+iqhKd5LCxscTShxo=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmSz49WIb9pbWI8TEiPIPXPOC3FSWNeWUL14WsI
- Cl+eS3sn9OJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZks+PQAKCRCLPIo+Aiko
- 1RnvB/9kbIvgXcAMipTZjqDLOnWLatyxEZ8kKnjX/HWgL2JAGdYCEGDObvhFcTO41hlHIOKoe9N
- 9xxZ1mkjyG9+P4JGTWNY1JGLzwZLtB/N7TNfWj6I8Waqk+fJPORv1NZCAQ1hbBhSrW8q7s+0PWZ
- 6WSW0+aGHoeCqTuDPPbRr+01mtXipqi38tfbtpwDc2nIArQJc1A4vaV+NM40dJkEQXdd7cA6Fo1
- aMsqoc3Cp/Ty8gAZ87mVwenhKHZmWo1lmzBKKqdrXQf5QcyC8VHJ2Dr3dy5d/VnsUuhVL7SgCzz
- L6eKGZWd/c8XhHZRsQj7dilyZX8mx8vkB4t1LEt69lbdDoV0
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Make the DPU driver use the TE source specified in the DT. If none is
-specified, the driver defaults to the first GPIO (mdp_vsync0).
+On 08:53-20240520, Krzysztof Kozlowski wrote:
+> On 19/05/2024 22:27, Francesco Dolcini wrote:
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 44 ++++++++++++++++++++++++++++++++-
- 1 file changed, 43 insertions(+), 1 deletion(-)
+[...]
+> > If it's not the case we'll send the patch later on, however some
+> > DT files maintainers (e.g. arch/arm64/boot/dts/ti/) have a policy to
+> > just accept DT file in which the binding changes are already merged
+> > therefore I was trying to be a little bit proactive here.
+> 
+> TI? Never heard something like this from them... Such requirement would
+> seriously slow down any work, so it's not really reasonable. Expectation
+> is to post both binding change and an user, so DTS, in case of USB in
+> separate patchsets.
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index e9991f3756d4..932d0bb41d7e 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -505,6 +505,44 @@ static void dpu_kms_wait_flush(struct msm_kms *kms, unsigned crtc_mask)
- 		dpu_kms_wait_for_commit_done(kms, crtc);
- }
- 
-+static const char *dpu_vsync_sources[] = {
-+	[DPU_VSYNC_SOURCE_GPIO_0] = "mdp_gpio0",
-+	[DPU_VSYNC_SOURCE_GPIO_1] = "mdp_gpio1",
-+	[DPU_VSYNC_SOURCE_GPIO_2] = "mdp_gpio2",
-+	[DPU_VSYNC_SOURCE_INTF_0] = "mdp_intf0",
-+	[DPU_VSYNC_SOURCE_INTF_1] = "mdp_intf1",
-+	[DPU_VSYNC_SOURCE_INTF_2] = "mdp_intf2",
-+	[DPU_VSYNC_SOURCE_INTF_3] = "mdp_intf3",
-+	[DPU_VSYNC_SOURCE_WD_TIMER_0] = "timer0",
-+	[DPU_VSYNC_SOURCE_WD_TIMER_1] = "timer1",
-+	[DPU_VSYNC_SOURCE_WD_TIMER_2] = "timer2",
-+	[DPU_VSYNC_SOURCE_WD_TIMER_3] = "timer3",
-+	[DPU_VSYNC_SOURCE_WD_TIMER_4] = "timer4",
-+};
-+
-+static int dpu_kms_dsi_set_te_source(struct msm_display_info *info,
-+				     struct msm_dsi *dsi)
-+{
-+	const char *te_source = msm_dsi_get_te_source(dsi);
-+	int i;
-+
-+	if (!te_source) {
-+		info->vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
-+		return 0;
-+	}
-+
-+	/* we can not use match_string since dpu_vsync_sources is a sparse array */
-+	for (i = 0; i < ARRAY_SIZE(dpu_vsync_sources); i++) {
-+		if (dpu_vsync_sources[i] &&
-+		    !strcmp(dpu_vsync_sources[i], te_source)) {
-+			info->vsync_source = i;
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
- static int _dpu_kms_initialize_dsi(struct drm_device *dev,
- 				    struct msm_drm_private *priv,
- 				    struct dpu_kms *dpu_kms)
-@@ -543,7 +581,11 @@ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
- 
- 		info.is_cmd_mode = msm_dsi_is_cmd_mode(priv->dsi[i]);
- 
--		info.vsync_source = DPU_VSYNC_SOURCE_GPIO_0;
-+		rc = dpu_kms_dsi_set_te_source(&info, priv->dsi[i]);
-+		if (rc) {
-+			DPU_ERROR("failed to identify TE source for dsi display\n");
-+			return rc;
-+		}
- 
- 		encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_DSI, &info);
- 		if (IS_ERR(encoder)) {
+There is a reason we have set that "soft rule":
+- Driver subsystem merges have known to be broken from time to time and
+  the dt maintainer is left holding compatibles that have not made to
+  master.
+- ARM subsystem merges prefers not to see checkpatch warnings -
+  typically, this happens with new compatibles in the driver subsystem.
+- Off chance that driver subsystem maintainer picks up the dt changes as
+  well (should not happen, but has happened)
+
+We have however flexed the rule when:
+a) driver maintainer is willing to provide us an immutable tag that we
+   can merge in and base the dts on top.
+b) We felt that the chances of the driver not making it is very very low
+   (typically after 1+ month in next) and the dts change is in the wider
+   interest of the community. In such case, we have to explicitly take
+   the action of letting the patch submitter, driver subsystem to let us
+   know if something bad happens to the PR, also in our PR to SoC
+   maintainers, we have to call it out along with rationale why this is
+   OK. This is a bunch of work from a lot of folks, so prefer only to
+   trigger this path in case of exceptional cases - there have been a
+   few far in between.
+
+Again, the default rule (driver in one window, binding in next) has
+kept us out of trouble for a few years now at the detriment of pace
+of merges, but that took care of a lot of conflicts that we had seen
+during initial days of k3 - there are few chains in the lakml list
+where this was the direction we ended up in after discussion.
+
+But, yes - as you mentioned, send the patches of the "user" of the dt
+binding and driver gives the subsystem and dt maintainers a chance to
+review in the context of usage prior to the driver and binding merge.
 
 -- 
-2.39.2
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
