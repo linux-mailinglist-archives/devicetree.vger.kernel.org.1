@@ -1,143 +1,88 @@
-Return-Path: <devicetree+bounces-67924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5CA8CA225
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 20:43:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D088CA276
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 21:02:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CFCF1C20E19
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 18:43:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15EE81C20DA2
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 19:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1AAF1386D5;
-	Mon, 20 May 2024 18:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43071137934;
+	Mon, 20 May 2024 19:02:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OAHNpXOf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAiKxWSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4E41386B5;
-	Mon, 20 May 2024 18:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14E531CA81;
+	Mon, 20 May 2024 19:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716230597; cv=none; b=YgGEa8v19Ag4XpEqeWcCQVaBHJWFZtVV9JxIrGt3e/c0uicNXrpwO6bmWblfAxv4EPCKiguMPMv2vL8UeyS/6H75Q3Se6svJwN8lVsLyD9LWhpk6O4UR1Sm/EK0+X5DeBDaFNEy245dgJId5fco2+nMsFDh7gpEvAqnGHXOsB6E=
+	t=1716231766; cv=none; b=ogj4Z04DvZEi6W+UOoqfVnNSR8oDoPuhl19o15ccjl/c6HCk8n9MW+6ToHsZlcHZFlV2qIxC0gZWaaHinTPo84FmphkR2tr9QQdNBOAN3Z2iTeKLmvbzRdZR/EYUFlQF/NM2m281KagXnsiUJcnFI2MYo3gNWjZCU/JmSCymswk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716230597; c=relaxed/simple;
-	bh=HnSg3+8yvYDWyM1nLfi8rFvp5yUPrPDHA9iB7+b6vZ0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YhCC7ceaeaXeorGY0kAn+o9AbXr6nolviQ/MeLxW/r/aJPmYSCIo6vuIPGeAKzxqSAN0qnOE3q2PrbJYDMok1CmiFjcWEGAh27es2nLI0YgV/yRuryeAmEKWVrL6jvEgqu7tZUHwMilgKmZHUKLUJNPotc1xJhpekydrakPiuXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OAHNpXOf; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-51ff65b1e14so5236972e87.2;
-        Mon, 20 May 2024 11:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716230594; x=1716835394; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p0OurAq4gNaktjTguChGRH09zP44yFK+BI9ZEKeRFnI=;
-        b=OAHNpXOf2C7pVLjV7VfDXmZjO3H1RNqJs6j53Cd18695AXq0knY8SKK9z7udK7SCFq
-         6PBCgCQ9QECVhTxDKtUHMfvHLrsFOz+xhZM2cLdeQ1Tp8kjvYsEiQup/aaZRN/5hZup0
-         zNcIha06ZYWKGCrIegs/thR/WtlybOubr4/P6Giw8xMfWD0Ph6/wKHkWH07Ymceis8ZT
-         Iyy9khpTuOiJ+YvSviJS0hoXWL8jopv3R1qNQONYfcBGgZQ0VatmkIy70NUfdRoxYS2I
-         vt/yl7hMbnT2Q8jbQjdtf22RNT8XzW8ZyQSbm7OSqQe+hlM4GYk+f0zvUAs1ooifWp79
-         seFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716230594; x=1716835394;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p0OurAq4gNaktjTguChGRH09zP44yFK+BI9ZEKeRFnI=;
-        b=QP2fEPV60evUpvsCAeCkuUMU1e+8/XgoA/0bsHeZxPWmiO3canps0N5ewAUxgtvasE
-         c2B0yEQF43HiVBmHlhQeEuwLH12/zEuBnrN38ax5l9c1p81t97D3UvjPFu1w4qrbltYN
-         JryEDNwNWYV5IWtNFIpU5P5TyH+R7GNZ3a+Drx7MlYhgc47RbPyHaCOvneCUX1NFxNlP
-         GF65PQyZaSfqrrMynbcoG49/Bkg3WbIudTOoqoNxd4FPM9HLraWvZzDVwWF3f+qgKQla
-         i5vQ5UCeEAK6kAqfZkLUkBAMzdAu85/qbTVO2kbkao/ix14TNcTTx0BFdV5qTslgmdwE
-         /pQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVleUlrxndptw9UV2mcOl9rszNHZjSxCfnrzoImSuSIOV+nazzY8GLB1d9UuOqjg/iPkeBU2MzkW0pjyCknI3T8BNtPuRTo7a9TL7palZiXnn4x9P1uzVt1giwB2WEiNpjwzx9RkA==
-X-Gm-Message-State: AOJu0Yzqlz4F/fSORCAzeFX6swQw2iQ5X5VzcBf/958dSJmJnwl1fIrE
-	BFvB0EuAXlortH5a8SFv/8iX0LDc5RGRrON5mFTrGqlR1GRtqgpQx3gqgXUPh4G0
-X-Google-Smtp-Source: AGHT+IES9MWPihMjZ9PvkU27cNvcpSz1C7H99avkgVPdGIM5+InFmh0mxe8lkpqCAW7BOcWJa45LqQ==
-X-Received: by 2002:a05:6512:3a83:b0:51e:7fa6:d59f with SMTP id 2adb3069b0e04-52210074380mr22923108e87.53.1716230593937;
-        Mon, 20 May 2024 11:43:13 -0700 (PDT)
-Received: from localhost.localdomain ([188.162.49.81])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f38d335csm4368967e87.125.2024.05.20.11.43.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 May 2024 11:43:13 -0700 (PDT)
-From: Aleksandr Shubin <privatesub2@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: Aleksandr Shubin <privatesub2@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	John Watts <contact@jookia.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Cheo Fusi <fusibrandon13@gmail.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v9 3/3] riscv: dts: allwinner: d1: Add pwm node
-Date: Mon, 20 May 2024 21:42:21 +0300
-Message-Id: <20240520184227.120956-4-privatesub2@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240520184227.120956-1-privatesub2@gmail.com>
-References: <20240520184227.120956-1-privatesub2@gmail.com>
+	s=arc-20240116; t=1716231766; c=relaxed/simple;
+	bh=dkXTesGMU6jZNIordQLu62eFnIDpxh9YbpGxrA3wPHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iG6AF8SBcWvYjOKjWcrDm6WojDX8io7dFqplLdhW+mpf0PDVv0GpwjXujq1Y1RuPhZmDByUVHk+T6Spt/Om+dbzac6/L0Ldcno6zaiOadJLXNV6bc2MJHz8vTxYqG1pnhr6e1nHJUjgS5AzVUA87Zo9AC46b3cbRATWoyNOnqUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAiKxWSj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4173C2BD10;
+	Mon, 20 May 2024 19:02:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716231765;
+	bh=dkXTesGMU6jZNIordQLu62eFnIDpxh9YbpGxrA3wPHs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WAiKxWSjaXKR4mqQ6nLwgo9Xh3p5iz/KCWxCXJWMtUnnVtR59AyjBBSRAdcb8xzum
+	 uy4bil57SaeFr1eYLHFjWp3Gtb/CF792chYvi1v97c3YGl27IeLNcWLQgix11MPs1z
+	 8fXekqVVQJ1zWcZd8z5pmIGKVI1rCCwUMnc5V0ZeXtkwIWNQjBrxlkcvtqir8+haO+
+	 ws/P2Ctgc/8chsKq5lCiLJ/qqtPs8DlNzmGkYK1sE7GqY/TQ7hZWb/Gcp/jBaWQhyq
+	 X2f1kGXnqgqjZxfhjM9OYwRReGsKbX2gNg5Z+XUlEk1bPJT4Ug9tq6qSXM9TRrShvR
+	 OD3aTAHoWsu3w==
+Date: Mon, 20 May 2024 14:02:44 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: linux-arm-kernel@lists.infradead.org, jian.hu@amlogic.com,
+	kernel@sberdevices.ru, linux-amlogic@lists.infradead.org,
+	khilman@baylibre.com, devicetree@vger.kernel.org,
+	neil.armstrong@linaro.org, sboyd@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, jbrunet@baylibre.com,
+	martin.blumenstingl@googlemail.com, mturquette@baylibre.com,
+	linux-kernel@vger.kernel.org, rockosov@gmail.com,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] dt-bindings: clock: meson: a1: pll: introduce new
+ syspll bindings
+Message-ID: <171623176256.1307290.6324910189601723683.robh@kernel.org>
+References: <20240515185103.20256-1-ddrokosov@salutedevices.com>
+ <20240515185103.20256-3-ddrokosov@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240515185103.20256-3-ddrokosov@salutedevices.com>
 
-D1 and T113s contain a pwm controller with 8 channels.
-This controller is supported by the sun20i-pwm driver.
 
-Add a device tree node for it.
+On Wed, 15 May 2024 21:47:25 +0300, Dmitry Rokosov wrote:
+> The 'syspll' PLL is a general-purpose PLL designed specifically for the
+> CPU clock. It is capable of producing output frequencies within the
+> range of 768MHz to 1536MHz.
+> 
+> The 'syspll_in' source clock is an optional parent connection from the
+> peripherals clock controller.
+> 
+> Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> ---
+>  .../devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml   | 9 +++++++--
+>  include/dt-bindings/clock/amlogic,a1-pll-clkc.h          | 1 +
+>  2 files changed, 8 insertions(+), 2 deletions(-)
+> 
 
-Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
----
- arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-index 5a9d7f5a75b4..22821b21b9a2 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-@@ -145,6 +145,18 @@ uart3_pb_pins: uart3-pb-pins {
- 			};
- 		};
- 
-+		pwm: pwm@2000c00 {
-+			compatible = "allwinner,sun20i-d1-pwm";
-+			reg = <0x02000c00 0x400>;
-+			clocks = <&ccu CLK_BUS_PWM>,
-+				 <&dcxo>,
-+				 <&ccu CLK_APB0>;
-+			clock-names = "bus", "hosc", "apb";
-+			resets = <&ccu RST_BUS_PWM>;
-+			status = "disabled";
-+			#pwm-cells = <0x3>;
-+		};
-+
- 		ccu: clock-controller@2001000 {
- 			compatible = "allwinner,sun20i-d1-ccu";
- 			reg = <0x2001000 0x1000>;
--- 
-2.25.1
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
