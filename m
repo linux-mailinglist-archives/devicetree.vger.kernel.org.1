@@ -1,190 +1,132 @@
-Return-Path: <devicetree+bounces-67799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C01D8C9B85
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:43:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B1D98C9B9C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:47:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A339728146E
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 10:43:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0F511F23038
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 10:47:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0DA50286;
-	Mon, 20 May 2024 10:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE4B51033;
+	Mon, 20 May 2024 10:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D3f73K8b"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YikS92US"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56C812E7E;
-	Mon, 20 May 2024 10:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAED3535D2;
+	Mon, 20 May 2024 10:47:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716201790; cv=none; b=rM3Vp5HxDH1P/QolNSQm5yQlNNVddqq29dyt9PrwhkSBsDeEGM8Y12i3HehdS5pX6soIwcG/C85PoHFjUxKvFXh0kGWLTXtUkz0xhQDw/PXWeoTsa//++ELHOZN9OAd08ru9p6E3BENPMH2dnxhmFQorQdfI0t1fTfm+PKqDcm0=
+	t=1716202053; cv=none; b=r8d0JDwpsqz5A86EfwWut58N/gz5Fr5bI1/zTS/y0DVbXkwhmsc2RR4BgRYhKKA/6F8fmo3OKrTCtOJd/nM28//DnppkeeefA5ePz5XWcLb5lt408sg4uqZPT+LPVwrDhd13H1BLyoHqtaOigtUcofpCfw023/a7grtgJCA6x7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716201790; c=relaxed/simple;
-	bh=5P/QzPFswG4vPT6hlhiGDRrWMzE0UliNttansbfAvUA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WHKZ/p7V01qUmKPG+Io6CazPA4XW5ezQeDV1F9mPE8Pi49YsUMGxKl/HeUCGZOWFYQ44r78BzPtPtZFPIGmTAeBaYQeGmQ/Vj2XqbjHcHlwBEHUTgNjqvHNrOZih++h/+Z5Jc+YPeLRbQSXxDr5hfnANi06uMjXIOneHxHHYAGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D3f73K8b; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56e6a1edecfso10110839a12.1;
-        Mon, 20 May 2024 03:43:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716201787; x=1716806587; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5P/QzPFswG4vPT6hlhiGDRrWMzE0UliNttansbfAvUA=;
-        b=D3f73K8b7uYDVd9nRql4ai61ij+lFgA94EAAuEKyZyx57iGfYzwOzNDYIW4cE/aLe9
-         vk61RJMqSbdCmYKfAcXGpsCDmS+RshDQVQKa5r07pqhCqcQNyVjNva0bEsATXf7PdZpI
-         Vu1Il85W9w2+T4F658NJtntes7b3PrZPofEm6a0rVvoa+a0P6XgEO86Ej1d4Mr0CXeuU
-         ClWPnJS7MVdVrccTx9qcnfsvU4PPeZRPb+0QNsZcsvZcLzwzRIp5k4H7dMFqhYD9lPAT
-         OFSECXv2ykJo5y8apa/k/zWTQmOBu6vldsfMALWz8RoYeJoZYiOL0XPrVAK04baZdz1B
-         8+uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716201787; x=1716806587;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5P/QzPFswG4vPT6hlhiGDRrWMzE0UliNttansbfAvUA=;
-        b=f8Cw72GsL8ASwHSOXRRc9cprDKRWZ6nhJSyB3aWyO8KuK4bvwIzWw4mldF3jFlvK3M
-         Ss5VrKquK902F1qtOQLOBmMsmfKAlT1FayCJ1CEqvYKoKaH5z43LMtyKlKv4gq4M5B0J
-         mUiSfUAX9U2M5RHkYb23c6bSb+mYz900duoqhp0L9gv7y1dfvIqxrY+Y1QZeSPnesWY/
-         alXoNUd4AVIF70HjEcEQKqE/XaWQ4RpsB5xgbHuWGkGscJfiO8z/LJfZPFtKkkLLMwNr
-         ENQ1+JDPRi1a6I0xpEYm/jd/cmbPZG7aiBYLXozZ3UldWGKXmA318qO02VFbfoyRzslS
-         FZ6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXwNlBXt52o7hPGXUHfa7KwqU3iLeDB9Ho66HPWev2vV8yckD5Hz2afL2pv1zDLRSRk0owfmHtJEW2Rr18Bihij3AKQs9uDj6fqyF5h2lJoxKVC5NVvDaghCSUnHDvY72vw9hGILZMRpu6RY4V4ZKEXmihANB50cyP649Y/zvIH4h7eGDY=
-X-Gm-Message-State: AOJu0Yz5+5fx42L3TsnkXePHKRwJVEjGbR3yy+RW+xtMEXLKKXtvqylF
-	lT+X8/M2kbgu3+KYbLAiCZnCdJF9lzBvPDmcM0Zmv8crMZ4D3/Ee+mfPsLlEiRuWIcp96/xdC/9
-	dyACJQ6RnpyWRK0xrqqbtd7jKL4c=
-X-Google-Smtp-Source: AGHT+IEpn1WHtoIaDoNqFG/8v7tZ9VwgJSzpx0ICgi2qAca5uE0qqQvvx3vnm2kGqPzEX9Dap3IHuQJDLr9/FDiEc3M=
-X-Received: by 2002:a50:8d07:0:b0:571:e272:296 with SMTP id
- 4fb4d7f45d1cf-5734d67ee8emr19467598a12.27.1716201786895; Mon, 20 May 2024
- 03:43:06 -0700 (PDT)
+	s=arc-20240116; t=1716202053; c=relaxed/simple;
+	bh=D9++WKjDS1JW5+8Ykh1MaJ5rmIn6HukYfEAwjK6ICP8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TuLPsie6gZKzY+mz0aogCd58uATzlPdo5jH00n85Bg+9pKdk8ob16S/zPawADYecbthzCwVcZ5QPMYieyN15uXHg9K2Y823Ay4dHMeVbqa9oi91DcNPMU2u09wrZTwTN/q1GGyxs8ZoyGXfIgUDTb0AhDXwDtHyjK4iEir73GhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YikS92US; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716202052; x=1747738052;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=D9++WKjDS1JW5+8Ykh1MaJ5rmIn6HukYfEAwjK6ICP8=;
+  b=YikS92US3FbwD+sIV/OZHevl9vHei2Ao5/MZ/TsTFf0wtOeIadbEtjiY
+   qNcT3lhQjAhIZNKH5ciL3JRpH0Ond+NvHPo9z671T/JEps9hfb0zgFFhP
+   mYTQNH1Uf7J+59nwZdNFmWE6thEQ6A3yJpdIodTVPqXISh3ddXz8BARH/
+   y2V+LZGMI5kllHFtZ+2SAvYuIQXjeqCMBQglkQLLZ0A7SUKfdDuQD+R4Q
+   LxOrBs84xbOxZS8vvkO3ELe8HDFAW7jHOvH2JAQjmq3zSpKjGRlE5JFyH
+   XPzVtemNO0XwPnf2FCL6lakKyILMdZH5L1+NvBTwW+vdsyjiQqhG64hKH
+   A==;
+X-CSE-ConnectionGUID: uEiUKmxzRNmo7c1aXVpdWw==
+X-CSE-MsgGUID: M2gkk0dYSpy4KpJJ1ZVxMA==
+X-IronPort-AV: E=McAfee;i="6600,9927,11077"; a="37699955"
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; 
+   d="scan'208";a="37699955"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 03:47:31 -0700
+X-CSE-ConnectionGUID: BZqp9f3TSsaDbsMe3VOPPg==
+X-CSE-MsgGUID: HEqFDtDlRESSJGXjGQOiPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,174,1712646000"; 
+   d="scan'208";a="55729331"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 03:47:29 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1s90YA-00000009Hy4-2iF6;
+	Mon, 20 May 2024 13:47:26 +0300
+Date: Mon, 20 May 2024 13:47:26 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v1 1/1] spi: pxa2xx: Move PXA SSP bindings to the correct
+ folder
+Message-ID: <ZksqPiSLY8OlE5lT@smile.fi.intel.com>
+References: <20240517171103.221856-1-andriy.shevchenko@linux.intel.com>
+ <e81d43f8-a3ba-41b4-a86f-af2d6943e917@sirena.org.uk>
+ <Zke2yG-WPkaWg5PV@smile.fi.intel.com>
+ <CAL_JsqKA7AnY7w3sjrT+khrat348v7uNpAP1+FZ=mdYMhJkf3Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240430-loongson1-nand-v7-0-60787c314fa4@gmail.com>
- <20240430-loongson1-nand-v7-2-60787c314fa4@gmail.com> <20240506091748.18c120d5@xps-13>
-In-Reply-To: <20240506091748.18c120d5@xps-13>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Mon, 20 May 2024 18:42:30 +0800
-Message-ID: <CAJhJPsVOx_AZmsRuZ5jy2-wJ+7-Wm+8RQAJ_LhKGLU3aFzrR7g@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] mtd: rawnand: Enable monolithic read when reading subpages
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKA7AnY7w3sjrT+khrat348v7uNpAP1+FZ=mdYMhJkf3Q@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, May 6, 2024 at 3:17=E2=80=AFPM Miquel Raynal <miquel.raynal@bootlin=
-.com> wrote:
->
-> Hi,
->
-> devnull+keguang.zhang.gmail.com@kernel.org wrote on Tue, 30 Apr 2024
-> 19:11:11 +0800:
->
-> > From: Keguang Zhang <keguang.zhang@gmail.com>
+On Fri, May 17, 2024 at 03:19:51PM -0500, Rob Herring wrote:
+> On Fri, May 17, 2024 at 2:58 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Fri, May 17, 2024 at 06:24:37PM +0100, Mark Brown wrote:
+> > > On Fri, May 17, 2024 at 08:11:03PM +0300, Andy Shevchenko wrote:
+
+...
+
+> > > > SSP stands for Serial Synchronous Protocol and has nothing to do with
+> > > > UART, also known as USART, where 'A' stands for Asynchronous.
+> > > >
+> > > > Move the SSP bindings to where it belongs.
+> > >
+> > > It's a serial device which is also used for other applications (the
+> > > other one upstream being audio) so I can see where the current binding
+> > > comes from and it's not super obvious that spi is especially better
+> > > here.
 > >
-> > nand_read_subpage() reads data and ECC data by two separate
-> > operations.
-> > This patch allows the NAND controllers who support
-> > monolithic page read to do subpage read by a single operation,
-> > which is more effective than nand_read_subpage().
->
-> I am a bit puzzled by this change. Usually nand_read_subpage is used
-> for optimizations (when less data than a full page must be retrieved).
-> I know it may be used in other cases (because it's easier for the core
-> in order to support a wide range of controllers). Can you please show a
-> speed test showing the results before I consider merging this patch?
->
-With this patch:
-# flash_speed -c 128 -d /dev/mtd1
-scanning for bad eraseblocks
-scanned 128 eraseblocks, 0 are bad
-testing eraseblock write speed
-eraseblock write speed is 2112 KiB/s
-testing eraseblock read speed
-eraseblock read speed is 3454 KiB/s
-testing page write speed
-page write speed is 1915 KiB/s
-testing page read speed
-page read speed is 2999 KiB/s
-testing 2 page write speed
-2 page write speed is 2000 KiB/s
-testing 2 page read speed
-2 page read speed is 3207 KiB/s
-Testing erase speed
-erase speed is 72495 KiB/s
-Testing 2x multi-block erase speed
-2x multi-block erase speed is 74135 KiB/s
-Testing 4x multi-block erase speed
-4x multi-block erase speed is 74812 KiB/s
-Testing 8x multi-block erase speed
-8x multi-block erase speed is 75502 KiB/s
-Testing 16x multi-block erase speed
-16x multi-block erase speed is 75851 KiB/s
-Testing 32x multi-block erase speed
-32x multi-block erase speed is 75851 KiB/s
-Testing 64x multi-block erase speed
-64x multi-block erase speed is 76204 KiB/s
-finished
+> > Hmm... okay. Then it's question to DT people. Consider this as a report.
+> > Because UART (aka serial) is definitely not the place for SPI/SSP bindings
+> > either.
+> 
+> Move it when it is converted.
 
-Without this patch:
-# flash_speed -c 128 -d /dev/mtd1
-scanning for bad eraseblocks
-scanned 128 eraseblocks, 0 are bad
-testing eraseblock write speed
-eraseblock write speed is 2074 KiB/s
-testing eraseblock read speed
-eraseblock read speed is 2895 KiB/s
-testing page write speed
-page write speed is 998 KiB/s
-testing page read speed
-page read speed is 1499 KiB/s
-testing 2 page write speed
-2 page write speed is 1002 KiB/s
-testing 2 page read speed
-2 page read speed is 1554 KiB/s
-Testing erase speed
-erase speed is 76560 KiB/s
-Testing 2x multi-block erase speed
-2x multi-block erase speed is 74019 KiB/s
-Testing 4x multi-block erase speed
-4x multi-block erase speed is 74769 KiB/s
-Testing 8x multi-block erase speed
-8x multi-block erase speed is 75149 KiB/s
-Testing 16x multi-block erase speed
-16x multi-block erase speed is 75921 KiB/s
-Testing 32x multi-block erase speed
-32x multi-block erase speed is 75921 KiB/s
-Testing 64x multi-block erase speed
-64x multi-block erase speed is 75921 KiB/s
-finished
+The problem is that somebody added a binding (in YAML) for SPI PXA2xx
+in the spi/ folder while this one kept unconverted.
 
-The throughput of the former is twice that of the latter.
+If it dangles more, it might be that we will have two asynchronous bindings
+for the co-existed drivers.
 
-> The monolithic thing was not supposed to improve throughput but to help
-> with very limited controllers.
->
-> Thanks,
-> Miqu=C3=A8l
+> Until then, I don't care too much. SPI seems better than serial at least.
+> The sound part is its own binding/node (something we wouldn't do today).
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-
---=20
-Best regards,
-
-Keguang Zhang
 
