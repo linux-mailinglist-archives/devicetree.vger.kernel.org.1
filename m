@@ -1,55 +1,74 @@
-Return-Path: <devicetree+bounces-67861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47428C9F7C
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:17:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823228C9F97
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 17:23:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5BDE1C2100D
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:17:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF1421F21736
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 15:23:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1940135A79;
-	Mon, 20 May 2024 15:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 489A6136E26;
+	Mon, 20 May 2024 15:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UEJRy9kw"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0oWg1e3I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147611E49D;
-	Mon, 20 May 2024 15:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC5C135A79
+	for <devicetree@vger.kernel.org>; Mon, 20 May 2024 15:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716218262; cv=none; b=mT83pLHu8+iEnUA4DJxxg78ERiJwxJl3PtqBdLtZnCh/F7dbXYNKAQ8pYwGbwYpV1SA21FyCIZBKijVEcKB4B36027OAOMCaD3Bk6I/C332DOvwRsBD38cKhWWa5txiiTxNVUTrGzIVgFE3Wq1OYY8FUuRqnl+eHhpmVKiBxJ3E=
+	t=1716218598; cv=none; b=aaJDeVL483Z4D0ChaOJnvXaBF/rN/OrSOHGvUDxJpnt8ciTy8i2hSeShtm0dW3YhAn2DEDdLM9gBwGTwHcqKaF+1eUek1Rk/FBtmWwfLFWmOSI8xLWlA2dTEfgnU3smXlrjQALSMhl/MriLnUnPd9lN8J0e7Z82Zf2QI74QtyKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716218262; c=relaxed/simple;
-	bh=uOtGIokG1ej2tjKbqGupcKq5GCu2h9Y/Z6vGZV0u5Xs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q8xYehKOZBPvODU0a7s+/wE08O+ZRfQmL+CuvpPtbrz8eu19337EvBmd4SIaKxs2J6JBKNUxmNsHmLA831gXTyIomUFrpWU6Dv2M97WECQKmKIaiMu6VY+ItJwK+aMiyBTrXSgqwh5Qy5wF1cw3Ku8a7N5NirpiPpAhLDS675n8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UEJRy9kw; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716218259;
-	bh=uOtGIokG1ej2tjKbqGupcKq5GCu2h9Y/Z6vGZV0u5Xs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UEJRy9kw6Npf7mH1E9bD3EIuQBame++rtyXg98us58+Q5wDNSXd+3ZunPzuNYT6Q/
-	 4fXLAANOecpWvIoGki2FE25wKASJzcIG66ffpZJ//fnGnglhMn1MxhI85R5DHbf2EE
-	 u0SbmVsFH6yrYm9CJpiGOxyqU7YN8Kk/lajgx+FxijhA3I4pxnRgKfzuhwoZ0hJb3F
-	 3nBjfBn//3QToBasV5/TXI3+JmNyL/VaI7tzKaU8D/oAS0AQfysZFHIeOjKVJlNqGU
-	 sO8N98F4CNw31ZjhOSNGSG85apx3031BocjAGZHQUzcxI+OJYpcMFjo6xA249T0Eqd
-	 ir4O31HVWGm7Q==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EB98637810F1;
-	Mon, 20 May 2024 15:17:38 +0000 (UTC)
-Message-ID: <42c247c8-f4d6-4adb-a44e-218acfef6dce@collabora.com>
-Date: Mon, 20 May 2024 17:17:38 +0200
+	s=arc-20240116; t=1716218598; c=relaxed/simple;
+	bh=/MqlQoolb7hzFTZdR5tx+GNDxGNoERix/Mm8NugIaCM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=H51eyMbM0mH21sKxExpeO0EQaI2ri4oMxMJcBBAD2W6oR7q485Erb2jtI16PMPKlEP6qQHP0AkQ9191XIsF+GUNeAc+7/bHdJOKaXmD0TU6YdWwbgHk51KJd0ilYTN/z+oQ41ZBEHNItM8jd2T+fFymVrz68se4Df64wvYm9paw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0oWg1e3I; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-420298ff5b1so29678415e9.1
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 08:23:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716218593; x=1716823393; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=BvrEYs9DYAbC5MlxDXuq2vHAc+BawiypTJLqHR9+P4I=;
+        b=0oWg1e3In4NZcvhOGsf9X/ULcjQCiFro1XqJK6lOUm5R7yqln/lvKrXXQ8+TVM68VN
+         MmVGQWpVWhmP5UyIuubPfMYICOHTpjk+MCR3m9Fb0HJMZ5SAAkvYWp753Q9mj4hD/6sZ
+         TNezEgKhS8tt1CmuLkT0cGyRQK7zT8r1C2/JkwB1uA0qQH9+0GwQk9BGVaLk9mwOK6fX
+         PAIogM4NK73K20GEKzA+2UgwevyrjdAnQCxEOMnrrpS5nEq9K4F2lcWOtx3XjE90F13j
+         ZtahiSW11VMMShlnNiAabbrFl21q0Ox3KytXC7XzvHq/oWZOFBQDcHaJG39IZx6I6txp
+         jucQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716218593; x=1716823393;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BvrEYs9DYAbC5MlxDXuq2vHAc+BawiypTJLqHR9+P4I=;
+        b=EIB3lvjRUFVn5/YvlaIV9vSmGffujKmqi+YOnuj+eHZvSKadARsfriBEk4lk3l+9gA
+         llv0EkF3dlnvDtmX5CpoFJTObrP0RHcm+v+54SAY3lzKhiWBy09KJkKeUeBWsniH1o8B
+         f5TpqMegRKNvpeLyf1Sl38328MLT4Nq/V6Qg/1kBnJx1/Bm2/o2A2/Zhhg5bFViwXTTl
+         EiVsG3jmNRQ9rOMeR9p2Mc2iHxTHB6KC8riett7KrVmryS27JZICg2/G4+j5qGndkPxI
+         rvkq18mIDY2JyXv2yyYUZa5fIsDDlMOCOVlm2tZiCx8lRrHVAc3gX70GT7l73GZ3BUMv
+         oh/w==
+X-Forwarded-Encrypted: i=1; AJvYcCX7cDGJ5Q5JqQvssdiORpgHXojIwxuMPQX4fEkAfjYVoWBIFd2F5wlXlSscxAetjzReoAnAD1UCkP/JqoRmaBpRpMc8aeXBKEjFhA==
+X-Gm-Message-State: AOJu0YyQJINhip0J5micyfzEQDoBXuG90yj8yA1bqixmsLZa38x2iDHp
+	jSfPvuKGqWH53AP3Ovig0v4R+ceX9xZAvqZd21AfNP8p4c9Ff37mJA2Y/z12Mr4=
+X-Google-Smtp-Source: AGHT+IEfQLzDF+6DeA5WUKvuzwObOI9YQj9ggS89zR1Mmor4R3KYRZxxcVlburs7BeHxESEegxmkMA==
+X-Received: by 2002:a05:600c:3ca3:b0:41c:23f3:65fa with SMTP id 5b1f17b1804b1-41feac55e3cmr276704235e9.28.1716218593164;
+        Mon, 20 May 2024 08:23:13 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41f88111033sm461769625e9.34.2024.05.20.08.23.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 May 2024 08:23:12 -0700 (PDT)
+Message-ID: <51a47736-ffe8-49e2-b798-d409ca587501@baylibre.com>
+Date: Mon, 20 May 2024 17:23:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,52 +76,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/15] Mediatek thermal sensor driver support for
- MT8186 and MT8188
-To: Julien Panis <jpanis@baylibre.com>, Nicolas Pitre <nico@fluxnic.net>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, linux-pm@vger.kernel.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Nicolas Pitre <npitre@baylibre.com>
-References: <20240402032729.2736685-1-nico@fluxnic.net>
- <981a8748-16d0-4744-b097-aa9dd14c63a8@collabora.com>
- <13468147-6853-4bd8-bd3d-d1f1927133fa@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH 2/4] arm64: dts: mediatek: mt8365: use a specific SCPSYS
+ compatible
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ MandyJH Liu <mandyjh.liu@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240518211159.142920-1-krzysztof.kozlowski@linaro.org>
+ <20240518211159.142920-2-krzysztof.kozlowski@linaro.org>
+ <f42ef151-6eee-418f-91e1-5ac08d161119@collabora.com>
+ <2cc638ca-0add-4c8c-b844-606e22dbd253@linaro.org>
+ <cf8c87fe-7a4f-423f-9c97-3759eeee4894@collabora.com>
 Content-Language: en-US
-In-Reply-To: <13468147-6853-4bd8-bd3d-d1f1927133fa@baylibre.com>
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <cf8c87fe-7a4f-423f-9c97-3759eeee4894@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 20/05/24 15:18, Julien Panis ha scritto:
-> On 4/23/24 11:22, AngeloGioacchino Del Regno wrote:
->> Il 02/04/24 05:25, Nicolas Pitre ha scritto:
->>> This is a bunch of patches to support the MT8186 and MT8188 thermal
->>> sensor configurations. Several changes are needed to cope with oddities
->>> these SOCs implement.
+Hello Krzysztof,
+
+On 20/05/2024 12:12, AngeloGioacchino Del Regno wrote:
+> Il 20/05/24 12:03, Krzysztof Kozlowski ha scritto:
+>> On 20/05/2024 11:55, AngeloGioacchino Del Regno wrote:
+>>> Il 18/05/24 23:11, Krzysztof Kozlowski ha scritto:
+>>>> SoCs should use dedicated compatibles for each of their syscon nodes to
+>>>> precisely describe the block.  Using an incorrect compatible does not
+>>>> allow to properly match/validate children of the syscon device.  Replace
+>>>> SYSCFG compatible, which does not have children, with a new dedicated
+>>>> one for SCPSYS block.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>>
->>> All values (calibration data offsets, etc.) were lifted and adapted from
->>> the vendor driver source code.
->>>
+>>> Technically, that's not a SCPSYS block, but called SYSCFG in MT8365, but the
+>>> meaning and the functioning is the same, so it's fine for me.
 >>
->> I picked patches 7 and 12 (and also fixed them) introducing the nodes for the
->> LVTS controllers, but will not pick 9 and 15, as they're either missing thermal
->> zones and/or using the wrong names; let's wait for the next cycle for those, as
->> I will also be able to add the SVS on top (needs a bit of time for testing),
->> getting both SoCs complete on the LVTS side, without rushing.
->>
->> Cheers,
->> Angelo
+>> So there are two syscfg blocks? With exactly the same set of registers
+>> or different?
 >>
 > 
-> What do you mean by "missing" thermal zones ? (is there some reference
-> code somewhere listing them, or whatever ? how can I know which ones are
-> missing ?)
+> I'm not sure about that, I don't have the MT8365 datasheet...
 > 
-> It seems to me that Nico took into account your comment about 'tzone_name'
-> and fixed these names in v3 ('cpu-little0-thermal', ...). Are they still wrong ?
-> 
+> Adding Alexandre to the loop - I think he can clarify as he should have the
+> required documentation.
 
-Check mt8195.dtsi ;-)
+Unfortunately, The SCPSYS (@10006000) isn't documented, but according to the functionnal 
+specification, it seems to have only one block.
 
-Cheers
+I don't have the history why SYSCFG instead of SCPSYS.
 
+I've tested your serie and have a regression at the kernel boot time:
+[    7.738117] mtk-power-controller 10006000.syscon:power-controller: Failed to create device link 
+(0x180) with 14000000.syscon
+
+It's related to your patch 3/4.
+
+-- 
+Regards,
+Alexandre
 
