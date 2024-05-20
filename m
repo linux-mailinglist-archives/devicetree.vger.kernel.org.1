@@ -1,104 +1,154 @@
-Return-Path: <devicetree+bounces-67828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1444F8C9D37
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:28:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C1F18C9D8A
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 14:40:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99524B20DCA
-	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:28:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F8951C2211C
+	for <lists+devicetree@lfdr.de>; Mon, 20 May 2024 12:40:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3356E54735;
-	Mon, 20 May 2024 12:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E2C5579F;
+	Mon, 20 May 2024 12:40:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yacytYOj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF98452F74;
-	Mon, 20 May 2024 12:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A05FF50275;
+	Mon, 20 May 2024 12:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716208111; cv=none; b=YZlis2JFumhiR28NWSaRMtpQsZl6eWt4Bbray9thxNVB2uSAOysFoYfgwHpQ7jerLbAX8PcvdJaaWiHzBsmcCcFXaAeFVUnBqytnPRzF9Im0bYZ5Phcox6aojC2ZpzQ4IZojiCip7LvL755qTSn2jfXReLnI1DA9Gjr/oiT8egQ=
+	t=1716208848; cv=none; b=sZvQsYonieeci7k2LCQtsUXkTAV2X2T1l8rYJOtGnZMTVumcqRmtuTHeZcSABRu1laWtDtQBfOv32RsR6JkARlUpq29aX9tguCA/Z2LLC7B7B+2cVhx2hQH/mZqF+ZufnMcGMr6fAyoUTGv8AgVSaNWh1tQPh5Sr/mrKyWjU6qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716208111; c=relaxed/simple;
-	bh=DkqAL50gnzYir27kCMGH/h7sSOH1ub09LFffmBQUdO8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rORy1JNXRUA89Lt6Zhv2KND3r1E4lovS8lUgPtJuDO2KVmdlyFJZnGnoXk0xkMFxTrF5q0tTgc2RZnCj62CuQK0+2UYRgu0AHbWbWAMI1Hdze4SivoXOEQN4MQKwE5vxwLfYvplo/9DCJdaFGidlAEMM3CWUNzs71LY0vFCEjCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: sNVZUuZjSIGJcSWpt0rylA==
-X-CSE-MsgGUID: sFHILEtmRWWc7phETtH4kQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11078"; a="12173833"
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
-   d="scan'208";a="12173833"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 05:28:29 -0700
-X-CSE-ConnectionGUID: c/c9dzA/S2uh2zFa8+jVPg==
-X-CSE-MsgGUID: E72YPrkWS12Cz7fB//pIJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,175,1712646000"; 
-   d="scan'208";a="63348935"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2024 05:28:24 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1s927o-00000009JGn-3cMi;
-	Mon, 20 May 2024 15:28:20 +0300
-Date: Mon, 20 May 2024 15:28:20 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>, michael.hennerich@analog.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, lars@metafoo.de, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	lgirdwood@gmail.com, broonie@kernel.org, nuno.sa@analog.com,
-	marcelo.schmitt@analog.com, bigunclemax@gmail.com,
-	dlechner@baylibre.com, okan.sahin@analog.com, fr0st61te@gmail.com,
-	alisa.roman@analog.com, marcus.folkesson@gmail.com,
-	schnelle@linux.ibm.com, liambeguin@gmail.com
-Subject: Re: [PATCH v8 6/6] iio: adc: ad7192: Add AD7194 support
-Message-ID: <ZktB5Ex5oQ2E45QR@smile.fi.intel.com>
-References: <20240514120222.56488-1-alisa.roman@analog.com>
- <20240514120222.56488-7-alisa.roman@analog.com>
- <ZkNijKz0N7PPvmeU@smile.fi.intel.com>
- <20240519190304.4d93530a@jic23-huawei>
- <34c21023-441f-44e4-a427-f3e2bb2f5c15@gmail.com>
- <20240520132030.00000838@Huawei.com>
+	s=arc-20240116; t=1716208848; c=relaxed/simple;
+	bh=0ghm8pQgH/Ie98fFuns1Qo6g1py5XierO6yhGzHAGBw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mH4IC4hzZPfr+actL5+UHC7k9wTu93keHzawNSr+B6TMLHptWbX6dE4BtaN/5XEeTgDF1CO21jiMNORL2bdjs4E9iujcABXkwcBwFdzDfva7dIcQosxoLv2YR548aXga51u7z2M4+CF3ynw+63wCViJR7IH0NyWoTj4tknKoymc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yacytYOj; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44KCeYf7000884;
+	Mon, 20 May 2024 07:40:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716208834;
+	bh=Ta/6dDLVDBDylZDSxMvvq60F/fRcQie13vswtxKmeh0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=yacytYOjk5DMrkwI+ZkGMnGOhGWd/SVrsCgbsHpQzS4WIQwHHE1YdoVpXVpdPSp/h
+	 iXhXvcYEcppe8+YAu8sGi6LbP2FbNCcjQS1LGXRv5+dv/otGZqxbKkEbCpLNSXgnWD
+	 926f/U2wKh+yTbUwizn0bekTQIEzhigFqo9dknCI=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44KCeY00024689
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 20 May 2024 07:40:34 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
+ May 2024 07:40:34 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 20 May 2024 07:40:34 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44KCeYhZ036464;
+	Mon, 20 May 2024 07:40:34 -0500
+Date: Mon, 20 May 2024 07:40:34 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Francesco Dolcini <francesco@dolcini.it>,
+        Parth Pancholi
+	<parth105105@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Parth
+ Pancholi <parth.pancholi@toradex.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>
+Subject: Re: [PATCH] dt-bindings: usb: gpio-sbu-mux: Add an entry for
+ TMUXHS4212
+Message-ID: <20240520124034.mo5rhbgjsuakxoo7@severity>
+References: <20240517111140.859677-1-parth105105@gmail.com>
+ <1675a33d-47af-4de9-a0e7-177cbe208e2b@kernel.org>
+ <20240519202754.GA3334@francesco-nb>
+ <469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org>
+ <20240520121441.svp6oabjyev4vmih@magazine>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240520132030.00000838@Huawei.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240520121441.svp6oabjyev4vmih@magazine>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, May 20, 2024 at 01:20:30PM +0100, Jonathan Cameron wrote:
-> On Sun, 19 May 2024 22:37:58 +0300
-> Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
-> > On 19.05.2024 21:03, Jonathan Cameron wrote:
-
-...
-
-> > +static bool ad7194_validate_ain_channel(struct device *dev, u32 ain)
-> > +{
-> > +	return in_range(ain, AD7194_CH_AIN_START, AD7194_CH_AIN_NR);
-> > +}
-> > And the negation got lost here.
+On 07:14-20240520, Nishanth Menon wrote:
+> On 08:53-20240520, Krzysztof Kozlowski wrote:
+> > On 19/05/2024 22:27, Francesco Dolcini wrote:
 > 
-> Ouch :( 
+> [...]
+> > > If it's not the case we'll send the patch later on, however some
+> > > DT files maintainers (e.g. arch/arm64/boot/dts/ti/) have a policy to
+> > > just accept DT file in which the binding changes are already merged
+> > > therefore I was trying to be a little bit proactive here.
+> > 
+> > TI? Never heard something like this from them... Such requirement would
+> > seriously slow down any work, so it's not really reasonable. Expectation
+> > is to post both binding change and an user, so DTS, in case of USB in
+> > separate patchsets.
+> 
+> There is a reason we have set that "soft rule":
+> - Driver subsystem merges have known to be broken from time to time and
+>   the dt maintainer is left holding compatibles that have not made to
+>   master.
+> - ARM subsystem merges prefers not to see checkpatch warnings -
+>   typically, this happens with new compatibles in the driver subsystem.
+> - Off chance that driver subsystem maintainer picks up the dt changes as
+>   well (should not happen, but has happened)
+> 
+> We have however flexed the rule when:
+> a) driver maintainer is willing to provide us an immutable tag that we
+>    can merge in and base the dts on top.
+> b) We felt that the chances of the driver not making it is very very low
+>    (typically after 1+ month in next) and the dts change is in the wider
+>    interest of the community. In such case, we have to explicitly take
+>    the action of letting the patch submitter, driver subsystem to let us
+>    know if something bad happens to the PR, also in our PR to SoC
+>    maintainers, we have to call it out along with rationale why this is
+>    OK. This is a bunch of work from a lot of folks, so prefer only to
+>    trigger this path in case of exceptional cases - there have been a
+>    few far in between.
+> 
+> Again, the default rule (driver in one window, binding in next) has
 
-And negation most likely should be on the caller's side.
+That went out wrong :( - correction:
+
+s/driver in one window, binding in next/driver and binding in one
+window, dts in the next window/
+
+Apologies on the confusion.
+
+> kept us out of trouble for a few years now at the detriment of pace
+> of merges, but that took care of a lot of conflicts that we had seen
+> during initial days of k3 - there are few chains in the lakml list
+> where this was the direction we ended up in after discussion.
+> 
+> But, yes - as you mentioned, send the patches of the "user" of the dt
+> binding and driver gives the subsystem and dt maintainers a chance to
+> review in the context of usage prior to the driver and binding merge.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
