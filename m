@@ -1,191 +1,140 @@
-Return-Path: <devicetree+bounces-68260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC648CB5EA
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 00:18:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 571A18CB5ED
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 00:21:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5718B217AC
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:18:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 122FE282DE5
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:21:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E87149C72;
-	Tue, 21 May 2024 22:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7362D149C6A;
+	Tue, 21 May 2024 22:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="IC/aGxvm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cbknFbOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853C41865A;
-	Tue, 21 May 2024 22:18:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406E01865A;
+	Tue, 21 May 2024 22:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716329889; cv=none; b=oUfNljSuHT/2748dPKOgNafqCuZvgGI2ek+SkFsVNt9E2E3bLKjEMuadzMcpdSB4qvBDAeKkq0AKjLFYzBaNrXSZH7DjSTdPkLIw4EMlZ8FIXGMWRt6vuB9/b/56xS1OXLVVL8IDHikQdR1usLJwuB2PtH698L0tMgW3guMbntA=
+	t=1716330084; cv=none; b=j9nqCnZYN8gjoq5iHIcdrFZIMoSl5v7s4ps94NuPIuJ9mNQz6A8urpFJAxFeUO3vFcw6nAqsGQLQpEeQyZ6LQyi7l9WwXb2Med8/3s/sQgfv//uh0PSqJ8Pv8madc3UXh92xKMerGMbZaDKwfp48yVL6GD8518WF2j6Lzpmv60U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716329889; c=relaxed/simple;
-	bh=SeLo2TzoPZmRCROP3xeS9xNG8LTfQBWVoigFnZMbfhY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DpQDwOZH508Z5dAiNHuLurglm+5CUUxu5iQUNJCjS0IsN7ewynH9xvO4D0PZPGH+b7m2Sa+kJTXlfeEj2WhN6uepx7lpHYpnVAqQyEs+8c/Ka4FplleT3SHPHPWZ9Zq5ALKXSRGN9XE1bJ12Pu31z1PlxfNAHTF8Wfr+nIrZcWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=IC/aGxvm; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id B62CD10000F;
-	Wed, 22 May 2024 01:17:55 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B62CD10000F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1716329875;
-	bh=IlVnMWoOm8OINmNC56cel4gwgIlkbosRXGc5fhbKMqk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=IC/aGxvmS9k17J2eAcUiVR3k86n4j0Lq2Gb/oIGAYLYK0uPeXYfNBKv4N7xUjpw7x
-	 LzZAyi6dLy5H9h3MG6dIBLBoZAHaw70sDtOYz71kRoK8J8mjIS2OpsU+65k0hWbke4
-	 ENQH2NP7c2GD+TbRPQkxPNKn1BC8cMUaSckOvBVz4EYMRf/NngLLm3lHr7w6XpSAka
-	 k5a6miT3WPDepPh0UsW0lvYQw5ER00KdlLDMLV/IzLX4GoJjbrAkxUjAmrHHvzMu3N
-	 BvZ3ICUwH3kNnRTS8DSvq/QCfJV60LeXQMXhB1tBrUNWBocyt69PCoguuflIfUBf4S
-	 3AK3f2qPeYPpw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 22 May 2024 01:17:55 +0300 (MSK)
-Received: from [172.28.65.135] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 22 May 2024 01:17:55 +0300
-Message-ID: <11ad766f-0fc7-4d26-aad6-a98095986b24@salutedevices.com>
-Date: Wed, 22 May 2024 01:17:54 +0300
+	s=arc-20240116; t=1716330084; c=relaxed/simple;
+	bh=eTuD8TkoSJENTwFBMEinJkrb+PTHkp3uq6sPx3UUzN0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=JfEV1148BwD0Z3xOzPekwo5oYQN5+xmhqLfEGmILCoqDTCJhWk7iEWP8zNRBhRGNVGwadK2dwUZB1ehpVjoFJoODCR4OKxJgumFASn1R/3iBC3xgEPsJkDLfIhh4axaWGZEtyQjRjfYD/bLomYA8GeeLlooVGuTJECpcflHfYGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cbknFbOr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF01C2BD11;
+	Tue, 21 May 2024 22:21:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716330083;
+	bh=eTuD8TkoSJENTwFBMEinJkrb+PTHkp3uq6sPx3UUzN0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=cbknFbOrlq2asl7flaBNs5fBtXasvCVpbovNe1xwvZHA8ibl/wvjz6ialnpg5lH3C
+	 OYZfHlDpi0x0d0WhqKOTT+MImfiymKZIpYgT41eKKMYbDvn/YjEGaFYtzr4Z7rM0VD
+	 XhDjusLnYZK4vbQZdBwdz4NbOPXjejZ4lRZJ7dCyvuYnh/aXwK06d4j6U48nT6Gwz3
+	 BNwC/CEyamHdqbrHMyKSUESNxuZXLqKgcFpEQ9sqvyyewxisaIzi26J8zj24xr5GSz
+	 SuPC8GVpd1YtEgKvmsP9pki406qPwQHVVIHgiWQbVchwSWHiQVPWrkIZvJBBiDjsMS
+	 ft7+VW0CcMoOA==
+Date: Tue, 21 May 2024 17:21:21 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v16 08/22] PCI: microchip: Change the argument of
+ plda_pcie_setup_iomems()
+Message-ID: <20240521222121.GA51329@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [DMARC error][DKIM error] [PATCH v5 2/2] arm64: dts: amlogic: Add
- Amlogic S4 PWM
-To: <kelvin.zhang@amlogic.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-pwm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Junyi Zhao <junyi.zhao@amlogic.com>,
-	"kernel@salutedevices.com" <kernel@salutedevices.com>
-References: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
- <20240521-s4-pwm-v5-2-0c91f5fa32cd@amlogic.com>
-Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <20240521-s4-pwm-v5-2-0c91f5fa32cd@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185400 [May 21 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/21 08:41:00 #25230763
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240328091835.14797-9-minda.chen@starfivetech.com>
 
+The patch is OK, but the subject line is not very informative.  It
+should be useful all by itself even without the commit log.  "Change
+the argument of X" doesn't say anything about why we would want to do
+that.
 
-Hello Kelvin, Junyi
+On Thu, Mar 28, 2024 at 05:18:21PM +0800, Minda Chen wrote:
+> If other vendor do not select PCI_HOST_COMMON, the driver data is not
+> struct pci_host_bridge.
 
-On 5/21/24 11:31, Kelvin Zhang via B4 Relay wrote:
-> From: Junyi Zhao <junyi.zhao@amlogic.com>
+Also, I don't think this is the real problem.  Your
+PCIE_MICROCHIP_HOST Kconfig selects PCI_HOST_COMMON, and the driver
+calls pci_host_common_probe(), so the driver wouldn't even build
+without PCI_HOST_COMMON.
+
+This patch is already applied and ready to go, but if you can tell us
+what's really going on here, I'd like to update the commit log.
+
+> Move calling platform_get_drvdata() to mc_platform_init().
 > 
-> Add device nodes for PWM_AB, PWM_CD, PWM_EF, PWM_GH and PWM_IJ
-> along with GPIO PIN configs of each channel.
-> 
-> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 207 ++++++++++++++++++++++++++++++
->   1 file changed, 207 insertions(+)
+>  drivers/pci/controller/plda/pcie-microchip-host.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index 10896f9df682..d0c170368892 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -292,6 +292,168 @@ mux {
->   					};
->   				};
->   
-...
-> @@ -449,6 +611,51 @@ i2c4: i2c@6e000 {
->   				status = "disabled";
->   			};
->   
-> +			pwm_ab: pwm@58000 {
-> +				compatible = "amlogic,meson-s4-pwm";
-> +				reg = <0x0 0x58000 0x0 0x24>;
-> +				clocks = <&clkc_periphs CLKID_PWM_A>,
-> +						<&clkc_periphs CLKID_PWM_B>;
-> +				#pwm-cells = <3>;
-> +				status = "disabled";
-> +			};
-> +
-> +			pwm_cd: pwm@5a000 {
-> +				compatible = "amlogic,meson-s4-pwm";
-> +				reg = <0x0 0x5a000 0x0 0x24>;
-> +				clocks = <&clkc_periphs CLKID_PWM_C>,
-> +						<&clkc_periphs CLKID_PWM_D>;
-> +				#pwm-cells = <3>;
-> +				status = "disabled";
-> +			};
-> +
-> +			pwm_ef: pwm@5c000 {
-> +				compatible = "amlogic,meson-s4-pwm";
-> +				reg = <0x0 0x5c000 0x0 0x24>;
-> +				clocks = <&clkc_periphs CLKID_PWM_E>,
-> +						<&clkc_periphs CLKID_PWM_F>;
-> +				#pwm-cells = <3>;
-> +				status = "disabled";
-> +			};
-> +
-> +			pwm_gh: pwm@5e000 {
-> +				compatible = "amlogic,meson-s4-pwm";
-> +				reg = <0x0 0x5e000 0x0 0x24>;
-> +				clocks = <&clkc_periphs CLKID_PWM_G>,
-> +						<&clkc_periphs CLKID_PWM_H>;
-> +				#pwm-cells = <3>;
-> +				status = "disabled";
-> +			};
-> +
-> +			pwm_ij: pwm@60000 {
-> +				compatible = "amlogic,meson-s4-pwm";
-> +				reg = <0x0 0x60000 0x0 0x24>;
-> +				clocks = <&clkc_periphs CLKID_PWM_I>,
-> +						<&clkc_periphs CLKID_PWM_J>;
-> +				#pwm-cells = <3>;
-> +				status = "disabled";
-> +			};
-> +
->   			nand: nand-controller@8c800 {
->   				compatible = "amlogic,meson-axg-nfc";
->   				reg = <0x0 0x8c800 0x0 0x100>, <0x0 0x8c000 0x0 0x4>;
+> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
+> index 9b367927cd32..805870aed61d 100644
+> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> @@ -876,11 +876,10 @@ static void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>  	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
+>  }
+>  
+> -static int plda_pcie_setup_iomems(struct platform_device *pdev,
+> +static int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
+>  				  struct plda_pcie_rp *port)
+>  {
+>  	void __iomem *bridge_base_addr = port->bridge_addr;
+> -	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
+>  	struct resource_entry *entry;
+>  	u64 pci_addr;
+>  	u32 index = 1;
+> @@ -1018,6 +1017,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  {
+>  	struct device *dev = cfg->parent;
+>  	struct platform_device *pdev = to_platform_device(dev);
+> +	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
+>  	void __iomem *bridge_base_addr =
+>  		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+>  	int ret;
+> @@ -1031,7 +1031,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  	mc_pcie_enable_msi(port, cfg->win);
+>  
+>  	/* Configure non-config space outbound ranges */
+> -	ret = plda_pcie_setup_iomems(pdev, &port->plda);
+> +	ret = plda_pcie_setup_iomems(bridge, &port->plda);
+>  	if (ret)
+>  		return ret;
+>  
+> -- 
+> 2.17.1
 > 
-
-Nodes on any bus, thus using unit addresses for children, shall be 
-ordered by unit address in ascending order.
-
-So the pwm_xx nodes should be placed between spicc0: spi@50000 and
-i2c0: i2c@66000 nodes
-
--- 
-Best regards
-George
 
