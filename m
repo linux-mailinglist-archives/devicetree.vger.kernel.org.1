@@ -1,293 +1,219 @@
-Return-Path: <devicetree+bounces-68195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93C5C8CB3A1
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:40:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62DB28CB3D9
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 041E31F2114E
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 18:40:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EAC7282AB2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 18:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895C3148FEC;
-	Tue, 21 May 2024 18:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1058F77105;
+	Tue, 21 May 2024 18:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T3Gk4e3K"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="twf+yDEY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E044F14884F;
-	Tue, 21 May 2024 18:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8228417722;
+	Tue, 21 May 2024 18:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716316846; cv=none; b=ObzgBNLrbDZftBIdta5UjXQ0XElVLc9oXUDNxT4HSgsKfrntO2R81vrRveXc91zK4RaBATS+sRrHvomm8BsgUzsSTO+DkLz8AnPfNlgMWy/wpBmRMsm0d2Jb3RH3yiuj1cyrLX2C7QQ6PMhC4dA6XE3eJifhWrYAif3KwFLUQ0M=
+	t=1716317427; cv=none; b=aXP8fqMY/QSfLVujeVfTXY7tStYnhv012OIU0GsHgdS1aZixEX/Mxv2vUzUWN+pTo4Uao+W7g20VjDUs+eacqwLaMlwSHeGc5VqAH3F5JXNYuqMADZqxAoxDUmI+ZDrHc5m+uwjqKKscfdb1qfu0Y6dx4Et4sql0AOoRXssGrwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716316846; c=relaxed/simple;
-	bh=KNChU/zTxeIANQKXeI/F7UaYoMhf0zs0ZKhrbCNbnxg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=bgAX3VYlh9owLAHvB2uCIHurnOTjoAbMfOm2aKYKY4ntNBPfQIl609M/WX1uooCeEJ1W0FzOTMap0sLQ9+MCxL0lvjGxAR0PXw/ByjPxVTbZf12/FCzaQQuwzrJrLKtWi2Qb6W0FjehNOdwb0D7SscYppBF86Qru0tyAnTWbo8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T3Gk4e3K; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44L9xeRM004387;
-	Tue, 21 May 2024 18:38:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=T5bkdynyzEdOYxsDcWGWLOmwsNAs+8sORtZJnwmIXto
-	=; b=T3Gk4e3KMPegX3QRNTMViBKhX9eY9alLLW7mOuu35a1s9tEyp9obn+xowKL
-	uNKE9UmbFEY+yeZJBksG8CZ40z0iaMjOSe2FppYbxcgF0QTH/eTsyZyCiicfJ445
-	G+sdnIsYHMFKtY6dNtvIs+PHFd/CIr/5bBiGkqIVGkSgnCj0droReA0GgP9Hs0dn
-	PbGZ81dIsC20qxs8vDQ8+jSNEtDex4uHUa3IUv0o0CR3Byuw+zHlfsfPlc5DCnCi
-	Ufq404XRm5832TTAjoCZnSKlbpYPTILK74/aotM+ShhNqKfjj1oKke7Bp0w9ewus
-	jEY3iUq4P4txtkjiIrI0M1EKn2Q==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6pqapmmq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 May 2024 18:38:30 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44LIcUII016680
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 May 2024 18:38:30 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+	s=arc-20240116; t=1716317427; c=relaxed/simple;
+	bh=lRAe+LkKT4cBx4UtkXVFIn0h7vayN5ENbaTYWa1+Wc8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=e9bFpmRwi2UKgMEvg4iwBIK/LsV25lgNGlIn22r8KTXer3/sdadl/Je4OI+5FnTGeMBxAoxuUOVhEJzW19vAMud8ELPyIObucq88McQHoGKumZNvOGc4RTn8+3jFoE0FXdKXBctXzRT0n4MRL5JU3WbQilVR9w/Ma6YQFJCanJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=twf+yDEY; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2BB1F120005;
+	Tue, 21 May 2024 21:50:13 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2BB1F120005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1716317413;
+	bh=layIMEI/pkFEQkS/PJJqywpWNGCjnNMloO+DcQbHo2s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=twf+yDEYeGnc8V8rmhzGZNgtuCb1UG/9wxtYXD7uOUAfw8PWdYoIvnxNDrni9YUZF
+	 pdhlqlgWSN6eAub5PMoPWf0CkTi682zSrm2bQ+7Qgr9MrbObX0iLFLuyCLueQ9Ugbg
+	 9CAuInykDuKE50mG2TcWmCwYFRL3Nuzh9/TLt5Jw20e53jw0Uf6pIqu/0NMNCTj+pQ
+	 //fUDTVaK9ycLN+YZwwGwPU5Dhl3HnMPC1HbzfUvEpDQTldPe8o9vK193kZ8/NOXc6
+	 22ziJVXKTDc4ybFOgsz7ATDrkpILVsDSgFRc+EDbDlfxu0dReGzhVTLeoZbL0fCvZo
+	 edxh+LI8gmvUw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 21 May 2024 21:50:12 +0300 (MSK)
+Received: from [172.28.65.135] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 21 May 2024 11:38:29 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-Date: Tue, 21 May 2024 11:38:06 -0700
-Subject: [PATCH RFC v3 9/9] tools: board-id: Add test suite
+ 15.2.1118.40; Tue, 21 May 2024 21:50:12 +0300
+Message-ID: <4fd9fe90-1da0-4b8c-8bc4-18b7a4dc38ab@salutedevices.com>
+Date: Tue, 21 May 2024 21:50:12 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [DMARC error][DKIM error] [PATCH v5 1/2] pwm: meson: Add support
+ for Amlogic S4 PWM
+To: <kelvin.zhang@amlogic.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-pwm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Junyi Zhao <junyi.zhao@amlogic.com>,
+	"kernel@salutedevices.com" <kernel@salutedevices.com>
+References: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
+ <20240521-s4-pwm-v5-1-0c91f5fa32cd@amlogic.com>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <20240521-s4-pwm-v5-1-0c91f5fa32cd@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240521-board-ids-v3-9-e6c71d05f4d2@quicinc.com>
-References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
-In-Reply-To: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
-To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: Amrit Anand <quic_amrianan@quicinc.com>,
-        Peter Griffin
-	<peter.griffin@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Doug
- Anderson" <dianders@chromium.org>,
-        Simon Glass <sjg@chromium.org>, "Chen-Yu
- Tsai" <wenst@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        "Humphreys,
- Jonathan" <j-humphreys@ti.com>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        "Jon
- Hunter" <jonathanh@nvidia.org>,
-        Michal Simek <michal.simek@amd.com>,
-        <boot-architecture@lists.linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        Elliot Berman <quic_eberman@quicinc.com>
-X-Mailer: b4 0.13.0
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Ens5k3tAv93QYqUh2XVDuDq_VJmZVmkJ
-X-Proofpoint-ORIG-GUID: Ens5k3tAv93QYqUh2XVDuDq_VJmZVmkJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-21_11,2024-05-21_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 suspectscore=0 bulkscore=0 mlxscore=0 adultscore=0
- spamscore=0 malwarescore=0 mlxlogscore=999 clxscore=1015
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2405010000 definitions=main-2405210140
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185399 [May 21 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Tracking_dating_text_input_url}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;www.kernel.org:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/21 16:20:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/21 17:40:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/21 08:41:00 #25230763
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Add a short test suite to demonstrate board-id selection and scoring.
-This patch isn't intended to be merged here.
+Hello Kelvin, Junyi
 
-After compiling the kernel (esp. arch/arm64/boot/dts/qcom DTBs), run
-tools/board-id/test.py.
+On 5/21/24 11:31, Kelvin Zhang via B4 Relay wrote:
+> From: Junyi Zhao <junyi.zhao@amlogic.com>
+> 
+> This patch adds support for Amlogic S4 PWM.
 
-The test cases provide a hypothetical firmware-provied board-id and
-compares expected output for which DTBs gets matched.
+Please take a look at 
+https://www.kernel.org/doc/html/v6.9/process/submitting-patches.html#describe-your-changes
 
-Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
----
- tools/board-id/test.py | 151 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 151 insertions(+)
+It should be something like
+Add support for Amlogic S4 PWM.
 
-diff --git a/tools/board-id/test.py b/tools/board-id/test.py
-new file mode 100644
-index 000000000000..687b31ad73d2
---- /dev/null
-+++ b/tools/board-id/test.py
-@@ -0,0 +1,151 @@
-+from collections import namedtuple
-+import glob
-+import os
-+import subprocess
-+from tempfile import NamedTemporaryFile
-+import unittest
-+
-+
-+LINUX_ROOT = os.path.abspath(os.path.join(__file__, "..", "..", ".."))
-+ENV_WITH_DTC = {
-+    "PATH": os.path.join(LINUX_ROOT, "scripts", "dtc") + os.pathsep + os.environ["PATH"]
-+}
-+
-+
-+TestCase = namedtuple("TestCase", ["score_all", "board_id", "output"])
-+
-+test_cases = [
-+    TestCase(
-+        # A board_id that could be provided by firmware
-+        board_id="""
-+        qcom,soc = <QCOM_ID_SM8650>;
-+        qcom,soc-version = <QCOM_ID_SM8650 QCOM_SOC_REVISION(1)>;
-+        qcom,platform = <QCOM_BOARD_ID_MTP>;
-+        qcom,platform-type = <QCOM_BOARD_ID_MTP 0>;
-+        qcom,platform-version = <QCOM_BOARD_ID_MTP 0 0x0100>;
-+        qcom,boot-device = <QCOM_BOARD_BOOT_UFS>;
-+        """,
-+        score_all=False,
-+        output="""
-+        qcom/sm8650-mtp.dtb
-+        """,
-+    ),
-+    TestCase(
-+        # A board_id that could be provided by firmware
-+        board_id="""
-+        qcom,soc = <QCOM_ID_SM8550>;
-+        qcom,soc-version = <QCOM_ID_SM8550 QCOM_SOC_REVISION(1)>;
-+        qcom,platform = <QCOM_BOARD_ID_MTP>;
-+        qcom,platform-type = <QCOM_BOARD_ID_MTP 0>;
-+        qcom,platform-version = <QCOM_BOARD_ID_MTP 0 0x0100>;
-+        qcom,boot-device = <QCOM_BOARD_BOOT_UFS>;
-+        """,
-+        score_all=True,
-+        output="""
-+        qcom/sm8550.dtb: 1
-+        qcom/sm8550-mtp.dtb: 3
-+        qcom/sm8550-mtp.dtbo: 2
-+        """,
-+    ),
-+]
-+
-+
-+def compile_board_id(board_id: str):
-+    dts = f"""
-+        /dts-v1/;
-+
-+        #include <dt-bindings/arm/qcom,ids.h>
-+
-+        / {{
-+            compatible = "linux,dummy";
-+            board-id {{
-+                {board_id}
-+            }};
-+        }};
-+        """
-+    dts_processed = subprocess.run(
-+        [
-+            "gcc",
-+            "-E",
-+            "-nostdinc",
-+            f"-I{os.path.join(LINUX_ROOT, 'scripts', 'dtc', 'include-prefixes')}",
-+            "-undef",
-+            "-D__DTS__",
-+            "-x",
-+            "assembler-with-cpp",
-+            "-o" "-",
-+            "-",
-+        ],
-+        stdout=subprocess.PIPE,
-+        input=dts.encode("utf-8"),
-+        check=True,
-+    )
-+    dtc = subprocess.run(
-+        ["dtc", "-I", "dts", "-O", "dtb", "-o", "-", "-"],
-+        stdout=subprocess.PIPE,
-+        input=dts_processed.stdout,
-+        env=ENV_WITH_DTC,
-+    )
-+    return dtc.stdout
-+
-+
-+def select_boards(score_all, fwdtb):
-+    with NamedTemporaryFile() as fwdtb_file:
-+        fwdtb_file.write(fwdtb)
-+        fwdtb_file.flush()
-+        root_dir = os.path.join(LINUX_ROOT, "arch", "arm64", "boot", "dts")
-+        return subprocess.run(
-+            filter(
-+                bool,
-+                [
-+                    "fdt-select-board",
-+                    "-a" if score_all else None,
-+                    "-r",
-+                    fwdtb_file.name,
-+                    *glob.glob(
-+                        "qcom/*.dtb*",
-+                        root_dir=root_dir,
-+                    ),
-+                ],
-+            ),
-+            stdout=subprocess.PIPE,
-+            text=True,
-+            cwd=root_dir,
-+            env=ENV_WITH_DTC,
-+            stderr=subprocess.STDOUT,
-+        )
-+
-+
-+def fixup_lines(s):
-+    return '\n'.join(filter(bool, sorted(_s.strip() for _s in s.split('\n'))))
-+
-+
-+class TestBoardIds(unittest.TestCase):
-+    def __init__(self, index: int, args: TestCase) -> None:
-+        super().__init__()
-+        self.args = args
-+        self.index = index
-+
-+    def runTest(self):
-+        fwdtb = compile_board_id(self.args.board_id)
-+        output = select_boards(self.args.score_all, fwdtb)
-+        if output.stderr:
-+            self.assertMultiLineEqual(output.stderr, "")
-+        expected = fixup_lines(self.args.output)
-+        actual = fixup_lines(output.stdout)
-+        self.assertMultiLineEqual(expected, actual)
-+
-+    def __str__(self):
-+        return f"Test case {self.index}"
-+
-+
-+def suite():
-+    suite = unittest.TestSuite()
-+    for idx, test in enumerate(test_cases):
-+        suite.addTest(TestBoardIds(idx + 1, test))
-+    return suite
-+
-+
-+if __name__ == "__main__":
-+    runner = unittest.TextTestRunner()
-+    runner.run(suite())
+
+> 
+> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+>   drivers/pwm/pwm-meson.c | 53 +++++++++++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 53 insertions(+)
+> 
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index b2f97dfb01bb..9fea28a51921 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -460,6 +460,51 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
+>   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
+>   }
+>   
+> +static void meson_pwm_s4_put_clk(void *data)
+> +{
+> +	int i;
+> +	struct meson_pwm *meson;
+> +	struct meson_pwm_channel *channel;
+> +
+> +	meson = (struct meson_pwm *)data;
+You can initialize meson variable along with declaration; type casting 
+is not needed
+
+> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
+> +		channel = &meson->channels[i];
+> +		clk_put(channel->clk);
+> +	}
+you can save 3 lines just by using clk_put(meson->channels[i].clk);
+
+> +}
+> +
+> +static int meson_pwm_init_channels_meson_s4(struct pwm_chip *chip)
+> +{
+> +	int i, ret;
+> +	struct device *dev = pwmchip_parent(chip);
+> +	struct device_node *np = dev->of_node;
+> +	struct meson_pwm *meson = to_meson_pwm(chip);
+> +	struct meson_pwm_channel *channel;
+> +
+> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
+> +		channel = &meson->channels[i];
+> +		channel->clk = of_clk_get(np, i);
+> +		if (IS_ERR(channel->clk)) {
+> +			ret = PTR_ERR(channel->clk);
+> +			dev_err_probe(dev, ret, "Failed to get clk\n");
+> +			goto err;
+> +		}
+> +	}
+> +	ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk, meson);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +
+> +err:
+> +	while (--i >= 0) {
+> +		channel = &meson->channels[i];
+> +		clk_put(channel->clk);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>   static const struct meson_pwm_data pwm_meson8b_data = {
+>   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
+>   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
+> @@ -498,6 +543,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
+>   	.channels_init = meson_pwm_init_channels_meson8b_v2,
+>   };
+>   
+> +static const struct meson_pwm_data pwm_meson_s4_data = {
+> +	.channels_init = meson_pwm_init_channels_meson_s4,
+> +};
+> +
+according to already existing soc-specific named vars and functions
+new names should be
+static const struct meson_pwm_data pwm_s4_data
+and
+static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
+
+>   static const struct of_device_id meson_pwm_matches[] = {
+>   	{
+>   		.compatible = "amlogic,meson8-pwm-v2",
+> @@ -536,6 +585,10 @@ static const struct of_device_id meson_pwm_matches[] = {
+>   		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
+>   		.data = &pwm_g12a_ao_cd_data
+>   	},
+> +	{
+> +		.compatible = "amlogic,meson-s4-pwm",
+> +		.data = &pwm_meson_s4_data
+> +	},
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+> 
 
 -- 
-2.34.1
-
+Best regards
+George
 
