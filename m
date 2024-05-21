@@ -1,58 +1,72 @@
-Return-Path: <devicetree+bounces-68169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9B88CB049
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 16:22:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D64EE8CB04F
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 16:22:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B4EE281255
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 14:22:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59B0EB25055
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 14:22:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86CF12FB0B;
-	Tue, 21 May 2024 14:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42EF12FB35;
+	Tue, 21 May 2024 14:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O36qRlvU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GWGiwbed"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9372C12EBEE;
-	Tue, 21 May 2024 14:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF4A12EBEE;
+	Tue, 21 May 2024 14:22:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716301337; cv=none; b=m6DGVkS601QEL9Okl7igKirRlC98RauvC2VNWHAUZOJzsBFTNbqdvoyptNuoYYIcBCfXFKvpXmOclJWfG15EyOhqurdrTcOI9JQN/gZ6xuEu53UXCs5bCg5+0jipCfwSeDON6vdL9TwDQ21ARxg9gd3MQ9E2SBi55zwch8qV5d8=
+	t=1716301371; cv=none; b=bOvCfVp8SmrT3gMmJc1XIsfh8vtjDlSsnE/kuacvM1GtSWgJkmzKrfSnCrgHRo3FInTUPp2TPNBsfdRkBjYB5gEye1/YupoOCtwcEnja8kqC7kw9rJAbgumNX+GdXMKF15T1OAaqZFbS5pB6aawkI2IQbnIDs5wbqh/XX8GXSsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716301337; c=relaxed/simple;
-	bh=RLq+RXQNSzy0R9or81dkF+MdgPUySYmWw8nGPvv9Drc=;
+	s=arc-20240116; t=1716301371; c=relaxed/simple;
+	bh=S5q3SL4QrTR3x283h+0MNUSZ9W9XFtD33KHiNZqcSl4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jquYMYRvdunKu6NTGf4V6CMgsLR1HlwnwW+90Cj6+TRO/U7zpRRskqwZR8uZxMuNSm4Kv7qKqzvYsYzRixPSbJ73L+004DtYsd4be8ed5nzwpcFIhU3lAGyfliuKSQl0Wbc7ULMo12nCVnBCTvTR4BCtq0KX2JaP34T7SMfw5Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O36qRlvU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F252AC2BD11;
-	Tue, 21 May 2024 14:22:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z5bvcPc0bzv+GFAnn/FqFsEEGwGe9qx55+EnvrGX5iWqZWbAL3/9f8ez2UNLR1Z4LOhH4zRxfCmgAoJOTD1wkU5ZvSUDWWrGI5DFOhEJGn1MrWFGUTOJp58u6xYqUovhviu7qXFNoPrvNi6Bbd6yyBi8JIwvsCMh5HhJQLZ3AKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GWGiwbed; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDE36C32786;
+	Tue, 21 May 2024 14:22:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716301337;
-	bh=RLq+RXQNSzy0R9or81dkF+MdgPUySYmWw8nGPvv9Drc=;
+	s=k20201202; t=1716301371;
+	bh=S5q3SL4QrTR3x283h+0MNUSZ9W9XFtD33KHiNZqcSl4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O36qRlvUDk1F5zemOQgGYt9Srsrp1GE2glmpjPmICjEA47rlQWTIDrV3/oZXOleMl
-	 V+3k0cpR32vjVFqDcq/GeeyZJTwZhJCNCsxe2wudjFOG7U5iTbhgjvPiZbn59txAUG
-	 P68LM7kWzIe1fVug3aLcNPK/oSWzHbYyBeCTFq87+nsGyH63fEvvsrvrAJ9I2OjYmu
-	 LBQxuzQ+Lx4CBs6/EYQHMfqJuuuVFk4aHwHMXYHqtFGiNkaHGuP4bR/kT0ZfF7KEgi
-	 xuTMXuJK4D0Kj3JFkSZ1+poifFjNem7DkKs+xJClpdCdlHqC7Py32LHXK/wAoci7ua
-	 xGVh/IGMDIaJg==
-Date: Tue, 21 May 2024 09:22:16 -0500
+	b=GWGiwbedDHAWhiE/kXtKt6+ISYbgMQXrC/QkoChI/Yioxemjt/lm6tPLtsHOzwa1i
+	 detR11P8pCJR/fS6Z7rnt717eygsx3WRGe8o19qo2Wc7+t9fArmFhHHrtTxJUvmPMi
+	 0y3X8qrE3S9gMru2g/1RwOXSkmy4rxNiOJcmD7Nws6D+y/Qw77Rf3gIScyTCZp2bQB
+	 sHMFudlkOcvvUdz97FHIo9Mig8cLflJ1ZMWFLQDK9qr8oBqZF30b+tIjXQPmisBOqc
+	 bt4/DPQfgThwXo60NfZ7nTBFOB8SX2WZ9s4XIcKLGorkEu8wNzLHTIrGSje//W6yjC
+	 ZXyta3rraFEiA==
+Date: Tue, 21 May 2024 09:22:49 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	stable@vger.kernel.org, imx@lists.linux.dev,
-	Frank Li <Frank.Li@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma: fsl-edma: fix dma-channels constraints
-Message-ID: <171630133350.4112614.15318794245915872440.robh@kernel.org>
-References: <20240521083002.23262-1-krzysztof.kozlowski@linaro.org>
+To: Marek Vasut <marex@denx.de>
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@dh-electronics.com,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Robert Foss <rfoss@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Maxime Ripard <mripard@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Yao <markyao0591@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH] dt-bindings: display: synopsys,dw-hdmi: Mark ddc-i2c-bus
+ as deprecated
+Message-ID: <171630136735.4113488.212985602812996008.robh@kernel.org>
+References: <20240521104057.10485-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,19 +75,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240521083002.23262-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240521104057.10485-1-marex@denx.de>
 
 
-On Tue, 21 May 2024 10:30:02 +0200, Krzysztof Kozlowski wrote:
-> dma-channels is a number, not a list.  Apply proper constraints on the
-> actual number.
+On Tue, 21 May 2024 12:40:47 +0200, Marek Vasut wrote:
+> The ddc-i2c-bus property should be placed in connector node,
+> mark the HDMI TX side property as deprecated.
 > 
-> Fixes: 6eb439dff645 ("dt-bindings: fsl-dma: fsl-edma: add edma3 compatible string")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  Documentation/devicetree/bindings/dma/fsl,edma.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Liu Ying <victor.liu@nxp.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Mark Yao <markyao0591@gmail.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  .../devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
