@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-68187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C1A28CB2E7
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 19:28:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D7D8CB2F5
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 19:36:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 926921F22163
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 17:28:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 548231C214E6
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 17:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDE941482ED;
-	Tue, 21 May 2024 17:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB12414884C;
+	Tue, 21 May 2024 17:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PdH92bx3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O+9hcj+3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524C417758
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 17:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1802179BD
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 17:35:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716312506; cv=none; b=LFYW1Iw0wYrW+jxLNTJk8YT1zriRixb7P/y9QPZoJG/7PEZyAmP9ilW5gH7Ti1lUqZWSHRwX9NNt8Fj+Mpred0K+2BLN+z/P0X/G9oGTqWngRZLGPRVx/o39ynKRttgLvlgdR5ogc2gyqpzIfXpbTTpflpuTQ4Yab0qOtQKEet0=
+	t=1716312950; cv=none; b=swafAseip4z7fa8mt8EOMZGYbP3IxxNym5Y/0chE/zItXDfLWi6n+mo0BIwPa7vG0ni2g1YRYTUFHcw+ypjXbwl5t7qoSaxkM0Tuf1iz1avRQ9tFqkEPbn4XJFUukcah5OkBZNWTPmgAo03f0LjxJOLRE9Orv6fKGJ1gYNffrlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716312506; c=relaxed/simple;
-	bh=iewX2nOR0j73EGPiG6myHQ0bEelcXu2qU5TdFDSGJLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Hbpy2MsxFlATJgsvNRb9jv3CYtU8hOnC1JJqo1ECeHITO8p9NkVQF2iUAPGpejiENtlsY+tTTDiAaKAYtDg5uzYffFZ6DLS1ISmS5S2ELByi1lgF8m36zQvVwhBpE2aO7z9MK9VBQ+FleSYxgKKzzp8oyAkEJ1cEYOr7mRh2zPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PdH92bx3; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-41f9ce16ed8so46720025e9.0
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:28:23 -0700 (PDT)
+	s=arc-20240116; t=1716312950; c=relaxed/simple;
+	bh=XuD3UMWSTicjIiF7ozXmrSi2myUo59yuazJuOkCVELs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QOj77NXfFy2UFRG8ODzM9T1jmb2Csj48hD/5/mJ+fgvIUWcKoaoD+kCJ9pe/VdtMxAF684Kxw5iZtpaQf/+G6nQTDn+8bPl8c2DaKDJDKEXfkyfcrXAJZPrnfA6E2je6+8AWLL9iowI08jOaoArRBS1Jl8DBLL9kD35+Lo3ciOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O+9hcj+3; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5238b5c07efso4776541e87.3
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:35:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716312501; x=1716917301; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716312947; x=1716917747; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fTdkV/Nb+lhqigMM3Hf6hdTSrxsoAm88nN+jAsX27lc=;
-        b=PdH92bx39ZNiOgZdWVS6ROarFUwc+2sE05keBxSkJqidpZH99gyzqQtHxxaZvRCJP8
-         whugxH6BZRyhwu828X+8aTrzAd9wpJgjj+YQbW3l+ftXDseQTWDLaF2icplcLuITaw0W
-         eW1xKlhvIi86Qrf+pzS98onZpufnYwPcesnmUtQfcuGPyGOnUtW0gyABtKmh1Xzs0lwq
-         q0egQTDS2VXRrnTXigcTuLoVPTkn2TunHQbEFf2SHVuFp3JynaDsbioQxj1fy5BU0k7V
-         qG73fdiO1pie5MEg4n/uvix5g61RO29y+cB42w2OEDUx6BSUnwgI16ckP73IcZRw/OVA
-         xHdw==
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7Ctw+pH4MnzojRpfpKhoAI1zwXX4IBqahQuQmnWxFZo=;
+        b=O+9hcj+3m2pGAY8J4QCMFjL8lJn0oVlooOB2sgzvqNsroYohaFTgXBYZmAe6k4qvAT
+         4DNK/B0I+XrqEvIfeCR6SxbZr0aVEuouDe80BFSopAKqcTQWzWDa4n/+ogsZbosl0Wjd
+         BDTo9g92DsBLMWpYTrc0fGzL2zsH+n9CyXvt5svQt6+MVwBlKl+VAuVDv5LYUYaGhfy7
+         ik2WK4gwBovZ2E+Hu8R2fRqeMt8hSXG6qDVJpTz6lrf+YdR9VGmgLdi+Knc75/xIU19a
+         zSMXeC+pvI7KCfyi8l9eF/seQ0TS5be7eeq9Q6k/NaMAglD/uOUoJ3OQ2IaACqXhKN/c
+         +INQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716312501; x=1716917301;
+        d=1e100.net; s=20230601; t=1716312947; x=1716917747;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fTdkV/Nb+lhqigMM3Hf6hdTSrxsoAm88nN+jAsX27lc=;
-        b=PY/R1U6gCEErxBDG4WG3jDFUhoJkwUnVIorny4zJubTV0xh+PfhKZJYrna/S9mTrwo
-         k0QsfVGJKYUw0GS/nXMKnkALJl7b2YXLdnAytA65CRjQIzklIDBV83oTGoUOVC3E4p3O
-         wx4ti/Hv0EIz5WZLhxhjMLi1od4DxiQ8k89L3rzNryaFi6ubl5g5pBZ7punw6VlA8eSS
-         SZWXJWuMa2c3rHAIkzro4URh1aioAOX1CR9MKEoZ9lXjpiiuGtk+wsRudnu79QhAHa68
-         NTusGn0os+j2jG2xx69ibiP1DVW5YXEvLQL+CGr+o4N3gvT9FWEBS+EF2jdFpiuQZh+D
-         +u7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXIozoWiSrhkYta/qrbEiv1nj2InIqaVLAoOOq7hNRRqxVD4zJ0SiQNmUiGoetIARpIgeaXlTyRgo+6AXQn3YIw3nCHBL6v+PMjTQ==
-X-Gm-Message-State: AOJu0YyI4m2Yui/+oRAjFpPWM4qrV0eDtB9HPVxghQAjQm4EvTCODcRT
-	o6Y75Ne1pER9RPlyuGI9Jjj/KTjw33p29zwoOBDWRrFaFxcXC7K+H/tqFxVzYG0=
-X-Google-Smtp-Source: AGHT+IHa7aTOJ9Va0C6tSG204l9GGSDSFJtv1uIZZDq4KISzOIFIvNkmp3rnYOhlulggFsF4yMFpEA==
-X-Received: by 2002:a05:600c:4f93:b0:41e:a90d:1216 with SMTP id 5b1f17b1804b1-41fea9324e4mr286919575e9.3.1716312501561;
-        Tue, 21 May 2024 10:28:21 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fe36f373fsm449115495e9.20.2024.05.21.10.28.20
+        bh=7Ctw+pH4MnzojRpfpKhoAI1zwXX4IBqahQuQmnWxFZo=;
+        b=TmAr17nTChdGKofXBbHOl8LLTRjW+TrxUxaEgtIZHGEv7eO60jY4rtaH6dv76fB8/1
+         Qv8vliphdC7VhqkAwiDWIsCf0p/vOQWnsSwBq6r7uPKQWQ6XbrfKgUMn1OwqB6QF/jaN
+         X3UHXMbQt3Fog667YuB+yangbSY1YuqzmmncpK1oT5Q8BWMEPNT5n806IRt9U6Bt7Ial
+         XHl9/+7gzm/qE233DnA+PEp1+mqsFRsVrFHM0bA254RHn/mom6iXSgdZhhjv16TuMaKb
+         SBFCZ4mJ0c/lpMcFps7F9eZi/6+0A0xGXx8I6pU5JMaO8ybXKaeGwQFi/20NFRyJlIzT
+         ngaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQtUhzr/svGkHx7DkAHFMudfIZ1Dn7xPdxGtMuSpsh+JGuCeH5vX0I5ZqM+1T/MtuELYhAuYKm2dGvkZEDd3cZIfuPPIHw6G1fSQ==
+X-Gm-Message-State: AOJu0Ywd/gzVm1rCx3tnly7s597hkLAtjLw+ipRP12b/P2pC5V4rTC9k
+	ofJgB9b7MrchTgGJORPJum9U2k24diSKAkpMSfY7xTHG6W/81zO41GckKug6RyVqkKiXR8QR3td
+	j+w8=
+X-Google-Smtp-Source: AGHT+IG3tpTeaNwBk05y415j39FL3r2RzN7r9+FBBuxHR6nbabjWWdvFIWpNFzi37IVlgNTTHwLGOg==
+X-Received: by 2002:a05:6512:3e0e:b0:522:2edc:c858 with SMTP id 2adb3069b0e04-5224b73a706mr21157861e87.34.1716312947234;
+        Tue, 21 May 2024 10:35:47 -0700 (PDT)
+Received: from [172.30.205.5] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f35ba54esm4705961e87.110.2024.05.21.10.35.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 May 2024 10:28:21 -0700 (PDT)
-Message-ID: <5b77621c-7a82-4b9f-add7-70bb9bf9de44@baylibre.com>
-Date: Tue, 21 May 2024 19:28:20 +0200
+        Tue, 21 May 2024 10:35:46 -0700 (PDT)
+Message-ID: <d45ee913-7f6d-447c-8cd8-2bfe2986aaa2@linaro.org>
+Date: Tue, 21 May 2024 19:35:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,121 +77,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: mediatek: mt8365: use a specific SCPSYS
- compatible
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- MandyJH Liu <mandyjh.liu@mediatek.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240518211159.142920-1-krzysztof.kozlowski@linaro.org>
- <20240518211159.142920-2-krzysztof.kozlowski@linaro.org>
- <f42ef151-6eee-418f-91e1-5ac08d161119@collabora.com>
- <2cc638ca-0add-4c8c-b844-606e22dbd253@linaro.org>
- <cf8c87fe-7a4f-423f-9c97-3759eeee4894@collabora.com>
- <51a47736-ffe8-49e2-b798-d409ca587501@baylibre.com>
- <75b78eaf-9b13-477c-bf02-4e9837a25dd4@linaro.org>
- <edc43094-19a7-4e62-8fba-ac2b22f66239@baylibre.com>
- <83bd6797-2214-4962-84a0-fadcfd130717@collabora.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Enable download mode register
+ write
+To: Mukesh Ojha <quic_mojha@quicinc.com>, andersson@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <1715888133-2810-1-git-send-email-quic_mojha@quicinc.com>
 Content-Language: en-US
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <83bd6797-2214-4962-84a0-fadcfd130717@collabora.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <1715888133-2810-1-git-send-email-quic_mojha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 
 
-On 21/05/2024 16:13, AngeloGioacchino Del Regno wrote:
-> Il 21/05/24 15:26, Alexandre Mergnat ha scritto:
->>
->>
->> On 21/05/2024 10:22, Krzysztof Kozlowski wrote:
->>> On 20/05/2024 17:23, Alexandre Mergnat wrote:
->>>> Hello Krzysztof,
->>>>
->>>> On 20/05/2024 12:12, AngeloGioacchino Del Regno wrote:
->>>>> Il 20/05/24 12:03, Krzysztof Kozlowski ha scritto:
->>>>>> On 20/05/2024 11:55, AngeloGioacchino Del Regno wrote:
->>>>>>> Il 18/05/24 23:11, Krzysztof Kozlowski ha scritto:
->>>>>>>> SoCs should use dedicated compatibles for each of their syscon nodes to
->>>>>>>> precisely describe the block.  Using an incorrect compatible does not
->>>>>>>> allow to properly match/validate children of the syscon device.  Replace
->>>>>>>> SYSCFG compatible, which does not have children, with a new dedicated
->>>>>>>> one for SCPSYS block.
->>>>>>>>
->>>>>>>> Signed-off-by: Krzysztof Kozlowski<krzysztof.kozlowski@linaro.org>
->>>>>>> Technically, that's not a SCPSYS block, but called SYSCFG in MT8365, but the
->>>>>>> meaning and the functioning is the same, so it's fine for me.
->>>>>> So there are two syscfg blocks? With exactly the same set of registers
->>>>>> or different?
->>>>>>
->>>>> I'm not sure about that, I don't have the MT8365 datasheet...
->>>>>
->>>>> Adding Alexandre to the loop - I think he can clarify as he should have the
->>>>> required documentation.
->>>> Unfortunately, The SCPSYS (@10006000) isn't documented, but according to the functionnal
->>>> specification, it seems to have only one block.
->>>>
->>>> I don't have the history why SYSCFG instead of SCPSYS.
->>>>
->>>> I've tested your serie and have a regression at the kernel boot time:
->>>> [    7.738117] mtk-power-controller 10006000.syscon:power-controller: Failed to create device link
->>>> (0x180) with 14000000.syscon
->>>>
->>>> It's related to your patch 3/4.
->>> I don't see how this could be related. The error is mentioning entirely
->>> different node - mmsys. No driver binds to 10006000.syscon, except the
->>> MFD syscon of course, so my change should have zero effect on drivers.
->>>
->>> The mtk-pm-domains (so child of patch affected in 3/4) only takes regmap
->>> from the parent, so the cells again are not related.
->>>
->>> Just to be sure: you are testing mainline or next, without any other
->>> patches on top except mine?
->>
->> I've tested on next
->>
->> * a018995ac19c (HEAD -> temp, me/temp) arm64: dts: mediatek: mt8173-elm: correct PMIC's syscon reg 
->> entry
->> * 0f118436c61c arm64: dts: mediatek: mt8365: drop incorrect power-domain-cells
->> * d40e424fe6dc arm64: dts: mediatek: mt8365: use a specific SCPSYS compatible
->> * d7caa08a4a9b dt-bindings: mfd: mediatek,mt8195-scpsys: add mediatek,mt8365-scpsys
->> * 82d92a9a1b9e (tag: next-20240515, linux-next/master) Add linux-next specific files for 20240515
->> *   77ba09d6e7cb Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/lenb/linux.git
->> |\
->> | * dedcf3a8e704 tools/power turbostat: version 2024.05.10
->> | * baac2f4c7f3b tools/power turbostat: Ignore pkg_cstate_limit when it is not available
->> | * a0525800e2dc tools/power turbostat: Fix order of strings in pkg_cstate_limit_strings
->> | * ffc2e3d90e6f tools/power turbostat: Read Package-cstates via perf
->>
->>
->> I did the test with and without "0f118436c61c arm64: dts: mediatek: mt8365: drop incorrect 
->> power-domain-cells"
->>
->> Without this specific patch, no regression.
->>
->>
+On 5/16/24 21:35, Mukesh Ojha wrote:
+> Enable download mode setting for sm8650 which can help collect
+> ramdump for this SoC.
 > 
-> Honestly, that makes very little sense to me - that property is useless and it's
-> like it's never been there... at least, no MTK driver is parsing that and there's
-> definitely no power domain in the top node (a child does, but not the parent).
-> 
-> Is this a flaky result? Did you actually try to reboot multiple times to check if
-> the platform is *really broken* after that commit?
-> 
-> Sorry, it's not mistrust or anything, but I've been in this situation multiple
-> times in the past, usually always on linux-next (because it's constantly broken :P)
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
 
-MMMmm you're right, I can't reproduce this time...
-Sorry for the noise.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
-
--- 
-Regards,
-Alexandre
+Konrad
 
