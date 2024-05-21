@@ -1,76 +1,48 @@
-Return-Path: <devicetree+bounces-68012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58C68CA8FF
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:34:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E8E8CA907
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:36:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D450B22600
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 07:34:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E1C91F21EAD
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 07:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F42E535AF;
-	Tue, 21 May 2024 07:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD0C50A6E;
+	Tue, 21 May 2024 07:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m0Qza6X0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZNQoD+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF78953362
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 07:34:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965714AEEA;
+	Tue, 21 May 2024 07:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716276863; cv=none; b=jU/u0N0F3GSFOCfHQU9lm2MF9s278iSKbEKsSpWkrYfSoAldGxsUirYn5G5jTHyiY8S9YlceWzodRXZf2A4arnSd4FU8pUri9M+UMzxzhM4GAiiRK7fI9686CgL+JH75LM1/UWkg4WZCh2qDjvh1W0m7+mVQIMnG/Rn8dOgN3Uk=
+	t=1716276970; cv=none; b=hGbDbzdxYAk9UsftQjDNdZNAaf3Paen2OLGmY+9WXVZlkPqfYHcnI0nNB3amTlahCqMZ2t8ZHNZ/O2Glz0kQFSfbOt8vWclJz7EF75yKqsQe8pnZMP95oyA4w4ViBAW5+5znIeMqpoknjeB3VUmvoJ0gQBvhTa+sdLSv9pmKcIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716276863; c=relaxed/simple;
-	bh=pAeG2CFOT/D5a7A6CmyGcRVSTkdG0n7lyiPuFEIVNNA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qY5+3YEaGzqHw1bgPWJwxMcL3TwIMgD7Etn5jEtcbBvi6R8w4HaTBxfs0KjAjsZogYaqBP9oMbU3/N1avQ6m359kxGUqmdFkcknaBGpqh0FL+lGiIn3PeJCIOxb35Lvfv7LkKTFYIsZBLD4GvvljqSph5DrnyLFJFdZwkTXufYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m0Qza6X0; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-57822392a0dso609527a12.0
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 00:34:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716276859; x=1716881659; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CMHax4Pr4b+O02m2JmYswFgOmYbDFbB51czH5x/68eo=;
-        b=m0Qza6X0/Z9Tsi0+r6aJUzUB6ARTF06+OrDOPZPlF8vt5heCc7Y4Oa4CNSNE4zQ4B8
-         zwO2o/N0NNuPVExd1MQx2Kk+HBHqi/yduuEYhD1uCamG+5o0hOz9vGBOSo0yH56ifsXo
-         vcRigZ/eVmY4pKZXFcdMZgeV6JFg+zpekkX7nTrqlLBnFrdVDvwnjv/JW02Y5lJ/xr3t
-         xF27AdIS0kBC86fvyYwV4chpxFI1xhbUzKRpYA98zqYpEmfnK01XWHqKdELQZzZg/8SB
-         iFlyZr4bj34pDk++P5p2pwc/iZgC7EIQxRgNH47qvC/YucSy0kyn9BUf895xAfEvksMo
-         o6FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716276859; x=1716881659;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=CMHax4Pr4b+O02m2JmYswFgOmYbDFbB51czH5x/68eo=;
-        b=QE1VLSvMF58VnKclnoLWl6VoBSynAAXLyt5VomMM3E7cUmnk0s6WqP6kD2jpzVU1F2
-         b9hR1VzAszMQ0rSeN3NcheNVlBZfw1lfC5nx6p5zMFicHVxap2P7GwD/Zth4pvX9JYyV
-         pW4YiYkLMNtaeOy2FjDXRMGQbA2iZcmkeJwWR9B/cppQh6DNUpyS12NmP+CPIR1x74jP
-         +1aGICJftU6UtvGkMcADk2DyaoalKcKTZYQrOf1xG8EBj2ZolOmLAiy5ZtRyEi6K5Drl
-         ilthBdJ29jFnEEAwesEFVa8XAqK7hVwal40w/RAjbJi9pFSRIkvUnbj++sABk1nT/jl9
-         C2Nw==
-X-Forwarded-Encrypted: i=1; AJvYcCXTK8e2NWbUGmwT1YMCsGnmx+CyjrEcTKNUrOPKQNaXeRajDGUqP0lZCoLPsRttyE6yaQKdvAiIwut0mAocSYQgPGTNHxwsQ9AQfg==
-X-Gm-Message-State: AOJu0Yw9yP+8dUZ6duFzLS8LDddZlpygY9Dsz/U7BSLwsbsRluli82z2
-	x5m7r1ksH+QRLH74P1ZWlKtD3cAG/VniYHlbACi+Vm4Ll7uLqT0Jfz7fAG7Z/YM=
-X-Google-Smtp-Source: AGHT+IH5nFdjW0QRwbNkBOAM+4rSewNFvz2jWrfD9zMOvR2Qg46FvsnqORUa+fYPx3UyiT/uYIuVyQ==
-X-Received: by 2002:a17:906:fe45:b0:a5a:44a0:8e21 with SMTP id a640c23a62f3a-a5a44afd0demr2373368066b.69.1716276858688;
-        Tue, 21 May 2024 00:34:18 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:adf9:e5d:4c15:f725? ([2a01:e0a:982:cbb0:adf9:e5d:4c15:f725])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a61b1df3ca5sm213052066b.176.2024.05.21.00.34.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 May 2024 00:34:18 -0700 (PDT)
-Message-ID: <330ad0c3-1f4b-4f74-ad64-de48813aaa18@linaro.org>
-Date: Tue, 21 May 2024 09:34:17 +0200
+	s=arc-20240116; t=1716276970; c=relaxed/simple;
+	bh=TSHH3TFEnI88JgnRvSkdY7vzKnYn1JgNXRhpBIdSkVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CM03N9/Nlr9/L4Ra8FKpJXKzd3WzkDuGvaP2ARH82XV1q5MR51AyDvW7n0WuZBZwLAHCM9ldVMGufCutZY+lkithDn9JLoUZSrWJ4ZzNFWfaAAhRM3kKSp92PLhds+L0+PANstXnw4hPPjYnZ357uE77PW0A5pr0WQ6sgQRti/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZNQoD+w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D08AC2BD11;
+	Tue, 21 May 2024 07:36:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716276970;
+	bh=TSHH3TFEnI88JgnRvSkdY7vzKnYn1JgNXRhpBIdSkVE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mZNQoD+wrg2KP/FaOfxM7OJQtdwDGyPYiPGU1xhhmVtz8zj9faHSKv8zwUyRg17Ay
+	 OeYwnA34MPly41sMng9rjAnSKqlYVVE5eyadxY99cybyJXaxSn/a3/zLuWvD+aZ9Oa
+	 1Ep4+NrwfzDL9SicNe0ihPr8fhc2YPe7yHwaHJKwgpPM1goTrhJFRajAPqAgjs8bZg
+	 GYtGXjqlzL/AsM/9T/x26Jb6Fk6Gq+j+moexQrhxirhC0eI9a0CfttXeqHG/9EJMee
+	 Yq2yjh7xdql6vTDhJFM2oiF6nGEQ/5kwFIdEliJXPgCITiU9zVRcwcB4HW2qEDxZ53
+	 moaIxJeDtL1mg==
+Message-ID: <c9882ba0-bbbf-44ec-9606-ebe68bcb8866@kernel.org>
+Date: Tue, 21 May 2024 09:36:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,118 +50,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: meson: add dts links to secure-monitor
- for soc driver in a1, axg, gx, g12
-To: Viacheslav Bocharov <adeep@lexina.in>, Kevin Hilman
- <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20240516112849.3803674-2-adeep@lexina.in>
- <20240516112849.3803674-8-adeep@lexina.in>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240516112849.3803674-8-adeep@lexina.in>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 5/7] dt-bindings: remoteproc: qcom,pas: Add hwlocks
+To: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+ Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
+ <20240516-hwspinlock-bust-v1-5-47a90a859238@quicinc.com>
+ <3521519f-34b8-472d-be37-f0e64bba24fc@kernel.org>
+ <a944418a-1699-44fa-bdfc-2e57129adea1@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <a944418a-1699-44fa-bdfc-2e57129adea1@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/05/2024 13:26, Viacheslav Bocharov wrote:
-> Add links to secure-monitor in soc driver section for A1, AXG, GX, G12
-> Amlogic family for use with meson-socinfo-sm driver.
+On 21/05/2024 06:08, Chris Lew wrote:
 > 
-> Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi         | 1 +
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 1 +
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
->   arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 1 +
->   4 files changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index c03e207ea6c5..d47f056117fc 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -407,6 +407,7 @@ hwrng: rng@5118 {
->   			sec_AO: ao-secure@5a20 {
->   				compatible = "amlogic,meson-gx-ao-secure", "syscon";
->   				reg = <0x0 0x5a20 0x0 0x140>;
-> +				secure-monitor = <&sm>;
->   				amlogic,has-chip-id;
->   			};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index 6d12b760b90f..45791ec6694a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -1689,6 +1689,7 @@ mux {
->   			sec_AO: ao-secure@140 {
->   				compatible = "amlogic,meson-gx-ao-secure", "syscon";
->   				reg = <0x0 0x140 0x0 0x140>;
-> +				secure-monitor = <&sm>;
->   				amlogic,has-chip-id;
->   			};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 9d5eab6595d0..a8c1c72543b7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -2026,6 +2026,7 @@ cec_AO: cec@100 {
->   			sec_AO: ao-secure@140 {
->   				compatible = "amlogic,meson-gx-ao-secure", "syscon";
->   				reg = <0x0 0x140 0x0 0x140>;
-> +				secure-monitor = <&sm>;
->   				amlogic,has-chip-id;
->   			};
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 2673f0dbafe7..656e08b3d872 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -471,6 +471,7 @@ cec_AO: cec@100 {
->   			sec_AO: ao-secure@140 {
->   				compatible = "amlogic,meson-gx-ao-secure", "syscon";
->   				reg = <0x0 0x140 0x0 0x140>;
-> +				secure-monitor = <&sm>;
->   				amlogic,has-chip-id;
->   			};
->   
+> On 5/19/2024 10:36 AM, Krzysztof Kozlowski wrote:
+>> On 17/05/2024 00:58, Chris Lew wrote:
+>>> Add hwlocks property to describe the hwspinlock that remoteproc can try
+>>> to bust on behalf of the remoteproc's smem.
+>>
+>> Sorry, as you wrote, the lock is part of smem, not here. Drivers do not
+>> crash, so if your crashes as you imply in the cover letter, then first
+>> fix the driver.
+>>
+> 
+> Hi Krzysztof,
+> 
+> Sorry for the confusion, I dont think I meant that the smem driver will 
+> ever crash. The referred to crash in the cover letter is a crash in the 
+> firmware running on the remoteproc. The remoteproc could crash for any 
+> unexpected reason, related or unrelated to smem, while holding the tcsr 
+> mutex. I want to ensure that all resources that a remoteproc might be 
+> using are released as part of remoteproc stop.
+> 
+> The SMEM driver manages the lock/unlock operations on the tcsr mutex 
+> from the Linux CPU's perspective. This case is for cleaning up from the 
+> remote side's perspective.
+> 
+> In this case it's the hwspinlock used to synchronize SMEM, but it's 
+> conceivable that firmware running on the remoteproc has additional locks 
+> that need to be busted in order for the system to continue executing 
+> until the firmware is reinitialized.
+> 
+> We did consider tying this to the SMEM instance, but the entitiy 
+> relating to firmware is the remoteproc instance.
 
-I got those new dtbs check errors:
-+	from schema $id: http://devicetree.org/schemas/arm/amlogic/amlogic,meson-gx-ao-secure.yaml#
-+/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dtb: ao-secure@140: 'secure-monitor' does not match any of the regexes: 'pinctrl-[0-9]+'
+I still do not understand why you have to add hwlock to remoteproc, even
+though it is not directly used. Your driver problem looks like lack of
+proper driver architecture - you want to control the locks not from the
+layer took the lock, but one layer up. Sorry, no, fix the driver
+architecture.
 
-and on other files.
+Best regards,
+Krzysztof
 
-Please update the bindings,
-
-Thanks,
-Neil
 
