@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5445D8CA930
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:43:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D8658CA949
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:48:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A8BE2825DB
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 07:43:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80FE91C20326
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 07:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F5951C44;
-	Tue, 21 May 2024 07:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193C251C4F;
+	Tue, 21 May 2024 07:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CM9AT0ap"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RAn2QiVf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73BD5C12C;
-	Tue, 21 May 2024 07:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE2A42056;
+	Tue, 21 May 2024 07:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716277431; cv=none; b=METutlkr+aoYLGhZPuL8v475/6fxL1x0FylJC1rvDWI8aF45TSs9EuKXsiyltlSL7dJDMETbysP5TzdW+1nF7ASBNwhaJ1FXNFkXejbUvUt9yoFXZ3HqmWODOtGjIx93u7lqQ8KAyh01Z68VpRUCYSySFMw/G89cCvFZPsw5SW8=
+	t=1716277689; cv=none; b=KLLyFZq/jwgvTb2zbSizxFzCajYDzfOm9ktIecPxXIhJoCS+fOqQ5SX1laYYspGQWLDmG6b+1K8NrDfZvMXVZct94AS6tiOEWu4tjtel42Nx5A4SHQGo96JDiUaAf8vhg+6Uxn2vQTT2yo1eN+SZTjSEj2oeZCO6tlLXeeT1Jvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716277431; c=relaxed/simple;
-	bh=A9IoVr57gmQQXvYv0Uila/oUZpM/Kyt0jnAtAwEIOdM=;
+	s=arc-20240116; t=1716277689; c=relaxed/simple;
+	bh=gxLCGJEZuzZ7JbeIMv/L4mu3/DeF9NXhElar8zGdsoc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TTEcQZUV6dK7/LgoeM6IUS+FrxbvxzVpy7o/3/M2hXFaWUY9p6gqKWiPjjYRwovLATQME1OJF8sAHqTdMIusot5zaLU5PLIFYiY6uBB02YyoZcnuzJQpejyezQwkbu1ztR5ax651a4uOlfQn5RVoG7GcqiOBsxAVrIE/PgOppFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CM9AT0ap; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F99FC2BD11;
-	Tue, 21 May 2024 07:43:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hDjwVvYL1sa3X00yFwROd/23mhSvQn3QwiRg/5NjWWE++8OoicE+zILmVpqqN61qnxfIbEMPFhPATvVBrcteKVQDEk6TjbtLtc2OtGsEEI6rH39TJH86lvZtzXdxHtxCd1gVvupOBB6u1DTzFF+jcd78dsC0EJ/JSbkP4cpPRKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RAn2QiVf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 736D2C32782;
+	Tue, 21 May 2024 07:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716277431;
-	bh=A9IoVr57gmQQXvYv0Uila/oUZpM/Kyt0jnAtAwEIOdM=;
+	s=k20201202; t=1716277688;
+	bh=gxLCGJEZuzZ7JbeIMv/L4mu3/DeF9NXhElar8zGdsoc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CM9AT0apq+pZCL0u4THZUTsWP9EETGIxjdkiLNHh0cj02ai8FUL0JrZPgOP/GwGH5
-	 7gL+3RguyfWuUEhL3mHYspEfmDS3wZnrnxlz2MlbdJkZu25tJMULW1kZkDEGSKSjw7
-	 rytD152qkcnXY3HM9O6QKKApQkGYzT8vsllfbEImOW7/nVgPVkIYPOKy3dzX6U2pFl
-	 J90Xhkq2vVMqew4OOXYzknCC2edddAo1nKoA9ivnAwQxLmQmZ1E8JPftPTW95lDVVE
-	 iO/uJ9bJEhiskYxB8kVQObAWg+JPdifmIEENjJ6CSX4+S4T6cMWxLZAfumeNjgXnJn
-	 OVzOlU48ZsLBg==
-Message-ID: <bc9079e8-0f20-4875-80e9-bccf7d1f761b@kernel.org>
-Date: Tue, 21 May 2024 09:43:45 +0200
+	b=RAn2QiVfHwTDDzyUjDxKdH13uu5Egupje0I/cobwJnMZZjZR3umf2HpMhaXOj2lOD
+	 lg1wXl187uyg9rOYZKIOHrFyIaFbehZIRL7s1PnRhouWN2T8dipEpG154auNUkcAeS
+	 I/dTwtzCOwjurkKt8p/uWEVIi5zOtkkVm/H2lwwUtDynbrE5tzhv+B0n23ow6GzF4B
+	 zFrMjQnCtOzVoJRoP9aWNWTiXDJJcgQuYSaQE2IwoJGG11sclQlrd7CsaaJxpTFP4R
+	 bkspNr+eDmLKYLxcflHaaQT0TQpJfAz70obZxMDDbvd7UM4FX/q1Da4BCsOS3SbA57
+	 dr/OPhApceJjw==
+Message-ID: <473dbd64-5479-47e0-9e5f-b0f623456b38@kernel.org>
+Date: Tue, 21 May 2024 09:47:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: gpio-sbu-mux: Add an entry for
- TMUXHS4212
-To: Nishanth Menon <nm@ti.com>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
- Parth Pancholi <parth105105@gmail.com>,
+Subject: Re: [PATCH 03/13] dt-bindings: a2b: Analog Devices AD24xx devices
+To: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
+Cc: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>,
+ Mark Brown <broonie@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Parth Pancholi <parth.pancholi@toradex.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, vigneshr@ti.com
-References: <20240517111140.859677-1-parth105105@gmail.com>
- <1675a33d-47af-4de9-a0e7-177cbe208e2b@kernel.org>
- <20240519202754.GA3334@francesco-nb>
- <469be7c2-6865-40d4-bd06-15dc3a08b3e3@kernel.org>
- <20240520121441.svp6oabjyev4vmih@magazine>
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Liam Girdwood <lgirdwood@gmail.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Saravana Kannan <saravanak@google.com>,
+ Emil Abildgaard Svendsen <EMAS@bang-olufsen.dk>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+References: <20240517-a2b-v1-0-b8647554c67b@bang-olufsen.dk>
+ <20240517-a2b-v1-3-b8647554c67b@bang-olufsen.dk>
+ <f1605873-c36c-4e61-8076-13a7094dc13b@kernel.org>
+ <of6lnkarmtgxg7mhi7ofkfu6obhohkl3gpfycctpyty5dhx4qx@2nxwt3btybdi>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,89 +119,63 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240520121441.svp6oabjyev4vmih@magazine>
+In-Reply-To: <of6lnkarmtgxg7mhi7ofkfu6obhohkl3gpfycctpyty5dhx4qx@2nxwt3btybdi>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/05/2024 14:14, Nishanth Menon wrote:
-> On 08:53-20240520, Krzysztof Kozlowski wrote:
->> On 19/05/2024 22:27, Francesco Dolcini wrote:
-> 
-> [...]
->>> If it's not the case we'll send the patch later on, however some
->>> DT files maintainers (e.g. arch/arm64/boot/dts/ti/) have a policy to
->>> just accept DT file in which the binding changes are already merged
->>> therefore I was trying to be a little bit proactive here.
+On 21/05/2024 09:24, Alvin Šipraga wrote:
+
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +
+>>> +unevaluatedProperties: false
 >>
->> TI? Never heard something like this from them... Such requirement would
->> seriously slow down any work, so it's not really reasonable. Expectation
->> is to post both binding change and an user, so DTS, in case of USB in
->> separate patchsets.
+>> Sorry, but not. No resources, nothing here. Do not create bindings just
+>> to instantiate drivers.
 > 
-> There is a reason we have set that "soft rule":
-> - Driver subsystem merges have known to be broken from time to time and
->   the dt maintainer is left holding compatibles that have not made to
->   master.
+> Do you mean that there is no need to introduce a binding for this codec
+> if it has the same bindings as dai-common.yaml?
 
-You mean driver tree took the bindings (because then you take the DTS)
-but they did not make it up to the master? Yeah, happens, but postponing
-DTS code for this is quite harsh.
-
-> - ARM subsystem merges prefers not to see checkpatch warnings -
->   typically, this happens with new compatibles in the driver subsystem.
-
-Never heard any comment about this. Maybe because I always do checkpatch
-tests (part of workflow), so then any warning, which there are pretty
-lot like touching maintainer files, is understood as accepted.
-
-> - Off chance that driver subsystem maintainer picks up the dt changes as
->   well (should not happen, but has happened)
-
-DTS changes? Yes, that's why they should be in separate patchsets for
-few known trees, like USB, net, media.
+No, I said you do not have absolutely any resources here, so your
+binding is empty. There is no need for such binding. You just want to
+treat DT as way to instantiate drivers, which is a no-go.
 
 > 
-> We have however flexed the rule when:
-> a) driver maintainer is willing to provide us an immutable tag that we
->    can merge in and base the dts on top.
-
-You cannot base DTS on top of any driver branch. In the past Arnd and
-Olof were rejecting this, recently this got more flexible, but still cannot.
-
-This implies dependency, which is a no-go.
-
-> b) We felt that the chances of the driver not making it is very very low
->    (typically after 1+ month in next) and the dts change is in the wider
->    interest of the community. In such case, we have to explicitly take
->    the action of letting the patch submitter, driver subsystem to let us
->    know if something bad happens to the PR, also in our PR to SoC
->    maintainers, we have to call it out along with rationale why this is
->    OK. This is a bunch of work from a lot of folks, so prefer only to
->    trigger this path in case of exceptional cases - there have been a
->    few far in between.
+> Basically that is the case, but #sound-dai-cells should be <0>. Is that
+> not enough?
 > 
-> Again, the default rule (driver in one window, binding in next) has
-> kept us out of trouble for a few years now at the detriment of pace
-> of merges, but that took care of a lot of conflicts that we had seen
-> during initial days of k3 - there are few chains in the lakml list
-> where this was the direction we ended up in after discussion.
+> I am OK to just drop the binding if you think so, but I would think that
+> the compatible string should be somewhere in the bindings. Could you
+> explain a little more what you mean?
+
+Why do you need compatible? Which piece of hardware, with its own
+resources, is being described here?
+
+Just put dai-cells in parent node.
+
+
+...
+
+
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    sync_clk: sync-clock {
+>>
+>> Drop, not related.
 > 
-> But, yes - as you mentioned, send the patches of the "user" of the dt
-> binding and driver gives the subsystem and dt maintainers a chance to
-> review in the context of usage prior to the driver and binding merge.
+> If the clock is required (as it is) then I have to reference some
+> phandle in the example, 
 
-Anyway, I am fine, but then I expect from the contributor to explain
-where is the user.
+Why?
 
-Specifically, for completely new bindings I will NAK them if there is no
-driver or DTS posted. Why? Because experience shown me that people post
-some bindings and then entirely different DTS, without running full
-dtbs_check. Therefore I want to see both - bindings and DTS, if applicable.
+> else the example will fail the check (missing
+> required property 'clocks'). That's why I put it here. Please advise.
 
-It is easy to fulfill both requirements - mine and yours. Post bindings.
-Post DTS and link the bindings, with explanation it should be picked up
-*later*, because that's what TI expects. That's way I can still find
-both pieces, but you do not risk taking DTS too early.
+Let me answer indirectly: do you see any binding doing this? No. There
+is almost none, so this should be a hint that it is not needed.
+
 
 
 Best regards,
