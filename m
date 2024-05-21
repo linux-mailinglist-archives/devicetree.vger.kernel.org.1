@@ -1,207 +1,164 @@
-Return-Path: <devicetree+bounces-68086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A7128CACB7
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:53:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BB6C8CAD1A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:09:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADB081C21CF6
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:53:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6D2D281255
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307AF757E4;
-	Tue, 21 May 2024 10:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238D674BE0;
+	Tue, 21 May 2024 11:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aPatt4kt"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="PiiW/HIy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2068.outbound.protection.outlook.com [40.107.96.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A30B745ED;
-	Tue, 21 May 2024 10:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716288784; cv=none; b=Tzl3pzVg1Dkx3l6NYA+rpOJEzEmfkw0ucVMuWx2FNKBZQyjY5tStbCCTWm7V3dlxhNYPuIYfGkr+Qpxok6T07YCDrMAV4bPfRvUU4ggBmN4oROmNcU2tBWhDo72ogRbgiV7SONNa1y4X5I/CQYgvehomkSmsCjnQ0fgWD5PceW4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716288784; c=relaxed/simple;
-	bh=tC+V9Y70X/Xnv05SewXsKRHGbavT2qz+t6q9U43RK5M=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bujyO28y3Y3EZs7Z5St+mg4Gzv1Zr5RN0Zb8yN21ZkKpmkzzoj6zWc+YCQROYl+/KTSnZjKww21E2Z3qFqrOyuA3BFysvPAeX5+sIPV9bB5BT8b30VfEGhlD1JSg4i+MQVJCQ8cg7C+eNlu4S+u/MMOGLpNEhEy51b0jvPPpq3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aPatt4kt; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-572baf393ddso11822464a12.1;
-        Tue, 21 May 2024 03:53:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716288780; x=1716893580; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vwKhGwCuZU7pPcy50QvgvS6xSY301hGuD+YpB8vSPTs=;
-        b=aPatt4kt7WlrUaKU9FbnuqZvXUOPCp+WMyX23eRN2lbccYjyz245/PK97GLkHVGif6
-         0SFQ7LbqG6eB+L3Cahli3x/+kJQi0/qME9rXxC4wHNA/Yniz5qM4rWXxZXObUuyF91yL
-         b9kMdyciJ30fa/FGY5esBMABEZBgjNbMRVT9uKsqVHmCk/8vpEnFtB9gNNqcSoYbN7wQ
-         RuIPMVp43yloWr9Jt/oSf2oOKNwHfFjvLNT8KbUfPaTUmTYSMoR5UzC1l7Ci/L/i6HU7
-         B5szHlFdOtW4rpIN4B2+qm4KhmwY8y5GzMu0+Zvniz69el191UzQL+Ukry2J/Orrc+ZV
-         90ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716288780; x=1716893580;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vwKhGwCuZU7pPcy50QvgvS6xSY301hGuD+YpB8vSPTs=;
-        b=sbRB5jVworfHBDhnoDtY874wGKINLRwjsQgjMq+3+R7Kx0Jeul9RTiShD7oNuTVi8t
-         u9C3VmsJTLuEJQZU4e3S4IQEyf5FYapJ1Ths5N3Wz2zUuYxfza+alLRVy6KqhNZ80QHH
-         m/Bsn1P24+AKgGSqOarBd8rzfJbffnaAsd7FAdYGhGC8QGknsUqT97SxsVLGI/J39rDT
-         4dTsM+AuTEbyTPAbbvgNgoCbhukFKNpZKlUPYCWeLepHgNpVkdLYZYluYzc4OOC65fgz
-         iOASvhwtWOMpr0690vmGL7fOywrw9XQG/pVNILkDwJUZ7//7BXO0+8W6UQda0UAqDkLJ
-         QCSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXlxuG2Cr/430BPEyMYORJQrm3ARz+f13CEud9yVDDs+erhJ6z65OaQ1w60p/pBJrSOQGpftBuKXPZkgNK2UyJV/KxvH6YMF4O+TFkUqtNFDW3IW9hGqp7mES8YtZM8Hj7hftIR6FV26uiRbBkYKh/UHwKbdF8aI4vFey0/aW8khFB3EA==
-X-Gm-Message-State: AOJu0YxSoTeQeNOwL7HFnAO7JhjbB0A79qbX4VWKfaUqyDsF7Q3wV7TF
-	w+Ce37K3idVTc7Dkb4GB6LC5ZRdzpY/LDTiExRbQIEEdHLgujWkK
-X-Google-Smtp-Source: AGHT+IFXKW6WGKcUPz8FMtXQiXjIMyo4n6v5VoDQgWnYwcqGq3eB+PXBwd5+S/yU+NN4hq4P17B1Vg==
-X-Received: by 2002:a17:906:79ca:b0:a5a:5bc8:9fcf with SMTP id a640c23a62f3a-a5d5d98cec1mr749951466b.36.1716288780350;
-        Tue, 21 May 2024 03:53:00 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef1c:c500:994e:fbde:478:1ce1? (p200300f6ef1cc500994efbde04781ce1.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:994e:fbde:478:1ce1])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b01932sm1586399666b.168.2024.05.21.03.52.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 May 2024 03:53:00 -0700 (PDT)
-Message-ID: <cc53c6c282c070894d8c65fd78f47616d36ec75f.camel@gmail.com>
-Subject: Re: [PATCH v3 7/9] iio: imu: adis_trigger: Allow level interrupts
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>, 
-	linux-kernel@vger.kernel.org, jic23@kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, conor+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, nuno.sa@analog.com
-Date: Tue, 21 May 2024 12:56:43 +0200
-In-Reply-To: <20240517074750.87376-8-ramona.bolboaca13@gmail.com>
-References: <20240517074750.87376-1-ramona.bolboaca13@gmail.com>
-	 <20240517074750.87376-8-ramona.bolboaca13@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9419C3BB4D;
+	Tue, 21 May 2024 11:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716289754; cv=fail; b=S7D3bFUSod45NeoYq/5J/EVeF/deZ+VhQpVkLBXDmZXcPZ+JXd0v61wgAVdXkMlMpVnKLDc4tghuu8oBR3MGP+aSEJ86mrsxES+to2EVXldn2p0PxftVEiM1haN+OBMij+oOKXDExcdDa6iEC4pDXvkU5ZKBka8gt5yMndnMygw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716289754; c=relaxed/simple;
+	bh=DEXsZmSeo58xCvMWzPm/DrxUDoqwSDplm9/r5QtI1j4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MZubcD9tlqlA4oQFpj30e5OEUzm9Fyjv/yC/odojerIQmBTGXwNLLg+ftuTCicmawBXyT+rK/6A7aFeFK67UX0oHtJXTda/ZG5YKznzcGBbHYud2P3sf0opdXTy9keWUvMvUsY1MFf9OsP2pYMIsUPOfHltlzle9IvqIgfv4Odk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=PiiW/HIy; arc=fail smtp.client-ip=40.107.96.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LrRjzVFi0tt2xWiLW2/b463x7yW2TN5Lomm+y7B19TjPfeJ2JEdabhMYOsgQebyCCO50vypdwWOLFI/m6I2dM8enwafz7JxHUHVkGIIwtLsNvboWxrvy+afAEEo6IXnHHUEm50opVzMUEqxFkhUUS4W89zu0hInZh49yDwWEfSZ1YSINCTFlq/DxkyiSgeLIQgqgzPMmgxL9JJAr1z/X4+o9+kzHZyGUz4lyByqhC2qIPb8hTlTFsIj2zILRDKKeSfL6hT+AGCSUuFWOd4SQKkt73cyHlcjh5KZlOkvf5Hjlmc5WRXbWnEpHvGHgwgeVd13VVcouM/OVJsUWF03Jdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dJXd25h0NH+4MRShVKC+Gk9crFEOq9qqIX3UWMD9U1Y=;
+ b=db5nH5oEWGZFjGGsbm8T4ak1bRMJeSNxILDey5fMSEKtBzfDB+4qGfMKYROOpjWCMZkG7K90IsP/XS91Jap2zV11sXmGTSQ2TMWSU38/6Zg6/9on5BTnbNDkJwwrJn4Vf3/FLQqNiY3GTlzeDgEaPr2RtIQlpXzrxionMClk6i/hbvu8HtaiTIET8pdnPCOC27lyfe13biN+tm5sDjZdYFDy61Thwdvc0CD2M8I6yMkAW5nwIuekbB6xeQd+pyQg4UBP8COV312TkN9nOQyGWREiveNeBqwnDZr8c0/Y7GRj8SutFRRrnabYFRYkr+RZxyqjv01ClK4WsVx6MkAQEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dJXd25h0NH+4MRShVKC+Gk9crFEOq9qqIX3UWMD9U1Y=;
+ b=PiiW/HIy5TBRyWDRzU6gyjVdxzY60c66trsh2ENwlzDq2QET/hi8z2f5Rp9XJBtZOK949BscY9+74O68k65rJ6TBqbyg9CIKPKaH/EmMXmRdHMsV9Gt0c9obME6L2NKlGbhvFCaTLu9xk7f5PfYKVIYWeL2T1vXbUKM+XGVaxMgpOGuhtTVciIPh1Gejlrid10sfVUV8AxAssqYt9PD4PiUp+QW70Q/I6TCXfvJ68Crnp2uvplveCpaXLROPf4d22b/QvyNwDJEsqw2w5ufqdv33p++4fZHE6omPvoRPG78OzwooeRztaux90lWEDCzt+P0co/V0cUv7hvsd8rHqlg==
+Received: from PH0P220CA0027.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::10)
+ by DS0PR12MB7779.namprd12.prod.outlook.com (2603:10b6:8:150::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.35; Tue, 21 May
+ 2024 11:09:07 +0000
+Received: from CY4PEPF0000FCC5.namprd03.prod.outlook.com
+ (2603:10b6:510:d3:cafe::87) by PH0P220CA0027.outlook.office365.com
+ (2603:10b6:510:d3::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36 via Frontend
+ Transport; Tue, 21 May 2024 11:09:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CY4PEPF0000FCC5.mail.protection.outlook.com (10.167.242.107) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7611.14 via Frontend Transport; Tue, 21 May 2024 11:09:07 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 21 May
+ 2024 04:08:52 -0700
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 21 May
+ 2024 04:08:52 -0700
+Received: from build-spujar-20240506T080629452.internal (10.127.8.9) by
+ mail.nvidia.com (10.129.68.10) with Microsoft SMTP Server id 15.2.1544.4 via
+ Frontend Transport; Tue, 21 May 2024 04:08:52 -0700
+From: Sameer Pujar <spujar@nvidia.com>
+To: <vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+	<dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<ldewangan@nvidia.com>, <mkumard@nvidia.com>, <spujar@nvidia.com>
+Subject: [RESEND PATCH 0/2] Virtualization support for Tegra ADMA
+Date: Tue, 21 May 2024 11:07:59 +0000
+Message-ID: <20240521110801.1692582-1-spujar@nvidia.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC5:EE_|DS0PR12MB7779:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37f25bb8-ed38-43b5-7091-08dc79866edb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|1800799015|82310400017|376005|36860700004;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?JHCOGC/pWj2OUVK155EWkAhc/2kr3y3YZ/JZhZQIExOEMop7TVrHZAHmDflR?=
+ =?us-ascii?Q?xXCkEV4oO6GEqMEaHYGMQ2ITzMp5HeK12XS1CoRfNsTH7hWUUYIv+WlIkpBE?=
+ =?us-ascii?Q?Rh6FgumkM8QY/hV1RutjkG1qY+ktgTopZHbLc4ECSdgwDfGjMaFLUz9bmVNO?=
+ =?us-ascii?Q?iczIAS4cA2c6IiriNeEBKvFrd1aVO+JkavZ42bodPfzKdtcKGgCRZ8pct3q/?=
+ =?us-ascii?Q?dcobaLwoS3EOt+iMJs3GqJvsnMyTLmf5QAbzptYwRtdPnz8JQMcRHjIDJogU?=
+ =?us-ascii?Q?EZUy0CRP1RYOxHvy7Ox1vfhAIELXMKkwRuFWDALEzJEYF8jtL5J84x8KW2IY?=
+ =?us-ascii?Q?UOuL9rd+GeomihpvmNSWHh9U82p9+frP7ytbQkE1wiprMgzuu6geO0SAvrvA?=
+ =?us-ascii?Q?/R3kFn+uvNIlwTdfc7vCQdELSgOE5jw4rEYdAXWuWBC+bRSW1/HJnLW9STNf?=
+ =?us-ascii?Q?0UQWNpbXK/WWA4Nb8Z5b/dsHcPbeSSL3L24mV1oVSp3nVOddkLHi6R4VRiTK?=
+ =?us-ascii?Q?7MJqYNuxAmoL5PTAq9bBL0ZkNerzF1haKz7ohzLGc41Xcj8jBRkcxMIX8C/F?=
+ =?us-ascii?Q?oRRbVdIqpUBnBb3qSUjE/jr84HgFyFO0oVqXaGeEDTDoqqnMg5GW4LFQg7W0?=
+ =?us-ascii?Q?O9ros3ODwGx4W1XBhV4TAVONDqA3zKpKOXjYwHjN1D3/DCtzTgknAUfhSUbY?=
+ =?us-ascii?Q?CpSQRurB2UVS4JQ8Pfl0xo3UaXKqS+mlwMN8Xj5r+t7whuLRH3vwtG0Jtt9W?=
+ =?us-ascii?Q?S3uNUtdlW4jo1w9VS+WKMF+/X4sJ2vOXP17JfTzCr05jJ/2hfiSC9dHELydI?=
+ =?us-ascii?Q?mtPNKkqMAO6H4Umye74QjUjqLURvbReMnJ8VCL6aDAg9B6wfdqGqbQtYd6ov?=
+ =?us-ascii?Q?y6QB1fE5WSNaAARR5I36fmvl62C0N6SSW4xvFQHC0tLYfghTyU+YyYmfmkRH?=
+ =?us-ascii?Q?12fQM9waSPZMiNzgUT8HVg7ML1bnMJjGAjZQuxfR5HPO9dIGtJCt9DpDSiJD?=
+ =?us-ascii?Q?StQWscF/GOaQm2wsNep/IjnIQjTwByi20kWaYQRpVu0aux70xN9deAumPxqU?=
+ =?us-ascii?Q?tspSlCKTzz++5J2axNpB6QF/ajuUnXtw2L79cosC+6aKOzHEwPwtqPfJHmcL?=
+ =?us-ascii?Q?rLoa8DKmMh7b+xO/z8NEjl3/eDkBa+JK5sJGXoaTJVcuAnZN86YWyiyuJ+k6?=
+ =?us-ascii?Q?RSipdQRBDpGM2EIEVfR4/NQry/Cn8mGP/vJKfR6LOOs0Fe4k40j72ywupkb0?=
+ =?us-ascii?Q?sMunGyc4Zo+EzSULzzIvTwbSkyVbyE68Dx/rt70apVA9VTwSz0c0IiwVpLw1?=
+ =?us-ascii?Q?l54bfO98CTwKksWGzLT0oUdtri1IdGmzdOyj4LBfL+7t532cUISfxptAjfKN?=
+ =?us-ascii?Q?E0Sl0kMB9IJe5iY8Cpyr5obFjMwX?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(1800799015)(82310400017)(376005)(36860700004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2024 11:09:07.0815
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 37f25bb8-ed38-43b5-7091-08dc79866edb
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000FCC5.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7779
 
-On Fri, 2024-05-17 at 10:47 +0300, Ramona Gradinariu wrote:
-> Currently, adis library allows configuration only for edge interrupts,
-> needed for data ready sampling.
-> This patch removes the restriction for level interrupts, which are
-> needed to handle FIFO watermark interrupts.
-> Furthermore, in case of level interrupts, devm_request_threaded_irq is
-> used for interrupt allocation, to avoid blocking the processor while
-> retrieving the FIFO samples.
+From: Mohan Kumar <mkumard@nvidia.com>
 
-Technically this not totally accurate (though ends up being true) as we do =
-read
-the FIFO samples in a thread already. The part that runs on the top halve s=
-hould
-be:
+Tegra ADMA HW supports multiple PAGES for virtualization, to
+support virtualization
+- reg-names property has been added to DT binding for the hypervisor mode.
+- In hypervisor mode the ADMA global registers are not accessed by guest.
 
-iio_trigger_generic_data_rdy_poll() ->=C2=A0iio_trigger_poll() -> iio_pollf=
-unc_store_time()
+Mohan Kumar (2):
+  dt-bindings: dma: Add reg-names to nvidia,tegra210-adma
+  dmaengine: tegra210-adma: Add support for ADMA virtualization
 
-and given the FIFO nature (as the interrupt keeps firing until FIFO_CNT dro=
-ps
-below the watermark), it seems this is enough for you to see some freezes.
+ .../bindings/dma/nvidia,tegra210-adma.yaml    | 10 +++++
+ drivers/dma/tegra210-adma.c                   | 44 +++++++++++++++----
+ 2 files changed, 46 insertions(+), 8 deletions(-)
 
-Anyhow, I'd say the commit message should be a bit refactored. This also le=
-ads to
-another minor detail/question (see below)
-
->=20
-> Signed-off-by: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
-> ---
-> changes in v3:
-> =C2=A0- new patch
-> =C2=A0drivers/iio/imu/adis_trigger.c | 39 ++++++++++++++++++-------------=
----
-> =C2=A01 file changed, 21 insertions(+), 18 deletions(-)
->=20
-> diff --git a/drivers/iio/imu/adis_trigger.c b/drivers/iio/imu/adis_trigge=
-r.c
-> index f890bf842db8..becf1f558b4e 100644
-> --- a/drivers/iio/imu/adis_trigger.c
-> +++ b/drivers/iio/imu/adis_trigger.c
-> @@ -34,21 +34,16 @@ static int adis_validate_irq_flag(struct adis *adis)
-> =C2=A0	if (adis->data->unmasked_drdy)
-> =C2=A0		adis->irq_flag |=3D IRQF_NO_AUTOEN;
-> =C2=A0	/*
-> -	 * Typically this devices have data ready either on the rising edge
-> or
-> -	 * on the falling edge of the data ready pin. This checks enforces
-> that
-> -	 * one of those is set in the drivers... It defaults to
-> -	 * IRQF_TRIGGER_RISING for backward compatibility with devices that
-> -	 * don't support changing the pin polarity.
-> +	 * Typically adis devices without fifo have data ready either on the
-> +	 * rising edge or on the falling edge of the data ready pin.
-> +	 * IMU devices with fifo support have the watermark pin level driven
-> +	 * either high or low when the fifo is filled with the desired number
-> +	 * of samples.
-> +	 * It defaults to IRQF_TRIGGER_RISING for backward compatibility with
-> +	 * devices that don't support changing the pin polarity.
-> =C2=A0	 */
-> -	if (direction =3D=3D IRQF_TRIGGER_NONE) {
-> +	if (direction =3D=3D IRQF_TRIGGER_NONE)
-> =C2=A0		adis->irq_flag |=3D IRQF_TRIGGER_RISING;
-> -		return 0;
-> -	} else if (direction !=3D IRQF_TRIGGER_RISING &&
-> -		=C2=A0=C2=A0 direction !=3D IRQF_TRIGGER_FALLING) {
-> -		dev_err(&adis->spi->dev, "Invalid IRQ mask: %08lx\n",
-> -			adis->irq_flag);
-> -		return -EINVAL;
-> -	}
-
-I guess then we should rename the function as no actual validation is being
-done, right?
-
->=20
-> =C2=A0	return 0;
-> =C2=A0}
-> @@ -77,11 +72,19 @@ int devm_adis_probe_trigger(struct adis *adis, struct
-> iio_dev *indio_dev)
-> =C2=A0	if (ret)
-> =C2=A0		return ret;
->=20
-> -	ret =3D devm_request_irq(&adis->spi->dev, adis->spi->irq,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &iio_trigger_generic_data_rdy_po=
-ll,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adis->irq_flag,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 indio_dev->name,
-> -			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adis->trig);
-> +	if (adis->irq_flag & (IRQF_TRIGGER_HIGH | IRQF_TRIGGER_LOW))
-> +		ret =3D devm_request_threaded_irq(&adis->spi->dev, adis->spi-
-> >irq,
-> +						NULL,
-> +						&iio_trigger_generic_data_rdy
-> _poll,
-> +						adis->irq_flag |
-> IRQF_ONESHOT,
-> +						indio_dev->name,
-> +						adis->trig);
-
-So, this is not really a big deal for me but I wonder if we should actually=
- tie
-this change to the device having FIFO support (so a boolean in the adis_dat=
-a
-struct)? It seems to me that's the real reason for the split... With the
-boolean, we could also constrain the IRQ level support for devices supporti=
-ng
-FIFOs. Anyhow, since this is the first supported device with a FIFO having =
-the
-boolean (while it makes sense to me) may add more overhead than needed to t=
-he
-series so I'm fine with this as-is.
-
-- Nuno S=C3=A1
->=20
-
-
+-- 
+2.45.1
 
 
