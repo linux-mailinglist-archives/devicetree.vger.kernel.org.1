@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D5E8CA8EA
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:30:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 985FF8CA8F2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:33:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6787281267
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 07:30:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54AB7282196
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 07:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6C04436A;
-	Tue, 21 May 2024 07:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1711750A63;
+	Tue, 21 May 2024 07:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXwU1WUR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rDZQ5awV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D7E17BA4;
-	Tue, 21 May 2024 07:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF18D50293;
+	Tue, 21 May 2024 07:32:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716276632; cv=none; b=gX1MOFplbV73fmyum4iSD9ouTJWIvnDZwTy//44hIhmxiwh6C3NEDxDCP9GmzfXlzS64xl/8Y7Q5G21qL1SHk5XKJQvXpXWpjSsBxVY0RikmuQffDKrRZevLn7LN6W8wz8cHFl+wR47VHTQDJzF8UUIwbiDnZ8SEzMERM5HakhM=
+	t=1716276777; cv=none; b=I5sDGMUskdDthuzsM7sE7FYyogd98RtMKAsbpte9ou3ZicrJbCWnDtDk0/kUumw2oLsRawqyUbJdm5SqskR3YZoleYb5ltZPwLMBbirZrEhD2IfQ22vmF3TeXgv8aVZzBxHYbY1vAluOnZBVBoPOUDAM4m6ilb2lkoXC7b9WHPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716276632; c=relaxed/simple;
-	bh=2qmHpXwLWibIrPyOcn+S+r963k18i1mHmvdPzTnlcS0=;
+	s=arc-20240116; t=1716276777; c=relaxed/simple;
+	bh=CowBC+IWvKhvHnany9BQK3hu1JMh8smw8qL7iP9OtkU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n8508bMhHUrAzUkZ64YVJ4rebxNsekKkCfCTwA54G9noqqGiBrIADZfrcdfwyyABOKHOep9N7ipGzY2HR33iTGu9Le2zsGTZbk26orODPxUveof+ELlw89TIDXFZPjv1ECqhMKHusT/buuPCUE9sPAO8yb+81J9Ux52Ei1P2g54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXwU1WUR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40743C2BD11;
-	Tue, 21 May 2024 07:30:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ooh4JsOWeIx0P0LHgjxoLmUKQKxyhv4vSkhGbqKi//wDD2k0/9ThJKT27GNQaeAl4x+Y1ttLSnd4hiz73iBJJA5bI6BN0b7rU51JeY6td2wl3r+F88ezJ3Kmht5upS3lUjLSaffKoHjTcLyW8f5cyyqTuBDn+lkOW1XBKGiH1lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rDZQ5awV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC143C2BD11;
+	Tue, 21 May 2024 07:32:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716276632;
-	bh=2qmHpXwLWibIrPyOcn+S+r963k18i1mHmvdPzTnlcS0=;
+	s=k20201202; t=1716276776;
+	bh=CowBC+IWvKhvHnany9BQK3hu1JMh8smw8qL7iP9OtkU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RXwU1WURy3nz0+Nw+UC2THf6WhIqgoRW6lr7XXq0MogTkwOu1PmNrg9KIiAOdQwqd
-	 cvhQp2WKU/D6oCcR95RVfQxhYKMxKkvODU3LW22gTr2LYlpa3f5dHnzCDhBIL4tyaQ
-	 R5o9sc8V1SNehvU0cGfY4xWE4gOQdXOcEdCHHmkhqj+ywDqTH7DuUfjLKOpIAmTHRj
-	 VCVRdslPPuXLomOP4PfS9rA+Y2K9r7P4ZM1OyDbkdeitmDwzbt0mlPy4SB7sV26CLw
-	 t0eInnw/TpucmJBEuXdYZ1Fad1ivlrlWrfWMzBx2CA+bmQb+7EwG0ppTkkJAsxzxNK
-	 gWhWfS6KthH3A==
-Message-ID: <be622341-c849-4a6f-99f5-0de350693270@kernel.org>
-Date: Tue, 21 May 2024 09:30:22 +0200
+	b=rDZQ5awVQKHV/qVKVuy3Jt/vQ6TG5lKDzwLMVeudufRW4KjBMt/S82hQKhj/nlIEQ
+	 jvNgp3RJLwXy0nSvenvAFW66XWDAfJah2gSu6DEaCQIDK0K//zFN46/DoukitD3HuN
+	 9Q8gM/lYpuKHUUUr97mDGukj1I2ykaihq7acOnXqsCZ3ujIGV7nfWV/SsPtiJnlrYc
+	 ZbRTsdajukryxecJJnAGD6S5syM5688Z0FGLLec9IfBkHGaMnHjRRetTEthIKTCwVY
+	 J+MoD08nqT9oo9Eq9zFT3ke2JZO11O8uf5mG2UrcUC9KGxhE/jFCLJBeEU3Tt9aIR/
+	 n39lxkIPq6g4g==
+Message-ID: <98e8d8f5-1542-4ea0-9f0c-10bb0dbebe6f@kernel.org>
+Date: Tue, 21 May 2024 09:32:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/10] dt-bindings: display: Add YAML schema for JH7110
- display pipeline
-To: keith <keith.zhao@starfivetech.com>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- xingyu.wu@starfivetech.com, p.zabel@pengutronix.de,
- jack.zhu@starfivetech.com, shengyang.chen@starfivetech.com
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
- <20240521105817.3301-2-keith.zhao@starfivetech.com>
+Subject: Re: [PATCH 11/13] dt-bindings: a2b: add compatible string for
+ Beosound Shape node
+To: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
+Cc: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>,
+ Mark Brown <broonie@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Liam Girdwood <lgirdwood@gmail.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Saravana Kannan <saravanak@google.com>,
+ Emil Abildgaard Svendsen <EMAS@bang-olufsen.dk>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+References: <20240517-a2b-v1-0-b8647554c67b@bang-olufsen.dk>
+ <20240517-a2b-v1-11-b8647554c67b@bang-olufsen.dk>
+ <2d311fd3-8d07-40df-bc91-e4df522efb99@kernel.org>
+ <3mt6nziqmdrwl34hmt7ilwy5m2x5mtraiokimn742whc5agtpv@3z2hmpc3mmeh>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,432 +120,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240521105817.3301-2-keith.zhao@starfivetech.com>
+In-Reply-To: <3mt6nziqmdrwl34hmt7ilwy5m2x5mtraiokimn742whc5agtpv@3z2hmpc3mmeh>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/05/2024 12:58, keith wrote:
-> JH7110 SoC display pipeline includes a display controller and hdmi.
-> Dc controller IP : Vivante DC8200 Dual Display
-> HDMI IP : INNOSILICON HDMI2.0
+On 21/05/2024 09:12, Alvin Šipraga wrote:
+> On Sun, May 19, 2024 at 01:41:48PM GMT, Krzysztof Kozlowski wrote:
+>> On 17/05/2024 15:02, Alvin Šipraga wrote:
+>>> From: Alvin Šipraga <alsi@bang-olufsen.dk>
+>>>
+>>> The Beosound Shape has the same device tree bindings as an AD2425, so it
+>>> is sufficient to just add an entry to the compatible enum.
+>>
+>> ? If it has the same, then devices are compatible but your binding did
+>> not express it.
 > 
-> As the INNO hdmi ip is also used by rockchip SoC in the driver code,
-> the innosilicon,inno-hdmi.yaml schema containing the common properties
-> for the INNO DesignWare HDMI TX controller isn't a full device
-> tree binding specification, but is meant to be referenced by
-> platform-specific bindings for the IP core.
-> 
-> Signed-off-by: keith <keith.zhao@starfivetech.com>
-> ---
->  .../display/bridge/innosilicon,inno-hdmi.yaml |  49 +++++
->  .../display/rockchip/rockchip,inno-hdmi.yaml  |  27 +--
->  .../starfive/starfive,dsi-encoder.yaml        |  92 ++++++++++
->  .../starfive/starfive,jh7110-dc8200.yaml      | 169 ++++++++++++++++++
->  .../starfive/starfive,jh7110-inno-hdmi.yaml   |  75 ++++++++
->  .../soc/starfive/starfive,jh7110-syscon.yaml  |   1 +
->  MAINTAINERS                                   |   8 +
->  7 files changed, 396 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
-> new file mode 100644
-> index 000000000000..8540174dcaeb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/innosilicon,inno-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common Properties for Innosilicon HDMI TX IP
+> OK, you're basically saying I should add it all in one patch?
 
-Your patch is difficult to review. Split changing existing bindings (and
-defining common part) to a separate patch.
+No, I said that your commit msg suggests they are compatible. I don't
+fully understand what you wanted to say by "same device tree bindings".
 
-> +
-> +maintainers:
-> +  - Keith Zhao <keith.zhao@starfivetech.com>
-> +
-> +description: |
-> +  This document defines device tree properties for the Innosilicon HDMI TX
-
-Nothing improved here. Don't say obvious that this documents says
-something. It cannot do anything else.
-
-"Innosilicon HDMI TX is a foo bar device present on zap SoC ...."
-
-
-> +  controller (INNO HDMI) IP core. It doesn't constitute a full device tree
-> +  binding specification by itself but is meant to be referenced by device tree
-> +  bindings for the platform-specific integrations of the INNO HDMI.
-
-I don't understand this at all. I don't know what is "full device tree
-binding specification".
-
-> +
-> +  When referenced from platform device tree bindings the properties defined in
-> +  this document are defined as follows. The platform device tree bindings are
-> +  responsible for defining whether each property is required or optional.
-
-Nothing improved - drop paragraph.
-
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Port node with one endpoint connected to a display controller node.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Port node with one endpoint connected to a hdmi-connector node.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-
-...
-
-> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml b/Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
-> new file mode 100644
-> index 000000000000..07aa147a9db1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/starfive/starfive,dsi-encoder.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: starfive jh7110 SoC Encoder
-> +
-> +maintainers:
-> +  - Keith Zhao <keith.zhao@starfivetech.com>
-> +
-> +description:
-> +  Device-Tree bindings for simple encoder.
-
-Again you ignored the comments.
-
-When you receive a comment, apply it everywhere, not in only one part of
-patch while keeping wrong code everywhere else.
-
-> +  Simple encoder driver only has basic functionality.
-
-Not related to bindings, drop. This is about hardware, not your driver.
-
-> +  the hardware of dc8200 has 2 output interface, and uses
-> +  syscon to select which one to be used.
-
-Nothing improved.
-
-Read my previous comments:
-
-1. Please make it a proper sentences, with proper wrapping.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,dsi-encoder
-> +
-> +  starfive,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to syscon that select crtc output.
-> +          - description: Offset of crtc selection
-> +          - description: Shift of crtc selection
-> +    description:
-> +      A phandle to syscon with two arguments that configure select output.
-> +      The argument one is the offset of crtc selection, the
-> +      argument two is the shift of crtc selection.
-
-Don't repeat constraints in free form text. Say something useful
-instead, like what is its purpose.
-
-No reg? Then why this is not just part of syscon? That's not a separate
-device, no.
-
-You received a feedback already about this: do not create fake bindings
-just to instantiate your drivers.
-
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          The first port should be the input coming from the associated dc channel.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          The second port should be the output coming from the associated bridge.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        dssctrl: dssctrl@295b0000 {
-
-Drop node, not erlated.
-
-> +            compatible = "starfive,jh7110-vout-syscon", "syscon";
-> +            reg = <0x295b0000 0x90>;
-> +        };
-> +
-> +        dsi_encoder: dsi_encoder {
-
-Totally messed indentation. Use 4 spaces for example indentation.
-
-Also, drop label.
-
-Also, underscores are not allowed in node names.
-
-Also, Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-This is terrible code.
-
-> +            compatible = "starfive,dsi-encoder";
-> +            starfive,syscon = <&dssctrl 0x8 0x12>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                /* input */
-> +                port@0 {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    reg = <0>;
-> +                    dsi_input0:endpoint@0 {
-> +                        reg = <0>;
-> +                        remote-endpoint = <&dc_out_dpi1>;
-> +                    };
-> +                };
-> +                /* output */
-> +                port@1 {
-> +                    reg = <1>;
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    dsi_out:endpoint {
-> +                        remote-endpoint = <&mipi_in>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
-> new file mode 100644
-> index 000000000000..a28dfdd471b6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
-> @@ -0,0 +1,169 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/starfive/starfive,jh7110-dc8200.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STARFIVE JH7110 SoC display controller
-> +
-> +description:
-> +  The STARFIVE JH7110 SoC uses the display controller based on Verisilicon IP(DC8200)
-> +  to transfer the image data from a video memory buffer to an external LCD interface.
-> +
-> +  pipe0 binds HDMI for primary display,
-> +  pipe1 binds DSI for external display.
-> +
-> +          +------------------------------+
-> +          |                              |
-> +          |                              |
-> +  +----+  |   +-------------------+      |   +-------+   +------+   +------+
-> +  |    +----->+  dc controller 0  +--->----->+HDMICtl| ->+ PHY  +-->+PANEL0+
-> +  |AXI |  |   +-------------------+      |   +-------+   +------+   +------+
-> +  |    |  |                              |
-> +  |    |  |                              |
-> +  |    |  |                              |
-> +  |    |  |                              |
-> +  |APB |  |   +-------------------+         +---------+    +------+  +-------+
-> +  |    +----->+  dc controller 1  +--->---->+ dsiTx   +--->+DPHY  +->+ PANEL1+
-> +  |    |  |   +-------------------+         +---------+    +------+  +-------+
-> +  +----+  |                              |
-> +          +------------------------------+
-> +
-> +maintainers:
-> +  - Keith Zhao <keith.zhao@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-dc8200
-> +
-> +  reg:
-> +    items:
-> +      - description: host interface address and length
-> +      - description: display physical base address and length
-> +
-> +  reg-names:
-> +    items:
-> +      - const: host
-> +      - const: base
-> +
-> +  clocks:
-> +    items:
-> +      - description: Clock for display system noc bus.
-> +      - description: Core clock for display controller.
-> +      - description: Clock for axi bus to access ddr.
-> +      - description: Clock for ahb bus to R/W the phy regs.
-> +      - description: Pixel clock for display channel 0.
-> +      - description: Pixel clock for display channel 1.
-> +      - description: Pixel clock from hdmi.
-> +      - description: Pixel clock for soc .
-> +
-> +  clock-names:
-> +    items:
-> +      - const: noc_bus
-> +      - const: dc_core
-> +      - const: axi_core
-> +      - const: ahb
-> +      - const: channel0
-> +      - const: channel1
-> +      - const: hdmi_tx
-> +      - const: dc_parent
-> +
-> +  resets:
-> +    items:
-> +      - description: Reset for axi bus.
-> +      - description: Reset for ahb bus.
-> +      - description: Core reset of display controller.
-> +
-> +  reset-names:
-> +    items:
-> +      - const: axi
-> +      - const: ahb
-> +      - const: core
-> +
-> +  interrupts:
-> +    items:
-> +      - description: The interrupt will be generated when DC finish one frame
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          channel 0 output
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          channel 1 output
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/starfive,jh7110-crg.h>
-> +    #include <dt-bindings/reset/starfive,jh7110-crg.h>
-> +    dc8200: lcd-controller@29400000 {
-> +      compatible = "starfive,jh7110-dc8200";
-> +        reg = <0x29400000 0x100>,
-> +              <0x29400800 0x2000>;
-> +        reg-names = "host", "base";
-> +
-> +        interrupts = <95>;
-> +        clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_DISP_AXI>,
-> +            <&voutcrg JH7110_VOUTCLK_DC8200_CORE>,
-
-Align the lines. In other places as well.
-
-> +            <&voutcrg JH7110_VOUTCLK_DC8200_AXI>,
-> +            <&voutcrg JH7110_VOUTCLK_DC8200_AHB>,
-> +            <&voutcrg JH7110_VOUTCLK_DC8200_PIX0>,
-> +            <&voutcrg JH7110_VOUTCLK_DC8200_PIX1>,
-> +            <&hdmitx0_pixelclk>,
-> +            <&voutcrg JH7110_VOUTCLK_DC8200_PIX>;
-> +        clock-names = "noc_bus", "dc_core", "axi_core", "ahb",
-> +                  "channel0", "channel1", "hdmi_tx", "dc_parent";
-> +        resets = <&voutcrg JH7110_VOUTRST_DC8200_AXI>,
-> +             <&voutcrg JH7110_VOUTRST_DC8200_AHB>,
-> +             <&voutcrg JH7110_VOUTRST_DC8200_CORE>;
-> +        reset-names = "axi","ahb", "core";
-> +
-> +      crtc_out: ports {
-
-Totally messed indentation.
-
-
-> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
-> new file mode 100644
-> index 000000000000..bfd7dc41fc14
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/starfive/starfive,jh7110-inno-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Starfive JH7110 Innosilicon HDMI controller
-> +
-> +maintainers:
-> +  - Keith Zhao <keith.zhao@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: ../bridge/innosilicon,inno-hdmi.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: "starfive,jh7110-inno-hdmi"
-
-You did not test it. Drop quotes.
-
-Untested bindings, so I will skip review for now.
-
-
-
+But anyway, make it one patch.
 
 Best regards,
 Krzysztof
