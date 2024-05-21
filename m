@@ -1,337 +1,249 @@
-Return-Path: <devicetree+bounces-68194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DED58CB395
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:37:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 053AB8CB3AE
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:41:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEC89B23250
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 18:37:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B02042826E6
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 18:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C984148851;
-	Tue, 21 May 2024 18:37:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E251494DD;
+	Tue, 21 May 2024 18:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="5XWZEw0w"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YJh/HUGQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12F8148317;
-	Tue, 21 May 2024 18:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716316632; cv=fail; b=tvgU4ReSj3nPzvkgIpFYyrhI4sBtn0j6ZjLeCZ3+wpooLfCfVgCyKHDC6weaRXXrINbbwlndD2tej1ONwpGGoqonsGpGbdXdvJkUF0y1+sUYxvLFO9xhnj5VTVvEG7d8Z3WR2f2lxh/AbkOr6Vhq1C7eDZOhq9EFo99mx8K7Uho=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716316632; c=relaxed/simple;
-	bh=VuPlzVxmKW6l6JxSM+pgmI8f2yhhvU/Nqg5J9JVfyfQ=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=vFciJZXWr+F1mqhd7pTU/Pj9vJZQruyFrbGF0xL2a8XMwLFpQkA6OR/yXHn24FTeySkD/gmPZfR6V0jyhw5kwF+oKT3AqzyaJkrRpnaj/PMaRrzJxyQx4kMj9kOAftg5atyHmfQbperRVbjpWuEkTZ2iIV2uNtQQ/BiiyP+ymSk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=5XWZEw0w; arc=fail smtp.client-ip=40.107.94.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XdiH6pmzqWbxzWMQFHJ0I13489aNsiM/Mx5HtNaziHCxVZ2/+7U2OunXL+Vd7tBYAjf/VbVfDM/Cc6RNjK95r3Cg4UElJMpIZCeI07hzA6Xq8C5cC4pBgTDvUiUFTMx/fFdxlTiVQsUdLpnPuhLeGE3+82hj36oEqoc9qAmUQK5RZVYehTmOkuGuPpjScVPKOTYyhXkQ5F8fFAWDkudMU5hiOYUetB5bzsgnW3A4xi+JjBX5NKNMAuYXowexbq9LAj8GM5VdeSDnJ46HDE9lHtqlh1lkTyxseyQ4V1haKKVnFBxOmizknCPMDh53wwzHvtw3br5HUbmUOQZyUZWiqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K6/mx6bGHrUqhXAtKRG94+c9S8aT9dbM498RzyImKPY=;
- b=QkFarlsQstNX0+bSEycqCUjPXW3oioWQCSpdkABoK546cS8qUvfgKT3XgSAJPBjbn4BG2gyknZ/YHoYW6/Cu/oqVcUXsh1zWaP+BZ13xtif3hf0QW+4NIZbYKnMx9wRfj9OfCi7FIPAuztnCwFqwQWPUT9ue9YHTbs/A5G0AW5QyW0vKftOLpyIaDyERvePZXUwSccg/FLDcKBe70Q8Iewm3Rk5AE0G4YbDbIBCqofqJCTf1hiB8fNdbzKKXJ0Ymelean4X9m0M/pmLpFxa4gUXt05X8mWHP3CbJCOj51wbwIkQLzjpgbSw+y7aoiXPUukqFgxJTOshpkjQ2I1EaMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K6/mx6bGHrUqhXAtKRG94+c9S8aT9dbM498RzyImKPY=;
- b=5XWZEw0w0ftX9MfHAuehzQ2UmqDf/kqo/6vS9Q3Zwg7VR6bUnFsM4/RQN8701MI6rSmVQP95969yuBXBJUOQaljAApJ7HYssH2o9y0Q+Hgb1YXFGvI5OczHdPB0FXV3yspo4+QPlJwHJWPRTtGPeUhN+TF0HvHbakXNFcWl4Z3Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA1PR12MB6042.namprd12.prod.outlook.com (2603:10b6:208:3d6::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36; Tue, 21 May
- 2024 18:37:06 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%2]) with mapi id 15.20.7587.030; Tue, 21 May 2024
- 18:37:06 +0000
-Message-ID: <cef8f87d-edab-41d8-8b95-f3fc39ad7f74@amd.com>
-Date: Tue, 21 May 2024 20:36:55 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/9] scatterlist: Add a flag for the restricted memory
-To: =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
- "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "jstultz@google.com" <jstultz@google.com>,
- =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?=
- <Jianjiao.Zeng@mediatek.com>,
- "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "quic_vjitta@quicinc.com" <quic_vjitta@quicinc.com>,
- "willy@infradead.org" <willy@infradead.org>,
- =?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?= <kuohong.wang@mediatek.com>,
- "pavel@ucw.cz" <pavel@ucw.cz>, "robin.murphy@arm.com"
- <robin.murphy@arm.com>, "contact@emersion.fr" <contact@emersion.fr>,
- "logang@deltatee.com" <logang@deltatee.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "jkardatzke@google.com" <jkardatzke@google.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
- "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
- "tjmercier@google.com" <tjmercier@google.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "joakim.bech@linaro.org" <joakim.bech@linaro.org>,
- "ppaalanen@gmail.com" <ppaalanen@gmail.com>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>,
- =?UTF-8?B?WW91bGluIFBlaSAo6KO05Y+L5p6XKQ==?= <youlin.pei@mediatek.com>
-References: <20240515112308.10171-1-yong.wu@mediatek.com>
- <20240515112308.10171-3-yong.wu@mediatek.com>
- <98721904-003d-4d0d-8cfe-1cecdd59ce01@amd.com>
- <779ce30a657754ff945ebd32b66e1c644635e84d.camel@mediatek.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <779ce30a657754ff945ebd32b66e1c644635e84d.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0042.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c7::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3DE6149000;
+	Tue, 21 May 2024 18:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716316848; cv=none; b=oIIuOH+m1i0Eackbi/o0nFPuCydW7PFVyuaPtlfG4bPGB7FrCS2Gu0glmybasiVFODn+Eai7i+V9D7VT0bsc9or1Qf0shxmbA4de0ZEYyozF91wGnkfV/o2Vokya5qR+c7Yvw9kM1ElF6PUUUltQJcPtkwZIDhXe1sMXKBFp9S4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716316848; c=relaxed/simple;
+	bh=e4ygBOINpSdwHF3mQDHTXQMBIQSSSq90dYAi2ZOVZhY=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=i37e45fyaIXRC40uyltZGp/CuUu+/vfUBKvWe4KctIZVLfeePDsXVXEgKN3kt7SSqDrdRm1qmqCTullMR9MYcZW0KrzGNfn0AGWgj4lcEHTfCL4mP3H9r4nSOBuWhgjSaCLdLvB/dz05UVwcxiPdg/NiPyxPL16tFRSpj/0OB+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YJh/HUGQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44LE68Rb014675;
+	Tue, 21 May 2024 18:38:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=4uSXdFfximv0oQ
+	RetrCZeXvAHa7zXbz/Qsqp9yfbIzk=; b=YJh/HUGQPHEuMOluteBSc6E/u5nC3i
+	0/jEjrs9NsJGvkSDD9T8pxVTCE8/qLYkqSti30bPAsahNg8SuTeHU05Tt+C8ye0z
+	6S7KNrabP6WHVFje9pdXjn0tbLJyX8wskGxLwb6I76QQHvcuiT8BQTjDGKIH6Lyo
+	DXkdEyiaG30gFnmbebyehWcxpbOL3NAIE77VXs4tqAzomZrGaHXdMYsFOzWgpgqb
+	5lmviy1u7KoMnHFjOb1gTuqc/JqP4tygm1sX8xCRE0TNL09gYzcJdeZlYH6fbU2b
+	pYS2PnZibUn+AznbEr9qpGpi6SYaXcbLtdGDlPeK7cKOHipE1LU7cCZA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6pqc6mbc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 May 2024 18:38:26 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44LIcPnt014421
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 May 2024 18:38:25 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 21 May 2024 11:38:24 -0700
+From: Elliot Berman <quic_eberman@quicinc.com>
+Subject: [PATCH RFC v3 0/9] dt-bindings: hwinfo: Introduce board-id
+Date: Tue, 21 May 2024 11:37:57 -0700
+Message-ID: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB6042:EE_
-X-MS-Office365-Filtering-Correlation-Id: ced9a95c-6790-4313-df46-08dc79c503e5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|366007|7416005|376005;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TGNpQ2U5UHRVcHdJbDZEMytaOEZHU1gyWlZUejJ3NTR3Q1lvOG4yNlZRbzhy?=
- =?utf-8?B?TldlcTFhU0pJanpBS1R5c0V3Vmd3Nm8xeVFqT0JvVC9jMDZ2a0pSbUI0R2Z2?=
- =?utf-8?B?VHhLUDkrNTY1ZFVOMk5DYTlMT2lPZy8rWFFYL09BMVN0Y2FwK0wzSlFWQXRq?=
- =?utf-8?B?WE1UbGxxenZJSnBrVjNvQW96TElET0dqYmw4UDd4azNaTkxLZ2JnaHo0YlBq?=
- =?utf-8?B?ajlUSzZOc1hkczNnRXFINUN5L3NZUDl3M0J4OW1jZlJld25VazdJUVFKMVNY?=
- =?utf-8?B?VytUQk9YOWpXTFlTTTVJUUl5SDdubWJoMTB5N1NUWU9IclJKaGJzd05tb21s?=
- =?utf-8?B?NDlXMXBxMktJUTkxM0g1aVNhZmhjTkYxb00wVStTL1FsYUlWYW9oQXFUUEV5?=
- =?utf-8?B?dWRuMzhzQXQxdGpjMEJWYW9FNGlkbnZKYisrcnpUbi9Hem9INFZyOGpHejZE?=
- =?utf-8?B?dU1zN0kzc2dPQkVkUU9rU0VVU01ObVlRaC92bCtOY2phdWlCeHZyOERYdnd3?=
- =?utf-8?B?ajQ1NjQ2dWJJdmh6SEppa2U3b0F0cGRrNHFyKzhJSXRmcHFseWlnZk91bUlF?=
- =?utf-8?B?cGFLSnIrZmg1YmtWMnh3R0p3WGptZ0IwU3RxK21pTCsvRlloQjZObGlBVkZp?=
- =?utf-8?B?dnlNWG5mTGpBbkdjUXd3eHFFbTBUT05heUVZdjF1MnFra3FhWWNFUFZTWHd2?=
- =?utf-8?B?QzJmT0hZNVd2VnRoT1NML29Ebm5pbnhpdlNoT1dKa0VxbFNHTWlPRU1FVEVt?=
- =?utf-8?B?TjYrZ3h2RXlGandjZUxEZDAzaGhBZFlBbUhNR1hqbHNqZjJsQ1JVZjhrVi9R?=
- =?utf-8?B?aTRUb0svYmVDY25IY1FMUVVkMXZhREpGOW5OaURWd0sya1pQdHhpQjZseWxu?=
- =?utf-8?B?VnBRR2h6OUtFVHc3VG5ybm1kaFBZNmZpemE1RTE2Z0dvQkpWbURORDBvK2ZQ?=
- =?utf-8?B?MFo4S1RoZnBLKzhJb0FNUHpzMi9ZcmNNcy9HbEIxOU1zNU4wdG5uWk40cHBr?=
- =?utf-8?B?K2NKTXhHSGMzZ0hYYXpIV3BYSGx4elU2dFYvcHVOMjdZVEZDN0pLQzdCbE5O?=
- =?utf-8?B?S0luNTMwSnRCRjY1V2tYRXhxdVlBMHFRcFg2QUwzeXlyRS8ydUNsYlFkTnFV?=
- =?utf-8?B?Zmw2T3R4QnMzMFRYVUsrcit3TTlqT3NaSzE4S0NtZDBrUTI1OG5nSFdjN0hQ?=
- =?utf-8?B?Q2UvZFFmSXFGM3UxRDR5SUNRUGxGMXFEcWlVL2NpTjgwdDdQNWdLTStrNENv?=
- =?utf-8?B?M05aNi9obFk3cEdaL1hMemY5RjI0WnZpUDgycDBRQ1JPc3hTcHQvL01SaUxt?=
- =?utf-8?B?dWs3WlRmTjNzNEtML1NFK1RBSElEWnNwZHhnSHl6cnVjVWM2Z3Z5cnRhaGV2?=
- =?utf-8?B?TDFYRWZySWphaUhKL0V3dU9kUCtWblVtWXNodkZPcnhUdERuK0tnNWs1M0ZS?=
- =?utf-8?B?eHV6bGxpbTNVZnlZRDVxM1VQNmxIOWZaR1VhM0ZFK2lRZHNnckZseTRLQmg1?=
- =?utf-8?B?MlgyNG1mOVlrb3c1dzZoYmx5cVBlWlZKUEs5WFE0ZENneVZUSjJ4TUdKS2FT?=
- =?utf-8?B?T0FwVVc0M09FVkd2NGVmcklTUWdyRGQzenE5Y3U3L2F3cGUxSGsvVFA2ejFP?=
- =?utf-8?B?OHpUSWQ2aXFtK2s0VENjbzl3UlByV3BHYXdFYU4xMEY0VHVxNnd3Tnp4UXkx?=
- =?utf-8?B?ZndsRDJSL0g1NGhTR1ZoV2kwdlB0ZUJZSTRhSEZiK0xQekhvT01HTVZBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(7416005)(376005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VHEwZDFFdkZsMVc5anNDVElGdHNJcTlpMG10UGRJMHBCOXhtTkI3UC8vc3NY?=
- =?utf-8?B?Sm4zOHQwcjJ3NWpyajV2b1hQSGgzZEluc1diOFF6OEpjM2VaaTBzQTF5Ry94?=
- =?utf-8?B?dGRCMlhCYjgrZ0d2d1I0TWl5T2htczY4OVFHWW5qaVEvTE9remF4K2ZsZ21a?=
- =?utf-8?B?dEhyaHRFMFNvNzVXWDdxSFVkcXlwK0x2SENaN0RqUVF3NjE1bklzN1preWJR?=
- =?utf-8?B?MEkwaU1ZZE9ORkloUkxFS2htSWxHSVpEWU9OY29KSmsrUy8zbyt2c0l4WW1j?=
- =?utf-8?B?Mk81UEVYYmU1dHdXdUZsZUdJS0FKa1c1cVZxci95WHM1V3czQnREaFNUZk8z?=
- =?utf-8?B?SFVoZUdnMXVWK3VvblNyY2tvNkZnWkpMNTVFZklKSCt4ZWQrdVJydEdabjRT?=
- =?utf-8?B?WCtjT29FdkF2Qlp4N0xyNnpac1ErYlZ2ektMZk11Q3dQZGRBVzlZamxrcmo5?=
- =?utf-8?B?dTJMVWQzQm5yRytBSVIwR2RsWE1LWjJRN1pnWkZCcXF0MkN4TjFBdmRlWmVP?=
- =?utf-8?B?Y01NS2I4bzBXYU5jYTQ1MEVYcTBmaytaMW9aK3o5QXJIZWYybjZiYWNZMksz?=
- =?utf-8?B?czZpT2w4emxYWncvT3BHTG9VNmxFNWZYdzVIT3Y2a2IxMnZUZVhzblY0UTFh?=
- =?utf-8?B?LzVOSHhCcC9CUk8xaWdtdzNVOUJEY0ZwV3U3cUlZRERjQ0ttYUZIMlFNL2lT?=
- =?utf-8?B?c2hLdk8rKzhkaXdFTCthbjJaSWFIQnpmaGMydTBnRlF2a1lLUTZ0bDhRWDlD?=
- =?utf-8?B?eEZkSURvR25ZWWpXc3VIbWNQWlVOd0hoNzZsci96QnNvdFpPQWR1WFhwVXRM?=
- =?utf-8?B?TzdKclN3VHpnMTN6Y0wzbDl3UDdEUDFNK3ZGZnI2K3laejZFVXJTaEtDdkhx?=
- =?utf-8?B?WHRxMjZXSVUvM2ZaUmFEbXY2cnZYZXZqZ25nYkgzZWJUeVJWV0MzR3BSZUVR?=
- =?utf-8?B?L3ZrcTloTGdDcEd1d0YxRStwNk5HRDhaV1I2SDJYUUdlUWkwK3doeERWNjEw?=
- =?utf-8?B?dSsya0o5a3U3RTFYbGU5dWFscWtnRVRQdFhyd3lKK1prbE1JcklWVzg1WkVj?=
- =?utf-8?B?VDNEZnJVWThJUndTbTl6Mzc4VDRRT2ZuY1ZIWi95UmphdndMSVhGRllCTnNj?=
- =?utf-8?B?UlJWOGRCdVhaTVVYbFlRWTJhL25QTlJ1dllNYzFhU3dteStUVE1hUWpmcEJk?=
- =?utf-8?B?RmQyeUN6RitqaVRpYzdnS2RQeUQyYTYzVCs0ZFp5WlVwdXJTSUNlVUxIaFdW?=
- =?utf-8?B?T245QjN2RXZ4YWZlVDMvNG5JeHpUbEdtU0dCZ283bFJtM05BMTdUaXYwenBl?=
- =?utf-8?B?dHRNT3BIRVl3RTZ2K1FCQ3hrY0pqUmxldFRqOEplQVA4WE0yL3M1OVZCQTN1?=
- =?utf-8?B?SlVoV0VkL0dsS1hzQzZPUDNxbzhsTDdmNjU4YTZnVGJjV1hpd0oySS9tQ2w0?=
- =?utf-8?B?dlptRmp3R3dieE82QXNMTW1wYVVnUlllM3B3OTdXTnBUVzVHOXpIblA2dlI5?=
- =?utf-8?B?ZVVKZlBadmpxeWtmYXdtNlIwdUQ3L0ZpaWdvRWd2ZlVaU0ZPWVFHbllIeXU2?=
- =?utf-8?B?c3FaZDV4aEsxY3NhQS9TOFJOWjZnOUVSckxWRW05c0VyWmk1WFJGNDVkQ0tp?=
- =?utf-8?B?VjRLWnkzbkJCTlBrb29kUXdKNG45NE1QL2xPTkc4ZnVvbGN2ZTNObHFSK2Fy?=
- =?utf-8?B?TmNtRTZDZDhSZFJvMEVqbTRWanI1bFJnWnA2VVBibXE3NzBqMUpOT0NRaFJQ?=
- =?utf-8?B?Z3FOUGNTMWlybkd0SG1XblpuTnpwdm1DQ2hQbHFuMkxHUXFaQWNpRjlKVkJj?=
- =?utf-8?B?OEx2SWpiZSsvSHQvK3g0MS9NMEY5L3dnRDNOTk16c1p1cVJpRHY5M09QdmVW?=
- =?utf-8?B?ZHJuY3o1dmo0dCtzSjBpSFc2RkQ3Sys5NWNCM1FrRmdhN3dNT3BWNHJMdTJN?=
- =?utf-8?B?WWtLd2F2b3VteTU5SEZQeXBJVy9xVzRrc0JHS29FdmhzVUcrZnFJb2I3WFlN?=
- =?utf-8?B?a3VDWjN4SDJaYmh3d3JBR3ZOK0pFWEV0RU5SUW00aVI0Q3Y3RXcrNnk0d0ZP?=
- =?utf-8?B?cVdScmoxczlWNUtrc0VzL1JNUkhvZit6VFN4N3Q0U04vemU3ZVRmMVdJSE8v?=
- =?utf-8?Q?MAZqDYIm8kqIDrQSzDmSoXYJn?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ced9a95c-6790-4313-df46-08dc79c503e5
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2024 18:37:06.1908
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CK+Mws1giy/ArgtXpZMYsPN+MQjcmzNL+NFD5Eeyv9+No2enzGzwjQ23bZKC2QUY
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6042
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAXqTGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQ0Mj3aT8xKIUoGCxroWBZVqagZGFYWqqqRJQfUFRalpmBdisaKUgN2e
+ l2NpaALIGQPFgAAAA
+To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>
+CC: Amrit Anand <quic_amrianan@quicinc.com>,
+        Peter Griffin
+	<peter.griffin@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Doug
+ Anderson" <dianders@chromium.org>,
+        Simon Glass <sjg@chromium.org>, "Chen-Yu
+ Tsai" <wenst@chromium.org>,
+        Julius Werner <jwerner@chromium.org>,
+        "Humphreys,
+ Jonathan" <j-humphreys@ti.com>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        "Jon
+ Hunter" <jonathanh@nvidia.org>,
+        Michal Simek <michal.simek@amd.com>,
+        <boot-architecture@lists.linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        Elliot Berman <quic_eberman@quicinc.com>
+X-Mailer: b4 0.13.0
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: iMkoVwtpieLMiTIoo9Lf7718t7nbtrTW
+X-Proofpoint-GUID: iMkoVwtpieLMiTIoo9Lf7718t7nbtrTW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-21_11,2024-05-21_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ mlxlogscore=999 impostorscore=0 adultscore=0 lowpriorityscore=0
+ phishscore=0 spamscore=0 suspectscore=0 mlxscore=0 clxscore=1011
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405210140
 
-Am 20.05.24 um 09:58 schrieb Yong Wu (吴勇):
-> On Thu, 2024-05-16 at 10:17 +0200, Christian König wrote:
->>   	
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>   Am 15.05.24 um 13:23 schrieb Yong Wu:
->>> Introduce a FLAG for the restricted memory which means the memory
->> is
->>> protected by TEE or hypervisor, then it's inaccessiable for kernel.
->>>
->>> Currently we don't use sg_dma_unmark_restricted, thus this
->> interface
->>> has not been added.
->> Why should that be part of the scatterlist? It doesn't seem to
->> affect
->> any of it's functionality.
->>
->> As far as I can see the scatterlist shouldn't be the transport of
->> this
->> kind of information.
-> Thanks for the review. I will remove this.
->
-> In our user scenario, DRM will import these buffers and check if this
-> is a restricted buffer. If yes, it will use secure GCE takes over.
->
-> If this judgment is not suitable to be placed in scatterlist. I don't
-> know if it is ok to limit this inside dma-buf. Adding such an
-> interface:
->
-> static bool dma_buf_is_restricted(struct dma_buf *dmabuf)
-> {
-> 	return !strncmp(dmabuf->exp_name, "restricted", 10);
-> }
+Device manufacturers frequently ship multiple boards or SKUs under a
+single software package. These software packages will ship multiple
+devicetree blobs and require some mechanism to pick the correct DTB for
+the board the software package was deployed. Introduce a common
+definition for adding board identifiers to device trees. board-id
+provides a mechanism for bootloaders to select the appropriate DTB which
+is vendor/OEM-agnostic.
 
-No, usually stuff like that doesn't belong into DMA buf either.
+This series is based off a talk I gave at EOSS NA 2024 [1]. There is
+some further discussion about how to do devicetree selection in the
+boot-architecture mailing list [2].
 
-Question here really is who controls the security status of the memory 
-backing the buffer?
+[1]: https://sched.co/1aBFy
+[2]: https://lists.linaro.org/archives/list/boot-architecture@lists.linaro.org/thread/DZCZSOCRH5BN7YOXEL2OQKSDIY7DCW2M/
 
-In other words who tells the exporter that it should allocate and fill a 
-buffer with encrypted data?
+Quick summary
+-------------
+This series introduces a new subnode in the root:
+/ {
+	board-id {
+		some-hw-id = <value>;
+		other-hw-id = <val1>, <val2>;
+	};
+};
 
-If that is userspace then that is part of the format information and it 
-is also userspace who should tell the importer that it needs to work 
-with encrypted data.
+Firmware provides a mechanism to fetch the values of "some-hw-id" and
+"other-hw-id" based on the property name. I'd like to leave exact
+mechanism data out of the scope of this proposal to keep this proposal 
+flexible because it seems architecture specific, although I think we we
+should discuss possible approaches. A DTB matches if firmware can
+provide a matching value for every one of the properties under
+/board-id. In the above example, val1 and val2 are both valid values and
+firmware only provides the one that actually describes the board. 
 
-The kernel is intentionally not involved in stuff like that.
+It's expected that devicetree's board-id don't describe all the
+properties firmware could provide. For instance, a devicetree overlay
+may only care about "other-hw-id" and not "some-hw-id". Thus, it need 
+only mention "other-hw-id" in its board-id node.
 
-Regards,
-Christian.
+Isn't that what the compatible property is for?
+-----------------------------------------------
+The compatible property can be used for board matching, but requires
+bootloaders and/or firmware to maintain a database of possible strings
+to match against or implement complex compatible string matching.
+Compatible string matching becomes complicated when there are multiple
+versions of board: the device tree selector should recognize a DTB that
+cares to distinguish between v1/v2 and a DTB that doesn't make the
+distinction.  An eeprom either needs to store the compatible strings
+that could match against the board or the bootloader needs to have
+vendor-specific decoding logic for the compatible string. Neither
+increasing eeprom storage nor adding vendor-specific decoding logic is
+desirable.
 
+How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
+-------------------------------------------------------------
+The selection process for devicetrees was Qualcomm-specific and not
+useful for other devices and bootloaders that were not developed by
+Qualcomm because a complex algorithm was used to implement. Board-ids
+provide a matching solution that can be implemented by bootloaders
+without introducing vendor-specific code. Qualcomm uses three
+devicetree properties: msm-id (interchangeably: soc-id), board-id, and
+pmic-id.  This does not scale well for use casese which use identifiers,
+for example, to distinguish between a display panel. For a display
+panel, an approach could be to add a new property: display-id, but now
+bootloaders need to be updated to also read this property. We want to
+avoid requiring to update bootloaders with new hardware identifiers: a
+bootloader need only recognize the identifiers it can handle.
 
->
-> Thanks.
->
->> Regards,
->> Christian.
->>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>> ---
->>>    include/linux/scatterlist.h | 34
->> ++++++++++++++++++++++++++++++++++
->>>    1 file changed, 34 insertions(+)
->>>
->>> diff --git a/include/linux/scatterlist.h
->> b/include/linux/scatterlist.h
->>> index 77df3d7b18a6..a6ad9018eca0 100644
->>> --- a/include/linux/scatterlist.h
->>> +++ b/include/linux/scatterlist.h
->>> @@ -282,6 +282,7 @@ static inline void sg_unmark_end(struct
->> scatterlist *sg)
->>>    
->>>    #define SG_DMA_BUS_ADDRESS(1 << 0)
->>>    #define SG_DMA_SWIOTLB(1 << 1)
->>> +#define SG_DMA_RESTRICTED(2 << 1)
->>>    
->>>    /**
->>>     * sg_dma_is_bus_address - Return whether a given segment was
->> marked
->>> @@ -352,6 +353,31 @@ static inline void sg_dma_mark_swiotlb(struct
->> scatterlist *sg)
->>>    sg->dma_flags |= SG_DMA_SWIOTLB;
->>>    }
->>>    
->>> +/**
->>> + * sg_dma_mark_restricted - Mark the scatterlist for restricted
->> buffer.
->>> + * @sg:SG entry
->>> + *
->>> + * Description:
->>> + *   Marks a a scatterlist for the restricted buffer that may be
->> inaccessiable
->>> + *   in kernel if it is protected.
->>> + */
->>> +static inline void sg_dma_mark_restricted(struct scatterlist *sg)
->>> +{
->>> +sg->dma_flags |= SG_DMA_RESTRICTED;
->>> +}
->>> +
->>> +/**
->>> + * sg_dma_is_restricted - Return whether the scatterlist was
->> marked as restricted
->>> + *                        buffer.
->>> + * @sg:SG entry
->>> + *
->>> + * Description:
->>> + *   Returns true if the scatterlist was marked as restricted
->> buffer.
->>> + */
->>> +static inline bool sg_dma_is_restricted(struct scatterlist *sg)
->>> +{
->>> +return sg->dma_flags & SG_DMA_RESTRICTED;
->>> +}
->>>    #else
->>>    
->>>    static inline bool sg_dma_is_bus_address(struct scatterlist *sg)
->>> @@ -372,6 +398,14 @@ static inline void sg_dma_mark_swiotlb(struct
->> scatterlist *sg)
->>>    {
->>>    }
->>>    
->>> +static inline bool sg_dma_is_restricted(struct scatterlist *sg)
->>> +{
->>> +return false;
->>> +}
->>> +
->>> +static inline void sg_dma_mark_restrited(struct scatterlist *sg)
->>> +{
->>> +}
->>>    #endif/* CONFIG_NEED_SG_DMA_FLAGS */
->>>    
->>>    /**
->>
+Notes about the patches
+-----------------------
+In my opinion, most of the patches in this series should be submitted to
+libfdt and/or dtschema project. I've made them apply on the kernel tree
+to be easier for other folks to pick them up and play with them. As the
+patches evolve, I can send them to the appropriate projects.
+
+Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+---
+Changes in v3:
+ - Follow new "/board-id {}" approach, which uses key-value pairs
+ - Add match algorithm in libfdt and some examples to demo how the
+   selection could work in tools/board-id
+
+Changes in V2:
+ - Addressed few comments related to board-id, and DDR type.
+ - Link to V2:  https://lore.kernel.org/all/a930a3d6-0846-a709-8fe9-44335fec92ca@quicinc.com/#r
+
+---
+Amrit Anand (1):
+      dt-bindings: arm: qcom: Update Devicetree identifiers
+
+Elliot Berman (8):
+      libfdt: board-id: Implement board-id scoring
+      dt-bindings: board: Introduce board-id
+      fdt-select-board: Add test tool for selecting dtbs based on board-id
+      dt-bindings: board: Document board-ids for Qualcomm devices
+      arm64: boot: dts: sm8650: Add board-id
+      arm64: boot: dts: qcom: Use phandles for thermal_zones
+      arm64: boot: dts: qcom: sm8550: Split into overlays
+      tools: board-id: Add test suite
+
+ .../devicetree/bindings/board/board-id.yaml        |  24 ++++
+ .../devicetree/bindings/board/qcom,board-id.yaml   | 144 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/Makefile                  |   4 +
+ arch/arm64/boot/dts/qcom/pm8010.dtsi               |  62 ++++-----
+ arch/arm64/boot/dts/qcom/pm8550.dtsi               |  32 ++---
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi              |  36 +++--
+ arch/arm64/boot/dts/qcom/pm8550ve.dtsi             |  38 +++---
+ arch/arm64/boot/dts/qcom/pm8550vs.dtsi             | 128 +++++++++--------
+ arch/arm64/boot/dts/qcom/pmr735d_a.dtsi            |  38 +++---
+ arch/arm64/boot/dts/qcom/pmr735d_b.dtsi            |  38 +++---
+ .../dts/qcom/{sm8550-mtp.dts => sm8550-mtp.dtso}   |  24 +++-
+ .../dts/qcom/{sm8550-qrd.dts => sm8550-qrd.dtso}   |  22 ++-
+ .../boot/dts/qcom/{sm8550.dtsi => sm8550.dts}      |  10 +-
+ arch/arm64/boot/dts/qcom/sm8650-mtp.dts            |   6 +
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts            |   6 +
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               |   2 +-
+ include/dt-bindings/arm/qcom,ids.h                 |  86 ++++++++++--
+ scripts/dtc/.gitignore                             |   1 +
+ scripts/dtc/Makefile                               |   3 +-
+ scripts/dtc/fdt-select-board.c                     | 126 +++++++++++++++++
+ scripts/dtc/libfdt/fdt_ro.c                        |  76 +++++++++++
+ scripts/dtc/libfdt/libfdt.h                        |  54 ++++++++
+ tools/board-id/test.py                             | 151 +++++++++++++++++++++
+ 23 files changed, 901 insertions(+), 210 deletions(-)
+---
+base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
+change-id: 20240112-board-ids-809ff0281ee5
+
+Best regards,
+-- 
+Elliot Berman <quic_eberman@quicinc.com>
 
 
