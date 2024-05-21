@@ -1,500 +1,353 @@
-Return-Path: <devicetree+bounces-68045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7158CAA20
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:36:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4CE8CAA5D
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDEA1281792
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 08:36:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21F1B2810B2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 08:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD56D71757;
-	Tue, 21 May 2024 08:35:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="L3hCpjwy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8825381B;
+	Tue, 21 May 2024 08:51:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C8B58AA3
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 08:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD451F951
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 08:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716280516; cv=none; b=LWaA74+Vldur8ru8/oDruE/WoxIVPp6/KDuS4ul/clbvoFTL0uhah6FJoeATSt7+lCHYDKy6DnR9BRooyYLw24ZbDFDRM5FJ7GCgOYiujsekopP1Eo9UrpMTRmU1/r0oddbHJsqDXFoPVT1C5VSXwXnLpDCbWy1udF25IitRrVc=
+	t=1716281495; cv=none; b=lLJPTTqaDTGPLaN4RzVT8WYLLLk75eobdEdZMJBe5rHhEUcZqKKvB8Mp3XseHIzF1WXuayyTAuSTuzDW/FKdkqa3neIVSVub5uRaLk69jWgEZCjstuUILMeWbug0t2iI5vE80fr3RiIAplF0IT8FL6Yo693Ro8jqcOQ4cRvBiLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716280516; c=relaxed/simple;
-	bh=uXU5QfaH5qlqXoA4DPbAYFEaIVRvOPrHJFlST/zPwXU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jtjjKcgZXk+Q/WrvH0BrAbr2TDGDb2VqdI0QKTmyFjg/o2T+4eV93/X7EJQkK4RicZiZLzpucncVNavgQDeB2IKyPyi7YfwIpCNZWjeWac1Soh63v7vhAxK8U3YRvVmMm0cmYHyniPTIjFtfdZcNZb5K22i++BCZM0vFXtbmXYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=L3hCpjwy; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5751237a79bso5787413a12.2
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 01:35:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1716280513; x=1716885313; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P80V1HVAEHdvXLPhNcgfiUJ7gY/EImR+9FLANrvqAlM=;
-        b=L3hCpjwyzSmKYFQdh4zdoTwgNdCPQoP0VvHut6NC8vFehTQEYQbcrLtAlh1WAWOXby
-         djFoMX7EHYXER2dSMuW7SogbFCwq4v5rgqLTngkyfwAvu6J+MeFLYddgCi+I3DWIb/ef
-         sLwzPEUUVnBe9Dp6PXFp5+Iz9VLfVwhPvyOCQSdVn3ju8jIryuBWT3U1SKG6zv/gAgYQ
-         ryoSiPDyEm4NiqX1yYrdw7Ng2yPNgaoWIcbR5HhAyNFtEd9AEPRIG5uQgGkSHTcF5qeE
-         1MH3YFBqV114kZMGQef8IymUOrA2BTdUs39NemMn6ADslblrMjh30pdn7KWShAH5rc/J
-         nT/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716280513; x=1716885313;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P80V1HVAEHdvXLPhNcgfiUJ7gY/EImR+9FLANrvqAlM=;
-        b=btAAvJ6LRAgZ+zXhfuuM0/TpibSL2TYw8+fslhxWnsqk2FWU3sWk7VoMv/ZUpwGz4h
-         WARSasGs+P3bAa7IfISirb8yLy+JSwkrqPRcn9q5DW8JAJQkLey39lbHQObYOij9PRZ9
-         WtPDsU/TYLZ0VqICl+ld0sH1vEF8Ydm2jkUxkoJOg1lJsrSkCuFqKGdg3vG47VIwb6v8
-         SNGUVxCPKAy7ry0MaWo+MUzMpJ55hgBdECRsjK1iKNSedXYLAVJq8YJ87F8xGCR2JRnO
-         zNr6yEqsDYczT1OM7LwkjEBQzFG6XeUe7r08SiMAGeFC9fylzhz55XDjHR1E6QeYTKp0
-         3xrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU7ohqUZ2wEq19Fq3tAKr2WiOm8JzqUAunn44tDjjMe+f8bTDJ55gk4+5r5zRP6wlQ9uVQkZvTBB4N0mA41ujEzgKP6nqq5Xm6Z1A==
-X-Gm-Message-State: AOJu0YzCfIFJHJPSpusNPbIkV4hTmrsbF8tcYTRz1LroCE887TuozaKX
-	otgDm8+iajRqJo5BFknh7BIHN5T2xO7p684HCy2L9yR7/raRSUFMKSNDGv01gzs=
-X-Google-Smtp-Source: AGHT+IHz9p5OTO55wUBRLM61KvuJyO1Ga+w2762Be3+GlQAj9VUKOINFTaXF5ZLfnK8vzmTXiTKfeA==
-X-Received: by 2002:a50:9fc9:0:b0:572:ad86:d317 with SMTP id 4fb4d7f45d1cf-5734d5b90e3mr22304712a12.11.1716280512646;
-        Tue, 21 May 2024 01:35:12 -0700 (PDT)
-Received: from localhost (host-87-18-209-253.retail.telecomitalia.it. [87.18.209.253])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733c2c7e0dsm16388546a12.71.2024.05.21.01.35.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 May 2024 01:35:12 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Kamal Dasu <kamal.dasu@broadcom.com>,
-	Al Cooper <alcooperx@gmail.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org
-Cc: Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v3 4/4] arm64: dts: broadcom: Add support for BCM2712
-Date: Tue, 21 May 2024 10:35:16 +0200
-Message-ID: <f62a3c66e7fe8fa1fde7fbb81e6ce5c6e1e6c2eb.1716277695.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1716277695.git.andrea.porta@suse.com>
-References: <cover.1716277695.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1716281495; c=relaxed/simple;
+	bh=rS3UVYhGZuhcoa6yECMf2xlQPlWNMlzpfZZdREAOwiA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C4lwVCdVE8br0ghQvFqpByFrPFmYd3drlb0czdp5vCd7a96COhfn21VpzGVFbDdBLMO/hUt6AkZoBgzT/y05xKFPAvt2Y8ugYOCKPtRYNQwdQuwiRxWuA/hdZ+M3Cp4Fis/SQgpW/DO8RBtWdpQiKo6RONwFDfp1l77dXn2j55g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s9LDV-0004UJ-1r; Tue, 21 May 2024 10:51:29 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s9LDS-002MiS-Tt; Tue, 21 May 2024 10:51:26 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s9LDS-009MhI-2g;
+	Tue, 21 May 2024 10:51:26 +0200
+Date: Tue, 21 May 2024 10:51:26 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	Alexandru Ardelean <alexandru.ardelean@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Clark Wang <xiaoning.wang@nxp.com>
+Subject: Re: [PATCH 5/5] pwm: adp5585: Add Analog Devices ADP5585 support
+Message-ID: <dl7a6puox5lc36fpto2fgyfgmpd3uboqc4lcfdtuaxzzsboqld@alw7vyi7pqjz>
+References: <20240520195942.11582-1-laurent.pinchart@ideasonboard.com>
+ <20240520195942.11582-6-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="f7l4z7wuw4trzvr4"
+Content-Disposition: inline
+In-Reply-To: <20240520195942.11582-6-laurent.pinchart@ideasonboard.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The BCM2712 SoC family can be found on Raspberry Pi 5.
-Add minimal SoC and board (Rpi5 specific) dts file to be able to
-boot from SD card and use console on debug UART.
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- arch/arm64/boot/dts/broadcom/Makefile         |   1 +
- .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |  64 ++++
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 292 ++++++++++++++++++
- 3 files changed, 357 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
- create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+--f7l4z7wuw4trzvr4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-index 8b4591ddd27c..92565e9781ad 100644
---- a/arch/arm64/boot/dts/broadcom/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/Makefile
-@@ -6,6 +6,7 @@ DTC_FLAGS := -@
- dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
- 			      bcm2711-rpi-4-b.dtb \
- 			      bcm2711-rpi-cm4-io.dtb \
-+			      bcm2712-rpi-5-b.dtb \
- 			      bcm2837-rpi-3-a-plus.dtb \
- 			      bcm2837-rpi-3-b.dtb \
- 			      bcm2837-rpi-3-b-plus.dtb \
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-new file mode 100644
-index 000000000000..2bdbb6780242
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "bcm2712.dtsi"
-+
-+/ {
-+	compatible = "raspberrypi,5-model-b", "brcm,bcm2712";
-+	model = "Raspberry Pi 5";
-+
-+	aliases {
-+		serial10 = &uart10;
-+	};
-+
-+	chosen: chosen {
-+		stdout-path = "serial10:115200n8";
-+	};
-+
-+	/* Will be filled by the bootloader */
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0 0 0 0x28000000>;
-+	};
-+
-+	sd_io_1v8_reg: sd-io-1v8-reg {
-+		compatible = "regulator-gpio";
-+		regulator-name = "vdd-sd-io";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-settling-time-us = <5000>;
-+		gpios = <&gio_aon 3 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 1>,
-+			 <3300000 0>;
-+	};
-+
-+	sd_vcc_reg: sd-vcc-reg {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-sd";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpios = <&gio_aon 4 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+/* The Debug UART, on Rpi5 it's on JST-SH 1.0mm 3-pin connector
-+ * labeled "UART", i.e. the interface with the system console.
-+ */
-+&uart10 {
-+	status = "okay";
-+};
-+
-+/* SDIO1 is used to drive the SD card */
-+&sdio1 {
-+	vqmmc-supply = <&sd_io_1v8_reg>;
-+	vmmc-supply = <&sd_vcc_reg>;
-+	bus-width = <4>;
-+	sd-uhs-sdr50;
-+	sd-uhs-ddr50;
-+	sd-uhs-sdr104;
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-new file mode 100644
-index 000000000000..71b0fa6c9594
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-@@ -0,0 +1,292 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	compatible = "brcm,bcm2712";
-+
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	interrupt-parent = <&gicv2>;
-+
-+	axi: axi@1000000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x10 0x00000000  0x10 0x00000000  0x01 0x00000000>;
-+
-+		sdio1: mmc@1000fff000 {
-+			compatible = "brcm,bcm2712-sdhci",
-+				     "brcm,sdhci-brcmstb";
-+			reg = <0x10 0x00fff000  0x0 0x260>,
-+			      <0x10 0x00fff400  0x0 0x200>;
-+			reg-names = "host", "cfg";
-+			interrupts = <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_emmc2>;
-+			clock-names = "sw_sdio";
-+			mmc-ddr-3_3v;
-+		};
-+
-+		gicv2: interrupt-controller@107fff9000 {
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+			compatible = "arm,gic-400";
-+			reg = <0x10 0x7fff9000  0x0 0x1000>,
-+			      <0x10 0x7fffa000  0x0 0x2000>,
-+			      <0x10 0x7fffc000  0x0 0x2000>,
-+			      <0x10 0x7fffe000  0x0 0x2000>;
-+		};
-+	};
-+
-+	clocks {
-+		/* The oscillator is the root of the clock tree. */
-+		clk_osc: clk-osc {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-output-names = "osc";
-+			clock-frequency = <54000000>;
-+		};
-+
-+		clk_vpu: clk-vpu {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <750000000>;
-+			clock-output-names = "vpu-clock";
-+		};
-+
-+		clk_uart: clk-uart {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <9216000>;
-+			clock-output-names = "uart-clock";
-+		};
-+
-+		clk_emmc2: clk-emmc2 {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <200000000>;
-+			clock-output-names = "emmc2-clock";
-+		};
-+	};
-+
-+	cpus: cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Source for L1 d/i cache-line-size, cache-sets, cache-size
-+		 * https://developer.arm.com/documentation/100798/0401/L1-memory-system/About-the-L1-memory-system?lang=en
-+		 * Source for L2 cache-line-size and cache-sets:
-+		 * https://developer.arm.com/documentation/100798/0401/L2-memory-system/About-the-L2-memory-system?lang=en
-+		 * and for cache-size:
-+		 * https://www.raspberrypi.com/documentation/computers/processors.html#bcm2712
-+		 */
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x000>;
-+			enable-method = "psci";
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			next-level-cache = <&l2_cache_l0>;
-+
-+			l2_cache_l0: l2-cache-l0 {
-+				compatible = "cache";
-+				cache-size = <0x80000>;
-+				cache-line-size = <128>;
-+				cache-sets = <1024>; //512KiB(size)/64(line-size)=8192ways/8-way set
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&l3_cache>;
-+			};
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			next-level-cache = <&l2_cache_l1>;
-+
-+			l2_cache_l1: l2-cache-l1 {
-+				compatible = "cache";
-+				cache-size = <0x80000>;
-+				cache-line-size = <128>;
-+				cache-sets = <1024>; //512KiB(size)/64(line-size)=8192ways/8-way set
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&l3_cache>;
-+			};
-+		};
-+
-+		cpu2: cpu@2 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			next-level-cache = <&l2_cache_l2>;
-+
-+			l2_cache_l2: l2-cache-l2 {
-+				compatible = "cache";
-+				cache-size = <0x80000>;
-+				cache-line-size = <128>;
-+				cache-sets = <1024>; //512KiB(size)/64(line-size)=8192ways/8-way set
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&l3_cache>;
-+			};
-+		};
-+
-+		cpu3: cpu@3 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a76";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			d-cache-size = <0x10000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			i-cache-size = <0x10000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>; // 64KiB(size)/64(line-size)=1024ways/4-way set
-+			next-level-cache = <&l2_cache_l3>;
-+
-+			l2_cache_l3: l2-cache-l3 {
-+				compatible = "cache";
-+				cache-size = <0x80000>;
-+				cache-line-size = <128>;
-+				cache-sets = <1024>; //512KiB(size)/64(line-size)=8192ways/8-way set
-+				cache-level = <2>;
-+				cache-unified;
-+				next-level-cache = <&l3_cache>;
-+			};
-+		};
-+
-+		/* Source for cache-line-size and cache-sets:
-+		 * https://developer.arm.com/documentation/100453/0401/L3-cache?lang=en
-+		 * Source for cache-size:
-+		 * https://www.raspberrypi.com/documentation/computers/processors.html#bcm2712
-+		 */
-+		l3_cache: l3-cache {
-+			compatible = "cache";
-+			cache-size = <0x200000>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>; // 2MiB(size)/64(line-size)=32768ways/16-way set
-+			cache-level = <3>;
-+			cache-unified;
-+		};
-+	};
-+
-+	psci {
-+		method = "smc";
-+		compatible = "arm,psci-1.0", "arm,psci-0.2";
-+	};
-+
-+	rmem: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		atf@0 {
-+			reg = <0x0 0x0 0x0 0x80000>;
-+			no-map;
-+		};
-+
-+		cma: linux,cma {
-+			compatible = "shared-dma-pool";
-+			size = <0x0 0x4000000>; /* 64MB */
-+			reusable;
-+			linux,cma-default;
-+			alloc-ranges = <0x0 0x00000000 0x0 0x40000000>;
-+		};
-+	};
-+
-+	soc: soc@107c000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		ranges     = <0x7c000000  0x10 0x7c000000  0x04000000>;
-+		/* Emulate a contiguous 30-bit address range for DMA */
-+		dma-ranges = <0xc0000000  0x00 0x00000000  0x40000000>,
-+			     <0x7c000000  0x10 0x7c000000  0x04000000>;
-+
-+		system_timer: timer@7c003000 {
-+			compatible = "brcm,bcm2835-system-timer";
-+			reg = <0x7c003000 0x1000>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-frequency = <1000000>;
-+		};
-+
-+		mailbox: mailbox@7c013880 {
-+			compatible = "brcm,bcm2835-mbox";
-+			reg = <0x7c013880 0x40>;
-+			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+			#mbox-cells = <0>;
-+		};
-+
-+		local_intc: local-intc@7cd00000 {
-+			compatible = "brcm,bcm2836-l1-intc";
-+			reg = <0x7cd00000 0x100>;
-+		};
-+
-+		uart10: serial@7d001000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x7d001000 0x200>;
-+			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_uart>, <&clk_vpu>;
-+			clock-names = "uartclk", "apb_pclk";
-+			arm,primecell-periphid = <0x00241011>;
-+			status = "disabled";
-+		};
-+
-+		interrupt-controller@7d517000 {
-+			compatible = "brcm,bcm7271-l2-intc";
-+			reg = <0x7d517000 0x10>;
-+			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+		};
-+
-+		gio_aon: gpio@7d517c00 {
-+			compatible = "brcm,bcm7445-gpio", "brcm,brcmstb-gpio";
-+			reg = <0x7d517c00 0x40>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			// Don't use GIO_AON as an interrupt controller because it will
-+			// clash with the firmware monitoring the PMIC interrupt via the VPU.
-+			brcm,gpio-bank-widths = <17 6>;
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) |
-+					  IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) |
-+					  IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) |
-+					  IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) |
-+					  IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) |
-+					  IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+};
--- 
-2.35.3
+Hello Laurent,
 
+On Mon, May 20, 2024 at 10:59:41PM +0300, Laurent Pinchart wrote:
+> diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
+> new file mode 100644
+> index 000000000000..709713d8f47a
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-adp5585.c
+> @@ -0,0 +1,230 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Analog Devices ADP5585 PWM driver
+> + *
+> + * Copyright 2022 NXP
+> + * Copyright 2024 Ideas on Board Oy
+> + */
+
+Please document some hardware properties here in the same format as many
+other PWM drivers. The things I'd like to read there are:
+
+ - Only supports normal polarity
+ - How does the output pin behave when the hardware is disabled
+   (typically "low" or "high-Z" or "freeze")
+ - Does changing parameters or disabling complete the currently running
+   period?
+ - Are there glitches in .apply()? E.g. when the new duty_cycle is
+   already written but the new period is not.
+
+> +#include <linux/container_of.h>
+> +#include <linux/device.h>
+> +#include <linux/math.h>
+> +#include <linux/minmax.h>
+> +#include <linux/mfd/adp5585.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +#include <linux/time.h>
+
+Do you need these all? I wounder about time.h.
+
+> +#define ADP5585_PWM_CHAN_NUM		1
+> +
+> +#define ADP5585_PWM_OSC_FREQ_HZ		1000000U
+> +#define ADP5585_PWM_MIN_PERIOD_NS	(2ULL * NSEC_PER_SEC / ADP5585_PWM_OSC=
+_FREQ_HZ)
+> +#define ADP5585_PWM_MAX_PERIOD_NS	(2ULL * 0xffff * NSEC_PER_SEC / ADP558=
+5_PWM_OSC_FREQ_HZ)
+> +
+> +struct adp5585_pwm_chip {
+> +	struct pwm_chip chip;
+> +	struct regmap *regmap;
+> +	struct mutex lock;
+
+What does this mutex protect against? You can safely assume that there
+are no concurrent calls of the callbacks. (This isn't ensured yet, but I
+consider a consumer who does this buggy and it will soon be ensured.)
+
+> +	u8 pin_config_val;
+> +};
+> +
+> +static inline struct adp5585_pwm_chip *
+> +to_adp5585_pwm_chip(struct pwm_chip *chip)
+> +{
+> +	return container_of(chip, struct adp5585_pwm_chip, chip);
+> +}
+> +
+> +static int pwm_adp5585_request(struct pwm_chip *chip, struct pwm_device =
+*pwm)
+> +{
+> +	struct adp5585_pwm_chip *adp5585_pwm =3D to_adp5585_pwm_chip(chip);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	guard(mutex)(&adp5585_pwm->lock);
+> +
+> +	ret =3D regmap_read(adp5585_pwm->regmap, ADP5585_PIN_CONFIG_C, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	adp5585_pwm->pin_config_val =3D val;
+> +
+> +	ret =3D regmap_update_bits(adp5585_pwm->regmap, ADP5585_PIN_CONFIG_C,
+> +				 ADP5585_R3_EXTEND_CFG_MASK,
+> +				 ADP5585_R3_EXTEND_CFG_PWM_OUT);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D regmap_update_bits(adp5585_pwm->regmap, ADP5585_GENERAL_CFG,
+> +				 ADP5585_OSC_EN, ADP5585_OSC_EN);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+The last four lines are equivalent to
+
+	return ret;
+
+What is the purpose of this function? Setup some kind of pinmuxing? The
+answer to that question goes into a code comment. If it's pinmuxing, is
+this a hint to use the pinctrl subsystem? (Maybe it's overkill, but if
+it's considered a good idea later, it might be hard to extend the dt
+bindings, so thinking about that now might be a good idea.)
+
+> +}
+> +
+> +static void pwm_adp5585_free(struct pwm_chip *chip, struct pwm_device *p=
+wm)
+> +{
+> +	struct adp5585_pwm_chip *adp5585_pwm =3D to_adp5585_pwm_chip(chip);
+> +
+> +	guard(mutex)(&adp5585_pwm->lock);
+> +
+> +	regmap_update_bits(adp5585_pwm->regmap, ADP5585_PIN_CONFIG_C,
+> +			   ADP5585_R3_EXTEND_CFG_MASK,
+> +			   adp5585_pwm->pin_config_val);
+
+I wonder if writing a deterministic value instead of whatever was in
+that register before .request() would be more robust and less
+surprising.
+
+> +	regmap_update_bits(adp5585_pwm->regmap, ADP5585_GENERAL_CFG,
+> +			   ADP5585_OSC_EN, 0);
+> +}
+> +
+> +static int pwm_adp5585_apply(struct pwm_chip *chip,
+> +			     struct pwm_device *pwm,
+> +			     const struct pwm_state *state)
+> +{
+> +	struct adp5585_pwm_chip *adp5585_pwm =3D to_adp5585_pwm_chip(chip);
+> +	u32 on, off;
+> +	int ret;
+> +
+> +	if (!state->enabled) {
+> +		guard(mutex)(&adp5585_pwm->lock);
+> +
+> +		return regmap_update_bits(adp5585_pwm->regmap, ADP5585_PWM_CFG,
+> +					  ADP5585_PWM_EN, 0);
+> +	}
+> +
+> +	if (state->period < ADP5585_PWM_MIN_PERIOD_NS ||
+> +	    state->period > ADP5585_PWM_MAX_PERIOD_NS)
+> +		return -EINVAL;
+
+Make this:
+
+	if (state->period < ADP5585_PWM_MIN_PERIOD_NS)
+		return -EINVAL;
+
+	period =3D min(ADP5585_PWM_MAX_PERIOD_NS, state->period)
+	duty_cycle =3D min(period, state->period);
+
+> +
+> +	/*
+> +	 * Compute the on and off time. As the internal oscillator frequency is
+> +	 * 1MHz, the calculation can be simplified without loss of precision.
+> +	 */
+> +	on =3D DIV_ROUND_CLOSEST_ULL(state->duty_cycle,
+> +				   NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ);
+> +	off =3D DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
+> +				    NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ);
+
+round-closest is wrong. Testing with PWM_DEBUG should point that out.
+The right algorithm is:
+
+	on =3D duty_cycle / (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ)
+	off =3D period / (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ) - on
+
+
+> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
+> +		swap(on, off);
+
+Uhh, no. Either you can do inverted polarity or you cannot. Don't claim
+you can.
+
+> [...]
+> +static int adp5585_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct adp5585_dev *adp5585 =3D dev_get_drvdata(pdev->dev.parent);
+> +	struct adp5585_pwm_chip *adp5585_pwm;
+> +	int ret;
+> +
+> +	adp5585_pwm =3D devm_kzalloc(&pdev->dev, sizeof(*adp5585_pwm), GFP_KERN=
+EL);
+> +	if (!adp5585_pwm)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, adp5585_pwm);
+> +
+> +	adp5585_pwm->regmap =3D adp5585->regmap;
+> +
+> +	mutex_init(&adp5585_pwm->lock);
+> +
+> +	adp5585_pwm->chip.dev =3D &pdev->dev;
+> +	adp5585_pwm->chip.ops =3D &adp5585_pwm_ops;
+> +	adp5585_pwm->chip.npwm =3D ADP5585_PWM_CHAN_NUM;
+
+That is wrong since commit
+05947224ff46 ("pwm: Ensure that pwm_chips are allocated using pwmchip_alloc=
+()")
+
+> +	ret =3D devm_pwmchip_add(&pdev->dev, &adp5585_pwm->chip);
+> +	if (ret) {
+> +		mutex_destroy(&adp5585_pwm->lock);
+> +		return dev_err_probe(&pdev->dev, ret, "failed to add PWM chip\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void adp5585_pwm_remove(struct platform_device *pdev)
+> +{
+> +	struct adp5585_pwm_chip *adp5585_pwm =3D platform_get_drvdata(pdev);
+> +
+> +	mutex_destroy(&adp5585_pwm->lock);
+
+Huh, this is a bad idea. The mutex is gone while the pwmchip is still
+registered. AFAIK calling mutex_destroy() is optional, and
+adp5585_pwm_remove() can just be dropped. Ditto in the error paths of
+=2Eprobe().
+
+> +}
+> +
+> +static const struct of_device_id adp5585_pwm_of_match[] =3D {
+> +	{ .compatible =3D "adi,adp5585-pwm" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, adp5585_pwm_of_match);
+
+Is it normal/usual for mfd drivers to use of stuff? I thought they use
+plain platform style binding, not sure though.
+
+> +static struct platform_driver adp5585_pwm_driver =3D {
+> +	.driver	=3D {
+> +		.name =3D "adp5585-pwm",
+> +		.of_match_table =3D adp5585_pwm_of_match,
+> +	},
+> +	.probe =3D adp5585_pwm_probe,
+> +	.remove_new =3D adp5585_pwm_remove,
+> +};
+> +module_platform_driver(adp5585_pwm_driver);
+> +
+> +MODULE_AUTHOR("Xiaoning Wang <xiaoning.wang@nxp.com>");
+> +MODULE_DESCRIPTION("ADP5585 PWM Driver");
+> +MODULE_LICENSE("GPL");
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--f7l4z7wuw4trzvr4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZMYI0ACgkQj4D7WH0S
+/k5o2ggAn5MfFbCQP7ri49/q/bz5rZE9zGc3gzfL9Bpoe58kY4ehkuNQU9nNNFLI
+Xzz7HWAKjj/kdl//C3bjDN2pxLGWicD0XQurcNncJ6eZJ8ZutQMkCDSGyDrDqge8
+s09gq0w5155lkVHQ7JlsubNTg6EjgnYJYeH0PDXd7KLUG8z6lvmHjsbtO+aK5RRy
+TiMmZYCiQL8vpP++Hxp49hYEWJEGlfcKuAms26DTBHY4rbZ5SuL8OVG4uK5AB2zF
+Tlh86xzjO4MaHHCSvGpJbyEgjpbFP2CFeIK2xTSxRXHpS88m7nRt2KAFyn7Tv/fB
+a92OAk1aCppi3eDqvWJKGFA6VGXd5w==
+=GkWI
+-----END PGP SIGNATURE-----
+
+--f7l4z7wuw4trzvr4--
 
