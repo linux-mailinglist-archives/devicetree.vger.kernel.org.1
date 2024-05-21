@@ -1,226 +1,291 @@
-Return-Path: <devicetree+bounces-67986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 588438CA71F
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 05:45:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6DA98CA70D
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 05:31:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0547428236C
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 03:45:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA8231C20ADF
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 03:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DAF21A0D;
-	Tue, 21 May 2024 03:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a01OiOFJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AE2134B1;
+	Tue, 21 May 2024 03:31:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2120.outbound.protection.partner.outlook.cn [139.219.17.120])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E07BD1F959;
-	Tue, 21 May 2024 03:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716263106; cv=none; b=AFKlRTGVGh86bQ+a0wgseWMP5c1yf6F33UNb5H6HdZidUxo6W8XUJEO5jkUSoO8yNpDKAJcIVokkxOpNsB2ADgUQQ7zEP/Ne/WEd/y2ANgWDM6EUym5DWuXRo+tRqOAv6HnQQ4u+/rC6E/+8HGu/sV0wKE1uOqbKLci8KP13P4M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716263106; c=relaxed/simple;
-	bh=nT/UcWakmvnOxHqHJxkCVjPajiuq5sgmjr6Gdx1E7do=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XzIDVfJXSwJBfKyqhCF5T1mWf/aHUjsro8y8YwXkq7i3sTzX0j1BgYk+ILR2+jZMtisNt/qWrFLwX2EtzXbasNR94TVe++rxnYVkXnoZwVNv+6dDdaSOdjPsIa/bwNkvwv1vJLzo69q2yY29YJZcPRvjNw84f4B/Vk1oTzS9DZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a01OiOFJ; arc=none smtp.client-ip=209.85.166.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-36c7bd2586eso15692495ab.0;
-        Mon, 20 May 2024 20:45:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716263104; x=1716867904; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=92eG1R1+dxxcxoqnquEsD3l0yRmXMuTseq3SVxvuVCU=;
-        b=a01OiOFJ9gwaAmH8yggz5HpfbI0RwovXKZf5gn+31dT0RBEYFCJ1eFfWtAxaOGRaah
-         2kOfWXECFxBPBToAPhLG2snWA78k57Snc3TI7WAiZkV66a4Zb8t/J5tGt3DGYtgto6fK
-         PqyvaO4AzCTNPRoyvQZeRn+dl0aIlzd+EoEYmZ5+zDOie1GUZ6qbInB1Q8j/+j1gPQt8
-         sFXAl/kzOATR1X9wyf4dg6W4zExMWE0T8BpMcoz2pR1Chtuy/5Q717iX/OFHY2qohMrB
-         YQfTPEU9nfosb560QNybgvyfDcBVRRX4bcr6oOTF69Uumi26U/rcN+6ReHYqO9PJkxhn
-         jGnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716263104; x=1716867904;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=92eG1R1+dxxcxoqnquEsD3l0yRmXMuTseq3SVxvuVCU=;
-        b=gcM2QZS+YlCMbSnzlREwIkQAiWZoXp4zwnp0qgk8I2YQ7V5h3FgvR/+e5AXDamlAfT
-         +S3frHDlaOXFrP9biF3yEQPqnGlSem9GW1C0R2rAhXcoREllCeHrXBQ8lBrGylUvd/zu
-         jtZYxZ6Omwo/x9/Po9e3t3p3yzI8Q0zIw9A/4UQbCfz8v73JutbTPWxXbZdaYJXPAZ/n
-         j5WVTI8iYlFdwrCRby0VrI1PIrieIMNtw9KLeqPJiO0d20BjmCJeHKjnXBbi72OSTZjb
-         Xl0R3MeYm0Es+M2Su1dfRcTywaYb+9+Uf3sSa3u9ynR8Y0uYT+e8akenX1H2LXb4chU0
-         +IFg==
-X-Forwarded-Encrypted: i=1; AJvYcCVfGUX31sQ6IFLXgAwIs9LuEGzEjWwm5iYnY3YI1LYt6eXqsEwt+cvNPCYXTVbSNhVFBgEDZcyHoYvoH9HjMX8uRSLjWE5jGmImSOuLuLS7eKMG/yPYYTLAiEsDEJ5uBx7GCiI8YuDy/8ti7U3rsLEmCAX05t0mXzBF8piH/npc5eJv24tL
-X-Gm-Message-State: AOJu0YwJtg8J5kRuOhrDkKUV/79fBoD8RZKs3l7OFQtB6GMAbMIsmV5F
-	V2KZ9XocxqlqN+4bIJIN0ARJquuQG/8wrZXNpAy9YqkK1YYLlV6YS6sIvwLPiTI5jI6cGqyPCIb
-	FNpkfw/XU/9lS4i6KbbguDfWzp1nRyCWc
-X-Google-Smtp-Source: AGHT+IGUqihHFeb7eWpabPg1q5Sh/AS8XKoMLly/pnZf7TI+p69vXi5+CsRbyhaNcvW9G0mXy1rLErzVIJjrmezSMvA=
-X-Received: by 2002:a05:6e02:1caf:b0:36a:1f1a:f797 with SMTP id
- e9e14a558f8ab-36cc1501d23mr336656205ab.32.1716263103909; Mon, 20 May 2024
- 20:45:03 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9566F179AE;
+	Tue, 21 May 2024 03:31:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.120
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716262302; cv=fail; b=QGARqmmEm2DY+1gkJ6Xfnn5j9urhQ6MyzO8Jnynp5irCotFquQoSFJ5MyQF43iYLAHGubyU0A3U5M0Mf6gAjPgkIytAaXRccYZ1URujDxeAgPQgGZRp8/bS5stYYXZ2dKEfXOjAMwdnN8Xb53MF/NrWDIHrFGb+byln+bb8sifI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716262302; c=relaxed/simple;
+	bh=stqT571kYOb9UW9SY+neCWYrJJdL1L/8FwiJTJbDA20=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=g+yZo8UPZz6dvGPO/9tLSzfIlStAB7RDyBGj0gjOsFcKI9OdQToTgqCdmimzLLq/n3ZHovoiDLdCTaziCOdT49kXpsGi06BkBcbAhKeT/RzU7TFy6L9MKN+RHqKVQXZaVwlbEalc4nIRSsN78SzC9nUMJHv5ybE3sLrcrujXkrM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Mrz4ZLARi7iCIk2AzWAuw4XcPkQmjAbMA+FQ1qmUITEz1X6ihwQlpOk2H6OXoDyJ0C+RaynvORQ8V436GHafsU75WfQQg3Hue5bkqLHAUmCj2ZG4y+pDDW3x53UKwpeptKnBhgplA5LAvrxXaLWCg3YTlY9j7dfoFQHJZS9MYRi2WLxviVckTMGgYG2SR3uF1EW+pZggxHng9rnKWm7QmVh9dAQyqxKx8wIrJ8hHCMZpARXZbYPh2cV3mxjcOaxL5X/yE/GscYrObjl0bTb3zLlhcCeyNJYIlGp3rnSlT2d254MHWio5ZA0M1eStZ1H5JD/IERRmjqtgNU1PLsFYVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BRQeh9nlH+L9Jtph5WFyf5IA3DuCg54oBBKn9zKOaxc=;
+ b=BOQjGiWceeHt7EpK5nf81huhd4NUOK0o6zGhxUrXYLCCLfPhW/dmmjXjTsgKQS6iEhmnKtWEtUNbNjAsR0rhOyxuBBhT66IMkyGz2xuJu41CBdxVLQDqPs8Jk/pmLGUYbBhdt9kG02rQuHkw3CcufakQqIaT6vJfBFWNY1u3ojZJt1kKoHMRccJSGavUN+EK9oyQWjQWCJzmIGW0kLMRrGIS2jx3UWY0Nva3oifLgKDrJ2tyOtocTI4opvjG+Fl8GGmjik3MjQDKKPpq+BuXK1DIMjWf5OBVNWRf5m/s6bDMfavoC9tXqS4KlTpZoR3RjOVwmp3l3ny5NxeQgq22RA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from ZQ0PR01MB1047.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:c::7) by ZQ0PR01MB1255.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:19::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36; Tue, 21 May
+ 2024 02:58:25 +0000
+Received: from ZQ0PR01MB1047.CHNPR01.prod.partner.outlook.cn
+ ([fe80::39be:8ed9:67b7:adc6]) by
+ ZQ0PR01MB1047.CHNPR01.prod.partner.outlook.cn ([fe80::39be:8ed9:67b7:adc6%6])
+ with mapi id 15.20.7472.044; Tue, 21 May 2024 02:58:25 +0000
+From: keith <keith.zhao@starfivetech.com>
+To: andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	hjc@rock-chips.com,
+	heiko@sntech.de,
+	andy.yan@rock-chips.com,
+	xingyu.wu@starfivetech.com,
+	p.zabel@pengutronix.de,
+	jack.zhu@starfivetech.com,
+	shengyang.chen@starfivetech.com
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	keith.zhao@starfivetech.com
+Subject: [PATCH v4 00/10] drm/verisilicon : support DC8200 and inno hdmi
+Date: Tue, 21 May 2024 18:58:07 +0800
+Message-Id: <20240521105817.3301-1-keith.zhao@starfivetech.com>
+X-Mailer: git-send-email 2.27.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHXPR01CA0020.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1b::29) To ZQ0PR01MB1047.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:c::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1715656329-8061-1-git-send-email-shengjiu.wang@nxp.com>
- <1715656329-8061-2-git-send-email-shengjiu.wang@nxp.com> <20240520161602.GA733483-robh@kernel.org>
-In-Reply-To: <20240520161602.GA733483-robh@kernel.org>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Tue, 21 May 2024 11:44:53 +0800
-Message-ID: <CAA+D8AOvuCKN0cU_TAHsz6h41qVXHbV0LfkFq9dSRujt2Lc2bw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible string
- for i.MX95
-To: Rob Herring <robh@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com, broonie@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com, 
-	nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com, 
-	alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ0PR01MB1047:EE_|ZQ0PR01MB1255:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6793486f-8676-484a-ddcd-08dc7941e227
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|366007|41320700004|1800799015|7416005|52116005|921011|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	4AczXecf2/nVAQSxQxf7QPytkn2KwbWR2WCOx2sfop3yQiRQ3rQRNPjUyZH1mmO4qnprxFnOdENKrpwl6FMqQz4usxTjZkOkVUskxWdLi5X8kpKjP/sVLWqSH52OY9lhd/gCb50vhoObErYu428dY2EOwJNSjNVTgTKjw2eevguRVbrHj7z0I58DtbzzHBbvh9plXrD3znPyGR/KV5KWpjYuIuhuM3hoGjqS5UjOkmFEHALQJdkr5tMEhwWh2mOouh+wWiyXC8f6Vk9VymCSSC/O9zq3G1FAzQJEeQGrykL1ovq1IaPVGMzL6l3pj30griy0igpKATkN1HVgZb37bkVxb01Vkp19dIsBbB3aUT5Ae3DGyJqkKpeXTrWERyXLZ0BQPpuIVo6hrgib6fU6fp+XD1/EF7RRvRjp5ksEA7Nd2HaDsXh4UZZtgMU+ZSchRCeWi4Le4931FslvJwiCLRXUbOzwiwqpqOsVZAtY4rU2NXJRzFywqY64MrRW/BMc78BU3VX6o7zTokXEajBE1bMozGFj6vW+9pVGKITvaZOAcbk2YJYR5cmUn3Ggidi/+X93ZUdH4MpfuGOR00R/XRWzZOZgtRUK9k2hXNNWoTYbVnzWWkNuaETIE7APfaevOHJfenLly8El5f87qDkCCg==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ0PR01MB1047.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(366007)(41320700004)(1800799015)(7416005)(52116005)(921011)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?s0QntV5gAVltFNocsAjb6Udl9/UAUoReW4r7fdU67POye1tZsIeul52vpVSJ?=
+ =?us-ascii?Q?6HhdTL8tVmoDUxYBZYMuxXG9ZHPLdi6GpDQCs2QPSSF0QSzgYbsuWH0DfjCT?=
+ =?us-ascii?Q?8TA99RoDg2qCvQWThn6E61vUVh3BpOaeybYK3M5qIyob7+XsdDSEHjZSKqJ5?=
+ =?us-ascii?Q?iCVykzclhncYEw5UVo/y97rCoLlwYdJX5OYwrYSiUoMg917g66WBM02iEzEb?=
+ =?us-ascii?Q?hzyqFjpP4gz0Vc6tQqMPuVG4aY4IEz5DCXTo2q+pYSAKOljisrAg47AMlS+T?=
+ =?us-ascii?Q?vzh7C8Z259AyVwsmgopUh2ZjMjdU5R35Ofj+aBqMQ3c7e99Fkm4qb6i9uK3D?=
+ =?us-ascii?Q?IE9OY4outXiR9eh3sebZhpc7GOcs83+k2BpsrD2G1fRciOu3yvNjcjpX0ezG?=
+ =?us-ascii?Q?KZsHJ8Wcqj5LiDZiGxVngoftO1H5iDmXKhgv1KSvPkrX4ymq3WgyqxkrvHiH?=
+ =?us-ascii?Q?xq3nOb+CL5tkjxjDHpoB7DBhB2mBxCs1eGj0nJwBLN1S6Bz+YyGZuqa1sSbq?=
+ =?us-ascii?Q?Q9w4TlnsiiLHSo3a35Cw3QQGuzq2q2Q4DFN00+MyGYLIc9O3chLmorxUuyT1?=
+ =?us-ascii?Q?Vn/q4layTWNqImD/05Dh4i7wpCxdXIAOhj3XTZA/oH3piSlNmvCfQe1teVgy?=
+ =?us-ascii?Q?617pbOAJtqmh2F7c0jizIdqTK39QrZTv46qVpbg6/WUEPreP3VIMWpyUZAe5?=
+ =?us-ascii?Q?zt/w60RlkALDF4s+liU2IFA5KWDYRKqbbNQATiVD7oq+I+6x8qh5Q+6HFAmb?=
+ =?us-ascii?Q?9qUY3Aioi7x6fDDyIVD2nmOLl1a66y72GYUyh9oH/agMGk+IrG3hqFSqRFzJ?=
+ =?us-ascii?Q?cE0fNVCUAngkDNhLykSsw3aft0KYt948bwGw+GJ/y7Nz5p6SC0akAaX9n9ee?=
+ =?us-ascii?Q?wCvNVSzIttXYrLZR2H+clYhiP0Vzlq+tUL/T6miJ1qhF+JjEIekXCKCRNYcQ?=
+ =?us-ascii?Q?l8thCsNEBxJ5rQ6yM5K2nfLNY0Ry9OYif+/GGXuMi5y64yaInozMohNFk/Co?=
+ =?us-ascii?Q?Sbwc++tKqoa9gV+TzCMJ6O8kEUL+e29rw0zz0cZOrGHgsU5A8ddIISpCO44/?=
+ =?us-ascii?Q?DgGIuLYeOAlz/+3FRB97eNsUc9q6yxH3PbdsaNbydeKo8iqhG7pThZnizTyv?=
+ =?us-ascii?Q?cnExCIjjrUrvq6A/wDO2a1O2NNBfK8iFAGLAE58sJuAofAvzWbBj4Q7IusT5?=
+ =?us-ascii?Q?PdGDCiJHE1r2Lvirb8V99kFHT1NotaXsDFh+T/9T+YoZaauEpT8LksqqIPHL?=
+ =?us-ascii?Q?n8YmTuN2TMrk4E0C5q5SaPz/vly5g3soGf98ab8vFGxSjKgqjEM2Op74CA4F?=
+ =?us-ascii?Q?Sl+KlxutsQ7SEhmszqXaMhadcMpi2z9MAjYQsVZ73BugWuO3qUW/kwNt4VtO?=
+ =?us-ascii?Q?q5E0aQbqIC3IW2RjECgiflwTFZ6dVjffvoy3gnlnp66/0OYFSJemK5myKTzq?=
+ =?us-ascii?Q?F+jdDeA773YdgJfhhUgPEaZoEfEzuaUK+SsGJClYWbvNCfK46b86K8PTNl37?=
+ =?us-ascii?Q?T3VW5ZHhPkah4zOkcUSKtMHoSH37Uf1cG5OBhPA9zEHiqqie0oKMkg5kC5pB?=
+ =?us-ascii?Q?zficqJBaIgiyNKWi7lPDC6LW0R/ZGpnYKqu0iru1O8UicTpAHQKBO5q1vkZC?=
+ =?us-ascii?Q?5A=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6793486f-8676-484a-ddcd-08dc7941e227
+X-MS-Exchange-CrossTenant-AuthSource: ZQ0PR01MB1047.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2024 02:58:25.5119
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HiDc8aGu7aLK6lDIsxsmTVUD0YPkbgRXeY7b+fHHQ+SkaPegSXTBpWGzUCwSYIMOSOXLlSWycodrBIr8kjiiAwGuOG7S0dhZHdwzEyWVMi8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ0PR01MB1255
 
-On Tue, May 21, 2024 at 12:16=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Tue, May 14, 2024 at 11:12:08AM +0800, Shengjiu Wang wrote:
-> > Add compatible string "fsl,imx95-xcvr" for i.MX95 platform.
-> >
-> > The difference between each platform is in below table.
-> >
-> > +---------+--------+----------+--------+
-> > |  SOC          |  PHY   | eARC/ARC | SPDIF  |
-> > +---------+--------+----------+--------+
-> > | i.MX8MP |  V1    |  Yes     |  Yes   |
-> > +---------+--------+----------+--------+
-> > | i.MX93  |  N/A   |  N/A     |  Yes   |
-> > +---------+--------+----------+--------+
-> > | i.MX95  |  V2    |  N/A     |  Yes   |
-> > +---------+--------+----------+--------+
-> >
-> > On i.MX95, there are two PLL clock sources, they are the parent
-> > clocks of the XCVR root clock. one is for 8kHz series rates, named
-> > as 'pll8k', another one is for 11kHz series rates, named as 'pll11k'.
-> > They are optional clocks, if there are such clocks, then the driver
-> > can switch between them to support more accurate sample rates.
-> >
-> > As 'pll8k' and 'pll11k' are optional, then add 'minItems: 4'
-> > for clocks and clock-names properties.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  .../devicetree/bindings/sound/fsl,xcvr.yaml   | 55 +++++++++++++++----
-> >  1 file changed, 45 insertions(+), 10 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Do=
-cumentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> > index 0eb0c1ba8710..70bcde33e986 100644
-> > --- a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> > @@ -22,6 +22,7 @@ properties:
-> >      enum:
-> >        - fsl,imx8mp-xcvr
-> >        - fsl,imx93-xcvr
-> > +      - fsl,imx95-xcvr
-> >
-> >    reg:
-> >      items:
-> > @@ -44,18 +45,12 @@ properties:
-> >      minItems: 1
-> >
-> >    clocks:
-> > -    items:
-> > -      - description: Peripheral clock
-> > -      - description: PHY clock
-> > -      - description: SPBA clock
-> > -      - description: PLL clock
->
-> Leave these here and add pll8k and pll11k.
->
-> > +    minItems: 4
->
-> Keep this.
->
-> > +    maxItems: 6
-> >
-> >    clock-names:
-> > -    items:
-> > -      - const: ipg
-> > -      - const: phy
-> > -      - const: spba
-> > -      - const: pll_ipg
-> > +    minItems: 4
-> > +    maxItems: 6
->
-> Same here.
->
-> >
-> >    dmas:
-> >      items:
-> > @@ -97,6 +92,46 @@ allOf:
-> >        properties:
-> >          interrupts:
-> >            maxItems: 1
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - fsl,imx95-xcvr
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: Peripheral clock
-> > +            - description: PHY clock
-> > +            - description: SPBA clock
-> > +            - description: PLL clock
-> > +            - description: PLL clock source for 8kHz series
-> > +            - description: PLL clock source for 11kHz series
-> > +          minItems: 4
-> > +        clock-names:
-> > +          items:
-> > +            - const: ipg
-> > +            - const: phy
-> > +            - const: spba
-> > +            - const: pll_ipg
-> > +            - const: pll8k
-> > +            - const: pll11k
-> > +          minItems: 4
->
-> Drop all this.
->
-> > +    else:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: Peripheral clock
-> > +            - description: PHY clock
-> > +            - description: SPBA clock
-> > +            - description: PLL clock
-> > +        clock-names:
-> > +          items:
-> > +            - const: ipg
-> > +            - const: phy
-> > +            - const: spba
-> > +            - const: pll_ipg
->
-> And for this case, you just need 'maxItems: 4'.
->
+Verisilicon/DC8200 display controller IP has 2 display pipes and each 
+pipe support a primary plane and a cursor plane . 
+In addition, there are four overlay planes as two display pipes common resources.
 
-Thanks for the comments.
+The first display pipe is bound to the inno HDMI encoder.
+The second display pipe is bound to a simple encoder, which is used to
+find dsi bridge by dts node. 
 
-I will address them in the next version.
+Patch 1 adds YAML schema for JH7110 display pipeline.
 
-Best regards
-Shengjiu Wang
+Patches 2 to 3 add inno common api and match the ROCKCHIP inno hdmi driver 
+by calling the common api. 
+The collating public interface is based on ROCKCHIP inno hdmi, 
+and it can be resused by JH7110 inno hdmi.
+Those common api are tested on rk-3128 SDK, which kernel version is 4.x. 
+step1, make sure the process is consistent with the latest kernel version.
+step2, just remove the interface and add a common interface. 
+
+Patches 4 to 8 add kms driver for dc8200 display controller.
+
+Patch 9 adds inno hdmi support for JH7110 display pipeline.
+
+Patch 10 adds a simple encoder.
+
+This patchset should be applied on next branch.
+
+V1:
+Changes since v1:
+- Further standardize the yaml file.
+- Dts naming convention improved.
+- Fix the problem of compiling and loading ko files.
+- Use drm new api to automatically manage resources.
+- Drop vs_crtc_funcs&vs_plane_funcs, subdivide the plane's help interface.
+- Reduce the modifiers unused.
+- Optimize the hdmi driver code
+
+V2:
+Changes since v2:
+- fix the error about checking the yaml file.
+- match drm driver GEM DMA API.
+- Delete the custom crtc property .
+- hdmi use drmm_ new api to automatically manage resources.
+- update the modifiers comments.
+- enabling KASAN, fix the error during removing module 
+
+V3:
+Changes since v3:
+- Delete the custom plane property.
+- Delete the custom fourcc modifiers.
+- Adjust the calculation mode of hdmi pixclock.
+- Add match data for dc8200 driver.
+- Adjust some magic values.
+- Add a simple encoder for dsi output.
+
+V4:
+Changes since v4:
+- Delete the display subsystem module as all crtcs and planes are a driver.
+- Delete the custom struct, directly use the drm struct data.
+- Tidy up the inno hdmi public interface.
+- Add a simple encoder for dsi output.
+
+keith (10):
+  dt-bindings: display: Add YAML schema for JH7110 display pipeline
+  drm/bridge: add common api for inno hdmi
+  drm/rockchip:hdmi: migrate to use inno-hdmi bridge driver
+  drm/vs: Add hardware funcs for vs.
+  drm/vs: add vs mode config init
+  drm/vs: add vs plane api
+  drm/vs: add ctrc fun
+  drm/vs: add vs drm master driver
+  drm/vs: Innosilicon HDMI support
+  drm/vs: add simple dsi encoder
+
+ .../display/bridge/innosilicon,inno-hdmi.yaml |   49 +
+ .../display/rockchip/rockchip,inno-hdmi.yaml  |   27 +-
+ .../starfive/starfive,dsi-encoder.yaml        |   92 ++
+ .../starfive/starfive,jh7110-dc8200.yaml      |  169 +++
+ .../starfive/starfive,jh7110-inno-hdmi.yaml   |   75 ++
+ .../soc/starfive/starfive,jh7110-syscon.yaml  |    1 +
+ MAINTAINERS                                   |   11 +
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/bridge/Kconfig                |    2 +
+ drivers/gpu/drm/bridge/Makefile               |    1 +
+ drivers/gpu/drm/bridge/innosilicon/Kconfig    |    6 +
+ drivers/gpu/drm/bridge/innosilicon/Makefile   |    2 +
+ .../gpu/drm/bridge/innosilicon/inno-hdmi.c    |  587 +++++++++
+ .../gpu/drm/bridge/innosilicon/inno-hdmi.h    |   97 ++
+ drivers/gpu/drm/rockchip/Kconfig              |    1 +
+ drivers/gpu/drm/rockchip/Makefile             |    2 +-
+ drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c |  517 ++++++++
+ .../{inno_hdmi.h => inno_hdmi-rockchip.h}     |   45 -
+ drivers/gpu/drm/rockchip/inno_hdmi.c          | 1073 -----------------
+ drivers/gpu/drm/verisilicon/Kconfig           |   23 +
+ drivers/gpu/drm/verisilicon/Makefile          |   11 +
+ .../gpu/drm/verisilicon/inno_hdmi-starfive.c  |  481 ++++++++
+ .../gpu/drm/verisilicon/inno_hdmi-starfive.h  |  152 +++
+ drivers/gpu/drm/verisilicon/vs_crtc.c         |  241 ++++
+ drivers/gpu/drm/verisilicon/vs_crtc.h         |   17 +
+ drivers/gpu/drm/verisilicon/vs_dc_hw.c        | 1060 ++++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_dc_hw.h        |  493 ++++++++
+ drivers/gpu/drm/verisilicon/vs_drv.c          |  721 +++++++++++
+ drivers/gpu/drm/verisilicon/vs_drv.h          |   98 ++
+ drivers/gpu/drm/verisilicon/vs_modeset.c      |   36 +
+ drivers/gpu/drm/verisilicon/vs_modeset.h      |   10 +
+ drivers/gpu/drm/verisilicon/vs_plane.c        |  487 ++++++++
+ drivers/gpu/drm/verisilicon/vs_plane.h        |   26 +
+ drivers/gpu/drm/verisilicon/vs_simple_enc.c   |  190 +++
+ drivers/gpu/drm/verisilicon/vs_simple_enc.h   |   25 +
+ drivers/gpu/drm/verisilicon/vs_type.h         |   84 ++
+ include/drm/bridge/inno_hdmi.h                |   69 ++
+ 38 files changed, 5840 insertions(+), 1144 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/innosilicon/Kconfig
+ create mode 100644 drivers/gpu/drm/bridge/innosilicon/Makefile
+ create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
+ create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.h
+ create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
+ rename drivers/gpu/drm/rockchip/{inno_hdmi.h => inno_hdmi-rockchip.h} (85%)
+ delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.c
+ create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+ create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+ create mode 100644 drivers/gpu/drm/verisilicon/inno_hdmi-starfive.c
+ create mode 100644 drivers/gpu/drm/verisilicon/inno_hdmi-starfive.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.h
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
+ create mode 100644 include/drm/bridge/inno_hdmi.h
+
+-- 
+2.27.0
+
 
