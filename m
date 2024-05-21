@@ -1,150 +1,322 @@
-Return-Path: <devicetree+bounces-67987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-67988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4216C8CA73A
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 06:09:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0668CA756
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 06:32:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AA231F21A65
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 04:09:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85D31B21B7C
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 04:32:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8650320323;
-	Tue, 21 May 2024 04:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661D72561B;
+	Tue, 21 May 2024 04:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CI+TuwHv"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="vq3GIjl5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com [209.85.219.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185486FDC;
-	Tue, 21 May 2024 04:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C6914286
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 04:31:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716264566; cv=none; b=nHYXJHnZpOIxV8N8AHOKQd5ihv1sTNstWiyFcewpZAhnV7/01EZmai6tufD9/Pr6Yh1YxaOCWWEVu7eebAkG7eW2t3BtN8T2ssuQ0/4B7hK3shOu6D6GUjkBiwDTobxQDy3w8u91Vp8MyeRqlR8l9nF3N3INb9wHbD1qtlTJOVk=
+	t=1716265915; cv=none; b=NMLMAbsEVXBQ14/6lDfUg6tkTQN8wXkZaQb7SrFiXTg+Lm0qIzIPeuM35ow86NrSjSOG2TnHhG1Dm/4SKHMiUybtrCHeGS9hzQs0I3fXnggN7K4jwfvUQMDl3vVcXOsRyWBISovCFqOiwjlBeaXDpwf67WaPJBnHtr3qHi7AIKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716264566; c=relaxed/simple;
-	bh=G0RfpzHbQbPEMYGRnyOaBLmaQauY+K1fa3zLkroTKx8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uO7vJ8DZMeNuEylUkYrI4IrH71pjxBVbNC4siwMDmJZXJeu1AYPCYQA+21GdL8t8/7+aDUZa0714X8K+sO+bSqygbriuOW/RhUVIZX/xMbgziMTnhn/kfipotQho0QQE0yU9K01C2+frCeW751Fy4MiAM50aWo43iEJktMkVrXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CI+TuwHv; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44L2aMF2015841;
-	Tue, 21 May 2024 04:08:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=iMFmbqJV/ZTR9bccmUFxM94fDgUi8bcxTAUWFmwoJEU=; b=CI
-	+TuwHv8t8B3DjGrwIxloD0ctJVkMYEM2hFEwzVL9gNH2Yoyk2Bk28xiQSxRsyoGz
-	l7f5PC+jkufTedoPNIugVyVRmNnC6/3XzUUXIGwPWWSv4pDXl1zmLmvkTAlPeSqG
-	QhqqaTSM2+LPf/Tu5d/KPDJTO/1ActyDcGrhEf6k5aTTFifvhmGzG6Y0tXyEY+j3
-	IX0TpjrQExH9wFEgYXCYinW7X+hxFRh48zKC+2EqHkNNVNXasanDQyZtf50KJStL
-	sEJmEHqC/YZUx+4BxevxwxdJCOeQwm6zAL/N4iWONovLu994B02cU7bD2ouGwkjV
-	XGTMbkiQTqEZ9klQjUog==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6psncsm5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 May 2024 04:08:54 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44L48r16026215
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 May 2024 04:08:53 GMT
-Received: from [10.110.15.188] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 20 May
- 2024 21:08:52 -0700
-Message-ID: <a944418a-1699-44fa-bdfc-2e57129adea1@quicinc.com>
-Date: Mon, 20 May 2024 21:08:51 -0700
+	s=arc-20240116; t=1716265915; c=relaxed/simple;
+	bh=ezvtyT4Tl4T28YPtbIZCUqfxaj+bRfYwvTHAOiVONMg=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=lQLuloYNWYYBI/qJUCvzs6HLUT7+bZb/Fez8mo8fsZNRWQWXrx7McuSXzjE9JWgA9YGGvC49PGybuHS8hOVOYnCkD5wTUZJjcGGou6Q/yw1jKh23wC7XreMqQse1v1haPoXM9fynInlnm+1LxmQdFDxIzLUR7Z/xsmOSCHdYgQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--davidai.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=vq3GIjl5; arc=none smtp.client-ip=209.85.219.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--davidai.bounces.google.com
+Received: by mail-yb1-f201.google.com with SMTP id 3f1490d57ef6-dee6d17bf14so15498876276.0
+        for <devicetree@vger.kernel.org>; Mon, 20 May 2024 21:31:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1716265912; x=1716870712; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:from:subject:message-id
+         :mime-version:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=q49GdX54+ZdShNnHokNwxcsWhuKobLIATjRPy5SWnw8=;
+        b=vq3GIjl54dqWhW3/lpq+OMBEgNq6VixhQ8dnfZM/0DqroDfr/0rQS3JVoS2KnzNNAQ
+         B/OvENHdyJkUZmegvMsxLpFZQirB6wO+ScxZoqrB/FP1e4syZ/obp+c54nMBNOO/mes+
+         4HlymOObM3MCSNIwO3SnCuQAEUmYJFvRq0HnzaavF3xzySrRD4ONWLPiJOIfdANB7Z8t
+         y9C3vOBWsm8Uz1nyrLpE0qAhxEkARbwwP8TInl/vXNiG/y8emp4BGxIWEuW2EARJw3E+
+         Q1dNONKEHmd2X6vrE6yENjyqYM9oTU4x9nfhuNW1rPpAPhdO8Y4kr1xnnPLJHfENWQnY
+         5Eaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716265912; x=1716870712;
+        h=content-transfer-encoding:cc:to:from:subject:message-id
+         :mime-version:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q49GdX54+ZdShNnHokNwxcsWhuKobLIATjRPy5SWnw8=;
+        b=adVFQgdgIz0oTVzQohA9hpzhEwplWi4yJGbR7UFmiggeNxI/dRR5EmwfzNPWfZ0s9y
+         fagrhWM+b31ZpG0NFXsnmKMD642qIcE/XHxjtS9JxbMkGTR7QGlJI3+WCK9zIU/sikKA
+         yZlqmQf0iZxp80DtKvrybarhVmuXyzNwPushtV4+SuGKfGwRTuImmwIgzHtROmv1xdFV
+         nBYkCZitAVtmwj65uvxPRYmOqaiu8KYXg1wL+E7nYDe3EWfaLbS/M1mnnpeHRsaHQAAj
+         octWRGCDB1ilWAorseAjQ8+aklFKmKGxK3kOcZFKJE8LvefFBMc+nu3NdvJg2j0MsiEo
+         FPqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULIu6gxC69K1L5YXzlRnEKBaYJDgBjOT+OEpIfo0p8z3W1SWDT3TEjLiSTgFUy7ZvPxudWsdUP5anBd3uLwchY/aNmKcmvc1/otw==
+X-Gm-Message-State: AOJu0Yw6wNM38tl4hHsw/cQ5/h7YL5arKP56IVM1Gu0E/VUUbWXbTmfB
+	bNr7Qu83VvkATRE7hnWNaoJUUfUOHBQR0rVNDRtKjVQbWGRlrBW33fBHS7FevXvlmP01vkIb/wG
+	w2VbxIw==
+X-Google-Smtp-Source: AGHT+IGhzjRuyVLwcypJtFSGaMVn4BPGwS/GmcRbJeOvDJ0Je3tCQrEP4f3aqjqZ7WdvpP1oSXiWOi0nKCpG
+X-Received: from davidai2.mtv.corp.google.com ([2620:15c:211:201:ffe6:3bcf:e120:a07a])
+ (user=davidai job=sendgmr) by 2002:a05:6902:1026:b0:dee:6147:7e26 with SMTP
+ id 3f1490d57ef6-dee6bf164abmr2697564276.11.1716265912319; Mon, 20 May 2024
+ 21:31:52 -0700 (PDT)
+Date: Mon, 20 May 2024 21:30:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] dt-bindings: remoteproc: qcom,pas: Add hwlocks
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Peter
- Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
-        Will Deacon
-	<will@kernel.org>, Waiman Long <longman@redhat.com>,
-        Boqun Feng
-	<boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
- <20240516-hwspinlock-bust-v1-5-47a90a859238@quicinc.com>
- <3521519f-34b8-472d-be37-f0e64bba24fc@kernel.org>
-Content-Language: en-US
-From: Chris Lew <quic_clew@quicinc.com>
-In-Reply-To: <3521519f-34b8-472d-be37-f0e64bba24fc@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lGa-4i3d4YmAMe17lVnHXa2N3V772CGJ
-X-Proofpoint-ORIG-GUID: lGa-4i3d4YmAMe17lVnHXa2N3V772CGJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-21_02,2024-05-17_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 bulkscore=0 phishscore=0 impostorscore=0 adultscore=0
- mlxlogscore=999 clxscore=1011 priorityscore=1501 suspectscore=0
- spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405210031
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.45.0.215.g3402c0e53f-goog
+Message-ID: <20240521043102.2786284-1-davidai@google.com>
+Subject: [PATCH v6 0/2] Improve VM CPUfreq and task placement behavior
+From: David Dai <davidai@google.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, David Dai <davidai@google.com>, 
+	Saravana Kannan <saravanak@google.com>
+Cc: Quentin Perret <qperret@google.com>, Masami Hiramatsu <mhiramat@google.com>, 
+	Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Vincent Guittot <vincent.guittot@linaro.org>, Marc Zyngier <maz@kernel.org>, 
+	Oliver Upton <oliver.upton@linux.dev>, Dietmar Eggemann <dietmar.eggemann@arm.com>, 
+	Pavan Kondeti <quic_pkondeti@quicinc.com>, Gupta Pankaj <pankaj.gupta@amd.com>, 
+	Mel Gorman <mgorman@suse.de>, kernel-team@android.com, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
+This patch series is a continuation of the talk Saravana gave at LPC 2022
+titled "CPUfreq/sched and VM guest workload problems" [1][2][3]. The gist
+of the talk is that workloads running in a guest VM get terrible task
+placement and CPUfreq behavior when compared to running the same workload
+in the host. Effectively, no EAS(Energy Aware Scheduling) for threads
+inside VMs. This would make power and performance terrible just by running
+the workload in a VM even if we assume there is zero virtualization
+overhead.
 
-On 5/19/2024 10:36 AM, Krzysztof Kozlowski wrote:
-> On 17/05/2024 00:58, Chris Lew wrote:
->> Add hwlocks property to describe the hwspinlock that remoteproc can try
->> to bust on behalf of the remoteproc's smem.
-> 
-> Sorry, as you wrote, the lock is part of smem, not here. Drivers do not
-> crash, so if your crashes as you imply in the cover letter, then first
-> fix the driver.
->
+With this series, a workload running in a VM gets the same task placement
+and CPUfreq behavior as it would when running in the host.
 
-Hi Krzysztof,
+The idea is to improve VM CPUfreq/sched behavior by:
+- Having guest kernel do accurate load tracking by taking host CPU
+  arch/type and frequency into account.
+- Sharing vCPU frequency requirements with the host so that the
+  host can do proper frequency scaling and task placement on the host side.
 
-Sorry for the confusion, I dont think I meant that the smem driver will 
-ever crash. The referred to crash in the cover letter is a crash in the 
-firmware running on the remoteproc. The remoteproc could crash for any 
-unexpected reason, related or unrelated to smem, while holding the tcsr 
-mutex. I want to ensure that all resources that a remoteproc might be 
-using are released as part of remoteproc stop.
+Based on feedback from RFC v1 proposal[4], we've revised our
+implementation to using MMIO reads and writes to pass information
+from/to host instead of using hypercalls. In our example, the
+VMM(Virtual Machine Manager) translates the frequency requests into
+Uclamp_min and applies it to the vCPU thread as a hint to the host
+kernel.
 
-The SMEM driver manages the lock/unlock operations on the tcsr mutex 
-from the Linux CPU's perspective. This case is for cleaning up from the 
-remote side's perspective.
+To achieve the results below, configure the host to:
+- Affine vCPUs to specific clusters.
+- Set vCPU capacity to match the host CPU they are running on.
 
-In this case it's the hwspinlock used to synchronize SMEM, but it's 
-conceivable that firmware running on the remoteproc has additional locks 
-that need to be busted in order for the system to continue executing 
-until the firmware is reinitialized.
+To make it easy for folks to try this out with CrosVM, we have put up
+userspace patches[5][6]. With those patches, you can configure CrosVM
+correctly by adding the options "--host-cpu-topology" and "--virt-cpufreq".
 
-We did consider tying this to the SMEM instance, but the entitiy 
-relating to firmware is the remoteproc instance.
+Results:
+=3D=3D=3D=3D=3D=3D=3D=3D
 
-> Best regards,
-> Krzysztof
-> 
+Here are some side-by-side comparisons of RFC v1 proposal vs the current
+patch series and are labelled as follows.
+
+- (RFC v1) UtilHyp =3D hypercall + util_guest
+- (current) UClampMMIO =3D MMIO + UClamp_min
+
+Use cases running a minimal system inside a VM on a Pixel 6:
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+FIO
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+| Usecase(avg MB/s) | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Seq Write         |     13.3 |    16.4 |   +23% |       13.6 |    +2% |
++-------------------+----------+---------+--------+------------+--------+
+| Rand Write        |     11.2 |    12.9 |   +15% |       11.8 |    +8% |
++-------------------+----------+---------+--------+------------+--------+
+| Seq Read          |      100 |     168 |   +68% |        138 |   +38% |
++-------------------+----------+---------+--------+------------+--------+
+| Rand Read         |     20.5 |    35.6 |   +74% |       31.0 |   +51% |
++-------------------+----------+---------+--------+------------+--------+
+
+CPU-based ML Inference Benchmark
+Lower is better
++----------------+----------+------------+--------+------------+--------+
+| Test Case (ms) | Baseline | UtilHyp    | %delta | UClampMMIO | %delta |
++----------------+----------+------------+--------+------------+--------+
+| Cached Sample  |          |            |        |            |        |
+| Inference      |     3.40 |       2.37 |   -30% |       2.99 |   -12% |
++----------------+----------+------------+--------+------------+--------+
+| Small Sample   |          |            |        |            |        |
+| Inference      |     9.87 |       6.78 |   -31% |       7.65 |   -22% |
++----------------+----------+------------+--------+------------+--------+
+| Large Sample   |          |            |        |            |        |
+| Inference      |    33.35 |      26.74 |   -20% |      31.05 |    -7% |
++----------------+----------+------------+--------+------------+--------+
+
+Use cases running Android inside a VM on a Chromebook:
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+
+PCMark (Emulates real world usecases)
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+| Test Case (score) | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Weighted Total    |     6190 |    7442 |   +20% |       7171 |   +16% |
++-------------------+----------+---------+--------+------------+--------+
+| Web Browsing      |     5461 |    6620 |   +21% |       6284 |   +15% |
++-------------------+----------+---------+--------+------------+--------+
+| Video Editing     |     4891 |    5376 |   +10% |       5344 |    +9% |
++-------------------+----------+---------+--------+------------+--------+
+| Writing           |     6929 |    8791 |   +27% |       8457 |   +22% |
++-------------------+----------+---------+--------+------------+--------+
+| Photo Editing     |     7966 |   12057 |   +51% |      11881 |   +49% |
++-------------------+----------+---------+--------+------------+--------+
+| Data Manipulation |     5596 |    6057 |    +8% |       5694 |    +2% |
++-------------------+----------+---------+--------+------------+--------+
+
+PCMark Performance/mAh
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+|                   | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Score/mAh         |       87 |     100 |   +15% |         92 |    +5% |
++-------------------+----------+---------+--------+------------+--------+
+
+Roblox
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+|                   | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| FPS               |    17.92 |   21.82 |   +22% |      20.02 |   +12% |
++-------------------+----------+---------+--------+------------+--------+
+
+Roblox Frames/mAh
+Higher is better
++-------------------+----------+---------+--------+------------+--------+
+|                   | Baseline | UtilHyp | %delta | UClampMMIO | %delta |
++-------------------+----------+---------+--------+------------+--------+
+| Frames/mAh        |    77.91 |   84.46 |    +8% |     81.71  |     5% |
++-------------------+----------+---------+--------+------------+--------+
+
+We've simplified our implementation based on community feedback to make
+it less intrusive and to use a more generic MMIO interface for
+communication with the host. The results show that the current design
+still has tangible improvements over baseline. We'll continue looking
+into ways to reduce the overhead of the MMIO read/writes and submit
+separate and generic patches for that if we find any good optimizations.
+
+Thanks,
+David & Saravana
+
+Cc: Saravana Kannan <saravanak@google.com>
+Cc: Quentin Perret <qperret@google.com>
+Cc: Masami Hiramatsu <mhiramat@google.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Oliver Upton <oliver.upton@linux.dev>
+Cc: Dietmar Eggemann <dietmar.eggemann@arm.com>
+Cc: Pavan Kondeti <quic_pkondeti@quicinc.com>
+Cc: Gupta Pankaj <pankaj.gupta@amd.com>
+Cc: Mel Gorman <mgorman@suse.de>
+
+v5 -> v6:
+-Renamed dt-binding documentation file to match compatible string
+-Removed opp bindings from dt-binding examples
+-Added register interface description as a comment in driver
+-Performance info now initialized from the device via MMIO instead
+ of opp bindings
+-Updated driver to use perf tables or max perf depending on VMM
+-Added initialization for sharing perf domain
+-Updated driver to use .target instead of .target_index
+-Updated .verify to handle both perf tables and max perf case
+-Updated Kconfig dependencies
+
+v4 -> v5:
+-Added dt-binding description to allow for normalized frequencies
+-Updated dt-binding examples with normalized frequency values
+-Updated cpufreq exit to use dev_pm_opp_free_cpufreq_table to free tables
+-Updated fast_switch and target_index to use entries from cpufreq tables
+-Refreshed benchmark numbers using indexed frequencies
+-Added missing header that was indirectly being used
+
+v3 -> v4:
+-Fixed dt-binding formatting issues
+-Added additional dt-binding descriptions for =E2=80=9CHW interfaces=E2=80=
+=9D
+-Changed dt-binding to =E2=80=9Cqemu,virtual-cpufreq=E2=80=9D
+-Fixed Kconfig formatting issues
+-Removed frequency downscaling when requesting frequency updates
+-Removed ops and cpufreq driver data
+-Added check to limit freq_scale to 1024
+-Added KHZ in the register offset naming
+-Added comments to explain FIE and not allowing dvfs_possible_from_any_cpu
+
+v2 -> v3:
+- Dropped patches adding new hypercalls
+- Dropped patch adding util_guest in sched/fair
+- Cpufreq driver now populates frequency using opp bindings
+- Removed transition_delay_us=3D1 cpufreq setting as it was configured too
+  agressively and resulted in poor I/O performance
+- Modified guest cpufreq driver to read/write MMIO regions instead of
+  using hypercalls to communicate with the host
+- Modified guest cpufreq driver to pass frequency info instead of
+  utilization of the current vCPU's runqueue which now takes
+  iowait_boost into account from the schedutil governor
+- Updated DT bindings for a virtual CPU frequency device
+Userspace changes:
+- Updated CrosVM patches to emulate a virtual cpufreq device
+- Updated to newer userspace binaries when collecting more recent
+  benchmark data
+
+v1 -> v2:
+- No functional changes.
+- Added description for EAS and removed DVFS in coverletter.
+- Added a v2 tag to the subject.
+- Fixed up the inconsistent "units" between tables.
+- Made sure everyone is To/Cc-ed for all the patches in the series.
+
+[1] - https://lpc.events/event/16/contributions/1195/
+[2] - https://lpc.events/event/16/contributions/1195/attachments/970/1893/L=
+PC%202022%20-%20VM%20DVFS.pdf
+[3] - https://www.youtube.com/watch?v=3DhIg_5bg6opU
+[4] - https://lore.kernel.org/all/20230331014356.1033759-1-davidai@google.c=
+om/
+[5] - https://chromium-review.googlesource.com/c/crosvm/crosvm/+/4208668
+[6] - https://chromium-review.googlesource.com/q/topic:%22virtcpufreq-v6%22
+
+David Dai (2):
+  dt-bindings: cpufreq: add virtual cpufreq device
+  cpufreq: add virtual-cpufreq driver
+
+ .../cpufreq/qemu,virtual-cpufreq.yaml         |  48 +++
+ drivers/cpufreq/Kconfig                       |  14 +
+ drivers/cpufreq/Makefile                      |   1 +
+ drivers/cpufreq/virtual-cpufreq.c             | 335 ++++++++++++++++++
+ include/linux/arch_topology.h                 |   1 +
+ 5 files changed, 399 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/qemu,virtual-=
+cpufreq.yaml
+ create mode 100644 drivers/cpufreq/virtual-cpufreq.c
+
+--=20
+2.45.0.215.g3402c0e53f-goog
+
 
