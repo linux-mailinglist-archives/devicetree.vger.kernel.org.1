@@ -1,116 +1,77 @@
-Return-Path: <devicetree+bounces-68219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B2C58CB475
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 21:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C47D8CB48B
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:09:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C7B91C21B94
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 19:49:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 868D01C218DE
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF55E149C66;
-	Tue, 21 May 2024 19:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D111149005;
+	Tue, 21 May 2024 20:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKAcwqxM"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="Lcsmmyjz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7652E149C58;
-	Tue, 21 May 2024 19:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FECB1EB40;
+	Tue, 21 May 2024 20:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716320965; cv=none; b=D0qSjb7CAYQGGOAoyxmmsIchK6/NRNqwCPtEd2I/gvwEXv0IHEddz56pKPSgGHj8jMMX4coZAjiWh0Ogzfeovhb2j0l1L9GnuE3XFsI/+I2tCzWL49FK0Hu3n8xxoSAKn9xhbLTtO2emaPvBhnkdZESIf0v6kFsSYFnFO33x7oY=
+	t=1716322161; cv=none; b=iMYVJIr2pUwUFdpixE2QbNkvGBC4/H+e1IJ2J1BOfSrTPIeVitjTYP7/vqjtRpufzT8XovxyqZB94iGiIAMA/5eX+lVIJXLEt2/QmWpr/6mMH1T0+I50V80koy1QKRTIMGIRu6FmnNFszvS0q/Jouy1LyrAic+aADLKlEv//jnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716320965; c=relaxed/simple;
-	bh=5VxfSyKHqzOTEZZXzZT0aLiSoKTpopx0vsuhYEVZU44=;
+	s=arc-20240116; t=1716322161; c=relaxed/simple;
+	bh=YCLaesMRPgnx2aWOX6S2yUSocPC0B/e6abnb5jWAWX8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hwzbzb+96TJdTjoH5+0zfitPjW3uXA6HSvaHE/NC1zIm3FTV1Hxh8fidbhFw8w5QIZV7E0OUNjd7OJinTdHuiKM48jiBdBlAUCLpUHgt+dbM3NYqgFWQguw5VXwZyIy1MO2ndW/JCZJgJblIJIdmP5OjkNEY1XEt4H3jQfB7iU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKAcwqxM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDBDAC32782;
-	Tue, 21 May 2024 19:49:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716320965;
-	bh=5VxfSyKHqzOTEZZXzZT0aLiSoKTpopx0vsuhYEVZU44=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bKAcwqxMdvphissksxBIPo4FGq5KPKX5AEWVVQ7lfMWYqInRJAiv62MhaLPG8X/CJ
-	 LPy2sNv63Ns1zkEtgNV5LYXsdZZxw2z9bmmmUBOV3XvxhyUmm4NLiRft4/a/9tvmAd
-	 JgFA+/vxMLqr18xEdz4O8WjbWSLTvY6QSkQxiJ6Ch2Kk63BOeNCBoMoSppWHHAC6T4
-	 u73/wl8C6JEKK1Dbz+0RbvlfAn/zKENyT8qj2OlRC6J9rtupS9o2Okfe8K2dsqSxoE
-	 zSHmCE6ARjH+EqqoV+acJDZTEK2z5xBLiavm3H8wzLBpW9uDz+1021dqaMh7HmU4Ld
-	 opUY8g2tiYyLA==
-Date: Tue, 21 May 2024 20:49:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v5 08/16] riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
-Message-ID: <20240521-spiny-undergrad-efa1a391ad3d@spud>
-References: <20240517145302.971019-1-cleger@rivosinc.com>
- <20240517145302.971019-9-cleger@rivosinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qEhtrw/yridDeZRF5edVgwugp5wndTgC4KlUKCiivbL1wy51TMH4ZJYfece3GINX4p1VnVBZpNtJpwVcahnxHA1ZUezh+13qzCJQQukj6WlOunug/JLyZfZvv6SDOUgScPgFnsQe7iuBgUUIZ4ysGuB7idP8aNdDv0wBkvyBujI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=Lcsmmyjz; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 5A0121F92C;
+	Tue, 21 May 2024 22:09:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1716322153;
+	bh=YCLaesMRPgnx2aWOX6S2yUSocPC0B/e6abnb5jWAWX8=; h=From:To:Subject;
+	b=LcsmmyjzgZXG+t7HZzn4eC+53qXG+3dl40qZGRZ/dXVNXu47/Cf/YA+xiegVRducl
+	 MSt442z0qcX5D1fPZd3fON7JnyhjFStGjx/CZ1QGyMxxEYn53DHyOOFm8TR3eGyqru
+	 AKOT8jMJplxT6rJTCfzpzCGrVUXXFmx201ZAkibN3jgHi0pYysLnMob0MmK2YE7VXx
+	 9wznEEW7avj/JGL94847zdDavEfRy9SK8ey14nZYLxxB3Y+JiBkiFKdwWCPWD4QcSX
+	 +M7nS2sH3OO+jAeC651ULbsDb9Dw7uTuylbnhq6ZW7xh04zg44riSv5Px6v7Ul9DtL
+	 vpbuQEW+yKrwA==
+Date: Tue, 21 May 2024 22:09:09 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	danishanwar@ti.com, srk@ti.com
+Subject: Re: [PATCH v2 1/3] arm64: dts: ti: k3-j784s4-main: Add PCIe nodes
+Message-ID: <20240521200909.GA3707@francesco-nb>
+References: <20240520101149.3243151-1-s-vadapalli@ti.com>
+ <20240520101149.3243151-2-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZUPGMxJHsaJik2Qb"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240517145302.971019-9-cleger@rivosinc.com>
+In-Reply-To: <20240520101149.3243151-2-s-vadapalli@ti.com>
 
+On Mon, May 20, 2024 at 03:41:47PM +0530, Siddharth Vadapalli wrote:
+> TI's J784S4 has two instances of Gen3 x4 Lane PCIe Controllers namely
+> PCIE0 and PCIE1. Add support for the Root Complex Mode of operation of
+> these PCIe instances.
 
---ZUPGMxJHsaJik2Qb
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What about PCIE2? J784S4 has 3 PCIe instances, it would be beneficial to
+add all 3, not just the first twos.
 
-On Fri, May 17, 2024 at 04:52:48PM +0200, Cl=E9ment L=E9ger wrote:
+Francesco
 
-> +static int riscv_ext_zca_depends(const struct riscv_isa_ext_data *data,
-> +				 const unsigned long *isa_bitmap)
-> +{
-> +	return __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) ?=
- 0 : -EPROBE_DEFER;
-> +}
-> +static int riscv_ext_zcd_validate(const struct riscv_isa_ext_data *data,
-> +				  const unsigned long *isa_bitmap)
-> +{
-> +	return __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_ZCA) &&
-> +	       __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_d) ? 0=
- : -EPROBE_DEFER;
-> +}
-
-Could you write the logic in these out normally please? I think they'd
-be more understandable (particular this second one) broken down and with
-early return.
-
-Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---ZUPGMxJHsaJik2Qb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkz6vwAKCRB4tDGHoIJi
-0kLvAQCE6VdTKzQsLhuTCAot4T9V9f4Lr+mwFH/JYa+PN4XSawEA4Bpid+JyrYkM
-5yKjg6DZQIn95XuoTjrLNnKL0qkRvw0=
-=XDFW
------END PGP SIGNATURE-----
-
---ZUPGMxJHsaJik2Qb--
 
