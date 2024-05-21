@@ -1,262 +1,228 @@
-Return-Path: <devicetree+bounces-68096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D0618CAD15
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:09:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD9F18CAD25
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33CD3280F9E
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:09:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 925942819C0
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D0B6CDA9;
-	Tue, 21 May 2024 11:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7FB6E5E8;
+	Tue, 21 May 2024 11:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="ZjEsqrvF"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0xX08vPX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D50E1F947;
-	Tue, 21 May 2024 11:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716289753; cv=fail; b=XqNz2WSTrThAkORANF+iPnxtElUqYz3p90bjw19s1e9dUkthTJxz0Eds3ErKQdWYlqVCCanSZJuXS8G/x2MWDF0AGGEFZeaV3t0uWJSCGfTTCE4jSjE9qhPa2tE6ARdIVrVbmiggMlynA3K8Mgxn2poE4pxgb8YkU/N34roSh88=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716289753; c=relaxed/simple;
-	bh=DXSHAprIkvTTYP1XMzpuOhlr+WjMgfij4mkww+kJB20=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LtYNj2oPJQbkcqIWGSerlhOlEwDPLrD5UHAGJ94o1Q8hasPl51FY16xwQt31OJ9ONOMNfFWNwNMIURXWjFPioU8cVlGLCpo0ye2GWA7KR6U5srr2yFx7AuxYkzW7UFTHxdcrgNUJCRxAQoJ8Ywz8Toh8gicvvjIZPfdyjk7HrVg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=ZjEsqrvF; arc=fail smtp.client-ip=40.107.220.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l2vUbr9744wNPJoIwIPKYmkCUwgUMq20elEq7gAdWlLAPD9R1OHOv7XgQ7LwF351nFTt5zlT3LJnsXCBAyXHKyBXTR5FxKjWDvw8DPKy2OzoqvdgdD61Oi1hLRqiCjEASHQ6U5edun0JCprM95cN6276A01iDM69Udsr6/pBTgQEBbXgysV4IJo2cpMi/1O3cclKTT6L9P0azBNwZOUD57qyTwx9pB62KEgwozHE73S1Cr7ofAaCIIw3pzs5Tmh65bexdrUjpZIkhH/ML9ia/aX9ygEttB1K2jzN/FXeWSEw5wuPv8hZfWBBJn5S7Ay+h1NUt8/dExLRYPcnMiDMsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fND1Syo6V4ww/4E2FwaEUX8j/ReVi/ULbMfzBm62Tb4=;
- b=cDf2S8T3/yTGNIiVzo792ksNY66kj5lPVt9sCuSVp8SEPO4i09AZQlLO9mAtf62mmAiesVRPslp2ys6ExfRmbhgQil7liM5UIn15uT4lLH40LbvHBupLPHyb/Oe+MZFlxT41/lZtGtzBSNAdkI3lkWSv9SLme/D+2VIezjt+UdhTdT0fqsBFq7tLZy8V24wrBU0E8sy80haVEOj9TZiGS3bBiX/+2SSGEk6L/wkijmzeKYQo1cHznGyx5yg0/p0ln6WovoJrZt2t8kgVa6U3/rSkPOH7w1bEZzX7aEsA/UQJD2qFRz6UySXU35jiSZzhtkIxdq0zcw81mvj8Tcn83w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fND1Syo6V4ww/4E2FwaEUX8j/ReVi/ULbMfzBm62Tb4=;
- b=ZjEsqrvF+bkA5Ijjosp4WPQcgtzYjCI2wwLmYLAMOf37OK1UyxjEEyCcSZNdUsbwdk58POgbRsbPS5eYHVW1A5XQTmqkiVX2aH/9Li9LS1Gls6m0uLhT7fQZHHUKtp4E1sDsBWb9ESGs+pSVCFbDgT8hR5ACyuVAOeYqHPTsynb9OZs13Bmi6IdxcTZwtG4YpO74dNAVYDpNT/60chxSesKK7s2VqiGu8Qu0cGsPXnNK6ouXd8zwm9lZSNGUdZ+M1m5vCiUaY2ufWcAynk8XPZ2D+c3XFdJJa+HRNuSjTZ+3+c/57JlIhu5pqAf8PfGU1ole6dxdDqKJM1XDdaEJ5A==
-Received: from PH0P220CA0001.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:d3::6) by
- SN7PR12MB7107.namprd12.prod.outlook.com (2603:10b6:806:2a2::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36; Tue, 21 May
- 2024 11:09:08 +0000
-Received: from CY4PEPF0000FCC5.namprd03.prod.outlook.com
- (2603:10b6:510:d3:cafe::9d) by PH0P220CA0001.outlook.office365.com
- (2603:10b6:510:d3::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36 via Frontend
- Transport; Tue, 21 May 2024 11:09:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- CY4PEPF0000FCC5.mail.protection.outlook.com (10.167.242.107) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7611.14 via Frontend Transport; Tue, 21 May 2024 11:09:08 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 21 May
- 2024 04:08:53 -0700
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 21 May
- 2024 04:08:53 -0700
-Received: from build-spujar-20240506T080629452.internal (10.127.8.9) by
- mail.nvidia.com (10.129.68.10) with Microsoft SMTP Server id 15.2.1544.4 via
- Frontend Transport; Tue, 21 May 2024 04:08:53 -0700
-From: Sameer Pujar <spujar@nvidia.com>
-To: <vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-	<dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<ldewangan@nvidia.com>, <mkumard@nvidia.com>, <spujar@nvidia.com>
-Subject: [RESEND PATCH 2/2] dmaengine: tegra210-adma: Add support for ADMA virtualization
-Date: Tue, 21 May 2024 11:08:01 +0000
-Message-ID: <20240521110801.1692582-3-spujar@nvidia.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240521110801.1692582-1-spujar@nvidia.com>
-References: <20240521110801.1692582-1-spujar@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A9F6CDA3
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 11:10:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716289811; cv=none; b=ktTcRFJq4uaFCSirnJRrH7Ut1NmoIpXsnRJV8Cm4bqztQsV870AIM6gOOx0cE2cYo1IB7pI48qAuH+UOH+r0RuE0jO410KlZnDttHYbfOsQ3508hv4q9sfXlWsEiu4D/qzhpBlABFTRR3YM5dJKTImfk8qa4msHz9hNCcIz1c5c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716289811; c=relaxed/simple;
+	bh=lRXa1zvsE6ldJXKcr6zn/8NN+2s2ntBYhXKSUUKDCa4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nhSFWwdJEjzVle5bpuvgqugvNzOo5q8m4k0uwN0tXIVnsojzFMg0hQbwOWTc/gHLhzaVd5B5HKwU8fMKQZ21ki4cI8WBIKWpPVSbVy0gxiyzMHFBtzhTBLQ2j+kXR72u4K3SiIdHaOfV0lvRj8D/WQ1GPPi3ARt3fu9nzlGcGoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0xX08vPX; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4202ca70289so29026675e9.1
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 04:10:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716289807; x=1716894607; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yekSUgU6gW9c7daSNKDfWsfCSZwLmZNtbFfvqtYv9ko=;
+        b=0xX08vPXZUqitt4zE8qUWfdVtZP3D2KL8p2Ka/C71EGB60hjmMkUBPAb4o3ISQrG6x
+         diZTM5Tru149aOzu25+6PtQAJCX7Oly8ltZIscom2f/6uyyXHbIJa3jY5Ss5BRM8f0bo
+         17BfwqcDIKlIY+8bmGjPfDeQI79SrANGOAMYZyzcJTkwAb1MgSsfypKy6Yo/W0ZpJfpg
+         DXIh7A6x+Ceg0v5NcX2SWSAaHs/+FHJVmGr0yYtts+tcXN9m5Vm1O0RLS++unp1+UAxo
+         h5fVEBvnZa3LD/DcrjIqQhLInMjcebpgKXGoywNOpb1iQc+i90v/1kAjLLaD8cmZEOE0
+         RubQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716289807; x=1716894607;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yekSUgU6gW9c7daSNKDfWsfCSZwLmZNtbFfvqtYv9ko=;
+        b=t0W6K7IxW/4cbkXuQSvj1jAmsVMHbJZgGeHQpGDalpJcoFofpWz7mZE9OnBReowsLu
+         L+B1id4DzssyigVKWv8zLKPEg3CEXWKij07tKdisLWpRDnacllb6fggdHE5OZqc2+YjI
+         W35AuNShfSO05e0QD989/sHU72srFefiTzK8/pslYHHXx0dHK5YtlXIge2d4kKHrZ7FY
+         j7EJk4oXeFmpKhm6WzHoLrj5hn3ZJmczxTbEEFo80Qlk/6w7ZSEcdW7bZL4KWPzBLEor
+         4mZxHzncrCdVHS205wHY88roJVSwpIPU3m3589znhCD2sBvoVIZc7FWTawqFvdWT1zFG
+         L1rQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVCDvGwdNxpDkmqYNwQaeh2KNutBhV/p2W5cqaRzex2TGuPMMwa2Me+LUWvk4sKqkF25LKbPejEQs4zNgmh+tQZ62n61Smxe31pQ==
+X-Gm-Message-State: AOJu0YzFPTczIAMopk2CsQu15+H3w/z/G6yYamMGGa8INppt/hNv4IL1
+	jllj+M6y63JabqNC0DiWbmsAcC6CLZjna96LRVDOqPgN/Q25yH/WH78EFvUYW8I=
+X-Google-Smtp-Source: AGHT+IEH0V+1FeX72CKXMBZiES4IfoQK/48eH4j+2M88Xp9MgFb8mIijZezThw5L5R7NhVyxPd4jAQ==
+X-Received: by 2002:a05:600c:5116:b0:41f:afa6:3d85 with SMTP id 5b1f17b1804b1-41feac55f95mr280887895e9.31.1716289806826;
+        Tue, 21 May 2024 04:10:06 -0700 (PDT)
+Received: from [10.2.5.115] (abordeaux-651-1-78-161.w90-5.abo.wanadoo.fr. [90.5.97.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41f87c235b4sm492430445e9.11.2024.05.21.04.10.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 May 2024 04:10:06 -0700 (PDT)
+Message-ID: <02ac5b07-08fe-4abd-8db8-141f4e47f68a@baylibre.com>
+Date: Tue, 21 May 2024 13:10:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 15/15] arm64: dts: mediatek: mt8188: add default
+ thermal zones
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Nicolas Pitre <nico@fluxnic.net>, linux-pm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Nicolas Pitre <npitre@baylibre.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+References: <20240402032729.2736685-1-nico@fluxnic.net>
+ <20240402032729.2736685-16-nico@fluxnic.net>
+ <aab10d22-b1a1-45e9-85bc-a4334aa6c497@linaro.org>
+Content-Language: en-US
+From: Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <aab10d22-b1a1-45e9-85bc-a4334aa6c497@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC5:EE_|SN7PR12MB7107:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3730ad5a-f450-494e-1a25-08dc79866f87
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|82310400017|36860700004|376005|1800799015;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?vG9RtAQdHqaoZSzlgR2gH/kdxezuUUipNC6TVpGPrA1MeatmCNJchn++zdLP?=
- =?us-ascii?Q?rfrjw9wSJwv8BlryiAmWDPz5E7mCadYwZPCtVANItsNCo7cTNeK8Nic6ZgHh?=
- =?us-ascii?Q?zTpsd5Nq7Ji/EcZrheLh99Drm5RPdAIXuB6AjSsQoGoNl5ljLSpHSAtBKOtK?=
- =?us-ascii?Q?E6vXLD6cdq/Ruv+bzVMBVsG+oig6FQptev2eL/MFKYu4BHkFq1JLm1NxYzzx?=
- =?us-ascii?Q?0Y795lugcwaKcfYbYbMYf63X7G7JAFeKtj4XuuCaALsVWo8MO9D4r8Rvqapt?=
- =?us-ascii?Q?IvjSTooKu1oyt5hBf4t/jr4L/LmiBnV/XtvCel6DDvLr2sW2xSCglBIeBdmz?=
- =?us-ascii?Q?2Zia5fGVeZ6pl3fsNQ2iTgTTOnNVNKrzz9g0KlyHdOywjlb5ZQnR6M7uscLU?=
- =?us-ascii?Q?DvHfhH48nQP+u5xaoQ+dIJIkLeusw0WuvDIs1tA6wh5fHuohcEJsIOTkru+k?=
- =?us-ascii?Q?pvXgImAtw68cBIULannnd3ShHzlmr99I0gKopgks4WhZ0eSNT8ON0HG+wjjU?=
- =?us-ascii?Q?MaHzZm4cIZ/IJw9rDWRNqxNJxRCOPWHEXhXd5DZK/IoAKXfFDTU+TFfkMBsB?=
- =?us-ascii?Q?A2Mtgx+3bRRTp8nCOHYGN35f8dMMHRVnQYQXEZqEGhKYt05yasDlccXm00ay?=
- =?us-ascii?Q?GylizWBnFY+mAJjIWNTY8EaEsW8f66wA8VJ8YF1VqQsS53Oqb5q8tyz/i/5q?=
- =?us-ascii?Q?SuSvxXKLMEsf5tjwKnoI4T4SLGRXvjbKheLRRGELDEdyYkteaIFjWbgfrR/C?=
- =?us-ascii?Q?FbteLXcazN4ioDsMvVncr0N3OXNQwJogS4M5VBga9ieVfWsvbz+uC1Iu+Ive?=
- =?us-ascii?Q?350QouyUPdAoKayavN78E6HcoDnj/TVC3hjdXAyF+cPmyatVMD9y4kqahW1o?=
- =?us-ascii?Q?CHMIbA6HEGOxGsnPazDNYs0PnS+tmP3fqR1uQXKlGS6Rcxz6TeAyJV3nXjyA?=
- =?us-ascii?Q?KFWkqjgLLSKEQCexKRJuDmuBbYPnWbaZQXaM3Tvs4w/5yh88MfXeeRQ+7YlS?=
- =?us-ascii?Q?yZ4rn0G3u/wD1qJiR9tNPA6ftSacWPi+JfZRmVeitymlakHZOrIZpXDFAjVN?=
- =?us-ascii?Q?0LBW1EzL03VZxAy94fsEKyUmHlFj6rZF9xmJ/eVD60haJYCXH1ifx9Lfe/ec?=
- =?us-ascii?Q?qSsz1xjeVnkoJqFXo825fkIXU0BYQ53AnilgyicjJw0wAQ1Ef7mnvsrpm1lT?=
- =?us-ascii?Q?HXU8KQgRpMh6jrvSmnM21bV62KJE2YABVfjp/uLUmqVis6x3A2tT2HQ6hhkJ?=
- =?us-ascii?Q?W24zoJl2A+6TzGSMBeK7IKYeF4nYYk2ZOebOSxMUugfbxz6Tuq/qnVY4g8in?=
- =?us-ascii?Q?Qj474wb7s0IoGRBZqyxuIhIUzfQIdl5r3LjQJ/8BnohGeTOQfSlgGrZmQWoO?=
- =?us-ascii?Q?TC8NVWo=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(82310400017)(36860700004)(376005)(1800799015);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2024 11:09:08.1908
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3730ad5a-f450-494e-1a25-08dc79866f87
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000FCC5.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7107
 
-From: Mohan Kumar <mkumard@nvidia.com>
+Hello Daniel,
 
-Tegra ADMA HW supports multiple PAGES for virtualization, to
-support virtualization support reg-names property has been added
-to DT binding to know the hypervisor mode. Also in hypervisor
-mode the ADMA global registers are not accessed by guest OS.
+On 4/4/24 17:16, Daniel Lezcano wrote:
+>
+> Hi Nico,
+>
+> a few comments about this description.
+>
+> On 02/04/2024 05:25, Nicolas Pitre wrote:
+>> From: Nicolas Pitre <npitre@baylibre.com>
+>>
+>> Inspired by the vendor kernel but adapted to the upstream thermal
+>> driver version.
+>
+> [ ... ]
+>
+>> +    thermal_zones: thermal-zones {
+>> +        cpu-little0-thermal {
+>> +            polling-delay = <1000>;
+>
+> Except if I'm wrong, the driver supports the interrupt mode, so it not necessary to poll 
+> constantly when there is no mitigation. You can remove the line and everywhere else.
+>
+>> +            polling-delay-passive = <250>;
+>
+> As little CPU, 200ms or 150ms may be more adequate.
+>
+>> +            thermal-sensors = <&lvts_mcu MT8188_MCU_LITTLE_CPU0>;
+>> +
+>> +            trips {
+>> +                cpu_little0_alert: trip-alert {
+>> +                    temperature = <85000>;
+>> +                    hysteresis = <2000>;
+>> +                    type = "passive";
+>> +                };
+>
+> You may want to add a 'hot' trip point in between, so the userspace can be notified and take an 
+> action before reaching 'critical' (like unplugging a CPU)
 
-Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
----
- drivers/dma/tegra210-adma.c | 44 ++++++++++++++++++++++++++++++-------
- 1 file changed, 36 insertions(+), 8 deletions(-)
+There's no "notify" function in the driver.
+Do you think it's worth adding such 'hot' trip point, though ?
 
-diff --git a/drivers/dma/tegra210-adma.c b/drivers/dma/tegra210-adma.c
-index 24ad7077c53b..92f1c0c949dd 100644
---- a/drivers/dma/tegra210-adma.c
-+++ b/drivers/dma/tegra210-adma.c
-@@ -160,6 +160,8 @@ struct tegra_adma {
- 	/* Used to store global command register state when suspending */
- 	unsigned int			global_cmd;
- 
-+	bool is_virtualized;
-+
- 	const struct tegra_adma_chip_data *cdata;
- 
- 	/* Last member of the structure */
-@@ -222,8 +224,15 @@ static int tegra_adma_init(struct tegra_adma *tdma)
- 	u32 status;
- 	int ret;
- 
--	/* Clear any interrupts */
--	tdma_write(tdma, tdma->cdata->ch_base_offset + tdma->cdata->global_int_clear, 0x1);
-+	if (!tdma->is_virtualized) {
-+		/* Clear any interrupts */
-+		tdma_write(tdma, tdma->cdata->ch_base_offset + tdma->cdata->global_int_clear, 0x1);
-+	} else {
-+		/* For virtualized mode, ADMA global registers are not accessed */
-+		tdma_write(tdma, tdma->cdata->global_int_clear, 0x1);
-+		tdma->global_cmd = 1;
-+		return 0;
-+	}
- 
- 	/* Assert soft reset */
- 	tdma_write(tdma, ADMA_GLOBAL_SOFT_RESET, 0x1);
-@@ -736,7 +745,9 @@ static int __maybe_unused tegra_adma_runtime_suspend(struct device *dev)
- 	struct tegra_adma_chan *tdc;
- 	int i;
- 
--	tdma->global_cmd = tdma_read(tdma, ADMA_GLOBAL_CMD);
-+	if (!tdma->is_virtualized)
-+		tdma->global_cmd = tdma_read(tdma, ADMA_GLOBAL_CMD);
-+
- 	if (!tdma->global_cmd)
- 		goto clk_disable;
- 
-@@ -777,7 +788,9 @@ static int __maybe_unused tegra_adma_runtime_resume(struct device *dev)
- 		dev_err(dev, "ahub clk_enable failed: %d\n", ret);
- 		return ret;
- 	}
--	tdma_write(tdma, ADMA_GLOBAL_CMD, tdma->global_cmd);
-+
-+	if (!tdma->is_virtualized)
-+		tdma_write(tdma, ADMA_GLOBAL_CMD, tdma->global_cmd);
- 
- 	if (!tdma->global_cmd)
- 		return 0;
-@@ -846,6 +859,8 @@ static int tegra_adma_probe(struct platform_device *pdev)
- {
- 	const struct tegra_adma_chip_data *cdata;
- 	struct tegra_adma *tdma;
-+	unsigned int ch_base_offset;
-+	struct resource *res;
- 	int ret, i;
- 
- 	cdata = of_device_get_match_data(&pdev->dev);
-@@ -865,9 +880,22 @@ static int tegra_adma_probe(struct platform_device *pdev)
- 	tdma->nr_channels = cdata->nr_channels;
- 	platform_set_drvdata(pdev, tdma);
- 
--	tdma->base_addr = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(tdma->base_addr))
--		return PTR_ERR(tdma->base_addr);
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "vm");
-+	if (res) {
-+		tdma->base_addr = devm_ioremap_resource(&pdev->dev, res);
-+		if (IS_ERR(tdma->base_addr))
-+			return PTR_ERR(tdma->base_addr);
-+
-+		tdma->is_virtualized = true;
-+		ch_base_offset = 0;
-+	} else {
-+		tdma->base_addr = devm_platform_ioremap_resource(pdev, 0);
-+		if (IS_ERR(tdma->base_addr))
-+			return PTR_ERR(tdma->base_addr);
-+
-+		tdma->is_virtualized = false;
-+		ch_base_offset = cdata->ch_base_offset;
-+	}
- 
- 	tdma->ahub_clk = devm_clk_get(&pdev->dev, "d_audio");
- 	if (IS_ERR(tdma->ahub_clk)) {
-@@ -900,7 +928,7 @@ static int tegra_adma_probe(struct platform_device *pdev)
- 		if (!test_bit(i, tdma->dma_chan_mask))
- 			continue;
- 
--		tdc->chan_addr = tdma->base_addr + cdata->ch_base_offset
-+		tdc->chan_addr = tdma->base_addr + ch_base_offset
- 				 + (cdata->ch_reg_size * i);
- 
- 		tdc->irq = of_irq_get(pdev->dev.of_node, i);
--- 
-2.45.1
+>
+>> +                cpu_little0_crit: trip-crit {
+>> +                    temperature = <100000>;
+>> +                    hysteresis = <2000>;
+>
+> critical is a point of no return. Hysteresis does not make sense.
+>
+> These comments apply to all thermal zones.
+>
+> [ .. ]
+>
+>> +        cpu_big0-thermal {
+>> +            polling-delay = <1000>;
+>> +            polling-delay-passive = <250>;
+>
+> Same comments as the little but may be an even lower value. eg. 100ms.
+>
+>> +            thermal-sensors = <&lvts_mcu MT8188_MCU_BIG_CPU0>;
+>> +
+>> +            trips {
+>> +                cpu_big0_alert: trip-alert {
+>> +                    temperature = <85000>;
+>> +                    hysteresis = <2000>;
+>> +                    type = "passive";
+>> +                };
+>> +
+>> +                cpu_big0_crit: trip-crit {
+>> +                    temperature = <100000>;
+>> +                    hysteresis = <2000>;
+>> +                    type = "critical";
+>> +                };
+>> +            };
+>> +
+>> +            cooling-maps {
+>> +                map0 {
+>> +                    trip = <&cpu_big0_alert>;
+>> +                    cooling-device = <&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +                             <&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +                };
+>> +            };
+>> +        };
+>
+> [ ... ]
+>
+>> +        gpu1-thermal {
+>> +            polling-delay = <1000>;
+>> +            polling-delay-passive = <250>;
+>> +            thermal-sensors = <&lvts_ap MT8188_AP_GPU1>;
+>> +
+>> +            trips {
+>> +                gpu1_alert: trip-alert {
+>> +                    temperature = <85000>;
+>> +                    hysteresis = <2000>;
+>> +                    type = "passive";
+>> +                };
+>> +
+>> +                gpu1_crit: trip-crit {
+>> +                    temperature = <100000>;
+>> +                    hysteresis = <2000>;
+>> +                    type = "critical";
+>> +                };
+>> +            };
+>> +        };
+>> +
+>> +        gpu2-thermal {
+>> +            polling-delay = <1000>;
+>> +            polling-delay-passive = <250>;
+>> +            thermal-sensors = <&lvts_ap MT8188_AP_GPU2>;
+>> +
+>> +            trips {
+>> +                gpu2_alert: trip-alert {
+>> +                    temperature = <85000>;
+>> +                    hysteresis = <2000>;
+>> +                    type = "passive";
+>> +                };
+>> +
+>> +                gpu2_crit: trip-crit {
+>> +                    temperature = <100000>;
+>> +                    hysteresis = <2000>;
+>> +                    type = "critical";
+>> +                };
+>> +            };
+>
+> You can add a devfreq cooling device for the GPU here.
 
+I tried but realized then that GPU support has not been added in the DT yet.
+So, I added the gpu node (from vendor's kernel), but there are many missing
+dependencies. I guess it should be part of another series.
+As a result, I can't add such cooling device here.
+
+Julien
 
