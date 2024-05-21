@@ -1,113 +1,117 @@
-Return-Path: <devicetree+bounces-68073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D75E68CAC30
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E378CAC33
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:26:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 144D21C218BE
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:26:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA77A1C21A86
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D11371B4B;
-	Tue, 21 May 2024 10:25:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="TbqfSKgU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1968A73183;
+	Tue, 21 May 2024 10:25:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED5673171
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40016CDD8
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716287114; cv=none; b=Z/bHq7E+v/7LbqZc1TB8eaibEsFCJaos1WUEUd37pScO7zFiuyF3wgmN4ekL4EQ6s8ShQA3MJ/4otPAWpFmObzOVhJE15+IhYMU3kVY/qLucR6Yq0Lr5RinbIQnKG3i0QEOqxE8fNRbd1hKX3MmfPFcUry1zRaI00nxPvhQ3qVw=
+	t=1716287157; cv=none; b=Qcwlm49PHfnTtVJggAH8sjcaDlmwmMGMiQI1jFVoqjkI3LXpoEGUQ/rRYgNYP2ZjEcZBAgk+9VJA726RfjOksebKsB965yLcjpnYRZ0aTeOPpVwhQ7M82L4IOvSVuei11FGqsILuJ5fmnjzSVOokSYJgdknCkoM1It+d42Kae/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716287114; c=relaxed/simple;
-	bh=UhNZOgy/Kr2fB5s4etVMBKzZEf4Eiard8DD218aTKfk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dLtwsQEOGObm7OSbI27FouE8O59krS8Z3GRzpNn4d46R7KdiWG9btxRJKZUMS3sjpBYOza9/eRG4bVpAXg1s8yBAa0vLRRfEq1OiV3VXDNW2YPO3zuV2fqUQybrlzRbYZNlTcx3i0GQK0C8I71F9FDWSqOlj87Ej4kjEdk1u4mM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=TbqfSKgU; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 8C90D88261;
-	Tue, 21 May 2024 12:25:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1716287105;
-	bh=Ipzvrdy9CFhWLrXJw7jrfnNksXZKO1zFwXQTi7Vz/48=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=TbqfSKgUF4i78NKfuxILqq74PFT01n/iNU6PfreU2yPDhdvzVOF5+aMgH/zevDo2b
-	 VxgSKNY6M9ND5nCRRymVG5Gsr0L/Ydaw6PGRr6YcfJVrZfViCJA2loCfPrye/tmL4I
-	 WXFrXgYQmWkvIGRWSsjHg+y9P7KYAPUwBKR1LY4la/MrxeWB/SAIkXTXtucUPWHO4f
-	 4FDioity0x18QmGSMKcqlb26ek1qa+EnxDf8VhOPljnV8Vrus1SvZC0lT9mBONHFP4
-	 9sjQgsxR5ZQH//w9XOXfY3Hi4crT1tRGZcBaGT+KID53mos+59iF+dfjYZbYsdhFLD
-	 JxrtU5MFCS+WA==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: [PATCH 3/3] arm64: dts: imx8mm: Delete SoM hwmon node on i.MX8MM Menlo board
-Date: Tue, 21 May 2024 12:23:13 +0200
-Message-ID: <20240521102435.10019-3-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240521102435.10019-1-marex@denx.de>
-References: <20240521102435.10019-1-marex@denx.de>
+	s=arc-20240116; t=1716287157; c=relaxed/simple;
+	bh=PzkREHFxftmh9BlfZ0knbcVfRSI6Uv/LfaRce+Dlslk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZpcDtkoV9clNOO/iiF/Ei5RB79q1HBekfl6lH2J4YakG8xFm00FuEP4YT0V+QTzZoMhvC3HkGK6QV5H1CDJgksphirRVt3BD352a3l4r0e6mVJe7RL6YDb2wxUZtZEdZy2Y7IvKjjVe/BCGJMO6vqAHFZ1B40HFkIcnzv93sWiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17E8FDA7
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:26:19 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D30D73F766
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:25:54 -0700 (PDT)
+Date: Tue, 21 May 2024 11:25:31 +0100
+From: "liviu.dudau@arm.com" <liviu.dudau@arm.com>
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Jean-Philippe Brucker <jean-philippe@linaro.org>,
+	Bjorn Helgaas <helgaas@kernel.org>, Vidya Sagar <vidyas@nvidia.com>,
+	"will@kernel.org" <will@kernel.org>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"joro@8bytes.org" <joro@8bytes.org>,
+	"robin.murphy@arm.com" <robin.murphy@arm.com>,
+	Nicolin Chen <nicolinc@nvidia.com>, Ketan Patil <ketanp@nvidia.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/3] Enable PCIe ATS for devicetree boot
+Message-ID: <Zkx2m41lIdaV_WyH@e110455-lin.cambridge.arm.com>
+References: <PH8PR12MB6674391D5067B469B0400C26B8EC2@PH8PR12MB6674.namprd12.prod.outlook.com>
+ <20240515185241.GA2131384@bhelgaas>
+ <20240516073500.GA3563602@myrica>
+ <ZkXi2LCy9ZZkupjM@bogus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+In-Reply-To: <ZkXi2LCy9ZZkupjM@bogus>
 
-The INA239 is not populated on the SoM variant used in i.MX8MM Menlo
-carrier board, delete the unused hwmon node just like the rest of the
-unused nodes which are already deleted.
+On Thu, May 16, 2024 at 11:41:28AM +0100, Sudeep Holla wrote:
+> On Thu, May 16, 2024 at 08:35:00AM +0100, Jean-Philippe Brucker wrote:
+> > Hi,
+> > 
+> > On Wed, May 15, 2024 at 01:52:41PM -0500, Bjorn Helgaas wrote:
+> > > On Wed, May 15, 2024 at 06:28:15PM +0000, Vidya Sagar wrote:
+> > > > Thanks, Jean for this series.
+> > > > May I know the current status of it?
+> > > > Although it was actively reviewed, I see that its current status is set to 
+> > > > 'Handled Elsewhere' in https://patchwork.kernel.org/project/linux-pci/list/?series=848836&state=*
+> > > > What is the plan to get this series accepted?
+> > > 
+> > > I probably marked it "handled elsewhere" in the PCI patchwork because
+> > > it doesn't touch PCI files (the binding has already been reviewed by
+> > > Rob and Liviu), so I assumed the iommu folks would take the series.
+> > > I don't know how they track patches.
+> > 
+> > Yes I think this can go through the IOMMU tree. Since patch 3 is still
+> > missing an Ack, I'm resendng the series next cycle.
+> > 
+> 
+> Extremely sorry for that, since I saw Liviu on the thread, I assumed he
+> would have acked/reviewed 3/3 as well but now I see that is not the case.
+> That said, you must not delay the change just for the DTS file changes.
+> Anyways I will ack it now.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts | 1 +
- 1 file changed, 1 insertion(+)
+Appologies, I was travelling last week and thought DT changes will be taken
+via Robin.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-index ed83a019159ac..b8dc7b299f94c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-@@ -197,6 +197,7 @@ &i2c3 {
- &i2c4 {
- 	/* None of this is present on the SoM. */
- 	/delete-node/ bridge@2c;
-+	/delete-node/ hwmon@40;
- 	/delete-node/ hdmi@48;
- 	/delete-node/ touch@4a;
- 	/delete-node/ sensor@4f;
+Best regards,
+Liviu
+
+> 
+> --
+> Regards,
+> Sudeep
+
 -- 
-2.43.0
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
