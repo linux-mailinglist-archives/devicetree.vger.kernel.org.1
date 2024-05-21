@@ -1,177 +1,176 @@
-Return-Path: <devicetree+bounces-68052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D1B8CAAD0
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:31:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D43298CAAF4
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:45:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04B161F21A70
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:31:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89F242813C9
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6396C53E36;
-	Tue, 21 May 2024 09:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2F16BB37;
+	Tue, 21 May 2024 09:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GPrBYDFC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QatskZQI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6241D554;
-	Tue, 21 May 2024 09:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EF656759
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 09:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716283914; cv=none; b=CZBGjIxZv1JbNg299w7qLVeOsFTw00c35cCo3ku9MgCwPLViyhi4kDKIvdazickJsX/zwZTKT/AUtqnlXWkLJqM1WmEY5fQx9Q3rt4QdLGfOIpy/rRIVd9hdO0d5q5l3oHRSfb4CGXFq/AfySAfaNHUVYwclg/GUzYiosYCQR+w=
+	t=1716284728; cv=none; b=n0Nq+hcg57f8SuPjgKg5NqgvXOJGzHa1jlaxvNpIZzAUyI+xusnMoJaUZYbpWKibmyEtsyby3UZHNeGEeU0ZZSmL8aVkoH2GBQ1DrQUKIwY3QmVJlw4e2c4c6r4nR3Ls/oVJATULv9Y0FuEWhhxMgLYFC44MY9WbmftWdOCvFTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716283914; c=relaxed/simple;
-	bh=UWCVCjCl906tjXacuShzM1G1T44KjkD2GCeJ9RE58ZE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=io7pMzyRitagnc+Iwl2kIyv3m7hqvzSTtQz/JD/WQxnUCYiDR5+0pPmyBl5qvQEPKFzpiQnZKagU9b/gqaZGKMxYLBu2q9l2C+hlBk4J0a8KEDptuK1rNyyXSDVICjhaBvzCofA1VI3E3EsatWlFdxQMF7xwFAIFJXxhoIvHGEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPrBYDFC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13FDEC2BD11;
-	Tue, 21 May 2024 09:31:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716283913;
-	bh=UWCVCjCl906tjXacuShzM1G1T44KjkD2GCeJ9RE58ZE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GPrBYDFCLb7oH1fnTJb3RthIZJRAGxX4QWMFlYRjJpLobkalbXqGxRAmZ5WILY3Oe
-	 qfL7Nppcy3DMA1rIurkwUhtwDOXaZIc/8US5QmoNAS/a0yvSurSx4liX2vmSLj6YFk
-	 eH9N/r7c01KSo/zoIzHo0WTt0paoChUc8SvLV/1RiqCB8hGLCi4m01n5PslUkOSKWO
-	 OcQd3YB1FynF9Njl1TvmGD6gYHzDcPjV0pP9lpr0qNV+A4VI5rbzfn6V4rqSKOnU/4
-	 4cbjUFWl0ZJ94EOvz+aEevKATlmXbh+SYrae3FsRLZRzrkasgdp/ESzQ2MI+RAOsi0
-	 b4FwXwr9va0Fg==
-Message-ID: <6c936567-bb22-47d0-8759-983a2d99c994@kernel.org>
-Date: Tue, 21 May 2024 11:31:43 +0200
+	s=arc-20240116; t=1716284728; c=relaxed/simple;
+	bh=7qLaoqIIAaTz5fph0kyugjFXnFjLbaUGL7rC2ceDlok=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jlNn0T1jXy+uRnx4IJSzM5o4KlJMEIob7AyKEJeJUhf2UXtOY629eAZBBBH97jWvqXXQTW+IdnTq0Yeo556oi4D1rq3lT1r9IfTClUWRVtB8pt9bwFyOybJprC8uEN+l7sQ+rO559Rur6blD0xrraePSou6iOGKHXChXad1phEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QatskZQI; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2e716e3030aso31389331fa.2
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 02:45:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716284725; x=1716889525; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Md+WRwALrBDV2V3shAX8d3uWCybuvTD8xlgzEt6mj3s=;
+        b=QatskZQIbHWGZW+tpnSfL3wmD6MmPZjHIDBDY73stAXPfnCuv39Wimi9Tdu2n4jtDb
+         bnkM9jMHm9VvxAi35ZjlndBBH4+JAVH7u40dsS1omHmyrqV1LcvZLqmguLYj1wwk9bVj
+         nbZKUrny1/6CXq6+hIAJ+J4V94QqYbLhhs5VMKFEM6NoiRGJhTrRPSjhbQTgBMPDNdkz
+         0h3Opsda1oGtmjK9+osG2JU2SFIFcDC/Zi03QNjdeQ7eIbO57pGJMSI4AcjIlPgWJBj0
+         t6KW9M9BipEmEjkTq9/By/twYvlxbnfEn2r5Rfu6Avx4k8QTqKUwF+Run50oCtDXoI3o
+         eEuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716284725; x=1716889525;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Md+WRwALrBDV2V3shAX8d3uWCybuvTD8xlgzEt6mj3s=;
+        b=rWLJziBU4eZLGaABRysLNFuxo4FWvP9rl+bkJrWR5Wyj6wVPTyhM4VYHt6Yni2QiRj
+         l19BeOaPEwgou4RhL3lZCdtulykPfL3AuLj0iy33dB5qjW7t3d/atbygfIZ8kyEzvwtw
+         LFpd0EgYBGHni1/cKss/piEgeQHAEStB1rZvIgE39pz3F+WfoON4tHGUBh1uqaQrZxcc
+         lQ5UFjAclOG9X4Sadvf85wnVmNvdRime0RsmdDwDGFM9e46ObwUQK45J0UyDsYrZFW14
+         +LF8Ntx8JWnQxvn6JkrjloimVmTY9oV4gb35o91snLYFNEV9nh+6T3zlUw7QeZQL23uH
+         JyEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPqN0jWJggbtD/rfRlz126wpH2YssBUHGAoB/qK+j36KoWBQZ/h1I9lpsv0j5ypxsEyJl58P21TEpYDT8f5vJt7RlFQbVgjzhCGA==
+X-Gm-Message-State: AOJu0YzGMkr9xbssrHaKNmNconztLsH50LlcVirNqv9kzogyuWYu9hiv
+	17Br00wew7+vlwzPVl0T8N0jNshk7ozfdFbfHeQCynXM2UjHjETRf0lHUbZYnmI=
+X-Google-Smtp-Source: AGHT+IHei8MVuGwNP1mQ+VWZ8la4NiILOnWDAPhCft9QiMk5UUjYW5f5kC0nYQH6ZN+vh0aDQ4fT2g==
+X-Received: by 2002:a05:651c:50f:b0:2df:7ac1:b27 with SMTP id 38308e7fff4ca-2e52006399cmr239371871fa.28.1716284725211;
+        Tue, 21 May 2024 02:45:25 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e706ee0a65sm13906261fa.112.2024.05.21.02.45.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 May 2024 02:45:24 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 00/12] arm64: qcom: autodetect firmware paths
+Date: Tue, 21 May 2024 12:45:20 +0300
+Message-Id: <20240521-qcom-firmware-name-v1-0-99a6d32b1e5e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/10] drm/vs: Innosilicon HDMI support
-To: keith <keith.zhao@starfivetech.com>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- xingyu.wu@starfivetech.com, p.zabel@pengutronix.de,
- jack.zhu@starfivetech.com, shengyang.chen@starfivetech.com
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
- <20240521105817.3301-10-keith.zhao@starfivetech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240521105817.3301-10-keith.zhao@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADBtTGYC/x3MQQqDMBBG4avIrB2IqbHgVYqLwf7RWSS2E6iCe
+ PcGl9/ivZMKTFFobE4y/LToliu6tqF5lbyA9V1N3vneBe/4O2+Jo1raxcBZEliA6Icgz/AQquH
+ HEPW4p6/puv54QBvvZAAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Loic Poulain <loic.poulain@linaro.org>, Kalle Valo <kvalo@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+ Arnd Bergmann <arnd@arndb.de>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3460;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=7qLaoqIIAaTz5fph0kyugjFXnFjLbaUGL7rC2ceDlok=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmTG0yaDfbXvoevOUjHPs8IuKzmJYGjmc1kguRR
+ zAiKXLcMdeJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZkxtMgAKCRCLPIo+Aiko
+ 1UIfB/sE3R07GqWvVQQIOHXBJLGbD/snQft/uArKi60KzVDniDBBl5qB//sKVqDrgc3OWAJcIqA
+ 1RcJbCi4Mxee4Xz73+ryd3ZTjnkLDsBiodcG9KzI0CtjtpgFHlHAc2tMMdrgXbMi+U8tLzLDVBN
+ w7ibw4ArXfhNbEuUTgphqgJPC83Xi77j41x7WENSEaBKKtfv39qBbAI7iyVsravdcFw8lgTzmOg
+ FThYcPmWCgMS6Lxo8zlQ1K5O9skLBZJdhpIpn8qNmy3Q+AULTfMilXHVSYwp9rzXsFAuqBwhym2
+ Gm8oVGyD77ZzYIiUCWRUX7GtOHE+J1iq8/t6xHllnWz+eb9L
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On 21/05/2024 12:58, keith wrote:
-> add inno hdmi driver which binds to vs display controller
-> and this driver uses the commom api from the inno hdmi
-> 
-> Signed-off-by: keith <keith.zhao@starfivetech.com>
-> ---
+This is a followup to the discussion during the Linaro Connect. Remove
+most of the firmware-name properties from the board DT by using
+root node compatible to detect firmware path.
 
-...
+The most obvious change is that the drivers now have to look for the
+MBN firmware files by default, so this might break the case of the user
+simply mounting vendor's firmware partition to /lib/firmware and
+expecting it to work.
 
-> +static int starfive_hdmi_bind(struct device *dev, struct device *master,
-> +			      void *data)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct drm_device *drm = dev_get_drvdata(master);
-> +	struct stf_inno_hdmi *stf_hdmi;
-> +	struct inno_hdmi *hdmi;
-> +	struct resource *iores;
-> +
-> +	int ret;
-> +	unsigned long long rate;
-> +
-> +	stf_hdmi = drmm_simple_encoder_alloc(drm, struct stf_inno_hdmi,
-> +					     encoder, DRM_MODE_ENCODER_TMDS);
-> +	hdmi = &stf_hdmi->inno_hdmi;
-> +
-> +	hdmi->dev = dev;
-> +	hdmi->plat_data = (struct inno_hdmi_plat_data *)of_device_get_match_data(dev);
-> +
-> +	iores = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	hdmi->regs = devm_ioremap_resource(dev, iores);
+Also things are slightly more complex for the platforms like DB845c and
+Qualcomm RB5. These platforms have generic SoC firmware in qcom/sdm845
+and qcom/sm8250 and also the board-specific firmware at
+qcom/sdm845/Thundercomm/DB845C and qcom/sm8250/Thundercomm/RB5
+respectively. Making these boards follow up the scheme would require
+additional symlinks in the firmware dir.
 
-There's a helper combining these two.
++Link: qcom/sdm845/Thundercomm/db845c/a630_zap.mbn -> ../../a630_zap.mbn
++Link: qcom/sm8250/Thundercomm/RB5/a650_zap.mbn -> ../../a650_zap.mbn
++Link: qcom/sdm845/Thundercomm/db845c/adsp.mbn -> ../../adsp.mbn
++Link: qcom/sdm845/Thundercomm/db845c/adspr.jsn -> ../../adspr.jsn
++Link: qcom/sdm845/Thundercomm/db845c/adspua.jsn -> ../../adspua.jsn
++Link: qcom/sdm845/Thundercomm/db845c/cdsp.mbn -> ../../cdsp.mbn
++Link: qcom/sdm845/Thundercomm/db845c/cdspr.jsn -> ../../cdspr.jsn
++Link: qcom/sm8250/Thundercomm/RB5/adsp.mbn -> ../../adsp.mbn
++Link: qcom/sm8250/Thundercomm/RB5/adspr.jsn -> ../../adspr.jsn
++Link: qcom/sm8250/Thundercomm/RB5/adspua.jsn -> ../../adspua.jsn
++Link: qcom/sm8250/Thundercomm/RB5/cdsp.mbn -> ../../cdsp.mbn
++Link: qcom/sm8250/Thundercomm/RB5/cdspr.jsn -> ../../cdspr.jsn
 
-> +	if (IS_ERR(hdmi->regs))
-> +		return PTR_ERR(hdmi->regs);
-> +
-> +	ret = starfive_hdmi_get_clk_rst(dev, stf_hdmi);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = starfive_hdmi_enable_clk_rst(dev, stf_hdmi);
-> +	if (ret)
-> +		return ret;
-> +
-> +	rate = clk_get_rate(stf_hdmi->clk_hdmi[CLK_SYS].clk);
-> +	inno_hdmi_i2c_init(hdmi, rate);
-> +
-> +	ret = inno_hdmi_bind(drm, hdmi, &stf_hdmi->encoder);
-> +	if (ret)
-> +		goto err_disable_clk;
-> +
-> +	dev_set_drvdata(dev, stf_hdmi);
-> +
-> +	return 0;
-> +
+Suggested-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Dmitry Baryshkov (12):
+      soc: qcom: add firmware name helper
+      wifi: wcn36xx: make use of QCOM_FW_HELPER
+      soc: qcom: wcnss_ctrl: make use of QCOM_FW_HELPER
+      remoteproc: qcom_q6v5_mss: switch to mbn files by default
+      remoteproc: qcom_q6v5_mss: make use of QCOM_FW_HELPER
+      remoteproc: qcom_q6v5_pas: switch to mbn files by default
+      remoteproc: qcom_q6v5_pas: make use of QCOM_FW_HELPER
+      remoteproc: qcom_wcnss: switch to mbn files by default
+      remoteproc: qcom_wcnss: make use of QCOM_FW_HELPER
+      remoteproc: qcom_wcnss: make use of QCOM_FW_HELPER
+      arm64: dts: qcom: apq8016-sbc: drop firmware-name properties
+      arm64: dts: qcom: apq8096-db820c: drop firmware-name properties
 
-
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts    |  5 +-
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts |  2 -
+ drivers/net/wireless/ath/wcn36xx/Kconfig    |  1 +
+ drivers/net/wireless/ath/wcn36xx/main.c     |  5 ++
+ drivers/remoteproc/Kconfig                  |  3 +
+ drivers/remoteproc/qcom_q6v5_mss.c          | 12 +++-
+ drivers/remoteproc/qcom_q6v5_pas.c          | 85 +++++++++++++++-------------
+ drivers/remoteproc/qcom_wcnss.c             |  8 ++-
+ drivers/soc/qcom/Kconfig                    |  6 ++
+ drivers/soc/qcom/Makefile                   |  1 +
+ drivers/soc/qcom/qcom_fw_helper.c           | 86 +++++++++++++++++++++++++++++
+ drivers/soc/qcom/wcnss_ctrl.c               |  9 +++
+ include/linux/soc/qcom/fw_helper.h          | 10 ++++
+ 13 files changed, 187 insertions(+), 46 deletions(-)
+---
+base-commit: 632483ea8004edfadd035de36e1ab2c7c4f53158
+change-id: 20240520-qcom-firmware-name-aeef265a753a
 
 Best regards,
-Krzysztof
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
