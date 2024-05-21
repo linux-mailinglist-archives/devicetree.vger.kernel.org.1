@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46B7F8CAA6A
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:58:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D3A8CAA7A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:05:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02177280DBC
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 08:58:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB02B1F2286C
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 09:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6542B5647B;
-	Tue, 21 May 2024 08:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09BC056440;
+	Tue, 21 May 2024 09:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWEYiY3K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qk49nriR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351D11F951;
-	Tue, 21 May 2024 08:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF412209F;
+	Tue, 21 May 2024 09:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716281894; cv=none; b=PEmViUV9o5FbGDsqFe8dQnnne9S/HVQhdROHGoELx09kYWy2z3AaCEcmKGgb0BDf+OGcgr8Pns2oHw+KN2OYitEbddL133ZgG7dgG3GVZg9ihpEXsXCjIJuXg/XXdhyJgTfzttDxfEe2C0xrtvMzwactdsEbynOxVEaBYkAH0dA=
+	t=1716282296; cv=none; b=ejw/J/AkbHytPyW4PmhUXtZyHJCG3sU2rskS0sMkwqp3rngxsCe6f1DxZ/NOBKa8IQKOJiHlK9XIEhIyl6f0lfONQNjr4FMN7bMpGcJCcA4oT75KjoLHRR1KAt+S42XGwH+E70WEYLjsowwVgNw/aeD0PbfMO7sSr1dWjj3GMa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716281894; c=relaxed/simple;
-	bh=Yb9S3qcvqNTBPcx8/jgoqgRqjkneywUyKMXmfw7NoqI=;
+	s=arc-20240116; t=1716282296; c=relaxed/simple;
+	bh=Fyo1MJcuF94YoHNRRQ/5sBEEN0ct+O/7ZaeMoc0v3WA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aTYcoAurh2Vol7d9M1kP1Sj6KSg0xM05RvhvLkSFjftMuljp2OH6KC2s50L1QJHj2c1Ny0AT8O3rQh5z4cMRE3gbt98Q2RHNZ+fALMIk/EtRZNt9hnWucO23uXV3gD3LcMMSxsuE2/n3mA+QXB8exkuokHcdx5Uc57cpqp/tNeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWEYiY3K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B78C2BD11;
-	Tue, 21 May 2024 08:58:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EyRE7gQUJCnZ2KU26OaN4FhbQcl1g2nP1KGA6cjQ8Gd3XjKIdp45WfWJWvE8rvNfPNZQRWZ/LQCVp42gQ1xQI5Drsl6+P42vgyIqelKwM3JChmEpcAlAF04dau4qO2AS+EOFB35np3l4Jio5Z76qZz1Q+STo/9N5PxuJgYFqxHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qk49nriR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7C92C2BD11;
+	Tue, 21 May 2024 09:04:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716281893;
-	bh=Yb9S3qcvqNTBPcx8/jgoqgRqjkneywUyKMXmfw7NoqI=;
+	s=k20201202; t=1716282296;
+	bh=Fyo1MJcuF94YoHNRRQ/5sBEEN0ct+O/7ZaeMoc0v3WA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XWEYiY3KUox0XoQh+DTDf/kyFjxeG6DD+EyfLNeYYOhDkTaBrKmbD/szBgKbeBlda
-	 AIIgAzHFzastY9VZfsO9wF3QUhC11fwusu4Ye8LVe6knrs+41MWxXlQayGawxhi2hL
-	 m582TzfkJfhJJ+5xP8IVSQBNQB49YFtKzTJxrgfbRWd/2JUYJxubYyCGi0Gn7odRsr
-	 hql5Tj5fB86D4ZxzeG6Dmz79dkYuLWlsExpL6JSd4fbI0eky5eOGnXVRz6vent45f4
-	 DApp4Ky2k6nEQvDLQ/6v3sssYnCQpGInjq9NInDXK3vwUaUOXUWG0QOgWVcX5j2Ras
-	 SMGBi+uSUZrzg==
-Message-ID: <06565532-987a-465a-b2ab-a03fce7279e1@kernel.org>
-Date: Tue, 21 May 2024 10:58:07 +0200
+	b=Qk49nriRU+zDbVHXmZD8vdLcGTi3K/henx+dAf6+H8xARBbLFiEldkAFammQRnEuQ
+	 IX3Nm/Z6uEvWaqO25jatU9Woq0SMMsH1O0MAG6wKspkW0Uufsls+UhhbkFUFtOS+vs
+	 O0GlzLqdusGaLSo68g645Lj9+d0RfHLzKY3UxGt5z8kubJZnVD+dhO745qBbF+1/c/
+	 WagC/SscHg8p6GO3Aiimbh0mlAbhpWLH6upJ+r7+4hAF0cgN5BLL1EmfQZ979EOZaf
+	 Y6V625/rL9ZThgBbchPoYfmF+y8X+r9ppZiNYhUPZGwiS7gh9+hO9e59oQXQue53k1
+	 l8KOSChSiP0cA==
+Message-ID: <67eef030-7965-4ea6-a390-568c18ae9451@kernel.org>
+Date: Tue, 21 May 2024 11:04:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/2] dt-bindings: soc: qcom,smsm: Allow specifying
- mboxes instead of qcom,ipc
-To: Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240424-smsm-mbox-v1-0-555f3f442841@z3ntu.xyz>
- <2729475.mvXUDI8C0e@g550jk> <1ab150cd-68f0-4153-8d4e-5bd30bb01dfe@linaro.org>
- <12437992.O9o76ZdvQC@g550jk>
+Subject: Re: [PATCH] ASoC: dt-bindings: ssm2305: convert to dt schema
+To: Xiaxi Shen <shenxiaxi26@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+ javier.carrasco.cruz@gmail.com, skhan@linuxfoundation.org
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20240511214716.242807-1-shenxiaxi26@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,39 +102,74 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <12437992.O9o76ZdvQC@g550jk>
+In-Reply-To: <20240511214716.242807-1-shenxiaxi26@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/05/2024 17:11, Luca Weiss wrote:
-> Hi Krzysztof
+On 11/05/2024 23:47, Xiaxi Shen wrote:
+> Convert adi,ssm2305 binding to DT schema
 > 
-> Ack, sounds good.
-> 
-> Maybe also from you, any opinion between these two binding styles?
-> 
-> So first using index of mboxes for the numbering, where for the known
-> usages the first element (and sometimes the 3rd - ipc-2) are empty <>.
-> 
-> The second variant is using mbox-names to get the correct channel-mbox
-> mapping.
-> 
-> -               qcom,ipc-1 = <&apcs 8 13>;
-> -               qcom,ipc-2 = <&apcs 8 9>;
-> -               qcom,ipc-3 = <&apcs 8 19>;
-> +               mboxes = <0>, <&apcs 13>, <&apcs 9>, <&apcs 19>;
-> 
-> vs.
-> 
-> -               qcom,ipc-1 = <&apcs 8 13>;
-> -               qcom,ipc-2 = <&apcs 8 9>;
-> -               qcom,ipc-3 = <&apcs 8 19>;
-> +               mboxes = <&apcs 13>, <&apcs 9>, <&apcs 19>;
-> +               mbox-names = "ipc-1", "ipc-2", "ipc-3";
+> It passed dt_binding_check and dtbs_check. Let me know
+> if you think it should include something else
 
-Sorry, don't get, ipc-1 is the first mailbox, so why would there be <0>
-in first case? Anyway, the question is if you need to know that some
-mailbox is missing. But then it is weird to name them "ipc-1" etc.
+That's not really related to the commit.
+
+> 
+> Signed-off-by: Xiaxi Shen <shenxiaxi26@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/adi,ssm2305.txt | 14 --------
+>  .../bindings/sound/adi,ssm2305.yaml           | 35 +++++++++++++++++++
+
+
+Same comment as usual... there are no DTS users. Are we done with arm64
+defconfig and arm multi_v7 undocumented compatibles? I doubt, 2 months
+ago there were hundreds of them. Why touching something without users?
+
+I was speaking about this *multiple times*. Can you update your GSoC or
+mentorship guidelines to include this information?
+
+
+>  2 files changed, 35 insertions(+), 14 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2305.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2305.yaml
+> 
+
+...
+
+
+> +maintainers:
+> +  - Liam Girdwood <lgirdwood@gmail.com>
+> +  - Mark Brown <broonie@kernel.org>
+> +  - Rob Herring <robh@kernel.org>
+> +  - Krzysztof Kozlowski <krzk+dt@kernel.org>
+> +  - Conor Dooley <conor+dt@kernel.org>
+
+Not really, this should be someone responsible for the device. No
+maintainers or recent, main contributors?
+
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,ssm2305
+> +
+> +  shutdown-gpios:
+> +    maxItems: 1
+> +    description: The gpio connected to the shutdown pin. The gpio signal is ACTIVE_LOW.
+> +
+> +required:
+> +  - compatible
+> +  - shutdown-gpios> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +   analog-amplifier {
+> +     compatible = "adi,ssm2305";
+> +     shutdown-gpios = <&gpio3 20 0>;
+
+Use proper define for the flag.
+
+> +   };
 
 Best regards,
 Krzysztof
