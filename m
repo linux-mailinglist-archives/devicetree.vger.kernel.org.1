@@ -1,140 +1,120 @@
-Return-Path: <devicetree+bounces-68261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571A18CB5ED
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 00:21:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E408CB5F8
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 00:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 122FE282DE5
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:21:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED6821C219D9
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7362D149C6A;
-	Tue, 21 May 2024 22:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A15014A099;
+	Tue, 21 May 2024 22:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cbknFbOr"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="azYnNpfp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406E01865A;
-	Tue, 21 May 2024 22:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B05B149DE5;
+	Tue, 21 May 2024 22:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716330084; cv=none; b=j9nqCnZYN8gjoq5iHIcdrFZIMoSl5v7s4ps94NuPIuJ9mNQz6A8urpFJAxFeUO3vFcw6nAqsGQLQpEeQyZ6LQyi7l9WwXb2Med8/3s/sQgfv//uh0PSqJ8Pv8madc3UXh92xKMerGMbZaDKwfp48yVL6GD8518WF2j6Lzpmv60U=
+	t=1716330189; cv=none; b=pnoYdc2uuyhCfRkaISTgOJjztSUwW3YBMj3OVpzcJhe7f+axg6kj9bXEusfIGsTERdt5Bn5JQQTwU+LSXyAAj6Tpk7357TikIIZ2aHPL8IixSkAj4PJ+TdXCbQlBk03Eqc3pDt+Ftk1kgQ/OCb+69clhpy62FbY2btbUa0c3X8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716330084; c=relaxed/simple;
-	bh=eTuD8TkoSJENTwFBMEinJkrb+PTHkp3uq6sPx3UUzN0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=JfEV1148BwD0Z3xOzPekwo5oYQN5+xmhqLfEGmILCoqDTCJhWk7iEWP8zNRBhRGNVGwadK2dwUZB1ehpVjoFJoODCR4OKxJgumFASn1R/3iBC3xgEPsJkDLfIhh4axaWGZEtyQjRjfYD/bLomYA8GeeLlooVGuTJECpcflHfYGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cbknFbOr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AF01C2BD11;
-	Tue, 21 May 2024 22:21:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716330083;
-	bh=eTuD8TkoSJENTwFBMEinJkrb+PTHkp3uq6sPx3UUzN0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=cbknFbOrlq2asl7flaBNs5fBtXasvCVpbovNe1xwvZHA8ibl/wvjz6ialnpg5lH3C
-	 OYZfHlDpi0x0d0WhqKOTT+MImfiymKZIpYgT41eKKMYbDvn/YjEGaFYtzr4Z7rM0VD
-	 XhDjusLnYZK4vbQZdBwdz4NbOPXjejZ4lRZJ7dCyvuYnh/aXwK06d4j6U48nT6Gwz3
-	 BNwC/CEyamHdqbrHMyKSUESNxuZXLqKgcFpEQ9sqvyyewxisaIzi26J8zj24xr5GSz
-	 SuPC8GVpd1YtEgKvmsP9pki406qPwQHVVIHgiWQbVchwSWHiQVPWrkIZvJBBiDjsMS
-	 ft7+VW0CcMoOA==
-Date: Tue, 21 May 2024 17:21:21 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v16 08/22] PCI: microchip: Change the argument of
- plda_pcie_setup_iomems()
-Message-ID: <20240521222121.GA51329@bhelgaas>
+	s=arc-20240116; t=1716330189; c=relaxed/simple;
+	bh=lT0go+khrIBtFYj4jcepsMnSbYwOAjo0s7O87/hfYSE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GBwyx45sOQjK/TmqgqDcM+zrEjgDLtMWz6/G3jNUYchBACKBodyRZ11LJ5SQxrH3FVeFx4AQhmalKHT2hSmcC97B5op5YbFERbDcYI2Hc2MygXfiS2AwRfoEh32NbW8l9zTkg8osAKU+3SV5neMbescXQqOnX1oLyQA1EtrRLxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=azYnNpfp; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id B98B1100013;
+	Wed, 22 May 2024 01:23:03 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru B98B1100013
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1716330183;
+	bh=CZg76scw7v97dA0RfUhhSpMZL+RjQmhtnVdo0IGU76s=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=azYnNpfppiSYmIT828TB71EKKKOpRNG//yHacsHcbgs4+t4RXrVevSBAPpzyYPOC0
+	 HcQArDScq+RvxC+Tr/db5qO56fQSilYqkT9s7n6Gp1Zt1ZundkxvFHsR5qcsNLPlIl
+	 7ENARXbh6mlDzEJaIsPP6rO60LNgsrvwfnx2qzSMHdqJnHxEKd/Fi5ZqwDm5upqFuM
+	 M+7QVo+dNIHPiC5YTE4u6YO5R/V3+oYNphQCo7c8AKWIoG2FkPn7JBbSuQKRYlfzxw
+	 yltDNktVf81Gdtuf65FnkryDPsuA2qN4P2C6RaUIQXgnzqkKCQ/egH0YUx5VC/w9Un
+	 fuyxWrY4HSHvg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 22 May 2024 01:23:03 +0300 (MSK)
+Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 22 May 2024 01:23:03 +0300
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Dmitry Rokosov
+	<ddrokosov@sberdevices.ru>, Jerome Brunet <jbrunet@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Lucas Tanure <tanure@linux.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Xianwei Zhao
+	<xianwei.zhao@amlogic.com>
+Subject: [PATCH 0/3] Introduce initial support of Amlogic AC200 board
+Date: Wed, 22 May 2024 01:21:52 +0300
+Message-ID: <20240521222155.28094-1-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240328091835.14797-9-minda.chen@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185400 [May 21 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/21 08:41:00 #25230763
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-The patch is OK, but the subject line is not very informative.  It
-should be useful all by itself even without the commit log.  "Change
-the argument of X" doesn't say anything about why we would want to do
-that.
+ - Make some cosmetics in existing device tree files;
 
-On Thu, Mar 28, 2024 at 05:18:21PM +0800, Minda Chen wrote:
-> If other vendor do not select PCI_HOST_COMMON, the driver data is not
-> struct pci_host_bridge.
+ - Add the board.
 
-Also, I don't think this is the real problem.  Your
-PCIE_MICROCHIP_HOST Kconfig selects PCI_HOST_COMMON, and the driver
-calls pci_host_common_probe(), so the driver wouldn't even build
-without PCI_HOST_COMMON.
+Jan Dakinevich (3):
+  arch/arm64: dts: ac2xx: make common the sound card
+  dt-bindings: arm: amlogic: document AC200 support
+  arch/arm64: dts: ac200: introduce initial support of the board
 
-This patch is already applied and ready to go, but if you can tell us
-what's really going on here, I'd like to update the commit log.
+ .../devicetree/bindings/arm/amlogic.yaml      |  1 +
+ .../dts/amlogic/meson-sm1-a95xf3-air-gbit.dts | 87 -------------------
+ .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts | 87 -------------------
+ .../boot/dts/amlogic/meson-sm1-ac200.dts      | 22 +++++
+ .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 87 +++++++++++++++++++
+ .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 87 -------------------
+ .../dts/amlogic/meson-sm1-x96-air-gbit.dts    | 87 -------------------
+ .../boot/dts/amlogic/meson-sm1-x96-air.dts    | 87 -------------------
+ 8 files changed, 110 insertions(+), 435 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dts
 
-> Move calling platform_get_drvdata() to mc_platform_init().
-> 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  drivers/pci/controller/plda/pcie-microchip-host.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> index 9b367927cd32..805870aed61d 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -876,11 +876,10 @@ static void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);
->  }
->  
-> -static int plda_pcie_setup_iomems(struct platform_device *pdev,
-> +static int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
->  				  struct plda_pcie_rp *port)
->  {
->  	void __iomem *bridge_base_addr = port->bridge_addr;
-> -	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
->  	struct resource_entry *entry;
->  	u64 pci_addr;
->  	u32 index = 1;
-> @@ -1018,6 +1017,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  {
->  	struct device *dev = cfg->parent;
->  	struct platform_device *pdev = to_platform_device(dev);
-> +	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
->  	void __iomem *bridge_base_addr =
->  		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
->  	int ret;
-> @@ -1031,7 +1031,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	mc_pcie_enable_msi(port, cfg->win);
->  
->  	/* Configure non-config space outbound ranges */
-> -	ret = plda_pcie_setup_iomems(pdev, &port->plda);
-> +	ret = plda_pcie_setup_iomems(bridge, &port->plda);
->  	if (ret)
->  		return ret;
->  
-> -- 
-> 2.17.1
-> 
+-- 
+2.34.1
+
 
