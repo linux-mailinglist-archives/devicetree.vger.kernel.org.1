@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-68232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3055A8CB4EC
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:53:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F2F8CB507
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 23:03:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA6252858E6
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:53:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E691281B99
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 21:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B004F149C42;
-	Tue, 21 May 2024 20:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEFAE149011;
+	Tue, 21 May 2024 21:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wJ8inRPn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gvD2zmg5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C9B763F1
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 20:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C52050276;
+	Tue, 21 May 2024 21:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716324775; cv=none; b=bIDiajFY6QNOu0qqsJdFye5AuyDs+fsV6pqM9TwD2QLE3qnSy8mFyPXABFLHR5HPmh79tVay3j6sVant119Iju806cEmjV9hJNVCIki8XrkGZpb6pyL/ybfGAHMAZZyCaXKkSnqJxly0xzMf12e4az/n1AqW72FeKc0/G9C8+/c=
+	t=1716325409; cv=none; b=iXn1cEYoy1zzAsYhEHYmfYFDFdnOTycPOw8ayngdb+6/euHNoq+EPoX1h09Dr6rFV9OQyfpwgxYrsVJ/KKc7aUlJG1z46B084sxl57HaJpGYBBh7SDY3PaeRDjk/ltfus+EBjLeenXgg8uq030dMxNO0DshE6UYmAscR88hrA50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716324775; c=relaxed/simple;
-	bh=T4r4UOzazpDwOoTNYJRsXcpEc54ba9FCpMQL7fJvH54=;
+	s=arc-20240116; t=1716325409; c=relaxed/simple;
+	bh=3Qqn1U062QTlYPQyqwB5Qbenc7wjbLzJgvCPQw09baU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XTfJgW0qLvzNo8kHn5GsMn7KPjn7RnLwYYl0L77kypgPtqjJRcPhy+DOQEAc4ro5u8/4IYYnViy+e01vT1Jwi0F2wL0vLA6xZaDKGQ5vh4h/kgwsX5XHU30Z/L9PzXWcDEz2toD5iuYkxnASEeGqpt8l12RDEpiLJyU+F4S/bWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wJ8inRPn; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2e724bc46bfso32427781fa.3
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 13:52:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716324771; x=1716929571; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=msxyCLm+NoD8gt9t5sc/sqtgLcdGE0LrYHv1PtdYhxE=;
-        b=wJ8inRPnWrnor0k2WR/+fP0NB5O/XhLyq2tBQSvwEefb/YSFTZCljJjvC3Yemy4ILD
-         EKprNoyNDyhSOg6c7/UCkcrHsSHDtwRGThMbi7F21Uz5udPJ3vtUCPMrRfNQLAg7ny76
-         fyYMifTbEjRhb/pByyrAOQ/OFZMRtV6vz62Dgy1Sk+8VYWL7cO1/T1phj+1ZaHgAjWLu
-         yo2HJ+lYStNV/tfPfLbywAyBud10Xw9avTnmgqebdkWh2OZ+J/OBOA/YuOjelwF6n59+
-         5gWJJhxIkd1K+ph2drIpx4+1hatEAsk27hJrH9RirGHPwuqSkBOHTMDdc7RWIi/FemGH
-         E1YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716324771; x=1716929571;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=msxyCLm+NoD8gt9t5sc/sqtgLcdGE0LrYHv1PtdYhxE=;
-        b=RlXi4Aqu8KyOnsOlxNe42HqIf8LaxHh/px5TEdT9v1k3dMo30ZNJ3FxpDkz5DrOWeu
-         EdizIHtGSOBZWBGEmHM+fd+brs0Ai3OQpIfHKpm1QfZFNKSrrqW1/n9TrlxtWo+aDDV7
-         XH7Vhp994SdzhC2UkEBsYOPfD5L64eh6E39i77ne0NzeAuZbfNI787kYTFF8JJj67klo
-         SZDLzy8T+1yR3DOqJML3GmTrUU/NT0DHRdUSlkwtqvaEyO2j/heulPh7faOcHI7GN/ew
-         TcxKO5yaY/P/JJTLuM30LmnjVoIzxvAnappdKz43JB43U35QdPMcDZebsYgBlMPIIRbo
-         Y72g==
-X-Forwarded-Encrypted: i=1; AJvYcCUqHp7O7fXsqOclXBPq+in7PCqTueSOdvFLoiGCF8j4lDsknQmpDx0+kZnhWdv/gOG2xdd7MQFfgB8Mg5Bh41IJthcucxGkn+yy/Q==
-X-Gm-Message-State: AOJu0YyRfkq8Yqv+BaDZnPsxT/KjwiWsJcxcpjTrCe3QlHQruXZIHUnY
-	bnqbBncTkfrj+vqBrwHu1B12Cc2W69nVo8V+X8E68UjkS3O6rMql5EtF6jDl9/4=
-X-Google-Smtp-Source: AGHT+IH9JnZ8CnZBbmaZFoXCSh2S7w8ZfIIRcaRrDzVz1afxLKCUvUcZ9fni8BZiKaLEuV2o297Qfw==
-X-Received: by 2002:a05:6512:3147:b0:523:9747:4920 with SMTP id 2adb3069b0e04-52397475405mr10938328e87.36.1716324771258;
-        Tue, 21 May 2024 13:52:51 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f38d87a5sm4800254e87.202.2024.05.21.13.52.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 May 2024 13:52:50 -0700 (PDT)
-Date: Tue, 21 May 2024 23:52:49 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: keith <keith.zhao@starfivetech.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com, 
-	xingyu.wu@starfivetech.com, p.zabel@pengutronix.de, jack.zhu@starfivetech.com, 
-	shengyang.chen@starfivetech.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 05/10] drm/vs: add vs mode config init
-Message-ID: <ttjuehs6ui4dsnexhhodfd22okujx55mof5svxuk47gizhkv52@kdbdvwsamz6i>
-References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
- <20240521105817.3301-6-keith.zhao@starfivetech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lazC3IEbugyvhWb0iMqGbyBU+pw2gH/j2P3d7kXOvCUc0ewK2bXyjpJuLW8/g+t/ll1uHdPsTb1qYCOuRxponZLyXak82FkinFG7/EfL/Prc2XOuvcUuf2jRxIcIniItQYsu4r8VpPQSHeFxmmERq3X/IJj63LJgJZgc/5yZ+AQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gvD2zmg5; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716325405; x=1747861405;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3Qqn1U062QTlYPQyqwB5Qbenc7wjbLzJgvCPQw09baU=;
+  b=gvD2zmg5O4PhGQQug5UpVftV3Q5P9LtzWC3xYBPIsRYIYU2nljqoym/j
+   kSpM5oZ3CPH6Fuyp2e7cGdQROxKzGIVFYNpoflDruLWfNXmO4ggh6A6YR
+   ADbFjPsDlO/4raLmK/KAKAB00IN+nS6qS7vgd69nnKP6dwbXJz/hPKb0Z
+   SlMdi6SRNYPM6/kKojKfBbiAUdkzWpz+fI08valaYqr73iaOQUmxCiUi+
+   ga2vWEjBFJSFMIG+App+Bp0tkIouD8R2MRW2fGqAV12LrmQo9kmKcTupr
+   QZ1kYKSPZ7e3L8TcEuqoYuUy1pmYpHoeVlW18KkF7fhRDCH6mRHf3LQeu
+   g==;
+X-CSE-ConnectionGUID: jEMepWa4RLyKnoub8v4R6g==
+X-CSE-MsgGUID: cJn6XWYRQr+wsqHmXVix5g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="23959524"
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; 
+   d="scan'208";a="23959524"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2024 14:03:24 -0700
+X-CSE-ConnectionGUID: pXBEd/GGQp2uY8jsR5UZ9w==
+X-CSE-MsgGUID: C/u9NIUUQcCzg+Ch1rFlQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; 
+   d="scan'208";a="33658115"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+  by orviesa007.jf.intel.com with ESMTP; 21 May 2024 14:03:18 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1s9WdM-0000kJ-2v;
+	Tue, 21 May 2024 21:03:04 +0000
+Date: Wed, 22 May 2024 05:01:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: keith <keith.zhao@starfivetech.com>, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
+	andy.yan@rock-chips.com, xingyu.wu@starfivetech.com,
+	p.zabel@pengutronix.de, jack.zhu@starfivetech.com,
+	shengyang.chen@starfivetech.com
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, keith.zhao@starfivetech.com
+Subject: Re: [PATCH v4 04/10] drm/vs: Add hardware funcs for vs.
+Message-ID: <202405220449.sjkbwf6F-lkp@intel.com>
+References: <20240521105817.3301-5-keith.zhao@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,106 +88,444 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240521105817.3301-6-keith.zhao@starfivetech.com>
+In-Reply-To: <20240521105817.3301-5-keith.zhao@starfivetech.com>
 
-On Tue, May 21, 2024 at 06:58:12PM +0800, keith wrote:
-> add vs mode config base api
+Hi keith,
 
-Commit message? Please describe e.g. why are you using
-drm_atomic_helper_commit_tail_rpm() instead of
-drm_atomic_helper_commit_tail().
+kernel test robot noticed the following build warnings:
 
-> 
-> Signed-off-by: keith <keith.zhao@starfivetech.com>
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on linus/master next-20240521]
+[cannot apply to robh/for-next rockchip/for-next v6.9]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Name
+url:    https://github.com/intel-lab-lkp/linux/commits/keith/dt-bindings-display-Add-YAML-schema-for-JH7110-display-pipeline/20240521-110316
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20240521105817.3301-5-keith.zhao%40starfivetech.com
+patch subject: [PATCH v4 04/10] drm/vs: Add hardware funcs for vs.
+config: arc-randconfig-r123-20240522 (https://download.01.org/0day-ci/archive/20240522/202405220449.sjkbwf6F-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240522/202405220449.sjkbwf6F-lkp@intel.com/reproduce)
 
-> ---
->  drivers/gpu/drm/verisilicon/Makefile     |  3 +-
->  drivers/gpu/drm/verisilicon/vs_modeset.c | 36 ++++++++++++++++++++++++
->  drivers/gpu/drm/verisilicon/vs_modeset.h | 10 +++++++
->  3 files changed, 48 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
-> 
-> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
-> index 7da54b259940..536091f37378 100644
-> --- a/drivers/gpu/drm/verisilicon/Makefile
-> +++ b/drivers/gpu/drm/verisilicon/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  
-> -vs_drm-objs := vs_dc_hw.o
-> +vs_drm-objs := vs_dc_hw.o \
-> +		vs_modeset.o
->  
->  obj-$(CONFIG_DRM_VERISILICON_DC8200) += vs_drm.o
-> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.c b/drivers/gpu/drm/verisilicon/vs_modeset.c
-> new file mode 100644
-> index 000000000000..c71fe0d32504
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.c
-> @@ -0,0 +1,36 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
-> + */
-> +#include <drm/drm_damage_helper.h>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202405220449.sjkbwf6F-lkp@intel.com/
 
-I don't see anything concerning damage helpers being used here.
+sparse warnings: (new ones prefixed by >>)
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/stackdepot.h, ...):
+   include/linux/page-flags.h:241:46: sparse: sparse: self-comparison always evaluates to false
+   include/linux/page-flags.h:241:46: sparse: sparse: self-comparison always evaluates to false
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:261:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:261:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:261:9: sparse:     got void *
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:261:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:261:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:261:9: sparse:     got void *
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:256:16: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:256:16: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:256:16: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:271:21: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
+>> drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/gpu/drm/verisilicon/vs_dc_hw.c:266:9: sparse:     got void *
 
-> +#include <drm/drm_fb_helper.h>
-> +#include <drm/drm_gem_framebuffer_helper.h>
-> +
-> +#include "vs_modeset.h"
-> +
-> +static const struct drm_mode_config_funcs vs_mode_config_funcs = {
-> +	.fb_create			 = drm_gem_fb_create,
-> +	.atomic_check		 = drm_atomic_helper_check,
-> +	.atomic_commit		 = drm_atomic_helper_commit,
-> +};
-> +
-> +static struct drm_mode_config_helper_funcs vs_mode_config_helpers = {
-> +	.atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
-> +};
-> +
-> +void vs_mode_config_init(struct drm_device *dev)
-> +{
-> +	int ret;
-> +
-> +	ret = drmm_mode_config_init(dev);
-> +	if (ret)
-> +		return;
-> +
-> +	dev->mode_config.min_width  = 0;
-> +	dev->mode_config.min_height = 0;
-> +	dev->mode_config.max_width  = 4096;
-> +	dev->mode_config.max_height = 4096;
-> +
-> +	dev->mode_config.funcs = &vs_mode_config_funcs;
-> +	dev->mode_config.helper_private = &vs_mode_config_helpers;
-> +}
-> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.h b/drivers/gpu/drm/verisilicon/vs_modeset.h
-> new file mode 100644
-> index 000000000000..bd04f81d2ad2
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#ifndef __VS_MODESET_H__
-> +#define __VS_MODESET_H__
-> +
-> +void vs_mode_config_init(struct drm_device *dev);
-> +#endif /* __VS_FB_H__ */
-> -- 
-> 2.27.0
-> 
+vim +266 drivers/gpu/drm/verisilicon/vs_dc_hw.c
+
+   263	
+   264	static inline void dc_write(struct dc_hw *hw, u32 reg, u32 value)
+   265	{
+ > 266		writel(value, hw->reg_base + reg - DC_REG_BASE);
+   267	}
+   268	
+   269	static inline u32 dc_read(struct dc_hw *hw, u32 reg)
+   270	{
+ > 271		u32 value = readl(hw->reg_base + reg - DC_REG_BASE);
+   272	
+   273		return value;
+   274	}
+   275	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
