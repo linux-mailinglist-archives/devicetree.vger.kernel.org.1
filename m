@@ -1,155 +1,126 @@
-Return-Path: <devicetree+bounces-68071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957F18CAC23
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:25:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7343A8CAC31
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:26:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D1841C219F2
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:25:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F133283D52
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB847EEE3;
-	Tue, 21 May 2024 10:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 215A173165;
+	Tue, 21 May 2024 10:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vt32vn5w"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="mHTaWBQJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BE373514
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:18:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EFA371B32
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716286731; cv=none; b=W81a1CGI/seAp2BqbbEcILfmtuBthh4dZsnSeg0NXKO0iMRJiF/cUS+Cdynp7xkBath0R3z8YB5mlV0g6En3QUnle4FikG5e8b2WH4tGfEjHEjH8pcqA8W5Zlhf6zn7xz/msgD2DbTI+AoCIx8pA3sy8LAGuq1kOw8Q9cIvG2MY=
+	t=1716287114; cv=none; b=Pr0zUei2Q1y3QaMHZS4jd7N/84NU1QBxd9E9h5Jkl0+rhUCzjlfjhnMiE4JAC2IlDArNFg5+WpaqhjlYkqYJWQPTSY/3S48klBt83Owzymz2bH8Z2Tg6weFP9LD6EASfXBxBj/9OKVpKA4FALl+sI5UVI9fcjxk/mnmmKpLTQdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716286731; c=relaxed/simple;
-	bh=W/Ea7UwOsSwE66EuxmYqet+tkiFW4foSZQFxc+kHG/M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WPTlnqanRAmfDbw/pu1lyw4B/3ShiGJqKZp8G6BAfAo6VPv49ftlktLrNeSW+radaRcSOc9EJPWpsqoZZSHbCE83Nh2ZpQcGohY/IFFMdhJsxPZWsVi3pHi5CzX47cPaaXrFbQ4bGQNs5ipcVlUujkjbse/Yi432kex2z+xjy7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vt32vn5w; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6f0f80b780fso2409036a34.2
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:18:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716286729; x=1716891529; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Srt9XjNNUKRwVZJcA/A+f+ONnFoW//paZ2d8/vHomfM=;
-        b=Vt32vn5wVvEYqCO2WFGdBhcqk1QthLGEf0Yr4VYThBtsxcwa/O9KPlE4ylDtEtSHIr
-         cr03dN0zZOEoUAm0kahmvD8QrpiRm8Lmm6cDlLem0D+Lkhyu/KA8/fLd5iwa3EsOtKGb
-         x0dzv5m2YUynPQaxARbnlYoV0ODotUi9GoqGRcF1AUogV5zKlAMwydSFuVSP30rUV3SK
-         IrlAsw3nfdc52ObOhojQziCBEYb14kcaSbDiTGbDItathtM1DnJvvhvKGtFoBvYR8/OK
-         t8QerDOtVzd9/BbROcnZwc8JUNtjFAV4IRa8ogusW3MpMsEmLc0fav4qRSW2AXbSbdI9
-         YJwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716286729; x=1716891529;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Srt9XjNNUKRwVZJcA/A+f+ONnFoW//paZ2d8/vHomfM=;
-        b=G1+EuZAw1d/IWevjTnA/oOxxCEnNoaTfYX8+U/de+Y3/cEVTNXmvRHhL9zcpQofBg1
-         B/exGp45KnfiMCYADLAYHvligxODbDJb+/o3RM9mca8SZGuyrhPvbvqUd2fJ36v6rVqg
-         tZBr9iAg8u2TwBQVfMNQ8rf+rBEIn9RaBhq59h8+dr/6dbe9kt61C1Rn7rjHYdw05Z6G
-         wyWiHV/Ia1pM/1JY52MyClcdTsCzw3I+YFezhe+jC8C5ucShv1K7WAP0lW9pERCh1uqu
-         QdComqeQr6AXvMKld3JkQJWEpVbktp8ZiyiXUDhaFmLXSoqSr/Nz8iL/A94TuXHTUbGO
-         JF4A==
-X-Forwarded-Encrypted: i=1; AJvYcCX8L2+hGL+V5SGFj09/le5Eiyu41bSPMOz98AVSWurka9kuU2zcjuIJjaSjTGaVLrxY/SWFmdN05n0evwZi7YWs0KUin2YddJKMng==
-X-Gm-Message-State: AOJu0Yz1n+l/gc1YpID7oS8jMQGBQxJ2q72iU+rXRvj2pcUI1UVZNiFZ
-	ekQ+/YMjLZES+s5Hb5k6dcUjXX6lyoDKcIdBOzAnE/N3S/n5RHahj3iVap2e7zU=
-X-Google-Smtp-Source: AGHT+IFfaSQif9YYomjDiv5QjzxodDdKKO9XUFwDUynCNNjIQhl3MuajZhlUTtUEYxbkAsacdj1rmw==
-X-Received: by 2002:a05:6830:4784:b0:6f1:128e:c7f6 with SMTP id 46e09a7af769-6f1128ec94emr22053349a34.31.1716286729138;
-        Tue, 21 May 2024 03:18:49 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f0ff995ccdsm3465922a34.34.2024.05.21.03.18.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 May 2024 03:18:48 -0700 (PDT)
-Message-ID: <555ec8bb-f4eb-4fe4-8213-dfc5939dbb20@linaro.org>
-Date: Tue, 21 May 2024 12:18:40 +0200
+	s=arc-20240116; t=1716287114; c=relaxed/simple;
+	bh=nkgw3fz0976Jdp0+eh7COGB+2J+giEdd8+R69SR1/4k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LCNHy6F9gjhXzUmKvube7XnVwpc8Mee8Dy9xW3gyIp7tyXTb5rUdGPiUmedLznbhIHgJmXv+rS0Xpnaia92SxEIK2MIfJNwy4N0dzHZLDAPlUzn38BvjCad/EsPWd4TRY1F8210dhxSe0EJyN+wTwI+LchHM5eRyRSur+V1LaLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=mHTaWBQJ; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 516E188096;
+	Tue, 21 May 2024 12:25:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1716287103;
+	bh=XVQ8F6XCYJt4od6PuSFr/kuUABm5Sfd++dN0J2y+sO4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=mHTaWBQJWn+qVOhcvYk2+Yq5MBU8+LPrsSBwwf0MQAO8kex9pGrv8czpQpUu8eEwt
+	 xwW8HsniSrvJIf6BkS5UjpHs/+eGjftfNLlwpqzOD1ncEzEULV8W5YUoYC6VfMyE9C
+	 Voziv51QQKUtNEcrA4wy0pI5HAvXwRdGKp7RB1Vn3SiE50RW3o74VyELiyMZJyC5Lh
+	 4ydIsDRcfQ8KYSXnwMgOESLTFFcM8451x60X7S0qXHh8NvHwbWI2i07xMM8UccemlC
+	 t1W4UWt0U8X/RtkK+NQcLrtgOS9RPMHQ2UNk20OTeE1LiRIg0Y4vj5ou5di5mcKHKD
+	 cVxmv3F3LIUPw==
+From: Marek Vasut <marex@denx.de>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [PATCH 1/3] arm64: dts: imx8mm: Describe carrier board 20 MHz Xtal on i.MX8MM Menlo board
+Date: Tue, 21 May 2024 12:23:11 +0200
+Message-ID: <20240521102435.10019-1-marex@denx.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: milbeaut: Drop providers and
- consumers from example
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Taichi Sugaya <sugaya.taichi@socionext.com>,
- Takao Orito <orito.takao@socionext.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240520222646.1741958-1-robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240520222646.1741958-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On 21/05/2024 00:26, Rob Herring (Arm) wrote:
-> Convention for examples is to only show what's covered by the binding,
-> so drop the consumer "socionext,milbeaut-usio-uart" and input clock
-> provider "fixed-clock" from the example. "socionext,milbeaut-usio-uart"
-> is also not documented by a schema which caused a warning.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
+The i.MX8MM Menlo carrier board uses dedicated 20 MHz Xtal to supply
+clock to second SPI CAN controller on the carrier board as well as
+CPLD on the same board. Fix incorrect reuse of SoM 20 MHz Xtal for
+that purpose, describe the separate Xtal and use it.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
+index 0b123a84018b2..4c38979f7333f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
+@@ -14,6 +14,13 @@ / {
+ 		     "toradex,verdin-imx8mm",
+ 		     "fsl,imx8mm";
+ 
++	/* Carrier board Xtal for SPI CAN controller and CPLD */
++	clk20mcb: clk-20m-cb {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <20000000>;
++	};
++
+ 	/delete-node/ gpio-keys;
+ 
+ 	leds {
+@@ -60,7 +67,7 @@ &ecspi1 {
+ 	/* CAN controller on the baseboard */
+ 	canfd: can@0 {
+ 		compatible = "microchip,mcp2518fd";
+-		clocks = <&clk_xtal20>;
++		clocks = <&clk20mcb>;
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
+ 		reg = <0>;
+-- 
+2.43.0
 
 
