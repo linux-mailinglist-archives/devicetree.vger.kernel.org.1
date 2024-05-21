@@ -1,291 +1,154 @@
-Return-Path: <devicetree+bounces-68178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 481288CB12C
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 17:25:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BD578CB17F
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 17:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE88D1F24FC7
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 15:25:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1223B23B76
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 15:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DFF1448E2;
-	Tue, 21 May 2024 15:25:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C1D144D36;
+	Tue, 21 May 2024 15:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k9kSksGw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GODuF1Mb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A31C1442F0
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 15:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5767446B4;
+	Tue, 21 May 2024 15:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716305109; cv=none; b=S0LdRhM/QhkKyI3YJD5ZnuRfU9UVXs6vnCURp7fq0LoOpxAFcMhWm3LqGpGtpQMsiq+gtux+3kwEeFgJFuvBdMuiJvPLzmFjtl10S8r6XDYTFK9KmC8H9y4uuIabiho+yIfFR04yPDJDL/L/ynkcM+bSzh8vzaKWbpj/WWzpGT8=
+	t=1716305808; cv=none; b=lYngpgkxYCiJpIpYfnKFJPw/CLPbMHHyAgkhip2HIKQ+MA7UponYnTxgeXFLKTWb+xXDB6XhuesMTPeqYnAMrmzhp4NwB/jAOVksdh9MP+b8F9J3IceGXJ4sMi9gM6sLjyZwNx0fRZnKolm9S0kRa5rRi18wzN6hVlLPPn5KTaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716305109; c=relaxed/simple;
-	bh=N909/jYUBOF77kMTLcm6D6mBRd3K1pIODTOJI2DxZo4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BxKkBHfhTp02adOtdAHvn7Rz/ODtGWN0iU9H17HGq9Sa4nxiKweUUvSHPa7Mm4RSyVPCR8N7ahTuMwq1LrBUrMsAjUmW7RuTz7ca+UHtPZorY0inRnR8sWg4vZrC6r+T1sCvO8wXcHWDq2cY566VR5WHQAVCaf00+ofDbJ0GYzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k9kSksGw; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51f2ebbd8a7so6852092e87.2
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 08:25:07 -0700 (PDT)
+	s=arc-20240116; t=1716305808; c=relaxed/simple;
+	bh=Qhlpp/9gxnvCq3s8M76hX0jWF3LlDce4Gq5tP9cjHrE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ktz22Rbg6kRBE2CTyT9aX1xSTOLcwIjEuFp518fucesH1uhUFGmmIb72bIrfhzZhR/FPN+plM/dEThE+UE8H1FRuAlKG8PLW0UyPTUg9rKdD2oufuaI8Q0zQLW+Fs/9vD0lspE2Q2GeK2PcBF/X9t68FqOZL6v4MN9OxofbPI+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GODuF1Mb; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4202ca70287so24325415e9.3;
+        Tue, 21 May 2024 08:36:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716305106; x=1716909906; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOC2cvHHsCfE/XZDQOspaP8vFm7DFyYrnaEnVeU9qAQ=;
-        b=k9kSksGw4rj2mUqweuu/mzXizEo1vXkmMfu9fDH7ncNb3+oNX8ilFSNqgEi0R5p2NL
-         sb05fGN21UnBQ/Hpg9AauAPTFIyEZBOk9zceJ9WwRyYiMMkJG1y7QAIezcEgNIYgVytv
-         MCfare1YdJcTp1eYiznj+zPqpOBRS1HmcwRCAh1OZrz2qowtZ5MKXFs+CcB+w2fqJTCc
-         K14TlEiZXgWktVSkPwh3K+j6hCZ3dbOBeXlmpqA+0RskQbdV6Q7LDRmuXIhkpmWiJgAJ
-         pDf1ixZajd9+uVYgH71hb169SfV1DTozS7g5aaTpHectkpvFn6xKsZwYMvAjSJ5zfDkd
-         c/mA==
+        d=gmail.com; s=20230601; t=1716305805; x=1716910605; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=46MBRG1SoxQr9SxFCn07JGJ8jdLms6wT8cP/QcL3Nhw=;
+        b=GODuF1Mb19cJHukZgQk1Qr8Ja6dO6jfxtpfsX3jWR+uiC46V/R2ij/HYLVvHjugRFN
+         FH0D0gjVDo2dJs9/hY6oOPGjpMYBSai9wjFZw4i2Dn+ysWyorSFOKSw0TkyFqQcuvR1X
+         aLZQKc/vlxN6ruFvi4yi06o7WW/p2UGKR9uXbEG04qEX6VMMSdvamVG7L6rQVLsSUv3M
+         rU689CabgNGKm4NS3yCKR5xL/7hRKOD++9DlbNaBAzFEB5lAJWKcDiHte99QTByjUtVc
+         SQRl9rXmv+34hUSvkJHmjqxqOtsGULiH7LR/tFmyEVLyV8DuFnBcjZN1Y/x129BzqM2D
+         tGCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716305106; x=1716909906;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rOC2cvHHsCfE/XZDQOspaP8vFm7DFyYrnaEnVeU9qAQ=;
-        b=q50cPO4AbsVn6JXAG/h/RoABz9vETWqDbc54H61R9WtBpCsrM6VXhQNW/6JBMlwyRi
-         kr7HYCkUoEdQmZ5MME36EhUTN2OoF9Btmq3pC/qPNwc10wWIj7M5kXMBbj/vFlfU3eiu
-         MOYbSGMBY6imYg2h0U3Cqe8yBkdDwoIoRSZkn82+qN0CmapXXT4+WqyApSCxXHv17aVY
-         Ppg5RaTvbuvs4/F+eumoyQ/8AZCTDqGgxLm6wBQgywQTpf/si3BM233n59tAjfYHnVTG
-         gwqubLCHDYiEAZ5KWdxJPuVpJ6fGmF/snPZP7C4AnshfHw56Q21R6BgEbqpNhdSACfHJ
-         PKFw==
-X-Forwarded-Encrypted: i=1; AJvYcCWGykeWU2kpg14BXevAcwl8kO6+rq28ugCe2ENh/T0knw7Yi83EM6ofZOm15yH523y1xEBEdLPK4Nlj9oblrFOfs7jRXwgyipe1TQ==
-X-Gm-Message-State: AOJu0YxZgbbyeUVqAIt/CsePgddSp2MdSjfUJI9taFUxZC0juXvjl/bS
-	S7Byn/4oiB6NkX8t0DUV75TFOgFM7rzPZPddRRcw9vHzZeOjxR6iR7m3fq50VSI=
-X-Google-Smtp-Source: AGHT+IEGx09qqQZGznwGLK2bUqHiwP3SooCwqZgFFp68n5i919CsAWusJO9RSDejXheh0g79t6XsdQ==
-X-Received: by 2002:a05:6512:3b0c:b0:51d:4af6:bb86 with SMTP id 2adb3069b0e04-5220f666ad9mr23745352e87.0.1716305105449;
-        Tue, 21 May 2024 08:25:05 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5238aba8438sm2540161e87.94.2024.05.21.08.25.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 May 2024 08:25:04 -0700 (PDT)
-Date: Tue, 21 May 2024 18:25:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: keith <keith.zhao@starfivetech.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com, 
-	xingyu.wu@starfivetech.com, p.zabel@pengutronix.de, jack.zhu@starfivetech.com, 
-	shengyang.chen@starfivetech.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 10/10] drm/vs: add simple dsi encoder
-Message-ID: <cej2d72e6bacbjabyjecoqhjlhz4sxx4bgn2w43rgl3cfyyuwt@jq5kq4egj2wo>
-References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
- <20240521105817.3301-11-keith.zhao@starfivetech.com>
+        d=1e100.net; s=20230601; t=1716305805; x=1716910605;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=46MBRG1SoxQr9SxFCn07JGJ8jdLms6wT8cP/QcL3Nhw=;
+        b=ntsOlPrIx5I1PyrA+9NkQ2E9d7Nj6p4PDwKVQiwsmCMP2fB4oaAXoOuP/lLg8Y3GJb
+         JFP7H0A3J4oJkEZiOjMu/TyAGsqkDRevUKIK3+zd2F8J/ORDX74xzak9oKWKJK91UoIy
+         XGFRzdtVJM6KvAxYCK/53bqDqAGCguPOgXENmiJDjmpWNpgHV8ndhoMG0eeUFOabbs/q
+         BxglRTcDPMbL0+oK1w/WCBmYG/ZKo/qpQlU7kNep3kWiDdsIAxr+0ujsQPoMSqRSygqL
+         Idk8Z7FQ4ZfPIUF91+TL849D63FTf1rCIGfIMMagQcvv2WliW5/m5hBgqYDXy9mDlGgQ
+         05JQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2T1gv87YR8q+4gZWbmgXP3udLr/4MUFw9H6vEyui3eI37Qk34BGwZmZsWFlUgV+KrIqUgZIXr1J+mn09pgDTLf3ZLuSm9D3wejeq233o4H8XOts/8afoRLGXCwVC0grcoJCY/7CDdXA==
+X-Gm-Message-State: AOJu0YzTjFmLLwMNS6tpdIDDi7/yiT32h7LDgPoQe6a83wg9aXUvIlDb
+	MSd2jEGbs0cq2NONa5df2ABAa+bA3LraY4KLgnjSsma4l5s3Bvs=
+X-Google-Smtp-Source: AGHT+IFi6H7xCiBQJNeJFOntXvHJMi8HPJVCQ5T8EDXf2/2DlOHcElz5RxvKkaL/QDJl/17ygKhYrg==
+X-Received: by 2002:a05:600c:1c9e:b0:420:29dd:84e3 with SMTP id 5b1f17b1804b1-42029dd8829mr162105465e9.26.1716305804872;
+        Tue, 21 May 2024 08:36:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:a828:7263:6693:6f6a? ([2a02:810b:f40:4600:a828:7263:6693:6f6a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42010940845sm391038675e9.35.2024.05.21.08.36.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 May 2024 08:36:44 -0700 (PDT)
+Message-ID: <58ddfc8f-1995-4f41-9d63-35a00c6f92b9@gmail.com>
+Date: Tue, 21 May 2024 17:36:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240521105817.3301-11-keith.zhao@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 02/10] drm/bridge: add common api for inno hdmi
+To: keith <keith.zhao@starfivetech.com>, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ xingyu.wu@starfivetech.com, p.zabel@pengutronix.de,
+ jack.zhu@starfivetech.com, shengyang.chen@starfivetech.com
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
+ <20240521105817.3301-3-keith.zhao@starfivetech.com>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <20240521105817.3301-3-keith.zhao@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 21, 2024 at 06:58:17PM +0800, keith wrote:
-> add encoder to match cdns dsi driver
+Hi Keith,
+
+thanks a lot for working on this. See some general remarks below
+Am 21.05.24 um 12:58 schrieb keith:
+> Add INNO common api so that it can be used by vendor
+> drivers which implement vendor specific extensions to Innosilicon HDMI.
 > 
 > Signed-off-by: keith <keith.zhao@starfivetech.com>
-
-Please fix your git configuration to include your full name into the
-S-o-B and Author fields.
-
 > ---
->  drivers/gpu/drm/verisilicon/Makefile        |   3 +-
->  drivers/gpu/drm/verisilicon/vs_drv.c        |   1 +
->  drivers/gpu/drm/verisilicon/vs_drv.h        |   1 +
->  drivers/gpu/drm/verisilicon/vs_simple_enc.c | 190 ++++++++++++++++++++
->  drivers/gpu/drm/verisilicon/vs_simple_enc.h |  25 +++
->  5 files changed, 219 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.c
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.h
+>   MAINTAINERS                                   |   2 +
+>   drivers/gpu/drm/bridge/Kconfig                |   2 +
+>   drivers/gpu/drm/bridge/Makefile               |   1 +
+>   drivers/gpu/drm/bridge/innosilicon/Kconfig    |   6 +
+>   drivers/gpu/drm/bridge/innosilicon/Makefile   |   2 +
+>   .../gpu/drm/bridge/innosilicon/inno-hdmi.c    | 587 ++++++++++++++++++
+>   .../gpu/drm/bridge/innosilicon/inno-hdmi.h    |  97 +++
+>   include/drm/bridge/inno_hdmi.h                |  69 ++
+>   8 files changed, 766 insertions(+)
+>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/Kconfig
+>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/Makefile
+>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
+>   create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.h
+>   create mode 100644 include/drm/bridge/inno_hdmi.h
 > 
-> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
-> index 2d02b4a3a567..c35ba9bd6f81 100644
-> --- a/drivers/gpu/drm/verisilicon/Makefile
-> +++ b/drivers/gpu/drm/verisilicon/Makefile
-> @@ -4,7 +4,8 @@ vs_drm-objs := vs_dc_hw.o \
->  		vs_modeset.o \
->  		vs_plane.o \
->  		vs_crtc.o \
-> -		vs_drv.o
-> +		vs_drv.o \
-> +		vs_simple_enc.o
->  
->  vs_drm-$(CONFIG_DRM_INNO_STARFIVE_HDMI) += inno_hdmi-starfive.o
->  obj-$(CONFIG_DRM_VERISILICON_DC8200) += vs_drm.o
-> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.c b/drivers/gpu/drm/verisilicon/vs_drv.c
-> index 6f04102b05b3..2748d48f2c7e 100644
-> --- a/drivers/gpu/drm/verisilicon/vs_drv.c
-> +++ b/drivers/gpu/drm/verisilicon/vs_drv.c
-> @@ -612,6 +612,7 @@ static struct platform_driver *drm_sub_drivers[] = {
->  #ifdef CONFIG_DRM_INNO_STARFIVE_HDMI
->  	&starfive_hdmi_driver,
->  #endif
-> +	&simple_encoder_driver,
->  };
->  
->  static struct component_match *vs_add_external_components(struct device *dev)
-> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.h b/drivers/gpu/drm/verisilicon/vs_drv.h
-> index c3c08ed5f8ac..f3f0f170777d 100644
-> --- a/drivers/gpu/drm/verisilicon/vs_drv.h
-> +++ b/drivers/gpu/drm/verisilicon/vs_drv.h
-> @@ -17,6 +17,7 @@
->  #include <drm/drm_managed.h>
->  
->  #include "vs_dc_hw.h"
-> +#include "vs_simple_enc.h"
->  
->  /*@pitch_alignment: buffer pitch alignment required by sub-devices.*/
->  struct vs_drm_device {
-> diff --git a/drivers/gpu/drm/verisilicon/vs_simple_enc.c b/drivers/gpu/drm/verisilicon/vs_simple_enc.c
-> new file mode 100644
-> index 000000000000..d0b1755d77d2
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_simple_enc.c
-> @@ -0,0 +1,190 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
+....
 
-Now it is 2024, so the copyright should probably cover the range.
+> +	drm_encoder_helper_add(encoder, pdata->helper_private);
+> +
+> +	hdmi->connector.polled = DRM_CONNECTOR_POLL_HPD;
+> +
+> +	drm_connector_helper_add(&hdmi->connector,
+> +				 &inno_hdmi_connector_helper_funcs);
+> +
+> +	drmm_connector_init(drm, &hdmi->connector,
+> +			    &inno_hdmi_connector_funcs,
+> +			    DRM_MODE_CONNECTOR_HDMIA,
+> +			    hdmi->ddc);
+> +
+I really don't want to anticipate bridge maintainer's feedback, but new
+bridge drivers must not contain connector creation. That must happen
+somewhere else.
+Also I'm neither seeing any drm_brige struct nor drm_bridge_funcs, which
+are both essential for a bridge driver. I don't think moving a part of a
+driver to .../drm/bridge/ makes it a bridge driver.
 
-> + */
-> +#include <linux/component.h>
-> +#include <linux/of_device.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/media-bus-format.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_crtc_helper.h>
-> +#include <drm/drm_of.h>
-> +
-> +#include "vs_crtc.h"
-> +#include "vs_simple_enc.h"
-> +
-> +static const struct simple_encoder_priv dsi_priv = {
-> +	.encoder_type = DRM_MODE_ENCODER_DSI
+Regeards,
+Alex
 
-So, is it 'simple' aka something generic or DSI? In the latter case,
-please rename it accordingly.
-
-> +};
-> +
-> +static inline struct vs_simple_encoder *to_simple_encoder(struct drm_encoder *enc)
-> +{
-> +	return container_of(enc, struct vs_simple_encoder, encoder);
-> +}
-> +
-> +static int encoder_parse_dt(struct device *dev)
-> +{
-> +	struct vs_simple_encoder *simple = dev_get_drvdata(dev);
-> +	unsigned int args[2];
-> +
-> +	simple->dss_regmap = syscon_regmap_lookup_by_phandle_args(dev->of_node,
-> +								  "starfive,syscon",
-> +								  2, args);
-> +
-> +	if (IS_ERR(simple->dss_regmap)) {
-> +		return dev_err_probe(dev, PTR_ERR(simple->dss_regmap),
-> +				     "getting the regmap failed\n");
-> +	}
-> +
-> +	simple->offset = args[0];
-> +	simple->mask = args[1];
-
-Is the value that you've read platform dependent or use case dependent?
-What is the actual value being written? Why are you using syscon for it?
-
+> +	drm_connector_attach_encoder(&hdmi->connector, encoder);
 > +
 > +	return 0;
 > +}
 > +
-> +static void vs_encoder_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_state *state)
-> +{
-> +	struct vs_simple_encoder *simple = to_simple_encoder(encoder);
-> +
-> +	regmap_update_bits(simple->dss_regmap, simple->offset, simple->mask, simple->mask);
+....
 
-
-A purist in me would ask to have separate mask and value to write.
-
-> +}
-
-Is it necessary to clear those bits when stopping the stream?
-
-
-[skipped the rest]
-
-> +
-> +
-> +struct platform_driver simple_encoder_driver = {
-> +	.probe = vs_encoder_probe,
-> +	.remove = vs_encoder_remove,
-> +	.driver = {
-> +		.name = "vs-simple-encoder",
-> +		.of_match_table = of_match_ptr(simple_encoder_dt_match),
-> +	},
-> +};
-> +
-> +MODULE_DESCRIPTION("Simple Encoder Driver");
-
-VeriSilicon DSI Encoder
-
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/gpu/drm/verisilicon/vs_simple_enc.h b/drivers/gpu/drm/verisilicon/vs_simple_enc.h
-> new file mode 100644
-> index 000000000000..73e356bfeb2c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_simple_enc.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2022 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#ifndef __VS_SIMPLE_ENC_H_
-> +#define __VS_SIMPLE_ENC_H_
-> +
-> +#include <drm/drm_encoder.h>
-> +
-> +struct simple_encoder_priv {
-> +	unsigned char encoder_type;
-> +};
-> +
-> +struct vs_simple_encoder {
-> +	struct drm_encoder encoder;
-> +	struct device *dev;
-> +	const struct simple_encoder_priv *priv;
-> +	struct regmap *dss_regmap;
-> +	unsigned int offset;
-> +	unsigned int mask;
-> +};
-
-Is there a need for aheader for the encoder? Can you move the
-definitions to the source file?
-
-> +
-> +extern struct platform_driver simple_encoder_driver;
-> +#endif /* __VS_SIMPLE_ENC_H_ */
-> -- 
-> 2.27.0
-> 
-
--- 
-With best wishes
-Dmitry
 
