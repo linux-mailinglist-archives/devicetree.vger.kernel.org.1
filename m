@@ -1,141 +1,125 @@
-Return-Path: <devicetree+bounces-68167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6F5D8CB041
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 16:20:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F238CB045
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 16:21:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E7B21F23BFB
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 14:20:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 381331C22182
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 14:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC37C12F38E;
-	Tue, 21 May 2024 14:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D2F12FB26;
+	Tue, 21 May 2024 14:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="o70/lrZQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K315iUjp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EDD12F367;
-	Tue, 21 May 2024 14:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C633412F388;
+	Tue, 21 May 2024 14:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716301254; cv=none; b=fHC9BKhGniFQnHmU318Jn0cu9lsSu4Fj0qUdoclfJUrOK5C877DKB5fAu6Hr6Cj5vUXyMyLFEwCeTJ+VentnrRP+3SvzDLeuFAF+v4cSr9F8fMWXAPiZaSszwTBT2FfPbLneX/MpU69XgbIvj6S4ogm7HjSayEYVO67UBVh90io=
+	t=1716301266; cv=none; b=TNWTcj2JkZQ9QgWKC2c/OfznC1lGtC7L3d+4wU0MfRt/jf0WwrVlLbRt4hOF3gJcrWGiqz1zHZlJB++VV+AbfTyzRgt82pg0RQfTcPfyyzorxiwsmmJjzkuGLHgSWut5PmJLGHUA/WteJ17zf5yFa9jOh3BMPJQStybDxKJQIZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716301254; c=relaxed/simple;
-	bh=ob1GNOfz5cddtQfrGwpItXm/m+C87OwgfymK2tp/LRA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PCgvjjbKqe7caax5jTDw1f9vxwvBq3d3e2NBD0k/VHbzRUOZeIu64zqRZB/xsBQdBbQavDE/i5vr2iitQEPZsXS4S4uBAERRMStobA285PSOpOTDfhtxKHErTnHYE+e4T3I+IM9gPV1C+uKLuo/yHZUHiBBGbWNfpCok/p2GJEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=o70/lrZQ; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716301251;
-	bh=ob1GNOfz5cddtQfrGwpItXm/m+C87OwgfymK2tp/LRA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o70/lrZQvTnRoU+FH0yy9rWF7cq1CtvKK2YvBBP31GynGjQQ5pdli6lR+lBq4VaTx
-	 8pOxQeS8WJWJKiHxAsnd1zZj5sJz6xqPhMbSwsFOzDXMao+j2KvWNsCcRMmvruKTa3
-	 m5w9+LC0ZtvLfgCYL3OpFoMNsO89HBwBLI/B7im2UhTlb86VXdQ1F6sNkzBDfC0nY3
-	 f+t8xIemA3E2CygpctLfZPnuYBdKvgyG+74VJUIStK5YhG2VUpLMoUAozJFHhgEU8T
-	 X0RcKWhsv5fXY/qDbVZ2pEAT6/mBDPEX17JngKgUrRluQge1eDZ0cYYu/JocKUwDTM
-	 K4QGTCYnYnO/g==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0C5103782137;
-	Tue, 21 May 2024 14:20:50 +0000 (UTC)
-Message-ID: <cdc6288f-c118-445f-8c06-b979e243d38c@collabora.com>
-Date: Tue, 21 May 2024 16:20:50 +0200
+	s=arc-20240116; t=1716301266; c=relaxed/simple;
+	bh=CLn2G4vuf3oqkBDthyQRr2R2coyMKZzEup6hxUQ08uc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lk0xrZzVxgBGgHxpldSEnFYJLThZU6VE0QruI4PvQI1hpZCVzdh3bL2fFqpbnJRgsTPGFMpHu7K7oXgvsYqlyCdc83Kt7H9HfHsKkPY5AzPVDr7qMt8iTOIH7MMAq8gl+pNCu2CgI2Q8HT46qGQ6yzMB3QQzBgRNS601ClEXx+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K315iUjp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33621C4AF09;
+	Tue, 21 May 2024 14:21:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716301266;
+	bh=CLn2G4vuf3oqkBDthyQRr2R2coyMKZzEup6hxUQ08uc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K315iUjpBHdqtqR4SIkjemhcchKB0hAco+F+zmDbiSjfML1DhHMC26xg+aIor62ZL
+	 B58A+4O2N5B7z9+j9su5xbnz3rqZKPOHGn/d/+hoYTaVijlZCVYdzvdeGmttb2yYBv
+	 O0sMT4IBB1J0ymBAqfxwEIQWda8b+T8uQAr43Xf1sx8oyfcAKrGRK09poTVMEjG+eT
+	 HFgHRvX52akpZeLeSLFvkqXMRAPZlucaDURmkbfOZDrfxX84q5Do35I7RVWkJHmHri
+	 zud1cpeFU6p1KJGSJVLF0jP1M4kGeG6EFAIbuAvMZnZtqu1VCYs27uNVNEwUbgy0ot
+	 K0eNwl8qveSIQ==
+Date: Tue, 21 May 2024 09:21:05 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Douglas Anderson <dianders@chromium.org>
+Cc: dri-devel@lists.freedesktop.org,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	devicetree@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH] dt-bindings: display: Reorganize legacy eDP panel
+ bindings
+Message-ID: <171630126263.4110905.17984387768866183422.robh@kernel.org>
+References: <20240520153813.1.Iefaa5b93ca2faada269af77deecdd139261da7ec@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] arm64: dts: mediatek: mt8186: add default thermal
- zones
-To: Julien Panis <jpanis@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Nicolas Pitre <npitre@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240521-mtk-thermal-mt818x-dtsi-v4-0-b91ee678411c@baylibre.com>
- <20240521-mtk-thermal-mt818x-dtsi-v4-2-b91ee678411c@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240521-mtk-thermal-mt818x-dtsi-v4-2-b91ee678411c@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240520153813.1.Iefaa5b93ca2faada269af77deecdd139261da7ec@changeid>
 
-Il 21/05/24 16:05, Julien Panis ha scritto:
-> From: Nicolas Pitre <npitre@baylibre.com>
+
+On Mon, 20 May 2024 15:38:17 -0700, Douglas Anderson wrote:
+> Back in the day, we used to need to list the exact panel in dts for
+> eDP panels. This led to all sorts of problems including a large number
+> of cases where people listed a bogus panel in their device tree
+> because of the needs of second sourcing (and third sourcing, and
+> fourth sourcing, ...). Back when we needed to add eDP panels to dts
+> files we used to list them in "panel-simple.yaml".
 > 
-> Inspired by the vendor kernel but adapted to the upstream thermal
-> driver version.
+> These days we have the new way of doing things as documented in
+> "panel-edp.yaml". We can just list the compatible "edp-panel", add
+> some timing info to the source code, and we're good to go. There's not
+> really good reasons not to use this new method.
 > 
-> Signed-off-by: Nicolas Pitre <npitre@baylibre.com>
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> To try to make it obvious that we shouldn't add new compatible strings
+> for eDP panels, let's move them all out of the old "panel-simple.yaml"
+> file to their own file: "panel-edp-legacy.yaml". This new file will
+> have a description that makes it obvious that we shouldn't use it for
+> new panels.
+> 
+> While we're doing this:
+> - We can remove eDP-specific properties from panel-simple.yaml since
+>   there are no more panels there.
+> - We don't need to copy non-eDP properties to the
+>   "panel-edp-legacy.yaml".
+> - We'll fork off a separate yaml file for "samsung,atna33xc20.yaml".
+>   This is an eDP panel which isn't _quite_ handled by the generic
+>   "edp-panel" compatible since it's not allowed to have an external
+>   backlight (it has one builtin) and it absolutely requires an
+>   "enable" GPIO.
+> - We'll un-fork the "sharp,ld-d5116z01b.yaml" and put it in
+>   "panel-edp-legacy.yaml" since there doesn't appear to be any reason
+>   for it to be separate.
+> 
+> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 290 +++++++++++++++++++++++++++++++
->   1 file changed, 290 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index caec83f5eece..ac49a33d1b54 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -13,6 +13,8 @@
->   #include <dt-bindings/power/mt8186-power.h>
->   #include <dt-bindings/phy/phy.h>
->   #include <dt-bindings/reset/mt8186-resets.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +#include <dt-bindings/thermal/mediatek,lvts-thermal.h>
->   
->   / {
->   	compatible = "mediatek,mt8186";
-> @@ -2197,4 +2199,292 @@ larb19: smi@1c10f000 {
->   			power-domains = <&spm MT8186_POWER_DOMAIN_IPE>;
->   		};
+>  .../display/panel/panel-edp-legacy.yaml       | 127 ++++++++++++++++++
+>  .../bindings/display/panel/panel-simple.yaml  |  58 --------
+>  .../display/panel/samsung,atna33xc20.yaml     |  95 +++++++++++++
+>  .../display/panel/sharp,ld-d5116z01b.yaml     |  30 -----
+>  4 files changed, 222 insertions(+), 88 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-edp-legacy.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.yaml
+> 
 
-..snip..
-
-> +
-> +		mfg-thermal {
-
-This is the GPU zone. For this entire node, s/mfg/gpu/g
-
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts MT8186_MFG>;
-> +
-> +			trips {
-> +				mfg_alert0: trip-alert0 {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				mfg_alert1: trip-alert1 {
-> +					temperature = <95000>;
-> +					hysteresis = <2000>;
-> +					type = "hot";
-> +				};
-> +
-> +				mfg_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-
-Regards,
-Angelo
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
