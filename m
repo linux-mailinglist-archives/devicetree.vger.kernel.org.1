@@ -1,119 +1,124 @@
-Return-Path: <devicetree+bounces-68215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CE9F8CB43C
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 21:28:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 712CA8CB455
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 21:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E911284832
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 19:28:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A213B1C224EA
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 19:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB342149005;
-	Tue, 21 May 2024 19:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73360147C95;
+	Tue, 21 May 2024 19:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uANlyeA1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W0xm7JCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA8F14883E;
-	Tue, 21 May 2024 19:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE17433AD;
+	Tue, 21 May 2024 19:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716319688; cv=none; b=PXE/1Vq7pe0zmLi4x3wsdp8qWyFLHh4PF2hI/eM1uEfvfdOJLWPtGQCv2MHGe5+HmqllxCngqghA7LAbqcBWQGp22xQcHSGwHow6NBhij396CuAP9visjRsZ8TMwV1GX4++uhEolwJxbF0rmPJs08pKusEbTQotEKBgX0B77ty8=
+	t=1716320436; cv=none; b=QlOUm20Sc04yP/yLueAYMYKJpka9Flk0zDf5V0BUmXfUPCAif8Xxhtr3Q4+FQo9Q/3+ENWzMe/xV4HoV0TcG4GUUa4mIQs2x5SwUOe8D4vJYiwtVEevaoZe5gIZmJsBoVCOfjpkw3gGk0KBwFSpp3vqVqPbJipTqGelX2+GQ8iY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716319688; c=relaxed/simple;
-	bh=QdCjcD643RUyO8tlFPCb1ffV0ec22nruUwZWGVoqglI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fh+j5+2IhvK80GMSwAk4I90xuENIJQWf3PBRQl+GhY4zn8haVhq3gcpyNRbjFTgTQNzelEXlsYHn4bzzcfVt3CEdN911v7wS3fNQKchK66JWyLmAuMvZw5VGVXse4FeyBpl2EnCm1AXYbMXxDDCWph0L3CwbhBmaDA6D+FBMoe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uANlyeA1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADE63C2BD11;
-	Tue, 21 May 2024 19:28:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716319688;
-	bh=QdCjcD643RUyO8tlFPCb1ffV0ec22nruUwZWGVoqglI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uANlyeA1wUG9sZcfpfs3Sg5RadKxxaFHAkG2IWGpSr17rP53rpi050ggsAUgWXiF7
-	 HKTKD28AK9mOhcRTapmWHJwIapMquk5AO/Su8tgllQXMlPpC9wCeLGhbTCD/OnLn9C
-	 UZ48o/ObTPa4facUZNkHfDium19MUl+ndPgu+EFedg4viHe1tQMNV1GWJHw7DUuo6K
-	 AhMB0l+W81RtA/dfWyrSXWJ7UrMhNlMvwB/qbw6Ahwl1otR3qxc10KvJCx5/EauKGc
-	 76tpc6XXEB6hivk2z5lRS7nxbKkK2/b6MXpBd8DY22BvBtsBvdYysD2/4Upxgpt0iR
-	 mWPnao8qDpg4w==
-Date: Tue, 21 May 2024 20:28:01 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Amrit Anand <quic_amrianan@quicinc.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Caleb Connolly <caleb.connolly@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Doug Anderson <dianders@chromium.org>,
-	Simon Glass <sjg@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>,
-	Julius Werner <jwerner@chromium.org>,
-	"Humphreys, Jonathan" <j-humphreys@ti.com>,
-	Sumit Garg <sumit.garg@linaro.org>,
-	Jon Hunter <jonathanh@nvidia.org>,
-	Michal Simek <michal.simek@amd.com>,
-	boot-architecture@lists.linaro.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH RFC v3 1/9] libfdt: board-id: Implement board-id scoring
-Message-ID: <20240521-sandal-onslaught-7762ee03ee96@spud>
-References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
- <20240521-board-ids-v3-1-e6c71d05f4d2@quicinc.com>
+	s=arc-20240116; t=1716320436; c=relaxed/simple;
+	bh=PSJzz3wBgM4Nov61eoQKU/G3JLPzuVohtgY4OMFxi4c=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dYl/YbwIuVFbJPjAKQzREoioNPQIVvP2PAr1ZZ/Y3SarWLShE4C7E8N6yW2wcMgY/MQrqhqKngT5eEVOh0upxpKUIXBM5vbU4imyh5C4BvbIebMVKo8I/enjSJNEQuQjBu3WuD007VQcjYWRbOvKgqxFO08LltRHJwiZJp3prFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W0xm7JCs; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44LF9oJu026154;
+	Tue, 21 May 2024 19:40:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=nZuM5wFSsss4g1FMYAGG9
+	HP332Eng3D3fi1g85v+vW8=; b=W0xm7JCs2OpfXRlrdSE/erqZ0i2Prsuk6I207
+	mfU8vv8gNPFSyXzlFAiK7OVuESsQyBpzUA1vHP4oiINET1Aa4AX1Ce/HFQjhz4ia
+	j0PNqNlTZRph5i25ytrmkzFTAkEz+sL1OMTJAWmQEPBZkdxvbw+X0iVLiM11E6Bm
+	eS8pjubf/Rlc8HuK8bISK1wlDWEOZgHz9Cr7bgEu56IBveuNi5j9/VnvwWqq9TLO
+	wCnIV3LZFOb9+QajBZUdpMvWtTRDjWrySlXUWCWMW8TB1ClDYwkgDqi6WQyZdY9O
+	1YavNp3AAGm1F3t+Kkd75aLGDLOmtOQN43411FnPeoJqMkESg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6pqc74v9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 May 2024 19:40:24 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44LJeNvI013710
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 May 2024 19:40:23 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 21 May 2024 12:40:22 -0700
+Date: Tue, 21 May 2024 12:40:21 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: <neil.armstrong@linaro.org>
+CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Loic
+ Poulain <loic.poulain@linaro.org>, Kalle Valo <kvalo@kernel.org>,
+        Mathieu
+ Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <wcn36xx@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Arnd
+ Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH 06/12] remoteproc: qcom_q6v5_pas: switch to mbn files by
+ default
+Message-ID: <Zkz4pf00lYCx185i@hu-bjorande-lv.qualcomm.com>
+References: <20240521-qcom-firmware-name-v1-0-99a6d32b1e5e@linaro.org>
+ <20240521-qcom-firmware-name-v1-6-99a6d32b1e5e@linaro.org>
+ <a314906d-b297-474d-910c-6634c8c23042@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/VAGjNX7xs4NY2oR"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240521-board-ids-v3-1-e6c71d05f4d2@quicinc.com>
+In-Reply-To: <a314906d-b297-474d-910c-6634c8c23042@linaro.org>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 3gCDzfA-TlFLM7-69lgS-CJjFqRAVhLw
+X-Proofpoint-GUID: 3gCDzfA-TlFLM7-69lgS-CJjFqRAVhLw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-21_12,2024-05-21_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ spamscore=0 clxscore=1011 lowpriorityscore=0 phishscore=0
+ priorityscore=1501 bulkscore=0 adultscore=0 mlxlogscore=999 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405210148
 
+On Tue, May 21, 2024 at 11:49:42AM +0200, neil.armstrong@linaro.org wrote:
+> On 21/05/2024 11:45, Dmitry Baryshkov wrote:
+> > We have been pushing userspace to use mbn files by default for ages.
+> > As a preparation for making the firmware-name optional, make the driver
+> > use .mbn instead of .mdt files by default.
+> 
+> I think we should have a mechanism to fallback to .mdt since downstream
+> uses split mdt on the devices filesystem.
+> 
 
---/VAGjNX7xs4NY2oR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Let's ignore and continue to move away from the split .mdt files.
 
-On Tue, May 21, 2024 at 11:37:58AM -0700, Elliot Berman wrote:
-> The devicetree spec introduced a mechanism to match devicetree blobs to
-> boards using firmware-provided identifiers.
+Combining split files is trivial and removes a class of problems where
+people mix and match their parts. (And worst case you can rename/symlink
+your downstream firmware to match the requested filename)
 
-Can you share a link to where the devicetree spec introduced this
-mechanism? I don't recall seeing a PR to dt-schema for it nor did a
-quick check of the devicetree specification repo show a PR adding it.
-
-What am I missing?
-
-Thanks,
-Conor.
-
-> Although the matching can be
-> implemented by DTB loaders, having a canonical implementation makes it
-> easier to integrate and ensure consistent behavior across ecosystems.
->=20
-> I've not yet investigated swig/python support for the new functions; I
-> would work on that before submitting the patch to libfdt.
-
---/VAGjNX7xs4NY2oR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkz1wQAKCRB4tDGHoIJi
-0vFYAP9WMvsoswcDJD+UTfkJ6b8y5Cjs4GnAx5tucTG/l9Sz5QEAqRnqLSJOJlPJ
-w8v63X+qH8czvA3bx/u5ncZ1naKV0Q8=
-=Bg0r
------END PGP SIGNATURE-----
-
---/VAGjNX7xs4NY2oR--
+Regards,
+Bjorn
 
