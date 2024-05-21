@@ -1,353 +1,149 @@
-Return-Path: <devicetree+bounces-68046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4CE8CAA5D
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:51:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B7F8CAA6A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:58:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21F1B2810B2
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 08:51:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02177280DBC
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 08:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8825381B;
-	Tue, 21 May 2024 08:51:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6542B5647B;
+	Tue, 21 May 2024 08:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWEYiY3K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FD451F951
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 08:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351D11F951;
+	Tue, 21 May 2024 08:58:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716281495; cv=none; b=lLJPTTqaDTGPLaN4RzVT8WYLLLk75eobdEdZMJBe5rHhEUcZqKKvB8Mp3XseHIzF1WXuayyTAuSTuzDW/FKdkqa3neIVSVub5uRaLk69jWgEZCjstuUILMeWbug0t2iI5vE80fr3RiIAplF0IT8FL6Yo693Ro8jqcOQ4cRvBiLU=
+	t=1716281894; cv=none; b=PEmViUV9o5FbGDsqFe8dQnnne9S/HVQhdROHGoELx09kYWy2z3AaCEcmKGgb0BDf+OGcgr8Pns2oHw+KN2OYitEbddL133ZgG7dgG3GVZg9ihpEXsXCjIJuXg/XXdhyJgTfzttDxfEe2C0xrtvMzwactdsEbynOxVEaBYkAH0dA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716281495; c=relaxed/simple;
-	bh=rS3UVYhGZuhcoa6yECMf2xlQPlWNMlzpfZZdREAOwiA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C4lwVCdVE8br0ghQvFqpByFrPFmYd3drlb0czdp5vCd7a96COhfn21VpzGVFbDdBLMO/hUt6AkZoBgzT/y05xKFPAvt2Y8ugYOCKPtRYNQwdQuwiRxWuA/hdZ+M3Cp4Fis/SQgpW/DO8RBtWdpQiKo6RONwFDfp1l77dXn2j55g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9LDV-0004UJ-1r; Tue, 21 May 2024 10:51:29 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9LDS-002MiS-Tt; Tue, 21 May 2024 10:51:26 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9LDS-009MhI-2g;
-	Tue, 21 May 2024 10:51:26 +0200
-Date: Tue, 21 May 2024 10:51:26 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	Alexandru Ardelean <alexandru.ardelean@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Clark Wang <xiaoning.wang@nxp.com>
-Subject: Re: [PATCH 5/5] pwm: adp5585: Add Analog Devices ADP5585 support
-Message-ID: <dl7a6puox5lc36fpto2fgyfgmpd3uboqc4lcfdtuaxzzsboqld@alw7vyi7pqjz>
-References: <20240520195942.11582-1-laurent.pinchart@ideasonboard.com>
- <20240520195942.11582-6-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1716281894; c=relaxed/simple;
+	bh=Yb9S3qcvqNTBPcx8/jgoqgRqjkneywUyKMXmfw7NoqI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aTYcoAurh2Vol7d9M1kP1Sj6KSg0xM05RvhvLkSFjftMuljp2OH6KC2s50L1QJHj2c1Ny0AT8O3rQh5z4cMRE3gbt98Q2RHNZ+fALMIk/EtRZNt9hnWucO23uXV3gD3LcMMSxsuE2/n3mA+QXB8exkuokHcdx5Uc57cpqp/tNeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWEYiY3K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B78C2BD11;
+	Tue, 21 May 2024 08:58:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716281893;
+	bh=Yb9S3qcvqNTBPcx8/jgoqgRqjkneywUyKMXmfw7NoqI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XWEYiY3KUox0XoQh+DTDf/kyFjxeG6DD+EyfLNeYYOhDkTaBrKmbD/szBgKbeBlda
+	 AIIgAzHFzastY9VZfsO9wF3QUhC11fwusu4Ye8LVe6knrs+41MWxXlQayGawxhi2hL
+	 m582TzfkJfhJJ+5xP8IVSQBNQB49YFtKzTJxrgfbRWd/2JUYJxubYyCGi0Gn7odRsr
+	 hql5Tj5fB86D4ZxzeG6Dmz79dkYuLWlsExpL6JSd4fbI0eky5eOGnXVRz6vent45f4
+	 DApp4Ky2k6nEQvDLQ/6v3sssYnCQpGInjq9NInDXK3vwUaUOXUWG0QOgWVcX5j2Ras
+	 SMGBi+uSUZrzg==
+Message-ID: <06565532-987a-465a-b2ab-a03fce7279e1@kernel.org>
+Date: Tue, 21 May 2024 10:58:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="f7l4z7wuw4trzvr4"
-Content-Disposition: inline
-In-Reply-To: <20240520195942.11582-6-laurent.pinchart@ideasonboard.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/2] dt-bindings: soc: qcom,smsm: Allow specifying
+ mboxes instead of qcom,ipc
+To: Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240424-smsm-mbox-v1-0-555f3f442841@z3ntu.xyz>
+ <2729475.mvXUDI8C0e@g550jk> <1ab150cd-68f0-4153-8d4e-5bd30bb01dfe@linaro.org>
+ <12437992.O9o76ZdvQC@g550jk>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <12437992.O9o76ZdvQC@g550jk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 20/05/2024 17:11, Luca Weiss wrote:
+> Hi Krzysztof
+> 
+> Ack, sounds good.
+> 
+> Maybe also from you, any opinion between these two binding styles?
+> 
+> So first using index of mboxes for the numbering, where for the known
+> usages the first element (and sometimes the 3rd - ipc-2) are empty <>.
+> 
+> The second variant is using mbox-names to get the correct channel-mbox
+> mapping.
+> 
+> -               qcom,ipc-1 = <&apcs 8 13>;
+> -               qcom,ipc-2 = <&apcs 8 9>;
+> -               qcom,ipc-3 = <&apcs 8 19>;
+> +               mboxes = <0>, <&apcs 13>, <&apcs 9>, <&apcs 19>;
+> 
+> vs.
+> 
+> -               qcom,ipc-1 = <&apcs 8 13>;
+> -               qcom,ipc-2 = <&apcs 8 9>;
+> -               qcom,ipc-3 = <&apcs 8 19>;
+> +               mboxes = <&apcs 13>, <&apcs 9>, <&apcs 19>;
+> +               mbox-names = "ipc-1", "ipc-2", "ipc-3";
 
---f7l4z7wuw4trzvr4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sorry, don't get, ipc-1 is the first mailbox, so why would there be <0>
+in first case? Anyway, the question is if you need to know that some
+mailbox is missing. But then it is weird to name them "ipc-1" etc.
 
-Hello Laurent,
+Best regards,
+Krzysztof
 
-On Mon, May 20, 2024 at 10:59:41PM +0300, Laurent Pinchart wrote:
-> diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
-> new file mode 100644
-> index 000000000000..709713d8f47a
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-adp5585.c
-> @@ -0,0 +1,230 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Analog Devices ADP5585 PWM driver
-> + *
-> + * Copyright 2022 NXP
-> + * Copyright 2024 Ideas on Board Oy
-> + */
-
-Please document some hardware properties here in the same format as many
-other PWM drivers. The things I'd like to read there are:
-
- - Only supports normal polarity
- - How does the output pin behave when the hardware is disabled
-   (typically "low" or "high-Z" or "freeze")
- - Does changing parameters or disabling complete the currently running
-   period?
- - Are there glitches in .apply()? E.g. when the new duty_cycle is
-   already written but the new period is not.
-
-> +#include <linux/container_of.h>
-> +#include <linux/device.h>
-> +#include <linux/math.h>
-> +#include <linux/minmax.h>
-> +#include <linux/mfd/adp5585.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +#include <linux/time.h>
-
-Do you need these all? I wounder about time.h.
-
-> +#define ADP5585_PWM_CHAN_NUM		1
-> +
-> +#define ADP5585_PWM_OSC_FREQ_HZ		1000000U
-> +#define ADP5585_PWM_MIN_PERIOD_NS	(2ULL * NSEC_PER_SEC / ADP5585_PWM_OSC=
-_FREQ_HZ)
-> +#define ADP5585_PWM_MAX_PERIOD_NS	(2ULL * 0xffff * NSEC_PER_SEC / ADP558=
-5_PWM_OSC_FREQ_HZ)
-> +
-> +struct adp5585_pwm_chip {
-> +	struct pwm_chip chip;
-> +	struct regmap *regmap;
-> +	struct mutex lock;
-
-What does this mutex protect against? You can safely assume that there
-are no concurrent calls of the callbacks. (This isn't ensured yet, but I
-consider a consumer who does this buggy and it will soon be ensured.)
-
-> +	u8 pin_config_val;
-> +};
-> +
-> +static inline struct adp5585_pwm_chip *
-> +to_adp5585_pwm_chip(struct pwm_chip *chip)
-> +{
-> +	return container_of(chip, struct adp5585_pwm_chip, chip);
-> +}
-> +
-> +static int pwm_adp5585_request(struct pwm_chip *chip, struct pwm_device =
-*pwm)
-> +{
-> +	struct adp5585_pwm_chip *adp5585_pwm =3D to_adp5585_pwm_chip(chip);
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	guard(mutex)(&adp5585_pwm->lock);
-> +
-> +	ret =3D regmap_read(adp5585_pwm->regmap, ADP5585_PIN_CONFIG_C, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	adp5585_pwm->pin_config_val =3D val;
-> +
-> +	ret =3D regmap_update_bits(adp5585_pwm->regmap, ADP5585_PIN_CONFIG_C,
-> +				 ADP5585_R3_EXTEND_CFG_MASK,
-> +				 ADP5585_R3_EXTEND_CFG_PWM_OUT);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_update_bits(adp5585_pwm->regmap, ADP5585_GENERAL_CFG,
-> +				 ADP5585_OSC_EN, ADP5585_OSC_EN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-The last four lines are equivalent to
-
-	return ret;
-
-What is the purpose of this function? Setup some kind of pinmuxing? The
-answer to that question goes into a code comment. If it's pinmuxing, is
-this a hint to use the pinctrl subsystem? (Maybe it's overkill, but if
-it's considered a good idea later, it might be hard to extend the dt
-bindings, so thinking about that now might be a good idea.)
-
-> +}
-> +
-> +static void pwm_adp5585_free(struct pwm_chip *chip, struct pwm_device *p=
-wm)
-> +{
-> +	struct adp5585_pwm_chip *adp5585_pwm =3D to_adp5585_pwm_chip(chip);
-> +
-> +	guard(mutex)(&adp5585_pwm->lock);
-> +
-> +	regmap_update_bits(adp5585_pwm->regmap, ADP5585_PIN_CONFIG_C,
-> +			   ADP5585_R3_EXTEND_CFG_MASK,
-> +			   adp5585_pwm->pin_config_val);
-
-I wonder if writing a deterministic value instead of whatever was in
-that register before .request() would be more robust and less
-surprising.
-
-> +	regmap_update_bits(adp5585_pwm->regmap, ADP5585_GENERAL_CFG,
-> +			   ADP5585_OSC_EN, 0);
-> +}
-> +
-> +static int pwm_adp5585_apply(struct pwm_chip *chip,
-> +			     struct pwm_device *pwm,
-> +			     const struct pwm_state *state)
-> +{
-> +	struct adp5585_pwm_chip *adp5585_pwm =3D to_adp5585_pwm_chip(chip);
-> +	u32 on, off;
-> +	int ret;
-> +
-> +	if (!state->enabled) {
-> +		guard(mutex)(&adp5585_pwm->lock);
-> +
-> +		return regmap_update_bits(adp5585_pwm->regmap, ADP5585_PWM_CFG,
-> +					  ADP5585_PWM_EN, 0);
-> +	}
-> +
-> +	if (state->period < ADP5585_PWM_MIN_PERIOD_NS ||
-> +	    state->period > ADP5585_PWM_MAX_PERIOD_NS)
-> +		return -EINVAL;
-
-Make this:
-
-	if (state->period < ADP5585_PWM_MIN_PERIOD_NS)
-		return -EINVAL;
-
-	period =3D min(ADP5585_PWM_MAX_PERIOD_NS, state->period)
-	duty_cycle =3D min(period, state->period);
-
-> +
-> +	/*
-> +	 * Compute the on and off time. As the internal oscillator frequency is
-> +	 * 1MHz, the calculation can be simplified without loss of precision.
-> +	 */
-> +	on =3D DIV_ROUND_CLOSEST_ULL(state->duty_cycle,
-> +				   NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ);
-> +	off =3D DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
-> +				    NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ);
-
-round-closest is wrong. Testing with PWM_DEBUG should point that out.
-The right algorithm is:
-
-	on =3D duty_cycle / (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ)
-	off =3D period / (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ) - on
-
-
-> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		swap(on, off);
-
-Uhh, no. Either you can do inverted polarity or you cannot. Don't claim
-you can.
-
-> [...]
-> +static int adp5585_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct adp5585_dev *adp5585 =3D dev_get_drvdata(pdev->dev.parent);
-> +	struct adp5585_pwm_chip *adp5585_pwm;
-> +	int ret;
-> +
-> +	adp5585_pwm =3D devm_kzalloc(&pdev->dev, sizeof(*adp5585_pwm), GFP_KERN=
-EL);
-> +	if (!adp5585_pwm)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, adp5585_pwm);
-> +
-> +	adp5585_pwm->regmap =3D adp5585->regmap;
-> +
-> +	mutex_init(&adp5585_pwm->lock);
-> +
-> +	adp5585_pwm->chip.dev =3D &pdev->dev;
-> +	adp5585_pwm->chip.ops =3D &adp5585_pwm_ops;
-> +	adp5585_pwm->chip.npwm =3D ADP5585_PWM_CHAN_NUM;
-
-That is wrong since commit
-05947224ff46 ("pwm: Ensure that pwm_chips are allocated using pwmchip_alloc=
-()")
-
-> +	ret =3D devm_pwmchip_add(&pdev->dev, &adp5585_pwm->chip);
-> +	if (ret) {
-> +		mutex_destroy(&adp5585_pwm->lock);
-> +		return dev_err_probe(&pdev->dev, ret, "failed to add PWM chip\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void adp5585_pwm_remove(struct platform_device *pdev)
-> +{
-> +	struct adp5585_pwm_chip *adp5585_pwm =3D platform_get_drvdata(pdev);
-> +
-> +	mutex_destroy(&adp5585_pwm->lock);
-
-Huh, this is a bad idea. The mutex is gone while the pwmchip is still
-registered. AFAIK calling mutex_destroy() is optional, and
-adp5585_pwm_remove() can just be dropped. Ditto in the error paths of
-=2Eprobe().
-
-> +}
-> +
-> +static const struct of_device_id adp5585_pwm_of_match[] =3D {
-> +	{ .compatible =3D "adi,adp5585-pwm" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, adp5585_pwm_of_match);
-
-Is it normal/usual for mfd drivers to use of stuff? I thought they use
-plain platform style binding, not sure though.
-
-> +static struct platform_driver adp5585_pwm_driver =3D {
-> +	.driver	=3D {
-> +		.name =3D "adp5585-pwm",
-> +		.of_match_table =3D adp5585_pwm_of_match,
-> +	},
-> +	.probe =3D adp5585_pwm_probe,
-> +	.remove_new =3D adp5585_pwm_remove,
-> +};
-> +module_platform_driver(adp5585_pwm_driver);
-> +
-> +MODULE_AUTHOR("Xiaoning Wang <xiaoning.wang@nxp.com>");
-> +MODULE_DESCRIPTION("ADP5585 PWM Driver");
-> +MODULE_LICENSE("GPL");
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---f7l4z7wuw4trzvr4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZMYI0ACgkQj4D7WH0S
-/k5o2ggAn5MfFbCQP7ri49/q/bz5rZE9zGc3gzfL9Bpoe58kY4ehkuNQU9nNNFLI
-Xzz7HWAKjj/kdl//C3bjDN2pxLGWicD0XQurcNncJ6eZJ8ZutQMkCDSGyDrDqge8
-s09gq0w5155lkVHQ7JlsubNTg6EjgnYJYeH0PDXd7KLUG8z6lvmHjsbtO+aK5RRy
-TiMmZYCiQL8vpP++Hxp49hYEWJEGlfcKuAms26DTBHY4rbZ5SuL8OVG4uK5AB2zF
-Tlh86xzjO4MaHHCSvGpJbyEgjpbFP2CFeIK2xTSxRXHpS88m7nRt2KAFyn7Tv/fB
-a92OAk1aCppi3eDqvWJKGFA6VGXd5w==
-=GkWI
------END PGP SIGNATURE-----
-
---f7l4z7wuw4trzvr4--
 
