@@ -1,203 +1,130 @@
-Return-Path: <devicetree+bounces-68144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA2B8CAF0A
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 15:09:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 218288CAF33
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 15:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCEF21F21449
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:09:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8AE81F232B4
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16340770FB;
-	Tue, 21 May 2024 13:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92A6278C7B;
+	Tue, 21 May 2024 13:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uqoFChUI"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="p+BndcQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339727D3F1
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 13:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFE278C6E;
+	Tue, 21 May 2024 13:15:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716296926; cv=none; b=n+oYt8McuWfhaa/F1RveAWlcxu3DFLarOxyztkhscWdg5R0CKHBqQHlU3Pybk9tWDHYIDIOQlxvh5FPVhn8tIqM9L3w0TSWyR9Ycs5uZhT7uu38Ww57U9KkK1onkBfYjzSDkYuEa0stLAux0F03ODWWgn+UN+PZZY+jC3Zzy5yM=
+	t=1716297314; cv=none; b=Fr2peWcEXK0AG4pmybnXBNv2shSNRCzo0aM1w5svt99dya7iAeENLgCTmdzqfzR85Tm5cFZaSqPlA8FzbTIEQUJbJc73BQUzXsPtdgMqm6zeQ5XEE0B1Gs7w8Xpz/Cooeswe0m8rDNeKKmCM8jpT8tYsfr76XJPhIHDC8psjmK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716296926; c=relaxed/simple;
-	bh=Vo1WEyGGZPhdnMPdwMM9V9kHG3COuto8rHsF1dB412c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fR8KxBDlm7U31JWBK0FxsZfFBWxFWmkfWf71n8oAE7yk3HTTnsyQtt+vv0EiqQD6R7CNh15xjfMaRG5u3krXYK36MX7yt4wStCJubRFj3AHX2I71rWHXE9N4Y2vJWED26k6PEEf67Xd/aE5R7x83ZXJrKsOCrEl3wxmOI67xfpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uqoFChUI; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-61e0c2b5cd2so23344477b3.1
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 06:08:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716296923; x=1716901723; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d2PojWB/4MiGFiYJ2E5IG22IJxNV6CKEtX3InCIg1mk=;
-        b=uqoFChUIvUq3OL/O30lMVoHetUHz3LZ1JxQ/2/tiGw9kmQytMElui9oDZX4sY5xvgZ
-         /ke97AQ5pb69SVfOU2B0ih8M0DbEVylS3HULirAwZG75uKaqppFwBRwbzkPQTywAteFy
-         eVWJOmyu/HwZyHBHrwZ3FFGbM0UNHZ3j1pS0kkN/m+o+z84+ODeIV/lJXrNJc9pOJ5UN
-         sWNCPnVxSYN5UnC1YWdNm23lsktSYU6hsifnxqU1s/v7q0mLbvmyWoJPZNU8narSvTum
-         Xpb4AG4VGqFKmSnTD9CKfgP3d5rTSRLj0L0+8mITvOHP+huR3Y/W7a94BAD1VwCCEdux
-         CMBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716296923; x=1716901723;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d2PojWB/4MiGFiYJ2E5IG22IJxNV6CKEtX3InCIg1mk=;
-        b=Csmntccxz7gy2wkacedb0Yz8Zkzjfggxe1iuRAehWMrtkM2RUE2QmKIEL7UrZfJrTh
-         alM/JKB4bKSiO5ZDO1dmCwNFODSfRPNEG+6B36tEghzYzOsXYgJmqsyxGmMEGDOIAgFF
-         nQAgWuCBXx25Q8/iZrRYzCiguB/uZj7UtYsL16VGJS9p+q/hjAiDUHJEQtHiabMaqhfy
-         BYwycly/2rXqP2U89Yl/wkgEQbVDVZbGSUAuII4SsvtP5Z2nQW13/OzHHQ1JGSAosK8J
-         4H443b2wrHAMX90NOr6JPKllOJFprYpj2/eM7p+id7r/ZxtDYzlZfWgIYmkRv6xXm1tq
-         TzMg==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ0pcrBpJNY7NHAt//iJ6wb4x18zbft7pRKpPEnOYDQWq46v+EyDlkU+YuwMHUTWSvfu9fOeb2BEZkqCVKGuHnU06jbN4ER5BWwQ==
-X-Gm-Message-State: AOJu0Yw1Pi38dovQ8aC4N+dI24aTSiOKvn2oBAtyI0Tr5zN1nlcJTuc4
-	3VvrzsSEK2Gm1vwTi8E5WkI5yAZYfN8F3agXsWd1OIr6RCA8+WNzDNJlNNJkQ3iuMhrcROuDkwN
-	879RHmh7VbGXcxmgW5bz21EzWYgMDIa/xLSVNBQ==
-X-Google-Smtp-Source: AGHT+IH53renhcJQwt2txPS0pIBqqswFAEQrALUaZ6EkOExh3X0imx+VWniHPWvQCDwckXaGctQumizBOuMfw/NeB+E=
-X-Received: by 2002:a05:690c:7442:b0:622:f7df:aa0a with SMTP id
- 00721157ae682-627972d3d56mr59212357b3.22.1716296923240; Tue, 21 May 2024
- 06:08:43 -0700 (PDT)
+	s=arc-20240116; t=1716297314; c=relaxed/simple;
+	bh=xBzALiC8QpbiUZ0vIp/DDNJUn3RjiTwJaSILiRdd+3U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Qm2a14Uq37D5150su81Oyhv0AkPqyXmH/h28ZN2aox4EHbH61mR/qX7KgjSZIfEhzMy6jsaG2FCC1pXHl+6gaQ2LSU44TyKCKW8pXOvb8tz6+ApSljQSOJLKBCwKFY9rSuBg4dS/d/MptnKbycblPAcfI7MtESDRW2ApTyVC2zQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=p+BndcQU; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44LBRiTd019430;
+	Tue, 21 May 2024 15:14:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=/JwugDw4q1sV/Kf5SJf4M3YRla9SOKHNH5flwjaLMV4=; b=p+
+	BndcQUREV6vnAs24JULfWquhsrWpIIlgDhAF1nYhHkU7hU+WmPGT9NSS+AuVj3qv
+	IqMklPxg4JOrbgrn8VqHONaWyexs/qy3qJX6aNKBTIMEE3X57GTPfPoyizgzcE1F
+	6Jpuy06CHFYp1h82UjBEQ79OOwH3bb3eNwBjpbead9ZepN0naqcaD+WvNJne7ViK
+	cTrc+Fw5s0Y8PSIA33CfDnt6Tksw57cbmuMi/rfMpMKJDH1LwnoaJnEt3L39Nl9n
+	acn6SklqU2i1tNW0AqfzpbAiyFoNhT3FXgLNEi+QtKSLYsC+Bf6I9kLBzqVF5+M0
+	8isqx80pqOqhLIgV/PXA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3y6n42cc30-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 May 2024 15:14:48 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 944294002D;
+	Tue, 21 May 2024 15:14:43 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0DDD321A8FD;
+	Tue, 21 May 2024 15:13:54 +0200 (CEST)
+Received: from [10.48.86.132] (10.48.86.132) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 21 May
+ 2024 15:13:53 +0200
+Message-ID: <7ba9113b-7360-4201-b983-e53e90f2be06@foss.st.com>
+Date: Tue, 21 May 2024 15:12:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240521-qcom-firmware-name-v1-0-99a6d32b1e5e@linaro.org>
- <20240521-qcom-firmware-name-v1-1-99a6d32b1e5e@linaro.org>
- <a45b53f3-b2a5-4094-af5a-1281e0f94d2f@linaro.org> <CAA8EJprxYsoug0ipRHTmX45vaFLzJCUF0dQWOc=QLs4y6uZ1rA@mail.gmail.com>
- <878r03csxn.fsf@kernel.org>
-In-Reply-To: <878r03csxn.fsf@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 21 May 2024 15:08:31 +0200
-Message-ID: <CAA8EJpqkgpCb57DGka0ckbPz=2YiaHzxmiNzG39ad5y6smgO5A@mail.gmail.com>
-Subject: Re: [PATCH 01/12] soc: qcom: add firmware name helper
-To: Kalle Valo <kvalo@kernel.org>
-Cc: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Loic Poulain <loic.poulain@linaro.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, wcn36xx@lists.infradead.org, 
-	linux-wireless@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ASoC: dt-bindings: stm32: Ensure compatible pattern
+ matches whole string
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+        Arnaud Pouliquen
+	<arnaud.pouliquen@foss.st.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark
+ Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240520222705.1742367-1-robh@kernel.org>
+Content-Language: en-US
+From: Olivier MOYSAN <olivier.moysan@foss.st.com>
+In-Reply-To: <20240520222705.1742367-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-21_08,2024-05-21_01,2024-05-17_01
 
-On Tue, 21 May 2024 at 13:20, Kalle Valo <kvalo@kernel.org> wrote:
->
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
->
-> > On Tue, 21 May 2024 at 12:52, <neil.armstrong@linaro.org> wrote:
-> >>
-> >> On 21/05/2024 11:45, Dmitry Baryshkov wrote:
-> >> > Qualcomm platforms have different sets of the firmware files, which
-> >> > differ from platform to platform (and from board to board, due to the
-> >> > embedded signatures). Rather than listing all the firmware files,
-> >> > including full paths, in the DT, provide a way to determine firmware
-> >> > path based on the root DT node compatible.
-> >>
-> >> Ok this looks quite over-engineered but necessary to handle the legacy,
-> >> but I really think we should add a way to look for a board-specific path
-> >> first and fallback to those SoC specific paths.
-> >
-> > Again, CONFIG_FW_LOADER_USER_HELPER => delays.
->
-> To me this also looks like very over-engineered, can you elaborate more
-> why this is needed? Concrete examples would help to understand better.
+On 5/21/24 00:27, Rob Herring (Arm) wrote:
+> The compatible pattern "st,stm32-sai-sub-[ab]" is missing starting and
+> ending anchors, so any prefix and/or suffix would still be valid.
+> 
+> This also fixes a warning on the example:
+> 
+> Documentation/devicetree/bindings/sound/st,stm32-sai.example.dtb: /example-0/sai@4400b000/audio-controller@4400b004: failed to match any schema with compatible: ['st,stm32-sai-sub-a']
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/sound/st,stm32-sai.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+> index 59df8a832310..f555ccd6b00a 100644
+> --- a/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+> +++ b/Documentation/devicetree/bindings/sound/st,stm32-sai.yaml
+> @@ -68,7 +68,7 @@ patternProperties:
+>       properties:
+>         compatible:
+>           description: Compatible for SAI sub-block A or B.
+> -        pattern: "st,stm32-sai-sub-[ab]"
+> +        pattern: "^st,stm32-sai-sub-[ab]$"
+>   
+>         "#sound-dai-cells":
+>           const: 0
 
-Sure. During the meeting last week Arnd suggested evaluating if we can
-drop firmware-name from the board DT files. Several reasons for that:
-- DT should describe the hardware, not the Linux-firmware locations
-- having firmware name in DT complicates updating the tree to use
-different firmware API (think of mbn vs mdt vs any other format)
-- If the DT gets supplied by the vendor (e.g. for
-SystemReady-certified devices), there should be a sync between the
-vendor's DT, linux kernel and the rootfs. Dropping firmware names from
-DT solves that by removing one piece of the equation
+Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
 
-Now for the complexity of the solution. Each SoC family has their own
-firmware set. This includes firmware for the DSPs, for modem, WiFi
-bits, GPU shader, etc.
-For the development boards these devices are signed by the testing key
-and the actual signature is not validated against the root of trust
-certificate.
-For the end-user devices the signature is actually validated against
-the bits fused to the SoC during manufacturing process. CA certificate
-(and thus the fuses) differ from vendor to vendor (and from the device
-to device)
-
-Not all of the firmware files are a part of the public linux-firmware
-tree. However we need to support the rootfs bundled with the firmware
-for different platforms (both public and vendor). The non-signed files
-come from the Adreno GPU and can be shared between platforms. All
-other files are SoC-specific and in some cases device-specific.
-
-So for example the SDM845 db845c (open device) loads following firmware files:
-Not signed:
-- qcom/a630_sqe.fw
-- qcom/a630_gmu.bin
-
-Signed, will work for any non-secured sdm845 device:
-- qcom/sdm845/a630_zap.mbn
-- qcom/sdm845/adsp.mbn
-- qcom/sdm845/cdsp.mbn
-- qcom/sdm485/mba.mbn
-- qcom/sdm845/modem.mbn
-- qcom/sdm845/wlanmdsp.mbn (loaded via TQFTP)
-- qcom/venus-5.2/venus.mbn
-
-Signed, works only for DB845c.
-- qcom/sdm845/Thundercomm/db845c/slpi.mbn
-
-In comparison, the SDM845 Pixel-3 phone (aka blueline) should load the
-following firmware files:
-- qcom/a630_sqe.fw (the same, non-signed file)
-- qcom/a630_gmu.bin (the same, non-signed file)
-- qcom/sdm845/Google/blueline/a630_zap.mbn
-- qcom/sdm845/Google/blueline/adsp.mbn
-- qcom/sdm845/Google/blueline/cdsp.mbn
-- qcom/sdm845/Google/blueline/ipa_fws.mbn
-- qcom/sdm845/Google/blueline/mba.mbn
-- qcom/sdm845/Google/blueline/modem.mbn
-- qcom/sdm845/Google/blueline/venus.mbn
-- qcom/sdm845/Google/blueline/wlanmdsp.mbn
-- qcom/sdm845/Google/blueline/slpi.mbn
-
-The Lenovo Yoga C630 WoS laptop (SDM850 is a variant of SDM845) uses
-another set of files:
-- qcom/a630_sqe.fw (the same, non-signed file)
-- qcom/a630_gmu.bin (the same, non-signed file)
-- qcom/sdm850/LENOVO/81JL/qcdxkmsuc850.mbn
-- qcom/sdm850/LENOVO/81JL/qcadsp850.mbn
-- qcom/sdm850/LENOVO/81JL/qccdsp850.mbn
-- qcom/sdm850/LENOVO/81JL/ipa_fws.elf
-- qcom/sdm850/LENOVO/81JL/qcdsp1v2850.mbn
-- qcom/sdm850/LENOVO/81JL/qcdsp2850.mbn
-- qcom/sdm850/LENOVO/81JL/qcvss850.mbn
-- qcom/sdm850/LENOVO/81JL/wlanmdsp.mbn
-- qcom/sdm850/LENOVO/81JL/qcslpi850.mbn
-
-If we look at one of the recent platforms, e.g. SM8650-QRD, this list
-also grows up:
-- qcom/gen70900_sqe.fw (generic, non-signed)
-- qcom/gmu_gen70900.bin (generic, non-signed)
-- qcom/sm8650/gen70900_zap.mbn
-- qcom/sm8650/adsp.mbn
-- qcom/sm8650/adsp_dtb.mbn
-- qcom/sm8650/cdsp.mbn
-- qcom/sm8650/cdsp_dtb.mbn
-- qcom/sm8650/ipa_fws.mbn
-- qcom/sm8650/modem.mbn
-- qcom/sm8650/modem_dtb.mbn
-- qcom/sm8650/vpu33_4v.mbn (or maybe qcom/vpu-33/vpu_4v.mbn)
-
--- 
-With best wishes
-Dmitry
+Thanks
+Olivier
 
