@@ -1,227 +1,272 @@
-Return-Path: <devicetree+bounces-68132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44D08CAEBF
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 14:58:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B61548CAEC2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 15:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D76B01C216E1
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:58:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CB542816E0
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE357710E;
-	Tue, 21 May 2024 12:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C3277105;
+	Tue, 21 May 2024 13:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="OJ5u2Yp0"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="BAa02ckJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2087.outbound.protection.outlook.com [40.107.7.87])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276861E48B
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 12:58:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.87
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716296312; cv=fail; b=Vtsh15szKXxIBqT4gi9EyrJzF9Q0uL55F5Acau74GBw5T/DR3AbM5HxpzzzMxYAOclGfMl+njvzqDSS0JyEGeyNOFGL9HfKbPslbWHpNc/SYxuAJ2OmKKNeuydH7F0qPA3bfL3UqMmsLkb6IOey2LFDVF0N4f3kenkUhy+teMaQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716296312; c=relaxed/simple;
-	bh=LHpU+HsPlCFty8TDnYSnUWbt7A0L8Pvm3CdkYdsGLvM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jNIaVv4DZ5mqmy1Zp8AgqI2NU5OoeXjm2ccnSSfJqiBMdcZnuvcfEl4i0cYtD7gTYQayqYvVXz7LAy/vkz+RCR4vLwk83Iw4UweJoawb0G9nV10VsGJqsqeKq16FPEa4M/YDUWcfBVP5Dpfh+Ub1d75G344H3F/X6DB9bzxVJJ0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=OJ5u2Yp0; arc=fail smtp.client-ip=40.107.7.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aKrgstW3Pv8UDMw/kWN3kqOxLvw1268djVLSdsLpQUQLTUxuIqMDrXOC0j+tZkbZhZbivvDICbF2KWfsMqk/1J46HI90oRlZWgroaHnORY7OO3GbnlsuvAYeZeWJDFv2O9gOl4z/iWVD970kA5QCUEcvQi6YYQIyqVrhUU9Vuq/UwW3nNS7zpmF8T5g7C1WW3MYukqSzZy/i3RKb4dJlKnL5LloPSOghGzyC5KqXCU1cC/gWbYLKckkOiQ5kuZ/IFqRHoj28TTe6sGhRKshSNISVnp8b0qA192Wqowpq22a7cY9yG0t75dxP2xj6HmWjumiKYafVm8qHAF+6NxvoDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lOfUmzTY/tcz2dPHS+DUBvuDLwmWeaV8CH2jzbd/4P4=;
- b=fPQFJDzzeQfhydzeTTaTk4Zi9UTKI0CkPE5R/vUbd2lgytlLSXpnMsNT/KcEmoTNUeAdasqb5dql+WExrMunYBC/L1GVwb62C2G74BRAm4WiN/Oos3kNUnHJHavYtbbqoWtnw+Wy0DxwL79LtkPB7NiCU4dhGgxw9jKB9ExybjahcVTzte4tGyECz+zc6S+OvPydXsghHbPs12SOuY35VKzjekzNoFcnqumM+H7Wtsk+1W6SBfTipKj4eVid2dBdbg7PKWrorKwC+WWanRateNL4EvsEEUQ5ayfy3ReIrsXs/xqXKWovUbz/XPEVfTh07n6ld4wR87AVCyi4wIabbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lOfUmzTY/tcz2dPHS+DUBvuDLwmWeaV8CH2jzbd/4P4=;
- b=OJ5u2Yp0rZ3D0KxvjZBYQekefBf+gRLSwseOvsFlt+AnqCCWIlRz2LBx+GX7RN60LrTotTGbTJNXCxzKW+qKPZs3hXkgzWb/+sjMOSfcwk1aoF79n3EkRuuMfum/e/Cx22sLR7MmnaeixmpOB0yxFY7Arlt5Hz0Xv8VQTXwnL7Y=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by PA1PR04MB10169.eurprd04.prod.outlook.com (2603:10a6:102:465::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36; Tue, 21 May
- 2024 12:58:25 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::557f:6fcf:a5a7:981c]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::557f:6fcf:a5a7:981c%6]) with mapi id 15.20.7587.035; Tue, 21 May 2024
- 12:58:25 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Marek Vasut <marex@denx.de>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-CC: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: RE: [PATCH 1/3] arm64: dts: imx8mm: Describe carrier board 20 MHz
- Xtal on i.MX8MM Menlo board
-Thread-Topic: [PATCH 1/3] arm64: dts: imx8mm: Describe carrier board 20 MHz
- Xtal on i.MX8MM Menlo board
-Thread-Index: AQHaq2lngLR1cq3w5k6UnOlxtALYZrGhpiWA
-Date: Tue, 21 May 2024 12:58:25 +0000
-Message-ID:
- <DU0PR04MB94174395174DCDED12E2586588EA2@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240521102435.10019-1-marex@denx.de>
-In-Reply-To: <20240521102435.10019-1-marex@denx.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|PA1PR04MB10169:EE_
-x-ms-office365-filtering-correlation-id: 26747097-d0d6-41fd-90db-08dc7995b3e1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230031|366007|376005|1800799015|7416005|38070700009;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?aokUbCjfMpVnCOEg8MPnzsxnDbJ/U/HZIpp0pLNITH6e40Mrf0RcjH/eL7mU?=
- =?us-ascii?Q?io2woHh+cuZ/fB4JrwfaNv7QMETf8pxWjqm9gWQ/njU+sW0MzEnBiEMN6BS+?=
- =?us-ascii?Q?JsryPkHnmwgqKdwa3DognFqR5VCi0qvkrQdPsi/pcMJHpMPzrxpPo2Pba0lV?=
- =?us-ascii?Q?whweXXMjV6YtENky96MsbGVnz/5WYv2jWGqY9OKriNFAbm7QyQsX+QWS3Goj?=
- =?us-ascii?Q?o034ieHZyrfL7bYmZhfaF4CNxOiSBbUYXn9D98bYLpjlnVbhGTorPTZ86pnI?=
- =?us-ascii?Q?eGfYZPyewrWIQPIZxpgdAimY/SRBF/+4XugAxQ3n0ndS1PjuMkyMLi27tPW2?=
- =?us-ascii?Q?nzXr3u0PY+PcHkLH+N2+3qUUw55h1BIZP1bFc97GYkUpymaD2JEbl65Igcx9?=
- =?us-ascii?Q?bbT7no/jZdnS1nQBg73U7lH8f+PpwThHaepmQo3OXSgovf4wsLi31irrhS6n?=
- =?us-ascii?Q?fjpELD5ohkQxLIhkG2sCn9RrE7aN89JPFC5+iOJxKUPDNC4PTDmu9Lwr9ili?=
- =?us-ascii?Q?ZOB3Wsw8eemdweeINcmT5o7mtcrH7ZVI7/Cksnm6smlqg67B46+m7aM1skk8?=
- =?us-ascii?Q?rg8b9NdkSiw7DGSrcYNziuMFPS8j2uAaICfDWIG3pYcPT4e/+U2zSnzB0kI9?=
- =?us-ascii?Q?uinAu3tDZTOM6dQpsZC5GxNag5SzZ+1CgpOhDOVqCiOKGxOhoG2Y2lPkjvl5?=
- =?us-ascii?Q?c7V8h/QHUW93aWuTujP2SEgqDrsoD/TyM5V4EzdVs4f/xntvFqwRDU4lYq5C?=
- =?us-ascii?Q?LpEtT/6o1WktxI6FbFNJSrb75nMK5lzMEJvIpMi8Vk/L110Tzq1tHcfmOFgF?=
- =?us-ascii?Q?xOfbektJHkr5YFJOmBkfKqDtT7wSqR1r0oEvBvPxtsiQNL8sQeLC91/xlDsU?=
- =?us-ascii?Q?/hLprVIRq77ZVhiHVKYG613AjU6+6887eQZX2SkWTsMHeYuoiDbjWoAKIzIK?=
- =?us-ascii?Q?1F04xeJD9JeLfnZs0cXT1VGlsSap/fVWLEx+MqywRc09lCoZ81s3snweq9ZY?=
- =?us-ascii?Q?JwylCQXAe2w/yf9CP6cpAdGDdOMn8pCT/DMHxUPnK6oOl0vJBVizs9J6YRwv?=
- =?us-ascii?Q?dOH7mTlu8V9Yfm6+t5Kt/VQQe7kkMtv5woUY3pdcknxNyoyMKdAS92trVw9V?=
- =?us-ascii?Q?2szdZuKqmMZOrqSKkWwFrVkGqDekmv19iGglA1ZIouDMLj+srYZLTFqXNDMl?=
- =?us-ascii?Q?GGFUf7Oy0njg+x7HbyPDdio9t+VgCeOocOGFcBM7j0GyfxTed/pvgLT12BKk?=
- =?us-ascii?Q?mBY4+C96OHNUV6P8a5UhukVIIzg2y/55y3LwKYWe0+eXXSP9lEBz9rSoetde?=
- =?us-ascii?Q?a4muZds4o4xxXsKxYJnUaZa/7ZJi+mzCHjd0EbQXxFZp+g=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(376005)(1800799015)(7416005)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?4rXAsLu8HhPM4TmwJYj4XBDprP1lZR3pFI0hi0a14j3vhPLeGtPHSWLD5C1M?=
- =?us-ascii?Q?afTjKeYq5CRRVn0M/T18Y0bptav+vojpEt8ceGFngnQTCM4tmMBPphDMLY9C?=
- =?us-ascii?Q?uYjldI4kzgeBZ3LboBOyItMDsS9pBLA9dRq0hxmNXRk/3D13ebypk9Xx9r5x?=
- =?us-ascii?Q?p4qFzN/1DaeV6976648c0WtXEgssH7xJ6+3fbFU1OxoortqgeIMck4tjGx/L?=
- =?us-ascii?Q?7u3VDjz0hlhjq1aQJqNs18gx+fsgkmQStlztLl2Rq++3feQi8i5/k/FYXjTn?=
- =?us-ascii?Q?o8paMGvGU+rN5Zt80IcfzIGgxBBVbgpXdazv9IeK7EifSi01S2ApKk15AaXy?=
- =?us-ascii?Q?RQRqHfVv+gDCjeLuxVfcLwoEW/bKM8KoVCF+qJYdogPUZgc6h8LaGB00GB03?=
- =?us-ascii?Q?2QiIEJFHgk01n5XEnGD+xpbx12ZA4NF/7th4x6FlvBln/vfx+LMNh3VRLVPK?=
- =?us-ascii?Q?pjg1KZ6+elNSIXcUrGgrM5rq9WjkCc+f1HtB8SwxBC5mfsuVqN058YTHUS69?=
- =?us-ascii?Q?CLEC5+/ePvqKNh0ora4qVXCCz96TwVURUhK3Y2AMBU/h8jnatr6nq7QsfIcL?=
- =?us-ascii?Q?OlIokhjN+O5CszTmS/M3amdDKDnlYlgGLev2716fSwf7OdjcQu1ZSlw2AoH3?=
- =?us-ascii?Q?A+tOPI4EjgIAaBiuY877i6IOC4M5eOIwyT3FAnY10CfZBWR04AkXoV/GRpB6?=
- =?us-ascii?Q?E20Rmeq2X9grwX7j1A9plWQfJD2IQy6SXYO1AzL71AWu73oMqdPKEz+AfA3W?=
- =?us-ascii?Q?kY9d6U4KjCa0T+gpexmMObGFhCK0DaSiO4/uAHuIT1I4dK4jl8a1Z0YP5IeE?=
- =?us-ascii?Q?JSK2kLW6WopJO3deG3QFZAaIJ8DmMCNQiTOvCtdo6ZrlBelcQmv6e/vvodf+?=
- =?us-ascii?Q?+hNytOH+R/cBSd6lVSC7aTqPLps6xK5NcWbCkZhO24xX6S91w44fpRy00APz?=
- =?us-ascii?Q?8ThZQnMiagd+Q3+4F/3jjw0VjG67fQiRM36832nsq6wB1UngqynluGSodHHV?=
- =?us-ascii?Q?7K6ATvFNPFBxq6rTspvJuqd32x0LOZZfNpFIOYbDHzrwDiU26I8Y/gKAPaHr?=
- =?us-ascii?Q?Idsz1L3YMVRM/VOEOk/6qx0FElyzyooboS2KI1fkLujzI3SuHGELiqMzRYA8?=
- =?us-ascii?Q?JGiZRPrm9HM+55umkQjyn5h2KycvSCODbTwI3xAp4jhjNxKLY8HM3GTXRB5v?=
- =?us-ascii?Q?3aO3v7mWt2NlAPshAKKIhcmEr52seGluXXhAONpZSOGUQTFGhvKd/gMMthzb?=
- =?us-ascii?Q?UI4/A00D4xQVquzWmXPeCzscXgCF0lel+kYYenupRyFeeMZMCOy5kDwHQjp1?=
- =?us-ascii?Q?XW/wKtrJWufj2PuaiYu86aoGJ6Zu4rZTNjGZXm9ozZYH85CMHZWkb4kPqILa?=
- =?us-ascii?Q?5PMu0pZr4gGNEoF0mbhSQnijHrSuhruJXqvg2vTW0+xiPHIMCFG+LBj3k+tG?=
- =?us-ascii?Q?DY097uhwoBv8Ne0Wor0QktH8T8xNxatosenp54keQVYEzDJKSCEaF1HeoATP?=
- =?us-ascii?Q?aG1fPg0CDW3VHZfqSsWjUFI2LqqHcvDg2bQIWSzANt2daYdnb7elaymeMkoS?=
- =?us-ascii?Q?6/coj7EozF01kSs+Vxw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B6E5770EA
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 13:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716296402; cv=none; b=pEQJ55P/VUHooebioGA6Pcd7VPW2KuONPoicLE3b+gImdHn6I18jwYTOxZSQKio9uTB35HgEto8DC62drVXWLGbhbVJAOW2iKPTUThGamYg0kXAPrXOQ4sVcTXB0XCDHSinQ+PVtdyh1OI05ZJAeLX+0sm6x3gXZpkiPPOBN8RQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716296402; c=relaxed/simple;
+	bh=DBUyQmvQh7vUb6oN302EO/ct8ueC5mznuotC02B36l0=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fAPdXrp6DBTS9v2h0Sk35+fZS0hJok40tpvw8SPjD9kiCjdgVQsRsRzTXVUgL2Aa3nG2jQ8OjSWaBY9fg9hRfixF957qVaZBL9/ai+slIHrdXs5a/CpDb0Jw6i1NPvS8KHEd2Nj4/2L9WswoqmjDOu1ROZ0heNYjtVP0Zm5SuVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=BAa02ckJ; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a5a4bc9578cso816793266b.2
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 06:00:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1716296399; x=1716901199; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YN/7AOVfwDQ9fuglKdggECs2cWRXnj0qk72xVYmNKJg=;
+        b=BAa02ckJ1Mz52t3V7mhtzEiRIE+HnoFSUXoFf+jfFKSBjXOAewuoi81ZCvTCuDalBy
+         d7L7Kj8vx0w0QzfkAtYVkIkHNbYfBFj4U8L9PuCWDm24DbCEpw7UwJkAfyUpn2LbWdX6
+         E8RNpdJyxsw9jlOkUFdwxHyoRtjbgGfxTha5IaSkbnfr0Psv10gYKNx1KzCYANBQD06Q
+         47z64ghoSvl/2yZDRt0VUIJD3YdsyAi1xze8W5WNuEnSl7lqIKzTa6KhR5zkidmmxd9V
+         GR85krT4jJQugjlW7GhTumoo3x5AyiD6++TMTAbOxekk/JlT4h2xWMsKJgGC2LsPOUzz
+         x9KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716296399; x=1716901199;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YN/7AOVfwDQ9fuglKdggECs2cWRXnj0qk72xVYmNKJg=;
+        b=TSm8dGAeNIJsyhSZIU6+9XM1NbzQaX/cSiU39h766eeRgVqHXIUUofE4oHb3DO8gae
+         EVz+8eCNuklQHlYZgCds7HzgiFbAZ4nEE3CmKyfiE/9rUrtwYV3EDoTQm/3wuft8H4yE
+         CrjGUO3bGIIJEBII6IBI7CErD1Hd5hOFIMYBZZFR+XWeXgB90dMAGsF1QVDppRQPG+Jt
+         QeJ2HwM8PYoEDDJNOIGNzLM7+PNNVLxREsf8vygcqQA7oa0JrxKK5BgkVcnBQf97RZ3/
+         D58UOSZI4eKk+rfHrEdpu2qvkD6xBQTAoL9mRRwH8DmCs08gEe4Ds/KVzUXpo+SeySz9
+         t8cA==
+X-Forwarded-Encrypted: i=1; AJvYcCVIJlHhtZkYrjHOW78Mj43tYJyKR3I0P+jdcvMEcB7NI5IX8REIFhn6v1khQ0mDiKy7nAQH2Ev4IuIldKtYk+uJn6ehcIypyPTj/g==
+X-Gm-Message-State: AOJu0YwlUTiuCY0Qd+q1X8uE/RcepBxXImSqId9Q3h3HjfUNGc73A3pX
+	/lgWeMP4GzGn+R9GlZM9lGA7VD682sF1tlnoFtRTeuljFzLrj2zYnfbGHMN5NE0=
+X-Google-Smtp-Source: AGHT+IFjhxZDVLttBWKH935kkHgsg4zmcHt0zQ1giV2/zPz++FzpgzwbsrswxD91J1qdmWSrgzUpJw==
+X-Received: by 2002:a17:906:4882:b0:a59:a727:1e81 with SMTP id a640c23a62f3a-a5a2d57a381mr3123533366b.20.1716296398569;
+        Tue, 21 May 2024 05:59:58 -0700 (PDT)
+Received: from localhost (host-87-18-209-253.retail.telecomitalia.it. [87.18.209.253])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a179c7ebcsm1601785066b.117.2024.05.21.05.59.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 May 2024 05:59:58 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 21 May 2024 15:00:08 +0200
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Kamal Dasu <kamal.dasu@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] mmc: sdhci-brcmstb: Add BCM2712 support
+Message-ID: <Zkya2KXoHSV9ORCk@apocalypse>
+Mail-Followup-To: Stefan Wahren <wahrenst@gmx.net>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Kamal Dasu <kamal.dasu@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org
+References: <cover.1716277695.git.andrea.porta@suse.com>
+ <c413737f538d9bd403c30104a83a7fbb1ea7461d.1716277695.git.andrea.porta@suse.com>
+ <f27aaf92-8109-4cad-94ba-6f72cd9bdabf@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26747097-d0d6-41fd-90db-08dc7995b3e1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2024 12:58:25.4440
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yOrUY/e/+r82YbAhwgJbHWjfJLJx+vQZX7AIPotbrSJ2rVqfTJAkczH4yNi7EB/OXJp3KoPOqQ65POvW5jPW6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10169
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f27aaf92-8109-4cad-94ba-6f72cd9bdabf@gmx.net>
 
-> Subject: [PATCH 1/3] arm64: dts: imx8mm: Describe carrier board 20 MHz
-> Xtal on i.MX8MM Menlo board
->=20
-> The i.MX8MM Menlo carrier board uses dedicated 20 MHz Xtal to supply
-> clock to second SPI CAN controller on the carrier board as well as CPLD o=
-n the
-> same board. Fix incorrect reuse of SoM 20 MHz Xtal for that purpose,
-> describe the separate Xtal and use it.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-> b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-> index 0b123a84018b2..4c38979f7333f 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
-> @@ -14,6 +14,13 @@ / {
->  		     "toradex,verdin-imx8mm",
->  		     "fsl,imx8mm";
->=20
-> +	/* Carrier board Xtal for SPI CAN controller and CPLD */
-> +	clk20mcb: clk-20m-cb {
+On 14:26 Tue 21 May     , Stefan Wahren wrote:
+> Hi Andrea,
+> 
+> Am 21.05.24 um 10:35 schrieb Andrea della Porta:
+> > Broadcom BCM2712 SoC has an SDHCI card controller using the SDIO CFG
+> > register block present on other STB chips. Add support for BCM2712
+> > SD capabilities of this chipset.
+> > The silicon is SD Express capable but this driver port does not currently
+> > include that feature yet.
+> > Based on downstream driver by raspberry foundation maintained kernel.
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >   drivers/mmc/host/sdhci-brcmstb.c | 65 ++++++++++++++++++++++++++++++++
+> >   1 file changed, 65 insertions(+)
+> > 
+> > diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+> > index 9053526fa212..b349262da36e 100644
+> > --- a/drivers/mmc/host/sdhci-brcmstb.c
+> > +++ b/drivers/mmc/host/sdhci-brcmstb.c
+> > @@ -30,6 +30,21 @@
+> > 
+> >   #define SDHCI_ARASAN_CQE_BASE_ADDR		0x200
+> > 
+> > +#define SDIO_CFG_CQ_CAPABILITY			0x4c
+> > +#define SDIO_CFG_CQ_CAPABILITY_FMUL		GENMASK(13, 12)
+> > +
+> > +#define SDIO_CFG_CTRL				0x0
+> > +#define SDIO_CFG_CTRL_SDCD_N_TEST_EN		BIT(31)
+> > +#define SDIO_CFG_CTRL_SDCD_N_TEST_LEV		BIT(30)
+> > +
+> > +#define SDIO_CFG_MAX_50MHZ_MODE			0x1ac
+> > +#define SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE	BIT(31)
+> > +#define SDIO_CFG_MAX_50MHZ_MODE_ENABLE		BIT(0)
+> > +
+> > +#define MMC_CAP_HSE_MASK	(MMC_CAP2_HSX00_1_2V | MMC_CAP2_HSX00_1_8V)
+> > +/* Select all SD UHS type I SDR speed above 50MB/s */
+> > +#define MMC_CAP_UHS_I_SDR_MASK	(MMC_CAP_UHS_SDR50 | MMC_CAP_UHS_SDR104)
+> > +
+> >   struct sdhci_brcmstb_priv {
+> >   	void __iomem *cfg_regs;
+> >   	unsigned int flags;
+> > @@ -38,6 +53,7 @@ struct sdhci_brcmstb_priv {
+> >   };
+> > 
+> >   struct brcmstb_match_priv {
+> > +	void (*cfginit)(struct sdhci_host *host);
+> >   	void (*hs400es)(struct mmc_host *mmc, struct mmc_ios *ios);
+> >   	struct sdhci_ops *ops;
+> >   	const unsigned int flags;
+> > @@ -168,6 +184,38 @@ static void sdhci_brcmstb_set_uhs_signaling(struct sdhci_host *host,
+> >   	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
+> >   }
+> > 
+> > +static void sdhci_brcmstb_cfginit_2712(struct sdhci_host *host)
+> > +{
+> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > +	struct sdhci_brcmstb_priv *brcmstb_priv = sdhci_pltfm_priv(pltfm_host);
+> > +	u32 reg, base_clk_mhz;
+> > +
+> > +	/*
+> > +	 * If we support a speed that requires tuning,
+> > +	 * then select the delay line PHY as the clock source.
+> > +	 */
+> > +	if ((host->mmc->caps & MMC_CAP_UHS_I_SDR_MASK) || (host->mmc->caps2 & MMC_CAP_HSE_MASK)) {
+> > +		reg = readl(brcmstb_priv->cfg_regs + SDIO_CFG_MAX_50MHZ_MODE);
+> > +		reg &= ~SDIO_CFG_MAX_50MHZ_MODE_ENABLE;
+> > +		reg |= SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE;
+> > +		writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_MAX_50MHZ_MODE);
+> > +	}
+> > +
+> > +	if ((host->mmc->caps & MMC_CAP_NONREMOVABLE) ||
+> > +	    (host->mmc->caps & MMC_CAP_NEEDS_POLL)) {
+> > +		/* Force presence */
+> > +		reg = readl(brcmstb_priv->cfg_regs + SDIO_CFG_CTRL);
+> > +		reg &= ~SDIO_CFG_CTRL_SDCD_N_TEST_LEV;
+> > +		reg |= SDIO_CFG_CTRL_SDCD_N_TEST_EN;
+> > +		writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_CTRL);
+> > +	}
+> > +
+> > +	/* Guesstimate the timer frequency (controller base clock) */
+> > +	base_clk_mhz = max_t(u32, clk_get_rate(pltfm_host->clk) / (1000 * 1000), 1);
+> > +	reg = SDIO_CFG_CQ_CAPABILITY_FMUL | base_clk_mhz;
+> > +	writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_CQ_CAPABILITY);
+> This part assumes the clock isn't changed afterwards, see below ...
+> > +}
+> > +
+> >   static void sdhci_brcmstb_dumpregs(struct mmc_host *mmc)
+> >   {
+> >   	sdhci_dumpregs(mmc_priv(mmc));
+> > @@ -200,6 +248,14 @@ static struct sdhci_ops sdhci_brcmstb_ops = {
+> >   	.set_uhs_signaling = sdhci_set_uhs_signaling,
+> >   };
+> > 
+> > +static struct sdhci_ops sdhci_brcmstb_ops_2712 = {
+> > +	.set_clock = sdhci_set_clock,
+> > +	.set_power = sdhci_set_power_and_bus_voltage,
+> > +	.set_bus_width = sdhci_set_bus_width,
+> > +	.reset = sdhci_reset,
+> > +	.set_uhs_signaling = sdhci_set_uhs_signaling,
+> > +};
+> > +
+> >   static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
+> >   	.set_clock = sdhci_brcmstb_set_clock,
+> >   	.set_bus_width = sdhci_set_bus_width,
+> > @@ -214,6 +270,11 @@ static struct sdhci_ops sdhci_brcmstb_ops_74165b0 = {
+> >   	.set_uhs_signaling = sdhci_brcmstb_set_uhs_signaling,
+> >   };
+> > 
+> > +static const struct brcmstb_match_priv match_priv_2712 = {
+> > +	.cfginit = sdhci_brcmstb_cfginit_2712,
+> > +	.ops = &sdhci_brcmstb_ops_2712,
+> > +};
+> > +
+> >   static struct brcmstb_match_priv match_priv_7425 = {
+> >   	.flags = BRCMSTB_MATCH_FLAGS_NO_64BIT |
+> >   	BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
+> > @@ -238,6 +299,7 @@ static struct brcmstb_match_priv match_priv_74165b0 = {
+> >   };
+> > 
+> >   static const struct of_device_id __maybe_unused sdhci_brcm_of_match[] = {
+> > +	{ .compatible = "brcm,bcm2712-sdhci", .data = &match_priv_2712 },
+> >   	{ .compatible = "brcm,bcm7425-sdhci", .data = &match_priv_7425 },
+> >   	{ .compatible = "brcm,bcm7445-sdhci", .data = &match_priv_7445 },
+> >   	{ .compatible = "brcm,bcm7216-sdhci", .data = &match_priv_7216 },
+> > @@ -370,6 +432,9 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+> >   	    (host->mmc->caps2 & MMC_CAP2_HS400_ES))
+> >   		host->mmc_host_ops.hs400_enhanced_strobe = match_priv->hs400es;
+> > 
+> > +	if (match_priv->cfginit)
+> > +		match_priv->cfginit(host);
+> > +
+> I'm not sure this is the right place to call cfginit.
+> sdhci_brcmstb_cfginit_2712 retrives the current controller base clock,
+> but at the end of  sdhci_brcmstb_probe this clock frequency could be
+> adjusted by the device property "clock-frequency". So i'm not sure this
+> is intended.
 
-Per fixed-clock.yaml, nodename should be clock-xx.
+Some tests reveal that cfginit() must be called for certain type of UHS SD cards, 
+otherwise those cards do not work at all. This of course does not mean that the
+calling sequence is correctly ordererd and it may just work out of luck.
+I'm investigating...
 
-Regards,
-Peng.
+Many thanks,
+Andrea
 
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		clock-frequency =3D <20000000>;
-> +	};
-> +
->  	/delete-node/ gpio-keys;
->=20
->  	leds {
-> @@ -60,7 +67,7 @@ &ecspi1 {
->  	/* CAN controller on the baseboard */
->  	canfd: can@0 {
->  		compatible =3D "microchip,mcp2518fd";
-> -		clocks =3D <&clk_xtal20>;
-> +		clocks =3D <&clk20mcb>;
->  		interrupt-parent =3D <&gpio1>;
->  		interrupts =3D <8 IRQ_TYPE_EDGE_FALLING>;
->  		reg =3D <0>;
-> --
-> 2.43.0
->=20
-
+> >   	/*
+> >   	 * Supply the existing CAPS, but clear the UHS modes. This
+> >   	 * will allow these modes to be specified by device tree
+> 
 
