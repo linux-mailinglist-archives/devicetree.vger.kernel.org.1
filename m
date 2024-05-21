@@ -1,308 +1,439 @@
-Return-Path: <devicetree+bounces-68279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622E18CBAE4
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:02:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8958B8CBC4B
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:48:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D74C282C4D
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 06:02:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC47A1C21275
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 07:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A7C200B7;
-	Wed, 22 May 2024 06:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="UCY6ZJPh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88FD579DD4;
+	Wed, 22 May 2024 07:48:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SINPR02CU002.outbound.protection.outlook.com (mail-southeastasiaazon11021007.outbound.protection.outlook.com [52.101.133.7])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBA3360;
-	Wed, 22 May 2024 06:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.133.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716357770; cv=fail; b=ZcnvlCemgfBT/S53aNtMsU1Wac3WFUbXbJVFKDw8HjF3jMOubgpndsQaHQVUpf5mnWeKQ6dkYfhFFhC/A3mcQrxrRJ860On/r90UlRPRAm3JTKWenbZnig5JmxRMFGLbSt+GwkJleozDwZ+SrxCrNXpkLKHs9Ow6xoD8OZSNxDs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716357770; c=relaxed/simple;
-	bh=MoGUUatNV5L8nk3dyhA1zAV+ydPMsUr8x39yW0oKpco=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=mg2LHThTvN1TxST31Ps1YHa+IYqyquwGKuDLtOts0j7IvkaruqdSj08nCh6IF2BVsgtJy0GSgiSLgtuco5cXKQJ5itwqUpAxx/0vVJFVqgdIyOB8wl0aE9VwUwvLJokJGQGy7OZINct1woG92h4N+KqBoj0jhHiWuchkcRjSR88=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=UCY6ZJPh; arc=fail smtp.client-ip=52.101.133.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W7l6jHua6bmXSeXb9Yb+RpsnxDiPZxRhi+8u8kjXvCtNvGqZ08eoaI4+X1YxnqRDrcYWFX6lbHgScMgDbyj/+obhnH7WU1mXWPopEiiwN5tCcdtXnvCinHNaoZoujMKAG9/PM9bCOhl9c7R4VVhsDPEGI2aoCLBCCAtSqZbVHSFxAhR+vB4LHgBcRamNO3k3gOVJ/x6NrSLNydD3Qon/TnVWrS+c+rOFEMhDJWF3aCGPMfqcQyTF26yc4DCFLn+NDnIVNJF6jEQx/NmMAXEP65sOOhci8fRRQQ3EcjPODavPH307XH0/tFoMR1Z6Z6ZbmzMeqR7FIoNXHoPv8fYS4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4NdsCMUFEMUP0t/WCjrjOlu4+egumM9O4MZe0kqf+jc=;
- b=TN7+2Zv6fSX1EIISRh1J2B3imXxbm/MTBMMybwagt6gtsEQnmapkRIM7lwkcgp6hKeIqAcPIf1P/mHF1S2OQAHKhruNiUoBNLcfTK//oSwYpvxr5cjzRfOqmani/SmE7juFENSb34F5k+EFEzHbTMMqY/916LndvoP8ATnLAkSjHR+YPcX8gayNPcsSL1nX2DOVusVTdxRPLGaPXSprrpHITMYHZ8V7ksAC+y+WXiQT92mdM/6EJTjCeKLLtkNge67+m2ebBMkgxBRAuJ6pvZuEUwa5OXSG7CyaD4KuZa9y3NoIEBlFwlIH1AHIDSPECwJpvptkQpfeAUyUIhUv1yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4NdsCMUFEMUP0t/WCjrjOlu4+egumM9O4MZe0kqf+jc=;
- b=UCY6ZJPhKB+ML7r+SXs+Ban/qHzPnVTvAi+kvJUmrSxJfU+udnPwdUGP3xvNo1VS+4+qa4zfM8UUvmzdVBUw7mLaXN9e2AXOMmNCM3GYMHNgM6qAdc1yxJcFUpW+qImrlRoCDJvTLSBYtzHmO4x/jFmTtEkS/y9h1COlnavXxl/z2YwnpkT2I0PhVXcr4BP6kewvLHDnP6eAAeawAbS49ke8Uuwwgd+yUSP62vIQRDtVMULt8mbZ4obuEEw7v2gRoZmYMSdUgFQ3YPc+3j494iJHsFs53cxMs/tNOMq5nDgDgOdse14mQ5S41y/UZNklD2Cu5mpUrgtICF/nklK5lA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB5743.apcprd03.prod.outlook.com (2603:1096:400:74::7)
- by KL1PR03MB6899.apcprd03.prod.outlook.com (2603:1096:820:9e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.16; Wed, 22 May
- 2024 06:02:43 +0000
-Received: from TYZPR03MB5743.apcprd03.prod.outlook.com
- ([fe80::340d:421c:7221:56e6]) by TYZPR03MB5743.apcprd03.prod.outlook.com
- ([fe80::340d:421c:7221:56e6%7]) with mapi id 15.20.7611.016; Wed, 22 May 2024
- 06:02:42 +0000
-Message-ID: <7e8d7140-b119-4d12-a10c-216c1426c40c@amlogic.com>
-Date: Wed, 22 May 2024 14:02:37 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [DMARC error][DKIM error] [PATCH v5 1/2] pwm: meson: Add support
- for Amlogic S4 PWM
-Content-Language: en-GB
-To: George Stark <gnstark@salutedevices.com>, kelvin.zhang@amlogic.com,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pwm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,
- "kernel@salutedevices.com" <kernel@salutedevices.com>
-References: <20240521-s4-pwm-v5-0-0c91f5fa32cd@amlogic.com>
- <20240521-s4-pwm-v5-1-0c91f5fa32cd@amlogic.com>
- <4fd9fe90-1da0-4b8c-8bc4-18b7a4dc38ab@salutedevices.com>
-From: Junyi Zhao <junyi.zhao@amlogic.com>
-In-Reply-To: <4fd9fe90-1da0-4b8c-8bc4-18b7a4dc38ab@salutedevices.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SG2P153CA0040.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::9)
- To TYZPR03MB5743.apcprd03.prod.outlook.com (2603:1096:400:74::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806FF770E6
+	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 07:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716364088; cv=none; b=dhJx9QB08b/83MZ8Su01YuLUqIswyyAl4lCoU6dKcDfYUi+SFow8Aj1+vWA5BHI9RxNMuy/4wiBXdFgCU/hWaQKMRCJpXOEX844OkUMJeq9VQ7QKjyknIFuaMhUNiHO6eBlXbPWD1KPhw+KH2pNfYjUYBlwiYuQGgnXNq8FUlJs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716364088; c=relaxed/simple;
+	bh=UFileiIY+FcdENlfmaHs7dMmW4+IrMZlQd00Hn5+Gt8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V2u+H6MEILRGktU0mV4YtIuY+oQejXDk82k8hoORBLizR8iyn3b6ntFVXjIaQi6eSiwWpVZr0X3+W8soodb+ty2XGAFZrOnlV2FHbFjRGu+bGI28DbGjEjbRhqTuJk5eIEljq1QWox+Ay3sz+OBqyaCE7zT44TA1PQQm5Rh+ufA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1s9ghS-00081G-2A; Wed, 22 May 2024 09:47:50 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1s9ghP-002Uky-JB; Wed, 22 May 2024 09:47:47 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 50A9C2D520D;
+	Tue, 21 May 2024 12:27:11 +0000 (UTC)
+Date: Tue, 21 May 2024 14:27:10 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: RE: RE: [EXT] Re: [PATCH 4/4] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Message-ID: <20240521-handsome-hairy-bullfrog-d2faba-mkl@pengutronix.de>
+References: <20240510-imx-se-if-v1-0-27c5a674916d@nxp.com>
+ <20240510-imx-se-if-v1-4-27c5a674916d@nxp.com>
+ <20240513-pretty-quartz-lemming-14d9ea-mkl@pengutronix.de>
+ <AM9PR04MB86044FBF697375EB2C8D285B95EE2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <20240520-accurate-intrepid-kestrel-8eb361-mkl@pengutronix.de>
+ <AM9PR04MB86045BD682A0362A7D463C5A95EA2@AM9PR04MB8604.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB5743:EE_|KL1PR03MB6899:EE_
-X-MS-Office365-Filtering-Correlation-Id: 926daccc-b809-419e-9cb5-08dc7a24cb34
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|366007|1800799015|7416005|376005|921011;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ckdieXh5MzBPR1p1ell1MDYrMFVSRWNJcGlGNDU2L0l3V3JWRUlYYXc4ZDZZ?=
- =?utf-8?B?M0IvZVFlMWYrNDNWbVJ0eU5oRDR2dU5rbzJ5aVNzNEhpR0laMXFWQ1NsempC?=
- =?utf-8?B?V3dlYlY4WlI4Zm81bUFrbk1YNHltbUFUcXV3WittRVlxMVdFenZKTmR0cllo?=
- =?utf-8?B?bjBDWUhqR2V6Y3BycEJ1Ui80S1NMKzdTM0hlOWRzTTExeFgydXprcnViNWNZ?=
- =?utf-8?B?eVUxNmxVWHhKMHpzSkV5TjBKSFV4NkdqWTM5Z2NoSGhQRUdVZ29ndTZqdWdU?=
- =?utf-8?B?VVBkdWJsWFplenlwdHpzTVArMGlEN05WcWw0YVoybzNvZ0l5cXZYV0hjcjRR?=
- =?utf-8?B?T0pLZGtMd1VCb0hsQXk1VjRGcnVyTW5pTER0Y2ZKZXhaVWdxQldubjdNYWRi?=
- =?utf-8?B?QUdNakhPajFUZEsvTm1xcVZZd1c3K1VJb3AzK2txc1FOalBubHpVY1hNRG1j?=
- =?utf-8?B?dDBUenJ3WWVIczQrb0JoZEI5cEFFQ2hvcDJUSEZNeE5NZnF1UGpwc1pySWlv?=
- =?utf-8?B?MkZDTTZNbDc2VjExLzBhSjkxVkdHYnNEai92dm44QkV2dUFKNlNNaE93OElF?=
- =?utf-8?B?MzA1OTl3ajEvUDdSR2ROZ3lQblJUdzJ5K3JVNXcxeG9IUVh1Tkt3cUZ6NmpV?=
- =?utf-8?B?WTFoZHlOeGJkU0xuclRFR2V0U3hDSTNxYjY5R3ZFaHl4bWwrbWFwTmxzc3NE?=
- =?utf-8?B?SmtqU0YrOEdqeExJNkptRUg0Wm11ZXd4Z1QzcSt5NHFmMHhtdk00N2JZSWRQ?=
- =?utf-8?B?R0p6Mjd2WlUvNE1COU5qKytjWUkvYy9iSnA4cFFCN2VXd1NKQ0tFbEQwSzNM?=
- =?utf-8?B?NVpsb0pPUDBWSGZ2L20wZW5WSDJkZGtwYmNWV3N5WGNBYlVjZVhVK0xoZktN?=
- =?utf-8?B?N0pxY0Q0aTlrL3RmQ1BtQm9MYy9jMHdZbmFiOW5teXlEVUkvaGJFS0RRTzFG?=
- =?utf-8?B?UXAwdEQ0OWExR2ZKcWxwY25jQVJBTXFRaDlYcG5zZUE4UzNjNVRxbk5FRk9l?=
- =?utf-8?B?TTlweTNPMmlEUkJQdmpJcmNIOUI2Z2pvVVMzWkd4WW9ZaVdUR0h3bzc5Zkd6?=
- =?utf-8?B?VThiditxUUJHcm5zQ1JEZHBWcTVvYnB6cmJqRHQyQ25oY2pDV2dZV1M3WUFE?=
- =?utf-8?B?SldHeitWU1NmaGVBSmk4eE5Wci9ZSUlQY1FodTNONjcvNVEyNWY2bDY4SkN1?=
- =?utf-8?B?c3pXTWJyR0ZCL3hkcTJ5WTErdjQyQVZPVDRiNHZDaWFaZmVUVU9IbHFsLzgx?=
- =?utf-8?B?Rmk3bTVJZzQ0Nll4dXVlUGtIVlhXT0xGUkJrcUNpWWkvVmxobkxFK1Rma0tD?=
- =?utf-8?B?czNTSUtMaEFSWjJGamlHVjF1bHdNVWl5YTdQbHF4cnNmeHZWQXFxaFl3ZXdF?=
- =?utf-8?B?OG4wcVRJM3NCN3Z3V3RhQ2dhQVkxRkUzU3o4WlRScXhpWmduOWg0MXMwMWFx?=
- =?utf-8?B?UFRtR0ZuZHlLeCtacW9xS2lqL3l1Q0xNYzd2OGplV0NTMUlUeVhqT0p1RWFQ?=
- =?utf-8?B?UG5TdzljWHRnRzZ1SnJSaHBsVVU2WS9YNjJwMUhRTW40WFpvR2hoV0NqUHZQ?=
- =?utf-8?B?TVpiRTBzbHVEdE5TZktPNkMwLzBvVXVUU2tMRjlKbWxCdGt1Wld5azUyU0xy?=
- =?utf-8?B?RmNYTTh2Skl4SzhkeVZtdjZNTzQwOVVEdWNjd0YwTldzRVhJWXFaamYySTN3?=
- =?utf-8?B?TjVCQlk5K01tMEMzTzJ3bHByVHRGQ0s1eElBZmw5bjBORm1Fa3ZCQVNRPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB5743.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(7416005)(376005)(921011);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aTIxREp4RXM3ZGtUUjNpQVNXSisrT0Qra2todzRIalo2dDZpWThjYW9TVEJt?=
- =?utf-8?B?TUlVWnJXYU85V1F4VWlxUS9ISGxJN09TMjBaa0p2blB2eEFKcUs1cCtpRHMv?=
- =?utf-8?B?alRrSCtESjlrakovbXR1Y0NCTnZyNFljYUV3QnRzY3dGN2pWcHZnUlBEMVl1?=
- =?utf-8?B?aU02YUJoQlNBZFpuaUhsUjc4bTlxZjJDanI4TnltYkFpbG1IaWNqSnlDbldQ?=
- =?utf-8?B?TFVFL2NWdnpRdGtTYnQ0cHBrc2E5c0J6alFtcFlqUS9KV2sySXlwU1ZWY1li?=
- =?utf-8?B?OVZUWldUWCtxMHZEZHVYYzZVUzlBRllGUDFRc1V1emY3WldncnR5b0VwM0xm?=
- =?utf-8?B?ZG9sV3cyNytDVmpZSXN0bi9tM1JDd05UOWNSbjdvTmhrTkdXbng3MUNxdTJx?=
- =?utf-8?B?cUU3dzZRYytrNFVwUXRTQm1pS3FwTXJjc3NrSzRSVTBjMk1WbnJYTmJaMEcr?=
- =?utf-8?B?Nzg1b1ZhZFdMeVpUb3VZd3dTWDRPZ09hdGo2L2EyaHVkZ3JIdi8wTmNKTmZB?=
- =?utf-8?B?Z3U4dmJhdXZpdDY0UDkxdUNneHMyclhzc2ExRUFLT3Q4ZWRneFlOQUxJRFVI?=
- =?utf-8?B?NndhZ0lsb1U5ZnRxZVc1b29HY2JXYnVNaSt4Y1M1WVlEcUhJZzVVL1NtdEVB?=
- =?utf-8?B?KzV4S2Y5aFpQVVhtN0J2Z1JUY3BudzdKVmgrZWFUUTkxVE4rQTU3R015RUpR?=
- =?utf-8?B?eXk5TjRxbEdhQmIveDN6dXBCUTZiUW5EenlCZGIvWjl2RVJQR2J3U0prRHNG?=
- =?utf-8?B?RzBkYS82RTNtd1JoUThlTGYvL3orZlVsbEtVWk9kWHVsWDVTL1J5aVFDV0VT?=
- =?utf-8?B?ZWpSS2tVNmNoRjlnUG9XaUxDeXNYM2JUUTR1eWhWWUI4Rk5SUFlNTUV6aEJO?=
- =?utf-8?B?eGxjSzFTcWtCVkxuT1V1TVVPSjNnTHJ1TWc3aVQyZTVFOFdONGR0UVVmV0pP?=
- =?utf-8?B?UDk4RFhKdnhVWFkzcjBURnJZemtDcnZLNWJCcStHWEcvQmkzMDE2TlV4M2Fm?=
- =?utf-8?B?bjVQYjI5Z25xR3JpOHEvT1M1WWpoR1FrNXd2ZURHdjFHSDJnS290RjFFZC9M?=
- =?utf-8?B?SjlOYXVSZGszT0YydmNaZ3UyNDVFZ3dGaUxtU0M3NnRkSTdiWXM3WS9iT3Rw?=
- =?utf-8?B?WjN6bHZBN1Y2V0ZhcXd3bk16K3VDWlhTOUpYRXpsZERUTFVydlFBeS9DNFAv?=
- =?utf-8?B?QUtoSGxDaUJWS1llNmlVUDVJcHV5WnZCZ2UvdmszaUdsZy96cldEcnJHT2Uw?=
- =?utf-8?B?bUlUSTJvLytBV2liSVJ6L2xHZlpLWHpwS0NmK203R0c4d0V6VDFLbUphZlA0?=
- =?utf-8?B?Y2JoZ1pKWDNSUXMwbVNSbWhCTGRRN2pIVjZGQjc5NDcvTys5Um5lQTgzQmVm?=
- =?utf-8?B?N3EycVZja2M0K0Nwa1ZOVjhCWHhLZGhxekcrUTNmRHRJeHdac3ZFSnJ1SHdv?=
- =?utf-8?B?ckdndTc2SzVDRWxraG13SEE3aXNjSVRrMUpTUDRVcVNaRzhPZ01IR1JyM0tx?=
- =?utf-8?B?TGo0enFMczdMR3lnbTZTVzZNYmRTZnhvdDhPVVJXQTgzdGFFMWMzNFZWWUUr?=
- =?utf-8?B?aStsdjRiQlZVM1Ztby9SSTZzZlhzQ0FWZUhCNnBnMmtJSCtCZU0vM2hhVi9K?=
- =?utf-8?B?Q1FodVM3dGwzSkZ3V25jaUw3L1F2bUw4bVJsNys0OWRoZm9KZjNpbUtyemdy?=
- =?utf-8?B?eXBGQjZmNWZITTlkczVBUXRuLzNRNlUxZGdHSG8vK1RCQUdUR0FsQTZvTGlh?=
- =?utf-8?B?T09pMXlqQmlJK1A5VUphTVZmUmVRdVBNeFlwR3RpM1U4dUFyTElKS3F5VHVq?=
- =?utf-8?B?K0NmR0x6ZzJ6ci9rNXh3SlVpRjMrOFltU2lLZHB1TE5zb3lIcURaalNrc0dX?=
- =?utf-8?B?amxUUmUydExDTjNoZk8zdTVEL0tXY2dCZVZRSC9GclJsbFo4Z29KcVJ2dGt0?=
- =?utf-8?B?WWpvQTdtOTNyM2VEZzJ3MWQrbDhYUC9LVEp5Y2ltWVF6cStSS1VVTklWbHFD?=
- =?utf-8?B?TDNSdlZvcGRiOVVQSVJLQXY1R1BrdDRQdDUzTXZpYS9RR2k4Nm13UWh2K0xR?=
- =?utf-8?B?MERETUkrQVhCWStOUXhvU1VYaHpwTkl5djJWTTRGUlpHaHZ1T2IvK1RiaGZk?=
- =?utf-8?Q?8iwd9ntLjkkeJ/fPYTrlpk0+B?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 926daccc-b809-419e-9cb5-08dc7a24cb34
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB5743.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2024 06:02:42.8776
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SGQ8lV4Oqamdmqp5pRNsbIHGI4GZUW7H0CRWVICF0GChnaX6J3hOaC7YujwFXELCgFqQy1EkpTLaAm2jugWSbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB6899
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7yk6pkmeqxyudczq"
+Content-Disposition: inline
+In-Reply-To: <AM9PR04MB86045BD682A0362A7D463C5A95EA2@AM9PR04MB8604.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
+--7yk6pkmeqxyudczq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2024/5/22 2:50, George Stark wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> Hello Kelvin, Junyi
-> 
-> On 5/21/24 11:31, Kelvin Zhang via B4 Relay wrote:
->> From: Junyi Zhao <junyi.zhao@amlogic.com>
->>
->> This patch adds support for Amlogic S4 PWM.
-> 
-> Please take a look at
-> https://www.kernel.org/doc/html/v6.9/process/submitting-patches.html#describe-your-changes
-> 
-> It should be something like
-> Add support for Amlogic S4 PWM.
-> 
-> 
->>
->> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
->> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
->> ---
->>   drivers/pwm/pwm-meson.c | 53 
->> +++++++++++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 53 insertions(+)
->>
->> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
->> index b2f97dfb01bb..9fea28a51921 100644
->> --- a/drivers/pwm/pwm-meson.c
->> +++ b/drivers/pwm/pwm-meson.c
->> @@ -460,6 +460,51 @@ static int 
->> meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
->>       return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
->>   }
->>
->> +static void meson_pwm_s4_put_clk(void *data)
->> +{
->> +     int i;
->> +     struct meson_pwm *meson;
->> +     struct meson_pwm_channel *channel;
->> +
->> +     meson = (struct meson_pwm *)data;
-> You can initialize meson variable along with declaration; type casting
-> is not needed
-> 
->> +     for (i = 0; i < MESON_NUM_PWMS; i++) {
->> +             channel = &meson->channels[i];
->> +             clk_put(channel->clk);
->> +     }
-> you can save 3 lines just by using clk_put(meson->channels[i].clk);
-> 
->> +}
->> +
->> +static int meson_pwm_init_channels_meson_s4(struct pwm_chip *chip)
->> +{
->> +     int i, ret;
->> +     struct device *dev = pwmchip_parent(chip);
->> +     struct device_node *np = dev->of_node;
->> +     struct meson_pwm *meson = to_meson_pwm(chip);
->> +     struct meson_pwm_channel *channel;
->> +
->> +     for (i = 0; i < MESON_NUM_PWMS; i++) {
->> +             channel = &meson->channels[i];
->> +             channel->clk = of_clk_get(np, i);
->> +             if (IS_ERR(channel->clk)) {
->> +                     ret = PTR_ERR(channel->clk);
->> +                     dev_err_probe(dev, ret, "Failed to get clk\n");
->> +                     goto err;
->> +             }
->> +     }
->> +     ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk, meson);
->> +     if (ret)
->> +             return ret;
->> +
->> +     return 0;
->> +
->> +err:
->> +     while (--i >= 0) {
->> +             channel = &meson->channels[i];
->> +             clk_put(channel->clk);
->> +     }
->> +
->> +     return ret;
->> +}
->> +
->>   static const struct meson_pwm_data pwm_meson8b_data = {
->>       .parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->>       .channels_init = meson_pwm_init_channels_meson8b_legacy,
->> @@ -498,6 +543,10 @@ static const struct meson_pwm_data 
->> pwm_meson8_v2_data = {
->>       .channels_init = meson_pwm_init_channels_meson8b_v2,
->>   };
->>
->> +static const struct meson_pwm_data pwm_meson_s4_data = {
->> +     .channels_init = meson_pwm_init_channels_meson_s4,
->> +};
->> +
-> according to already existing soc-specific named vars and functions
-> new names should be
-> static const struct meson_pwm_data pwm_s4_data
-> and
-> static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
-> 
->>   static const struct of_device_id meson_pwm_matches[] = {
->>       {
->>               .compatible = "amlogic,meson8-pwm-v2",
->> @@ -536,6 +585,10 @@ static const struct of_device_id 
->> meson_pwm_matches[] = {
->>               .compatible = "amlogic,meson-g12a-ao-pwm-cd",
->>               .data = &pwm_g12a_ao_cd_data
->>       },
->> +     {
->> +             .compatible = "amlogic,meson-s4-pwm",
->> +             .data = &pwm_meson_s4_data
->> +     },
->>       {},
->>   };
->>   MODULE_DEVICE_TABLE(of, meson_pwm_matches);
->>
-> 
-> -- 
-> Best regards
-> George
-Thks for your suggestion. i will check it.
---
-Junyi
+On 21.05.2024 11:57:04, Pankaj Gupta wrote:
+> > > > > +
+> > > > > +	memset(s_info, 0x0, sizeof(*s_info));
+> > > > > +
+> > > > > +	if (priv->mem_pool_name)
+> > > > > +		get_info_data =3D get_phy_buf_mem_pool(dev,
+> > > > > +						     priv->mem_pool_name,
+> > > > > +						     &get_info_addr,
+> > > > > +						     ELE_GET_INFO_BUFF_SZ);
+> > > > > +	else
+> > > > > +		get_info_data =3D dmam_alloc_coherent(dev,
+> > > > > +						    ELE_GET_INFO_BUFF_SZ,
+> > > > > +						    &get_info_addr,
+> > > > > +						    GFP_KERNEL);
+> > > >
+> > > > It's better style to move the init of the dma memory into the probe
+> > > > function.
+> > >
+> > > It is not DMA init. It is DMA allocation.
+> >=20
+> > It's better style to move the allocation of the dma memory into the pro=
+be
+> > function.
+> >=20
+> The buffer 'get_info_data', is allocated and freed within this function.
+> This API is called multiple times:
+> - as part of probe.
+> - as part of suspend/resume.
+>=20
+> Why to keep the memory retained?
+
+I see. Then why do you allocate with dmam_alloc_coherent()?
+
+[...]
+
+> > > > > +int imx_ele_msg_send(struct se_if_priv *priv, void *mssg) {
+> > > > > +	bool is_cmd_lock_tobe_taken =3D false;
+> > > > > +	int err;
+> > > > > +
+> > > > > +	if (!priv->waiting_rsp_dev || priv->no_dev_ctx_used) {
+> > > > > +		is_cmd_lock_tobe_taken =3D true;
+> > > > > +		mutex_lock(&priv->se_if_cmd_lock);
+> > > > > +	}
+> > > > > +	scoped_guard(mutex, &priv->se_if_lock);
+> > > > > +
+> > > > > +	err =3D mbox_send_message(priv->tx_chan, mssg);
+> > > > > +	if (err < 0) {
+> > > > > +		dev_err(priv->dev, "Error: mbox_send_message failure.\n");
+> > > > > +		if (is_cmd_lock_tobe_taken)
+> > > > > +			mutex_unlock(&priv->se_if_cmd_lock);
+> > > >
+> > > > Only dropping the lock in case of failure doesn't look right to me.
+> > >
+> > > The callers of this function, takes the execution flow to aborting the
+> > > operation on getting return code < 0. No next action is expected under
+> > > this aborted operation. Unlocking the lock here is not an issue
+> > >
+> > > > It seems you should better move the lock to the callers of this fun=
+ction.
+> > >
+> > > Accepted, and moved to the caller of the function for:
+> > >    - locking
+> > >    - unlocking in case of error.
+> > >
+> > > Unlocking in the read API, once response is successfully received and
+> > > read.
+> >=20
+> > A better design would be: imx_ele_msg_rcv() imx_ele_msg_send() are
+> > expected to be called locked. Add lockdep_assert_held() to these functi=
+on to
+> > document/check this.
+> >=20
+> > The callers of imx_ele_msg_rcv() and imx_ele_msg_send() have to take ca=
+re
+> > of the locking.
+> >=20
+> > [...]
+> >=20
+> The locking/unlocking of se_if_cmd_lock, is taken care by the callers onl=
+y:
+> - imx_ele_msg_send_rcv calls both the functions:
+>   --imx_ele_msg_send.
+>   --imx_ele_msg_rcv.
+>=20
+> But the lockdep_assert_held, cannot be added to imx_ele_msg_send, as
+> its another caller function imx_ele_miscdev_msg_send calls if for
+> sending:
+>  --- command (here command lock is taken).
+>  --- response to a command (here command lock is not taken).
+
+miscdev is another patch.
+
+But why can't you use the same lock in imx_ele_miscdev_msg_send()?
+
+
+> > > > > +static const struct imx_se_node_info_list imx93_info =3D {
+> > > > > +	.num_mu =3D 1,
+> > > > > +	.soc_id =3D SOC_ID_OF_IMX93,
+> > > > > +	.info =3D {
+> > > > > +			{
+> > > > > +				.se_if_id =3D 2,
+> > > > > +				.se_if_did =3D 3,
+> > > > > +				.max_dev_ctx =3D 4,
+> > > > > +				.cmd_tag =3D 0x17,
+> > > > > +				.rsp_tag =3D 0xe1,
+> > > > > +				.success_tag =3D 0xd6,
+> > > > > +				.base_api_ver =3D MESSAGING_VERSION_6,
+> > > > > +				.fw_api_ver =3D MESSAGING_VERSION_7,
+> > > > > +				.se_name =3D "hsm1",
+> > > > > +				.mbox_tx_name =3D "tx",
+> > > > > +				.mbox_rx_name =3D "rx",
+> > > > > +				.reserved_dma_ranges =3D true,
+> > > > > +				.imem_mgmt =3D true,
+> > > > > +				.soc_register =3D true,
+> > > > > +			},
+> > > > > +	},
+> > > >
+> > > >
+> > > > Some (most?) members of these structs are the same. Why do you have
+> > > > this abstraction if it's not needed right now?
+> > >
+> > > It is needed as the values is different for different NXP SoC
+> > > compatible. It will be needed for NXP i.MX95 platform, whose code will
+> > > be next in pipeline.
+> >=20
+> > How does the imx95 .info look like?
+> >=20
+> Copied from the internal repo.
+> static const struct imx_info_list imx95_info =3D {
+>         .num_mu =3D 4,
+>         .soc_id =3D SOC_ID_OF_IMX95,
+>         .info =3D {
+>                         {
+>                                 .socdev =3D false,
+>                                 .mu_id =3D 2,
+>                                 .mu_did =3D 3,
+>                                 .max_dev_ctx =3D 4,
+>                                 .cmd_tag =3D 0x17,
+>                                 .rsp_tag =3D 0xe1,
+>                                 .success_tag =3D 0xd6,
+>                                 .base_api_ver =3D MESSAGING_VERSION_6,
+>                                 .fw_api_ver =3D MESSAGING_VERSION_7,
+>                                 .se_name =3D "hsm1",
+>                                 .mbox_tx_name =3D "tx",
+>                                 .mbox_rx_name =3D "rx",
+>                                 .pool_name =3D NULL,
+>                                 .reserved_dma_ranges =3D false,
+>                                 .init_fw =3D true,
+>                                 .v2x_state_check =3D true,
+>                                 .start_rng =3D ele_start_rng,
+>                                 .enable_ele_trng =3D true,
+>                                 .imem_mgmt =3D false,
+>                                 .mu_buff_size =3D 0,
+>                                 .fw_name_in_rfs =3D NULL,
+>                         },
+>                         {
+>                                 .socdev =3D false,
+>                                 .mu_id =3D 0,
+>                                 .mu_did =3D 0,
+>                                 .max_dev_ctx =3D 0,
+>                                 .cmd_tag =3D 0x17,
+>                                 .rsp_tag =3D 0xe1,
+>                                 .success_tag =3D 0xd6,
+>                                 .base_api_ver =3D 0x2,
+>                                 .fw_api_ver =3D 0x2,
+>                                 .se_name =3D "v2x_dbg",
+>                                 .pool_name =3D NULL,
+>                                 .mbox_tx_name =3D "tx",
+>                                 .mbox_rx_name =3D "rx",
+>                                 .reserved_dma_ranges =3D false,
+>                                 .init_fw =3D false,
+>                                 .v2x_state_check =3D true,
+>                                 .start_rng =3D v2x_start_rng,
+>                                 .enable_ele_trng =3D false,
+>                                 .imem_mgmt =3D false,
+>                                 .mu_buff_size =3D 0,
+>                                 .fw_name_in_rfs =3D NULL,
+>                         },
+>                         {
+>                                 .socdev =3D false,
+>                                 .mu_id =3D 4,
+>                                 .mu_did =3D 0,
+>                                 .max_dev_ctx =3D 4,
+>                                 .cmd_tag =3D 0x18,
+>                                 .rsp_tag =3D 0xe2,
+>                                 .success_tag =3D 0xd6,
+>                                 .base_api_ver =3D 0x2,
+>                                 .fw_api_ver =3D 0x2,
+>                                 .se_name =3D "v2x_sv0",
+>                                 .pool_name =3D NULL,
+>                                 .mbox_tx_name =3D "tx",
+>                                 .mbox_rx_name =3D "rx",
+>                                 .reserved_dma_ranges =3D false,
+>                                 .init_fw =3D false,
+>                                 .v2x_state_check =3D true,
+>                                 .start_rng =3D NULL,
+>                                 .enable_ele_trng =3D false,
+>                                 .imem_mgmt =3D false,
+>                                 .mu_buff_size =3D 16,
+>                                 .fw_name_in_rfs =3D NULL,
+>                         },
+>                         {
+>                                 .socdev =3D false,
+>                                 .mu_id =3D 6,
+>                                 .mu_did =3D 0,
+>                                 .max_dev_ctx =3D 4,
+>                                 .cmd_tag =3D 0x1a,
+>                                 .rsp_tag =3D 0xe4,
+>                                 .success_tag =3D 0xd6,
+>                                 .base_api_ver =3D 0x2,
+>                                 .fw_api_ver =3D 0x2,
+>                                 .se_name =3D "v2x_she",
+>                                 .pool_name =3D NULL,
+>                                 .mbox_tx_name =3D "tx",
+> 		   .mbox_rx_name =3D "rx",
+>                                 .reserved_dma_ranges =3D false,
+>                                 .init_fw =3D false,
+>                                 .v2x_state_check =3D true,
+>                                 .start_rng =3D NULL,
+>                                 .enable_ele_trng =3D false,
+>                                 .imem_mgmt =3D false,
+>                                 .mu_buff_size =3D 16,
+>                                 .fw_name_in_rfs =3D NULL,
+>                         },
+>                         {
+>                                 .socdev =3D false,
+>                                 .mu_id =3D 6,
+>                                 .mu_did =3D 0,
+>                                 .max_dev_ctx =3D 4,
+>                                 .cmd_tag =3D 0x1a,
+>                                 .rsp_tag =3D 0xe4,
+>                                 .success_tag =3D 0xd6,
+>                                 .base_api_ver =3D 0x2,
+>                                 .fw_api_ver =3D 0x2,
+>                                 .se_name =3D "v2x_she",
+>                                 .pool_name =3D NULL,
+>                                 .mbox_tx_name =3D "tx",
+>                                 .mbox_rx_name =3D "rx",
+>                                 .reserved_dma_ranges =3D false,
+>                                 .init_fw =3D false,
+>                                 .v2x_state_check =3D true,
+>                                 .start_rng =3D NULL,
+>                                 .enable_ele_trng =3D false,
+>                                 .imem_mgmt =3D false,
+>                                 .mu_buff_size =3D 256,
+>                                 .fw_name_in_rfs =3D NULL,
+>                         },
+>         }
+> };
+
+Just looking at _some_, the .cmd_tag, .rsp_tag and .success_tag look the
+same for all SoCs.
+
+[...]
+
+> Created a static variable g_soc_rev in the se_ctrl.c.
+> Accepted and will correct it in v2.
+>=20
+> >=20
+> > > > > +	if (info_list->soc_rev)
+> > > > > +		return err;
+> > > >
+> Will change the above condition to g_soc_rev.
+
+"g_" as is global? Don't do that. Use your priv!
+
+[...]
+
+> > > > > +
+> > > > > +	info_list->soc_rev =3D s_info.soc_rev;
+> > > > > +
+> > > > > +	if (!info->soc_register)
+> > > > > +		return 0;
+> > > > > +
+> > > > > +	attr =3D devm_kzalloc(dev, sizeof(*attr), GFP_KERNEL);
+> > > > > +	if (!attr)
+> > > > > +		return -ENOMEM;
+> > > > > +
+> > > > > +	if (s_info.minor_ver)
+> > > > > +		attr->revision =3D devm_kasprintf(dev, GFP_KERNEL, "%x.%x",
+> > > > > +					   s_info.major_ver,
+> > > > > +					   s_info.minor_ver);
+> > > > > +	else
+> > > > > +		attr->revision =3D devm_kasprintf(dev, GFP_KERNEL, "%x",
+> > > > > +					   s_info.major_ver);
+> > > > > +
+> > > > > +	switch (s_info.soc_id) {
+> > > > > +	case SOC_ID_OF_IMX8ULP:
+> > > > > +		attr->soc_id =3D devm_kasprintf(dev, GFP_KERNEL,
+> > > > > +					      "i.MX8ULP");
+> > > > > +		break;
+> > > > > +	case SOC_ID_OF_IMX93:
+> > > > > +		attr->soc_id =3D devm_kasprintf(dev, GFP_KERNEL,
+> > > > > +					      "i.MX93");
+> > > > > +		break;
+> > > > > +	}
+> > > > > +
+> > > > > +	err =3D of_property_read_string(of_root, "model",
+> > > > > +				      &attr->machine);
+> > > > > +	if (err) {
+> > > > > +		devm_kfree(dev, attr);
+> > > >
+> > > > Why do you do a manual cleanup of devm managed resources? Same
+> > > > applies to the other devm managed resources, too.
+> > > >
+> > > Used devm managed memory, as this function is called as part probe.
+> > > Post device registration, this devm managed memory is un-necessarily
+> > > blocked. It is better to release it as part of clean-up, under this
+> > > function only.
+> >=20
+> > Why do you allocate the memory with devm in the first place, if it's not
+> > needed after probe?
+>=20
+> Sorry to confuse you. Actually the devm_memory will be needed for the cas=
+e of soc_registration.
+> Meaning, memory with devm, will be needed post probing as well.
+>=20
+> If this function fails, the probing will fail too. It will be auto cleane=
+d.
+>=20
+> Accepted, will remove the devm_free in v2.
+
+If you don't need the memory past probe() allocate with kzalloc() and
+use kfree(). Only used managed resources for lifetimes beyond the probe
+function.
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--7yk6pkmeqxyudczq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmZMkxsACgkQKDiiPnot
+vG+Z/Af/WMnqhWM48LnZtU6kUIbY7cRacggeGQv2jj71QpNxkSQ62f9qkFrUh3rS
+Zmnt+uZAOghpnCADbwdGszNnOMR8saS83xmewg528L/7StvqR2/2N92ZGAfVC7Q1
+BEn0/fwyAGSWnvNLgmeSGi0gDd+LxVQVfrkhqxSPSYvLCcZMJh0Q0VBiHlv2ikqt
+Sf8hGPnZ5cyeNWzHucZ0luAWy2ilrU2fA9VUiuhrczVRJL4Rb6Tudswv7Dmb2DX2
+jHSD3/RViGgDHR4xUVQnV2BW43sS220cKg8xQ5xeHgtOlxo/PvVfMPbCyrpZZJ11
+Weuh3GM0jY/KBh4rxcm2VBE8FJOfgw==
+=R/M7
+-----END PGP SIGNATURE-----
+
+--7yk6pkmeqxyudczq--
 
