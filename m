@@ -1,170 +1,230 @@
-Return-Path: <devicetree+bounces-68028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22AAE8CA988
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:02:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B35D8CA992
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:04:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1332B2156B
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 08:02:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C131EB225A2
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 08:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF72A46B91;
-	Tue, 21 May 2024 08:02:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NBd534qG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56CA55C35;
+	Tue, 21 May 2024 08:04:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74D054762;
-	Tue, 21 May 2024 08:02:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACDD5490A;
+	Tue, 21 May 2024 08:04:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716278540; cv=none; b=eI9Ki5BONgxTB79JOwBpvtghxAoS/ybGnB+DIzrnrXIMXBQltXnu3lqOxckDrqgCYVCyVntFQ3QTzYfmlIXJhGnSVFSwLrpwwowEC+GHD1tOz2pQu5VSKPzmClQ6IPtEJitILqfixstOqlb8IFY4sJ7iQ80rgiRlEnUsPLHhwGA=
+	t=1716278650; cv=none; b=UpymlUSwnX60vZRSj/5U0pcMRNGDIhjNLQ1csyAAy+HN+2JDc3VHY3BMaU50oGjq+GSmT1CgIgFBx3eyI+8coMIxQR+/ssrrHiI+zLTIdJSM6IxOITnGG6mrBCig66TWqU3bo9RIKjcpk3VtdyVT5ku7vPkWa48+67oMwNKzMEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716278540; c=relaxed/simple;
-	bh=KSahs3ldXZzAAoo4YJC7zEMWf0t3JgGj4P52e6oIDEk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JwoiTSp/2zIYJfMUo1T596iHkc9BrQuZ4vDg/wAaS4ZT83RsG1NOBMy29glorE5IfeSqzRlvEPQFhSC5+ptWi5Yd4mvHZprTGLTdFD40Tr6Dy47osJzYIeiBde+lAE0F2d1RPDhLSSLrokAgheIxVx2iABz+plt+EtJ9HyX8zRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NBd534qG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74339C4AF07;
-	Tue, 21 May 2024 08:02:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716278540;
-	bh=KSahs3ldXZzAAoo4YJC7zEMWf0t3JgGj4P52e6oIDEk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NBd534qGql8kDsW+LAoUj/V4vtcYdQ8tRwXftoOb+LKJEt0bS/FnpITbWETFFeGm9
-	 LsQQFm8jzTyTrs9RoiHFASxhIf9hbD7l1oJUvi4DW56ZjtDEQzF2gVeKuLe7Olc60v
-	 9n/efYPhhw3pLi5UqKZGUCdl1Cw5759w5snO171KVJ/zvFqSQGfZkExH8IL/Yfyp8d
-	 zkczv/I3x99efihSJkM+Ddffy0Eo9m1MkuMSwr6S98LTUHxJdfKh4dpW58Kost1trk
-	 s+1BZ/KI3QO8CjkCpqxDrXEA5nCrQfYIA8zQRy/m+iOFKVVXHy9NPFkn9cBrsHJRvN
-	 G5uJ4kqrQq4IA==
-Message-ID: <20ab0093-5ae1-461b-962d-ada2e6ba52b9@kernel.org>
-Date: Tue, 21 May 2024 10:02:13 +0200
+	s=arc-20240116; t=1716278650; c=relaxed/simple;
+	bh=3ppxC9mGCjL0Jd9a6tjEAl+tSEy/SHN4VaC3i/duHIA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nzENww/MKBFeuPjBcPj8hGu7qo2rAgBb078SB7fbA5gDVXqJhTZ0K30wepHPNdtXHYfJgZFO1R63H+5RS5RXdXgZ/PR7HlMMgpRu9IvXuaUFUOSebwDwlqA7WZyX2VaesI+koplGm2Op1TrlKW12N3ZSqpXtksTBiprDRR1iqlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875abf.versanet.de ([83.135.90.191] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1s9KSz-0007vG-WB; Tue, 21 May 2024 10:03:26 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hjc@rock-chips.com, andy.yan@rock-chips.com,
+ xingyu.wu@starfivetech.com, p.zabel@pengutronix.de,
+ jack.zhu@starfivetech.com, shengyang.chen@starfivetech.com,
+ keith <keith.zhao@starfivetech.com>, Alex Bee <knaerzche@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ keith.zhao@starfivetech.com
+Subject: Re: [PATCH v4 00/10] drm/verisilicon : support DC8200 and inno hdmi
+Date: Tue, 21 May 2024 10:03:24 +0200
+Message-ID: <3222561.5fSG56mABF@diego>
+In-Reply-To: <20240521105817.3301-1-keith.zhao@starfivetech.com>
+References: <20240521105817.3301-1-keith.zhao@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] dt-bindings: mfd: syscon: Split and enforce
- documenting MFD children
-To: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lars Povlsen
- <lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Nishanth Menon <nm@ti.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20240519-dt-bindings-mfd-syscon-split-v1-0-aaf996e2313a@linaro.org>
- <20240519-dt-bindings-mfd-syscon-split-v1-6-aaf996e2313a@linaro.org>
- <20240520212025.GA1531862-robh@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240520212025.GA1531862-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 20/05/2024 23:20, Rob Herring wrote:
-> On Sun, May 19, 2024 at 08:42:21PM +0200, Krzysztof Kozlowski wrote:
->> Simple syscon nodes can be documented in common syscon.yaml, however
->> devices with simple-mfd compatible, thus with some children, should have
->> their own schema listing these children.  Such listing makes the binding
->> specific, allows better validation (so the incorrect child would not
->> appear in the simple-mfd node) and actually enforces repeated rule for
->> simple-mfd devices:
->>
->>   "simple-mfd" is only for simple devices, where the children do not
->>   depend on the parent.
->>
->> Currently the syscon+simple-mfd binding is quite broad and allows
->> any child or property, thus above rule cannot be enforced.
->>
->> Split the syscon.yaml binding into:
->> 1. Common syscon properties, used potentially by many bindings.
->> 2. Simple syscon devices (NO simple-mfd!).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Alex,
 
-...
-
-
->>  
->>  description: |
->>    System controller node represents a register region containing a set
->> @@ -19,122 +19,99 @@ description: |
->>  maintainers:
->>    - Lee Jones <lee@kernel.org>
->>  
->> -select:
->> -  properties:
->> -    compatible:
->> -      contains:
->> -        enum:
->> -          - syscon
->> -
->> -  required:
->> -    - compatible
->> -
+Am Dienstag, 21. Mai 2024, 12:58:07 CEST schrieb keith:
+> Verisilicon/DC8200 display controller IP has 2 display pipes and each 
+> pipe support a primary plane and a cursor plane . 
+> In addition, there are four overlay planes as two display pipes common resources.
 > 
-> Removing this is only going to work with v2024.04. The only way it 
-> works for older versions is listing all the compatibles here. That's a 
-> bit new for us to require it.
+> The first display pipe is bound to the inno HDMI encoder.
+> The second display pipe is bound to a simple encoder, which is used to
+> find dsi bridge by dts node. 
+> 
+> Patch 1 adds YAML schema for JH7110 display pipeline.
+> 
+> Patches 2 to 3 add inno common api and match the ROCKCHIP inno hdmi driver 
+> by calling the common api. 
+> The collating public interface is based on ROCKCHIP inno hdmi, 
+> and it can be resused by JH7110 inno hdmi.
+> Those common api are tested on rk-3128 SDK, which kernel version is 4.x. 
 
-I'll keep it, in such case. Anyway its removal is not really related to
-main concept of this patch.
+as you were working on the rk3128-inno-hdmi variant recently
+and I don't really have a rk3036 or rk3128 in working condition
+right now, could you give this series a try.
 
-Best regards,
-Krzysztof
+For reference, the full series is at lore:
+https://lore.kernel.org/dri-devel/20240521105817.3301-1-keith.zhao@starfivetech.com/
+
+and generalizes the inno-hdmi driver into the bridge model we
+have in a number of other places already.
+
+
+Thanks
+Heiko
+
+
+
+> step1, make sure the process is consistent with the latest kernel version.
+> step2, just remove the interface and add a common interface. 
+> 
+> Patches 4 to 8 add kms driver for dc8200 display controller.
+> 
+> Patch 9 adds inno hdmi support for JH7110 display pipeline.
+> 
+> Patch 10 adds a simple encoder.
+> 
+> This patchset should be applied on next branch.
+> 
+> V1:
+> Changes since v1:
+> - Further standardize the yaml file.
+> - Dts naming convention improved.
+> - Fix the problem of compiling and loading ko files.
+> - Use drm new api to automatically manage resources.
+> - Drop vs_crtc_funcs&vs_plane_funcs, subdivide the plane's help interface.
+> - Reduce the modifiers unused.
+> - Optimize the hdmi driver code
+> 
+> V2:
+> Changes since v2:
+> - fix the error about checking the yaml file.
+> - match drm driver GEM DMA API.
+> - Delete the custom crtc property .
+> - hdmi use drmm_ new api to automatically manage resources.
+> - update the modifiers comments.
+> - enabling KASAN, fix the error during removing module 
+> 
+> V3:
+> Changes since v3:
+> - Delete the custom plane property.
+> - Delete the custom fourcc modifiers.
+> - Adjust the calculation mode of hdmi pixclock.
+> - Add match data for dc8200 driver.
+> - Adjust some magic values.
+> - Add a simple encoder for dsi output.
+> 
+> V4:
+> Changes since v4:
+> - Delete the display subsystem module as all crtcs and planes are a driver.
+> - Delete the custom struct, directly use the drm struct data.
+> - Tidy up the inno hdmi public interface.
+> - Add a simple encoder for dsi output.
+> 
+> keith (10):
+>   dt-bindings: display: Add YAML schema for JH7110 display pipeline
+>   drm/bridge: add common api for inno hdmi
+>   drm/rockchip:hdmi: migrate to use inno-hdmi bridge driver
+>   drm/vs: Add hardware funcs for vs.
+>   drm/vs: add vs mode config init
+>   drm/vs: add vs plane api
+>   drm/vs: add ctrc fun
+>   drm/vs: add vs drm master driver
+>   drm/vs: Innosilicon HDMI support
+>   drm/vs: add simple dsi encoder
+> 
+>  .../display/bridge/innosilicon,inno-hdmi.yaml |   49 +
+>  .../display/rockchip/rockchip,inno-hdmi.yaml  |   27 +-
+>  .../starfive/starfive,dsi-encoder.yaml        |   92 ++
+>  .../starfive/starfive,jh7110-dc8200.yaml      |  169 +++
+>  .../starfive/starfive,jh7110-inno-hdmi.yaml   |   75 ++
+>  .../soc/starfive/starfive,jh7110-syscon.yaml  |    1 +
+>  MAINTAINERS                                   |   11 +
+>  drivers/gpu/drm/Kconfig                       |    2 +
+>  drivers/gpu/drm/Makefile                      |    1 +
+>  drivers/gpu/drm/bridge/Kconfig                |    2 +
+>  drivers/gpu/drm/bridge/Makefile               |    1 +
+>  drivers/gpu/drm/bridge/innosilicon/Kconfig    |    6 +
+>  drivers/gpu/drm/bridge/innosilicon/Makefile   |    2 +
+>  .../gpu/drm/bridge/innosilicon/inno-hdmi.c    |  587 +++++++++
+>  .../gpu/drm/bridge/innosilicon/inno-hdmi.h    |   97 ++
+>  drivers/gpu/drm/rockchip/Kconfig              |    1 +
+>  drivers/gpu/drm/rockchip/Makefile             |    2 +-
+>  drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c |  517 ++++++++
+>  .../{inno_hdmi.h => inno_hdmi-rockchip.h}     |   45 -
+>  drivers/gpu/drm/rockchip/inno_hdmi.c          | 1073 -----------------
+>  drivers/gpu/drm/verisilicon/Kconfig           |   23 +
+>  drivers/gpu/drm/verisilicon/Makefile          |   11 +
+>  .../gpu/drm/verisilicon/inno_hdmi-starfive.c  |  481 ++++++++
+>  .../gpu/drm/verisilicon/inno_hdmi-starfive.h  |  152 +++
+>  drivers/gpu/drm/verisilicon/vs_crtc.c         |  241 ++++
+>  drivers/gpu/drm/verisilicon/vs_crtc.h         |   17 +
+>  drivers/gpu/drm/verisilicon/vs_dc_hw.c        | 1060 ++++++++++++++++
+>  drivers/gpu/drm/verisilicon/vs_dc_hw.h        |  493 ++++++++
+>  drivers/gpu/drm/verisilicon/vs_drv.c          |  721 +++++++++++
+>  drivers/gpu/drm/verisilicon/vs_drv.h          |   98 ++
+>  drivers/gpu/drm/verisilicon/vs_modeset.c      |   36 +
+>  drivers/gpu/drm/verisilicon/vs_modeset.h      |   10 +
+>  drivers/gpu/drm/verisilicon/vs_plane.c        |  487 ++++++++
+>  drivers/gpu/drm/verisilicon/vs_plane.h        |   26 +
+>  drivers/gpu/drm/verisilicon/vs_simple_enc.c   |  190 +++
+>  drivers/gpu/drm/verisilicon/vs_simple_enc.h   |   25 +
+>  drivers/gpu/drm/verisilicon/vs_type.h         |   84 ++
+>  include/drm/bridge/inno_hdmi.h                |   69 ++
+>  38 files changed, 5840 insertions(+), 1144 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
+>  create mode 100644 drivers/gpu/drm/bridge/innosilicon/Kconfig
+>  create mode 100644 drivers/gpu/drm/bridge/innosilicon/Makefile
+>  create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
+>  create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.h
+>  create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
+>  rename drivers/gpu/drm/rockchip/{inno_hdmi.h => inno_hdmi-rockchip.h} (85%)
+>  delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+>  create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+>  create mode 100644 drivers/gpu/drm/verisilicon/inno_hdmi-starfive.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/inno_hdmi-starfive.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
+>  create mode 100644 include/drm/bridge/inno_hdmi.h
+> 
+> 
+
+
+
 
 
