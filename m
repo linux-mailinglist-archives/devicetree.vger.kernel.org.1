@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-68076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D6D8CAC36
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:29:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 036F48CAC3F
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:32:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FE51280CE2
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:29:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83F621F22231
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603D26AF88;
-	Tue, 21 May 2024 10:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8362E859;
+	Tue, 21 May 2024 10:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JQ8y2gNe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bxfk22n+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87392605CE
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF6B1BC53
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:32:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716287359; cv=none; b=u2c5pUYy6wU+nJRQoi0DlLJy5d0h5MaDH8kSwzyJNZPjDhx5H7GsvzCkQGAyedHvmOjRH8dUYP3HB5vieaeav1jJeFTi6LqJIFqwedQnCg3rqgTe7dHMW5CiB++1pm/kUDoceLYCBzx8zDXgP0k3SNaY3ibR3qwtPDq3VU5iebM=
+	t=1716287536; cv=none; b=Z9Pmtoh8vwh+O4tvJbd4CCxjnYPZ6C62RyOYzBoMc866KRJuaoaLw+jQ8MPQlIgktN5WYZNyqYZPmYLM1W/MhpLLLlquv5n6NpetvpPfXrB8xI4AWY3WAyLhlOL+MbO4kbsju5LyuWaVQpHqMGKyF+5N7h9mWOHE0c+6eLAezsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716287359; c=relaxed/simple;
-	bh=6cDP9PqZbX5zVmeH3VVzeesNNCjgqRnuAIRWdnpMu8A=;
+	s=arc-20240116; t=1716287536; c=relaxed/simple;
+	bh=HrkSTRpwzQrx25GBOwV9JMfsH7ZTLE5VmrQtBoPjVpw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XNfHWAwai7xBB0VFQHpRFJkW0p1sg6c9RE0JvS+z8lo1MYq6wVxQYLRilip9TayHMpX9yXl1bmm3ZDeHOsT7i/V84E3Mk3yyjXOaz7jtDmNnkfHFerUjqYNiLi53O+tSHL/O7/trvjzgWvrVVB/sOy7fWi1Hw/QhFUd8OwONnSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JQ8y2gNe; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:Content-Type; b=I3ATL+qP20THenc4CwsYVW01MqmHeNeZqxxvfdDgrSBiAzEDr4vkr1pEsLolz7ndXJrEoBP5QnqorcnTSkF3CHpKEOmHsOMES4HeJ3vMQXOoJB9PI2cMiYHwGzZB9BFc0N06lLueYfNrfM9rNR/tJIIAjYyrHler1B4pwaMfE20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bxfk22n+; arc=none smtp.client-ip=209.85.208.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41dc9c83e57so18253345e9.0
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:29:17 -0700 (PDT)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2e6792ea67fso60951911fa.1
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:32:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716287356; x=1716892156; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716287533; x=1716892333; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qi6lBdkdn1x7hzz8lAKSNRz9HZ/NDtP8vPjtnc51KQU=;
-        b=JQ8y2gNeHfBqxaEu8uaz7of466wbHwAmHmVI+rm7+vk0WHz4TCc4uX1CkgCmqzQlK9
-         jynt/HKsVYcRXHPBRtGuT4SP2uB+ryEgS2jn2pYjC7ni3LndSMRhwb01A2Dva/S+0bSQ
-         Kc0NcOiswQKWEaX/m5cEhcXZvjNZPSnw2vuIi9FU3lz8wOmMB6ug6Q926dGA+Zgt8WmC
-         o3tNNsAjJf20CW9tmneQtbo/bvqs+SRxNNjdRUlhYHeozi82fqlElCGkDzRmq5QAim/n
-         J0A+FNGuaov+5AWf119h70tIsSGH4RBxCFwXY12UJvGLzSMm09QU/6/VPMOkLcRAHnRV
-         kRbg==
+        bh=u8lwFU9i0vjaUsXdcqI1/oUBUKt6N0tUiifOIzySzKM=;
+        b=Bxfk22n+glHBHK1L7AE48NDSuaNLDn/z8eVd0AuYeqOCEPzmlNTS/bvc83QHaw229d
+         pcE8qCNpRoAP7WKToggGjmC+txda8DZvsHrO7UpwyFfNdfI6/JrQXx60KBal6SVHb8q3
+         Bkb/jBQ+wq6u6BMv9Trdhy94rXU+Dmsz3gpzz3rJuvwliYaW6zt2zIyHXottJDxk72Qb
+         fczw+ya1jD0wRDXUEptkUwZlSkclHRLYOBLjiB1K4E+n+foXrPTp16Miun0tXtGmSI6D
+         hDT56iw4En3v8+j14opMfDFXmcdHQwvLRiKF1FqGoZ4Xo37rAHkDTm5Gq712aPqV5LUh
+         hUQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716287356; x=1716892156;
+        d=1e100.net; s=20230601; t=1716287533; x=1716892333;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qi6lBdkdn1x7hzz8lAKSNRz9HZ/NDtP8vPjtnc51KQU=;
-        b=rYgoW6B8PDLAaq+9cD0+DGF+zbpIjcvHCkeZSQzBG6QeBnJ3Pj4s2gpWLNXXqgGP5u
-         iuuUave7r4lH68aYQEmMF0hE1m/oowlBlpw8F6CyQpFdYnzt5HYgmsIDEo7ZYIBP808v
-         L8WmPsRpx/H+acx5VMgB4IoPS72nQH98nplIhsoKBUoTdIF5ak2kfclmcirheVV2XT62
-         wYF5zY/J3thQVK4s+jR6rRTVn3k/OiOeeDaKEwMHBx4984wgA7TnVtPcdsCl9Voi0vws
-         /eqCHoN7CTjyQLlLdYHvAaXEBBylN0gyW6q2uEWaSyiLNQ2WT6vVFCs3oaYmvOvYJula
-         OJrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUckqiFLhW0wEQ2OOSN9+z6tyoUJblNc8hN2ZODSc5COPsccMQzYw/qOv2Ro8tYyw01RW8hoOJH2teozErzpKbeqEZbWcvwGa4HbQ==
-X-Gm-Message-State: AOJu0YxKmshfwX7btX2J68ROTQRLvK/QNj8oTwInuKtPkmdSI7fdxjxC
-	QvarM7rc9JZ9kd+Gx8soEk8wVX1XkvuTDgrVeNfLYubOyplZi1cEBvF3I+OJCrw=
-X-Google-Smtp-Source: AGHT+IEuALDTJLgAksEc+OW5M8y+Kwdqm97BVjihmA2Akzyi9nRmeA3aJbkkX+2zDKEQVZEcj8g1cA==
-X-Received: by 2002:a05:600c:470d:b0:41b:4506:9fd with SMTP id 5b1f17b1804b1-420e19d569bmr71549105e9.6.1716287355795;
-        Tue, 21 May 2024 03:29:15 -0700 (PDT)
+        bh=u8lwFU9i0vjaUsXdcqI1/oUBUKt6N0tUiifOIzySzKM=;
+        b=R6a9hg57zJkSxYMrLfJhXlMpxTIio2WQSQGcaektUqsSjNGv+Md9YhG86K06ilm5Cu
+         vw2fqFoFE++LMyTeNhyVaYGYijwUywm8VEPSGlzH6Z/N19WKABcWX96D2VddqngM6RT9
+         M2cWHy5tvrFv9lh9+cRwaS0Q83t8GNmgEb4b+UtALgYf5281rqp8rDgbSfyCShCDqSL3
+         TvX6p/w5/3dV9RRh2M07o/x2uQNUysCPFVtUGYGMTXe0zClX56RuneJ5ms7Yr++ji7t0
+         eNEwjhEH4NFBS0h1i2/5swubUwdqVRlcpy4lypnLgjyX9No7ZBs7RjvF2FkLsD75EWMU
+         kShA==
+X-Forwarded-Encrypted: i=1; AJvYcCXZI18L/kgrxY9yHtKPuLfHLvn6/mw8EpPJKCeOtG/dH5dOq4HqqUXaaRXsgB3GuGr1eOz/dVi+DYOiHWmQWa4KVeYz10azC5C2Lw==
+X-Gm-Message-State: AOJu0YzeUKias/6c4ORpG2pklCjpMAOSjoxz/6Y6t9rVsG9jIAjvU4Wl
+	bsVsFQ0vZxV6dUrqcV03nDoLF6hpF3+tuQ2zrV3xjmqVs9YcXz+4QJSQu670rTk=
+X-Google-Smtp-Source: AGHT+IE7rppITVfppMDERrnSg8fsdvBMSBAoSLOuZhaaxwoZ4C42vyQHDlcVAq2aaaWFiYwqNTVisQ==
+X-Received: by 2002:a2e:8794:0:b0:2d8:34ec:54e6 with SMTP id 38308e7fff4ca-2e5204ccd8fmr185946341fa.33.1716287532892;
+        Tue, 21 May 2024 03:32:12 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-420152a2a8asm358758905e9.45.2024.05.21.03.29.14
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42013bf1a5dsm356277615e9.30.2024.05.21.03.32.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 May 2024 03:29:15 -0700 (PDT)
-Message-ID: <70863d5c-65f8-4baa-99ce-8739ce47fac3@linaro.org>
-Date: Tue, 21 May 2024 12:29:13 +0200
+        Tue, 21 May 2024 03:32:12 -0700 (PDT)
+Message-ID: <a41c9684-6562-45bb-b009-1fe7b265f60e@linaro.org>
+Date: Tue, 21 May 2024 12:32:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +77,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] dt-bindings: spi: cadence: Add MRVL overlay
- bindings documentation for Cadence XSPI
+Subject: Re: [PATCH v4 3/5] spi: cadence: Add Marvell xSPI IP overlay changes
 To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
  linux-spi@vger.kernel.org, devicetree@vger.kernel.org
 Cc: broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  conor+dt@kernel.org, pthombar@cadence.com
 References: <20240509010523.3152264-1-wsadowski@marvell.com>
- <20240509010523.3152264-3-wsadowski@marvell.com>
+ <20240509010523.3152264-4-wsadowski@marvell.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,143 +130,77 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240509010523.3152264-3-wsadowski@marvell.com>
+In-Reply-To: <20240509010523.3152264-4-wsadowski@marvell.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 09/05/2024 03:05, Witold Sadowski wrote:
-> Add new bindings for v2 Marvell xSPI overlay:
-> mrvl,xspi-nor  compatible string
+> Add support for basic v2 Marvell overlay block. Support for basic
+> operation is added here: clock configuration, PHY configuration,
+> interrupt configuration(enabling)
+> Clock divider block is build on top of Cadence xSPI IP, and divides
+> external 800MHz clock. It allows only for a few different clock speeds
+> starting from 6.25MHz up to 200MHz.
+> PHY configuration can be read from device-tree, if parameter is not
+> present - safe defaults will be used..
+> In addition to handle interrupt propoerly driver must clear MSI-X
+> interrupt bit, in addition to clearing xSPI interrupt bit. Interrupt
+> masking must be disabled.
 
-Where?
-
-Why double space?
-
-subject prefix: spi goes first
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-
-> New compatible string to distinguish between orginal and modified xSPI
-> block
-> 
-> PHY configuration registers
-> Allow to change orginal xSPI PHY configuration values. If not set, and
-> Marvell overlay is enabled, safe defaults will be written into xSPI PHY
-> 
-> Optional base for xfer register set
-> Additional reg field to allocate xSPI Marvell overlay XFER block
-
-I have troubles reading this. Is this some sort of one long sentence or
-a list?
+Please use full sentences, properly wrapped, continued, readable. There
+are typos above, double full-stops and it looks like one sentence per
+paragraph... or some sort of list.
 
 > 
 > Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
 > ---
->  .../devicetree/bindings/spi/cdns,xspi.yaml    | 78 +++++++++++++++----
->  1 file changed, 65 insertions(+), 13 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> index eb0f92468185..094f8b7ffc49 100644
-> --- a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> @@ -17,22 +17,43 @@ description: |
+
+
+...
+
 >  
->  allOf:
->    - $ref: spi-controller.yaml#
-> +  - if:
-
-Move the allOf after required block.
-
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: marvell,cn10-xspi-nor
-> +    then:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: io
-> +            - const: sdma
-> +            - const: aux
-> +            - const: xferbase
-> +        reg:
-> +          items:
-> +            - description: address and length of the controller register set
-> +            - description: address and length of the Slave DMA data port
-> +            - description: address and length of the auxiliary registers
-> +            - description: address and length of the xfer registers
-> +    else:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: io
-> +            - const: sdma
-> +            - const: aux
-> +        reg:
-> +          items:
-> +            - description: address and length of the controller register set
-> +            - description: address and length of the Slave DMA data port
-> +            - description: address and length of the auxiliary registers
+>  	cdns_xspi = spi_controller_get_devdata(host);
+> @@ -565,23 +809,27 @@ static int cdns_xspi_probe(struct platform_device *pdev)
+>  	init_completion(&cdns_xspi->auto_cmd_complete);
+>  	init_completion(&cdns_xspi->sdma_complete);
 >  
->  properties:
->    compatible:
-> -    const: cdns,xspi-nor
-> -
-> -  reg:
-> -    items:
-> -      - description: address and length of the controller register set
-> -      - description: address and length of the Slave DMA data port
-> -      - description: address and length of the auxiliary registers
-
-Widest constraints stay here.
-
-> -
-> -  reg-names:
-> -    items:
-> -      - const: io
-> -      - const: sdma
-> -      - const: aux
-
-Widest constraints stay here.
-
-> +    enum:
-> +      - cdns,xspi-nor
-> +      - marvell,cn10-xspi-nor
->  
->    interrupts:
->      maxItems: 1
-> @@ -68,6 +89,37 @@ examples:
->                  reg = <0>;
->              };
->  
-> +            flash@1 {
-> +                compatible = "jedec,spi-nor";
-> +                spi-max-frequency = <75000000>;
-> +                reg = <1>;
-> +            };
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
+> +	cdns_xspi->mrvl_hw_overlay = drv_data->mrvl_hw_overlay;
 > +
-> +        spi@d0010000 {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            compatible = "marvell,cn10-xspi-nor";
-> +            reg = <0x0 0xa0010000 0x0 0x1040>,
-> +                  <0x0 0xb0000000 0x0 0x1000>,
-> +                  <0x0 0xa0020000 0x0 0x100>,
-> +                  <0x0 0xa0090000 0x0 0x100>;
+>  	ret = cdns_xspi_of_get_plat_data(pdev);
+>  	if (ret)
+>  		return -ENODEV;
+>  
+> -	cdns_xspi->iobase = devm_platform_ioremap_resource_byname(pdev, "io");
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	cdns_xspi->iobase = devm_ioremap_resource(dev, res);
 
-No need for new example for difference in one property.
+Why are you changing this to two calls? The wrapper is there on purpose.
+
+Anyway, does not look related to this patch.
+
+
+>  	if (IS_ERR(cdns_xspi->iobase)) {
+>  		dev_err(dev, "Failed to remap controller base address\n");
+>  		return PTR_ERR(cdns_xspi->iobase);
+>  	}
+>  
+> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sdma");
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+>  	cdns_xspi->sdmabase = devm_ioremap_resource(dev, res);
+>  	if (IS_ERR(cdns_xspi->sdmabase))
+>  		return PTR_ERR(cdns_xspi->sdmabase);
+>  	cdns_xspi->sdmasize = resource_size(res);
+>  
+> -	cdns_xspi->auxbase = devm_platform_ioremap_resource_byname(pdev, "aux");
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
+> +	cdns_xspi->auxbase = devm_ioremap_resource(dev, res);
+>  	if (IS_ERR(cdns_xspi->auxbase)) {
+>  		dev_err(dev, "Failed to remap AUX address\n");
+>  		return PTR_ERR(cdns_xspi->auxbase);
+> @@ -598,8 +846,12 @@ static int cdns_xspi_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+
 
 Best regards,
 Krzysztof
