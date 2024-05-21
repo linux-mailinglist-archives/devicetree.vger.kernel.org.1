@@ -1,85 +1,70 @@
-Return-Path: <devicetree+bounces-68226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498E28CB4C7
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:40:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C7F8CB4CC
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 22:43:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0244A2841F0
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:40:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2251284499
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:43:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4490014883E;
-	Tue, 21 May 2024 20:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7371A14883E;
+	Tue, 21 May 2024 20:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hDwHdGYG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Li6hJMQb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB8C208D0;
-	Tue, 21 May 2024 20:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440B453816;
+	Tue, 21 May 2024 20:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716324034; cv=none; b=rWD6X3kUlfxwoFRvYrEp3ObFNv3OZ80rGVA1ucAoM65Dg2HzAXB0jHegv4A11icZKtR8rjknlfxTJGWvWfE1mShL34f6x4OrSCqKEEmibvh3U12NRTnNpPdZ5tSAM5h6HPODtnM/lhj1Rpsy4KsKSSPFWQ4bqZGXBoN7mQnIMMA=
+	t=1716324189; cv=none; b=WTvfGTccwF8EF21qfv8MmL/9lpRTa91PmKsiOaxioDneDxs+uDnyyRk+eGqLwQ0IfgRj+A7xU7wUVJtMsCKhfB8pnwKu/cErDedaNjUNmIoOjr6Dsx9tb54SchVk2WngCKWYiVuaXf3ANHMkmXf+gjshCyDqk9iEPSMPdPoxQQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716324034; c=relaxed/simple;
-	bh=a7HBpYV952J/NzsIFy4t5Olu/Ny1r0SLPd7DBdGJaTc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Atn+TOcpdhOJmUY16Nlh2pE0bD9jK+WUqrZi5VdC7cILD5rjknfx5yeyJWMXHNXGWBibQihWde8dDqQDxYDkRKDjuIzA1aGErDa07sTXKvi7aQlozhl+WAEo2M6rOkm34njogmxbFpgoHL1Ts3hHJVsTu/eoYcwlLMtvjtupfM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hDwHdGYG; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1716324032; x=1747860032;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=a7HBpYV952J/NzsIFy4t5Olu/Ny1r0SLPd7DBdGJaTc=;
-  b=hDwHdGYGIx4gDiMbR+Q9sxdGcwBnCaQNiPAUEnmE5IYRwVmuQoSpgmJo
-   DuIPAMcJC0WoMfAnO6zI054Vcb4fWmCvd02WUN+aCkJhYfQ5f0pbTU1A4
-   2i6Wm3yXHJHAjxC4esDh8tIC7hZCBA6Ak9G8sNbzclXvcyuLeGZHzUTC/
-   TnYlFlS3+IE6ZUpP+CeoDyutMw2yGH9cTeL+F03NesngKEodohAfb646B
-   s6G1EkxrMeEMLLsAhpNLlNE13yDchW2Rt9SVpcuu/RaJYUQKhOqJsuZvn
-   VGTi5QH4AkoFtub0cwtF4o8+GJNVwenCJK8fyQCQ3xiUAhCu8VJjjLa5y
-   g==;
-X-CSE-ConnectionGUID: ZncMOTvfRGaEMEOCT5J5Sw==
-X-CSE-MsgGUID: 7x0DHDBVTZqgFH1GzzMeQQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="30068654"
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; 
-   d="scan'208";a="30068654"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2024 13:40:31 -0700
-X-CSE-ConnectionGUID: gobwC626TcO4ZqmEhMLEXA==
-X-CSE-MsgGUID: FYk2rclmRAKYeyzfQKofPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,178,1712646000"; 
-   d="scan'208";a="37813587"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by orviesa003.jf.intel.com with ESMTP; 21 May 2024 13:40:24 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1s9WHG-0000i1-1y;
-	Tue, 21 May 2024 20:40:21 +0000
-Date: Wed, 22 May 2024 04:39:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: keith <keith.zhao@starfivetech.com>, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	daniel@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
-	andy.yan@rock-chips.com, xingyu.wu@starfivetech.com,
-	p.zabel@pengutronix.de, jack.zhu@starfivetech.com,
-	shengyang.chen@starfivetech.com
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	s=arc-20240116; t=1716324189; c=relaxed/simple;
+	bh=u0/sWcPwXuz9mgx00NMaeZhDHXqwGJKGbChwT6UjuG4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=GE74IKs+VJ5dFKa2869EqZ2fhfwiBpHwF5CoHSL8nYPoJRvrLP73FUOJxKEtkI8s3EcVWY9ZEtRoX1pkslbBu890f/zGOQhSVAdoXZwVFzR6ENyLOooTEbBUtpB3KjVcmnl0Tow/eMlni51JK64O6drT57XhwT/UfgMEW5kcVio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Li6hJMQb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 834E9C2BD11;
+	Tue, 21 May 2024 20:43:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716324188;
+	bh=u0/sWcPwXuz9mgx00NMaeZhDHXqwGJKGbChwT6UjuG4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Li6hJMQbTrMgHsg42pYS8smfFsSbtFfS9jgMyV9jthdaRQnxkJn434yZjyLek+Aeh
+	 uA4w8YkD2zsjydT71t3hxPM8joM4bSLO0P783vytA3+yvJ6LE4cCq/qYTqcYJRTiKj
+	 FWlD+RipLYy/nfIMomXqoCUqdcwkxKBQkVSr2lr4NHA/NH5A2VgfpIdevXE/lyWpZR
+	 xPCBr9P/uNlmR1aV4mnV6WwC20ULoQzcCkKT4D4nr0ysBsvYE7YMvTA7DJwgRUvQ6k
+	 LIaSXIsplmceTaUMeVY2FvhtjixK9xm95WZWuMCynMyV56nP6EwVeJpbv2rDlL/40F
+	 Y3PHOmHg8dyjg==
+Date: Tue, 21 May 2024 15:43:06 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, keith.zhao@starfivetech.com
-Subject: Re: [PATCH v4 06/10] drm/vs: add vs plane api
-Message-ID: <202405220419.2XNzWyBP-lkp@intel.com>
-References: <20240521105817.3301-7-keith.zhao@starfivetech.com>
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Subject: Re: [PATCH v16 19/22] dt-bindings: PCI: Add StarFive JH7110 PCIe
+ controller
+Message-ID: <20240521204306.GA48525@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,52 +73,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240521105817.3301-7-keith.zhao@starfivetech.com>
+In-Reply-To: <20240328091835.14797-20-minda.chen@starfivetech.com>
 
-Hi keith,
+On Thu, Mar 28, 2024 at 05:18:32PM +0800, Minda Chen wrote:
+> Add StarFive JH7110 SoC PCIe controller dt-bindings. JH7110 using PLDA
+> XpressRICH PCIe host controller IP.
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-kernel test robot noticed the following build warnings:
+This really should have a Signed-off-by or an Acked-by from Kevin.
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on linus/master next-20240521]
-[cannot apply to robh/for-next rockchip/for-next v6.9]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/keith/dt-bindings-display-Add-YAML-schema-for-JH7110-display-pipeline/20240521-110316
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20240521105817.3301-7-keith.zhao%40starfivetech.com
-patch subject: [PATCH v4 06/10] drm/vs: add vs plane api
-config: m68k-randconfig-r133-20240522 (https://download.01.org/0day-ci/archive/20240522/202405220419.2XNzWyBP-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240522/202405220419.2XNzWyBP-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405220419.2XNzWyBP-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/verisilicon/vs_plane.c:83:30: sparse: sparse: symbol 'vs_plane_funcs' was not declared. Should it be static?
->> drivers/gpu/drm/verisilicon/vs_plane.c:339:37: sparse: sparse: symbol 'primary_plane_helpers' was not declared. Should it be static?
->> drivers/gpu/drm/verisilicon/vs_plane.c:345:37: sparse: sparse: symbol 'overlay_plane_helpers' was not declared. Should it be static?
->> drivers/gpu/drm/verisilicon/vs_plane.c:351:37: sparse: sparse: symbol 'cursor_plane_helpers' was not declared. Should it be static?
-
-vim +/vs_plane_funcs +83 drivers/gpu/drm/verisilicon/vs_plane.c
-
-    82	
-  > 83	const struct drm_plane_funcs vs_plane_funcs = {
-    84		.update_plane		= drm_atomic_helper_update_plane,
-    85		.disable_plane		= drm_atomic_helper_disable_plane,
-    86		.reset			= vs_plane_reset,
-    87		.atomic_duplicate_state = vs_plane_atomic_duplicate_state,
-    88		.atomic_destroy_state	= vs_plane_atomic_destroy_state,
-    89		.format_mod_supported	= vs_format_mod_supported,
-    90	};
-    91	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +PCIE DRIVER FOR STARFIVE JH71x0
+> +M:	Kevin Xie <kevin.xie@starfivetech.com>
+> +L:	linux-pci@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
 
