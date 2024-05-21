@@ -1,249 +1,203 @@
-Return-Path: <devicetree+bounces-68143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E358CAEF9
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 15:08:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA2B8CAF0A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 15:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29DCA283E3F
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:08:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCEF21F21449
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 201647FBC4;
-	Tue, 21 May 2024 13:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16340770FB;
+	Tue, 21 May 2024 13:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uqoFChUI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD087F49A
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 13:06:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339727D3F1
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 13:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716296766; cv=none; b=EW2Iunql6LtNOIuF9etRn0bd0JzUDrq+373FmwXXwRGkeHOPk5AayGgpE2/dJfIgcZ/PdXjVyhiJfclFHALBhBRhyq+l4bgTqBBkp12G3jUmAbKuO5Oo8AFO3HYtZ79du3m5bAMINj9vsVbCJDcn5inXmYaWgV8+//l9Br/AvpU=
+	t=1716296926; cv=none; b=n+oYt8McuWfhaa/F1RveAWlcxu3DFLarOxyztkhscWdg5R0CKHBqQHlU3Pybk9tWDHYIDIOQlxvh5FPVhn8tIqM9L3w0TSWyR9Ycs5uZhT7uu38Ww57U9KkK1onkBfYjzSDkYuEa0stLAux0F03ODWWgn+UN+PZZY+jC3Zzy5yM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716296766; c=relaxed/simple;
-	bh=Gm4Rfz371L48OCVFj/POrZrHcEmt4Wh36gFUtfw+L2A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bNVnnBIsPTyVVn0+cDkVT8b7gMoVOuKeyzsIKQ7R1iqBCssJGXrlJiAXyEBHSqaAv1TX6vhiYvRp35412wj7/nC+zE585uiZlASuTlKvK1YN4FCHJKwC6w1p2nkkf9EoOgO66lU1R+4DWBawUJaCIFp8VhgvhLYeNw2AiXBF85M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9PBi-0000Dp-Ik; Tue, 21 May 2024 15:05:54 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9PBh-002OPX-SC; Tue, 21 May 2024 15:05:53 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9PBh-009TFH-2X;
-	Tue, 21 May 2024 15:05:53 +0200
-Date: Tue, 21 May 2024 15:05:53 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Clark Wang <xiaoning.wang@nxp.com>
-Subject: Re: [PATCH 5/5] pwm: adp5585: Add Analog Devices ADP5585 support
-Message-ID: <xobmekjwqanow765yr42tsgknc5gc7szjublq6ywgbmoxovlr5@v3sofz5bmkol>
-References: <20240520195942.11582-1-laurent.pinchart@ideasonboard.com>
- <20240520195942.11582-6-laurent.pinchart@ideasonboard.com>
- <dl7a6puox5lc36fpto2fgyfgmpd3uboqc4lcfdtuaxzzsboqld@alw7vyi7pqjz>
- <20240521100922.GF16345@pendragon.ideasonboard.com>
+	s=arc-20240116; t=1716296926; c=relaxed/simple;
+	bh=Vo1WEyGGZPhdnMPdwMM9V9kHG3COuto8rHsF1dB412c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fR8KxBDlm7U31JWBK0FxsZfFBWxFWmkfWf71n8oAE7yk3HTTnsyQtt+vv0EiqQD6R7CNh15xjfMaRG5u3krXYK36MX7yt4wStCJubRFj3AHX2I71rWHXE9N4Y2vJWED26k6PEEf67Xd/aE5R7x83ZXJrKsOCrEl3wxmOI67xfpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uqoFChUI; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-61e0c2b5cd2so23344477b3.1
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 06:08:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716296923; x=1716901723; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=d2PojWB/4MiGFiYJ2E5IG22IJxNV6CKEtX3InCIg1mk=;
+        b=uqoFChUIvUq3OL/O30lMVoHetUHz3LZ1JxQ/2/tiGw9kmQytMElui9oDZX4sY5xvgZ
+         /ke97AQ5pb69SVfOU2B0ih8M0DbEVylS3HULirAwZG75uKaqppFwBRwbzkPQTywAteFy
+         eVWJOmyu/HwZyHBHrwZ3FFGbM0UNHZ3j1pS0kkN/m+o+z84+ODeIV/lJXrNJc9pOJ5UN
+         sWNCPnVxSYN5UnC1YWdNm23lsktSYU6hsifnxqU1s/v7q0mLbvmyWoJPZNU8narSvTum
+         Xpb4AG4VGqFKmSnTD9CKfgP3d5rTSRLj0L0+8mITvOHP+huR3Y/W7a94BAD1VwCCEdux
+         CMBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716296923; x=1716901723;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d2PojWB/4MiGFiYJ2E5IG22IJxNV6CKEtX3InCIg1mk=;
+        b=Csmntccxz7gy2wkacedb0Yz8Zkzjfggxe1iuRAehWMrtkM2RUE2QmKIEL7UrZfJrTh
+         alM/JKB4bKSiO5ZDO1dmCwNFODSfRPNEG+6B36tEghzYzOsXYgJmqsyxGmMEGDOIAgFF
+         nQAgWuCBXx25Q8/iZrRYzCiguB/uZj7UtYsL16VGJS9p+q/hjAiDUHJEQtHiabMaqhfy
+         BYwycly/2rXqP2U89Yl/wkgEQbVDVZbGSUAuII4SsvtP5Z2nQW13/OzHHQ1JGSAosK8J
+         4H443b2wrHAMX90NOr6JPKllOJFprYpj2/eM7p+id7r/ZxtDYzlZfWgIYmkRv6xXm1tq
+         TzMg==
+X-Forwarded-Encrypted: i=1; AJvYcCXQ0pcrBpJNY7NHAt//iJ6wb4x18zbft7pRKpPEnOYDQWq46v+EyDlkU+YuwMHUTWSvfu9fOeb2BEZkqCVKGuHnU06jbN4ER5BWwQ==
+X-Gm-Message-State: AOJu0Yw1Pi38dovQ8aC4N+dI24aTSiOKvn2oBAtyI0Tr5zN1nlcJTuc4
+	3VvrzsSEK2Gm1vwTi8E5WkI5yAZYfN8F3agXsWd1OIr6RCA8+WNzDNJlNNJkQ3iuMhrcROuDkwN
+	879RHmh7VbGXcxmgW5bz21EzWYgMDIa/xLSVNBQ==
+X-Google-Smtp-Source: AGHT+IH53renhcJQwt2txPS0pIBqqswFAEQrALUaZ6EkOExh3X0imx+VWniHPWvQCDwckXaGctQumizBOuMfw/NeB+E=
+X-Received: by 2002:a05:690c:7442:b0:622:f7df:aa0a with SMTP id
+ 00721157ae682-627972d3d56mr59212357b3.22.1716296923240; Tue, 21 May 2024
+ 06:08:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kumwfefmbg4urjq2"
-Content-Disposition: inline
-In-Reply-To: <20240521100922.GF16345@pendragon.ideasonboard.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20240521-qcom-firmware-name-v1-0-99a6d32b1e5e@linaro.org>
+ <20240521-qcom-firmware-name-v1-1-99a6d32b1e5e@linaro.org>
+ <a45b53f3-b2a5-4094-af5a-1281e0f94d2f@linaro.org> <CAA8EJprxYsoug0ipRHTmX45vaFLzJCUF0dQWOc=QLs4y6uZ1rA@mail.gmail.com>
+ <878r03csxn.fsf@kernel.org>
+In-Reply-To: <878r03csxn.fsf@kernel.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 21 May 2024 15:08:31 +0200
+Message-ID: <CAA8EJpqkgpCb57DGka0ckbPz=2YiaHzxmiNzG39ad5y6smgO5A@mail.gmail.com>
+Subject: Re: [PATCH 01/12] soc: qcom: add firmware name helper
+To: Kalle Valo <kvalo@kernel.org>
+Cc: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Loic Poulain <loic.poulain@linaro.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, wcn36xx@lists.infradead.org, 
+	linux-wireless@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 21 May 2024 at 13:20, Kalle Valo <kvalo@kernel.org> wrote:
+>
+> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+>
+> > On Tue, 21 May 2024 at 12:52, <neil.armstrong@linaro.org> wrote:
+> >>
+> >> On 21/05/2024 11:45, Dmitry Baryshkov wrote:
+> >> > Qualcomm platforms have different sets of the firmware files, which
+> >> > differ from platform to platform (and from board to board, due to the
+> >> > embedded signatures). Rather than listing all the firmware files,
+> >> > including full paths, in the DT, provide a way to determine firmware
+> >> > path based on the root DT node compatible.
+> >>
+> >> Ok this looks quite over-engineered but necessary to handle the legacy,
+> >> but I really think we should add a way to look for a board-specific path
+> >> first and fallback to those SoC specific paths.
+> >
+> > Again, CONFIG_FW_LOADER_USER_HELPER => delays.
+>
+> To me this also looks like very over-engineered, can you elaborate more
+> why this is needed? Concrete examples would help to understand better.
 
---kumwfefmbg4urjq2
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sure. During the meeting last week Arnd suggested evaluating if we can
+drop firmware-name from the board DT files. Several reasons for that:
+- DT should describe the hardware, not the Linux-firmware locations
+- having firmware name in DT complicates updating the tree to use
+different firmware API (think of mbn vs mdt vs any other format)
+- If the DT gets supplied by the vendor (e.g. for
+SystemReady-certified devices), there should be a sync between the
+vendor's DT, linux kernel and the rootfs. Dropping firmware names from
+DT solves that by removing one piece of the equation
 
-Hello,
+Now for the complexity of the solution. Each SoC family has their own
+firmware set. This includes firmware for the DSPs, for modem, WiFi
+bits, GPU shader, etc.
+For the development boards these devices are signed by the testing key
+and the actual signature is not validated against the root of trust
+certificate.
+For the end-user devices the signature is actually validated against
+the bits fused to the SoC during manufacturing process. CA certificate
+(and thus the fuses) differ from vendor to vendor (and from the device
+to device)
 
-[dropping Alexandru Ardelean from Cc as their address bounces]
+Not all of the firmware files are a part of the public linux-firmware
+tree. However we need to support the rootfs bundled with the firmware
+for different platforms (both public and vendor). The non-signed files
+come from the Adreno GPU and can be shared between platforms. All
+other files are SoC-specific and in some cases device-specific.
 
-On Tue, May 21, 2024 at 01:09:22PM +0300, Laurent Pinchart wrote:
-> On Tue, May 21, 2024 at 10:51:26AM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Mon, May 20, 2024 at 10:59:41PM +0300, Laurent Pinchart wrote:
-> > > +	ret =3D regmap_update_bits(adp5585_pwm->regmap, ADP5585_GENERAL_CFG,
-> > > +				 ADP5585_OSC_EN, ADP5585_OSC_EN);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	return 0;
-> >=20
-> > The last four lines are equivalent to
-> >=20
-> > 	return ret;
->=20
-> I prefer the existing code but can also change it.
+So for example the SDM845 db845c (open device) loads following firmware files:
+Not signed:
+- qcom/a630_sqe.fw
+- qcom/a630_gmu.bin
 
-Well, I see the upside of your approach. If this was my only concern I
-wouldn't refuse to apply the patch.
+Signed, will work for any non-secured sdm845 device:
+- qcom/sdm845/a630_zap.mbn
+- qcom/sdm845/adsp.mbn
+- qcom/sdm845/cdsp.mbn
+- qcom/sdm485/mba.mbn
+- qcom/sdm845/modem.mbn
+- qcom/sdm845/wlanmdsp.mbn (loaded via TQFTP)
+- qcom/venus-5.2/venus.mbn
 
-> > > +	regmap_update_bits(adp5585_pwm->regmap, ADP5585_GENERAL_CFG,
-> > > +			   ADP5585_OSC_EN, 0);
-> > > +}
-> > > +
-> > > +static int pwm_adp5585_apply(struct pwm_chip *chip,
-> > > +			     struct pwm_device *pwm,
-> > > +			     const struct pwm_state *state)
-> > > +{
-> > > +	struct adp5585_pwm_chip *adp5585_pwm =3D to_adp5585_pwm_chip(chip);
-> > > +	u32 on, off;
-> > > +	int ret;
-> > > +
-> > > +	if (!state->enabled) {
-> > > +		guard(mutex)(&adp5585_pwm->lock);
-> > > +
-> > > +		return regmap_update_bits(adp5585_pwm->regmap, ADP5585_PWM_CFG,
-> > > +					  ADP5585_PWM_EN, 0);
-> > > +	}
-> > > +
-> > > +	if (state->period < ADP5585_PWM_MIN_PERIOD_NS ||
-> > > +	    state->period > ADP5585_PWM_MAX_PERIOD_NS)
-> > > +		return -EINVAL;
-> >=20
-> > Make this:
-> >=20
-> > 	if (state->period < ADP5585_PWM_MIN_PERIOD_NS)
-> > 		return -EINVAL;
-> >=20
-> > 	period =3D min(ADP5585_PWM_MAX_PERIOD_NS, state->period)
-> > 	duty_cycle =3D min(period, state->period);
->=20
-> I haven't been able to find documentation about the expected behaviour.
-> What's the rationale for returning an error if the period is too low,
-> but silently clamping it if it's too high ?
+Signed, works only for DB845c.
+- qcom/sdm845/Thundercomm/db845c/slpi.mbn
 
-Well, it's only implicitly documented in the implementation of
-PWM_DEBUG. The reasoning is a combination of the following thoughts:
+In comparison, the SDM845 Pixel-3 phone (aka blueline) should load the
+following firmware files:
+- qcom/a630_sqe.fw (the same, non-signed file)
+- qcom/a630_gmu.bin (the same, non-signed file)
+- qcom/sdm845/Google/blueline/a630_zap.mbn
+- qcom/sdm845/Google/blueline/adsp.mbn
+- qcom/sdm845/Google/blueline/cdsp.mbn
+- qcom/sdm845/Google/blueline/ipa_fws.mbn
+- qcom/sdm845/Google/blueline/mba.mbn
+- qcom/sdm845/Google/blueline/modem.mbn
+- qcom/sdm845/Google/blueline/venus.mbn
+- qcom/sdm845/Google/blueline/wlanmdsp.mbn
+- qcom/sdm845/Google/blueline/slpi.mbn
 
- - Requiring exact matches is hard to work with, so some deviation
-   between request and configured value should be allowed.
- - Rounding in both directions has strange and surprising effects. The
-   corner cases (for all affected parties (=3Dconsumer, lowlevel driver
-   and pwm core)) are easier if you only round in one direction.
-   One ugly corner case in your suggested patch is:
-   ADP5585_PWM_MAX_PERIOD_NS corresponds to 0xffff clock ticks.
-   If the consumer requests period=3D64000.2 clock ticks, you configure
-   for 64000. If the consumer requests period=3D65535.2 clock ticks you
-   return -EINVAL.
-   Another strange corner case is: Consider a hardware that can
-   implement the following periods 499.7 ns, 500.2 ns, 500.3 ns and then
-   only values >502 ns.
-   If you configure for 501 ns, you'd get 500.3 ns. get_state() would
-   tell you it's running at 500 ns. If you then configure 500 ns you
-   won't get 500.3 ns any more.
- - If you want to allow 66535.2 clock ticks (and return 65535), what
-   should be the maximal value that should yield 65535? Each cut-off
-   value is arbitrary, so using \infty looks reasonable (to me at
-   least).
- - Rounding down is easier than rounding up, because that's what C's /
-   does. (Well, this is admittedly a bit arbitrary, because if you round
-   down in .apply() you have to round up in .get_state().)
+The Lenovo Yoga C630 WoS laptop (SDM850 is a variant of SDM845) uses
+another set of files:
+- qcom/a630_sqe.fw (the same, non-signed file)
+- qcom/a630_gmu.bin (the same, non-signed file)
+- qcom/sdm850/LENOVO/81JL/qcdxkmsuc850.mbn
+- qcom/sdm850/LENOVO/81JL/qcadsp850.mbn
+- qcom/sdm850/LENOVO/81JL/qccdsp850.mbn
+- qcom/sdm850/LENOVO/81JL/ipa_fws.elf
+- qcom/sdm850/LENOVO/81JL/qcdsp1v2850.mbn
+- qcom/sdm850/LENOVO/81JL/qcdsp2850.mbn
+- qcom/sdm850/LENOVO/81JL/qcvss850.mbn
+- qcom/sdm850/LENOVO/81JL/wlanmdsp.mbn
+- qcom/sdm850/LENOVO/81JL/qcslpi850.mbn
 
-> > round-closest is wrong. Testing with PWM_DEBUG should point that out.
-> > The right algorithm is:
-> >=20
-> > 	on =3D duty_cycle / (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ)
-> > 	off =3D period / (NSEC_PER_SEC / ADP5585_PWM_OSC_FREQ_HZ) - on
-> >=20
-> >=20
-> > > +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-> > > +		swap(on, off);
-> >=20
-> > Uhh, no. Either you can do inverted polarity or you cannot. Don't claim
-> > you can.
->=20
-> OK, but what's the rationale ? This is also an area where I couldn't
-> find documentation.
+If we look at one of the recent platforms, e.g. SM8650-QRD, this list
+also grows up:
+- qcom/gen70900_sqe.fw (generic, non-signed)
+- qcom/gmu_gen70900.bin (generic, non-signed)
+- qcom/sm8650/gen70900_zap.mbn
+- qcom/sm8650/adsp.mbn
+- qcom/sm8650/adsp_dtb.mbn
+- qcom/sm8650/cdsp.mbn
+- qcom/sm8650/cdsp_dtb.mbn
+- qcom/sm8650/ipa_fws.mbn
+- qcom/sm8650/modem.mbn
+- qcom/sm8650/modem_dtb.mbn
+- qcom/sm8650/vpu33_4v.mbn (or maybe qcom/vpu-33/vpu_4v.mbn)
 
-I don't have a good rationale here. IMHO this inverted polarity stuff is
-only a convenience for consumers because the start of the period isn't
-visible from the output wave form (apart from (maybe) the moment where
-you change the configuration) and so
-
-	.period =3D 5000, duty_cycle =3D 1000, polarity =3D PWM_POLARITY_NORMAL
-
-isn't distinguishable from
-
-	.period =3D 5000, duty_cycle =3D 4000, polarity =3D PWM_POLARITY_INVERSED
-
-=2E But it's a historic assumption of the pwm core that there is a
-relevant difference between the two polarities and I want at least a
-consistent behaviour among the lowlevel drivers. BTW, this convenience
-is the reason I'm not yet clear how I want to implemement a duty_offset.
-
-> > > +	ret =3D devm_pwmchip_add(&pdev->dev, &adp5585_pwm->chip);
-> > > +	if (ret) {
-> > > +		mutex_destroy(&adp5585_pwm->lock);
-> > > +		return dev_err_probe(&pdev->dev, ret, "failed to add PWM chip\n");
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void adp5585_pwm_remove(struct platform_device *pdev)
-> > > +{
-> > > +	struct adp5585_pwm_chip *adp5585_pwm =3D platform_get_drvdata(pdev);
-> > > +
-> > > +	mutex_destroy(&adp5585_pwm->lock);
-> >=20
-> > Huh, this is a bad idea. The mutex is gone while the pwmchip is still
-> > registered. AFAIK calling mutex_destroy() is optional, and
-> > adp5585_pwm_remove() can just be dropped. Ditto in the error paths of
-> > .probe().
->=20
-> mutex_destroy() is a no-op when !CONFIG_DEBUG_MUTEXES. When the config
-> option is selected, it gets more useful. I would prefer moving away from
-> the devm_* registration, and unregister the pwm_chip in .remove()
-> manually, before destroying the mutex.
-
-In that case I'd prefer a devm_mutex_init()?!
-=20
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---kumwfefmbg4urjq2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZMnDAACgkQj4D7WH0S
-/k6cSgf9GGbNJK6nrF2obOZaaHxRDIpOYDcxw0EnZdOniUP0LlmCDHna8Awg+NAZ
-XMkcq0a60qCSMNDLSJqjm8mF4zwWmlUl9NLyRIjptLAM7g8D5N8MkPsxPIfXcA2o
-KeC8zxOriHRK5Pju5wMXdVg4Vkmre8i5GgWHqH4dGcJILfFtU+xiAy5J9S9RYfyU
-xI67jpvDLuAfknGQcNGpaHrS0Z1MkrcG7yr1IJdyfu6VTDiW7RvH6SUufd004lfL
-w1uO2vXMAHO9lmKgnTT8j6u2edjxyuWVLZPn71yVTqAZ5aPaWPAQCV5Qbyd3sgJY
-nTjKK/hJUb8bN5cFPij9tjhFMwlN2Q==
-=VRiY
------END PGP SIGNATURE-----
-
---kumwfefmbg4urjq2--
+-- 
+With best wishes
+Dmitry
 
