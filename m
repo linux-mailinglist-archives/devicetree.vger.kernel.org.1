@@ -1,132 +1,154 @@
-Return-Path: <devicetree+bounces-68107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04FB38CADBE
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE78F8CADA7
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 13:53:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B05F72836BE
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:57:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E446280E23
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 11:53:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659A6762FF;
-	Tue, 21 May 2024 11:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 458C473186;
+	Tue, 21 May 2024 11:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Sd76a240"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="evKcC3YT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A30076035;
-	Tue, 21 May 2024 11:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8840047A74;
+	Tue, 21 May 2024 11:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716292641; cv=none; b=sWJLgjIlFOopM1MGz6u33/W8Z9+qBMvWsJnR1k+JvO7Yw96lltquQLjv55hXGCoTwIWMfhYn8fBADHz3F2NT2uT3oEZeTI2INcOGWcEL+l3586t+Rb2sp2rgw/UPhNZpktZHtlU3wpu9EAfI3FYfmn4WM4johgJiSWAnKPZne/w=
+	t=1716292405; cv=none; b=QMTuXdbmEhpG6IZ2BX7mH+CUSjsROhedc48BOFO+wVHZltT1+2owwTjdQD/4o/sIp0nstPsBvoOjrvk2XqsQckyFcjJ2ouDAPQAJ4+WW9yb7TRQuElNknl7l0/h5MBY+yJSJlbMMXcGsjrF9DLSc07ylaWeBz6mHc8Zh+oOpRkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716292641; c=relaxed/simple;
-	bh=myNuxgtOJqDXVT+HSRgtuecaI5gwxkJHVxARIgcJq/U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mBljf0STnfFvKKv/zCx7XKaO8QOHpQ1JUQYlg5vKWnfNei/drnMeQT/iQzbaHdCrIUfVpp3+oB8g8j7SXdr5BQ76DkYjhWf02KyBkToHh3UJbdtWb2M79WWMpPt9k7ZxGrrVhFv4CcpEWWk+XAxM6+VKoDMJqZzzpdS3LKnVa7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Sd76a240; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1716292614; x=1716897414; i=wahrenst@gmx.net;
-	bh=MKxjmztR/jHkdYlpsG3v22N+vXjLHvDaMqP5hmX66zU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=Sd76a240RQLy/1ECWGoEKxh2IQ4HK02TpUyj+SKcx3EU3iOvkrk5TyBp/AIg2evQ
-	 anjIp0LmZYguOujWpFjRZJwlvEjHpWTojzzmo5zEt5YGCJzMDEC0XIKK22JhLmKfk
-	 FZAAPtOUGMTSfNt7VHuUWx1VDoffDDD+R888PdMbwFrazVhtLEKe3gsmD11d5NRUi
-	 3auJe4M3OwtABwsKnrBwib2yY6+3Mq8f5lvfY2kAy9CnxwbtdG7jICCt6zjwEIOQh
-	 qQ9zUN1KPCt0o9GQSS3aL/tuAoKrxuez+I3SuBnuVErLLzg1RLi0ZFwQGJqrziBgr
-	 m1gMlPJ4um/m2PTafA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.126] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MmDIu-1srHaI0niq-00i8j9; Tue, 21
- May 2024 13:56:54 +0200
-Message-ID: <bc1eb98c-9d49-4424-ab89-16be6c67c3f5@gmx.net>
-Date: Tue, 21 May 2024 13:56:52 +0200
+	s=arc-20240116; t=1716292405; c=relaxed/simple;
+	bh=bgbL4qkqVJQCDQnzAo0jbcRu2jQl8c9c7m8V4LS1btE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=GzIpVgc72NugRVO3eIrhoXnI+zAjVi8L0xTvdYVl8YRXZKjAqlTfTuhxkw8oHPPixgX/LS1vQmrkqIb4i6zvyAgYa6JCc7705CBZjSbsRW9S06UhZROgTCoPPnNugBNwCL7y5EWgAVupvS2OlPM1G48naSIetWYOma4PYCv4lPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=evKcC3YT; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-51f40b5e059so5316571e87.0;
+        Tue, 21 May 2024 04:53:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716292402; x=1716897202; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=bgbL4qkqVJQCDQnzAo0jbcRu2jQl8c9c7m8V4LS1btE=;
+        b=evKcC3YT3e6hmG0mTrY/b08rmdDx+blHrFleFIXtUyy6Xzjz8qjrnlifG79srxu+OV
+         e8tepVEz3Gob24UJjRduGmsU+tB3QUcQwpPUEZGSaIbNvXWZUUadqkIqNxDYudvRr3QN
+         gdHGGzxXPZNU4jL6LdHDktifDmFyYp8AnNWIG7wGEJbQuuMpzG60y9rkoqbDwGj3u27l
+         c+NXJkG7i5O7fssuQyQU4i/h2ZgsrJV3DxUyIDAsF7m91wckMKZrDMx1sCPw5LPnpkYm
+         hNKxLJLZfTEoWwGdq89ck37uoRyAdwBTPj3/k4vJ0p13Kzj9GNGcTR7AwFxENLV/mlmf
+         2RWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716292402; x=1716897202;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bgbL4qkqVJQCDQnzAo0jbcRu2jQl8c9c7m8V4LS1btE=;
+        b=Huyb5cM31d+A6yEhWPd6uIJ2Lh17mgY8/fscOJ32omYUoYd6U/gg/BY+bqfu6wPI2U
+         a08UofU9xixhFU85kGztC+HG3EK6GnU6N5ZsQjof5zA/OXhtsDz2cg7Sr9LD9UauALR0
+         a/p/AGl9uiBRpdYxdqErnJeQXuYZFUIWm0Z7pKrua3vuXS+yKObQzCgpQvk820I4ZVLQ
+         yIH/OspvjUDyppJ1eGBmoW1VD+Uj2QISi9VO07z6x2d2kcuWsEvfq8+gJ0KXdFRokWaF
+         ZhaFsrPAS2yIMVmNv6PT5tju4uCaKXyKUCO7kC5zSTlsNn3dWhMPICdULAMtaXWvgD0O
+         HgVw==
+X-Forwarded-Encrypted: i=1; AJvYcCUlb7nlsLFRYaT2KY5AZoP4Fii+ja6k6vSRti8fYti3gmG63XEIHFr9yLrhNFWZrpIjW2GyxQVbdEvZZtVYJypGIRKzUvQoU0AKIrAQaq6vITRx3m6WeQ78gTf8spCMsIY7sLqeYVj7VdkRDrXsLxlyPEzLRBi5j8gnxdrp7n02FE7NDN4xEf8ra0MGR0AvWbwkcuLNiT2r7ETnfdUXcg==
+X-Gm-Message-State: AOJu0YwZ2ebEpV/JnO+6HzttBLqRKM2puX713KN8GBA0syMBJ/bHWL10
+	lQq9StqN5+Z9K8NYBsfzZ+HFMB4hShOzK8dJwxLCsoNiIjODDuo7
+X-Google-Smtp-Source: AGHT+IHvcCZyF+4F7NuebEMVZAlg5/2Fo32USFCmrjE0s61wGflmsUuW+CUAJ2Cuu2lxlU0PcU10WA==
+X-Received: by 2002:a05:6512:3c84:b0:523:a5b3:5e21 with SMTP id 2adb3069b0e04-523a5b35fe3mr13753664e87.8.1716292401392;
+        Tue, 21 May 2024 04:53:21 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1c:c500:994e:fbde:478:1ce1? (p200300f6ef1cc500994efbde04781ce1.dip0.t-ipconnect.de. [2003:f6:ef1c:c500:994e:fbde:478:1ce1])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5752c2e2f2dsm4201664a12.29.2024.05.21.04.53.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 May 2024 04:53:21 -0700 (PDT)
+Message-ID: <a35a8063dd3488093be9d1596268856fbcc02177.camel@gmail.com>
+Subject: Re: [PATCH RFC v2 2/8] spi: add basic support for SPI offloading
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Jonathan Cameron
+	 <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno
+ =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
+	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
+	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org
+Date: Tue, 21 May 2024 13:57:03 +0200
+In-Reply-To: <20240510-dlech-mainline-spi-engine-offload-2-v2-2-8707a870c435@baylibre.com>
+References: 
+	<20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com>
+	 <20240510-dlech-mainline-spi-engine-offload-2-v2-2-8707a870c435@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: mmc: Add support for BCM2712 SD host
- controller
-To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Marc Zyngier <maz@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org
-References: <cover.1716277695.git.andrea.porta@suse.com>
- <d7c8bc0143c6b8c8b313413860840ae5bf2dc22a.1716277695.git.andrea.porta@suse.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <d7c8bc0143c6b8c8b313413860840ae5bf2dc22a.1716277695.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:RemX3IIs/au4ReeRx6ZGARXTRzVD7neD4wJdYjz7HTzsO8Ft2Ef
- XCUSPctDOQfm9J9h5aNR9coXl+VHWpZIUG0WIBSG2kfrJorlqdQ/Klkm3/M3iU10vDSwNm9
- eXgM6/Kt5gRB/+RMnUMQL1FpFI6qeSCHybbk0KdXjgFl1zCDxEt2CQRnUVYsJDgJSrJJLtW
- 2b1TUHSmwIOX134TEiYcA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:Q+I2IaHxwcs=;qn8CZNtHsTD/R40C4OBokdVT9hY
- N1fuyvGihk6k4pKUYgCUA2NT1ROWEHgqnRxQVJeWujQqUcGDfzbsozaFH5y4WD61Iu6ijpygI
- dKJdgvFkfJcCBd+F3SaFbEFYG5ITK/IlS0IS2/gEWAbLb5Brbji78QeBDERokpFAYg5mW7INa
- oKqOOOPYlT6sZiab4SXddeF/C4CpQur/9se1G5yXZYU8mwDNApaQPRuYDJLFlPWXsutgG2fvb
- PjjPY23b/LRM84yJG+7bc/WAlIbjidOn8lsRqgSzJY7YJiqnNamIVixzGkrc3HWgmPa2ay8f4
- e2YUOFgU7mbz8RDvTd393f2WMGi71DIfZzvG1MYa6mptauM8dlGp9fsC9/YNlEEF3OzDN06ap
- lhdrby2XltiAaeWMJK2Pr1Ob5FJf7+RD7EBrIsQY4rQ+0IxlC0NZn6dhUcN2hWYYhmHjSPcpI
- Cq5ri61rZwQxzl4p4/vRg1lS45hrKcF35xPKKptFHlyPofJbdiVlHEb80sKObh6oLULP/Mutp
- SwIWKpIs+ZV/ybZB/r4Wr7VsNzibjwQKOUQrvQNkTez6h6R0JA/pOI7QPSYyGmYxnoF0qmOFC
- aQoC04GYMwWgjXvs20kda/TgOm74QpH30JEAoJnR7+a96Keqt69c+j2LAPq8xET0e+/5QZ86k
- WXmeyzytWIf2jZdV4qtCtF1crIAwDrpbB9xjcxUQ9ltivyVm09X2l0aXFMi5D9weyFQs871/2
- 64OJn50lPAIIjtsMl0zYorsnzWeFkxzdQb7/tJPk5JpsaISt3bR4Oa1mOoF2JwFfJjNMsnvUc
- eA5VDIBNKWWQdVN2lvlMB44Wtt0m0OWlDrreNf7AioRV4=
 
-Hi Andrea,
-
-Am 21.05.24 um 10:35 schrieb Andrea della Porta:
-> The BCM2712 has an SDHCI capable host interface similar to the one found
-> in other STB chipsets. Add the relevant compatible string.
->
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+On Fri, 2024-05-10 at 19:44 -0500, David Lechner wrote:
+> SPI offloading is a feature that allows the SPI controller to perform
+> complex transfers without CPU intervention. This is useful, e.g. for
+> high-speed data acquisition.
+>=20
+> This patch adds the basic infrastructure to support SPI offloading. It
+> introduces new callbacks that are to be implemented by controllers with
+> offload capabilities.
+>=20
+> On SPI device probe, the standard spi-offloads devicetree property is
+> parsed and passed to the controller driver to reserve the resources
+> requested by the peripheral via the map_channel() callback.
+>=20
+> The peripheral driver can then use spi_offload_prepare() to load a SPI
+> message into the offload hardware.
+>=20
+> If the controller supports it, this message can then be passed to the
+> SPI message queue as if it was a normal message. Future patches will
+> will also implement a way to use a hardware trigger to start the message
+> transfers rather than going through the message queue.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 > ---
->   Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml | 4 ++++
->   1 file changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.ya=
-ml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> index cbd3d6c6c77f..d584a7ea707a 100644
-> --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> @@ -13,6 +13,10 @@ maintainers:
->   properties:
->     compatible:
->       oneOf:
-> +      - items:
-> +          - enum:
-> +              - brcm,bcm2712-sdhci
-> +          - const: brcm,sdhci-brcmstb
-sorry i didn't noticed in V2, but why can't we just extend the second
-items list?
->         - items:
->             - enum:
->                 - brcm,bcm7216-sdhci
+>=20
+> v2 changes:
+>=20
+> This is a rework of "spi: add core support for controllers with offload
+> capabilities" from v1.
+>=20
+> The spi_offload_get() function that Nuno didn't like is gone. Instead,
+> there is now a mapping callback that uses the new generic devicetree
+> binding to request resources automatically when a SPI device is probed.
+>=20
+
+Yeah, what I disliked the most was adding the platform devices from spi-eng=
+ine
+driver and then the complexity in the IIO trigger part of it.=C2=A0I also d=
+idn't like
+(as you said) for the peripheral to have to explicitly request an offload b=
+ut,
+IIRC, Mark was actually ok with the spi_offload_get/put() mechanism so let'=
+s see
+what he has to say. He's main point (I think) was for the controllers to ha=
+ve a
+way to know which offload instance is busy or not (but I guess controllers =
+can
+keep track of that as well with this approach and using the enable/disable
+callbacks or the prepare/unprepare).
+
+THB, I do like this approach (and it is what I had in mind) and it's simple
+enough while covering what we know about this feature atm.
+
+- Nuno S=C3=A1
+
 
 
