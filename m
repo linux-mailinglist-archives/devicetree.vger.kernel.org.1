@@ -1,159 +1,132 @@
-Return-Path: <devicetree+bounces-68191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DC08CB301
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 19:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 080B48CB385
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 20:32:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1B682828F4
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 17:38:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B82B428328C
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 18:32:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97DF148318;
-	Tue, 21 May 2024 17:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F20FE148302;
+	Tue, 21 May 2024 18:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rr82LKHG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EWsp6MCx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4A574BF0
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 17:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95C57C0A3;
+	Tue, 21 May 2024 18:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716313092; cv=none; b=pdJ8woi8uiWeUgiaM3Am/SveSOk+BLG7n6rGcO8OD53IBUm2efSRS04BNOkeKPgOCDXo2HAUz3fFuZxeRsO91WFjP98/q5utFAum3ehuoKJEydiRKGJ9u0eoWKW96dgX65VdUZuNLKZ+c8vDYNN14wyn7whAjWoqnL0qcjnagNA=
+	t=1716316317; cv=none; b=OKIVX4+Wa3n44sfIrMki+lC9z2L41UV5dRK1I9sugl7f1rTi+5EiBfiXB66skLcCcMxL9adrQrcFJYcEOyrfpzG2AsOj7hOf/U1JZ6wgVngq2cs2JFnWsEdKYz8rMTzMmQC+lhapMLMOV0MDhwcLiPXBVZANVV4uwK7C7Dzlk4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716313092; c=relaxed/simple;
-	bh=mQI6QAGDMhHenGg0tvxZ00M8QWDT5W8SxuOFRTDIr2A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t6aazjPksT4AIvykgLdQAwDfDO9rLB6NuFzi/mSU0ThhBQeA1uQ0ylNLk4MP+B3EdWo5v4hZpeF+2VHHM0yE0Jeqz6WTzVd6BINRPHtJltD0IRCD9toWYpwC8CAaFPQ8PLX4wnTXZZvvy+zchnd5wrDUqFAK0fuivh4aCxK+J/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rr82LKHG; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51f3a49ff7dso7619285e87.2
-        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:38:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716313089; x=1716917889; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vk03L09ST8X5oc6oML5rlGR6NukdraIE6t022SELXL8=;
-        b=rr82LKHGpwQaE+Y/d496hKnGOw4o1GbtuXPvePtdNS85rNiob4E1ff63eKw2zQrcJD
-         GlM2Ql8oi4yK4U0kKVAxrz1+f3Pw2OEANLUoy3fqnxyafn9Ywt2XiPUgLSf9z4TEwUKG
-         xEQhr5GgDsvjpWD+XpK9/duHvaiBYAZkkW2zCiKC5wEpt/dV5dT6BJEWSC1xx7yl91XE
-         ycs1bZkLnUEaAvzURFN0gLjl2tQRxocI3FI86dbiBvs+lzWFJ4hBRidRNUfW0dELDo4q
-         4WWotjEDAffryL8Yt/5UHzwAYbi16jQMruDqYuHr574Zi7udW4VEdaLq05WG6nZ0BGj0
-         YHFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716313089; x=1716917889;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vk03L09ST8X5oc6oML5rlGR6NukdraIE6t022SELXL8=;
-        b=ksjN0AV+t9PKgCBiZhCNh7X4ci5eWK+6qdcO9zvM5Wzxqe7jtIU4zrvlpNujmZC0CB
-         x2sO7mXRpCQ0er+bEYZUoDzZBO2RbsFuMG64ZYsSIyxWIIMFD7U56az+gJB/fG8fh/fT
-         jIDvY1uioYXwzGXZrJ+EOvMtJC2Cvtl6EYSPHoiL9NSkkMjovLMG4MH8jlLisHt3XUbG
-         MShoSj6wBGEupXLY1pjEiMs3SFTMCbaH9U+7BBHzzfjnuC1+N2+TR81VXaQLbgEy3h5X
-         ftTUvWxWBhH+rOVjT4gx0ZikEJOgQikfmIiSN1jjJDogF+hfE1EQlvmkpHHiYnipVA1i
-         72uA==
-X-Forwarded-Encrypted: i=1; AJvYcCVHLigtzbbEqR8pN4KNtKQCKOzlddkXW+xSG38RgO4U6rGM09cFvGCpJpKMw7RCIIFNRUW2yLe1bv4AucMRXWXi+9ffw5vg1SGUdA==
-X-Gm-Message-State: AOJu0YyjbNR6d20KfY9O3LvPIJ0k+PLFelYix4/dfhP3VqccZqmUIzMA
-	v6WxrCBGAeHg0A2HKAKUv3po6lDqYAIh3PqaLW9rgQ/qr+xA2xFRDdFm9yW8GjA=
-X-Google-Smtp-Source: AGHT+IF6usi7V5p1Go3yhHxfMq2ocSHi/cK+nJXYCsseMwxIWVLrQxXKX4i5zBhsCcnPxAJrplHP3w==
-X-Received: by 2002:ac2:55a4:0:b0:521:533d:6367 with SMTP id 2adb3069b0e04-5221027bad5mr16859057e87.63.1716313089344;
-        Tue, 21 May 2024 10:38:09 -0700 (PDT)
-Received: from [172.30.205.5] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f38d32dbsm4765005e87.141.2024.05.21.10.38.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 May 2024 10:38:08 -0700 (PDT)
-Message-ID: <722c57dc-98cf-4ec8-93c5-aef55e6084c7@linaro.org>
-Date: Tue, 21 May 2024 19:38:03 +0200
+	s=arc-20240116; t=1716316317; c=relaxed/simple;
+	bh=73vaEc2+Ila3l2dDk9+94NR4FaAuj1CJocbODWzqAFA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U3mKLRGfY3P79ScxyaQSvlmJfNVvcSeBbosLBGbNV2/WUSPQCpf2RFQJQRy4mkOiHFJ+Sstal6LuHhHtAQhmHUjf8w9Ko36F5qgT/C9xWAnFiqir95m4BIx9QCzxD2gQ2W9YfuEkK3K9K1C08jn97x5Xjd4TsnTGi5bROjARLqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EWsp6MCx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43C90C2BD11;
+	Tue, 21 May 2024 18:31:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716316317;
+	bh=73vaEc2+Ila3l2dDk9+94NR4FaAuj1CJocbODWzqAFA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EWsp6MCxzQpqz5SpHf3xVk0D/9iv7MMU9rMvhEOxMl8R74bdHXIcV+reNkhyrWM6c
+	 Z+aKJdfkvC1tS1A5kHVg6Yc0FjFl2SFERlC8So7+BWuBo//ANiyD6mZW5jkDHvjxiw
+	 EY0mTzmtEVh/3/7h+O7tNPpwgkgvOh5vYmMLbHm3dEz6DOaloLqtmq4uNT2Pr6PrMY
+	 EH06i/oI6jaZP8XLtEuRrDXB6Bpuu3waTR630XnR6ozYIV0ngU9xfgIJrT9u0vnsBt
+	 3530qbHyqCQ0vS193WSOHgHQtCdDHqp2qhMBe5A8Uj0JqyM1eP9YGUJDWF2oY99oK4
+	 iLyTMBabjaydQ==
+Date: Tue, 21 May 2024 19:31:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: display: vop2: Add VP clock resets
+Message-ID: <20240521-silver-exciting-bb3725dc495d@spud>
+References: <20240514152328.21415-1-detlev.casanova@collabora.com>
+ <20240515-risk-exes-13db315da6bb@spud>
+ <2182693.irdbgypaU6@diego>
+ <13628421.uLZWGnKmhe@arisu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] remoteproc: qcom_q6v5_pas: Add hwspinlock bust on
- stop
-To: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Baolin Wang <baolin.wang@linux.alibaba.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>,
- Boqun Feng <boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, Richard Maina <quic_rmaina@quicinc.com>
-References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
- <20240516-hwspinlock-bust-v1-6-47a90a859238@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240516-hwspinlock-bust-v1-6-47a90a859238@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r8AEGgMh3QAZNC29"
+Content-Disposition: inline
+In-Reply-To: <13628421.uLZWGnKmhe@arisu>
 
 
+--r8AEGgMh3QAZNC29
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 5/17/24 00:58, Chris Lew wrote:
-> From: Richard Maina <quic_rmaina@quicinc.com>
-> 
-> When remoteproc goes down unexpectedly this results in a state where any
-> acquired hwspinlocks will remain locked possibly resulting in deadlock.
-> In order to ensure all locks are freed we include a call to
-> hwspin_lock_bust() during remoteproc shutdown.
-> 
-> For qcom_q6v5_pas remoteprocs, each remoteproc has an assigned id that
-> is used to take the hwspinlock. Remoteproc should use this id to try and
-> bust the lock on remoteproc stop.
-> 
-> This edge case only occurs with q6v5_pas watchdog crashes. The error
-> fatal case has handling to clear the hwspinlock before the error fatal
-> interrupt is triggered.
-> 
-> Signed-off-by: Richard Maina <quic_rmaina@quicinc.com>
-> Signed-off-by: Chris Lew <quic_clew@quicinc.com>
-> ---
+On Tue, May 21, 2024 at 01:15:46PM -0400, Detlev Casanova wrote:
+> On Wednesday, May 15, 2024 12:33:22 P.M. EDT Heiko St=FCbner wrote:
+> > Am Mittwoch, 15. Mai 2024, 18:19:29 CEST schrieb Conor Dooley:
+> > > On Tue, May 14, 2024 at 11:19:47AM -0400, Detlev Casanova wrote:
+> > > > Add the documentation for VOP2 video ports reset clocks.
+> > > > One reset can be set per video port.
+> > > >=20
+> > > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > >=20
+> > > Are these resets valid for all VOPs or just the one on 3588?
+> >=20
+> > Not in that form.
+> > I.e. rk3588 has 4 video-ports (0-3), while rk3568 has 3 (0-2).
+> >=20
+> > So the binding should take into account that rk3568 also has the
+> > SRST_VOP0 ... SRST_VOP2.
+>=20
+> That is what is set in the example and the reason why I set minItems to 3=
+ in=20
+> the main bindings.
+> Then, the rk3588 specific part sets it to 4.
+>=20
+> Isn't that enough ?
 
+Not quite - you need to restrict maxItems to 3 for the other devices if
+the clocks are not valid. What you've got says that 4 clocks are
+possible but not needed on !rk3588.
 
->   drivers/remoteproc/qcom_q6v5_pas.c | 28 ++++++++++++++++++++++++++++
->   1 file changed, 28 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> index 54d8005d40a3..57178fcb9aa3 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> @@ -10,6 +10,7 @@
->   #include <linux/clk.h>
->   #include <linux/delay.h>
->   #include <linux/firmware.h>
-> +#include <linux/hwspinlock.h>
->   #include <linux/interrupt.h>
->   #include <linux/kernel.h>
->   #include <linux/module.h>
-> @@ -52,6 +53,7 @@ struct adsp_data {
->   	const char *ssr_name;
->   	const char *sysmon_name;
->   	int ssctl_id;
-> +	int hwlock_id;
->   
->   	int region_assign_idx;
->   	int region_assign_count;
-> @@ -84,6 +86,9 @@ struct qcom_adsp {
->   	bool decrypt_shutdown;
->   	const char *info_name;
->   
-> +	struct hwspinlock *hwlock;
-> +	int hwlock_id;
+Cheers,
+Conor.
 
-IIRC, this is the same one that is passed in the DT.
+--r8AEGgMh3QAZNC29
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Can we get it dynamically from there?
+-----BEGIN PGP SIGNATURE-----
 
-Konrad
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZkzolwAKCRB4tDGHoIJi
+0n6OAP4wwXEM/mpcp22FOi2YHaUbxut8mO+9Vbudzw42lFwLEAD+LZI8reFtSZ0L
+4FVV8PWuTYl0PJwEL+Xc2KHa7boG/AE=
+=rTte
+-----END PGP SIGNATURE-----
+
+--r8AEGgMh3QAZNC29--
 
