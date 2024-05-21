@@ -1,117 +1,210 @@
-Return-Path: <devicetree+bounces-68075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E378CAC33
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:26:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 159408CAC3A
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 12:29:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA77A1C21A86
-	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:26:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA797280D8F
+	for <lists+devicetree@lfdr.de>; Tue, 21 May 2024 10:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1968A73183;
-	Tue, 21 May 2024 10:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B53D6AF88;
+	Tue, 21 May 2024 10:29:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oHVqd2cD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40016CDD8
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEFD6CDA8
+	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 10:29:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716287157; cv=none; b=Qcwlm49PHfnTtVJggAH8sjcaDlmwmMGMiQI1jFVoqjkI3LXpoEGUQ/rRYgNYP2ZjEcZBAgk+9VJA726RfjOksebKsB965yLcjpnYRZ0aTeOPpVwhQ7M82L4IOvSVuei11FGqsILuJ5fmnjzSVOokSYJgdknCkoM1It+d42Kae/g=
+	t=1716287386; cv=none; b=k75BbvW8U9FqpIb4jOebckIMBkm17uiIchyq4HHJ3DofpFTbjpiWPgiM1snOC4hP/u2WMbp18rlqxYLC/HQ2RZ3bfFO+q+Q5w7CLxJgDVXsOKyVIPBWfRTtTw0Ky6/szV0pwhb8LMKFuU90kW9+mi1x50LpOpRqoTKPxkRudGjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716287157; c=relaxed/simple;
-	bh=PzkREHFxftmh9BlfZ0knbcVfRSI6Uv/LfaRce+Dlslk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZpcDtkoV9clNOO/iiF/Ei5RB79q1HBekfl6lH2J4YakG8xFm00FuEP4YT0V+QTzZoMhvC3HkGK6QV5H1CDJgksphirRVt3BD352a3l4r0e6mVJe7RL6YDb2wxUZtZEdZy2Y7IvKjjVe/BCGJMO6vqAHFZ1B40HFkIcnzv93sWiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17E8FDA7
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:26:19 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D30D73F766
-	for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:25:54 -0700 (PDT)
-Date: Tue, 21 May 2024 11:25:31 +0100
-From: "liviu.dudau@arm.com" <liviu.dudau@arm.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Bjorn Helgaas <helgaas@kernel.org>, Vidya Sagar <vidyas@nvidia.com>,
-	"will@kernel.org" <will@kernel.org>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"joro@8bytes.org" <joro@8bytes.org>,
-	"robin.murphy@arm.com" <robin.murphy@arm.com>,
-	Nicolin Chen <nicolinc@nvidia.com>, Ketan Patil <ketanp@nvidia.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"iommu@lists.linux.dev" <iommu@lists.linux.dev>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/3] Enable PCIe ATS for devicetree boot
-Message-ID: <Zkx2m41lIdaV_WyH@e110455-lin.cambridge.arm.com>
-References: <PH8PR12MB6674391D5067B469B0400C26B8EC2@PH8PR12MB6674.namprd12.prod.outlook.com>
- <20240515185241.GA2131384@bhelgaas>
- <20240516073500.GA3563602@myrica>
- <ZkXi2LCy9ZZkupjM@bogus>
+	s=arc-20240116; t=1716287386; c=relaxed/simple;
+	bh=hhxSfEN3YZHsURt9abVwnipYtfjc7URPzVX6S12WmaU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fefqiwiZkiVdnB5D7//2axsZutvrYJLOeHvABCXXV4MP+T6PMiR1Fb0C+qsKGSnZfIdIf6/KAAfByLj4gPfO7/rUoNLkVjiid+drBcv0TFMAsdt+ocqFO1SqBLW8kQGeMKRd0jKG88sv54326oGDtKkHRFaDYjHHDz7Q8P3id6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oHVqd2cD; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-de5ea7edb90so3271252276.1
+        for <devicetree@vger.kernel.org>; Tue, 21 May 2024 03:29:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716287383; x=1716892183; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hhxSfEN3YZHsURt9abVwnipYtfjc7URPzVX6S12WmaU=;
+        b=oHVqd2cDJwclSmbMZTfGyhouMD1SOYRV2gGP9p5kGs4rrImma+UFt1IbFx9oEiNsLj
+         CrhMj/1lC2t/McLja0lAop/KL8QgTtPhSu082FT9e7C5Q3pRzlag7qaJug0tWEEzUrOp
+         nMiEIgC9seNopTp0Cu4ciPc1KSBJU/tM7KzPpVBw2Gyt2BD9MiBtoi60eD7mdjevIRDg
+         DpSNsH5KZh17oXNfMH0QY3gQs5fgHpm8MESG4+f7hTSyg59oGoCiM2eCgraYNleRdSr7
+         MVOnVZnwl1FSOqFlftQBYQbUDYtxc1iuSQUofuHpCGbGma6enUdlYWtBQ+dTPM3JI9bS
+         Kmiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716287383; x=1716892183;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hhxSfEN3YZHsURt9abVwnipYtfjc7URPzVX6S12WmaU=;
+        b=GlaJnUa7KZA0tRATKqeABL/v4J87D/DP7Iyi+Dakdqhoo6xtjkdMrr8YXUPW91wPLu
+         POG9Hf4dmhPANBzs1ONuH9z6cB4E0B9/xKmfKaNdi3SG2/Bdmli9gbKFO9/YBnq/Asin
+         BXirH/PsdEcBf2J1ShFA/ZEGE9rLN6IWTBApsq5hJaHuoVWn3V8dkf45QgLc3l9E/F9n
+         CkSW6ofWYAU7XmYgP/Ntjs3p/yYG8lGRquLD+MGSPsKsAy3ctLN35d2DWgzPwXtliqOy
+         +CNL6yIEKMFF/Zo007IEf7hUC+MswT9pJTc2pei8k0fBFzUiujZDmGDjbTfYWcCleH18
+         V57g==
+X-Forwarded-Encrypted: i=1; AJvYcCX03qhzNTgv2+C4MwTTf/7Dg8thsYE/pjAS52ZrEgcvVhgnfyiPEHYnVW0zBOozYfsdAh4Yb8HT+v4GwQsw7U9dPCYz5/RMxCH3Fg==
+X-Gm-Message-State: AOJu0Yw6BzzqOE1E9O2aBnlP3wzRZy4K0YrGPZSfXy5S2/mWBj5Jz6Mx
+	qNW/YPsUXid89Rruex9IM70MpKsIyqpRD+aSNVFYL7OQsovHnCChreyXa5i8sisND9cmjzHNu1p
+	tB1ivRSfPZLy/SkQvNQw1VB78QRIHo+glkLzdAQ==
+X-Google-Smtp-Source: AGHT+IHEkPcbU/mY9ABnsDa2hRbs7hlpxgMWmqACXFmTwhxL+abQNPRnrk+hHryTOxcjSofFyV3Lr3Hzwi2viXteRkA=
+X-Received: by 2002:a05:6902:4:b0:de5:705d:9373 with SMTP id
+ 3f1490d57ef6-dee4f1b7848mr26999598276.12.1716287383352; Tue, 21 May 2024
+ 03:29:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZkXi2LCy9ZZkupjM@bogus>
+References: <20240415-ti-sci-pd-v1-0-a0e56b8ad897@ideasonboard.com>
+ <20240415-ti-sci-pd-v1-2-a0e56b8ad897@ideasonboard.com> <d4cd0323-4792-49b0-a4e2-0bc92068e7f0@ideasonboard.com>
+ <CAPDyKFqShuq98qV5nSPzSqwLLUZ7LxLvp1eihGRBkU4qUKdWwQ@mail.gmail.com> <d7bf10d1-9294-44b0-b9f4-193d1a4f26a0@ideasonboard.com>
+In-Reply-To: <d7bf10d1-9294-44b0-b9f4-193d1a4f26a0@ideasonboard.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 21 May 2024 12:29:07 +0200
+Message-ID: <CAPDyKFppS1CFZ7iDATfvT1=C+oqOR6sOGoV5Fc2PgXTn4NkUOQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/2] pmdomain: ti-sci: Support retaining PD boot time state
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Abel Vesa <abel.vesa@linaro.org>, Saravana Kannan <saravanak@google.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Santosh Shilimkar <ssantosh@kernel.org>, Dave Gerlach <d-gerlach@ti.com>, J Keerthy <j-keerthy@ti.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Santosh Shilimkar <santosh.shilimkar@oracle.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	Devarsh Thakkar <devarsht@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, May 16, 2024 at 11:41:28AM +0100, Sudeep Holla wrote:
-> On Thu, May 16, 2024 at 08:35:00AM +0100, Jean-Philippe Brucker wrote:
-> > Hi,
-> > 
-> > On Wed, May 15, 2024 at 01:52:41PM -0500, Bjorn Helgaas wrote:
-> > > On Wed, May 15, 2024 at 06:28:15PM +0000, Vidya Sagar wrote:
-> > > > Thanks, Jean for this series.
-> > > > May I know the current status of it?
-> > > > Although it was actively reviewed, I see that its current status is set to 
-> > > > 'Handled Elsewhere' in https://patchwork.kernel.org/project/linux-pci/list/?series=848836&state=*
-> > > > What is the plan to get this series accepted?
-> > > 
-> > > I probably marked it "handled elsewhere" in the PCI patchwork because
-> > > it doesn't touch PCI files (the binding has already been reviewed by
-> > > Rob and Liviu), so I assumed the iommu folks would take the series.
-> > > I don't know how they track patches.
-> > 
-> > Yes I think this can go through the IOMMU tree. Since patch 3 is still
-> > missing an Ack, I'm resendng the series next cycle.
-> > 
-> 
-> Extremely sorry for that, since I saw Liviu on the thread, I assumed he
-> would have acked/reviewed 3/3 as well but now I see that is not the case.
-> That said, you must not delay the change just for the DTS file changes.
-> Anyways I will ack it now.
+On Fri, 10 May 2024 at 12:19, Tomi Valkeinen
+<tomi.valkeinen@ideasonboard.com> wrote:
+>
+> Hi,
+>
+> On 03/05/2024 16:45, Ulf Hansson wrote:
+> > + Abel, Saravanna, Stephen
+> >
+> > On Mon, 15 Apr 2024 at 19:17, Tomi Valkeinen
+> > <tomi.valkeinen@ideasonboard.com> wrote:
+> >>
+> >> On 15/04/2024 19:00, Tomi Valkeinen wrote:
+> >>> Add a new flag, TI_SCI_PD_KEEP_BOOT_STATE, which can be set in the dts
+> >>> when referring to power domains. When this flag is set, the ti-sci
+> >>> driver will check if the PD is currently enabled in the HW, and if so,
+> >>> set the GENPD_FLAG_ALWAYS_ON flag so that the PD will stay enabled.
+> >>>
+> >>> The main issue I'm trying to solve here is this:
+> >>>
+> >>> If the Display Subsystem (DSS) has been enabled by the bootloader, the
+> >>> related PD has also been enabled in the HW. When the tidss driver
+> >>> probes, the driver framework will automatically enable the PD. While
+> >>> executing the probe function it is very common for the probe to return
+> >>> EPROBE_DEFER, and, in rarer cases, an actual error. When this happens
+> >>> (probe() returns an error), the driver framework will automatically
+> >>> disable the related PD.
+> >>>
+> >>> Powering off the PD while the DSS is enabled and displaying a picture
+> >>> will cause the DSS HW to enter a bad state, from which (afaik) it can't
+> >>> be woken up except with full power-cycle. Trying to access the DSS in
+> >>> this state (e.g. when retrying the probe) will usually cause the board
+> >>> to hang sooner or later.
+> >>>
+> >>> Even if we wouldn't have this board-hangs issue, it's nice to be able to
+> >>> keep the DSS PD enabled: we want to keep the DSS enabled when the
+> >>> bootloader has enabled the screen. If, instead, we disable the PD at the
+> >>> first EPROBE_DEFER, the screen will (probably) go black.
+> >>
+> >> A few things occurred to me. The driver is supposed to clear the
+> >> GENPD_FLAG_ALWAYS_ON when the driver has probed successfully. There are
+> >> two possible issues with that:
+> >>
+> >> - Afaics, there's no API to do that, and currently I just clear the bit
+> >> in genpd->flags. There's a clear race there, so some locking would be
+> >> required.
+> >>
+> >> - This uses the GENPD_FLAG_ALWAYS_ON flag to say "PD is always on, until
+> >> the driver has started". If the PD would have GENPD_FLAG_ALWAYS_ON set
+> >> for other reasons, the driver would still go and clear the flag, which
+> >> might break things.
+> >>
+> >> Also, unrelated to the above and not a problem in practice at the very
+> >> moment, but I think clocks should also be dealt with somehow. Something,
+> >> at early-ish boot stage, should mark the relevant clocks as in use, so
+> >> that there's no chance they would be turned off when the main kernel has
+> >> started (the main display driver is often a module).
+> >>
+> >> It would be nice to deal with all the above in a single place. I wonder
+> >> if the tidss driver itself could somehow be split into two parts, an
+> >> early part that would probe with minimal dependencies, mainly to reserve
+> >> the core resources without doing any kind of DRM init. And a main part
+> >> which would (somehow) finish the initialization at a later point, when
+> >> we have the filesystem (for firmware) and the other bridge/panel drivers
+> >> have probed.
+> >>
+> >> That can be somewhat achieved with simplefb or simpledrm, though, but we
+> >> can't do any TI DSS specific things there, and it also creates a
+> >> requirement to have either of those drivers built-in, and the related DT
+> >> nodes to be added.
+> >
+> > Without going into too much detail, this and similar problems have
+> > been discussed in the past. With the fw_devlink and the ->sync_state()
+> > callback we are getting closer to a solution, but for genpd a solution
+> > is still pending.
+> >
+> > If you want to read up on earlier discussions and join us moving
+> > forward, that would be great. The last attempt for genpd to move this
+> > forward was posted by Abel Vesa:
+> > https://lore.kernel.org/linux-pm/20230621144019.3219858-1-abel.vesa@linaro.org/
+> >
+> > Beyond that, we have also discussed various solutions at the last LPC
+> > in Richmond. I think the consensus at that point was that Saravana
+> > targeted to post something for clocks - and when that was done, we
+> > should do the similar thing for genpd. Anyway, I have looped them into
+> > this thread, so they can share any updates on their side of the
+> > matter.
+>
+> If I understand the series correctly, it has an issue at least for this
+> case/platform.
+>
+> The devlinks are between the consumer devices and the PD provider
+> device. TI SCI PD provider has quite a lot of PDs, and all the consumers
+> would have to be probed before any of the PDs could be disabled. So, to
+> get the display PD disabled, I would have to load, e.g., the GPU driver
+> (which I don't even have).
+>
+> I believe this is the case for the clocks also.
+>
+> Perhaps that can be considered a feature, but I fear that in practice it
+> would mean that most of the time for most users all the boot-time
+> enabled powerdomains would be always on.
+>
+> Nevertheless, I believe the series would fix the issue mentioned in this
+> patch, so I'll see if I can get the series working on the TI platform to
+> get a bit more experience on this whole issue.
 
-Appologies, I was travelling last week and thought DT changes will be taken
-via Robin.
+[...]
 
-Best regards,
-Liviu
+Just to share a brief update on this matter. I have had an offlist
+chat with Saravana and some Qcom guys about this topic. In particular
+we looked closer at some implementation details.
 
-> 
-> --
-> Regards,
-> Sudeep
+Allow me a few weeks, then I will post a series for genpd to implement
+the above. I will keep you posted and would appreciate reviews and
+tests, of course.
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+Kind regards
+Uffe
 
