@@ -1,210 +1,105 @@
-Return-Path: <devicetree+bounces-68413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18178CC325
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:22:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC8C8CC32F
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:24:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2767DB2335D
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:22:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BBE61C23260
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:24:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5CB1411EB;
-	Wed, 22 May 2024 14:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3401411FE;
+	Wed, 22 May 2024 14:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CHQZSJMD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dv2LkrXL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EA513DBA4;
-	Wed, 22 May 2024 14:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFD81411CA;
+	Wed, 22 May 2024 14:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716387744; cv=none; b=on076gWg7s8f+2V89sFTROKYwu8Ttt/kGPx1SQoKEkCcXX97oMkMVmG7CVfdczlE0IAW+zL3KlQcrTc2hp73ES7GnahZLGxSEK9lXgY4DtDIo8imA8/h8vgPnvEKJyOU+x/Ocg7nYL1YzK7u3Xk8mcfrTWl4IuvfLRgMD/3d9Cw=
+	t=1716387851; cv=none; b=ZsSWhM9mBjBO9m2OlPlChSGAym5xZzBRIwIcN1XIW0tW5Rv3bVa2tsxpyUklq4FQiIbm6FBdhcSiriWHf2kzh0o0dlD6nRzfVqCH8IfpEPDAVng8BcD2HM8re/b7zASSK4p11tTBfB63Ii4iEjpe5xi2U6xtOnjXTXxltAJmvdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716387744; c=relaxed/simple;
-	bh=02yLNhRVRmQSt+76M8uiULZ6FJnruuhVT6KDY9FoVsM=;
+	s=arc-20240116; t=1716387851; c=relaxed/simple;
+	bh=hzLC77vGkl4FctqkHWbXtIKuE74mwnfPPg5UFrTyRQ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SBMV/CcGYSnT0cM9X5A0PDTZc6P3odTHA9wQfXi6eSs99W4+uxdGSGOxH94Ql+SVjcizRVB/CsqlgB0A2G6TVO7gZIHFh7Tsv4qFQhRpKwTxAxTIvAlPC7HtqFWBPPNTojqB+21KUafn2FhGmn2lmc+3N2IGtxs31ovU67CxvBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHQZSJMD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3633C2BBFC;
-	Wed, 22 May 2024 14:22:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fs5EYYUct4ng+jszLoSFrmNUn9A7G8j9cfZp1IIzQhkijz88VvoyibeCta76M/EOTnyT9Ds8+C7DKz4TDCR3x1woX7mi/OrLLiLMUCpf8bpLlSchBGyc9QcMuPsqpxI5AO0faJGbBUDWYLR/E83U0rh6s5PDDfF9HFfxmGItEnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dv2LkrXL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 424CCC2BBFC;
+	Wed, 22 May 2024 14:24:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716387743;
-	bh=02yLNhRVRmQSt+76M8uiULZ6FJnruuhVT6KDY9FoVsM=;
+	s=k20201202; t=1716387850;
+	bh=hzLC77vGkl4FctqkHWbXtIKuE74mwnfPPg5UFrTyRQ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CHQZSJMD+LDSMdHxaFM8Sc2jrh8zDM+ql5/ADheDOvkUkeQbzKimRchWLUJsrrql6
-	 GW24zhJMXazK5LFioESgNjg1jSNm6MswtEiePZDdf3RshpK/7ortI0DSBnqCL9azVm
-	 Cvyif3gmFsFIqePBujx+CqhYLqFvGTxHTSH/rmE5gR7Meprnam4PD1PGu1lDAdoLY2
-	 bBxvR8TjxZaINagz2xwFwCeJWR0OA0tGQtO+7u9RWUX9V7Iv+dLkK6oJ2HrO03QHyj
-	 yALoTuGO5B9AluBjqeo8Mqxg/S9CSlKjnHfOV4vbiBa0wELXoZjOW6WNbRbC+MDF7F
-	 bubZG4nIv3fJw==
-Date: Wed, 22 May 2024 09:22:22 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?P=E9ter?= Ujfalusi <peter.ujfalusi@gmail.com>
-Cc: Mighty <bavishimithil@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=dv2LkrXLNDZSCQhHTyPf/MTF5oJ580HsuWU4Xfd3cUhVT+MOou+G0hM1q7UzqqXCg
+	 XCMprz0GuUBE8N73oCx3fqSPYpREYXZulTts068qsUZPUmqzxqrGTLCMgSSnNpfDGz
+	 jx0eDiqy0gzDyXWtxiFf1K2PT6hhBTFm8qHC8evePXj2zr9kdlAIf6K8EW16S4WmNf
+	 bnKN+7cEjCzsvIZLXJhW7mQ76CjlvN1UCy+dKaQbgF2WgPk8/Sx6DWpvY5B4i9Xp4Y
+	 XiOzbjOUAlogktu9i/bYaVqjWA6nbZCg9X6Qloi5p61Olr6h6SpUBeqHEGGLIhYYmG
+	 f8V8onoGcibYg==
+Date: Wed, 22 May 2024 09:24:09 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: UNGLinuxDriver@microchip.com,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	devicetree@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-pci@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Lopez Cruz <misael.lopez@ti.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-Message-ID: <20240522142222.GA3233115-robh@kernel.org>
-References: <20240522075245.388-1-bavishimithil@gmail.com>
- <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	Russell King <linux@armlinux.org.uk>, Arnd Bergmann <arnd@arndb.de>,
+	netdev@vger.kernel.org, Lars Povlsen <lars.povlsen@microchip.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Saravana Kannan <saravanak@google.com>
+Subject: Re: [PATCH 09/17] dt-bindings: interrupt-controller: Add support for
+ Microchip LAN966x OIC
+Message-ID: <171638784589.3244704.2938848620402694008.robh@kernel.org>
+References: <20240430083730.134918-1-herve.codina@bootlin.com>
+ <20240430083730.134918-10-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+In-Reply-To: <20240430083730.134918-10-herve.codina@bootlin.com>
 
-On Wed, May 22, 2024 at 04:56:11PM +0300, Péter Ujfalusi wrote:
-> Hi,
+
+On Tue, 30 Apr 2024 10:37:18 +0200, Herve Codina wrote:
+> The Microchip LAN966x outband interrupt controller (OIC) maps the
+> internal interrupt sources of the LAN966x device to an external
+> interrupt.
+> When the LAN966x device is used as a PCI device, the external interrupt
+> is routed to the PCI interrupt.
 > 
-> On 22/05/2024 10:52, Mighty wrote:
-> > From: Mithil Bavishi <bavishimithil@gmail.com>
-> > 
-> > Convert the OMAP4+ McPDM bindings to DT schema.
-> > 
-> > Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> > ---
-> > Changelog v5:
-> > - Add imports for constants
-> > - Add desc to ti,hwmods
-> > 
-> >  .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ---------
-> >  .../bindings/sound/ti,omap4-mcpdm.yaml        | 61 +++++++++++++++++++
-> >  2 files changed, 61 insertions(+), 30 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-> >  create mode 100644 Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-> > deleted file mode 100644
-> > index ff98a0cb5..000000000
-> > --- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-> > +++ /dev/null
-> > @@ -1,30 +0,0 @@
-> > -* Texas Instruments OMAP4+ McPDM
-> > -
-> > -Required properties:
-> > -- compatible: "ti,omap4-mcpdm"
-> > -- reg: Register location and size as an array:
-> > -       <MPU access base address, size>,
-> > -       <L3 interconnect address, size>;
-> > -- interrupts: Interrupt number for McPDM
-> > -- ti,hwmods: Name of the hwmod associated to the McPDM
-> > -- clocks:  phandle for the pdmclk provider, likely <&twl6040>
-> > -- clock-names: Must be "pdmclk"
-> > -
-> > -Example:
-> > -
-> > -mcpdm: mcpdm@40132000 {
-> > -	compatible = "ti,omap4-mcpdm";
-> > -	reg = <0x40132000 0x7f>, /* MPU private access */
-> > -	      <0x49032000 0x7f>; /* L3 Interconnect */
-> > -	interrupts = <0 112 0x4>;
-> > -	interrupt-parent = <&gic>;
-> > -	ti,hwmods = "mcpdm";
-> > -};
-> > -
-> > -In board DTS file the pdmclk needs to be added:
-> > -
-> > -&mcpdm {
-> > -	clocks = <&twl6040>;
-> > -	clock-names = "pdmclk";
-> > -	status = "okay";
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-> > new file mode 100644
-> > index 000000000..966406078
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/ti,omap4-mcpdm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: OMAP McPDM
-> > +
-> > +maintainers:
-> > +  - Misael Lopez Cruz <misael.lopez@ti.com>
-> > +
-> > +description:
-> > +  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,omap4-mcpdm
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: MPU access base address
-> > +      - description: L3 interconnect address
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  ti,hwmods:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [mcpdm]
-> > +    description: Name of the hwmod associated to the McPDM, likely "mcpdm"
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: pdmclk
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - ti,hwmods
-> > +  - clocks
-> > +  - clock-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    pdm@40132000 {
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../microchip,lan966x-oic.yaml                | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/microchip,lan966x-oic.yaml
 > 
-> The original label and name is preferred to be used.
 
-I imagine both were review comments. I can only imagine given the poor 
-changelog.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Unused labels in examples should be dropped.
-
-Node names should be generic. Though if we haven't defined the name in 
-the spec or a schema, I don't care too much what is used.
-
-> > +      compatible = "ti,omap4-mcpdm";
-> > +      reg = <0x40132000 0x7f>, /* MPU private access */
-> > +            <0x49032000 0x7f>; /* L3 Interconnect */
-> > +      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-> > +      interrupt-parent = <&gic>;
-> > +      ti,hwmods = "mcpdm";
-> > +      clocks = <&twl6040>;
-> > +      clock-names = "pdmclk";
-> 
-> The clocks cannot be added at the time when the node is defined, it is
-> board specific. This way you imply that it is OK to have it in main dtsi
-> file. It is not.
-
-That's a .dtsi structuring decision which is irrelevant to the 
-binding.
-
-Rob
 
