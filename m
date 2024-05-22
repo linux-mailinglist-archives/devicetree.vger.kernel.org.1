@@ -1,100 +1,152 @@
-Return-Path: <devicetree+bounces-68321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFAB8CBD11
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:36:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7F28CBD28
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:42:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A946B2196C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:36:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBD46282BE3
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6567D096;
-	Wed, 22 May 2024 08:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD907E78E;
+	Wed, 22 May 2024 08:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="d/jWhR9j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rhRIIYDW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6721A2262B;
-	Wed, 22 May 2024 08:36:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2CA7FBAE;
+	Wed, 22 May 2024 08:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716367003; cv=none; b=U9VaOOOYaWBy187bHeslg0IBuLmbU4FF8xixPtE0NDA/yurcfWh0l2Wyj1t7E+CgcZxHzCvdavCrvl3HIA2U+10Ci/E+fYygcslSV72vhdB092mZWsgqnJWp41TSrPoFCE1zzqp1X/tgDeB9UDAmocCw+tCGMHtKzRNUb2TttP8=
+	t=1716367329; cv=none; b=blKzbc5kJ6JgoJhJlmjVW+3bnmEhy2r/eZ8F1SFJAZCbUeluL2RpCfvh1Lez8jvdcBUfmG3W4tgwIOEMQeI53lFpQjOI5x7LX4waeHx8fzcK9C4NVzzRF15X5Iqy+bozw5veEggvDnpfFIDM9VRYafLZ5oncAMnSYuwsEav2TS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716367003; c=relaxed/simple;
-	bh=G5Sh2d9Xq79Hi6W8v/uzk298wFlWep6o+iThnMQq4yQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=k2EI7Rht8Enyvmw6pIIS987K+UoGJA0XX17qXH+ufmxOazre3ORI/hTwNT86twGz2b7tIf6hL/UbGk0g0aC09rG7hYcI5zpIAgy/wJTI7NfLBLlzDNDBo36tvDYTDqtIJV+JKsOf9uBXBvNOcnlYe1/g8MOSt5QsA7oL3zbcB0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=d/jWhR9j; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44M8aWeK049185;
-	Wed, 22 May 2024 03:36:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1716366992;
-	bh=n8oBR7JoDKyKvVrxrHX/RxpGuTR/rtSwQ+FaAI9ezQE=;
-	h=From:To:CC:Subject:Date;
-	b=d/jWhR9j0O/J+DLMHiXvg0imgN07TqEP16yQRTFjHep5Fut22FukOBXNJBsf0oovp
-	 3OVJRjhkjVcuP4PrZIZ/ic53DUQ99C1RfdjM+xoEFJexTzGt3dM/DMJR4jDhi0SBU1
-	 Kv28qHuXhFIdkH1XVIwVibVLh8vaub4nTClsh7dU=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44M8aWpH004411
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 22 May 2024 03:36:32 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 22
- May 2024 03:36:32 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 22 May 2024 03:36:32 -0500
-Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44M8aVA1050180;
-	Wed, 22 May 2024 03:36:32 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <b-kapoor@ti.com>, <jm@ti.com>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j722s-evm: Mark eMMC as non removable
-Date: Wed, 22 May 2024 14:06:31 +0530
-Message-ID: <20240522083631.1015198-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1716367329; c=relaxed/simple;
+	bh=XMOzzCHwCoNfZaI9kNgozY+EI+4HpQuKRxc5GG81rWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GitMvYwhTzLmQG7f9GIGF2PE4smePDSQ6XMYIjahggLUdNYFLtbOMN8NRTJI31gZg5YF13kvV4mP+GSHg74W0mFRWNYuKxFWcrUpZonwwkfL/guaQ1vja9gVbSSbuiVHRUTKe1Ocf4G28J9O6bM8GKx5b4OVnOWfS+hA1K4cBgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rhRIIYDW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 618CAC2BD11;
+	Wed, 22 May 2024 08:42:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716367328;
+	bh=XMOzzCHwCoNfZaI9kNgozY+EI+4HpQuKRxc5GG81rWM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rhRIIYDWkGZwgkonjxHC4Ry621DIw7qfAzNDt7PWz3X/aqo7zecBJlbkk2h1Q2+s3
+	 pkJjNp84FtQ7Q43Po/Tnqx54G7qmV9Vhc76RBjfARiPSqf25WkLFm9p1BtSerr2WzC
+	 HhFfgRi7LmPdgfKpnH3fAM0X60UPiKj+HbczMzlaQLhw+A91vd7BNptGzPxFtynu/c
+	 7jKLqyipK6Av9MbknFXUZCQBeZQ3CJDkrhFk1aETfV2tDbv6DZtGhMIEvzzjn0d2Fw
+	 HuDcMhrJ00XBMCfme8JQsuAHN11Tgm9SnOaxiHLFW36WPsW0qc/o9lwscRJOoDcgFC
+	 bHX5sEc5hkOXw==
+Message-ID: <bcc9999d-b912-417a-8ae8-f4e252d1bd8b@kernel.org>
+Date: Wed, 22 May 2024 10:42:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Mighty <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240522075245.388-1-bavishimithil@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240522075245.388-1-bavishimithil@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Mark the eMMC module on J722S as non removable since it
-is always present on the evm.
+On 22/05/2024 09:52, Mighty wrote:
+> From: Mithil Bavishi <bavishimithil@gmail.com>
+> 
+> Convert the OMAP4+ McPDM bindings to DT schema.
+> 
+> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+> ---
+> Changelog v5:
+> - Add imports for constants
+> - Add desc to ti,hwmods
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+You are not making it easier for us to review:
+====
+b4 diff '<20240522075245.388-1-bavishimithil@gmail.com>'
+Grabbing thread from
+lore.kernel.org/all/20240522075245.388-1-bavishimithil@gmail.com/t.mbox.gz
+Checking for older revisions
+Grabbing search results from lore.kernel.org
+  Added from v4: 2 patches
 ---
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 1 +
- 1 file changed, 1 insertion(+)
+Analyzing 15 messages in the thread
+WARNING: duplicate messages found at index 1
+   Subject 1: ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+   Subject 2: ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+  2 is not a reply... assume additional patch
+Preparing fake-am for v4: ASoC: dt-bindings: omap-mcpdm: Convert to DT
+schema
+ERROR: Could not fake-am version v4
+---
+Could not create fake-am range for lower series v4
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index bf3c246d13d1..fe810e32cb7a 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -369,6 +369,7 @@ partition@3fc0000 {
- &sdhci0 {
- 	disable-wp;
- 	bootph-all;
-+	non-removable;
- 	ti,driver-strength-ohm = <50>;
- 	status = "okay";
- };
--- 
-2.34.1
+====
+
+
+Looks good, but let's wait few hours to see if bot is happy as well.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
 
 
