@@ -1,148 +1,110 @@
-Return-Path: <devicetree+bounces-68441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D69BC8CC440
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:39:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5D158CC452
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:45:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1353D1C21D48
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:39:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D68761C21BA6
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E427D3EF;
-	Wed, 22 May 2024 15:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83BF313E05B;
+	Wed, 22 May 2024 15:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M25bdmuK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ETSzzFqI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA667D08F;
-	Wed, 22 May 2024 15:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54EB013DDA5;
+	Wed, 22 May 2024 15:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716392375; cv=none; b=t48NA8R2jteZU0FnSzyTMgJ6TbR+Mwb8L9CE00IHSmWWimR9H/xPwtQBLDp2hsAeMTIualpfRwRnW3UMT/2Mw/6PNTnQ6MXJe5Qvr+0GKTi3r2HNXwE6EdV6877jvItgKaBDpb7r6zuRHpH/MR633mMrA+vyiqvahsNV+OcX5fM=
+	t=1716392744; cv=none; b=auslO3q23Ef0jzHr782478xypICzp1iTUgE4H0md052FIE43dgBqE8QyIZN9/aNlYIePZblek7a/rDMktQ/QHlBq7kUp0xdaURSHlOvGI+sNyk7pBr5c5HcWFz7iaxULttyZIU9dBtYowjSViEY79PK8nQXe0otlPOVDXy3sCyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716392375; c=relaxed/simple;
-	bh=llwxsV6MdWU8g+0kKVxnq7Bbcc5fXyWJzVTZ0a6TsQw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=k1cIWSDVmFR5q3OOaPH+acx4+oXIjjk/i94uo0CnvjL+O5n8HkymznGjPW3WQ53jZ90VGxpIBhkzICeEmu80mfGB0+QGPP+R+onz8qWk2DE/VUODdPN5xE1BaOq/l1k3iQAaWKZznm/yj9krar3YODb8HZJFI5i91jAp2LGqaRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M25bdmuK; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1ee954e0aa6so12055675ad.3;
-        Wed, 22 May 2024 08:39:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716392373; x=1716997173; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Yvxfqkh+gSZbJyfshoQXFXdD3Y8gaC/pv6t5Ay+4a2U=;
-        b=M25bdmuKGmFhR51zJJZCEkO/BPJv1aS65JvpCAwyTW2PG31Ryh+Y7toiLndH3ASWI6
-         AQDDATvjUiVtLPfRHKZeUVFhWE52A4X0sn96sN90aqohnO5j/Q/OEcP9vLkB6by12mVM
-         Tw/RRbQU6pZrljX5PA/MuaFUXjwD9Ur49OTKohVS57j9iYLjEMDkCu2BUSO6eR4jbOMT
-         PGfMm7vZ2mIoRUMGEsXU2dSeTm0CNuNr+6o7xMIbLKgixIvxgog2/ORF+Ing/j/ezHgT
-         bErRkk/o2KOKiigIkibaj65H0GDJtBZeC7v5xnYgLU0V4r+zQ8/mGI/Rmd+nPOew88Iv
-         VBag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716392373; x=1716997173;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Yvxfqkh+gSZbJyfshoQXFXdD3Y8gaC/pv6t5Ay+4a2U=;
-        b=e9GQ4UqgQ3EpMLu+lyfIhUnWhoH9qrE7k5IGFmhtkwdt346N2B8idgn3KBgbvyRlZ/
-         sIG/Bxu+rMqUZQiiVpULYzKWhz1jRL8yzAhvOrfD/AIogzlHQ1auM38dXmfbiKXK6cA7
-         QyWIKneARhn8OSj1MtpcLAPtK103ga5c4Kwca9NXhHbLIV15Na5zA/Ft0tKqh2Cegko5
-         M1tBysnMCl0wU35Q+sdmJo8UK1tnJx9BOdh+hOorVB62glaw4VBEkX+WxLlmdc5sMyJm
-         siDOO3AR5DSNKDEnrA9JkdbMaXroyqAujx15atnqhOL6caUwzKLpZOXd83ah8KgK64/A
-         AEaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTyoycdZ1OgUlG7sSxMm29NEwSCFP6uUqqIhMp0rD44IiVxfhdQ5FOq9KdTlk3jYFRKPy3yAite1p6EPBo0/lJBCB3032oav2NY+/BD6+gX7/nw8urYFg/admHjrHOnepyq/Or9He5qw==
-X-Gm-Message-State: AOJu0YyTxuAaujEnR2XqZIROGFjAObcEH7vhrVtXxfdcAGJJCeeMhVj7
-	AIgcqVMNSKmgEpQi9J6unqhcH/rSQ145ZFkkVASDNocu5n+fNteS
-X-Google-Smtp-Source: AGHT+IEvl2jl89Ll5aU5bNVUfIG87vrt2cUkmGN76Ttw5yLV7y7OkQZbEcTGoE9Ry6NS8Vd6Ho5icQ==
-X-Received: by 2002:a17:90a:5982:b0:2bd:8aed:740a with SMTP id 98e67ed59e1d1-2bd9f483e65mr2313191a91.23.1716392373545;
-        Wed, 22 May 2024 08:39:33 -0700 (PDT)
-Received: from localhost.localdomain ([223.178.84.74])
-        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-2b628ea59absm25574077a91.47.2024.05.22.08.39.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 May 2024 08:39:33 -0700 (PDT)
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-X-Google-Original-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
-To: 
-Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2 2/2] dt-bindings: riscv: cpus: add ref to interrupt-controller
-Date: Wed, 22 May 2024 21:08:38 +0530
-Message-Id: <20240522153835.22712-3-kanakshilledar111@protonmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240522153835.22712-1-kanakshilledar111@protonmail.com>
-References: <20240522153835.22712-1-kanakshilledar111@protonmail.com>
+	s=arc-20240116; t=1716392744; c=relaxed/simple;
+	bh=ufoYxK1fyxQsCJ6E3XPZLUf38wiUDYwMD5+3HGtWjKE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m/Kg8BIwplxVIcBIDSJTySXQ+49mSxunw8iNqexXAKxRYUOcUPt+Ps839TQBf0SDTMtWY32nugvlp7PkfmJk0ZCS42TJ0r/m9GZx+cg6cpDLEzd7RWJFt2rnolziLvCC0T7FaFvNnFNwrKH2nZfVexmHUElgwsIyqCPos5xS57Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ETSzzFqI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78512C2BBFC;
+	Wed, 22 May 2024 15:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716392743;
+	bh=ufoYxK1fyxQsCJ6E3XPZLUf38wiUDYwMD5+3HGtWjKE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ETSzzFqIS62XDL7IDh2iXP33WXQNjQ/0pq6ZDo4hEQUYqoS+cVKifkukR3BqfAvI6
+	 dzzvy5xd9UvgNnVdetD372bCD8w4XzAD/L0F/DJCQVEZ2+kePdrBzspEQlwe4EnsSm
+	 +3go6vrV0uwusgJ28UcXQ0/sBt2WuuuchnLb46Wpc4KmoqHHIS5Hom3ulv+QgMWaIY
+	 vrtcDhLhGp6RX5DB7GsGBSEFF/dSAbNAuVxLRP4ijEyCjI6Ci3NUWEUF+ekh8Y0xGT
+	 0aYL630Ki75pr+EUkaZ4j+7DVF3CyBjwWqem1mkIKWAHm08Uk8iz881y196RblqauO
+	 ybF9z84xv31yQ==
+Date: Wed, 22 May 2024 16:45:39 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Lubomir Rintel <lkundrak@v3.sk>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH] spi: dt-bindings: marvell,mmp2-ssp: Merge PXA SSP into
+ schema
+Message-ID: <20240522-festivity-remark-8d6393fada17@spud>
+References: <20240522132859.3146335-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="mX0BiKdZerE2Ta4F"
+Content-Disposition: inline
+In-Reply-To: <20240522132859.3146335-1-robh@kernel.org>
 
-removed the redundant properties for interrupt-controller
-and provide reference to the riscv,cpu-intc.yaml which defines
-the interrupt-controller. making the properties for riscv
-interrupt-controller at a central place.
 
-Signed-off-by: Kanak Shilledar <kanakshilledar111@protonmail.com>
----
-Changes in v2:
-- Fix warning of `type` is a required property during `make
-dt_bindings_check`.
----
- .../devicetree/bindings/riscv/cpus.yaml       | 21 +------------------
- 1 file changed, 1 insertion(+), 20 deletions(-)
+--mX0BiKdZerE2Ta4F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index d87dd50f1a4b..f1241e5e8753 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -102,26 +102,7 @@ properties:
- 
-   interrupt-controller:
-     type: object
--    additionalProperties: false
--    description: Describes the CPU's local interrupt controller
--
--    properties:
--      '#interrupt-cells':
--        const: 1
--
--      compatible:
--        oneOf:
--          - items:
--              - const: andestech,cpu-intc
--              - const: riscv,cpu-intc
--          - const: riscv,cpu-intc
--
--      interrupt-controller: true
--
--    required:
--      - '#interrupt-cells'
--      - compatible
--      - interrupt-controller
-+    $ref: /schemas/interrupt-controller/riscv,cpu-intc.yaml#
- 
-   cpu-idle-states:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
--- 
-2.34.1
+On Wed, May 22, 2024 at 08:28:58AM -0500, Rob Herring (Arm) wrote:
+> The Marvell PXA SSP block is the same or similiar to the MMP2 variant.
+> The only difference in the binding is the PXA version supports DMA (and
+> that's probably a binding difference rather than an actual h/w
+> difference).
+>=20
+> The old binding didn't belong under 'serial' as it is not a UART. The
+> SSP block also supports audio devices, so 'spi' is not a perfect fit
+> either. As the existing schema for MMP2 is there, just leave things
+> as-is.
+>=20
+> The examples in the old text binding were pretty out of sync with
+> reality. 'clock-names' and 'ssp-id' aren't documented nor used.
+>=20
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--mX0BiKdZerE2Ta4F
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk4TIwAKCRB4tDGHoIJi
+0hz4AQDqkrfj5lvbaIp9JRsRma3PhrCTRXlGlgrOV3oWp2RnywEAzo2us+p8Tf9D
+pamFjR4bwBoafa83jLVuHKG1XTNyawQ=
+=DLer
+-----END PGP SIGNATURE-----
+
+--mX0BiKdZerE2Ta4F--
 
