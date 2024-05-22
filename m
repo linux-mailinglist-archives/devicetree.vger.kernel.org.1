@@ -1,173 +1,214 @@
-Return-Path: <devicetree+bounces-68305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE7098CBC47
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:46:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C9D8CBC68
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:53:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D9AE1C2137B
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 07:46:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26EC1282498
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 07:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAF97C081;
-	Wed, 22 May 2024 07:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E15D7E0FC;
+	Wed, 22 May 2024 07:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qI2eEKlg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QCvavQVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E914F7710C
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 07:46:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEEAA7F7FF;
+	Wed, 22 May 2024 07:52:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716363970; cv=none; b=f0UieOnoHpSH4/tUmF0JgGjpVwGzBlldY7OSXoqohI1kxqDrN31NFvWeV6985whlinxlPP1++vBm6tp4KNOt+Kq5vks2hXqNp+bdKVfdzqdwr86ttb0s9ucYlSx2Wr9lErUbdKybvzeJtZf1d+gCA2mh6a3RplGH2ZFuo/c9i0E=
+	t=1716364379; cv=none; b=dOMcFTgT+nDpjTaUY4h+Hpt4Kf7iUhVsXFig1XmA5c59PL1JR/seuJ331zhQnNgFQHNe2AKfQmw4a9ixoughXoHSSfqa2F2PDvWMBfl2NXDADh9li83KIaZ8ctxsH8H46DdrE4YWRiq72ifMvpCa+bZw0diXhWrOowpUtBLUpm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716363970; c=relaxed/simple;
-	bh=tLI1/TLS9lgL0S+7Aa/oJePgPCAr9RaWzgqRi5Nu1w0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Cfs60WGJkfXcoAFCDn17z7+LCJXOHh11/wlkhQQiuBpnYAiX+F3EpZ3+J1U6R0KkI5r0ZZKQtHk8O2POlhhwfJg3GAIgTJfopOvDVyTW2auLVULG2O7Tb3GJXW9ihPudkZj4IlChhuGyOJ4SJdwLoyZCzmNsdCf0UdsRNX/UaEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qI2eEKlg; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-572af0b12b8so9486833a12.2
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 00:46:08 -0700 (PDT)
+	s=arc-20240116; t=1716364379; c=relaxed/simple;
+	bh=zOtFi+77WdrckOeoDk0EekiaDHgdaiNscqDbmPY/Rlo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mKgdcxGp6CDW7+mvITIHaGfywbzS5VJMF9YA6htlG5I0hT6CH3/rAUS0FZLhy1kSR5JIHPxKQW0Pm6JTpuAIRq/jZ3vwH2xe6SwwGVf8Wpc8QL40VDARTrloLyWtRQwYvplvn4nQhs4ulGhGajwUhdhOVWxi5U2915Mw4VYcSgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QCvavQVI; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-656d8b346d2so1919709a12.2;
+        Wed, 22 May 2024 00:52:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716363967; x=1716968767; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gBM+jZUTYiUUTV5gkY6H6ON+yEQkLd9WRxTkpxE1iOk=;
-        b=qI2eEKlgLOir2CtqKVILaIuM3bvkYcAT0IWtXUVOcix3V5MyGzpDFmNFfrrzdQDCjH
-         RffvQbTr3nycZJS1snfg4lBHgLJGZLBfbD6BFZ7OL2UfSWN4LlnmpNc6NVAYRfzR7vtP
-         AbiRzd5DDT4oBa5h4K1YimB3IrYIWt4Rf5Q3IrZvYCNSZbxEVjuRcPWEdeXKN+62qQND
-         xzcn1QIfQtWpkIp4Or2rnXKThbCTmAKfI2x41oBFYjXsCtOOSzQR782vLnNSo9J/0tIf
-         umNpRB0lt5hJ9QkyMFDR1UrWaD0QCRSr0euP5DB3JzwCCjt3eUPlerngmMuAVCqSOh6S
-         cngw==
+        d=gmail.com; s=20230601; t=1716364377; x=1716969177; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xR9Ht3CQdBGvtndjJsShMiO9FjAlBRZ2HivTlX4+0zY=;
+        b=QCvavQVIvuf3SQyeZBW7iOw5rVScIAqqZe48JknuzYR2+9n523Po/3MnCNI+gE2yie
+         mxwbTLmsfTROClWx/odjSu+K/UtoJyip/CpAJFpKxOnqBc60G6ZMEv8e7iAYYJV+Ndkp
+         w0bu7fpYAnLZRNkvnVk9vaUD9jmE/wUCRM7RCrp2ZREHBswJ+EaQsl1KDJnY5SFBl2jY
+         bxKkO0USFVpfo72rEEWAzmDeqw8We4fcofYgxUFacYjQPmoNJhwea66BKjWB7XcdFHqN
+         exDsmK+bJHJZeGkB5pjrbJv++zxMmiXCivJmSKlzBzh9UrmOMvXvhEV0tApF6kq0V8sn
+         iv4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716363967; x=1716968767;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gBM+jZUTYiUUTV5gkY6H6ON+yEQkLd9WRxTkpxE1iOk=;
-        b=JPXUyVRWAxRVhRv2GjrzQG6089waed0Dc9SrUgsqFEDt47pA6tX2rnoS6tAJtXwewV
-         bY3ri3ZZIIDGd+gldlOmSJOuqawQtjhR4eINwRrPR+YIMdPKCHv28OCBZxnmW+9Wt5io
-         H2Hr/hRuqeQ1GS5XUMoIZ0YIzMzJRMxvdVXtpr018n8NtZJ57MGw1eX8HqcxWfHvCWpW
-         1MOpgjPfi8+QPsM/TrYS+B0TYJin8UsIKFhTWbLOtIZJC2kQXCKH7Wayt7AzKGTb89S/
-         84DPwD5N7zV/9BEfdv2vgmO6+nJlOwi2J6AlsvU+XWgY84+xzsPexdDjz2PkmH0MEgEg
-         HkJg==
-X-Forwarded-Encrypted: i=1; AJvYcCV4MPZtqbjxm2irzT5ZKONblP6ulvTzBciJ1SQJUWm2QV7lYC/eXSzX6kf5liBXI7y9yxZwzxyp+AAPmUeOWV13NaF1aY8zjmRsFw==
-X-Gm-Message-State: AOJu0YzJUfF8VV82OUumzH+M9XrN63bE2AbsdVyLhikapO/0WaDyixPP
-	BYR0IQQDPw882rY/zogknRQ6sNZHFiJkzMYVKSglhSYQ+upd2vxQLH9NSnDsQEI=
-X-Google-Smtp-Source: AGHT+IGZLSApaCXvQGxW0dsVfPo3k1iNOpL3wwK5gco9RO/JQwo8qJZoMUt8UyhYHnBdO5wDLTd9WQ==
-X-Received: by 2002:a50:c355:0:b0:56c:5a12:ac53 with SMTP id 4fb4d7f45d1cf-57832bc92b0mr655224a12.24.1716363966909;
-        Wed, 22 May 2024 00:46:06 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8b9d:52bd:4757:6b10? ([2a01:e0a:982:cbb0:8b9d:52bd:4757:6b10])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5751ada828esm6950621a12.62.2024.05.22.00.46.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 00:46:06 -0700 (PDT)
-Message-ID: <0f784354-c5ca-4436-b5fd-b1744414bc3d@linaro.org>
-Date: Wed, 22 May 2024 09:46:03 +0200
+        d=1e100.net; s=20230601; t=1716364377; x=1716969177;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xR9Ht3CQdBGvtndjJsShMiO9FjAlBRZ2HivTlX4+0zY=;
+        b=HM4OR8+ev/8M4QBiNo6dHUzUcbWsE3/pmhJdZbXjblkxtp+MAtYC8TpMsUQm+SkEsg
+         Ao8glOFlBq5Zk1bYmq7R55lrCepFROTe/HT0RogM6uYaOKSjrExlqbTZLVJgNXMlWtXP
+         cD1F89yPXq26CZ8iZ07hRg8g5QmYj7xsNOWN7NrHryNliyjFUKJ76Z9IYsNOFcGPbo7f
+         KvGGwwac7tNSjc9rdlkHGnfFu/KjS4kkPacozRA6xLXpqYJ7d+zFf4U6mmMiswjS8wGg
+         yvYN2LCHI7n66TcrCi9QgTwISl/HL1T+EEfnY92yAIkM4umJYPTun/cPbkOL9Eyt4CKT
+         cY8w==
+X-Forwarded-Encrypted: i=1; AJvYcCWM2n4kbHA2DQo/nJgtP2+hF2DB83ht88BI+Seas5h19BS4+WjlXvZ/Js9Hw92FF/jEgf6vXkvwor3f7IHY4f6PNetePpDoCOdt3yy68gfQ1pLt1ze8MyqVTduLurUAo4oqDM9ahwlHU4E08173e4NDC7bIpBMv9CP3R858SM9j6U3Lbke2
+X-Gm-Message-State: AOJu0YzpcvJIJVoUvO24VG5uVDAAMiqsBP+bEZMpMW+lR1MZN9jGX8sd
+	BTB6NcFDdA7TZbi4yOlowLiWCVuvor1/UY6flRwhg9iGa9hX1pYA
+X-Google-Smtp-Source: AGHT+IGt5hUedJgq2tvzHeKcHMluAEaiOFJypIgtXd2oVgcIFh2hk73oE1nEKq5wammTtgyc/bcBLA==
+X-Received: by 2002:a17:90b:e90:b0:2bd:6f39:b0ea with SMTP id 98e67ed59e1d1-2bd9f5a5c03mr1260668a91.42.1716364376872;
+        Wed, 22 May 2024 00:52:56 -0700 (PDT)
+Received: from localhost.localdomain ([120.88.183.31])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2b67158c39dsm22931318a91.35.2024.05.22.00.52.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 May 2024 00:52:55 -0700 (PDT)
+From: Mighty <bavishimithil@gmail.com>
+To: 
+Cc: Mithil Bavishi <bavishimithil@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lopez Cruz <misael.lopez@ti.com>,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+Date: Wed, 22 May 2024 13:22:45 +0530
+Message-Id: <20240522075245.388-1-bavishimithil@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] phy: qcom: qmp-pcie: restore compatibility with
- existing DTs
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- devicetree@vger.kernel.org
-References: <20240521-fix-pcie-phy-compat-v1-0-8aa415b92308@linaro.org>
- <20240521-fix-pcie-phy-compat-v1-1-8aa415b92308@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240521-fix-pcie-phy-compat-v1-1-8aa415b92308@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/05/2024 22:30, Dmitry Baryshkov wrote:
-> Existing device trees specify only a single clock-output-name for the
-> PCIe PHYs. The function phy_aux_clk_register() expects a second entry in
-> that property. When it doesn't find it, it returns an error, thus
-> failing the probe of the PHY and thus breaking support for the
-> corresponding PCIe host.
-> 
-> Follow the approach of the combo USB+DT PHY and generate the name for
-> the AUX clocks instead of requiring it in DT.
-> 
-> Fixes: 583ca9ccfa80 ("phy: qcom: qmp-pcie: register second optional PHY AUX clock")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 9 +++------
->   1 file changed, 3 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> index 6c796723c8f5..b4767b8cc014 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> @@ -3730,14 +3730,11 @@ static int phy_aux_clk_register(struct qmp_pcie *qmp, struct device_node *np)
->   {
->   	struct clk_fixed_rate *fixed = &qmp->aux_clk_fixed;
->   	struct clk_init_data init = { };
-> -	int ret;
-> +	char name[64];
->   
-> -	ret = of_property_read_string_index(np, "clock-output-names", 1, &init.name);
-> -	if (ret) {
-> -		dev_err(qmp->dev, "%pOFn: No clock-output-names index 1\n", np);
-> -		return ret;
-> -	}
-> +	snprintf(name, sizeof(name), "%s::pipe_aux_clk", dev_name(qmp->dev));
+From: Mithil Bavishi <bavishimithil@gmail.com>
 
-Should be "::phy_aux_clk"
+Convert the OMAP4+ McPDM bindings to DT schema.
 
->   
-> +	init.name = name;
->   	init.ops = &clk_fixed_rate_ops;
->   
->   	fixed->fixed_rate = qmp->cfg->aux_clock_rate;
-> 
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+---
+Changelog v5:
+- Add imports for constants
+- Add desc to ti,hwmods
 
-With that:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+ .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ---------
+ .../bindings/sound/ti,omap4-mcpdm.yaml        | 61 +++++++++++++++++++
+ 2 files changed, 61 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
 
-Thanks,
-Neil
+diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
+deleted file mode 100644
+index ff98a0cb5..000000000
+--- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-* Texas Instruments OMAP4+ McPDM
+-
+-Required properties:
+-- compatible: "ti,omap4-mcpdm"
+-- reg: Register location and size as an array:
+-       <MPU access base address, size>,
+-       <L3 interconnect address, size>;
+-- interrupts: Interrupt number for McPDM
+-- ti,hwmods: Name of the hwmod associated to the McPDM
+-- clocks:  phandle for the pdmclk provider, likely <&twl6040>
+-- clock-names: Must be "pdmclk"
+-
+-Example:
+-
+-mcpdm: mcpdm@40132000 {
+-	compatible = "ti,omap4-mcpdm";
+-	reg = <0x40132000 0x7f>, /* MPU private access */
+-	      <0x49032000 0x7f>; /* L3 Interconnect */
+-	interrupts = <0 112 0x4>;
+-	interrupt-parent = <&gic>;
+-	ti,hwmods = "mcpdm";
+-};
+-
+-In board DTS file the pdmclk needs to be added:
+-
+-&mcpdm {
+-	clocks = <&twl6040>;
+-	clock-names = "pdmclk";
+-	status = "okay";
+-};
+diff --git a/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
+new file mode 100644
+index 000000000..966406078
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,omap4-mcpdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OMAP McPDM
++
++maintainers:
++  - Misael Lopez Cruz <misael.lopez@ti.com>
++
++description:
++  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
++
++properties:
++  compatible:
++    const: ti,omap4-mcpdm
++
++  reg:
++    items:
++      - description: MPU access base address
++      - description: L3 interconnect address
++
++  interrupts:
++    maxItems: 1
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    enum: [mcpdm]
++    description: Name of the hwmod associated to the McPDM, likely "mcpdm"
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: pdmclk
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - ti,hwmods
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    pdm@40132000 {
++      compatible = "ti,omap4-mcpdm";
++      reg = <0x40132000 0x7f>, /* MPU private access */
++            <0x49032000 0x7f>; /* L3 Interconnect */
++      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
++      interrupt-parent = <&gic>;
++      ti,hwmods = "mcpdm";
++      clocks = <&twl6040>;
++      clock-names = "pdmclk";
++    };
+-- 
+2.34.1
+
 
