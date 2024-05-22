@@ -1,109 +1,152 @@
-Return-Path: <devicetree+bounces-68342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C1E8CBF2D
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 368408CBF30
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:23:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4F91C21DF8
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:22:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 687001C20D75
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:23:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A488F82487;
-	Wed, 22 May 2024 10:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YO9TXAIL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3E5C81ACB;
+	Wed, 22 May 2024 10:23:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC874823BC;
-	Wed, 22 May 2024 10:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFBF8173C
+	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 10:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716373326; cv=none; b=sFxhKW2BP0IcXQLOW4R18bWLAkwzH/ZM54LMP0u2hlON8Yvj/4ilf6tNbhpTxhVe0UBIEEEux/SFjb7GQBZAOvG3nji+W71/VRyLTpUhKomzazD88O9vf7ji/CTz9od7oWKZNN3s+HUHa2iB0IzD6uhZRxgBtg68SXac6enIA48=
+	t=1716373427; cv=none; b=KG8TL0LmJWVvHqBDk4/ugeqVia9uAwMhmk5fL3Un49B1CfwZu7v9LeqmSUElbkcZpN7Qg/5uBVezyMRnei/3+g5h+0w+Nd1AKoH4wTyFB9NCS9SiJSE9mF00Iy1MsHlpPu7RBWts3/BKL4hfcLTunoiXzD8sKd9o5xjo2h9bOCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716373326; c=relaxed/simple;
-	bh=oswQw80SOVI7XFRanmCJKZ2zDU69jrRoyfhZPJHeVes=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ApR+99TtM5TrVHjBcjbz1k1+j54dB9BdGjfr0wTWI1K7sI+r+0w4oNZlCB3LKugXf2QD8ILXnIND+P3k9h5Hm04xkqS0vvZ04oMYQdGLpUsM4/NPPL4NC2CjuFviN6T3lo//c7S3GxpmbgU37v3bLTYs2crVp/3+rBHZNhjckYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YO9TXAIL; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44MALjGB068239;
-	Wed, 22 May 2024 05:21:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1716373305;
-	bh=h9TicpCuN89t+Mm5F9Q8A4vmSV0MDw9f3fI0WXx6qy0=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=YO9TXAILD479LkY6rz8VPpBZAoOmlGmFTk1CxX1cakrZiPb3TKqb96TMmzeijDhpJ
-	 7O3sMWEvUhKEWGgFqm5Vnx5bplYfNR/VdStUpWQjctwvWOhodL0Wct5YFsNRs4eMMk
-	 x3Y1FuNFsHBSPQIf/Yn5Xy1UL4dVtZYLsWauxEYc=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44MALje7021537
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 22 May 2024 05:21:45 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 22
- May 2024 05:21:44 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 22 May 2024 05:21:45 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44MALiMI093511;
-	Wed, 22 May 2024 05:21:44 -0500
-Date: Wed, 22 May 2024 15:51:43 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Francesco Dolcini <francesco@dolcini.it>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <danishanwar@ti.com>, <srk@ti.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: ti: k3-j784s4-main: Add PCIe nodes
-Message-ID: <47146d6c-bab3-4089-8dd5-4d71762bba2c@ti.com>
-References: <20240520101149.3243151-1-s-vadapalli@ti.com>
- <20240520101149.3243151-2-s-vadapalli@ti.com>
- <20240521200909.GA3707@francesco-nb>
+	s=arc-20240116; t=1716373427; c=relaxed/simple;
+	bh=8Jv2FoH6NJPjGOP0LC/PqVRnbeV7oAwm/+X5xjFYdEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KZ0aUMojf6ycFIXK204ke/t2I5E381vvWJAbI5/lrJMTHFoRrrIKRt2awwKig4QSvj3rO4nczogSTNCf7cRztVKLErqmE0ibr0jCvdFtvmu4kGiGPTZZj1REYs83Aq0dVqSjGv/Nqo6p4pCRlPphTOeMXdSI9aabOLmwuCTnvyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s9j8I-0000WW-JS; Wed, 22 May 2024 12:23:42 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s9j8H-002Vkx-RJ; Wed, 22 May 2024 12:23:41 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1s9j8H-009uTO-2Q;
+	Wed, 22 May 2024 12:23:41 +0200
+Date: Wed, 22 May 2024 12:23:41 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Clark Wang <xiaoning.wang@nxp.com>
+Subject: Re: [PATCH 5/5] pwm: adp5585: Add Analog Devices ADP5585 support
+Message-ID: <kn46i4ejb7demlieowowwur7mps6bmlaiqctxuh2gufi7vnon3@ourzmteng7gk>
+References: <20240520195942.11582-1-laurent.pinchart@ideasonboard.com>
+ <20240520195942.11582-6-laurent.pinchart@ideasonboard.com>
+ <dl7a6puox5lc36fpto2fgyfgmpd3uboqc4lcfdtuaxzzsboqld@alw7vyi7pqjz>
+ <20240521100922.GF16345@pendragon.ideasonboard.com>
+ <xobmekjwqanow765yr42tsgknc5gc7szjublq6ywgbmoxovlr5@v3sofz5bmkol>
+ <20240522101335.GE1935@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="njhuclhgrbcf33b5"
 Content-Disposition: inline
-In-Reply-To: <20240521200909.GA3707@francesco-nb>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20240522101335.GE1935@pendragon.ideasonboard.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, May 21, 2024 at 10:09:09PM +0200, Francesco Dolcini wrote:
-> On Mon, May 20, 2024 at 03:41:47PM +0530, Siddharth Vadapalli wrote:
-> > TI's J784S4 has two instances of Gen3 x4 Lane PCIe Controllers namely
-> > PCIE0 and PCIE1. Add support for the Root Complex Mode of operation of
-> > these PCIe instances.
-> 
-> What about PCIE2? J784S4 has 3 PCIe instances, it would be beneficial to
-> add all 3, not just the first twos.
 
-Thank you for reviewing the patch. I agree that it was incorrect for me
-to mention that J784S4 has two instances of PCIe. It actually has 4
-instances as mentioned in the Excel Sheet provided along with the
-Technical Reference Manual at:
-https://www.ti.com/lit/zip/spruj52
-namely PCIe0, PCIe1, PCIe2 and PCIe3.
+--njhuclhgrbcf33b5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Since the J784S4 EVM has only PCIe0 and PCIe1 instances of PCIe brought
-out, I was able to test them and therefore added support for only those
-two instances in this series. However I do agree that all 4 should be
-added to the SoC file (k3-j784s4-main.dtsi) for the sake of completeness
-in terms of describing the SoC, while the Board file (k3-j784s4-evm.dts)
-can still contain just PCIe0 and PCIe1 as those are the ones brought out
-on the board. I will implement your suggestion in the v3 series.
+Hello Laurent,
 
-Regards,
-Siddharth.
+On Wed, May 22, 2024 at 01:13:35PM +0300, Laurent Pinchart wrote:
+> On Tue, May 21, 2024 at 03:05:53PM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Tue, May 21, 2024 at 01:09:22PM +0300, Laurent Pinchart wrote:
+> > > On Tue, May 21, 2024 at 10:51:26AM +0200, Uwe Kleine-K=F6nig wrote:
+> > > > On Mon, May 20, 2024 at 10:59:41PM +0300, Laurent Pinchart wrote:
+> > > > > +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
+> > > > > +		swap(on, off);
+> > > >=20
+> > > > Uhh, no. Either you can do inverted polarity or you cannot. Don't c=
+laim
+> > > > you can.
+> > >=20
+> > > OK, but what's the rationale ? This is also an area where I couldn't
+> > > find documentation.
+> >=20
+> > I don't have a good rationale here. IMHO this inverted polarity stuff is
+> > only a convenience for consumers because the start of the period isn't
+> > visible from the output wave form (apart from (maybe) the moment where
+> > you change the configuration) and so
+> >=20
+> > 	.period =3D 5000, duty_cycle =3D 1000, polarity =3D PWM_POLARITY_NORMAL
+> >=20
+> > isn't distinguishable from
+> >=20
+> > 	.period =3D 5000, duty_cycle =3D 4000, polarity =3D PWM_POLARITY_INVER=
+SED
+> >=20
+> > . But it's a historic assumption of the pwm core that there is a
+> > relevant difference between the two polarities and I want at least a
+> > consistent behaviour among the lowlevel drivers. BTW, this convenience
+> > is the reason I'm not yet clear how I want to implemement a duty_offset.
+>=20
+> Consistency is certainly good. Inverting the duty cycle to implement
+> inverted polarity would belong in the PWM core if we wanted to implement
+> it in software I suppose. I'll drop it from the driver.
+
+This isn't as easy as it sounds however. From the POV of the PWM core
+the capabilities of the currently used hardware are unclear. So if a
+request with (say) normal polarity and a certain duty_cycle + period
+fails, it's unknown if it would be beneficial to try with inverted
+polarity and if that is OK for the requesting consumer. So there is
+information missing in both directions.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--njhuclhgrbcf33b5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZNx6wACgkQj4D7WH0S
+/k7gSQf/eP3kBKkVvjsZKN2YXLxC/e3LV/e5b/nZfHIgt3CEctZeTQcGfZLQa5V+
+WVkCjKeolCGJXYxsB84okaHK/6GPQ+cWMquFk4qbN28WgIHSj+7HJCkaqDY14Ar/
+9oW8fVNG4s9ZpbeQPJ4iH4b5zrx+JSQRzeW2hw9l+XvCeMG8d9Eno8m9CERF72ud
+6dL1fkPvxjtFklYNgqwGavc65n+kqme2GvfHu87ZkPHb4lLH14tMtlZOmlaIKGpS
+hUJSMQugUreF6MndO9VsMpmKK80YigNY7L4d8D19W1H5nwvTaxuO5kwahMbYas0f
+4LqNkFV5ycdF43EAUXChc/1w57dTyQ==
+=s0N3
+-----END PGP SIGNATURE-----
+
+--njhuclhgrbcf33b5--
 
