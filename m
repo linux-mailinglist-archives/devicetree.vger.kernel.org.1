@@ -1,80 +1,74 @@
-Return-Path: <devicetree+bounces-68443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F32F8CC495
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:00:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB6CD8CC49A
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC6801F22C44
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:00:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A46DB222E6
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9757F1CD26;
-	Wed, 22 May 2024 16:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452BF20DF4;
+	Wed, 22 May 2024 16:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dWILjTSr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SkYXCDCF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A2D1E517
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 16:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B64D1E517;
+	Wed, 22 May 2024 16:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716393627; cv=none; b=rJmZSAkR8G62h35r6SnighTrndxKgE0jD/YBj5Qb81ydgo/yaqn516lC7U6fHM7BY5fV7MBsuS9KdUFLyyY+n8o+VQfB1kAtF78WrsRr4HYYLxorFXwEPsyPCz/C4dhma3hiSqnujFaz4oxAMbx6py6uS13O6nhXZMeggvnEyo0=
+	t=1716393672; cv=none; b=Og5HW+3I+qo6V9enHBCr+lJZy3Mx/FMpxE35w6EnE0rA01lLvNatLdnh4GzcNWQdeBHncjcuuY9le9tIvf1/HTt+YWqzda7QLDzLcnWmTouTBKLW4jcrOwXrnRLiG+KdbC7H/+X+9H4BNn95KNJAW2E87yuhgXZVm7ffTnTEwag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716393627; c=relaxed/simple;
-	bh=2C9fNAU+Yg3t9+muOOfWc9qfe3e2oqVbk6lel/Tnsrg=;
+	s=arc-20240116; t=1716393672; c=relaxed/simple;
+	bh=0NwHELK5RWKTIivL9B23dAYfk/7VLTkrUSaOqUW7hqE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZF5onzRFAfKV0nBjnsGc/Nuxb/qrgqWjUsStRKQbp5+TVnANomfLOr7HDp652NhXnCh7gRWEhtP/vC0UkO4JOvWLlMTWMfekSo4V2mdv/Q7Zx14XYCFwYkwbH4LlOlQ0pZetLKMtejcFrWOTeakny0SJef9PIEz0k/auseEJqbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=dWILjTSr; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1716393624;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ajxqgjEKnMOrF68kO1CKH80QE6nlB/0C/WuHcK2TQAo=;
-	b=dWILjTSrBfrCtu/cUMSxkr6dbqNawx/tlVdLIiyDsvBPIdiDsuvfIVX4vBHX2rvIKFF02t
-	ftLTQmdBEHYGX/NtRZXLoyj8UmEHEcYjJXmScFP/Vzl4gCUU44FH0mzVkRjutg0P+EyfoB
-	mvSFi33FIGA1hfhcG5Kts+mI5mjXUyc=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-364-kUOkuvVgM8WwcKNTAnfcBQ-1; Wed, 22 May 2024 12:00:22 -0400
-X-MC-Unique: kUOkuvVgM8WwcKNTAnfcBQ-1
-Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-351d13dd8aeso4228218f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 09:00:22 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=GQJ7iLJ0sRCu8dtGRCpWhNlXPoqwkoSpE+wRSwGQh0YL8pBxNr0rTPaCH+/dBpL4i4gtav6u/Rmm/s8kB8HlmgcYTm1BaroOnG3e6EO0+IyWABHWx+5cL8hBsWcIjOSOpSbdyYELa0aaO9eybJqmSbWQ4lKDmHEYnpqrJC6T7wI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SkYXCDCF; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5238b7d0494so6905186e87.3;
+        Wed, 22 May 2024 09:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716393669; x=1716998469; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lIobeHQ9aXYpTU7pQ4MI9CNM+eyMdAdKytPPJO9Bf08=;
+        b=SkYXCDCF8B/9FZoPUmbuLow4kaHaPhzN42FJAyCVxw0U5PR9kxeIm2iHXyg8LG7Dgr
+         EUacUu8t05STt4jBInSgsWZg3hkewMPH9dtevw1P5Ew/PH4AG2ypRRV61HOESkzE5Ppi
+         yLuhc22pUHuKDryTsektolC/4Wgi5f4lkC8MmJlS7TXc5KOGm4EbV+xO9V4DqEPMz5U1
+         slMYjQge6fVb5t9+Q5XUsZx9g5/Rcf+fv9B5rPlc+T/BKZY26hrYn1DGLd1qYqewFaPM
+         uHvkov3mnPHMK1vyk5wbHMQup2XGM3faefrn9xWvzjFC6JrfEi2bALTvVbRHbEJym3I5
+         Oxng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716393621; x=1716998421;
+        d=1e100.net; s=20230601; t=1716393669; x=1716998469;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ajxqgjEKnMOrF68kO1CKH80QE6nlB/0C/WuHcK2TQAo=;
-        b=VEo56YnXH9tODKknu51/pfMn9QSPMPLe+w8MtWOH7djJ1ecpXOOjU/vexGKn84OrgZ
-         mOQK9an74RbvjI441zSanOowWLPRQzbeDnh4I/GHIW6HER6BhqCei3gAh0JedJxqew1T
-         9CIvHP2vBTlKheo6gXvzfdOUGykZ/j7ePNTtaXJiOmlwYfGe11gvrQ7x45kRW/VwaMGf
-         YLEh7vWjNx/6Bw/uB3i+Sj6E39dWhtlaID3BOm7EY6DB3bfB+AD0RcctSaLGiCxOxQKK
-         vRmiRXgVFMbNSpl/2phOH29y9FWUMx4xCQMtGudxTQkfp8xDc5zuK35p+umJG2/m7LgB
-         Ny1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXXTki45cnWGKdu/R9aif3kwJmM2BzSUTcd6HLNhkFALFLZiHL81JZvRsbejRgXrSwu1ect8hj++WyfY0C1yEYP10CC25PGMFwXLg==
-X-Gm-Message-State: AOJu0Yww/hIG4K/d3LSwnxv94Ya4UmgKmSs1TcdetcZSjLK0xvXqlxBj
-	xLxw/dqnYLinQS/tTZUWOSUryYMhzRE7ZD3mfu+3J6AYbOZzUdE6r84wk1VLyEdDGQwgqR9nHDc
-	Q3GLU/hFa6bpfc7MH5jzB1vZ2SGClvGktYR0iAuegsTtnqDXjQllv+MgB6CM=
-X-Received: by 2002:a05:6000:1b91:b0:34c:4d98:d6f7 with SMTP id ffacd0b85a97d-354d8cc565amr2110454f8f.26.1716393621167;
-        Wed, 22 May 2024 09:00:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEfuleeGHEI9v8Iu/zrWS0ge+CrdIoZVA0jmvF/ETV9r/10v9dT2bd72KAoHuP4ZL+cVSkHmQ==
-X-Received: by 2002:a05:6000:1b91:b0:34c:4d98:d6f7 with SMTP id ffacd0b85a97d-354d8cc565amr2110410f8f.26.1716393620727;
-        Wed, 22 May 2024 09:00:20 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1787c63bsm1798036266b.51.2024.05.22.09.00.19
+        bh=lIobeHQ9aXYpTU7pQ4MI9CNM+eyMdAdKytPPJO9Bf08=;
+        b=YmVM2RLrTc5P5myGXjnhyBAzIepbeiXIOK4JkoX0AEfN6XIP+JWUWZd5nnVZY/qY1f
+         0Pjzray3mTkOkuDgiQ0BC1k2zbTJB3RG3LkL+wKikd27Ym9xfM0nu7RaD4IzDi4ll6ph
+         jIfaxY74mEWUKAMDpB8Ev6H/qQtu/FOqatoTE3S7wHSh5bFutPOYDIHklZSzDs4QzhjL
+         tyA90XDCmr3QfdilXEkzwT8KdJr5Sg+IxfP6SkaKfLW9NYpUNkOn4udoEq0tZP6PUK9A
+         JSRXoC71yShJ9uU8iuc4PaO/4pA8T/u+bf3cLhK0qiCyXbCUYP8QGTt93q8zZkJs7Bk2
+         32sQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUys4SvII/Y1zz6C8aLtodPsMYxS1VwZGBIpvmQyz6d6aI23o4HzgIL/5Vsjztz1eaV6nSsgvhbcI3H6yNglx3+yWAgTq1JGakYdaNuXErarTWaNVQu/vOfNRtvWHtJYNY/reBdItZ60IYeI0T8xz1lIWkhNVjez+4Z02eJOJshUuXihqgY
+X-Gm-Message-State: AOJu0Yxsf4RqSMSc76O25lRdoNAdsREJXSn9f0va8k8IphAXpQGj3oR4
+	ZqtvlGevKFMc1o1Z/0kfzD+WmncHok7splqGcXifvSVEBd9aZsDGTPH8CR/ZrXZt4Q==
+X-Google-Smtp-Source: AGHT+IFVYF5UzsimnCAVIh2Z+2dKzfEetDxdKHKILb3hiHlU0tIrBogpWtwdPZXOPzeDuTfOJfDBVQ==
+X-Received: by 2002:ac2:55b9:0:b0:51c:cc1b:a8f6 with SMTP id 2adb3069b0e04-526bf268198mr1908594e87.20.1716393668325;
+        Wed, 22 May 2024 09:01:08 -0700 (PDT)
+Received: from [10.0.0.100] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f39dcb62sm5029515e87.307.2024.05.22.09.01.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 09:00:20 -0700 (PDT)
-Message-ID: <3aef46dc-ab15-4f29-909e-bb7500b32cf9@redhat.com>
-Date: Wed, 22 May 2024 18:00:19 +0200
+        Wed, 22 May 2024 09:01:07 -0700 (PDT)
+Message-ID: <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
+Date: Wed, 22 May 2024 19:01:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,132 +76,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: document Novatek NVT touchscreen
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, joelselvaraj.oss@gmail.com,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>, Mighty <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240521-nvt-ts-devicetree-regulator-support-v1-0-8d766c639dca@gmail.com>
- <20240521-nvt-ts-devicetree-regulator-support-v1-1-8d766c639dca@gmail.com>
- <6f22e42d-8a06-4c24-93bd-25b6ac141cea@kernel.org>
-Content-Language: en-US, nl
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <6f22e42d-8a06-4c24-93bd-25b6ac141cea@kernel.org>
+References: <20240522075245.388-1-bavishimithil@gmail.com>
+ <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+ <4f722e53-011f-4176-b6af-080522165007@kernel.org>
+ <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
+ <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi,
 
-On 5/21/24 6:48 PM, Krzysztof Kozlowski wrote:
-> On 21/05/2024 14:09, Joel Selvaraj via B4 Relay wrote:
->> From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+
+On 22/05/2024 18:22, Krzysztof Kozlowski wrote:
+> On 22/05/2024 16:43, Péter Ujfalusi wrote:
+>>>>
+>>>>> +      compatible = "ti,omap4-mcpdm";
+>>>>> +      reg = <0x40132000 0x7f>, /* MPU private access */
+>>>>> +            <0x49032000 0x7f>; /* L3 Interconnect */
+>>>>> +      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+>>>>> +      interrupt-parent = <&gic>;
+>>>>> +      ti,hwmods = "mcpdm";
+>>>>> +      clocks = <&twl6040>;
+>>>>> +      clock-names = "pdmclk";
+>>>>
+>>>> The clocks cannot be added at the time when the node is defined, it is
+>>>> board specific. This way you imply that it is OK to have it in main dtsi
+>>>> file. It is not.
+>>>
+>>> Wait, what? That's example and pretty standard. Example should be
+>>> complete. This is not an exceptional binding.
 >>
->> Document the Novatek NVT touchscreen driver which is used in devices like
-> 
-> driver? or device?
-> 
->> the Xiaomi Poco F1 [1]. Also, include the devictree binding file in the
->> MAINTAINERS file.
+>> The fclk for the McPDM is coming from external source, and the McPDM is
+>> designed in pair with twl6040/6041, there were plan for other codecs to
+>> support the McPDM protocol and in those cases the clock would come from
+>> the connected codec.
 >>
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts?h=v6.9
->>
->> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
->> ---
->>  .../bindings/input/touchscreen/novatek,nvt-ts.yaml | 62 ++++++++++++++++++++++
->>  MAINTAINERS                                        |  1 +
->>  2 files changed, 63 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/input/touchscreen/novatek,nvt-ts.yaml b/Documentation/devicetree/bindings/input/touchscreen/novatek,nvt-ts.yaml
->> new file mode 100644
->> index 0000000000000..7839c6a028e4a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/touchscreen/novatek,nvt-ts.yaml
->> @@ -0,0 +1,62 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/input/touchscreen/novatek,nvt-ts.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Novatek NVT Touchscreen Controller
->> +
->> +maintainers:
->> +  - Hans de Goede <hdegoede@redhat.com>
->> +
->> +allOf:
->> +  - $ref: touchscreen.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - novatek,nvt-ts
+>> The example (as the original binding was bit rot) is missing reg-names,
+>> dmas and dma-names to be complete.
 > 
-> That's too generic. Looking at your driver change, it is not even needed.
+> None of these properties are allowed by the binding and during these
+> five/six revisions of the patchset no one raised missing properties.
 
-I wrote the novatek-nvt-ts driver for an Acer Iconia One 7 B1-750 tablet,
-this is a x86 tablet which ships with Android as factory OS and because
-Android OS images use kernels where everything is hardcoded the ACPI tables
-do not describe this touchscreen. Instead the i2c_client for the touchscreen
-is manually instantiated by some x86 platform glue code. Since it is
-manually instantiated it uses i2c_device_id binding rather then OF/ACPI.
+I just by accident spotted this patch, I was not in Cc.
 
-The generic "NVT-ts" i2c_device_id comes from me not knowing the controller
-panel type back then. In the mean time I have learned that the B1-750 uses
-NVT-NT11205 controller.
+The reg-names must be set to 'mpu' and 'dma'
+The dma-names should be 'up_link' and 'dn_link'
 
-So what I think needs to happen here is add a preparation patch as first
-patch to this series which basically does this:
+These names go back for a long time (~2012) and have been mandatory ever
+since.
 
-diff --git a/drivers/input/touchscreen/novatek-nvt-ts.c b/drivers/input/touchscreen/novatek-nvt-ts.c
-index 1a797e410a3f..224fd112b25a 100644
---- a/drivers/input/touchscreen/novatek-nvt-ts.c
-+++ b/drivers/input/touchscreen/novatek-nvt-ts.c
-@@ -278,7 +278,7 @@ static int nvt_ts_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id nvt_ts_i2c_id[] = {
--	{ "NVT-ts" },
-+	{ "NT11205-ts" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, nvt_ts_i2c_id);
-diff --git a/drivers/platform/x86/x86-android-tablets/other.c b/drivers/platform/x86/x86-android-tablets/other.c
-index eb0e55c69dfe..5ecee6e66fb4 100644
---- a/drivers/platform/x86/x86-android-tablets/other.c
-+++ b/drivers/platform/x86/x86-android-tablets/other.c
-@@ -40,7 +40,7 @@ static const struct x86_i2c_client_info acer_b1_750_i2c_clients[] __initconst =
- 	{
- 		/* Novatek NVT-ts touchscreen */
- 		.board_info = {
--			.type = "NVT-ts",
-+			.type = "NT11205-ts",
- 			.addr = 0x34,
- 			.dev_name = "NVT-ts",
- 		},
+Yes, the binding document was neglected pretty badly but when converting
+to yaml it has to be correct since that will have ripple effect on
+existing dts/dtsi files.
 
-This solves the too-generic ID problema nd can then be merged
-together with the rest of the series through the input tree.
-I'll give my ack as drivers/platform/x86 subsys maintainer for
-merging the x86-android-tablets change this way.
-
->> +      - novatek,nt36672a-ts
+> I assume the DTS was validated with the binding. Isn't the case here?
 > 
-> Eh, we have already panel. Why there is a need for touchscreen binding
-> (binding, not driver)?
+> Best regards,
+> Krzysztof
+> 
 
-I believe that the nt36672a identifier is an identifier for
-a novatek display assembly which contains both a DSI display
-panel as well as an I2C touchscreen. Since I2C devices need
-to be children of the I2C controller we need a separate node
-in the device tree for the I2c touchscreen-controller and since
-it is a separate node it needs it own compatible I believe ?
-
-Regards,
-
-Hans
-
-
-
+-- 
+Péter
 
