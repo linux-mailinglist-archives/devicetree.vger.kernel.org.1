@@ -1,193 +1,148 @@
-Return-Path: <devicetree+bounces-68432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD8FB8CC3F2
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:16:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCA208CC404
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:22:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 741CE283115
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:16:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 527A1B228CE
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD22B7D071;
-	Wed, 22 May 2024 15:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E62A655C3E;
+	Wed, 22 May 2024 15:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hPppyMsJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cd0TUJdH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF642574D;
-	Wed, 22 May 2024 15:16:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55EB1864C;
+	Wed, 22 May 2024 15:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716390983; cv=none; b=BrZ68vWc02Pc91zZl2Gwkle7EoPVffLh2zaajsScg0RCPkGLtAyP2X0YkmUP8Xa0NmSWoJGhQKkjnaE/J9R1j6MT922v1bRaZHU3fGgYVpoFogrtlgZ/ZrMyIHWF+4A1GCW8ILcOUP73Uc+qFLE/VsT7oJD/9iF55JWJ/Kiaa04=
+	t=1716391368; cv=none; b=TcMOqvTy79WWwLKB/IVzP2hiXKeW/kJaEH4jPAPryA0sWGayeSLjbGIDGGaTsz91X8oDE2mW/1pfURPgPlFbw88qxZyIWZzS7FW7rrHkLcwQVYfCDkUgkSesUPLj89NTxmm1Oq8lXCSkC8ZYqCgBH5tr5XKGVXSQpk3ROlS56L8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716390983; c=relaxed/simple;
-	bh=EI0HTnk8GGjk6iqjpuIdqvCDyPO+TCTJmp5zSzG0huU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZAntf36WtPXjkcNTsz/YjtAFShimS9aCycnbUKF1p/XhTSk7XIBJ9ms71POrXH34tESbXQK0SGU1eXiP/l5mlF92G7yQYUA+7R23ACLn26uJBFzW+Jw2uQ/vZmax/GsMfe/OfLCM2dYcs6DbYQs/ybkWu/ShutFDTdWTgrN8VTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hPppyMsJ; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52742fdd363so592798e87.1;
-        Wed, 22 May 2024 08:16:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716390980; x=1716995780; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=roXuzAP03ERlPT/E+g7wXJxWMv9lSxxfHo4i6eclxyA=;
-        b=hPppyMsJx4dhjxGqou4bhBjLf3ep/UCoHlE+ZAMYqNcthTdUs8gdk/2Dl9HvFOj+VB
-         LNGhjFxfCRtIkjyoXQX+gdt7Se+BTjb0Ki8bKXgxA8jN+oOSpHlxXYaAWYUHJNwKfA6z
-         +ZaSNJ5MJ4Bx0xiYBWMdqam1FP5hOd/xYLqMH2Nf07zsG5VwCWdaNwwIlYgg38YioRCr
-         j3KG4hMIDW82ZO3qbkd9sny+8W+ogydfFF9aIXbvxQE7NatMlWXBiVh6W/VUo1gyLjzO
-         NuLx0X9RQTe8m7OfKh2zukn4VwcDOT5k9rXE/L1WYvEFlKI24MU+gyp6vupI8dkNYR5c
-         BnEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716390980; x=1716995780;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=roXuzAP03ERlPT/E+g7wXJxWMv9lSxxfHo4i6eclxyA=;
-        b=Vb9RZmckvPv+tbkg3X3ohVn0YNVs2uigxNKFZ3PHLpQSwMsjAmiJsp1g5X57MvGrdS
-         8EShCAgLzU0xG85KXcQS2lL2PZTicTGXeElgkpiPJeoBLJqNycvIJP9pccdauu9xhSpV
-         Mt44xzg40iZPQyYOlJ94R/32brLayQrI49OodTrZPXVbFrqP9N9C3ufZVv0zadwZBjHx
-         h3LzJKv8ppxwMiN3g2imk8GF8Hz1g1Nzi3EeRFVv7E0z6IZFTzCLTiXSQP3PsFuu5dYo
-         7KriqjS4Oe+LCAHNhbN6/OAFcgDg8T2PWqqlXgb37zPyIvHa+JZnBAhnuvpWDZJ4Hc7+
-         lN5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUbcfDB/wXppFuAC2RpiWRWtcLqV7zls4Nj4vEFh5q3/li+u+BiCSeZSXm9O8mh9/xQllQsyQDulG+HF/tzttgS+9joCR1baIAXxjtSHIXyQTw3S9d8bmUMiiUmwZEiK1szmupZRzXg5Krs0JuX+PRASblkniC2T28QnlCfbaM4hEe6QlQ=
-X-Gm-Message-State: AOJu0Yw+FWnstLylBbSVINoCJO296/pfwi4eeN3iIOd4AYYI2vM0hyHK
-	rO00zRmG9/B2h9e0avAQLj85L3wwrXbBl3MacxwZ0u++YQ8BINBL
-X-Google-Smtp-Source: AGHT+IEHZB1bTFFnwygf0GprRyBd/WmnlMoYX642oxz0uKZTkPF6xjNsqg/DDepqC2ncSek6hdG3rg==
-X-Received: by 2002:ac2:57c2:0:b0:51a:c913:a9ce with SMTP id 2adb3069b0e04-526bf642cb9mr1366242e87.50.1716390978862;
-        Wed, 22 May 2024 08:16:18 -0700 (PDT)
-Received: from pratik-IdeaPad.lan (customer-145-40-29-195.stosn.net. [145.40.29.195])
-        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-525e6cb5ed4sm335634e87.247.2024.05.22.08.16.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 May 2024 08:16:18 -0700 (PDT)
-From: Pratik Farkase <pratikfarkase94@gmail.com>
-X-Google-Original-From: Pratik Farkase <pratik.farkase@wsisweden.com>
-To: 
-Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pratik Farkase <pratikfarkase94@gmail.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4] dt-bindings: gpio: lsi,zevio-gpio: convert to dtschema
-Date: Wed, 22 May 2024 17:16:13 +0200
-Message-Id: <20240522151616.27397-1-pratik.farkase@wsisweden.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1716391368; c=relaxed/simple;
+	bh=rP9yXekDWC5P67J6CUJmjz67STAAypXpb7mLVY/dtdw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o4ocOZugZfNVtEcopxGbHg19xRWpKOl+T4ZuxHzAz9Nn1g2gvTTmaJpRJBz4UMaz2aQ1OmnPVRq9KPdXpAq66lYb7JESYNzA/Sr2qrXUZr503fkAMXOa5sBdypkOBLWt62jdT/xVLYVsfZCYHvV1TqR2NxW9+jWpPKVYg8626yE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cd0TUJdH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69FC9C2BBFC;
+	Wed, 22 May 2024 15:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716391368;
+	bh=rP9yXekDWC5P67J6CUJmjz67STAAypXpb7mLVY/dtdw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cd0TUJdHq5AnFoPGfER5uchXJaudkf1tqDHjylw7adju8Awd0XwwuaRob/cnrZ2IR
+	 CIPTvOqgZ+zIRyuRePkaAxdae2h5Uj69q4P7Uk+02Eyz/oftHTZQn5kHdefKaEhN5o
+	 U+pAtFOkMN+rIx41Gmit1jW1W9Dc2RIpsuD3mLauy5u/FO9b4MvGimDyT2cyQW6+He
+	 mOaTE6EMG+qqw56NxhV6ERtRxW5vfxXotHNqeIsZuFLIDeVz2HuF+B+3XKjSusoHgq
+	 iRwsYY/5DXc3h49sKt9/ogRrLeLaWYPwY7TOv5d1k3nG41KC36uQ9F3N4FmmaUqukY
+	 e+b3D0eSD/5SA==
+Message-ID: <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
+Date: Wed, 22 May 2024 17:22:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+ Mighty <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240522075245.388-1-bavishimithil@gmail.com>
+ <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+ <4f722e53-011f-4176-b6af-080522165007@kernel.org>
+ <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Convert Zevio GPIO Controller from text to dtschema.
-Adding `interrupts` property fixes the following warning:
-linux/out/arch/arm/boot/dts/nspire/nspire-tp.dtb: gpio@90000000:
-'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'`
-while executing `make dtbs_check` on Texas Instruments
-nspire boards.
+On 22/05/2024 16:43, Péter Ujfalusi wrote:
+>>>
+>>>> +      compatible = "ti,omap4-mcpdm";
+>>>> +      reg = <0x40132000 0x7f>, /* MPU private access */
+>>>> +            <0x49032000 0x7f>; /* L3 Interconnect */
+>>>> +      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +      interrupt-parent = <&gic>;
+>>>> +      ti,hwmods = "mcpdm";
+>>>> +      clocks = <&twl6040>;
+>>>> +      clock-names = "pdmclk";
+>>>
+>>> The clocks cannot be added at the time when the node is defined, it is
+>>> board specific. This way you imply that it is OK to have it in main dtsi
+>>> file. It is not.
+>>
+>> Wait, what? That's example and pretty standard. Example should be
+>> complete. This is not an exceptional binding.
+> 
+> The fclk for the McPDM is coming from external source, and the McPDM is
+> designed in pair with twl6040/6041, there were plan for other codecs to
+> support the McPDM protocol and in those cases the clock would come from
+> the connected codec.
+> 
+> The example (as the original binding was bit rot) is missing reg-names,
+> dmas and dma-names to be complete.
 
-Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
----
-Changes in v4:
-- Updated commit message to describe addition of `interrupt`
-property
-Changes in v3:
-- Updated relative path filename to match actual path filename
-- Added `interrupts` property
-Changes in v2:
-- Renamed file from `gpio-zevio.yaml` to `lsi,zevio-gpio.yaml`
-- Fixed the space indentation in example
----
----
- .../devicetree/bindings/gpio/gpio-zevio.txt   | 16 -------
- .../bindings/gpio/lsi,zevio-gpio.yaml         | 44 +++++++++++++++++++
- 2 files changed, 44 insertions(+), 16 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-zevio.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+None of these properties are allowed by the binding and during these
+five/six revisions of the patchset no one raised missing properties.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt b/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
-deleted file mode 100644
-index a37bd9ae2730..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--Zevio GPIO controller
--
--Required properties:
--- compatible: Should be "lsi,zevio-gpio"
--- reg: Address and length of the register set for the device
--- #gpio-cells: Should be two. The first cell is the pin number and the
--  second cell is used to specify optional parameters (currently unused).
--- gpio-controller: Marks the device node as a GPIO controller.
--
--Example:
--	gpio: gpio@90000000 {
--		compatible = "lsi,zevio-gpio";
--		reg = <0x90000000 0x1000>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
-new file mode 100644
-index 000000000000..37df0e6cfec5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/lsi,zevio-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Zevio GPIO controller
-+
-+maintainers:
-+  - Pratik Farkase <pratikfarkase94@gmail.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: lsi,zevio-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-controller: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#gpio-cells"
-+  - gpio-controller
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    gpio@90000000 {
-+        compatible = "lsi,zevio-gpio";
-+        reg = <0x90000000 0x1000>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+    };
--- 
-2.34.1
+I assume the DTS was validated with the binding. Isn't the case here?
+
+Best regards,
+Krzysztof
 
 
