@@ -1,125 +1,170 @@
-Return-Path: <devicetree+bounces-68281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E7D8CBAFA
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:09:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3335E8CBB00
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:10:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D23BC1C21DC6
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 06:09:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB01C1F22710
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 06:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8652C7580A;
-	Wed, 22 May 2024 06:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998D4763FC;
+	Wed, 22 May 2024 06:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UPBM/UY8"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="uS76lqvW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C9976020;
-	Wed, 22 May 2024 06:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BE478C71;
+	Wed, 22 May 2024 06:10:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716358192; cv=none; b=pStjdPuHA2xlgM1pZxk2HA9UHmxkZXozol/mevDPnHE66p05ZbRGPw87o2y+ljQGf6j4fHorrLEACMnPs1Ju64Pp9oAHdEeMn2Kaz49XSeu7tZZKcbVdS9e1ihmrf8XIDW1hmH+gOlV1tYnRFCIsDoyIbD3tuqFcklfD2oOmb68=
+	t=1716358232; cv=none; b=WRtB5fleyC4NIzFlDB7iEQEr8DoBZKRA6rTGh4pKFRECv9r65G60FrzGptBOyfwjteHweWWeRCDzTQEoYmjVrh9A3N0v2NT1YV8GegrBsspltLYsvFFgwh6bkwCTbhOg9Z4ZppItPzZzMJlwOtpuSlZjI7Eu1RnizvwPVvbaxhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716358192; c=relaxed/simple;
-	bh=Cn2XFMWoNjuAdqnOy+xVEewcB8yxZQdALf/VDTJWspc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tX1jJtt1AedOfDjYaZZJ8EUyg9Ct5YRta524FNRguoUYULgsOVD9mESsEBH+ks0QEb1pOs3jsntGPojChQzJdMPXxCkS4fAru13kx1ayD7OjPZxgbvvXcsys4FYEB0vh2cGrmJV7+cQQW+Sxyf5N5fUE5c3PcbQkBALO993JOYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UPBM/UY8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44M4W1eE000805;
-	Wed, 22 May 2024 06:09:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=yg0dNwgVIJbFrnHIEpXFbKaS8qAQ7OaX5TaUpxBRbG4=; b=UP
-	BM/UY8kpvvroQ1RUpYj101AXdsLG4v1xbhPWUq4EncqHMuYBGuk3Cllx/tGYPLSs
-	Z7ZfOyCrSqKrkjKNt/10MajRhQB5VssoNVoDntF34NLUeOJxm8E2fTKBADEQjf/7
-	Tr+DVYYCm6+Vpvb7NXcZ9LiuGefAzx9k8NsDX/HOArBtkYCsEp6cstbbnanNeXZi
-	//xWtb5P1eDpTuhrlSZaN0iZyaNu4eFjqksMUuj2wbLPRJb0boUGklGMbB0Z/lKX
-	K/SBGw5OCwMjO9LXy1DSkCmIP//CX2QJJ45nJFEUXo3DGaqPHGi/iGWaHCkUMWK5
-	Fbjdn1rHdUVyMDYfGc5g==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6pqaqswg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 May 2024 06:09:27 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44M69QLN023398
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 May 2024 06:09:26 GMT
-Received: from [10.216.52.184] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 21 May
- 2024 23:09:20 -0700
-Message-ID: <39ccbbbb-e6f5-89e3-e11c-a2338dcd5a30@quicinc.com>
-Date: Wed, 22 May 2024 11:39:17 +0530
+	s=arc-20240116; t=1716358232; c=relaxed/simple;
+	bh=BscQqZ4DW9es+gjUomqoR9kkvXg7vj+CJh7aJMdNeGI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=UOESJzA/RHgyKlE+itJ1on75KrwC7E85NjJ6ye3raPwGbCCe7sJRtq+kQVC36C8JwgkYYtfeiy9tccp0+olEpf7TBUinTZgEvr3jpZJ0g0hUhFc9OTFIPckj0RauDect6JxDwDcWjdloOhcU/5uGIsupnf/Gt43+wfQjZxmuSs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=uS76lqvW; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v6 5/8] drivers: mtd: nand: use FIELD_PREP and GENMASK
-Content-Language: en-US
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-CC: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20240521105532.1537845-1-quic_mdalam@quicinc.com>
- <20240521105532.1537845-6-quic_mdalam@quicinc.com>
- <20240521145327.745f8b50@xps-13>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <20240521145327.745f8b50@xps-13>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1716358222;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=L2Z7WlZo10ro7QcT5GoEV9BF5bQIZHzhWLeANhfKeRk=;
+	b=uS76lqvWhylBP6eVMk1iEZyX39fWEjdslSfyuBal/deXkZVu6WS2ECmxF6Cbos30T1gaEl
+	b90KH/7bY7CrRLrstGsrPmGVo8mgS5JDM3frXKrYYHcI8DQauOMH/A+fcJ4iJjWFJugU8B
+	LbvjUi4+mkkCfJWuvSAjRkr76C41K9snruQhb+df2f9TBaBXfTOr/aJ9J+jFFUZYVm2mL6
+	lO2n2vPSlOCgzQQq3wTwd1YwDC+A2i+yE9iVZYavq72ht4aIYpLk2GSo5qnPT3qNTS0pDY
+	9ZSAKkdKDDOW63qlxmsd2CXkTjnwRuwIdDlDv+zAgj6saAf+FdlfKDo1kIgJhA==
+Date: Wed, 22 May 2024 08:10:21 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: linux-sunxi@lists.linux.dev, wens@csie.org, jernej.skrabec@gmail.com,
+ samuel@sholland.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org, didi.debian@cknow.org,
+ Marek Kraus <gamiee@pine64.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Correct the descriptions for
+ Pine64 boards
+In-Reply-To: <057b4a5504656bb7455ead39768d9e7167fb724b.camel@icenowy.me>
+References: <d2943d9f4c99a239f86188eaf45a73972685c255.1713833436.git.dsimic@manjaro.org>
+ <057b4a5504656bb7455ead39768d9e7167fb724b.camel@icenowy.me>
+Message-ID: <5635a6e79427e43ef20b690c766267d0@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: g9ppQNO8W1rJh15p4AUwxVFKOp3GABtu
-X-Proofpoint-ORIG-GUID: g9ppQNO8W1rJh15p4AUwxVFKOp3GABtu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-22_02,2024-05-21_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 suspectscore=0 bulkscore=0 mlxscore=0 adultscore=0
- spamscore=0 malwarescore=0 mlxlogscore=722 clxscore=1015
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2405010000 definitions=main-2405220043
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello Icenowy,
 
-
-On 5/21/2024 6:23 PM, Miquel Raynal wrote:
-> Hi,
-> 
-> quic_mdalam@quicinc.com wrote on Tue, 21 May 2024 16:25:29 +0530:
-> 
->> Use the bitfield macro FIELD_PREP, and GENMASK to
->> do the shift and mask in one go. This makes the code
->> more readable.
->>
->> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+On 2024-05-22 02:48, Icenowy Zheng wrote:
+> 在 2024-04-23星期二的 03:00 +0200，Dragan Simic写道：
+>> Correct the descriptions of a few Pine64 boards and devices,
+>> according
+>> to their official names used on the Pine64 wiki.  This ensures
+>> consistency
+>> between the officially used names and the names in the source code.
+>> 
+>> Cc: Marek Kraus <gamiee@pine64.org>
+>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 >> ---
->> Change in [v6]
->>
->> * Added FIELD_PREP() and GENMASK() macro
+>> 
+>> Notes:
+>>     This completes the correction of the descriptions of the Pine64
+>> boards
+>>     and devices, which was started with the Pine64 boards and devices
+>> based
+>>     on Rockchip SoCs. [1]
+>>    
+>>     [1]
+>> https://lore.kernel.org/linux-rockchip/ec124dab2b1a8776aa39177ecce34babca3a50e2.1713832790.git.dsimic@manjaro.org/
+>> 
+>>  Documentation/devicetree/bindings/arm/sunxi.yaml | 12 ++++++------
+>>  1 file changed, 6 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
+>> b/Documentation/devicetree/bindings/arm/sunxi.yaml
+>> index 09d835db6db5..b66873ae2d71 100644
+>> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+>> @@ -709,17 +709,17 @@ properties:
+>>            - const: sochip,s3
+>>            - const: allwinner,sun8i-v3
+>>  
+>> -      - description: Pine64 PineH64 model A
+>> +      - description: Pine64 H64 Model A
+>>          items:
+>>            - const: pine64,pine-h64
+>>            - const: allwinner,sun50i-h6
+>>  
+>> -      - description: Pine64 PineH64 model B
+>> +      - description: Pine64 H64 Model B
 > 
-> Maybe you want to include linux/bitfield.h now.
-  Ok
+> Sorry for replying so late, but I don't think there is a Pine64 H64
+> board. The Pine64 wiki calls it Pine H64. [1]
 > 
-> Otherwise that's a great improvement.
-> 
-> Thanks,
-> Miquèl
+> [1] https://wiki.pine64.org/wiki/PINE_H64
+
+Good point, thanks.  Though, this board is really an exception to
+the naming scheme employed for the Pine64 boards, so perhaps it would
+actually be better to rename the board in the Pine64 wiki, by adding
+"64" to "Pine", to ensure consistency.
+
+Alas, the Pine64 wiki is currently in read-only mode, due to some
+recent issues with the underlying hardware that runs it.  Migration to
+another form of documentation for Pine64 boards is also a possibility,
+which makes the updates even more complicated.
+
+With all this in mind, I think it would be the best to rename the board
+on the Pine64 side, to ensure consistency, and keep this patch as-is.
+I'll make a mental note to do that on the Pine64 side once the current
+situation with the Pine64 wiki is resolved.
+
+>>          items:
+>>            - const: pine64,pine-h64-model-b
+>>            - const: allwinner,sun50i-h6
+>>  
+>> -      - description: Pine64 LTS
+>> +      - description: Pine64 A64 LTS
+>>          items:
+>>            - const: pine64,pine64-lts
+>>            - const: allwinner,sun50i-r18
+>> @@ -748,17 +748,17 @@ properties:
+>>            - const: pine64,pinephone
+>>            - const: allwinner,sun50i-a64
+>>  
+>> -      - description: Pine64 PineTab, Development Sample
+>> +      - description: Pine64 PineTab Developer Sample
+>>          items:
+>>            - const: pine64,pinetab
+>>            - const: allwinner,sun50i-a64
+>>  
+>> -      - description: Pine64 PineTab, Early Adopter's batch (and
+>> maybe later ones)
+>> +      - description: Pine64 PineTab Early Adopter
+>>          items:
+>>            - const: pine64,pinetab-early-adopter
+>>            - const: allwinner,sun50i-a64
+>>  
+>> -      - description: Pine64 SoPine Baseboard
+>> +      - description: Pine64 SOPine
+>>          items:
+>>            - const: pine64,sopine-baseboard
+>>            - const: pine64,sopine
+>> 
 
