@@ -1,307 +1,186 @@
-Return-Path: <devicetree+bounces-68374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 477AD8CC118
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:21:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708178CC121
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:23:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 699101C21FB1
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:21:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDAAD1F233FB
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2864013D88C;
-	Wed, 22 May 2024 12:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RyeKqYOA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D712A13D636;
+	Wed, 22 May 2024 12:23:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E1A013D62D;
-	Wed, 22 May 2024 12:21:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E7113D53C;
+	Wed, 22 May 2024 12:23:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716380490; cv=none; b=PZfl56PpCzQ7k01ZBwAaSYzJuUN/GIavtK3TXIoLaTfZs395QLQfUoTPvGyVaLBy7sm5uefIW8BJNXYiGfxTfJrwoclqJZSXZCnc7cD2zrcQYx+JzSm/0ih9snbtY4LETcku4JPpocFycpThzSMN2jX+mb8cYhR022XDLJk+7+o=
+	t=1716380612; cv=none; b=XltLHjdJntRdUjFxapCcGxQY9lkz3O1sDg5BildvDtC80tHjyZ8P1Ze1gOetOpvP5OVspmPsK2w4uZSyx2rtmKQa/EcH5VYnEAL+rfsKJktM1nMBFU8Ka/Wh8bm99YkKEXfyHk2IvYmUbEQrkX9s2ZglJQw65GAwAjtnkvRLwT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716380490; c=relaxed/simple;
-	bh=hzDqcEVZczl67qDnlsWcKq7XBZk+9h4IydSU9s+R7sA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nCbCs28fEs5Wy2ebrqK3Qedvj8o+bYFMokkYHHEGf+XmxXzAnSuAt/+9ecjykcsMD3BHbo/gSOs4vkDvA3Hcv/9NXmf6y8FhTBRdEJG1qqCseWESNiVT/HGRuuFFYdwYKLDqiqbOVk0JtAQxnN5NrmZH7hZyM1mJ4h7bY7e6dYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RyeKqYOA; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1716380488; x=1747916488;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hzDqcEVZczl67qDnlsWcKq7XBZk+9h4IydSU9s+R7sA=;
-  b=RyeKqYOAHhIOHJkG8DWopysFJ+fGWdgUeB10atmw879HfmwY5qaPl7yP
-   gJDoLbjfVZjuDnyVC1yB+xsrmnHAiNUR1CuY26K2MBxd/4oTvDw5NEXVv
-   JE4ciE1HsE7ZgCtiyP7hLjCNKC1aPbjr/rBVH+jUF/+FU09jMQdqKQ3LT
-   rZIEQUsEkVSfQDMu0yTrVXxBbQZEp+fsWQfEJCmzUjMq0F7vVeYh+m5Ze
-   B7tF304a0JtZd+L28JudW0g0yCD+c+054zMkadfdQRX5EjhA0XGMe6/Mv
-   NRVuQv5Pf0bBcvdquZNr1cuYyqQjQwpOue9LOtRMeV1LLY9jVYnfSEytN
-   A==;
-X-CSE-ConnectionGUID: kzOa2pOOR5S+z++Wb9/w+A==
-X-CSE-MsgGUID: VMAQUb/2R2yOUnkgWvqffw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="12479968"
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; 
-   d="scan'208";a="12479968"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2024 05:21:27 -0700
-X-CSE-ConnectionGUID: h0jhHJLvT8uMCyeb+KKllQ==
-X-CSE-MsgGUID: zY3mlADhSbetoiQu5W0hoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; 
-   d="scan'208";a="33181950"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2024 05:21:24 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id E0FE211F82A;
-	Wed, 22 May 2024 15:21:21 +0300 (EEST)
-Date: Wed, 22 May 2024 12:21:21 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-Cc: Alain Volmat <alain.volmat@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-	Pavel Machek <pavel@ucw.cz>,
-	Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Subject: Re: [PATCH v3 2/2] media: gc2145: implement basic dvp bus support
-Message-ID: <Zk3jQQDrgVqOnoQk@kekkonen.localdomain>
-References: <20240504164115.64603-1-andrej.skvortzov@gmail.com>
- <20240504164115.64603-3-andrej.skvortzov@gmail.com>
+	s=arc-20240116; t=1716380612; c=relaxed/simple;
+	bh=f7UV5LG/YkpTVm/G2i2AIoasyTYxmJXZyGOBNA4LSfE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LBqOY/Zcs3Vb2zuIYx5F4m0G97XA8muNsxR77JYdrIzyJzzukuHDdlxKhqND0oezVGriNdTFNez/1U6YUfEiPDhzxuHlaB1KQCP5rWWSMtHT9ZsTsy5y0umRdFfh8CUgQ7G03mxjCqB88iCGOTRDn6AlVfdIeRYDoWzEJiXjkR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-627eb38eb1bso3668857b3.1;
+        Wed, 22 May 2024 05:23:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716380609; x=1716985409;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qCfEoQ0TfMCCeRei+I4ry2wFGGRpaFJL/1F+/uzvOoA=;
+        b=wS5ssvDyXRiBAZbIOeQV+478khi13qlHj7qWjJpk94A59/ZtIkL1rvCM7WGBnDcC1l
+         JERlEURuuo2vCwhthPh/UVmWWwNo+9+eO73gySgyOtXuV8NeVFZqMKiVSNmsvr0sEKTw
+         SnncbqqIrKSEU/WVhgv3qesCoiI56MAEprwery/VjEZQSgRb/XfHu9vXDgoNmgGh8jAw
+         MRGlv/kCRq/2CkyrYRrmbrbugWA0yisC2iTVyNTNaqPIJ2czlW81X26ynSXeLWViRyyp
+         2W+2ixNgTgrPCpBxrUIMKc/ppwMdBWJH5UHYyVy3oEQu7VX+ZLBAbizSeN7ORv1xxE98
+         S42g==
+X-Forwarded-Encrypted: i=1; AJvYcCUZ907P/er9TVeiDTB146ROH2VE/Q4ImdHV85pt7LLPMyxq1efinQjYvd5fBG+zwT8STSkiygzNUkBKxzLT42GzKR/flEWMHmB3FkGWS+dw1ht8SDO5sDRvwgQK3SRA+ZyHWTJNqE7A1PV11aEwiB5/fMkXooBx6jwN5fWKr4FvTb++A/T/L5mSxgZ09Ags7ctzRKMmmiR/8xOKGQknmJDiFshZswn3NQ==
+X-Gm-Message-State: AOJu0YxSb3uVMQDc777JMqgiLuBJjQzrMS4X+n4DuirfUv56yGjmUu5Q
+	xTe8c2wBVTTX2dK7PoRsayYrz8h+DlgB4Fiw5/yvC6HF9LXhVBxjPcdwA1SD
+X-Google-Smtp-Source: AGHT+IH9u2nIV9mhADnIJzE+WCDgjLwC0xtz4Z6LzzRyb1iE4MYmPJqCASUFEFcIJZPRE2P0ks+zbA==
+X-Received: by 2002:a81:520a:0:b0:627:8791:5b3 with SMTP id 00721157ae682-627e487d4e8mr16693857b3.44.1716380609189;
+        Wed, 22 May 2024 05:23:29 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6209e349e0csm57584897b3.79.2024.05.22.05.23.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 05:23:28 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-622f5a0badcso53352027b3.2;
+        Wed, 22 May 2024 05:23:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW0+faY9Jv9zLzZjN7oQ3/0W6P9d6ht2FfZWpsObD48dpgqj6oPecan7q046t5AgfVWYEYu7GGu2Y82braQlUXxjFC3Qml+Y/NEDEKW2o20k/6xB68ea6lMpBTO5TCEMLSiu73YMNX476fHosAdxg5o0NI0KgdXoBECbdt/d0lKbuPCrX5bAl3wg/WV7EHe6oc2/llq4mnBszf03ODt6BdNuo4WWGDhqQ==
+X-Received: by 2002:a05:690c:60c7:b0:627:a382:a0fa with SMTP id
+ 00721157ae682-627e4880150mr20956997b3.52.1716380608278; Wed, 22 May 2024
+ 05:23:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240504164115.64603-3-andrej.skvortzov@gmail.com>
+References: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240423175900.702640-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB113461F28EA97F494D831267C86112@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB113461F28EA97F494D831267C86112@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 22 May 2024 14:23:15 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUJXdEG-BQRYNbmhbGCtE+O1uWO0j-PkBaF7S_Qyp8M-Q@mail.gmail.com>
+Message-ID: <CAMuHMdUJXdEG-BQRYNbmhbGCtE+O1uWO0j-PkBaF7S_Qyp8M-Q@mail.gmail.com>
+Subject: Re: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add function
+ pointers for locking/unlocking the PFC register
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Prabhakar <prabhakar.csengg@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andrey,
+Hi Biju,
 
-Thanks for the update.
+On Tue, Apr 23, 2024 at 8:12=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: Tuesday, April 23, 2024 6:59 PM
+> > Subject: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add function=
+ pointers for
+> > locking/unlocking the PFC register
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > On the RZ/G2L SoC, the PFCWE bit controls writing to PFC registers.
+> > However, on the RZ/V2H(P) SoC, the PFCWE (REGWE_A on RZ/V2H) bit contro=
+ls writing to both PFC and
+> > PMC registers. Additionally, BIT(7) B0WI is undocumented for the PWPR r=
+egister on RZ/V2H(P) SoC. To
+> > accommodate these differences across SoC variants, introduce the set_pf=
+c_mode() and
+> > pm_set_pfc() function pointers.
+> >
+> > Note, in rzg2l_pinctrl_set_pfc_mode() the pwpr_pfc_unlock() call is now=
+ called before PMC
+> > read/write and pwpr_pfc_lock() call is now called after PMC read/write =
+this is to keep changes
+> > minimal for RZ/V2H(P).
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > RFC->v2
+> > - Introduced function pointer for (un)lock
 
-On Sat, May 04, 2024 at 07:41:15PM +0300, Andrey Skvortsov wrote:
-> That was tested on PinePhone with libcamera-based GNOME
-> screenshot (45.2).
-> 
-> Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> ---
->  drivers/media/i2c/gc2145.c | 112 ++++++++++++++++++++++++++++---------
->  1 file changed, 86 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/gc2145.c b/drivers/media/i2c/gc2145.c
-> index bef7b0e056a8..9808bd0ab6ae 100644
-> --- a/drivers/media/i2c/gc2145.c
-> +++ b/drivers/media/i2c/gc2145.c
-> @@ -39,6 +39,10 @@
->  #define GC2145_REG_ANALOG_MODE1	CCI_REG8(0x17)
->  #define GC2145_REG_OUTPUT_FMT	CCI_REG8(0x84)
->  #define GC2145_REG_SYNC_MODE	CCI_REG8(0x86)
-> +#define GC2145_SYNC_MODE_VSYNC_POL	BIT(0)
-> +#define GC2145_SYNC_MODE_HSYNC_POL	BIT(1)
-> +#define GC2145_SYNC_MODE_OPCLK_POL	BIT(2)
-> +#define GC2145_SYNC_MODE_OPCLK_GATE	BIT(3)
->  #define GC2145_SYNC_MODE_COL_SWITCH	BIT(4)
->  #define GC2145_SYNC_MODE_ROW_SWITCH	BIT(5)
->  #define GC2145_REG_BYPASS_MODE	CCI_REG8(0x89)
-> @@ -598,6 +602,7 @@ struct gc2145 {
->  	struct v4l2_subdev sd;
->  	struct media_pad pad;
->  
-> +	struct v4l2_fwnode_endpoint ep; /* the parsed DT endpoint info */
->  	struct regmap *regmap;
->  	struct clk *xclk;
->  
-> @@ -773,6 +778,36 @@ static int gc2145_set_pad_format(struct v4l2_subdev *sd,
->  	return 0;
->  }
->  
-> +static int gc2145_config_dvp_mode(struct gc2145 *gc2145,
-> +				  const struct gc2145_format *gc2145_format)
-> +{
-> +	int ret = 0;
-> +	u64 sync_mode;
-> +	int flags = gc2145->ep.bus.parallel.flags;
-> +
-> +	ret = cci_read(gc2145->regmap, GC2145_REG_SYNC_MODE, &sync_mode, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	sync_mode &= ~(GC2145_SYNC_MODE_VSYNC_POL |
-> +		       GC2145_SYNC_MODE_HSYNC_POL |
-> +		       GC2145_SYNC_MODE_OPCLK_POL);
-> +
-> +	if (flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
-> +		sync_mode |= GC2145_SYNC_MODE_VSYNC_POL;
-> +
-> +	if (flags & V4L2_MBUS_HSYNC_ACTIVE_LOW)
-> +		sync_mode |= GC2145_SYNC_MODE_HSYNC_POL;
-> +
-> +	if (flags & V4L2_MBUS_PCLK_SAMPLE_FALLING)
-> +		sync_mode |= GC2145_SYNC_MODE_OPCLK_POL;
-> +
-> +	cci_write(gc2145->regmap, GC2145_REG_SYNC_MODE, sync_mode, &ret);
-> +	cci_write(gc2145->regmap, GC2145_REG_PAD_IO, 0x0f, &ret);
-> +
-> +	return ret;
-> +}
-> +
->  static const struct cci_reg_sequence gc2145_common_mipi_regs[] = {
->  	{GC2145_REG_PAGE_SELECT, 0x03},
->  	{GC2145_REG_DPHY_ANALOG_MODE1, GC2145_DPHY_MODE_PHY_CLK_EN |
-> @@ -895,10 +930,13 @@ static int gc2145_start_streaming(struct gc2145 *gc2145,
->  		goto err_rpm_put;
->  	}
->  
-> -	/* Perform MIPI specific configuration */
-> -	ret = gc2145_config_mipi_mode(gc2145, gc2145_format);
-> +	/* Perform interface specific configuration */
-> +	if (gc2145->ep.bus_type == V4L2_MBUS_CSI2_DPHY)
-> +		ret = gc2145_config_mipi_mode(gc2145, gc2145_format);
-> +	else
-> +		ret = gc2145_config_dvp_mode(gc2145, gc2145_format);
->  	if (ret) {
-> -		dev_err(&client->dev, "%s failed to write mipi conf\n",
-> +		dev_err(&client->dev, "%s failed to write interface conf\n",
->  			__func__);
->  		goto err_rpm_put;
->  	}
-> @@ -924,6 +962,9 @@ static void gc2145_stop_streaming(struct gc2145 *gc2145)
->  			GC2145_CSI2_MODE_EN | GC2145_CSI2_MODE_MIPI_EN, 0,
->  			&ret);
->  	cci_write(gc2145->regmap, GC2145_REG_PAGE_SELECT, 0x00, &ret);
-> +
-> +	/* Disable dvp streaming */
-> +	cci_write(gc2145->regmap, GC2145_REG_PAD_IO, 0x00, &ret);
->  	if (ret)
->  		dev_err(&client->dev, "%s failed to write regs\n", __func__);
->  
-> @@ -1233,9 +1274,8 @@ static int gc2145_init_controls(struct gc2145 *gc2145)
->  static int gc2145_check_hwcfg(struct device *dev)
->  {
->  	struct fwnode_handle *endpoint;
-> -	struct v4l2_fwnode_endpoint ep_cfg = {
-> -		.bus_type = V4L2_MBUS_CSI2_DPHY
-> -	};
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct gc2145 *gc2145 = to_gc2145(sd);
+> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > @@ -2688,6 +2699,8 @@ static struct rzg2l_pinctrl_data r9a07g043_data =
+=3D {
+> >       .variable_pin_cfg =3D r9a07g043f_variable_pin_cfg,
+> >       .n_variable_pin_cfg =3D ARRAY_SIZE(r9a07g043f_variable_pin_cfg),
+> >  #endif
+> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
+> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
+> >  };
+> >
+> >  static struct rzg2l_pinctrl_data r9a07g044_data =3D { @@ -2699,6 +2712=
+,8 @@ static struct
+> > rzg2l_pinctrl_data r9a07g044_data =3D {
+> >       .n_dedicated_pins =3D ARRAY_SIZE(rzg2l_dedicated_pins.common) +
+> >               ARRAY_SIZE(rzg2l_dedicated_pins.rzg2l_pins),
+> >       .hwcfg =3D &rzg2l_hwcfg,
+> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
+> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
+> >  };
+> >
+> >  static struct rzg2l_pinctrl_data r9a08g045_data =3D { @@ -2709,6 +2724=
+,8 @@ static struct
+> > rzg2l_pinctrl_data r9a08g045_data =3D {
+> >       .n_port_pins =3D ARRAY_SIZE(r9a08g045_gpio_configs) * RZG2L_PINS_=
+PER_PORT,
+> >       .n_dedicated_pins =3D ARRAY_SIZE(rzg3s_dedicated_pins),
+> >       .hwcfg =3D &rzg3s_hwcfg,
+> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
+> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
+>
+> Some memory can be saved by avoiding duplication of data by using
+> a single pointer for structure containing function pointers??
+>
+> struct rzg2l_pinctrl_fns {
+>         void (*pwpr_pfc_unlock)(struct rzg2l_pinctrl *pctrl);
+>         void (*pwpr_pfc_lock)(struct rzg2l_pinctrl *pctrl);
+> }
 
-As the bindings default to bus-type 4, you should reflect that here. I.e.
-try parsing the endpoint with bus_type set to 4 first before setting it to
-V4L2_MBUS_UNKNOWN.
+So that would replace 3 (4 after adding RZ/V2H support) x 2 pointers in
+rzg2l_pinctrl_data structures by 3 (4) pointers in rzg2l_pinctrl_data
+structures + 1 (2) x 2 pointers in rzg2l_pinctrl_fns structures, and
+code size would increase due to extra pointer dereferences before
+each call.
+Am I missing something?
 
-You'll also need to set the parallel defaults here before parsing the
-endpoint.
+Merging rzg2l_pwpr_pfc_{,un}lock() into a single function (taking a
+"bool lock" flag) might be a better solution to reduce rzg2l_pinctrl_data s=
+ize.
 
->  	int ret;
->  
->  	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
-> @@ -1244,36 +1284,55 @@ static int gc2145_check_hwcfg(struct device *dev)
->  		return -EINVAL;
->  	}
->  
-> -	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep_cfg);
-> +	gc2145->ep.bus_type = V4L2_MBUS_CSI2_DPHY;
-> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &gc2145->ep);
-> +	if (ret) {
-> +		gc2145->ep.bus_type = V4L2_MBUS_PARALLEL;
-> +		ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &gc2145->ep);
-> +	}
->  	fwnode_handle_put(endpoint);
-> -	if (ret)
-> +	if (ret) {
-> +		dev_err(dev, "could not parse endpoint\n");
->  		return ret;
-> -
-> -	/* Check the number of MIPI CSI2 data lanes */
-> -	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2) {
-> -		dev_err(dev, "only 2 data lanes are currently supported\n");
-> -		ret = -EINVAL;
-> -		goto out;
->  	}
->  
-> -	/* Check the link frequency set in device tree */
-> -	if (!ep_cfg.nr_of_link_frequencies) {
-> -		dev_err(dev, "link-frequency property not found in DT\n");
-> +	switch (gc2145->ep.bus_type) {
-> +	case V4L2_MBUS_CSI2_DPHY:
-> +		/* Check the number of MIPI CSI2 data lanes */
-> +		if (gc2145->ep.bus.mipi_csi2.num_data_lanes != 2) {
-> +			dev_err(dev, "only 2 data lanes are currently supported\n");
-> +			ret = -EINVAL;
-> +			goto out;
-> +		}
-> +
-> +		/* Check the link frequency set in device tree */
-> +		if (!gc2145->ep.nr_of_link_frequencies) {
-> +			dev_err(dev, "link-frequencies property not found in DT\n");
-> +			ret = -EINVAL;
-> +			goto out;
-> +		}
-> +
-> +		if (gc2145->ep.nr_of_link_frequencies != 3 ||
-> +		    gc2145->ep.link_frequencies[0] != GC2145_640_480_LINKFREQ ||
-> +		    gc2145->ep.link_frequencies[1] != GC2145_1280_720_LINKFREQ ||
-> +		    gc2145->ep.link_frequencies[2] != GC2145_1600_1200_LINKFREQ) {
+Gr{oetje,eeting}s,
 
-I guess this works as long as all the ghree frequencies are what the driver
-expects but the driver implementation could be improved. Nearly all other
-drivers use the available frequencies only.
+                        Geert
 
-> +			dev_err(dev, "Invalid link-frequencies provided\n");
-> +			ret = -EINVAL;
-> +			goto out;
-> +		}
-> +		break;
-> +	case V4L2_MBUS_PARALLEL:
-> +		break;
-> +	default:
-> +		dev_err(dev, "unsupported bus type %u\n", gc2145->ep.bus_type);
->  		ret = -EINVAL;
->  		goto out;
->  	}
->  
-> -	if (ep_cfg.nr_of_link_frequencies != 3 ||
-> -	    ep_cfg.link_frequencies[0] != GC2145_640_480_LINKFREQ ||
-> -	    ep_cfg.link_frequencies[1] != GC2145_1280_720_LINKFREQ ||
-> -	    ep_cfg.link_frequencies[2] != GC2145_1600_1200_LINKFREQ) {
-> -		dev_err(dev, "Invalid link-frequencies provided\n");
-> -		ret = -EINVAL;
-> -	}
-> +	return 0;
->  
->  out:
-> -	v4l2_fwnode_endpoint_free(&ep_cfg);
-> -
-> +	v4l2_fwnode_endpoint_free(&gc2145->ep);
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-A newline would be nice here.
-
->  	return ret;
->  }
->  
-> @@ -1421,6 +1480,7 @@ static void gc2145_remove(struct i2c_client *client)
->  	if (!pm_runtime_status_suspended(&client->dev))
->  		gc2145_power_off(&client->dev);
->  	pm_runtime_set_suspended(&client->dev);
-> +	v4l2_fwnode_endpoint_free(&gc2145->ep);
->  }
->  
->  static const struct of_device_id gc2145_dt_ids[] = {
-
--- 
-Kind regards,
-
-Sakari Ailus
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
