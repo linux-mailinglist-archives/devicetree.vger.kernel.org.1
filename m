@@ -1,158 +1,106 @@
-Return-Path: <devicetree+bounces-68420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971D38CC36C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:43:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB1EF8CC374
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2585FB214FB
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:43:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E62531C20A5D
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF651946F;
-	Wed, 22 May 2024 14:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09416AD7;
+	Wed, 22 May 2024 14:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FOiJwRsh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dGDVyM7Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE3C1864C;
-	Wed, 22 May 2024 14:43:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E05442F;
+	Wed, 22 May 2024 14:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716388993; cv=none; b=AG3mbeh68rsF7MmmKiaAoJY3lVLehjzRV1eXKn7mOW9AuUpDt0jRsLnk+iiO3xFhu2SaRFBVgMUwAl2L0MQiljIpCM2/3perUi3MkPp7kCx/9MI3y+20DIpVEAX4FpccnxCtGxtvoO5De4nEIRgmguQB+oiXVuNWtKM2d9GlwkM=
+	t=1716389147; cv=none; b=q4ct4RjH3E5T+m954A0Wgh82O3Bk+g9LAhuxr1J/ftM5TqBjEMb16hyf0MS7ievU7ciGoPsJzyAdZq8Ec+XG+GZ4OLtg9zNKP8e9J84YDpCXrj2PuuF9oDM00VYihytrX0cn3HXBwArRsgbThJ1vXAch3qI/fo7FVYq+mHMcp0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716388993; c=relaxed/simple;
-	bh=cU0VfFRghGglmx3GPYhyRadXAJpo3i6tBsjliiSd/5g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=feIL77WB5s0jFtahqq7wjBQLtqd3cx6FdpnHF2mvf03A2kb+ulCDZo+1+2n8X76wcxVHVv+4h+rwLzZeLTt6zelMEfPKJ+fpRwrNNiQHoRVhvewLcgIKbDx9QZkh7W5MSS5KHzlUBu4vEBd5TvnWzFvquDmxX4HNkRiavv5M46E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FOiJwRsh; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-520f9d559f6so7937741e87.3;
-        Wed, 22 May 2024 07:43:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716388990; x=1716993790; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xKGz5EzGEJV05Hj0JhuGrkXsXmjzWO6dC3DmXo4LzKE=;
-        b=FOiJwRshJQ9jaNEKzOhV/UVNGIvOKytkCpc+DSshQCnXIdNVuz5/EWNGrTgEZyHjnv
-         5gv9sxRvGUGsBwS17R3QzaJpQQrPHqU5gIwEBMFAC8CEf9oTiZVRXZiHW2gxN/gCrBwP
-         R1xzS9iQZbpsmkLCKhgModDegMntPWSMrY16nnznc7ngygTsd1GsJI1qSC43VpecLTLK
-         tWtK0cHMvpYT5NSTsKfqc63uDrWohV16beQLrJU/oS5j+mlDUCjBEtc6RdwAmsIrSG4t
-         g8uC46dMQgWmRfMokY5cI4fzoebFyo4dXx1O6ftwwZwJqpMH2cgvtRCAna+if0lY1z7V
-         mPTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716388990; x=1716993790;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xKGz5EzGEJV05Hj0JhuGrkXsXmjzWO6dC3DmXo4LzKE=;
-        b=cbRxCpEWegTdD9EBv5Z9XcRdjArmXycOvhG3c3PEPoizp3ybsHlXYOLKG8Iwmb1p7j
-         yXs1FEZZz45aIxd3Wxi+KcONWrzxdGDKH80ye8gd72TJ7ZwvqHuHxCU3y/Luu74ZNjd2
-         kPAad+585HMUX5AFCthBSPu+IAS8KBR7nQ5+te4KnecMEeHMKfOXGBL7QOD1aI3CMmXH
-         6HV9Y1l4JuUtl6IhYh2p3uqbs9xM8IamBF2cpNvV+uDELHQEkvpLIe0ySqA3AB8A9LBD
-         LzXU/lvLzShd9vievj2UnrvtwbxlpMu78dxlqFj5lffxeMp/uxYSHOrtBgDO2vHIAuKs
-         MRQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVGasCA8yuB3Ytuyu7iCMulhg4raMaufde3TU2fj4X0Wcqof+EbGP8xkb9QfsT4gKVNO+LdtbGrN3tRaGviiyHf5QtEG+D8iIyvf8l29PKrV/7VUWAmGsQ/eis/IYRbdnwob6gilYh6H4P8jCNyfHOJokTirNJq+CVHlx7dXo55mfZALZfE
-X-Gm-Message-State: AOJu0YxH/RJMSIrGssgA/AdKZLJMD7ppwVZSWFucfqmzH2IJOoVMINnq
-	olt5Nwib3LDPHPtCqp3uWpzrQv8YpPSuPlkigLQaIAIFgiu2dHm5
-X-Google-Smtp-Source: AGHT+IG4fUvdOa89iMSUKAiQ1AAmrXW4cgIx9Qlz27fd1jVvMkQLth48Htq0VZuMOnG63nSQyDH2yw==
-X-Received: by 2002:ac2:59c6:0:b0:523:9747:4920 with SMTP id 2adb3069b0e04-526be316495mr1617301e87.36.1716388990067;
-        Wed, 22 May 2024 07:43:10 -0700 (PDT)
-Received: from [10.0.0.100] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52733b3e732sm126213e87.184.2024.05.22.07.43.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 07:43:09 -0700 (PDT)
-Message-ID: <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
-Date: Wed, 22 May 2024 17:43:55 +0300
+	s=arc-20240116; t=1716389147; c=relaxed/simple;
+	bh=zOLj0B1mXhNR7COAnE/xY+vZVUvYeUNisjjhU/v/78g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SqD1Y+7uFfbspadmwbIK9/eLKiZMBQcg+7bKJpv/ZZLGZpsyPse7bDw20gTVOqeRWt+IJJyo2pT9186b+MJrc9/8bGk9/I/8TY/UbgitOJKyBA41yJHhv4yhGF1YrEAxyK+uM7lO3Z17iMCq0b9PArvwZPYA/GmBLRZJoNsnoDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dGDVyM7Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0D54C2BBFC;
+	Wed, 22 May 2024 14:45:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716389147;
+	bh=zOLj0B1mXhNR7COAnE/xY+vZVUvYeUNisjjhU/v/78g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dGDVyM7ZQxZ3mpqoZ0uhm34b69z0buP3Izb2n9ZgDU3+feXDZN7rWMsfogNl/ivGd
+	 ZkOAdNJ/Kvsxhp2jbQUCeHEVB77MA58eAIqHjgwvaKK4vyI7Ub5LuB9dqnNCF+DhwE
+	 ovMWw1bpVyslIl/cA9hcyo1AA2jOwzt0Wj56GpgScEy5KJd6iMVTMavHx4ezyLckJE
+	 9uhsM39ri9aB9l3ro4ikqpIw+EkV+pduVJRl10bDw81LjIpB+4U/KexmhpSUUvniZV
+	 wfhM3c1ds+Dye2DNIyECRmbiYEQss2mYZ8gRrj1w7Gf0mFdkXkKX/aRWtnI96dXBzJ
+	 C4GWk6Z2ruZYw==
+Date: Wed, 22 May 2024 09:45:45 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE
+ source
+Message-ID: <20240522144545.GA3271320-robh@kernel.org>
+References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
+ <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Krzysztof Kozlowski <krzk@kernel.org>, Mighty <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240522075245.388-1-bavishimithil@gmail.com>
- <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
- <4f722e53-011f-4176-b6af-080522165007@kernel.org>
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-Content-Language: en-US
-In-Reply-To: <4f722e53-011f-4176-b6af-080522165007@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
 
+On Mon, May 20, 2024 at 03:12:43PM +0300, Dmitry Baryshkov wrote:
+> Command mode panels provide TE signal back to the DSI host to signal
+> that the frame display has completed and update of the image will not
+> cause tearing. Usually it is connected to the first GPIO with the
+> mdp_vsync function, which is the default. In such case the property can
+> be skipped.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/display/msm/dsi-controller-main.yaml        | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index 1fa28e976559..c1771c69b247 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -162,6 +162,21 @@ properties:
+>                  items:
+>                    enum: [ 0, 1, 2, 3 ]
+>  
+> +              qcom,te-source:
+> +                $ref: /schemas/types.yaml#/definitions/string
+> +                description:
+> +                  Specifies the source of vsync signal from the panel used for
+> +                  tearing elimination. The default is mdp_gpio0.
 
+default: mdp_gpio0
 
-On 22/05/2024 17:16, Krzysztof Kozlowski wrote:
-> On 22/05/2024 15:56, Péter Ujfalusi wrote:
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - ti,hwmods
->>> +  - clocks
->>> +  - clock-names
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    pdm@40132000 {
->>
->> The original label and name is preferred to be used.
-> 
-> Label is not used here.
-> 
-> About node name, not:
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> 
->>
->>> +      compatible = "ti,omap4-mcpdm";
->>> +      reg = <0x40132000 0x7f>, /* MPU private access */
->>> +            <0x49032000 0x7f>; /* L3 Interconnect */
->>> +      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
->>> +      interrupt-parent = <&gic>;
->>> +      ti,hwmods = "mcpdm";
->>> +      clocks = <&twl6040>;
->>> +      clock-names = "pdmclk";
->>
->> The clocks cannot be added at the time when the node is defined, it is
->> board specific. This way you imply that it is OK to have it in main dtsi
->> file. It is not.
-> 
-> Wait, what? That's example and pretty standard. Example should be
-> complete. This is not an exceptional binding.
+With that,
 
-The fclk for the McPDM is coming from external source, and the McPDM is
-designed in pair with twl6040/6041, there were plan for other codecs to
-support the McPDM protocol and in those cases the clock would come from
-the connected codec.
-
-The example (as the original binding was bit rot) is missing reg-names,
-dmas and dma-names to be complete.
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Péter
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
