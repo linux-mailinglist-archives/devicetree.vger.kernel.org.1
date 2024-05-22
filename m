@@ -1,158 +1,140 @@
-Return-Path: <devicetree+bounces-68266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5424F8CB676
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 02:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C12EF8CB6D5
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 02:48:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F13482826AF
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 00:10:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7776B2847F5
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 00:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B82368;
-	Wed, 22 May 2024 00:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2CEA17F3;
+	Wed, 22 May 2024 00:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Ggeatj+l"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="DX62oxei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B443E33C9
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 00:10:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716336611; cv=none; b=UCfQYnjHdcDmAv7BRGeCczo/dBy/3Bj6cyucbZRta28xnkrqm/haVf6V0RqI8hV+wS4ntTVqcOeXrYF2PFi2LGKuKOntbD2ZrEqeVkC4nZE7APvlD4rV8NQU+wyDhbZs22M0gVAbmPob1jnjIwYarCbiH67DZpf1CytSQEjY4Iw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716336611; c=relaxed/simple;
-	bh=oV6bmaYc8eeLEVZHdawApNxcvLAURbaBix3FTtLb5Ss=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jC3+mhQAUsu8Gogc/odKnjlkPzA+qD4Fonbix6YFEhXi/AgwXQIVsnDxEauNbY1lu5bLExBZR1ge6Rdr2aUMbnBaaLW5BjkhQjG5ZNPA7C5BQfT3DoPxMD7NyPAHr9lNMrsapCRTBerqcuZTgY33Kes6cAzf68NUnlQDhWln2ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Ggeatj+l; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 854DC8842C;
-	Wed, 22 May 2024 02:10:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1716336606;
-	bh=JixvmNFC9GMbSv+DKUdmSRpyGMvn+qECSeA63SnmiGg=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Ggeatj+lFv3O09ow05DcWFfRO9wzfIWUoHRsM/nU2yu0enC9Rfjlee0Qa5jOnd7ju
-	 v3YBHLXkBMzSTDsDp6fMysrscHyirZ8FNlQ7/4ljTpjAk1g3+yGWpT5bsiDO/Om2dq
-	 FBBRRRyzh6LcjPciyRZDNUg8ayvKSbB9xLbl2FScu4AXgH6f08i+mch8fXY1upZAwC
-	 L6jufsk+9+TaKcyFX/iRu8zdvNpDGgZi8LrBkcORz6jTfwK9IML8owlFLP1o0wbC+5
-	 rQQw5U0k5uKL/a20gjcZ0tT1qDM+T9+ZSnIvW/KIdmOeaCHbnMGwV0Oslokdpq4lik
-	 Nk0uUnj66WqTg==
-From: Marek Vasut <marex@denx.de>
-To: devicetree@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	Rob Herring <robh@kernel.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Yao <markyao0591@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Robert Foss <rfoss@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	dri-devel@lists.freedesktop.org,
-	imx@lists.linux.dev,
-	kernel@dh-electronics.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: display: synopsys,dw-hdmi: Mark ddc-i2c-bus as deprecated
-Date: Wed, 22 May 2024 02:09:31 +0200
-Message-ID: <20240522000949.49530-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B05515C0;
+	Wed, 22 May 2024 00:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716338926; cv=pass; b=jgzncA0S05WP714EIOm5wSDN+LWpP4r0WhTMgeokpe56pADk5y2AA7JUCTcBWlAXiqyYj2edbmtuCKKUxXlRA4DvXBIWI1x4Ye04gHd53vRqhlOcDRsRNKVtEoLpqelnRF52e8b0a2iCokJ+4GzXs11P3qktYdtSzQL1EnKwDfA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716338926; c=relaxed/simple;
+	bh=7dVJE5o5Y50vlv+ZlyLWEjCQ1Rjrwu1Ejbl9Boq49kw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=brE2P6Ms/0Md2Jf+G8mNAK1rf992fE6BsM/esuMi2lxCi1ZAKF3eTnUfaqtsYvtFniVjchYLfhLC0QP6UzssgpaHwTJsUcbm9abcIoNtBStjy20RSLzB+T963QClRke690tG2P/INN5sui1ZcZkMAxfI5zo+4GY0U9FrbzdmTkU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=DX62oxei; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+Delivered-To: gamiee@pine64.org
+ARC-Seal: i=1; a=rsa-sha256; t=1716338895; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=bjyhdEApydfOQZNKvtqtyxJzL+QP7Rbq3gVLTnkjZsM+I0BJp4WZrjZaagpQUjPAlbw15zIbDxInNylo4O1nvg+t7HdFvYgXVq90ZU1R/clT3YlfTBGrT/cq5egpwWLEGxybx0tdBY4mSHFyhIQWvAsB8WrE4q7hDZr+M0ZZtZU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1716338895; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=7dVJE5o5Y50vlv+ZlyLWEjCQ1Rjrwu1Ejbl9Boq49kw=; 
+	b=gFmEqBcNnxnkNzEL5yP0XgFQSdoWHl5hujNTQ4HKecgU5qpPQKhRNhNVMbSXA0oz+1/K+xImy4pifMhkjTDDMAR7Hd6hjBQsOQoDsDACFLqbUxJrhs4v80C3XTgmx5vRq34tRvVunQmv4q7XECzRa3JjR64uqz48bw9yX0IhUOU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1716338895;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=7dVJE5o5Y50vlv+ZlyLWEjCQ1Rjrwu1Ejbl9Boq49kw=;
+	b=DX62oxeiLF9kjeNh/2hiVWLvOVvXjq0I78eDC+v9gEeQ6R463XInmJ2wjYL4UxM0
+	23Ojqlz4DPB6w8FSUNf/gaRpiJG+0+YcYNfBwzZtqEzGcniAcHygEeJHzuGH9RiIbdc
+	f1s8I7p4uB4T4H3IKO3bKReSh1XCEVl0V98YKfPCCtBFViuM+N+Tk0JBTu0QPlvVkMZ
+	4QQSHlom50+TDhmIAG+nKXy7URXoXr9d8dvcTeKJqbFjLI+INkTWQRBH+5DM2pjP6j1
+	s4eZDCT5atO4twcNJcNOqvdn9B/bYi4bN3qBawaVp+vvlBVtNd/F+nd/Npd/02lQQnC
+	tfJF5x4+7Q==
+Received: by mx.zohomail.com with SMTPS id 1716338894658976.2921534766582;
+	Tue, 21 May 2024 17:48:14 -0700 (PDT)
+Message-ID: <057b4a5504656bb7455ead39768d9e7167fb724b.camel@icenowy.me>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: sunxi: Correct the descriptions
+ for Pine64 boards
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Dragan Simic <dsimic@manjaro.org>, linux-sunxi@lists.linux.dev
+Cc: wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, didi.debian@cknow.org, Marek Kraus
+	 <gamiee@pine64.org>
+Date: Wed, 22 May 2024 08:48:09 +0800
+In-Reply-To: <d2943d9f4c99a239f86188eaf45a73972685c255.1713833436.git.dsimic@manjaro.org>
+References: 
+	<d2943d9f4c99a239f86188eaf45a73972685c255.1713833436.git.dsimic@manjaro.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-ZohoMailClient: External
+X-ZohoMail-Owner: <057b4a5504656bb7455ead39768d9e7167fb724b.camel@icenowy.me>+zmo_0_uwu@icenowy.me
 
-The ddc-i2c-bus property should be placed in connector node,
-mark the HDMI TX side property as deprecated.
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Liu Ying <victor.liu@nxp.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Mark Yao <markyao0591@gmail.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: imx@lists.linux.dev
-Cc: kernel@dh-electronics.com
-Cc: linux-arm-kernel@lists.infradead.org
----
-V2: - Expand the description
-    - Add AB from Rob and RB from Laurent/Neil
----
- .../devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-index 828709a8ded26..33481381cccc1 100644
---- a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-@@ -47,12 +47,17 @@ properties:
- 
-   ddc-i2c-bus:
-     $ref: /schemas/types.yaml#/definitions/phandle
-+    deprecated: true
-     description:
-       The HDMI DDC bus can be connected to either a system I2C master or the
-       functionally-reduced I2C master contained in the DWC HDMI. When connected
-       to a system I2C master this property contains a phandle to that I2C
-       master controller.
- 
-+      This property is deprecated, the system I2C master controller should
-+      be referenced through the ddc-i2c-bus property of the HDMI connector
-+      node.
-+
-   interrupts:
-     maxItems: 1
- 
--- 
-2.43.0
+5ZyoIDIwMjQtMDQtMjPmmJ/mnJ/kuoznmoQgMDM6MDAgKzAyMDDvvIxEcmFnYW4gU2ltaWPlhpnp
+gZPvvJoKPiBDb3JyZWN0IHRoZSBkZXNjcmlwdGlvbnMgb2YgYSBmZXcgUGluZTY0IGJvYXJkcyBh
+bmQgZGV2aWNlcywKPiBhY2NvcmRpbmcKPiB0byB0aGVpciBvZmZpY2lhbCBuYW1lcyB1c2VkIG9u
+IHRoZSBQaW5lNjQgd2lraS7CoCBUaGlzIGVuc3VyZXMKPiBjb25zaXN0ZW5jeQo+IGJldHdlZW4g
+dGhlIG9mZmljaWFsbHkgdXNlZCBuYW1lcyBhbmQgdGhlIG5hbWVzIGluIHRoZSBzb3VyY2UgY29k
+ZS4KPiAKPiBDYzogTWFyZWsgS3JhdXMgPGdhbWllZUBwaW5lNjQub3JnPgo+IFNpZ25lZC1vZmYt
+Ynk6IERyYWdhbiBTaW1pYyA8ZHNpbWljQG1hbmphcm8ub3JnPgo+IC0tLQo+IAo+IE5vdGVzOgo+
+IMKgwqDCoCBUaGlzIGNvbXBsZXRlcyB0aGUgY29ycmVjdGlvbiBvZiB0aGUgZGVzY3JpcHRpb25z
+IG9mIHRoZSBQaW5lNjQKPiBib2FyZHMKPiDCoMKgwqAgYW5kIGRldmljZXMsIHdoaWNoIHdhcyBz
+dGFydGVkIHdpdGggdGhlIFBpbmU2NCBib2FyZHMgYW5kIGRldmljZXMKPiBiYXNlZAo+IMKgwqDC
+oCBvbiBSb2NrY2hpcCBTb0NzLiBbMV0KPiDCoMKgwqAgCj4gwqDCoMKgIFsxXQo+IGh0dHBzOi8v
+bG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwL2VjMTI0ZGFiMmIxYTg3NzZhYTM5MTc3ZWNj
+ZTM0YmFiY2EzYTUwZTIuMTcxMzgzMjc5MC5naXQuZHNpbWljQG1hbmphcm8ub3JnLwo+IAo+IMKg
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9zdW54aS55YW1sIHwgMTIgKysr
+KysrLS0tLS0tCj4gwqAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9u
+cygtKQo+IAo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+YXJtL3N1bnhpLnlhbWwKPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0v
+c3VueGkueWFtbAo+IGluZGV4IDA5ZDgzNWRiNmRiNS4uYjY2ODczYWUyZDcxIDEwMDY0NAo+IC0t
+LSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vc3VueGkueWFtbAo+ICsr
+KyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vc3VueGkueWFtbAo+IEBA
+IC03MDksMTcgKzcwOSwxNyBAQCBwcm9wZXJ0aWVzOgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0g
+Y29uc3Q6IHNvY2hpcCxzMwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IGFsbHdpbm5l
+cixzdW44aS12Mwo+IMKgCj4gLcKgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogUGluZTY0IFBpbmVI
+NjQgbW9kZWwgQQo+ICvCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246IFBpbmU2NCBINjQgTW9kZWwg
+QQo+IMKgwqDCoMKgwqDCoMKgwqAgaXRlbXM6Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25z
+dDogcGluZTY0LHBpbmUtaDY0Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogYWxsd2lu
+bmVyLHN1bjUwaS1oNgo+IMKgCj4gLcKgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogUGluZTY0IFBp
+bmVINjQgbW9kZWwgQgo+ICvCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246IFBpbmU2NCBINjQgTW9k
+ZWwgQgoKU29ycnkgZm9yIHJlcGx5aW5nIHNvIGxhdGUsIGJ1dCBJIGRvbid0IHRoaW5rIHRoZXJl
+IGlzIGEgUGluZTY0IEg2NApib2FyZC4gVGhlIFBpbmU2NCB3aWtpIGNhbGxzIGl0IFBpbmUgSDY0
+LiBbMV0KClsxXSBodHRwczovL3dpa2kucGluZTY0Lm9yZy93aWtpL1BJTkVfSDY0Cgo+IMKgwqDC
+oMKgwqDCoMKgwqAgaXRlbXM6Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogcGluZTY0
+LHBpbmUtaDY0LW1vZGVsLWIKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBhbGx3aW5u
+ZXIsc3VuNTBpLWg2Cj4gwqAKPiAtwqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOiBQaW5lNjQgTFRT
+Cj4gK8KgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogUGluZTY0IEE2NCBMVFMKPiDCoMKgwqDCoMKg
+wqDCoMKgIGl0ZW1zOgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IHBpbmU2NCxwaW5l
+NjQtbHRzCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogYWxsd2lubmVyLHN1bjUwaS1y
+MTgKPiBAQCAtNzQ4LDE3ICs3NDgsMTcgQEAgcHJvcGVydGllczoKPiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCAtIGNvbnN0OiBwaW5lNjQscGluZXBob25lCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBj
+b25zdDogYWxsd2lubmVyLHN1bjUwaS1hNjQKPiDCoAo+IC3CoMKgwqDCoMKgIC0gZGVzY3JpcHRp
+b246IFBpbmU2NCBQaW5lVGFiLCBEZXZlbG9wbWVudCBTYW1wbGUKPiArwqDCoMKgwqDCoCAtIGRl
+c2NyaXB0aW9uOiBQaW5lNjQgUGluZVRhYiBEZXZlbG9wZXIgU2FtcGxlCj4gwqDCoMKgwqDCoMKg
+wqDCoCBpdGVtczoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBwaW5lNjQscGluZXRh
+Ygo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IGFsbHdpbm5lcixzdW41MGktYTY0Cj4g
+wqAKPiAtwqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOiBQaW5lNjQgUGluZVRhYiwgRWFybHkgQWRv
+cHRlcidzIGJhdGNoIChhbmQKPiBtYXliZSBsYXRlciBvbmVzKQo+ICvCoMKgwqDCoMKgIC0gZGVz
+Y3JpcHRpb246IFBpbmU2NCBQaW5lVGFiIEVhcmx5IEFkb3B0ZXIKPiDCoMKgwqDCoMKgwqDCoMKg
+IGl0ZW1zOgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IHBpbmU2NCxwaW5ldGFiLWVh
+cmx5LWFkb3B0ZXIKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBhbGx3aW5uZXIsc3Vu
+NTBpLWE2NAo+IMKgCj4gLcKgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogUGluZTY0IFNvUGluZSBC
+YXNlYm9hcmQKPiArwqDCoMKgwqDCoCAtIGRlc2NyaXB0aW9uOiBQaW5lNjQgU09QaW5lCj4gwqDC
+oMKgwqDCoMKgwqDCoCBpdGVtczoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBwaW5l
+NjQsc29waW5lLWJhc2Vib2FyZAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IHBpbmU2
+NCxzb3BpbmUKPiAKCg==
 
 
