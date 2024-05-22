@@ -1,119 +1,146 @@
-Return-Path: <devicetree+bounces-68458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01DD08CC586
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 19:31:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 862968CC59C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 19:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 332131C20CB8
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:31:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B92D1F22BF0
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D990A76048;
-	Wed, 22 May 2024 17:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919701422D3;
+	Wed, 22 May 2024 17:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mw7GoOCi"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="NdyuhZ7m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7182E5223;
-	Wed, 22 May 2024 17:30:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A05E1422C8;
+	Wed, 22 May 2024 17:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716399056; cv=none; b=B8pWS3TwLE6NfY47zPiMigvY5OS3DpFWf8QBdP8GUS6PICs9Jtab44lHjxZeXhFxhxHn2hiPo+P9o6IySYLQ6QQMp7lBeS4+COU+z3k0SWxIdRs0VobNB2VlWMdBQwpCeXfkolNqfVGoVooQzooTCC66SDoRw0GhiEeQ7w7X+dg=
+	t=1716399269; cv=none; b=uCUzI2myW+4lv9g4dkuJUIQnXfrPMDggHRN74G8JQ6/lK5JmmZoGuY5l7VHwm+JpUmy24eLT4dFfKuvu2WF5Cz/Cc14z6ksYn7YeBiueupU40OokMWaKyQHpPUkBjtXvEDkQsnV1dMGPv4OOi4uV/KFRRict26LELjqja50i3Jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716399056; c=relaxed/simple;
-	bh=pgVOtAMYcJLOL5rY1GuVX9oZsXUI0zjls9R+s3vhh7A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iYfg4ycMaqylDvux0z7VbxeBFhPwq8iKr28O6GgaJ3OPPNWFFMa8yBnJgyY3jz3REun0pUmlPNCmYirK4XKxZwdPyZiV8AF3fBwcZDyl4p/y1/z0YZUTNXhEc3z13PpkPkEbnwC475gA6kKMbiMjV9MKQaEilHHqHT4y4sbdo18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mw7GoOCi; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6ab83788bf5so4684846d6.0;
-        Wed, 22 May 2024 10:30:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716399054; x=1717003854; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=oioJ37cLyddSrjaAU1ulmlInPWXjX5bMilUDK/7ET7s=;
-        b=Mw7GoOCi8VtCXmImr2tA/6ix4S3ak4ZuAwnP+Mre5QVLXx1E33jH/luFhyPbDvymhk
-         rEjhdmwMrdDvGCaxDVL2+fmrxounT70c2PfhDCKXdDAHJAOxjUggj4dBqGyLzBzBnLeN
-         +Fq/HOE5AKAEL0hp7XDqEOWcHFbHysUoZyxWZhXSFPOaZCZh0RU6jLfokMQNNuvL1D0s
-         cS4XTg1aZKEOS4vnugh/SC1xT68xm8m/kvoe5vt7phjFqV3IKEY5aMqPwSJKjeSCKj5d
-         BrMfGdAyYpjn8MCecI/hLVSmygcR/l6hIgkhKRiGfkQ7K24pmWf9mne/tZ8YHaUXJF+b
-         w7YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716399054; x=1717003854;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oioJ37cLyddSrjaAU1ulmlInPWXjX5bMilUDK/7ET7s=;
-        b=mVzXFW3IWndlk9keAfX2XKMliwn7PdHdzhFbFOf0w24X8sSdW/cvF4LH5mCGxZGuFv
-         eIS8PReiGNydoXFKy6sPtulaTjUkeDBaiW0i8fAftpZMwN+TEY5zr3yIBERJtBc5BydK
-         4Ks3AdFIGXehmE/56ieynqp2aC7cbcWthyuyYeKl4X9aTGMa0NveVJIJ1bJItxq64haQ
-         rlpZ44EUXoLgTUNw6kyVn5pdU66LNfWH6h6rexID+pjrfU2ZcxrqhxSownJv+Pl08H9k
-         jv/UYpuHvND+vPqDqH79cqQibypmTr6mGSfeG6s9iM5AB97fURHgF1iKHaNGS/7qlStC
-         K0vw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQYaVCO9x3qJqekIdJ48DZa49cIw1EtWVPEHrE4gLIHAAlWGDbCUd8pYqdCR0D2eox4Maj7TGJo/rJQEpqMWqic2LHElzdHYlQ3hS4DYRI8kRhAslwNJHrqvWaFwyL0sDMzXuG3RBHvpx5RsyqMB52XKX37wVb4HcLZzqV1d+obHEx07gE
-X-Gm-Message-State: AOJu0YyXRtg1tqG0eaKCF2exiSRglhWlVkJpLqHlVH6mwnvJLWXy1UVJ
-	AOi4yp5/DRZ0vriVLf6cMaTLXNF8B5joKpzZ+OsUOHdCBt4SpX783ypwcSJ28JwiXgCUZ3aLmPc
-	eqFe/RVDTi85QhjVF+JdHxlnLvpU=
-X-Google-Smtp-Source: AGHT+IHDP1WY4e8aqcII+jTqWULSqgYOoJokIdckgEsVizApYaeJaCjXUQm46lslJCkiV7Iq2xd52mYFyZy6ndEuuwU=
-X-Received: by 2002:a05:6214:390a:b0:6aa:9bea:9302 with SMTP id
- 6a1803df08f44-6ab7f34efd5mr26235636d6.14.1716399054308; Wed, 22 May 2024
- 10:30:54 -0700 (PDT)
+	s=arc-20240116; t=1716399269; c=relaxed/simple;
+	bh=sgZi3p6+Ujbhbh0wnjkTq4Cg1SkQ5TFVSBkMVQkT6zU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ELYKcZr6sak/2iyObwQg5X8kxBMmXrpiJPhZvcktOSkNwKpXBJdTX1iVVHrTBTnrnW6npseX4JbXCDrUJT2HLQFT1Kc04CSrX97L7R+CH9H+sIHP3h+FvlE94vFwXY05u/NQk1kcb7ajjKPSKWMzDVZ8zRBmvWcr1p84lQ105aA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=NdyuhZ7m; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1716399265; bh=sgZi3p6+Ujbhbh0wnjkTq4Cg1SkQ5TFVSBkMVQkT6zU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=NdyuhZ7mpvBDPjLBkFhlcA25t2Mstyfkw79p+Yv3moIbz0CZc0b3Yky5RX4tVrvbL
+	 3T3Vcfy2sv4AD+AZajnD2L8wdsyyBIhYySgpTrxoegyx/u7+Ii/PmpEi7KDr9e9/r0
+	 80cJD9EX5NFLg6bQ83DUhqQF7Uy3G36odVnU3b20=
+From: Luca Weiss <luca@z3ntu.xyz>
+To: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH RFC 1/2] dt-bindings: soc: qcom,smsm: Allow specifying mboxes
+ instead of qcom,ipc
+Date: Wed, 22 May 2024 19:34:23 +0200
+Message-ID: <6253429.lOV4Wx5bFT@g550jk>
+In-Reply-To: <12896bf6-412c-40af-9ad5-f9391ff81f63@kernel.org>
+References:
+ <20240424-smsm-mbox-v1-0-555f3f442841@z3ntu.xyz> <5780452.DvuYhMxLoT@g550jk>
+ <12896bf6-412c-40af-9ad5-f9391ff81f63@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240522075245.388-1-bavishimithil@gmail.com> <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
- <4f722e53-011f-4176-b6af-080522165007@kernel.org> <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
- <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org> <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
- <58ada5ce-5c02-4ff5-8bdd-d6556c9d141f@kernel.org> <CAGzNGRm5i8zvnXiPzMg5=+tr9oyBcRA8LFvnmgGzE=MzSNTXug@mail.gmail.com>
- <e384272a-4dfe-4653-8983-6426f8803c84@kernel.org>
-In-Reply-To: <e384272a-4dfe-4653-8983-6426f8803c84@kernel.org>
-From: Mithil <bavishimithil@gmail.com>
-Date: Wed, 22 May 2024 23:00:40 +0530
-Message-ID: <CAGzNGRnsmRWzimUX5tEC2-Y44aa4i9Lbdp8YJ+oneV4ujs4qBA@mail.gmail.com>
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lopez Cruz <misael.lopez@ti.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-> Binding needs to be adapted to match DTS or DTS has to be fixed to match
-> binding, depending which one is correct. Mention any changes done in the
-> binding which deviate from pure conversion of TXT->DT schema.
-The DTS is correct so will base the example on that (and get a better
-changelog in the next version)
-So the checks will be 1) dt_bindings_check and 2) dtbs_check
+On Mittwoch, 22. Mai 2024 08:49:43 MESZ Krzysztof Kozlowski wrote:
+> On 21/05/2024 22:35, Luca Weiss wrote:
+> > On Dienstag, 21. Mai 2024 10:58:07 MESZ Krzysztof Kozlowski wrote:
+> >> On 20/05/2024 17:11, Luca Weiss wrote:
+> >>> Hi Krzysztof
+> >>>
+> >>> Ack, sounds good.
+> >>>
+> >>> Maybe also from you, any opinion between these two binding styles?
+> >>>
+> >>> So first using index of mboxes for the numbering, where for the known
+> >>> usages the first element (and sometimes the 3rd - ipc-2) are empty <>.
+> >>>
+> >>> The second variant is using mbox-names to get the correct channel-mbox
+> >>> mapping.
+> >>>
+> >>> -               qcom,ipc-1 = <&apcs 8 13>;
+> >>> -               qcom,ipc-2 = <&apcs 8 9>;
+> >>> -               qcom,ipc-3 = <&apcs 8 19>;
+> >>> +               mboxes = <0>, <&apcs 13>, <&apcs 9>, <&apcs 19>;
+> >>>
+> >>> vs.
+> >>>
+> >>> -               qcom,ipc-1 = <&apcs 8 13>;
+> >>> -               qcom,ipc-2 = <&apcs 8 9>;
+> >>> -               qcom,ipc-3 = <&apcs 8 19>;
+> >>> +               mboxes = <&apcs 13>, <&apcs 9>, <&apcs 19>;
+> >>> +               mbox-names = "ipc-1", "ipc-2", "ipc-3";
+> >>
+> >> Sorry, don't get, ipc-1 is the first mailbox, so why would there be <0>
+> >> in first case?
+> > 
+> > Actually not, ipc-0 would be permissible by the driver, used for the 0th host
+> > 
+> > e.g. from:
+> > 
+> > 	/* Iterate over all hosts to check whom wants a kick */
+> > 	for (host = 0; host < smsm->num_hosts; host++) {
+> > 		hostp = &smsm->hosts[host];
+> > 
+> > Even though no mailbox is specified in any upstream dts for this 0th host I
+> > didn't want the bindings to restrict that, that's why in the first example
+> > there's an empty element (<0>) for the 0th smsm host
+> > 
+> >> Anyway, the question is if you need to know that some
+> >> mailbox is missing. But then it is weird to name them "ipc-1" etc.
+> > 
+> > In either case we'd just query the mbox (either by name or index) and then
+> > see if it's there? Not quite sure I understand the sentence..
+> > Pretty sure either binding would work the same way.
+> 
+> The question is: does the driver care only about having some mailboxes
+> or the driver cares about each specific mailbox? IOW, is skipping ipc-0
+> important for the driver?
 
-> https://social.kernel.org/notice/Ai9hYRUKo8suzX3zNY
-Noted, but here I'd assume omap2plus_defconfig would be more relevant.
+There's nothing special from driver side about any mailbox. Some SoCs have
+a mailbox for e.g. hosts 1&2&3, some have only 1&3, and apq8064 even has
+1&2&3&4.
 
-arch/arm/boot/dts/ti/omap/omap4-duovero-parlor.dtb: mcpdm@0:
-'ti,hwmods' is a required property
-        from schema $id:
-http://devicetree.org/schemas/sound/ti,omap4-mcpdm.yaml#
-We already have ti,hwmods still its asking for it?
+And if the driver doesn't find a mailbox for a host, it just ignores it
+but then of course it can't 'ring' the mailbox for that host when necessary.
 
-arch/arm/boot/dts/ti/omap/omap4-duovero-parlor.dtb: mcpdm@0:
-'dma-names', 'dmas', 'reg-names' do not match any of the regexes:
-'pinctrl-[0-9]+'
-        from schema $id:
-http://devicetree.org/schemas/sound/ti,omap4-mcpdm.yaml#
-It also requires a pinctrl subnode which isnt used anywhere, the
-parent node of mcpdm that is mcpdm_module has a pinctrl how would we
-go about implementing that?
+Not sure how much more I can add here, to be fair I barely understand what
+this driver is doing myself apart from the obvious.
 
--- 
-Best Regards,
-Mithil
+Regards
+Luca
+
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+
+
+
+
 
