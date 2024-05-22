@@ -1,187 +1,148 @@
-Return-Path: <devicetree+bounces-68314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066628CBCE8
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:25:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0499B8CBCF0
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0F102826E9
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:25:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2806B1C22067
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D7B7F7F7;
-	Wed, 22 May 2024 08:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8390580C1C;
+	Wed, 22 May 2024 08:27:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2100.outbound.protection.partner.outlook.cn [139.219.146.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-sh.amlogic.com (unknown [58.32.228.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8285F7F7D1;
-	Wed, 22 May 2024 08:24:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716366293; cv=fail; b=kCspf74Ih78wn+9ncuY6AAtgbDo+lUvZwJGcVynjvRvjN3osrKDsPtLSyK8iX7jIH7fZpvC8p/9X3nkOUVjQtWDy2PBWSeYtWJ0qvu3fufDdS3fwuiMDqIalA4ItDOqp57S86DAzsTlkT3fL1Iz7AWSxvHb86h7flpsqcX0EGZE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716366293; c=relaxed/simple;
-	bh=a99aLeh6iGZu179GD9aXIWTeRMhV/A4Uh8+Q93ck7SA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=abHPq8trd3Nx+22kr4spjFi1mKqAzHZIag1G7U+mZgYvycXClW2jMqM7pzkJOR7WxSs3Cffy4axlnnBp9bpHvwWw0H/1H1ucBD88g1yBsUqTLXimFAkzx7JYe7UJGEAucCQZ6nqAo/JiAw2KsS0loisJyo9S+8DV09P7iNP0kXY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X++gdlT6u0QsXJrJjjPc6Ae3a6VzpN2DEUROoTiy+T8n/6bebHV8sodJjL1v1j05NPp736xdyL2GpYSQq+Ec0yy9Q1AHte0nwH1xym52ngv8AfAAp9/F5M3P5ObrBarm+McSpo42JIvclRSZfCIggAZ1k+YXP/FvSPOQUj/l7u/IagKoyFBbIYh/ldwIBHhpOP2ROWcweYmWATxaVisY2MlTg/6LaCun53hD1mBJOOa6+xEsL/oU/CRdVUYTnkRYFcoiS4cxIMZFqNiAlQPuQzMCsXdp0OtmViaqPeXMnLjFqQNG5zdBkkkGaxCtMY5lVUqRio84xpLjn72YOZFK2g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a99aLeh6iGZu179GD9aXIWTeRMhV/A4Uh8+Q93ck7SA=;
- b=XaK1V4CW5Ajfmz966Rue6HWS/AuKIjW/fHmVSBiWBkdzyGDNNap864G0w17ZewGzVO8jZRDlj3ZM3p57wMSCQiq2ZTUtab9VGKEA8tc3JLImSZVTY7y4FxiVetJVGspiEuqYVKcy2GDe7SPZ6hqSHrsS5r0mtJ/Z8c3tgrm67VuRSXtoRg/764/dG6KAHmNTd18SK2B3XjT0URcfLLgr+SCb4NyxMTgoXtHD/Va1ZOq8VSgSrJcnXtfM+Tqxiy+TOUwYQwBAXybnV6cC0Dgjn9ZLYKP7BJeHZZ6Z0EszUCe5TNL1fJXhd7tl2UtrbdtgPZ2XGd7FU14fK7WJHEoE/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:8::10) by NTZPR01MB0986.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:b::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.33; Wed, 22 May
- 2024 08:24:41 +0000
-Received: from NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
- ([fe80::e903:99a6:10b7:304d]) by
- NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn ([fe80::e903:99a6:10b7:304d%6])
- with mapi id 15.20.7472.044; Wed, 22 May 2024 08:24:41 +0000
-From: Xingyu Wu <xingyu.wu@starfivetech.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Claudiu Beznea
-	<Claudiu.Beznea@microchip.com>, Jaroslav Kysela <perex@perex.cz>, Takashi
- Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor.dooley@microchip.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
-Subject: RE: [PATCH v3 1/2] ASoC: dt-bindings: Add bindings for Cadence I2S-MC
- controller
-Thread-Topic: [PATCH v3 1/2] ASoC: dt-bindings: Add bindings for Cadence
- I2S-MC controller
-Thread-Index: AQHaoRXv+B83yeIjJkupTIWZ+xjDObGM+lQAgBX3ToCAAAj/kA==
-Date: Wed, 22 May 2024 08:24:40 +0000
-Message-ID:
- <NTZPR01MB09560302DD3BFCEF35E77DC49FEB2@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
-References: <20240508070406.286159-1-xingyu.wu@starfivetech.com>
- <20240508070406.286159-2-xingyu.wu@starfivetech.com>
- <0e7496c4-7dfc-404d-944c-a1869389722b@linaro.org>
- <af72c0c1-144d-4f04-86ba-d85e5125d261@linaro.org>
-In-Reply-To: <af72c0c1-144d-4f04-86ba-d85e5125d261@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: NTZPR01MB0956:EE_|NTZPR01MB0986:EE_
-x-ms-office365-filtering-correlation-id: c4d6706b-75e3-430a-4661-08dc7a38a088
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- tecL13YynBWK+S0lexGzu19qU94T4HpHLbdpJXWLGi9EE5gNe+vpZYioTe1I4uxdD8s7aSCemP81GvLVzuizdC+k2z2pbiWJiVFecIt3hFTtIwidTYDYjTLqbIjqcOi3O9y+zcKH2xEqTyKHbyXHv4PlSLY0vngHnERrsQqNPeGxaqrwECkP6/YKJSHg4ENS+xX5knM2nzor/EhgsW2IAonlrPYOiJ301Q3QmfG4uUQ9nctWlySyGkN5w+9GLXyymBpSqcafmuJdWXEzOShid5cU7+cZ0zIn3nMbDwR22Y+NEDxJ39bY3l5TU+vLUl55nYDbQ1piqvWSnsbmAcb9TzZUOOWlShmya2vpNt4urnAGgBYlao2ydJdUnTT7VzSz1oP1u9RPWo1MfBeYz1cdbeqTisfi2rvnQQX4aomyCk9jA5CY4DIMY3jd8/P6EV8Z9BGlsax1GcQtnkIor79+GjW0BDRr9XVcOAtI4akmlEM2VPhwxqlz3BunKK4Cs27U3M728Q9KQCexKsg/5o7R11eUkc9n5B9bK4bYZFMVll0DG0/IV5YlF88eLQ6un/yCAEvCRxg/n9CIn4eb3hQgHS8JH4bbs6zYduNleYZQ+MnU7PXlGjRnTFhFE1lJrUuF
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(41320700004)(7416005)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?OHBaWE5tKzBaZUM0OGlFWitHU3ZGTTNJMmRmOWtkNzVrVXNjNldhL1ovUnNX?=
- =?utf-8?B?cU9kRGRod25pY0RkSVJUN3BFK2p4VGxPbGxFbVpkTW9haVhkV3cwbklYaVBh?=
- =?utf-8?B?RjJ3bDVvMG9SN0piV3RQK2U3OXA2NWE2V1gxRFREa3VSNlZPSlBZaDFQekt0?=
- =?utf-8?B?ZDZZZHpiSFlSYU44M3VxRU1reUlZaGN1TnM1QXhOVGFBMnhra3VPV21nb0g0?=
- =?utf-8?B?dVpNYkJCMkVVZkc5WmFKaVM2ODR5M0dkdkZ2UEhpNmUvOFdUc3lzay9pVVNB?=
- =?utf-8?B?ZmFaeG5pWTByQVZJK1d5cGlza1ZnNmFhc3lSSXBsNCt4bXA3M3g4aWlWYmxY?=
- =?utf-8?B?a2NhSUoybWxaRUJjMVlXeGpHbGU0MVRkcWFQMDRSK3NEMENCTjNKNGtHbnNH?=
- =?utf-8?B?UGtBYUxMZS9nU0NhMXhIdzlhck1JMXZkaEdWNE1UaUNaK3hBWW5JNXVReEkx?=
- =?utf-8?B?SXByUUdlaFN4b3QwNWFYTzZqekswMUpOT1ZaYlI3bzhqQ3JIWlNxNTdvampq?=
- =?utf-8?B?WlZZaG9kT0tWdCtJU3pmd1FkbnBHYUhBMWh1bndMNUNFMmk1Q2FnWWQ1ZkJG?=
- =?utf-8?B?STd3OHk4em5pRDRqaENJZ3htUEpyN2t6SU15OEhINmpZQ1lYYmJjNUdxZXN2?=
- =?utf-8?B?a1ZncDlpb1Y4TEZpS1pDRDdXTkhsLzAvdnNsb0VKRndGTXJHak15SHBHTWRP?=
- =?utf-8?B?bUo3K3Y1NjBOazgwWkczbndhd3RhdGMxbWdyaTZ3UmZPK056MWxZbzdrS3FY?=
- =?utf-8?B?WWF1K01YSW1ZMVltdGhoZGlEL2hqcTZPSEwwZU55YWR1YnZESDZFOFk1a0lB?=
- =?utf-8?B?Q2kweloyRFlQU3l4UTlNZEZUNUpqV1JnZU8rT0VZamUzSytiVGx3eGRnbEJh?=
- =?utf-8?B?dHBOL3lpcDRzSXdFWlMxRkNKRHJXc2RXT1ovbjZKTU9RSVFvdmxlcXZqMFdz?=
- =?utf-8?B?dElPdHFFYUZhcGJvek54NWliYjFWYTdNc3lXbUZqRUZOMHhKNkY1eG1yRG5B?=
- =?utf-8?B?d1JNQUhwLzVGKzNYbkhDcFRZSTk0OUtnTnlENlU4cnl3VzllMDZCc3VFdjZ4?=
- =?utf-8?B?TGgvTHBCNW5iSHpDdnRTbkVPNjFGR0hCQkRkcGpIQmFlYmU1WkpmZkRsWmh4?=
- =?utf-8?B?VDhrRklaZWdiL25IaHlnV2dJUXRrSDI5bGJlSW9aOTBKcERsYVV2ME04dS9z?=
- =?utf-8?B?cy9WdTk0RE53Rlp5Q01Xc3NWMFB0azlPU1hlZHRmK1V4aEZySGdxWC9IbHox?=
- =?utf-8?B?Q2p1VGNjeUZxSG8zTUdTbWE5YzkxdW4vNlV6b2xlaDZMTlJTT3VEbFlQdGNY?=
- =?utf-8?B?K1VhQXNKTkMyNWFQQjdmUm54SVgyKzNscjRzUWNDaW1ZRm14YnR0T0lnMmJ0?=
- =?utf-8?B?SjRUSFEzRldsTVpoUUU4WHl2Y0srUGkxaEtKLy96bmJtZnJ4L1FvSUx6Qytx?=
- =?utf-8?B?NWx6NjR6WUt5MENoMHV1eHl6MGZ1WWYrNVI4aUpVRlFWLzVaZUxFNUdrZ0pO?=
- =?utf-8?B?RlhObmtzcHlFRXpldUJIcmNyVlFTdmhrSk9ZV0lheEdBTmNMMTQxZFhtU2k0?=
- =?utf-8?B?TVd5WXVHUUhodWF6cHptdU1iMVdJcnJ5K2diM0J4S21CbGpIVjYzMFBDVVIv?=
- =?utf-8?B?YzNNTjFrcXdkSHpVWDZ2Y2pveC9xcFl6b0ZVT1VJZ1Q3RzV0cGRxb1p3WXhR?=
- =?utf-8?B?dGlTUG5uRTlWMndXUVlQMHE2TWVDUVR0ZUVDMUEyVzZRNGY5NnZYUS80bG45?=
- =?utf-8?B?czFWdmc2MHQyN2dtSEFxOTRyVTNGYWRQMVlRRmQwWllFK1ZlakFscFk2Smxv?=
- =?utf-8?B?UVpDb2hRY1VYNDA4WGJQcjlRd3Y5aWpNQk9pNjJyK1ZEOS9SZHh6WFhvTFR2?=
- =?utf-8?B?WFlsbURXME9NSXNCYWkyUWZmVFNuTmF1R0V3d3ZvdllWTG9BTHh0bEZyNzJm?=
- =?utf-8?B?R1V0b0pnY0ZGNlRXTGJXd1VmeFpSM2pyYWRMU0tvbHFTNTdUVlp3UGN0OVY2?=
- =?utf-8?B?NDZWbWdpL3Y5bHhtUktsMmFpcFNZUElrcjdmZG5id250Z2lCZ29YZXdqRmx2?=
- =?utf-8?B?NWxVVThwZnZMLy8ySFphM1FBMkhGUENXL2Jtcm9qVW5MQ3VKcFN6ZnVLRjM2?=
- =?utf-8?Q?67D8frQwCT9w1eyD5Uo0P1E6b?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9FA8063B;
+	Wed, 22 May 2024 08:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=58.32.228.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716366461; cv=none; b=T9LGg9YG7pjGouUcZ+RK4X7Yi57vyZuJO+r3+vaJGpEJTmdK+797lEFiWF1U2ZjOPTFl3e4zETNiKCvBwV3rTkyRiMIF1cVpMIIPwFd66ywgTn9HvZU53nGp7tvrSnF6qROROXwHkZ9ezkLtWIo7p0bsFSkKTkk8Uq9EBvlBmxE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716366461; c=relaxed/simple;
+	bh=4SLPJsqT08LVrwDTgJMLvNXsh0vWszWkori5CoGMTa4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=A2Y3Ra9e6UgY3DU/QjKCmbMhbe1STKEPWwZSuYIaHf8OnEQdEJv6Vh7L7a5XfeVctN3AWhyeFm34nskg+cDpaCRIjimY25lLuyaqrycugIGHjXQdBS+X341Ay+0ArlHChexJ3wA3P+zudDmLSBkTf9En+W69LS2igtWAauKXi5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=58.32.228.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.6; Wed, 22 May 2024
+ 16:27:30 +0800
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+To: <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Kevin Hilman <khilman@baylibre.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH v9 0/5] Add C3 SoC PLLs and Peripheral clock
+Date: Wed, 22 May 2024 16:27:22 +0800
+Message-ID: <20240522082727.3029656-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4d6706b-75e3-430a-4661-08dc7a38a088
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2024 08:24:40.9657
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ctWCocEFAQ/VRw6+Orexy0k5xq0XfevRM4X0nPwXIkWf8bR51jLs/jXezCHyZwpn7qzQVTxvQGvKPMbG85w6phgaK4Ijxxw9rfeJPbv84jc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: NTZPR01MB0986
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-T24gMjIvMDUvMjAyNCAxNTozMCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gDQo+IE9u
-IDA4LzA1LzIwMjQgMTA6MDMsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4gT24gMDgv
-MDUvMjAyNCAwOTowNCwgWGluZ3l1IFd1IHdyb3RlOg0KPiA+PiBBZGQgYmluZGluZ3MgZm9yIHRo
-ZSBNdWx0aS1DaGFubmVsIEkyUyBjb250cm9sbGVyIG9mIENhZGVuY2UuDQo+ID4+DQo+ID4+IFRo
-ZSBNdWx0aS1DaGFubmVsIEkyUyAoSTJTLU1DKSBpbXBsZW1lbnRzIGEgZnVuY3Rpb24gb2YgdGhl
-IDgtY2hhbm5lbA0KPiA+PiBJMlMgYnVzIGludGVyZmFzY2UuIEVhY2ggY2hhbm5lbCBjYW4gYmVj
-b21lIHJlY2VpdmVyIG9yIHRyYW5zbWl0dGVyLg0KPiA+PiBGb3VyIEkyUyBpbnN0YW5jZXMgYXJl
-IHVzZWQgb24gdGhlIFN0YXJGaXZlDQo+ID4+IEpIODEwMCBTb0MuIE9uZSBpbnN0YW5jZSBvZiB0
-aGVtIGlzIGxpbWl0ZWQgdG8gMiBjaGFubmVscywgdHdvDQo+ID4+IGluc3RhbmNlIGFyZSBsaW1p
-dGVkIHRvIDQgY2hhbm5lbHMsIGFuZCB0aGUgb3RoZXIgb25lIGNhbiB1c2UgbW9zdCA4DQo+ID4+
-IGNoYW5uZWxzLiBBZGQgYSB1bmlxdWUgcHJvcGVydHkgYWJvdXQgJ3N0YXJmaXZlLGkycy1tYXgt
-Y2hhbm5lbHMnIHRvDQo+ID4+IGRpc3Rpbmd1aXNoIGVhY2ggaW5zdGFuY2UuDQo+ID4+DQo+ID4+
-IFNpZ25lZC1vZmYtYnk6IFhpbmd5dSBXdSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+
-ID4NCj4gPg0KPiA+PiArDQo+ID4+ICsgIHN0YXJmaXZlLGkycy1tYXgtY2hhbm5lbHM6DQo+ID4+
-ICsgICAgZGVzY3JpcHRpb246DQo+ID4+ICsgICAgICBOdW1iZXIgb2YgSTJTIG1heCBzdGVyZW8g
-Y2hhbm5lbHMgc3VwcG9ydGVkIG9uIHRoZSBTdGFyRml2ZQ0KPiA+PiArICAgICAgSkg4MTAwIFNv
-Qy4NCj4gPj4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50
-MzINCj4gPj4gKyAgICBlbnVtOiBbMiwgNCwgOF0NCj4gPj4gKw0KPiA+PiArYWxsT2Y6DQo+ID4+
-ICsgIC0gJHJlZjogZGFpLWNvbW1vbi55YW1sIw0KPiA+PiArICAtIGlmOg0KPiA+PiArICAgICAg
-cHJvcGVydGllczoNCj4gPj4gKyAgICAgICAgY29tcGF0aWJsZToNCj4gPj4gKyAgICAgICAgICBj
-b250YWluczoNCj4gPj4gKyAgICAgICAgICAgIGNvbnN0OiBzdGFyZml2ZSxqaDgxMDAtaTJzDQo+
-ID4+ICsgICAgdGhlbjoNCj4gPj4gKyAgICAgIHJlcXVpcmVkOg0KPiA+PiArICAgICAgICAtIHN0
-YXJmaXZlLGkycy1tYXgtY2hhbm5lbHMNCj4gPj4gKyAgICBlbHNlOg0KPiA+PiArICAgICAgcHJv
-cGVydGllczoNCj4gPj4gKyAgICAgICAgc3RhcmZpdmUsaTJzLW1heC1jaGFubmVsczogZmFsc2UN
-Cj4gPj4gKw0KPiA+PiArcmVxdWlyZWQ6DQo+ID4NCj4gPiBJIGFza2VkIHRvIHB1dCBpdCBhZnRl
-ciBwcm9wZXJ0aWVzOiBibG9jaywgbm90IGFmdGVyIGFsbE9mOi4gU2VlDQo+ID4gZXhhbXBsZS1z
-Y2hlbWEgZm9yIHByZWZlcnJlZCBvcmRlci4gV2h5PyBCZWNhdXNlIHdlIGFyZSB1c2VkIHRvIGl0
-IGFuZA0KPiA+IGl0IG1ha2VzIHJlYWRpbmcgdGhlIHNjaGVtYSBlYXNpZXIgZm9yIHVzLg0KPiA+
-DQo+ID4gUmVzdCBsb29rcyBnb29kLCBzbyB3aXRoIHRoZSByZS1vcmRlcjoNCj4gPg0KPiA+IFJl
-dmlld2VkLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFy
-by5vcmc+DQo+IA0KPiBTaW5jZSB5b3UgZG8gbm90IHBsYW4gdG8gZml4IGl0IGFuZCBhbHJlYWR5
-IHN0YXJ0ZWQgcGluZ2luZyBtYXJrLCBJIHJldHJhY3QgbXkNCj4gcmV2aWV3Lg0KPiANCj4gVW5y
-ZXZpZXdlZC1ieS4NCj4gDQo+IEltcGxlbWVudCB0aGUgZmVlZGJhY2sgSSBhbHJlYWR5IGFza2Vk
-IHlvdSBCRUZPUkUuDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQpTb3JyeSwg
-SSB0aG91Z2h0IG15IHJlcGx5IGVtYWlsIHdlbnQgb3V0IGJ1dCBpdCBkaWRuJ3QuIEkgd2lsbCBy
-ZS1vcmRlciBpdCBhbmQgcHV0DQp0aGUgcmVxdWlyZWQgYmVmb3JlIHRoZSBhbGxPZiBpbiB0aGUg
-bmV4dCB2ZXJzaW9uLg0KDQpJIHRob3VnaHQgaXQgd291bGQgYmUgbmljZSB0byB1cGRhdGUgYm90
-aCBiaW5kaW5ncyBhbmQgZHJpdmVyIHBhdGNoZXMgaW4gdGhlDQpuZXh0IHZlcnNpb24sIHNvIEkg
-cGluZyBtYXJrLg0KDQpCZXN0IHJlZ2FyZHMsDQpYaW5neXUgV3UNCg==
+The patchset adds support for the peripheral and PLL clock controller
+found on the Amlogic C3 SoC family, such as C302X or C308L.
+
+Some clocks are provided by security zones. These clock accessed
+througth SCMI driver in linux, inlcuding DDR_PLL,DDR_PHY, TOP_PLL,
+USB_PLL, MIPIISP_VOUT, MCLK_PLL, USB_CTRL, ETH_PLL, OSC, SYS_CLK,
+AXI_CLK, CPU_CLK, FIXED_PLL, GP1_PLL, SYS_PLL_DIV16, CPU_CLK_DIV14.
+
+Changes since V8 [1]:
+ - Use imply in Kconfig.
+ - Link to v8: https://lore.kernel.org/all/20240430064438.2094701-1-xianwei.zhao@amlogic.com 
+
+Changes since V7 [1]:
+ - Remove included head file not used.
+ - Link to v7: https://lore.kernel.org/all/20240424050928.1997820-1-xianwei.zhao@amlogic.com
+
+Changes since V6 [12]:
+ - Add pad src for rtc clock.
+ - Add SCMI clock controller support, move some clock node in SCMI,such as GP1 PLL DDR USB etc.
+ - Fix some spelling mistake.
+ - Use lower case for bindings and update some input clocks desc.
+ - Update some clock comments.
+ - Delete prefix "AML_" for macro definition.
+ - Addd some clock annotation and some clock flag CRITICAL.
+ - Add maximum for regmap_config.
+ - Delete some unused register definition and unused clock inputs. 
+ - Drop patch subject redundant "bindings". Suggested by Krzysztof.
+ - Not reference header file "clk.h" and replace comment. Suggested by Jerome.
+ - Modify description about board in Kconfig file help item. Suggested by Jerome.
+ - Link to v6: https://lore.kernel.org/all/20231106085554.3237511-1-xianwei.zhao@amlogic.com
+
+Changes since V5 [3]:
+ - Fix some typo and modify formart for MARCO. Suggested by Jerome.
+ - Add pad clock for peripheral input clock in bindings.
+ - Add some description for explaining why ddr_dpll_pt_clk and cts_msr_clk are out of tree.
+Changes since V4 [10]:
+ - Change some fw_name of clocks. Suggested by Jerome.
+ - Delete minItem of clocks.
+ - Add CLk_GET_RATE_NOCACHE flags for gp1_pll
+ - Fix some format. and fix width as 8 for mclk_pll_dco.
+ - exchange gate and divder for fclk_50m clock.
+ - add CLK_SET_RATE_PARENT for axi_a_divder & axi_b_divder.
+ - add CLK_IS_CRITICAL for axi_clk
+ - Optimized macro define for pwm clk.
+ - add cts_oscin_clk mux between 24M and 32k
+ - add some missing gate clock, such as ddr_pll.
+Changes since V3 [7]:
+ - Modify Kconfig desc and PLL yaml clk desc.
+ - Fix some format.Suggested by Yixun and Jerome.
+ - Add flag CLK_GET_RATE_NOCACHE for sys_clk.
+ - Optimized macro define for pwm clk.
+ - Use flag CLK_IS_CRITICAL for axi_clk.
+ - Add some description for some clocks.
+ - Use FCLK_50M instead of FCLK_DIV40.
+Changes since V2 [4]:
+ - Modify some format, include clk name & inline, and so on.
+ - Define marco for pwm clock.
+ - Add GP1_PLL clock.
+ - Modify yaml use raw instead of macro.
+Changes since V1 [2]:
+ - Fix errors when check binding by using "make dt_binding_check".
+ - Delete macro definition.
+Xianwei Zhao (5):
+  dt-bindings: clock: add Amlogic C3 PLL clock controller
+  dt-bindings: clock: add Amlogic C3 SCMI clock controller support
+  dt-bindings: clock: add Amlogic C3 peripherals clock controller
+  clk: meson: c3: add support for the C3 SoC PLL clock
+  clk: meson: c3: add c3 clock peripherals controller driver
+
+ .../clock/amlogic,c3-peripherals-clkc.yaml    |  120 +
+ .../bindings/clock/amlogic,c3-pll-clkc.yaml   |   59 +
+ drivers/clk/meson/Kconfig                     |   27 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/c3-peripherals.c            | 2365 +++++++++++++++++
+ drivers/clk/meson/c3-pll.c                    |  746 ++++++
+ .../clock/amlogic,c3-peripherals-clkc.h       |  212 ++
+ .../dt-bindings/clock/amlogic,c3-pll-clkc.h   |   40 +
+ .../dt-bindings/clock/amlogic,c3-scmi-clkc.h  |   27 +
+ 9 files changed, 3598 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/c3-peripherals.c
+ create mode 100644 drivers/clk/meson/c3-pll.c
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-pll-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,c3-scmi-clkc.h
+
+
+base-commit: ba535bce57e71463a86f8b33a0ea88c26e3a6418
+-- 
+2.39.2
+
 
