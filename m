@@ -1,126 +1,125 @@
-Return-Path: <devicetree+bounces-68286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B9548CBB86
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:48:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC3C8CBB8B
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:49:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25FC92826DC
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 06:48:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B37B1C21771
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 06:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F368E74BED;
-	Wed, 22 May 2024 06:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA8E74E3D;
+	Wed, 22 May 2024 06:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0gUs2nj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhdaP4IG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C387117C6D;
-	Wed, 22 May 2024 06:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9978770EA;
+	Wed, 22 May 2024 06:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716360496; cv=none; b=JY+rw3sZJ4CSl8v/M6UtoLACFLOxhGxz0An6WEdeGSSUAMJmIqcgHnF3JI+sR3vRYW/glySu4Jm/Do+Rx/hm71iArWEW1k/4a2vSxGmqUk9QO8vytj9pAnIAhwgKm2lgkScG2br8lv5P9EtCjcA+5f8KGYWb7IEBcWPcBR149QA=
+	t=1716360548; cv=none; b=FwLfydWvOkk+tx5jZXf1KauRol3JEsqC9rxepnXiSHYQ9dp0dbBAHZ89Uujy9kEoXZPIFztVfVhr0HpBROszewF16RPf0AmP/qhOvzD6M4+xbqwnT00iiTOZMTs+3uISoIhnrEAA7YR4scIcZMs2KujOafXG0Uc4t/y2OM1SVxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716360496; c=relaxed/simple;
-	bh=WJkjDmeHNuFhx5I8TgiVf4oKs1vqcYl8v194EPdzTG8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QFEuD4kJC/4E4tLWEakl18vcaF0Pd75UlhhVDnS30w2EDtzN3Xs6y/PwhnFC2sbuRFF21vv40aNoCWFcFPuCiSgNThqstT8kBYK4SQvyKmv5kdcYbDl2NrXjatFryXxLK3K2zv+aKzqPDZYOTBsSnGa4u0RsL0tfcUxqOlZfSU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0gUs2nj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1342C2BD11;
-	Wed, 22 May 2024 06:48:12 +0000 (UTC)
+	s=arc-20240116; t=1716360548; c=relaxed/simple;
+	bh=CeMXYGdyxRFb87MLEU2wKkVTrxdM2DN0261kgTe8GyA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q7CsZMcrLabFjdpP4d3kzR/bU123PzR3S6MSsIiQErpw8Erg9F92vFJYHsXMGlnEWfFfveb+wyR2sCJgGK2Aq6R3ii8TFwn4Ix0DngA9a4tfZYGFpNnyDjm7SrKmmJYhCoCKuTcYiW0iQwxu2gbC+6atsIENZYNR6GHOr5x60pM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhdaP4IG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D8E9C2BD11;
+	Wed, 22 May 2024 06:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716360496;
-	bh=WJkjDmeHNuFhx5I8TgiVf4oKs1vqcYl8v194EPdzTG8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i0gUs2njoNCFsJjbNMnz6TQuyPZKULsPY+oKAP5X/FA1HdW81kG3iOitS2Uu+MD3x
-	 PX5q461DS5mdNyEcjAyyqznIDfoMgRtru0HN2ftE44a6YhvexZ/qx3NzHgdzmTxvJ8
-	 0p1DHA9hBX9ikAjdOqmyI8bOYDkAeVoJADRKLsMT5fYkQg5UTDMoMvrFuzQ93atu5B
-	 o0XLo8bzuw97lD8JHTKq0BTOHJC1I2dOVMKH5ENxPCoaKOAz/7EWhCKgplxBuRVf7F
-	 nDTk6x/UJ8PLpULoMp4wef441wQCZ5/JmMC1YMaowkZ8WGkaCJ30drT6iSdvePLdnP
-	 PmTD39o17d0JA==
-Message-ID: <6dba81fe-2e82-4807-8da8-bc5d8c7e174a@kernel.org>
-Date: Wed, 22 May 2024 08:48:10 +0200
+	s=k20201202; t=1716360548;
+	bh=CeMXYGdyxRFb87MLEU2wKkVTrxdM2DN0261kgTe8GyA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OhdaP4IGKfpy9K9vnmhuIP+iDLoyVNynedwbbMol1RbN9E20GAhr28+L+FFIfKbUN
+	 OsnSuuT4f3a2/aXNN/zLMn33P/S6yrd2zJIXaihCJ353zLMajd/RmybzEt7fUNnhcr
+	 gKt11gv/llSJArVXURFq3nzcgZk6ipBNygRiaEsYpGhnVHdztDdWiOLJbw1Pfol+2P
+	 Yyz2I4+E2lP8YgTOV7+MCRGJxNeOXBb0Jlvg6BFDs5H+j0GuuK5kgIHB6pLMC2ATjk
+	 hY4pzHWRhZlI++YsPyebKYdojp306tmwkfZypEc/3QeKKlo40npn0I49y8Q1BuUX92
+	 hol4ewdWNrZyg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1s9fmZ-000000002vV-2Xji;
+	Wed, 22 May 2024 08:49:04 +0200
+Date: Wed, 22 May 2024 08:49:03 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya <quic_c_skakit@quicinc.com>,
+	Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 11/13] mfd: pm8008: rework driver
+Message-ID: <Zk2VX5JRzmePxG4N@hovoldconsulting.com>
+References: <20240506150830.23709-1-johan+linaro@kernel.org>
+ <20240506150830.23709-12-johan+linaro@kernel.org>
+ <ZjktIrsZS-T7cm-A@surfacebook.localdomain>
+ <ZjyafGz_1pY4J9C7@hovoldconsulting.com>
+ <CAHp75VfP2AB45mn6gB3suCAO9iT3bOWZ=7m9U7E087Lac0P3gg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: PCI: mediatek,mt7621-pcie: add PCIe host
- topology ascii graph
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
- devicetree@vger.kernel.org
-Cc: linux-pci@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- kw@linux.com, lpieralisi@kernel.org, bhelgaas@google.com,
- conor+dt@kernel.org, angelogioacchino.delregno@collabora.com,
- linux-kernel@vger.kernel.org
-References: <20240522044321.3205160-1-sergio.paracuellos@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240522044321.3205160-1-sergio.paracuellos@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VfP2AB45mn6gB3suCAO9iT3bOWZ=7m9U7E087Lac0P3gg@mail.gmail.com>
 
-On 22/05/2024 06:43, Sergio Paracuellos wrote:
-> MediaTek MT7621 PCIe subsys supports a single Root Complex (RC) with 3 Root
-> Ports. Add PCIe host topology ascii graph to the binding for completeness.
+On Fri, May 10, 2024 at 04:15:43PM +0300, Andy Shevchenko wrote:
+> On Thu, May 9, 2024 at 12:42 PM Johan Hovold <johan@kernel.org> wrote:
+> > On Mon, May 06, 2024 at 10:18:58PM +0300, Andy Shevchenko wrote:
+> > > Mon, May 06, 2024 at 05:08:28PM +0200, Johan Hovold kirjoitti:
+
+> > > > +static void devm_irq_domain_fwnode_release(void *res)
+> > > > +{
+> > >
+> > > > +   struct fwnode_handle *fwnode = res;
+> > >
+> > > Unneeded line, can be
+> > >
+> > > static void devm_irq_domain_fwnode_release(void *fwnode)
+> > >
+> > > > +   irq_domain_free_fwnode(fwnode);
+> > > > +}
+> >
+> > I think I prefer it this way for clarity and for type safety in the
+> > unlikely even that the argument to irq_domain_free_fwnode() would ever
+> > change.
 > 
-> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> ---
->  .../bindings/pci/mediatek,mt7621-pcie.yaml    | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
+> If it ever changes, the allocation part most likely would need an
+> update and since devm_add_action() takes this type of function, I
+> don't believe the argument would ever change from void * to something
+> else. With this it just adds an additional burden on the conversion.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I was referring to the irq_domain_free_fwnode() prototype.
+ 
+> > > > +   name = devm_kasprintf(dev, GFP_KERNEL, "%pOF-internal", dev->of_node);
+> > >
+> > > You are using fwnode for IRQ domain and IRQ domain core uses fwnode, why OF here?
+> > >
+> > >       name = devm_kasprintf(dev, GFP_KERNEL, "%pfw-internal", dev_fwnode(dev));
+> >
+> > This driver only support OF so why bother.
+> 
+> Sure, but it makes a bit of inconsistency.
 
-Best regards,
-Krzysztof
+No, I don't consider this an inconsistency. Again, *this* is an OF
+driver, other subsystems need to deal with ACPI and use fwnode.
 
+Johan
 
