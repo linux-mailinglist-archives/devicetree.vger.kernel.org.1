@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-68422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEEB68CC37A
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:46:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 274DF8CC381
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:48:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47C98B20B2C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:46:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE7041F21F32
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6471D51E;
-	Wed, 22 May 2024 14:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0229E18B14;
+	Wed, 22 May 2024 14:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ug8dRJXp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VyKt44RB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9E11AACB;
-	Wed, 22 May 2024 14:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8CE171D8;
+	Wed, 22 May 2024 14:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716389190; cv=none; b=ZpzbAPbCg/I+HBB54cm6ZJyAjnM0hpDvq5anyWpkEQ1Aw943I15b9eS0qfVyVy1/OGGOObtIRwiYh94YC2JNyxkSKkxu6hdbG1hJlbvtK0Ply7fWYR54gnsW7hXwfcQ1HDuBdVXOBxLVoScFt2i+QtHypFLyb7Yi1HXEaQ4Iq1s=
+	t=1716389327; cv=none; b=CnWuG+ZRjDqJaCV6tNAgUEeMe2hAi59A5DqEMhPmYsDKMEMR6JHtv6Ia+MBcamdKZcF+2P83ABKG2BT4xxz50IPhYB5aExsVotFZ+yi443BFIa9F49mrAHkxoDQxrdGItMYwEKNoENYNGDIyteEgZnhY/YypFlPYfYxxVhNhqxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716389190; c=relaxed/simple;
-	bh=dy7gr88adDgKpasKwsud6U16sjxUVBOaxRknrNm6xkU=;
+	s=arc-20240116; t=1716389327; c=relaxed/simple;
+	bh=REZ/hGrrzdHHLNt53xBnhdfv5bXUdy4C2BSdNp8ahJY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b36j9oT3e5n6yYOSDVbryElg4G13uzjxt1q1wsgY6Pb4Eu8P3Id+Clqox85s0OScTdh+ip3XXxZRHc46feRm9hjLojnKg2XTsZyzAvt0aF/UPereSgl55ZIM8O2QevJYaI6LyBsqaLR7Y8I/22gNLGVzCGvJm0zNOvqg3gemZnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ug8dRJXp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 076A3C2BBFC;
-	Wed, 22 May 2024 14:46:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tx/LT9YCMuEpmmHMKyGnjRTGbQ3J7wGvO4LYbJsutjTfugSj1MDo0jvYJ6LmZGB1Ez+S/dAeHxZCPoU6y6bmAhuEYLvSLRHoIjqOKFA6aNxQ8sFiw/QR/Q12ELc9azLJQ/UmhzYjTGYC0KmV4H20a4Ue9KqvsqySCV3XSNB4Ga8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VyKt44RB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E77FC2BBFC;
+	Wed, 22 May 2024 14:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716389190;
-	bh=dy7gr88adDgKpasKwsud6U16sjxUVBOaxRknrNm6xkU=;
+	s=k20201202; t=1716389327;
+	bh=REZ/hGrrzdHHLNt53xBnhdfv5bXUdy4C2BSdNp8ahJY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ug8dRJXpVEckHEassENbn9ROMPkaAby/LMVqPorfy17UISPuh3VHELsvyxKDZCPYL
-	 6W2m7UcOd66aR3hjGgOPXU6pFz5k7+ToOkDGXFHVTri4cnoi+34ngXqynrTvk29Oiz
-	 FE0QVYfKqarUkcWeHrlArhIusHiCfLEb+f5cyrpez/UCIf74y6wlyygSPG00gpp2zE
-	 u+Ou46NhRd1FnBO1W4uK0TdIEzWoHd8Cqwff25bM+8WHiK1CW/jl8KV3/VcCOzYxgI
-	 J2MZ+xQy9XvhJtxDQoss7cuALRSx5lXn8K4eip0IT1IzjSgfYFT3Sfs+WaB1I3VL9a
-	 syOaONQek/pCw==
-Date: Wed, 22 May 2024 09:46:29 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
+	b=VyKt44RBSErFmvyFyzhROeJTgR8rCsm4yXCS9l06pIafvLLNuYwp7hwsY+M6svEpl
+	 b9ZjlA8CLjhiApVDHBoVORImCP7OJ91F5N2wi/62ArL8mWQrKAQF3p2cokY/6Mnvqi
+	 H8FWXMDjNn9+NQXMzfYJrjs8iLBTY0jmakihRNxNHHhya41G2SWXnAuti2U+UTRTPL
+	 9KfaENgbb4MgEaVj/MqVSrvAS4IquTOBbpKZoY8xczLlGyVLHcEDvLg/zU0QxOm46Q
+	 5KIdK0uuJPvPi6dbRoUxyLwCEjEExI2nlJiLdr74fL4i+5zJ0t1TvCD7WDudARHD37
+	 +2T/VfDE5OSUA==
+Date: Wed, 22 May 2024 09:48:46 -0500
+From: Rob Herring <robh@kernel.org>
 To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Michal Simek <michal.simek@amd.com>, linux-gpio@vger.kernel.org,
+	Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+	linux-kernel@vger.kernel.org,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
-	Michal Simek <michal.simek@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/7] dt-bindings: pci: xilinx-nwl: Add phys
-Message-ID: <171638918647.3276613.2909691160973849874.robh@kernel.org>
-References: <20240520145402.2526481-1-sean.anderson@linux.dev>
- <20240520145402.2526481-2-sean.anderson@linux.dev>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: xilinx: Add support for
+ function with pins
+Message-ID: <20240522144846.GA3277292-robh@kernel.org>
+References: <20240520150424.2531458-1-sean.anderson@linux.dev>
+ <20240520150424.2531458-2-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,27 +66,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240520145402.2526481-2-sean.anderson@linux.dev>
+In-Reply-To: <20240520150424.2531458-2-sean.anderson@linux.dev>
 
-
-On Mon, 20 May 2024 10:53:56 -0400, Sean Anderson wrote:
-> Add phys properties so Linux can power-on/configure the GTR
-> transcievers.
+On Mon, May 20, 2024 at 11:04:23AM -0400, Sean Anderson wrote:
+> Support specifying the function per-pin. The driver doesn't care
+> whethern you use pins or groups for this purpose.
 > 
 > Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
 > ---
 > 
-> Changes in v3:
-> - Document phys property
+> (no changes since v1)
 > 
-> Changes in v2:
-> - Remove phy-names
-> - Add an example
+>  .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 344 +++++++++---------
+>  1 file changed, 176 insertions(+), 168 deletions(-)
 > 
->  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> index f13d315b5d5e..d3b258245e28 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
+> @@ -42,179 +42,187 @@ patternProperties:
+>          $ref: pinmux-node.yaml#
+>  
+>          properties:
+> +          pins:
+> +            description:
+> +              List of pins to select (either this or "groups" must be specified)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Express as a schema:
 
+oneOf:
+  - required: [pins]
+  - required: [groups]
+
+
+> +            items:
+> +              pattern: '^MIO([0-9]|[1-6][0-9]|7[0-7])$'
+> +
+>            groups:
+>              description:
+>                List of groups to select (either this or "pins" must be
+>                specified), available groups for this subnode.
+>              items:
 
