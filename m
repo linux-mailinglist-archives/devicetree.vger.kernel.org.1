@@ -1,186 +1,155 @@
-Return-Path: <devicetree+bounces-68375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708178CC121
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:23:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A99A28CC150
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDAAD1F233FB
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:23:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBAF51C21D25
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D712A13D636;
-	Wed, 22 May 2024 12:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20E6D13D609;
+	Wed, 22 May 2024 12:33:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E7113D53C;
-	Wed, 22 May 2024 12:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7201130ADA;
+	Wed, 22 May 2024 12:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716380612; cv=none; b=XltLHjdJntRdUjFxapCcGxQY9lkz3O1sDg5BildvDtC80tHjyZ8P1Ze1gOetOpvP5OVspmPsK2w4uZSyx2rtmKQa/EcH5VYnEAL+rfsKJktM1nMBFU8Ka/Wh8bm99YkKEXfyHk2IvYmUbEQrkX9s2ZglJQw65GAwAjtnkvRLwT8=
+	t=1716381227; cv=none; b=oBTs4QPAufLageBITOrUlyMKzPuomALtQU4ai3yvKW8CphWmv9DDkzNSJbcYJ1rgM4GLkGejfI9DoJXEs+RACnfNCoIQCPr71zSsrJqDRzz7IZhH4OsEM07suNtwWvY66nFC5q+fnF9tP5a3Fk11pJLQWqFy8QCwAiqhCUuZYQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716380612; c=relaxed/simple;
-	bh=f7UV5LG/YkpTVm/G2i2AIoasyTYxmJXZyGOBNA4LSfE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LBqOY/Zcs3Vb2zuIYx5F4m0G97XA8muNsxR77JYdrIzyJzzukuHDdlxKhqND0oezVGriNdTFNez/1U6YUfEiPDhzxuHlaB1KQCP5rWWSMtHT9ZsTsy5y0umRdFfh8CUgQ7G03mxjCqB88iCGOTRDn6AlVfdIeRYDoWzEJiXjkR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-627eb38eb1bso3668857b3.1;
-        Wed, 22 May 2024 05:23:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716380609; x=1716985409;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qCfEoQ0TfMCCeRei+I4ry2wFGGRpaFJL/1F+/uzvOoA=;
-        b=wS5ssvDyXRiBAZbIOeQV+478khi13qlHj7qWjJpk94A59/ZtIkL1rvCM7WGBnDcC1l
-         JERlEURuuo2vCwhthPh/UVmWWwNo+9+eO73gySgyOtXuV8NeVFZqMKiVSNmsvr0sEKTw
-         SnncbqqIrKSEU/WVhgv3qesCoiI56MAEprwery/VjEZQSgRb/XfHu9vXDgoNmgGh8jAw
-         MRGlv/kCRq/2CkyrYRrmbrbugWA0yisC2iTVyNTNaqPIJ2czlW81X26ynSXeLWViRyyp
-         2W+2ixNgTgrPCpBxrUIMKc/ppwMdBWJH5UHYyVy3oEQu7VX+ZLBAbizSeN7ORv1xxE98
-         S42g==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ907P/er9TVeiDTB146ROH2VE/Q4ImdHV85pt7LLPMyxq1efinQjYvd5fBG+zwT8STSkiygzNUkBKxzLT42GzKR/flEWMHmB3FkGWS+dw1ht8SDO5sDRvwgQK3SRA+ZyHWTJNqE7A1PV11aEwiB5/fMkXooBx6jwN5fWKr4FvTb++A/T/L5mSxgZ09Ags7ctzRKMmmiR/8xOKGQknmJDiFshZswn3NQ==
-X-Gm-Message-State: AOJu0YxSb3uVMQDc777JMqgiLuBJjQzrMS4X+n4DuirfUv56yGjmUu5Q
-	xTe8c2wBVTTX2dK7PoRsayYrz8h+DlgB4Fiw5/yvC6HF9LXhVBxjPcdwA1SD
-X-Google-Smtp-Source: AGHT+IH9u2nIV9mhADnIJzE+WCDgjLwC0xtz4Z6LzzRyb1iE4MYmPJqCASUFEFcIJZPRE2P0ks+zbA==
-X-Received: by 2002:a81:520a:0:b0:627:8791:5b3 with SMTP id 00721157ae682-627e487d4e8mr16693857b3.44.1716380609189;
-        Wed, 22 May 2024 05:23:29 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6209e349e0csm57584897b3.79.2024.05.22.05.23.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 05:23:28 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-622f5a0badcso53352027b3.2;
-        Wed, 22 May 2024 05:23:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW0+faY9Jv9zLzZjN7oQ3/0W6P9d6ht2FfZWpsObD48dpgqj6oPecan7q046t5AgfVWYEYu7GGu2Y82braQlUXxjFC3Qml+Y/NEDEKW2o20k/6xB68ea6lMpBTO5TCEMLSiu73YMNX476fHosAdxg5o0NI0KgdXoBECbdt/d0lKbuPCrX5bAl3wg/WV7EHe6oc2/llq4mnBszf03ODt6BdNuo4WWGDhqQ==
-X-Received: by 2002:a05:690c:60c7:b0:627:a382:a0fa with SMTP id
- 00721157ae682-627e4880150mr20956997b3.52.1716380608278; Wed, 22 May 2024
- 05:23:28 -0700 (PDT)
+	s=arc-20240116; t=1716381227; c=relaxed/simple;
+	bh=5z6JDhPeVf+NpkLHFAEa4TTEsdRdiZSdwwEWmaMXlDA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h6RGbIbEG+F5fcC4CLydS4gAol5uKQrZoIXM5nl5exf4HvaDwI36AWFre3bxRAGgfxST1LvPcQY0IRvzz0dU62Vhfj02kKRaBzg8rLrQlTgNf9zuobWyq22Jzt0rckgEshZ0bCkEyOShrk71sNGoNmf8kpgLThv4gOxuisBLBnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bosc.ac.cn; spf=pass smtp.mailfrom=bosc.ac.cn; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bosc.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bosc.ac.cn
+Received: from [172.38.8.164] (unknown [219.141.235.82])
+	by mail (Coremail) with SMTP id AQAAfwD3yiD15U1mzP2uAA--.51920S2;
+	Wed, 22 May 2024 20:32:54 +0800 (CST)
+Message-ID: <eca4d113-ba59-45aa-9224-22235fb09ddc@bosc.ac.cn>
+Date: Wed, 22 May 2024 20:32:53 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240423175900.702640-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB113461F28EA97F494D831267C86112@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB113461F28EA97F494D831267C86112@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 22 May 2024 14:23:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUJXdEG-BQRYNbmhbGCtE+O1uWO0j-PkBaF7S_Qyp8M-Q@mail.gmail.com>
-Message-ID: <CAMuHMdUJXdEG-BQRYNbmhbGCtE+O1uWO0j-PkBaF7S_Qyp8M-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add function
- pointers for locking/unlocking the PFC register
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Prabhakar <prabhakar.csengg@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v5,3/3] drm/mediatek: Implement OF graphs support for display
+ paths
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ chunkuang.hu@kernel.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
+ ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ wenst@chromium.org, kernel@collabora.com,
+ Alexandre Mergnat <amergnat@baylibre.com>
+References: <20240521075717.50330-4-angelogioacchino.delregno@collabora.com>
+Content-Language: en-US, en-AU
+From: Sui Jingfeng <suijingfeng@bosc.ac.cn>
+Organization: bosc
+In-Reply-To: <20240521075717.50330-4-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:AQAAfwD3yiD15U1mzP2uAA--.51920S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7tFW3Cw15GF1UJw4DKryrCrg_yoW8Wr4rpa
+	yUuFWrZrZ7Jrs7W3y0vr4DCrZYkr10yF9xXw1fGF10yrsIqr9aka1kKrWjvrsIkryDurn2
+	qw48Kaya9ws5AFJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUv2b7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c2xSY4AK67AK6ryUMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I
+	0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8
+	ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcV
+	CY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAF
+	wI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa
+	7IU0wL05UUUUU==
+X-CM-SenderInfo: xvxlyxpqjiv03j6e02nfoduhdfq/
 
-Hi Biju,
+Hi,
 
-On Tue, Apr 23, 2024 at 8:12=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> > -----Original Message-----
-> > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: Tuesday, April 23, 2024 6:59 PM
-> > Subject: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add function=
- pointers for
-> > locking/unlocking the PFC register
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > On the RZ/G2L SoC, the PFCWE bit controls writing to PFC registers.
-> > However, on the RZ/V2H(P) SoC, the PFCWE (REGWE_A on RZ/V2H) bit contro=
-ls writing to both PFC and
-> > PMC registers. Additionally, BIT(7) B0WI is undocumented for the PWPR r=
-egister on RZ/V2H(P) SoC. To
-> > accommodate these differences across SoC variants, introduce the set_pf=
-c_mode() and
-> > pm_set_pfc() function pointers.
-> >
-> > Note, in rzg2l_pinctrl_set_pfc_mode() the pwpr_pfc_unlock() call is now=
- called before PMC
-> > read/write and pwpr_pfc_lock() call is now called after PMC read/write =
-this is to keep changes
-> > minimal for RZ/V2H(P).
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > RFC->v2
-> > - Introduced function pointer for (un)lock
 
-> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > @@ -2688,6 +2699,8 @@ static struct rzg2l_pinctrl_data r9a07g043_data =
-=3D {
-> >       .variable_pin_cfg =3D r9a07g043f_variable_pin_cfg,
-> >       .n_variable_pin_cfg =3D ARRAY_SIZE(r9a07g043f_variable_pin_cfg),
-> >  #endif
-> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
-> >  };
-> >
-> >  static struct rzg2l_pinctrl_data r9a07g044_data =3D { @@ -2699,6 +2712=
-,8 @@ static struct
-> > rzg2l_pinctrl_data r9a07g044_data =3D {
-> >       .n_dedicated_pins =3D ARRAY_SIZE(rzg2l_dedicated_pins.common) +
-> >               ARRAY_SIZE(rzg2l_dedicated_pins.rzg2l_pins),
-> >       .hwcfg =3D &rzg2l_hwcfg,
-> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
-> >  };
-> >
-> >  static struct rzg2l_pinctrl_data r9a08g045_data =3D { @@ -2709,6 +2724=
-,8 @@ static struct
-> > rzg2l_pinctrl_data r9a08g045_data =3D {
-> >       .n_port_pins =3D ARRAY_SIZE(r9a08g045_gpio_configs) * RZG2L_PINS_=
-PER_PORT,
-> >       .n_dedicated_pins =3D ARRAY_SIZE(rzg3s_dedicated_pins),
-> >       .hwcfg =3D &rzg3s_hwcfg,
-> > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
->
-> Some memory can be saved by avoiding duplication of data by using
-> a single pointer for structure containing function pointers??
->
-> struct rzg2l_pinctrl_fns {
->         void (*pwpr_pfc_unlock)(struct rzg2l_pinctrl *pctrl);
->         void (*pwpr_pfc_lock)(struct rzg2l_pinctrl *pctrl);
-> }
+On 5/21/24 15:57, AngeloGioacchino Del Regno wrote:
+> +static int mtk_drm_of_ddp_path_build(struct device *dev, struct device_node *node,
+> +				     struct mtk_mmsys_driver_data *data)
+> +{
+> +	struct device_node *ep_node;
+> +	struct of_endpoint of_ep;
+> +	bool output_present[MAX_CRTC] = { false };
+> +	int ret;
+> +
+> +	for_each_endpoint_of_node(node, ep_node) {
+> +		ret = of_graph_parse_endpoint(ep_node, &of_ep);
+> +		of_node_put(ep_node);
 
-So that would replace 3 (4 after adding RZ/V2H support) x 2 pointers in
-rzg2l_pinctrl_data structures by 3 (4) pointers in rzg2l_pinctrl_data
-structures + 1 (2) x 2 pointers in rzg2l_pinctrl_fns structures, and
-code size would increase due to extra pointer dereferences before
-each call.
-Am I missing something?
+There is going to *double* decline the reference counter, as the 
+__of_get_next_child() will decrease the reference counter for us
+on the next iteration.
 
-Merging rzg2l_pwpr_pfc_{,un}lock() into a single function (taking a
-"bool lock" flag) might be a better solution to reduce rzg2l_pinctrl_data s=
-ize.
 
-Gr{oetje,eeting}s,
+> +		if (ret) {
+> +			dev_err_probe(dev, ret, "Cannot parse endpoint\n");
+> +			break;
+> +		}
 
-                        Geert
+Move the 'of_node_put(ep_node)' into brace '{}' here, if we really cares
+about the reference count.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +
+> +		if (of_ep.id >= MAX_CRTC) {
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+ditto ?
+
+> +			ret = dev_err_probe(dev, -EINVAL,
+> +					    "Invalid endpoint%u number\n", of_ep.port);
+> +			break;
+> +		}
+> +
+> +		output_present[of_ep.id] = true;
+> +	}
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (output_present[CRTC_MAIN]) {
+> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_MAIN,
+> +						    &data->main_path, &data->main_len);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	if (output_present[CRTC_EXT]) {
+> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_EXT,
+> +						    &data->ext_path, &data->ext_len);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	if (output_present[CRTC_THIRD]) {
+> +		ret = mtk_drm_of_ddp_path_build_one(dev, CRTC_THIRD,
+> +						    &data->third_path, &data->third_len);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+-- 
+Best regards
+Sui Jingfeng
+
 
