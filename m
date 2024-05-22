@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-68416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273C88CC33E
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:31:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDFE8CC35C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:39:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D771D2844BC
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:31:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716CC1F214D5
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A82F10A16;
-	Wed, 22 May 2024 14:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237F017550;
+	Wed, 22 May 2024 14:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J9pkbY/o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJqkDzM3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A3AF8F6D;
-	Wed, 22 May 2024 14:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA7D208C4;
+	Wed, 22 May 2024 14:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716388292; cv=none; b=mvbBumpfLbGi5tKSkTHVEkVE+ygpvWbqEZ8ZJh+n3XSQ0vPRJ1m5ZkT4pCGU8dZopHC5SVljDf7VhFZHkxx+x9jp8qIqlfFEYPLChhLpqxJ7N0uXG0wB3w/dNjPuGTUMw5kdtfANK2SKCb7znLtPKcvWmgAEBrc4Lg1EK+bnbVU=
+	t=1716388759; cv=none; b=GQ8dFM9DGXNycLt+V8+SgxJ2MInfWcsYrAzv8lrhgrPMzHmCB+DDX8AIWkpsdAA2fbI3RVgH1f/NyQ0q07KX6poBIeZnxiZ1rRwOAZvlj2FnEhGK0C/whzsUfdSuQR3s9p0H20xjOdvwn+PiD1x62H29YmDLEblu6mj5hUH3Ui8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716388292; c=relaxed/simple;
-	bh=caxlHLkLA7Kyl2xhI0wkWw8AtvfOM+yyH8wCjBO9scI=;
+	s=arc-20240116; t=1716388759; c=relaxed/simple;
+	bh=c/erdSkvqOmmngCUdhuBClCtrfqJRc+4eqfJLuT4Sk8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C37/EIN0ROr4gD3SqHp3WwD6dk8RNkssNk0b7lyZIJPl9po+xHNrf23SDUXx1i22jeGVmZcVDuEoolB5KYC/7fOxs49HQPeyZFWLkP2HF7+aA5JO/tQmuTB+E+SsJI8DYP+DiIfLCG8sEu8k95GCnOo3mnouOPS6AL29dTOsKPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J9pkbY/o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88564C2BBFC;
-	Wed, 22 May 2024 14:31:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tiKnJC7IsyDAMBSDGAwRTb1gAvUDSje5a1rEjHmGQEQ6Pjaphccc/zKz54jW3VZtkoFtXWvMw2BjWjN9DzcXeCZaVctoVRFX1kzPShxHYmBOH+i0nm1wNT9O2pvyKAJ/YM9fXAGplLCg9TQl+V85XYGx5pBIlng05NuoGH8zE3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJqkDzM3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CF7AC2BBFC;
+	Wed, 22 May 2024 14:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716388290;
-	bh=caxlHLkLA7Kyl2xhI0wkWw8AtvfOM+yyH8wCjBO9scI=;
+	s=k20201202; t=1716388758;
+	bh=c/erdSkvqOmmngCUdhuBClCtrfqJRc+4eqfJLuT4Sk8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J9pkbY/oQCevl7mOH3JJXSgFZZOrwY2EaiGTjT8Qvv42x3YKAakriYSPEhSm7/KqX
-	 05892MJl4SjdKnQ5Z8EygCt+PzSVMSLX1ThcbkbQy2Thj0ibC6PxwSuS4xeDSYHrYQ
-	 2d1HSVKTf4d5DvLDe0hqNcp9+dCb4GCcYr92NOht2cTMFClds7a2SfDhgwPdB9EE7G
-	 Mw49zWiygkpLHxgM2eEXsf797PqZb10QM3kAaW6l7R0S7mBde/SbVRXaBh7V6PKhH5
-	 YPSxlvClXZXKD1wcVZue7IpXSclgliHTDcvRlCrR7vDdXSUYLZ/zK7+P/djy4uGwAd
-	 8gNRRpFg7CiMQ==
-Date: Wed, 22 May 2024 09:31:29 -0500
+	b=uJqkDzM3dqUk1UMrQrQ9/ayDZagxo8dOczR/f9OxHA2lUhGkSv48uy45xBuu2PDax
+	 eiqdpu54y8xj0rqQPd51EHR4G7Kqhdf+yYLJsSLRGDJftQqdsitHyoeq7qFmQNdVDh
+	 NyaliuaSBw6ZXFraFwkHCih5vwf6mumiFsFzgYh1rPdw6qBSCnGYyTjS0uD4QtFeC+
+	 FrUwljlVS3iIRbyxd4BY+1m3OzWWy3DoGvAbSQSL7ZxSUH1/m8XpLaE81DVqNYYpRZ
+	 pwi5bfLBMjgsawpTx54SGmwYukfYj59zXu/h6gvYb/7ccCt9sVEmAEmX8lEl7PR9Lj
+	 x2rCxpFDCI73A==
+Date: Wed, 22 May 2024 09:39:17 -0500
 From: Rob Herring <robh@kernel.org>
-To: skseofh@gmail.com
-Cc: lkp@intel.com, daero_le.lee@samsung.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
-	oe-kbuild-all@lists.linux.dev, rppt@kernel.org,
-	saravanak@google.com
-Subject: Re: [PATCH v2] of: of_reserved_mem: clean-up reserved memory with
- no-map
-Message-ID: <20240522143129.GA3244910-robh@kernel.org>
-References: <202405011208.qsZQwChO-lkp@intel.com>
- <20240501132359.488616-1-skseofh@gmail.com>
+To: Eddie James <eajames@linux.ibm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-fsi@lists.ozlabs.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+	andrew@codeconstruct.com.au
+Subject: Re: [PATCH v5 5/9] dt-bindings: fsi: Document the FSI controller
+ common properties
+Message-ID: <20240522143917.GA3261343-robh@kernel.org>
+References: <20240514195435.155372-1-eajames@linux.ibm.com>
+ <20240514195435.155372-6-eajames@linux.ibm.com>
+ <9200e46a-3cb5-4363-a560-ee3d88e05ced@kernel.org>
+ <a219f01e-a856-46cb-83c4-4fde99b8addd@linux.ibm.com>
+ <eb6e2b5b-f341-404b-9215-6e80f21a6842@kernel.org>
+ <80713a00-9574-4ae0-8af7-3fe12affcfc1@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,51 +65,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240501132359.488616-1-skseofh@gmail.com>
+In-Reply-To: <80713a00-9574-4ae0-8af7-3fe12affcfc1@linux.ibm.com>
 
-On Wed, May 01, 2024 at 10:23:59PM +0900, skseofh@gmail.com wrote:
-> From: Daero Lee <daero_le.lee@samsung.com>
+On Wed, May 15, 2024 at 10:02:46AM -0500, Eddie James wrote:
 > 
-> In early_init_dt_reserve_memory we only add memory w/o no-map flag to
-> memblock.reserved. But we need to add memory w/ no-map flag to
-> memblock.reserved, because NOMAP and memblock.reserved are semantically
-> different.
+> On 5/15/24 09:35, Krzysztof Kozlowski wrote:
+> > On 15/05/2024 16:28, Eddie James wrote:
+> > > On 5/15/24 09:18, Krzysztof Kozlowski wrote:
+> > > > On 14/05/2024 21:54, Eddie James wrote:
+> > > > > Since there are multiple FSI controllers documented, the common
+> > > > > properties should be documented separately and then referenced
+> > > > > from the specific controller documentation.
+> > > > > 
+> > > > > Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> > > > > ---
+> > > > > Changes since v4:
+> > > > >    - Add interrupt controller properties
+> > > > >    - Add clock-frequency property to FSI controller and CFAM
+> > > > >    - Add detail to chip-id property description
+> > > > > 
+> > > > >    .../bindings/fsi/fsi-controller.yaml          | 66 +++++++++++++++++++
+> > > > >    1 file changed, 66 insertions(+)
+> > > > >    create mode 100644 Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/fsi/fsi-controller.yaml b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+> > > > > new file mode 100644
+> > > > > index 0000000000000..8620e4da6de77
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/fsi/fsi-controller.yaml
+> > > > > @@ -0,0 +1,66 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/fsi/fsi-controller.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: FSI Controller Common Properties
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Eddie James <eajames@linux.ibm.com>
+> > > > > +
+> > > > > +description:
+> > > > > +  FSI (FRU (Field Replaceable Unit) Service Interface) is a two wire bus. The
+> > > > > +  FSI bus is connected to a CFAM (Common FRU Access Macro) which contains
+> > > > > +  various engines such as I2C controllers, SPI controllers, etc.
+> > > > > +
+> > > > > +properties:
+> > > > > +  "#address-cells":
+> > > > > +    const: 2
+> > > > > +
+> > > > > +  "#size-cells":
+> > > > > +    const: 0
+> > > > > +
+> > > > > +  '#interrupt-cells':
+> > > > > +    const: 1
+> > > > > +
+> > > > > +  clock-frequency:
+> > > > > +    minimum: 1
+> > > > > +    maximum: 200000000
+> > > > This is a deprecated property in general. Why did it appear? It does not
+> > > > exist in current bindings and nothing in commit msg suggests changes in
+> > > > the bindings themselves.
+> > > 
+> > > OK, is there some document that describes what properties are
+> > > deprecated? Because it's used all over the place in the bindings. Anyway
+> > dtschema: dtschema/schemas/clock/clock.yaml
+> > 
+> > buses anyway should use bus-frequency but it is also legacy one.
+> > 
+> > > I need this property, I can rename it if you like. I can also update the
+> > Why do you need it? Why clocks cannot be chosen by drivers and initial
+> > state selected by assigned-clock-rates?
 > 
-> Signed-off-by: Daero Lee <daero_le.lee@samsung.com>
-> ---
->  drivers/of/of_reserved_mem.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 8236ecae2953..d00a17a9cebc 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -81,6 +81,7 @@ static void __init fdt_reserved_mem_save_node(unsigned long node, const char *un
->  static int __init early_init_dt_reserve_memory(phys_addr_t base,
->  					       phys_addr_t size, bool nomap)
->  {
-> +	int err = 0;
->  	if (nomap) {
->  		/*
->  		 * If the memory is already reserved (by another region), we
-> @@ -91,7 +92,10 @@ static int __init early_init_dt_reserve_memory(phys_addr_t base,
->  		    memblock_is_region_reserved(base, size))
->  			return -EBUSY;
->  
-> -		return memblock_mark_nomap(base, size);
-> +
-> +		err = memblock_mark_nomap(base, size);
+> Well, I could use assigned-clock-rates, though it seems like I'd then have
+> to implement the clock provider framework for both the FSI controller driver
+> and the CFAM driver, which is a lot of extra work. FSI controller isn't
+> really a clock provider, it's a bus like i2c (which uses clock-frequency),
+> so it doesn't quite fit in my opinion...
 
-The last time this was touched, it was to make the handling aligned with 
-EFI memory map handling. Is that still going to be the case with this 
-change? Or does EFI memory map handling have the same issue?
+'clock-frequency' was used for I2C, but it really should have been 
+'bus-frequency' as it is frequency of the bus rather than input 
+frequency to the controller. So if this is bus frequency, use 
+'bus-frequency'.
 
-> +		if (err)
-> +			return err;
->  	}
->  	return memblock_reserve(base, size);
->  }
-> -- 
-> 2.25.1
-> 
+Rob
 
