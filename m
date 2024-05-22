@@ -1,127 +1,158 @@
-Return-Path: <devicetree+bounces-68448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381B48CC4ED
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:35:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 848978CC500
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:41:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E37851F225D9
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:35:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A31181C21165
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528451420DA;
-	Wed, 22 May 2024 16:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32A9140E3C;
+	Wed, 22 May 2024 16:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bs9d+264"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MDtrEhS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53011420C9;
-	Wed, 22 May 2024 16:35:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C346AD7;
+	Wed, 22 May 2024 16:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716395713; cv=none; b=s1BOqKPZtn30DiKECE78zGwHZyocGM/KwzPHqbIkvr/bkCehSc7wuFs/5hM+gvjN9qFaBd8BcEiJdN4a8aA6EJMSrOJQhrSV9Sid0YS0p8289L32RXk/xz9ro3SVK7VzaxHC0DaAIgEobM/CxqWiWmbYcluhNa02OjOSn6dXTlM=
+	t=1716396096; cv=none; b=A6K3QGGLvjHJxiPxFKdOOmz1HWcMSKDz0dTKgLUfzhPhVZEWWcYytN/QUeMKUe5C98FXgTX9Vvr3XNnKAKeg6EV57x62yFsVS8gtayhawL3PeNxievCPCT8F4uKs9Wi+m20OfxURW8E1QgNftkOZpyNdv/YkIbjcesrmgiqjXuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716395713; c=relaxed/simple;
-	bh=HwrtFMkpSDt9VbB+n06nlRftl6YZbhM7iR+8tjiKkcc=;
+	s=arc-20240116; t=1716396096; c=relaxed/simple;
+	bh=3HJZVeDMIv4Kz56r9LNuwnySLYRtafeI1iZp6necHeU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n/ZrjpqJljIsADyJyIp7ntkFWu8B0Z1Rl+3j2Ce6sEQfSmwONWjCYaaaQvHejHcZpJg+dBE0qH3otUVxxJ7sJEToxIEwalkhXgcs4DXYTBdQzX34B9iBd/DQGD4MdJG6yfcjCL1t1rxFsDjgUj2gC1Bj1s0qoP9nOsW/iTFNKS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bs9d+264; arc=none smtp.client-ip=209.85.219.172
+	 To:Cc:Content-Type; b=tR7YwyLqFhRADKLygo2Bxkv2zCQTL35jqww+2THDZuIDEXEGA5PumARexXbCvWpIvkj+8PA0AGTBhkC7C2hFa7JGtuCmyfHYKcEtLquVHAr27lbR4z+epVCYQRYq73n8o84jJYIbnvu7fTu6fD6If4ULhiEr0orC0ELSoKJpIJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MDtrEhS8; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-df4f31e963dso35455276.0;
-        Wed, 22 May 2024 09:35:11 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-56e6affdd21so3743521a12.3;
+        Wed, 22 May 2024 09:41:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716395710; x=1717000510; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HwrtFMkpSDt9VbB+n06nlRftl6YZbhM7iR+8tjiKkcc=;
-        b=Bs9d+264S92vqA7ZwVMOAzWdqwXw0rmFr9ti+80IdSngKY0nB3A/ujTkNCb8dXMAQo
-         58fzcygoMeiRZOHtxXEbNt5FpDepTMF4qmAV9uEROhLSvkxyUJiDOqdP9a2jsueIy3ti
-         fuEMK4MUxB181QkXz05OC2JrYCtjUV7Cqqc/loFhR24TL4ZUquv8F2YcMD6EOuH9WkaH
-         x/PvSSpVfpcx+rF6icSgYDoUwX6okY9eIXzdRdC5OhdDPHD21LmxF9k9ERDovmxu2bv2
-         PaodPwX9h9AwSh6oPdyo3cODluEBhoJaabClUr7j5P+rb5c0IkaBll7n7eCPD6eSyJYU
-         MQjA==
+        d=gmail.com; s=20230601; t=1716396093; x=1717000893; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D0D2E2cfbbxVHUzTYoIqfwhIyGan3otmR2xS4JLclOU=;
+        b=MDtrEhS86Htnr2eGqsxzx70c/1+683CcrtrvB4ybTr58981c/9kp//jC8BVMG4UgkL
+         rOedjW4x3saqW1tofQ56/O+s/wou9n5bwaLl71KuFrYste9HsEMKDxpT+YKeA3thAvGG
+         PXbG8dxibhmaSIz7WUYRhrvi8cEolvp17JxoBdMqsHWIK5KnLqeHqIv5USoFwbQC8CKM
+         sL5Q1hj0S1Qobb+c6f8tl9DIPEGrxpe8ToOFkREP7cwdKr0D63kY7Y+n6f9Yck47tkO7
+         MhN0ka0kgFcpVsTbm99f60cCZNyXyGfqxNNsupfiTk3oot3dZqHbevewzHo6Pkfe95hl
+         iMKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716395710; x=1717000510;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HwrtFMkpSDt9VbB+n06nlRftl6YZbhM7iR+8tjiKkcc=;
-        b=EVaFuVhxoXN4DygUV1AjA0oQivJ7vSHXi4iaQEdqBMLWNKIYxeCjK0TlrdKAm6gvVP
-         e1fpxol5YeaALqtC59sk1qsiaLZsY9x8HgE1mEI/4xXcN+8uvt4R+GqwDN1EjSF1CDNC
-         M2FzfZCnhqkXHhVRRstfNnRWytLNl/TEnIjds+k8ik9yDjCoFMsjUBhgrggYHW0zaY5L
-         jUDdy6MbkkfMd+mncAy4hDMiFWJDurKwSlyGyPnqrWwTjih0JtdADTansrTwPsvoSLm8
-         Ql5jLK7skZ57ywNgrbhVUBUaoUzFec03PuLM2aPt1LjXNj10Ufd2J36D/xnMN7u62vcN
-         oexA==
-X-Forwarded-Encrypted: i=1; AJvYcCUG/XyT8168tRtseQDKqgttj27PyoaGj7CzAPfCz6W+WzJwJnDdG0k67rru2fWcFFpC+ptuMerMrqRr7TXChDryZEaMMngJADNaI4TENSxz8F2/64EpRH+HFh6V3p8J7mQAnSOIgjvpmYRRVmi5SFQPcGs22JLQV8XxYjGiqhBY18q1Lg==
-X-Gm-Message-State: AOJu0YzBBeinyuuknNjCTP7qMKR4gsDr2YT/bdEWgT2ZekNhkHrTBxXo
-	HlLHZk4Y4Ia+Q0wbG8yWx1Cn53bQU/tWCOeCKa/wplzaB5hJ+mn7wJh6j3gNtlxC+7EnldHFs3L
-	kPxJ2Y1yQNCjGSIA2BzvdK7ry6O0=
-X-Google-Smtp-Source: AGHT+IHTSs1INlTP/I9mKiFoUjrWofSCk/KeTJ4YOYLi5YbSbKts7y2jk9BRDKrvtm+jktdyKAvGR9JjbnfiPI3UwwM=
-X-Received: by 2002:a25:86cd:0:b0:dcc:6894:4ac0 with SMTP id
- 3f1490d57ef6-df4e0e612c4mr1846106276.20.1716395710484; Wed, 22 May 2024
- 09:35:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716396093; x=1717000893;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D0D2E2cfbbxVHUzTYoIqfwhIyGan3otmR2xS4JLclOU=;
+        b=IoMj3lqIazfAcqYr/WxxAc3KAvQ2GB2lvl/B72CuYjnaA13A4SqkF/9s5cY+GXakip
+         HjQDqkdWilmCdHjOTHckcWwm+gKNYQSKO1Dd4h+/jJJtw++H3TKHvlm9f4O7pFjOIRyT
+         OLIs3V2xBhvHzIW+H4oXCcmpxCs2+MLogCph1b3WM9NFGCUGZEFW0TqyL6C+bQCfWUlz
+         CX/54FV85gfjiAI9UoHrnq8IkMRMoaWL/6pbs9tVAPFLjf/Onvf6dE+kxcnGBEWgKDN8
+         0XV+V8tHk/kNTuXW2FejSDcfa6ygIH5MXVfkmOzFH23zM6h6GT/gco0BJkWjJle7GL0g
+         oiLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtck4To8hvOL7cq53mioJUHuZIoIUKTPKv7KswmMeU2F9WEXlwsYZoVs13vxBVD5GExSdDxALQQbHit2WawAG2IrjY9QABc22VKh538MNfKgrgi8FbmlHS4OP7y1ueN7mWm0dQckS2CA==
+X-Gm-Message-State: AOJu0YzJgI3P7IJnI65iJOp8MFf+LqpN+FhW7gKNiOyWiYxwOsYqXeyR
+	u9HUA7cgu4aieNV4/n4P6wrEHlZwNCvNIRZ2//GxHh3wQTZfLRPIw6ewho+aIKlyFPfn9LkFaxB
+	t87TfmksYWzFs53TB077Hi4edbsc=
+X-Google-Smtp-Source: AGHT+IFFX3MYqZxTykrBDqEhWWplDnP3uOhy/1gv12cOKWc1GtiHAJtX3Yuzanuue7f8uxVzBuYnBeq7lKYou4B2Xrc=
+X-Received: by 2002:a50:9b42:0:b0:570:5bcc:f749 with SMTP id
+ 4fb4d7f45d1cf-57832c326cbmr1934151a12.29.1716396093397; Wed, 22 May 2024
+ 09:41:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240509192411.2432066-1-tmaimon77@gmail.com> <20240509192411.2432066-5-tmaimon77@gmail.com>
- <20240513155330.GA2676859-robh@kernel.org> <CAP6Zq1hRw6xfNKKfBFGuKbZk0su3ys6+hnMzqRWrZeKzDoKLEw@mail.gmail.com>
-In-Reply-To: <CAP6Zq1hRw6xfNKKfBFGuKbZk0su3ys6+hnMzqRWrZeKzDoKLEw@mail.gmail.com>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Wed, 22 May 2024 19:34:59 +0300
-Message-ID: <CAP6Zq1gKp+Hu93CK=78chvNk70WtKMKUv8ny0Mzkw47wn7Af2g@mail.gmail.com>
-Subject: Re: [PATCH v24 4/4] dt-binding: clock: remove nuvoton npcm845-clk bindings
-To: Rob Herring <robh@kernel.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240522153835.22712-1-kanakshilledar111@protonmail.com> <20240522-yoga-blurt-dc5e40a0ae3a@spud>
+In-Reply-To: <20240522-yoga-blurt-dc5e40a0ae3a@spud>
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+Date: Wed, 22 May 2024 22:11:20 +0530
+Message-ID: <CAGLn_=vfnQrNh63jWtUCojONAYqX3dm6qnXgA--Zi1KQ0P0o-A@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] dt-bindings: interrupt-controller: riscv,cpu-intc
+To: Conor Dooley <conor@kernel.org>
+Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Samuel Holland <samuel.holland@sifive.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+Hi Conor,
 
-Kind reminder about the question in the mail thread below.
-Your response would be greatly appreciated.
-
-Thanks,
-
-Tomer
-
-On Thu, 16 May 2024 at 12:44, Tomer Maimon <tmaimon77@gmail.com> wrote:
+On Wed, May 22, 2024 at 9:34=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 >
-> Hi Rob,
->
-> Thanks for your comment.
->
-> On Mon, 13 May 2024 at 18:53, Rob Herring <robh@kernel.org> wrote:
+> On Wed, May 22, 2024 at 09:08:34PM +0530, Kanak Shilledar wrote:
+> > This series of patches converts the RISC-V CPU interrupt controller to
+> > the newer dt-schema binding.
 > >
-> > On Thu, May 09, 2024 at 10:24:11PM +0300, Tomer Maimon wrote:
-> > > Remove nuvoton,npcm845-clk binding since the NPCM8xx clock driver
-> > > using the auxiliary device framework and not the device tree framework.
+> > Patch 1:
+> > This patch is currently at v3 as it has been previously rolled out.
+> > Contains the bindings for the interrupt controller.
 > >
-> > Again, this is an ABI break. Changing driver architecture for 1 OS is
-> > not a reason to change DT.
-> Is it an ABI break even if the NPCM8xx clock driver hasn't upstream
-> the kernel vanilla yet?
+> > Patch 2:
+> > This patch is currently at v2.
+> > Contains the reference to the above interrupt controller. Thus, making
+> > all the RISC-V interrupt controller bindings in a centralized place.o
 >
-> I thought that since the NPCM8xx clock driver hasn't upstream the
-> kernel vanilla yet and and in the latest NPCM8xx clock driver patch
-> the NPCM8xx clock driver.
-> using auxiliary device framework instead of DT we should remove the
-> nuvoton,npcm845-clk.yaml file.
-> https://patchwork.kernel.org/project/linux-clk/patch/20240509192411.2432066-4-tmaimon77@gmail.com/
+> Don't do this, it breaks tooling:
 >
-> >
-> > Rob
+>         b4 shazam 20240522153835.22712-2-kanakshilledar111@protonmail.com
+>         Grabbing thread from lore.kernel.org/all/20240522153835.22712-2-k=
+anakshilledar111@protonmail.com/t.mbox.gz
+>         Checking for newer revisions
+>         Grabbing search results from lore.kernel.org
+>         Analyzing 3 messages in the thread
+>         Looking for additional code-review trailers on lore.kernel.org
+>         Will use the latest revision: v3
+>         You can pick other revisions using the -vN flag
+>         Checking attestation on all messages, may take a moment...
+>         Retrieving CI status, may take a moment...
+>         ---
+>           =E2=9C=93 [PATCH v3 1/2] dt-bindings: interrupt-controller: ris=
+cv,cpu-intc: convert to dtschema
+>             =E2=9C=93 Signed: DKIM/gmail.com
+>             + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>           ERROR: missing [2/2]!
+>         ---
+>         Total patches: 1
+>         ---
+>         WARNING: Thread incomplete!
+>          Base: using specified base-commit 20cb38a7af88dc40095da7c2c9094d=
+a3873fea23
+>         Applying: dt-bindings: interrupt-controller: riscv,cpu-intc: conv=
+ert to dtschema
 >
-> Thanks,
->
-> Tomer
+> If you change one patch in a series, the whole series gets a new version.
+> Just let git format-patch do that for you with the "-v N" argument and
+> you'll not have to worry about breaking people's tooling.
+
+Sorry for the tooling breaking. I used the "-v N" argument to make the
+v2 patches but I bumped up the "riscv,cpu-intc"patch
+to v3 due to it being in v3 already and it gave errors in the previous
+patchset and you mentioned that I missed the v3 in subject line.
+How shall I proceed with this version mismatch? Shall I make the
+patchset as v3 and have both the patches at v3?
+
+> Patches themselves are
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+I shall include this in my commit message. Is it required to bump the
+version of the patch just for the reviewed flag?
+
+> Cheers,
+> Conor.
+
+Thanks and Regards,
+Kanak Shilledar
 
