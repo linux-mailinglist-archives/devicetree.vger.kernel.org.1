@@ -1,172 +1,122 @@
-Return-Path: <devicetree+bounces-68477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461148CC683
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:43:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E70128CC688
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:44:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 370A61C21351
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:43:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1D3B2827E6
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:44:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4E2146001;
-	Wed, 22 May 2024 18:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED5B145FF6;
+	Wed, 22 May 2024 18:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QRA6S2SN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zu5vI9rg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA3A145FF0;
-	Wed, 22 May 2024 18:43:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 192E9210EC;
+	Wed, 22 May 2024 18:44:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716403422; cv=none; b=LT3x+fIIlSKpnQuEbXu0hILCGbIxG/2aePMVwDkxy1pIaMqGH79rt/F1BD5IFry6GeHpoqWSldYp3zEkaKI6sby9Q3apdFBpVO1cs6kLs7Hp1L88UI+Ky+LiUTxg2pzNmMQakDNEfOqUoo7q9HCn4p7rt/1171RtAi4r5bPwqc4=
+	t=1716403462; cv=none; b=uoJYF4GwlVV8PFe0Dj6sJzvs6jEo7JitokS/u+Byc2ZXBaEPnHaNiLnlyNT7myqdTzTz6ZjHgHwVPPVLyB6jWBV8GtYSaPCZKvWjJ3zljTV/c43WI6GKQUWsZbfN0oZwleKv95Y/F8/Sxq7AsU4p0tGTTqXSYklBkAi6uzzWsuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716403422; c=relaxed/simple;
-	bh=D3Mc9dD9ZOhKmY7p/6kIkyWB2rwy+XPsptNUB2wu9gE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kLKFyk1whc/aTO0T8dpN4wQZEZwg3wSoJ/GRsgdH9T/IjaGdnM8pqNWZNF1YwsordUSl2Mv6SHQkTmti2uOgeQqpXagZU0bUO2MDgVEeb+Fum3gFQE3YRDe32FIYGrm0EMwv8Y1C8qWfQeIa3RIGlwuTsi3Ptz0CYcEJsmQiyBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QRA6S2SN; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-56e48d0a632so14454321a12.2;
-        Wed, 22 May 2024 11:43:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716403419; x=1717008219; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4X92RNyaocOQ9jeaX09e1iKmMV7MiGKGnZ+Dic7jjso=;
-        b=QRA6S2SNdNnn0lxLV4MzSnum0OepHJyRWsIRb+FHziDL/dgMY9uRV2l+sPR1xAXpm6
-         WynVzNaGscq/e2vJkut/pOqlshaYqfkHDePUloCx88eyHP1KxDREcgrw+UGic1lR8dlk
-         y85Eq6pf4s4SFocLQKdDQB+qoZ2vdjjkONuDWWs6WlsgWvWMKcR5j66ZKZvDjwJHJBTT
-         h/qsipIsF0FYq7z47VJzzfKYG069FQXy6XLNhkD25jmq2zt3qimKybOmjvH0L8+3DHQc
-         atxm5/t64JQ6z72SEPrK9+s+1q7hsvkpCnkCeKlwH+eNOerDQatdW180veNR16tRVf1z
-         +Q7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716403419; x=1717008219;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4X92RNyaocOQ9jeaX09e1iKmMV7MiGKGnZ+Dic7jjso=;
-        b=Jm6AGMa5D/vH1b5VpUVNNpZKdm/QbZIbng9YVIH7GakdO1K9DSLue+0RzZIfbbHW2l
-         z2Qq9XIsfQaUjBFqxt0HE9fkGwsUDoZraKeTALo2pyW0YlhMF6Rqgf90Tqfu3ukbr5Td
-         3JcrIkRNLTFqmxW2lPOpgTWdvRAntDwad4yXF0jMwXBcEPy4xmtj56DVKAzGD6zzB90D
-         4ntAxRcde+hk9YEukX6v77JZYl/Y24RU4YsoDVgBugL045yNUdYJjY6r9Hpis4Sa2CZY
-         z1Nh6psz0J0ZYxecyF6KvGl3xmzum1qb7A2jo7Cn8KjY2Ox3cuS+qlKohFN0IFJj9ljt
-         07zg==
-X-Forwarded-Encrypted: i=1; AJvYcCVa7zPyeE0O5fa+NiGoiyW8/WR0aG3QYraeavPc219oP7C3KIELojzc8WRGDoQ4vEoXiOPdWkwNWklKrIWNHrwOtNwsnzDJ6FYC4p6wyGjOL4Tk/VP273fS871DWyhXVrxltU9gTet6pQ==
-X-Gm-Message-State: AOJu0YxU7zw0rSZO13MpOJe4zx1jKNCxLwPxtjYd86wJtEi9J5+0Y6r7
-	bSHfrZ93ESb2L270egFX1zPKBNTnAdY8FOGdJMnNPcyCugRqfK1V
-X-Google-Smtp-Source: AGHT+IGN0pFDJpoxG2Grv/YFh/MhqqsO4GibeJdmlSjDyMjLmGY31Vxcn3drvjikcwZeQyVyTrLosA==
-X-Received: by 2002:a50:ab0d:0:b0:572:664c:83f2 with SMTP id 4fb4d7f45d1cf-57832bee6c5mr2410990a12.27.1716403419377;
-        Wed, 22 May 2024 11:43:39 -0700 (PDT)
-Received: from ?IPV6:2a02:2f00:503:7c00:503d:ca7a:1fd6:cd63? ([2a02:2f00:503:7c00:503d:ca7a:1fd6:cd63])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57421480d99sm16875505a12.8.2024.05.22.11.43.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 11:43:38 -0700 (PDT)
-Message-ID: <6b9b959e-9a03-420c-9f61-adaae05bc5eb@gmail.com>
-Date: Wed, 22 May 2024 21:43:37 +0300
+	s=arc-20240116; t=1716403462; c=relaxed/simple;
+	bh=MiJA3iMenaF3RsO0d/lQO1IYOsmU8eZtEyex0mvJwyY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ck2a3h8MakZNhB9R797r2uzF9/yV+4f0l7y/jK+rHJbNjaVP/vrvapmu6h1OQt+SpVsV5FEKEAvDOHDfutpGs+0FbfAJxC0xned7PXMo0ggSQ8CDoXcSXA6E1PXU1UbnRejwecsVA87hpVJYijf05gv/RpZwJIiKhzygyJjMdA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Zu5vI9rg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44MCm2I7018613;
+	Wed, 22 May 2024 18:44:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=aZxwoNZQyDY5utDB2xItVai5J6CubJvstXQWHD8X8z8=; b=Zu
+	5vI9rgim/aLAujcTinGJFb4gNWnt75nirtJ1BB6ZSJsZVGZqlmzkIAD/FA+IGoVl
+	0dkqPMi3ABvFmluL9Cblgn6hYExWT86bhPqCbdtElYWXpaCoBgN0oNgdlH8/B0rd
+	v6kIAYpDO2iEV9XAddlQJ4JPhiddzaJf9O8rb5QdgjHNKA5lNm/Wmbs3f8Yx5lN7
+	q4H0KQRkOaCzFk41sY8gaAtJXjlFNbBqWCDvWJNimEcJyjWkBiK6+Jv4elq8sTIt
+	eG+dmhUPh5IrvBC2Ucls0qyik+XX7isrX75egL5As2ipj9GpscsIs6ZVb9o2ly/g
+	zl0+urNtnQR5Xn0I+dbg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6psb1unr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 May 2024 18:44:07 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44MIi5L5006752
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 May 2024 18:44:05 GMT
+Received: from [10.110.28.32] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 May
+ 2024 11:44:04 -0700
+Message-ID: <25f5769f-a505-9fc4-a304-07bc112879c3@quicinc.com>
+Date: Wed, 22 May 2024 11:44:04 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: reset: add schema for imx8ulp SIM reset
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 3/7] drm/msm/dsi: drop unused GPIOs handling
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Liu Ying <victor.liu@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- laurentiu.mihalcea@nxp.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240516204031.171920-1-laurentiumihalcea111@gmail.com>
- <20240516204031.171920-2-laurentiumihalcea111@gmail.com>
- <20240517195943.GA2854624-robh@kernel.org>
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <20240517195943.GA2854624-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark
+	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Daniel
+ Vetter" <daniel@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
+References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
+ <20240520-dpu-handle-te-signal-v1-3-f273b42a089c@linaro.org>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20240520-dpu-handle-te-signal-v1-3-f273b42a089c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3Z4SSP61hqflcKr9gbb491jIoY0J_G78
+X-Proofpoint-ORIG-GUID: 3Z4SSP61hqflcKr9gbb491jIoY0J_G78
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-22_10,2024-05-22_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ adultscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=926
+ priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405220129
 
 
 
-On 5/17/2024 10:59 PM, Rob Herring wrote:
-> On Thu, May 16, 2024 at 11:40:28PM +0300, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> Add schema for imx8ulp's SIM reset controller.
->>
->> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  .../bindings/reset/nxp,imx8ulp-sim-reset.yaml | 43 +++++++++++++++++++
->>  1 file changed, 43 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/reset/nxp,imx8ulp-sim-reset.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/reset/nxp,imx8ulp-sim-reset.yaml b/Documentation/devicetree/bindings/reset/nxp,imx8ulp-sim-reset.yaml
->> new file mode 100644
->> index 000000000000..ec9a5c73e83c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reset/nxp,imx8ulp-sim-reset.yaml
->> @@ -0,0 +1,43 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/reset/nxp,imx8ulp-sim-reset.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NXP i.MX8ULP System Integration Module Reset Controller
->> +
->> +maintainers:
->> +  - Liu Ying <victor.liu@nxp.com>
->> +
->> +description: |
->> +  Some instances of i.MX8ULP's SIM may offer control over the
->> +  reset of some components of a certain domain (e.g: AVD-SIM).
->> +  As far as the DT is concerned, this means that the reset
->> +  controller needs to be a child of the SIM node.
->> +
->> +properties:
->> +  compatible:
->> +    const: nxp,imx8ulp-avd-sim-reset
->> +
->> +  '#reset-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - '#reset-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/imx8ulp-clock.h>
->> +    syscon@2da50000 {
->> +      compatible = "nxp,imx8ulp-avd-sim", "syscon";
->> +      reg = <0x2da50000 0x38>;
->> +      clocks = <&pcc5 IMX8ULP_CLK_AVD_SIM>;
->> +
->> +      reset-controller {
->> +        compatible = "nxp,imx8ulp-avd-sim-reset";
->> +        #reset-cells = <1>;
->> +      };
->> +    };
-> Why do you need a child node here? No DT resources or anything for this 
-> 'sub-block'. Just put "#reset-cells" in the parent node.
-You're right, we don't need the child here. In fact, the reset controller will never
-get probed anyways since "simple-mfd" was removed from the compatible
-list of the parent. Will remove it and turn the parent into a syscon + reset controller
-in V2.
->
-> (Note that examples for MFDs like this go in the MFD binding rather than 
-> having incomplete examples here.)
->
-> Rob
-Noted, thank you!
+On 5/20/2024 5:12 AM, Dmitry Baryshkov wrote:
+> Neither disp-enable-gpios nor disp-te-gpios are defined in the schema.
+> None of the board DT files use those GPIO pins. Drop them from the
+> driver.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/dsi/dsi_host.c | 37 -------------------------------------
+>   1 file changed, 37 deletions(-)
+> 
+
+Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 
