@@ -1,139 +1,133 @@
-Return-Path: <devicetree+bounces-68445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACE258CC49C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:04:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B398CC4D5
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AA3EB20855
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:04:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 069931F23362
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDFA1E517;
-	Wed, 22 May 2024 16:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EBE130AFF;
+	Wed, 22 May 2024 16:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T7ZvkPfd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DUEAW0uv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D895A139B;
-	Wed, 22 May 2024 16:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8912642AB9;
+	Wed, 22 May 2024 16:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716393885; cv=none; b=bflh+SziaYsBb+OK61HScciOxgHwSr7SPuk6ol2Vkwe5yDHjppvEHnCXIwn64swIYoyMwM6/8AHtCGtoy/L1CLlBlxACJgr2Z92n7szbUZ+mtWl8P/YnaQb4B9wVHMaVDCGhnxM/UGlbM6/dzqphLYOPMS7gOuH0w32o2ccL1qY=
+	t=1716394820; cv=none; b=i4gPhFLOk0ePXPNQRl4xm4GZ6Ia8Gc6bOiwwPdHMyUue18yAgoVzvFla9DVii0Rryg8YkbVZ98/9FzPmNMtAFYCdBX5ruNrDemr475KQx8BqSKdTUmGf489+iwPtGOhtsnWY5/YK2YFJY1IKnRWaCdMvap1L41zhVDymx4kTTww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716393885; c=relaxed/simple;
-	bh=1vicdVPng3fETAqpS3OYsILf4v6JPsudUhtYWNmeKFM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rPZ87+0bc7xp7CfnHIYE/kknHGLV8XDsDGekeZUYw4H6qE3KNBa89/ffyKf9iEOrqvluRW3O96AGKsZjlOe22Q4BcuqYoI9tHJN4c45RgYKprv35IjjaRpGg/M6hcM/PXJdqbrHLY3Rwo0SidJV60Kj/6kbfgfWCou293tijIPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7ZvkPfd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDC34C2BBFC;
-	Wed, 22 May 2024 16:04:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716393885;
-	bh=1vicdVPng3fETAqpS3OYsILf4v6JPsudUhtYWNmeKFM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T7ZvkPfdyjrKlBm/FTG9TU+EkjklqPbuERB6Y9m9/+Q1jHW4x/d2W2a6TX+FECKfh
-	 vJ/92gc2wjm0s0T7DBHTxNoE+byTqlUs5TWIYHv7NtJKe2jlstI8AFhwb/q4sBAIjT
-	 xWm2hwH9VU9fSc7lMGttMImlnx+PQZmVTP+5nNY8Gz5K5KMgwQydASFhhEEvzsXvf0
-	 Sx4ytR4LzuMmUsSVwAirgrB3/wpaElPJqgNm/FpOJOGivEJa7UJBVgC+t+EjV2AbyP
-	 wj4NGmOVQKxIWLsgMMaWHDqGdO+z1CfqUmp9llADlZhHV8GdSHrojF1K/uNOLlzZaX
-	 0TUjw1qAG7A8w==
-Date: Wed, 22 May 2024 17:04:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 0/2] dt-bindings: interrupt-controller: riscv,cpu-intc
-Message-ID: <20240522-yoga-blurt-dc5e40a0ae3a@spud>
-References: <20240522153835.22712-1-kanakshilledar111@protonmail.com>
+	s=arc-20240116; t=1716394820; c=relaxed/simple;
+	bh=Q0YYgomuZ7a/Ey+Ex03pRVCfua6lfh9KBm3qhFwLyAg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F138G1rHXh7R9AJ4OwVKqCryeQyQRsRIDhiJ6dR/gp9iviAvi5rWnAYvIgfn68D+JLAoZAgZQUi8V+xtLl2mtQ9OIq+Ihxdow3wJcuRFuBewqnkYob7hwfDZ3AsEWt0MqymNJz9KTGDKdKms9e7k4v19xwRfvFikQb7dIVRqySc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DUEAW0uv; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a621cb07d8fso155847566b.2;
+        Wed, 22 May 2024 09:20:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716394817; x=1716999617; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rAmYmReX6PJbiPANH3CQQN4HAh3/OEfTwrGvBy42nz0=;
+        b=DUEAW0uvAAX5PjhG/Et0QkkPybkUG27toqovsjAvwtT58rajcX7A1jX1lnfGqe3FQR
+         SMGzilhMAUwdUPiiMTFeZHZh2B/uJ6kDedSx2owEFyU95+GlMiCY/UA1tF8TAzecOmGk
+         ykqNduk5wFqOklf1GoKIN+rNZtG9b7JFDrBSDMbNDi80y5TPOL0UgCArKLa3+iIl/g0o
+         Fh0iBKCB3aN6XoTEvGIjQYGwRRVnlp5JxwTAWExYl5grhISnLoJ+UGg06d3/YeSlxyfw
+         ceW+r/3msIaI+LXEkWFZBx2f9KqdgaJ0wdB98S8JOiOwk910EN2675hmvC+LL9eFjO9S
+         zxTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716394817; x=1716999617;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rAmYmReX6PJbiPANH3CQQN4HAh3/OEfTwrGvBy42nz0=;
+        b=Z40EKG/m+hgouVWOyf6bcmc5krbyvL6Fk8AqlI5HHYAFrMuG2YaBlAzyGryc4zSyVv
+         RWjisFiXHcMDmFSx3vEVeEfpGiBOlek3AkOEqfKq76PxJ6Q345LEHUmubj+XJAqdRS0a
+         2RCyIgUE6Gmltnpkb+yk5+SmQQcOkr97fEnuy94yYNkNIsLj2knfiVDR1R3FkCmdYuJw
+         CGUqTPEQ7AUtFJ2CZNV4qSc+LckXVzswUMhjxITxv86AmgvSAeseQ11J3zgIykyPMvdJ
+         CYL9PKEo5Zcqy3WD6tpPAPiMsj9KRkFbEr58iK5+bBuicaF+pzFokG0CmnAhBb9iusjd
+         afSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTtvawIpH8HGtyoZl//rQiMc0Hn7RWjobVadQMxSvpN5+BNBtHroBFQ+c950jiFTgXLsyU5ZUcJ6YTCYC2s6bo+HcCSaTbuEqD7ZTU07KchTIuWt+q3WmfQpKvQUTjcrCZJPp8kV0XDotJE7JAQUCyLSAj5EJRZCbx7JKvP2AXc0ju3MYqa04I1fo0zx4kiKZcUR+cHc3QTGduAInXRktNzHNSpCNPnhg=
+X-Gm-Message-State: AOJu0Yz2L7wmZcm7BPKH6A+b9zXTNp391JKZAFTpAmEgfEVc9psaenpH
+	JKsrytl3YLtAfSa9U/+lSQhkn5YTZgJL8mpZSDjsE9i7BB0h3pOg
+X-Google-Smtp-Source: AGHT+IHX16TQSndzssQgcqAzfbd1WNux9/z8SsMd1HxgJsKinbW/Bh1wbsuSCjyy29FD+JAs7+9gIQ==
+X-Received: by 2002:a17:906:f80e:b0:a5c:f73d:67b3 with SMTP id a640c23a62f3a-a6228153fe5mr162987766b.63.1716394816651;
+        Wed, 22 May 2024 09:20:16 -0700 (PDT)
+Received: from [192.168.50.244] (83.8.125.62.ipv4.supernova.orange.pl. [83.8.125.62])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a179c7dd4sm1798467266b.139.2024.05.22.09.20.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 09:20:16 -0700 (PDT)
+Message-ID: <52428c0d-4b18-4707-9cda-4e6a11e256bc@gmail.com>
+Date: Wed, 22 May 2024 18:20:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="eeg5JD55UAT+KHlg"
-Content-Disposition: inline
-In-Reply-To: <20240522153835.22712-1-kanakshilledar111@protonmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/8] ASoC: samsung: midas_wm1811: Add headset mic bias
+ supply support
+To: Mark Brown <broonie@kernel.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240519-midas-wm1811-gpio-jack-v3-0-0c1736144c0e@gmail.com>
+ <20240519-midas-wm1811-gpio-jack-v3-3-0c1736144c0e@gmail.com>
+ <1aed24a7-ab2a-4c2b-a3bc-2b907e091624@sirena.org.uk>
+Content-Language: en-US
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <1aed24a7-ab2a-4c2b-a3bc-2b907e091624@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 20.05.2024 16:35, Mark Brown wrote:
+> On Sun, May 19, 2024 at 10:17:49AM +0200, Artur Weber wrote:
+> 
+>> +static int midas_headset_mic_bias(struct snd_soc_dapm_widget *w,
+>> +			     struct snd_kcontrol *kcontrol, int event)
+>> +{
+>> +	struct snd_soc_card *card = w->dapm->card;
+>> +	struct midas_priv *priv = snd_soc_card_get_drvdata(card);
+>> +
+>> +	if (!priv->reg_headset_mic_bias)
+>> +		return 0;
+>> +
+>> +	switch (event) {
+>> +	case SND_SOC_DAPM_PRE_PMU:
+>> +		return regulator_enable(priv->reg_headset_mic_bias);
+>> +	case SND_SOC_DAPM_POST_PMD:
+>> +		return regulator_disable(priv->reg_headset_mic_bias);
+>> +	}
+> 
+> We have SND_SOC_DAPM_REGULATOR_SUPPLY?
 
---eeg5JD55UAT+KHlg
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is pretty much copied from the implementation of the mic bias
+and sub mic bias regulator handling in the same driver; they all use
+SND_SOC_DAPM_MIC combined with an enable/disable function like this one.
 
-On Wed, May 22, 2024 at 09:08:34PM +0530, Kanak Shilledar wrote:
-> This series of patches converts the RISC-V CPU interrupt controller to
-> the newer dt-schema binding.
->=20
-> Patch 1:
-> This patch is currently at v3 as it has been previously rolled out.
-> Contains the bindings for the interrupt controller.
->=20
-> Patch 2:
-> This patch is currently at v2.
-> Contains the reference to the above interrupt controller. Thus, making
-> all the RISC-V interrupt controller bindings in a centralized place.o
+What would be the correct thing to do here - add a secondary DAPM widget
+of type REGULATOR_SUPPLY and connect it to the MIC widget via audio-
+routing, or replace the entire MIC widget with a REGULATOR_SUPPLY (or
+something else entirely)?
+And should this be done with the Main Mic and Sub Mic as well?
 
-Don't do this, it breaks tooling:
-
-	b4 shazam 20240522153835.22712-2-kanakshilledar111@protonmail.com
-	Grabbing thread from lore.kernel.org/all/20240522153835.22712-2-kanakshill=
-edar111@protonmail.com/t.mbox.gz
-	Checking for newer revisions
-	Grabbing search results from lore.kernel.org
-	Analyzing 3 messages in the thread
-	Looking for additional code-review trailers on lore.kernel.org
-	Will use the latest revision: v3
-	You can pick other revisions using the -vN flag
-	Checking attestation on all messages, may take a moment...
-	Retrieving CI status, may take a moment...
-	---
-	  =E2=9C=93 [PATCH v3 1/2] dt-bindings: interrupt-controller: riscv,cpu-in=
-tc: convert to dtschema
-	    =E2=9C=93 Signed: DKIM/gmail.com
-	    + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-	  ERROR: missing [2/2]!
-	---
-	Total patches: 1
-	---
-	WARNING: Thread incomplete!
-	 Base: using specified base-commit 20cb38a7af88dc40095da7c2c9094da3873fea23
-	Applying: dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dt=
-schema
-
-If you change one patch in a series, the whole series gets a new version.
-Just let git format-patch do that for you with the "-v N" argument and
-you'll not have to worry about breaking people's tooling.
-
-Patches themselves are
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---eeg5JD55UAT+KHlg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk4XmAAKCRB4tDGHoIJi
-0su4AP9z+Txrf6KWtFYERWILq00267oges3Pu8u242cyzQesKQEA5Yre424wVHVT
-o9tzXZgPfqWGP7LkQ5a5BFjbABdJ6wE=
-=CDKs
------END PGP SIGNATURE-----
-
---eeg5JD55UAT+KHlg--
+Best regards
+Artur
 
