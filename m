@@ -1,116 +1,106 @@
-Return-Path: <devicetree+bounces-68354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E378CC044
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:30:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8388C8CC056
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:36:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07A77B20FE3
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:30:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 815441C223FC
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9BF82D94;
-	Wed, 22 May 2024 11:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA0D82871;
+	Wed, 22 May 2024 11:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MZ1oSmi1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CxrcFi90"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C21782D69
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 11:30:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432BD82486;
+	Wed, 22 May 2024 11:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716377416; cv=none; b=YOhNaTlM8S4e7ltGixBXRMOqIzknB2ukxcLDL2xAPMKPCcb499k6URcOyMep8/eNmIVGKnZvkfLQU+3CWvYFhBgFJ2Cz8SkQqT3Jf7kCfRs/6d3KQOcsuESeCSCZ2Xogt1usqUHnHUoOl7n63A7ZOdV26MQEwQEImVVkelradxI=
+	t=1716377756; cv=none; b=md0CvNaJWAHtzHf8RDpHHmMaD3jxrDeEMcBVOYkBSmQ4zNkChqsjV8QqK+I4Ls5jvRJYAyq/QNUEL75p+JmsYyjFcIQIh08BCCSuHMp9K4DUk+pbAS10oyEa1oMZsmG4PnV1U4h8jSRVCMVmgolxyF6nXsHaGgY6hAYDTJM5zbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716377416; c=relaxed/simple;
-	bh=4CIO6artRJ4ZRunAE1h2kRB6vpyNhD0KsLJ2hd/Tayo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZYlqOopDW/E1QII8lP2wlFDETKRmnwF3SNOPm+QIpMrqa7QQk5MkkOyZ67rA4tXZiFvFXv/6JIZBDniPfLukH9oCVlZ0KYsO/GAdsT8rYAJWVgFcnVzelt3UwQdSDlzM9tnh6pQEsL2Qe2szBpXGcLmUFuUA92Re5+OFlcg16Rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MZ1oSmi1; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-56e1baf0380so10220237a12.3
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 04:30:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716377413; x=1716982213; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mJNcJC3ubId/j8V3zKbBbmUpsocF9nZYwPjWMkiBbRI=;
-        b=MZ1oSmi15yjxcPzhQ7Q1d67WMSkwHlMGK49ImKXtOy5fUAJqQ/OhYrUQqwMyRwE5I4
-         cNZfiTEfGf5o57r8kVpvnAUuZgW4WdX2qL2hqhXp0mR8v3d8xk817AU+Ce95LYjs+lz4
-         pxxPY9jC8dBTWCiqWxzhKvN0FeL/mYLfd/E5EhyAZp4gU6dfOqq7EZUaTxX7aINMTY7W
-         bn7swuheVDpaCmcfEMuyu/CoA9BAeFg7U81iufasw0mjq3+UJnRobW/E35UC4RSyJENf
-         LNHcjqEQEOB04xe7RvSulmnwv2B270hEGpWNq3M9D51YlpnYcZYElyXCBXblyH35j0tj
-         FmnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716377413; x=1716982213;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mJNcJC3ubId/j8V3zKbBbmUpsocF9nZYwPjWMkiBbRI=;
-        b=sQ82BVPY6aTcbH97Zbm3OIhLu06EEJXHXyxrs4yDeyLFm6Fpsa289SvTlN7TzEbsmG
-         Jnn7jrX1OLGN1F+w/2c+gYZ5A+SZuaeK4NZy1vxKykhU9iHn6MwD5Wh4qn+Uedfp+qqs
-         SmUa5rihf+b1mFulbKf+hiLyZlEurlKG3WPGV5JiOpMOYi4oNcRtz+pKOtoALMcVr+zG
-         +J7QcKZi8WHenmy5uC8Aigf2PSlNHfl0VbuuIh2V8jEj5085jAdMJGC1vFvb34sstlPC
-         Tdg59NUmdAy5ow5jzioqkh2tibocOaXLJPvEV5ARJTTQU+3NK8P/SN0Olv+8/PEBU2AM
-         9Wng==
-X-Forwarded-Encrypted: i=1; AJvYcCU6gedGzRMIqBIgWWNuYLsH44Itdndl2aTI6+7j6oxGw5n0ql3xDYx1c7LDtyX/DrJ2Slqz6fH8uGUIodkk8Y5uswCxdsFIP6qoTw==
-X-Gm-Message-State: AOJu0Yxvm2PxodLOG99VXUV+4lN4jjPkWj9FCkBt2spfkMrCw8LHy1/q
-	5TYF5gNL0Lagtb6nQ3H7rjgW5wkTgj5jOSQFu/rjyHc5Hh8O7kjGb+8n9OS6vlc=
-X-Google-Smtp-Source: AGHT+IEzNDd0Cncky8DxksUpwFp2MAsZW2IdqX/pyaQ60q+kGtJRzL8vAfOsh7cZPyw5OgbfI7vWpg==
-X-Received: by 2002:a17:907:6016:b0:a59:af54:1651 with SMTP id a640c23a62f3a-a62281646d9mr96720166b.57.1716377412863;
-        Wed, 22 May 2024 04:30:12 -0700 (PDT)
-Received: from [127.0.1.1] ([2a00:f41:c55:53ae:4d0a:75f4:a9ea:5025])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b01652sm1768363066b.167.2024.05.22.04.30.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 May 2024 04:30:12 -0700 (PDT)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Wed, 22 May 2024 13:30:05 +0200
-Subject: [PATCH 2/2] pinctrl: qcom: spmi: Add PMC8380
+	s=arc-20240116; t=1716377756; c=relaxed/simple;
+	bh=u2Kpu450wSnKWwvLO/UisnjUxhEBL1STdP2N6DjA6QA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XmCvHf/XVt8MbbsDJaLYYao4gE8ul2XqEKnTo9VRSgGuqOYLiOpMyFVlvVv1Yh8yfXaQjCY2Ghed8myvf1FogX7FaeqjzQBDn9X9KTGtZ98v+jArHpMjgw+y36sMVy4mOxbiUvRrbG24vcF9Co6xxxyEwpSqSARRU5X1W3rElvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CxrcFi90; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C40DAC2BD11;
+	Wed, 22 May 2024 11:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716377755;
+	bh=u2Kpu450wSnKWwvLO/UisnjUxhEBL1STdP2N6DjA6QA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CxrcFi90U0N+Y69PMsTtNijGMFFUnNeTLxXiwAzh1Gd2obFlDu/3qMLWJFWX3Tw3G
+	 HisFhhjVj0nBmH+TCHKXEJaY46xFp8/Kbr1wzvGKLEXGHExaZNc4yLsZCn8uGJcCkC
+	 TNMs8SKIZmCdvpSGuZRhEUOGWf/SfiFzZpjqQzN/a8IEaRpf8QSlb4DZMeCMqPV/Ab
+	 Ncj6P2AFAZdULLsWxuRMcI0FSyrLMccxjquAXomjWWCwQJ14SRHw15Z3CW3XO+kttr
+	 P7K3JAqXS8OGW2kWNfz8HBMNeWtIvbx+nCl7PO4s0ETc2DzLcOScFtQdfFIfUQuqBP
+	 gffNCvLrBLXMA==
+Date: Wed, 22 May 2024 12:35:50 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Alina Yu <alina_yu@richtek.com>, lgirdwood@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, cy_huang@richtek.com
+Subject: Re: [PATCH 2/2] regulator: dt-bindings: rtq2208: Add specified fixed
+ LDO VOUT property
+Message-ID: <05843386-92f4-4246-a633-315c3178d86f@sirena.org.uk>
+References: <cover.1715846612.git.alina_yu@richtek.com>
+ <9c1bbe4b38a4ee5650d888478f1ce2cec2733669.1715846612.git.alina_yu@richtek.com>
+ <5d26b19c-7679-4dba-a9ba-a7368d39b474@linaro.org>
+ <20240522090302.GA19548@linuxcarl2.richtek.com>
+ <b094ce68-9ce2-411d-99f2-1f143e4c3347@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240522-topic-pmc8380_gpio-v1-2-7298afa9e181@linaro.org>
-References: <20240522-topic-pmc8380_gpio-v1-0-7298afa9e181@linaro.org>
-In-Reply-To: <20240522-topic-pmc8380_gpio-v1-0-7298afa9e181@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.14-dev
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="JFA9gN8tjjyEAmoi"
+Content-Disposition: inline
+In-Reply-To: <b094ce68-9ce2-411d-99f2-1f143e4c3347@linaro.org>
+X-Cookie: Bridge ahead.  Pay troll.
 
-PMC8380 is a new chip, featuring 10 GPIOs. Describe it.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 1 +
- 1 file changed, 1 insertion(+)
+--JFA9gN8tjjyEAmoi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-index 4e80c7204e5f..ce576149b7ae 100644
---- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-+++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-@@ -1235,6 +1235,7 @@ static const struct of_device_id pmic_gpio_of_match[] = {
- 	{ .compatible = "qcom,pm8994-gpio", .data = (void *) 22 },
- 	{ .compatible = "qcom,pm8998-gpio", .data = (void *) 26 },
- 	{ .compatible = "qcom,pma8084-gpio", .data = (void *) 22 },
-+	{ .compatible = "qcom,pmc8380-gpio", .data = (void *) 10 },
- 	{ .compatible = "qcom,pmd8028-gpio", .data = (void *) 4 },
- 	{ .compatible = "qcom,pmi632-gpio", .data = (void *) 8 },
- 	{ .compatible = "qcom,pmi8950-gpio", .data = (void *) 2 },
+On Wed, May 22, 2024 at 11:27:06AM +0200, Krzysztof Kozlowski wrote:
+> On 22/05/2024 11:03, Alina Yu wrote:
 
--- 
-2.43.0
+> > Due to the fixed LDO VOUT being outside the range of the adjustable one,
+> > a special-use property has been added to avoid overusing the constraints.
 
+> Hm, why exactly this is not a bool property? What are the benefits?
+
+It avoids confusion between invalid constraints specified on the
+variable voltage regulator and allows us to validate any constraints
+that happen to be specified (though it'd be pointless to specify
+constraints).  The fact that the regulator could also be variable
+voltage is asking for confusion if we use boolean.
+
+--JFA9gN8tjjyEAmoi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZN2JUACgkQJNaLcl1U
+h9BHCQf7BRNB5Tl6030hx5cP3OOQVNDxhTNvG2H2sY14s9X3i7eDXjSBnXQaP8jG
+KLpSR/o0ha6/YiMfx5sGFQ+DuCaeGYzYBqk9DXfP3wnhwO1PJDm7NNpKhMOWSJLI
+xlxsPP03n9Qh4Wl1bjXJjPgxnp/38Q88JnG2s84MPwMacADeUFfTxFWz12oE7/g0
+aNwbmzf4OIKZlMK7NeQBz5Z11mPUzqGbxxysLRYVgvBO9xHq5J4xyL3be28Jcefj
+pE3P0JM4bjJytpPukGG61TIj+z2vUdGQnebptqIQWI7aoI0Xz5cRkrju5nTX3oll
+VpLuRpvq4uZout3Pp+bz/vhhRPMFyg==
+=Cx7R
+-----END PGP SIGNATURE-----
+
+--JFA9gN8tjjyEAmoi--
 
