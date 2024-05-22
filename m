@@ -1,103 +1,150 @@
-Return-Path: <devicetree+bounces-68461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7A68CC5AE
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 19:37:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 372EC8CC5B8
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 19:40:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2DBD1F23CE3
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:37:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1D70B20B72
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594201422DC;
-	Wed, 22 May 2024 17:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 963711422DA;
+	Wed, 22 May 2024 17:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JHiHT3c+"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lbnWxyF2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030591422D5;
-	Wed, 22 May 2024 17:37:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B457D071;
+	Wed, 22 May 2024 17:40:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716399425; cv=none; b=uTGhlGDlDnFqOAnvgjhlQ1HIoTG9uvvAalAjkOnXSV2AQX6JDT8w4AMh+3kNGRE1FXs3/bmo2zNsuF/d6wwTS87VsMNAWPwRvxEcEVAdoXseEGVxFdV6iMpFfDF2WaEKucVlPymzYWdteUUMSXK+GbgJPjyRGnfiz+TxEdeWcGY=
+	t=1716399610; cv=none; b=aqTtbg2KZVPE8Uueg0fuOyahzddNqMpKtglre52/mpRxViO9QufZKkH0BAPchzQsIMfqWhVGg5dhaHY4EsL6v2puDrzN7crJMQBOwtogcYHl89xmlXOJKk3qlOWRIJ1mbvrjnagoC6l474d8Xl4aWYkiHsgku1HDf/BmceO2/e4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716399425; c=relaxed/simple;
-	bh=lxps6EOqtmqLxhyLvO6bl4wRTWlUifffUqz+wiVTR50=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RhCs2RGWssoQvuyfuHQDS/YaCikGVvFJ06JCHxy79ACTsAKFJwVZCONi+SOWxlV8u5ftBVi9CFbcqUfg6jnlhKvYxQMWEVRbybdBf3bcpRKVtF7+h7qzyR78DQbvZE+EDS15cYq6G1K1vhAHPOpCSd3UltTLLzKZdVd3qUBb9Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JHiHT3c+; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5c6bd3100fcso1202423a12.3;
-        Wed, 22 May 2024 10:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716399423; x=1717004223; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mfpLarFNkJpt7DyCLsHl65AIFQQ1PVnsoQ9uc7Gm7vE=;
-        b=JHiHT3c+NOSuOjC/1OGrVK5eEKJo4roojSV9Wxzt5wkaVssolFDmemgM0oh+3i4ZaW
-         nIGeiHIeu66Za+aJYIUtC7ID19P80z9CsVW0usQbD6ihxH6Y8mkwn6J2FA2uy59SZ3QQ
-         7fn94F5sVDWOO8GyyuOhG3aiStv9Gm4qdAE9jok7M5l+AgMqhSzhW4EIeDI7rfIqXPk3
-         LQIMrcSSw16JcjeS8H4+6CRoxM33hc1svu7SgrV2UWXASy7WcG7+iaR7SBw6juY9OsQZ
-         HZHf3Y+VIWcL1MQETiufim8X0KO8bo15pjrgLlR75R+Y0dOVmR56VHu8H2D6oUB2xvjV
-         eJ1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716399423; x=1717004223;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mfpLarFNkJpt7DyCLsHl65AIFQQ1PVnsoQ9uc7Gm7vE=;
-        b=l+Db29QrxshS3l2zEgZgW7yiLS5MlcaN6yyqyQK/ePqQUn/E7N6k6I++RURPKj6PgT
-         mdYxkxfQFOHLNMdE36cqoz9Mck8qffnqVksGEvijzOLfcAP1nqNmTPuZFq8Il6dDBaEP
-         oRpyV7nwjfPhLlVEi7v4v0xtPRoZUSG0D164D2HjpGvObSOewBsADu6pXwUgSXol6auy
-         IQSa6GStgXpIcmYVhzCITpu95DkTQTmfJ+/67kmD/2/9O3UVh3NhHr3rqJO6uOUImGgX
-         YE/WjmTCXH853DNuMJF+CiWyNCE9stAzGie76TQSm/JSqq2Lskkkj6y52fcnYdTidYOd
-         tWug==
-X-Forwarded-Encrypted: i=1; AJvYcCXUsfme1JvL8exZ2ZZAWNqGBCT5y/nv4Rs4WaStRi/6RNyCQRMyO2IiwUQF9l0CGzPFuDZicT8KFFSITBxHYzTlR5H3CfxfTrnlzPcKBV1subXU5hnWwQJFn3aBxNaLJsAlfWyby4ymn2iLdkINDeHCcqegQHGKGx1U7yhmfGzJAQTw0m//
-X-Gm-Message-State: AOJu0YzRD2GKStptNgunWIxmFiFaiaUhef55cwCpQGDz456tKJ5uS3QG
-	dnDM2bPQHLS30zPTqafahNR7bmGg2KPPj0TZkZolej3oTzixRR6Z
-X-Google-Smtp-Source: AGHT+IF3dNlxbIuavfKQFMMnfNC5JTiwKGkgMBT60ooMozLsvbMqmQSzhg1yXQrO0GMfPPg6izZdLA==
-X-Received: by 2002:a17:90b:4acd:b0:2bd:6715:4f5c with SMTP id 98e67ed59e1d1-2bd9f5cc293mr2485803a91.44.1716399423117;
-        Wed, 22 May 2024 10:37:03 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:d9d8:1fc1:6a1c:984b])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2bdd9ee23dfsm35518a91.6.2024.05.22.10.37.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 May 2024 10:37:02 -0700 (PDT)
-Date: Wed, 22 May 2024 10:37:00 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: joelselvaraj.oss@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] Input: edt-ft5x06 - add support for FocalTech FT5452
- and FT8719
-Message-ID: <Zk4tPAKHW8Q9F84_@google.com>
-References: <20240521-add-support-ft5452-and-ft8719-touchscreen-v1-0-2a648ac7176b@gmail.com>
- <20240521-add-support-ft5452-and-ft8719-touchscreen-v1-2-2a648ac7176b@gmail.com>
+	s=arc-20240116; t=1716399610; c=relaxed/simple;
+	bh=rvyON9Eez4+bgszygh1Bb1QcvHtLRDv9uBENZwvOqgk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HvuITG6YRcU1FX9yt3/PCgs1pnJwCTFalA9vy9unmW2pvjPU017MJPiWb3+fG6qWIlhiqQoRYbMuTZfqHbLDTSfPxIdx61NswSMpfAvt/V6zx1kdv9Em/bRhajoHmfECDLnlfKePb8W3mD6yiKgbNO5U2dYwk2naenum8xyLxak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lbnWxyF2; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44MHdgZ2058268;
+	Wed, 22 May 2024 12:39:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716399583;
+	bh=96umGE7Q8x9vdEdBBDF/Aa24QRAMgPy3dYLj6BJie8k=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=lbnWxyF2XCnoOX2VMR21xaTV+WQlRqXc/+PCmgxkXrFUkHlyUtAJfF5OrLaPD67J5
+	 h4u5U7qoxy7u9LjpgIUxZtzcTN7ZR19a1eHDhfv3e7HpnWER/dJDV0ahkhykCG26CQ
+	 rvtKjnvwJGPpfelmmrHdOBvyrC94axaVqDm/HUxw=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44MHdgTM024507
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 22 May 2024 12:39:42 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 22
+ May 2024 12:39:42 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 22 May 2024 12:39:42 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44MHdaJM018757;
+	Wed, 22 May 2024 12:39:37 -0500
+Message-ID: <c2fe8d96-677a-4779-b46b-1c50698ef6a0@ti.com>
+Date: Wed, 22 May 2024 23:09:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240521-add-support-ft5452-and-ft8719-touchscreen-v1-2-2a648ac7176b@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
+ GPL-2.0
+To: Nishanth Menon <nm@ti.com>, Conor Dooley <conor@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+        Andrew Lunn
+	<andrew@lunn.ch>
+CC: <vigneshr@ti.com>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Kip Broadhurst <kbroadhurst@ti.com>,
+        <w.egorov@phytec.de>, <u-kumar1@ti.com>
+References: <20240517104226.3395480-1-u-kumar1@ti.com>
+ <20240517-poster-purplish-9b356ce30248@spud>
+ <20240517-fastball-stable-9332cae850ea@spud>
+ <8e56ea52-9e58-4291-8f7f-4721dd74c72f@ti.com>
+ <20240520-discard-fanatic-f8e686a4faad@spud>
+ <20240520201807.GA1410789-robh@kernel.org>
+ <e257de5f54d361da692820f72048ed06a8673380.camel@redhat.com>
+ <20240522-vanquish-twirl-4f767578ee8d@spud>
+ <20240522134001.tjgvzglufwmi3k75@imitate>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240522134001.tjgvzglufwmi3k75@imitate>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, May 21, 2024 at 09:02:58AM -0500, Joel Selvaraj via B4 Relay wrote:
-> From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-> 
-> The driver is compatible with FocalTech FT5452 and FT8719 touchscreens
-> too. FT5452 supports up to 5 touch points. FT8719 supports up to 10 touch
-> points. Add compatible data for both of them.
-> 
-> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Thanks all for review
 
-Applied, thank you.
+On 5/22/2024 7:10 PM, Nishanth Menon wrote:
+> On 11:25-20240522, Conor Dooley wrote:
+>> On Wed, May 22, 2024 at 10:04:39AM +0200, Paolo Abeni wrote:
+>>> On Mon, 2024-05-20 at 15:18 -0500, Rob Herring wrote:
+>>>> On Mon, May 20, 2024 at 06:17:52PM +0100, Conor Dooley wrote:
+>>>>> On Sat, May 18, 2024 at 02:18:55PM +0530, Kumar, Udit wrote:
+>>>>>> Hi Conor
+>>>>>>
+>>>>>> On 5/17/2024 8:11 PM, Conor Dooley wrote:
+>>>>>>> On Fri, May 17, 2024 at 03:39:20PM +0100, Conor Dooley wrote:
+>>>>>>>> On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
+>>>>>>>>> Modify license to include dual licensing as GPL-2.0-only OR MIT
+>>>>>>>>> license for TI specific phy header files. This allows for Linux
+>>>>>>>>> kernel files to be used in other Operating System ecosystems
+>>>>>>>>> such as Zephyr or FreeBSD.
+>>>>>>>> What's wrong with BSD-2-Clause, why not use that?
+>>>>>>> I cut myself off, I meant to say:
+>>>>>>> What's wrong with BSD-2-Clause, the standard dual license for
+>>>>>>> bindings, why not use that?
+>>>>>> want to be inline with License of top level DTS, which is including this
+>>>>>> header file
+>>>>> Unless there's a specific reason to use MIT (like your legal won't even
+>>>>> allow you to use BSD-2-Clause) then please just use the normal license
+>>>>> for bindings here.
+>>>> Aligning with the DTS files is enough reason for me as that's where
+>>>> these files are used. If you need to pick a permissive license for both,
+>>>> then yes, use BSD-2-Clause. Better yet, ask your lawyer.
+>>> Conor would you agree with Rob? - my take is that he is ok with this
+>>> patch.
+>> I don't think whether or not I agree matters, Rob said it's fine so it's
+>> fine.
+> Just to close the loop here: Udit pointed me to this thread and having
+> gone through this already[1] with internal TI teams, the feedback we
+> have gotten from our licensing team (including legal) is to go with
+> GPL2 or MIT. BSD (2 and 3 clauses) were considered, but due to varied
+> reasons, dropped.
+>
+> That said, Udit, since you are touching this, please update in the next
+> revision:
+> Copyright:   (C) 2015-2024 Texas Instruments, Inc.
+>   to
+> Copyright (C) 2015-2024 Texas Instruments Incorporated - https://www.ti.com/
 
--- 
-Dmitry
+
+will post v2 with these changes after merge window is open.
+
+Along with that in v2 will copy other contributors as well, who are 
+including these files.
+
+
+> [1] https://serenity.dal.design.ti.com/lore/linux-patch-review/20240109231804.3879513-1-nm@ti.com/
+>
 
