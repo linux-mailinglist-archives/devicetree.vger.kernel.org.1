@@ -1,223 +1,164 @@
-Return-Path: <devicetree+bounces-68393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D638CC21C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:29:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74F1D8CC223
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:29:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFD8D1F23763
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:29:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9892C1C21B2D
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F89613E04E;
-	Wed, 22 May 2024 13:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1FB13FD60;
+	Wed, 22 May 2024 13:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYkfFYb0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iKkEl3ce"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2AF442F;
-	Wed, 22 May 2024 13:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4B213E04D
+	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 13:29:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716384547; cv=none; b=rEBPiNXC4sOdKmX93bM6tQvZJV4+2vgyAL0RFY65fAXe8Bsf4+Kd/dQF22UsXMkF2DU35OQ3zsJvEx4sgY2bxW9JMqWsl1SGllUBmYNgQNBH/hXgqDAWZ0G4i6sRanx7BW7cKiHoiixggDYHyCgcIcfAIVDAsoelox6OsgnFiMc=
+	t=1716384569; cv=none; b=Nvg9CEnPv1aXUNTLxEpYNpGRZ96/BBv1DewXola+tD8xh7kgf5ZTx0NCWAG+AVpeYqXR+RFsRYUV51Zyvj7WU8VG6ujQyIwU887qtKMCpAp7GCj4M1nJ4/4fW5YxcchgHMfsyT1B8X2AlqM/IEFEP7etPmJw07Ju4D9j5lwjBeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716384547; c=relaxed/simple;
-	bh=wxaOmOUCkS1lix74mx1Jccpu5z2WpUnMXkHaPkATNUI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UNufGvdKR8rHyYsDudtuO5iGByOrKH4n85uW9PpS/UKX76ictt9bDqPGmZG53kJRh9nHMZ2Q8/GmSsmpUHIfFL7e1C0lrzww8IF0uTlzUE+PPF48aW64BbrWonq3ZTnXNbE0JJYotLBJU2pNNCRyRFY1w4HD6WML2iMr7jnRZng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYkfFYb0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EAC1C2BD11;
-	Wed, 22 May 2024 13:29:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716384546;
-	bh=wxaOmOUCkS1lix74mx1Jccpu5z2WpUnMXkHaPkATNUI=;
-	h=From:To:Cc:Subject:Date:From;
-	b=uYkfFYb0u9vU3AUnhJ8XzskCsxvwQSvZnnnEDuWi/zm+NI93BcT5IRrJLwIB8sMVE
-	 sTwme/G0E96z5rCwOQh96MgxPitB52A5xKKtF9zkFy0M7W7DOcEUBr2nqlaMlpN16T
-	 czZLxAuMMOv4WlNtBRYOXBLrKClkzapSh178OEOSQQlUp3w6XlD8c0e8Gz5oTi9S5G
-	 2/Qtb52JtM8xflVmzL4SF7RWk7Bqod+WijNWnBRC80bZk/lZPX+HQBhKgMlxP6rt9S
-	 YyFzPUL4h+sgPoENpL+ihwp39ufuli9RGKS+nTUh7NsgfymT24laX4ZBwAd0Y+vh7l
-	 Eo//B8KXerjYw==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Lubomir Rintel <lkundrak@v3.sk>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: [PATCH] spi: dt-bindings: marvell,mmp2-ssp: Merge PXA SSP into schema
-Date: Wed, 22 May 2024 08:28:58 -0500
-Message-ID: <20240522132859.3146335-1-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1716384569; c=relaxed/simple;
+	bh=arHIVvnbSRrU4vMozfw5OQz+OVU7DQz+OL8bfqqQtO4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bGWSPAktqI+Hh7b7u+rgRjDFjYenmTITj4NlDyP4UKxDrwSduuZvrkI22UG4XlhU7P97MH6i5K4fmre95d4PKvh5IEFN21kRwDGHda7XJPjK1MjrKlkyI63Y3C2Hy0HXyBQvZTXtBfmG9UcFBorH51/9KTRDKK3IUvTEQ3LLEIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iKkEl3ce; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-354e0cc9c5cso456344f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 06:29:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716384566; x=1716989366; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=3YEaU2P9V6kAMeHKPOK/rk+673wWJfJ54FeEoR6SSi8=;
+        b=iKkEl3cet2V6hs9n19yJ+5c9IEAampuI91D+a6NkK71S2NlAsatZGYd4Oe5THVJ8EE
+         sixTs81m3QQLw39xCBZZe62FCnUx8hJf+creO1O5asAs7xPfo0HZFnEPW5XI6pb7TwGi
+         oF7mw9CGCPw8HrAfN8O86fdSLBULMkrnXnvAFTm72Sikt9Fej18KMjMHNRairaHQK9nC
+         88sFDcXiQ/f1o0JBcD6xruN/rOkHdnSWBSLMLaWGOwg7+/82aJ8oVQvhLoUUy/jg3Oqi
+         itlv94B1k6Ans24NboP0t+uCY66jau/tWcS8CFlh9tD3OSZP/aiYKRmmNxDJhT3Y530b
+         cqAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716384566; x=1716989366;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3YEaU2P9V6kAMeHKPOK/rk+673wWJfJ54FeEoR6SSi8=;
+        b=CQO0wDCpgCIGYqkVbw9TZv/VKSjWbuWu+nCTpTif275LZPS5EgH1y/y4Ydfrh+jyRX
+         kYah2wdlRaIElktERCFVMKeQs0lA7WVIZy91h1Vm3WJHv6TJFnt2PRYw+33NQmmC6hsQ
+         vZzs4smdADscT7ofRcHmYhhitM7a8Kn/5o3zaIvq445+Usmu9o32jB+slR+PeAM94JRe
+         CGnLohB3qtoX4Af1qUDpxdYPeSfY+Enbp1syxC4Y9woSrm2x2W1NcThNlCZk6MDgJ1Ls
+         wQhhamjXRRBaJ5U6SSzSAYNQeiHdAIAPwvUVsobTsgcarGWkbqvpDjNwSzKIfsXNXFpu
+         sCBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtqOFBiRTyt1JAcDdwyhBBfh7XX3s1NNUbfjaRPt64nozJ5QrUiTxBgoAJWgSpvca7jJzlJZvK1TPPX68353wThgkvHW9wP24V6Q==
+X-Gm-Message-State: AOJu0YxIV5MJM8/JYzoemlHimWq3X2zuF+Z8hR5fsCqr6lLot9uCvIbH
+	LP43wfhuZJPWf1tz0Oszzrlyf2x3oeCA6/u6i/oAm9rf53yZwaEZfDBm/CXhx20=
+X-Google-Smtp-Source: AGHT+IERBVmiYPz0eY8gY7FQeAxdwHFOP34oTC5lvQ7QWK3cucB0a75XWYHifF9EAZ+3fi2fdNykDA==
+X-Received: by 2002:a05:6000:c01:b0:346:bc1b:4efa with SMTP id ffacd0b85a97d-354d8d16ef9mr1522819f8f.32.1716384566191;
+        Wed, 22 May 2024 06:29:26 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.206.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502baad058sm34242934f8f.66.2024.05.22.06.29.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 06:29:25 -0700 (PDT)
+Message-ID: <eeaaf991-0441-409f-b8d2-dcd704d21fd3@linaro.org>
+Date: Wed, 22 May 2024 15:29:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] regulator: dt-bindings: rtq2208: Add specified fixed
+ LDO VOUT property
+To: Mark Brown <broonie@kernel.org>
+Cc: Alina Yu <alina_yu@richtek.com>, lgirdwood@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ cy_huang@richtek.com
+References: <cover.1715846612.git.alina_yu@richtek.com>
+ <9c1bbe4b38a4ee5650d888478f1ce2cec2733669.1715846612.git.alina_yu@richtek.com>
+ <5d26b19c-7679-4dba-a9ba-a7368d39b474@linaro.org>
+ <20240522090302.GA19548@linuxcarl2.richtek.com>
+ <b094ce68-9ce2-411d-99f2-1f143e4c3347@linaro.org>
+ <05843386-92f4-4246-a633-315c3178d86f@sirena.org.uk>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <05843386-92f4-4246-a633-315c3178d86f@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The Marvell PXA SSP block is the same or similiar to the MMP2 variant.
-The only difference in the binding is the PXA version supports DMA (and
-that's probably a binding difference rather than an actual h/w
-difference).
+On 22/05/2024 13:35, Mark Brown wrote:
+> On Wed, May 22, 2024 at 11:27:06AM +0200, Krzysztof Kozlowski wrote:
+>> On 22/05/2024 11:03, Alina Yu wrote:
+> 
+>>> Due to the fixed LDO VOUT being outside the range of the adjustable one,
+>>> a special-use property has been added to avoid overusing the constraints.
+> 
+>> Hm, why exactly this is not a bool property? What are the benefits?
+> 
+> It avoids confusion between invalid constraints specified on the
+> variable voltage regulator and allows us to validate any constraints
+> that happen to be specified (though it'd be pointless to specify
+> constraints).  The fact that the regulator could also be variable
+> voltage is asking for confusion if we use boolean.
 
-The old binding didn't belong under 'serial' as it is not a UART. The
-SSP block also supports audio devices, so 'spi' is not a perfect fit
-either. As the existing schema for MMP2 is there, just leave things
-as-is.
 
-The examples in the old text binding were pretty out of sync with
-reality. 'clock-names' and 'ssp-id' aren't documented nor used.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/serial/mrvl,pxa-ssp.txt          | 64 -------------------
- .../bindings/spi/marvell,mmp2-ssp.yaml        | 35 ++++++++--
- 2 files changed, 31 insertions(+), 68 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/mrvl,pxa-ssp.txt
-
-diff --git a/Documentation/devicetree/bindings/serial/mrvl,pxa-ssp.txt b/Documentation/devicetree/bindings/serial/mrvl,pxa-ssp.txt
-deleted file mode 100644
-index d10cc06c0c37..000000000000
---- a/Documentation/devicetree/bindings/serial/mrvl,pxa-ssp.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--Device tree bindings for Marvell PXA SSP ports
--
--Required properties:
--
--	- compatible:	Must be one of
--				mrvl,pxa25x-ssp
--				mvrl,pxa25x-nssp
--				mrvl,pxa27x-ssp
--				mrvl,pxa3xx-ssp
--				mvrl,pxa168-ssp
--				mrvl,pxa910-ssp
--				mrvl,ce4100-ssp
--
--	- reg:		The memory base
--	- dmas:		Two dma phandles, one for rx, one for tx
--	- dma-names:	Must be "rx", "tx"
--
--
--Example for PXA3xx:
--
--	ssp0: ssp@41000000 {
--		compatible = "mrvl,pxa3xx-ssp";
--		reg = <0x41000000 0x40>;
--		ssp-id = <1>;
--		interrupts = <24>;
--		clock-names = "pxa27x-ssp.0";
--		dmas = <&dma 13
--			&dma 14>;
--		dma-names = "rx", "tx";
--	};
--
--	ssp1: ssp@41700000 {
--		compatible = "mrvl,pxa3xx-ssp";
--		reg = <0x41700000 0x40>;
--		ssp-id = <2>;
--		interrupts = <16>;
--		clock-names = "pxa27x-ssp.1";
--		dmas = <&dma 15
--			&dma 16>;
--		dma-names = "rx", "tx";
--	};
--
--	ssp2: ssp@41900000 {
--		compatibl3 = "mrvl,pxa3xx-ssp";
--		reg = <0x41900000 0x40>;
--		ssp-id = <3>;
--		interrupts = <0>;
--		clock-names = "pxa27x-ssp.2";
--		dmas = <&dma 66
--			&dma 67>;
--		dma-names = "rx", "tx";
--	};
--
--	ssp3: ssp@41a00000 {
--		compatible = "mrvl,pxa3xx-ssp";
--		reg = <0x41a00000 0x40>;
--		ssp-id = <4>;
--		interrupts = <13>;
--		clock-names = "pxa27x-ssp.3";
--		dmas = <&dma 2
--			&dma 3>;
--		dma-names = "rx", "tx";
--	};
--
-diff --git a/Documentation/devicetree/bindings/spi/marvell,mmp2-ssp.yaml b/Documentation/devicetree/bindings/spi/marvell,mmp2-ssp.yaml
-index 5f4f6b5615d0..0a1bada8f800 100644
---- a/Documentation/devicetree/bindings/spi/marvell,mmp2-ssp.yaml
-+++ b/Documentation/devicetree/bindings/spi/marvell,mmp2-ssp.yaml
-@@ -10,12 +10,17 @@ title: PXA2xx SSP SPI Controller
- maintainers:
-   - Lubomir Rintel <lkundrak@v3.sk>
- 
--allOf:
--  - $ref: spi-controller.yaml#
--
- properties:
-   compatible:
--    const: marvell,mmp2-ssp
-+    enum:
-+      - marvell,mmp2-ssp
-+      - mrvl,ce4100-ssp
-+      - mvrl,pxa168-ssp
-+      - mrvl,pxa25x-ssp
-+      - mvrl,pxa25x-nssp
-+      - mrvl,pxa27x-ssp
-+      - mrvl,pxa3xx-ssp
-+      - mrvl,pxa910-ssp
- 
-   interrupts:
-     maxItems: 1
-@@ -26,6 +31,16 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  dmas:
-+    items:
-+      - description: Receive DMA
-+      - description: Transmit DMA
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-   ready-gpios:
-     description: |
-       GPIO used to signal a SPI master that the FIFO is filled and we're
-@@ -41,6 +56,18 @@ required:
- dependencies:
-   ready-gpios: [ spi-slave ]
- 
-+allOf:
-+  - $ref: spi-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: marvell,mmp2-ssp
-+    then:
-+      properties:
-+        dmas: false
-+        dma-names: false
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
