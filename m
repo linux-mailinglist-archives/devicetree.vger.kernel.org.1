@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-68421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB1EF8CC374
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:45:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEEB68CC37A
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:46:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E62531C20A5D
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:45:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47C98B20B2C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09416AD7;
-	Wed, 22 May 2024 14:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6471D51E;
+	Wed, 22 May 2024 14:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dGDVyM7Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ug8dRJXp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E05442F;
-	Wed, 22 May 2024 14:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9E11AACB;
+	Wed, 22 May 2024 14:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716389147; cv=none; b=q4ct4RjH3E5T+m954A0Wgh82O3Bk+g9LAhuxr1J/ftM5TqBjEMb16hyf0MS7ievU7ciGoPsJzyAdZq8Ec+XG+GZ4OLtg9zNKP8e9J84YDpCXrj2PuuF9oDM00VYihytrX0cn3HXBwArRsgbThJ1vXAch3qI/fo7FVYq+mHMcp0E=
+	t=1716389190; cv=none; b=ZpzbAPbCg/I+HBB54cm6ZJyAjnM0hpDvq5anyWpkEQ1Aw943I15b9eS0qfVyVy1/OGGOObtIRwiYh94YC2JNyxkSKkxu6hdbG1hJlbvtK0Ply7fWYR54gnsW7hXwfcQ1HDuBdVXOBxLVoScFt2i+QtHypFLyb7Yi1HXEaQ4Iq1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716389147; c=relaxed/simple;
-	bh=zOLj0B1mXhNR7COAnE/xY+vZVUvYeUNisjjhU/v/78g=;
+	s=arc-20240116; t=1716389190; c=relaxed/simple;
+	bh=dy7gr88adDgKpasKwsud6U16sjxUVBOaxRknrNm6xkU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SqD1Y+7uFfbspadmwbIK9/eLKiZMBQcg+7bKJpv/ZZLGZpsyPse7bDw20gTVOqeRWt+IJJyo2pT9186b+MJrc9/8bGk9/I/8TY/UbgitOJKyBA41yJHhv4yhGF1YrEAxyK+uM7lO3Z17iMCq0b9PArvwZPYA/GmBLRZJoNsnoDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dGDVyM7Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0D54C2BBFC;
-	Wed, 22 May 2024 14:45:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=b36j9oT3e5n6yYOSDVbryElg4G13uzjxt1q1wsgY6Pb4Eu8P3Id+Clqox85s0OScTdh+ip3XXxZRHc46feRm9hjLojnKg2XTsZyzAvt0aF/UPereSgl55ZIM8O2QevJYaI6LyBsqaLR7Y8I/22gNLGVzCGvJm0zNOvqg3gemZnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ug8dRJXp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 076A3C2BBFC;
+	Wed, 22 May 2024 14:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716389147;
-	bh=zOLj0B1mXhNR7COAnE/xY+vZVUvYeUNisjjhU/v/78g=;
+	s=k20201202; t=1716389190;
+	bh=dy7gr88adDgKpasKwsud6U16sjxUVBOaxRknrNm6xkU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dGDVyM7ZQxZ3mpqoZ0uhm34b69z0buP3Izb2n9ZgDU3+feXDZN7rWMsfogNl/ivGd
-	 ZkOAdNJ/Kvsxhp2jbQUCeHEVB77MA58eAIqHjgwvaKK4vyI7Ub5LuB9dqnNCF+DhwE
-	 ovMWw1bpVyslIl/cA9hcyo1AA2jOwzt0Wj56GpgScEy5KJd6iMVTMavHx4ezyLckJE
-	 9uhsM39ri9aB9l3ro4ikqpIw+EkV+pduVJRl10bDw81LjIpB+4U/KexmhpSUUvniZV
-	 wfhM3c1ds+Dye2DNIyECRmbiYEQss2mYZ8gRrj1w7Gf0mFdkXkKX/aRWtnI96dXBzJ
-	 C4GWk6Z2ruZYw==
-Date: Wed, 22 May 2024 09:45:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=ug8dRJXpVEckHEassENbn9ROMPkaAby/LMVqPorfy17UISPuh3VHELsvyxKDZCPYL
+	 6W2m7UcOd66aR3hjGgOPXU6pFz5k7+ToOkDGXFHVTri4cnoi+34ngXqynrTvk29Oiz
+	 FE0QVYfKqarUkcWeHrlArhIusHiCfLEb+f5cyrpez/UCIf74y6wlyygSPG00gpp2zE
+	 u+Ou46NhRd1FnBO1W4uK0TdIEzWoHd8Cqwff25bM+8WHiK1CW/jl8KV3/VcCOzYxgI
+	 J2MZ+xQy9XvhJtxDQoss7cuALRSx5lXn8K4eip0IT1IzjSgfYFT3Sfs+WaB1I3VL9a
+	 syOaONQek/pCw==
+Date: Wed, 22 May 2024 09:46:29 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Michal Simek <michal.simek@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE
- source
-Message-ID: <20240522144545.GA3271320-robh@kernel.org>
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
+	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: pci: xilinx-nwl: Add phys
+Message-ID: <171638918647.3276613.2909691160973849874.robh@kernel.org>
+References: <20240520145402.2526481-1-sean.anderson@linux.dev>
+ <20240520145402.2526481-2-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,37 +66,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
+In-Reply-To: <20240520145402.2526481-2-sean.anderson@linux.dev>
 
-On Mon, May 20, 2024 at 03:12:43PM +0300, Dmitry Baryshkov wrote:
-> Command mode panels provide TE signal back to the DSI host to signal
-> that the frame display has completed and update of the image will not
-> cause tearing. Usually it is connected to the first GPIO with the
-> mdp_vsync function, which is the default. In such case the property can
-> be skipped.
+
+On Mon, 20 May 2024 10:53:56 -0400, Sean Anderson wrote:
+> Add phys properties so Linux can power-on/configure the GTR
+> transcievers.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
 > ---
->  .../bindings/display/msm/dsi-controller-main.yaml        | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 1fa28e976559..c1771c69b247 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -162,6 +162,21 @@ properties:
->                  items:
->                    enum: [ 0, 1, 2, 3 ]
->  
-> +              qcom,te-source:
-> +                $ref: /schemas/types.yaml#/definitions/string
-> +                description:
-> +                  Specifies the source of vsync signal from the panel used for
-> +                  tearing elimination. The default is mdp_gpio0.
-
-default: mdp_gpio0
-
-With that,
+> Changes in v3:
+> - Document phys property
+> 
+> Changes in v2:
+> - Remove phy-names
+> - Add an example
+> 
+>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
