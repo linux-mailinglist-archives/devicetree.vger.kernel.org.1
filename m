@@ -1,297 +1,220 @@
-Return-Path: <devicetree+bounces-68532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D4B8CC9CC
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:41:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A48C98CC9DA
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC3B51F22A66
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 23:41:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3114D1F225E3
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 23:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FD514D281;
-	Wed, 22 May 2024 23:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135A214C5BF;
+	Wed, 22 May 2024 23:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MlWlpB+p"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="azsBbvxE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA64824B1;
-	Wed, 22 May 2024 23:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D93A14D2A4;
+	Wed, 22 May 2024 23:48:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716421290; cv=none; b=asJLt0Ufx3JCycG657EqOKO+6HACYyIwAXX30QixVwSe2H9cFAr/kBDkTO+g/f42JaCb1ZOqJLKUz53wfTt6ecLvslYWUrm3db8+sWH/Nq6wE0KHbpQgVTPqFfuRZgliZYiyHu8zqWa7MR69VSKuMlv+Q2/xnANafgp57gtkxTU=
+	t=1716421701; cv=none; b=BuVS3UA4lrJjM1UO+xwFSmPi8IK6/TtDD8vaNcBdLQ1eDOKiVWWcAfnTvNwB5UjRGwf7ORcXNnGMKDY8chneS1RliI4ABezxqa4hGoMj+vHM6SpsVwFfz1vyBrwBROf/Fo56YdzsYxek/i0gImiytJMUbFgakWLIC/B/FI3gs4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716421290; c=relaxed/simple;
-	bh=vggnmkJygBRK8GAMVq19lWbRS7b34eyKsZmnwfwYnfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g7JgoeifKDPUOug/CvCkgNw1McVDM3qUcdymdOV1XNtL4JS3BiFEiAUFFlcMKVzCkVm7h6b22HRx0JTwGIKDCeLDbE1jWNZ3/tjxvR1kIJNTGhheMbEZtRj89VbWyczM3+1rW7a865uk6iAY6k7GjxH0+PQDwctI6hQN0/vP2Q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MlWlpB+p; arc=none smtp.client-ip=209.85.161.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5b2e942171cso3063939eaf.3;
-        Wed, 22 May 2024 16:41:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716421287; x=1717026087; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gWukj2snaUQpvheqYxoT6sRpwOl1cI9Ig/I6rHkd/ts=;
-        b=MlWlpB+p6RRWNi/MHnA5zBR9yjDFtIjjtCRedY+W/ZC0AF9MDYk+CFHXnJixfZUohE
-         3Q8G92zyVa0HBmciHhtyjq6VjERNGVSOTqz+j6HfGrMcZzWitPV7fsrTreXgZZwwExLD
-         mGaRETcGmBTIHtMdOrQ8S+OtYh2IJNFPUiLhrM/35/MnX4VNwx9HIkLxRvFK9otRKkne
-         Mle+4Vi3MwIVxYb1JQ3hPXT6EmLotKlkn29vDZ6vZ9KreKvMMEe39S0IJrseiDijgIa9
-         KUBwV1Gwu1gucHqLuG6r1TZ03uVeEXdkHZqoc7kYPDT24pRF3MUvyM7MiI/3CdeOtNWo
-         LTmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716421287; x=1717026087;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gWukj2snaUQpvheqYxoT6sRpwOl1cI9Ig/I6rHkd/ts=;
-        b=FAyywbQUsGIr1C99E1ID5gyo/F8MutVsAiBK6huU8Ycla2HuSIVoVCOIXddIhKlzZx
-         qzrAwSZu+CE8m0HwVwzSFX87MMwBJxxYGCuDP/FZJOV7TH8DOr77KPna/MJsY12qaRfp
-         VJNpQp91yUnVRXEZkb4qCDldBzSr5Pi04fXffIYFnEJKvHRhU03Gh8sL6niXj0/aFAlS
-         /ZGu77tYCK33ksrL2ArX4jJ98DsRQuvR9Xwh6GxOUN+pc/E3Hrsg0VxPJrcIUd+PMcvP
-         q94M7i3JGownSPWA+AsKEpBqlg+T3HSg07Ddtvl5p8JmUN0xWAYHtoi8ZaMKY1LwjBCh
-         zs7w==
-X-Forwarded-Encrypted: i=1; AJvYcCVLHW7E8hipS3XCaI7Izx7uv7XlGWmJ/dyrSqIAMNM5Z6e0XgcQTLXJmJj4Z4tcknIpVy+5cIdU4DIFQumQs/IIfuKk5hQKMNASFP3g2ZDAyw2rhaNhmChPhZY1mE2Sk4mnGoLY5FxfKoTGJYD6BlRg6fUf9OQ1O0dbO17SQfPTBUS45Q==
-X-Gm-Message-State: AOJu0Yw5hGsgnEoJj8QyJdvPCHYpcn/6XwCQrtK9EcbTMKQMdHXpAINK
-	CQfRg3CpKfYk58Va9sX+iDqQ0uwRekW5MdC/Ci0I0x0SuJakJkJz
-X-Google-Smtp-Source: AGHT+IE0d+EY6qLVEYas/aDbAVhly2G2iZsay05JQ07b3GGXxqmurnPP45B+PYUcYsUehPTJYrupIA==
-X-Received: by 2002:a05:6358:8003:b0:186:f45:391a with SMTP id e5c5f4694b2df-1979214497fmr519300455d.28.1716421287435;
-        Wed, 22 May 2024 16:41:27 -0700 (PDT)
-Received: from archlinux ([189.101.162.253])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6340a9107f3sm23359241a12.9.2024.05.22.16.41.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 May 2024 16:41:26 -0700 (PDT)
-Date: Wed, 22 May 2024 20:41:18 -0300
-From: Gustavo Silva <gustavograzs@gmail.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, lars@metafoo.de, gerald.loacker@wolfvision.net, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/6] iio: chemical: add driver for ENS160 sensor
-Message-ID: <i6heylzrq3kez23oq3brbbhpw4ktt6umzh2vcsawch52upv4oa@muxsuackv6er>
-References: <20240512210444.30824-1-gustavograzs@gmail.com>
- <20240512210444.30824-4-gustavograzs@gmail.com>
- <205163e0-e2bd-4ed9-9f51-e20468f77655@wanadoo.fr>
+	s=arc-20240116; t=1716421701; c=relaxed/simple;
+	bh=AJsx9yBJy7KmJZ8yFLoOgiMw7kr+qvivBCVpiic91SA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MhpE5LBdWrgRglHnYYYsCHNPNrqMVBJVdo5gntd04+ok27iN+5fWhpgjoANkK3J8s1RfsXVdT0nBTwVsUh8IfGYhPPQIV7qRCjFbXkSjTBkd5Z7ZB5pe4cCYrrFdM8CfX7pYu+I+9PykCSJdK4RFe8O+CJoDUN5t5lUd9N7NvCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=azsBbvxE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44MDGP5Z031736;
+	Wed, 22 May 2024 23:48:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=iEKyOIGYT1uhtKW2TUcrB
+	jky0FOziJQOHoYC/86BYaA=; b=azsBbvxEMnGpJ8q1Omtt0NcKV+il/vmJkYSCj
+	h4nNGz5yOkY05j+Am9C9gyeP/f8XE9VNUWKLCwtd/gcQmVWkyyEYu4D1hkF7Ojf1
+	AxgJp+8Fujb0sQ6drCw77UJW10KSqcSbFtRf12x4rcvFHmE/64CGeaVGhRTUuVTo
+	xnT1gX5r7Qs42+cnFjz2LXORvyUh8k5tRy6ZJoCZWCnIGotZwkRIuCGIrWIP+xYn
+	Na1yByBFVQ4rxMjUUGhDFUfHquWShWcs1hoLlfEjg/MQGxIl4csvGKw09MFBly/z
+	n2X5PgxW8hBS6nyvRni7o399BXQ+yNExeWmNnrnj3w+gtTTWg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6psb2bku-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 May 2024 23:47:59 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44MNlwRm022885
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 May 2024 23:47:58 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 22 May 2024 16:47:57 -0700
+Date: Wed, 22 May 2024 16:47:56 -0700
+From: Elliot Berman <quic_eberman@quicinc.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Amrit Anand <quic_amrianan@quicinc.com>,
+        "Peter
+ Griffin" <peter.griffin@linaro.org>,
+        Caleb Connolly
+	<caleb.connolly@linaro.org>,
+        Andy Gross <agross@kernel.org>, Doug Anderson
+	<dianders@chromium.org>,
+        Simon Glass <sjg@chromium.org>, Chen-Yu Tsai
+	<wenst@chromium.org>,
+        Julius Werner <jwerner@chromium.org>,
+        "Humphreys,
+ Jonathan" <j-humphreys@ti.com>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        "Michal
+ Simek" <michal.simek@amd.com>,
+        <boot-architecture@lists.linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH RFC v3 2/9] dt-bindings: board: Introduce board-id
+Message-ID: <20240522162545887-0700.eberman@hu-eberman-lv.qualcomm.com>
+References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
+ <20240521-board-ids-v3-2-e6c71d05f4d2@quicinc.com>
+ <20240521-bonfire-backboned-9ef33c10d447@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <205163e0-e2bd-4ed9-9f51-e20468f77655@wanadoo.fr>
+In-Reply-To: <20240521-bonfire-backboned-9ef33c10d447@spud>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qY_JvQaN1iAlFKq6mrdUQu4JL51Q8nc-
+X-Proofpoint-ORIG-GUID: qY_JvQaN1iAlFKq6mrdUQu4JL51Q8nc-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-22_13,2024-05-22_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ adultscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=999
+ priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405220165
 
-On Mon, May 13, 2024 at 09:12:55PM GMT, Christophe JAILLET wrote:
-> Le 12/05/2024 à 23:04, Gustavo Silva a écrit :
-> > ScioSense ENS160 is a digital metal oxide multi-gas sensor, designed
-> > for indoor air quality monitoring. The driver supports readings of
-> > CO2 and VOC, and can be accessed via both SPI and I2C.
+Hi Conor,
+
+Thanks for taking the time to look at the patch.
+
+On Tue, May 21, 2024 at 08:21:45PM +0100, Conor Dooley wrote:
+> On Tue, May 21, 2024 at 11:37:59AM -0700, Elliot Berman wrote:
+> > Device manufcturers frequently ship multiple boards or SKUs under a
+> > single softwre package. These software packages ship multiple devicetree
+> > blobs and require some mechanims to pick the correct DTB for the boards
+> > that use the software package.
+> 
+> Okay, you've got the problem statement here, nice.
+> 
+> > This patch introduces a common language
+> > for adding board identifiers to devicetrees.
+> 
+> But then a completely useless remainder of the commit message.
+> I open this patch, see the regexes, say "wtf", look at the commit
+> message and there is absolutely no explanation of what these properties
+> are for. That's quite frankly just not good enough - even for an RFC.
+> 
+
+Understood, I've been trying to walk the line of getting the idea across
+to have conversation about the board-ids, while not getting into too
+much of the weeds. I was hoping the example and the matching code in the
+first patch would get enough of the idea across, but I totally
+empathize that might not be enough. I'll reply here shortly with a
+version of this patch which adds more details.
+
 > > 
-> > Signed-off-by: Gustavo Silva <gustavograzs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 > > ---
+> >  .../devicetree/bindings/board/board-id.yaml        | 24 ++++++++++++++++++++++
+> >  1 file changed, 24 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/board/board-id.yaml b/Documentation/devicetree/bindings/board/board-id.yaml
+> > new file mode 100644
+> > index 000000000000..99514aef9718
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/board/board-id.yaml
+> > @@ -0,0 +1,24 @@
+> > +# SPDX-License-Identifier: BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/board/board-id.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: board identifiers
+> > +description: Common property for board-id subnode
 > 
-> Hi,
-> a few comments below, for what it worth.
+> s/property/properties/
 > 
-> BTW, why I'm in copy of the mail?
-> I'm not a maintainer, and not active on drivers/iio/chemical/
-> Slightly proud, but curious as well.
+> > +
+> > +maintainers:
+> > +  - Elliot Berman <quic_eberman@quicinc.com>
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    const: '/'
+> > +  board-id:
+> > +    type: object
+> > +    patternProperties:
+> > +      "^.*(?!_str)$":
 > 
-Hi Christophe,
+> Does this regex even work? Take "foo_str" as an example - doesn't "^.*"
+> consume all of the string, leaving the negative lookahead with nothing
+> to object to? I didn't properly test this with an example and the dt
+> tooling, but I lazily threw it into regex101 and both the python and
+> emcascript versions agree with me. Did you test this?
 
-Your name was listed by the `get_maintainer.pl` script, so I may have
-added you to CC accidentally, my bad. I appreciate your review
-nonetheless.
-
-> ...
-> 
-> > +#define ENS160_REG_TEMP_IN		0x13
-> > +#define ENS160_REG_RH_IN		0x15
-> > +#define ENS160_REG_DEVICE_STATUS	0x20
-> 
-> If defining everything, maybe:
-> #define ENS160_REG_DATA_AQI	0x21
-> 
-Ack.
-
-> > +#define ENS160_REG_DATA_TVOC		0x22
-> > +#define ENS160_REG_DATA_ECO2		0x24
-> > +#define ENS160_REG_DATA_T		0x30
-> > +#define ENS160_REG_DATA_RH		0x32
-> > +#define ENS160_REG_GPR_READ4		0x4C
-> 
-> ...
-> 
-> > +static int ens160_chip_init(struct ens160_data *data)
-> > +{
-> > +	struct device *dev = regmap_get_device(data->regmap);
-> > +	u8 fw_version[3];
-> > +	__le16 part_id;
-> > +	unsigned int status;
-> > +	int ret;
-> > +
-> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_RESET);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = regmap_bulk_read(data->regmap, ENS160_REG_PART_ID, &part_id,
-> > +			       sizeof(part_id));
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (le16_to_cpu(part_id) != ENS160_PART_ID)
-> > +		return -ENODEV;
-> > +
-> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_IDLE);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = regmap_write(data->regmap, ENS160_REG_COMMAND,
-> > +			   ENS160_REG_COMMAND_CLRGPR);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = regmap_write(data->regmap, ENS160_REG_COMMAND,
-> > +			   ENS160_REG_COMMAND_GET_APPVER);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	msleep(ENS160_BOOTING_TIME_MS);
-> > +
-> > +	ret = regmap_bulk_read(data->regmap, ENS160_REG_GPR_READ4,
-> > +			       fw_version, sizeof(fw_version));
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	msleep(ENS160_BOOTING_TIME_MS);
-> > +
-> > +	dev_info(dev, "firmware version: %u.%u.%u\n", fw_version[2],
-> > +		 fw_version[1], fw_version[0]);
-> > +
-> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_STANDARD);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = regmap_read(data->regmap, ENS160_REG_DEVICE_STATUS, &status);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (FIELD_GET(ENS160_STATUS_VALIDITY_FLAG, status)
-> > +	    != ENS160_STATUS_NORMAL)
-> > +		return -EINVAL;
-> 
-> Just wondering how it works with the Warm-up and initial Start-up times.
-> If the probe is executed and the corresponding duration has not elpased,
-> then the probe fails.
-> 
-> Is it what is expected?
->
-According to the datasheet, the warm-up time corresponds to the first 3
-minutes after power-on. However, the chip I'm working with always seems
-to go straight to standard operating mode (validity flag = 0x00)
-immediately after power-on.
-
-Also, checking other drivers for the same sensor, including ScioSense's
-official arduino driver, none of them seem to consider this initial
-warm-up time.
-
-Maybe it is more reasonable not to fail the probe based on this
-condition but instead only log the status. If the status reads 1
-(warm-up) or 2 (initial start-up) the readings may be unreliable for
-some time, but the user will be warned. What do you think?
-
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct iio_info ens160_info = {
-> > +	.read_raw = ens160_read_raw,
-> > +};
-> > +
-> > +int ens160_core_probe(struct device *dev, struct regmap *regmap,
-> > +		      const char *name)
-> > +{
-> > +	struct ens160_data *data;
-> > +	struct iio_dev *indio_dev;
-> > +	int ret;
-> > +
-> > +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> > +	if (!indio_dev)
-> > +		return -ENOMEM;
-> > +
-> > +	data = iio_priv(indio_dev);
-> > +	dev_set_drvdata(dev, indio_dev);
-> > +	data->regmap = regmap;
-> > +
-> > +	indio_dev->name = name;
-> > +	indio_dev->info = &ens160_info;
-> > +	indio_dev->modes = INDIO_DIRECT_MODE;
-> > +	indio_dev->channels = ens160_channels;
-> > +	indio_dev->num_channels = ARRAY_SIZE(ens160_channels);
-> > +
-> > +	ret = ens160_chip_init(data);
-> > +	if (ret) {
-> > +		dev_err_probe(dev, ret, "chip initialization failed\n");
-> 
-> Nitpick: return dev_err_probe()
-Ack.
+Right, it should be a lookbehind, not a lookahead.
 
 > 
-> > +		return ret;
-> > +	}
-> > +
-> > +	return devm_iio_device_register(dev, indio_dev);
-> > +}
+> And while I am here, no underscores in property names please. And if
+> "str" means string, I suggest not saving 3 characters.
 > 
-> ...
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +      "^.*_str$":
+> > +        $ref: /schemas/types.yaml#/definitions/string-array
 > 
-> > +static int ens160_i2c_probe(struct i2c_client *client)
-> > +{
-> > +	struct regmap *regmap;
-> > +
-> > +	regmap = devm_regmap_init_i2c(client, &ens160_regmap_i2c_conf);
-> > +	if (IS_ERR(regmap)) {
-> > +		dev_err(&client->dev, "Failed to register i2c regmap %ld\n",
-> > +			PTR_ERR(regmap));
+> Why do we even need two methods? Commit message tells me nothing and
+> there's no description at all... Why do we need regexes here, rather
+> than explicitly defined properties? Your commit message should explain
+> the justification for that and the property descriptions (as comments if
+> needs be for patternProperties) should explain why this is intended to
+> be used.
 > 
-> Nitpick: dev_err_probe()
-Ack.
+> How is anyone supposed to look at this binding and understand how it
+> should be used?
 
-> 
-> > +		return PTR_ERR(regmap);
-> > +	}
-> 
-> ...
-> 
-> > +static int ens160_spi_probe(struct spi_device *spi)
-> > +{
-> > +	struct regmap *regmap;
-> > +	const struct spi_device_id *id = spi_get_device_id(spi);
-> > +
-> > +	regmap = devm_regmap_init_spi(spi, &ens160_regmap_spi_conf);
-> > +	if (IS_ERR(regmap)) {
-> > +		dev_err(&spi->dev, "Failed to register spi regmap: %pe\n",
-> > +			regmap);
-> 
-> Nitpick: dev_err_probe()
-Ack.
+I was thinking that firmware may only provide the data without being
+able to provide the context whether the value is a number or a string.
+I think this is posisble if firmware provides the device's board
+identifier in the format of a DT itself. It seems natural to me in the
+EBBR flow. There is example of this in example in patches 3
+(fdt-select-board) and 9 (the test suite). DTB doesn't inherently
+provide instruction on how to interpret a property's value, so I created
+a rule that strings have to be suffixed with "-string".
 
-> 
-> CJ
-> 
-> > +		return PTR_ERR(regmap);
-> > +	}
-> > +
-> > +	return ens160_core_probe(&spi->dev, regmap, id->name);
-> > +}
-> 
-> 
+One other note -- I (QCOM) don't currently have a need for board-ids to
+be strings. I thought it was likely that someone might want that though.
+
+Thanks,
+Elliot
+
 
