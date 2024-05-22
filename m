@@ -1,103 +1,106 @@
-Return-Path: <devicetree+bounces-68323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 608B58CBD72
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50FCE8CBD89
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91CC71C20CB5
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:03:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82E7D1C213BE
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF2E7D408;
-	Wed, 22 May 2024 09:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="nt7j1rC+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6867FBBD;
+	Wed, 22 May 2024 09:13:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A8918EB1;
-	Wed, 22 May 2024 09:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962FD7D408;
+	Wed, 22 May 2024 09:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716368610; cv=none; b=bzi4l17bOkqgTtKCIG2g5hM6Ueh/Ow1zI8VXD1kVTTN/1Ryhz/6/7L4L7IJ64b2W+TN4PhVI3IF3/kwox9JeNo8yv5JpBTTV4klcpqSlEhrQBxoNnmetYdDwoVD22aUxWH2d85IKpMkSo5s9xRXUCd0JlNcsI+ZzBq8QOt76AnI=
+	t=1716369196; cv=none; b=pv9QVTbBOX389DOR+9ROGacvdNC/ytBF2WtQiWQDI7UHhTysGC4YZjWHa7uXha8V8vKhYziXPq59y4kgWT+jSAjkbP+KZuI3kYYFxEsAG6cVjISeTsWfoE85UhkyoSiBsIWrAkbmXj7TJU3Gc1VD2rP0KOhEgg623KPRv+r6yNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716368610; c=relaxed/simple;
-	bh=+ThGKGBlufLwjddH7F1fYBE9I6h37rlkJDDJGwx2tAk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MyJ2kgOatzXGgtA9kW7tF+FuJhNCTqAOC2kLAlQ9zjEKlSyp9kFUW8wQZihsMzLdNPCSihi6/G7ZoET+BXkjZy2SMv7LYuBrIq+U+UIIZz5Cv7KBwBSU8eM/xt2lbazGpoU3NQn+GxS8C8cKTbnCE/6uaxQH7M+KQ3XUf0S5+/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=nt7j1rC+; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1716368599;
-	bh=tgnLczqIZPIw1RRjYhcOby3l9JBMPnlryBl/aTxvZL8=; l=905;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=nt7j1rC+WnReYr5AJLO2DGopygHPzW6qPJwCWSyagMWGuWDxm85XT+r1Y/qix4MHO
-	 W9lVVueygKx8DJN4h3dhJWPTwlo1DFWIRLSCjg1krFxclu7bOjPhFJkBsoif/oLgIW
-	 tM56S0gyf7pZmzVqRcOpdu5STVPuv6YxwLBs/DzwB+fQ0Hzi6ZEDpRZA7yXoMm7jbw
-	 HasprX3/slmRX/lfjTLWAx22O8o326liSJQ+Vi3yejvLgREQcXVJsg/Zh1mr5CX88E
-	 38+0NYzPbViDpoyuJd4D/7fHL1ISKuRqXTv02q6jInEbkeKKaHYLhJiyhaPAtvGvsg
-	 JgSOLdpbF/XiQ==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213195:0:AUTH_RELAY)
-	(envelope-from <alina_yu@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 22 May 2024 17:03:03 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 22 May
- 2024 17:03:02 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 22 May 2024 17:03:02 +0800
-Date: Wed, 22 May 2024 17:03:02 +0800
-From: Alina Yu <alina_yu@richtek.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<cy_huang@richtek.com>
-Subject: Re: [PATCH 2/2] regulator: dt-bindings: rtq2208: Add specified fixed
- LDO VOUT property
-Message-ID: <20240522090302.GA19548@linuxcarl2.richtek.com>
-References: <cover.1715846612.git.alina_yu@richtek.com>
- <9c1bbe4b38a4ee5650d888478f1ce2cec2733669.1715846612.git.alina_yu@richtek.com>
- <5d26b19c-7679-4dba-a9ba-a7368d39b474@linaro.org>
+	s=arc-20240116; t=1716369196; c=relaxed/simple;
+	bh=NpDkl4C/aLxNfziyVKJNZYBrRPMqBmz2L19eYuqK2zs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NbZ39XfVr/6oc4pAizJeepLwXnzhleQB4yM6Wk4ULicJHiFn9gwrm6BKw3soaQyf/+uvgrl4BFoGmYVJLQ3iILSCyerHFbmoRlMrP5dfbxZlvUrQqN3BAio2J3RJT/5OlEabNeowyO5KyR4ZD4JIrnQ92Qizs13TYp0GeJjqNgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-df4dce67becso816130276.2;
+        Wed, 22 May 2024 02:13:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716369193; x=1716973993;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y+vSIey2mm84TJxOyNrO7CZJLSbx18JBAUyIQbFjOoc=;
+        b=dhdkJ33+Auh8UvyMV0a3SgIs0hkQxJ5G/TX1V1LpafK80ZBQoe8vYvWVzCWDA5JbG6
+         W1s0B7Co3aLooOzHknvzDkc+Tcbyadk1s5A2v+nDLEa6FdnDjl7NyytTqq9Cth8tcPLR
+         gE4hIpBFPzmLOtMKlXS10V246haxl09z119VTPjY/Tc9u7WaoCuwCtcuVWVHsAL8MDRh
+         Wp1vPyjYUHMYbxiOfZDCZOv5RsYRTD4k+U+5V+KJvGMrxwAZflRoayAqovo6rosEYuLo
+         TGnuDkcDiE2OE96kHmLeJoitzWO3NV3RDvsEOmndcOUzIDZIJQ3OdCB7t964TiBL2xTQ
+         qgBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXE+tg6md5Oweb/+RyH12lauI03bGISSeLmFt52ZlbFXq+fHyq976Wls0HKJjYjHoD04hPbw8qtvEuRgP76f4uUUYhoSA4bD255pXu5xq5ZYNx4Q7B+MfQ/FgoC2o/1KfS1k4Cy4EK3QA==
+X-Gm-Message-State: AOJu0Yyl+waAn5+YdtOK9xZricYUrOOG0A4wpi++SXR/3Wp0xhf0gdIw
+	tW2oQf8evlIJpiPm7tjhxjdqUKv0tSjuD5yygog/60lbYxT64bZIfM+2SW1a
+X-Google-Smtp-Source: AGHT+IH/FR2r405wasBLoYUxpNArUb57kZyAqOMcRsQa+uNXkZ+5JqLa0AWdtDCpXEuA+266We/8sg==
+X-Received: by 2002:a25:8002:0:b0:de5:4ab8:317f with SMTP id 3f1490d57ef6-df4e0bc89d0mr1521203276.20.1716369192973;
+        Wed, 22 May 2024 02:13:12 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-df443e64338sm2812577276.32.2024.05.22.02.13.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 02:13:12 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6203f553e5fso45753247b3.1;
+        Wed, 22 May 2024 02:13:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXuUburJZEu64jD0O6VG1rpU5Me9N6oh4sWpAzCAdcIbhlGjIe+GGdSmYDHd35zZP2eBx7e2Qm94cJDcjXlamXC6tpgqhmJZaBaPCWn4UrH8kGgE68mQdkCuUgyXhFiTAydj7nQn8caNg==
+X-Received: by 2002:a05:690c:f88:b0:615:ecc:91c0 with SMTP id
+ 00721157ae682-627e465c79dmr17494947b3.20.1716369192153; Wed, 22 May 2024
+ 02:13:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5d26b19c-7679-4dba-a9ba-a7368d39b474@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <20240515091925.24353-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240515091925.24353-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 22 May 2024 11:13:00 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWPBp+5zmech9hJbAvmhi5O38z-hTW1oBQjbf5Uw_jqsQ@mail.gmail.com>
+Message-ID: <CAMuHMdWPBp+5zmech9hJbAvmhi5O38z-hTW1oBQjbf5Uw_jqsQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: gray-hawk-single: add aliases for
+ I2C busses
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 16, 2024 at 02:34:02PM +0200, Krzysztof Kozlowski wrote:
-> On 16/05/2024 11:20, Alina Yu wrote:
-> > As the fixed voltage for the LDO is outside the range of the adjustable voltage mode,
-> > the constraints for this scenario are not suitable to represent both modes.
-> > Therefore, A property is added to specify the fixed LDO VOUT.
-> > 
-> > Examples of fixed LDO VOUT and adjustable LDO VOUT is also added to this version.
-> > 
-> > Signed-off-by: Alina Yu <alina_yu@richtek.com>
-> > ---
-> 
-> This is a v1 but I am pretty sure I saw it somewhere and there was
-> already some sort of discussion. Confused... :(
-> 
-> Best regards,
-> Krzysztof
-> 
+On Wed, May 15, 2024 at 11:19=E2=80=AFAM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> They are numbered like this in the schematics, so keep the names in
+> Linux the same.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-The discussion regarding this matter took place during v2 and v3.
-Due to the fixed LDO VOUT being outside the range of the adjustable one,
-a special-use property has been added to avoid overusing the constraints.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.11.
 
+Gr{oetje,eeting}s,
 
-Thanks,
-Alina
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
