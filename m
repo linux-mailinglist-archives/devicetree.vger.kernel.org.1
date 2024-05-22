@@ -1,178 +1,175 @@
-Return-Path: <devicetree+bounces-68512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99CE48CC79E
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 22:05:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB138CC7B6
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 22:34:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8837B2107A
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:05:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA9921F21BD9
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D81E7D3E8;
-	Wed, 22 May 2024 20:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D93145FEA;
+	Wed, 22 May 2024 20:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FWcOJq5T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c4+kguVP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA20EF4E7
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 20:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C96C7E575;
+	Wed, 22 May 2024 20:34:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716408348; cv=none; b=tOVNU7R+fpAebcXQU/uJzxeqPBic4oLZGm40og49mMaZau+6ftmW+tG2+zC6OwmqoOkrky2R1fa7sU0CEepbVvm6OBGEK3AxtofGBJRQkdMm3bS2eQNktrU3+BD+a5NSXgHECu4sdhyUwk2Gt6Z9wWWKthpD+OLzxFbJFzPHsz0=
+	t=1716410050; cv=none; b=YnzAYVrYv25hA67JTN6c7H1oc8c5r26VxUm7U2sa8+KxoJn7It6n0YDWfcGvxB9ZF214xVSQdUS0h00u1bYH5CLMLrCRQ5E8a8soVI/W46Vskjwy6h1yxn0z4FKWZpS6O4Rf2btrprgA26QUwaRnGM9eMe1xs5u37yjb1uIWy6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716408348; c=relaxed/simple;
-	bh=9qFYTEzr5EM54xRkpldur+CAwo/4uWeVmyh1E44+jGA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qeZGOE9M/ixa0j9FFWBtKkN6SxvE7Sfa3AaVqOzafuKNrWolyzX2+R+AWfFyGOiXACgQPZSw2Iq6phdEBpdZEu3nYznFn1XfNQOeMrFNFRs9W/4IAJTL+79kLHnRl9XGCHe24kfW4Lkk3FCrKVslwX1aF6xVGSMntY3i6G0zcYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FWcOJq5T; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-df4d7e3dc94so1864273276.1
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 13:05:46 -0700 (PDT)
+	s=arc-20240116; t=1716410050; c=relaxed/simple;
+	bh=/6RBSwUUWg/HR/XrYDouHPaKrC8vOaWXZq2wcQh9Vhk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JbsGfZOHtHwVPIbZpj2pYRqsRHbn7j8buN1sWHjIL8ZFbHXQq7SoKJVyCRzn59McVKFk1G0zaplwMduZgRAehvOdJIjUWC+OQLIbJswW7CyPwQPPuNj2/6cs0+quAJeKTQm4wtM7V+1ne92QqfmPBkzeDGjDmnrwPqkcbIYr4g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c4+kguVP; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2e6f2534e41so55807711fa.0;
+        Wed, 22 May 2024 13:34:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716408346; x=1717013146; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hk3jDe7FCuIhCM+FHY50wYnpF7qQKPUq+TZmlYJWz+A=;
-        b=FWcOJq5THJ/wMTJMs4Z46retz73ngUAbc76imdCwT04ATIVGkd1D7Oec0DGcDqB5cg
-         WJGq6dr0Ortir7bFqBTDDLP2LZS7XjvlRkHdoxLlgSI/9WTwWAgUqdBIicJKcTRJTzRM
-         Mx++XGxoX0yafF81FAu6RV2vhF6LGNdfU7NKzuWdOsSepkcnYbWjFTp6CN5KoKBIdOf4
-         rRdZidQr5R1wc0oPb67va3tB2QhMcaGzvZC2/uj+rO1U3+Td95FbFm6Z8XIhgEvLjBUc
-         g02uzukmvkLU6hxYvzkxT+aYr3MOXw0By9Bs2KLY5gGA5pnvRwAeHMn8B7nifHsRueK/
-         B5Dw==
+        d=gmail.com; s=20230601; t=1716410047; x=1717014847; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=juCkMaHMrzaKXgLhLu9+/j0ickUzidNday1E+cJ916c=;
+        b=c4+kguVPIJoktOJTS+AazTlGetLNZZKRCXaU7Z3XG2OCxpygpZTw0PR9iw3QQr9/Qv
+         QdB3Cgc0A5dCALGg7cDzhgnVkB/UhpwxHv9/9PV6IQbaRxvkH778W0ZIFhg84rEFrnE2
+         9BtMC3VZ8Wz695ZZkrhu7g1MZP1gYIs/DDsWaT+dyz9bpNqhM3xTrIGXH8Gp46mwmS1T
+         Vn5SuxN1TAmninx03THzqwbkAFq0UfsDdHL1KpWln4hTfaUjmTos2eWZFqoyd8aEbUO4
+         /GEBVMc6C6bGLQew2mLVDCbQaZD9o5S+q6sTAC+3fdB266WBK5IAm/WM1fx3beKkTCnY
+         vwPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716408346; x=1717013146;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1716410047; x=1717014847;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hk3jDe7FCuIhCM+FHY50wYnpF7qQKPUq+TZmlYJWz+A=;
-        b=d4x92QlYWHoSu9O7XAj3Jpv0yeANQQMtWMQjCeR+4DpPvEKLoVKIj44YDzI3TlGYXR
-         cDJU6E3qwtc9uwtfCm0Pu/sesjDncZjUzw1UlndXYRflWY5R4QTMAFTvlrKr6bL5+Jrd
-         MqSvcECc1nklcKMI3goT3o2w8YWUlDn9CB/IqsOgcKDn7gH5J89L2DhwIFacB7nf1fw8
-         Rd2U2jnEuUY6VWz1upq6HVRW/2I1JSUkNg5uWdDmGq6JowR7IX1b0jAEq8J9h8ByiZX/
-         Zref6HISGek4PW3FVztaDRdg41EuJJq7YHFXN7xcAXeL8VuBRYW56OLGzLTKbeskPvSa
-         w/lw==
-X-Forwarded-Encrypted: i=1; AJvYcCWbv/T/dnhcO7jiv8+tWu1tpvB+aUFP3mbRJ5KOcE1SaZ/Y74xs1cEFfEfTI4NA9wkpl6sybxyEGA08Pj84rMZNUlQdjYVq1hp4RQ==
-X-Gm-Message-State: AOJu0Yw+aUQ/gB2R6zD3wXjsqUioC7dHs6Mb7HIkne+d+yJRh91r4F5N
-	IC0ohY7kQ3uCf0vUc5tiocBfg2M4EJfAvJXA3ukQ8k1NbLZ6DjAxR1ZQaS9aLoYPRAn9tXRdKYs
-	cnuXebFFtj/9/EJEl/8A2+LXy4oJ/4E2CRELLlw==
-X-Google-Smtp-Source: AGHT+IGriJg+wB3ztmixivwvv97cgSoAQj2CfDfqQDNVbMaFx0uytg1e+rLooAVwAc90Yaum/PZOSVahorkiKNzK6YY=
-X-Received: by 2002:a25:6b44:0:b0:de5:9ec3:6475 with SMTP id
- 3f1490d57ef6-df4e0c1347cmr3111690276.31.1716408345943; Wed, 22 May 2024
- 13:05:45 -0700 (PDT)
+        bh=juCkMaHMrzaKXgLhLu9+/j0ickUzidNday1E+cJ916c=;
+        b=W1XfojPSkF5v4ISapxZ9ai79pVfhEJi4mC+7dOfOrBpkJGVhi9Mc9v7e5dxM9mzVKS
+         ZQ7tHGMXS6GlRGvw+PYiZRt+3EaDELyrdL/AALVBKsu0iU3E4fg8E3u2vOBYYpf9iy1/
+         DeB7jm1JlTldLSBNjg2TBYfE8RTTUQFtow9CQdXHHH5ryyawdR5PkkIvxTwgvMxV+0Ng
+         bfZb+WN969N9qYxjVsO98jq7TZj+RDopOxlY2Q2kFA/+9nygAbRyoww3mUX8TIDGnFGJ
+         1TjALFRbup4wzglKWOcc+f2/s7SYo95vXFnrAuxH+1+nSjrmn8ufm2Oksl222o3y8lSG
+         cy9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW0/rpZQoYIeUpFCwQ6UI9XoPbM0EH7W17fjJ1SsUnx708A80Bjz6p5SaJqR+Botij1fgDvi24YX8FWfdFlQ2lBSu1/+Lqv5BPkCm2zcb8M+gutgm04b1c/gafx9stoQCA9U70+WSIB5g==
+X-Gm-Message-State: AOJu0Yzsg2iSntbDOHS4RN35nRehetsaxEhbwTIzVtLx0IqUP6C+t6Vs
+	wHbZuk6QU7Th0yTDLssv1+GtU3f/0OrofM9xD8A2OGqO/eoXdv/vnh2Uevzvk6Q=
+X-Google-Smtp-Source: AGHT+IF/RlGn1Aaddcf4QEPpAcrsp+lceodnSjZlFNLFzQPFFKa1tt4y8BjqBA5+mQIC8SRizt3Mjg==
+X-Received: by 2002:a2e:330a:0:b0:2e5:67a9:4dcf with SMTP id 38308e7fff4ca-2e9494be817mr18094341fa.18.1716410046915;
+        Wed, 22 May 2024 13:34:06 -0700 (PDT)
+Received: from localhost.localdomain (89-64-18-73.dynamic.chello.pl. [89.64.18.73])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e4d0ce35dcsm41575161fa.34.2024.05.22.13.34.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 May 2024 13:34:06 -0700 (PDT)
+From: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+To: linux-input@vger.kernel.org
+Cc: dmitry.torokhov@gmail.com,
+	jeff@labundy.com,
+	neil.armstrong@linaro.org,
+	schnelle@linux.ibm.com,
+	arnd@kernel.org,
+	kuzhylol@gmail.com,
+	hdegoede@redhat.com,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	artur.serhiienko@gmail.com,
+	igor.opaniuk@gmail.com
+Subject: [PATCH v2 1/2] dt-bindings: input: touchscreen: add Hynitron CST816X
+Date: Wed, 22 May 2024 17:33:46 -0300
+Message-Id: <20240522203347.2263425-1-kuzhylol@gmail.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org> <224fa477-07ba-e7b2-2f7d-8f7d21f4a0c7@quicinc.com>
-In-Reply-To: <224fa477-07ba-e7b2-2f7d-8f7d21f4a0c7@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 22 May 2024 23:05:34 +0300
-Message-ID: <CAA8EJpp8kRPKboHNHwD+R5f1AcndjaQdGG=Q4ygmRE9VMNievQ@mail.gmail.com>
-Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE source
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 22 May 2024 at 21:38, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
->
->
->
-> On 5/20/2024 5:12 AM, Dmitry Baryshkov wrote:
-> > Command mode panels provide TE signal back to the DSI host to signal
-> > that the frame display has completed and update of the image will not
-> > cause tearing. Usually it is connected to the first GPIO with the
-> > mdp_vsync function, which is the default. In such case the property can
-> > be skipped.
-> >
->
-> This is a good addition overall. Some comments below.
->
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >   .../bindings/display/msm/dsi-controller-main.yaml        | 16 ++++++++++++++++
-> >   1 file changed, 16 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> > index 1fa28e976559..c1771c69b247 100644
-> > --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> > +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> > @@ -162,6 +162,21 @@ properties:
-> >                   items:
-> >                     enum: [ 0, 1, 2, 3 ]
-> >
-> > +              qcom,te-source:
-> > +                $ref: /schemas/types.yaml#/definitions/string
-> > +                description:
-> > +                  Specifies the source of vsync signal from the panel used for
-> > +                  tearing elimination. The default is mdp_gpio0.
->
-> panel --> command mode panel?
->
-> > +                enum:
-> > +                  - mdp_gpio0
-> > +                  - mdp_gpio1
-> > +                  - mdp_gpio2
->
-> are gpio0, gpio1 and gpio2 referring to the vsync_p, vsync_s and vsync_e
-> sources?
+Add documentation for the Hynitron CST816X touchscreen bindings.
 
-No idea, unfortunately. They are gpioN or just mdp_vsync all over the
-place. For the reference, in case of the SDM845 and Pixel3 the signal
-is routed through SoC GPIO12.
+Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+---
 
-> In that case wouldnt it be better to name it like that?
->
-> > +                  - timer0
-> > +                  - timer1
-> > +                  - timer2
-> > +                  - timer3
-> > +                  - timer4
-> > +
->
-> These are indicating watchdog timer sources right?
+Changes in v2:
+ - Apply pin definitions and DT headers
+ - Use generic name for DT node
+ - Drop status field
 
-Yes.
+ .../input/touchscreen/hynitron,cst816x.yaml   | 56 +++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
 
->
-> >       required:
-> >         - port@0
-> >         - port@1
-> > @@ -452,6 +467,7 @@ examples:
-> >                             dsi0_out: endpoint {
-> >                                      remote-endpoint = <&sn65dsi86_in>;
-> >                                      data-lanes = <0 1 2 3>;
-> > +                                   qcom,te-source = "mdp_gpio2";
->
-> I have a basic doubt on this. Should te-source should be in the input
-> port or the output one for the controller? Because TE is an input to the
-> DSI. And if the source is watchdog timer then it aligns even more as a
-> property of the input endpoint.
-
-I don't really want to split this. Both data-lanes and te-source are
-properties of the link between the DSI and panel. You can not really
-say which side has which property.
-
-> >                             };
-> >                     };
-> >              };
-> >
-
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
+new file mode 100644
+index 000000000000..22bd145db5ee
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816x.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/hynitron,cst816x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Hynitron CST816X series touchscreen controller
++
++description: |
++  Bindings for Hynitron CST816X series touchscreen controllers.
++
++maintainers:
++  - Oleh Kuzhylnyi <kuzhylol@gmail.com>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    enum:
++      - hynitron,cst816s
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@15 {
++        compatible = "hynitron,cst816s";
++        reg = <0x15>;
++        interrupt-parent = <&gpio>;
++        interrupts = <4 IRQ_TYPE_EDGE_RISING>;
++        reset-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
++      };
++    };
++
++...
 -- 
-With best wishes
-Dmitry
+2.30.2
+
 
