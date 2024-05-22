@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBEF18CC02B
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:24:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 563B48CC03A
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:29:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7043D28302A
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:24:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9DEE9B20E52
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7806C824B0;
-	Wed, 22 May 2024 11:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B3B782863;
+	Wed, 22 May 2024 11:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MWPU+AHW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mkReHIBR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE9F824AE;
-	Wed, 22 May 2024 11:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2681B824AF;
+	Wed, 22 May 2024 11:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716377040; cv=none; b=l6qaWAuQd5pQnmRo119/Nsmcxn7y4SmplrG0ENtqud6lYAxJTYuTJUHbbba/PdWdTKNQ3gwWgKheIWSqN5mKWAij4bXjPaJ3Fl+VvxXe04lKbk6sYEgJDKnxzd29kdkzvXizeeatlcr742EooBkvaw/u1BzU1GPNlxxdns/N3Hc=
+	t=1716377375; cv=none; b=N0fNZhPXCEHnFglSUFc0rRD+u24tOpvAGwL6D6HJYfIfqD+NnEZKZrc45RU76HUaRjtl2pGRtDH/yZriAoaQrhwijDZgwWanAmVYnhuyrH7v6/yRxEjJpDIX4u2A9eL4Kv0hEi9Qjqd2yPgD8evRyrelEq32FlF2VBIoDNRw0R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716377040; c=relaxed/simple;
-	bh=woKPDlBhWzEwxGppa56Q92nHAi8Aqz8b0Ooq3A14Eo0=;
+	s=arc-20240116; t=1716377375; c=relaxed/simple;
+	bh=v9sTb1YPD0eyXpGV9zrS8qJaIGoTzfld+AFYcRslwoU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s8EPpAWQKtYZeDgcVPNc7I9zv/UYXPOW8HbXwlf53DJdE7iZGfaGwslH5ZuBOtsl4p9N74iNjA8ZnYGruCZH36hY8naVepVu/hVkD4CMY/SX1DgJ+0a5Wv/IB9oENxamfJrZGaL+r6cZNvz+2tjP5XhY8DANGYtR6OLsXFPhDCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MWPU+AHW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D20DC2BD11;
-	Wed, 22 May 2024 11:23:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IwcQNaO0GZovIW+J+WfWM/9dH654BNvb8AFEa+jmH9R6nG60/1g6Uf4+sg84wcanb/ZQrSFFmdSxTIOPcEMhyoUk6f2MuRlSsyJPgjmpoD2/ZlKs29+W0RDMJucq5Gn6YMUQ8yXOpAXQKRZFbh+YQtI3uWJOwC6xA599CnuuiOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mkReHIBR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22119C2BD11;
+	Wed, 22 May 2024 11:29:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716377039;
-	bh=woKPDlBhWzEwxGppa56Q92nHAi8Aqz8b0Ooq3A14Eo0=;
+	s=k20201202; t=1716377374;
+	bh=v9sTb1YPD0eyXpGV9zrS8qJaIGoTzfld+AFYcRslwoU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MWPU+AHWDTvedVQ6wIHWkQ2VeYGadpGsSeRw9yv/Jp1L5eNNZC0Yj2Zro77xy0wzs
-	 g5zcHQSOeGhPwz9kFf+UQImXYhWoasUG1m6wkyvXvGDLcytlsEwlphMAdOSCUufUsY
-	 QTs9BxCAjqAtjXtUyA+Vtcz2PvX7jVmzCBX0SN3FDVRBDRjt4V5gko2LTUug1HWC3J
-	 phMCFZLGWsC80gQx0J1KPYOwEopOK08cJ3TtbAxNBEoF1liiw463ruNLAncr96M6d6
-	 DJczuxj4VOvdENccqfxVixasWkFS93GM+Pw7a8U4zfcBdI5/HsBG6h+HAC+pCBszS1
-	 5wri7ge85CKlw==
-Message-ID: <c8fb27bd-187c-4216-956a-f30172571d77@kernel.org>
-Date: Wed, 22 May 2024 13:23:55 +0200
+	b=mkReHIBRSYEtmd3hIYMzBO5Heb3KH5Qr+Im/mlh9DIJsrSLTykHd7qfQE/JHSBDm1
+	 3wVerYYyHetfJdDZ0/YoJk5RPVzKaBTslonF+3clPkr+uQnX5hK622yBzUhvFOmqdz
+	 hL0WOk99Gzp722x6k7n41/QiexaYr10Zcw5ngeobOuvZXl/yszGgPXaAErOcpbMKpe
+	 6PacgvOkhZzeJbf04HbJfsLFj/7L0Py+ifxhU4rWk9Df+VRCyw2uLRNGyfMe2/JNV6
+	 A7xCOwhoszGy48oMvhKJX6oRnHGe2PSdYw5A5/BGbEoRbYJMsqw9UTwbKfuynsPqOi
+	 1iMkwHxx97KnQ==
+Message-ID: <774df64c-56a1-461a-82fa-a0340732b779@kernel.org>
+Date: Wed, 22 May 2024 13:29:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: drop
- second output clock name
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- devicetree@vger.kernel.org
-References: <20240521-fix-pcie-phy-compat-v1-0-8aa415b92308@linaro.org>
- <20240521-fix-pcie-phy-compat-v1-2-8aa415b92308@linaro.org>
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: dma: Add reg-names to
+ nvidia,tegra210-adma
+To: Sameer Pujar <spujar@nvidia.com>, vkoul@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+ jonathanh@nvidia.com, dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+Cc: linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ldewangan@nvidia.com, mkumard@nvidia.com
+References: <20240521110801.1692582-1-spujar@nvidia.com>
+ <20240521110801.1692582-2-spujar@nvidia.com>
+ <80b6e6e6-9805-4a85-97d5-38e1b2bf2dd0@kernel.org>
+ <e6fab314-8d1e-4ed7-bb5a-025fd65e1494@nvidia.com>
+ <56bf93ac-6c1e-48aa-89d0-7542ea707848@kernel.org>
+ <f785f699-be50-4547-9411-d41a4e66a225@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,24 +108,87 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240521-fix-pcie-phy-compat-v1-2-8aa415b92308@linaro.org>
+In-Reply-To: <f785f699-be50-4547-9411-d41a4e66a225@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/05/2024 22:30, Dmitry Baryshkov wrote:
-> There is no need to specify exact name for the second (AUX) output
-> clock. It has never been used for the lookups based on the system clock
-> name. Partially revert commit 72bea132f368 ("dt-bindings: phy:
-> qcom,sc8280xp-qmp-pcie-phy: document PHY AUX clock on SM8[456]50 SoCs"),
-> returning compatibility with the existing device tree: reduce
-> clock-output-names to always contain a single entry.
+On 22/05/2024 09:43, Sameer Pujar wrote:
 > 
-> Fixes: 72bea132f368 ("dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: document PHY AUX clock on SM8[456]50 SoCs")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+> 
+> On 22-05-2024 12:17, Krzysztof Kozlowski wrote:
+>> On 22/05/2024 07:35, Sameer Pujar wrote:
+>>> On 21-05-2024 17:23, Krzysztof Kozlowski wrote:
+>>>> On 21/05/2024 13:08, Sameer Pujar wrote:
+>>>>> From: Mohan Kumar <mkumard@nvidia.com>
+>>>>>
+>>>>> For Non-Hypervisor mode, Tegra ADMA driver requires the register
+>>>>> resource range to include both global and channel page in the reg
+>>>>> entry. For Hypervisor more, Tegra ADMA driver requires only the
+>>>>> channel page and global page range is not allowed for access.
+>>>>>
+>>>>> Add reg-names DT binding for Hypervisor mode to help driver to
+>>>>> differentiate the config between Hypervisor and Non-Hypervisor
+>>>>> mode of execution.
+>>>>>
+>>>>> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
+>>>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>>>>> ---
+>>>>>    .../devicetree/bindings/dma/nvidia,tegra210-adma.yaml  | 10 ++++++++++
+>>>>>    1 file changed, 10 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+>>>>> index 877147e95ecc..ede47f4a3eec 100644
+>>>>> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+>>>>> @@ -29,8 +29,18 @@ properties:
+>>>>>              - const: nvidia,tegra186-adma
+>>>>>
+>>>>>      reg:
+>>>>> +    description: |
+>>>>> +      For hypervisor mode, the address range should include a
+>>>>> +      ADMA channel page address range, for non-hypervisor mode
+>>>>> +      it starts with ADMA base address covering Global and Channel
+>>>>> +      page address range.
+>>>>>        maxItems: 1
+>>>>>
+>>>>> +  reg-names:
+>>>>> +    description: only required for Hypervisor mode.
+>>>> This does not work like that. I provide vm entry for non-hypervisor mode
+>>>> and what? You claim it is virtualized?
+>>>>
+>>>> Drop property.
+>>> With 'vm' entry added for hypervisor mode, the 'reg' address range needs
+>>> to be updated to use channel specific region only. This is used to
+>>> inform driver to skip global regions which is taken care by hypervisor.
+>>> This is expected to be used in the scenario where Linux acts as a
+>>> virtual machine (VM). May be the hypervisor mode gives a different
+>>> impression here? Sorry, I did not understand what dropping the property
+>>> exactly means here.
+>> It was imperative. Drop it. Remove it. I provided explanation why.
+> 
+> The driver doesn't know if it is operated in a native config or in the 
+> hypervisor config based on the 'reg' address range alone. So 'vm' entry 
+> with restricted 'reg' range is used to differentiate here for the 
+> hypervisor config. Just adding 'vm' entry won't be enough, the 'reg' 
+> region must be updated as well to have expected behavior. Not sure how 
+> this dependency can be enforced in the schema.
 
+That's not a unusual problem, so please come with a solution for your
+entire subarch. We've been discussing similar topic in terms of SCMI
+controlled resources (see talk on Linaro Connect a week ago:
+https://www.kitefor.events/events/linaro-connect-24/submissions/161 I
+don't know where is recording or slides, see also discussions on mailing
+lists about it), which is not that far away from the problem here. Other
+platforms and maybe nvidia had as well changes in IO space for
+virtualized configuration.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Come with unified approach FOR ALL your devices, not only this one
+(that's kind of basic thing we keep repeating... don't solve only one
+your problem), do not abuse the regular property, because as I said:
+reg-names will be provided as well in non-vm case and then your entire
+logic is wrong. The purpose of reg-names is not to tell whether you have
+or have not virtualized environment.
+
 
 Best regards,
 Krzysztof
