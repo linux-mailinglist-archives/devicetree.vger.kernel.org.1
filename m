@@ -1,63 +1,70 @@
-Return-Path: <devicetree+bounces-68423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274DF8CC381
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:48:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0EA8CC3AC
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:01:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE7041F21F32
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:48:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB9FC281D26
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0229E18B14;
-	Wed, 22 May 2024 14:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F12071A29A;
+	Wed, 22 May 2024 15:00:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VyKt44RB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZrZun4u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8CE171D8;
-	Wed, 22 May 2024 14:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9D4AD23;
+	Wed, 22 May 2024 15:00:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716389327; cv=none; b=CnWuG+ZRjDqJaCV6tNAgUEeMe2hAi59A5DqEMhPmYsDKMEMR6JHtv6Ia+MBcamdKZcF+2P83ABKG2BT4xxz50IPhYB5aExsVotFZ+yi443BFIa9F49mrAHkxoDQxrdGItMYwEKNoENYNGDIyteEgZnhY/YypFlPYfYxxVhNhqxY=
+	t=1716390056; cv=none; b=VwBNYyWKz3unyi3vkiGf+ZlN76FljIoxcN3NfZz0Fib6/Xbc0uTwUNda10pFE/4+tDcefbgHki3NQiiBpqLqP2OO/LTi7n9/yAaciteqkXN1W5s8VbfC/Gh9Kiosk7iXpKq/MsrobWHPUVSsUf/GyEmeoUA7Zn7FJlDWeO1nZvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716389327; c=relaxed/simple;
-	bh=REZ/hGrrzdHHLNt53xBnhdfv5bXUdy4C2BSdNp8ahJY=;
+	s=arc-20240116; t=1716390056; c=relaxed/simple;
+	bh=4pdAzhbUK2tL0oB6flZpstCuhJJbI2mdYJEwhKfdzs8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tx/LT9YCMuEpmmHMKyGnjRTGbQ3J7wGvO4LYbJsutjTfugSj1MDo0jvYJ6LmZGB1Ez+S/dAeHxZCPoU6y6bmAhuEYLvSLRHoIjqOKFA6aNxQ8sFiw/QR/Q12ELc9azLJQ/UmhzYjTGYC0KmV4H20a4Ue9KqvsqySCV3XSNB4Ga8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VyKt44RB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E77FC2BBFC;
-	Wed, 22 May 2024 14:48:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lcyzT+MxjdLkRwr5TZPJxFdJ6zEdfM//duQQ/yXkVyI/ntMUW1pdGgBRG1BnEhOTqb6oGnjyI8jnXRh/EJPPaO1nk/CDQSTz0/BiQsec1kKBWTgnR9CEnA0oX6JKoJP/d9qFsC0IdakzJFKVUa4rOtgu467P1Zbpu3xwzWwpOB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rZrZun4u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFE13C2BBFC;
+	Wed, 22 May 2024 15:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716389327;
-	bh=REZ/hGrrzdHHLNt53xBnhdfv5bXUdy4C2BSdNp8ahJY=;
+	s=k20201202; t=1716390056;
+	bh=4pdAzhbUK2tL0oB6flZpstCuhJJbI2mdYJEwhKfdzs8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VyKt44RBSErFmvyFyzhROeJTgR8rCsm4yXCS9l06pIafvLLNuYwp7hwsY+M6svEpl
-	 b9ZjlA8CLjhiApVDHBoVORImCP7OJ91F5N2wi/62ArL8mWQrKAQF3p2cokY/6Mnvqi
-	 H8FWXMDjNn9+NQXMzfYJrjs8iLBTY0jmakihRNxNHHhya41G2SWXnAuti2U+UTRTPL
-	 9KfaENgbb4MgEaVj/MqVSrvAS4IquTOBbpKZoY8xczLlGyVLHcEDvLg/zU0QxOm46Q
-	 5KIdK0uuJPvPi6dbRoUxyLwCEjEExI2nlJiLdr74fL4i+5zJ0t1TvCD7WDudARHD37
-	 +2T/VfDE5OSUA==
-Date: Wed, 22 May 2024 09:48:46 -0500
-From: Rob Herring <robh@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Michal Simek <michal.simek@amd.com>, linux-gpio@vger.kernel.org,
-	Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-	linux-kernel@vger.kernel.org,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
+	b=rZrZun4umNT26if2ijBipctJlvrW5ohvd+Rda/UdY8LIkzWmFxfUze/N4XLt/pesQ
+	 d/v3VsvEVc3U936NdWseVbClZ9dUXpWy74mfbRvLrQmF4l10B/p/VpXFB7zXUXOUwK
+	 wIf27Qo1LqiH6rZRwBZIDVO30vt1PpHYxcLcUl+cKhb1AvmsaENGqUjIwCIC8/Vfw4
+	 qvKKVr34wOwSTY+1fynwAso4llPK+k8VtF/VmZBQFlynfhWbLkMqxM6DqM+2FGqFBE
+	 DMwJUK8PWjnpqCg02EuMEmBVi7jSmoP1SGskMjhxH2W5TGeZCmdEe4Y1KwpYo/LU8o
+	 XvoZsphGw4/5Q==
+Date: Wed, 22 May 2024 10:00:54 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Dai <davidai@google.com>
+Cc: Will Deacon <will@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+	Vincent Guittot <vincent.guittot@linaro.org>,
+	Pavan Kondeti <quic_pkondeti@quicinc.com>,
+	devicetree@vger.kernel.org,
+	Dietmar Eggemann <dietmar.eggemann@arm.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: xilinx: Add support for
- function with pins
-Message-ID: <20240522144846.GA3277292-robh@kernel.org>
-References: <20240520150424.2531458-1-sean.anderson@linux.dev>
- <20240520150424.2531458-2-sean.anderson@linux.dev>
+	Saravana Kannan <saravanak@google.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oliver Upton <oliver.upton@linux.dev>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Masami Hiramatsu <mhiramat@google.com>,
+	Quentin Perret <qperret@google.com>,
+	Gupta Pankaj <pankaj.gupta@amd.com>, Marc Zyngier <maz@kernel.org>,
+	Mel Gorman <mgorman@suse.de>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, kernel-team@android.com
+Subject: Re: [PATCH v6 1/2] dt-bindings: cpufreq: add virtual cpufreq device
+Message-ID: <171639005247.3294172.9981807951705426790.robh@kernel.org>
+References: <20240521043102.2786284-1-davidai@google.com>
+ <20240521043102.2786284-2-davidai@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,45 +73,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240520150424.2531458-2-sean.anderson@linux.dev>
+In-Reply-To: <20240521043102.2786284-2-davidai@google.com>
 
-On Mon, May 20, 2024 at 11:04:23AM -0400, Sean Anderson wrote:
-> Support specifying the function per-pin. The driver doesn't care
-> whethern you use pins or groups for this purpose.
+
+On Mon, 20 May 2024 21:30:51 -0700, David Dai wrote:
+> Adding bindings to represent a virtual cpufreq device.
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> Virtual machines may expose MMIO regions for a virtual cpufreq device
+> for guests to read performance information or to request performance
+> selection. The virtual cpufreq device has an individual controller for
+> each performance domain. Performance points for a given domain can be
+> normalized across all domains for ease of allowing for virtual machines
+> to migrate between hosts.
+> 
+> Co-developed-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: David Dai <davidai@google.com>
 > ---
+>  .../cpufreq/qemu,virtual-cpufreq.yaml         | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/qemu,virtual-cpufreq.yaml
 > 
-> (no changes since v1)
-> 
->  .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml | 344 +++++++++---------
->  1 file changed, 176 insertions(+), 168 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-> index f13d315b5d5e..d3b258245e28 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml
-> @@ -42,179 +42,187 @@ patternProperties:
->          $ref: pinmux-node.yaml#
->  
->          properties:
-> +          pins:
-> +            description:
-> +              List of pins to select (either this or "groups" must be specified)
 
-Express as a schema:
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-oneOf:
-  - required: [pins]
-  - required: [groups]
-
-
-> +            items:
-> +              pattern: '^MIO([0-9]|[1-6][0-9]|7[0-7])$'
-> +
->            groups:
->              description:
->                List of groups to select (either this or "pins" must be
->                specified), available groups for this subnode.
->              items:
 
