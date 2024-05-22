@@ -1,123 +1,154 @@
-Return-Path: <devicetree+bounces-68329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBFE58CBE70
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:45:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B81A58CBE8C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:50:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 517ECB21D7D
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:45:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72D8928124D
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B880811E0;
-	Wed, 22 May 2024 09:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CAB8121F;
+	Wed, 22 May 2024 09:50:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="NocNKk8x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cr99sXcE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FED619470;
-	Wed, 22 May 2024 09:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75BE97FBC4;
+	Wed, 22 May 2024 09:50:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716371150; cv=none; b=Nuk7lDFyr5XIyHET4R4W8JmHrrsqRefur1IfxnMG2e5C9o2OADGjgiIAi8wP1FGJ3P6lARl/ao89NWCN51ZkVMWZmDChrStPdkMNVJs3VxxNX+DKwL9TKvWJ4l37rGBQ/a1tM84ZLIBZTNlXQ4VX0qwExzkQU/lfZAnX7LYtZEU=
+	t=1716371436; cv=none; b=c2FI+tTRX0WLFUAP+b3qz6+ahONdT5sJqNXdUXzET+89+v0iPm686TajRGh1CcuwA2h8CD+2SlZZW909IAIWZkwuc4kS7hid8U4i9XG5iUaa6CjFSWsRK0zdV0xubJEHjG+mbvY9HV1mOg4MREaMN8IkpiPC0ohqIQpgATKOuQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716371150; c=relaxed/simple;
-	bh=aYA6/GwGXTOxStDL3CrE3iLD+7zCga5XYorfKEhclCI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d5YfXV3wUu/69HNhuWbXNrZp+y7heIF7ZjfUU0KPzKFW5u+U+OwsugNDmVeD7VgnajlelbmUm3edhl5MgbFONkrdE/K/ETWRBpqBNXp9XL48ZZH4ayZfRv+mPKZIpqJ70U1evsqI0csjiwWAPqTTMkQ9Lo/ZwUdPwNpD9Mh8Le8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=NocNKk8x; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1716371145;
-	bh=D2gJWDdN6XlnceVs7J1C8EIKdWpmV/r/rS+czmPgl78=; l=1495;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=NocNKk8xJLzZbvUnG1yUx4fQ9Kz4q9lSPOtyStXaoBFzWM3w7qjme0/cHXj3T/fvK
-	 /TaMsVoW4Bg+tcUab1zD+MGiVv6qY3jFYVYh0QmgxT2sJWWbIXaFX9wIcYLglz0GB5
-	 4oh1h+ZJnBJpkPcM+Ck3dnWg07a+YaTujRfMoXZdwTaijqG7Carg+UoLodJn/+94Oy
-	 nfDlqehZjRO2cRTvwl3WB1/z7irvhEA9cMufzo9ld99OYYpnDUDZ16+zJRbTFmdjKh
-	 FD1zIbp0q5H5QO7A/pvjcAGDgghxY0D7tiZygJ/9XEpNX+eL+4FwPJynyNWKyWAyCR
-	 FqEKmqLFRSWdQ==
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213212:0:AUTH_RELAY)
-	(envelope-from <alina_yu@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 22 May 2024 17:45:25 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 22 May
- 2024 17:45:24 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 22 May 2024 17:45:24 +0800
-Date: Wed, 22 May 2024 17:45:24 +0800
-From: Alina Yu <alina_yu@richtek.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<cy_huang@richtek.com>
-Subject: Re: [PATCH 2/2] regulator: dt-bindings: rtq2208: Add specified fixed
- LDO VOUT property
-Message-ID: <20240522094524.GA21859@linuxcarl2.richtek.com>
-References: <cover.1715846612.git.alina_yu@richtek.com>
- <9c1bbe4b38a4ee5650d888478f1ce2cec2733669.1715846612.git.alina_yu@richtek.com>
- <5d26b19c-7679-4dba-a9ba-a7368d39b474@linaro.org>
- <20240522090302.GA19548@linuxcarl2.richtek.com>
- <b094ce68-9ce2-411d-99f2-1f143e4c3347@linaro.org>
+	s=arc-20240116; t=1716371436; c=relaxed/simple;
+	bh=s38cFtVzJD6qbysyN3bZJfC0joEZb1eAw1TbBF8E06c=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=IUflpmycExCbYiQ5cMceQKskJF3Y5PcbV3waztVNn+uESdlLnwA4cChp2eW1uL8oRGxodh9X3RQKw2HSrg1+KJoQEHtwv+hKWTJzAywKz59X1GKV27pofmBjaqGOZOrmoNGMh9fCkQCsJvNUCfwR7g13IPt6V14Umuzm22Utcy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cr99sXcE; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a59cdd185b9so144962666b.1;
+        Wed, 22 May 2024 02:50:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716371433; x=1716976233; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IT1jn5XZVlHhaOOAiUsTvpY+rK0Oxoh6SbeLRw0834s=;
+        b=cr99sXcEphIyP/MTjF/CTcx+pMFNhC/iFE3N2tyt11iMyBq1XhxdHauVaLbSu6RJqC
+         +BcPS5S65DevNE+I7s3kQSN/SMmBhaCBFODOfBj3OF4F9dfizJaqBGAwe9KYrkdh4C+8
+         nChX/BTVmGlStuaQ69LBQ0cOyuifgb9MFLQkXzvYqaTklVYnPvbZYV4d+tswGW5bHGSH
+         qPhvy/KqIHbeQcU60u6b+Qac5z06ceRXvMbj32VVRSITP5x2FciVylv9XgH9eNTosNAD
+         ofcm3xagOpQgee58w9tomCoRI0ZfPN3Yjhtmp8JR2Ss2YiGSDJ2T0O/0LNyXYQAPVLSV
+         Yhxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716371433; x=1716976233;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IT1jn5XZVlHhaOOAiUsTvpY+rK0Oxoh6SbeLRw0834s=;
+        b=LafiPZ8dJ54avgeTorhlEWC2gByG1CaI1YJN7tqdu1yjGh2gMcz0VOD6CMWbJXPdGS
+         tpu8DJrgQ7jze5yWDk5lm8WbDZnLRxEhNVI/2LRrv64nwiSuFNPtYR7ViPH3GdC5I7Nm
+         QG/FUFr7AU0oKnAVuie4UyrLr3x5h65DHDPZekuPWtzB3epj2ZVKheXn9a7BmYq6XHaj
+         ccN8MWsZaBfipQCekMmp+g91Sfxnz1oRZBI/gI5s/pLUrPhW8Cpj/2F1AsfQfOMErCYO
+         NTF4/eeqmPFBu15wtDU3zGQX8SToX84P6uyD0BvDQ6l+0TDAayna2xiDkaz12vVdxT+4
+         ovPg==
+X-Forwarded-Encrypted: i=1; AJvYcCUjI2IrT3C2WUMp6hbkYMn0DCaZVaGw2LppZwWq1mtcCtistObT+PDVR415n11KOpQybfsVWUuLe9GR0x0sCVJj/Mn/62jOVhV1sbVhuP3YJcFLVLSYyCTs7MuqL4NPO+ChKa512fate8XmrhlmiyW7uz1ED93OT70FjB5tJVVetK8qYw==
+X-Gm-Message-State: AOJu0Ywciicw1Iba5IRDAHRAj/psjBmReHESJm3dIo4b2m12cSDUv9FY
+	Wkw/Fl3OVgC65WQYPLBRLJ+HQgTgWWmc+daoTIGozF/uVc/krE4f
+X-Google-Smtp-Source: AGHT+IHSdIB34GezXsnYJdQRlu4R1+I4JK0TPdgS+Fbz5G5y04tAFR/jtDPbSfrE9LMiPyK4ZSum8g==
+X-Received: by 2002:a17:906:3c54:b0:a59:c3a1:23f9 with SMTP id a640c23a62f3a-a5d58e495b3mr1005218966b.7.1716371432490;
+        Wed, 22 May 2024 02:50:32 -0700 (PDT)
+Received: from spiri.. ([5.14.134.210])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1787c686sm1745589166b.47.2024.05.22.02.50.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 May 2024 02:50:32 -0700 (PDT)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: andy@kernel.org
+Cc: Jonathan.Cameron@huawei.com,
+	alisa.roman@analog.com,
+	alisadariana@gmail.com,
+	bigunclemax@gmail.com,
+	broonie@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dlechner@baylibre.com,
+	fr0st61te@gmail.com,
+	jic23@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	lars@metafoo.de,
+	lgirdwood@gmail.com,
+	liambeguin@gmail.com,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	marcelo.schmitt@analog.com,
+	marcus.folkesson@gmail.com,
+	michael.hennerich@analog.com,
+	nuno.sa@analog.com,
+	okan.sahin@analog.com,
+	robh@kernel.org,
+	schnelle@linux.ibm.com
+Subject: [PATCH] fix
+Date: Wed, 22 May 2024 12:50:23 +0300
+Message-Id: <20240522095023.35189-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <ZktB5Ex5oQ2E45QR@smile.fi.intel.com>
+References: <ZktB5Ex5oQ2E45QR@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b094ce68-9ce2-411d-99f2-1f143e4c3347@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
 
-On Wed, May 22, 2024 at 11:27:06AM +0200, Krzysztof Kozlowski wrote:
-> On 22/05/2024 11:03, Alina Yu wrote:
-> > On Thu, May 16, 2024 at 02:34:02PM +0200, Krzysztof Kozlowski wrote:
-> >> On 16/05/2024 11:20, Alina Yu wrote:
-> >>> As the fixed voltage for the LDO is outside the range of the adjustable voltage mode,
-> >>> the constraints for this scenario are not suitable to represent both modes.
-> >>> Therefore, A property is added to specify the fixed LDO VOUT.
-> >>>
-> >>> Examples of fixed LDO VOUT and adjustable LDO VOUT is also added to this version.
-> >>>
-> >>> Signed-off-by: Alina Yu <alina_yu@richtek.com>
-> >>> ---
-> >>
-> >> This is a v1 but I am pretty sure I saw it somewhere and there was
-> >> already some sort of discussion. Confused... :(
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> > 
-> > The discussion regarding this matter took place during v2 and v3.
-> 
-> So in the future?
+---
 
-Based on the previous discussion, it is scheduled to be included in the linux-next tree.
-Will we start a further discussions on this topic?
+Would this fix be alright, since writing something like if(!ret) may be
+confusing?
 
-> 
-> > Due to the fixed LDO VOUT being outside the range of the adjustable one,
-> > a special-use property has been added to avoid overusing the constraints.
-> 
-> Hm, why exactly this is not a bool property? What are the benefits?
-> 
-> Best regards,
-> Krzysztof
->
+And regarding the comment, my bad, there is nothing wrong there.
 
-As only the user will know the exact fixed voltage,
-the property is defined as a u32 to allow user customization and decision-making.
+ drivers/iio/adc/ad7192.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
+index 101afce49378..0789121236d6 100644
+--- a/drivers/iio/adc/ad7192.c
++++ b/drivers/iio/adc/ad7192.c
+@@ -1101,14 +1101,12 @@ static int ad7194_parse_channels(struct iio_dev *indio_dev)
+ 		ret = fwnode_property_read_u32_array(child, "diff-channels",
+ 						     ain, ARRAY_SIZE(ain));
+ 		if (ret == 0) {
+-			ret = ad7194_validate_ain_channel(dev, ain[0]);
+-			if (ret)
++			if (!ad7194_validate_ain_channel(dev, ain[0]))
+ 				return dev_err_probe(dev, -EINVAL,
+ 						     "Invalid AIN channel: %u\n",
+ 						     ain[0]);
+ 
+-			ret = ad7194_validate_ain_channel(dev, ain[1]);
+-			if (ret)
++			if (!ad7194_validate_ain_channel(dev, ain[1]))
+ 				return dev_err_probe(dev, -EINVAL,
+ 						     "Invalid AIN channel: %u\n",
+ 						     ain[1]);
+@@ -1125,8 +1123,7 @@ static int ad7194_parse_channels(struct iio_dev *indio_dev)
+ 				return dev_err_probe(dev, ret,
+ 						     "Missing channel property\n");
+ 
+-			ret = ad7194_validate_ain_channel(dev, ain[0]);
+-			if (ret)
++			if (!ad7194_validate_ain_channel(dev, ain[0]))
+ 				return dev_err_probe(dev, -EINVAL,
+ 						     "Invalid AIN channel: %u\n",
+ 						     ain[0]);
+-- 
+2.34.1
 
-Thanks,
-Alina
 
