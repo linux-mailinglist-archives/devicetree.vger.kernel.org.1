@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA898CC30F
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:19:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D5AB8CC31E
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:21:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A57DB283A11
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:19:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C9BA1C21C01
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449E01422C4;
-	Wed, 22 May 2024 14:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D3813E3F4;
+	Wed, 22 May 2024 14:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Az/gRs4i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O5yE1Uhf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CA81411EB;
-	Wed, 22 May 2024 14:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FF4142E86;
+	Wed, 22 May 2024 14:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716387417; cv=none; b=mP12B55l5WGcUKRmatotficUMu/BgWuYNBf7Ce4NTkXpFOgNeFL5X/c1RYJLf48cJZseG8pdJrS17Bw0YDfgvh8lXyXm9ZKPw5+Pueg7SEtAl8QDqHoWLoKyRHirHfCXJXW4Lr1TPfWI8ZgA1+Wg0OK3ZwWta444MmJy85ubgVY=
+	t=1716387681; cv=none; b=PmCRJgY+TzS/IH4WgccvuEHI9k1LQJsbQU7ULMbAC1FjA71JdGdMCWAWI0moVfgev34+HqLXtJPiJK0/7EJAtCiJ/MtLWs6Vrp4VBQ9V6gYzoXAsg57+eR6msRY/x6OeaCGzdkNYMdZ10gPpT2l2A/Xs2oMAMK8h/zbMVj0SZ4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716387417; c=relaxed/simple;
-	bh=RSAXkko1c9u6TELmDINaGCBfMIhMLmGXz9yU4gV4KMI=;
+	s=arc-20240116; t=1716387681; c=relaxed/simple;
+	bh=lquTU6pX0ULhSMvL+iVpOVq7rbv4rErDdUOxr4AwOyA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jG/yvatVF4OwRMoHGTZlGryv35nsj+ok+70XQpUtJZvlASrsckfEyrE8abQDYIf55yod8NKJDRIl3XYKR7e4/GPz4x97YTt5ryZ9iU+xgVcllBnRcaHGvIjrHlYiQSIqlI2A9XpRKczVCcTtvgRhwfN0Xeu24T6lOgpjWJ1VjdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Az/gRs4i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74A6EC2BBFC;
-	Wed, 22 May 2024 14:16:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KRkQYtbcSKsTMG43pmastE/tJaodz+7u4DAfQDLwoOEvKU3p7YuGIRn4tXSls3izEMY/sb4ep4vmydnG52V9aj+eCD+S2u9GsA56jttlFSBVQ1LeIkTFJ08wNRHzMju5/Lno01mkkFx6hLT5TXbpUY2Dri0lRYug8WgEq8qZE/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O5yE1Uhf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08E66C2BBFC;
+	Wed, 22 May 2024 14:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716387416;
-	bh=RSAXkko1c9u6TELmDINaGCBfMIhMLmGXz9yU4gV4KMI=;
+	s=k20201202; t=1716387680;
+	bh=lquTU6pX0ULhSMvL+iVpOVq7rbv4rErDdUOxr4AwOyA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Az/gRs4ikmQaiO5IlqDDr9sDcoBF8L0yqhyquvJxaqG8XNKcODuPMHYUU8NzCLAON
-	 LeiPxTEcvrL9Xsex/m572P95db1u5icg2mSFhIoy54ExmQV1noUU1t8abLfSwCOkUC
-	 yXXa5Ezr847Lti2/d1pcxUo4Fi9DbM/sdo3jrnZZbmRGuuwgBCMn2zyP3bE6fsiYI7
-	 BUo0chOBxCddmUiV9LeYFDMICke20gu1wtAjN/Y4dgWoWHBedtLr+x88z9chsqiuLV
-	 iyRNEIEXoGISinQ61yf+CLItW1lsCSo2wnxXa/s/UuoOI6XJ+73cXxnHLSIAYeT1JJ
-	 UTGgNuGi51sLg==
-Message-ID: <4f722e53-011f-4176-b6af-080522165007@kernel.org>
-Date: Wed, 22 May 2024 16:16:51 +0200
+	b=O5yE1Uhfepn+5cl0PWB3BFdQhrnD1Gh3IDOE4I7MJi8bH5gUjckjPgZSOHCxv2N49
+	 vTp8vtQm9t42ZXZWu5reLOZarpkUDi58vh2XEKzYDouYPXYa8Zp1nzyxE5NfefOeYP
+	 VOJZoa7Qb/thmOEwrDz1XJDM81rCgviYSLplGAzFIfyGK2iQ20c/XQGBchguunI51o
+	 L/4VrhKqgbRStfdT2/vmXxyyISdbmuDDviauBIkthvxu1gNrFpAqoutKaXLvNSeg1t
+	 RWC2qKm+MPVFDTWrhCBjfvkyPLqCBFPW3fWDt571aOlTx2R+81o8yKXI7Ejzmp00zN
+	 0rjCeNKfXn2LA==
+Message-ID: <8519b339-adb2-440e-8a54-077fac39ccfe@kernel.org>
+Date: Wed, 22 May 2024 16:21:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
- Mighty <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240522075245.388-1-bavishimithil@gmail.com>
- <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: mailbox: qcom-ipcc: Add GPDSP0 and
+ GPDSP1 clients
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Jassi Brar <jassisinghbrar@gmail.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Tengfei Fan <quic_tengfan@quicinc.com>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ Alex Elder <elder@kernel.org>
+References: <20240522-topic-lemans-iot-remoteproc-v1-0-af9fab7b27f0@linaro.org>
+ <20240522-topic-lemans-iot-remoteproc-v1-2-af9fab7b27f0@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,54 +112,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+In-Reply-To: <20240522-topic-lemans-iot-remoteproc-v1-2-af9fab7b27f0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/05/2024 15:56, Péter Ujfalusi wrote:
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - ti,hwmods
->> +  - clocks
->> +  - clock-names
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    pdm@40132000 {
+On 22/05/2024 14:08, Bartosz Golaszewski wrote:
+> From: Tengfei Fan <quic_tengfan@quicinc.com>
 > 
-> The original label and name is preferred to be used.
-
-Label is not used here.
-
-About node name, not:
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
+> Add GPDSP0 and GPDSP1 clients for SA8775p platform.
 > 
->> +      compatible = "ti,omap4-mcpdm";
->> +      reg = <0x40132000 0x7f>, /* MPU private access */
->> +            <0x49032000 0x7f>; /* L3 Interconnect */
->> +      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
->> +      interrupt-parent = <&gic>;
->> +      ti,hwmods = "mcpdm";
->> +      clocks = <&twl6040>;
->> +      clock-names = "pdmclk";
-> 
-> The clocks cannot be added at the time when the node is defined, it is
-> board specific. This way you imply that it is OK to have it in main dtsi
-> file. It is not.
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
 
-Wait, what? That's example and pretty standard. Example should be
-complete. This is not an exceptional binding.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
