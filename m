@@ -1,152 +1,135 @@
-Return-Path: <devicetree+bounces-68343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368408CBF30
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:23:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55B18CBF39
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:26:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 687001C20D75
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:23:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F424282A3A
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3E5C81ACB;
-	Wed, 22 May 2024 10:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B5F823A9;
+	Wed, 22 May 2024 10:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UUxynlyh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFBF8173C
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 10:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A908173C;
+	Wed, 22 May 2024 10:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716373427; cv=none; b=KG8TL0LmJWVvHqBDk4/ugeqVia9uAwMhmk5fL3Un49B1CfwZu7v9LeqmSUElbkcZpN7Qg/5uBVezyMRnei/3+g5h+0w+Nd1AKoH4wTyFB9NCS9SiJSE9mF00Iy1MsHlpPu7RBWts3/BKL4hfcLTunoiXzD8sKd9o5xjo2h9bOCs=
+	t=1716373561; cv=none; b=fHDOGFd0KBY5ZJu9V1Y1a5QwJ7685LBhR+y3ib1M8Ok/vMfL8r1+e0y+Y7lNn4m0DDHZLe3oiIudGxpHFipvxvC2L7ffxH0lmI4DfjvhTD/XqGvh50XevgbE6A1+IJF+FNG9FQOVcj10lbu2XUKLqfRjK8ZddcH9D0+Rg6uxn6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716373427; c=relaxed/simple;
-	bh=8Jv2FoH6NJPjGOP0LC/PqVRnbeV7oAwm/+X5xjFYdEk=;
+	s=arc-20240116; t=1716373561; c=relaxed/simple;
+	bh=oA6una41EFEgvtUccLdrby/eP40T87tkg7tWx1WpKhE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KZ0aUMojf6ycFIXK204ke/t2I5E381vvWJAbI5/lrJMTHFoRrrIKRt2awwKig4QSvj3rO4nczogSTNCf7cRztVKLErqmE0ibr0jCvdFtvmu4kGiGPTZZj1REYs83Aq0dVqSjGv/Nqo6p4pCRlPphTOeMXdSI9aabOLmwuCTnvyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9j8I-0000WW-JS; Wed, 22 May 2024 12:23:42 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9j8H-002Vkx-RJ; Wed, 22 May 2024 12:23:41 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1s9j8H-009uTO-2Q;
-	Wed, 22 May 2024 12:23:41 +0200
-Date: Wed, 22 May 2024 12:23:41 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Clark Wang <xiaoning.wang@nxp.com>
-Subject: Re: [PATCH 5/5] pwm: adp5585: Add Analog Devices ADP5585 support
-Message-ID: <kn46i4ejb7demlieowowwur7mps6bmlaiqctxuh2gufi7vnon3@ourzmteng7gk>
-References: <20240520195942.11582-1-laurent.pinchart@ideasonboard.com>
- <20240520195942.11582-6-laurent.pinchart@ideasonboard.com>
- <dl7a6puox5lc36fpto2fgyfgmpd3uboqc4lcfdtuaxzzsboqld@alw7vyi7pqjz>
- <20240521100922.GF16345@pendragon.ideasonboard.com>
- <xobmekjwqanow765yr42tsgknc5gc7szjublq6ywgbmoxovlr5@v3sofz5bmkol>
- <20240522101335.GE1935@pendragon.ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XutjoHxT1ou2aAdVf4wIWBF535ky68hg0RfDINURNxk6PBedQCyW6TWTijEXymStLn3Q8wd4ay1+93Jq8ja60XMA3Ys1Eboe4EV5t7dMEouv7QhxtmeCc+BfHbj0VCnvLYkhDX7ru7q2bpxX77zPY2CdQ/UQuXc4tINlFhyL2Yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UUxynlyh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C3B9C2BD11;
+	Wed, 22 May 2024 10:25:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716373561;
+	bh=oA6una41EFEgvtUccLdrby/eP40T87tkg7tWx1WpKhE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UUxynlyhTjqd/3ZbJvqxVlJZb6rxqJ3wXZKUVxrOVckUQqb/vkB2ckl8Kky0UBzY/
+	 ZhE894o1P2UwOInamMXQ1XgJhlBBNS/8mI/T3sjXxq/kJxa92tOQvrAz4TEMKMhfuC
+	 RHvruOdV9SbvyMIk4FGR8xebmdNCdi1J/06cX7sOUaF4okIc4ViQPTd8t+xd1QsXsh
+	 qqLpJry7UrfspErAOg3NbPOENrWpmqVK1PYBDKej8KtKLkmuENTOmfwG2frrFhgilA
+	 CbUHwpV10hVOSFseXTbKi31vr7dtrM4ViK7wf0oWHSENSbOVVeOBijzoZnZSKhyiGF
+	 vO33v/dfO5mXg==
+Date: Wed, 22 May 2024 11:25:56 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>, "Kumar, Udit" <u-kumar1@ti.com>,
+	vigneshr@ti.com, nm@ti.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Kip Broadhurst <kbroadhurst@ti.com>, w.egorov@phytec.de
+Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
+ GPL-2.0
+Message-ID: <20240522-vanquish-twirl-4f767578ee8d@spud>
+References: <20240517104226.3395480-1-u-kumar1@ti.com>
+ <20240517-poster-purplish-9b356ce30248@spud>
+ <20240517-fastball-stable-9332cae850ea@spud>
+ <8e56ea52-9e58-4291-8f7f-4721dd74c72f@ti.com>
+ <20240520-discard-fanatic-f8e686a4faad@spud>
+ <20240520201807.GA1410789-robh@kernel.org>
+ <e257de5f54d361da692820f72048ed06a8673380.camel@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="njhuclhgrbcf33b5"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="jaMN+FRy+sQyRzBS"
 Content-Disposition: inline
-In-Reply-To: <20240522101335.GE1935@pendragon.ideasonboard.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <e257de5f54d361da692820f72048ed06a8673380.camel@redhat.com>
 
 
---njhuclhgrbcf33b5
-Content-Type: text/plain; charset=iso-8859-1
+--jaMN+FRy+sQyRzBS
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hello Laurent,
-
-On Wed, May 22, 2024 at 01:13:35PM +0300, Laurent Pinchart wrote:
-> On Tue, May 21, 2024 at 03:05:53PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Tue, May 21, 2024 at 01:09:22PM +0300, Laurent Pinchart wrote:
-> > > On Tue, May 21, 2024 at 10:51:26AM +0200, Uwe Kleine-K=F6nig wrote:
-> > > > On Mon, May 20, 2024 at 10:59:41PM +0300, Laurent Pinchart wrote:
-> > > > > +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-> > > > > +		swap(on, off);
+On Wed, May 22, 2024 at 10:04:39AM +0200, Paolo Abeni wrote:
+> On Mon, 2024-05-20 at 15:18 -0500, Rob Herring wrote:
+> > On Mon, May 20, 2024 at 06:17:52PM +0100, Conor Dooley wrote:
+> > > On Sat, May 18, 2024 at 02:18:55PM +0530, Kumar, Udit wrote:
+> > > > Hi Conor
 > > > >=20
-> > > > Uhh, no. Either you can do inverted polarity or you cannot. Don't c=
-laim
-> > > > you can.
+> > > > On 5/17/2024 8:11 PM, Conor Dooley wrote:
+> > > > > On Fri, May 17, 2024 at 03:39:20PM +0100, Conor Dooley wrote:
+> > > > > > On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
+> > > > > > > Modify license to include dual licensing as GPL-2.0-only OR M=
+IT
+> > > > > > > license for TI specific phy header files. This allows for Lin=
+ux
+> > > > > > > kernel files to be used in other Operating System ecosystems
+> > > > > > > such as Zephyr or FreeBSD.
+> > > > > > What's wrong with BSD-2-Clause, why not use that?
+> > > > > I cut myself off, I meant to say:
+> > > > > What's wrong with BSD-2-Clause, the standard dual license for
+> > > > > bindings, why not use that?
+> > > >=20
+> > > > want to be inline with License of top level DTS, which is including=
+ this
+> > > > header file
 > > >=20
-> > > OK, but what's the rationale ? This is also an area where I couldn't
-> > > find documentation.
+> > > Unless there's a specific reason to use MIT (like your legal won't ev=
+en
+> > > allow you to use BSD-2-Clause) then please just use the normal license
+> > > for bindings here.
 > >=20
-> > I don't have a good rationale here. IMHO this inverted polarity stuff is
-> > only a convenience for consumers because the start of the period isn't
-> > visible from the output wave form (apart from (maybe) the moment where
-> > you change the configuration) and so
-> >=20
-> > 	.period =3D 5000, duty_cycle =3D 1000, polarity =3D PWM_POLARITY_NORMAL
-> >=20
-> > isn't distinguishable from
-> >=20
-> > 	.period =3D 5000, duty_cycle =3D 4000, polarity =3D PWM_POLARITY_INVER=
-SED
-> >=20
-> > . But it's a historic assumption of the pwm core that there is a
-> > relevant difference between the two polarities and I want at least a
-> > consistent behaviour among the lowlevel drivers. BTW, this convenience
-> > is the reason I'm not yet clear how I want to implemement a duty_offset.
+> > Aligning with the DTS files is enough reason for me as that's where=20
+> > these files are used. If you need to pick a permissive license for both=
+,=20
+> > then yes, use BSD-2-Clause. Better yet, ask your lawyer.
 >=20
-> Consistency is certainly good. Inverting the duty cycle to implement
-> inverted polarity would belong in the PWM core if we wanted to implement
-> it in software I suppose. I'll drop it from the driver.
+> Conor would you agree with Rob? - my take is that he is ok with this
+> patch.
 
-This isn't as easy as it sounds however. From the POV of the PWM core
-the capabilities of the currently used hardware are unclear. So if a
-request with (say) normal polarity and a certain duty_cycle + period
-fails, it's unknown if it would be beneficial to try with inverted
-polarity and if that is OK for the requesting consumer. So there is
-information missing in both directions.
+I don't think whether or not I agree matters, Rob said it's fine so it's
+fine.
 
-Best regards
-Uwe
+Cheers,
+Conor.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---njhuclhgrbcf33b5
+--jaMN+FRy+sQyRzBS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZNx6wACgkQj4D7WH0S
-/k7gSQf/eP3kBKkVvjsZKN2YXLxC/e3LV/e5b/nZfHIgt3CEctZeTQcGfZLQa5V+
-WVkCjKeolCGJXYxsB84okaHK/6GPQ+cWMquFk4qbN28WgIHSj+7HJCkaqDY14Ar/
-9oW8fVNG4s9ZpbeQPJ4iH4b5zrx+JSQRzeW2hw9l+XvCeMG8d9Eno8m9CERF72ud
-6dL1fkPvxjtFklYNgqwGavc65n+kqme2GvfHu87ZkPHb4lLH14tMtlZOmlaIKGpS
-hUJSMQugUreF6MndO9VsMpmKK80YigNY7L4d8D19W1H5nwvTaxuO5kwahMbYas0f
-4LqNkFV5ycdF43EAUXChc/1w57dTyQ==
-=s0N3
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk3INAAKCRB4tDGHoIJi
+0qfrAQD41SYcr6tANTE/Fs4iO5RWRUM2zbygUYrkHQN82kRRWQEAxyhxcgn4366j
+Be32KR4FnYRL7hVIh8iBnNbFXpvoUgI=
+=ZSZe
 -----END PGP SIGNATURE-----
 
---njhuclhgrbcf33b5--
+--jaMN+FRy+sQyRzBS--
 
