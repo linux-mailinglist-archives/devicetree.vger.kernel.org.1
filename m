@@ -1,155 +1,307 @@
-Return-Path: <devicetree+bounces-68373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 835518CC10B
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:14:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 477AD8CC118
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 162C4B238E4
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:14:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 699101C21FB1
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC8213D604;
-	Wed, 22 May 2024 12:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2864013D88C;
+	Wed, 22 May 2024 12:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RyeKqYOA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmty3ljk5ljewns4xndka.icoremail.net (zg8tmty3ljk5ljewns4xndka.icoremail.net [167.99.105.149])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B2513D601;
-	Wed, 22 May 2024 12:14:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=167.99.105.149
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E1A013D62D;
+	Wed, 22 May 2024 12:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716380073; cv=none; b=IOHy4lGcHwKLJxJqe0+vuRapm8+ZttWYGCnX2AlBW6zXvwplfg3Q0GycPKx2ivfLQFpgs64D3ePaMAdNQkJnzoGNfElbyeR1UY45zAFLS2k0iSM3iTJFxWW9slEeezaObBaysJ3LTH1ELGCrmo9iGZvhH8pk/2vay1FehjQ45hM=
+	t=1716380490; cv=none; b=PZfl56PpCzQ7k01ZBwAaSYzJuUN/GIavtK3TXIoLaTfZs395QLQfUoTPvGyVaLBy7sm5uefIW8BJNXYiGfxTfJrwoclqJZSXZCnc7cD2zrcQYx+JzSm/0ih9snbtY4LETcku4JPpocFycpThzSMN2jX+mb8cYhR022XDLJk+7+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716380073; c=relaxed/simple;
-	bh=TogI2bRC0Pp1s19nef/8ZVhxHbCXO4z+Zxw7U1tHTws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cN4ii3IgJkswd1ObV0GXmtCA0rmksVdEqg2QbwBjRZpDcLXcXYf1pKvNActiJuYSO/KOnrzJmTqbN1Ep3dK2OsjoN99NQ2UrqcUcQsyKZHPObao4EetlnLOpInQAB+1LCFRN8pPcgkqG8rm94pE8tdCdBMJ7Jp+ZEgrDnemdeLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bosc.ac.cn; spf=pass smtp.mailfrom=bosc.ac.cn; arc=none smtp.client-ip=167.99.105.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bosc.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bosc.ac.cn
-Received: from [172.38.8.164] (unknown [219.141.235.82])
-	by mail (Coremail) with SMTP id AQAAfwA36Nhu4U1mKeeuAA--.46576S2;
-	Wed, 22 May 2024 20:13:36 +0800 (CST)
-Message-ID: <665202d7-46be-4dc8-a6be-3579e1ec078f@bosc.ac.cn>
-Date: Wed, 22 May 2024 20:13:34 +0800
+	s=arc-20240116; t=1716380490; c=relaxed/simple;
+	bh=hzDqcEVZczl67qDnlsWcKq7XBZk+9h4IydSU9s+R7sA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nCbCs28fEs5Wy2ebrqK3Qedvj8o+bYFMokkYHHEGf+XmxXzAnSuAt/+9ecjykcsMD3BHbo/gSOs4vkDvA3Hcv/9NXmf6y8FhTBRdEJG1qqCseWESNiVT/HGRuuFFYdwYKLDqiqbOVk0JtAQxnN5NrmZH7hZyM1mJ4h7bY7e6dYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RyeKqYOA; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716380488; x=1747916488;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hzDqcEVZczl67qDnlsWcKq7XBZk+9h4IydSU9s+R7sA=;
+  b=RyeKqYOAHhIOHJkG8DWopysFJ+fGWdgUeB10atmw879HfmwY5qaPl7yP
+   gJDoLbjfVZjuDnyVC1yB+xsrmnHAiNUR1CuY26K2MBxd/4oTvDw5NEXVv
+   JE4ciE1HsE7ZgCtiyP7hLjCNKC1aPbjr/rBVH+jUF/+FU09jMQdqKQ3LT
+   rZIEQUsEkVSfQDMu0yTrVXxBbQZEp+fsWQfEJCmzUjMq0F7vVeYh+m5Ze
+   B7tF304a0JtZd+L28JudW0g0yCD+c+054zMkadfdQRX5EjhA0XGMe6/Mv
+   NRVuQv5Pf0bBcvdquZNr1cuYyqQjQwpOue9LOtRMeV1LLY9jVYnfSEytN
+   A==;
+X-CSE-ConnectionGUID: kzOa2pOOR5S+z++Wb9/w+A==
+X-CSE-MsgGUID: VMAQUb/2R2yOUnkgWvqffw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11079"; a="12479968"
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; 
+   d="scan'208";a="12479968"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2024 05:21:27 -0700
+X-CSE-ConnectionGUID: h0jhHJLvT8uMCyeb+KKllQ==
+X-CSE-MsgGUID: zY3mlADhSbetoiQu5W0hoA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,179,1712646000"; 
+   d="scan'208";a="33181950"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2024 05:21:24 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id E0FE211F82A;
+	Wed, 22 May 2024 15:21:21 +0300 (EEST)
+Date: Wed, 22 May 2024 12:21:21 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Cc: Alain Volmat <alain.volmat@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Pavel Machek <pavel@ucw.cz>,
+	Arnaud Ferraris <arnaud.ferraris@collabora.com>
+Subject: Re: [PATCH v3 2/2] media: gc2145: implement basic dvp bus support
+Message-ID: <Zk3jQQDrgVqOnoQk@kekkonen.localdomain>
+References: <20240504164115.64603-1-andrej.skvortzov@gmail.com>
+ <20240504164115.64603-3-andrej.skvortzov@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v5,3/3] drm/mediatek: Implement OF graphs support for display
- paths
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- chunkuang.hu@kernel.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com,
- ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- wenst@chromium.org, kernel@collabora.com,
- Alexandre Mergnat <amergnat@baylibre.com>
-References: <20240521075717.50330-4-angelogioacchino.delregno@collabora.com>
-Content-Language: en-US, en-AU
-From: Sui Jingfeng <suijingfeng@bosc.ac.cn>
-Organization: bosc
-In-Reply-To: <20240521075717.50330-4-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:AQAAfwA36Nhu4U1mKeeuAA--.46576S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tFW3CFWkXFy5Ww4kur1xZrb_yoW8Aw1Dpr
-	WUWFZxArWj9r47Wr4vqF45Aryq9r40v3y3X34UWa4Ik3Z8XFyfZr1Ig34Yvw4fKrZ7ua48
-	Aa1ktan8W3y8trDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUv2b7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6r1S6rWUM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c2xSY4AK67AK6ryUMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I
-	0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8
-	ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcV
-	CY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAF
-	wI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa
-	7IU0wL05UUUUU==
-X-CM-SenderInfo: xvxlyxpqjiv03j6e02nfoduhdfq/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240504164115.64603-3-andrej.skvortzov@gmail.com>
 
-Hi,
+Hi Andrey,
 
+Thanks for the update.
 
-On 5/21/24 15:57, AngeloGioacchino Del Regno wrote:
-> +static int mtk_drm_of_get_ddp_comp_type(struct device_node *node, enum mtk_ddp_comp_type *ctype)
+On Sat, May 04, 2024 at 07:41:15PM +0300, Andrey Skvortsov wrote:
+> That was tested on PinePhone with libcamera-based GNOME
+> screenshot (45.2).
+> 
+> Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+> ---
+>  drivers/media/i2c/gc2145.c | 112 ++++++++++++++++++++++++++++---------
+>  1 file changed, 86 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/gc2145.c b/drivers/media/i2c/gc2145.c
+> index bef7b0e056a8..9808bd0ab6ae 100644
+> --- a/drivers/media/i2c/gc2145.c
+> +++ b/drivers/media/i2c/gc2145.c
+> @@ -39,6 +39,10 @@
+>  #define GC2145_REG_ANALOG_MODE1	CCI_REG8(0x17)
+>  #define GC2145_REG_OUTPUT_FMT	CCI_REG8(0x84)
+>  #define GC2145_REG_SYNC_MODE	CCI_REG8(0x86)
+> +#define GC2145_SYNC_MODE_VSYNC_POL	BIT(0)
+> +#define GC2145_SYNC_MODE_HSYNC_POL	BIT(1)
+> +#define GC2145_SYNC_MODE_OPCLK_POL	BIT(2)
+> +#define GC2145_SYNC_MODE_OPCLK_GATE	BIT(3)
+>  #define GC2145_SYNC_MODE_COL_SWITCH	BIT(4)
+>  #define GC2145_SYNC_MODE_ROW_SWITCH	BIT(5)
+>  #define GC2145_REG_BYPASS_MODE	CCI_REG8(0x89)
+> @@ -598,6 +602,7 @@ struct gc2145 {
+>  	struct v4l2_subdev sd;
+>  	struct media_pad pad;
+>  
+> +	struct v4l2_fwnode_endpoint ep; /* the parsed DT endpoint info */
+>  	struct regmap *regmap;
+>  	struct clk *xclk;
+>  
+> @@ -773,6 +778,36 @@ static int gc2145_set_pad_format(struct v4l2_subdev *sd,
+>  	return 0;
+>  }
+>  
+> +static int gc2145_config_dvp_mode(struct gc2145 *gc2145,
+> +				  const struct gc2145_format *gc2145_format)
 > +{
-> +	const struct of_device_id *of_id = of_match_node(mtk_ddp_comp_dt_ids, node);
+> +	int ret = 0;
+> +	u64 sync_mode;
+> +	int flags = gc2145->ep.bus.parallel.flags;
 > +
-> +	if (!of_id)
-> +		return -EINVAL;
+> +	ret = cci_read(gc2145->regmap, GC2145_REG_SYNC_MODE, &sync_mode, NULL);
+> +	if (ret)
+> +		return ret;
 > +
-> +	*ctype = (enum mtk_ddp_comp_type)((uintptr_t)of_id->data);
+> +	sync_mode &= ~(GC2145_SYNC_MODE_VSYNC_POL |
+> +		       GC2145_SYNC_MODE_HSYNC_POL |
+> +		       GC2145_SYNC_MODE_OPCLK_POL);
 > +
-> +	return 0;
+> +	if (flags & V4L2_MBUS_VSYNC_ACTIVE_LOW)
+> +		sync_mode |= GC2145_SYNC_MODE_VSYNC_POL;
+> +
+> +	if (flags & V4L2_MBUS_HSYNC_ACTIVE_LOW)
+> +		sync_mode |= GC2145_SYNC_MODE_HSYNC_POL;
+> +
+> +	if (flags & V4L2_MBUS_PCLK_SAMPLE_FALLING)
+> +		sync_mode |= GC2145_SYNC_MODE_OPCLK_POL;
+> +
+> +	cci_write(gc2145->regmap, GC2145_REG_SYNC_MODE, sync_mode, &ret);
+> +	cci_write(gc2145->regmap, GC2145_REG_PAD_IO, 0x0f, &ret);
+> +
+> +	return ret;
 > +}
 > +
-> +static int mtk_drm_of_get_ddp_ep_cid(struct device_node *node,
-> +				     int output_port, enum mtk_crtc_path crtc_path,
-> +				     struct device_node **next, unsigned int *cid)
-> +{
-> +	struct device_node *ep_dev_node, *ep_out;
-> +	enum mtk_ddp_comp_type comp_type;
-> +	int ret;
+>  static const struct cci_reg_sequence gc2145_common_mipi_regs[] = {
+>  	{GC2145_REG_PAGE_SELECT, 0x03},
+>  	{GC2145_REG_DPHY_ANALOG_MODE1, GC2145_DPHY_MODE_PHY_CLK_EN |
+> @@ -895,10 +930,13 @@ static int gc2145_start_streaming(struct gc2145 *gc2145,
+>  		goto err_rpm_put;
+>  	}
+>  
+> -	/* Perform MIPI specific configuration */
+> -	ret = gc2145_config_mipi_mode(gc2145, gc2145_format);
+> +	/* Perform interface specific configuration */
+> +	if (gc2145->ep.bus_type == V4L2_MBUS_CSI2_DPHY)
+> +		ret = gc2145_config_mipi_mode(gc2145, gc2145_format);
+> +	else
+> +		ret = gc2145_config_dvp_mode(gc2145, gc2145_format);
+>  	if (ret) {
+> -		dev_err(&client->dev, "%s failed to write mipi conf\n",
+> +		dev_err(&client->dev, "%s failed to write interface conf\n",
+>  			__func__);
+>  		goto err_rpm_put;
+>  	}
+> @@ -924,6 +962,9 @@ static void gc2145_stop_streaming(struct gc2145 *gc2145)
+>  			GC2145_CSI2_MODE_EN | GC2145_CSI2_MODE_MIPI_EN, 0,
+>  			&ret);
+>  	cci_write(gc2145->regmap, GC2145_REG_PAGE_SELECT, 0x00, &ret);
 > +
-> +	ep_out = of_graph_get_endpoint_by_regs(node, output_port, crtc_path);
-> +	if (!ep_out)
-> +		return -ENOENT;
-> +
-> +	ep_dev_node = of_graph_get_remote_port_parent(ep_out);
+> +	/* Disable dvp streaming */
+> +	cci_write(gc2145->regmap, GC2145_REG_PAD_IO, 0x00, &ret);
+>  	if (ret)
+>  		dev_err(&client->dev, "%s failed to write regs\n", __func__);
+>  
+> @@ -1233,9 +1274,8 @@ static int gc2145_init_controls(struct gc2145 *gc2145)
+>  static int gc2145_check_hwcfg(struct device *dev)
+>  {
+>  	struct fwnode_handle *endpoint;
+> -	struct v4l2_fwnode_endpoint ep_cfg = {
+> -		.bus_type = V4L2_MBUS_CSI2_DPHY
+> -	};
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct gc2145 *gc2145 = to_gc2145(sd);
 
-below here, 'ep_out' will not be used anymore.
+As the bindings default to bus-type 4, you should reflect that here. I.e.
+try parsing the endpoint with bus_type set to 4 first before setting it to
+V4L2_MBUS_UNKNOWN.
 
-of_node_put(ep_out);
+You'll also need to set the parallel defaults here before parsing the
+endpoint.
 
-Maybe we should call it under a error handling tag?
-But this is trivial problem.
-
-> +	if (!ep_dev_node)
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * Pass the next node pointer regardless of failures in the later code
-> +	 * so that if this function is called in a loop it will walk through all
-> +	 * of the subsequent endpoints anyway.
-> +	 */
-> +	*next = ep_dev_node;
-> +
-> +	if (!of_device_is_available(ep_dev_node))
-> +		return -ENODEV;
-> +
-> +	ret = mtk_drm_of_get_ddp_comp_type(ep_dev_node, &comp_type);
+>  	int ret;
+>  
+>  	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
+> @@ -1244,36 +1284,55 @@ static int gc2145_check_hwcfg(struct device *dev)
+>  		return -EINVAL;
+>  	}
+>  
+> -	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &ep_cfg);
+> +	gc2145->ep.bus_type = V4L2_MBUS_CSI2_DPHY;
+> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &gc2145->ep);
 > +	if (ret) {
-> +		if (mtk_ovl_adaptor_is_comp_present(ep_dev_node)) {
-> +			*cid = (unsigned int)DDP_COMPONENT_DRM_OVL_ADAPTOR;
-> +			return 0;
-> +		}
-> +		return ret;
+> +		gc2145->ep.bus_type = V4L2_MBUS_PARALLEL;
+> +		ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &gc2145->ep);
 > +	}
+>  	fwnode_handle_put(endpoint);
+> -	if (ret)
+> +	if (ret) {
+> +		dev_err(dev, "could not parse endpoint\n");
+>  		return ret;
+> -
+> -	/* Check the number of MIPI CSI2 data lanes */
+> -	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2) {
+> -		dev_err(dev, "only 2 data lanes are currently supported\n");
+> -		ret = -EINVAL;
+> -		goto out;
+>  	}
+>  
+> -	/* Check the link frequency set in device tree */
+> -	if (!ep_cfg.nr_of_link_frequencies) {
+> -		dev_err(dev, "link-frequency property not found in DT\n");
+> +	switch (gc2145->ep.bus_type) {
+> +	case V4L2_MBUS_CSI2_DPHY:
+> +		/* Check the number of MIPI CSI2 data lanes */
+> +		if (gc2145->ep.bus.mipi_csi2.num_data_lanes != 2) {
+> +			dev_err(dev, "only 2 data lanes are currently supported\n");
+> +			ret = -EINVAL;
+> +			goto out;
+> +		}
 > +
-> +	ret = mtk_ddp_comp_get_id(ep_dev_node, comp_type);
-> +	if (ret < 0)
-> +		return ret;
+> +		/* Check the link frequency set in device tree */
+> +		if (!gc2145->ep.nr_of_link_frequencies) {
+> +			dev_err(dev, "link-frequencies property not found in DT\n");
+> +			ret = -EINVAL;
+> +			goto out;
+> +		}
 > +
-> +	/* All ok! Pass the Component ID to the caller. */
-> +	*cid = (unsigned int)ret;
-> +
+> +		if (gc2145->ep.nr_of_link_frequencies != 3 ||
+> +		    gc2145->ep.link_frequencies[0] != GC2145_640_480_LINKFREQ ||
+> +		    gc2145->ep.link_frequencies[1] != GC2145_1280_720_LINKFREQ ||
+> +		    gc2145->ep.link_frequencies[2] != GC2145_1600_1200_LINKFREQ) {
+
+I guess this works as long as all the ghree frequencies are what the driver
+expects but the driver implementation could be improved. Nearly all other
+drivers use the available frequencies only.
+
+> +			dev_err(dev, "Invalid link-frequencies provided\n");
+> +			ret = -EINVAL;
+> +			goto out;
+> +		}
+> +		break;
+> +	case V4L2_MBUS_PARALLEL:
+> +		break;
+> +	default:
+> +		dev_err(dev, "unsupported bus type %u\n", gc2145->ep.bus_type);
+>  		ret = -EINVAL;
+>  		goto out;
+>  	}
+>  
+> -	if (ep_cfg.nr_of_link_frequencies != 3 ||
+> -	    ep_cfg.link_frequencies[0] != GC2145_640_480_LINKFREQ ||
+> -	    ep_cfg.link_frequencies[1] != GC2145_1280_720_LINKFREQ ||
+> -	    ep_cfg.link_frequencies[2] != GC2145_1600_1200_LINKFREQ) {
+> -		dev_err(dev, "Invalid link-frequencies provided\n");
+> -		ret = -EINVAL;
+> -	}
 > +	return 0;
-> +}
-> +
+>  
+>  out:
+> -	v4l2_fwnode_endpoint_free(&ep_cfg);
+> -
+> +	v4l2_fwnode_endpoint_free(&gc2145->ep);
+
+A newline would be nice here.
+
+>  	return ret;
+>  }
+>  
+> @@ -1421,6 +1480,7 @@ static void gc2145_remove(struct i2c_client *client)
+>  	if (!pm_runtime_status_suspended(&client->dev))
+>  		gc2145_power_off(&client->dev);
+>  	pm_runtime_set_suspended(&client->dev);
+> +	v4l2_fwnode_endpoint_free(&gc2145->ep);
+>  }
+>  
+>  static const struct of_device_id gc2145_dt_ids[] = {
 
 -- 
-Best regards
-Sui Jingfeng
+Kind regards,
 
+Sakari Ailus
 
