@@ -1,130 +1,236 @@
-Return-Path: <devicetree+bounces-68523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB7D48CC90F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 00:28:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE168CC92D
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 00:48:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 075EA1C21558
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 22:28:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 041FD28309C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 22:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC301487E6;
-	Wed, 22 May 2024 22:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FA1142E6A;
+	Wed, 22 May 2024 22:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gluCjXV/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="So9qYnAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640AB1487E0;
-	Wed, 22 May 2024 22:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB5943147;
+	Wed, 22 May 2024 22:48:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716416920; cv=none; b=Ef+w9DSX/ENFkPJmoGCEb/HeclDG/lhAUU0Ghlc1SQLdL4f64jkYcWXhE4H+rcHLcr21wBbc6VEk95PXPRrIj5RMOU2FoFM1TKnAOskdl+aycFZI7H3HLx1iprmhMCu18+OnbRnE3/5aw9eF+ZjnUybZ0cs/MIGzVDWEAAMJfG4=
+	t=1716418103; cv=none; b=iIZ5NxEdIoyNwIVgFl8Idr7MRenY561D0HreVmPMTSi5ob8hIu3HHclo9d65dCjEyrsfhP242c5dPhBnXsAYktldYGUOHdC7GCB/ZtRSl5bA35Onvt3stVw1X3u9wz4G6nSe6EOlnvm9dgMp9KJja7yCJaIUZdaR6kD/NHfuCwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716416920; c=relaxed/simple;
-	bh=FyDYtMT/2nQuK4XVRGpg4ULNIilNC8aI7hQ/yAbnWms=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=WyAgEtLLeCvvh6ILvrc/IzslpqsaIcZ14riXrmMMlzeVGxmM5joKZ/M/kWp4dAVf2H7A2E1zKtZCnjZJVWb4/nvqOrN5S5VAciSymN0wKcv0x3ZYmo3wjkn6GoW6MYkGqWTBXL/Wkg78tjJv1FdL6pU4F8dzg3icNluH7cILRyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gluCjXV/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD247C2BBFC;
-	Wed, 22 May 2024 22:28:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716416920;
-	bh=FyDYtMT/2nQuK4XVRGpg4ULNIilNC8aI7hQ/yAbnWms=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=gluCjXV/cS6TMjmiB4c6zKFpfxBVeYDczAlUg6W/JLtLxMPtImzQMvnjf9A+t7VIK
-	 uDbNq3WmWVczLwFlWgq+wcDcktc17i3e4yaDT6A2nladW75Fg5OImyC9uZwjYF5vTA
-	 f+NbS5JrNlVD3jD/XVSjogkAvsewrhQUlMvlfHNdnjZyLZLPupEQw37cEgZPjfAy17
-	 Ax9dlOzm14HefTumxgJyGYv7mF/VLWWXDotCT/gID0HdWrB4V392HDTte33b1a0jGm
-	 uxygzqywCVWx4FGqkAMmQflEjIBGqVzXyDahXa4ecaYsGbiPAtvzIi341WCut2EHVx
-	 fYVS7cfIjrZbw==
-Date: Wed, 22 May 2024 17:28:38 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>,
-	g@bhelgaas.smtp.subspace.kernel.org
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-	Michal Simek <michal.simek@amd.com>,
-	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/7] dt-bindings: pci: xilinx-nwl: Add phys
-Message-ID: <20240522222838.GA101305@bhelgaas>
+	s=arc-20240116; t=1716418103; c=relaxed/simple;
+	bh=Q7AOVt4S3YTvLLMTVjuhbRLaDJ2/BYT450UoDN+ynHA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tTR4d5JTPsnC7NDanziGGfAyD7kw/C8frW31zRKOvEsHEsOyth72TKl/C4YlH15LZXJLiBaJrWq6aSM3ZAjLg3jY0dvca8g90eU5Hb+k/obiXXNrfSgyQnsluTztLH0/bZMdqWzRSkyRZZ52HR9+v9Gp+FzjzlQXpdor/MRMMLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=So9qYnAJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44MC54HT016423;
+	Wed, 22 May 2024 22:48:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=wVZZk2nJL2CSRX5wqlOsi
+	2I9R2Fqp1NUECQy71UCZJk=; b=So9qYnAJypGQRcFVOE+JolI4XVpuh5mZWe8O6
+	IwLu0+kDoNK2QL4Cp3SSgUfcT7buoAQsmmnlfDvuwyGWqlsEZ62fAeymMlF6P7kb
+	F92WvtesRHOfZa1OMmw4i0FOJBOX/o0AUDuLoA/t7l/6vxRrUUn3Uf9l7PPuUfZp
+	HZMizILsNlhwt0N5nG8EbTmRTJ8uorGb/Uw7TT2N1ONfdEmWWJX/mJw9/wTufsHi
+	1uRpl5W6xDTImY/wuaiXxu5+vg2qTzZN2ITqoISHpJd8YJuKiQrfIqjN1bHAXkED
+	oVJrVY0J/0OsSz8Xf/nbixGKbTtUgj2iLlYT1m6Gy0434y8zw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6n4gj6x0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 May 2024 22:48:04 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44MMm1n7032193
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 May 2024 22:48:01 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 22 May 2024 15:48:01 -0700
+Date: Wed, 22 May 2024 15:48:00 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Kalle Valo <kvalo@kernel.org>, <neil.armstrong@linaro.org>,
+        Bjorn
+ Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <wcn36xx@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Arnd
+ Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH 01/12] soc: qcom: add firmware name helper
+Message-ID: <Zk52IHqAfOnVDm50@hu-bjorande-lv.qualcomm.com>
+References: <20240521-qcom-firmware-name-v1-0-99a6d32b1e5e@linaro.org>
+ <20240521-qcom-firmware-name-v1-1-99a6d32b1e5e@linaro.org>
+ <a45b53f3-b2a5-4094-af5a-1281e0f94d2f@linaro.org>
+ <CAA8EJprxYsoug0ipRHTmX45vaFLzJCUF0dQWOc=QLs4y6uZ1rA@mail.gmail.com>
+ <878r03csxn.fsf@kernel.org>
+ <CAA8EJpqkgpCb57DGka0ckbPz=2YiaHzxmiNzG39ad5y6smgO5A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240520145402.2526481-2-sean.anderson@linux.dev>
+In-Reply-To: <CAA8EJpqkgpCb57DGka0ckbPz=2YiaHzxmiNzG39ad5y6smgO5A@mail.gmail.com>
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Ec0OrfEXBm9WUFIjYdi3lyRS60ub_eX8
+X-Proofpoint-ORIG-GUID: Ec0OrfEXBm9WUFIjYdi3lyRS60ub_eX8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-22_12,2024-05-22_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0 mlxlogscore=939
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405220159
 
-On Mon, May 20, 2024 at 10:53:56AM -0400, Sean Anderson wrote:
-> Add phys properties so Linux can power-on/configure the GTR
-> transcievers.
-
-s/transcievers/transceivers/
-
-Possibly s/phys/PHYs/ in subject, commit log, DT description to avoid
-confusion with "phys" (short for generic "physical").  Or maybe even
-just "PHY properties"?
-
-What does "GTR" mean?  Possibly expand that?
-
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-> ---
+On Tue, May 21, 2024 at 03:08:31PM +0200, Dmitry Baryshkov wrote:
+> On Tue, 21 May 2024 at 13:20, Kalle Valo <kvalo@kernel.org> wrote:
+> >
+> > Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+> >
+> > > On Tue, 21 May 2024 at 12:52, <neil.armstrong@linaro.org> wrote:
+> > >>
+> > >> On 21/05/2024 11:45, Dmitry Baryshkov wrote:
+> > >> > Qualcomm platforms have different sets of the firmware files, which
+> > >> > differ from platform to platform (and from board to board, due to the
+> > >> > embedded signatures). Rather than listing all the firmware files,
+> > >> > including full paths, in the DT, provide a way to determine firmware
+> > >> > path based on the root DT node compatible.
+> > >>
+> > >> Ok this looks quite over-engineered but necessary to handle the legacy,
+> > >> but I really think we should add a way to look for a board-specific path
+> > >> first and fallback to those SoC specific paths.
+> > >
+> > > Again, CONFIG_FW_LOADER_USER_HELPER => delays.
+> >
+> > To me this also looks like very over-engineered, can you elaborate more
+> > why this is needed? Concrete examples would help to understand better.
 > 
-> Changes in v3:
-> - Document phys property
+> Sure. During the meeting last week Arnd suggested evaluating if we can
+> drop firmware-name from the board DT files. Several reasons for that:
+> - DT should describe the hardware, not the Linux-firmware locations
+> - having firmware name in DT complicates updating the tree to use
+> different firmware API (think of mbn vs mdt vs any other format)
+> - If the DT gets supplied by the vendor (e.g. for
+> SystemReady-certified devices), there should be a sync between the
+> vendor's DT, linux kernel and the rootfs. Dropping firmware names from
+> DT solves that by removing one piece of the equation
 > 
-> Changes in v2:
-> - Remove phy-names
-> - Add an example
+> Now for the complexity of the solution. Each SoC family has their own
+> firmware set. This includes firmware for the DSPs, for modem, WiFi
+> bits, GPU shader, etc.
+> For the development boards these devices are signed by the testing key
+> and the actual signature is not validated against the root of trust
+> certificate.
+> For the end-user devices the signature is actually validated against
+> the bits fused to the SoC during manufacturing process. CA certificate
+> (and thus the fuses) differ from vendor to vendor (and from the device
+> to device)
 > 
->  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> Not all of the firmware files are a part of the public linux-firmware
+> tree. However we need to support the rootfs bundled with the firmware
+> for different platforms (both public and vendor). The non-signed files
+> come from the Adreno GPU and can be shared between platforms. All
+> other files are SoC-specific and in some cases device-specific.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-> index 426f90a47f35..cc50795d170b 100644
-> --- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-> @@ -61,6 +61,11 @@ properties:
->    interrupt-map:
->      maxItems: 4
->  
-> +  phys:
-> +    minItems: 1
-> +    maxItems: 4
-> +    description: One phy per logical lane, in order
-> +
->    power-domains:
->      maxItems: 1
->  
-> @@ -110,6 +115,7 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/phy/phy.h>
->      #include <dt-bindings/power/xlnx-zynqmp-power.h>
->      soc {
->          #address-cells = <2>;
-> @@ -138,6 +144,7 @@ examples:
->                              <0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
->                              <0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
->              msi-parent = <&nwl_pcie>;
-> +            phys = <&psgtr 0 PHY_TYPE_PCIE 0 0>;
->              power-domains = <&zynqmp_firmware PD_PCIE>;
->              iommus = <&smmu 0x4d0>;
->              pcie_intc: legacy-interrupt-controller {
+> So for example the SDM845 db845c (open device) loads following firmware files:
+> Not signed:
+> - qcom/a630_sqe.fw
+> - qcom/a630_gmu.bin
+> 
+> Signed, will work for any non-secured sdm845 device:
+> - qcom/sdm845/a630_zap.mbn
+> - qcom/sdm845/adsp.mbn
+> - qcom/sdm845/cdsp.mbn
+> - qcom/sdm485/mba.mbn
+> - qcom/sdm845/modem.mbn
+> - qcom/sdm845/wlanmdsp.mbn (loaded via TQFTP)
+> - qcom/venus-5.2/venus.mbn
+> 
+> Signed, works only for DB845c.
+> - qcom/sdm845/Thundercomm/db845c/slpi.mbn
+> 
+> In comparison, the SDM845 Pixel-3 phone (aka blueline) should load the
+> following firmware files:
+> - qcom/a630_sqe.fw (the same, non-signed file)
+> - qcom/a630_gmu.bin (the same, non-signed file)
+> - qcom/sdm845/Google/blueline/a630_zap.mbn
+
+How do you get from "a630_zap.mbn" to this? By extending the lookup
+table for every target, or what am I missing?
+
+Regards,
+Bjorn
+
+> - qcom/sdm845/Google/blueline/adsp.mbn
+> - qcom/sdm845/Google/blueline/cdsp.mbn
+> - qcom/sdm845/Google/blueline/ipa_fws.mbn
+> - qcom/sdm845/Google/blueline/mba.mbn
+> - qcom/sdm845/Google/blueline/modem.mbn
+> - qcom/sdm845/Google/blueline/venus.mbn
+> - qcom/sdm845/Google/blueline/wlanmdsp.mbn
+> - qcom/sdm845/Google/blueline/slpi.mbn
+> 
+> The Lenovo Yoga C630 WoS laptop (SDM850 is a variant of SDM845) uses
+> another set of files:
+> - qcom/a630_sqe.fw (the same, non-signed file)
+> - qcom/a630_gmu.bin (the same, non-signed file)
+> - qcom/sdm850/LENOVO/81JL/qcdxkmsuc850.mbn
+> - qcom/sdm850/LENOVO/81JL/qcadsp850.mbn
+> - qcom/sdm850/LENOVO/81JL/qccdsp850.mbn
+> - qcom/sdm850/LENOVO/81JL/ipa_fws.elf
+> - qcom/sdm850/LENOVO/81JL/qcdsp1v2850.mbn
+> - qcom/sdm850/LENOVO/81JL/qcdsp2850.mbn
+> - qcom/sdm850/LENOVO/81JL/qcvss850.mbn
+> - qcom/sdm850/LENOVO/81JL/wlanmdsp.mbn
+> - qcom/sdm850/LENOVO/81JL/qcslpi850.mbn
+> 
+> If we look at one of the recent platforms, e.g. SM8650-QRD, this list
+> also grows up:
+> - qcom/gen70900_sqe.fw (generic, non-signed)
+> - qcom/gmu_gen70900.bin (generic, non-signed)
+> - qcom/sm8650/gen70900_zap.mbn
+> - qcom/sm8650/adsp.mbn
+> - qcom/sm8650/adsp_dtb.mbn
+> - qcom/sm8650/cdsp.mbn
+> - qcom/sm8650/cdsp_dtb.mbn
+> - qcom/sm8650/ipa_fws.mbn
+> - qcom/sm8650/modem.mbn
+> - qcom/sm8650/modem_dtb.mbn
+> - qcom/sm8650/vpu33_4v.mbn (or maybe qcom/vpu-33/vpu_4v.mbn)
+> 
 > -- 
-> 2.35.1.1320.gc452695387.dirty
+> With best wishes
+> Dmitry
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
 > 
 
