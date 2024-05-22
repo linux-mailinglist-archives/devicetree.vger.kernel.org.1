@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-68462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372EC8CC5B8
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 19:40:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 058678CC5BF
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 19:42:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1D70B20B72
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:40:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 137541C21173
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 963711422DA;
-	Wed, 22 May 2024 17:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA081422DC;
+	Wed, 22 May 2024 17:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lbnWxyF2"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="NBKw/BeO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B457D071;
-	Wed, 22 May 2024 17:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F4BF76048;
+	Wed, 22 May 2024 17:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716399610; cv=none; b=aqTtbg2KZVPE8Uueg0fuOyahzddNqMpKtglre52/mpRxViO9QufZKkH0BAPchzQsIMfqWhVGg5dhaHY4EsL6v2puDrzN7crJMQBOwtogcYHl89xmlXOJKk3qlOWRIJ1mbvrjnagoC6l474d8Xl4aWYkiHsgku1HDf/BmceO2/e4=
+	t=1716399715; cv=none; b=clcpr2Iwa02Qhnpwtw241hxoCrq0hU1OnY5DyNdzd7wDVvP9Fb6b1+E7lKcdv3H3N0GJGG7dfENGM8j50rg+Ug/I1qgngEuLPhH5JvCHRjta5fhe/MRayTIRYZSO8dBSpYfBYOkqIgsQ028+yNdpzWsk7j/qm7KkuLBfa+SVODM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716399610; c=relaxed/simple;
-	bh=rvyON9Eez4+bgszygh1Bb1QcvHtLRDv9uBENZwvOqgk=;
+	s=arc-20240116; t=1716399715; c=relaxed/simple;
+	bh=uvL6c0sQzUn4EQXHgyUdZShzqtxsUfQBgxL0hnuw5Qs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HvuITG6YRcU1FX9yt3/PCgs1pnJwCTFalA9vy9unmW2pvjPU017MJPiWb3+fG6qWIlhiqQoRYbMuTZfqHbLDTSfPxIdx61NswSMpfAvt/V6zx1kdv9Em/bRhajoHmfECDLnlfKePb8W3mD6yiKgbNO5U2dYwk2naenum8xyLxak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lbnWxyF2; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44MHdgZ2058268;
-	Wed, 22 May 2024 12:39:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1716399583;
-	bh=96umGE7Q8x9vdEdBBDF/Aa24QRAMgPy3dYLj6BJie8k=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=lbnWxyF2XCnoOX2VMR21xaTV+WQlRqXc/+PCmgxkXrFUkHlyUtAJfF5OrLaPD67J5
-	 h4u5U7qoxy7u9LjpgIUxZtzcTN7ZR19a1eHDhfv3e7HpnWER/dJDV0ahkhykCG26CQ
-	 rvtKjnvwJGPpfelmmrHdOBvyrC94axaVqDm/HUxw=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44MHdgTM024507
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 22 May 2024 12:39:42 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 22
- May 2024 12:39:42 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 22 May 2024 12:39:42 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44MHdaJM018757;
-	Wed, 22 May 2024 12:39:37 -0500
-Message-ID: <c2fe8d96-677a-4779-b46b-1c50698ef6a0@ti.com>
-Date: Wed, 22 May 2024 23:09:36 +0530
+	 In-Reply-To:Content-Type; b=M1CXFCILScbl0N7ja4bBkLHJgbMo29S8Z8j6OKH8URbC2BrW2ZuzJHUMzeRzmmDq/TCpC8X3jER0E0OarVulRIMVC2mqpLkEVgCFWRMrIyS0i36fXlV79nvBycjnBJiQNoWbY+lTXNMV5RImtS7Y/K5sQeXtARFUb6Ovj+4m+kQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=NBKw/BeO; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 2FBAE120011;
+	Wed, 22 May 2024 20:41:46 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2FBAE120011
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1716399706;
+	bh=ORccFiShbmiAytq5SHZC9Z2mGFe7Gewrl8C0g5tV60s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=NBKw/BeORAvdvC8MqaROXAc1l0DIcDjtIVTtItU5G1ZbPpME7C/gZReDQ3QE+Kr3/
+	 e22NzJmm1DYClHQ/vpQ/VzP3eFpf/sljJpjf9SNiqW4n/tdBRxvoI2/UoR5V9rXPQw
+	 os+0XDe9M2L9Qyh0kxAYS1WICIbiuTjDSzww+FC2oopTeNtt5owTPgSJ0cjwyDvIMm
+	 7rpSOvEgbLaLDhjka7BoQB/I3tsj40PfXzaovQxP15PPFadoUfkRtltIXelfyJjJVw
+	 wFZ7xJ0N7vIhKf5KzdU2Tcww46u8RkFviq8Ik/t37q/ZbUq2e44jVd0T56tJ9eE5FM
+	 CbI9Ylythhw0w==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 22 May 2024 20:41:45 +0300 (MSK)
+Received: from [172.28.128.189] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 22 May 2024 20:41:45 +0300
+Message-ID: <edc6241b-195f-4188-b802-24706ebc9541@salutedevices.com>
+Date: Wed, 22 May 2024 20:40:40 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,86 +63,138 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
- GPL-2.0
-To: Nishanth Menon <nm@ti.com>, Conor Dooley <conor@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-        Andrew Lunn
-	<andrew@lunn.ch>
-CC: <vigneshr@ti.com>, <davem@davemloft.net>, <edumazet@google.com>,
-        <kuba@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Kip Broadhurst <kbroadhurst@ti.com>,
-        <w.egorov@phytec.de>, <u-kumar1@ti.com>
-References: <20240517104226.3395480-1-u-kumar1@ti.com>
- <20240517-poster-purplish-9b356ce30248@spud>
- <20240517-fastball-stable-9332cae850ea@spud>
- <8e56ea52-9e58-4291-8f7f-4721dd74c72f@ti.com>
- <20240520-discard-fanatic-f8e686a4faad@spud>
- <20240520201807.GA1410789-robh@kernel.org>
- <e257de5f54d361da692820f72048ed06a8673380.camel@redhat.com>
- <20240522-vanquish-twirl-4f767578ee8d@spud>
- <20240522134001.tjgvzglufwmi3k75@imitate>
+Subject: Re: [PATCH 0/3] Introduce initial support of Amlogic AC200 board
 Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240522134001.tjgvzglufwmi3k75@imitate>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: Jerome Brunet <jbrunet@baylibre.com>, Xianwei Zhao
+	<xianwei.zhao@amlogic.com>, Lucas Tanure <tanure@linux.com>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Dmitry Rokosov
+	<ddrokosov@sberdevices.ru>, Conor Dooley <conor+dt@kernel.org>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-amlogic@lists.infradead.org>
+References: <20240521222155.28094-1-jan.dakinevich@salutedevices.com>
+ <171638551693.3169786.7201121718393921307.robh@kernel.org>
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <171638551693.3169786.7201121718393921307.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185427 [May 22 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;devicetree.org:7.1.1;salutedevices.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/05/22 13:13:00
+X-KSMG-LinksScanning: Clean, bases: 2024/05/22 16:46:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/22 16:29:00 #25238160
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Thanks all for review
+On 5/22/24 16:46, Rob Herring (Arm) wrote:
+> 
+> On Wed, 22 May 2024 01:21:52 +0300, Jan Dakinevich wrote:
+>>  - Make some cosmetics in existing device tree files;
+>>
+>>  - Add the board.
+>>
+>> Jan Dakinevich (3):
+>>   arch/arm64: dts: ac2xx: make common the sound card
+>>   dt-bindings: arm: amlogic: document AC200 support
+>>   arch/arm64: dts: ac200: introduce initial support of the board
+>>
+>>  .../devicetree/bindings/arm/amlogic.yaml      |  1 +
+>>  .../dts/amlogic/meson-sm1-a95xf3-air-gbit.dts | 87 -------------------
+>>  .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts | 87 -------------------
+>>  .../boot/dts/amlogic/meson-sm1-ac200.dts      | 22 +++++
+>>  .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 87 +++++++++++++++++++
+>>  .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 87 -------------------
+>>  .../dts/amlogic/meson-sm1-x96-air-gbit.dts    | 87 -------------------
+>>  .../boot/dts/amlogic/meson-sm1-x96-air.dts    | 87 -------------------
+>>  8 files changed, 110 insertions(+), 435 deletions(-)
+>>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dts
+>>
+>> --
+>> 2.34.1
+>>
+>>
+>>
+> 
+> 
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y amlogic/meson-sm1-a95xf3-air-gbit.dtb amlogic/meson-sm1-a95xf3-air.dtb amlogic/meson-sm1-ac200.dtb amlogic/meson-sm1-h96-max.dtb amlogic/meson-sm1-x96-air-gbit.dtb amlogic/meson-sm1-x96-air.dtb' for 20240521222155.28094-1-jan.dakinevich@salutedevices.com:
+> 
+> arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/clock-controller@0: failed to match any schema with compatible: ['amlogic,sm1-audio-clkc']
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+> 	'clocks' is a required property
+> 	'#clock-cells' is a required property
+> 	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+> 
+> 
+> 
+> 
+> 
 
-On 5/22/2024 7:10 PM, Nishanth Menon wrote:
-> On 11:25-20240522, Conor Dooley wrote:
->> On Wed, May 22, 2024 at 10:04:39AM +0200, Paolo Abeni wrote:
->>> On Mon, 2024-05-20 at 15:18 -0500, Rob Herring wrote:
->>>> On Mon, May 20, 2024 at 06:17:52PM +0100, Conor Dooley wrote:
->>>>> On Sat, May 18, 2024 at 02:18:55PM +0530, Kumar, Udit wrote:
->>>>>> Hi Conor
->>>>>>
->>>>>> On 5/17/2024 8:11 PM, Conor Dooley wrote:
->>>>>>> On Fri, May 17, 2024 at 03:39:20PM +0100, Conor Dooley wrote:
->>>>>>>> On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
->>>>>>>>> Modify license to include dual licensing as GPL-2.0-only OR MIT
->>>>>>>>> license for TI specific phy header files. This allows for Linux
->>>>>>>>> kernel files to be used in other Operating System ecosystems
->>>>>>>>> such as Zephyr or FreeBSD.
->>>>>>>> What's wrong with BSD-2-Clause, why not use that?
->>>>>>> I cut myself off, I meant to say:
->>>>>>> What's wrong with BSD-2-Clause, the standard dual license for
->>>>>>> bindings, why not use that?
->>>>>> want to be inline with License of top level DTS, which is including this
->>>>>> header file
->>>>> Unless there's a specific reason to use MIT (like your legal won't even
->>>>> allow you to use BSD-2-Clause) then please just use the normal license
->>>>> for bindings here.
->>>> Aligning with the DTS files is enough reason for me as that's where
->>>> these files are used. If you need to pick a permissive license for both,
->>>> then yes, use BSD-2-Clause. Better yet, ask your lawyer.
->>> Conor would you agree with Rob? - my take is that he is ok with this
->>> patch.
->> I don't think whether or not I agree matters, Rob said it's fine so it's
->> fine.
-> Just to close the loop here: Udit pointed me to this thread and having
-> gone through this already[1] with internal TI teams, the feedback we
-> have gotten from our licensing team (including legal) is to go with
-> GPL2 or MIT. BSD (2 and 3 clauses) were considered, but due to varied
-> reasons, dropped.
->
-> That said, Udit, since you are touching this, please update in the next
-> revision:
-> Copyright:   (C) 2015-2024 Texas Instruments, Inc.
->   to
-> Copyright (C) 2015-2024 Texas Instruments Incorporated - https://www.ti.com/
+These errors were here before my modifications, and they require extra
+efforts to rework generic 'meson-sm1.dtsi' etc. But it is not the goal
+of this series. Should I do anything about this right now?
 
-
-will post v2 with these changes after merge window is open.
-
-Along with that in v2 will copy other contributors as well, who are 
-including these files.
-
-
-> [1] https://serenity.dal.design.ti.com/lore/linux-patch-review/20240109231804.3879513-1-nm@ti.com/
->
+-- 
+Best regards
+Jan Dakinevich
 
