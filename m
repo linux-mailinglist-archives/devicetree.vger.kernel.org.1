@@ -1,74 +1,67 @@
-Return-Path: <devicetree+bounces-68437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D563A8CC42D
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:35:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4C318CC438
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:37:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EC3F28304B
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:35:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D56DB1C21C27
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5B3652F9E;
-	Wed, 22 May 2024 15:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C2C6770F1;
+	Wed, 22 May 2024 15:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fJCaiQjL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Top1XGc2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF641171C;
-	Wed, 22 May 2024 15:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D31741171C;
+	Wed, 22 May 2024 15:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716392151; cv=none; b=R/XJsjpfSIb+DhbURxLVuLz2eYUSZZklCr/lc893q5f4DptHAtqboc5XDQ5wZxM6EhfeWrqpsECqxxq2z16UmaeaNdlTn3Q7adLLhEWoKjFgy0HCjrzKQemt9biNvID+lXhMFnfPpZeKcNtuY3DVassabCNNECQBmN5WUFF/irM=
+	t=1716392267; cv=none; b=FMK5ixOCcNUaWppvyEfrIVHoQ8z0oz8AzK74CfAhA0oP3FEH+V4Zmz12tC7N2sJrV/o+4eMFT6NtfZeaClX+MdmjJkVyS/dL5/1bL88FCywBwLCmS1AdW2IwYDdxWYqjS2CSFnP0fT17PfTSIbf3/wT0GVv6QeFpdlh59h+L9v4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716392151; c=relaxed/simple;
-	bh=Qd+NDxGOZ2bJf9sIDqREHnfFavqyfD7ddBDGDAxcjbk=;
+	s=arc-20240116; t=1716392267; c=relaxed/simple;
+	bh=3YRIw4xGban3ncUZ5m5pmLWIF/RlgCbtMqm+fj2vRaI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mF8CuFLubuTp1/qrxU8kZoJrGh1Boqzc+2efiqb1f3z4Co09Fzlp15NDZz9luCREN4DgK84ZJ1qVJWHqZuUHQhiGz1gruWa1znCOM8e2dOsvqEQDI1L7W10KpLfABpybUOVnsf/f5NJ02QI5x9r4VowpepH81vpIMTo9kgHu+HY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fJCaiQjL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6DE9C2BD11;
-	Wed, 22 May 2024 15:35:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y2TCnEWQzGiWlXOBYfpBomqri8QoJuRPD7+TBosNAtsrFoOxiQlPerZ92L+ZPIRxG2UnpdpmACEBjBSNSsnf4rLPuXeDzR52N4SXSsqBk2pZxA0IqaBDkf1DuutfjZkJF63+euH6YqF2xRqmcIujUGfQZGfKmuia5iPfnmmxDbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Top1XGc2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B1CC32782;
+	Wed, 22 May 2024 15:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716392151;
-	bh=Qd+NDxGOZ2bJf9sIDqREHnfFavqyfD7ddBDGDAxcjbk=;
+	s=k20201202; t=1716392267;
+	bh=3YRIw4xGban3ncUZ5m5pmLWIF/RlgCbtMqm+fj2vRaI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fJCaiQjLOSkJeC8737kXYulTF1E8kx+viQmK6R8A79ohnS0Ia2oKO7niWQO25ldGP
-	 YcrmWJcjzgvYYamWATddny5NL8foEzHP71g5oKW+oZV2cvD+IbmF/V50RAHLsngVuW
-	 8T6ALDPEmvK1nPQML2+v2HFyWk40+BCuyzs1d7AFmd7wuIRr9poXzP7qvb3kGF5LA7
-	 k3x18K6WyK0m64ECtrMbp0YEnAQ1NR5l1clMI2yrI91yteJvWEX4i9zH6bLxnWIz8d
-	 6yzROBcTARIC05vmq7n0pwnrFEtY8Rk4mGhd5bjzNdXdFWL2JL9AbLdWWc5sMj7OYr
-	 0Q+7VSasTFxdw==
-Date: Wed, 22 May 2024 16:35:44 +0100
+	b=Top1XGc2EHvGIykobL/WY78wXCOg+w5a4zd0y+dm/qbjgLc3q8SxDIdiRjmoZ86wb
+	 YhJIwjF46lMw4UK0f8u8YsgrBaGhFsYQlTNuLvWr1u+agWobGjDF/uiq5K0cK128UQ
+	 CcvCU86D7bVM9PLCUxcU2L7FQX4eItVjH53WQUg1MybMFRNRn3slIElFLu6+9XqA/P
+	 3vKKHlbIyt7BpajuUSElOlmtwdgGQ3HGN/BNYKbRNLMyZcBlakr6zGLI7shq3cE4Kg
+	 ROzqsFUBHWpdAx+gmTocP4lAfeg265n7ButbzdW08WCtA/zL8n3tbGELt1J07MYYX7
+	 iVeXCwGpt4mvw==
+Date: Wed, 22 May 2024 16:37:42 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: display: vop2: Add VP clock resets
-Message-ID: <20240522-slimness-dullness-bb807f053c89@spud>
-References: <20240514152328.21415-1-detlev.casanova@collabora.com>
- <13628421.uLZWGnKmhe@arisu>
- <20240521-silver-exciting-bb3725dc495d@spud>
- <3334403.5fSG56mABF@arisu>
+To: Nishanth Menon <nm@ti.com>
+Cc: Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+	"Kumar, Udit" <u-kumar1@ti.com>, vigneshr@ti.com,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Kip Broadhurst <kbroadhurst@ti.com>, w.egorov@phytec.de
+Subject: Re: [PATCH] dt-bindings: net: dp8386x: Add MIT license along with
+ GPL-2.0
+Message-ID: <20240522-trash-unshaven-226dba991c3f@spud>
+References: <20240517104226.3395480-1-u-kumar1@ti.com>
+ <20240517-poster-purplish-9b356ce30248@spud>
+ <20240517-fastball-stable-9332cae850ea@spud>
+ <8e56ea52-9e58-4291-8f7f-4721dd74c72f@ti.com>
+ <20240520-discard-fanatic-f8e686a4faad@spud>
+ <20240520201807.GA1410789-robh@kernel.org>
+ <e257de5f54d361da692820f72048ed06a8673380.camel@redhat.com>
+ <20240522-vanquish-twirl-4f767578ee8d@spud>
+ <20240522134001.tjgvzglufwmi3k75@imitate>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,83 +69,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="O1xKPYmQ4qbvZFbX"
+	protocol="application/pgp-signature"; boundary="ppzR8UWyzGuYSJha"
 Content-Disposition: inline
-In-Reply-To: <3334403.5fSG56mABF@arisu>
+In-Reply-To: <20240522134001.tjgvzglufwmi3k75@imitate>
 
 
---O1xKPYmQ4qbvZFbX
-Content-Type: text/plain; charset=iso-8859-1
+--ppzR8UWyzGuYSJha
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 22, 2024 at 11:31:36AM -0400, Detlev Casanova wrote:
-> On Tuesday, May 21, 2024 2:31:51 P.M. EDT Conor Dooley wrote:
-> > On Tue, May 21, 2024 at 01:15:46PM -0400, Detlev Casanova wrote:
-> > > On Wednesday, May 15, 2024 12:33:22 P.M. EDT Heiko St=FCbner wrote:
-> > > > Am Mittwoch, 15. Mai 2024, 18:19:29 CEST schrieb Conor Dooley:
-> > > > > On Tue, May 14, 2024 at 11:19:47AM -0400, Detlev Casanova wrote:
-> > > > > > Add the documentation for VOP2 video ports reset clocks.
-> > > > > > One reset can be set per video port.
+On Wed, May 22, 2024 at 08:40:01AM -0500, Nishanth Menon wrote:
+> On 11:25-20240522, Conor Dooley wrote:
+> > On Wed, May 22, 2024 at 10:04:39AM +0200, Paolo Abeni wrote:
+> > > On Mon, 2024-05-20 at 15:18 -0500, Rob Herring wrote:
+> > > > On Mon, May 20, 2024 at 06:17:52PM +0100, Conor Dooley wrote:
+> > > > > On Sat, May 18, 2024 at 02:18:55PM +0530, Kumar, Udit wrote:
+> > > > > > Hi Conor
 > > > > > >=20
-> > > > > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > > > > > On 5/17/2024 8:11 PM, Conor Dooley wrote:
+> > > > > > > On Fri, May 17, 2024 at 03:39:20PM +0100, Conor Dooley wrote:
+> > > > > > > > On Fri, May 17, 2024 at 04:12:26PM +0530, Udit Kumar wrote:
+> > > > > > > > > Modify license to include dual licensing as GPL-2.0-only =
+OR MIT
+> > > > > > > > > license for TI specific phy header files. This allows for=
+ Linux
+> > > > > > > > > kernel files to be used in other Operating System ecosyst=
+ems
+> > > > > > > > > such as Zephyr or FreeBSD.
+> > > > > > > > What's wrong with BSD-2-Clause, why not use that?
+> > > > > > > I cut myself off, I meant to say:
+> > > > > > > What's wrong with BSD-2-Clause, the standard dual license for
+> > > > > > > bindings, why not use that?
+> > > > > >=20
+> > > > > > want to be inline with License of top level DTS, which is inclu=
+ding this
+> > > > > > header file
 > > > > >=20
-> > > > > Are these resets valid for all VOPs or just the one on 3588?
+> > > > > Unless there's a specific reason to use MIT (like your legal won'=
+t even
+> > > > > allow you to use BSD-2-Clause) then please just use the normal li=
+cense
+> > > > > for bindings here.
 > > > >=20
-> > > > Not in that form.
-> > > > I.e. rk3588 has 4 video-ports (0-3), while rk3568 has 3 (0-2).
-> > > >=20
-> > > > So the binding should take into account that rk3568 also has the
-> > > > SRST_VOP0 ... SRST_VOP2.
+> > > > Aligning with the DTS files is enough reason for me as that's where=
+=20
+> > > > these files are used. If you need to pick a permissive license for =
+both,=20
+> > > > then yes, use BSD-2-Clause. Better yet, ask your lawyer.
 > > >=20
-> > > That is what is set in the example and the reason why I set minItems =
-to 3
-> > > in the main bindings.
-> > > Then, the rk3588 specific part sets it to 4.
-> > >=20
-> > > Isn't that enough ?
+> > > Conor would you agree with Rob? - my take is that he is ok with this
+> > > patch.
 > >=20
-> > Not quite - you need to restrict maxItems to 3 for the other devices if
-> > the clocks are not valid. What you've got says that 4 clocks are
-> > possible but not needed on !rk3588.
-> >=20
-> I don't understand what "properties: resets: minItems: 3" means then. I=
-=20
-> thought it means that all devices should have at least 3 resets. Then the=
-=20
-> allOf below specifies the special case of rk3588 which has a minimum of 4=
-=20
-> resets.
-
-The change you made to the bindings allows someone to define either 3
-(because of minItems 3) or 4 (because there are 4 items in the list) resets
-for the rk3568.
-
-> Do I need to add=20
->         resets:
->           minItems: 3
->         reset-names:
->           minItems: 3
-> in the "else:" ?
-
-No, you need to add maxItems: 3 to the else.
-
-> So in that case, I can remove "properties: resets: minItems: 3" above ?
+> > I don't think whether or not I agree matters, Rob said it's fine so it's
+> > fine.
 >=20
-> Also, what do you mean "If the clocks are not valid" ?
+> Just to close the loop here: Udit pointed me to this thread and having
+> gone through this already[1] with internal TI teams, the feedback we
+> have gotten from our licensing team (including legal) is to go with
+> GPL2 or MIT. BSD (2 and 3 clauses) were considered, but due to varied
+> reasons, dropped.
 
-s/clocks/resets/ ;)
+> [1] https://serenity.dal.design.ti.com/lore/linux-patch-review/2024010923=
+1804.3879513-1-nm@ti.com/
 
---O1xKPYmQ4qbvZFbX
+FWIW, this is some internal-only link.
+
+
+--ppzR8UWyzGuYSJha
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk4Q0AAKCRB4tDGHoIJi
-0s0DAQDoOkPVLDr+HE00hhznKtcPPj+CcSSPyDVA/6sDIBivXQEAsVedCSlfxbXc
-k7i+X+yRjsbEqstU9Tavi7c6NTEiuQI=
-=aFFV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk4RRgAKCRB4tDGHoIJi
+0m8iAP9jFWjwj8aEFrkB3HLKIlQDhPOWBuiUMMerAM0cG0KaMgD+NODN0v5Iasoe
+aS9UOo2PdFpVa3pipDsLL4zD3r8rkwE=
+=rWro
 -----END PGP SIGNATURE-----
 
---O1xKPYmQ4qbvZFbX--
+--ppzR8UWyzGuYSJha--
 
