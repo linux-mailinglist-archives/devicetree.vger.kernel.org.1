@@ -1,186 +1,151 @@
-Return-Path: <devicetree+bounces-68390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D0B38CC1F4
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:18:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C12C98CC1FC
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:21:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F8881F24A84
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:18:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2A151C21CB8
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8137513E027;
-	Wed, 22 May 2024 13:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BG8iZIx9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CE113D532;
+	Wed, 22 May 2024 13:21:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D0113DDCF;
-	Wed, 22 May 2024 13:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7109D8061B;
+	Wed, 22 May 2024 13:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716383885; cv=none; b=cq9OkNRf2bJsjh3i/JVk2toVSKxdhgRfSGiMiMrSM8WYcOK2s6VaLToYjeOkpfqJI5sDW0ncnkH6ktdvkRwpXVM4bHQu3XRshgAVDT4i9ViDl0yecXGvg2byHR5ymMG5jXfmVCDbi6gSU16VgeEe/ltnobhZ2NtmapR1JnlKLhA=
+	t=1716384109; cv=none; b=dD36IilVwM/7bhwrnp7CG24O5H4se/5UisMwIvANC/Py10NJ6DuPiAYDcOHUnRZraBXm26Ika1CjKirDaKNJZgK/f7+K7prbpgI/cwhts9mwlsV861GEqdW1zOCCsqvnsoEQqy2/fwdK/cY97ZVdzWa/jSYxkCPgbQQ+WJk6TeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716383885; c=relaxed/simple;
-	bh=SS8NQ2qI1N6VAQAHONvDSqaVdH40rCdkvanu7fSkmF0=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ILk34GVUWrqmk2fAL4IcHm9kWzL5J6iPugb5CW0QMqmIhmPhd1FEqkAxsx6DZ11yYhNbYG5oiyy1uD28y574aBTPZpJpWVnXKJLUFgIiBsch4XjUURWYbUwudi3lM1oU5chOKaTja/YIlyYOdN1xYWMXQXzZX6YknabHNnj9Nsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BG8iZIx9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BD6DC2BD11;
-	Wed, 22 May 2024 13:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716383884;
-	bh=SS8NQ2qI1N6VAQAHONvDSqaVdH40rCdkvanu7fSkmF0=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=BG8iZIx91+Ie+2UsCYkTy/GKOfYELHhEYG9HMdOpesEnWOabp0kTVznDXIVA1HeOk
-	 4/nStEikie+/W5UV4ZU97/qJ824apR9GTZuFG5RjJ95TP9+jUlMOtsDPv7JCdoIWet
-	 wZcoX7eDAn21xTdj3etJy7Dwig0uKWDBf1xQGU/rth/iGP4VpmBc+pSTzGVJ1cNVSw
-	 qsG/16620AK5euzv6NpNupJyY/cgPk+OTOybTXGrwJK+k13/11LELqH5b0ik0xxBF0
-	 s6hujDttQ9IQX3DVR7syIWfT8gIawnngFdoDvZd5jVBroroW2Q+PZkswDjPU6bBYOj
-	 bboTJaEGFX4FA==
-Date: Wed, 22 May 2024 15:18:02 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: John Stultz <jstultz@google.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
-	Mattijs Korpershoek <mkorpershoek@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH 0/8] dma-buf: heaps: Support carved-out heaps and ECC
- related-flags
-Message-ID: <20240522-coral-fennec-from-uranus-fb7263@houat>
-References: <20240515-dma-buf-ecc-heap-v1-0-54cbbd049511@kernel.org>
- <CANDhNCoOKwtpstFE2VDcUvzdXUWkZ-Zx+fz6xrdPWTyciVXMXQ@mail.gmail.com>
- <ZkXmWwmdPsqAo7VU@phenom.ffwll.local>
- <CANDhNCo5hSC-sLwdkBi3e-Ja-MzdqcGGbn-4G3XNYwCzZUwscw@mail.gmail.com>
- <ZkyOOwpM57HIiO3v@phenom.ffwll.local>
+	s=arc-20240116; t=1716384109; c=relaxed/simple;
+	bh=1zHWV9lrir7bcF6ZsXjm0Dm5UaAg89JLGm6bgIZ8wRw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OIGQWiqUhJe9J0Q2dP0eFGgZ5dZo425nzXkCXjQmWNWdM5h5bwHnMX/i02f3pofhaFXTgPgu9tcmSPmj+pQXXRC++9XdXK0Q12Cebf4+qERQ/gScEg61PLQWAs723sXKcIrHPWrov2sW6T6Su6wXEYHL0SDXYD4vuNo6UF7wOv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-61bed738438so49578287b3.2;
+        Wed, 22 May 2024 06:21:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716384106; x=1716988906;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pwO3V0ef+iewPljIZQdQy9oZrW8vxT6y27HOdLh4pwc=;
+        b=jGX2EeH3QndnhCzshAY+iCS0D9gEl3vq9DrGrrk2TwG6BscwHC1ZxXW8EWRuZsQOi2
+         FVeFAw54Vpl4AhAcJzdGWq8yPrGfdLdBw/KdlLp+VhovmjmPZmfjU7vtzs59ZLIqzzCW
+         nGyIDlW19lWCksXmQPmptZ2tTQuOLxB6FOqjedSXbrd4p6s6mK+8nFkn/EYTpUdaHT43
+         dj5wxiJ+ksIW8WwKq20SNHR0mIW0oa91mN+HTG+yppuaV81N5xAmkRLgqUwejB+pQgZt
+         aqLZuh8lg7WBWOk6zOD7FRnaQLgkAL7EqUiIlEMhIZZXFwTln/tl+4K0zKRINBR4k3WU
+         q96Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVYTZy1PgIK+u86Ny0zMtnTWcFc6wbWt3lyTJM/UetLFlOspGiXTI1XHsLl+aSmwm7hwNX1M0t6rZKSR/uaUXoxHW4CN/VQLH9OzElPoh577FXkKAl1Aq2ytt7VbV3ZmrG9Utmdrt0AJrptf6yDufkuGsGf8PMKG0In706PHCpvdHeKu9dBmT7xi54gBbNn9giX2q707bDJgQkvA1qLRy2bkVbAxciQgw==
+X-Gm-Message-State: AOJu0Yw8ZaNbX2kzu9h9FJ0iHSvfkXv203JltQoo4ax9tsqDeh1adQ+t
+	SjrI1R1kTpFmC4bRfDi/HyAw8l6NWt9qEbarZM9f1agYRb7UCBqLkivdcAFJ
+X-Google-Smtp-Source: AGHT+IFP4p3lCRUBVGwOq/TLnR8fdUV9Ioulf7bIfz0Dj5W31c/p0FlTCSJ+kVJA7j3AREcIh9Fl/w==
+X-Received: by 2002:a81:92d7:0:b0:618:8a27:6150 with SMTP id 00721157ae682-627e46df567mr19733137b3.24.1716384105775;
+        Wed, 22 May 2024 06:21:45 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6209e3790dasm59151617b3.110.2024.05.22.06.21.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 06:21:45 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-61bed738438so49577947b3.2;
+        Wed, 22 May 2024 06:21:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWqa8bpEpj5wKN26+EYt5s0zq5Ht1N1tnN8QXIBHxD9ANXuXenjCu29NKuCsCJ//pYJeXcnQH3YYTa+zC5N7PwM7TklpLMzlswhNZjhQJYvBinaNukt2bW4gOQv56iwBuOGzNCRWoKBkRkrzUY176d2go3D9w0d9y0wb0EiNE1ACq4+pVZ5OjLmlvoeT66GTJjQfwji2yR4XNaXvmojSqtzv3HKG1r1cg==
+X-Received: by 2002:a05:690c:d8f:b0:61e:a3a:2538 with SMTP id
+ 00721157ae682-627e46c7296mr24311947b3.18.1716384105266; Wed, 22 May 2024
+ 06:21:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="hjuhspbk6bfp7v2t"
-Content-Disposition: inline
-In-Reply-To: <ZkyOOwpM57HIiO3v@phenom.ffwll.local>
-
-
---hjuhspbk6bfp7v2t
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240423175900.702640-13-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240423175900.702640-13-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 22 May 2024 15:21:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXA8hnV6NTSNdYQNvuBsK5Os9CDgE64xLN3R0wAAmtJgA@mail.gmail.com>
+Message-ID: <CAMuHMdXA8hnV6NTSNdYQNvuBsK5Os9CDgE64xLN3R0wAAmtJgA@mail.gmail.com>
+Subject: Re: [PATCH v2 12/13] pinctrl: renesas: pinctrl-rzg2l: Add support for
+ custom parameters
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 21, 2024 at 02:06:19PM GMT, Daniel Vetter wrote:
-> On Thu, May 16, 2024 at 09:51:35AM -0700, John Stultz wrote:
-> > On Thu, May 16, 2024 at 3:56=E2=80=AFAM Daniel Vetter <daniel@ffwll.ch>=
- wrote:
-> > > On Wed, May 15, 2024 at 11:42:58AM -0700, John Stultz wrote:
-> > > > But it makes me a little nervous to add a new generic allocation fl=
-ag
-> > > > for a feature most hardware doesn't support (yet, at least). So it's
-> > > > hard to weigh how common the actual usage will be across all the
-> > > > heaps.
-> > > >
-> > > > I apologize as my worry is mostly born out of seeing vendors really
-> > > > push opaque feature flags in their old ion heaps, so in providing a
-> > > > flags argument, it was mostly intended as an escape hatch for
-> > > > obviously common attributes. So having the first be something that
-> > > > seems reasonable, but isn't actually that common makes me fret some.
-> > > >
-> > > > So again, not an objection, just something for folks to stew on to
-> > > > make sure this is really the right approach.
-> > >
-> > > Another good reason to go with full heap names instead of opaque flag=
-s on
-> > > existing heaps is that with the former we can use symlinks in sysfs to
-> > > specify heaps, with the latter we need a new idea. We haven't yet got=
-ten
-> > > around to implement this anywhere, but it's been in the dma-buf/heap =
-todo
-> > > since forever, and I like it as a design approach. So would be a good=
- idea
-> > > to not toss it. With that display would have symlinks to cma-ecc and =
-cma,
-> > > and rendering maybe cma-ecc, shmem, cma heaps (in priority order) for=
- a
-> > > SoC where the display needs contig memory for scanout.
-> >=20
-> > So indeed that is a good point to keep in mind, but I also think it
-> > might re-inforce the choice of having ECC as a flag here.
-> >=20
-> > Since my understanding of the sysfs symlinks to heaps idea is about
-> > being able to figure out a common heap from a collection of devices,
-> > it's really about the ability for the driver to access the type of
-> > memory. If ECC is just an attribute of the type of memory (as in this
-> > patch series), it being on or off won't necessarily affect
-> > compatibility of the buffer with the device.  Similarly "uncached"
-> > seems more of an attribute of memory type and not a type itself.
-> > Hardware that can access non-contiguous "system" buffers can access
-> > uncached system buffers.
->=20
-> Yeah, but in graphics there's a wide band where "shit performance" is
-> defacto "not useable (as intended at least)".
+Hi Prabhakar,
 
-Right, but "not useable" is still kind of usage dependent, which
-reinforces the need for flags (and possibly some way to discover what
-the heap supports).
+On Tue, Apr 23, 2024 at 7:59=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> In preparation for passing custom params for RZ/V2H(P) SoC assign the
+> custom params that is being passed via struct rzg2l_pinctrl_data.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> RFC->v2
+> - No change
 
-Like, if I just want to allocate a buffer for a single writeback frame,
-then I probably don't have the same requirements than a compositor that
-needs to output a frame at 120Hz.
+Thanks for your patch!
 
-The former probably doesn't care about the buffer attributes aside that
-it's accessible by the device. The latter probably can't make any kind
-of compromise over what kind of memory characteristics it uses.
+> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> @@ -262,6 +262,9 @@ struct rzg2l_pinctrl_data {
+>         const struct rzg2l_hwcfg *hwcfg;
+>         const struct rzg2l_variable_pin_cfg *variable_pin_cfg;
+>         unsigned int n_variable_pin_cfg;
+> +       unsigned int num_custom_params;
+> +       const struct pinconf_generic_params *custom_params;
+> +       const struct pin_config_item *custom_conf_items;
 
-If we look into the current discussions we have, a compositor would
-probably need a buffer without ECC, non-secure, and probably wouldn't
-care about caching and being physically contiguous.
+Perhaps this should be protected by #ifdef CONFIG_DEBUG_FS, too?
 
-Libcamera's SoftISP would probably require that the buffer is cacheable,
-non-secure, without ECC and might ask for physically contiguous buffers.
+>         void (*pwpr_pfc_unlock)(struct rzg2l_pinctrl *pctrl);
+>         void (*pwpr_pfc_lock)(struct rzg2l_pinctrl *pctrl);
+>         void (*pmc_writeb)(struct rzg2l_pinctrl *pctrl, u8 val, void __io=
+mem *addr);
+> @@ -2374,6 +2377,13 @@ static int rzg2l_pinctrl_register(struct rzg2l_pin=
+ctrl *pctrl)
+>         pctrl->desc.pmxops =3D &rzg2l_pinctrl_pmxops;
+>         pctrl->desc.confops =3D &rzg2l_pinctrl_confops;
+>         pctrl->desc.owner =3D THIS_MODULE;
+> +       if (pctrl->data->num_custom_params) {
+> +               pctrl->desc.num_custom_params =3D pctrl->data->num_custom=
+_params;
+> +               pctrl->desc.custom_params =3D pctrl->data->custom_params;
+> +#ifdef CONFIG_DEBUG_FS
+> +               pctrl->desc.custom_conf_items =3D pctrl->data->custom_con=
+f_items;
+> +#endif
+> +       }
+>
+>         pins =3D devm_kcalloc(pctrl->dev, pctrl->desc.npins, sizeof(*pins=
+), GFP_KERNEL);
+>         if (!pins)
 
-As we add more memory types / attributes, I think being able to discover
-and enforce a particular set of flags will be more and more important,
-even more so if we tie heaps to devices, because it just gives a hint
-about the memory being reachable from the device, but as you said, you
-can still get a buffer with shit performance that won't be what you
-want.
+Gr{oetje,eeting}s,
 
-> So if we limit the symlink idea to just making sure zero-copy access is
-> possible, then we might not actually solve the real world problem we need
-> to solve. And so the symlinks become somewhat useless, and we need to
-> somewhere encode which flags you need to use with each symlink.
->=20
-> But I also see the argument that there's a bit a combinatorial explosion
-> possible. So I guess the question is where we want to handle it ...
->=20
-> Also wondering whether we should get the symlink/allocator idea off the
-> ground first, but given that that hasn't moved in a decade it might be too
-> much. But then the question is, what userspace are we going to use for all
-> these new heaps (or heaps with new flags)?
+                        Geert
 
-For ECC here, the compositors are the obvious target. Which loops backs
-into the discussion with John. Do you consider dma-buf code have the
-same uapi requirements as DRM?
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Maxime
-
---hjuhspbk6bfp7v2t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZk3whQAKCRAnX84Zoj2+
-dqWtAYDEzyt+3FSvODb9lRG7mNxDmuod5zqt8l6YWNV4pyI1NI0RiRJM5n2Ktxtl
-NQjg/b0BfRKprpRHNgDfswuVhX6aDRtUvWEDBIzM+/B02WVcs/nEEFFqbgS8OJ3g
-2elrGf/LOQ==
-=gNHz
------END PGP SIGNATURE-----
-
---hjuhspbk6bfp7v2t--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
