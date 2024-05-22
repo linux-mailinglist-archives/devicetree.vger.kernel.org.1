@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F46E8CBEF5
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:05:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E3D8CBEF9
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 12:06:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20EE91F232A6
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:05:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB5F31C219F7
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:06:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50CD581AA7;
-	Wed, 22 May 2024 10:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B42E7E572;
+	Wed, 22 May 2024 10:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bR97lpJL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SdyrD5uf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A5780C0C;
-	Wed, 22 May 2024 10:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024171CD13;
+	Wed, 22 May 2024 10:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716372352; cv=none; b=NxNHXGQSElFAeFyF0850e9kUR/OX4JnDOVUSiWQAfHFkXcxqeyoNgojM33xFnkscplAo/tg6VYAYt1t+Bq4jl0bXc8D6EyQAMf8uOvA/2P2/cxtVNil3tqxOaDhSCzJb4NoYIjIT7vkInwu4AJMFiQ0Q6HlNH0n800BkOQpUoQc=
+	t=1716372406; cv=none; b=F832Kfhi8X/IpT0WbSmwhDepziK37lfZxZ8RSWuonoLznHmu7AmfU1ZFbjka2A+Eajz1+A7+/VY3N+W2r4oMON4b6ffHj08bUi8+Ho4bBv0iJOl1dRrSO6jnq3VrL+4vBC5JJiZ1Hgf5o7uUY2zMDez87I4SRRW48OXUc3vbmKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716372352; c=relaxed/simple;
-	bh=L9QsGPYDBABafsZFVqOHTP85bZTHMDaVFNzCpQj692U=;
+	s=arc-20240116; t=1716372406; c=relaxed/simple;
+	bh=e/FPyLPqNB3CxEyT/jh1OUEbyOkGN/mPJXyW5rNfoF0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HgYcWVGruuSF7WHnERyMoTNFKw/SoTjM9hYVsse0RCQy0fYr+xW4EKAfPmD+/cd3c6Ah++d9IOnZwSxFjihAH54jUizKJwK4q6doDcSFxIY5zVD2x5jvdgpy+UdH3w/R9zsg9Akme9CG+WKgAYk/9oernzrldiZcAXeLYjAaVU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bR97lpJL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1E26C2BD11;
-	Wed, 22 May 2024 10:05:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NjQsd/FYRpup1Tv+G1xmOleg7NwtADqnuPbO+rn57UBccE8HsRCmWU9+JDgJWN0GpeAc8ErJYYhCNaulOiTB8uE2oayMW3ZgZQAIiwNR767gFENby80Y2Qqc/BeIDcOKLzDyp72UfCb77tEmAyRP3mQnz1pJ/ROJ+On9V4P132o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SdyrD5uf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D89FC2BD11;
+	Wed, 22 May 2024 10:06:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716372351;
-	bh=L9QsGPYDBABafsZFVqOHTP85bZTHMDaVFNzCpQj692U=;
+	s=k20201202; t=1716372405;
+	bh=e/FPyLPqNB3CxEyT/jh1OUEbyOkGN/mPJXyW5rNfoF0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bR97lpJLxS6Afhay+sNuu80WSyF/FNMF8o4k4LOraMXSLaZFUHu/dnwkHyuvF7OUX
-	 80kXf3qZMgJzQdX7QQ12tT+VENBeXf0LBqjFwZuuEWlXyt8yteWK6i0MOjE+a89Se+
-	 1m8YY8JUB2M/RznUM7wHRMguip++eFob0OXAtM2ZnhOTQB/J+V/aIqOHsq/dB+OC13
-	 34/S/CjERoOXfW3gcnNlNlvzjKmldXXgSGh0E0OEieWO1IiEcTKDRWENGEWS5HV3wu
-	 8APMpZ62zIyGrAFes+kcTkSh3cp0zqiegRJh3lUVPesY7/8dtGKWdy0yhBjktPPRzN
-	 ZBGU/cLuYyepA==
-Message-ID: <57cc90d7-b4ac-4452-b52f-0967ddafdcbd@kernel.org>
-Date: Wed, 22 May 2024 12:05:43 +0200
+	b=SdyrD5ufQpO74snjQRZTtR6GjeVJd3CChVnhIs8pQyfuFOHG4pwwF0TMt7X50D0Pf
+	 Hb+jrUFiwotOrpYHgYuC/83DRSRRON6unJSuXKd4+au4kp60zY9dbnOjAV6ZE7Cu6C
+	 oPxcrBnAqmbaTWwJXyguervAoMzFLSCJLSiNx8DGqD2JP74NB98F4hZcV72vicuuE9
+	 f77+4zSjL0YPVonEaSkATknL5tQtOzQnDNS2bTBioa2X11V0xBXPCRNpMVS11ABPU3
+	 51NHvQ8FUyjolt9K5pQXZkUf6sLdiaDZW8iSgaPAr1lz51k8HSCA4lFm3INwTPnA9u
+	 m42Kzr+m22loA==
+Message-ID: <bba486cf-1340-413f-88d9-e3e81b667cb8@kernel.org>
+Date: Wed, 22 May 2024 12:06:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/13] dt-bindings: net: rockchip-dwmac: Fix
- rockchip,rk3308-gmac compatible
+Subject: Re: [PATCH 09/13] dt-bindings: power: rockchip: Document RK3308 IO
+ voltage domains
 To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>, Tobias Schramm <t.schramm@manjaro.org>
+ Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20240521211029.1236094-1-jonas@kwiboo.se>
- <20240521211029.1236094-2-jonas@kwiboo.se>
+ <20240521211029.1236094-10-jonas@kwiboo.se>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,23 +104,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240521211029.1236094-2-jonas@kwiboo.se>
+In-Reply-To: <20240521211029.1236094-10-jonas@kwiboo.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/05/2024 23:10, Jonas Karlman wrote:
-> Schema validation using rockchip,rk3308-gmac compatible fails with:
+> Document dt-bindings for RK3308 IO voltage domains.
 > 
->   ethernet@ff4e0000: compatible: ['rockchip,rk3308-gmac'] does not contain items matching the given schema
->         from schema $id: http://devicetree.org/schemas/net/rockchip-dwmac.yaml#
->   ethernet@ff4e0000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts', 'phy-mode',
->                      'reg', 'reset-names', 'resets', 'snps,reset-active-low', 'snps,reset-delays-us',
->                      'snps,reset-gpio' were unexpected)
->         from schema $id: http://devicetree.org/schemas/net/rockchip-dwmac.yaml#
-> 
-> Add rockchip,rk3308-gmac to snps,dwmac.yaml to fix DT schema validation.
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
