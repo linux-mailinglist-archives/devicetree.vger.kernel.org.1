@@ -1,91 +1,87 @@
-Return-Path: <devicetree+bounces-68431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746FC8CC3C0
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:04:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8FB8CC3F2
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 17:16:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 168AC1F24597
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:04:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 741CE283115
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:16:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A9213D8AA;
-	Wed, 22 May 2024 15:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD22B7D071;
+	Wed, 22 May 2024 15:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="J6Z3qU5V"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hPppyMsJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513234437C
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 15:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF642574D;
+	Wed, 22 May 2024 15:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716390178; cv=none; b=eY2D+ISzBA2BHeQPjwRUIlQTckPA/JW/DUSAqoaZUYWISXz5uoQsywdSSwzLHdaV210Ky7bJns2387YBNGynL2YQY9p+LboKKEQnF8tOzUCZQZqL/Yg4qTduR6CiEx4Abw39vCglp8NuZRifuUs9N9xUKe8PHZ2VSiDXE4gk5lc=
+	t=1716390983; cv=none; b=BrZ68vWc02Pc91zZl2Gwkle7EoPVffLh2zaajsScg0RCPkGLtAyP2X0YkmUP8Xa0NmSWoJGhQKkjnaE/J9R1j6MT922v1bRaZHU3fGgYVpoFogrtlgZ/ZrMyIHWF+4A1GCW8ILcOUP73Uc+qFLE/VsT7oJD/9iF55JWJ/Kiaa04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716390178; c=relaxed/simple;
-	bh=pVh87fVqPqfQKJqqcDbSMFn+FcTBzRpmEsaCLIFq0AA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mV+Pk7wvbM5jcg2XEIGc+EtZ0L6Uon6nDsnKp1sNghxeNikfNjOk03y/FIMJc6eQVMwaI9GlE7f6vw7n6qY5cF2MLdi3IuXn5YLvwYw5NoZPeKd0L2Fj3Ag/J0q5I/63ywynJGEL0oard60Xh5b1bc3tPOKg+k/MtouF6248+ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=J6Z3qU5V; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2e3b1b6e9d1so78074731fa.2
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 08:02:57 -0700 (PDT)
+	s=arc-20240116; t=1716390983; c=relaxed/simple;
+	bh=EI0HTnk8GGjk6iqjpuIdqvCDyPO+TCTJmp5zSzG0huU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZAntf36WtPXjkcNTsz/YjtAFShimS9aCycnbUKF1p/XhTSk7XIBJ9ms71POrXH34tESbXQK0SGU1eXiP/l5mlF92G7yQYUA+7R23ACLn26uJBFzW+Jw2uQ/vZmax/GsMfe/OfLCM2dYcs6DbYQs/ybkWu/ShutFDTdWTgrN8VTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hPppyMsJ; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52742fdd363so592798e87.1;
+        Wed, 22 May 2024 08:16:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716390175; x=1716994975; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3jsqIIhfmiwTRQW5T/GGVz9A/caM/qGXeRU8xHOLSg0=;
-        b=J6Z3qU5VeCfmizfMpuuKDk8Tr+51wldm0CshacVsxrmUiCdjjraP71SQfvnwiQaykq
-         N1t2RjOw6OAXKyezl6O8kKGI5kuwzBfvKV2F773FvlFrv8Fn5h07WfGn7wgrzRDTkQde
-         k9cPYPNNcCaqsLwLxb7rAtf9RPj73ofxdZr1wXNqySPud0l6Cp4JAHrwZhDnYZpfT0v8
-         lIkGjCxd6BPSp/G9NIar5ZcMN7DH2+wzgVlCy0eE0Gpk+w1P9DHEGUZGFs+B+L96RJed
-         qxXlhV73fYCT/WfEZtqJwvEPMR7R/uweuulx9ZheyjhKQzvkAt38GL8E+7AI48YOs7TH
-         pTdA==
+        d=gmail.com; s=20230601; t=1716390980; x=1716995780; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=roXuzAP03ERlPT/E+g7wXJxWMv9lSxxfHo4i6eclxyA=;
+        b=hPppyMsJx4dhjxGqou4bhBjLf3ep/UCoHlE+ZAMYqNcthTdUs8gdk/2Dl9HvFOj+VB
+         LNGhjFxfCRtIkjyoXQX+gdt7Se+BTjb0Ki8bKXgxA8jN+oOSpHlxXYaAWYUHJNwKfA6z
+         +ZaSNJ5MJ4Bx0xiYBWMdqam1FP5hOd/xYLqMH2Nf07zsG5VwCWdaNwwIlYgg38YioRCr
+         j3KG4hMIDW82ZO3qbkd9sny+8W+ogydfFF9aIXbvxQE7NatMlWXBiVh6W/VUo1gyLjzO
+         NuLx0X9RQTe8m7OfKh2zukn4VwcDOT5k9rXE/L1WYvEFlKI24MU+gyp6vupI8dkNYR5c
+         BnEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716390175; x=1716994975;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3jsqIIhfmiwTRQW5T/GGVz9A/caM/qGXeRU8xHOLSg0=;
-        b=LAIVnvpdZCbphSbD/eiNcbUgimB8Y2s++3TYl1B8C7awIAf3cfDF6TEtlZDNrE4h+s
-         HaCPIRFNG31+PdqNoHShFruCSjcICQGHtfEcrVSMsbUdcM2mQBt4i2L5gQ7ZHKjFuZlc
-         HveBXiqXGJnJIQ5Czb/FIj3BWb5MlIApkEnJWGLkugChdzUHrOHhNmOBD6unBuFzUfsr
-         sTH1Ty6Lutor0kW5dDmfoROv+1pOu49uD9aDOadGTzKvTMcbFeEkJKTAl84kt8cdRJ32
-         heaOshSPZOleb2Qrm5OdclslOHkkJehdBXwJA+rrAmX7QxNJhe2Q+uHpj07LlztltBzr
-         rXIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV2M6ge56odK+Tu7OKmpNMsio/XgUPMB8mdHx33zwBaxu91EiA1bb6Q6YjPascEug/31VywCs0VS+jHWp1S8XHk8UOQIMoyGocJQQ==
-X-Gm-Message-State: AOJu0YxuXzC4e5t5O6sXCqzHrgCjkEAefTxphke26S+zEq0mupTiCvbC
-	4Dx5MscdC50i21tmKUdi97qug9ttO1YICKiJcm0c0ql4yXJK7KJkbCTbp+bHDWI=
-X-Google-Smtp-Source: AGHT+IFO99+pk7LErl0507i4+6glcqOJj5k3VvjWUKfZyuG4ISlN/d5VATvuxSfbiyh00Qg47KZK8Q==
-X-Received: by 2002:a2e:9d02:0:b0:2e4:7996:f9f0 with SMTP id 38308e7fff4ca-2e94946d417mr14305091fa.17.1716390175584;
-        Wed, 22 May 2024 08:02:55 -0700 (PDT)
-Received: from localhost.localdomain (host-79-16-6-145.retail.telecomitalia.it. [79.16.6.145])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-41fa90e93absm531370515e9.9.2024.05.22.08.02.54
+        d=1e100.net; s=20230601; t=1716390980; x=1716995780;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=roXuzAP03ERlPT/E+g7wXJxWMv9lSxxfHo4i6eclxyA=;
+        b=Vb9RZmckvPv+tbkg3X3ohVn0YNVs2uigxNKFZ3PHLpQSwMsjAmiJsp1g5X57MvGrdS
+         8EShCAgLzU0xG85KXcQS2lL2PZTicTGXeElgkpiPJeoBLJqNycvIJP9pccdauu9xhSpV
+         Mt44xzg40iZPQyYOlJ94R/32brLayQrI49OodTrZPXVbFrqP9N9C3ufZVv0zadwZBjHx
+         h3LzJKv8ppxwMiN3g2imk8GF8Hz1g1Nzi3EeRFVv7E0z6IZFTzCLTiXSQP3PsFuu5dYo
+         7KriqjS4Oe+LCAHNhbN6/OAFcgDg8T2PWqqlXgb37zPyIvHa+JZnBAhnuvpWDZJ4Hc7+
+         lN5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUbcfDB/wXppFuAC2RpiWRWtcLqV7zls4Nj4vEFh5q3/li+u+BiCSeZSXm9O8mh9/xQllQsyQDulG+HF/tzttgS+9joCR1baIAXxjtSHIXyQTw3S9d8bmUMiiUmwZEiK1szmupZRzXg5Krs0JuX+PRASblkniC2T28QnlCfbaM4hEe6QlQ=
+X-Gm-Message-State: AOJu0Yw+FWnstLylBbSVINoCJO296/pfwi4eeN3iIOd4AYYI2vM0hyHK
+	rO00zRmG9/B2h9e0avAQLj85L3wwrXbBl3MacxwZ0u++YQ8BINBL
+X-Google-Smtp-Source: AGHT+IEHZB1bTFFnwygf0GprRyBd/WmnlMoYX642oxz0uKZTkPF6xjNsqg/DDepqC2ncSek6hdG3rg==
+X-Received: by 2002:ac2:57c2:0:b0:51a:c913:a9ce with SMTP id 2adb3069b0e04-526bf642cb9mr1366242e87.50.1716390978862;
+        Wed, 22 May 2024 08:16:18 -0700 (PDT)
+Received: from pratik-IdeaPad.lan (customer-145-40-29-195.stosn.net. [145.40.29.195])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-525e6cb5ed4sm335634e87.247.2024.05.22.08.16.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 May 2024 08:02:55 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-To: jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: nuno.sa@analog.com,
-	lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	linux-iio@vger.kernel.org,
+        Wed, 22 May 2024 08:16:18 -0700 (PDT)
+From: Pratik Farkase <pratikfarkase94@gmail.com>
+X-Google-Original-From: Pratik Farkase <pratik.farkase@wsisweden.com>
+To: 
+Cc: Pratik Farkase <pratik.farkase@wsisweden.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Pratik Farkase <pratikfarkase94@gmail.com>,
+	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Angelo Dureghello <adureghello@baylibre.com>
-Subject: [PATCH v2 6/6] iio: dac: ad3552r: uniform structure names
-Date: Wed, 22 May 2024 17:01:41 +0200
-Message-ID: <20240522150141.1776196-7-adureghello@baylibre.org>
-X-Mailer: git-send-email 2.45.0.rc1
-In-Reply-To: <20240522150141.1776196-1-adureghello@baylibre.org>
-References: <20240522150141.1776196-1-adureghello@baylibre.org>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4] dt-bindings: gpio: lsi,zevio-gpio: convert to dtschema
+Date: Wed, 22 May 2024 17:16:13 +0200
+Message-Id: <20240522151616.27397-1-pratik.farkase@wsisweden.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,42 +90,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+Convert Zevio GPIO Controller from text to dtschema.
+Adding `interrupts` property fixes the following warning:
+linux/out/arch/arm/boot/dts/nspire/nspire-tp.dtb: gpio@90000000:
+'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'`
+while executing `make dtbs_check` on Texas Instruments
+nspire boards.
 
-Use same driver file name (ad3552r) for structure names used
-for all variants.
-
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+Signed-off-by: Pratik Farkase <pratik.farkase@wsisweden.com>
 ---
-Changes for v2:
-- patch added in v2
+Changes in v4:
+- Updated commit message to describe addition of `interrupt`
+property
+Changes in v3:
+- Updated relative path filename to match actual path filename
+- Added `interrupts` property
+Changes in v2:
+- Renamed file from `gpio-zevio.yaml` to `lsi,zevio-gpio.yaml`
+- Fixed the space indentation in example
 ---
- drivers/iio/dac/ad3552r.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+---
+ .../devicetree/bindings/gpio/gpio-zevio.txt   | 16 -------
+ .../bindings/gpio/lsi,zevio-gpio.yaml         | 44 +++++++++++++++++++
+ 2 files changed, 44 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-zevio.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
 
-diff --git a/drivers/iio/dac/ad3552r.c b/drivers/iio/dac/ad3552r.c
-index b8bdbfed22e3..b060cdbc715d 100644
---- a/drivers/iio/dac/ad3552r.c
-+++ b/drivers/iio/dac/ad3552r.c
-@@ -139,7 +139,7 @@ enum ad3552r_ch_vref_select {
- 	AD3552R_EXTERNAL_VREF_PIN_INPUT
- };
- 
--enum ad3542r_id {
-+enum ad3552r_id {
- 	AD3541R_ID = 0x400b,
- 	AD3542R_ID = 0x4009,
- 	AD3551R_ID = 0x400a,
-@@ -265,7 +265,7 @@ struct ad3552r_ch_data {
- 
- struct ad3552r_model_data {
- 	const char *model_name;
--	enum ad3542r_id chip_id;
-+	enum ad3552r_id chip_id;
- 	unsigned int num_hw_channels;
- 	const s32 (*ranges_table)[2];
- 	int num_ranges;
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt b/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
+deleted file mode 100644
+index a37bd9ae2730..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-zevio.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Zevio GPIO controller
+-
+-Required properties:
+-- compatible: Should be "lsi,zevio-gpio"
+-- reg: Address and length of the register set for the device
+-- #gpio-cells: Should be two. The first cell is the pin number and the
+-  second cell is used to specify optional parameters (currently unused).
+-- gpio-controller: Marks the device node as a GPIO controller.
+-
+-Example:
+-	gpio: gpio@90000000 {
+-		compatible = "lsi,zevio-gpio";
+-		reg = <0x90000000 0x1000>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+new file mode 100644
+index 000000000000..37df0e6cfec5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/lsi,zevio-gpio.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/lsi,zevio-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Zevio GPIO controller
++
++maintainers:
++  - Pratik Farkase <pratikfarkase94@gmail.com>
++
++properties:
++  compatible:
++    items:
++      - const: lsi,zevio-gpio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#gpio-cells":
++    const: 2
++
++  gpio-controller: true
++
++required:
++  - compatible
++  - reg
++  - "#gpio-cells"
++  - gpio-controller
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    gpio@90000000 {
++        compatible = "lsi,zevio-gpio";
++        reg = <0x90000000 0x1000>;
++        gpio-controller;
++        #gpio-cells = <2>;
++    };
 -- 
-2.45.0.rc1
+2.34.1
 
 
