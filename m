@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEB68CC9A9
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:32:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E8E8CC9A0
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:32:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93407282180
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 23:32:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39B7E1C21C6B
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 23:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CC614D29E;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AD614C592;
 	Wed, 22 May 2024 23:32:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sHwzCwRN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bMFLPMK/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222B914C5B5;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17C47D3E6;
 	Wed, 22 May 2024 23:32:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716420744; cv=none; b=U+RBwtyP+h1nYUM+7gg7AXfC7e1WAGM80RXa/xg5mMeYBRAWf1r4kF6QdBbN1QWjkYJWPRFpJOwWxfVLICrM0Gv7M9HOR7nVGx6He25cUcoUo/G0pYDfKN46Uun536m5ZCoYbN/dtsaVscAxHoYqRQaer3QunIb/CDAT4GULIBU=
+	t=1716420743; cv=none; b=os7zvh+B21puGfAPBQNjlWh+jAkirutsbxOf6MHFhrE9q31IdWqTlak6NJlYRx7a0o1UDeWi9LLi2fLiHHTndkRB71mjgqtlW2d+UPCqtjmAqDPNZZ4g0j23a5AqV/8cMxF8PHD4vH9vaFFIC8/CE+kezT4kPWwnvh0SFuA3sGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716420744; c=relaxed/simple;
-	bh=kpKPeLWBCjE5fgd+5cOKsD21nksUdXEMnnTmcz5+9NM=;
+	s=arc-20240116; t=1716420743; c=relaxed/simple;
+	bh=tEHrjijHfI1dW0qehjRUeQTBRs2hxXM4LHxZP9ugrHc=;
 	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=UlFo5NDmpfI8vOZ7Ta2yCICLKvTrMg6Q/78jPrIjXq3EHSuFTeuPjuoRNHBmOC5f7q7XjEo4t85cZswNIHdgX4uZDswomoJPCrQiGIx69m5EocDDv5L9DeQoQHe7RHCsTvEOrhP4tC6onddCxiAKhXUf4NZDd5rIwxOVt5tt+bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sHwzCwRN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A5D32C4AF08;
+	 In-Reply-To:To:Cc; b=LLn3zWCk+fmhfWWJe196RfWi4/Fi9ews2tqcRuWCpKiINh4Np1oSOvK6ewDq5G+pA+zAok5Hyk6oD9eu6VFg9HpJjK+mAP48ddAV3JPw1JoYGkNrcI7UyJUO2szT52X4y4Gs7PYy/tlfCJKslq4J8Fg9m9CwkMHAsQmH9lVrLeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMFLPMK/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A0791C4AF0D;
 	Wed, 22 May 2024 23:32:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1716420743;
-	bh=kpKPeLWBCjE5fgd+5cOKsD21nksUdXEMnnTmcz5+9NM=;
+	bh=tEHrjijHfI1dW0qehjRUeQTBRs2hxXM4LHxZP9ugrHc=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=sHwzCwRNVkYZxwlprVtZrnp3/dsj9O9SfyPmCrFUvdoemahb42MxmJbr4Q62RVlU/
-	 DXRYmKoTLfgyAdBv5rM/uENXk0rr/jzybEPmP/d+92DkkvhI1zQdbf8eAgAW7fF2ae
-	 njUMhdcDMAs6I+aqvk0SCNCZvkmzo84aTLIzbGIEbqr/F54VXk6wQiHo34C2OIMKft
-	 biV8uX8Xcon8i+loWX6K5f5ogbMgp+gEAg7y16IU+YYtx56CpxTCW7C/1AZ/O07Db1
-	 EWxCcu1m+fpCU/zZG7bnJGkDlbFoVRWiCf+tjAX0OCrrR58w09KPPTvPg2IKrKtthz
-	 edzoNxZUaSQXQ==
+	b=bMFLPMK/srok+FyjdHtbHkP+ZgL5XHdr2nMDlz3R/AiQk7J6GWWuCYpHf6Hc4QEGj
+	 YNcTJfbYyYqyQ/EOjlGQ1OMPsBJbP24gN7+b5fQQ/ips+o4jGvIAuhfLhP0bq0ZnRK
+	 aXdQzA+eTgDk/wDII14GbvuaUNUCDV+HRTY9EE9DoygEw7sZAFKeBWAa5eixwP+5R+
+	 9VPI/VbwsXbg4rvK2YNLfNWmwwbukxfZzhhVp6Iwe42YwN4L48ri9oMXnAXM74UT2K
+	 Vu5P2+0QxQDzzp9AZzwBuTI9w24o/w9wSD4DshN1zkLczfdE4YXrco0sduX6a+/S7+
+	 hHEXqgLYa4siA==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 99E31C54BA0;
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8DAFAC4361C;
 	Wed, 22 May 2024 23:32:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
@@ -52,42 +52,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4] of: property: Add fw_devlink support for interrupt-map
- property
+Subject: Re: [PATCH v1 0/5] BeagleV Fire support
 From: patchwork-bot+linux-riscv@kernel.org
 Message-Id: 
- <171642074362.9409.8597055988913469203.git-patchwork-notify@kernel.org>
+ <171642074357.9409.6131755278467232949.git-patchwork-notify@kernel.org>
 Date: Wed, 22 May 2024 23:32:23 +0000
-References: <20240509120820.1430587-1-apatel@ventanamicro.com>
-In-Reply-To: <20240509120820.1430587-1-apatel@ventanamicro.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: linux-riscv@lists.infradead.org, robh@kernel.org, saravanak@google.com,
- devicetree@vger.kernel.org, anup@brainfault.org, paul.walmsley@sifive.com,
- linux-kernel@vger.kernel.org, palmer@dabbelt.com, atishp@atishpatra.org,
- ajones@ventanamicro.com
+References: <20240327-parkway-dodgy-f0fe1fa20892@spud>
+In-Reply-To: <20240327-parkway-dodgy-f0fe1fa20892@spud>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, conor.dooley@microchip.com,
+ daire.mcnamara@microchip.com, jamie.gibbons@microchip.com,
+ valentina.fernandezalanis@microchip.com, linus.walleij@linaro.org,
+ brgl@bgdev.pl, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
 
 Hello:
 
-This patch was applied to riscv/linux.git (fixes)
+This series was applied to riscv/linux.git (fixes)
 by Rob Herring (Arm) <robh@kernel.org>:
 
-On Thu,  9 May 2024 17:38:20 +0530 you wrote:
-> Some of the PCI host controllers (such as generic PCI host controller)
-> use "interrupt-map" DT property to describe the mapping between PCI
-> endpoints and PCI interrupt pins. This is the only case where the
-> interrupts are not described in DT.
+On Wed, 27 Mar 2024 12:24:35 +0000 you wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Currently, there is no fw_devlink created based on "interrupt-map"
-> DT property so interrupt controller is not guaranteed to be probed
-> before the PCI host controller. This affects every platform where
-> both PCI host controller and interrupt controllers are probed as
-> regular platform devices.
+> Yo,
+> 
+> Wee series adding support for the BeagleV Fire. I've had a dts sitting
+> locally for this for over a year for testing Auto Update and I meant to
+> submit something to mainline once the board got announced publicly, but
+> only got around to that now.
 > 
 > [...]
 
 Here is the summary with links:
-  - [v4] of: property: Add fw_devlink support for interrupt-map property
-    https://git.kernel.org/riscv/c/d976c6f4b32c
+  - [v1,1/5] dt-bindings: riscv: microchip: document beaglev-fire
+    (no matching commit)
+  - [v1,2/5] dt-bindings: gpio: mpfs: add coreGPIO support
+    https://git.kernel.org/riscv/c/6e12a52c1459
+  - [v1,3/5] dt-bindings: gpio: mpfs: allow gpio-line-names
+    https://git.kernel.org/riscv/c/f752a52d34cb
+  - [v1,4/5] dt-bindings: PCI: microchip: increase number of items in ranges property
+    https://git.kernel.org/riscv/c/649bad67d4b1
+  - [v1,5/5] riscv: dts: microchip: add an initial devicetree for the BeagleV Fire
+    (no matching commit)
 
 You are awesome, thank you!
 -- 
