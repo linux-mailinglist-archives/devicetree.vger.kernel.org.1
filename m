@@ -1,153 +1,148 @@
-Return-Path: <devicetree+bounces-68480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8408CC68F
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:49:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3AF8CC696
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:54:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D711282B3C
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:49:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 286FBB2113C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9DA11420C6;
-	Wed, 22 May 2024 18:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5D1145B19;
+	Wed, 22 May 2024 18:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEy4071S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZqZcOV9F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF9823CB;
-	Wed, 22 May 2024 18:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B0E1420C6;
+	Wed, 22 May 2024 18:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716403739; cv=none; b=gbO1UXI+nr18CSZemGhjhTPa2D+X7lEsrOOuEDj5ecFgC28sTTGoIrsjULBpwirk4haIvaf+HCkHToMdnhgLSYpV4LuvA9Jz3HN1GvzOx/4OEo9XxUKixRbxa582XLZGW4Ahsy9av01UcjfYp8z9q7ZlLG3hMD/uAgMEbAJPYlA=
+	t=1716404067; cv=none; b=YKeCTJLPOjMIF7B6GM85n3/QcjmGMvbwL+d/S+B+FAJBj/nYf1zN9TAJcD75kX50xD51Qxf5bwq23i+BsFeLFuJeGWwPyieGdSDm7PLQy2RyiryspFXMsAwz18CnFwcjmncM33mlMj3Zn72IlyRyWBhso1DgTHob49a9hG0muPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716403739; c=relaxed/simple;
-	bh=oDR35NfNsRBH2fJ/xX+R+OSAGEUDe+MKHboG8nW8crg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jo71Rr5WgAmazweCjqAsEfqC6qj5I4pq6wFwN9+B5Tsm4MbPSr+wgldjJ32sWf7Bz4i+JQqiVYTq6zT7d/obq4MJjWkWRTIXApQdK3b4NXr63jzYvmKS5K/0VclCTNtRxwnimkeR4eC93+XiSPbwBtlnq8vUZv2HGCyW0DSQkRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEy4071S; arc=none smtp.client-ip=209.85.208.182
+	s=arc-20240116; t=1716404067; c=relaxed/simple;
+	bh=zG6DmFSvOlwxNqFRYCCoNVfO0/oFcnar3wPos47WTUg=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LNWw73OFeXQXwVN6zIGk4IibDcuzuj9Dqe6CXdfY+VE/gYW+K/83bP8/sTAgftV6qEM+yUNeYuh2uVOgwmw8283iTrBfjlLBSAph3Uh8ehcUTjXayb/z/oC93X4uAt5LdbWQJ64PRXvoMOR46w+EChrMrJOYyApm2vZDU+LjeEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZqZcOV9F; arc=none smtp.client-ip=209.85.160.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2e6792ea67fso84164881fa.1;
-        Wed, 22 May 2024 11:48:57 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-23dd94111cfso3230736fac.2;
+        Wed, 22 May 2024 11:54:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716403736; x=1717008536; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DTzDmERoVHEg6js4vRxidK21RXEZ4WiJHQmiaHh1F4s=;
-        b=MEy4071SPVz7gVoH1xigDk2BN9ZW2hu4JXnzkFA9Rp+7SYKqkMuJmdKUTtLPwEe8Jz
-         bu0YP9cntN8VM04v3viZLIqkf3dXNXhl5WOF2PtxYdUAfuzgDm03mzws+bm4ouOIS/2u
-         m2123+axOf5aNEkbnqwTAZTbxUvgZTed90WUHlNsc7pza0L0GN1RFWcqIJFu6mst2fIx
-         O+gNc5jLnE9p2BO2F8CbL6t0qMMv4D/kp0xMoKW7vgKHnes361UJ8mi3uBv81PAQuf9+
-         dMpglePw+TOLkxNCtVvlV2bH3M4BDJlGQzwXtw0/1TPEHqOS+GQhHU4g+g4qbISfzOFf
-         2TUw==
+        d=gmail.com; s=20230601; t=1716404065; x=1717008865; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=tA1Sbti/zXxCiItQT/p43hpVbiyvW9x3fEN/x9VummA=;
+        b=ZqZcOV9FE0wb6bhtVBX1cDPvHGQ9ySQsdSOV6Tn0g5t0M+8LGN2tCiY4Sq9TIf6Xfj
+         rdV1k6B8Xdvac4ffNB2lQQjMqr63HSIoa1xyG+4DzNWf+rfVOTgzZCudEpetvaCpqOb5
+         RvXfXj+Y6MOnHe4tC5BXGC7y/g6wSzcyCeCNyPp1LODSQ7hvrll+8FVHOK2JUviwbfx1
+         yIzmsbLfOqncwdeIqOClG3TPu9u27FH7+i9OicSwnekBiqKYyTanWnpy3tFCO+rcXESf
+         fP1nx+CcG6Tf+qf0Q9XQeuAGDydMrxTyZMClHu2srXWns7bgzV+uOZRCCkWC01z6g4fD
+         mvxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716403736; x=1717008536;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DTzDmERoVHEg6js4vRxidK21RXEZ4WiJHQmiaHh1F4s=;
-        b=m3cKCTMZZDl8bvqiA/mTKU+TiuR7zq/0cdavU8dzCcCpC4J6SfFyM4eD0txiIdycOo
-         O6gHJVY9nmNcX7pHFs62p3myoMke+Q4x7DV3CKB+SKd8/gC1kz7KrrV9EX+WootzccsY
-         0b8BsrE179DRv8GNt5FRujrJDLtKvdVloSEg7LpfGXevc6GLkYDM6c7+5o8dW4+OXhav
-         9GFu+NZW3uL5QRh5d9VvAGdsaEiXdfJ+8KaH3MnzpIXy3YOtkwzqVrTeJD899A/LAuj/
-         Z4fbN9NmHBLk9JfKFO2UNEoAYo1LJdLCn1n71rHvIvU5Qnsm1ZiRo+DfH4eL7DX/x0Np
-         w3/g==
-X-Forwarded-Encrypted: i=1; AJvYcCVzRhyMMGHYewzBcQoPOY3I3rlQNWdjJ3/AcpkoA/vgCLPLOe1RJVX/8SgO7TgM7q5QFLteSvDPgObnObN0iK52c6wMnQD/OMU1uyk6ZCvB5ZrkxKneWx9RVUXUAIl4CIC5Xa5vEHMHqfIX8al+ISlU7HGXFdJjqER94s8/cUuf0zesfimi
-X-Gm-Message-State: AOJu0YzctEWg163dlGRuLodpg7dmY5aGlUjD+lvG+jtIO/kRILJINdEt
-	1ijrYnlbo7fRVyI7ACMFsx06fWf5FfCktdQTu31oV420rdoMN1b2
-X-Google-Smtp-Source: AGHT+IHVOa4KArOmWO1iKvBvgvxFQ+i+ezI4L0bfGrkS09VtQN+XR7jRD5LAMkItjfmSkvlNNtymIQ==
-X-Received: by 2002:a2e:be06:0:b0:2e5:87c1:e845 with SMTP id 38308e7fff4ca-2e949650e42mr19384361fa.48.1716403735959;
-        Wed, 22 May 2024 11:48:55 -0700 (PDT)
-Received: from [10.0.0.100] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e4d18344f4sm40455991fa.136.2024.05.22.11.48.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 11:48:55 -0700 (PDT)
-Message-ID: <bcbe109d-5974-428d-b74e-c29bec9f68b0@gmail.com>
-Date: Wed, 22 May 2024 21:49:41 +0300
+        d=1e100.net; s=20230601; t=1716404065; x=1717008865;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tA1Sbti/zXxCiItQT/p43hpVbiyvW9x3fEN/x9VummA=;
+        b=D9Lytqp5VQLEju34Bb5QcbYI9ZCtZfsfJFQg/VCHT9VLUEoCydaU4jCD8xv9CzihJ+
+         Gc4MojzS0JgyawUD2ewDR058uf8rCtXoghFTEZv179zAwWX3EGO74lpaULcwLkXekI+S
+         SA9x1eTFH3wcrBGy6loHt2adA697GLW64MQOHexEPMXrvAaw7JIo9RtvO0rtXyD8Nfvx
+         FaDYn8xDDa8lfcGj4LdWNpZVvFKf1SjgAh1LjJ3RKlSbViZ6yH/GXz1R54rhdL16TmgT
+         hwVcvp9yM+Xt1LVwSXr3Ud5+tzgDv7EqNc9XVMjEwGLKdJZhpHP4Y5ejAVfr6ZlpACyS
+         6y2A==
+X-Forwarded-Encrypted: i=1; AJvYcCXfKaaJEpKNUYJwkaFlMQaaSIJ+sQ9G1RkDqfMtzjUAbSM3iHA4OBHewrTIXfWvVeftfWsOXxO18sDGpOgt3BoC/kCmk0a4NMsDWdqa5TvU9APMmwqzpphXtPi6ghV5EjcMlagncqTHug==
+X-Gm-Message-State: AOJu0YzGiTONGuzDmGon/luJhYN69ZObbqSeEEijyQ/izbTkRDYu9Oi4
+	aLpb9gkNKh9i1EZT/4ArekIgfaH6Bhd4gX0ZPKnXNO/hRQBU7TsV
+X-Google-Smtp-Source: AGHT+IH7JgZdAZmLwabI70Yi9CqaHBGi7W8WOVJdXpnbIcGSDoJHNF9GVVWCI9iFTCJBiWCAtrSgiQ==
+X-Received: by 2002:a05:6871:581e:b0:23c:2cf7:9ff9 with SMTP id 586e51a60fabf-24c68aeeeb5mr3242325fac.7.1716404063187;
+        Wed, 22 May 2024 11:54:23 -0700 (PDT)
+Received: from neuromancer. ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-24c8227e303sm44531fac.30.2024.05.22.11.54.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 May 2024 11:54:22 -0700 (PDT)
+Message-ID: <664e3f5e.050a0220.ae493.07d7@mx.google.com>
+X-Google-Original-Message-ID: <Zk4/Xcjv/KKYwuHu@neuromancer.>
+Date: Wed, 22 May 2024 13:54:21 -0500
+From: Chris Morgan <macroalpha82@gmail.com>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: Re: [PATCH v2 4/5] mfd: axp20x: AXP717: Add support for boost
+ regulator
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+ <20240418000736.24338-5-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Mithil <bavishimithil@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240522075245.388-1-bavishimithil@gmail.com>
- <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
- <4f722e53-011f-4176-b6af-080522165007@kernel.org>
- <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
- <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
- <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
- <58ada5ce-5c02-4ff5-8bdd-d6556c9d141f@kernel.org>
- <CAGzNGRm5i8zvnXiPzMg5=+tr9oyBcRA8LFvnmgGzE=MzSNTXug@mail.gmail.com>
- <e384272a-4dfe-4653-8983-6426f8803c84@kernel.org>
- <CAGzNGRnsmRWzimUX5tEC2-Y44aa4i9Lbdp8YJ+oneV4ujs4qBA@mail.gmail.com>
- <CAGzNGRmTR_nK0SoWG8uqDfRzDShs7sR+Mc+44__SBi0CR5LKEg@mail.gmail.com>
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-Content-Language: en-US
-In-Reply-To: <CAGzNGRmTR_nK0SoWG8uqDfRzDShs7sR+Mc+44__SBi0CR5LKEg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240418000736.24338-5-andre.przywara@arm.com>
 
-Hi,
-
-On 22/05/2024 20:47, Mithil wrote:
-> My apologies, misunderstood the error.
-> Proposed changes for the next version,
-> Add dma, dma-names, reg-names properties, and do the changes in
-> example (rename node to mcpdm since it is different from generic pdm).
->   reg-names:
->     items:
->       - const: mpu
->       - const: dma
+On Thu, Apr 18, 2024 at 01:07:35AM +0100, Andre Przywara wrote:
+> The AXP717 also contains a boost regulator, to provide the 5V USB VBUS
+> rail when running on battery.
 > 
->   dmas:
->     maxItems: 2
+> Add the registers to the MFD description to be able to use them from the
+> regulator driver.
 > 
->   dma-names:
->     items:
->       - const: up_link
->       - const: dn_link
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Reviewed-by: John Watts <contact@jookia.org>
+> ---
+>  drivers/mfd/axp20x.c       | 2 ++
+>  include/linux/mfd/axp20x.h | 2 ++
+>  2 files changed, 4 insertions(+)
 > 
-> examples:
->     - |
->     #include <dt-bindings/interrupt-controller/arm-gic.h>
->     mcpdm@0 {
->       compatible = "ti,omap4-mcpdm";
->       reg = <0x0 0x7f>, /* MPU private access */
->             <0x49032000 0x7f>; /* L3 Interconnect */
->       reg-names = "mpu", "dma";
->       interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
->       interrupt-parent = <&gic>;
->       dmas = <&sdma 65>,
->              <&sdma 66>;
-These can be in one line to make it nice and tidy
+> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
+> index d8ad4e120d379..02513b1eff2e8 100644
+> --- a/drivers/mfd/axp20x.c
+> +++ b/drivers/mfd/axp20x.c
+> @@ -209,6 +209,8 @@ static const struct regmap_access_table axp313a_volatile_table = {
+>  };
+>  
+>  static const struct regmap_range axp717_writeable_ranges[] = {
+> +	regmap_reg_range(AXP717_MODULE_EN_CONTROL, AXP717_MODULE_EN_CONTROL),
+> +	regmap_reg_range(AXP717_BOOST_CONTROL, AXP717_BOOST_CONTROL),
+>  	regmap_reg_range(AXP717_IRQ0_EN, AXP717_IRQ4_EN),
+>  	regmap_reg_range(AXP717_IRQ0_STATE, AXP717_IRQ4_STATE),
+>  	regmap_reg_range(AXP717_DCDC_OUTPUT_CONTROL, AXP717_CPUSLDO_CONTROL),
+> diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
+> index 8c0a33a2e9ce2..4dad54fdf67ee 100644
+> --- a/include/linux/mfd/axp20x.h
+> +++ b/include/linux/mfd/axp20x.h
+> @@ -115,6 +115,8 @@ enum axp20x_variants {
+>  #define AXP313A_IRQ_STATE		0x21
+>  
+>  #define AXP717_ON_INDICATE		0x00
+> +#define AXP717_MODULE_EN_CONTROL	0x19
 
->       dma-names = "up_link", "dn_link";
->       ti,hwmods = "mcpdm";
+Could we name this register something like "AXP717_MODULE_EN_CONTROL_2"?
+We're going to need register 0x0b later for usb and battery, and that's
+also marked as a control register (control_1 per the datasheet).
 
-The ti,hwmods no longer needed since the sysc conversion
+Thank you,
+Chris
 
->       clocks = <&twl6040>;
->       clock-names = "pdmclk";
->     };
+> +#define AXP717_BOOST_CONTROL		0x1e
+>  #define AXP717_IRQ0_EN			0x40
+>  #define AXP717_IRQ1_EN			0x41
+>  #define AXP717_IRQ2_EN			0x42
+> -- 
+> 2.35.8
 > 
-> Remove ti.hwmods from required since some dts like
-> omap4-duovero-parlor, omap4-panda etc do not use it which causes
-> dtbs_check to not pass.
-> 
-
--- 
-Péter
 
