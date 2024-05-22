@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-68399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABB488CC28E
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 15:56:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A54AC8CC2B6
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:00:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E45F1B22398
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 13:56:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37B0B1F21CFB
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 14:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471EE145B19;
-	Wed, 22 May 2024 13:55:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44117AD2D;
+	Wed, 22 May 2024 14:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L1kGclyo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EvbmvQ+m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717FD142621;
-	Wed, 22 May 2024 13:55:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05FE291E;
+	Wed, 22 May 2024 14:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716386130; cv=none; b=hto83nu22Ut/I4LImq9vndOEu7pDpExhB9g+F9UWLMxw6dAoMYSiTOzw9rL2GLT23ijQp1ebZPt1Q7zMP4cST7XSKk13LohjH64h6TzyQ9U5rqf+WqUVczPceP/y5+AtocFSQqm2uMxjSzPtjdsf7dSBOmpz89w0+a3ZPsxUTks=
+	t=1716386443; cv=none; b=HvCsD7M1czb5t2sIurorWsFXLsJoy8LzRSESZ0vkGX5oigXW18JzMlgbKbvzEX2OSTIwfgY9W+ExzpSjnU8YCtGYbK/AsmWemIg7zKrEdZ2y9SG1PyGBuTDCUgBKj5BWdjTtZmVvoTUE0ryO83nJYYEjY3hF5bqeip83VOkZbfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716386130; c=relaxed/simple;
-	bh=yWtD7LU9AB3Gr4Ry22fCWQp4b/WwuVx7H2lTfntgmkA=;
+	s=arc-20240116; t=1716386443; c=relaxed/simple;
+	bh=hEJtbxuTU7u47j1LyQ3YcGTGaRcZXPfzBah4TtO4oxw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PjNGNNjKYtWp73MmVramXWlVIEAbaXALIfPW6WUy8YangQA/kADvPrfNoOyXtiZ+jL2Cy+lcy3YVdMmaxkn9QJcQg2Tb44o58dDaphWF8VL84ANA0lkB9u1qa/7dJdZML1eJxLYxsXu9xP2dN8QOKCawOZXPzsSk5H2cy6pGieo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L1kGclyo; arc=none smtp.client-ip=209.85.167.48
+	 In-Reply-To:Content-Type; b=YoXi3p0aoqNte1SQiocuObPyhZRLKHEW+V8czBhJrVZCZEEdenGb9ZeqTRkvDUr+E5Kkzcjphdzt0RpLulF3EmJhYKGGj2aSljnUWHbnag+Ltt3+ZuJX8ILucgkYTIFKtgAVoeRkqzAeWc7LsgISi3FdHK16kiF78b7O8OmBR1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EvbmvQ+m; arc=none smtp.client-ip=209.85.160.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52232d0e5ceso6722028e87.0;
-        Wed, 22 May 2024 06:55:28 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-43df6e94734so9586021cf.2;
+        Wed, 22 May 2024 07:00:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716386126; x=1716990926; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1716386440; x=1716991240; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8YaBKPvnOJzmUbDriM6HGEGAHRgnlTqVjaXWE1TlkEM=;
-        b=L1kGclyob/dqB3opxGY/z1vIqZW8HfW6IdSeFzoFoCrhhUjrB5+qUNj4VkDkB3HVd7
-         b6cp39DSg1K61CXm+AAzMVKHAZmYJfeL9DY/9AEt2Y54N7SssJ7XreKOzmwYTyyaFk4e
-         vKLMRs/WSKsDyDj09FnbBmvPKXNHYoFePp0QJEIjpGUMsjj6S7TxsIY7u+GeC8Ej51C5
-         YGLmHlHRCrcEeOHJTD0ABkkppNRQAWr4OFtMoK+9dLC55jksNGbECFnG4nNId+0OAmIU
-         I5djIVu/kGBlNj1pmPbODvN0gdvs8TUJ+j2xwFDe4SNacn5h9UKmdfUpwr4HdijzedKO
-         Kk3A==
+        bh=yM2OoMcmEt3tXE4jP9xtaDdUrBqGEgqa+sSrb8xMSoU=;
+        b=EvbmvQ+mjP7h4ZmiF0MMrNVnt+rm/tjwZ+/vm0FJiU8yvD2twuQgxtrErBbICKu0H2
+         AVrVx+D3UefkN8W+Q00uGg2xWFWmFHaGhMGb3b7UORxnjopDBu5zY6x6pQeAEk2fi/u7
+         2PUTpaJ7cgO9VnIEUvbxkhCTNgAju4Ws9ETjovj0VHFBnNjyutke/z6O8bGn7yLwwXoC
+         a/S7CUqW8ckvWaY/eH/55agBku322Bed31j1Q7T4wVn5Ap+pjYaBYWViqlZfeCEo+l3X
+         3+C5TNJcB1BJ5DR/lTF3Xx49z6bMo4RTOQv+oHVyAU+1hX0eyPMb7JyhLUzQxJjSJY1I
+         3e9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716386126; x=1716990926;
+        d=1e100.net; s=20230601; t=1716386440; x=1716991240;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8YaBKPvnOJzmUbDriM6HGEGAHRgnlTqVjaXWE1TlkEM=;
-        b=KiVbd4NKji/Z6qEXqLXdfl+zg1Y58I385MhWtGvRCxqGr3Rd7vhylpxCe/9KCz7MFs
-         w31Lx8ErIUQilfA0d7KMq6Yf07nGnX23jQ9XlESD3vFryN4cduYhJiICYCfewnsrOoQA
-         GMHJXuIjM/JTuKHwRH+/IdX+rvEWTc837dxvrx5F5nyhGsXbAP/L+yqkkNbRlFo8v981
-         +2AgLamIWFFeED6tAcPhwbW1EoYR78tDdq3ozNZzXTfiSY9Fe+n/sQO+mbkgCKZPxyQO
-         DPBKqigZvcVhdaP2jDLqKgBIGLugiYELR5M79WhsB3c+lQe+8HqwnPHi7i3o12qTIszc
-         /XLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9NfRKcezEAeO/wVWowGBB7bnzybdQHUFe5PJuYnesGJVWAdo1piIqgxCdjBs5DuSy6cWI7XCVEf/iOn/ze7IHm2X45p8o0by2PShzwwreTaK+6cUqtABgBFwJo2/4IEWkOjFdYRYX+iLU//7TWCF4NstKzOhpeypT8j9uK1sU3GdcO9jY
-X-Gm-Message-State: AOJu0Yy5ntEMddQ2P12YF1WWD/Eb7xDvnB+DvP6xdPqJxCb30vYUfpxE
-	t4ZULPmuMj5qjKdWANy+c3JdoXqEmS3Pi/sf7YEazumbA2F9RHf+
-X-Google-Smtp-Source: AGHT+IFYqdG84I5n5HcpYSBsCPuvwJ923qQSxWRG46QsFjunGCiBYTTXJVQLt9pT91rp3cKva6gh8Q==
-X-Received: by 2002:a05:6512:3f19:b0:518:c057:6ab1 with SMTP id 2adb3069b0e04-526c130bba8mr1350705e87.66.1716386126290;
-        Wed, 22 May 2024 06:55:26 -0700 (PDT)
-Received: from [10.0.0.100] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-521f39d2f1dsm4967366e87.264.2024.05.22.06.55.25
+        bh=yM2OoMcmEt3tXE4jP9xtaDdUrBqGEgqa+sSrb8xMSoU=;
+        b=gAFOCcEkfO7uIcVQBK0DELOfqoWIs7Jcpp8uZNJpPwk6oVW88Oi16MdVwbtE4+oBpO
+         fAxtT5Mx0PoK/J7MYRmLPsr/BDoIZud7A1n13UjJJjp5zKu15cDMan0iCJiC6hHpDC7F
+         2JuEmqZVR7VfgOXp5JXERAxrctofy9wHp+bIhbjKshMY/7loNpfZKw0nyMskBlmmi2PN
+         sFbfvXcC3bhJuyuUryc5sXF/b7wRoHj1QAjd5j3ppdcPjx+LHFqVaktvT4Lva1Ub9zYD
+         oV+1A43BQkj9C8tv1SMQrjKcSLFVazovV2t5fVQYYQRtuyNOFo3FWlTLVVcHG7huiccV
+         cqOg==
+X-Forwarded-Encrypted: i=1; AJvYcCW6ke0OFSKAJAQk9lXTpqQms4+NKOAe3FgEqe/Ziblrf6l+CQYhDZ3gVj9WO298QFIZFnRNG+NSQNbTPruFvCQoIAGAxFgeShI4pJnjzs5zRoHgMxLaNvVLTNoYJ/OJAs7iprDfsZQErA==
+X-Gm-Message-State: AOJu0YwczZaYMgpmS7B2IMQCpuPtQnpc+wAEX392QQ5sD2Jtze5oLH9h
+	591FBMN87XLx0VCg1Tsrnzc2eruqAJGXdTnW6tE3VSNgzi41Nxdo
+X-Google-Smtp-Source: AGHT+IEJpPDLtfjnd4rRpNf7Mq6ICRE2mqLlxArtMiDKAPLb0KG7ry0SYr/F5fEDilmWGAF0JH3lVA==
+X-Received: by 2002:a05:6214:3004:b0:6a3:3d77:f7d8 with SMTP id 6a1803df08f44-6ab8098e47bmr19491846d6.6.1716386439922;
+        Wed, 22 May 2024 07:00:39 -0700 (PDT)
+Received: from [192.168.0.98] ([67.6.32.220])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6a15f205d7dsm133994676d6.132.2024.05.22.07.00.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 06:55:25 -0700 (PDT)
-Message-ID: <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
-Date: Wed, 22 May 2024 16:56:11 +0300
+        Wed, 22 May 2024 07:00:39 -0700 (PDT)
+Message-ID: <7d84912f-7bc4-4376-9f13-31fae16013f4@gmail.com>
+Date: Wed, 22 May 2024 09:00:37 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,151 +76,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Mighty <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: input: document Novatek NVT touchscreen
+ controller
+To: Krzysztof Kozlowski <krzk@kernel.org>, Hans de Goede
+ <hdegoede@redhat.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240522075245.388-1-bavishimithil@gmail.com>
+References: <20240521-nvt-ts-devicetree-regulator-support-v1-0-8d766c639dca@gmail.com>
+ <20240521-nvt-ts-devicetree-regulator-support-v1-1-8d766c639dca@gmail.com>
+ <6f22e42d-8a06-4c24-93bd-25b6ac141cea@kernel.org>
 Content-Language: en-US
-From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <20240522075245.388-1-bavishimithil@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+In-Reply-To: <6f22e42d-8a06-4c24-93bd-25b6ac141cea@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hi Krzysztof Kozlowski,
 
-On 22/05/2024 10:52, Mighty wrote:
-> From: Mithil Bavishi <bavishimithil@gmail.com>
+On 5/21/24 11:48, Krzysztof Kozlowski wrote:
+> On 21/05/2024 14:09, Joel Selvaraj via B4 Relay wrote:
+>> From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+>>
+>> Document the Novatek NVT touchscreen driver which is used in devices like
 > 
-> Convert the OMAP4+ McPDM bindings to DT schema.
+> driver? or device?
+
+touchscreen "controller" would be correct I think. I will fix it in v2.
+
+>> the Xiaomi Poco F1 [1]. Also, include the devictree binding file in the
+>> MAINTAINERS file.
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts?h=v6.9
+>>
+>> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+>> ---
+>>   .../bindings/input/touchscreen/novatek,nvt-ts.yaml | 62 ++++++++++++++++++++++
+>>   MAINTAINERS                                        |  1 +
+>>   2 files changed, 63 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/novatek,nvt-ts.yaml b/Documentation/devicetree/bindings/input/touchscreen/novatek,nvt-ts.yaml
+>> new file mode 100644
+>> index 0000000000000..7839c6a028e4a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/input/touchscreen/novatek,nvt-ts.yaml
+>> @@ -0,0 +1,62 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/input/touchscreen/novatek,nvt-ts.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Novatek NVT Touchscreen Controller
+>> +
+>> +maintainers:
+>> +  - Hans de Goede <hdegoede@redhat.com>
+>> +
+>> +allOf:
+>> +  - $ref: touchscreen.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - novatek,nvt-ts
 > 
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> ---
-> Changelog v5:
-> - Add imports for constants
-> - Add desc to ti,hwmods
+> That's too generic. Looking at your driver change, it is not even needed.
 > 
->  .../devicetree/bindings/sound/omap-mcpdm.txt  | 30 ---------
->  .../bindings/sound/ti,omap4-mcpdm.yaml        | 61 +++++++++++++++++++
->  2 files changed, 61 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/omap-mcpdm.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
+>> +      - novatek,nt36672a-ts
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt b/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-> deleted file mode 100644
-> index ff98a0cb5..000000000
-> --- a/Documentation/devicetree/bindings/sound/omap-mcpdm.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -* Texas Instruments OMAP4+ McPDM
-> -
-> -Required properties:
-> -- compatible: "ti,omap4-mcpdm"
-> -- reg: Register location and size as an array:
-> -       <MPU access base address, size>,
-> -       <L3 interconnect address, size>;
-> -- interrupts: Interrupt number for McPDM
-> -- ti,hwmods: Name of the hwmod associated to the McPDM
-> -- clocks:  phandle for the pdmclk provider, likely <&twl6040>
-> -- clock-names: Must be "pdmclk"
-> -
-> -Example:
-> -
-> -mcpdm: mcpdm@40132000 {
-> -	compatible = "ti,omap4-mcpdm";
-> -	reg = <0x40132000 0x7f>, /* MPU private access */
-> -	      <0x49032000 0x7f>; /* L3 Interconnect */
-> -	interrupts = <0 112 0x4>;
-> -	interrupt-parent = <&gic>;
-> -	ti,hwmods = "mcpdm";
-> -};
-> -
-> -In board DTS file the pdmclk needs to be added:
-> -
-> -&mcpdm {
-> -	clocks = <&twl6040>;
-> -	clock-names = "pdmclk";
-> -	status = "okay";
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-> new file mode 100644
-> index 000000000..966406078
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/ti,omap4-mcpdm.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/ti,omap4-mcpdm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OMAP McPDM
-> +
-> +maintainers:
-> +  - Misael Lopez Cruz <misael.lopez@ti.com>
-> +
-> +description:
-> +  OMAP ALSA SoC DAI driver using McPDM port used by TWL6040
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,omap4-mcpdm
-> +
-> +  reg:
-> +    items:
-> +      - description: MPU access base address
-> +      - description: L3 interconnect address
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ti,hwmods:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [mcpdm]
-> +    description: Name of the hwmod associated to the McPDM, likely "mcpdm"
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pdmclk
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - ti,hwmods
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    pdm@40132000 {
+> Eh, we have already panel. Why there is a need for touchscreen binding
+> (binding, not driver)?
 
-The original label and name is preferred to be used.
+I am not sure I understand this correctly. Help me a bit here. For 
+context, in mainline there is an existing driver for the novatek nvt 
+touchscreen controller. The driver did not have devicetree support. It 
+only had a i2c_device_id "NVT-ts". I don't know what is the variant of 
+that Novatek touchscreen controller. To use the driver in Xiaomi Poco 
+F1, I introduced a devicetree compatible for it "novatek,nvt-ts". The 
+However, the Novatek touchscreen controller present in Xiaomi Poco F1 is 
+"NT36672A" which has a different chip id than the one in existing 
+driver. So I created a separate compatible for this touchscreen 
+controller variant "novatek,nt36672a-ts". I used compatible data to 
+differentiate the two variants. Since there are two variants, I am 
+mentioning both here.
 
-> +      compatible = "ti,omap4-mcpdm";
-> +      reg = <0x40132000 0x7f>, /* MPU private access */
-> +            <0x49032000 0x7f>; /* L3 Interconnect */
-> +      interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-> +      interrupt-parent = <&gic>;
-> +      ti,hwmods = "mcpdm";
-> +      clocks = <&twl6040>;
-> +      clock-names = "pdmclk";
+Between, the chip_id and wake_type are the only values that changes 
+between these two variants. And these are only checked during the probe 
+and is not used anywhere else in the code. If we remove this sanity 
+check during probing, then there is no need for two variants and we can 
+just keep the generic "novatek,nvt-ts".
 
-The clocks cannot be added at the time when the node is defined, it is
-board specific. This way you imply that it is OK to have it in main dtsi
-file. It is not.
+Kindly let me know what is the correct thing to do here? How this should 
+be handled? I will be happy to address it in v2.
 
-> +    };
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  reset-gpios:
+>> +    maxItems: 1
+>> +
+>> +  vcc-supply: true
+>> +  iovcc-supply: true
+>> +
+>> +unevaluatedProperties: false
+> 
+> This goes after required:
 
--- 
-Péter
+Will fix in v2.
+
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+> 
+> 
+> Best regards,
+> Krzysztof
+
+Regards,
+Joel Selvaraj
+
 
