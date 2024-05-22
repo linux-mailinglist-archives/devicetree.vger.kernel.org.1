@@ -1,112 +1,130 @@
-Return-Path: <devicetree+bounces-68522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197F48CC904
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 00:23:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB7D48CC90F
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 00:28:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5657282191
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 22:22:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 075EA1C21558
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 22:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478DB1482FD;
-	Wed, 22 May 2024 22:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC301487E6;
+	Wed, 22 May 2024 22:28:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="W7K64bTI"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gluCjXV/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C5DA811E0
-	for <devicetree@vger.kernel.org>; Wed, 22 May 2024 22:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640AB1487E0;
+	Wed, 22 May 2024 22:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716416576; cv=none; b=JnZIsNP1elIPM3LF0NKk2cL3ZQktgQQGCMFy8jLMo9U9aAjIRj+DlOQUF809P1Apv358Gx2A3tNdsevSmw8hx4b9sVkNgcTebzseNfhzdfC9fYlKMG0scYv1Goqk4OFciULAFdi/18Bxpk/iHgUF/aV2xlBBwBdbHgUaTwTUcws=
+	t=1716416920; cv=none; b=Ef+w9DSX/ENFkPJmoGCEb/HeclDG/lhAUU0Ghlc1SQLdL4f64jkYcWXhE4H+rcHLcr21wBbc6VEk95PXPRrIj5RMOU2FoFM1TKnAOskdl+aycFZI7H3HLx1iprmhMCu18+OnbRnE3/5aw9eF+ZjnUybZ0cs/MIGzVDWEAAMJfG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716416576; c=relaxed/simple;
-	bh=6iV7ZkgEvMpKG23fxX0c6xX7hhrY8oVSXxERIC5+/IE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZrRqKuUiOpxkZDBNfndkDXf8zDpNeyVyPN3juKLUP/SJKX2s89760WUIKhhv3hfP70m6R51ORigVdn0drj5OoXDv9E6gcz3wKdDoJYYc8syHuCVKaLJeeZzW15i9KI8gnhGwD2J3rb/ZzfHxabLb0l4x17RF6/xTXYNEGTSfQmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=W7K64bTI; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 8C7B588499;
-	Thu, 23 May 2024 00:22:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1716416572;
-	bh=IfQkKZPQP7vhyZ7FUayYlDnYfmMeAK2mi8cnpDj9yE0=;
-	h=From:To:Cc:Subject:Date:From;
-	b=W7K64bTIS6pGKq0OkHKQj0ZQXcASeA1ZiOLrYWECS8FG32Y3X7Le98Ul3STofMywx
-	 xi7v0FBxEVo41N/TpYDPszeQksJGqZTHurHRMGt5yIdrIr55zqBNDMXeS1cS4V0RAb
-	 +XeUUBKfucYLdndzOhp7abUoNYeW+8U3f1nr2cpCVs5332/hS4pK3Aocy2BEQcnoaU
-	 841ebTSMlhyK68At2XZJdBpnw11h5Gj4Ny3joo9AuUJol+SriIXolKr2l4Z1tAB1uh
-	 2YA7+/Rq7KjY5BMqQv/Y0AlsfKLWlRwCimYkW1iFIh8pU/jeObV8KsT7wbkcFhKAg8
-	 GkWs9wY+dC2/w==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marex@denx.de>,
+	s=arc-20240116; t=1716416920; c=relaxed/simple;
+	bh=FyDYtMT/2nQuK4XVRGpg4ULNIilNC8aI7hQ/yAbnWms=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=WyAgEtLLeCvvh6ILvrc/IzslpqsaIcZ14riXrmMMlzeVGxmM5joKZ/M/kWp4dAVf2H7A2E1zKtZCnjZJVWb4/nvqOrN5S5VAciSymN0wKcv0x3ZYmo3wjkn6GoW6MYkGqWTBXL/Wkg78tjJv1FdL6pU4F8dzg3icNluH7cILRyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gluCjXV/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD247C2BBFC;
+	Wed, 22 May 2024 22:28:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716416920;
+	bh=FyDYtMT/2nQuK4XVRGpg4ULNIilNC8aI7hQ/yAbnWms=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=gluCjXV/cS6TMjmiB4c6zKFpfxBVeYDczAlUg6W/JLtLxMPtImzQMvnjf9A+t7VIK
+	 uDbNq3WmWVczLwFlWgq+wcDcktc17i3e4yaDT6A2nladW75Fg5OImyC9uZwjYF5vTA
+	 f+NbS5JrNlVD3jD/XVSjogkAvsewrhQUlMvlfHNdnjZyLZLPupEQw37cEgZPjfAy17
+	 Ax9dlOzm14HefTumxgJyGYv7mF/VLWWXDotCT/gID0HdWrB4V392HDTte33b1a0jGm
+	 uxygzqywCVWx4FGqkAMmQflEjIBGqVzXyDahXa4ecaYsGbiPAtvzIi341WCut2EHVx
+	 fYVS7cfIjrZbw==
+Date: Wed, 22 May 2024 17:28:38 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Sean Anderson <sean.anderson@linux.dev>,
+	g@bhelgaas.smtp.subspace.kernel.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+	Michal Simek <michal.simek@amd.com>,
+	Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-kernel@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: imx: Add LVDS port data mapping on M53 Menlo
-Date: Thu, 23 May 2024 00:22:02 +0200
-Message-ID: <20240522222229.366904-1-marex@denx.de>
-X-Mailer: git-send-email 2.43.0
+Subject: Re: [PATCH v3 1/7] dt-bindings: pci: xilinx-nwl: Add phys
+Message-ID: <20240522222838.GA101305@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240520145402.2526481-2-sean.anderson@linux.dev>
 
-Describe LVDS data mapping of the LVDS-to-DPI decoder input port.
-This fixes a warning reported by lvds-codec driver:
-"
-lvds-codec lvds-decoder: missing 'data-mapping' DT property
-"
+On Mon, May 20, 2024 at 10:53:56AM -0400, Sean Anderson wrote:
+> Add phys properties so Linux can power-on/configure the GTR
+> transcievers.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts | 1 +
- 1 file changed, 1 insertion(+)
+s/transcievers/transceivers/
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts b/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts
-index 4d77b6077fc1b..558751e730f3e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx53-m53menlo.dts
-@@ -64,6 +64,7 @@ port@0 {
- 				reg = <0>;
- 
- 				lvds_decoder_in: endpoint {
-+					data-mapping = "jeida-18";
- 					remote-endpoint = <&lvds0_out>;
- 				};
- 			};
--- 
-2.43.0
+Possibly s/phys/PHYs/ in subject, commit log, DT description to avoid
+confusion with "phys" (short for generic "physical").  Or maybe even
+just "PHY properties"?
 
+What does "GTR" mean?  Possibly expand that?
+
+> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> ---
+> 
+> Changes in v3:
+> - Document phys property
+> 
+> Changes in v2:
+> - Remove phy-names
+> - Add an example
+> 
+>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> index 426f90a47f35..cc50795d170b 100644
+> --- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> @@ -61,6 +61,11 @@ properties:
+>    interrupt-map:
+>      maxItems: 4
+>  
+> +  phys:
+> +    minItems: 1
+> +    maxItems: 4
+> +    description: One phy per logical lane, in order
+> +
+>    power-domains:
+>      maxItems: 1
+>  
+> @@ -110,6 +115,7 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/phy/phy.h>
+>      #include <dt-bindings/power/xlnx-zynqmp-power.h>
+>      soc {
+>          #address-cells = <2>;
+> @@ -138,6 +144,7 @@ examples:
+>                              <0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
+>                              <0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
+>              msi-parent = <&nwl_pcie>;
+> +            phys = <&psgtr 0 PHY_TYPE_PCIE 0 0>;
+>              power-domains = <&zynqmp_firmware PD_PCIE>;
+>              iommus = <&smmu 0x4d0>;
+>              pcie_intc: legacy-interrupt-controller {
+> -- 
+> 2.35.1.1320.gc452695387.dirty
+> 
 
