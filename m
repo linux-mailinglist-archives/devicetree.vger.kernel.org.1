@@ -1,148 +1,148 @@
-Return-Path: <devicetree+bounces-68475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BFDC8CC673
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:40:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0194E8CC66D
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:39:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E27B7B20FCA
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:40:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B024B2825F8
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7527F145FF0;
-	Wed, 22 May 2024 18:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B898D145FF0;
+	Wed, 22 May 2024 18:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dFtkPAjs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Py7Ap97+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCCE11420D2;
-	Wed, 22 May 2024 18:40:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070D7145B34;
+	Wed, 22 May 2024 18:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716403207; cv=none; b=lf8u1u3vM13lfqgiTCriGCgpXPWrxeqRtBv87PYouEV63hbfecTylgP/2qMdWJDpO9gv1RnyTPT+wSgebYlJi61/qDcszoO4di6ncRQvMWaGpJe/cacfypNDx26UasP81BfTRJuTt9UW99Iyn4nrwZ4ZQRvdYxzot7HfQ6oZibw=
+	t=1716403150; cv=none; b=ldKu7JkjRV6Syxnb8U2f0DdJ9YV96GtkjhhFQCCFF3u8oM4OVwID2aO/XoeDBBUwXCgcAUQ0jznaxxEzZp7xHqvgNSL7iInyVPlBkCDekik+S6uok8sx4XN6T4WpkHAVt4loLQpNUbd0+Iv3z3ro85ZSB04r0weNOz4m+87I6Yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716403207; c=relaxed/simple;
-	bh=GOHbMu1tPVuRHBT0kKQY2KGhOa1VRjU/ZiTGxFGQoDQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HfNkpcKQYzj2tCyPSkGy26yoey5P8hWSccSlCzo9mC8RDDIg6Jlx0Zq6OUhY9Cqj6COdYtSWLWmkEHNoQ/uY3wmU/4fad6ZBLpBZzzicqhKI1zdsXDywDoJbnyQEJ9GBAwbWB1xMMdkYp/AxaifARzqXsMrE9ui8QD7qbdsMOj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dFtkPAjs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44MBXDG9001188;
-	Wed, 22 May 2024 18:39:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=it/GcHz2Wm4J5JUdE2mkjD7Y0tMWOLfCZyBOfhtZlCI=; b=dF
-	tkPAjslVHnLD00O5TgrxLRuVnfll5Vvm7f5c6VJ8Ofm7V1qbC2eCW1Ps9U6v8JAP
-	0afSzkRgy8HglUEVZUhWYoNCdzRGQ2iXznZCRLGkpwgzsLeP22mcQsNYg1WJd7gx
-	hk2Vqka46allGyTCRp7J3ARtsu5EjokItEqfAwOctDcgNKEdXVdynfuR7qQE374C
-	o6TjxSKoYTn8fuB2NQjIJzfkA04e+FHANmgQ+g/h5PFxdaRn2AtouhFKvMw3ORLo
-	7PpBy6exh5xbgxnvNRLUzht+7696D4eHo3rUqIQvv72XjRzQN61BfsA3AFa2jHy3
-	USWNhaRkUEKOmaXIorbA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6n4pa9d1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 May 2024 18:39:50 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44MIdmJg015822
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 May 2024 18:39:48 GMT
-Received: from [10.110.28.32] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 May
- 2024 11:39:48 -0700
-Message-ID: <9fc7e388-d9c7-12d1-bee5-803dd6f1ca60@quicinc.com>
-Date: Wed, 22 May 2024 11:39:47 -0700
+	s=arc-20240116; t=1716403150; c=relaxed/simple;
+	bh=zBORLGfwEDM1w4TyfaRsoNqVkhOG4wegvCBhB3v3QGo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AaybZYiN3GXMshjhwx5OaDg4At17eram2VtTnNRdbEvi+zVXRssxj3todNV6J65eypOkE2vw2x3CAmz4Ix9rjXkARNwgzKydRc6XRhMpZxSLnm+/0pEXJl27LMnGjDBb/eLF1clB5SR2G6wk+3OsWCH3cqLNak/1aA5F2Qf6PzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Py7Ap97+; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2e724bc46bfso45183011fa.3;
+        Wed, 22 May 2024 11:39:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716403147; x=1717007947; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WowmymhSQgb7aeMuyb2EmWdDvfH/2EO855oEziB1Qzg=;
+        b=Py7Ap97+5kTm2tq7a99i5soGS+TB56wo2SQIhxd5jkDOA6P72rhYbY1PY5O48OxcMp
+         DPPVqa6TJXrvp4DEMcXJs9cAkExczRcGwdifou6Eyu6Q4dVYWoOHa9K35OjwGJTZj/B+
+         RDDRMWhTHfNv6FtQIPyZqO8u6exSu2Q7A3IedrLtZTHFHlaCy0CQxVkHQGg8fHBX4dny
+         rpd8iie1KdAF472aBS0eO1po0nAVC9ZB2lwZ1IvpTOVfvZ0oKaYocRD/Dacb3/aFbkOB
+         CVa0atbH8c2hqurRBG+rp2b1yD71McidKL4oZkEJjN1c85ZLDjsIx+xgECpCd7dRWISG
+         aTQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716403147; x=1717007947;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WowmymhSQgb7aeMuyb2EmWdDvfH/2EO855oEziB1Qzg=;
+        b=oKxGgJncXWpEdGRVVWifFhCX/rA8OaCDWo2mE5DwGE6y/O3dN36Rn+WU96Si9yqJS7
+         7Ey4OkjH6lcX8zsSfeQnNL3setCg5b1X4hiqDWADIthxJjQkx7A52yCw1XAFtBbi4/ve
+         kgLn/EhTf+cpg68g9zmGmSJkBXR5Vjo/mdMTlAhgUYOglyk8wSj3RLJKC7+INL+Lp5OJ
+         bmanHhqq/f/41JgIJoicsKFxrLbjrAb8KMWQnLBQIEh0UMvZ8yVdElQTHX6atdZMmaP4
+         4Wnbl4QBj/ozbcdGgJQ8sivgidUPucKSce351VJq4z69f0gXmyOpuoN49GZjfnA06edz
+         UieA==
+X-Forwarded-Encrypted: i=1; AJvYcCWvQeENFCi8aPOknVV5E0oEE/CCwcajIE/mpIOkSg6pLTZ/b2Xlc4ztBkp5YYrBg/5msYwlQ8V7A5fMD7Fzjpmzm5pblH0M2coNyiNOp7HNFvV+TtZJKF0ZdG55tvyLQlxzPm5ssXhr544PBPn9L3vDC/7GpCgJL2Rb8A8NSxl6Ao6nvVmb
+X-Gm-Message-State: AOJu0Yxm+mWIxAPJsqvEf89HLVqoO+M7cGdsuYmk+OGjVLF3nwi96QTa
+	ky+dTEBmyhW2a1SperwtEccfrm+nuQgNF29TxDtZEYTTLG3Pgixj
+X-Google-Smtp-Source: AGHT+IG4RBP0BkzL05EFItPmMq+sTkT5KD18CXqpi+UCTb8LIu1W9femaNsd+zD6c7pzhoWEn3+j7Q==
+X-Received: by 2002:ac2:47fb:0:b0:523:ab19:954b with SMTP id 2adb3069b0e04-526bdd47d37mr1714892e87.17.1716403146853;
+        Wed, 22 May 2024 11:39:06 -0700 (PDT)
+Received: from [10.0.0.100] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-523aa2645c7sm2535372e87.167.2024.05.22.11.39.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 11:39:06 -0700 (PDT)
+Message-ID: <2d2b0047-ae08-4a76-bada-6bc92f443544@gmail.com>
+Date: Wed, 22 May 2024 21:39:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/7] drm/msm/dpu: handle non-default TE source pins
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>, Mithil <bavishimithil@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240522075245.388-1-bavishimithil@gmail.com>
+ <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+ <4f722e53-011f-4176-b6af-080522165007@kernel.org>
+ <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
+ <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
+ <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
+ <58ada5ce-5c02-4ff5-8bdd-d6556c9d141f@kernel.org>
+ <CAGzNGRm5i8zvnXiPzMg5=+tr9oyBcRA8LFvnmgGzE=MzSNTXug@mail.gmail.com>
+ <e384272a-4dfe-4653-8983-6426f8803c84@kernel.org>
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Daniel
- Vetter" <daniel@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: npxtvBUxVkzchbeWxi4XjEmkjS--o5u7
-X-Proofpoint-GUID: npxtvBUxVkzchbeWxi4XjEmkjS--o5u7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-22_10,2024-05-22_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 lowpriorityscore=0 mlxscore=0 malwarescore=0 spamscore=0
- impostorscore=0 clxscore=1015 phishscore=0 suspectscore=0 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405220127
+In-Reply-To: <e384272a-4dfe-4653-8983-6426f8803c84@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
 
-On 5/20/2024 5:12 AM, Dmitry Baryshkov wrote:
-> Command-mode DSI panels need to signal the display controlller when
-> vsync happens, so that the device can start sending the next frame. Some
-> devices (Google Pixel 3) use a non-default pin, so additional
-> configuration is required. Add a way to specify this information in DT
-> and handle it in the DSI and DPU drivers.
+On 22/05/2024 20:07, Krzysztof Kozlowski wrote:
+> On 22/05/2024 19:02, Mithil wrote:
+>>> Yep. And testing DTS should clearly show that conversion leads to
+>>> incomplete binding.
+>>>
+>>>>
+>>>>> I assume the DTS was validated with the binding. Isn't the case here?
+>>>
+>>> Mithil Bavishi,
+>>> Are you sure you tested the DTS?
+>>
+>> dt_binding_check did not give me any errors. Yeah the example is
+>> different from how it is implemented in the kernel ie board specific
+>> (omap4, omap5 etc). Should the example be changed according to that
+>> dtsi then?
 > 
+> Binding needs to be adapted to match DTS or DTS has to be fixed to match
+> binding, depending which one is correct.
 
-Which pin is the pixel 3 using? Just wanted to know .. is it gpio0 or gpio1?
+Normally the DTS is written based on the binding document and the driver
+is written also to follow the binding document.
+However in this case we have a broken/inaccurate binding document and
+the existing DTS files and binaries in wild have deviated (there are
+boards out there using qnx or BSD and use this binding), or to be
+precise the binding document was not updated.
 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-> Dmitry Baryshkov (7):
->        dt-bindings: display/msm/dsi: allow specifying TE source
->        drm/msm/dpu: convert vsync source defines to the enum
->        drm/msm/dsi: drop unused GPIOs handling
->        drm/msm/dpu: pull the is_cmd_mode out of _dpu_encoder_update_vsync_source()
->        drm/msm/dpu: rework vsync_source handling
->        drm/msm/dsi: parse vsync source from device tree
->        drm/msm/dpu: support setting the TE source
+The existing DTS files are the ABI, so we cannot deviate from them,
+unfortunately.
+
+In this case the DTS / driver needs to be reverse engineered to create a
+binding document.
+
+To note: I'm also guilty of not updating the .txt file.
+
+> Mention any changes done in the
+> binding which deviate from pure conversion of TXT->DT schema.
 > 
->   .../bindings/display/msm/dsi-controller-main.yaml  | 16 ++++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        | 11 ++---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h        |  5 +--
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c        |  2 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h        |  2 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h        | 26 ++++++------
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h         |  2 +-
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            | 44 ++++++++++++++++++++
->   drivers/gpu/drm/msm/dsi/dsi.h                      |  1 +
->   drivers/gpu/drm/msm/dsi/dsi_host.c                 | 48 +++++-----------------
->   drivers/gpu/drm/msm/dsi/dsi_manager.c              |  5 +++
->   drivers/gpu/drm/msm/msm_drv.h                      |  6 +++
->   12 files changed, 106 insertions(+), 62 deletions(-)
-> ---
-> base-commit: 75fa778d74b786a1608d55d655d42b480a6fa8bd
-> change-id: 20240514-dpu-handle-te-signal-82663c0211bd
+> https://social.kernel.org/notice/Ai9hYRUKo8suzX3zNY
 > 
 > Best regards,
+> Krzysztof
+> 
+
+-- 
+Péter
 
