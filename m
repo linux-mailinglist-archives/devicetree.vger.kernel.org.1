@@ -1,106 +1,297 @@
-Return-Path: <devicetree+bounces-68530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E8E8CC9A0
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:32:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69D4B8CC9CC
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39B7E1C21C6B
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 23:32:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC3B51F22A66
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 23:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AD614C592;
-	Wed, 22 May 2024 23:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37FD514D281;
+	Wed, 22 May 2024 23:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bMFLPMK/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MlWlpB+p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17C47D3E6;
-	Wed, 22 May 2024 23:32:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA64824B1;
+	Wed, 22 May 2024 23:41:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716420743; cv=none; b=os7zvh+B21puGfAPBQNjlWh+jAkirutsbxOf6MHFhrE9q31IdWqTlak6NJlYRx7a0o1UDeWi9LLi2fLiHHTndkRB71mjgqtlW2d+UPCqtjmAqDPNZZ4g0j23a5AqV/8cMxF8PHD4vH9vaFFIC8/CE+kezT4kPWwnvh0SFuA3sGk=
+	t=1716421290; cv=none; b=asJLt0Ufx3JCycG657EqOKO+6HACYyIwAXX30QixVwSe2H9cFAr/kBDkTO+g/f42JaCb1ZOqJLKUz53wfTt6ecLvslYWUrm3db8+sWH/Nq6wE0KHbpQgVTPqFfuRZgliZYiyHu8zqWa7MR69VSKuMlv+Q2/xnANafgp57gtkxTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716420743; c=relaxed/simple;
-	bh=tEHrjijHfI1dW0qehjRUeQTBRs2hxXM4LHxZP9ugrHc=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=LLn3zWCk+fmhfWWJe196RfWi4/Fi9ews2tqcRuWCpKiINh4Np1oSOvK6ewDq5G+pA+zAok5Hyk6oD9eu6VFg9HpJjK+mAP48ddAV3JPw1JoYGkNrcI7UyJUO2szT52X4y4Gs7PYy/tlfCJKslq4J8Fg9m9CwkMHAsQmH9lVrLeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMFLPMK/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A0791C4AF0D;
-	Wed, 22 May 2024 23:32:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716420743;
-	bh=tEHrjijHfI1dW0qehjRUeQTBRs2hxXM4LHxZP9ugrHc=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=bMFLPMK/srok+FyjdHtbHkP+ZgL5XHdr2nMDlz3R/AiQk7J6GWWuCYpHf6Hc4QEGj
-	 YNcTJfbYyYqyQ/EOjlGQ1OMPsBJbP24gN7+b5fQQ/ips+o4jGvIAuhfLhP0bq0ZnRK
-	 aXdQzA+eTgDk/wDII14GbvuaUNUCDV+HRTY9EE9DoygEw7sZAFKeBWAa5eixwP+5R+
-	 9VPI/VbwsXbg4rvK2YNLfNWmwwbukxfZzhhVp6Iwe42YwN4L48ri9oMXnAXM74UT2K
-	 Vu5P2+0QxQDzzp9AZzwBuTI9w24o/w9wSD4DshN1zkLczfdE4YXrco0sduX6a+/S7+
-	 hHEXqgLYa4siA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8DAFAC4361C;
-	Wed, 22 May 2024 23:32:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1716421290; c=relaxed/simple;
+	bh=vggnmkJygBRK8GAMVq19lWbRS7b34eyKsZmnwfwYnfU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g7JgoeifKDPUOug/CvCkgNw1McVDM3qUcdymdOV1XNtL4JS3BiFEiAUFFlcMKVzCkVm7h6b22HRx0JTwGIKDCeLDbE1jWNZ3/tjxvR1kIJNTGhheMbEZtRj89VbWyczM3+1rW7a865uk6iAY6k7GjxH0+PQDwctI6hQN0/vP2Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MlWlpB+p; arc=none smtp.client-ip=209.85.161.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5b2e942171cso3063939eaf.3;
+        Wed, 22 May 2024 16:41:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716421287; x=1717026087; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gWukj2snaUQpvheqYxoT6sRpwOl1cI9Ig/I6rHkd/ts=;
+        b=MlWlpB+p6RRWNi/MHnA5zBR9yjDFtIjjtCRedY+W/ZC0AF9MDYk+CFHXnJixfZUohE
+         3Q8G92zyVa0HBmciHhtyjq6VjERNGVSOTqz+j6HfGrMcZzWitPV7fsrTreXgZZwwExLD
+         mGaRETcGmBTIHtMdOrQ8S+OtYh2IJNFPUiLhrM/35/MnX4VNwx9HIkLxRvFK9otRKkne
+         Mle+4Vi3MwIVxYb1JQ3hPXT6EmLotKlkn29vDZ6vZ9KreKvMMEe39S0IJrseiDijgIa9
+         KUBwV1Gwu1gucHqLuG6r1TZ03uVeEXdkHZqoc7kYPDT24pRF3MUvyM7MiI/3CdeOtNWo
+         LTmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716421287; x=1717026087;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gWukj2snaUQpvheqYxoT6sRpwOl1cI9Ig/I6rHkd/ts=;
+        b=FAyywbQUsGIr1C99E1ID5gyo/F8MutVsAiBK6huU8Ycla2HuSIVoVCOIXddIhKlzZx
+         qzrAwSZu+CE8m0HwVwzSFX87MMwBJxxYGCuDP/FZJOV7TH8DOr77KPna/MJsY12qaRfp
+         VJNpQp91yUnVRXEZkb4qCDldBzSr5Pi04fXffIYFnEJKvHRhU03Gh8sL6niXj0/aFAlS
+         /ZGu77tYCK33ksrL2ArX4jJ98DsRQuvR9Xwh6GxOUN+pc/E3Hrsg0VxPJrcIUd+PMcvP
+         q94M7i3JGownSPWA+AsKEpBqlg+T3HSg07Ddtvl5p8JmUN0xWAYHtoi8ZaMKY1LwjBCh
+         zs7w==
+X-Forwarded-Encrypted: i=1; AJvYcCVLHW7E8hipS3XCaI7Izx7uv7XlGWmJ/dyrSqIAMNM5Z6e0XgcQTLXJmJj4Z4tcknIpVy+5cIdU4DIFQumQs/IIfuKk5hQKMNASFP3g2ZDAyw2rhaNhmChPhZY1mE2Sk4mnGoLY5FxfKoTGJYD6BlRg6fUf9OQ1O0dbO17SQfPTBUS45Q==
+X-Gm-Message-State: AOJu0Yw5hGsgnEoJj8QyJdvPCHYpcn/6XwCQrtK9EcbTMKQMdHXpAINK
+	CQfRg3CpKfYk58Va9sX+iDqQ0uwRekW5MdC/Ci0I0x0SuJakJkJz
+X-Google-Smtp-Source: AGHT+IE0d+EY6qLVEYas/aDbAVhly2G2iZsay05JQ07b3GGXxqmurnPP45B+PYUcYsUehPTJYrupIA==
+X-Received: by 2002:a05:6358:8003:b0:186:f45:391a with SMTP id e5c5f4694b2df-1979214497fmr519300455d.28.1716421287435;
+        Wed, 22 May 2024 16:41:27 -0700 (PDT)
+Received: from archlinux ([189.101.162.253])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6340a9107f3sm23359241a12.9.2024.05.22.16.41.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 May 2024 16:41:26 -0700 (PDT)
+Date: Wed, 22 May 2024 20:41:18 -0300
+From: Gustavo Silva <gustavograzs@gmail.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, lars@metafoo.de, gerald.loacker@wolfvision.net, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/6] iio: chemical: add driver for ENS160 sensor
+Message-ID: <i6heylzrq3kez23oq3brbbhpw4ktt6umzh2vcsawch52upv4oa@muxsuackv6er>
+References: <20240512210444.30824-1-gustavograzs@gmail.com>
+ <20240512210444.30824-4-gustavograzs@gmail.com>
+ <205163e0-e2bd-4ed9-9f51-e20468f77655@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v1 0/5] BeagleV Fire support
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <171642074357.9409.6131755278467232949.git-patchwork-notify@kernel.org>
-Date: Wed, 22 May 2024 23:32:23 +0000
-References: <20240327-parkway-dodgy-f0fe1fa20892@spud>
-In-Reply-To: <20240327-parkway-dodgy-f0fe1fa20892@spud>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-riscv@lists.infradead.org, conor.dooley@microchip.com,
- daire.mcnamara@microchip.com, jamie.gibbons@microchip.com,
- valentina.fernandezalanis@microchip.com, linus.walleij@linaro.org,
- brgl@bgdev.pl, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+In-Reply-To: <205163e0-e2bd-4ed9-9f51-e20468f77655@wanadoo.fr>
 
-Hello:
-
-This series was applied to riscv/linux.git (fixes)
-by Rob Herring (Arm) <robh@kernel.org>:
-
-On Wed, 27 Mar 2024 12:24:35 +0000 you wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Mon, May 13, 2024 at 09:12:55PM GMT, Christophe JAILLET wrote:
+> Le 12/05/2024 à 23:04, Gustavo Silva a écrit :
+> > ScioSense ENS160 is a digital metal oxide multi-gas sensor, designed
+> > for indoor air quality monitoring. The driver supports readings of
+> > CO2 and VOC, and can be accessed via both SPI and I2C.
+> > 
+> > Signed-off-by: Gustavo Silva <gustavograzs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > ---
 > 
-> Yo,
+> Hi,
+> a few comments below, for what it worth.
 > 
-> Wee series adding support for the BeagleV Fire. I've had a dts sitting
-> locally for this for over a year for testing Auto Update and I meant to
-> submit something to mainline once the board got announced publicly, but
-> only got around to that now.
+> BTW, why I'm in copy of the mail?
+> I'm not a maintainer, and not active on drivers/iio/chemical/
+> Slightly proud, but curious as well.
 > 
-> [...]
+Hi Christophe,
 
-Here is the summary with links:
-  - [v1,1/5] dt-bindings: riscv: microchip: document beaglev-fire
-    (no matching commit)
-  - [v1,2/5] dt-bindings: gpio: mpfs: add coreGPIO support
-    https://git.kernel.org/riscv/c/6e12a52c1459
-  - [v1,3/5] dt-bindings: gpio: mpfs: allow gpio-line-names
-    https://git.kernel.org/riscv/c/f752a52d34cb
-  - [v1,4/5] dt-bindings: PCI: microchip: increase number of items in ranges property
-    https://git.kernel.org/riscv/c/649bad67d4b1
-  - [v1,5/5] riscv: dts: microchip: add an initial devicetree for the BeagleV Fire
-    (no matching commit)
+Your name was listed by the `get_maintainer.pl` script, so I may have
+added you to CC accidentally, my bad. I appreciate your review
+nonetheless.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> ...
+> 
+> > +#define ENS160_REG_TEMP_IN		0x13
+> > +#define ENS160_REG_RH_IN		0x15
+> > +#define ENS160_REG_DEVICE_STATUS	0x20
+> 
+> If defining everything, maybe:
+> #define ENS160_REG_DATA_AQI	0x21
+> 
+Ack.
 
+> > +#define ENS160_REG_DATA_TVOC		0x22
+> > +#define ENS160_REG_DATA_ECO2		0x24
+> > +#define ENS160_REG_DATA_T		0x30
+> > +#define ENS160_REG_DATA_RH		0x32
+> > +#define ENS160_REG_GPR_READ4		0x4C
+> 
+> ...
+> 
+> > +static int ens160_chip_init(struct ens160_data *data)
+> > +{
+> > +	struct device *dev = regmap_get_device(data->regmap);
+> > +	u8 fw_version[3];
+> > +	__le16 part_id;
+> > +	unsigned int status;
+> > +	int ret;
+> > +
+> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_RESET);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_bulk_read(data->regmap, ENS160_REG_PART_ID, &part_id,
+> > +			       sizeof(part_id));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (le16_to_cpu(part_id) != ENS160_PART_ID)
+> > +		return -ENODEV;
+> > +
+> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_IDLE);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_write(data->regmap, ENS160_REG_COMMAND,
+> > +			   ENS160_REG_COMMAND_CLRGPR);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_write(data->regmap, ENS160_REG_COMMAND,
+> > +			   ENS160_REG_COMMAND_GET_APPVER);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	msleep(ENS160_BOOTING_TIME_MS);
+> > +
+> > +	ret = regmap_bulk_read(data->regmap, ENS160_REG_GPR_READ4,
+> > +			       fw_version, sizeof(fw_version));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	msleep(ENS160_BOOTING_TIME_MS);
+> > +
+> > +	dev_info(dev, "firmware version: %u.%u.%u\n", fw_version[2],
+> > +		 fw_version[1], fw_version[0]);
+> > +
+> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_STANDARD);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_read(data->regmap, ENS160_REG_DEVICE_STATUS, &status);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (FIELD_GET(ENS160_STATUS_VALIDITY_FLAG, status)
+> > +	    != ENS160_STATUS_NORMAL)
+> > +		return -EINVAL;
+> 
+> Just wondering how it works with the Warm-up and initial Start-up times.
+> If the probe is executed and the corresponding duration has not elpased,
+> then the probe fails.
+> 
+> Is it what is expected?
+>
+According to the datasheet, the warm-up time corresponds to the first 3
+minutes after power-on. However, the chip I'm working with always seems
+to go straight to standard operating mode (validity flag = 0x00)
+immediately after power-on.
 
+Also, checking other drivers for the same sensor, including ScioSense's
+official arduino driver, none of them seem to consider this initial
+warm-up time.
+
+Maybe it is more reasonable not to fail the probe based on this
+condition but instead only log the status. If the status reads 1
+(warm-up) or 2 (initial start-up) the readings may be unreliable for
+some time, but the user will be warned. What do you think?
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct iio_info ens160_info = {
+> > +	.read_raw = ens160_read_raw,
+> > +};
+> > +
+> > +int ens160_core_probe(struct device *dev, struct regmap *regmap,
+> > +		      const char *name)
+> > +{
+> > +	struct ens160_data *data;
+> > +	struct iio_dev *indio_dev;
+> > +	int ret;
+> > +
+> > +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> > +	if (!indio_dev)
+> > +		return -ENOMEM;
+> > +
+> > +	data = iio_priv(indio_dev);
+> > +	dev_set_drvdata(dev, indio_dev);
+> > +	data->regmap = regmap;
+> > +
+> > +	indio_dev->name = name;
+> > +	indio_dev->info = &ens160_info;
+> > +	indio_dev->modes = INDIO_DIRECT_MODE;
+> > +	indio_dev->channels = ens160_channels;
+> > +	indio_dev->num_channels = ARRAY_SIZE(ens160_channels);
+> > +
+> > +	ret = ens160_chip_init(data);
+> > +	if (ret) {
+> > +		dev_err_probe(dev, ret, "chip initialization failed\n");
+> 
+> Nitpick: return dev_err_probe()
+Ack.
+
+> 
+> > +		return ret;
+> > +	}
+> > +
+> > +	return devm_iio_device_register(dev, indio_dev);
+> > +}
+> 
+> ...
+> 
+> > +static int ens160_i2c_probe(struct i2c_client *client)
+> > +{
+> > +	struct regmap *regmap;
+> > +
+> > +	regmap = devm_regmap_init_i2c(client, &ens160_regmap_i2c_conf);
+> > +	if (IS_ERR(regmap)) {
+> > +		dev_err(&client->dev, "Failed to register i2c regmap %ld\n",
+> > +			PTR_ERR(regmap));
+> 
+> Nitpick: dev_err_probe()
+Ack.
+
+> 
+> > +		return PTR_ERR(regmap);
+> > +	}
+> 
+> ...
+> 
+> > +static int ens160_spi_probe(struct spi_device *spi)
+> > +{
+> > +	struct regmap *regmap;
+> > +	const struct spi_device_id *id = spi_get_device_id(spi);
+> > +
+> > +	regmap = devm_regmap_init_spi(spi, &ens160_regmap_spi_conf);
+> > +	if (IS_ERR(regmap)) {
+> > +		dev_err(&spi->dev, "Failed to register spi regmap: %pe\n",
+> > +			regmap);
+> 
+> Nitpick: dev_err_probe()
+Ack.
+
+> 
+> CJ
+> 
+> > +		return PTR_ERR(regmap);
+> > +	}
+> > +
+> > +	return ens160_core_probe(&spi->dev, regmap, id->name);
+> > +}
+> 
+> 
 
