@@ -1,161 +1,183 @@
-Return-Path: <devicetree+bounces-68518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCDBE8CC849
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 23:51:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37D418CC8D4
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 00:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 721651F21FD8
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 21:51:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A70D61F23E2C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 22:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A21C146D53;
-	Wed, 22 May 2024 21:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25446146008;
+	Wed, 22 May 2024 22:10:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QG9l8swA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293E4146A69;
-	Wed, 22 May 2024 21:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAF07F47F;
+	Wed, 22 May 2024 22:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716414663; cv=none; b=brJXXHn8UVyYlYq//3pjYUBtRkkziVp5pshN1FKvsTjgJ5zrii7RP6B+f2q7C21ioD6gPazOEFl+xGDh84f4A57IuFC2bZ3wQGyBa3TjgBaSIVrI1abH1Wf82GYJCEeUC53d0JHhrvGFVUpV/0cYxVbIiuc6WH451MGC7hWjIAs=
+	t=1716415837; cv=none; b=GE7zay9A7l2vFfGDGNPQDNRP+FchM0i/PywUW07f2fwWZKrJQSDdRuxq+JNAJssIwmMGCBES+M4ucqXKcRzfbY1w+N5l+D0kMRaoeGK7MTX3/YCY/ppyD4WXffbQRAMSiWkJkpI1REUMgTAvdnDPZOKBgzCtp6JIobjbRGarR04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716414663; c=relaxed/simple;
-	bh=ofPBeRqSIe2vx2hxtmS3fwTatzKosnn0o5DkUNV20jU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JYr1tAJONW2/3VmnPy8/RWrcdJFGj0/l6M5qRngZUEBTk4gN4fly1D5owkAjTENT3oIR2gAMUg81Px9kaPtAn1ftVWdUSQ3WT6JtPaikuEOyVaUamrCqWtce24Rxjfyl+pCG/sSLFR5LaQyX0SN/+GSgiqRyzUVhg9c8euK5lxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-	by finn.localdomain with esmtp (Exim 4.95)
-	(envelope-from <tharvey@gateworks.com>)
-	id 1s9trM-00BO3S-8U;
-	Wed, 22 May 2024 21:50:56 +0000
-From: Tim Harvey <tharvey@gateworks.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1716415837; c=relaxed/simple;
+	bh=78lSOt435SpzlKtYFJRnRC9xals+PsmCRmkOx4okULU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=kgModzx9HguWgyF+cgHR+dN46lP1ZaIAkxP+qSNFuOzjAsTKqzPTkIJuIaJHsV6NbMr6aBKSdFyHKGFNDubPUsznDgfpmf93pjSwQbP+0NLLSvvGSChLOdnOhjvECekxfShsNEn3XUunqjateoYWsMA78WjaE4RDRIhTi/AlAiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QG9l8swA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A5CAC2BBFC;
+	Wed, 22 May 2024 22:10:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716415836;
+	bh=78lSOt435SpzlKtYFJRnRC9xals+PsmCRmkOx4okULU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=QG9l8swAl+2uLJlTgqBUAn1o2pxnCYHODesOdRxMEAL+yKCPO/ptqgxYEmtcEWHza
+	 2Ttp0uF6DOs/G/2dn6c5nT8/MuORHjJXMXq8en+AaL4Rx9QNMBLwgH3sH1pqLkZ0sU
+	 /yzJtJGaq8erEVBauiQaBlmSVXWip0wwdZPtvuXVEOGNLorpqdz3hb7uKhWOpI6DtM
+	 E7VeoG7Lv6MpKiUJqMo8bLHMbIB6qKbniCDkIsFmWaJxi9JN7encYqT8WsB3v+j2H/
+	 Th3B+Ik4ds12hJz3pXKtiAQikPmd5iyPC6hHTNWHxweBaIKxKHeFPTUoNJ9F2giBKy
+	 /7+hB7Ceb732w==
+Date: Wed, 22 May 2024 17:10:34 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Li Yang <leoyang.li@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH 2/2] arm64: dts: freescale: rename gw7905 to gw75xx
-Date: Wed, 22 May 2024 14:50:43 -0700
-Message-Id: <20240522215043.3747651-2-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240522215043.3747651-1-tharvey@gateworks.com>
-References: <20240522215043.3747651-1-tharvey@gateworks.com>
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjE2IDA4?=
+ =?utf-8?Q?=2F22=5D_PCI?= =?utf-8?Q?=3A?= microchip: Change the argument of
+ plda_pcie_setup_iomems()
+Message-ID: <20240522221034.GA83828@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SHXPR01MB086351396027D8A443BB6068E6EB2@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 
-The GW7905 was renamed to GW7500 before production release.
+On Wed, May 22, 2024 at 01:50:57AM +0000, Minda Chen wrote:
+> > The patch is OK, but the subject line is not very informative.  It
+> > should be useful all by itself even without the commit log.
+> > "Change the argument of X" doesn't say anything about why we would
+> > want to do that.
+> > 
+> > On Thu, Mar 28, 2024 at 05:18:21PM +0800, Minda Chen wrote:
+> > > If other vendor do not select PCI_HOST_COMMON, the driver data is not
+> > > struct pci_host_bridge.
+> > 
+> > Also, I don't think this is the real problem.  Your PCIE_MICROCHIP_HOST
+> > Kconfig selects PCI_HOST_COMMON, and the driver calls
+> > pci_host_common_probe(), so the driver wouldn't even build without
+> > PCI_HOST_COMMON.
+> > 
+> > This patch is already applied and ready to go, but if you can tell
+> > us what's really going on here, I'd like to update the commit log.
+> > 
+> It is modified for Starfive code. Starfive JH7110 PCIe do not select
+> PCI_HOST_COMMON
+> plda_pcie_setup_iomems() will be changed to common plda code.
+> 
+> I think I can modify the title and commit log like this.
+> 
+> Title: 
+> PCI: microchip: Get struct pci_host_bridge pointer from platform code
+> 
+> Since plda_pcie_setup_iomems() will be a common PLDA core driver
+> function, but the argument0 is a struct platform_device pointer.
+> plda_pcie_setup_iomems() actually using struct pci_host_bridge
+> pointer other than platform_device pointer. Further more if a new
+> PLDA core PCIe driver do not select PCI_HOST_COMMON, the platform
+> driver data is not struct pci_host_bridge pointer. So get struct
+> pci_host_bridge pointer from platform code function
+> mc_platform_init() and make it to be an argument of
+> plda_pcie_setup_iomems().
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm64/boot/dts/freescale/Makefile                      | 4 ++--
- ...8mm-venice-gw7905-0x.dts => imx8mm-venice-gw75xx-0x.dts} | 6 +++---
- ...{imx8mm-venice-gw7905.dtsi => imx8mm-venice-gw75xx.dtsi} | 0
- ...8mp-venice-gw7905-2x.dts => imx8mp-venice-gw75xx-2x.dts} | 6 +++---
- ...{imx8mp-venice-gw7905.dtsi => imx8mp-venice-gw75xx.dtsi} | 0
- 5 files changed, 8 insertions(+), 8 deletions(-)
- rename arch/arm64/boot/dts/freescale/{imx8mm-venice-gw7905-0x.dts => imx8mm-venice-gw75xx-0x.dts} (67%)
- rename arch/arm64/boot/dts/freescale/{imx8mm-venice-gw7905.dtsi => imx8mm-venice-gw75xx.dtsi} (100%)
- rename arch/arm64/boot/dts/freescale/{imx8mp-venice-gw7905-2x.dts => imx8mp-venice-gw75xx-2x.dts} (67%)
- rename arch/arm64/boot/dts/freescale/{imx8mp-venice-gw7905.dtsi => imx8mp-venice-gw75xx.dtsi} (100%)
+OK, I see what you're doing.  This actually has nothing to do with
+whether PCI_HOST_COMMON is *enabled*.  It has to do with whether
+drivers use pci_host_common_probe().  Here's what I propose:
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index bd443c2bc5a4..4b234d97a13b 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -128,11 +128,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw75xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7903.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7904.dtb
--dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7905-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-mallow.dtb
-@@ -181,7 +181,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw71xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw72xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw73xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
--dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw7905-2x.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw75xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-mallow.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905-0x.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx-0x.dts
-similarity index 67%
-rename from arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905-0x.dts
-rename to arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx-0x.dts
-index 914753f062cd..04f06a55da5c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905-0x.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx-0x.dts
-@@ -7,11 +7,11 @@
- 
- #include "imx8mm.dtsi"
- #include "imx8mm-venice-gw700x.dtsi"
--#include "imx8mm-venice-gw7905.dtsi"
-+#include "imx8mm-venice-gw75xx.dtsi"
- 
- / {
--	model = "Gateworks Venice GW7905-0x i.MX8MM Development Kit";
--	compatible = "gateworks,imx8mm-gw7905-0x", "fsl,imx8mm";
-+	model = "Gateworks Venice GW75xx-0x i.MX8MM Development Kit";
-+	compatible = "gateworks,imx8mm-gw75xx-0x", "fsl,imx8mm";
- 
- 	chosen {
- 		stdout-path = &uart2;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx8mm-venice-gw7905.dtsi
-rename to arch/arm64/boot/dts/freescale/imx8mm-venice-gw75xx.dtsi
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx-2x.dts
-similarity index 67%
-rename from arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-rename to arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx-2x.dts
-index 4a1bbbbe19e6..7ca68df9e516 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx-2x.dts
-@@ -7,11 +7,11 @@
- 
- #include "imx8mp.dtsi"
- #include "imx8mp-venice-gw702x.dtsi"
--#include "imx8mp-venice-gw7905.dtsi"
-+#include "imx8mp-venice-gw75xx.dtsi"
- 
- / {
--	model = "Gateworks Venice GW7905-2x i.MX8MP Development Kit";
--	compatible = "gateworks,imx8mp-gw7905-2x", "fsl,imx8mp";
-+	model = "Gateworks Venice GW75xx-2x i.MX8MP Development Kit";
-+	compatible = "gateworks,imx8mp-gw75xx-2x", "fsl,imx8mp";
- 
- 	chosen {
- 		stdout-path = &uart2;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
-rename to arch/arm64/boot/dts/freescale/imx8mp-venice-gw75xx.dtsi
--- 
-2.25.1
+  PCI: plda: Pass pci_host_bridge to plda_pcie_setup_iomems()
 
+  plda_pcie_setup_iomems() needs the bridge->windows list from struct
+  pci_host_bridge and is currently used only by pcie-microchip-host.c.  This
+  driver uses pci_host_common_probe(), which sets a pci_host_bridge as the
+  drvdata, so plda_pcie_setup_iomems() used platform_get_drvdata() to find
+  the pci_host_bridge.
+
+  But we also want to use plda_pcie_setup_iomems() in the new pcie-starfive.c
+  driver, which does not use pci_host_common_probe() and will have struct
+  starfive_jh7110_pcie as its drvdata, so pass the pci_host_bridge directly
+  to plda_pcie_setup_iomems() so it doesn't need platform_get_drvdata() to
+  find it.
+
+> > > Move calling platform_get_drvdata() to mc_platform_init().
+> > >
+> > > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > >  drivers/pci/controller/plda/pcie-microchip-host.c | 6 +++---
+> > >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > b/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > index 9b367927cd32..805870aed61d 100644
+> > > --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > @@ -876,11 +876,10 @@ static void plda_pcie_setup_window(void __iomem
+> > *bridge_base_addr, u32 index,
+> > >  	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);  }
+> > >
+> > > -static int plda_pcie_setup_iomems(struct platform_device *pdev,
+> > > +static int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
+> > >  				  struct plda_pcie_rp *port)
+> > >  {
+> > >  	void __iomem *bridge_base_addr = port->bridge_addr;
+> > > -	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
+> > >  	struct resource_entry *entry;
+> > >  	u64 pci_addr;
+> > >  	u32 index = 1;
+> > > @@ -1018,6 +1017,7 @@ static int mc_platform_init(struct
+> > > pci_config_window *cfg)  {
+> > >  	struct device *dev = cfg->parent;
+> > >  	struct platform_device *pdev = to_platform_device(dev);
+> > > +	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
+> > >  	void __iomem *bridge_base_addr =
+> > >  		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> > >  	int ret;
+> > > @@ -1031,7 +1031,7 @@ static int mc_platform_init(struct
+> > pci_config_window *cfg)
+> > >  	mc_pcie_enable_msi(port, cfg->win);
+> > >
+> > >  	/* Configure non-config space outbound ranges */
+> > > -	ret = plda_pcie_setup_iomems(pdev, &port->plda);
+> > > +	ret = plda_pcie_setup_iomems(bridge, &port->plda);
+> > >  	if (ret)
+> > >  		return ret;
+> > >
+> > > --
+> > > 2.17.1
+> > >
 
