@@ -1,123 +1,153 @@
-Return-Path: <devicetree+bounces-68479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9A98CC68D
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:46:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD8408CC68F
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 20:49:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BEF61F2251F
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:46:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D711282B3C
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B30141987;
-	Wed, 22 May 2024 18:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9DA11420C6;
+	Wed, 22 May 2024 18:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="afj7nDE7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEy4071S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC70E23CB;
-	Wed, 22 May 2024 18:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF9823CB;
+	Wed, 22 May 2024 18:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716403594; cv=none; b=lRQ9gj8foq/N8H2VEpyn5uLV4lHOB4kZn68SmJPV3d4+rOuJlUZYVovsyX3OKShxWV1M6io7ECZmncKzcEOIb/n3m8wIL8WWdNu0+RT6nEG7ilnVE7+8rcwXCwb39hgC4wRESeitewqZybMZ1JiiCvBT8tGmalW0i6wURfg0A3c=
+	t=1716403739; cv=none; b=gbO1UXI+nr18CSZemGhjhTPa2D+X7lEsrOOuEDj5ecFgC28sTTGoIrsjULBpwirk4haIvaf+HCkHToMdnhgLSYpV4LuvA9Jz3HN1GvzOx/4OEo9XxUKixRbxa582XLZGW4Ahsy9av01UcjfYp8z9q7ZlLG3hMD/uAgMEbAJPYlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716403594; c=relaxed/simple;
-	bh=UjattR+OMocb0iVNEilrq/UfjBc/WS4whSTletBxXqE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=R38gfDxEmuDoVqa1T+VTfMILbDebl/A90lSFD1AH74J0MJ48nbaEqSPIVcyfje6+WT3zuFXt+y8xIcUcEWccdKkfk1tTqidVngBzq9ocNy6yR2RdD5y6c/r7XCsqDF7j/vY913eOKs/rr6UHk0/QMDYjhzQki0RrnJrOTXZ3kC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=afj7nDE7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44MDGPom031736;
-	Wed, 22 May 2024 18:46:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=azN1z6OqY3ZWmrAMO152VRIwtmgPfZl6La36DtScXY8=; b=af
-	j7nDE7Pdp5DdKCaxv3JSmSSIb7F5X7QGihJh9GpXtiRC0OBsJpHKoHb6/p3OCWVa
-	vEMLXQ93tX4sbHYjxFZxSBuv1SXSUdFQ+v1D2mCDg1e8m0TtxwLR4QvcLUk9Nycl
-	HS14JgrHR85vMp5tvPYroJxTznD9rVR3c8olsLZ+XES4b0XG9yPB3xR3tRWEP/90
-	ZbuTgXbKBn6cVGuzdfPmgNl0LD8/9x0FW9VkE37U5lfgQvFgksSXGO6nX2vnjDOl
-	PAZBUm1OlDV48ve0Ut1Z2iBHsBcEb/b0H+RS/4Z/mY2qR6VgoPxCe0UHIRxAWwza
-	VL7eoKxc0vZ6EIby31ag==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6psb1uta-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 May 2024 18:46:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44MIkH1U015221
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 May 2024 18:46:17 GMT
-Received: from [10.110.28.32] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 May
- 2024 11:46:17 -0700
-Message-ID: <d95f635c-63ac-1451-566c-82ee0c265e79@quicinc.com>
-Date: Wed, 22 May 2024 11:46:16 -0700
+	s=arc-20240116; t=1716403739; c=relaxed/simple;
+	bh=oDR35NfNsRBH2fJ/xX+R+OSAGEUDe+MKHboG8nW8crg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jo71Rr5WgAmazweCjqAsEfqC6qj5I4pq6wFwN9+B5Tsm4MbPSr+wgldjJ32sWf7Bz4i+JQqiVYTq6zT7d/obq4MJjWkWRTIXApQdK3b4NXr63jzYvmKS5K/0VclCTNtRxwnimkeR4eC93+XiSPbwBtlnq8vUZv2HGCyW0DSQkRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEy4071S; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2e6792ea67fso84164881fa.1;
+        Wed, 22 May 2024 11:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716403736; x=1717008536; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DTzDmERoVHEg6js4vRxidK21RXEZ4WiJHQmiaHh1F4s=;
+        b=MEy4071SPVz7gVoH1xigDk2BN9ZW2hu4JXnzkFA9Rp+7SYKqkMuJmdKUTtLPwEe8Jz
+         bu0YP9cntN8VM04v3viZLIqkf3dXNXhl5WOF2PtxYdUAfuzgDm03mzws+bm4ouOIS/2u
+         m2123+axOf5aNEkbnqwTAZTbxUvgZTed90WUHlNsc7pza0L0GN1RFWcqIJFu6mst2fIx
+         O+gNc5jLnE9p2BO2F8CbL6t0qMMv4D/kp0xMoKW7vgKHnes361UJ8mi3uBv81PAQuf9+
+         dMpglePw+TOLkxNCtVvlV2bH3M4BDJlGQzwXtw0/1TPEHqOS+GQhHU4g+g4qbISfzOFf
+         2TUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716403736; x=1717008536;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DTzDmERoVHEg6js4vRxidK21RXEZ4WiJHQmiaHh1F4s=;
+        b=m3cKCTMZZDl8bvqiA/mTKU+TiuR7zq/0cdavU8dzCcCpC4J6SfFyM4eD0txiIdycOo
+         O6gHJVY9nmNcX7pHFs62p3myoMke+Q4x7DV3CKB+SKd8/gC1kz7KrrV9EX+WootzccsY
+         0b8BsrE179DRv8GNt5FRujrJDLtKvdVloSEg7LpfGXevc6GLkYDM6c7+5o8dW4+OXhav
+         9GFu+NZW3uL5QRh5d9VvAGdsaEiXdfJ+8KaH3MnzpIXy3YOtkwzqVrTeJD899A/LAuj/
+         Z4fbN9NmHBLk9JfKFO2UNEoAYo1LJdLCn1n71rHvIvU5Qnsm1ZiRo+DfH4eL7DX/x0Np
+         w3/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVzRhyMMGHYewzBcQoPOY3I3rlQNWdjJ3/AcpkoA/vgCLPLOe1RJVX/8SgO7TgM7q5QFLteSvDPgObnObN0iK52c6wMnQD/OMU1uyk6ZCvB5ZrkxKneWx9RVUXUAIl4CIC5Xa5vEHMHqfIX8al+ISlU7HGXFdJjqER94s8/cUuf0zesfimi
+X-Gm-Message-State: AOJu0YzctEWg163dlGRuLodpg7dmY5aGlUjD+lvG+jtIO/kRILJINdEt
+	1ijrYnlbo7fRVyI7ACMFsx06fWf5FfCktdQTu31oV420rdoMN1b2
+X-Google-Smtp-Source: AGHT+IHVOa4KArOmWO1iKvBvgvxFQ+i+ezI4L0bfGrkS09VtQN+XR7jRD5LAMkItjfmSkvlNNtymIQ==
+X-Received: by 2002:a2e:be06:0:b0:2e5:87c1:e845 with SMTP id 38308e7fff4ca-2e949650e42mr19384361fa.48.1716403735959;
+        Wed, 22 May 2024 11:48:55 -0700 (PDT)
+Received: from [10.0.0.100] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e4d18344f4sm40455991fa.136.2024.05.22.11.48.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 11:48:55 -0700 (PDT)
+Message-ID: <bcbe109d-5974-428d-b74e-c29bec9f68b0@gmail.com>
+Date: Wed, 22 May 2024 21:49:41 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 4/7] drm/msm/dpu: pull the is_cmd_mode out of
- _dpu_encoder_update_vsync_source()
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
+To: Mithil <bavishimithil@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240522075245.388-1-bavishimithil@gmail.com>
+ <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+ <4f722e53-011f-4176-b6af-080522165007@kernel.org>
+ <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
+ <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
+ <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
+ <58ada5ce-5c02-4ff5-8bdd-d6556c9d141f@kernel.org>
+ <CAGzNGRm5i8zvnXiPzMg5=+tr9oyBcRA8LFvnmgGzE=MzSNTXug@mail.gmail.com>
+ <e384272a-4dfe-4653-8983-6426f8803c84@kernel.org>
+ <CAGzNGRnsmRWzimUX5tEC2-Y44aa4i9Lbdp8YJ+oneV4ujs4qBA@mail.gmail.com>
+ <CAGzNGRmTR_nK0SoWG8uqDfRzDShs7sR+Mc+44__SBi0CR5LKEg@mail.gmail.com>
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Daniel
- Vetter" <daniel@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <20240520-dpu-handle-te-signal-v1-4-f273b42a089c@linaro.org>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20240520-dpu-handle-te-signal-v1-4-f273b42a089c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VWk_iOxScV7dXEF72puZeZGRk220mg7p
-X-Proofpoint-ORIG-GUID: VWk_iOxScV7dXEF72puZeZGRk220mg7p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-22_10,2024-05-22_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- adultscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=999
- priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0 clxscore=1015
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405220130
+In-Reply-To: <CAGzNGRmTR_nK0SoWG8uqDfRzDShs7sR+Mc+44__SBi0CR5LKEg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
-
-On 5/20/2024 5:12 AM, Dmitry Baryshkov wrote:
-> Setting vsync source makes sense only for DSI CMD panels. Pull the
-> is_cmd_mode condition out of the function into the calling code, so that
-> it becomes more explicit.
+On 22/05/2024 20:47, Mithil wrote:
+> My apologies, misunderstood the error.
+> Proposed changes for the next version,
+> Add dma, dma-names, reg-names properties, and do the changes in
+> example (rename node to mcpdm since it is different from generic pdm).
+>   reg-names:
+>     items:
+>       - const: mpu
+>       - const: dma
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+>   dmas:
+>     maxItems: 2
+> 
+>   dma-names:
+>     items:
+>       - const: up_link
+>       - const: dn_link
+> 
+> examples:
+>     - |
+>     #include <dt-bindings/interrupt-controller/arm-gic.h>
+>     mcpdm@0 {
+>       compatible = "ti,omap4-mcpdm";
+>       reg = <0x0 0x7f>, /* MPU private access */
+>             <0x49032000 0x7f>; /* L3 Interconnect */
+>       reg-names = "mpu", "dma";
+>       interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+>       interrupt-parent = <&gic>;
+>       dmas = <&sdma 65>,
+>              <&sdma 66>;
+These can be in one line to make it nice and tidy
+
+>       dma-names = "up_link", "dn_link";
+>       ti,hwmods = "mcpdm";
+
+The ti,hwmods no longer needed since the sysc conversion
+
+>       clocks = <&twl6040>;
+>       clock-names = "pdmclk";
+>     };
+> 
+> Remove ti.hwmods from required since some dts like
+> omap4-duovero-parlor, omap4-panda etc do not use it which causes
+> dtbs_check to not pass.
 > 
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+-- 
+Péter
 
