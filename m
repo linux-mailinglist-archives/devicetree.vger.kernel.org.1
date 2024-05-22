@@ -1,152 +1,103 @@
-Return-Path: <devicetree+bounces-68322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7F28CBD28
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 10:42:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 608B58CBD72
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 11:03:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBD46282BE3
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 08:42:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91CC71C20CB5
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 09:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD907E78E;
-	Wed, 22 May 2024 08:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF2E7D408;
+	Wed, 22 May 2024 09:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rhRIIYDW"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="nt7j1rC+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2CA7FBAE;
-	Wed, 22 May 2024 08:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A8918EB1;
+	Wed, 22 May 2024 09:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716367329; cv=none; b=blKzbc5kJ6JgoJhJlmjVW+3bnmEhy2r/eZ8F1SFJAZCbUeluL2RpCfvh1Lez8jvdcBUfmG3W4tgwIOEMQeI53lFpQjOI5x7LX4waeHx8fzcK9C4NVzzRF15X5Iqy+bozw5veEggvDnpfFIDM9VRYafLZ5oncAMnSYuwsEav2TS0=
+	t=1716368610; cv=none; b=bzi4l17bOkqgTtKCIG2g5hM6Ueh/Ow1zI8VXD1kVTTN/1Ryhz/6/7L4L7IJ64b2W+TN4PhVI3IF3/kwox9JeNo8yv5JpBTTV4klcpqSlEhrQBxoNnmetYdDwoVD22aUxWH2d85IKpMkSo5s9xRXUCd0JlNcsI+ZzBq8QOt76AnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716367329; c=relaxed/simple;
-	bh=XMOzzCHwCoNfZaI9kNgozY+EI+4HpQuKRxc5GG81rWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GitMvYwhTzLmQG7f9GIGF2PE4smePDSQ6XMYIjahggLUdNYFLtbOMN8NRTJI31gZg5YF13kvV4mP+GSHg74W0mFRWNYuKxFWcrUpZonwwkfL/guaQ1vja9gVbSSbuiVHRUTKe1Ocf4G28J9O6bM8GKx5b4OVnOWfS+hA1K4cBgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rhRIIYDW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 618CAC2BD11;
-	Wed, 22 May 2024 08:42:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716367328;
-	bh=XMOzzCHwCoNfZaI9kNgozY+EI+4HpQuKRxc5GG81rWM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rhRIIYDWkGZwgkonjxHC4Ry621DIw7qfAzNDt7PWz3X/aqo7zecBJlbkk2h1Q2+s3
-	 pkJjNp84FtQ7Q43Po/Tnqx54G7qmV9Vhc76RBjfARiPSqf25WkLFm9p1BtSerr2WzC
-	 HhFfgRi7LmPdgfKpnH3fAM0X60UPiKj+HbczMzlaQLhw+A91vd7BNptGzPxFtynu/c
-	 7jKLqyipK6Av9MbknFXUZCQBeZQ3CJDkrhFk1aETfV2tDbv6DZtGhMIEvzzjn0d2Fw
-	 HuDcMhrJ00XBMCfme8JQsuAHN11Tgm9SnOaxiHLFW36WPsW0qc/o9lwscRJOoDcgFC
-	 bHX5sEc5hkOXw==
-Message-ID: <bcc9999d-b912-417a-8ae8-f4e252d1bd8b@kernel.org>
-Date: Wed, 22 May 2024 10:42:02 +0200
+	s=arc-20240116; t=1716368610; c=relaxed/simple;
+	bh=+ThGKGBlufLwjddH7F1fYBE9I6h37rlkJDDJGwx2tAk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MyJ2kgOatzXGgtA9kW7tF+FuJhNCTqAOC2kLAlQ9zjEKlSyp9kFUW8wQZihsMzLdNPCSihi6/G7ZoET+BXkjZy2SMv7LYuBrIq+U+UIIZz5Cv7KBwBSU8eM/xt2lbazGpoU3NQn+GxS8C8cKTbnCE/6uaxQH7M+KQ3XUf0S5+/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=nt7j1rC+; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1716368599;
+	bh=tgnLczqIZPIw1RRjYhcOby3l9JBMPnlryBl/aTxvZL8=; l=905;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=nt7j1rC+WnReYr5AJLO2DGopygHPzW6qPJwCWSyagMWGuWDxm85XT+r1Y/qix4MHO
+	 W9lVVueygKx8DJN4h3dhJWPTwlo1DFWIRLSCjg1krFxclu7bOjPhFJkBsoif/oLgIW
+	 tM56S0gyf7pZmzVqRcOpdu5STVPuv6YxwLBs/DzwB+fQ0Hzi6ZEDpRZA7yXoMm7jbw
+	 HasprX3/slmRX/lfjTLWAx22O8o326liSJQ+Vi3yejvLgREQcXVJsg/Zh1mr5CX88E
+	 38+0NYzPbViDpoyuJd4D/7fHL1ISKuRqXTv02q6jInEbkeKKaHYLhJiyhaPAtvGvsg
+	 JgSOLdpbF/XiQ==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213195:0:AUTH_RELAY)
+	(envelope-from <alina_yu@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 22 May 2024 17:03:03 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 22 May
+ 2024 17:03:02 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Wed, 22 May 2024 17:03:02 +0800
+Date: Wed, 22 May 2024 17:03:02 +0800
+From: Alina Yu <alina_yu@richtek.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<cy_huang@richtek.com>
+Subject: Re: [PATCH 2/2] regulator: dt-bindings: rtq2208: Add specified fixed
+ LDO VOUT property
+Message-ID: <20240522090302.GA19548@linuxcarl2.richtek.com>
+References: <cover.1715846612.git.alina_yu@richtek.com>
+ <9c1bbe4b38a4ee5650d888478f1ce2cec2733669.1715846612.git.alina_yu@richtek.com>
+ <5d26b19c-7679-4dba-a9ba-a7368d39b474@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: Mighty <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240522075245.388-1-bavishimithil@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240522075245.388-1-bavishimithil@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <5d26b19c-7679-4dba-a9ba-a7368d39b474@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-On 22/05/2024 09:52, Mighty wrote:
-> From: Mithil Bavishi <bavishimithil@gmail.com>
+On Thu, May 16, 2024 at 02:34:02PM +0200, Krzysztof Kozlowski wrote:
+> On 16/05/2024 11:20, Alina Yu wrote:
+> > As the fixed voltage for the LDO is outside the range of the adjustable voltage mode,
+> > the constraints for this scenario are not suitable to represent both modes.
+> > Therefore, A property is added to specify the fixed LDO VOUT.
+> > 
+> > Examples of fixed LDO VOUT and adjustable LDO VOUT is also added to this version.
+> > 
+> > Signed-off-by: Alina Yu <alina_yu@richtek.com>
+> > ---
 > 
-> Convert the OMAP4+ McPDM bindings to DT schema.
+> This is a v1 but I am pretty sure I saw it somewhere and there was
+> already some sort of discussion. Confused... :(
 > 
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> ---
-> Changelog v5:
-> - Add imports for constants
-> - Add desc to ti,hwmods
+> Best regards,
+> Krzysztof
+> 
 
-You are not making it easier for us to review:
-====
-b4 diff '<20240522075245.388-1-bavishimithil@gmail.com>'
-Grabbing thread from
-lore.kernel.org/all/20240522075245.388-1-bavishimithil@gmail.com/t.mbox.gz
-Checking for older revisions
-Grabbing search results from lore.kernel.org
-  Added from v4: 2 patches
----
-Analyzing 15 messages in the thread
-WARNING: duplicate messages found at index 1
-   Subject 1: ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-   Subject 2: ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-  2 is not a reply... assume additional patch
-Preparing fake-am for v4: ASoC: dt-bindings: omap-mcpdm: Convert to DT
-schema
-ERROR: Could not fake-am version v4
----
-Could not create fake-am range for lower series v4
-
-====
+The discussion regarding this matter took place during v2 and v3.
+Due to the fixed LDO VOUT being outside the range of the adjustable one,
+a special-use property has been added to avoid overusing the constraints.
 
 
-Looks good, but let's wait few hours to see if bot is happy as well.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
-
+Thanks,
+Alina
 
