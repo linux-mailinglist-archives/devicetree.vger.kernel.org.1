@@ -1,110 +1,127 @@
-Return-Path: <devicetree+bounces-68447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA4A78CC4D9
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:22:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 381B48CC4ED
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 18:35:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 100D51C21AE7
-	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:22:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E37851F225D9
+	for <lists+devicetree@lfdr.de>; Wed, 22 May 2024 16:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F023E13DDC2;
-	Wed, 22 May 2024 16:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528451420DA;
+	Wed, 22 May 2024 16:35:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fky4eMAs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bs9d+264"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF91542AB9;
-	Wed, 22 May 2024 16:22:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53011420C9;
+	Wed, 22 May 2024 16:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716394942; cv=none; b=ChRFLcX3AHtLB4Wrm/qXDLiiTZU12+vIozwBd1CQ1uqErO6I7pzQjYpdiSAMS2JNIWojk/aW0c8P0EKd8aOCot4qzTljK7jCbJfMkCbqLLbn8azDGSunKvSdYfiwv/VI8/PibHiDNfSB+la+ygPBxlItXADnoOCQ0vhiF7BUw1w=
+	t=1716395713; cv=none; b=s1BOqKPZtn30DiKECE78zGwHZyocGM/KwzPHqbIkvr/bkCehSc7wuFs/5hM+gvjN9qFaBd8BcEiJdN4a8aA6EJMSrOJQhrSV9Sid0YS0p8289L32RXk/xz9ro3SVK7VzaxHC0DaAIgEobM/CxqWiWmbYcluhNa02OjOSn6dXTlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716394942; c=relaxed/simple;
-	bh=AWTKHb0bmoEcBitaeZqYTd0+23qEPVjE572slrya0ls=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cwBk1X5zSTUE2MmwHi3bc/hM/qK+FcGPB7i8z3KNg9xHbY7zMj+gPHcbbnWGwAty8wBF1r8jBXZd2YFqVGGujtcanpdfkKJOmFpK6XfBBoMNcV6HuDAKKBV7fh0l6k0H9xX9EvvXEqKH6eCC7YP6Agb34HRv6nGeb0R+xAcdHOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fky4eMAs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E5C0C2BBFC;
-	Wed, 22 May 2024 16:22:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716394942;
-	bh=AWTKHb0bmoEcBitaeZqYTd0+23qEPVjE572slrya0ls=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fky4eMAsBLnUS+z0kupJjk+N+lm7BPyuPATy7PrnPDc6XufE0Gn+auAfTvhCwPmfl
-	 avvetGb85fhHXdyDoZooW49ws3OQBB4mKM4tM6ql7fynuLgM8uD7NfESRNb3YFEtRg
-	 e1GLPba1O4ykrm3HMSYFYYwIJACKyE47Jwde7y17wRGRjAaoYBYuQHetb166tZpCEg
-	 UVoQiPuFJTim0WPru6wl/d6xdzKQVtc6ixII07M7yNSfqLgXjM7OymfVpW0yreMP6V
-	 w9Lg5C3jVNs0I8zxj5Y9z/1AUPXAZM0SvGnALDzGsnk9KqOEtX6jcSA2QNGlL0fcES
-	 K4+fxL9I5ollQ==
-Date: Wed, 22 May 2024 17:22:15 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 3/8] ASoC: samsung: midas_wm1811: Add headset mic bias
- supply support
-Message-ID: <d64991ee-e125-4497-8030-6ca64fbe35e6@sirena.org.uk>
-References: <20240519-midas-wm1811-gpio-jack-v3-0-0c1736144c0e@gmail.com>
- <20240519-midas-wm1811-gpio-jack-v3-3-0c1736144c0e@gmail.com>
- <1aed24a7-ab2a-4c2b-a3bc-2b907e091624@sirena.org.uk>
- <52428c0d-4b18-4707-9cda-4e6a11e256bc@gmail.com>
+	s=arc-20240116; t=1716395713; c=relaxed/simple;
+	bh=HwrtFMkpSDt9VbB+n06nlRftl6YZbhM7iR+8tjiKkcc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n/ZrjpqJljIsADyJyIp7ntkFWu8B0Z1Rl+3j2Ce6sEQfSmwONWjCYaaaQvHejHcZpJg+dBE0qH3otUVxxJ7sJEToxIEwalkhXgcs4DXYTBdQzX34B9iBd/DQGD4MdJG6yfcjCL1t1rxFsDjgUj2gC1Bj1s0qoP9nOsW/iTFNKS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bs9d+264; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-df4f31e963dso35455276.0;
+        Wed, 22 May 2024 09:35:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716395710; x=1717000510; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HwrtFMkpSDt9VbB+n06nlRftl6YZbhM7iR+8tjiKkcc=;
+        b=Bs9d+264S92vqA7ZwVMOAzWdqwXw0rmFr9ti+80IdSngKY0nB3A/ujTkNCb8dXMAQo
+         58fzcygoMeiRZOHtxXEbNt5FpDepTMF4qmAV9uEROhLSvkxyUJiDOqdP9a2jsueIy3ti
+         fuEMK4MUxB181QkXz05OC2JrYCtjUV7Cqqc/loFhR24TL4ZUquv8F2YcMD6EOuH9WkaH
+         x/PvSSpVfpcx+rF6icSgYDoUwX6okY9eIXzdRdC5OhdDPHD21LmxF9k9ERDovmxu2bv2
+         PaodPwX9h9AwSh6oPdyo3cODluEBhoJaabClUr7j5P+rb5c0IkaBll7n7eCPD6eSyJYU
+         MQjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716395710; x=1717000510;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HwrtFMkpSDt9VbB+n06nlRftl6YZbhM7iR+8tjiKkcc=;
+        b=EVaFuVhxoXN4DygUV1AjA0oQivJ7vSHXi4iaQEdqBMLWNKIYxeCjK0TlrdKAm6gvVP
+         e1fpxol5YeaALqtC59sk1qsiaLZsY9x8HgE1mEI/4xXcN+8uvt4R+GqwDN1EjSF1CDNC
+         M2FzfZCnhqkXHhVRRstfNnRWytLNl/TEnIjds+k8ik9yDjCoFMsjUBhgrggYHW0zaY5L
+         jUDdy6MbkkfMd+mncAy4hDMiFWJDurKwSlyGyPnqrWwTjih0JtdADTansrTwPsvoSLm8
+         Ql5jLK7skZ57ywNgrbhVUBUaoUzFec03PuLM2aPt1LjXNj10Ufd2J36D/xnMN7u62vcN
+         oexA==
+X-Forwarded-Encrypted: i=1; AJvYcCUG/XyT8168tRtseQDKqgttj27PyoaGj7CzAPfCz6W+WzJwJnDdG0k67rru2fWcFFpC+ptuMerMrqRr7TXChDryZEaMMngJADNaI4TENSxz8F2/64EpRH+HFh6V3p8J7mQAnSOIgjvpmYRRVmi5SFQPcGs22JLQV8XxYjGiqhBY18q1Lg==
+X-Gm-Message-State: AOJu0YzBBeinyuuknNjCTP7qMKR4gsDr2YT/bdEWgT2ZekNhkHrTBxXo
+	HlLHZk4Y4Ia+Q0wbG8yWx1Cn53bQU/tWCOeCKa/wplzaB5hJ+mn7wJh6j3gNtlxC+7EnldHFs3L
+	kPxJ2Y1yQNCjGSIA2BzvdK7ry6O0=
+X-Google-Smtp-Source: AGHT+IHTSs1INlTP/I9mKiFoUjrWofSCk/KeTJ4YOYLi5YbSbKts7y2jk9BRDKrvtm+jktdyKAvGR9JjbnfiPI3UwwM=
+X-Received: by 2002:a25:86cd:0:b0:dcc:6894:4ac0 with SMTP id
+ 3f1490d57ef6-df4e0e612c4mr1846106276.20.1716395710484; Wed, 22 May 2024
+ 09:35:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="EL4i+puPElguxjip"
-Content-Disposition: inline
-In-Reply-To: <52428c0d-4b18-4707-9cda-4e6a11e256bc@gmail.com>
-X-Cookie: Bridge ahead.  Pay troll.
+References: <20240509192411.2432066-1-tmaimon77@gmail.com> <20240509192411.2432066-5-tmaimon77@gmail.com>
+ <20240513155330.GA2676859-robh@kernel.org> <CAP6Zq1hRw6xfNKKfBFGuKbZk0su3ys6+hnMzqRWrZeKzDoKLEw@mail.gmail.com>
+In-Reply-To: <CAP6Zq1hRw6xfNKKfBFGuKbZk0su3ys6+hnMzqRWrZeKzDoKLEw@mail.gmail.com>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Wed, 22 May 2024 19:34:59 +0300
+Message-ID: <CAP6Zq1gKp+Hu93CK=78chvNk70WtKMKUv8ny0Mzkw47wn7Af2g@mail.gmail.com>
+Subject: Re: [PATCH v24 4/4] dt-binding: clock: remove nuvoton npcm845-clk bindings
+To: Rob Herring <robh@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
+	krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Rob,
 
---EL4i+puPElguxjip
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Kind reminder about the question in the mail thread below.
+Your response would be greatly appreciated.
 
-On Wed, May 22, 2024 at 06:20:14PM +0200, Artur Weber wrote:
+Thanks,
 
-> What would be the correct thing to do here - add a secondary DAPM widget
-> of type REGULATOR_SUPPLY and connect it to the MIC widget via audio-
-> routing, or replace the entire MIC widget with a REGULATOR_SUPPLY (or
-> something else entirely)?
+Tomer
 
-The microphone is getting a supply so the first option seems better.
-
-> And should this be done with the Main Mic and Sub Mic as well?
-
-Probably yes.
-
---EL4i+puPElguxjip
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZOG7cACgkQJNaLcl1U
-h9Da9Af/YiLFo0ws5uTputzZ9Vnnzu51OTlsLRlk/AI4srvbo/yePNM+Zsxysdsm
-cM6zex9GmD0DJCYpHAS6sCwGT11nGDlfAUrxi1D/xZYURxArtojJbBztByv7Y2QM
-NBjQJcKcvvwtmIG4NT6YS46w2jUBfq7j8LbqMxkby62KiWPe5t1tILfeyv9qHIay
-QuR6ILhS093P1LaNp/gM1u6d+usQTb7ymCMWhZWk3ODj23x2VdCSQ94DvUjIlGYV
-P4rIzntrO9jzQw3NgEJBLuAhIt6VQmk7Cg04H5ElZlgT7pmbr9cWiLRnepe2uR7g
-oQLU9FWtULGu/9PXCdtk2Jj3T61Liw==
-=NRmF
------END PGP SIGNATURE-----
-
---EL4i+puPElguxjip--
+On Thu, 16 May 2024 at 12:44, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> Hi Rob,
+>
+> Thanks for your comment.
+>
+> On Mon, 13 May 2024 at 18:53, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Thu, May 09, 2024 at 10:24:11PM +0300, Tomer Maimon wrote:
+> > > Remove nuvoton,npcm845-clk binding since the NPCM8xx clock driver
+> > > using the auxiliary device framework and not the device tree framework.
+> >
+> > Again, this is an ABI break. Changing driver architecture for 1 OS is
+> > not a reason to change DT.
+> Is it an ABI break even if the NPCM8xx clock driver hasn't upstream
+> the kernel vanilla yet?
+>
+> I thought that since the NPCM8xx clock driver hasn't upstream the
+> kernel vanilla yet and and in the latest NPCM8xx clock driver patch
+> the NPCM8xx clock driver.
+> using auxiliary device framework instead of DT we should remove the
+> nuvoton,npcm845-clk.yaml file.
+> https://patchwork.kernel.org/project/linux-clk/patch/20240509192411.2432066-4-tmaimon77@gmail.com/
+>
+> >
+> > Rob
+>
+> Thanks,
+>
+> Tomer
 
