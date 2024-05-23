@@ -1,178 +1,180 @@
-Return-Path: <devicetree+bounces-68683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11BFD8CD00E
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 12:11:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC028CD07D
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 12:41:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC865283ECB
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 10:11:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D5E11F23D9B
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 10:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35ADC13DDA3;
-	Thu, 23 May 2024 10:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B38B1411C2;
+	Thu, 23 May 2024 10:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="auLBdOuO"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BEYa+G6O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B147E13CF82;
-	Thu, 23 May 2024 10:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A65140394
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 10:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716459085; cv=none; b=JyNH3GxMdHl5oWoP9H8BE657hNQVS5EXUpwe6DQ/3mobiJEDP7O6UXZVL3Taw7TLHxDDPjt56QeisGA6KP2SOVORHbhC+k0jBM5fhb/mC/lFAnASiG83wpezerRVtOC0JiSspnNxTFXaxJ1QSFoXMXYs+hRS2qRQfQ40CX0rTvQ=
+	t=1716460877; cv=none; b=ZBPDDD2n4uJ/3eKhVG5c7vAspFsg3q1CXiB54dh6zh3FBQRtRuZ9L82b/FFzEZebXBvwnQ8Bkmoj3lN63lq9yWmXeAerLVlz2Nxw78JzslMiCE1pDhNiot1vudR111MIaaFWT2lQkS7Zjp58MC/KfV/tfjbMdvETWEZsMGGlfLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716459085; c=relaxed/simple;
-	bh=tf9bVY5D0PDbVrh+9jtGS5BTPVHKnIka5631UqSSHiY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F5OFvnccW+qAG6vU7dHJD0upFYCJCOV78LQrDPkn8FEpGPf7twyVXr0JtQHrTwA5Rf9EVf9RKMUr8/dCS9Iom6TRzAvpQu8oNm1bjmCOuoxAiVVqRP/yHS9iTaKwJsXo9mUZmyfce4rOeDUfGLwtB+HV3+7aVf3akKeGsezC6mE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=auLBdOuO; arc=none smtp.client-ip=209.85.161.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5b281f0d06dso799194eaf.0;
-        Thu, 23 May 2024 03:11:23 -0700 (PDT)
+	s=arc-20240116; t=1716460877; c=relaxed/simple;
+	bh=q06YPbRgNkgxbn7RemtS9UbVzl2I7UzZ5jwZDFiVGoc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NC9P0gWZ72280ZIvEBCKFaBbVJ0D5IIm+CHJU+c7aBudZFHTuCMXP2A2yuez9/QmgBPnVrPvurRzmQ3NpFSZyBQvl93PUtm1N8IyTsmiv5qL84VLkoXyZPsYbxwTuEQHk4GAEWrJC2xQlDn2ZjVNw6btn6xddenqE+60+KEXu3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BEYa+G6O; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51fcb7dc722so1733417e87.1
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 03:41:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716459083; x=1717063883; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rm3eG/bDkeO6dcSIObDU3K0ffm6D2WZJf0O5xZU7Jhw=;
-        b=auLBdOuOkUgVBn9znl7DurydmNJG7j2yA62fhgv0phiWkcjyjUnseo1PVd62SCItVp
-         L0pgLWBQ4zjcEKwJL4opNg3jCYS4YHINqeCKKypehhcj8VncgG7hycgfXSZIjc+IBtML
-         zL5sWxzuSa44+2/gSdoMWpwowx1c39QPXba3qK2Q98sGlNEZw/VXGYI104ExyslUA8ox
-         I+yVaPamgV7tXk8wyvEB8u3GiQxVdfbyI1Elf6Gj4zez1obcmc1ezkSsjQNFMnlmilmm
-         7zkTdujf4gGVrk/dM0Tv3wkU7nuwWF125De0aFOY2/DlherjX8CUfHKh1YwuNQOE1+St
-         tEww==
+        d=chromium.org; s=google; t=1716460873; x=1717065673; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BL1+X00ACKL/bv+6PDk9L99Rw1muN1ABKKcgYAgwe5Y=;
+        b=BEYa+G6O4zaXbqCqlaCokQfaIxUXw6GqwtJjXo9w+edzRqpY63WkUeHTfiM6LAACCc
+         xB5Nju24Grvg+uF6cJbJGPRXDHsVbSg51fM5be4PEYHnuOTuKJUHj09p00J2EeEbtXDS
+         mellnWYrqlTqIzx1i5bzvlC2sBCVzC16xLEyE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716459083; x=1717063883;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rm3eG/bDkeO6dcSIObDU3K0ffm6D2WZJf0O5xZU7Jhw=;
-        b=gKxKWjbyMJFrqla8JOylvUQ1ci5YrXB7eMx2FPbDflYXbWAm9K+3UQ2lpaoRq6ewW2
-         3cNAVyUaafMX1NgmUWw7V4JHbuHXVTY4g4vFKyGrsmKn5QW0iucPBbl4bgrA2r3/lSGB
-         AUdCO0EDKzP6neOQXmgng7SZPoriQnvaqRuSbiySzB7qjJs9jidWYXjbkgpa32P8ViKL
-         ojr2HneyU8GyaGg3jbZBCpbgXTbEduxbV3dKxPFNG62T8+wo4inuUYDnuaYsKmZ1Xy1U
-         vBXOcpsQmYyBZWFOrSLUXAI7cuaP8r3nfcGoBCx3XoCfIDhtYB6qQcOPy1whfQpfkVk2
-         moUw==
-X-Forwarded-Encrypted: i=1; AJvYcCWd5flapyBrD8sXwZYYXDV1T4E1C73QM5yKwtp/dm9e3wgzBg9uprK20PDkJiGqVUXFRmugzSxrkvVTpm6aUQ1d0Movfxzz6p5GW2Klr4LdTS1X2aY7UsoQeyoS99jVKI4lw8C9iuq8sA==
-X-Gm-Message-State: AOJu0YwbCYzB3i1Go8OFxf+5ClCFypIZQYSU7kqxIKIY1f2xd/bITp79
-	6QjOEPGi4hp1C6D170D0oVp1hq0aKxIaObEiSRvEIolv2OKiK0iY
-X-Google-Smtp-Source: AGHT+IG1LR4o8EeBn4RLbcnZTHgwZRhS8Lj8EtU5Vgce+HuHfXvww62MCp0pPm2kTXhKlDPgniqFCQ==
-X-Received: by 2002:a05:6808:14ca:b0:3c8:4dcb:1e75 with SMTP id 5614622812f47-3cdbb05c330mr4627529b6e.5.1716459082670;
-        Thu, 23 May 2024 03:11:22 -0700 (PDT)
-Received: from [192.168.0.98] ([67.6.32.220])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-792bf27591bsm1480868785a.16.2024.05.23.03.11.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 03:11:22 -0700 (PDT)
-Message-ID: <1c412f00-dbad-4f3f-8f94-300df546d6c7@gmail.com>
-Date: Thu, 23 May 2024 05:11:21 -0500
+        d=1e100.net; s=20230601; t=1716460873; x=1717065673;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BL1+X00ACKL/bv+6PDk9L99Rw1muN1ABKKcgYAgwe5Y=;
+        b=Li6kgECql39UGpHt1+M1LLDNvfNAm71MfPKKatNK6hG9fpjadhzchSgwa/SOyBvbaG
+         W2uYxm7yBRqmGipOjiMaExB3h2CMyy2P51fsdZE/sMSwoPx6usk6n/kYCx33iVuIyYQQ
+         SmkPq1FdTZMamzvgi0oiSrKjqWR0QYCSWmveEoi0zI2CYGSSJz0hT40cCjXb600gKmt8
+         M27uk7xIi4v04CtK4VqYVXY4BPsrG+l6w0pjGJDQ+TP+x7eaePWBMP93qMuCjmfkhZ5r
+         hb8fjhETgiEBY6ekXczUWAK3hbrseA/xDsZljPuoPF0IjPNLQ3aa0oNimVmLvtZ6kIY4
+         E5VA==
+X-Forwarded-Encrypted: i=1; AJvYcCVpbz7/JiZzQEMpCCN8crMf3xx4mXSSTIlEew1tFEEF/gBkfD5vrSFd+22saQ/PjqBnx5L9pu/uEB1TAMkTRygDkd7ewS/TBe0SGw==
+X-Gm-Message-State: AOJu0YySqOpb2GamSc62PTTGaGypRaYASWLcWHFEr4eG+UKcaRTIHXd/
+	q+P4He7whxj2gcy5PuMS4f22GXix8JTdNgulRcNdw6UVZm/5IhdnM4fBEoNTsQht2ITT8ClGvmZ
+	i/pNq4BP18gzA9K1kJ25rZ9m7FyYW2qQX5nVX
+X-Google-Smtp-Source: AGHT+IFqTEnp78PCvWoQDhZCseLpuI/oZewTrl4O4PyV0liWJOGAHT0/ixjwOP3rlpfNlPgDIVcGQNWnWwCWzn66LzI=
+X-Received: by 2002:ac2:4e45:0:b0:51b:efc:df39 with SMTP id
+ 2adb3069b0e04-527ef4f5d09mr587927e87.10.1716460873562; Thu, 23 May 2024
+ 03:41:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: document Novatek NVT touchscreen
- controller
-To: Hans de Goede <hdegoede@redhat.com>, Krzysztof Kozlowski
- <krzk@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240521-nvt-ts-devicetree-regulator-support-v1-0-8d766c639dca@gmail.com>
- <20240521-nvt-ts-devicetree-regulator-support-v1-1-8d766c639dca@gmail.com>
- <6f22e42d-8a06-4c24-93bd-25b6ac141cea@kernel.org>
- <3aef46dc-ab15-4f29-909e-bb7500b32cf9@redhat.com>
-Content-Language: en-US
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-In-Reply-To: <3aef46dc-ab15-4f29-909e-bb7500b32cf9@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240521075717.50330-4-angelogioacchino.delregno@collabora.com> <eca4d113-ba59-45aa-9224-22235fb09ddc@bosc.ac.cn>
+In-Reply-To: <eca4d113-ba59-45aa-9224-22235fb09ddc@bosc.ac.cn>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 23 May 2024 18:41:02 +0800
+Message-ID: <CAGXv+5Gzau7qFrsOrKsm7yXNX7AKadgNM5S3SaTNNu57=5-8EQ@mail.gmail.com>
+Subject: Re: [v5,3/3] drm/mediatek: Implement OF graphs support for display paths
+To: Sui Jingfeng <suijingfeng@bosc.ac.cn>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, chunkuang.hu@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	matthias.bgg@gmail.com, shawn.sung@mediatek.com, yu-chang.lee@mediatek.com, 
+	ck.hu@mediatek.com, jitao.shi@mediatek.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com, Alexandre Mergnat <amergnat@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Hans de Goede
+On Wed, May 22, 2024 at 8:32=E2=80=AFPM Sui Jingfeng <suijingfeng@bosc.ac.c=
+n> wrote:
+>
+> Hi,
+>
+>
+> On 5/21/24 15:57, AngeloGioacchino Del Regno wrote:
+> > +static int mtk_drm_of_ddp_path_build(struct device *dev, struct device=
+_node *node,
+> > +                                  struct mtk_mmsys_driver_data *data)
+> > +{
+> > +     struct device_node *ep_node;
+> > +     struct of_endpoint of_ep;
+> > +     bool output_present[MAX_CRTC] =3D { false };
+> > +     int ret;
+> > +
+> > +     for_each_endpoint_of_node(node, ep_node) {
+> > +             ret =3D of_graph_parse_endpoint(ep_node, &of_ep);
+> > +             of_node_put(ep_node);
+>
+> There is going to *double* decline the reference counter, as the
+> __of_get_next_child() will decrease the reference counter for us
+> on the next iteration.
+>
+>
+> > +             if (ret) {
+> > +                     dev_err_probe(dev, ret, "Cannot parse endpoint\n"=
+);
+> > +                     break;
+> > +             }
+>
+> Move the 'of_node_put(ep_node)' into brace '{}' here, if we really cares
+> about the reference count.
+>
+> > +
+> > +             if (of_ep.id >=3D MAX_CRTC) {
+>
+> ditto ?
 
-On 5/22/24 11:00, Hans de Goede wrote:
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - novatek,nvt-ts
->>
->> That's too generic. Looking at your driver change, it is not even needed.
-> 
-> I wrote the novatek-nvt-ts driver for an Acer Iconia One 7 B1-750 tablet,
-> this is a x86 tablet which ships with Android as factory OS and because
-> Android OS images use kernels where everything is hardcoded the ACPI tables
-> do not describe this touchscreen. Instead the i2c_client for the touchscreen
-> is manually instantiated by some x86 platform glue code. Since it is
-> manually instantiated it uses i2c_device_id binding rather then OF/ACPI.
-> 
-> The generic "NVT-ts" i2c_device_id comes from me not knowing the controller
-> panel type back then. In the mean time I have learned that the B1-750 uses
-> NVT-NT11205 controller.
-> 
-> So what I think needs to happen here is add a preparation patch as first
-> patch to this series which basically does this:
-> 
-> diff --git a/drivers/input/touchscreen/novatek-nvt-ts.c b/drivers/input/touchscreen/novatek-nvt-ts.c
-> index 1a797e410a3f..224fd112b25a 100644
-> --- a/drivers/input/touchscreen/novatek-nvt-ts.c
-> +++ b/drivers/input/touchscreen/novatek-nvt-ts.c
-> @@ -278,7 +278,7 @@ static int nvt_ts_probe(struct i2c_client *client)
->   }
->   
->   static const struct i2c_device_id nvt_ts_i2c_id[] = {
-> -	{ "NVT-ts" },
-> +	{ "NT11205-ts" },
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(i2c, nvt_ts_i2c_id);
-> diff --git a/drivers/platform/x86/x86-android-tablets/other.c b/drivers/platform/x86/x86-android-tablets/other.c
-> index eb0e55c69dfe..5ecee6e66fb4 100644
-> --- a/drivers/platform/x86/x86-android-tablets/other.c
-> +++ b/drivers/platform/x86/x86-android-tablets/other.c
-> @@ -40,7 +40,7 @@ static const struct x86_i2c_client_info acer_b1_750_i2c_clients[] __initconst =
->   	{
->   		/* Novatek NVT-ts touchscreen */
->   		.board_info = {
-> -			.type = "NVT-ts",
-> +			.type = "NT11205-ts",
->   			.addr = 0x34,
->   			.dev_name = "NVT-ts",
->   		},
-> 
-> This solves the too-generic ID problema nd can then be merged
-> together with the rest of the series through the input tree.
-> I'll give my ack as drivers/platform/x86 subsys maintainer for
-> merging the x86-android-tablets change this way.
+Maybe we should just add a scoped version of for_each_endpoint_of_node().
 
-Ok, will do so in v2. Thanks.
+See https://lore.kernel.org/all/20240223124432.26443-1-Jonathan.Cameron@hua=
+wei.com/
 
-> 
->>> +      - novatek,nt36672a-ts
->>
->> Eh, we have already panel. Why there is a need for touchscreen binding
->> (binding, not driver)?
-> 
-> I believe that the nt36672a identifier is an identifier for
-> a novatek display assembly which contains both a DSI display
-> panel as well as an I2C touchscreen. Since I2C devices need
+ChenYu
 
-Yeah.
-
-> to be children of the I2C controller we need a separate node
-> in the device tree for the I2c touchscreen-controller and since
-> it is a separate node it needs it own compatible I believe ? >
-> Regards,
-> 
-> Hans
-> 
-
-Regards,
-Joel Selvaraj
+> > +                     ret =3D dev_err_probe(dev, -EINVAL,
+> > +                                         "Invalid endpoint%u number\n"=
+, of_ep.port);
+> > +                     break;
+> > +             }
+> > +
+> > +             output_present[of_ep.id] =3D true;
+> > +     }
+> > +
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     if (output_present[CRTC_MAIN]) {
+> > +             ret =3D mtk_drm_of_ddp_path_build_one(dev, CRTC_MAIN,
+> > +                                                 &data->main_path, &da=
+ta->main_len);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     if (output_present[CRTC_EXT]) {
+> > +             ret =3D mtk_drm_of_ddp_path_build_one(dev, CRTC_EXT,
+> > +                                                 &data->ext_path, &dat=
+a->ext_len);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     if (output_present[CRTC_THIRD]) {
+> > +             ret =3D mtk_drm_of_ddp_path_build_one(dev, CRTC_THIRD,
+> > +                                                 &data->third_path, &d=
+ata->third_len);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+>
+> --
+> Best regards
+> Sui Jingfeng
+>
 
