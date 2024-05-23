@@ -1,264 +1,172 @@
-Return-Path: <devicetree+bounces-68538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 220D98CCA3F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 03:10:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E98348CCA5B
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 03:23:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C41AD2827F9
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:10:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95EB6281F90
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 01:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8CC17F6;
-	Thu, 23 May 2024 01:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 131D3EDB;
+	Thu, 23 May 2024 01:23:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a9UI8cjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2094.outbound.protection.partner.outlook.cn [139.219.146.94])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872AD15A8;
-	Thu, 23 May 2024 01:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.94
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716426608; cv=fail; b=HqvofBFVpdTVZD1zXyB1hbJbLtZUJO/uEWGe6VBwugS5kTdsxiTeLpgeALQkGdCaycLBDAr+qJ0doBpy87GxBvcOC9Y68dGDZeUReFqlOUQ8PcN/0aiEf61JUmT8ij/tXys44KMkMMMY6LjSyltqnN8/qH2ZO7vVYHsrF8Yis5g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716426608; c=relaxed/simple;
-	bh=gjPu70iGYBRG6YflReTRN7jFdAG4Zs7t47Pzm+1tT8A=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=N8UYjyhdROqTmhU5VMxw6ICsnOYQsQLWQXX1FTnd4HB45/bxlvmo+IFOnOXs6gZMm2RJbjDUqe+EG/4uov0iRqH8PP+OUG8qqw1ZZaXOG4H1ikMIwajL6G/01XfpcDMR1SfKFIkenLgTpcGas03MVlNwVh6fqZ+YHUNWvX9ZCVA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b1tSzDYBnOso1oTTAdIY7k6L4w6JFf51grDFVkfDnhiQGoGANbYoZhr9dWTHC5w2aJAcainMZ2OJzwrJc5YQ02g1T6t3rjuMbWdjoRuWRYihtRLMuUOmAVsPCpcjXlkZcNMzYlCB/sfoFXmBg1oZcN2aOYdODcbnZFI1FlvStyzkBFK8iNa6UwlKEdyEeGkYxc+F9XBVlWITF//GAT/Dl8uEtLCKQ47FdccniRQH1ny0z3xVqYbzc8S136DvG1Dp4T6zGNriupjrZjHYBjKqgci0A3RIk4uDgAPUXLCkjo9bKNcjfdZSGXr8Nhuz7G/ZfXdDqHkLBraQWKQkmEGuUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NR7V7Wf9ftGLsYFJvhFWzhlvRZyiiWHjVvpQJJ8HiwU=;
- b=JPlDCscK+mThF2qiJenSuKzkurdc3rJDh46C7t1Ga2iUKlWOlr4mLcGh8rXbaq0VXmisGUvpjaLQ7fmyzXUWEnOGo7jQYAgmsW5p4qbMzRw29asEsDIco3ChEBpl9bozrq0Y4m1gVrawcFl32tcVh641kc81IJbUfH5Am6ZlymY2fiOhrQOUQdGfjObr2mLDWOul8K5w8BBO25Z4hK7cdKs3TjPS0SpMFJZmJBE4rVU+BBkPWjf6iO0QbGD33YYLsKi7NDz/L++16YgtSwprTL3t3iUNBZiaH8AvKeJs56Jy/S3CYAzNbXSyazcwJEKjYp061sKKNJd9jiTNKkxL2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:25::15) by SHXPR01MB0542.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c311:1c::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.44; Thu, 23 May
- 2024 01:09:59 +0000
-Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
- ([fe80::358e:d57d:439f:4e8a]) by
- SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::358e:d57d:439f:4e8a%7])
- with mapi id 15.20.7587.035; Thu, 23 May 2024 01:09:58 +0000
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: Lorenzo Pieralisi <lpieralisi@kernel.org>, Conor Dooley
-	<conor@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Thomas
- Gleixner <tglx@linutronix.de>, Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Philipp
- Zabel <p.zabel@pengutronix.de>, Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>, Kevin Xie
-	<kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v16 08/22] PCI: microchip: Change the argument of
- plda_pcie_setup_iomems()
-Thread-Topic: [PATCH v16 08/22] PCI: microchip: Change the argument of
- plda_pcie_setup_iomems()
-Thread-Index: AQHarK3uyefc+SM1B0in6DqZmUwbsA==
-Date: Thu, 23 May 2024 01:09:58 +0000
-Message-ID:
- <SHXPR01MB086345C911E227889E3A4211E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
-References:
- <SHXPR01MB086351396027D8A443BB6068E6EB2@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
- <20240522221034.GA83828@bhelgaas>
-In-Reply-To: <20240522221034.GA83828@bhelgaas>
-Accept-Language: en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0542:EE_
-x-ms-office365-filtering-correlation-id: 4a7d7a01-9aae-4ff6-ebf9-08dc7ac510cf
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 33We4VLr0HBst6/BAZiCAcoAEATt/nQ6YL9+or81AnvuK0x56KviueZGnMcT4A+3AgVOF5A1Fe35c+nRs34wRSDYl+UBlgkVHo4Jp98ND5cPR1GpAr6yAO0einibeNWv2BkBsinbRBCN8eXPNBtpiRvNddRXVmf1LbrHhFl+UIabKHzX+DR1Rt/ufX7rnUOO8V5uBZkb6B+42z1StRWd3AqixU9MPybfJJ5UDIf2Z2H1jFNzLxGvESktMFfJ3yd6vbREz0WlUza8FvoFL5Cu8+rVjN6ZOA8mmwXxvjkK+Ly/uaiKt8t3uwibOLZdVzF23NtbRhUbCLaMm/8HQm0LWwvZB8m3REnSYK7rYMLORzNVD15nElmzQRUTByKgbKSIctDjR0MLH+PEkwHp3iQKuMVm8QgVCMbAszGK7u262wisedii9Fx+IOXbZl/Qo3c/g+rxn/DFoE28BHa+4KFROJupvx4RdYtcaGK/NsjqR74b87yzpj3MVzdAoHy0vTIFsBJOXiDYdDxnSk/OxGpaMB5quv3oCZDHdfSWZpQzGOX5Lh3APRrMiTkiqWtEY/KhFjpGzaF3X1RTNdo+x+nb7gmgJsni9I7s8LXqETS9W6ttjoEoGLzcGzLizG78nv0M
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(366007)(7416005)(1800799015)(41320700004)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?oPddVnVOL7McEaujIywdFyolPKkFdo7cvR0dGH/iRg5a90wtBEATIlihOp?=
- =?iso-8859-2?Q?lxRIGhw9u38UonwfkgDdobBKebGVdX5Df6Dm0v6oQ4bCfTk53VNOlv46NU?=
- =?iso-8859-2?Q?qlNkRohHFkH7oMotDp/dHtdwI9oct0GW6AwhcqY6EgaT1fgIAv4Td/oEdZ?=
- =?iso-8859-2?Q?Qpe04enpaDieoURwxzRK1X+xwR2yueGf8omqa1upx2NUcx+Nr/4MS/ozJo?=
- =?iso-8859-2?Q?CyPLYvAK6Cx/V0gS/iBMTPV+mPMDviV+rtslhMuq3SZK4EgUZAxB4G/Bss?=
- =?iso-8859-2?Q?hRK9fl+irvMcZEagPadFhI1b4u5ZTTxdrfRCMFiUDId1Z+AYblSClDinGm?=
- =?iso-8859-2?Q?uSFY1uTQhCzKKVFgoIEU49hO3Ojx3tCwzlvCYH2KVC2QPI4H4u6sZHwhWU?=
- =?iso-8859-2?Q?cKEAbHUWE8TOeRoi/G7Usa8GglgOXoK4DMjOGe1Zr69LwflsvPSBRDm0dk?=
- =?iso-8859-2?Q?K6JP7I7JGm8E3vBgNo7E9d5WHR6CY8yy17bFTvkSCOENIiE830wg6AWTvK?=
- =?iso-8859-2?Q?igTigz+8+LOMMRlQjk7XETEnOOql/2n33C1aQ9OjjMVQ1A9B9p/rAdF/p7?=
- =?iso-8859-2?Q?TClUA9YPWUHtJCZnLCcJX3LdvKOkzV26dznxoDDx7zZvR/cOXXtLqEaUhQ?=
- =?iso-8859-2?Q?gSDAHvGIIbVqnbNxhjAlRQ9r4qpahhMH66rbfTcQQPOWzWkhMc2CSJE5id?=
- =?iso-8859-2?Q?fWTOMeaLwtciwO30gwFtA07NyZ3gx2BNfX7IwFOZQeoJJdw8jcDqhR9T8L?=
- =?iso-8859-2?Q?WIdVZed94dU18TgU3dXuKbr1Vpf0rhTm8ct729cEru9vHXAw41rpoHDRNj?=
- =?iso-8859-2?Q?Z9zsR05S5NNJJD6jtPiSyTEksyYJR+wdSLSW6Nd4CCxi3U8e/tcWDJaHu8?=
- =?iso-8859-2?Q?CxhDKy68OxdPMfOo4iG2Inys3suno8VRvzkisRGq4d87Pes/xY2P+pliJb?=
- =?iso-8859-2?Q?6M0QEjLzqBvHhqNooxKrQOPDy6vc+mV7d2W0SPUJY9Y/eIj8IgygjWRLvu?=
- =?iso-8859-2?Q?48EjJJV9lxZ0bfInODgbGia90D0iRTLcuNrDnt9qtbG2wq1Jldpk1sW0Dr?=
- =?iso-8859-2?Q?mAyd8JGn7MwMbIxyfXaFvI+9Rn3/i7yciJTCGSioybkcrAVE+JnLHZeY6i?=
- =?iso-8859-2?Q?srPDAUUNGX7ae45bKH8N3IJBZ5Ni5vBWLmMMmlTAwxBsLph06vZOzaHCdy?=
- =?iso-8859-2?Q?md6/ezHzvR8n3qPhWH1LexyKBRSxx1O8NPftdlcnPFUtp7k5zXDYJQelTd?=
- =?iso-8859-2?Q?a4ulTTzyg3Z0xHHWU/ysCaOZl3vsV8mSAdrMsz9iEHqsWTpkCa+fx54Ny/?=
- =?iso-8859-2?Q?+umrbZVBEbH7mrRJ5+2IAzTTLY0717KwIPaCj4VyxbD7GL83nIlk1B/vVn?=
- =?iso-8859-2?Q?UxhpPwzWjjFwqkzJL0oJCw7gAs3BA8fcbJbXaDYPiatHaPm4wjYsJ4U9Mg?=
- =?iso-8859-2?Q?4z9vRXVhfIRud0B4UL2/9hAX2YDS7U577mEN73cORg9SSxqVluaoC6qUgz?=
- =?iso-8859-2?Q?DvTQ4/e4O2n6bXeY1BG8nAbe/av3bKoBkMgzhAZuj+td1wzGWE4CdZrJQP?=
- =?iso-8859-2?Q?M6SRG7hCWk/iPPD6lRdDIy5KyK60Nil9MczGj+h8Bz2hdkqEcHIgOi4LtR?=
- =?iso-8859-2?Q?GdvroNgHL67MS7XKtespD27TJvkBEB0+qLDiJSTABgmCEsH0jb4roYEA?=
- =?iso-8859-2?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7937EC7;
+	Thu, 23 May 2024 01:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716427432; cv=none; b=TfBpoNchCM6A95Q3gJneBJZYTi+6TGrGZB69hZ7MvWZ5oV2BIup/yShvVziTH9Hn5P6D+zZsS2+mAtNf8m+Jo7C2mMek3000wEkyQQMaoM8wpTA6btES1LvnpbDQL/b2NCsBXHXdjcZS7RIuXwd2+X3oU2/fGmGPSoUmmdUdzP8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716427432; c=relaxed/simple;
+	bh=lrYPyou6GmUkuNkg168NThhIN99DFmu/CkC/pcafMpU=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=kbbNLmdbjHJdULOu7t1ZH/zUOxSezFloLfbYHUywDVtsSVTDFPAwzOVf3RiP1wm1/sjAPJrLUDw2tPbaGFVcaXDAtI/qua97EEdF5Ja4ejgia59BvTPTdSx9T8Lpy388kRNv9m/jBAN/Al9arAez9u085V++xe+i1o4l8PcDVEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a9UI8cjc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23063C2BBFC;
+	Thu, 23 May 2024 01:23:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716427431;
+	bh=lrYPyou6GmUkuNkg168NThhIN99DFmu/CkC/pcafMpU=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=a9UI8cjcr7yBXmgK3G3Iq3Fi1CuTXmpqVjQlWE/hXy+AnwKIZ/6UKJVeQ7dHNQ/Np
+	 awRHaA8gGqkEB3yZlQ21/Has3Mfo9Qq6PYa99qWXoP5NA3INKL3aioSAWdANfVBn9V
+	 KKhi3nV5/N4bRaO6aJgrru2rc0AaG/TL897o+vplLedYCWudHufTm6hdfCgcHfhp5f
+	 SCpl5xb1t8mYlklON6iwsiN91Z94OIvudHz013EtuuqkJB5wDca9PR9CMAdZjNOzQR
+	 ZLUKVf9j3eQNqZravRHhnF2TsP/zO//NHr4wxOFVuqCJ1Ey2FmGWOfi+x+rG919vrx
+	 aWQ1dpudOUJEA==
+Date: Wed, 22 May 2024 20:23:50 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a7d7a01-9aae-4ff6-ebf9-08dc7ac510cf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2024 01:09:58.8460
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BrSpnd0dl97aDHv4n6xP63JM3vkbe0KkSUl1QEEcOJjtW9+ZaALziD0TC5oJDuGY9AR2kGOyypV9HFrbg1Xj46IEoywdXWzFS7BtjmvCrY8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0542
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Amrit Anand <quic_amrianan@quicinc.com>, Simon Glass <sjg@chromium.org>, 
+ Julius Werner <jwerner@chromium.org>, Frank Rowand <frowand.list@gmail.com>, 
+ devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+ Michal Simek <michal.simek@amd.com>, Conor Dooley <conor@kernel.org>, 
+ Caleb Connolly <caleb.connolly@linaro.org>, 
+ "Humphreys, Jonathan" <j-humphreys@ti.com>, 
+ Bjorn Andersson <andersson@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>, 
+ Andy Gross <agross@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Sumit Garg <sumit.garg@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-arm-kernel@lists.infradead.org, boot-architecture@lists.linaro.org, 
+ linux-arm-msm@vger.kernel.org, Doug Anderson <dianders@chromium.org>
+In-Reply-To: <20240522-board-ids-v4-2-a173277987f5@quicinc.com>
+References: <20240522162545887-0700.eberman@hu-eberman-lv.qualcomm.com>
+ <20240522-board-ids-v4-2-a173277987f5@quicinc.com>
+Message-Id: <171642742999.680723.11765315495034693179.robh@kernel.org>
+Subject: Re: [PATCH RFC v3 2/9] dt-bindings: board: Introduce board-id
 
 
+On Wed, 22 May 2024 16:54:23 -0700, Elliot Berman wrote:
+> Device manufcturers frequently ship multiple boards or SKUs under a
+> single softwre package. These software packages ship multiple devicetree
+> blobs and require some mechanims to pick the correct DTB for the boards
+> that use the software package. This patch introduces a common language
+> for adding board identifiers to devicetrees.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>  .../devicetree/bindings/board/board-id.yaml        | 71 ++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+> 
 
->=20
-> On Wed, May 22, 2024 at 01:50:57AM +0000, Minda Chen wrote:
-> > > The patch is OK, but the subject line is not very informative.  It
-> > > should be useful all by itself even without the commit log.
-> > > "Change the argument of X" doesn't say anything about why we would
-> > > want to do that.
-> > >
-> > > On Thu, Mar 28, 2024 at 05:18:21PM +0800, Minda Chen wrote:
-> > > > If other vendor do not select PCI_HOST_COMMON, the driver data is
-> > > > not struct pci_host_bridge.
-> > >
-> > > Also, I don't think this is the real problem.  Your
-> > > PCIE_MICROCHIP_HOST Kconfig selects PCI_HOST_COMMON, and the
-> driver
-> > > calls pci_host_common_probe(), so the driver wouldn't even build
-> > > without PCI_HOST_COMMON.
-> > >
-> > > This patch is already applied and ready to go, but if you can tell
-> > > us what's really going on here, I'd like to update the commit log.
-> > >
-> > It is modified for Starfive code. Starfive JH7110 PCIe do not select
-> > PCI_HOST_COMMON
-> > plda_pcie_setup_iomems() will be changed to common plda code.
-> >
-> > I think I can modify the title and commit log like this.
-> >
-> > Title:
-> > PCI: microchip: Get struct pci_host_bridge pointer from platform code
-> >
-> > Since plda_pcie_setup_iomems() will be a common PLDA core driver
-> > function, but the argument0 is a struct platform_device pointer.
-> > plda_pcie_setup_iomems() actually using struct pci_host_bridge pointer
-> > other than platform_device pointer. Further more if a new PLDA core
-> > PCIe driver do not select PCI_HOST_COMMON, the platform driver data is
-> > not struct pci_host_bridge pointer. So get struct pci_host_bridge
-> > pointer from platform code function
-> > mc_platform_init() and make it to be an argument of
-> > plda_pcie_setup_iomems().
->=20
-> OK, I see what you're doing.  This actually has nothing to do with whethe=
-r
-> PCI_HOST_COMMON is *enabled*.  It has to do with whether drivers use
-> pci_host_common_probe().  Here's what I propose:
->=20
->   PCI: plda: Pass pci_host_bridge to plda_pcie_setup_iomems()
->=20
->   plda_pcie_setup_iomems() needs the bridge->windows list from struct
->   pci_host_bridge and is currently used only by pcie-microchip-host.c.  T=
-his
->   driver uses pci_host_common_probe(), which sets a pci_host_bridge as th=
-e
->   drvdata, so plda_pcie_setup_iomems() used platform_get_drvdata() to fin=
-d
->   the pci_host_bridge.
->=20
->   But we also want to use plda_pcie_setup_iomems() in the new pcie-starfi=
-ve.c
->   driver, which does not use pci_host_common_probe() and will have struct
->   starfive_jh7110_pcie as its drvdata, so pass the pci_host_bridge direct=
-ly
->   to plda_pcie_setup_iomems() so it doesn't need platform_get_drvdata() t=
-o
->   find it.
->=20
-OK, Thanks.=20
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I see PCIe 6.10 changed have been merged to main line.=20
-Should I resend this patch set base on 6.10-rc1?=20
+yamllint warnings/errors:
 
-> > > > Move calling platform_get_drvdata() to mc_platform_init().
-> > > >
-> > > > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > ---
-> > > >  drivers/pci/controller/plda/pcie-microchip-host.c | 6 +++---
-> > > >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c
-> > > > b/drivers/pci/controller/plda/pcie-microchip-host.c
-> > > > index 9b367927cd32..805870aed61d 100644
-> > > > --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> > > > +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> > > > @@ -876,11 +876,10 @@ static void plda_pcie_setup_window(void
-> > > > __iomem
-> > > *bridge_base_addr, u32 index,
-> > > >  	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);  }
-> > > >
-> > > > -static int plda_pcie_setup_iomems(struct platform_device *pdev,
-> > > > +static int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
-> > > >  				  struct plda_pcie_rp *port)
-> > > >  {
-> > > >  	void __iomem *bridge_base_addr =3D port->bridge_addr;
-> > > > -	struct pci_host_bridge *bridge =3D platform_get_drvdata(pdev);
-> > > >  	struct resource_entry *entry;
-> > > >  	u64 pci_addr;
-> > > >  	u32 index =3D 1;
-> > > > @@ -1018,6 +1017,7 @@ static int mc_platform_init(struct
-> > > > pci_config_window *cfg)  {
-> > > >  	struct device *dev =3D cfg->parent;
-> > > >  	struct platform_device *pdev =3D to_platform_device(dev);
-> > > > +	struct pci_host_bridge *bridge =3D platform_get_drvdata(pdev);
-> > > >  	void __iomem *bridge_base_addr =3D
-> > > >  		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> > > >  	int ret;
-> > > > @@ -1031,7 +1031,7 @@ static int mc_platform_init(struct
-> > > pci_config_window *cfg)
-> > > >  	mc_pcie_enable_msi(port, cfg->win);
-> > > >
-> > > >  	/* Configure non-config space outbound ranges */
-> > > > -	ret =3D plda_pcie_setup_iomems(pdev, &port->plda);
-> > > > +	ret =3D plda_pcie_setup_iomems(bridge, &port->plda);
-> > > >  	if (ret)
-> > > >  		return ret;
-> > > >
-> > > > --
-> > > > 2.17.1
-> > > >
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2.example.dtb: opp-table-0: opp-1200000000:opp-microvolt-slow:0: [915000, 900000, 925000, 925000, 910000, 935000] is too long
+	from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2.example.dtb: opp-table-0: opp-1200000000:opp-microvolt-fast:0: [975000, 970000, 985000, 965000, 960000, 975000] is too long
+	from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2.example.dtb: opp-table-0: Unevaluated properties are not allowed ('opp-1000000000', 'opp-1200000000', 'opp-shared' were unexpected)
+	from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+compress: size (5) error for type uint32-matrix
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.example.dtb: uimage@100000: compress: b'lzma\x00' is not of type 'object', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+marvell,pad-type: size (11) error for type uint32-matrix
+marvell,pad-type: size (3) error for type uint32-matrix
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@aa0000: marvell,pad-type: b'fixed-1-8v\x00' is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/mmc/marvell,xenon-sdhci.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@aa0000: marvell,pad-type: b'fixed-1-8v\x00' is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/mmc/marvell,xenon-sdhci.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@aa0000: Unevaluated properties are not allowed ('marvell,pad-type' was unexpected)
+	from schema $id: http://devicetree.org/schemas/mmc/marvell,xenon-sdhci.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@aa0000: marvell,pad-type: b'fixed-1-8v\x00' is not of type 'object', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@ab0000: marvell,pad-type: b'sd\x00' is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/mmc/marvell,xenon-sdhci.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@ab0000: marvell,pad-type: b'sd\x00' is not of type 'array'
+	from schema $id: http://devicetree.org/schemas/mmc/marvell,xenon-sdhci.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@ab0000: Unevaluated properties are not allowed ('marvell,pad-type' was unexpected)
+	from schema $id: http://devicetree.org/schemas/mmc/marvell,xenon-sdhci.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.example.dtb: mmc@ab0000: marvell,pad-type: b'sd\x00' is not of type 'object', 'array', 'boolean', 'null'
+	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/sc27xx-fg.example.dtb: battery: ocv-capacity-table-0:0: [4185000, 100, 4113000, 95, 4066000, 90, 4022000, 85, 3983000, 80, 3949000, 75, 3917000, 70, 3889000, 65, 3864000, 60, 3835000, 55, 3805000, 50, 3787000, 45, 3777000, 40, 3773000, 35, 3770000, 30, 3765000, 25, 3752000, 20, 3724000, 15, 3680000, 10, 3605000, 5, 3400000, 0] is too long
+	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-table-0:0: [4185000, 100, 4113000, 95, 4066000, 90] is too long
+	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-table-1:0: [4200000, 100, 4185000, 95, 4113000, 90] is too long
+	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-table-2:0: [4250000, 100, 4200000, 95, 4185000, 90] is too long
+	from schema $id: http://devicetree.org/schemas/power/supply/battery.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ocv-capacity-celsius: 'anyOf' conditional failed, one must be fixed:
+	[4294967286, 0, 10] is too long
+	4294967286 is greater than the maximum of 2147483647
+	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: operating-range-celsius: 'anyOf' conditional failed, one must be fixed:
+	[4294967266, 50] is too long
+	4294967266 is greater than the maximum of 2147483647
+	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/battery.example.dtb: battery: ambient-celsius: 'anyOf' conditional failed, one must be fixed:
+	[4294967291, 50] is too long
+	4294967291 is greater than the maximum of 2147483647
+	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/afe/temperature-transducer.example.dtb: temperature-sensor-0: sense-offset-millicelsius: 'anyOf' conditional failed, one must be fixed:
+	4294694146 is greater than the maximum of 2147483647
+	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/afe/temperature-transducer.example.dtb: temperature-sensor-1: sense-offset-millicelsius: 'anyOf' conditional failed, one must be fixed:
+	4294694146 is greater than the maximum of 2147483647
+	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.example.dtb: tsa@ae0: tdm@0:fsl,tx-ts-routes:0: [2, 0, 24, 3, 1, 0, 5, 2] is too long
+	from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,cpm1-tsa.example.dtb: tsa@ae0: tdm@0:fsl,rx-ts-routes:0: [2, 0, 24, 3, 1, 0, 5, 2] is too long
+	from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,cpm1-tsa.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/board/board-id.example.dtb: /: 'model' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+Documentation/devicetree/bindings/board/board-id.example.dtb: /: failed to match any schema with compatible: ['example']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240522-board-ids-v4-2-a173277987f5@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
