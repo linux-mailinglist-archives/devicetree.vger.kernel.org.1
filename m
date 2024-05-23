@@ -1,73 +1,75 @@
-Return-Path: <devicetree+bounces-68746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E4F68CD5D7
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:32:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EFFE8CD5F5
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:38:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DCB4B22575
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:32:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A08BD1C2034C
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE13912B177;
-	Thu, 23 May 2024 14:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282F614A60C;
+	Thu, 23 May 2024 14:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLo2wGmT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iGpvGW6a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62E01EA6F;
-	Thu, 23 May 2024 14:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E2612B171;
+	Thu, 23 May 2024 14:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716474717; cv=none; b=sXyxwp+XzcFy7PzETKcZY3WqBnzY57lzocU4+N0cUHDJms5yO13+LmiuYM4ExgdAJ1ociC9Jw0hefnAC8Gfj8jL1TLTYB42kLiVX1vQ034ainz0Us1h4DAuqTrrJQOrTcxbYz4N515yCaaoQkZqN4c10ezgtjoNdFzZ0UT1SEa8=
+	t=1716475079; cv=none; b=k45eYa4f6bptQpT8jtLZ34r+0MQa4nciXD6LZvyeDDxxzQL4LSducFf2xdAoqa38NsDDMCNevj5V0cpRcnMbELbIj9uyN5tXQbJU+DDLeGWUNhkabmu28it3TqOZTPCJuNrNuJ4ZSzT5ok/YmF4iS09zWEYwiXRqA33LPERYTE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716474717; c=relaxed/simple;
-	bh=z+/P8L5KjNx907uaz+/G1K7pVGEzXZy7/dsMvxUblY0=;
+	s=arc-20240116; t=1716475079; c=relaxed/simple;
+	bh=eT+HB+FXqP5lVZyAYj6JKHnhWvk/Ipdw9JdWIe8LzVM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G0vfeOP9Xz0L8CdxCJWj60JPrkRVwhKISv6APake2XvJ+NHMWGEKC0duKF4m6hT+EC4NHtD5h0IPHRjuGCS1MtcnDz1kZhRdHa/HQ5xezFbDDHNVZIZGoDd2wusOyjkns7+7hFWVeRI9ZLBQpMUQh+oJXXAXUHrjvKCC5wvxbfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLo2wGmT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 282C6C2BD10;
-	Thu, 23 May 2024 14:31:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=O6JK2PS7GNs0ZgjMAeX6JDnTagRUO5fLedYubGp7d7sLA7StzVsmQO98U5C4NulryGmyymmobeMQXlIoBXok/iS2QOYS70TFuLGQxkdSctRf4oK6qBZsB5HtfMQ8FhOJrrSrjA/WLncDylCte41tV1x9SUw8pu09bPrLbYyejPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iGpvGW6a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F929C2BD10;
+	Thu, 23 May 2024 14:37:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716474717;
-	bh=z+/P8L5KjNx907uaz+/G1K7pVGEzXZy7/dsMvxUblY0=;
+	s=k20201202; t=1716475078;
+	bh=eT+HB+FXqP5lVZyAYj6JKHnhWvk/Ipdw9JdWIe8LzVM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fLo2wGmTg6txQgIoshiVsLwUvoY7/xKWZMSxVOYB3O85VZCq5alt62eezKWuas3px
-	 DjCVEcadDbuUC89D7N5lCnTjD8Dyh/UVvqiwu75V9SwiRFZfxHkPAlnlNLt4O012lj
-	 poL3iHuakngtyKHf+2CqGsOfomtvn/AJRECZsWBOGP26Dw8DAlXzUqV7OanHBQ0K/3
-	 4zjzrTbgKJmHWaEdIZYperJDQR3g4Q1JcEz0E/JyjvAWkJPEyMd3OaSM1AyFVlMj3K
-	 7XD5I8cNhK1z7ufAVZF0OgkPDxbsTwXjmCmLrHwABC+sFdVRSdhVMx9/qtQGIjI/GL
-	 kZenvq60TQETQ==
-Date: Thu, 23 May 2024 15:31:52 +0100
+	b=iGpvGW6a9yj3gWD7yyTWBWyh+7KuymQfmTC5VLzNGUETDnmwJO+vqyEup2aTcy1x1
+	 v5+2jkf19i+w373ThyPSeHO9d0rLYRxZS2d5F53xFNhOr2JrIpZLCEvo9Kr6ZmXv50
+	 3NNzg67yDi5QNGL2CJ6n2zsTvzkGIzpIsJaZ1haTVf2WYn9Q6tJ+PbjVHodEdmvjzJ
+	 bjPz8XeRxfiznuHWYXGTwqzoNUxuEKq6sWfsOsBFUMvLfatQWrjvTFGYc/+BgVmMEe
+	 Ybfm+/G9nXVsI+hCWBOhrluBHhkJUZe2NwH5vucQ75mnIY1Y+3GOXlPI87LCsVuN7A
+	 E0tblaqOZHbrA==
+Date: Thu, 23 May 2024 15:37:52 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
- spi-offloads property
-Message-ID: <20240523-divided-herbicide-11396549e05f@spud>
-References: <20240513-headsman-hacking-d51fcc811695@spud>
- <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
- <20240514-aspire-ascension-449556da3615@spud>
- <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
- <20240516-rudder-reburial-dcf300504c0a@spud>
- <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
- <20240519-abreast-haziness-096a57ef57d3@spud>
- <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
- <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
- <5ad0b5782434eaf4cf565cffb0e4c14b7414ae38.camel@gmail.com>
+To: Alexey Romanov <avromanov@salutedevices.com>
+Cc: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>,
+	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"khilman@baylibre.com" <khilman@baylibre.com>,
+	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
+ second interrupt line for GXL
+Message-ID: <20240523-snowiness-attain-75d415573b5a@spud>
+References: <20240411133832.2896463-1-avromanov@salutedevices.com>
+ <20240411133832.2896463-18-avromanov@salutedevices.com>
+ <20240415-schnapps-plating-eb0895459004@spud>
+ <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
+ <20240506-distrust-famine-6848f75dd3fe@spud>
+ <20240523104624.tr5omyxnzxsjkpai@cab-wsm-0029881.sigma.sbrf.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,68 +77,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gf9CS1NJgXAMKbNH"
+	protocol="application/pgp-signature"; boundary="WTOLmlkXxsRP7sN+"
 Content-Disposition: inline
-In-Reply-To: <5ad0b5782434eaf4cf565cffb0e4c14b7414ae38.camel@gmail.com>
+In-Reply-To: <20240523104624.tr5omyxnzxsjkpai@cab-wsm-0029881.sigma.sbrf.ru>
 
 
---gf9CS1NJgXAMKbNH
-Content-Type: text/plain; charset=utf-8
+--WTOLmlkXxsRP7sN+
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 23, 2024 at 02:15:35PM +0200, Nuno S=C3=A1 wrote:
-> On Wed, 2024-05-22 at 19:24 +0100, Conor Dooley wrote:
-> > On Tue, May 21, 2024 at 09:54:39AM -0500, David Lechner wrote:
-> > > On Sun, May 19, 2024 at 7:53=E2=80=AFAM Conor Dooley <conor@kernel.or=
-g> wrote:
-> > > >=20
-> > > > On Fri, May 17, 2024 at 11:51:58AM -0500, David Lechner wrote:
-> > > > > On Thu, May 16, 2024 at 4:32=E2=80=AFPM Conor Dooley <conor@kerne=
-l.org> wrote:
-> > > > > > On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wrote:
-> > > >=20
-> > I think you're right something like that is a stretch to say that that
-> > is a feature of the SPI controller - but I still don't believe that
-> > modelling it as part of the ADC is correct. I don't fully understand the
-> > io-backends and how they work yet, but the features you describe there
-> > seem like something that should/could be modelled as one, with its own
-> > node and compatible etc. Describing custom RTL stuff ain't always
-> > strightforward, but the stuff from Analog is versioned and documented
-> > etc so it shouldn't be quite that hard.
-> >=20
+On Thu, May 23, 2024 at 10:46:35AM +0000, Alexey Romanov wrote:
+> Hi Conor,
 >=20
-> Putting this in io-backends is likely a stretch but one thing to add is t=
-hat the
-> peripheral is always (I think) kind of the consumer of the resources. Tak=
-ing the
-> trigger (PWM) as an example and even when it is directly connected with t=
-he offload
-> block, the peripheral still needs to know about it. Think of sampling fre=
-quency...
-> The period of the trigger signal is strictly connected with the sampling =
-frequency of
-> the peripheral for example. So I see 2 things:
+> On Mon, May 06, 2024 at 04:47:29PM +0100, Conor Dooley wrote:
+> > On Mon, May 06, 2024 at 01:48:01PM +0000, Alexey Romanov wrote:
+> > > On Mon, Apr 15, 2024 at 05:43:15PM +0100, Conor Dooley wrote:
+> > > > On Thu, Apr 11, 2024 at 04:38:26PM +0300, Alexey Romanov wrote:
+> > > > > GXL crypto IP isn't connected to clk and seconnd interrput line,
+> > > > > so we must remove them from dt-bindings.
+> > > >=20
+> > > > How does the device work without a clock?
+> > >=20
+> > > It's clocked by a common clock, the vendor didn't provide more
+> > > information. It doesn't have any special clock domains.
+> >=20
+> > So the hardware block does have a clock, which, even if it is a clock
+> > shared with other hardware blocks, makes your patch incorrect.
+> >=20
+> > Is the "blkmv" clock the shared clock?
+>=20
+> I received accurate information from the vendor. Starting from GXL,
+> DMA engine is used for crypto HW and clock is hard weired to it (at RTL
+> level).
 
-Cherry picking this one thing to reply to cos I'm not sure if it was
-understood as I intended. When I talked about io-backends I was not
-suggesting that we drop the spi-offload idea, I was suggesting that if
-something has a dedicated register region & resources that handles both
-offloading and some usecase specific data processing that it should be a
-device of its own, acting as a provider of both spi-offloads and
-io-backends.
-I'll look at the rest of the mail soonTM.
+> That's why we have to remove it from device tree, because we can't
+> control it anyway.
 
---gf9CS1NJgXAMKbNH
+That's not true, if the clock runs at a fixed frequency it should be
+described as a fixed-clock in the devicetree.
+
+--WTOLmlkXxsRP7sN+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk9TVwAKCRB4tDGHoIJi
-0hN/APsFPaTQxDK3YqRUJgT5J20VxUY1KBTNxCCt0kwkMu/iygD9EE5MiES4Ipue
-iL0dC3Lu3LuqcZ78q0lv9bkm/bhYLAk=
-=gfAt
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk9UwAAKCRB4tDGHoIJi
+0kgCAQCc036MitPTeOOqstfi4ri+q3xgSGemTaQQWCQjlD0qKAD+OwLXN5ySvreg
+/MfIpImWvlSDrfrkLnC2nq4oV8AAmQg=
+=NYsR
 -----END PGP SIGNATURE-----
 
---gf9CS1NJgXAMKbNH--
+--WTOLmlkXxsRP7sN+--
 
