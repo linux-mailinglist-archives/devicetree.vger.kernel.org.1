@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-68559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D068CCC11
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 08:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 586EB8CCC18
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 08:13:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9AAF1C21AFC
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:08:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67FC91C21D96
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C2B13B299;
-	Thu, 23 May 2024 06:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5CB13B2A4;
+	Thu, 23 May 2024 06:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DcOZITD5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ETN4Qjpb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2331BDD0;
-	Thu, 23 May 2024 06:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F3A51016;
+	Thu, 23 May 2024 06:13:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716444491; cv=none; b=GLL/zqwyxQoh873Sp6Kkv8tGkVoZ0eUErH1golO1melbIAf16YB4D0ogtrIUUo7uF3tt9SLGf0CVsNyrhth6lGXxM7m2SMjI83i0Kt3gGa7/Osuhno/Ph6xfIgybD375va0LG+DG1nr0H7Xbp4ZhdgCw6C5QY2T6GdEcNz8D7Gk=
+	t=1716444782; cv=none; b=qKtb9aCU1Ht0P8wSZW1dxN7tyy0qqGS7FZy6yswHmh3UiYfT85dRUOLfxaxref36nPq/SiTw+X1AIvnd8Ss26IFA+FhcLV/H9kPaA6epBG3yXCX1fHTkIM88/CWPlcHSND+VgZEbv9AW9Bqwo7/4xF/0w14dIFxlTgsYjU8Zu90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716444491; c=relaxed/simple;
-	bh=pLbZiax0te31MLzLpkRxYePvLwC2+90oQEflwUwlJdM=;
+	s=arc-20240116; t=1716444782; c=relaxed/simple;
+	bh=WPDLcXZthh302mCbXexkdGSBS8pYsMAnGyk3Q69k02I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tFrRsmvMxRkepc5TujmdUoZYeZp/INQgBjZlEr2/IY//mPL3hpvk9HG9UajIHS+HV/ylxzmdwkvWc+xlKs2VjOixsld46S1glz+OIiJULOFSehwH490roYCOOU4S22AfykhTEvQk9IuYcjNwK66b7GzB5NCSuOmwJvgSmOD92vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DcOZITD5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 270C1C2BD10;
-	Thu, 23 May 2024 06:08:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BdZazij7BSfPr0VbzhYSqjqpTcWc2jyfhDFs5s3nlpArKJQCkao8dp8tUjthyX7CfLj2hffCf96E+kKS3ytRMYqMb5BLlQis+ietkYhgeUCx+sINhTnX+xbO3E2ErnM2qhu/ii0MC47LmqSHpx2FlLryFQKjuDQI9g8IR48UyBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ETN4Qjpb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93EC8C2BD10;
+	Thu, 23 May 2024 06:12:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716444491;
-	bh=pLbZiax0te31MLzLpkRxYePvLwC2+90oQEflwUwlJdM=;
+	s=k20201202; t=1716444781;
+	bh=WPDLcXZthh302mCbXexkdGSBS8pYsMAnGyk3Q69k02I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DcOZITD5EvWCGITJvjyzY8LGOdFeRXszMN7bMtqtbYIyDPYMYqQaHsB/g0X54C9Lf
-	 mmBRQqIHCViQyr09eiQkrYdJmpKSTiEZKoyXIxjSoztew7Qhh4e2XXx01ao8rZme4O
-	 MQ0Z9nDj63bWW/fbuR40QyGdOe5+ie5HfkHPgtg6Uq3U6M1E7zc7Pd2i8AEYlkfGXe
-	 1CJD+50Wno2kXe/By9GN9ooV6UxUxWazmzJyw6QvVrjw2ZqVEj5sfJstzeQiXMa1oh
-	 2/o/QcYeccXjg04Sh9t6ASrqxLvrFlich9ghGmKXvCmqTCmUIamc6i0lgBQrVN9/1I
-	 jqQ8bbWbudcQg==
-Message-ID: <ecbd6950-25d1-4f5a-9311-1c3e1bb335d7@kernel.org>
-Date: Thu, 23 May 2024 08:08:05 +0200
+	b=ETN4QjpbxOTdj1AdywTzjVV0dyVS7TyolMJeOSbFiArROtNENWTpEHGOUJFvGif0v
+	 6rK6mzi+Xl+gK0wbrylciSOjDwVrkkysgqv7l+gzLxdwYVrfJPnE/jVsQrhSPQVrzZ
+	 f91auwH4lAnfSv4UY2o3Qti9a2A0AbtJevxAu8lBA2YnMfQ4tOL6C8pTpYJlKU14eJ
+	 YHcFN67e3J8QV43du3aXv7GDlwEWJH9xF8zKE+ULuQkOWpY62j8em5dKyu/lVtfoXn
+	 ggpHAI22vuShy9rEvdDctNS55b5ZbjqfYJ5vAuMz8JG8FdcISSxPB4+rXYTTBjZabW
+	 p5InBCDQ4u5gQ==
+Message-ID: <e43b0e4f-4eae-4667-9fe7-7d1f07c46b68@kernel.org>
+Date: Thu, 23 May 2024 08:12:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] ASoC: dt-bindings: omap-mcpdm: Convert to DT schema
-To: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
- Mithil <bavishimithil@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lopez Cruz <misael.lopez@ti.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+Subject: Re: DT schema bindings conversion mentorships (was Re: [PATCH v5]
+ ASoC: dt-bindings: omap-mcpdm: Convert to DT schema)
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Shuah Khan
+ <skhan@linuxfoundation.org>, Julia Lawall <julia.lawall@inria.fr>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
  linux-kernel@vger.kernel.org
 References: <20240522075245.388-1-bavishimithil@gmail.com>
  <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
@@ -65,9 +66,8 @@ References: <20240522075245.388-1-bavishimithil@gmail.com>
  <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
  <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
  <58ada5ce-5c02-4ff5-8bdd-d6556c9d141f@kernel.org>
- <CAGzNGRm5i8zvnXiPzMg5=+tr9oyBcRA8LFvnmgGzE=MzSNTXug@mail.gmail.com>
- <e384272a-4dfe-4653-8983-6426f8803c84@kernel.org>
- <2d2b0047-ae08-4a76-bada-6bc92f443544@gmail.com>
+ <60989c44-6d16-4698-bf3f-b3c5dcd7b3e0@kernel.org>
+ <292d220d-2177-4516-a391-4695bffc2ab5@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,47 +113,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2d2b0047-ae08-4a76-bada-6bc92f443544@gmail.com>
+In-Reply-To: <292d220d-2177-4516-a391-4695bffc2ab5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 22/05/2024 20:39, Péter Ujfalusi wrote:
-> 
-> 
-> On 22/05/2024 20:07, Krzysztof Kozlowski wrote:
->> On 22/05/2024 19:02, Mithil wrote:
->>>> Yep. And testing DTS should clearly show that conversion leads to
->>>> incomplete binding.
->>>>
->>>>>
->>>>>> I assume the DTS was validated with the binding. Isn't the case here?
->>>>
->>>> Mithil Bavishi,
->>>> Are you sure you tested the DTS?
->>>
->>> dt_binding_check did not give me any errors. Yeah the example is
->>> different from how it is implemented in the kernel ie board specific
->>> (omap4, omap5 etc). Should the example be changed according to that
->>> dtsi then?
+On 22/05/2024 19:47, Javier Carrasco wrote:
+>> https://social.kernel.org/notice/Ai9hYRUKo8suzX3zNY
 >>
->> Binding needs to be adapted to match DTS or DTS has to be fixed to match
->> binding, depending which one is correct.
+>> 1. Please convert bindings which have active DTS users. First choose
+>> bindings with DTS built by arm64 defconfig, then next choice by arm
+>> multi_v7 defconfig. Then any other ARM or different architecture DTS.
+>>
+>> 2. Be sure dt_bindings_check (including yamllint) and checkpatch pass
+>> without any warnings. See writing-schema.rst document.
+>>
+>> 3. Be sure DTS using these bindings passes dtbs_check validation. If
+>> this means binding needs to be adapted during conversion, mention
+>> briefly in the commit message changes done comparing to pure TXT->DT
+>> schema conversion.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Normally the DTS is written based on the binding document and the driver
-> is written also to follow the binding document.
-> However in this case we have a broken/inaccurate binding document and
-> the existing DTS files and binaries in wild have deviated (there are
-> boards out there using qnx or BSD and use this binding), or to be
-> precise the binding document was not updated.
 > 
-> The existing DTS files are the ABI, so we cannot deviate from them,
-> unfortunately.
+> Hello Krzysztof,
 > 
-> In this case the DTS / driver needs to be reverse engineered to create a
-> binding document.
+> Several mentees from the Linux Kernel Mentorship Program have been
+> converting bindings within the last weeks, but it was not a programmed
+> task from the mentorship as such. They are free to choose the areas
+> where they want to contribute, and some of them chose that one.
+> Therefore no direct contact with the subsystem maintainers was
+> established. We will keep an eye on that too, so we can anticipate such
+> misunderstandings and additional work for the maintainers.
+> 
+> Nonetheless, I saw that some our mentees sent such faulty/pointless
+> conversions a few days ago, and they received some guidelines and links
+> to the official documentation yesterday. All points you mentioned were
+> covered, so the next patches should look better.
+> 
+> Usually their patches are sent to the mentors first for a preliminary
+> review, but sometimes that step gets "bypassed". We will insist on the
+> preliminary review, at least for the first conversions.
+> 
+> Apologies for any faulty patch they might still send directly/not taking
+> those points into account.
+> 
+> Thank you so much for your patience and feedback.
 
-Ah, yes, the third option - ABI should not be broken and sometimes
-binding and DTS needs fixes.
+Sounds good, thanks Javier!
 
 Best regards,
 Krzysztof
