@@ -1,125 +1,178 @@
-Return-Path: <devicetree+bounces-68687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A288CD02F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 12:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11BFD8CD00E
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 12:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D016281B34
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 10:20:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC865283ECB
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 10:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC68144D26;
-	Thu, 23 May 2024 10:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35ADC13DDA3;
+	Thu, 23 May 2024 10:11:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="auLBdOuO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE241411F7;
-	Thu, 23 May 2024 10:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B147E13CF82;
+	Thu, 23 May 2024 10:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716459613; cv=none; b=HBvZUM/dq70rK1SGZ83y8yHwJIa3W9NmgL75DxJR0eapYfZTK9/Dqf4Z0w3Hgxg9qElx/yKrpWMJqMFzuaDtBd4u5/EUZhcs0LE3m5lPtmUaSedx5uEuj78dHRXm7Xp26JX6ilCDE8SGKX8WdiCocn5fZRAtZonge3aCvHSg7as=
+	t=1716459085; cv=none; b=JyNH3GxMdHl5oWoP9H8BE657hNQVS5EXUpwe6DQ/3mobiJEDP7O6UXZVL3Taw7TLHxDDPjt56QeisGA6KP2SOVORHbhC+k0jBM5fhb/mC/lFAnASiG83wpezerRVtOC0JiSspnNxTFXaxJ1QSFoXMXYs+hRS2qRQfQ40CX0rTvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716459613; c=relaxed/simple;
-	bh=o2RSnqAl1n6HIZ7Qb2E++l4JEnrLrtueMVPN4W/wUqU=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References; b=LXnS/nwmPDVr6wyqfnYVKEyMJD8K0EXypkAR++8Y7266+JW6k1oJrBWDgDKWlP/2Jp2sEFT/xQjIi4J9W6LYYMWOTR+pmqXrfqnS813xCckGjYfORBk3OgtEYHem2Y5VUkpQnT2pMRyxsrt2kVLIBvh+UYJLFd2jET8/uL0jtHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6B225201299;
-	Thu, 23 May 2024 12:20:10 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 20FF4201292;
-	Thu, 23 May 2024 12:20:10 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C9E571820F59;
-	Thu, 23 May 2024 18:20:07 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: abelvesa@kernel.org,
-	peng.fan@nxp.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	marex@denx.de,
-	linux-clk@vger.kernel.org,
-	imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de,
-	shengjiu.wang@gmail.com
-Subject: [PATCH v5 5/5] clk: imx: clk-audiomix: Corrent parent clock for earc_phy and audpll
-Date: Thu, 23 May 2024 17:59:50 +0800
-Message-Id: <1716458390-20120-6-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1716458390-20120-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1716458390-20120-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1716459085; c=relaxed/simple;
+	bh=tf9bVY5D0PDbVrh+9jtGS5BTPVHKnIka5631UqSSHiY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F5OFvnccW+qAG6vU7dHJD0upFYCJCOV78LQrDPkn8FEpGPf7twyVXr0JtQHrTwA5Rf9EVf9RKMUr8/dCS9Iom6TRzAvpQu8oNm1bjmCOuoxAiVVqRP/yHS9iTaKwJsXo9mUZmyfce4rOeDUfGLwtB+HV3+7aVf3akKeGsezC6mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=auLBdOuO; arc=none smtp.client-ip=209.85.161.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5b281f0d06dso799194eaf.0;
+        Thu, 23 May 2024 03:11:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716459083; x=1717063883; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rm3eG/bDkeO6dcSIObDU3K0ffm6D2WZJf0O5xZU7Jhw=;
+        b=auLBdOuOkUgVBn9znl7DurydmNJG7j2yA62fhgv0phiWkcjyjUnseo1PVd62SCItVp
+         L0pgLWBQ4zjcEKwJL4opNg3jCYS4YHINqeCKKypehhcj8VncgG7hycgfXSZIjc+IBtML
+         zL5sWxzuSa44+2/gSdoMWpwowx1c39QPXba3qK2Q98sGlNEZw/VXGYI104ExyslUA8ox
+         I+yVaPamgV7tXk8wyvEB8u3GiQxVdfbyI1Elf6Gj4zez1obcmc1ezkSsjQNFMnlmilmm
+         7zkTdujf4gGVrk/dM0Tv3wkU7nuwWF125De0aFOY2/DlherjX8CUfHKh1YwuNQOE1+St
+         tEww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716459083; x=1717063883;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rm3eG/bDkeO6dcSIObDU3K0ffm6D2WZJf0O5xZU7Jhw=;
+        b=gKxKWjbyMJFrqla8JOylvUQ1ci5YrXB7eMx2FPbDflYXbWAm9K+3UQ2lpaoRq6ewW2
+         3cNAVyUaafMX1NgmUWw7V4JHbuHXVTY4g4vFKyGrsmKn5QW0iucPBbl4bgrA2r3/lSGB
+         AUdCO0EDKzP6neOQXmgng7SZPoriQnvaqRuSbiySzB7qjJs9jidWYXjbkgpa32P8ViKL
+         ojr2HneyU8GyaGg3jbZBCpbgXTbEduxbV3dKxPFNG62T8+wo4inuUYDnuaYsKmZ1Xy1U
+         vBXOcpsQmYyBZWFOrSLUXAI7cuaP8r3nfcGoBCx3XoCfIDhtYB6qQcOPy1whfQpfkVk2
+         moUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWd5flapyBrD8sXwZYYXDV1T4E1C73QM5yKwtp/dm9e3wgzBg9uprK20PDkJiGqVUXFRmugzSxrkvVTpm6aUQ1d0Movfxzz6p5GW2Klr4LdTS1X2aY7UsoQeyoS99jVKI4lw8C9iuq8sA==
+X-Gm-Message-State: AOJu0YwbCYzB3i1Go8OFxf+5ClCFypIZQYSU7kqxIKIY1f2xd/bITp79
+	6QjOEPGi4hp1C6D170D0oVp1hq0aKxIaObEiSRvEIolv2OKiK0iY
+X-Google-Smtp-Source: AGHT+IG1LR4o8EeBn4RLbcnZTHgwZRhS8Lj8EtU5Vgce+HuHfXvww62MCp0pPm2kTXhKlDPgniqFCQ==
+X-Received: by 2002:a05:6808:14ca:b0:3c8:4dcb:1e75 with SMTP id 5614622812f47-3cdbb05c330mr4627529b6e.5.1716459082670;
+        Thu, 23 May 2024 03:11:22 -0700 (PDT)
+Received: from [192.168.0.98] ([67.6.32.220])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-792bf27591bsm1480868785a.16.2024.05.23.03.11.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 May 2024 03:11:22 -0700 (PDT)
+Message-ID: <1c412f00-dbad-4f3f-8f94-300df546d6c7@gmail.com>
+Date: Thu, 23 May 2024 05:11:21 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: input: document Novatek NVT touchscreen
+ controller
+To: Hans de Goede <hdegoede@redhat.com>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240521-nvt-ts-devicetree-regulator-support-v1-0-8d766c639dca@gmail.com>
+ <20240521-nvt-ts-devicetree-regulator-support-v1-1-8d766c639dca@gmail.com>
+ <6f22e42d-8a06-4c24-93bd-25b6ac141cea@kernel.org>
+ <3aef46dc-ab15-4f29-909e-bb7500b32cf9@redhat.com>
+Content-Language: en-US
+From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+In-Reply-To: <3aef46dc-ab15-4f29-909e-bb7500b32cf9@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-According to Reference Manual of i.MX8MP
-The parent clock of "earc_phy" is "sai_pll_out_div2",
-The parent clock of "audpll" is "osc_24m".
+Hi Hans de Goede
 
-Add CLK_GATE_PARENT() macro for usage of specifying parent clock.
+On 5/22/24 11:00, Hans de Goede wrote:
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - novatek,nvt-ts
+>>
+>> That's too generic. Looking at your driver change, it is not even needed.
+> 
+> I wrote the novatek-nvt-ts driver for an Acer Iconia One 7 B1-750 tablet,
+> this is a x86 tablet which ships with Android as factory OS and because
+> Android OS images use kernels where everything is hardcoded the ACPI tables
+> do not describe this touchscreen. Instead the i2c_client for the touchscreen
+> is manually instantiated by some x86 platform glue code. Since it is
+> manually instantiated it uses i2c_device_id binding rather then OF/ACPI.
+> 
+> The generic "NVT-ts" i2c_device_id comes from me not knowing the controller
+> panel type back then. In the mean time I have learned that the B1-750 uses
+> NVT-NT11205 controller.
+> 
+> So what I think needs to happen here is add a preparation patch as first
+> patch to this series which basically does this:
+> 
+> diff --git a/drivers/input/touchscreen/novatek-nvt-ts.c b/drivers/input/touchscreen/novatek-nvt-ts.c
+> index 1a797e410a3f..224fd112b25a 100644
+> --- a/drivers/input/touchscreen/novatek-nvt-ts.c
+> +++ b/drivers/input/touchscreen/novatek-nvt-ts.c
+> @@ -278,7 +278,7 @@ static int nvt_ts_probe(struct i2c_client *client)
+>   }
+>   
+>   static const struct i2c_device_id nvt_ts_i2c_id[] = {
+> -	{ "NVT-ts" },
+> +	{ "NT11205-ts" },
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(i2c, nvt_ts_i2c_id);
+> diff --git a/drivers/platform/x86/x86-android-tablets/other.c b/drivers/platform/x86/x86-android-tablets/other.c
+> index eb0e55c69dfe..5ecee6e66fb4 100644
+> --- a/drivers/platform/x86/x86-android-tablets/other.c
+> +++ b/drivers/platform/x86/x86-android-tablets/other.c
+> @@ -40,7 +40,7 @@ static const struct x86_i2c_client_info acer_b1_750_i2c_clients[] __initconst =
+>   	{
+>   		/* Novatek NVT-ts touchscreen */
+>   		.board_info = {
+> -			.type = "NVT-ts",
+> +			.type = "NT11205-ts",
+>   			.addr = 0x34,
+>   			.dev_name = "NVT-ts",
+>   		},
+> 
+> This solves the too-generic ID problema nd can then be merged
+> together with the rest of the series through the input tree.
+> I'll give my ack as drivers/platform/x86 subsys maintainer for
+> merging the x86-android-tablets change this way.
 
-Fixes: 6cd95f7b151c ("clk: imx: imx8mp: Add audiomix block control")
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- drivers/clk/imx/clk-imx8mp-audiomix.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+Ok, will do so in v2. Thanks.
 
-diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
-index cef01f1fa0b4..01ac923a10ee 100644
---- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-+++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-@@ -156,6 +156,15 @@ static const struct clk_parent_data clk_imx8mp_audiomix_pll_bypass_sels[] = {
- 		PDM_SEL, 2, 0						\
- 	}
- 
-+#define CLK_GATE_PARENT(gname, cname, pname)						\
-+	{								\
-+		gname"_cg",						\
-+		IMX8MP_CLK_AUDIOMIX_##cname,				\
-+		{ .fw_name = pname, .name = pname }, NULL, 1,		\
-+		CLKEN0 + 4 * !!(IMX8MP_CLK_AUDIOMIX_##cname / 32),	\
-+		1, IMX8MP_CLK_AUDIOMIX_##cname % 32			\
-+	}
-+
- struct clk_imx8mp_audiomix_sel {
- 	const char			*name;
- 	int				clkid;
-@@ -173,14 +182,14 @@ static struct clk_imx8mp_audiomix_sel sels[] = {
- 	CLK_GATE("earc", EARC_IPG),
- 	CLK_GATE("ocrama", OCRAMA_IPG),
- 	CLK_GATE("aud2htx", AUD2HTX_IPG),
--	CLK_GATE("earc_phy", EARC_PHY),
-+	CLK_GATE_PARENT("earc_phy", EARC_PHY, "sai_pll_out_div2"),
- 	CLK_GATE("sdma2", SDMA2_ROOT),
- 	CLK_GATE("sdma3", SDMA3_ROOT),
- 	CLK_GATE("spba2", SPBA2_ROOT),
- 	CLK_GATE("dsp", DSP_ROOT),
- 	CLK_GATE("dspdbg", DSPDBG_ROOT),
- 	CLK_GATE("edma", EDMA_ROOT),
--	CLK_GATE("audpll", AUDPLL_ROOT),
-+	CLK_GATE_PARENT("audpll", AUDPLL_ROOT, "osc_24m"),
- 	CLK_GATE("mu2", MU2_ROOT),
- 	CLK_GATE("mu3", MU3_ROOT),
- 	CLK_PDM,
--- 
-2.34.1
+> 
+>>> +      - novatek,nt36672a-ts
+>>
+>> Eh, we have already panel. Why there is a need for touchscreen binding
+>> (binding, not driver)?
+> 
+> I believe that the nt36672a identifier is an identifier for
+> a novatek display assembly which contains both a DSI display
+> panel as well as an I2C touchscreen. Since I2C devices need
 
+Yeah.
+
+> to be children of the I2C controller we need a separate node
+> in the device tree for the I2c touchscreen-controller and since
+> it is a separate node it needs it own compatible I believe ? >
+> Regards,
+> 
+> Hans
+> 
+
+Regards,
+Joel Selvaraj
 
