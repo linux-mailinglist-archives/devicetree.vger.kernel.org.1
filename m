@@ -1,136 +1,218 @@
-Return-Path: <devicetree+bounces-68556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6468CCBEA
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:55:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D208CCBF5
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 08:02:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF6692821F4
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 05:55:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32D291F20EFF
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F9013AA39;
-	Thu, 23 May 2024 05:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBBA51016;
+	Thu, 23 May 2024 06:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="hytQWbFK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LebcymsR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B023853E31
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 05:55:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2227A1C20
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 06:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716443739; cv=none; b=ohiUxLjytMfdSHBuCDusP/schRvCJ1U2VVWYRDyS/wC15dbx6oJBNd01MhsOie07g3a1Fdkw8zP2MH0mm6d/AEFJB+uerbmac/k+SmuYaAU+32oZ7omec4wS6lCKB9OZm9rsxN1OUqFbOZdzSPMJqPmoXQ/HmEEdjoImZMpUFGg=
+	t=1716444138; cv=none; b=gWvv6V6pasK0dub8hMSawMc1dmvdbmNAkpiZhvweOWbj4jcUhlqUWOiFDWwRBbPWgbmQ2yv5a9pKOdW7PGUzOgI2taC45fPW2SNsc5vHndfys87UIngyR0g6t14RnJQXdc82ub7NxnUrioQJErV63LRIC3gpMwaitmfPSDYrKCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716443739; c=relaxed/simple;
-	bh=SxmqM88Y/QvoBAEDVZtTfuZXc6MFXor/37QPRIkhkfo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lQepr3TEs2DCHcX8S09pYZKsYLCURah9riQwIQQYvm601TGOcnaa1yt4j0w4IbVARWU++ScZPxiebtVrrSdeWvzoNf7ra3yPbP1cqIdhJjRRQKFSEQGoEsutlCw0CDdT+HiWYub+kIJHfeTNbTzn9Cb7uPGouEjWcIammjgXUP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org; spf=none smtp.mailfrom=jookia.org; dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b=hytQWbFK; arc=none smtp.client-ip=95.215.58.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=jookia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=jookia.org
-X-Envelope-To: kikuchan98@gmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1716443735;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jY3OZs3TRZ5fmpHwmF6ZDWmp14tMvpciAkxRyO1/MQo=;
-	b=hytQWbFKB3vS3t96pRQn4SK+Ur5QZdeFozP0miOBgRAvWcITv47RA+H3y/L8s41jv2Jvwp
-	2V3mqNq/STuUork+Ia76faXDFhZL4ZPVJp4uVFqRYa0t0qWzpkA9rgFdAB+oeV0c72NYxL
-	PBbUgqJ5mADP46bcP+qBEZ1ZEOAA+KlwrEcGFSrsbgy2FCZJd+5S03xqmAqedwC1PPR2pc
-	H6K1usInzBMeoeP8VMe/OUHo7JdQqZjr1RwS3T5ADMI6Z6G4iS0BOeMVvQ7846Mdwo0MU3
-	rQenItiIfmJmr5/f+6MwV4ChKBt6E+oDXNL7sWK6sv2hGNZn32pWDadZJw9llw==
-X-Envelope-To: privatesub2@gmail.com
-X-Envelope-To: aou@eecs.berkeley.edu
-X-Envelope-To: bigunclemax@gmail.com
-X-Envelope-To: conor+dt@kernel.org
-X-Envelope-To: devicetree@vger.kernel.org
-X-Envelope-To: fusibrandon13@gmail.com
-X-Envelope-To: jernej.skrabec@gmail.com
-X-Envelope-To: krzk+dt@kernel.org
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-X-Envelope-To: linux-kernel@vger.kernel.org
-X-Envelope-To: linux-pwm@vger.kernel.org
-X-Envelope-To: linux-riscv@lists.infradead.org
-X-Envelope-To: linux-sunxi@lists.linux.dev
-X-Envelope-To: mkl@pengutronix.de
-X-Envelope-To: p.zabel@pengutronix.de
-X-Envelope-To: palmer@dabbelt.com
-X-Envelope-To: paul.walmsley@sifive.com
-X-Envelope-To: robh@kernel.org
-X-Envelope-To: samuel@sholland.org
-X-Envelope-To: ukleinek@kernel.org
-X-Envelope-To: wens@csie.org
-Date: Thu, 23 May 2024 15:54:00 +1000
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: John Watts <contact@jookia.org>
-To: =?utf-8?B?44GN44GP44Gh44KD44KT44GV44KT?= <kikuchan98@gmail.com>
-Cc: privatesub2@gmail.com, aou@eecs.berkeley.edu, bigunclemax@gmail.com,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	fusibrandon13@gmail.com, jernej.skrabec@gmail.com,
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	mkl@pengutronix.de, p.zabel@pengutronix.de, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, robh@kernel.org, samuel@sholland.org,
-	ukleinek@kernel.org, wens@csie.org
-Subject: Re: [PATCH v9 0/3] Add support for Allwinner PWM on D1/T113s/R329
- SoCs
-Message-ID: <Zk7Z-MfdF-YKWeJ6@titan>
-References: <CAG40kxGMu-TSchNezkcC_A97hzPnWU3KxeL-X-hJfPhjr_COyQ@mail.gmail.com>
- <Zk6yK3U9tgxOxcBb@titan>
- <CAG40kxFxE_Oj+9aCzGku0a3KFHpuW8ai=gEkV9M8==5gwmjdEA@mail.gmail.com>
+	s=arc-20240116; t=1716444138; c=relaxed/simple;
+	bh=2gmKtc+dZO5bDPMUobHzDeKPQg4fDrYmuDcbFtmuwk8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cDOERZ0v22+pwaXoL94iTi229QgRlWvlucDCZWXdG/MEuTSu++TW3Wj+CBJ0F4G2DNQ8wcP4oQernZZiPJ3oBiiUoGwwOwFkgXt5IJz0fhDXTXeYwvt/A8LnddO2/j5o4VruSfynMHB2+bD7dLecn6R8hrykFvfZqSdhbk8FHdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LebcymsR; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4202c1d19d5so48288685e9.2
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 23:02:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716444135; x=1717048935; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=4X7BoLbMdMqQ1pM0nUAVzFWjxzrTvVPMC5L9TnHQ9rg=;
+        b=LebcymsR3oC0hrj4SUOU7MnKoc24fe8OO/kDpokvMvjbKXrtrYXcFFK0X0SiGTQCVi
+         vNWwKOO1smVtHKIvLrfeZQdQa9vkElDXEk+BlLxJ9H4YdH4q4cackvbso+ioG6p0XMcF
+         juUqd2O5fwd3LKah0kSxvyTHX/wV3DoCakXBpe1b0ltfhS8vKo8Uch8oX2su2pCwpx+O
+         T/6LmiZfTXsJY2G+no+Z6PD4BTZMhFdadzmJt8WXKAbPMdOP5CN5sLnc0nekW9JSiuDb
+         kX3ua2Oa2YLheKg7AT8bQR8MF20HsMHKtu/kRKm8eA8m00WUfsTnp3PkrJwChb3dSsAx
+         tbXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716444135; x=1717048935;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4X7BoLbMdMqQ1pM0nUAVzFWjxzrTvVPMC5L9TnHQ9rg=;
+        b=qH2pPcTtUMFuLR5BuBCTm44s+XavMjq/2SdNSm2TvToscD84fA1t7MUPVpmFTbTg6d
+         NjSNQMS/jAevYs93skSIt7sE1Xi3rOnVF3OeOKEKoPjjrcifh2uqkIahdCfuYXitlIuB
+         NzwzAWAVM94tUg7ZpFOn9FEJVLcaJ72KqPlWBYml39/AVRhhUqhthzhImhUoK7JqaE9S
+         XY68vDvNqxWwbEKoYtq6t7MCHSacrBeHBNXQUnSvpRIM39GSaWkJLStr5xWDUFP23wDU
+         K0j0dt+kBaMWCqEFhNmUTIgoociZR4kV9kWCk15F9E/E0hULNgopViIAEk7LQFuU/D7P
+         f6Vw==
+X-Forwarded-Encrypted: i=1; AJvYcCWBmsm9VdU8wR/LmVH6jTKF/2qg2lCjFeRgo2W65gSJy3IwUEiamwigO4j09j6bTUrxcEXWI9/cOXInucDoXLQ16Fin0+0xlFHGtA==
+X-Gm-Message-State: AOJu0YyazZqYvsUy7dSv5kBcVtNAAnmqJtdVyktGzgawp7CwGIDv7fBf
+	vBKJHiS4rI2m6mYg5d7QE9Hzbx/eVHpaFyn9v1Xq/CfFKDrElznzICzlN5LlUsU=
+X-Google-Smtp-Source: AGHT+IH+Yyh7MGsCftvGjwNM71yhQHJe6ieTfmevs7FGjmgK0uGBnTLTxGnFm1/0fYuMPKGVlL1pmA==
+X-Received: by 2002:a7b:cd17:0:b0:418:fb6f:5f59 with SMTP id 5b1f17b1804b1-420fd2dd186mr31257765e9.2.1716444135435;
+        Wed, 22 May 2024 23:02:15 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.206.169])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100f759f0sm14493435e9.28.2024.05.22.23.02.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 May 2024 23:02:14 -0700 (PDT)
+Message-ID: <aced3d43-5f79-4b57-8663-5762db1ad2f6@linaro.org>
+Date: Thu, 23 May 2024 08:02:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAG40kxFxE_Oj+9aCzGku0a3KFHpuW8ai=gEkV9M8==5gwmjdEA@mail.gmail.com>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/2] dt-bindings: soc: qcom,smsm: Allow specifying
+ mboxes instead of qcom,ipc
+To: Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240424-smsm-mbox-v1-0-555f3f442841@z3ntu.xyz>
+ <5780452.DvuYhMxLoT@g550jk> <12896bf6-412c-40af-9ad5-f9391ff81f63@kernel.org>
+ <6253429.lOV4Wx5bFT@g550jk>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <6253429.lOV4Wx5bFT@g550jk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 23, 2024 at 02:30:32PM +0900, きくちゃんさん wrote:
-> Hello John,
-
-Hello,
-
+On 22/05/2024 19:34, Luca Weiss wrote:
+> On Mittwoch, 22. Mai 2024 08:49:43 MESZ Krzysztof Kozlowski wrote:
+>> On 21/05/2024 22:35, Luca Weiss wrote:
+>>> On Dienstag, 21. Mai 2024 10:58:07 MESZ Krzysztof Kozlowski wrote:
+>>>> On 20/05/2024 17:11, Luca Weiss wrote:
+>>>>> Hi Krzysztof
+>>>>>
+>>>>> Ack, sounds good.
+>>>>>
+>>>>> Maybe also from you, any opinion between these two binding styles?
+>>>>>
+>>>>> So first using index of mboxes for the numbering, where for the known
+>>>>> usages the first element (and sometimes the 3rd - ipc-2) are empty <>.
+>>>>>
+>>>>> The second variant is using mbox-names to get the correct channel-mbox
+>>>>> mapping.
+>>>>>
+>>>>> -               qcom,ipc-1 = <&apcs 8 13>;
+>>>>> -               qcom,ipc-2 = <&apcs 8 9>;
+>>>>> -               qcom,ipc-3 = <&apcs 8 19>;
+>>>>> +               mboxes = <0>, <&apcs 13>, <&apcs 9>, <&apcs 19>;
+>>>>>
+>>>>> vs.
+>>>>>
+>>>>> -               qcom,ipc-1 = <&apcs 8 13>;
+>>>>> -               qcom,ipc-2 = <&apcs 8 9>;
+>>>>> -               qcom,ipc-3 = <&apcs 8 19>;
+>>>>> +               mboxes = <&apcs 13>, <&apcs 9>, <&apcs 19>;
+>>>>> +               mbox-names = "ipc-1", "ipc-2", "ipc-3";
+>>>>
+>>>> Sorry, don't get, ipc-1 is the first mailbox, so why would there be <0>
+>>>> in first case?
+>>>
+>>> Actually not, ipc-0 would be permissible by the driver, used for the 0th host
+>>>
+>>> e.g. from:
+>>>
+>>> 	/* Iterate over all hosts to check whom wants a kick */
+>>> 	for (host = 0; host < smsm->num_hosts; host++) {
+>>> 		hostp = &smsm->hosts[host];
+>>>
+>>> Even though no mailbox is specified in any upstream dts for this 0th host I
+>>> didn't want the bindings to restrict that, that's why in the first example
+>>> there's an empty element (<0>) for the 0th smsm host
+>>>
+>>>> Anyway, the question is if you need to know that some
+>>>> mailbox is missing. But then it is weird to name them "ipc-1" etc.
+>>>
+>>> In either case we'd just query the mbox (either by name or index) and then
+>>> see if it's there? Not quite sure I understand the sentence..
+>>> Pretty sure either binding would work the same way.
+>>
+>> The question is: does the driver care only about having some mailboxes
+>> or the driver cares about each specific mailbox? IOW, is skipping ipc-0
+>> important for the driver?
 > 
-> Your method is quite impressive and challenging.
+> There's nothing special from driver side about any mailbox. Some SoCs have
+> a mailbox for e.g. hosts 1&2&3, some have only 1&3, and apq8064 even has
+> 1&2&3&4.
 > 
-> I think PWM is not only for LCD backlighting, but also for signal generation.
-> For instance, imagine an application software that sends a stream to
-> one PWM channel to synthesize sound by changing its period (plays a
-> square wave).
-> By your method, if the other PWM channel is used for LCD backlighting,
-> it may flicker repeatedly on DIV_M changes.
-> (Or simply both channels for streo sound synthesize, you may hear lots
-> of pop noise)
+> And if the driver doesn't find a mailbox for a host, it just ignores it
+> but then of course it can't 'ring' the mailbox for that host when necessary.
 > 
-> It means the setting of one channel can affect the other, which users
-> may not anticipate.
+> Not sure how much more I can add here, to be fair I barely understand what
+> this driver is doing myself apart from the obvious.
 
-Does Linux guarantee a flicker-free experience with setting up PWM
-channels, or that it doesn't affect other channels?
-How do other drivers handle this situation?
+From what you said, it looks like it is enough to just list mailboxes,
+e.g. for ipc-1, ipc-2 and ipc-4 (so no ipc-0 and ipc-3):
 
-Maybe out-sourcing the clocking to the device tree and letting people set the
-clock and common divisor in the DT would be a good idea, with the HOSC and a
-common divisor of 1 by default, then error if the value can't be found.
+mboxes = <&apcs 13>, <&apcs 9>, <&apcs 19>;
 
-This would work for periods from 41ns up to 687ms by default. Using APB would
-give a better resolution as by default it hangs around 5ns which is nice and
-divisible by 10.
+Best regards,
+Krzysztof
 
-> 
-> Best regards,
-> kikuchan.
-
-John.
 
