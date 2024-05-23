@@ -1,142 +1,159 @@
-Return-Path: <devicetree+bounces-68755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F8898CD6B8
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 17:09:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38CB28CD6E6
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 17:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65B3CB221F5
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:09:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E940E283006
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36674B653;
-	Thu, 23 May 2024 15:09:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24448107A8;
+	Thu, 23 May 2024 15:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eFOjcelj"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="OpvT5SxI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com [91.218.175.187])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931AB171A1
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 15:09:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35831401F
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 15:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716476949; cv=none; b=iMjLqKBcyd0TvVPeQMFhvZ6AAjCpGezCOmyeXdVKN1L1iU56tCss3K8asLfOzgruMAVwMuzntGzBBZvS0KLBbMBOfX8RVijo+X/NwJ6Gj0I5AsHR/aLMHfiGBNWwpZ72cyMtPOpSE/67eo6zZVll4/NNmmQYGitS/K+x5QTSGv4=
+	t=1716477592; cv=none; b=qqNcvk+eu6zlBxeXG7YsJcwD6rI4xtsJKlQNSM8V43xAc/EfgbFnTujDJMTFqnW7I+2rvzaY4x8pwMJMKQf/aVq9tZ67WGipMQFcHoy8V/TTDNutp/rraWz6OX52te+OeA3RyApPybLNmd8u3bFqPFM+w1JiW7K3xrF7DWOzFw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716476949; c=relaxed/simple;
-	bh=Pl1mOlxsgsZjv5GC6ZJOtnNAWIIh4LnpWp+JPZyPZT0=;
+	s=arc-20240116; t=1716477592; c=relaxed/simple;
+	bh=ZaI6HyjrVf5AfVup6BcuvCZdEFVum+g4SUMC+psoEWE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MQz11+WyL7cINa4REuXZKouCNh4NvVlA6RqFQ2dyWuugBHgrvAsCFhjAkFCKyrxwJc4xI+Q3pmJEWxEqjD7eGtXrkS3/9pyUXXCTGXZJ/8t+OlCNPn3+QRiG0AyfEJahqZ+ldRq0vUiAPbyvRhmUyE34nvfGKY3xMglCe+lbrU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eFOjcelj; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6f12d22331fso976339a34.1
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 08:09:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716476947; x=1717081747; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BhVj6FCoDzPR+MbDpoxutT96uTiXlHhWUxlVPMCsRV0=;
-        b=eFOjceljwceEv0kmvBOdTx/R57f2r4iBS/DwhCAR01X+PhwNv3JLh+QlZZBIy4NDy1
-         B4xgCjHQD/hLuZIzgRBDmSif5UBnA1T0m6XfC4slKzKG04tG4jY8XN/7Pn955nEhDsM7
-         R1S1ICYKJdYJ0AGCje+kdMcqUKnt9zkuSi82wLpHzBBneHS4sqDTBo1/wP3bj/Jchnth
-         wrY3vYy7zDRv/sKHzLQii57U7wIaZdlEKMK36RgzoiwuAGJMDL/Hh7sUEaNQ+eAY/bZZ
-         Jnsp1+Ij0GotdNz0KRGAW7ZRECWoR40HDOmSJexUQiiFpqJllYuxuAu/wUb+unIj16fZ
-         fe0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716476947; x=1717081747;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BhVj6FCoDzPR+MbDpoxutT96uTiXlHhWUxlVPMCsRV0=;
-        b=htunR+E3Bm+1CjXBOZPv80DOcuUPtzgeALjmrMBpedJWnXL23NhmaoTStc0vBuHP0C
-         Wzfo95Tmg/yhWxLmsfV2CiZ82GIx++ESta4MDz30n2WNEoa1CCbsuzSDG3IGYFW+dvjx
-         u23kgOQC5r0ieusyjehQ0p0JbOTEi+ZGQcOCOlhXAZEIBhxFoM7cPhNSFrsaTI4y0Xav
-         wP2M+6+o0hGwth5pxW/u1xIZOTdmK6GIPYBeW2ti4GKBQBufNfDpacWvCgS2uYpUAqPU
-         XizhmXAbBeIwHJaJd0nILc8V16z4Hyfuk7oLxwSXZq3hcrOHV8q1rOmajxw91K7hb6sc
-         MXgA==
-X-Forwarded-Encrypted: i=1; AJvYcCXyrP8/i/Z/QC1tRc0gSPN7hlLlvnZznJFUNOiEkvM5y9CetCAOBn4y1FuIwA1Gp9m+gogp9Fw9FjijKYHBdPw05p/cGF9fJrZXMw==
-X-Gm-Message-State: AOJu0Yz+yhCegEN/GXV4Xa55NDGpIwCNmbm7NpsxEPYy8KOwyvOWy2Pw
-	nSfBwnigfFg4S99g8+aqX4p+NCDDSLAXBoJbKq0Yme0mSI4OEyIGeoUHZB21giE=
-X-Google-Smtp-Source: AGHT+IGA5q7G27Y8PaMTdFJeCZappJ3k2ZJ4VmDgR6MSN90k5mJKReZ1wo483N2rA4PDO56q5kWqyA==
-X-Received: by 2002:a05:6830:2b10:b0:6f0:3d07:ef7e with SMTP id 46e09a7af769-6f7d4e11f56mr1417237a34.8.1716476946841;
-        Thu, 23 May 2024 08:09:06 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f0e7efd0c6sm5203398a34.1.2024.05.23.08.09.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 08:09:06 -0700 (PDT)
-Message-ID: <3fad2e61-c3e4-4bb1-bbea-101d5d0f91ee@baylibre.com>
-Date: Thu, 23 May 2024 10:09:05 -0500
+	 In-Reply-To:Content-Type; b=J0lEEnDQFLXioGQeA3F77X7RI1mJ2Uh9ECpsaHpZkrfMLnoiG+YONmJ+Xwak29V9YWJdJUoulNXAf2BnEzBIjIhKQaDJVfHwRtrRhN+LexoUtrrwCKVsESliqzf70sVDoJvSnGCa30b3zI4oKe6eaJEu8kmdTQKPBPB20kl1tmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=OpvT5SxI; arc=none smtp.client-ip=91.218.175.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Envelope-To: helgaas@kernel.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1716477587;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VmITnvzd0IbZjn+ZkuoMDkt3gI/vCxtww1N54pkDA9I=;
+	b=OpvT5SxIDvfkaJ43NWWVgmtXxXm9YUZ34/wYw58Zs01n4yoSD/UwTHQiDU9FGAaJkSQqP1
+	4S0uaJa2uC04OL73hIW4vvZK84wGboDHnlkNBp8J3Evaeb/KBnMPgfVH11gt3ntqBivv6T
+	EeOGRQ0SD6N0Y4GKyv51WZ4uHS6ozHY=
+X-Envelope-To: g@bhelgaas
+X-Envelope-To: lpieralisi@kernel.org
+X-Envelope-To: kw@linux.com
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: linux-pci@vger.kernel.org
+X-Envelope-To: michal.simek@amd.com
+X-Envelope-To: thippeswamy.havalige@amd.com
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: bhelgaas@google.com
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: krzysztof.kozlowski+dt@linaro.org
+X-Envelope-To: devicetree@vger.kernel.org
+Message-ID: <afe44d18-178d-4fbc-b19e-691b747df8d0@linux.dev>
+Date: Thu, 23 May 2024 11:19:42 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
- spi-offloads property
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com>
- <20240510-dlech-mainline-spi-engine-offload-2-v2-1-8707a870c435@baylibre.com>
- <20240513-headsman-hacking-d51fcc811695@spud>
- <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
- <20240514-aspire-ascension-449556da3615@spud>
- <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
- <20240516-rudder-reburial-dcf300504c0a@spud>
- <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
- <20240519-abreast-haziness-096a57ef57d3@spud>
- <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
- <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
- <59df2cc3-5a62-45be-a0aa-5bbff13c2ae4@baylibre.com>
- <35de37c08331a8384aa9ebde3a9be5fec6fc418e.camel@gmail.com>
+Subject: Re: [PATCH v3 1/7] dt-bindings: pci: xilinx-nwl: Add phys
+To: Bjorn Helgaas <helgaas@kernel.org>,
+	g@bhelgaas.smtp.subspace.kernel.org
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+ Michal Simek <michal.simek@amd.com>,
+ Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+ linux-arm-kernel@lists.infradead.org, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org
+References: <20240522222838.GA101305@bhelgaas>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <35de37c08331a8384aa9ebde3a9be5fec6fc418e.camel@gmail.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20240522222838.GA101305@bhelgaas>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On 5/23/24 9:57 AM, Nuno Sá wrote:
-> On Thu, 2024-05-23 at 09:28 -0500, David Lechner wrote:
->> On 5/22/24 1:24 PM, Conor Dooley wrote:
->>> On Tue, May 21, 2024 at 09:54:39AM -0500, David Lechner wrote:
->>>> On Sun, May 19, 2024 at 7:53 AM Conor Dooley <conor@kernel.org> wrote:
->>>>>
->>>>> On Fri, May 17, 2024 at 11:51:58AM -0500, David Lechner wrote:
->>>>>> On Thu, May 16, 2024 at 4:32 PM Conor Dooley <conor@kernel.org> wrote:
->>>>>>> On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wrote:
->>>>>
->>
+On 5/22/24 18:28, Bjorn Helgaas wrote:
+> On Mon, May 20, 2024 at 10:53:56AM -0400, Sean Anderson wrote:
+>> Add phys properties so Linux can power-on/configure the GTR
+>> transcievers.
 > 
-> ...
-> 
->>
->> controller:
->> #spi-offload-cells = <2>: /* 1st cell = offload instance
->>                            * 2nd cell = trigger provider */
->>
-> 
-> What about things like DMA? I'm mentioning it a lot because it's way more complex
-> having it on the controller (from a SW perspective). But from an HW point of view,
-> it's always very similar (if not the same) as your case A.
-> 
+> s/transcievers/transceivers/
 
-If we had a setup where there was more than one place that, e.g. the
-RX stream from the offload could be piped, then I would add a 3rd
-cell to describe that. If the hardware is fixed and the RX stream
-always goes to a specific DMA channel, then it doesn't seem like we
-need to describe that in the SPI controller node because the hardware
-is fixed.
+I always forget the spelling is backwards on this one
+
+> Possibly s/phys/PHYs/ in subject, commit log, DT description to avoid
+> confusion with "phys" (short for generic "physical").  Or maybe even
+> just "PHY properties"?
+
+Well, this is the name for the property...
+
+> What does "GTR" mean?  Possibly expand that?
+
+It's "xlnx,zynqmp-psgtr-v1.1". These are the available transceivers on
+the ZynqMP, which is the only SoC this device is present on. I had hoped
+this would be clear by calling them "GTR transcievers"...
+
+--Sean
+
+>> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+>> ---
+>> 
+>> Changes in v3:
+>> - Document phys property
+>> 
+>> Changes in v2:
+>> - Remove phy-names
+>> - Add an example
+>> 
+>>  Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+>> index 426f90a47f35..cc50795d170b 100644
+>> --- a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+>> @@ -61,6 +61,11 @@ properties:
+>>    interrupt-map:
+>>      maxItems: 4
+>>  
+>> +  phys:
+>> +    minItems: 1
+>> +    maxItems: 4
+>> +    description: One phy per logical lane, in order
+>> +
+>>    power-domains:
+>>      maxItems: 1
+>>  
+>> @@ -110,6 +115,7 @@ examples:
+>>    - |
+>>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>      #include <dt-bindings/interrupt-controller/irq.h>
+>> +    #include <dt-bindings/phy/phy.h>
+>>      #include <dt-bindings/power/xlnx-zynqmp-power.h>
+>>      soc {
+>>          #address-cells = <2>;
+>> @@ -138,6 +144,7 @@ examples:
+>>                              <0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
+>>                              <0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
+>>              msi-parent = <&nwl_pcie>;
+>> +            phys = <&psgtr 0 PHY_TYPE_PCIE 0 0>;
+>>              power-domains = <&zynqmp_firmware PD_PCIE>;
+>>              iommus = <&smmu 0x4d0>;
+>>              pcie_intc: legacy-interrupt-controller {
+>> -- 
+>> 2.35.1.1320.gc452695387.dirty
+>> 
 
 
