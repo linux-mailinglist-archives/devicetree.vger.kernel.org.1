@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-68748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B1528CD615
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:47:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12EE78CD625
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:51:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F321F2827BC
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:47:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72C3CB21200
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3436F6FA8;
-	Thu, 23 May 2024 14:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23F463AE;
+	Thu, 23 May 2024 14:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ig2sXpis"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cELGUhTJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F314B63D0;
-	Thu, 23 May 2024 14:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86B4A5227;
+	Thu, 23 May 2024 14:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716475670; cv=none; b=uncziVeF9HRAsOJ+SPa0iI+lR3g76zPqKAbuey7Gvmrjdy3sccpBQFaysym8bIpYMWqVCLMlIyaSBYDUMKKg9Ps8T0zzTd+1xLz3mf1E5yUzTv6gbbYrD+W0UIeniy2FXQeXk/Cys6Cv2fMpUjbmGP8v+TVOqiL5pkaRbVtmhA0=
+	t=1716475867; cv=none; b=raDJjMWl3i7mgg87azCBeQbIA3hJcI8EXvkcB+ngkxbwApyUkNpUe+D6ZdNMr1c5gM8pAJBTn0L0Np5FVaSazZWiVcX/gVSsSJwXxjeFGsiF3ezjSQiCpEtXKD+iKM3xJZV2qWVdenf9QGPKL88hUznTgGoCyMFU8kttCRB3rGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716475670; c=relaxed/simple;
-	bh=VETQLzlRvJ/atP7lNfjD3xkU+FekoieBP/u4SqPwNv4=;
+	s=arc-20240116; t=1716475867; c=relaxed/simple;
+	bh=KXr+O49jgY3DWM6OLjKqbbwipuCBHbRBENFht4rZ6iY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gdqvf/tsfv2bFqZIhwVORRwYxho7w8JFQwda3LAzEQ8moHD2z2Vouoxe0zLila69ZnXVr3wIXAV+Hg3jdxx6zPLULak8238ULfU1sL/0DsVznGqpvnLs2435txHQVFG4wUGT6mRWFSADsgLpw2351Z7RIN6AYbCQIPT2cfobUFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ig2sXpis; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5386C2BD10;
-	Thu, 23 May 2024 14:47:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iTOwgts3cU22oOzgGq8i36AAQqBXal2ukaZSnIBEQavy0kbt8TpezXdBzQN6oc0zvy+BIopqF//hnYRPMJHzGhpiRm5PS4stv6LfeE6Z2s8r02E+HmICZ5W7zFIMTXUuCUKFLDSyin7Km+NlLEHW+l7qov9xqxhMB3gFbx4AVWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cELGUhTJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA5D7C2BD10;
+	Thu, 23 May 2024 14:51:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716475669;
-	bh=VETQLzlRvJ/atP7lNfjD3xkU+FekoieBP/u4SqPwNv4=;
+	s=k20201202; t=1716475867;
+	bh=KXr+O49jgY3DWM6OLjKqbbwipuCBHbRBENFht4rZ6iY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ig2sXpissfaNNs5NshOSEl68IinJC3y64FR3DuTloH2UAHva/7q3QW2LZDgk0oYmG
-	 y1C5CZobEM7VacAiKf1qrngIp/xPaXEohxsmlQPO0WjzncblpNb3qJ6odwsJNs4Fhu
-	 MnFtNdleE4jxl8m0SoAh3mtOf2Q3hZJ4Ph+KtgQyHF8o8kAaPD2K3mjj1u6vjL9xQK
-	 y4rPh+sg+p2wYLRwbo8sx8oPbCkUuVcVBTciMTqpXatEQ87nhtzj9EDeujiAV7ZpRd
-	 sLDvVD08EYxqXVGmlcBpFarApQhO4BqVCp6aLHfwpTMjzaqx38sBDrcqtCui9AMl1n
-	 V0pcZQwQdmCVg==
-Date: Thu, 23 May 2024 15:47:44 +0100
+	b=cELGUhTJByfteAzCn7jYhjQ9L+H2tm2L98G08fQVHP5rZuDBlapct1p2yKI0bgnCu
+	 LjQKuvZd9RVrMx9JqMxlU/ttymX2Uh54hnQoGTFqGjVlUUgRHd4AMbJvnDwFDfJtml
+	 /M8LxC8oap72j60cMJnypX77k/xK7pCK1SdWD8e/+b6pzjgxMT9yHfEieRf2ufH9M/
+	 kpikBeA3Jvcc+jSOfgtA2IEG6NuyHNzcGuWcEup8MDx789FfnnYCOdsyzEcwgwWfTE
+	 JTQrHC+4fZuSD1BTtrbBidV3jxga4TGuTOQ6cMsPX6JEGl9ktqhNCK/9A8oBKeiQhQ
+	 VqyuYEmNPnnOw==
+Date: Thu, 23 May 2024 15:51:01 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Tim Harvey <tharvey@gateworks.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
-Message-ID: <20240523-vividly-sequester-d85ac7bccbbd@spud>
-References: <20240522215043.3747651-1-tharvey@gateworks.com>
- <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org>
+To: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+Cc: linux-input@vger.kernel.org, dmitry.torokhov@gmail.com,
+	jeff@labundy.com, neil.armstrong@linaro.org, schnelle@linux.ibm.com,
+	arnd@kernel.org, hdegoede@redhat.com, linux-kernel@vger.kernel.org,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	artur.serhiienko@gmail.com, igor.opaniuk@gmail.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: touchscreen: add Hynitron
+ CST816X
+Message-ID: <20240523-hulk-sake-da52a7545ab5@spud>
+References: <20240522203347.2263425-1-kuzhylol@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,61 +61,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mHB66SfMY12XnJ+/"
+	protocol="application/pgp-signature"; boundary="0lfDBifo+k1uqAPQ"
 Content-Disposition: inline
-In-Reply-To: <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org>
+In-Reply-To: <20240522203347.2263425-1-kuzhylol@gmail.com>
 
 
---mHB66SfMY12XnJ+/
+--0lfDBifo+k1uqAPQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 23, 2024 at 09:02:46AM +0200, Krzysztof Kozlowski wrote:
-> On 22/05/2024 23:50, Tim Harvey wrote:
-> > The GW7905 was renamed to GW7500 before production release.
-> >=20
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documenta=
-tion/devicetree/bindings/arm/fsl.yaml
-> > index 0027201e19f8..d8bc295079e3 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -920,8 +920,8 @@ properties:
-> >                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
-> >                - fsl,imx8mm-evk            # i.MX8MM EVK Board
-> >                - fsl,imx8mm-evkb           # i.MX8MM EVKB Board
-> > +              - gateworks,imx8mm-gw75xx-0x # i.MX8MM Gateworks Board
+On Wed, May 22, 2024 at 05:33:46PM -0300, Oleh Kuzhylnyi wrote:
+> Add documentation for the Hynitron CST816X touchscreen bindings.
 >=20
-> That's not even equivalent. You 7500 !=3D 75xx.
+> Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+> ---
 >=20
-
-> >                - gateworks,imx8mm-gw7904
-> > -              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gateworks Board
+> Changes in v2:
+>  - Apply pin definitions and DT headers
+>  - Use generic name for DT node
+>  - Drop status field
 >=20
-> Compatibles do not change. It's just a string. Fixed string.
+>  .../input/touchscreen/hynitron,cst816x.yaml   | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/h=
+ynitron,cst816x.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/hynitron=
+,cst816x.yaml b/Documentation/devicetree/bindings/input/touchscreen/hynitro=
+n,cst816x.yaml
+> new file mode 100644
+> index 000000000000..22bd145db5ee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/hynitron,cst816=
+x.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/hynitron,cst816x.ya=
+ml#
 
-I think there's justification here for removing it, per the commit
-message, the rename happened before the device was available to
-customers.
-Additionally, I think we can give people that upstream things before they're
-publicly available a bit of slack, otherwise we're just discouraging
-people from upstreaming early.
+Filename matching compatible please, so s/cst816x/cst816s/.
 
---mHB66SfMY12XnJ+/
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hynitron CST816X series touchscreen controller
+> +
+> +description: |
+
+The | here is not needed & you can drop the "Bindings for" below.
+
+Maybe add a link to a datasheet if you don't want title =3D=3D description.
+
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--0lfDBifo+k1uqAPQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk9XEAAKCRB4tDGHoIJi
-0pJIAQCdg1Tf5q/06rcKoEqgcWnLs/48jFh1hSVrAM3QZADuMQEA05roU61bH/VP
-OkVQflknoA0fQLl2xRmXY0EunCIYEw0=
-=v3l4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk9X1QAKCRB4tDGHoIJi
+0iLcAQCd9wA6lC/r6uoaFfC4d+Rr6zRitp2mhqDJZ9AH+SEkrQEAoNlgRPmKtt1o
+BhQXnP0f3PcfwbvBrmiadI8uHUh8BwE=
+=eJC5
 -----END PGP SIGNATURE-----
 
---mHB66SfMY12XnJ+/--
+--0lfDBifo+k1uqAPQ--
 
