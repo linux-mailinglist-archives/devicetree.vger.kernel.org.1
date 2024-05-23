@@ -1,531 +1,154 @@
-Return-Path: <devicetree+bounces-68771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979988CD872
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:31:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B03DF8CD86E
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:31:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E6B32822DB
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:31:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B29E282314
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FA1175A5;
-	Thu, 23 May 2024 16:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B83A12B7F;
+	Thu, 23 May 2024 16:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XtVl1yCb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E515A11720
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 16:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD16B1CF8F;
+	Thu, 23 May 2024 16:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716481910; cv=none; b=QL302S09fszox13f7jq9snuKmFFyHLauYJdHpkSVp0p0Ec8tFx+Oel+IqfZ0gWx54MACShMRt5Honc48U3/yI283LKY2ikbNZ/tw5MAWZc1xRPIlfD92HD+Wc0f6HoDMIA3lfyhBhbD/tSj9cEmfhhRNgGR+Tcn5+3xLhDyuP34=
+	t=1716481898; cv=none; b=gehDIJ6+RO7imdpCghp1kek7g1eLeZyNWf5iutoUlI6XghgdCsXdp19ET2GzTwsi/oFnFammC14eOF0HsTMBNHk5fxf6dQY0uw5g1Xosim0SDCfzmVCAqvHWpgwrfd1g0q93ouVAGDLA4LASi/uvvsRGMNPC4iEtwua1JKftabo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716481910; c=relaxed/simple;
-	bh=3VbRWmYIFG9dsSmrAmoUhbkC2RILkNWYuZv05L4/OKo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=twetQgkfjLNW7PMk9jULtO3hYryaHe8jkMxIqUi8nwBM7eKeX+oNEFbQ7f/rztUghBuKM5wbwNcQx1JahrLGYbDMgXwdHdTJs+oTmlsHgssppoT0MWsYy3EkJAv+aTlvTRkbfbsmMYJ3A3kKwJKC5ID2gCY0pI1RATd/kA1NBwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1sABLc-0000Tz-H3; Thu, 23 May 2024 18:31:20 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1sABLX-002gTL-2H; Thu, 23 May 2024 18:31:15 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1sABLW-00Aqfp-3A;
-	Thu, 23 May 2024 18:31:14 +0200
-Date: Thu, 23 May 2024 18:31:14 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Subject: Re: [PATCH v3 2/2] pwm: Add Loongson PWM controller support
-Message-ID: <t3efvxh4d2xvjh4pfrdnho6mwonwm6spjer72ww3wiqx2v3a2x@52ufzsdhc44i>
-References: <cover.1713164810.git.zhoubinbin@loongson.cn>
- <c89917023b49fff70bc89ddb66be7da4e0fe67ef.1713164810.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1716481898; c=relaxed/simple;
+	bh=yFdXknMEp6BoBRx9d/a3Xb7qQPDAPn3S0QNRYt4ZMwQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FR84PJYkLp/o0zTiAM9Wa1Z3n3lPL3c0GJvoUdyZj1ulxKnYubhQTdveDRPYaIqvwbvPOfGhEk2VBqXNJabxd6ugUeFg7rXTsfSLKtdo2yXavRHydJT0wIp1NTi62BwtcmblZf87r57JOlQNtXNwRWMYjODgPL7RASFy5HsytMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XtVl1yCb; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42016c8db2aso21208065e9.0;
+        Thu, 23 May 2024 09:31:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716481895; x=1717086695; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BkFgbsBHw567DO162agH6xtszv6nFxh3v/OqHAXAYQA=;
+        b=XtVl1yCbHcsASENET0tbWaPdkK/ToyDTNTbRtiG4NlXpZhNkBWWd7MnMy578pnhfG2
+         7bLHEaLNqZ+ESZ2kB4xzJ2Xx8k5T6oj2NVKV+MsJo1EL3hQlLpPWKUseh1pAV3YcJriB
+         sMKMeKXbF3G8S6ETEiPJPuZt1BGrsz3sRWhE/fFkvx9wAdDpU80Aecn+2I1t/OKL7TXI
+         cXcKpBabwob6xoo+r6iLJ36Cr1/UnjSyA59WklhZF6sBi76XcBywcY1p/Aqa5udCoLnv
+         6CmVsCZn0gzG5CA5iTWcBZ7ZLCgWNqCGkR3TS4AoN5gggl6i8QqUwRDEYHBv79ogpmPP
+         fmCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716481895; x=1717086695;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BkFgbsBHw567DO162agH6xtszv6nFxh3v/OqHAXAYQA=;
+        b=wOSrM2cv2CIRlZVpl9vzJII4S8uj4uycSY51qqSzStpvlFWTiEYz4GfKCXmUNNxws8
+         lDxB39US65D5KZL1EG0OgPHQNMiCyzYjcxAUf5Lsqc4OpOSNsbNJJ5N6b4r388HVqnfC
+         mzElOORV5VqVZexAi/sktO4HJ6WO2gXXpsl223j1Za1XM+Zb/Sb0MMHztelYhQmLarOz
+         5KcZyy/lHJxD/TvM6Hsje4aZULVOcWicClzQ2+fGjqBe2Bf51lfa6FC1i5w74LSkpSSo
+         C1bS5uxWWAdqzhBJNNTIRxeEZSmrdRMqNR/YbMMhrJO7pB7Jsgd83lRKEJOhbWbyX04u
+         pwVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNB5bq3exj4r6dDHlAxL9CejA2jV8Gi4k0dK8tMGb4LxMRk8wHvw2l6vp5GP0ALqZP3cotScE4eaXz1VqELladsBtmaTCot7EdECg1kOVdxEeiWQoriTIi5swNVYCP4SD6tTk5WSqm0A==
+X-Gm-Message-State: AOJu0YwPBhj6Ye5xgLUffIGnSTCrHYiw9k5K+8ufpgrUoPR/RqakGgmZ
+	oWW4Vx6rPRi2cZH6z6hg/Av2pdIBZul2HZ8aL5p0TnGkLSegKBKv
+X-Google-Smtp-Source: AGHT+IGERajLeL6v45YR+OnIu7rQ+Rz0hkkeUorXN4ovcimgSqTBgypDrtLU+Fnhe8uBHynPnppIZw==
+X-Received: by 2002:a5d:5612:0:b0:354:eb32:6d1a with SMTP id ffacd0b85a97d-354eb326e3amr3792720f8f.59.1716481894901;
+        Thu, 23 May 2024 09:31:34 -0700 (PDT)
+Received: from [192.168.0.31] (84-115-212-250.cable.dynamic.surfer.at. [84.115.212.250])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-354c2a40548sm12143109f8f.34.2024.05.23.09.31.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 May 2024 09:31:34 -0700 (PDT)
+Message-ID: <865295e7-30c8-4abf-9992-fcb9b3186ebb@gmail.com>
+Date: Thu, 23 May 2024 18:31:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7c3t7av3wh3yxy4m"
-Content-Disposition: inline
-In-Reply-To: <c89917023b49fff70bc89ddb66be7da4e0fe67ef.1713164810.git.zhoubinbin@loongson.cn>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: DT schema bindings conversion mentorships (was Re: [PATCH v5]
+ ASoC: dt-bindings: omap-mcpdm: Convert to DT schema)
+To: Rob Herring <robh@kernel.org>, Daniel Baluta <daniel.baluta@nxp.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Shuah Khan <skhan@linuxfoundation.org>, Julia Lawall
+ <julia.lawall@inria.fr>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+ linux-kernel@vger.kernel.org
+References: <20240522075245.388-1-bavishimithil@gmail.com>
+ <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
+ <4f722e53-011f-4176-b6af-080522165007@kernel.org>
+ <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
+ <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
+ <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
+ <58ada5ce-5c02-4ff5-8bdd-d6556c9d141f@kernel.org>
+ <60989c44-6d16-4698-bf3f-b3c5dcd7b3e0@kernel.org>
+ <dc31c4ba-1bea-4056-a68f-87d742eb8da3@nxp.com>
+ <CAL_JsqJp133hGSkja9tabtsE9D7MSA9JErVkmkcy91piHMgfwg@mail.gmail.com>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <CAL_JsqJp133hGSkja9tabtsE9D7MSA9JErVkmkcy91piHMgfwg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 23/05/2024 18:24, Rob Herring wrote:
+> On Thu, May 23, 2024 at 7:30 AM Daniel Baluta <daniel.baluta@nxp.com> wrote:
+>>
+>>
+>> On 5/22/24 20:05, Krzysztof Kozlowski wrote:
+>>> Dear Daniel, Shuah, Julia, Javier and other mentorship managers,
+>>>
+>>> I see some contributions regarding Devicetree bindings which look like
+>>> efforts of some mentorship programs. It's great, I really like it. Only
+>>> sadness is that no one ever asked us, Devicetree maintainers, about some
+>>> sort of guidelines. This leads to sub-optimal allocation of tasks and
+>>> quite a strain on reviewers side: for example we receive contributions
+>>> which were never tested (tested as in make target - make
+>>> dt_binding_check). Or people converted bindings which really do not
+>>> matter thus their work soon will become obsolete.
+>>>
+>>
+>> Hi Krzysztof,
+>>
+>> Some of the faulty patches are on me! Sorry for that. We had an
+>> unexpected high
+>>
+>> number of people sending contributions for Google Summer of Code and I
+>> couldn't watch them all.
+>>
+>> Now, the application period has ended and we have 1 intern working for
+>> the summer!
+>>
+>> Will follow your guidance! Thanks a lot for your help!
+> 
+> To be specific, there are several ways to prioritize what to work on.
+> 
+> - There's a list maintained in CI of number of occurrences of
+> undocumented (by schema) compatibles[1]. Start at the top.
+> - Pick a platform (or family of platform) and get the warnings down to
+> 0 or close. There's a grouping of warnings and undocumented
+> compatibles by platform family at the same link.
+> - Prioritize newer platforms over older (arm64 rather than
+> arm32(though there's still new arm32 stuff)).
+> - Fix warnings treewide from common schemas (i.e. from dtschema).
+> That's not conversions, but related.
+> 
+> Rob
+> 
+> [1] https://gitlab.com/robherring/linux-dt/-/jobs/6918723853
 
---7c3t7av3wh3yxy4m
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you Rob, I forwarded your recommendations to the LFX mentees.
 
-Hello,
-
-sorry for taking so long to get back to your patch. reviewing new
-drivers is quite time consuming which makes me often fail to review in a
-timely manner.
-
-On Tue, Apr 16, 2024 at 09:55:15AM +0800, Binbin Zhou wrote:
-> This commit adds a generic PWM framework driver for the PWM controller
-> found on Loongson family chips.
->=20
-> Co-developed-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  MAINTAINERS                |   1 +
->  drivers/pwm/Kconfig        |  10 ++
->  drivers/pwm/Makefile       |   1 +
->  drivers/pwm/pwm-loongson.c | 298 +++++++++++++++++++++++++++++++++++++
->  4 files changed, 310 insertions(+)
->  create mode 100644 drivers/pwm/pwm-loongson.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ecef2744726d..d32da7c77f0e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12756,6 +12756,7 @@ M:	Binbin Zhou <zhoubinbin@loongson.cn>
->  L:	linux-pwm@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
-> +F:	drivers/pwm/pwm-loongson.c
-> =20
->  LOONGSON-2 SOC SERIES CLOCK DRIVER
->  M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..bb163c65e5ae 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -324,6 +324,16 @@ config PWM_KEEMBAY
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-keembay.
-> =20
-> +config PWM_LOONGSON
-> +	tristate "Loongson PWM support"
-> +	depends on MACH_LOONGSON64
-
-Something with || COMPILE_TEST would be nice.
-
-> +	help
-> +	  Generic PWM framework driver for Loongson family.
-> +	  It can be found on Loongson-2K series cpu and Loongson LS7A bridge ch=
-ips.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-loongson.
-> +
->  config PWM_LP3943
->  	tristate "TI/National Semiconductor LP3943 PWM support"
->  	depends on MFD_LP3943
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c5ec9e168ee7..bffa49500277 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -28,6 +28,7 @@ obj-$(CONFIG_PWM_INTEL_LGM)	+=3D pwm-intel-lgm.o
->  obj-$(CONFIG_PWM_IQS620A)	+=3D pwm-iqs620a.o
->  obj-$(CONFIG_PWM_JZ4740)	+=3D pwm-jz4740.o
->  obj-$(CONFIG_PWM_KEEMBAY)	+=3D pwm-keembay.o
-> +obj-$(CONFIG_PWM_LOONGSON)	+=3D pwm-loongson.o
->  obj-$(CONFIG_PWM_LP3943)	+=3D pwm-lp3943.o
->  obj-$(CONFIG_PWM_LPC18XX_SCT)	+=3D pwm-lpc18xx-sct.o
->  obj-$(CONFIG_PWM_LPC32XX)	+=3D pwm-lpc32xx.o
-> diff --git a/drivers/pwm/pwm-loongson.c b/drivers/pwm/pwm-loongson.c
-> new file mode 100644
-> index 000000000000..5ac79a69acd3
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-loongson.c
-> @@ -0,0 +1,298 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Loongson PWM driver
-> + *
-> + * Author: Juxin Gao <gaojuxin@loongson.cn>
-> + * Further cleanup and restructuring by:
-> + *         Binbin Zhou <zhoubinbin@loongson.cn>
-> + *
-> + * Copyright (C) 2017-2024 Loongson Technology Corporation Limited.
-
-A paragraph about the hardware capabilities here please. Please answer
-the following questions:
-
- - How does the hardware behave on disable? (Does it complete the
-   currently running period? Is the output still driven then? If yes,
-   which level?)
-
- - How does the hardware behave on configuration changes? (Does it
-   complete the currently running period? Are there some glitches
-   expected (like driving an output corresponding to the old period
-   length but the new duty_cycle or similar).
-
- - Are there any restrictions like: Cannot do 100% relative duty (or
-   0%)?
-
-Stick to the format used in most other drivers such that
-
-	sed -rn '/Limitations:/,/\*\/?$/p' drivers/pwm/pwm-loongson.c
-
-emits the requested info.
-
-> + */
-> +
-> +#include <linux/acpi.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/units.h>
-> +
-> +/* Loongson PWM registers */
-> +#define PWM_DUTY	0x4 /* Low Pulse Buffer Register */
-> +#define PWM_PERIOD	0x8 /* Pulse Period Buffer Register */
-> +#define PWM_CTRL	0xc /* Control Register */
-
-Please use a driver specific prefix for these defines. PWM_DUTY is quite
-generic otherwise.
-
-> +
-> +/* Control register bits */
-> +#define PWM_CTRL_EN	BIT(0)  /* Counter Enable Bit */
-> +#define PWM_CTRL_OE	BIT(3)  /* Pulse Output Enable Control Bit, Valid Lo=
-w */
-> +#define PWM_CTRL_SINGLE	BIT(4)  /* Single Pulse Control Bit */
-> +#define PWM_CTRL_INTE	BIT(5)  /* Interrupt Enable Bit */
-> +#define PWM_CTRL_INT	BIT(6)  /* Interrupt Bit */
-> +#define PWM_CTRL_RST	BIT(7)  /* Counter Reset Bit */
-> +#define PWM_CTRL_CAPTE	BIT(8)  /* Measurement Pulse Enable Bit */
-> +#define PWM_CTRL_INVERT	BIT(9)  /* Output flip-flop Enable Bit */
-> +#define PWM_CTRL_DZONE	BIT(10) /* Anti-dead Zone Enable Bit */
-> +
-> +#define PWM_FREQ_STD       (50 * HZ_PER_KHZ)
-> +
-> +struct pwm_loongson_ddata {
-> +	struct pwm_chip	chip;
-> +	struct clk	*clk;
-> +	void __iomem	*base;
-> +	/* The following for PM */
-> +	u32		ctrl;
-> +	u32		duty;
-> +	u32		period;
-
-This needs updating to cope for commit 05947224ff46 ("pwm: Ensure that
-pwm_chips are allocated using pwmchip_alloc()")
-
-Also I'm not a fan of aligning the member names. If you feel strong
-about it, keep it as is, however.
-
-> +};
-> +
-> +static inline struct pwm_loongson_ddata *to_pwm_loongson_ddata(struct pw=
-m_chip *chip)
-> +{
-> +	return container_of(chip, struct pwm_loongson_ddata, chip);
-> +}
-> +
-> +static inline u32 pwm_loongson_readl(struct pwm_loongson_ddata *ddata, u=
-64 offset)
-
-I don't know about the calling convention on loongson, but I'd expect
-offset to be an unsigned int only, given that (I guess) only PWM_CTRL
-and friends are passed here.
-
-> +{
-> +	return readl(ddata->base + offset);
-> +}
-> +
-> +static inline void pwm_loongson_writel(struct pwm_loongson_ddata *ddata,
-> +				       u32 val, u64 offset)
-> +{
-> +	writel(val, ddata->base + offset);
-> +}
-> +
-> +static int pwm_loongson_set_polarity(struct pwm_chip *chip, struct pwm_d=
-evice *pwm,
-> +				     enum pwm_polarity polarity)
-> +{
-> +	struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +	u16 val;
-> +
-> +	val =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +
-> +	if (polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		/* Duty cycle defines LOW period of PWM */
-> +		val |=3D PWM_CTRL_INVERT;
-> +	else
-> +		/* Duty cycle defines HIGH period of PWM */
-> +		val &=3D ~PWM_CTRL_INVERT;
-> +
-> +	pwm_loongson_writel(ddata, val, PWM_CTRL);
-> +
-> +	return 0;
-> +}
-> +
-> +static void pwm_loongson_disable(struct pwm_chip *chip, struct pwm_devic=
-e *pwm)
-> +{
-> +	struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +	u32 val;
-> +
-> +	if (pwm->state.polarity =3D=3D PWM_POLARITY_NORMAL)
-> +		pwm_loongson_writel(ddata, ddata->period, PWM_DUTY);
-> +	else if (pwm->state.polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		pwm_loongson_writel(ddata, 0, PWM_DUTY);
-> +
-> +	val =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +	val &=3D ~PWM_CTRL_EN;
-> +	pwm_loongson_writel(ddata, val, PWM_CTRL);
-
-Technically it's not needed to configure the duty. A consumer who
-expects a certain behaviour is supposed to not disable the PWM.
-
-> +}
-> +
-> +static int pwm_loongson_enable(struct pwm_chip *chip, struct pwm_device =
-*pwm)
-> +{
-> +	struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +	u32 val;
-> +
-> +	pwm_loongson_writel(ddata, ddata->duty, PWM_DUTY);
-> +	pwm_loongson_writel(ddata, ddata->period, PWM_PERIOD);
-
-pwm_loongson_enable() is called from pwm_loongson_apply() and PWM_DUTY and
-PWM_PERIOD were already written there. So please either only write it
-once, or add a code comment about why writing twice is needed.
-
-> +	val =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +	val |=3D PWM_CTRL_EN;
-> +	pwm_loongson_writel(ddata, val, PWM_CTRL);
-> +
-> +	return 0;
-> +}
-> +
-> +static u32 pwm_loongson_set_config(struct pwm_loongson_ddata *ddata, int=
- ns,
-> +				   u64 clk_rate, u64 offset)
-> +{
-> +	u32 val;
-> +	u64 c;
-> +
-> +	c =3D clk_rate * ns;
-
-That migth overflow?!
-
-> +	do_div(c, NSEC_PER_SEC);
-> +	val =3D c < 1 ? 1 : c;
-
-That smells fishy. If a period (or duty_cycle) is requested that is too
-small to be implemented, let .apply() return -EINVAL.
-
-> +	pwm_loongson_writel(ddata, val, offset);
-> +
-> +	return val;
-> +}
-> +
-> +static int pwm_loongson_config(struct pwm_chip *chip, struct pwm_device =
-*pwm,
-> +			       int duty_ns, int period_ns)
-> +{
-> +	struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +	struct device *dev =3D chip->dev;
-> +	u64 clk_rate;
-> +
-> +	if (duty_ns > NANOHZ_PER_HZ || period_ns > NANOHZ_PER_HZ)
-> +		return -ERANGE;
-
-Nope, that's wrong. Please configure the biggest possible period not
-bigger than the requested period. So something like:
-
-	period_ns =3D min(period_ns, NANOHZ_PER_HZ);
-
-; ditto for duty_cycle.
-
-> +	clk_rate =3D has_acpi_companion(dev) ? PWM_FREQ_STD : clk_get_rate(ddat=
-a->clk);
-> +
-> +	ddata->duty =3D pwm_loongson_set_config(ddata, duty_ns, clk_rate, PWM_D=
-UTY);
-> +	ddata->period =3D pwm_loongson_set_config(ddata, period_ns, clk_rate, P=
-WM_PERIOD);
-> +
-> +	return 0;
-> +}
-> +
-> +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *=
-pwm,
-> +			      const struct pwm_state *state)
-> +{
-> +	int err;
-> +	bool enabled =3D pwm->state.enabled;
-> +
-> +	if (state->polarity !=3D pwm->state.polarity) {
-> +		if (enabled) {
-> +			pwm_loongson_disable(chip, pwm);
-> +			enabled =3D false;
-> +		}
-> +
-> +		err =3D pwm_loongson_set_polarity(chip, pwm, state->polarity);
-> +		if (err)
-> +			return err;
-> +	}
-> +
-> +	if (!state->enabled) {
-> +		if (enabled)
-> +			pwm_loongson_disable(chip, pwm);
-> +		return 0;
-> +	}
-> +
-> +	err =3D pwm_loongson_config(chip, pwm, state->duty_cycle, state->period=
-);
-
-state->duty_cycle is an u64, however it's truncated to an int here.
-
-> +	if (err)
-> +		return err;
-> +
-> +	if (!enabled)
-> +		err =3D pwm_loongson_enable(chip, pwm);
-> +
-> +	return err;
-> +}
-> +
-> +static int pwm_loongson_get_state(struct pwm_chip *chip, struct pwm_devi=
-ce *pwm,
-> +				  struct pwm_state *state)
-> +{
-> +	struct pwm_loongson_ddata *ddata =3D to_pwm_loongson_ddata(chip);
-> +	u32 period, duty, ctrl;
-> +	u64 ns;
-> +
-> +	ctrl =3D pwm_loongson_readl(ddata, PWM_CTRL);
-> +	state->polarity =3D (ctrl & PWM_CTRL_INVERT) ? PWM_POLARITY_INVERSED : =
-PWM_POLARITY_NORMAL;
-> +	state->enabled =3D (ctrl & PWM_CTRL_EN) ? true : false;
-> +
-> +	duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
-> +	ns =3D duty * NSEC_PER_SEC;
-> +	state->duty_cycle =3D do_div(ns, duty);
-> +
-> +	period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
-> +	ns =3D period * NSEC_PER_SEC;
-> +	state->period =3D do_div(ns, period);
-> +
-> +	ddata->ctrl =3D ctrl;
-> +	ddata->duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
-> +	ddata->period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
-
-The rounding looks wrong. Did you test with PWM_DEBUG enabled?
-
-I think the value assigned to ddata->period and the other members isn't
-used. Unless I'm mistaken, please drop the assignment.
-
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops pwm_loongson_ops =3D {
-> +	.apply =3D pwm_loongson_apply,
-> +	.get_state =3D pwm_loongson_get_state,
-> +};
-> +
-> +static int pwm_loongson_probe(struct platform_device *pdev)
-> +{
-> +	struct pwm_loongson_ddata *ddata;
-> +	struct device *dev =3D &pdev->dev;
-> +
-> +	ddata =3D devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
-> +	if (!ddata)
-> +		return -ENOMEM;
-> +
-> +	ddata->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ddata->base))
-> +		return PTR_ERR(ddata->base);
-> +
-> +	if (!has_acpi_companion(dev)) {
-> +		ddata->clk =3D devm_clk_get_enabled(dev, NULL);
-> +		if (IS_ERR(ddata->clk))
-> +			return PTR_ERR(ddata->clk);
-
-error message with dev_err_probe() please.
-
-> +	}
-> +
-> +	ddata->chip.dev =3D dev;
-> +	ddata->chip.ops =3D &pwm_loongson_ops;
-> +	ddata->chip.npwm =3D 1;
-> +	platform_set_drvdata(pdev, ddata);
-
-The effect of platform_set_drvdata is used in .suspend below, however
-there you use dev_get_drvdata on &pdev->dev. For symmetry I suggest to
-use dev_set_drvdata(dev, ddata) here.
-
-> +	return devm_pwmchip_add(dev, &ddata->chip);
-
-error message iwth dev_err_probe() please (if it fails).
-
-> +}
-> +
-> [...]
-> +static struct platform_driver pwm_loongson_driver =3D {
-> +	.probe  =3D pwm_loongson_probe,
-> +	.driver =3D {
-> +		.name   =3D "loongson-pwm",
-> +		.pm	=3D pm_ptr(&pwm_loongson_pm_ops),
-> +		.of_match_table   =3D pwm_loongson_of_ids,
-> +		.acpi_match_table =3D pwm_loongson_acpi_ids,
-
-This alignment looks really ugly. Please use a single space before the
-=3D. (Or if you must, properly align the =3D.)
-
-> +	},
-> +};
-> +module_platform_driver(pwm_loongson_driver);
-> +
-> +MODULE_DESCRIPTION("Loongson PWM driver");
-> +MODULE_AUTHOR("Loongson Technology Corporation Limited.");
-> +MODULE_LICENSE("GPL");
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---7c3t7av3wh3yxy4m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZPb1EACgkQj4D7WH0S
-/k7HxAgAu4SkCeoPLMhJTdbgvmSQm+Ju8Hjm6gxtPviGX7wkDPprNKGOHgiS8Xp7
-G3ofUkekEp79nZXb37BrUbd1mu0kkh1WL8PguByZ3KpedU2SGFY0k2fhstpMSjPe
-Vd96GyjvCmlWL5G3a2diZyu1KrGNJQZKcEDad4aSqPftzzC8oNWcfn3li4SFE9ze
-QqETg54U+5fziazI2Z7/73vwnya0hn6kIvQWwWuAUXdQLqNFbypOIbR+NOHnEz8V
-LyZHe5KlnTHitay5rttTfdjK24SjVp4MBuKrq/ZhZ9uQ+mwz4BNn12aG/AMlPHVJ
-qjIpewCPxpVHIkD/LDRuu/f+fBKuIQ==
-=UFZo
------END PGP SIGNATURE-----
-
---7c3t7av3wh3yxy4m--
+Best regards,
+Javier Carrasco
 
