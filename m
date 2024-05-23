@@ -1,60 +1,89 @@
-Return-Path: <devicetree+bounces-68760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B938CD772
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 17:42:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3A68CD79E
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 17:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 404E6B2112B
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:42:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EEEE1F224DD
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B12E11723;
-	Thu, 23 May 2024 15:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED0512E48;
+	Thu, 23 May 2024 15:48:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TmTOoMyj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aC7h3/wF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F4811C92;
-	Thu, 23 May 2024 15:42:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8477E134A8;
+	Thu, 23 May 2024 15:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716478934; cv=none; b=eSO98gtgaILFvgiBm87dfxEvIZKivW/G1xxv6YW3e5rVf5mbItIt3MczAzJMPXin7Udtap0ZKnZvV4wRLOu+PV55aM916BzLVaWUXXOdL280V4rH+0T9asZ01KkMYNFZJCdzqvDJLrrIoFyhCZ6UDAYpbczefMxdjpPkH43DVyc=
+	t=1716479283; cv=none; b=cfABsSjnQQIAc2eaCKU9QgbN6aotV0t2KmA7MmxmFNy87lcqcSln443R8ukOt+DH4ax5RDrmXVTCL7Y8RjbAfjrh9Hvxmgif4q69Dvd3o2nb4SujsuAvx4BuOLAcT0rejvKZcfjRGSFLpSoffZOAtjS9//Hmj/yxCcmemEDdkE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716478934; c=relaxed/simple;
-	bh=OtxukrI3lmyoMlT+l5Ie/gSVMik7bPQsqTVX7bxFcZ8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iJDDH533goVRqAk0xBIOSK0jsTc8cVhh83bFoVktvlGbrK0hjG9Jznxpk60WclvAH7C4/kJiaUSDl3FBsScC+iHM+33Co3T3sROYkjiW34nt+hpTbwfGFzvM85v1wBMB7bab9LDpGOuVsEKsVw5C2KFIlMHaXQoWU4irpP8Knvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TmTOoMyj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E2EC32782;
-	Thu, 23 May 2024 15:42:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716478934;
-	bh=OtxukrI3lmyoMlT+l5Ie/gSVMik7bPQsqTVX7bxFcZ8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=TmTOoMyjoDLo+ENuTeUkDEt6IzrGwVU7KAAkBBXE4Dz3Wx8insM0cZGNIDQc8vYDp
-	 kucJWipukZvKjZYEzdEAbI968h51Q+tWTIYJo0oj+zeXvOOoO8xxIlmoxva7TAOLf0
-	 N74FlMW2BbZ0xhQPpSM6zrPLB/pjzrdn+eo9ZQWweJ4endQV+ThtABs75DMy2hkF7N
-	 O821UKg5s4JqhsV80bEUc2EUe3lH85csw5sfIPjDEYFT4zfD8/JyMORGV6SVlpLhrl
-	 sWCZ3WXa81vne1n2zlkI1Xt456DO9J6lWr9+L58hhrWKiDLsYj/y3W+h2P1ZWdlMEq
-	 CCk8frkxQIQ4Q==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1716479283; c=relaxed/simple;
+	bh=ZHnkNKioKAsUjiXsf6jPQAnEKGSvbHAO3srMeXpA3fQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=q5A+GAS5xfRSN+b/s2YEYZMNXlALE0BqIrYBxWThcGjlmevNfN98m+7BFZGvY8GxdaBx4Hrbub2ssxi4Upj9qSQLyayeyj7bFfJn4144yHxem8iTV5ZIBQe20SvmErlF1CAeUa3z6nr6DYypk220QfirPry0xlhCU2BKm/3jlwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aC7h3/wF; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1ee0132a6f3so19216665ad.0;
+        Thu, 23 May 2024 08:48:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716479282; x=1717084082; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o78m7F2cS5EFemgK8KupdgtjgpDVHetWIF7RgPFVkmY=;
+        b=aC7h3/wFlG+kmPo2X+ibumjsiIzuWZ2d45KMdYg8og2xXtT2KL26n6B/XZ2KtCDU4b
+         szMqlEAVBvh9siHy0tL90l8S0CD0jh3kTC4mku5Ezf0rwDfr1sihtAQW9GRlrye9201D
+         ZHOXIrLE9vcSGnEsVkqYBtHbdPKOYosXBEK/ktJIetYY86ULu6/Z508iKLuwb0XyzaAD
+         jsMVPnmELyaL+vir7hkMH3oYC0CEYoWn5r2AI46pnnTP1n81iX7XUD3WE7C2ak3y3a/n
+         eKDzTe3TNpEQKmg967Ne/9KRVnwRzaB6A/ImWcurybPr+KmvDUOJLb9uDXO8ZgJGr4Uw
+         scgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716479282; x=1717084082;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o78m7F2cS5EFemgK8KupdgtjgpDVHetWIF7RgPFVkmY=;
+        b=l/IfsTb45yx5Ep1zEREHAcp86Hg7pF4nEX49os4Pqe32OmUd5EjskmM2RsGGsXT+dr
+         Z/yO0mO4W1GIIe5C6tj26Z1F3KS7Aczj5Het7Xx+2154yqSVsQSVIV3u8fltOZuPsCMy
+         pi+FFvyc+hncDpOHED30ImnXBA05cH2rL5xRwFrOel4QuBglpmeFRug2U+kJ60DLFCi8
+         LCHqaWilBMNw2tmUEBeZmz6JgVg2lHpGCRzEFtJG6o9VRiDP3b1k2jov18fH4uNW5bdD
+         YT5PYetBpt6grZmFx55kQ2YoLHt9Zaeb3e0qAuVWnuj2XIVCUh1Z1c/8m5ndOHZdmnNw
+         RbHg==
+X-Forwarded-Encrypted: i=1; AJvYcCXzGGJ2/F3QnIPGeCmi9SBNpD3sNjgU5pP9s0949uqFz4donDWhkP7S/EnZgvJZL8FCJv56KwC6aiOoxK9CZnhOg5X0YKhIDa5CVcXBEdWT2HbXh1ooJOpp/uNc1oXf/s8+B4/JgSxrcA==
+X-Gm-Message-State: AOJu0Yz2Dt1uT4GFhfuRBY3veo5DZ7vuI/EDlO4aD1jOrW7HUpj4T9GS
+	xUxiMWGMigFpoeUSHZOmaYeIKemhz0MnZcJhKnb+LSUfBXAwHHcy
+X-Google-Smtp-Source: AGHT+IF4h9aBQCAvqJguyc60LZJdBtiCQ1a9fs+Yy1U0Hmo3zlBITbxQlQVsAh2MWnwEKIk4VYa9SA==
+X-Received: by 2002:a17:902:dad1:b0:1f3:4945:28af with SMTP id d9443c01a7336-1f349452ae3mr13316705ad.11.1716479281862;
+        Thu, 23 May 2024 08:48:01 -0700 (PDT)
+Received: from localhost.localdomain ([223.178.81.93])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-1f3361a6678sm18321085ad.178.2024.05.23.08.47.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 May 2024 08:48:01 -0700 (PDT)
+From: Kanak Shilledar <kanakshilledar@gmail.com>
+X-Google-Original-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+To: 
+Cc: Kanak Shilledar <kanakshilledar111@protonmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Fabien Dessenne <fabien.dessenne@foss.st.com>,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: stm32: st,mlahb: Drop spurious "reg" property from example
-Date: Thu, 23 May 2024 10:42:07 -0500
-Message-ID: <20240523154208.2457864-1-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [RESEND v3 0/2] dt-bindings: interrupt-controller: riscv,cpu-intc
+Date: Thu, 23 May 2024 21:17:46 +0530
+Message-Id: <20240523154748.22670-1-kanakshilledar111@protonmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,37 +92,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-"reg" is not documented nor used for st,mlahb, so drop it from the
-example to fix the warning:
+This series of patches converts the RISC-V CPU interrupt controller to
+the newer dt-schema binding.
 
-Documentation/devicetree/bindings/arm/stm32/st,mlahb.example.dtb: ahb@38000000: Unevaluated properties are not allowed ('reg' was unexpected)
-        from schema $id: http://devicetree.org/schemas/arm/stm32/st,mlahb.yaml#
+Patch 1:
+This patch is currently at v3 as it has been previously rolled out.
+Contains the bindings for the interrupt controller.
 
-Since "reg" is dropped, the unit-address must be as well.
+Patch 2:
+This patch is currently at v3.
+Contains the reference to the above interrupt controller. Thus, making
+all the RISC-V interrupt controller bindings in a centralized place.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+These patches are interdependent.
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml b/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
-index d2dce238ff5d..3e996346b264 100644
---- a/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
-+++ b/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
-@@ -54,11 +54,10 @@ unevaluatedProperties: false
- 
- examples:
-   - |
--    mlahb: ahb@38000000 {
-+    ahb {
-       compatible = "st,mlahb", "simple-bus";
-       #address-cells = <1>;
-       #size-cells = <1>;
--      reg = <0x10000000 0x40000>;
-       ranges;
-       dma-ranges = <0x00000000 0x38000000 0x10000>,
-                    <0x10000000 0x10000000 0x60000>,
+Kanak Shilledar (2):
+  dt-bindings: interrupt-controller: riscv,cpu-intc: convert to dtschema
+  dt-bindings: riscv: cpus: add ref to interrupt-controller
+
+ .../interrupt-controller/riscv,cpu-intc.txt   | 52 -------------
+ .../interrupt-controller/riscv,cpu-intc.yaml  | 73 +++++++++++++++++++
+ .../devicetree/bindings/riscv/cpus.yaml       | 21 +-----
+ 3 files changed, 74 insertions(+), 72 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,cpu-intc.yaml
+
+
+base-commit: 20cb38a7af88dc40095da7c2c9094da3873fea23
 -- 
-2.43.0
+2.34.1
 
 
