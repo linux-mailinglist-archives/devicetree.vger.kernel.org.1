@@ -1,106 +1,193 @@
-Return-Path: <devicetree+bounces-68773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED9C8CD89F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:44:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 833F78CD8B3
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:52:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EA0E1F2169E
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:44:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38B81281E01
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF741B7FD;
-	Thu, 23 May 2024 16:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dHdg/qDv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4B81BF3F;
+	Thu, 23 May 2024 16:52:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B760418633
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 16:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1912C1A2;
+	Thu, 23 May 2024 16:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716482671; cv=none; b=pBKhBrTSNfhWCWeLyyZCyYrnKTTDOv9Gc/yGSiQGOJDGTuAJTQ5ZHDMNvz4vTi483F0xiPjAPSgKsle+WjjwHIYl2oDHyoj0xWoskowQo3s9bbrLTVaFcnX3BfazOfj12DU3LJG7mQjAnAaiQnsAMIpC6pgKuc5Z8IRuQ/+yZsM=
+	t=1716483160; cv=none; b=dX7iXHbN/U28WzQH13iQiSKGBQAWsCB+rPnZWf9A1jGGEeT17cHYJN9fahCkzgVd7B/XGWWWvhhLosYg2sUoDhHOVt93CmAUZs1Y4OLFbPX+Aunt5dyrf7cxNFRqS4uIYAhgL9P3T7C7G7RErb5O9+EFuuyBDuBzkwgQ4/lX1kA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716482671; c=relaxed/simple;
-	bh=HPT2RRVWhwMnX33TN37zfYv6LrIgtDsgNFtTyyUEQ3Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NbgDwlMR6X5w+xqmEDCE8GboPbqpPWu+T9n9USM7qPIXc5JFP53UceWec8ShFuSWwivqDX3woPGDFS0Yfh39veLm8/W+QxLFI24NE4DNGJcjLdN6zBv9o54tUuk2OFspzeYFaAntsxTiLkzOITmWeDDl6+BAhD3bdj9olhWwu5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=dHdg/qDv; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1716482668;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HPT2RRVWhwMnX33TN37zfYv6LrIgtDsgNFtTyyUEQ3Q=;
-	b=dHdg/qDv5LneIbfnYG0O9Y6i/J9CIU7wMyvuuQBxVS5wDdcIilJAd/iBfpY95In32IbskY
-	o4aTnlF4i0VLV4gOlX/++qV36vAKZ5NtyAaxLCiSfPmfbdi6sDIfv1kpdGkZFmAQkzSrXs
-	WxoirvSnleJiJtmmMBMLmyvEjrDSGTQ=
-Received: from mail-vk1-f200.google.com (mail-vk1-f200.google.com
- [209.85.221.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-635-Iag2w_LyPJyUnmGSynQ8sA-1; Thu, 23 May 2024 12:44:27 -0400
-X-MC-Unique: Iag2w_LyPJyUnmGSynQ8sA-1
-Received: by mail-vk1-f200.google.com with SMTP id 71dfb90a1353d-4df77ebd825so133725e0c.0
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 09:44:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716482667; x=1717087467;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HPT2RRVWhwMnX33TN37zfYv6LrIgtDsgNFtTyyUEQ3Q=;
-        b=gY1Gv8GAXNiQ14Ti3qt3evYTg7goDfyCIC6Kx8LNB3KvZ31k68b9xeUtMzDQry+CmC
-         FBjCaDDLVv5vbiy8y8/cgvBbpd4bc3A7m3bdX0f1/WDUvubUjBrwWznleQHHeXpsyE6n
-         yJ8wCvZ7/7sEFqJUhv3c6TKF30DiIuAC9q6aOeQOl/Ztjed+GXR90n0WJ4CvtrlzPUzj
-         V2FDVG+kkevU9ZFQGHMD6SHPtzs4pglCF9lZw00TCXUF5grYQkyLVmlTzXGW4LixkTkQ
-         TPEHIKbsTC1ad5dk7P0AtFp/SPfd5akfvM41izlUA2ZlIE20IUT1bGXCKJW12zokseyC
-         OBjw==
-X-Forwarded-Encrypted: i=1; AJvYcCUNTlMOnrlYuCoEMbvKurmaGL0Xa6vrO9BPLRp0mE6nlXk3+5GjGqd7nw8fznZANgNFPFHYUhWF6hN1qtyFcz9eJJQYgjR3yJCrIA==
-X-Gm-Message-State: AOJu0Ywp5zPhcoqxpCZv1DFj6Tbh7C42q3jKLaJRk6CroS5CMYCEd+nO
-	Wp0GkiqzVq9EyIEl7m9/XakRLejRqp+duvJnntdlQNmMEfEFBX3fEWWsZp0fvtMDJiOKmU04QMh
-	vW0zV3q06rVnswqsvKM7GRxCqjQwPFbmT6UVTuVjgFlohhYxAX00AY169SZ4=
-X-Received: by 2002:a05:6122:3122:b0:4e4:ee6b:1783 with SMTP id 71dfb90a1353d-4e4ee6b196bmr530993e0c.5.1716482666419;
-        Thu, 23 May 2024 09:44:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFLBwTV5zswphEdhcg5dwd3Tg7XgWPeJ+Fd7A2WYQ8yqdldsjVOD91qLK0HSFYF757vHRP9lQ==
-X-Received: by 2002:a05:6122:3122:b0:4e4:ee6b:1783 with SMTP id 71dfb90a1353d-4e4ee6b196bmr530936e0c.5.1716482665365;
-        Thu, 23 May 2024 09:44:25 -0700 (PDT)
-Received: from x1gen2nano ([2600:1700:1ff0:d0e0::13])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ab8ca20630sm11394766d6.92.2024.05.23.09.44.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 May 2024 09:44:25 -0700 (PDT)
-Date: Thu, 23 May 2024 11:44:22 -0500
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Ravi Gunasekaran <r-gunasekaran@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, srk@ti.com, rogerq@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] Add USB 3.0 support for J784S4
-Message-ID: <4rtzlvbfkvkomdteic2intesanf3udwfqg56vtzrghe2h46qrd@udzkjofpndqe>
-References: <20240507095545.8210-1-r-gunasekaran@ti.com>
+	s=arc-20240116; t=1716483160; c=relaxed/simple;
+	bh=Jw3ekEjuKFoUIPIkpKYN7WVXSRJdpf5zIWvM7wH9bGc=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nJootb7nBbjK2Tv2dWChqvR+YQIk3sEvekEiADSUY3XvqfDdl8kdivuwQtw+O8hicFmzQChbsjifthtqjRGoXFINs7ccm2w6P09xj9vZEezxx+znIEL8ih3obIHmrGvQQzP9GZcgFP5dwGCVXjBz6JUXajvioWgdAmgUTmVU7Rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VlZ2R0BRjz6K9Nl;
+	Fri, 24 May 2024 00:51:43 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id A1E301400DB;
+	Fri, 24 May 2024 00:52:34 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 23 May
+ 2024 17:52:34 +0100
+Date: Thu, 23 May 2024 17:52:33 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Jonathan Cameron <jic23@kernel.org>, "David
+ Lechner" <dlechner@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, "Liam
+ Girdwood" <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Dimitri
+ Fedrau" <dima.fedrau@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Michael
+ Hennerich" <michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<noname.nuno@gmail.com>
+Subject: Re: [PATCH v2 1/5] iio: ABI: Generalize ABI documentation for DAC
+Message-ID: <20240523175233.00006e8b@Huawei.com>
+In-Reply-To: <20240523031909.19427-2-kimseer.paller@analog.com>
+References: <20240523031909.19427-1-kimseer.paller@analog.com>
+	<20240523031909.19427-2-kimseer.paller@analog.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240507095545.8210-1-r-gunasekaran@ti.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Tue, May 07, 2024 at 03:25:43PM GMT, Ravi Gunasekaran wrote:
-> J784S4 has one USB sub system.
-> This series adds and enables support for USB 3.0 for
-> J784S4 EVM.
+On Thu, 23 May 2024 11:19:05 +0800
+Kim Seer Paller <kimseer.paller@analog.com> wrote:
 
-For the series:
+> Introduces a more generalized ABI documentation for DAC. Instead of
+> having separate ABI files for each DAC, we now have a single ABI file
+> that covers the common sysfs interface for all DAC.
+>=20
+> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+>  Documentation/ABI/testing/sysfs-bus-iio-dac   | 61 +++++++++++++++++++
+>  .../ABI/testing/sysfs-bus-iio-dac-ltc2688     | 31 ----------
+>  MAINTAINERS                                   |  8 +++
+>  3 files changed, 69 insertions(+), 31 deletions(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-dac b/Documentation/=
+ABI/testing/sysfs-bus-iio-dac
+> new file mode 100644
+> index 000000000000..53d5213520c6
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-dac
+> @@ -0,0 +1,61 @@
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_toggle_en
+> +KernelVersion:	5.18
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Toggle enable. Write 1 to enable toggle or 0 to disable it. This is
+> +		useful when one wants to change the DAC output codes. The way it should
+> +		be done is:
+> +
+> +		- disable toggle operation;
+> +		- change out_currentY_raw0 and out_currentY_raw1;
 
-Tested-by: Andrew Halaney <ahalaney@redhat.com> # k3-j784s4-evm
+Generalize to [0...N] or something like that to allow more symbols.
 
-Thanks for the patches!
-Andrew
+> +		- enable toggle operation.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_raw0
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_raw1
+> +KernelVersion:	5.18
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		It has the same meaning as out_currentY_raw. This attribute is
+> +		specific to toggle enabled channels and refers to the DAC output
+> +		code in INPUT_A (_raw0) and INPUT_B (_raw1). The same scale and offset
+> +		as in out_currentY_raw applies.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_currentY_symbol
+> +KernelVersion:	5.18
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Performs a SW toggle. This attribute is specific to toggle
+> +		enabled channels and allows to toggle between out_currentY_raw0
+> +		and out_currentY_raw1 through software. Writing 0 will select
+> +		out_currentY_raw0 while 1 selects out_currentY_raw1.
+Perhaps write this more generally.  The ABI handles more than 2 symbol valu=
+es.
+
+                Performs a SW switch to a predefined output symbol, allowing
+		switching between current symbol A with output
+		out_currentY_rawA and new symbol B with output
+		out_currentY_rawB by writing integer value B.
+=20
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_toggle_en
+> +KernelVersion:	5.18
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Toggle enable. Write 1 to enable toggle or 0 to disable it. This is
+> +		useful when one wants to change the DAC output codes. The way it should
+> +		be done is:
+> +
+> +		- disable toggle operation;
+> +		- change out_voltageY_raw0 and out_voltageY_raw1;
+> +		- enable toggle operation.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_raw0
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_raw1
+> +KernelVersion:	5.18
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		It has the same meaning as out_voltageY_raw. This attribute is
+> +		specific to toggle enabled channels and refers to the DAC output
+> +		code in INPUT_A (_raw0) and INPUT_B (_raw1). The same scale and offset
+> +		as in out_voltageY_raw applies.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/out_voltageY_symbol
+> +KernelVersion:	5.18
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Performs a SW toggle. This attribute is specific to toggle
+> +		enabled channels and allows to toggle between out_voltageY_raw0
+> +		and out_voltageY_raw1 through software. Writing 0 will select
+> +		out_voltageY_raw0 while 1 selects out_voltageY_raw1.
+
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 758c202ec712..b3be54c09159 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12850,6 +12850,14 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
+>  F:	drivers/iio/dac/ltc1660.c
+> =20
+> +LTC2664 IIO DAC DRIVER
+> +M:	Michael Hennerich <michael.hennerich@analog.com>
+> +M:	Kim Seer Paller <kimseer.paller@analog.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Supported
+> +W:	https://ez.analog.com/linux-software-drivers
+> +F:	Documentation/ABI/testing/sysfs-bus-iio-dac
+
+As it's a general doc, doesn't really belong in a driver specific entry.
+So far we haven't listed these generic docs as having specific maintainers
+and people have to rely on history to figure out who to cc.
+
+> +
+>  LTC2688 IIO DAC DRIVER
+>  M:	Nuno S=E1 <nuno.sa@analog.com>
+>  L:	linux-iio@vger.kernel.org
 
 
