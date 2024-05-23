@@ -1,405 +1,583 @@
-Return-Path: <devicetree+bounces-68710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16E68CD20E
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:15:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 000648CD219
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:16:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FBE91F22ABA
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 12:15:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52690B2232D
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 12:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50976146D69;
-	Thu, 23 May 2024 12:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D1513B7A6;
+	Thu, 23 May 2024 12:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A04jUYRV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A3eykaOw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8684A13EFFB;
-	Thu, 23 May 2024 12:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3493E1411F5;
+	Thu, 23 May 2024 12:15:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716466481; cv=none; b=K6MZrSsHTqowEFRkkmoOm4PR9teXnk1SXdB5POgkCt6piB9hrxTU7UaScz4+LsQxYXrI9L6VDJswQ1465Qw+hkZvgU3Xwt3Mx1Qjb4U4xSamBzRx9k6dXvt4ysouKL7ej20ykqeLroxfqcVntpBFKCbWGTarlarMORdkTduS9B0=
+	t=1716466541; cv=none; b=ZuWDInFae3ddTfpfQcc+R/yGCdFBBLbuJG6BTIlbRRC3hGnW7LMaPRICbky4vzRAPKjr1Vt873YkxFJ+UYCOeNUXFI5F4COpb1pRcbYATRodDLzWmFTKwfc8ECKlKzWV40RGq4wkwtgiQAQ5gB4I50KYAtIg81oIoAV2I2U5fhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716466481; c=relaxed/simple;
-	bh=xZIpJivLu+N2qKC2v6ld7pqDHFIxvM1aDec54BJF83E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=INtuBuQ1hA872vQzxM5L8lsc0gGOJYcU2MtPr6tbfGfoCjvCfi25H+iBSk3TwfcOqFv2NK6f+5efm0LESW2CIWPQQQU5pYaqgoSNPx4BJwvzU4gd6+VbTwrWmYuHv0e4aHuS7ULWZdBl/0xB5BpjxTfqt0Apuwse6PfYr65hnu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A04jUYRV; arc=none smtp.client-ip=209.85.215.179
+	s=arc-20240116; t=1716466541; c=relaxed/simple;
+	bh=zcxuAOD4i6pHaaLAt7XTmOC0aa1iB+GpCJJwi6anzis=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ux8SrmpaVo2GgZ1aRwA/Uqx6YyzaCiLhk/v8L1v78a/nGfQxSQECsOkhASyqOY11Tq0Uc+RkCEteVzYy8odZKcE+E+OSZUQiGPyF8MSy0yqtGp6d1tnG5+9VEjKwubdJz0t0hU/IBs68oXNFYDD5lMs2w6472i6g856N8xQg4GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A3eykaOw; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-652fd0bb5e6so2132539a12.0;
-        Thu, 23 May 2024 05:14:39 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-572af0b12b8so11270388a12.2;
+        Thu, 23 May 2024 05:15:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716466479; x=1717071279; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S3oL0hJH9iQZa7HT6bN1XrGAdgrVd/JpkMuhPZJ+FSA=;
-        b=A04jUYRVfkecPE4juj+E73SWD9wyvOdkjOGW7vaRecaNkDOmHTFhcVjMk+Z0w6E/Be
-         pwcZrDvslDqUjrRhO+SWHqOoGEqjvD9KYiMKIWi2rWuWxg2jqekH3uOGXURXWTc1wzX8
-         wDnOsTOvXWYwKJWDweOdTulQJvIq6RhFfaRRGCLL54r5Xoyvpk1IvJajFMCWFAPMIDvH
-         tcLqoFN/HtFMT0P2GsFMtpmrkbbZYoLCGSb5mWxIgKwX5hoTCiiFSrDDlUtDbT1iTukL
-         F09dqGMo9GOzwiRYEpdRGfWozqWq/8+YLbMo8hwKy1kVUINZt2YLFPQhV5Vecl6k8dmz
-         Yu+A==
+        d=gmail.com; s=20230601; t=1716466537; x=1717071337; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zcxuAOD4i6pHaaLAt7XTmOC0aa1iB+GpCJJwi6anzis=;
+        b=A3eykaOw+2FISrhlCDMILe9dvGFxonuCy2avXlMoUohJ2dHtmAoY+5btSDwmmrkZN6
+         A7JPEmkGfoorhXt7cu9fBwXR5qUf56iclhHQT+zIHVdx7IEsL0T33GQtFopP38rg3AEd
+         n+droqWzCk5eUTYpgjJuoPh+GqbJMV0c9HjZSLmKxm5IA+6gHwnbjSW9WCIX/2MSIAGN
+         LLt3iOP/9Lx54rLH+HSLkAOfbswR7RmMMhRsvdSNq6JPQJFtWrO6kb1PUWt1NcT1FoBi
+         Bs2oFnEeaqV6FmAomASpk7ZULwImbM8FxeN7f/0OtCZo+mDaBkf3vu8TvcGZhOOYlNV1
+         Bjww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716466479; x=1717071279;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S3oL0hJH9iQZa7HT6bN1XrGAdgrVd/JpkMuhPZJ+FSA=;
-        b=RtZGkGuPn0nSmyjXLvdf0U1SYH2DjpPDnszcYnwC13FrwbyoLC9tMKK/KyDbuihJul
-         g5BKi4TKao3UYfKi0gkK4zzN7G043sSC3VSbFyolJvJ066bq+XhbtdIqF9BXdB7HxB1H
-         1RjzMUYvR/+kHm9wd3cbymij/ahdmByPl6+8OjfC38MyZHNAPwbKhN+m/1ir2Qk6SSQx
-         EzGJvqYgYvfH7Nj4x4RV5d76INExHyE5r0BOMV81txE7bPNoJjShP6F+F+3P/vHJLgS+
-         PzpjW2O/15f4Oq74aPSHE8MqJqGhk3KvcL5edqaYh+hk3+TYnZpktydoDEcZRmzrZyVU
-         J+Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCUPN1Si9bD6EyK1X11plpwbos4RCqkUY2o82twu1NRm/awE7UkA2RHuAE7PHygH6Nf6Z0+M2Cqu43TkrNXTDcY1Nzamena1+eJMS3X9gUjqLqVj4uAJlGd5vHD4qEKDkaDL+SFBcl1+XEbMnM6BJEBC4XuAEympXMz4xSGdu9FslqKKnILbIC6xr11WZAHOcqd0d8qneOBU54XNYPjuWPLVZNQ=
-X-Gm-Message-State: AOJu0Yw6MxxyHBgAS6atSPTSstktZ96hahiGjlAHNCQgs1SkGKlEfGqh
-	PKuotP1U9hSZRea5r7I1IC/sWnO7WDJmCyLA8piixL60XU7365+CKpLee9yG/VXZtd1zmYxl5Oy
-	QXmxXbVFvGhW/pkpB17KIC/m3dUw=
-X-Google-Smtp-Source: AGHT+IHw9ZZCHWpxNboaptDkdVdr8T+p7xebRwOl0Rjt8m+lhfKDa/C5Cw+D+Bez4Rundj6pGONwEyaKDtN6PK/SNng=
-X-Received: by 2002:a17:90a:c907:b0:2bd:edbe:4e1 with SMTP id
- 98e67ed59e1d1-2bdedbe0512mr984702a91.31.1716466478558; Thu, 23 May 2024
- 05:14:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716466537; x=1717071337;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zcxuAOD4i6pHaaLAt7XTmOC0aa1iB+GpCJJwi6anzis=;
+        b=EvUA9nnUQtGcLDLCg/mhMpHzOldwoNXpQG5JZ+D6qqzhNdxJEPeWaf2/R8xVYPtYds
+         AR5dMcNUgv2OCumk9WViaoH7hAlLIzSP2kljUestdptx/icbiJ4rGHTi7RMmFKed6IFl
+         +ynWZpVIgGbdJiHKeogBGYIQx+PhOI6nGJjgmwd+sNXjwadqqGkiGhovhAxSuUTwEd88
+         caILaI8MyXP8uwMOuerQvfK89gegeaJjTf0ilAKKl7MNjiwpoETbRoctuuCSI911A42q
+         hOfqM4fRmZUTp5o31ZWPddgo5Tqad6A10QtvLNF8p4729lyhU+7dV8utG3AhKBuujTL1
+         cfvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUEhBYK84ViQ93QdtZpPEAc3qobsxbPXxYOPLNQ1cHNd7iR3rG+j+7h0Wplhsy1eCzJgfJ2+ZDMabwAHNgT3xLw3YfqduvV1rBUcTF0jLK6582cK7Pv3/7iEF0fajawaEiFnjtJ9BCkqjxmM0wk2AyJwhvSp1t7Nn8r1wcHuJ9OWkGkSJ+U2QpBJpkTIaGYnv9y8rgYP/sH3fvIviVJrQ==
+X-Gm-Message-State: AOJu0YxwuD6j7FVrsByxoCx+MkSqAjPLWu4GCns8xokOfZqGqNGIN37F
+	XTA2kzczZRVfQISoujSPBrfjwJD0La4l0GICjNlENue7qGehZKy6
+X-Google-Smtp-Source: AGHT+IFS9Ft0EoIz0VlwIapR9sXl52MMV7WEPmPelNL+KUv2EBj6/ZXCD2VQaLcdCFFMGfRjctDBXg==
+X-Received: by 2002:a50:d69b:0:b0:574:ffb1:eb52 with SMTP id 4fb4d7f45d1cf-57832c56a14mr2748835a12.34.1716466537042;
+        Thu, 23 May 2024 05:15:37 -0700 (PDT)
+Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5733c2cb54csm19728143a12.60.2024.05.23.05.15.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 May 2024 05:15:36 -0700 (PDT)
+Message-ID: <5ad0b5782434eaf4cf565cffb0e4c14b7414ae38.camel@gmail.com>
+Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
+ spi-offloads property
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>, David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org
+Date: Thu, 23 May 2024 14:15:35 +0200
+In-Reply-To: <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
+References: 
+	<20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com>
+	 <20240510-dlech-mainline-spi-engine-offload-2-v2-1-8707a870c435@baylibre.com>
+	 <20240513-headsman-hacking-d51fcc811695@spud>
+	 <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
+	 <20240514-aspire-ascension-449556da3615@spud>
+	 <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
+	 <20240516-rudder-reburial-dcf300504c0a@spud>
+	 <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
+	 <20240519-abreast-haziness-096a57ef57d3@spud>
+	 <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
+	 <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240219-topic-rb1_gpu-v2-0-2d3d6a0db040@linaro.org> <20240219-topic-rb1_gpu-v2-5-2d3d6a0db040@linaro.org>
-In-Reply-To: <20240219-topic-rb1_gpu-v2-5-2d3d6a0db040@linaro.org>
-From: Connor Abbott <cwabbott0@gmail.com>
-Date: Thu, 23 May 2024 13:14:26 +0100
-Message-ID: <CACu1E7FTN=kwaDJMNiTmFspALzj2+Q-nvsN5ugi=vz4RdUGvGw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] drm/msm/adreno: Add A702 support
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-kernel@lists.infradead.org, 
-	iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 23, 2024 at 9:28=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
->
-> The A702 is a weird mix of 600 and 700 series.. Perhaps even a
-> testing ground for some A7xx features with good ol' A6xx silicon.
-> It's basically A610 that's been beefed up with some new registers
-> and hw features (like APRIV!), that was then cut back in size,
-> memory bus and some other ways.
->
-> Add support for it, tested with QCM2290 / RB1.
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c      | 92 ++++++++++++++++++++++++=
-+++---
->  drivers/gpu/drm/msm/adreno/adreno_device.c | 18 ++++++
->  drivers/gpu/drm/msm/adreno/adreno_gpu.h    | 16 +++++-
->  3 files changed, 117 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/=
-adreno/a6xx_gpu.c
-> index c9c55e2ea584..2a491a486ca1 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> @@ -837,6 +837,65 @@ const struct adreno_reglist a690_hwcg[] =3D {
->         {}
->  };
->
-> +const struct adreno_reglist a702_hwcg[] =3D {
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_SP0, 0x22222222 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL2_SP0, 0x02222220 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_SP0, 0x00000081 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_SP0, 0x0000f3cf },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_TP0, 0x22222222 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL2_TP0, 0x22222222 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL3_TP0, 0x22222222 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL4_TP0, 0x00022222 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_TP0, 0x11111111 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY2_TP0, 0x11111111 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY3_TP0, 0x11111111 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY4_TP0, 0x00011111 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_TP0, 0x77777777 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST2_TP0, 0x77777777 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST3_TP0, 0x77777777 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST4_TP0, 0x00077777 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_RB0, 0x22222222 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL2_RB0, 0x01202222 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_CCU0, 0x00002220 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_RB_CCU0, 0x00040f00 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_RAC, 0x05522022 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL2_RAC, 0x00005555 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_RAC, 0x00000011 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_RAC, 0x00445044 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_TSE_RAS_RBBM, 0x04222222 },
-> +       { REG_A6XX_RBBM_CLOCK_MODE_VFD, 0x00002222 },
-> +       { REG_A6XX_RBBM_CLOCK_MODE_GPC, 0x02222222 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_HLSQ_2, 0x00000002 },
-> +       { REG_A6XX_RBBM_CLOCK_MODE_HLSQ, 0x00002222 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_TSE_RAS_RBBM, 0x00004000 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_VFD, 0x00002222 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_GPC, 0x00000200 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_HLSQ, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_TSE_RAS_RBBM, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_VFD, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_GPC, 0x04104004 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_HLSQ, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_UCHE, 0x22222222 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_UCHE, 0x00000004 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_UCHE, 0x00000002 },
-> +       { REG_A6XX_RBBM_ISDB_CNT, 0x00000182 },
-> +       { REG_A6XX_RBBM_RAC_THRESHOLD_CNT, 0x00000000 },
-> +       { REG_A6XX_RBBM_SP_HYST_CNT, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_GMU_GX, 0x00000222 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_GMU_GX, 0x00000111 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_GMU_GX, 0x00000555 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_FCHE, 0x00000222 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_FCHE, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_FCHE, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_GLC, 0x00222222 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_GLC, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_GLC, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_CNTL_MHUB, 0x00000002 },
-> +       { REG_A6XX_RBBM_CLOCK_DELAY_MHUB, 0x00000000 },
-> +       { REG_A6XX_RBBM_CLOCK_HYST_MHUB, 0x00000000 },
-> +       {}
-> +};
-> +
->  const struct adreno_reglist a730_hwcg[] =3D {
->         { REG_A6XX_RBBM_CLOCK_CNTL_SP0, 0x02222222 },
->         { REG_A6XX_RBBM_CLOCK_CNTL2_SP0, 0x02022222 },
-> @@ -968,6 +1027,8 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, bool =
-state)
->                 clock_cntl_on =3D 0x8aa8aa02;
->         else if (adreno_is_a610(adreno_gpu))
->                 clock_cntl_on =3D 0xaaa8aa82;
-> +       else if (adreno_is_a702(adreno_gpu))
-> +               clock_cntl_on =3D 0xaaaaaa82;
->         else
->                 clock_cntl_on =3D 0x8aa8aa82;
->
-> @@ -989,14 +1050,14 @@ static void a6xx_set_hwcg(struct msm_gpu *gpu, boo=
-l state)
->                 return;
->
->         /* Disable SP clock before programming HWCG registers */
-> -       if (!adreno_is_a610(adreno_gpu) && !adreno_is_a7xx(adreno_gpu))
-> +       if (!adreno_is_a610_family(adreno_gpu) && !adreno_is_a7xx(adreno_=
-gpu))
->                 gmu_rmw(gmu, REG_A6XX_GPU_GMU_GX_SPTPRAC_CLOCK_CONTROL, 1=
-, 0);
->
->         for (i =3D 0; (reg =3D &adreno_gpu->info->hwcg[i], reg->offset); =
-i++)
->                 gpu_write(gpu, reg->offset, state ? reg->value : 0);
->
->         /* Enable SP clock */
-> -       if (!adreno_is_a610(adreno_gpu) && !adreno_is_a7xx(adreno_gpu))
-> +       if (!adreno_is_a610_family(adreno_gpu) && !adreno_is_a7xx(adreno_=
-gpu))
->                 gmu_rmw(gmu, REG_A6XX_GPU_GMU_GX_SPTPRAC_CLOCK_CONTROL, 0=
-, 1);
->
->         gpu_write(gpu, REG_A6XX_RBBM_CLOCK_CNTL, state ? clock_cntl_on : =
-0);
-> @@ -1224,7 +1285,7 @@ static void a6xx_set_cp_protect(struct msm_gpu *gpu=
-)
->         const u32 *regs =3D a6xx_protect;
->         unsigned i, count, count_max;
->
-> -       if (adreno_is_a650(adreno_gpu)) {
-> +       if (adreno_is_a650(adreno_gpu) || adreno_is_a702(adreno_gpu)) {
->                 regs =3D a650_protect;
->                 count =3D ARRAY_SIZE(a650_protect);
->                 count_max =3D 48;
-> @@ -1320,6 +1381,12 @@ static void a6xx_calc_ubwc_config(struct adreno_gp=
-u *gpu)
->                 gpu->ubwc_config.rgb565_predicator =3D 1;
->                 gpu->ubwc_config.uavflagprd_inv =3D 2;
->         }
-> +
-> +       if (adreno_is_a702(gpu)) {
-> +               gpu->ubwc_config.highest_bank_bit =3D 14;
-> +               gpu->ubwc_config.min_acc_len =3D 1;
-> +               gpu->ubwc_config.ubwc_mode =3D 2;
+On Wed, 2024-05-22 at 19:24 +0100, Conor Dooley wrote:
+> On Tue, May 21, 2024 at 09:54:39AM -0500, David Lechner wrote:
+> > On Sun, May 19, 2024 at 7:53=E2=80=AFAM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > >=20
+> > > On Fri, May 17, 2024 at 11:51:58AM -0500, David Lechner wrote:
+> > > > On Thu, May 16, 2024 at 4:32=E2=80=AFPM Conor Dooley <conor@kernel.=
+org> wrote:
+> > > > > On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wrote:
+> > >=20
+> > > > > > Back to "something beyond the SPI controller":
+> > > > > >=20
+> > > > > > Here are some examples of how I envision this would work.
+> > > > > >=20
+> > > > > > Let's suppose we have a SPI controller that has some sort of of=
+fload
+> > > > > > capability with a configurable trigger source. The trigger can =
+either
+> > > > > > be an internal software trigger (i.e. writing a register of the=
+ SPI
+> > > > > > controller) or and external trigger (i.e. a input signal from a=
+ pin on
+> > > > > > the SoC). The SPI controller has a lookup table with 8 slots wh=
+ere it
+> > > > > > can store a series of SPI commands that can be played back by
+> > > > > > asserting the trigger (this is what provides the "offloading").
+> > > > > >=20
+> > > > > > So this SPI controller would have #spi-offload-cells =3D <2>; w=
+here the
+> > > > > > first cell would be the index in the lookup table 0 to 7 and th=
+e
+> > > > > > second cell would be the trigger source 0 for software or 1 for
+> > > > > > hardware.
+> > > > > >=20
+> > > > > > Application 1: a network controller
+> > > > > >=20
+> > > > > > This could use two offloads, one for TX and one for RX. For TX,=
+ we use
+> > > > > > the first slot with a software trigger because the data is comi=
+ng from
+> > > > > > Linux. For RX we use the second slot with a hardware trigger si=
+nce
+> > > > > > data is coming from the network controller (i.e. a data ready s=
+ignal
+> > > > > > that would normally be wired to a gpio for interrupt but wired =
+to the
+> > > > > > SPI offload trigger input pin instead). So the peripheral bindi=
+ngs
+> > > > > > would be:
+> > > > > >=20
+> > > > > > #define SOFTWARE_TRIGGER 0
+> > > > > > #define HARDWARE_TRIGGER 1
+> > > > > >=20
+> > > > > > can@0 {
+> > > > > > =C2=A0=C2=A0=C2=A0 ...
+> > > > > > =C2=A0=C2=A0=C2=A0 spi-offloads =3D <0 SOFTWARE_TRIGGER>, <1 HA=
+RDWARE_TRIGGER>;
+> > > > > > =C2=A0=C2=A0=C2=A0 /* maybe we need names too? */
+> > > > > > =C2=A0=C2=A0=C2=A0 spi-offload-names =3D "tx", "rx";
+> > > > > > };
+> > > > > >=20
+> > > > > > In this case, there is nothing extra beyond the SPI controller =
+and the
+> > > > > > network controller, so no extra bindings beyond this are needed=
+.
+> > > > > >=20
+> > > > > > Application 2: an advanced ADC + FPGA
+> > > > > >=20
+> > > > > > This is basically the same as the ad7944 case seen already with=
+ one
+> > > > > > extra feature. In this case, the sample data also contains a CR=
+C byte
+> > > > > > for error checking. So instead of SPI RX data going directly to=
+ DMA,
+> > > > > > the FPGA removes the CRC byte from the data stream an only the =
+sample
+> > > > > > data goes to the DMA buffer. The CRC is checked and if bad, an
+> > > > > > interrupt is asserted.
+> > > > > >=20
+> > > > > > Since this is an FPGA, most everything is hardwired rather than=
+ having
+> > > > > > any kind of mux selection so #spi-offload-cells =3D <1>; for th=
+is
+> > > > > > controller.
+> > > > > >=20
+> > > > > > By adding spi-offloads to the peripheral node, it also extends =
+the
+> > > > > > peripheral binding to include the additional properties needed =
+for the
+> > > > > > extra features provided by the FPGA. In other words, we are say=
+ing
+> > > > > > this DT node now represents the ADC chip plus everything connec=
+ted to
+> > > > > > the offload instance used by the ADC chip.
+> > > > >=20
+> > > > > It seems very strange to me that the dmas and the clock triggers =
+are
+> > > > > going into the spi device nodes. The description is
+> > > > > > +=C2=A0 dmas:
+> > > > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > > > +=C2=A0=C2=A0=C2=A0 description: RX DMA Channel for receiving a=
+ samples from the SPI
+> > > > > > offload.
+> > > > > But as far as I can tell this device is in a package of its own a=
+nd not
+> > > > > some IP provided by Analog that an engine on the FPGA can actuall=
+y do
+> > > > > DMA to, and the actual connection of the device is "just" SPI.
+> > > > > The dmas and clock triggers etc appear to be resources belonging =
+to the
+> > > > > controller that can "assigned" to a particular spi device. If the=
+ adc
+> > > > > gets disconnected from the system, the dmas and clock triggers ar=
+e still
+> > > > > connected to the spi controller/offload engine, they don't end up=
+ n/c,
+> > > > > right? (Well maybe they would in the case of a fancy SPI device t=
+hat
+> > > > > provides it's own sampling clock or w/e, but then it'd be a clock
+> > > > > provider of sorts). I'd be expecting the spi-offloads property to=
+ be
+> > > > > responsible for selecting which of the various resources belongin=
+g to
+> > > > > the controller are to be used by a device.
+> > > > > Maybe it overcomplicates the shit out of things and Rob or Mark a=
+re
+> > > > > gonna start screaming at me but w/e, looking at it from the point=
+ of
+> > > > > view of how the hardware is laid out (or at least how it is descr=
+ibed
+> > > > > in your FPGA case above) the dma/clock properties looks like they=
+'re
+> > > > > misplaced. IOW, I don't think that adding the spi-offloads proper=
+ty
+> > > > > should convert a node from representing an ADC in a qfn-20 or w/e
+> > > > > to "the ADC chip plus everything connected to the offload instanc=
+e
+> > > > > used by the ADC chip".
+> > > >=20
+> > > > This is the same reasoning that led me to the binding proposed in v=
+1.
+> > > > Rob suggested that these extras (dmas/clocks) should just be
+> > > > properties directly of the SPI controller.
+> > >=20
+> > > > But the issue I have with
+> > > > that is that since this is an FPGA, these properties are not fixed.
+> > >=20
+> > > I don't think whether or not we're talking about an FPGA or an ASIC
+> > > matters at all here to be honest. In my view the main thing that FPGA
+> > > impact in terms of bindings is the number of properties required to
+> > > represent the configurability of a particular IP. Sure, you're gonna
+> > > have to change the dts around in a way you'll never have to with an
+> > > ASIC, but the description of individual devices or relations between
+> > > them doesn't change.
+> > >=20
+> > > > Maybe there are more clocks or no clocks or interrupts or something=
+ we
+> > > > didn't think of yet.
+> > >=20
+> > > This could happen with a new generation of an ASIC and is not specifi=
+c
+> > > to an FPGA IP core. Even with FPGA IP, while there may be lots of
+> > > different configuration parameters, they are known & limited - you ca=
+n
+> > > look at the IP's documentation (or failing that, the HDL) to figure o=
+ut
+> > > what the points of variability are. It's not particularly difficult t=
+o
+> > > account for there being a configurable number of clocks or interrupts=
+.
+> > > For "something we didn't think of yet" to be a factor, someone has to
+> > > think of it and add it to the IP core, and which point we can absolut=
+ely
+> > > change the bindings and software to account for the revised IP.
+> > >=20
+> > > > So it doesn't really seem possible to write a
+> > > > binding for the SPI controller node to cover all of these cases.
+> > >=20
+> > > I dunno, I don't think your concerns about numbers of clocks (or any
+> > > other such property) are unique to this particular use-case.
+> > >=20
+> > > > These
+> > > > extras are included in the FPGA bitstream only for a specific type =
+of
+> > > > peripheral, not for general use of the SPI controller with any type=
+ of
+> > > > peripheral.
+> > >=20
+> > > I accept that, but what I was trying to get across was that you could
+> > > configure the FPGA with a bitstream that contains these extra resourc=
+es
+> > > and then connect a peripheral device that does not make use of them a=
+t
+> > > all.
+> >=20
+> > Sure, in this case the peripheral has no spi-offloads property and the
+> > SPI controller acts as a typical SPI controller.
+> >=20
+> > > Or you could connect a range of different peripherals that do use
+> > > them.
+> >=20
+> > OK, you've got me thinking about something I hadn't really thought abou=
+t yet.
+> >=20
+> > > Whether or not the resources are there and how they are connected
+> > > in the FPGA bitstream is not a property of the device connected to th=
+e
+> > > SPI controller, only whether or not you use them is.
+> > >=20
+> >=20
+> > Even when those things are connected directly to a specific peripheral
+> > device? Or not connected to the offload?
+> >=20
+> > Here is another potential ADC trigger case to consider.
+> >=20
+> > +-------------------------------+=C2=A0=C2=A0 +------------------+
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |
+> > > =C2=A0SOC/FPGA=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 |=C2=A0 ADC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |
+> > > =C2=A0+---------------------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0| AXI SPI Engine=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 SPI Bus =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D SPI Bus=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 +---------------+=C2=A0 |=C2=A0 < < < < < BUSY=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 | Offload 0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 | v=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 | v=C2=A0 > > > > CNV=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 |=C2=A0=C2=A0=C2=A0 TRIGGER IN < < <=C2=A0=C2=A0 ^ |=C2=
+=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 +---------------+=C2=A0 |=C2=A0=C2=A0=C2=A0 ^ |=C2=A0=
+=C2=A0 +------------------+
+> > > =C2=A0+---------------------+=C2=A0=C2=A0=C2=A0 ^ |
+> > > =C2=A0| AXI PWM=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 ^ |
+> > > =C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CH0 >=C2=A0 > ^ |
+> > > =C2=A0+---------------------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > +-------------------------------+
+> >=20
+> > This time, the periodic trigger (PWM) is connected to the pin on the
+> > ADC that triggers a sample conversion (CNV). The ADC has a BUSY output
+> > that will go high at the start of the conversion and go low at the end
+> > of the conversion. The BUSY output of the ADC is wired as the hardware
+> > trigger input of the offload.
+> >=20
+> > In this case would we still consider the PWM as part of the SPI
+> > controller/offload since it can only be used in conjunction with the
+> > SPI offload? It isn't connected to it at all though.
+>=20
+> No, in this case the ADC is a PWM consumer and the offload engine is
+> not. The ADC is a "trigger" provider and the SPI offload engine is a
+> trigger consumer.
+>=20
+> > Another case could be a self-clocked ADC. Here, the ADC has it's own
+> > periodic sample trigger on the chip and the RDY output goes high
+> > whenever a sample is ready to read.
+> >=20
+> > +-------------------------------+=C2=A0=C2=A0 +------------------+
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |
+> > > =C2=A0SOC/FPGA=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 |=C2=A0 ADC=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |
+> > > =C2=A0+---------------------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0| AXI SPI Engine=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 SPI Bus =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D SPI Bus=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 +---------------+=C2=A0 |=C2=A0 < < < < < RDY=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 | Offload 0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 | v=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 | v=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 =
+|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 |=C2=A0=C2=A0=C2=A0 TRIGGER IN < < <=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0|=C2=A0 +---------------+=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0 +------------------+
+> > > =C2=A0+---------------------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |
+> > +-------------------------------+
+> >=20
+> > If both of these are valid wiring configurations for the same ADC,
+> > wouldn't it make more sense to describe this in the peripheral node
+> > rather than having to query the controller to see how the peripheral
+> > is wired up?
+>=20
+> In both of these cases, the offload works in the same way, it gets a
+> trigger from the ADC and acts upon it. I would expect that in this case
+> the ADC driver would look for an optional pwm property in the devicetree
+> and if it is present configure the ADC to use that and if absent do then
+> do whatever configuration is required for self clocking. I would expect
+> that both cases would be handled identically by the SPI [offload] engine
+> side of things, other than inverting the polarity of the trigger. (If I
+> understand correctly, you want to trigger the offload engine on a
+> falling edge of BUSY but a rising edge of RDY).
+>=20
+>=20
+> > > In fact, looking at the documentation for the "spi engine" some more,=
+ I
+> > > am even less convinced that the right place for describing the offloa=
+d is
+> > > the peripheral as I (finally?) noticed that the registers for the off=
+load
+> > > engine are mapped directly into the "spi engine"'s memory map, rather=
+ than
+> > > it being a entirely separate IP in the FPGA fabric.
+> >=20
+> > True, but we don't use these registers, e.g., to configure the
+> > sampling frequency of a trigger (if it can even be done). That is done
+> > in a completely separate IP block with it's own registers.
+>=20
+> Where is the binding for that IP block? I think describing that is
+> pretty key. goto continuation;
+>=20
+> > > Further, what resources are available depends on what the SPI offload
+> > > engine IP is. If my employer decides to start shipping some SPI offlo=
+ad
+> > > IP in our catalogue that can work with ADI's ADCs, the set of offload
+> > > related properties or their names may well differ.
+> >=20
+> > If all of these resources were fairly generic, like the periodic
+> > trigger we've been discussing, then I could see the case for trying to
+> > accommodate this the same way we do for other common features of SPI
+> > controllers. But for cases like "Application 2" that I described
+> > previously, these resources can get very specific to a peripheral
+> > (like the example given of having a data processing unit that knows
+> > about the exact data format and CRC algorithm used by a specific ADC).
+> > These seems like too specific of a thing to say that a SPI controller
+> > "supports".
+>=20
+> To remind myself, "Application 2" featured an offload engine designed
+> specifically to work with a particular data format that would strip a
+> CRC byte and check the validity of the data stream.
+>=20
 
-I just noticed, but this is wrong. ubwc_mode is a 1 bit field and what
-this is actually doing is overwriting hbb_lo, making the highest bank
-bit 15 instead of 14.
+I think the data manipulation is not really a property of the engine. Typic=
+ally data
+going out of the offload engine goes into another "data reorder" block that=
+ is pure
+HW.
 
-> +       }
->  }
->
->  static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
-> @@ -1453,7 +1520,7 @@ static bool a6xx_ucode_check_version(struct a6xx_gp=
-u *a6xx_gpu,
->                 return false;
->
->         /* A7xx is safe! */
-> -       if (adreno_is_a7xx(adreno_gpu))
-> +       if (adreno_is_a7xx(adreno_gpu) || adreno_is_a702(adreno_gpu))
->                 return true;
->
->         /*
-> @@ -1671,7 +1738,7 @@ static int hw_init(struct msm_gpu *gpu)
->         a6xx_set_hwcg(gpu, true);
->
->         /* VBIF/GBIF start*/
-> -       if (adreno_is_a610(adreno_gpu) ||
-> +       if (adreno_is_a610_family(adreno_gpu) ||
->             adreno_is_a640_family(adreno_gpu) ||
->             adreno_is_a650_family(adreno_gpu) ||
->             adreno_is_a7xx(adreno_gpu)) {
-> @@ -1705,6 +1772,7 @@ static int hw_init(struct msm_gpu *gpu)
->         }
->
->         if (!(adreno_is_a650_family(adreno_gpu) ||
-> +             adreno_is_a702(adreno_gpu) ||
->               adreno_is_a730(adreno_gpu))) {
->                 gmem_range_min =3D adreno_is_a740_family(adreno_gpu) ? SZ=
-_16M : SZ_1M;
->
-> @@ -1725,7 +1793,7 @@ static int hw_init(struct msm_gpu *gpu)
->         if (adreno_is_a640_family(adreno_gpu) || adreno_is_a650_family(ad=
-reno_gpu)) {
->                 gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_2, 0x02000140);
->                 gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_1, 0x8040362c);
-> -       } else if (adreno_is_a610(adreno_gpu)) {
-> +       } else if (adreno_is_a610_family(adreno_gpu)) {
->                 gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_2, 0x00800060);
->                 gpu_write(gpu, REG_A6XX_CP_ROQ_THRESHOLDS_1, 0x40201b16);
->         } else if (!adreno_is_a7xx(adreno_gpu)) {
-> @@ -1740,13 +1808,18 @@ static int hw_init(struct msm_gpu *gpu)
->         if (adreno_is_a610(adreno_gpu)) {
->                 gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, 48);
->                 gpu_write(gpu, REG_A6XX_CP_MEM_POOL_DBG_ADDR, 47);
-> +       } else if (adreno_is_a702(adreno_gpu)) {
-> +               gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, 64);
-> +               gpu_write(gpu, REG_A6XX_CP_MEM_POOL_DBG_ADDR, 63);
->         } else if (!adreno_is_a7xx(adreno_gpu))
->                 gpu_write(gpu, REG_A6XX_CP_MEM_POOL_SIZE, 128);
->
->         /* Setting the primFifo thresholds default values,
->          * and vccCacheSkipDis=3D1 bit (0x200) for A640 and newer
->         */
-> -       if (adreno_is_a690(adreno_gpu))
-> +       if (adreno_is_a702(adreno_gpu))
-> +               gpu_write(gpu, REG_A6XX_PC_DBG_ECO_CNTL, 0x0000c000);
-> +       else if (adreno_is_a690(adreno_gpu))
->                 gpu_write(gpu, REG_A6XX_PC_DBG_ECO_CNTL, 0x00800200);
->         else if (adreno_is_a650(adreno_gpu) || adreno_is_a660(adreno_gpu)=
-)
->                 gpu_write(gpu, REG_A6XX_PC_DBG_ECO_CNTL, 0x00300200);
-> @@ -1786,7 +1859,7 @@ static int hw_init(struct msm_gpu *gpu)
->                 gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL, (1 =
-<< 30) | 0x4fffff);
->         else if (adreno_is_a619(adreno_gpu))
->                 gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL, (1 =
-<< 30) | 0x3fffff);
-> -       else if (adreno_is_a610(adreno_gpu))
-> +       else if (adreno_is_a610(adreno_gpu) || adreno_is_a702(adreno_gpu)=
-)
->                 gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL, (1 =
-<< 30) | 0x3ffff);
->         else
->                 gpu_write(gpu, REG_A6XX_RBBM_INTERFACE_HANG_INT_CNTL, (1 =
-<< 30) | 0x1fffff);
-> @@ -1822,6 +1895,9 @@ static int hw_init(struct msm_gpu *gpu)
->                 else
->                         gpu_write(gpu, REG_A6XX_CP_CHICKEN_DBG, 0x1);
->                 gpu_write(gpu, REG_A6XX_RBBM_GBIF_CLIENT_QOS_CNTL, 0x0);
-> +       } else if (adreno_is_a702(adreno_gpu)) {
-> +               /* Something to do with the HLSQ cluster */
-> +               gpu_write(gpu, REG_A6XX_CP_CHICKEN_DBG, BIT(24));
->         }
->
->         if (adreno_is_a690(adreno_gpu))
-> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm=
-/msm/adreno/adreno_device.c
-> index 2ce7d7b1690d..b121abc71338 100644
-> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-> @@ -492,6 +492,24 @@ static const struct adreno_info gpulist[] =3D {
->                 .zapfw =3D "a690_zap.mdt",
->                 .hwcg =3D a690_hwcg,
->                 .address_space_size =3D SZ_16G,
-> +       }, {
-> +               .chip_ids =3D ADRENO_CHIP_IDS(0x07000200),
-> +               .family =3D ADRENO_6XX_GEN1, /* NOT a mistake! */
-> +               .fw =3D {
-> +                       [ADRENO_FW_SQE] =3D "a702_sqe.fw",
-> +               },
-> +               .gmem =3D SZ_128K,
-> +               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> +               .quirks =3D ADRENO_QUIRK_HAS_HW_APRIV,
-> +               .init =3D a6xx_gpu_init,
-> +               .zapfw =3D "a702_zap.mbn",
-> +               .hwcg =3D a702_hwcg,
-> +               .speedbins =3D ADRENO_SPEEDBINS(
-> +                       { 0,   0 },
-> +                       { 236, 1 },
-> +                       { 178, 2 },
-> +                       { 142, 3 },
-> +               ),
->         }, {
->                 .chip_ids =3D ADRENO_CHIP_IDS(0x07030001),
->                 .family =3D ADRENO_7XX_GEN1,
-> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/ms=
-m/adreno/adreno_gpu.h
-> index bc14df96feb0..f451881a6ddf 100644
-> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> @@ -77,7 +77,7 @@ struct adreno_reglist {
->  };
->
->  extern const struct adreno_reglist a612_hwcg[], a615_hwcg[], a630_hwcg[]=
-, a640_hwcg[], a650_hwcg[];
-> -extern const struct adreno_reglist a660_hwcg[], a690_hwcg[], a730_hwcg[]=
-, a740_hwcg[];
-> +extern const struct adreno_reglist a660_hwcg[], a690_hwcg[], a702_hwcg[]=
-, a730_hwcg[], a740_hwcg[];
->
->  struct adreno_speedbin {
->         uint16_t fuse;
-> @@ -382,6 +382,20 @@ static inline int adreno_is_a690(const struct adreno=
-_gpu *gpu)
->         return gpu->info->chip_ids[0] =3D=3D 0x06090000;
->  }
->
-> +static inline int adreno_is_a702(const struct adreno_gpu *gpu)
-> +{
-> +       return gpu->info->chip_ids[0] =3D=3D 0x07000200;
-> +}
-> +
-> +static inline int adreno_is_a610_family(const struct adreno_gpu *gpu)
-> +{
-> +       if (WARN_ON_ONCE(!gpu->info))
-> +               return false;
-> +
-> +       /* TODO: A612 */
-> +       return adreno_is_a610(gpu) || adreno_is_a702(gpu);
-> +}
-> +
->  /* check for a615, a616, a618, a619 or any a630 derivatives */
->  static inline int adreno_is_a630_family(const struct adreno_gpu *gpu)
->  {
->
-> --
-> 2.43.2
->
+> I think you're right something like that is a stretch to say that that
+> is a feature of the SPI controller - but I still don't believe that
+> modelling it as part of the ADC is correct. I don't fully understand the
+> io-backends and how they work yet, but the features you describe there
+> seem like something that should/could be modelled as one, with its own
+> node and compatible etc. Describing custom RTL stuff ain't always
+> strightforward, but the stuff from Analog is versioned and documented
+> etc so it shouldn't be quite that hard.
+>=20
+
+Putting this in io-backends is likely a stretch but one thing to add is tha=
+t the
+peripheral is always (I think) kind of the consumer of the resources. Takin=
+g the
+trigger (PWM) as an example and even when it is directly connected with the=
+ offload
+block, the peripheral still needs to know about it. Think of sampling frequ=
+ency...
+The period of the trigger signal is strictly connected with the sampling fr=
+equency of
+the peripheral for example. So I see 2 things:
+
+1) Enabling/Disabling the trigger could be easily done from the peripheral =
+even with
+the resource in the spi engine. I think David already has some code in the =
+series
+that would make this trivial and so having the property in the spi controll=
+er brings
+no added complexity.
+
+2) Controlling things like the trigger period/sample_rate. This could be ha=
+rder to do
+over SPI (or making it generic enough) so we would still need to have the s=
+ame
+property on the peripheral (even if not directly connected to it). I kind o=
+f agree
+with David that having the property both in the peripheral and controller i=
+s a bit
+weird.
+
+And the DMA block is a complete different story. Sharing that data back wit=
+h the
+peripheral driver (in this case, the IIO subsystem) would be very interesti=
+ng at the
+very least. Note that the DMA block is not really something that is part of=
+ the
+controller nor the offload block. It is an external block that gets the dat=
+a coming
+out of the offload engine (or the data reorder block). In IIO, we already h=
+ave a DMA
+buffer interface so users of the peripheral can get the data without any in=
+tervention
+of the driver (on the data). We "just" enable buffering and then everything=
+ happens
+on HW and userspace can start requesting data. If we are going to attach th=
+e DMA in
+the controller, I have no idea how we can handle it. Moreover, the offload =
+it's
+really just a way of replaying the same spi transfer over and over and that=
+ happens
+in HW so I'm not sure how we could "integrate" that with dmaengine.
+
+But maybe I'm overlooking things... And thinking more in how this can be do=
+ne in SW
+rather than what makes sense from an HW perspective.
+
+
+> continuation:
+> If offload engines have their own register region in the memory map,
+
+
+Don't think it has it's own register region... David?
+
+> their own resources (the RTL is gonna need at the very least a clock)
+> and potentially also provide other services (like acting as an
+> io-backend type device that pre-processes data) it doesn't sound like
+> either the controller or peripheral nodes are the right place for these
+> properties. And uh, spi-offloads gets a phandle once more...
+>=20
+
+But then it would be valid for both peripheral and controller to reference =
+that
+phandle right (and get the resources of interest)?
+
+FWIW, maybe look at the below usecase. It has some block diagrams that may =
+be helpful
+to you:
+
+https://wiki.analog.com/resources/eval/user-guides/ad463x/hdl
+
+- Nuno S=C3=A1
+
+
 
