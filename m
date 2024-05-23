@@ -1,794 +1,119 @@
-Return-Path: <devicetree+bounces-68575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A828CCD1C
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:37:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47BB48CCD1F
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF5A3B20F1E
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:37:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF2DB1F21250
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:38:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE36B13C9D4;
-	Thu, 23 May 2024 07:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890FC13CA9C;
+	Thu, 23 May 2024 07:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WQrsnLEf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F95qfjXL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9548613A3E3
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:36:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D735C13A3E3
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716449821; cv=none; b=XVjEEM/1gAGb1oKJijteLWq5zY5M1lqgQT2Ei8XlFXtY3rxfELGcXCnBWvKEm5eN7p/5qbisato2/UVd4TYTjkjiS/zf+3Vnsbt67Hyas/I1Krf0gnSVMipPW3kP7GS/fupqWeUBeUBLiAz4Ww3mEioDHpDidP7VLwD0rk1TQiE=
+	t=1716449884; cv=none; b=VtPtMSJzMdhJXNIdoEy0ALZkZ4/SdWOEJSu4cgHkvv8jbw0k8bl4O0+J4BthmB/bFGuXOIrDgf2GNhARDtDfACLr5LIoD3ZniWJusUv32+/QvMRxwrbBNL5oQf3llfOcPCJODsEPe7R6BLUJVV0N5E2f55O6y3VWmPSG7Oin0Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716449821; c=relaxed/simple;
-	bh=O0OEo28xYDX46x0DVVLfuaz+aziKPY+iokhL5lX/EZA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=AMSv5TFAVanUxEgaMShOttUZyEQ3BlPJfvSvJFX7zSkxIqubhyS4vMjYhbC/csldd7u5Sx1PkPQpgmJ8luKgFpSaAQzWYtn+PSjM0wYHNJP0S09Hg9Vxu/w7XpOpat+0NEp68IMyHy3kb7Iz1oHOtLr3UerJTJYK7hllUpQF5X4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WQrsnLEf; arc=none smtp.client-ip=209.85.218.51
+	s=arc-20240116; t=1716449884; c=relaxed/simple;
+	bh=J2DG/3/GCMldpCtcfPH9RS5eOzOUlMSVGLLyw5WQIEw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=WWFlgcOyQDvcgYF9lE6eBPotpTZa+AfajrJO7gUqsbZt8s8+JIHkro+qYAgUbua0a953pggzRdZL/BYHLswfIJpl54QlZA6SrBA/paK4S1govpEGsOQCbrFtZ7tDYXS2toJlClNiTKYfEHQUG0MdFp+DxY71MDZQrvEc3Lq86Po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F95qfjXL; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a59a352bbd9so300626066b.1
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 00:36:59 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-34f0e55787aso4793016f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 00:38:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716449818; x=1717054618; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=517qvSXdAeDLW4FIicTVkU3rF1O2o6mhYuS9ir4DWD0=;
-        b=WQrsnLEfpVwNT2ttqd/7PSLg2LiJ5usL/MTMbZ2ZBkuhrj5ZzebD8FoevaJ6x9Zk0k
-         Np7CbP+qDTIumnfwx8ICeR5JL8IerX2DL8yGGMvSWets45ZV25XqY5QLat3aVEwOaI8a
-         yF2+iWLiZyBlNbceTeEWTfeyDWT0w3HkzefrLIyQ6o9OyCUZXjfrx8sh8fZ01Dvg6x0n
-         qkC/CI3wZZ+pLVI/IHUy9KV/VlSFr6alglFoKaItJEHPtezb0pwQo0/r+rdzWne0oJQR
-         vHAEwdT6xgj6z52Ndy51vxiO/7GAkY37mZ7/QlK8B3JJCoJhmZOVpu2ZXyBsR7L7Vu/Q
-         FrEg==
+        d=linaro.org; s=google; t=1716449881; x=1717054681; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4O+SS1GsRMB8bjPXT+6PVKoi06ILz48Vqq1L93jlgPo=;
+        b=F95qfjXLkXr8NYTHZPifLpVeBUkqfR2ZWlpDhe1C84DAa1MnQs4ui6a+tmYL3ND19n
+         btiU7Uq+/J4BqGUvmj0XUCFESLuri12cx7yBMLWJbLcalyeZcppExhKMV7kMvI8qs2Ag
+         t2K70eoS8Xm7rUVFiTfZZXkl3JsTHwRIF1fhe1O5cX6UtQITI4kx/eQ7lIQLvjCrmA6w
+         MZ5gUq0Kewpz16ZxL87vqxVdjpmu90HQQCzoozHhGr2Em9u8BUATn5sIhdo0fBz+iR/y
+         n2B538Y09EVIMDGK6FLK6EKQzEZBsZwO46R3mJGPxA2rcX5TvcSD3u2aCY8WBEwdfAgf
+         wNuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716449818; x=1717054618;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=517qvSXdAeDLW4FIicTVkU3rF1O2o6mhYuS9ir4DWD0=;
-        b=kvBQXFFWv0JjkOvFk0S1mWUe+vMmda9DYrX2p/GsKTQ7lGLle+o1urSwzfUuvttN0j
-         4Fb0uE2xNLf3NsXGRzl1hsfg7OhNx9VbJfiQiFlSiQl9eci7BcMdVJI5vGnjx7QEI6iB
-         8g/25ppQOBPrALU6gsyNshFG8yG26Nwz/PxwdNRubw9tv1oADXubXZVg7INdE/hpQ5PN
-         h3sd7+CV5oKr96FXWtsZlj+3RjwCuYVVGsnkH15N9PFMN5/+DOpPapePrP4qKPhmO0ef
-         Cij+Wo0zcNXMcOlETIvRJcOYboe1CrwTanAVjVnK+gzUSLZEq5G8kY7D/tmOMus5ULCD
-         dMOA==
-X-Forwarded-Encrypted: i=1; AJvYcCVzY5B3Ycs01gq2g9bN2TLb6FIRa0aHZ/qlWL1uSGqWrZHTgHvsGSxlF2Jhgii9ZXD0ZOwkT9jXH3r3N3VKrIkQqjMVmApoN50soQ==
-X-Gm-Message-State: AOJu0YxDlvsY0SVZR+fII4aJAgM9WULn/9vsJUIp4vdYa/HRu8hTdc4J
-	/6dzf1wY3M4KkU16M6BjE9L5MOEQUgoYqZSL+4nTqFI+3TjFRKM2+nQy5T8MrWQ=
-X-Google-Smtp-Source: AGHT+IG6yRYPHTkx4UP7bS+LPdO9N+uw3wcdJBXPD3HhxXbrQbG8b4XZKSEQl+RR/iDDrB5sc9xmaA==
-X-Received: by 2002:a17:906:26d4:b0:a58:7172:1ab0 with SMTP id a640c23a62f3a-a623e91d1bfmr113098366b.16.1716449817236;
-        Thu, 23 May 2024 00:36:57 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:825d:600a:c16:a973? ([2a01:e0a:982:cbb0:825d:600a:c16:a973])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6209f64ba8sm461839466b.210.2024.05.23.00.36.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 00:36:56 -0700 (PDT)
-Message-ID: <447ed20b-a505-4758-9351-522fd12049f6@linaro.org>
-Date: Thu, 23 May 2024 09:36:55 +0200
+        d=1e100.net; s=20230601; t=1716449881; x=1717054681;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4O+SS1GsRMB8bjPXT+6PVKoi06ILz48Vqq1L93jlgPo=;
+        b=q0gFY6TXUlPHEdqqgDDX4sSGCR7UyVE0VOjad/MMUcL6dnOMGhVvN/lOMZTy3Y/4u+
+         ez6MQD+L/80ZnxgTVEGfkvuwl1uHbhU8JUBIfpuzG1tBXfpTsNlCr0wKbGS0jN5qgX0v
+         0RyY74Zg/ILpqiTBXQ5sHU/zNJa7m6RIQAqvqJa9/cEyEx/5HsUV5g7QsOgOdSVlq0aL
+         ZfAHu8KE+W2ycQOLxZW5I6+p7U7ly1NaNvWOXCF+3bxWrfgTg70fYs9Fv+WDBZiphJBm
+         H5k5JriBhemxuOTn3YE3BShtbf7Ph0lu52Ip/zCN0IsW3uxg70pyXg7bc+xc4DujalGW
+         bi/g==
+X-Forwarded-Encrypted: i=1; AJvYcCUftXZ/7o2A8C30NxsLDc5hXG8qhsbKmYTvXJJJu0cAYuu9b91gZIEwj//XJYj7TsIZxLJTbr/JboldA0kYlhaQzTaXL7sGIt2DIw==
+X-Gm-Message-State: AOJu0Yxb74bDRltFLuy6bmZ0nfVfB+y3GPpMaS965Rx/lgvhadv3XrdM
+	I47/qVcR61wUTrndB53P1KDqsYYMimHZlA/2sMwGvDzNM+zr44H3vK6aXQPoMMcYHaSxvcIBoJr
+	w
+X-Google-Smtp-Source: AGHT+IHK3gd8xnykZzZ98OHITQnyjeTmM56u8J6DJqBPYDwpo+keFdbr+WPnivHIFoDfG6N4ETBJbw==
+X-Received: by 2002:adf:f50d:0:b0:354:fa69:aacb with SMTP id ffacd0b85a97d-354fa69ab18mr613176f8f.43.1716449881025;
+        Thu, 23 May 2024 00:38:01 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-354fcf20f4csm282500f8f.47.2024.05.23.00.38.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 May 2024 00:38:00 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Douglas Anderson <dianders@chromium.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240520153813.1.Iefaa5b93ca2faada269af77deecdd139261da7ec@changeid>
+References: <20240520153813.1.Iefaa5b93ca2faada269af77deecdd139261da7ec@changeid>
+Subject: Re: [PATCH] dt-bindings: display: Reorganize legacy eDP panel
+ bindings
+Message-Id: <171644988011.2016197.234222014770021280.b4-ty@linaro.org>
+Date: Thu, 23 May 2024 09:38:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] arch/arm64: dts: ac2xx: make common the sound card
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Lucas Tanure <tanure@linux.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-References: <20240521222155.28094-1-jan.dakinevich@salutedevices.com>
- <20240521222155.28094-2-jan.dakinevich@salutedevices.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20240521222155.28094-2-jan.dakinevich@salutedevices.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On 22/05/2024 00:21, Jan Dakinevich wrote:
-> The declaration of sound card and its dependencies is identical in all
-> consumers of 'meson-sm1-ac2xx.dtsi'.
+Hi,
+
+On Mon, 20 May 2024 15:38:17 -0700, Douglas Anderson wrote:
+> Back in the day, we used to need to list the exact panel in dts for
+> eDP panels. This led to all sorts of problems including a large number
+> of cases where people listed a bogus panel in their device tree
+> because of the needs of second sourcing (and third sourcing, and
+> fourth sourcing, ...). Back when we needed to add eDP panels to dts
+> files we used to list them in "panel-simple.yaml".
 > 
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> ---
->   .../dts/amlogic/meson-sm1-a95xf3-air-gbit.dts | 87 -------------------
->   .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts | 87 -------------------
->   .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 87 +++++++++++++++++++
->   .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 87 -------------------
->   .../dts/amlogic/meson-sm1-x96-air-gbit.dts    | 87 -------------------
->   .../boot/dts/amlogic/meson-sm1-x96-air.dts    | 87 -------------------
->   6 files changed, 87 insertions(+), 435 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-> index 9b2eb6e42651..90ae38c30592 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-gbit.dts
-> @@ -7,73 +7,10 @@
->   /dts-v1/;
->   
->   #include "meson-sm1-ac2xx.dtsi"
-> -#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->   
->   / {
->   	compatible = "cyx,a95xf3-air-gbit", "amlogic,sm1";
->   	model = "Shenzhen CYX Industrial Co., Ltd A95XF3-AIR";
-> -
-> -	sound {
-> -		compatible = "amlogic,axg-sound-card";
-> -		model = "A95XF3-AIR";
+> [...]
 
-model should be board-specific, as for sound node because dev board
-variants can be different, so I don't thing moving sound to a common
-dtsi is a good thing.
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-> -		audio-aux-devs = <&tdmout_b>;
-> -		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> -				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> -				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> -				"TDM_B Playback", "TDMOUT_B OUT";
-> -
-> -		assigned-clocks = <&clkc CLKID_MPLL2>,
-> -				  <&clkc CLKID_MPLL0>,
-> -				  <&clkc CLKID_MPLL1>;
-> -		assigned-clock-parents = <0>, <0>, <0>;
-> -		assigned-clock-rates = <294912000>,
-> -				       <270950400>,
-> -				       <393216000>;
-> -
-> -		dai-link-0 {
-> -			sound-dai = <&frddr_a>;
-> -		};
-> -
-> -		dai-link-1 {
-> -			sound-dai = <&frddr_b>;
-> -		};
-> -
-> -		dai-link-2 {
-> -			sound-dai = <&frddr_c>;
-> -		};
-> -
-> -		/* 8ch hdmi interface */
-> -		dai-link-3 {
-> -			sound-dai = <&tdmif_b>;
-> -			dai-format = "i2s";
-> -			dai-tdm-slot-tx-mask-0 = <1 1>;
-> -			dai-tdm-slot-tx-mask-1 = <1 1>;
-> -			dai-tdm-slot-tx-mask-2 = <1 1>;
-> -			dai-tdm-slot-tx-mask-3 = <1 1>;
-> -			mclk-fs = <256>;
-> -
-> -			codec {
-> -				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> -			};
-> -		};
-> -
-> -		/* hdmi glue */
-> -		dai-link-4 {
-> -			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> -
-> -			codec {
-> -				sound-dai = <&hdmi_tx>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&arb {
-> -	status = "okay";
-> -};
-> -
-> -&clkc_audio {
-> -	status = "okay";
->   };
->   
->   &ethmac {
-> @@ -102,27 +39,3 @@ external_phy: ethernet-phy@0 {
->   		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
->   	};
->   };
-> -
-> -&frddr_a {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_b {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_c {
-> -	status = "okay";
-> -};
-> -
-> -&tdmif_b {
-> -	status = "okay";
-> -};
-> -
-> -&tdmout_b {
-> -	status = "okay";
-> -};
-> -
-> -&tohdmitx {
-> -	status = "okay";
-> -};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
-> index 6e34fd80ed71..c74ce9c246fa 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air.dts
-> @@ -7,73 +7,10 @@
->   /dts-v1/;
->   
->   #include "meson-sm1-ac2xx.dtsi"
-> -#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->   
->   / {
->   	compatible = "cyx,a95xf3-air", "amlogic,sm1";
->   	model = "Shenzhen CYX Industrial Co., Ltd A95XF3-AIR";
-> -
-> -	sound {
-> -		compatible = "amlogic,axg-sound-card";
-> -		model = "A95XF3-AIR";
-> -		audio-aux-devs = <&tdmout_b>;
-> -		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> -				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> -				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> -				"TDM_B Playback", "TDMOUT_B OUT";
-> -
-> -		assigned-clocks = <&clkc CLKID_MPLL2>,
-> -				  <&clkc CLKID_MPLL0>,
-> -				  <&clkc CLKID_MPLL1>;
-> -		assigned-clock-parents = <0>, <0>, <0>;
-> -		assigned-clock-rates = <294912000>,
-> -				       <270950400>,
-> -				       <393216000>;
-> -
-> -		dai-link-0 {
-> -			sound-dai = <&frddr_a>;
-> -		};
-> -
-> -		dai-link-1 {
-> -			sound-dai = <&frddr_b>;
-> -		};
-> -
-> -		dai-link-2 {
-> -			sound-dai = <&frddr_c>;
-> -		};
-> -
-> -		/* 8ch hdmi interface */
-> -		dai-link-3 {
-> -			sound-dai = <&tdmif_b>;
-> -			dai-format = "i2s";
-> -			dai-tdm-slot-tx-mask-0 = <1 1>;
-> -			dai-tdm-slot-tx-mask-1 = <1 1>;
-> -			dai-tdm-slot-tx-mask-2 = <1 1>;
-> -			dai-tdm-slot-tx-mask-3 = <1 1>;
-> -			mclk-fs = <256>;
-> -
-> -			codec {
-> -				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> -			};
-> -		};
-> -
-> -		/* hdmi glue */
-> -		dai-link-4 {
-> -			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> -
-> -			codec {
-> -				sound-dai = <&hdmi_tx>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&arb {
-> -	status = "okay";
-> -};
-> -
-> -&clkc_audio {
-> -	status = "okay";
->   };
->   
->   &ethmac {
-> @@ -81,27 +18,3 @@ &ethmac {
->   	phy-handle = <&internal_ephy>;
->   	phy-mode = "rmii";
->   };
-> -
-> -&frddr_a {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_b {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_c {
-> -	status = "okay";
-> -};
-> -
-> -&tdmif_b {
-> -	status = "okay";
-> -};
-> -
-> -&tdmout_b {
-> -	status = "okay";
-> -};
-> -
-> -&tohdmitx {
-> -	status = "okay";
-> -};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-> index d1fa8b8bf795..7b20a8ff3dfb 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
-> @@ -12,6 +12,7 @@
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/gpio/meson-g12a-gpio.h>
->   #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->   
->   / {
->   	aliases {
-> @@ -127,6 +128,60 @@ wifi32k: wifi32k {
->   		clock-frequency = <32768>;
->   		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
->   	};
-> +
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "AC2XX";
-> +		audio-aux-devs = <&tdmout_b>;
-> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_b>;
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* hdmi glue */
-> +		dai-link-4 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
->   };
->   
->   &cec_AO {
-> @@ -298,3 +353,35 @@ &usb {
->   	status = "okay";
->   	dr_mode = "otg";
->   };
-> +
-> +&clkc_audio {
-> +	status = "okay";
-> +};
-> +
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&tdmif_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-> index e6e9410d40cb..a4800488b161 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-> @@ -7,73 +7,10 @@
->   /dts-v1/;
->   
->   #include "meson-sm1-ac2xx.dtsi"
-> -#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->   
->   / {
->   	compatible = "haochuangyi,h96-max", "amlogic,sm1";
->   	model = "Shenzhen Haochuangyi Technology Co., Ltd H96 Max";
-> -
-> -	sound {
-> -		compatible = "amlogic,axg-sound-card";
-> -		model = "H96-MAX";
-> -		audio-aux-devs = <&tdmout_b>;
-> -		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> -				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> -				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> -				"TDM_B Playback", "TDMOUT_B OUT";
-> -
-> -		assigned-clocks = <&clkc CLKID_MPLL2>,
-> -				  <&clkc CLKID_MPLL0>,
-> -				  <&clkc CLKID_MPLL1>;
-> -		assigned-clock-parents = <0>, <0>, <0>;
-> -		assigned-clock-rates = <294912000>,
-> -				       <270950400>,
-> -				       <393216000>;
-> -
-> -		dai-link-0 {
-> -			sound-dai = <&frddr_a>;
-> -		};
-> -
-> -		dai-link-1 {
-> -			sound-dai = <&frddr_b>;
-> -		};
-> -
-> -		dai-link-2 {
-> -			sound-dai = <&frddr_c>;
-> -		};
-> -
-> -		/* 8ch hdmi interface */
-> -		dai-link-3 {
-> -			sound-dai = <&tdmif_b>;
-> -			dai-format = "i2s";
-> -			dai-tdm-slot-tx-mask-0 = <1 1>;
-> -			dai-tdm-slot-tx-mask-1 = <1 1>;
-> -			dai-tdm-slot-tx-mask-2 = <1 1>;
-> -			dai-tdm-slot-tx-mask-3 = <1 1>;
-> -			mclk-fs = <256>;
-> -
-> -			codec {
-> -				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> -			};
-> -		};
-> -
-> -		/* hdmi glue */
-> -		dai-link-4 {
-> -			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> -
-> -			codec {
-> -				sound-dai = <&hdmi_tx>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&arb {
-> -	status = "okay";
-> -};
-> -
-> -&clkc_audio {
-> -	status = "okay";
->   };
->   
->   &ethmac {
-> @@ -103,30 +40,6 @@ external_phy: ethernet-phy@0 {
->   	};
->   };
->   
-> -&frddr_a {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_b {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_c {
-> -	status = "okay";
-> -};
-> -
-> -&tdmif_b {
-> -	status = "okay";
-> -};
-> -
-> -&tdmout_b {
-> -	status = "okay";
-> -};
-> -
-> -&tohdmitx {
-> -	status = "okay";
-> -};
-> -
->   &uart_A {
->   	status = "okay";
->   
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> index fc9b961133cd..dbd8625285b6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> @@ -7,73 +7,10 @@
->   /dts-v1/;
->   
->   #include "meson-sm1-ac2xx.dtsi"
-> -#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->   
->   / {
->   	compatible = "amediatech,x96-air-gbit", "amlogic,sm1";
->   	model = "Shenzhen Amediatech Technology Co., Ltd X96 Air";
-> -
-> -	sound {
-> -		compatible = "amlogic,axg-sound-card";
-> -		model = "X96-AIR";
-> -		audio-aux-devs = <&tdmout_b>;
-> -		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> -				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> -				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> -				"TDM_B Playback", "TDMOUT_B OUT";
-> -
-> -		assigned-clocks = <&clkc CLKID_MPLL2>,
-> -				  <&clkc CLKID_MPLL0>,
-> -				  <&clkc CLKID_MPLL1>;
-> -		assigned-clock-parents = <0>, <0>, <0>;
-> -		assigned-clock-rates = <294912000>,
-> -				       <270950400>,
-> -				       <393216000>;
-> -
-> -		dai-link-0 {
-> -			sound-dai = <&frddr_a>;
-> -		};
-> -
-> -		dai-link-1 {
-> -			sound-dai = <&frddr_b>;
-> -		};
-> -
-> -		dai-link-2 {
-> -			sound-dai = <&frddr_c>;
-> -		};
-> -
-> -		/* 8ch hdmi interface */
-> -		dai-link-3 {
-> -			sound-dai = <&tdmif_b>;
-> -			dai-format = "i2s";
-> -			dai-tdm-slot-tx-mask-0 = <1 1>;
-> -			dai-tdm-slot-tx-mask-1 = <1 1>;
-> -			dai-tdm-slot-tx-mask-2 = <1 1>;
-> -			dai-tdm-slot-tx-mask-3 = <1 1>;
-> -			mclk-fs = <256>;
-> -
-> -			codec {
-> -				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> -			};
-> -		};
-> -
-> -		/* hdmi glue */
-> -		dai-link-4 {
-> -			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> -
-> -			codec {
-> -				sound-dai = <&hdmi_tx>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&arb {
-> -	status = "okay";
-> -};
-> -
-> -&clkc_audio {
-> -	status = "okay";
->   };
->   
->   &ethmac {
-> @@ -103,30 +40,6 @@ external_phy: ethernet-phy@0 {
->   	};
->   };
->   
-> -&frddr_a {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_b {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_c {
-> -	status = "okay";
-> -};
-> -
->   &ir {
->   	linux,rc-map-name = "rc-x96max";
->   };
-> -
-> -&tdmif_b {
-> -	status = "okay";
-> -};
-> -
-> -&tdmout_b {
-> -	status = "okay";
-> -};
-> -
-> -&tohdmitx {
-> -	status = "okay";
-> -};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> index 9ea969255b4f..3b2df25ca630 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> @@ -7,73 +7,10 @@
->   /dts-v1/;
->   
->   #include "meson-sm1-ac2xx.dtsi"
-> -#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->   
->   / {
->   	compatible = "amediatech,x96-air", "amlogic,sm1";
->   	model = "Shenzhen Amediatech Technology Co., Ltd X96 Air";
-> -
-> -	sound {
-> -		compatible = "amlogic,axg-sound-card";
-> -		model = "X96-AIR";
-> -		audio-aux-devs = <&tdmout_b>;
-> -		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> -				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> -				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> -				"TDM_B Playback", "TDMOUT_B OUT";
-> -
-> -		assigned-clocks = <&clkc CLKID_MPLL2>,
-> -				  <&clkc CLKID_MPLL0>,
-> -				  <&clkc CLKID_MPLL1>;
-> -		assigned-clock-parents = <0>, <0>, <0>;
-> -		assigned-clock-rates = <294912000>,
-> -				       <270950400>,
-> -				       <393216000>;
-> -
-> -		dai-link-0 {
-> -			sound-dai = <&frddr_a>;
-> -		};
-> -
-> -		dai-link-1 {
-> -			sound-dai = <&frddr_b>;
-> -		};
-> -
-> -		dai-link-2 {
-> -			sound-dai = <&frddr_c>;
-> -		};
-> -
-> -		/* 8ch hdmi interface */
-> -		dai-link-3 {
-> -			sound-dai = <&tdmif_b>;
-> -			dai-format = "i2s";
-> -			dai-tdm-slot-tx-mask-0 = <1 1>;
-> -			dai-tdm-slot-tx-mask-1 = <1 1>;
-> -			dai-tdm-slot-tx-mask-2 = <1 1>;
-> -			dai-tdm-slot-tx-mask-3 = <1 1>;
-> -			mclk-fs = <256>;
-> -
-> -			codec {
-> -				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> -			};
-> -		};
-> -
-> -		/* hdmi glue */
-> -		dai-link-4 {
-> -			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> -
-> -			codec {
-> -				sound-dai = <&hdmi_tx>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&arb {
-> -	status = "okay";
-> -};
-> -
-> -&clkc_audio {
-> -	status = "okay";
->   };
->   
->   &ethmac {
-> @@ -81,31 +18,7 @@ &ethmac {
->   	phy-handle = <&internal_ephy>;
->   	phy-mode = "rmii";
->   };
-> -
-> -&frddr_a {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_b {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_c {
-> -	status = "okay";
-> -};
-> -
->   &ir {
->   	linux,rc-map-name = "rc-beelink-gs1";
->   };
->   
-> -&tdmif_b {
-> -	status = "okay";
-> -};
-> -
-> -&tdmout_b {
-> -	status = "okay";
-> -};
-> -
-> -&tohdmitx {
-> -	status = "okay";
-> -};
+[1/1] dt-bindings: display: Reorganize legacy eDP panel bindings
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/bd0fc87d5adc8e3a0d6fb84c9ed3c77da1f1242d
+
+-- 
+Neil
 
 
