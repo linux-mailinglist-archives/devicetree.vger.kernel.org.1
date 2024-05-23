@@ -1,89 +1,81 @@
-Return-Path: <devicetree+bounces-68675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E4FC8CCF6C
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 11:37:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6405C8CCF87
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 11:44:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E50141F2304F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:37:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 199831F223A1
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224B313D28D;
-	Thu, 23 May 2024 09:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C658213D28D;
+	Thu, 23 May 2024 09:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="xGt2xCZZ"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="r4A24lNW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD57C13D51B;
-	Thu, 23 May 2024 09:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C0C13D260;
+	Thu, 23 May 2024 09:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716457051; cv=none; b=FPUbLkAzCaArRPTogRlfdyGZ6t9s4Iq7X/1NKP7Ds8zJKuHrsAwMJmuS7Mp3OnEOvzMx9qZ589L0yW9NFZ57m6ciW+xADUlJv8blTQwTS7EC/+3pl2jXV9OpIeECig8l6pVRaRWZw9VorxnB4hF4YY/I5xRkB4eBMb+Jl4xvGUw=
+	t=1716457471; cv=none; b=jSUq0IggyzCKJXJkgIzwurlotaYlSTdCYF7WPFwwakBgGkkcPuGgtxEfR+vVZvLF8FSDFodF0UIthWkMP6lUgASgQ4FWSksLFMDJXr6D7j06VNeBE6mfMhyNAs2M3mZWhtxCqZk2WV3wmbbQsK7vHVxd/eSZvUuQumKXSr7alyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716457051; c=relaxed/simple;
-	bh=JY2WbpEI+mWUW18lUIt92d13APRa1KMU3S+PnCTrQYY=;
+	s=arc-20240116; t=1716457471; c=relaxed/simple;
+	bh=3RNmpj8T/J28ZcWAgo+2/2V0jteUzgAQkIp6zBV7eJM=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nKgKXv+WpN9snucgxaFgD4ZkDlZR0dvc30IPbo/3ivqQCJTBijYLecTxV27I7Qh6oq0GKqKtq3YCxZ5Bu4XvB/ILp4jWTbKcwoFCBGnAjEHQoKPvH4p04TvKcc8xRte/o6x7of+oQKSRatkj8WzP9AlSCsMgV/rNtIa/O9iVkfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=xGt2xCZZ; arc=none smtp.client-ip=68.232.154.123
+	 Content-Type:Content-Disposition:In-Reply-To; b=HEFzrhOq+KGUxf2l8tGXHcoJdTGCx0r67T7EeisPS348V4hzxv2kdEc3g1zNM5ABarwp0oxAbir3nGQ7VsNfzSol/YPTNZRMtHlsBTuwrFBlZZqUNjUzUg2ZDeG5HVpCppmNQj4jrvvrF2ZgycG3ILhb2jtud8y2RIOuTyJi4M8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=r4A24lNW; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1716457049; x=1747993049;
+  t=1716457470; x=1747993470;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=JY2WbpEI+mWUW18lUIt92d13APRa1KMU3S+PnCTrQYY=;
-  b=xGt2xCZZw8T14V00c3PF6kJnYSvlkzn/WNWe1PJrV2kALZ7oIi++9PKv
-   rxO/hemZTtp+ke78TYKGfISDagGHhGOViVANbWFE9xyRhu/OuyJSzBe/n
-   mT3OA/eg0+FMNRqQiRJcxC8XFDuZqUoYXZ8bi9DvXKopB4Ntkc6W6udSJ
-   04IxdUv2o7ZGjG4Q3UPgoAL5cBvyXoEmuh4Xm4ND0Tq+upZUIOPHhO3M5
-   N8OUI3OpTM6Ry9jw0ItfCfCut0N1zIHhT0htKBdzPXlLdO8LlRqb7+aJC
-   LaV0qwbkKrrHOCL+mRNtTImBI36H4VDyw+1wVgRR6y2JjPyUv561FV86d
-   A==;
-X-CSE-ConnectionGUID: HkvOnEM3TYyKWZsRs1HTVA==
-X-CSE-MsgGUID: A7IIXf1OSrWGf5ZNODCYxQ==
+  bh=3RNmpj8T/J28ZcWAgo+2/2V0jteUzgAQkIp6zBV7eJM=;
+  b=r4A24lNWJVfbFYTqOkt4BXrLUzoWuzDtpRMTeKtSbpDtBLkkBSFdt+st
+   RCu8jf9VNcrlg22cEbA+QpsRWDxR3PECPDCi7uBAqdH1WiJKC5U9BDh8z
+   +hNO7eRGusiZbxSBkpisDc/jssh60MBuQ8vMxNFCb7ntlp345uh60K34B
+   1LpqkHy7KAjPbC8K6U7cKIBxfzqojx6JXjqTsB8tEovVGtm56RrAZCCM0
+   BWFEFwRZD+vlt2HBekfEU924rdYQsSGOUuknGSYdkjSqyGHmvyvEi2YNd
+   qc1UWEML5nPHNVG5n6QuKNHOqUb/V4BKIJiS9Sc2FJ81epHU/JLnwap0a
+   w==;
+X-CSE-ConnectionGUID: yai/vSIxQIKneP+ylDCdoQ==
+X-CSE-MsgGUID: RMkYCa1QSMe+7TL0BWgdFg==
 X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; 
-   d="asc'?scan'208";a="26488561"
+   d="asc'?scan'208";a="256727518"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 May 2024 02:37:27 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 May 2024 02:44:28 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 23 May 2024 02:36:51 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ 15.1.2507.35; Thu, 23 May 2024 02:43:47 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 23 May 2024 02:36:47 -0700
-Date: Thu, 23 May 2024 10:36:29 +0100
+ Transport; Thu, 23 May 2024 02:43:44 -0700
+Date: Thu, 23 May 2024 10:43:26 +0100
 From: Conor Dooley <conor.dooley@microchip.com>
-To: Minda Chen <minda.chen@starfivetech.com>
-CC: Bjorn Helgaas <helgaas@kernel.org>, Lorenzo Pieralisi
-	<lpieralisi@kernel.org>, Conor Dooley <conor@kernel.org>, Krzysztof
- =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>,
-	Daire McNamara <daire.mcnamara@microchip.com>, Emil Renner Berthing
-	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v16 08/22] PCI: microchip: Change the argument of
- plda_pcie_setup_iomems()
-Message-ID: <20240523-scroll-sloping-a297ef0ab464@wendy>
-References: <SHXPR01MB086345C911E227889E3A4211E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
- <20240523023549.GA105928@bhelgaas>
- <SHXPR01MB08637281B32AEE455F030081E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+To: Markus Elfring <Markus.Elfring@web.de>
+CC: Eddie James <eajames@linux.ibm.com>, <linux-fsi@lists.ozlabs.org>,
+	<linux-aspeed@lists.ozlabs.org>, <devicetree@vger.kernel.org>,
+	<linux-i2c@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+	<kernel-janitors@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, Andi
+ Shyti <andi.shyti@kernel.org>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>, Lakshmi Yadlapati
+	<lakshmiy@us.ibm.com>, Mark Brown <broonie@kernel.org>, Ninad Palsule
+	<ninad@linux.ibm.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 03/20] dt-bindings: fsi: Document the IBM SCOM engine
+Message-ID: <20240523-armband-utopia-66892e08b90d@wendy>
+References: <20240522192524.3286237-4-eajames@linux.ibm.com>
+ <bee0888c-f81b-46c8-8a1c-802d108dc0c0@web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,36 +83,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jqWlq/BhKECf1ah8"
+	protocol="application/pgp-signature"; boundary="KslNXwyxSH4K/mBw"
 Content-Disposition: inline
-In-Reply-To: <SHXPR01MB08637281B32AEE455F030081E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <bee0888c-f81b-46c8-8a1c-802d108dc0c0@web.de>
 
---jqWlq/BhKECf1ah8
+--KslNXwyxSH4K/mBw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 23, 2024 at 09:22:01AM +0000, Minda Chen wrote:
-> Hi Conor
->    Thanks for help us for this patch set !
->    I see mars dts have been merged to mainline, this version dts patch can not be merged
->    I will resend the dts patch on v6.10-rc1.
+On Thu, May 23, 2024 at 11:28:13AM +0200, Markus Elfring wrote:
+> > The SCOM engine provides an interface to the POWER processor PIB
+> > (Pervasive Interconnect Bus).
+>=20
+> Please improve this change description with a corresponding imperative wo=
+rding.
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/D=
+ocumentation/process/submitting-patches.rst?h=3Dv6.9#n94
 
-No worries, the dts patches in this series are long gone out of
-patchwork anyway so I wouldn't have even tried to apply them ;)
+The tense used here is fine.
 
-Cheers,
-Conor.
-
---jqWlq/BhKECf1ah8
+--KslNXwyxSH4K/mBw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk8OHAAKCRB4tDGHoIJi
-0hGZAP9XeCytwAGiMDsRE76sT98+KIjp7JPfuV4CVnQSht2O6gD9EaIZJ/+EM0dy
-O+M3hpVKvaItendrAIFPy+CvMDC6yw4=
-=YxeV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk8PvgAKCRB4tDGHoIJi
+0o7ZAP90vhT9+l0wZYf/DL2M8yWdcRsTVggSwuamCo1DKQsfTwD/aE/ubCJjEmqQ
+/DEArNwqFRhNcUQASKgsVIujbbwvCwU=
+=Y394
 -----END PGP SIGNATURE-----
 
---jqWlq/BhKECf1ah8--
+--KslNXwyxSH4K/mBw--
 
