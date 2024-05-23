@@ -1,426 +1,160 @@
-Return-Path: <devicetree+bounces-68594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7D68CCDA1
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 10:01:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B298CCDA9
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 10:02:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0565B21DE5
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 08:01:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E459280C39
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 08:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E3913D510;
-	Thu, 23 May 2024 07:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B29B613C698;
+	Thu, 23 May 2024 08:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vC3KHeFL"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="HEyrLJLZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3631813D299
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:59:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14E97CF39
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 08:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716451191; cv=none; b=qwbeg7C3wih88n2donq/M23cLiaSPNvbC1fskB/1Ym7lGGi0U/Pp5MIreUS+zxsm49LT8A9OHtllFiYN40Xoo1lM2dU6AgieCsVos5jTK1v6vBFsS1YCiQro1qghXBuurhoXd92eFaCQ7UxAY9aeaerXE1xt0kyRqQqhRPeV26g=
+	t=1716451353; cv=none; b=oqGcFTxSuOsFWHh+wz3FJsCJddXqLwcv8RhgdLOHV6q3+QKg1Nax069otnfDnZUpKNwLDZr2tlOyFH28kxGQpGJvkJYSjNCZBu3heZisqam8BEbyDlM413VYMv2qRKlViFPqInMHGuHhoSbJhNrsu8G6RXVDjsU9KSIUaG9d0to=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716451191; c=relaxed/simple;
-	bh=EMPeNyzBpqMjF6F7TP+1J/G1NKheB8Yvdxf4QEA8UKg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qoPQ7hICY0AZSGJ1RLxLqZ3k+sr6pyxYvQJW5I5ybZdDnYKVPMHZ+CCAVcXyJ4l6SLYJe4QJ0ukrL+2Oue6Wr6JCEoIZKtCb/5DfxckvNwPWbNCuzT87Hki2LOIeKi4JAVDMake3W5JQLUOIR4a6Wfe3rRN5TnI5lQ3/22KJC0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vC3KHeFL; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a59ad344f7dso888315866b.0
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 00:59:48 -0700 (PDT)
+	s=arc-20240116; t=1716451353; c=relaxed/simple;
+	bh=klatJAFWHBc0wuOs/nIGWmTjjd1VxcRv1nD6KbggBgE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nK+KQsZLuJn3XgQevwKmkI4tvJMx8e5S9w9ghXe+1pVcPQvYr6KtWArWFPBp7zr/uw+DnTbiDXlaQrJIAEgBpIsmVHH7DxBhTwV9WJ9PnD1zfVVCas2TELc87OI2j1C0Jc8HtZe3dVt9Cvf0bacllhobaeLMturwvjIZZWCWgdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=HEyrLJLZ; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-354dfe54738so1202396f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 01:02:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716451187; x=1717055987; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xAaEs9RkQ8GaTEt79EKKeWtnQKePqeTaokONVnHxvj4=;
-        b=vC3KHeFLTX5ueqkOc4OpSasoRTULlb1xv6tKmlkOXRRH++IksyqD7ip5ecRBwfCvoa
-         A2yk9ucmjh5ynRmC2aHvxXPqbABEw/iQBjCrzWpbD1tRfseLAfx9liNqd/cq0tT/Mod2
-         1SSeLEJKNIM2+Af80yKzWSQZo9aBjMUhHUHJKT+gKHBKseklAJOySVQ/QqoQdgpSMDgy
-         MendY3s4II0x2i9lZOObmdsrTCsSjmpMO/F7RR4zt3/tQq6qsZBZM9+rbCrRR5NLIesG
-         +PYaCdk8Cdkc/X+0dpyjR5nrNxTsNSZlwhotIXTCdVqo14eD1XUSSILnzuZ88phnMeJ5
-         sn5Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716451350; x=1717056150; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0J2OeoCqQcca8A4XUgC5bySDFCw48o1TNPYwtFh2a2I=;
+        b=HEyrLJLZjP56NB03ADK3PtQyNT3UX1lXGTttfs2BiEyLx/lkw+wYy2J785iBy4U7AL
+         dr6yWbZ/hG/1xwLD1LnTwjExVHsID4t4nE+4NpJTdyhvi7LygDHfgVh6x9gBABRPjb5p
+         3Dy2AbA/B6cJck0P9Lx5yUWe8PdaUVyNrab5/f2UmrRw+yJ2zyzIiWfp35pYoyReOBvD
+         CVTr1be4aVGLmZ/YXkulZDm33Q5G4+7aR9dFW7GFnStLO9jWkDlRi0brIbnq0bQVxvwH
+         NScQlq3CH4Ep1bJ3KZlQCcqRxUV4mVc6ZRB1IJldYDpeM1lFFmjm87Q8pAfQjm2pxswj
+         fUkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716451187; x=1717055987;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xAaEs9RkQ8GaTEt79EKKeWtnQKePqeTaokONVnHxvj4=;
-        b=h5R6zt/nPBuSLA4rkroDysfqL3/Ktua2M5BnoU+IMrXwciJrgyaMCfR0U9xZ92Ej10
-         +GsfMyVbNLV7YRGV6Eip7MAPIDyi+UCk1m94V8rhuUjbRE4E2dg++3AiIExnPzflhtYK
-         6XOdhiCDXV4asKDQ4e5bry2azH+1zoivg/VhBLrMCm7ImvLVqjuVpqNhl2JJN1DNDncO
-         aTLQNk6MgoWjb3FAjnhc83bohPcX8Y6ZnO5997HJwkFUmRjNCz10z0CQU+IJxBVZDWto
-         8WdDeMbqYxIBm0DaVrvqp6iLGdro7aCZCoCIYU4TL8meNpq2Uljq29SA+16lbTqr1hb8
-         aL1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUOQNoSGix5bSrJ2HqyyHSNPSTiLin4t1Z3VazQQHJr5lnJnldKilpJ/0U1yil/3M6aHqoDX7oZEUJdkpgFevfOW3Gt1kATgBA4rQ==
-X-Gm-Message-State: AOJu0YwSPHMGMl8p5aN5fLF64c5sYKNPQOCjmhUdvcfKQ/GYQ3trbAcH
-	jYodLyNjvUYVbBNsxEZRQ/60x4hD9LN+ggnA9E4MKmhr2XMiwNqvmiR0F9RAw5YHHzuHOA8BHAH
-	F
-X-Google-Smtp-Source: AGHT+IFzIRW5KpKYhr1bcsYmnRmMVcvlJKlZWsXcd8k4uOMAlIusT89UAXldyn+Zj9Kv6XaA2ZHUlw==
-X-Received: by 2002:a17:906:1b1a:b0:a59:9eab:1630 with SMTP id a640c23a62f3a-a6228170ac8mr251396266b.69.1716451187124;
-        Thu, 23 May 2024 00:59:47 -0700 (PDT)
-Received: from [127.0.1.1] ([2a01:e0a:982:cbb0:825d:600a:c16:a973])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5ec2a8f320sm719100066b.170.2024.05.23.00.59.46
+        d=1e100.net; s=20230601; t=1716451350; x=1717056150;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0J2OeoCqQcca8A4XUgC5bySDFCw48o1TNPYwtFh2a2I=;
+        b=K1I6g4S0h1rV04U4LHkQoBG6nkzj9ZX9+H8/AA/f06eyVgKVmWXWzPL7GMpa1b7qzg
+         HvCKTGrcnDJsXH5kBNjICCxav79hDGmYRG3sq3BLve2j0NV2j6MkZmO1cr9s0OICtGVG
+         7Urr8Th7gods4psTF/7kTXdIXSLcJruDMENpQKR9HLbiBrXN+G1XymV+jxB0e6ujDjbA
+         8aWSydVpWlVTDjaLMrS6VxW2Oga1LbpOyxiktselWlnXFZkBhnU/3AxmtGL7o4dHPS9O
+         Yv6cq2LAK4mV5a1uRv3NbJw/Ojwti+hnutwBTfBTUPCFCzR765ZHwgvVt4Slkea62Dkx
+         CBiw==
+X-Forwarded-Encrypted: i=1; AJvYcCW4aqRvS6WnYaGKdST+cqxoIceM/AO3axy0H0FoUEAeBQxUAorcRdVwJn5g8BEFVA1ahHDNiTrZ0esIybOEtzHxYOhESxXKgJiy1A==
+X-Gm-Message-State: AOJu0YxFrClJNUl9mmOcOChJR3xlfkxmCw628oqFbkoX8GOar0AG9Ry8
+	fjW3F/SdPNm9uItSga5IzZ5CN2QPlPHHCWjVPLXhq2/DWk4vcc1p+H/UxfgMzII=
+X-Google-Smtp-Source: AGHT+IFs4zKu4mkfSwJ00cEuqunFI4d5En43MpOl7AHLMm7sgx8p/3MO55WY1Bh9L819Lj+C7uR7JQ==
+X-Received: by 2002:adf:cd06:0:b0:354:f2b8:c75e with SMTP id ffacd0b85a97d-354f2b8c8b4mr2348864f8f.33.1716451349471;
+        Thu, 23 May 2024 01:02:29 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4091:a246:821e:6f3b:6b50:4762:8343])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35501abfdddsm93637f8f.110.2024.05.23.01.02.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 May 2024 00:59:46 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 23 May 2024 09:59:35 +0200
-Subject: [PATCH 3/3] arm64: dts: qcom: sdm450: add Lenovo Smart Tab M10 DTS
+        Thu, 23 May 2024 01:02:28 -0700 (PDT)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Nishanth Menon <nm@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Santosh Shilimkar <ssantosh@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Vibhore Vardhan <vibhore@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Dhruva Gole <d-gole@ti.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH 0/6] firmware: ti_sci: Partial-IO support
+Date: Thu, 23 May 2024 10:02:19 +0200
+Message-ID: <20240523080225.1288617-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240523-topic-sdm450-upstream-tbx605f-v1-3-e52b89133226@linaro.org>
-References: <20240523-topic-sdm450-upstream-tbx605f-v1-0-e52b89133226@linaro.org>
-In-Reply-To: <20240523-topic-sdm450-upstream-tbx605f-v1-0-e52b89133226@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>, 
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7632;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=EMPeNyzBpqMjF6F7TP+1J/G1NKheB8Yvdxf4QEA8UKg=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBmTvdssFfIE2msY0iYo5LB2llo4qkeVujTPB5kY
- 2zhBBjDUCiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZk73bAAKCRB33NvayMhJ
- 0Qe5D/9TDRmZl5J334RwgT+Dvm0oC8psBIp6gnDjAWUxn8nSItA9dXih21QkImb2UaA1EtIML+B
- PaKqAZq8Rx+1YAxdz7btW7F0/cjCD9m/tUUQKkwghsveCZ9sRlIhYP2ObqCVzx7Lhxy1bIoZAw2
- JfCcOnO9w3Bl7qO2mUqGHzrlhYVnTDs/y2xYI2Uvisz+DnYXD5V2Lv7gaFkFsPFyVjQ6eNBBxhC
- RFnHXrls+4fB7oQtT0lARnnJrGYzUKAorolOI94klTkb2n8qFRZI6iSS7YZZ0JuQ2FW7c193HfR
- fZC3W8TYdxVRFVyncYR+h5EvFlXcultJGw1tI80TbIblke2GesbDBH4um4Z7x40BvLfYzjOQndv
- 3UDwxYYiYBTulPVNnDMMb1R5SRiDdv5pBS96Rsd7qKIYMy9Bzml+0Pc8J07bYmmqrlIvZTbGEe1
- 8Q9EchtSz7QALsj/egSdEiwA5icrn3lDPW3HrSR4oUfuQ7Ocf9mrznCu00y/zaoV/gPULqP1Z8F
- qxZr1KLbX5mTQsH68qE0ZoJmbiZbf+uM17Fwr7fXU2RnKfIhrIFJJI5uoPiPkBJr+eA4IcTK+Sf
- l0UqcCG10jlJOf3sL0yM6KZ2P5omf1jlkvFpP51lUAZicrmlB2QLVUJde6Gjn9TWjd1l+lOtX93
- psiDbMhkRmxUjrg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Transfer-Encoding: 8bit
 
-This add initial support for the Lenovo Smart Tab M10 (WiFi)
-(model tbx605f) which is a 10.1" tablet by Lenovo based on the
-SDM450 SoC.
+Hi,
 
-It has a 10.1" LCP touch panel, SDCard slot, Volume+Power buttons,
-USB-C port amd front-facing camera (not supported).
+Partial-IO is a poweroff SoC state with a few pingroups active for
+wakeup. This state can be entered by sending a TI_SCI PREPARE_SLEEP
+message.
 
-The proper LCP Panel support will be added later, for now using the
-simeple-framebuffer with the bootloader-initialized video memory.
+The message is sent on poweroff if one of the potential wakeup sources
+for this power state are wakeup enabled. A list of potential wakeup
+sources for the specific SoC is described in the devicetree. The wakeup
+sources can be individually enabled/disabled by the user in the running
+system.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- arch/arm64/boot/dts/qcom/sdm450-lenovo-tbx605f.dts | 276 +++++++++++++++++++++
- 2 files changed, 277 insertions(+)
+The series is based on Andrew Davis accepted patches:
+  [PATCH 0/4] Unconditionally register TI-SCI reset handler
+  https://lore.kernel.org/lkml/20240326223730.54639-1-afd@ti.com/
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 7d40ec5e7d21..f163eedd2af2 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -175,6 +175,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc8180x-primus.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-crd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-lenovo-thinkpad-x13s.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sda660-inforce-ifc6560.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm450-lenovo-tbx605f.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm450-motorola-ali.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm450-lenovo-tbx605f.dts b/arch/arm64/boot/dts/qcom/sdm450-lenovo-tbx605f.dts
-new file mode 100644
-index 000000000000..175befc02b22
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm450-lenovo-tbx605f.dts
-@@ -0,0 +1,276 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Neil Armstrong <neil.armstrong@linaro.org>
-+ */
-+/dts-v1/;
-+
-+#include "sdm450.dtsi"
-+#include "pm8953.dtsi"
-+#include "pmi8950.dtsi"
-+
-+/ {
-+	model = "Lenovo Smart Tab M10";
-+	compatible = "lenovo,tbx605f", "qcom,sdm450";
-+	chassis-type = "tablet";
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer@90001000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0 0x90001000 0 (1200 * 1920 * 3)>;
-+
-+			width = <1200>;
-+			height = <1920>;
-+			stride = <(1200 * 3)>;
-+			format = "r8g8b8";
-+
-+			power-domains = <&gcc MDSS_GDSC>;
-+
-+			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_MDSS_AXI_CLK>,
-+				 <&gcc GCC_MDSS_VSYNC_CLK>,
-+				 <&gcc GCC_MDSS_MDP_CLK>,
-+				 <&gcc GCC_MDSS_BYTE0_CLK>,
-+				 <&gcc GCC_MDSS_PCLK0_CLK>,
-+				 <&gcc GCC_MDSS_ESC0_CLK>;
-+		};
-+	};
-+
-+	reserved-memory {
-+		other_ext_region@0 {
-+			no-map;
-+			reg = <0x00 0x84500000 0x00 0x2300000>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		key-volume-up {
-+			label = "volume_up";
-+			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&hsusb_phy {
-+	vdd-supply = <&pm8953_l3>;
-+	vdda-pll-supply = <&pm8953_l7>;
-+	vdda-phy-dpdm-supply = <&pm8953_l13>;
-+
-+	status = "okay";
-+};
-+
-+&i2c_3 {
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5506";
-+		reg = <0x38>;
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <65 IRQ_TYPE_EDGE_FALLING>;
-+		vcc-supply = <&pm8953_l10>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
-+
-+		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <1200>;
-+		touchscreen-size-y = <1920>;
-+	};
-+};
-+
-+&pm8953_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators {
-+		compatible = "qcom,rpm-pm8953-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_s5-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
-+		vdd_s7-supply = <&vph_pwr>;
-+		vdd_l1-supply = <&pm8953_s3>;
-+		vdd_l2_l3-supply = <&pm8953_s3>;
-+		vdd_l4_l5_l6_l7_l16_l19-supply = <&pm8953_s4>;
-+		vdd_l8_l11_l12_l13_l14_l15-supply = <&vph_pwr>;
-+		vdd_l9_l10_l17_l18_l22-supply = <&vph_pwr>;
-+
-+		pm8953_s1: s1 {
-+			regulator-min-microvolt = <870000>;
-+			regulator-max-microvolt = <1156000>;
-+		};
-+
-+		pm8953_s3: s3 {
-+			regulator-min-microvolt = <1224000>;
-+			regulator-max-microvolt = <1224000>;
-+		};
-+
-+		pm8953_s4: s4 {
-+			regulator-min-microvolt = <1900000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8953_l1: l1 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1100000>;
-+		};
-+
-+		pm8953_l2: l2 {
-+			regulator-min-microvolt = <975000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8953_l3: l3 {
-+			regulator-min-microvolt = <925000>;
-+			regulator-max-microvolt = <925000>;
-+		};
-+
-+		pm8953_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1900000>;
-+		};
-+
-+		pm8953_l8: l8 {
-+			regulator-min-microvolt = <2900000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8953_l9: l9 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8953_l10: l10 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8953_l11: l11 {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8953_l12: l12 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8953_l13: l13 {
-+			regulator-min-microvolt = <3125000>;
-+			regulator-max-microvolt = <3125000>;
-+		};
-+
-+		pm8953_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l17: l17 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8953_l19: l19 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8953_l22: l22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8953_l23: l23 {
-+			regulator-min-microvolt = <975000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8953_l8>;
-+	vqmmc-supply = <&pm8953_l5>;
-+
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&pm8953_l11>;
-+	vqmmc-supply = <&pm8953_l12>;
-+
-+	cd-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_off>;
-+	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-+
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <135 4>;
-+
-+	ts_int_active: ts-int-active-state {
-+		pins = "gpio65";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	ts_reset_active: ts-reset-active-state {
-+		pins = "gpio64";
-+		function = "gpio";
-+		drive-strength = <0x08>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	dr_mode = "peripheral";
-+};
-+
-+&wcnss {
-+	vddpx-supply = <&pm8953_l5>;
-+
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3660b";
-+
-+	vddxo-supply = <&pm8953_l7>;
-+	vddrfa-supply = <&pm8953_l19>;
-+	vddpa-supply = <&pm8953_l9>;
-+	vdddig-supply = <&pm8953_l5>;
-+};
+This series is part of a bigger topic to support Partial-IO on am62,
+am62a and am62p. Partial-IO is a poweroff state in which some pins are
+able to wakeup the SoC. In detail MCU m_can and two serial port pins can
+trigger the wakeup.
+
+These two other series are relevant for the support of Partial-IO:
+
+ - serial: 8250: omap: Add am62 wakeup support
+ - can: m_can: Add am62 wakeup support
+
+A test branch is available here that includes all patches required to test
+Partial-IO:
+
+https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-lp-sk-partialio/v6.9?ref_type=heads
+
+After enabling Wake-on-LAN the system can be powered off and will enter
+the Partial-IO state in which it can be woken up by activity on the
+specific pins:
+    ethtool -s can0 wol p
+    ethtool -s can1 wol p
+    poweroff
+
+I tested these patches on am62-lp-sk.
+
+Best,
+Markus
+
+Markus Schneider-Pargmann (5):
+  dt-bindings: ti, sci: Add property for partial-io-wakeup-sources
+  firmware: ti_sci: Partial-IO support
+  arm64: dts: ti: k3-pinctrl: Add WKUP_EN flag
+  arm64: dts: ti: k3-am62: Add partial-io wakeup sources
+  arm64: dts: ti: k3-am62a: Add partial-io wakeup sources
+
+Vibhore Vardhan (1):
+  arm64: dts: ti: k3-am62p: Add partial-io wakeup sources
+
+ .../bindings/arm/keystone/ti,sci.yaml         |   6 +
+ arch/arm64/boot/dts/ti/k3-am62.dtsi           |   4 +
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi          |   4 +
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi          |   4 +
+ arch/arm64/boot/dts/ti/k3-pinctrl.h           |   3 +
+ drivers/firmware/ti_sci.c                     | 135 +++++++++++++++++-
+ drivers/firmware/ti_sci.h                     |  31 ++++
+ 7 files changed, 186 insertions(+), 1 deletion(-)
 
 -- 
-2.34.1
+2.43.0
 
 
