@@ -1,75 +1,61 @@
-Return-Path: <devicetree+bounces-68747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EFFE8CD5F5
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:38:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1528CD615
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:47:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A08BD1C2034C
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:38:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F321F2827BC
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282F614A60C;
-	Thu, 23 May 2024 14:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3436F6FA8;
+	Thu, 23 May 2024 14:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iGpvGW6a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ig2sXpis"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E2612B171;
-	Thu, 23 May 2024 14:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F314B63D0;
+	Thu, 23 May 2024 14:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716475079; cv=none; b=k45eYa4f6bptQpT8jtLZ34r+0MQa4nciXD6LZvyeDDxxzQL4LSducFf2xdAoqa38NsDDMCNevj5V0cpRcnMbELbIj9uyN5tXQbJU+DDLeGWUNhkabmu28it3TqOZTPCJuNrNuJ4ZSzT5ok/YmF4iS09zWEYwiXRqA33LPERYTE0=
+	t=1716475670; cv=none; b=uncziVeF9HRAsOJ+SPa0iI+lR3g76zPqKAbuey7Gvmrjdy3sccpBQFaysym8bIpYMWqVCLMlIyaSBYDUMKKg9Ps8T0zzTd+1xLz3mf1E5yUzTv6gbbYrD+W0UIeniy2FXQeXk/Cys6Cv2fMpUjbmGP8v+TVOqiL5pkaRbVtmhA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716475079; c=relaxed/simple;
-	bh=eT+HB+FXqP5lVZyAYj6JKHnhWvk/Ipdw9JdWIe8LzVM=;
+	s=arc-20240116; t=1716475670; c=relaxed/simple;
+	bh=VETQLzlRvJ/atP7lNfjD3xkU+FekoieBP/u4SqPwNv4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O6JK2PS7GNs0ZgjMAeX6JDnTagRUO5fLedYubGp7d7sLA7StzVsmQO98U5C4NulryGmyymmobeMQXlIoBXok/iS2QOYS70TFuLGQxkdSctRf4oK6qBZsB5HtfMQ8FhOJrrSrjA/WLncDylCte41tV1x9SUw8pu09bPrLbYyejPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iGpvGW6a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F929C2BD10;
-	Thu, 23 May 2024 14:37:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gdqvf/tsfv2bFqZIhwVORRwYxho7w8JFQwda3LAzEQ8moHD2z2Vouoxe0zLila69ZnXVr3wIXAV+Hg3jdxx6zPLULak8238ULfU1sL/0DsVznGqpvnLs2435txHQVFG4wUGT6mRWFSADsgLpw2351Z7RIN6AYbCQIPT2cfobUFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ig2sXpis; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5386C2BD10;
+	Thu, 23 May 2024 14:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716475078;
-	bh=eT+HB+FXqP5lVZyAYj6JKHnhWvk/Ipdw9JdWIe8LzVM=;
+	s=k20201202; t=1716475669;
+	bh=VETQLzlRvJ/atP7lNfjD3xkU+FekoieBP/u4SqPwNv4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iGpvGW6a9yj3gWD7yyTWBWyh+7KuymQfmTC5VLzNGUETDnmwJO+vqyEup2aTcy1x1
-	 v5+2jkf19i+w373ThyPSeHO9d0rLYRxZS2d5F53xFNhOr2JrIpZLCEvo9Kr6ZmXv50
-	 3NNzg67yDi5QNGL2CJ6n2zsTvzkGIzpIsJaZ1haTVf2WYn9Q6tJ+PbjVHodEdmvjzJ
-	 bjPz8XeRxfiznuHWYXGTwqzoNUxuEKq6sWfsOsBFUMvLfatQWrjvTFGYc/+BgVmMEe
-	 Ybfm+/G9nXVsI+hCWBOhrluBHhkJUZe2NwH5vucQ75mnIY1Y+3GOXlPI87LCsVuN7A
-	 E0tblaqOZHbrA==
-Date: Thu, 23 May 2024 15:37:52 +0100
+	b=Ig2sXpissfaNNs5NshOSEl68IinJC3y64FR3DuTloH2UAHva/7q3QW2LZDgk0oYmG
+	 y1C5CZobEM7VacAiKf1qrngIp/xPaXEohxsmlQPO0WjzncblpNb3qJ6odwsJNs4Fhu
+	 MnFtNdleE4jxl8m0SoAh3mtOf2Q3hZJ4Ph+KtgQyHF8o8kAaPD2K3mjj1u6vjL9xQK
+	 y4rPh+sg+p2wYLRwbo8sx8oPbCkUuVcVBTciMTqpXatEQ87nhtzj9EDeujiAV7ZpRd
+	 sLDvVD08EYxqXVGmlcBpFarApQhO4BqVCp6aLHfwpTMjzaqx38sBDrcqtCui9AMl1n
+	 V0pcZQwQdmCVg==
+Date: Thu, 23 May 2024 15:47:44 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Alexey Romanov <avromanov@salutedevices.com>
-Cc: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>,
-	"herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"khilman@baylibre.com" <khilman@baylibre.com>,
-	"jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v7 17/23] dt-bindings: crypto: meson: remove clk and
- second interrupt line for GXL
-Message-ID: <20240523-snowiness-attain-75d415573b5a@spud>
-References: <20240411133832.2896463-1-avromanov@salutedevices.com>
- <20240411133832.2896463-18-avromanov@salutedevices.com>
- <20240415-schnapps-plating-eb0895459004@spud>
- <20240506134754.jl633ncne7ct6szo@cab-wsm-0029881>
- <20240506-distrust-famine-6848f75dd3fe@spud>
- <20240523104624.tr5omyxnzxsjkpai@cab-wsm-0029881.sigma.sbrf.ru>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Tim Harvey <tharvey@gateworks.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
+Message-ID: <20240523-vividly-sequester-d85ac7bccbbd@spud>
+References: <20240522215043.3747651-1-tharvey@gateworks.com>
+ <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,56 +63,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WTOLmlkXxsRP7sN+"
+	protocol="application/pgp-signature"; boundary="mHB66SfMY12XnJ+/"
 Content-Disposition: inline
-In-Reply-To: <20240523104624.tr5omyxnzxsjkpai@cab-wsm-0029881.sigma.sbrf.ru>
+In-Reply-To: <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org>
 
 
---WTOLmlkXxsRP7sN+
+--mHB66SfMY12XnJ+/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 23, 2024 at 10:46:35AM +0000, Alexey Romanov wrote:
-> Hi Conor,
->=20
-> On Mon, May 06, 2024 at 04:47:29PM +0100, Conor Dooley wrote:
-> > On Mon, May 06, 2024 at 01:48:01PM +0000, Alexey Romanov wrote:
-> > > On Mon, Apr 15, 2024 at 05:43:15PM +0100, Conor Dooley wrote:
-> > > > On Thu, Apr 11, 2024 at 04:38:26PM +0300, Alexey Romanov wrote:
-> > > > > GXL crypto IP isn't connected to clk and seconnd interrput line,
-> > > > > so we must remove them from dt-bindings.
-> > > >=20
-> > > > How does the device work without a clock?
-> > >=20
-> > > It's clocked by a common clock, the vendor didn't provide more
-> > > information. It doesn't have any special clock domains.
+On Thu, May 23, 2024 at 09:02:46AM +0200, Krzysztof Kozlowski wrote:
+> On 22/05/2024 23:50, Tim Harvey wrote:
+> > The GW7905 was renamed to GW7500 before production release.
 > >=20
-> > So the hardware block does have a clock, which, even if it is a clock
-> > shared with other hardware blocks, makes your patch incorrect.
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
 > >=20
-> > Is the "blkmv" clock the shared clock?
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documenta=
+tion/devicetree/bindings/arm/fsl.yaml
+> > index 0027201e19f8..d8bc295079e3 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -920,8 +920,8 @@ properties:
+> >                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
+> >                - fsl,imx8mm-evk            # i.MX8MM EVK Board
+> >                - fsl,imx8mm-evkb           # i.MX8MM EVKB Board
+> > +              - gateworks,imx8mm-gw75xx-0x # i.MX8MM Gateworks Board
 >=20
-> I received accurate information from the vendor. Starting from GXL,
-> DMA engine is used for crypto HW and clock is hard weired to it (at RTL
-> level).
+> That's not even equivalent. You 7500 !=3D 75xx.
+>=20
 
-> That's why we have to remove it from device tree, because we can't
-> control it anyway.
+> >                - gateworks,imx8mm-gw7904
+> > -              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gateworks Board
+>=20
+> Compatibles do not change. It's just a string. Fixed string.
 
-That's not true, if the clock runs at a fixed frequency it should be
-described as a fixed-clock in the devicetree.
+I think there's justification here for removing it, per the commit
+message, the rename happened before the device was available to
+customers.
+Additionally, I think we can give people that upstream things before they're
+publicly available a bit of slack, otherwise we're just discouraging
+people from upstreaming early.
 
---WTOLmlkXxsRP7sN+
+--mHB66SfMY12XnJ+/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk9UwAAKCRB4tDGHoIJi
-0kgCAQCc036MitPTeOOqstfi4ri+q3xgSGemTaQQWCQjlD0qKAD+OwLXN5ySvreg
-/MfIpImWvlSDrfrkLnC2nq4oV8AAmQg=
-=NYsR
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk9XEAAKCRB4tDGHoIJi
+0pJIAQCdg1Tf5q/06rcKoEqgcWnLs/48jFh1hSVrAM3QZADuMQEA05roU61bH/VP
+OkVQflknoA0fQLl2xRmXY0EunCIYEw0=
+=v3l4
 -----END PGP SIGNATURE-----
 
---WTOLmlkXxsRP7sN+--
+--mHB66SfMY12XnJ+/--
 
