@@ -1,104 +1,126 @@
-Return-Path: <devicetree+bounces-68673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA908CCF4D
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 11:30:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E4FC8CCF6C
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 11:37:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10EB9B22CDA
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:30:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E50141F2304F
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D84213D61E;
-	Thu, 23 May 2024 09:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224B313D28D;
+	Thu, 23 May 2024 09:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="KJOE2CIY"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="xGt2xCZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [217.72.192.78])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F31813D2BD;
-	Thu, 23 May 2024 09:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD57C13D51B;
+	Thu, 23 May 2024 09:37:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716456576; cv=none; b=BxDkYOHyEM57RfBmM66UYoUea4WY1K/7l6S67Oae4BSPysFWDMqbYIa8G8/jWW4+Ax6DptVoppupYNRRzL3h0ntNt5FMk3a4xLtWDenJTYeKOWdoS0zrgp8VLF+UZX3kCQCZqugPvwd9ZRJi8SKZIZswEXki+axqLW02n1rIZNk=
+	t=1716457051; cv=none; b=FPUbLkAzCaArRPTogRlfdyGZ6t9s4Iq7X/1NKP7Ds8zJKuHrsAwMJmuS7Mp3OnEOvzMx9qZ589L0yW9NFZ57m6ciW+xADUlJv8blTQwTS7EC/+3pl2jXV9OpIeECig8l6pVRaRWZw9VorxnB4hF4YY/I5xRkB4eBMb+Jl4xvGUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716456576; c=relaxed/simple;
-	bh=0uGdwFo2ctk4FML8FdSGhBHGQUtdWc4iJ2oydYFMsa4=;
-	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=F5hiRW0OJ5gFxtUVBg5WrE8+6wMhBXbrzmy3J/v6nbBr3K3V+dlvQ+yo3Nlh2vkQz+IxRomBybdQJkKH2HW/cLcuy4s3gqrSBa1+rUna1jnbKvcQlUIBQVZF90qob21GtAWuzN48j02+BPTDwLH1gOyHnrUFgLM8ZAnQ1bTXOsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=KJOE2CIY; arc=none smtp.client-ip=217.72.192.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1716456515; x=1717061315; i=markus.elfring@web.de;
-	bh=0uGdwFo2ctk4FML8FdSGhBHGQUtdWc4iJ2oydYFMsa4=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
-	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 cc:content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=KJOE2CIYWC8mFWw337WxXrfuT5zpj0lprjcGArQGs0nxCYz38AKPUnFKIfZqOYX4
-	 KqCoJyWjMhtj36aVUQUIlvVd4TCSDz52LtL+g17MigyozPBKIyxrzTxk8nSCG4D6p
-	 CqQAWukCRV0cH2BU7pkITeBVj4DvBt3L6xzZHHCugYv2HYkkLO7hh37TIeDEFHUdc
-	 +fWgeGfXAbjxfiSSljuOVaL+4UCdo9Aq1paqkIM1OHqnpHdDRkhHJv1X/M4KO0d7C
-	 cMHMpecncIgIuCjhwHdhV2oA7vA/NJdwQilOG9pd5yUdi9xsmp3jt2/AiKxhQzPnY
-	 mgVcYjbllNSThckIUg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.82.95]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MlsKH-1srQK80XwJ-00j1C2; Thu, 23
- May 2024 11:28:35 +0200
-Message-ID: <bee0888c-f81b-46c8-8a1c-802d108dc0c0@web.de>
-Date: Thu, 23 May 2024 11:28:13 +0200
+	s=arc-20240116; t=1716457051; c=relaxed/simple;
+	bh=JY2WbpEI+mWUW18lUIt92d13APRa1KMU3S+PnCTrQYY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nKgKXv+WpN9snucgxaFgD4ZkDlZR0dvc30IPbo/3ivqQCJTBijYLecTxV27I7Qh6oq0GKqKtq3YCxZ5Bu4XvB/ILp4jWTbKcwoFCBGnAjEHQoKPvH4p04TvKcc8xRte/o6x7of+oQKSRatkj8WzP9AlSCsMgV/rNtIa/O9iVkfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=xGt2xCZZ; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1716457049; x=1747993049;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JY2WbpEI+mWUW18lUIt92d13APRa1KMU3S+PnCTrQYY=;
+  b=xGt2xCZZw8T14V00c3PF6kJnYSvlkzn/WNWe1PJrV2kALZ7oIi++9PKv
+   rxO/hemZTtp+ke78TYKGfISDagGHhGOViVANbWFE9xyRhu/OuyJSzBe/n
+   mT3OA/eg0+FMNRqQiRJcxC8XFDuZqUoYXZ8bi9DvXKopB4Ntkc6W6udSJ
+   04IxdUv2o7ZGjG4Q3UPgoAL5cBvyXoEmuh4Xm4ND0Tq+upZUIOPHhO3M5
+   N8OUI3OpTM6Ry9jw0ItfCfCut0N1zIHhT0htKBdzPXlLdO8LlRqb7+aJC
+   LaV0qwbkKrrHOCL+mRNtTImBI36H4VDyw+1wVgRR6y2JjPyUv561FV86d
+   A==;
+X-CSE-ConnectionGUID: HkvOnEM3TYyKWZsRs1HTVA==
+X-CSE-MsgGUID: A7IIXf1OSrWGf5ZNODCYxQ==
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; 
+   d="asc'?scan'208";a="26488561"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 May 2024 02:37:27 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 23 May 2024 02:36:51 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 23 May 2024 02:36:47 -0700
+Date: Thu, 23 May 2024 10:36:29 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Minda Chen <minda.chen@starfivetech.com>
+CC: Bjorn Helgaas <helgaas@kernel.org>, Lorenzo Pieralisi
+	<lpieralisi@kernel.org>, Conor Dooley <conor@kernel.org>, Krzysztof
+ =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v16 08/22] PCI: microchip: Change the argument of
+ plda_pcie_setup_iomems()
+Message-ID: <20240523-scroll-sloping-a297ef0ab464@wendy>
+References: <SHXPR01MB086345C911E227889E3A4211E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+ <20240523023549.GA105928@bhelgaas>
+ <SHXPR01MB08637281B32AEE455F030081E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org,
- linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Lakshmi Yadlapati <lakshmiy@us.ibm.com>, Mark Brown <broonie@kernel.org>,
- Ninad Palsule <ninad@linux.ibm.com>, Rob Herring <robh@kernel.org>
-References: <20240522192524.3286237-4-eajames@linux.ibm.com>
-Subject: Re: [PATCH v6 03/20] dt-bindings: fsi: Document the IBM SCOM engine
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240522192524.3286237-4-eajames@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:cfQr83D1oKR1K1NDJlowB6vfMcdr960N+SAU9f1dz0d6+hwSiTb
- MA4DYIyXKvGsh6W4yZTbt40KcDLzNPCtGhr5SbA1zZh/b53pGXMq35QTAQjVaBgs/qxHQ4K
- dSBkMwOZKquaoxw07GODYUJhnLWk/5y9wK28ZohLGzwbQbbgMVsBob90mit+EvdyO21gWYS
- zogPGGr0Cem2+krxYe2Sg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:+kO+b2ef9wo=;nwiUopGz3O0QZ7I4ZQnFU6xyZIc
- ZDUkM6RKhsYekJsahbSU4aXfnF1UA21ORVVvjbhZmDq2YIlwp1jrpQgUJfEwy8Bgxk1A1Hnqm
- NsxrsJaVTtpKzOWN1f9N2jrGf+hsyLO2t3bpfHxForuPGMh/IshEe0uKVZl3S2DdIDoTjwDbf
- E4rV3QqW5ZBpOZTJK/IZF8vB8qSPiDu3/UheuPv0yLgOKni3LU2Kcg762QptuMcN5WWhJl9fA
- gz7xAk9LFg+r/9HQz/4ODwFMp6/ReHDL1v6Jz+ZQMOIDr0g6TZ8CTXM4ujaCg83kHr63ZXjQ1
- nBOSWNnZAbaf5g62/jiuh6LWoCVMIcpEkh3YQDdbRP9ZZtnU5aysHwJOEkBrW3HkP9aXQYaE5
- hGSeapi3PXBR/9p0xpAqI1tAoG8eGjM7jgXzDLdNu3hdbxNs65aZsCEHLXZFHzHTg4nb0gJGB
- XboGqBK79xtD+rHWvw3n+zLlcZW1qz0VXaf3VG7A0s6wZN2Uuvhscm95JqFaFYcHSNAzHBy+V
- BgXK9lWR8JKuDjvdvVUbFdwdffZDpALMwVJfNVBgv/ozTNHw3AGalCUzo9gD67wnWaWrxXKCU
- Opz22aeqUeooArgkL1DXuDaEqJEpJol0/sg2/HJEFN++2Ah66yH0W9J9v1EWZtupJkILwf0J7
- XmSltzHFG+hy2u0H7pjKc/llwd3Q2ZRHi/VYfNmifsGelKB60hJeG9qqE9IlkuAJNgAMX93aH
- sxzULP6aG8CzC4ZEYrQVU5W8zlYMkckDcjJa781XWPEX8HA9lTuEFO7Ktbi9iSj0P54QKh1LT
- StB75X6Q0mEyXHLFiOnKy74n2GwfgYmcEQuFxuphrsobw=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="jqWlq/BhKECf1ah8"
+Content-Disposition: inline
+In-Reply-To: <SHXPR01MB08637281B32AEE455F030081E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 
-> The SCOM engine provides an interface to the POWER processor PIB
-> (Pervasive Interconnect Bus).
+--jqWlq/BhKECf1ah8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Please improve this change description with a corresponding imperative wording.
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?h=v6.9#n94
+On Thu, May 23, 2024 at 09:22:01AM +0000, Minda Chen wrote:
+> Hi Conor
+>    Thanks for help us for this patch set !
+>    I see mars dts have been merged to mainline, this version dts patch can not be merged
+>    I will resend the dts patch on v6.10-rc1.
 
-Regards,
-Markus
+No worries, the dts patches in this series are long gone out of
+patchwork anyway so I wouldn't have even tried to apply them ;)
+
+Cheers,
+Conor.
+
+--jqWlq/BhKECf1ah8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk8OHAAKCRB4tDGHoIJi
+0hGZAP9XeCytwAGiMDsRE76sT98+KIjp7JPfuV4CVnQSht2O6gD9EaIZJ/+EM0dy
+O+M3hpVKvaItendrAIFPy+CvMDC6yw4=
+=YxeV
+-----END PGP SIGNATURE-----
+
+--jqWlq/BhKECf1ah8--
 
