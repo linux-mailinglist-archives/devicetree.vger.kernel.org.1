@@ -1,136 +1,191 @@
-Return-Path: <devicetree+bounces-68811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344A78CDBA0
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 22:52:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F91F8CDBAE
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 23:00:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 576051C22425
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:52:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB3B41F237CF
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766448528F;
-	Thu, 23 May 2024 20:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD3E127E02;
+	Thu, 23 May 2024 21:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nli7FNZO"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="Q+wAFNkU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B5B85277;
-	Thu, 23 May 2024 20:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716497525; cv=none; b=cG5uxTtpWof798Jksi+96q1M8w8LTLTTldIoS0r0B+ajgeVvaYJ4PSsCMRi0sZxllpOvy1cE8+wWvpLloznUQYNWahthplqUiAniDCD2XHKAzzDKuC5Z2uCuQrkYjOSx4+hdnamW9Wzf19WI60KxqqC+ERDYUAjq+eTzj7nFzok=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716497525; c=relaxed/simple;
-	bh=a8xk6RChx36XVnYBqEzPd31J2jDkpPLdySnC/hT5oAM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eqw4FRL7vkSQk23pcBQLkSpGTYo3HjK17SqpnKOFY0DGsMgJNYqHKRs2aU6ICNaZ7F8OEHLtOrb69Sa2DPmxh1a4PLjkjUvhm62u0WnMMxK+3Bw2xjt5mIzZGgVJJqcApXNI/002UtIwaz7sQG6tYB8BlSXSRkxknTI+5VnmsA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nli7FNZO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2E94C2BD10;
-	Thu, 23 May 2024 20:52:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716497524;
-	bh=a8xk6RChx36XVnYBqEzPd31J2jDkpPLdySnC/hT5oAM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nli7FNZOH7mmh6eropuP3Yqrbu1VbfI6DhqqpkIQWttthMFFlG+6+XO5otUe2aJXO
-	 XSh3VwS6Y15HgLC6OCgMjodyqAkyV3p4/xoo5Py59qpHC+ngqGXhZJAi2qqx82kfCB
-	 97XyxEWCEHryso+Nn8p+CYRvCEG9hbhrhQy/Zc36SZ5S7eLuQBnkzET92/d/rwhSd7
-	 rHaT+fXHnsib/mzoqiyJaf9U1Ma5pAR7jn235PWwP8SxdAcS62s35iIxEVmYb9nINp
-	 BGDwq/KQ8gFpyvZtNrXSRPJ6ZiQC8uGS5Nj+Kz8Z0L/PnKJRxjiiVX4jpw/VTAS/nR
-	 cA1vBQbXKb0Ww==
-Message-ID: <ecdefda0-08e9-409b-8cc8-b1783b984049@kernel.org>
-Date: Thu, 23 May 2024 22:51:58 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7816C127B62;
+	Thu, 23 May 2024 21:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716498035; cv=pass; b=XNvPfJL+SkPkGM/AVzTkTqe9fjub89r0Fhccijvy3r3GOjbMDpQQ8sohlrS6icsuODN1T1LKghdrZhhJG23Sm4M+SVLPIynLyoT1Yn7D9e82mmEPcBeOFXav4BT1HlSqUbQODZ9muC+0tiYs7+i+KwkdDODFoV7+isqyQ9gnIZU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716498035; c=relaxed/simple;
+	bh=TmU8uZAyuPf/d3olY2eGrT/SIjJ0i/0PWwEUduLUpDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dzhFaIZ5msmKp+wkCVFG68VtiqNnYcNYmDb0WucP1VuJq4XdFVLWtS5xvRcojaJDleKTP2SUb67EZjiwqLVykYzaaH+Nc5hGeecp9NXjxQBdVFPlMUjMA0otWqUb2nzBJY5gxOyKaKg1cMARnUSzHVnRRSKbG7cXBd8U+FPQ4jY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=Q+wAFNkU; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4VlgYS3nFtz49Pyk;
+	Fri, 24 May 2024 00:00:28 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1716498029;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7cSdFH4YWDFeRqlJCHrqk1NjohC0F1hTAl5N2kO2BzM=;
+	b=Q+wAFNkUpEcIgzOYM9IAI9EaQtsRe2NacYFkOG+Cfbu+VugMz1vmHh9LgYtU/RjmVU3Qf3
+	KrUIqSfBitWN+ZSWzOhBm0q9inv+36Kwq2JxMyEEA5BKfcHqhXJsGMcL46FVaKAaMIhAYj
+	xkMkCIGdnEIpq5eSPJHvKnU6+z3QJ/6gNicIUuGu0AdS4qJy//ja/EJz+X9iALZKIVR4s9
+	qtNwseTMGt8QLA/rWUVjD10mhVxJ+QUYDaNtheeepov3a+0ql2ydAahpTT3uw2JCNReevS
+	02tB7e8JON+5tNiojQLlYbpjdjSAngzM3Wj5bbaMmOioEfD6Nmu+DU8cveAP3g==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1716498029; a=rsa-sha256;
+	cv=none;
+	b=OP2sBA0KdLToLWhtHUedDbLNd8vNi4o1p0swlIlh4LdpVgAZW2Liot8txH/tFoXTFtT2Iz
+	Av317GKYxGovsE+t/9uP6cNY1GOhb/o6Ru2oa13ZmQy1RsrvrKepP24R2VZaBMnGNBV1e7
+	wjMHdS2KZ+ov1zaehY7IUyPM16PV6wgSLPNtI6yn+cggVfKspcg1Y+/q9UxNNdIHejiET6
+	CmB8Ec6bOT572ZKCCwBLVmcL4a4Nx2T43102gfBxs0B+Fo3Btx1w6h9aAxRPBUV+vfjrX6
+	yHOQtG4yrLRhk+nXsg8Plh8NpledAbYu28RxhFLAep6HE3McGH/S462LEDsk2g==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1716498029;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7cSdFH4YWDFeRqlJCHrqk1NjohC0F1hTAl5N2kO2BzM=;
+	b=aVdGZgmVYxt+JTbT5uOTgcoinSG34h1Fg92fr3gnfsCSV26OiJ34sP4wAmGunYzTk+SB0q
+	fIwKU9yD3NaigTYpKL8n4NRBkDQlbMjU1SH3GwVr3n6gRnU7V6wrHbXZZHHk+fTTRDC+8Q
+	XG9IvnZa73Znw21M8V5GC5h27VoVQw2QUccVuVSi0IKdg9OZHsLxUWCHwut7Cs1dnTyvPw
+	Hk91c4gGkeF7qZCnRGIsp/prigDZ6EXlNbw7tW2VRAxkq3EAAc1wYveQ4gMav/6R+3L6xg
+	tQ1OEI4K06s+JesyoN6Bug05dUmwvuSSFYhig8NQNc6RCH3CS2Fmh/pCf6JkCA==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id BA761634C94;
+	Thu, 23 May 2024 23:57:47 +0300 (EEST)
+Date: Thu, 23 May 2024 20:57:47 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Dan Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v4 3/5] media: mali-c55: Add Mali-C55 ISP driver
+Message-ID: <Zk-tyxjm-6R-66JO@valkosipuli.retiisi.eu>
+References: <20240418090825.624747-1-dan.scally@ideasonboard.com>
+ <20240418090825.624747-4-dan.scally@ideasonboard.com>
+ <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
+ <4ea66114-37a4-413f-b672-43ec3d4631c6@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom,pmic-gpio: Document
- PMC8380
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240522-topic-pmc8380_gpio-v1-0-7298afa9e181@linaro.org>
- <20240522-topic-pmc8380_gpio-v1-1-7298afa9e181@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240522-topic-pmc8380_gpio-v1-1-7298afa9e181@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4ea66114-37a4-413f-b672-43ec3d4631c6@ideasonboard.com>
 
-On 22/05/2024 13:30, Konrad Dybcio wrote:
-> PMC8380 is a new PMIC used with X1 SoCs. Document it
+Hi Dan,
+
+On Thu, May 23, 2024 at 03:27:36PM +0100, Dan Scally wrote:
+> Hi Sakari - sorry, one part I missed...
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> On 23/05/2024 09:03, Sakari Ailus wrote:
+> > > +
+> > > +int mali_c55_isp_s_stream(struct mali_c55_isp *isp, int enable)
+> > Have you considered {enable,disable}_streams? All new drivers should use
+> > these instead of s_stream() now.
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> index 50846a2d09c8..a52949526a2a 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> @@ -57,6 +57,7 @@ properties:
->            - qcom,pma8084-gpio
->            - qcom,pmc8180-gpio
->            - qcom,pmc8180c-gpio
-> +          - qcom,pmc8380-gpio
+> 
+> Although named s_stream this is actually a purely internal function - it's
+> not exposed as part of the subdev video ops. The resizer subdevices
+> similarly don't expose an .s_stream() operation, they're simply started in
+> the callpath of mali_c55_vb2_start_streaming(). I'll split the stop
+> functionality into mali_c55_isp_stop_stream() and rename this
+> mali_c55_isp_start_stream() to make that less confusing.
 
-There is also allOf: with if: constraining number of lines and reserved
-ranges.
+Ack. But this might require some rework, depending on based on what
+streaming is actually started. I'm referring to the discussion elsewhere
+in the same thread.
 
-Best regards,
-Krzysztof
+> 
+> 
+> The TPG subdevice on the other hand does expose an .s_stream() operation,
+> since the intention was to model it exactly like a connected external
+> subdevice. I can switch to the .enable_streams() operation there.
 
+Sounds good.
+
+> 
+> > 
+> > > +{
+> > > +	struct mali_c55 *mali_c55 = isp->mali_c55;
+> > > +	struct media_pad *source_pad;
+> > > +	struct media_pad *sink_pad;
+> > > +	int ret;
+> > > +
+> > > +	if (!enable) {
+> > > +		if (isp->source)
+> > > +			v4l2_subdev_call(isp->source, video, s_stream, false);
+
+This call could be v4l2_subdev_disable_streams().
+
+> > > +		isp->source = NULL;
+> > > +
+> > > +		mali_c55_isp_stop(mali_c55);
+> > > +
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	sink_pad = &isp->pads[MALI_C55_ISP_PAD_SINK_VIDEO];
+> > > +	source_pad = media_pad_remote_pad_unique(sink_pad);
+> > > +	if (IS_ERR(source_pad)) {
+> > > +		dev_err(mali_c55->dev, "Failed to get source for ISP\n");
+> > > +		return PTR_ERR(source_pad);
+> > > +	}
+> > > +
+> > > +	isp->source = media_entity_to_v4l2_subdev(source_pad->entity);
+> > > +
+> > > +	isp->frame_sequence = 0;
+> > > +	ret = mali_c55_isp_start(mali_c55);
+> > > +	if (ret) {
+> > > +		dev_err(mali_c55->dev, "Failed to start ISP\n");
+> > > +		isp->source = NULL;
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	ret = v4l2_subdev_call(isp->source, video, s_stream, true);
+
+And this could be v4l2_subdev_enable_streams() as well.
+
+> > > +	if (ret) {
+> > > +		dev_err(mali_c55->dev, "Failed to start ISP source\n");
+> > > +		mali_c55_isp_stop(mali_c55);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+
+-- 
+Regards,
+
+Sakari Ailus
 
