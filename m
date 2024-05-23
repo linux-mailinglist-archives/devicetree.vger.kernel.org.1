@@ -1,984 +1,560 @@
-Return-Path: <devicetree+bounces-68550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D848CCB1C
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 05:21:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9988CCB34
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 05:35:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F4F82820F0
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 03:21:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2123E283203
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 03:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6968913BC20;
-	Thu, 23 May 2024 03:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9740633086;
+	Thu, 23 May 2024 03:34:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="ANDs9bNv"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WoglU0F2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D1713B286;
-	Thu, 23 May 2024 03:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B8920319;
+	Thu, 23 May 2024 03:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716434413; cv=none; b=PRuvBVHLukywqd0RTZiJ7wLcmJmDCngwV7zHp6QkNpLo61z8Ubo7iX9glNA2f9weDMIffu9p30x+wyqUPGdISNxec3lBlGKLlkebVnr0EAQoT755xzZQNnAxier0LKBQzgWNL5xsLPV/D2JbzlvsnM0AveC1t2XyG8nvBRR7xL4=
+	t=1716435299; cv=none; b=e43FM55R++zlKnuAphzI+REh2i+LV6C6QRnp2Zc8EPrp/22xbDvrh41pNJfzqE/sN1kfRFvJ5EVXDQUNqrDjciMTS2JR7mU1HnAYqyJcFkFMR6S85iQyM/coOSm6TT/s0KDw02l2r9QfA2U0E1C8CRo5Mp+GEPix5Kyy9kYXD8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716434413; c=relaxed/simple;
-	bh=SuwqcSsFykXgYo+FOWlq4Un7TTTiiLDzCoIjtentSaY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qSNmitnHkxbjs0hTlIHTWQXC10Pe5y3CylcAYMSARXYQ5BenOInpwI5TpgRmtgm2mu4Qaa15JgVwoowNCZexyFU6X484GzDaH+gy6oRBXqLKlXg8vnotpaQsgjVItkPKeDIJPjGPYLVjaaiQ/AFaPnZJNr1gomvjL3IZPLh6wMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=ANDs9bNv; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44N2WwND001990;
-	Wed, 22 May 2024 23:19:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type:content-transfer-encoding; s=DKIM;
-	 bh=X0UetRSh6xhdw8vpZhC2+kKiVJIZv1Qbzd3OUxSYyO4=; b=ANDs9bNv4qLf
-	v4ZGQ+vat2tCd3oOcSSWeRelnl3THtLZoc5VdqlXpcG0nlN7el3dghVkAfpvb9+0
-	qJgEWNOfHE7yT+5uVocvG771rJDcaG6CxPl3l0dpYE0KHI+8IV45LPLKZj+GwXlA
-	y70PEfIJp3n3ssy3cYn+sTUEqQoA3ERrW4T6G1UwqikVvaQysgjjvBIiiWkpX2OD
-	Oi9O0fR+wsGEJqOo+An6zUy8UY7QRPi/Np3F0WuyZ0HV3yqzN9H1G1Lz+0l54jhA
-	eoReLDhwm6TtynwHSz9XrGv6lpDzWMFOjHarFOR6wvTcXtv5VgoNpoggyVqy3Cqx
-	V8Yw8G2QKA==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3y9dd03gre-1
+	s=arc-20240116; t=1716435299; c=relaxed/simple;
+	bh=o10imn5J0AI2O2FGptsG7XtejKtBda9RPe1N1FflebA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=czwZ9ZGY4zMRKGzMcST6pSLDaGC9DsdRf7tkxRqHbxzUxihWe7IqJLKIN1hkRmB3J2RnCapaFanuaHdUkB6Sj+4JoIH6mVudJZxY4H/Hf/i2Y7NHdGJO0pMjrU/ZTOR44adzbwpFK1xKCQeFVdnGnIra0V5FR0gh8RvWar2x89M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WoglU0F2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44MLkf46002549;
+	Thu, 23 May 2024 03:34:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=7MeQ8tDFi4p6ig6ite5CM/mtmGZW9qTTX3crnlZFHT0=; b=Wo
+	glU0F2QPnXttl748KKTmNNkzgvCIbtqR+2PUebRGdrbE/2GKYZy2ayMFi9+LCNsK
+	o9sMsMvzp2hu0r9pZiqmOpNwhDibY8c/D3M492J87V77CqRmlS7W/anWU13IkmHi
+	TUe4jZTszt8zOXPtE72bMznrjPTPs2K54rRbrsxPTSc7CDcuscVl1qTitjnnWwAk
+	Q4kjyiGMUCDt4qpAVAi0dOc1Wlon7OywRvVQ6Yz5f/hpgbbd38h4hBFLdQ5F1VvL
+	G48sLTqi1Ke+jaSo8EBFW0DOydPO46gK2qzjThaCM7jorsbAKc5XdSXiAGirF+G0
+	0uA4TMuhGTkifs9lN+lA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6n4gjmpd-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 May 2024 23:19:55 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 44N3JsDR004194
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 22 May 2024 23:19:54 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Wed, 22 May 2024 23:19:53 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Wed, 22 May 2024 23:19:53 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 22 May 2024 23:19:53 -0400
-Received: from kim-VirtualBox.ad.analog.com (KPALLER2-L03.ad.analog.com [10.117.220.38])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 44N3JG8w018850;
-	Wed, 22 May 2024 23:19:44 -0400
-From: Kim Seer Paller <kimseer.paller@analog.com>
-To: <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: Jonathan Cameron <jic23@kernel.org>,
-        David Lechner
-	<dlechner@baylibre.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Dimitri Fedrau
-	<dima.fedrau@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        "Michael
- Hennerich" <michael.hennerich@analog.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?=
-	<noname.nuno@gmail.com>
-Subject: [PATCH v2 5/5] iio: dac: ltc2664: Add driver for LTC2664 and LTC2672
-Date: Thu, 23 May 2024 11:19:09 +0800
-Message-ID: <20240523031909.19427-6-kimseer.paller@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240523031909.19427-1-kimseer.paller@analog.com>
-References: <20240523031909.19427-1-kimseer.paller@analog.com>
+	Thu, 23 May 2024 03:34:41 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44N3YdCh024879
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 03:34:39 GMT
+Received: from [10.216.36.209] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 May
+ 2024 20:34:33 -0700
+Message-ID: <6fe417c8-8eb8-2489-5295-c94dd5cc08bd@quicinc.com>
+Date: Thu, 23 May 2024 09:04:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v6 6/8] spi: spi-qpic: add driver for QCOM SPI NAND flash
+ Interface
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+CC: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20240521105532.1537845-1-quic_mdalam@quicinc.com>
+ <20240521105532.1537845-7-quic_mdalam@quicinc.com>
+ <20240521152410.7cff71ab@xps-13>
+ <5b96e24a-edcd-df85-9e70-332a6059ee73@quicinc.com>
+ <20240522143317.07f78601@xps-13>
+Content-Language: en-US
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <20240522143317.07f78601@xps-13>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: dl30VeBEz5faPegFtrPabFzmrN0YK3yJ
-X-Proofpoint-GUID: dl30VeBEz5faPegFtrPabFzmrN0YK3yJ
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bLwe8LSLbrzdS-DgTxjFvWXzELXu1Vt1
+X-Proofpoint-ORIG-GUID: bLwe8LSLbrzdS-DgTxjFvWXzELXu1Vt1
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
  definitions=2024-05-23_01,2024-05-22_01,2024-05-17_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0
- mlxscore=0 mlxlogscore=999 suspectscore=0 impostorscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405230022
+ clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0 mlxlogscore=999
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405230023
 
-LTC2664 4 channel, 16 bit Voltage Output SoftSpan DAC
-LTC2672 5 channel, 16 bit Current Output Softspan DAC
 
-Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
-Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
----
- MAINTAINERS               |   1 +
- drivers/iio/dac/Kconfig   |  11 +
- drivers/iio/dac/Makefile  |   1 +
- drivers/iio/dac/ltc2664.c | 802 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 815 insertions(+)
- create mode 100644 drivers/iio/dac/ltc2664.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3320b7af4c0b..2997f65247e3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12859,6 +12859,7 @@ W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/ABI/testing/sysfs-bus-iio-dac
- F:	Documentation/devicetree/bindings/iio/dac/adi,ltc2664.yaml
- F:	Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
-+F:	drivers/iio/dac/ltc2664.c
- 
- LTC2688 IIO DAC DRIVER
- M:	Nuno Sá <nuno.sa@analog.com>
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index 3c2bf620f00f..3d065c157605 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -370,6 +370,17 @@ config LTC2632
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ltc2632.
- 
-+config LTC2664
-+	tristate "Analog Devices LTC2664 and LTC2672 DAC SPI driver"
-+	depends on SPI
-+	select REGMAP
-+	help
-+	  Say yes here to build support for Analog Devices
-+	  LTC2664 and LTC2672 converters (DAC).
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called ltc2664.
-+
- config M62332
- 	tristate "Mitsubishi M62332 DAC driver"
- 	depends on I2C
-diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
-index 8432a81a19dc..2cf148f16306 100644
---- a/drivers/iio/dac/Makefile
-+++ b/drivers/iio/dac/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_DS4424) += ds4424.o
- obj-$(CONFIG_LPC18XX_DAC) += lpc18xx_dac.o
- obj-$(CONFIG_LTC1660) += ltc1660.o
- obj-$(CONFIG_LTC2632) += ltc2632.o
-+obj-$(CONFIG_LTC2664) += ltc2664.o
- obj-$(CONFIG_LTC2688) += ltc2688.o
- obj-$(CONFIG_M62332) += m62332.o
- obj-$(CONFIG_MAX517) += max517.o
-diff --git a/drivers/iio/dac/ltc2664.c b/drivers/iio/dac/ltc2664.c
-new file mode 100644
-index 000000000000..488b841e6c66
---- /dev/null
-+++ b/drivers/iio/dac/ltc2664.c
-@@ -0,0 +1,802 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * LTC2664 4 channel, 16 bit Voltage Output SoftSpan DAC driver
-+ * LTC2672 5 channel, 16 bit Current Output Softspan DAC driver
-+ *
-+ * Copyright 2024 Analog Devices Inc.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/cleanup.h>
-+#include <linux/device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/spi/spi.h>
-+
-+#define LTC2664_CMD_WRITE_N(n)		(0x00 + (n))
-+#define LTC2664_CMD_UPDATE_N(n)		(0x10 + (n))
-+#define LTC2664_CMD_WRITE_N_UPDATE_ALL	0x20
-+#define LTC2664_CMD_WRITE_N_UPDATE_N(n)	(0x30 + (n))
-+#define LTC2664_CMD_POWER_DOWN_N(n)	(0x40 + (n))
-+#define LTC2664_CMD_POWER_DOWN_ALL	0x50
-+#define LTC2664_CMD_SPAN_N(n)		(0x60 + (n))
-+#define LTC2664_CMD_CONFIG		0x70
-+#define LTC2664_CMD_MUX			0xB0
-+#define LTC2664_CMD_TOGGLE_SEL		0xC0
-+#define LTC2664_CMD_GLOBAL_TOGGLE	0xD0
-+#define LTC2664_CMD_NO_OPERATION	0xF0
-+#define LTC2664_REF_DISABLE		0x0001
-+#define LTC2664_MSPAN_SOFTSPAN		7
-+
-+#define LTC2672_MAX_CHANNEL		5
-+#define LTC2672_MAX_SPAN		7
-+#define LTC2672_SCALE_MULTIPLIER(n)	(50 * BIT(n))
-+
-+enum ltc2664_ids {
-+	LTC2664,
-+	LTC2672,
-+};
-+
-+enum {
-+	LTC2664_SPAN_RANGE_0V_5V,
-+	LTC2664_SPAN_RANGE_0V_10V,
-+	LTC2664_SPAN_RANGE_M5V_5V,
-+	LTC2664_SPAN_RANGE_M10V_10V,
-+	LTC2664_SPAN_RANGE_M2V5_2V5,
-+};
-+
-+enum {
-+	LTC2664_INPUT_A,
-+	LTC2664_INPUT_B,
-+	LTC2664_INPUT_B_AVAIL,
-+	LTC2664_POWERDOWN,
-+	LTC2664_POWERDOWN_MODE,
-+	LTC2664_TOGGLE_EN,
-+	LTC2664_GLOBAL_TOGGLE,
-+};
-+
-+static const u16 ltc2664_mspan_lut[8][2] = {
-+	{ LTC2664_SPAN_RANGE_M10V_10V, 32768 }, /* MPS2=0, MPS1=0, MSP0=0 (0)*/
-+	{ LTC2664_SPAN_RANGE_M5V_5V, 32768 }, /* MPS2=0, MPS1=0, MSP0=1 (1)*/
-+	{ LTC2664_SPAN_RANGE_M2V5_2V5, 32768 }, /* MPS2=0, MPS1=1, MSP0=0 (2)*/
-+	{ LTC2664_SPAN_RANGE_0V_10V, 0 }, /* MPS2=0, MPS1=1, MSP0=1 (3)*/
-+	{ LTC2664_SPAN_RANGE_0V_10V, 32768 }, /* MPS2=1, MPS1=0, MSP0=0 (4)*/
-+	{ LTC2664_SPAN_RANGE_0V_5V, 0 }, /* MPS2=1, MPS1=0, MSP0=1 (5)*/
-+	{ LTC2664_SPAN_RANGE_0V_5V, 32768 }, /* MPS2=1, MPS1=1, MSP0=0 (6)*/
-+	{ LTC2664_SPAN_RANGE_0V_5V, 0 } /* MPS2=1, MPS1=1, MSP0=1 (7)*/
-+};
-+
-+struct ltc2664_state;
-+
-+struct ltc2664_chip_info {
-+	enum ltc2664_ids id;
-+	const char *name;
-+	int (*scale_get)(const struct ltc2664_state *st, int c);
-+	int (*offset_get)(const struct ltc2664_state *st, int c);
-+	int measurement_type;
-+	unsigned int num_channels;
-+	const struct iio_chan_spec *iio_chan;
-+	const int (*span_helper)[2];
-+	unsigned int num_span;
-+	unsigned int internal_vref;
-+	bool manual_span_support;
-+	bool rfsadj_support;
-+};
-+
-+struct ltc2664_chan {
-+	bool toggle_chan;
-+	bool powerdown;
-+	u8 span;
-+	u16 raw[2]; /* A/B */
-+};
-+
-+struct ltc2664_state {
-+	struct spi_device *spi;
-+	struct regmap *regmap;
-+	struct ltc2664_chan channels[LTC2672_MAX_CHANNEL];
-+	/* lock to protect against multiple access to the device and shared data */
-+	struct mutex lock;
-+	const struct ltc2664_chip_info *chip_info;
-+	struct iio_chan_spec *iio_channels;
-+	int vref;
-+	u32 toggle_sel;
-+	u32 global_toggle;
-+	u32 rfsadj;
-+};
-+
-+static const int ltc2664_span_helper[][2] = {
-+	{ 0, 5000 },
-+	{ 0, 10000 },
-+	{ -5000, 5000 },
-+	{ -10000, 10000 },
-+	{ -2500, 2500 },
-+};
-+
-+static const int ltc2672_span_helper[][2] = {
-+	{ 0, 3125 },
-+	{ 0, 6250 },
-+	{ 0, 12500 },
-+	{ 0, 25000 },
-+	{ 0, 50000 },
-+	{ 0, 100000 },
-+	{ 0, 200000 },
-+	{ 0, 300000 },
-+};
-+
-+static int ltc2664_scale_get(const struct ltc2664_state *st, int c)
-+{
-+	const struct ltc2664_chan *chan = &st->channels[c];
-+	const int (*span_helper)[2] = st->chip_info->span_helper;
-+	int span, fs;
-+
-+	span = chan->span;
-+	if (span < 0)
-+		return span;
-+
-+	fs = span_helper[span][1] - span_helper[span][0];
-+
-+	return (fs / 2500) * st->vref;
-+}
-+
-+static int ltc2672_scale_get(const struct ltc2664_state *st, int c)
-+{
-+	const struct ltc2664_chan *chan = &st->channels[c];
-+	int span, fs;
-+
-+	span = chan->span;
-+	if (span < 0)
-+		return span;
-+
-+	fs = 1000 * st->vref / st->rfsadj;
-+
-+	if (span == LTC2672_MAX_SPAN)
-+		return 4800 * fs;
-+
-+	return LTC2672_SCALE_MULTIPLIER(span) * fs;
-+}
-+
-+static int ltc2664_offset_get(const struct ltc2664_state *st, int c)
-+{
-+	const struct ltc2664_chan *chan = &st->channels[c];
-+	int span;
-+
-+	span = chan->span;
-+	if (span < 0)
-+		return span;
-+
-+	if (st->chip_info->span_helper[span][0] < 0)
-+		return -32768;
-+
-+	return 0;
-+}
-+
-+static int ltc2672_offset_get(const struct ltc2664_state *st, int c)
-+{
-+	const struct ltc2664_chan *chan = &st->channels[c];
-+	int span;
-+
-+	span = chan->span;
-+	if (span < 0)
-+		return span;
-+
-+	if (st->chip_info->span_helper[span][1] < 0)
-+		return -32768;
-+
-+	return st->chip_info->span_helper[span][1] / 250;
-+}
-+
-+static int ltc2664_dac_code_write(struct ltc2664_state *st, u32 chan, u32 input,
-+				  u16 code)
-+{
-+	struct ltc2664_chan *c = &st->channels[chan];
-+	int ret, reg;
-+
-+	guard(mutex)(&st->lock);
-+	/* select the correct input register to write to */
-+	if (c->toggle_chan) {
-+		ret = regmap_write(st->regmap, LTC2664_CMD_TOGGLE_SEL,
-+				   input << chan);
-+		if (ret)
-+			return ret;
-+	}
-+	/*
-+	 * If in toggle mode the dac should be updated by an
-+	 * external signal (or sw toggle) and not here.
-+	 */
-+	if (st->toggle_sel & BIT(chan))
-+		reg = LTC2664_CMD_WRITE_N(chan);
-+	else
-+		reg = LTC2664_CMD_WRITE_N_UPDATE_N(chan);
-+
-+	ret = regmap_write(st->regmap, reg, code);
-+	if (ret)
-+		return ret;
-+
-+	c->raw[input] = code;
-+
-+	if (c->toggle_chan) {
-+		ret = regmap_write(st->regmap, LTC2664_CMD_TOGGLE_SEL,
-+				   st->toggle_sel);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static int ltc2664_dac_code_read(struct ltc2664_state *st, u32 chan, u32 input,
-+				 u32 *code)
-+{
-+	guard(mutex)(&st->lock);
-+	*code = st->channels[chan].raw[input];
-+
-+	return 0;
-+}
-+
-+static const int ltc2664_raw_range[] = {0, 1, U16_MAX};
-+
-+static int ltc2664_read_avail(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      const int **vals, int *type, int *length,
-+			      long info)
-+{
-+	switch (info) {
-+	case IIO_CHAN_INFO_RAW:
-+		*vals = ltc2664_raw_range;
-+		*type = IIO_VAL_INT;
-+
-+		return IIO_AVAIL_RANGE;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ltc2664_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long info)
-+{
-+	struct ltc2664_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = ltc2664_dac_code_read(st, chan->channel,
-+					    LTC2664_INPUT_A, val);
-+		if (ret)
-+			return ret;
-+
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_OFFSET:
-+		*val = st->chip_info->offset_get(st, chan->channel);
-+
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = st->chip_info->scale_get(st, chan->channel);
-+
-+		*val2 = 16;
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ltc2664_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long info)
-+{
-+	struct ltc2664_state *st = iio_priv(indio_dev);
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_RAW:
-+		if (val > U16_MAX || val < 0)
-+			return -EINVAL;
-+
-+		return ltc2664_dac_code_write(st, chan->channel,
-+					      LTC2664_INPUT_A, val);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static ssize_t ltc2664_reg_bool_get(struct iio_dev *indio_dev,
-+				    uintptr_t private,
-+				    const struct iio_chan_spec *chan,
-+				    char *buf)
-+{
-+	struct ltc2664_state *st = iio_priv(indio_dev);
-+	u32 val;
-+
-+	guard(mutex)(&st->lock);
-+	switch (private) {
-+	case LTC2664_POWERDOWN:
-+		val = st->channels[chan->channel].powerdown;
-+
-+		return sysfs_emit(buf, "%u\n", val);
-+	case LTC2664_POWERDOWN_MODE:
-+		return sysfs_emit(buf, "42kohm_to_gnd\n");
-+	case LTC2664_TOGGLE_EN:
-+		val = !!(st->toggle_sel & BIT(chan->channel));
-+
-+		return sysfs_emit(buf, "%u\n", val);
-+	case LTC2664_GLOBAL_TOGGLE:
-+		val = st->global_toggle;
-+
-+		return sysfs_emit(buf, "%u\n", val);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static ssize_t ltc2664_reg_bool_set(struct iio_dev *indio_dev,
-+				    uintptr_t private,
-+				    const struct iio_chan_spec *chan,
-+				    const char *buf, size_t len)
-+{
-+	struct ltc2664_state *st = iio_priv(indio_dev);
-+	int ret;
-+	bool en;
-+
-+	ret = kstrtobool(buf, &en);
-+	if (ret)
-+		return ret;
-+
-+	guard(mutex)(&st->lock);
-+	switch (private) {
-+	case LTC2664_POWERDOWN:
-+		ret = regmap_write(st->regmap,
-+				   en ? LTC2664_CMD_POWER_DOWN_N(chan->channel) :
-+				   LTC2664_CMD_UPDATE_N(chan->channel), en);
-+		if (ret)
-+			return ret;
-+
-+		st->channels[chan->channel].powerdown = en;
-+
-+		return len;
-+	case LTC2664_TOGGLE_EN:
-+		if (en)
-+			st->toggle_sel |= BIT(chan->channel);
-+		else
-+			st->toggle_sel &= ~BIT(chan->channel);
-+
-+		ret = regmap_write(st->regmap, LTC2664_CMD_TOGGLE_SEL,
-+				   st->toggle_sel);
-+		if (ret)
-+			return ret;
-+
-+		return len;
-+	case LTC2664_GLOBAL_TOGGLE:
-+		ret = regmap_write(st->regmap, LTC2664_CMD_GLOBAL_TOGGLE, en);
-+		if (ret)
-+			return ret;
-+
-+		st->global_toggle = en;
-+
-+		return len;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static ssize_t ltc2664_dac_input_read(struct iio_dev *indio_dev,
-+				      uintptr_t private,
-+				      const struct iio_chan_spec *chan,
-+				      char *buf)
-+{
-+	struct ltc2664_state *st = iio_priv(indio_dev);
-+	int ret;
-+	u32 val;
-+
-+	if (private == LTC2664_INPUT_B_AVAIL)
-+		return sysfs_emit(buf, "[%u %u %u]\n", ltc2664_raw_range[0],
-+				  ltc2664_raw_range[1],
-+				  ltc2664_raw_range[2] / 4);
-+
-+	ret = ltc2664_dac_code_read(st, chan->channel, private, &val);
-+	if (ret)
-+		return ret;
-+
-+	return sysfs_emit(buf, "%u\n", val);
-+}
-+
-+static ssize_t ltc2664_dac_input_write(struct iio_dev *indio_dev,
-+				       uintptr_t private,
-+				       const struct iio_chan_spec *chan,
-+				       const char *buf, size_t len)
-+{
-+	struct ltc2664_state *st = iio_priv(indio_dev);
-+	int ret;
-+	u16 val;
-+
-+	if (private == LTC2664_INPUT_B_AVAIL)
-+		return -EINVAL;
-+
-+	ret = kstrtou16(buf, 10, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = ltc2664_dac_code_write(st, chan->channel, private, val);
-+	if (ret)
-+		return ret;
-+
-+	return len;
-+}
-+
-+static int ltc2664_reg_access(struct iio_dev *indio_dev,
-+			      unsigned int reg,
-+			      unsigned int writeval,
-+			      unsigned int *readval)
-+{
-+	struct ltc2664_state *st = iio_priv(indio_dev);
-+
-+	if (readval)
-+		return -EOPNOTSUPP;
-+
-+	return regmap_write(st->regmap, reg, writeval);
-+}
-+
-+#define LTC2664_CHAN_EXT_INFO(_name, _what, _shared, _read, _write) {	\
-+	.name = _name,							\
-+	.read = (_read),						\
-+	.write = (_write),						\
-+	.private = (_what),						\
-+	.shared = (_shared),						\
-+}
-+
-+/*
-+ * For toggle mode we only expose the symbol attr (sw_toggle) in case a TGPx is
-+ * not provided in dts.
-+ */
-+static const struct iio_chan_spec_ext_info ltc2664_toggle_sym_ext_info[] = {
-+	LTC2664_CHAN_EXT_INFO("raw0", LTC2664_INPUT_A, IIO_SEPARATE,
-+			      ltc2664_dac_input_read, ltc2664_dac_input_write),
-+	LTC2664_CHAN_EXT_INFO("raw1", LTC2664_INPUT_B, IIO_SEPARATE,
-+			      ltc2664_dac_input_read, ltc2664_dac_input_write),
-+	LTC2664_CHAN_EXT_INFO("powerdown", LTC2664_POWERDOWN, IIO_SEPARATE,
-+			      ltc2664_reg_bool_get, ltc2664_reg_bool_set),
-+	LTC2664_CHAN_EXT_INFO("powerdown_mode", LTC2664_POWERDOWN_MODE,
-+			      IIO_SEPARATE, ltc2664_reg_bool_get, NULL),
-+	LTC2664_CHAN_EXT_INFO("symbol", LTC2664_GLOBAL_TOGGLE, IIO_SEPARATE,
-+			      ltc2664_reg_bool_get, ltc2664_reg_bool_set),
-+	LTC2664_CHAN_EXT_INFO("toggle_en", LTC2664_TOGGLE_EN,
-+			      IIO_SEPARATE, ltc2664_reg_bool_get,
-+			      ltc2664_reg_bool_set),
-+	{ }
-+};
-+
-+static const struct iio_chan_spec_ext_info ltc2664_ext_info[] = {
-+	LTC2664_CHAN_EXT_INFO("powerdown", LTC2664_POWERDOWN, IIO_SEPARATE,
-+			      ltc2664_reg_bool_get, ltc2664_reg_bool_set),
-+	LTC2664_CHAN_EXT_INFO("powerdown_mode", LTC2664_POWERDOWN_MODE,
-+			      IIO_SEPARATE, ltc2664_reg_bool_get, NULL),
-+	{ }
-+};
-+
-+#define LTC2664_CHANNEL(_chan) {					\
-+	.indexed = 1,							\
-+	.output = 1,							\
-+	.channel = (_chan),						\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_SCALE) |		\
-+		BIT(IIO_CHAN_INFO_OFFSET) | BIT(IIO_CHAN_INFO_RAW),	\
-+	.info_mask_separate_available = BIT(IIO_CHAN_INFO_RAW),		\
-+	.ext_info = ltc2664_ext_info,					\
-+}
-+
-+static const struct iio_chan_spec ltc2664_channels[] = {
-+	LTC2664_CHANNEL(0),
-+	LTC2664_CHANNEL(1),
-+	LTC2664_CHANNEL(2),
-+	LTC2664_CHANNEL(3),
-+};
-+
-+static const struct iio_chan_spec ltc2672_channels[] = {
-+	LTC2664_CHANNEL(0),
-+	LTC2664_CHANNEL(1),
-+	LTC2664_CHANNEL(2),
-+	LTC2664_CHANNEL(3),
-+	LTC2664_CHANNEL(4),
-+};
-+
-+static const struct ltc2664_chip_info ltc2664_chip = {
-+	.id = LTC2664,
-+	.name = "ltc2664",
-+	.scale_get = ltc2664_scale_get,
-+	.offset_get = ltc2664_offset_get,
-+	.measurement_type = IIO_VOLTAGE,
-+	.num_channels = ARRAY_SIZE(ltc2664_channels),
-+	.iio_chan = ltc2664_channels,
-+	.span_helper = ltc2664_span_helper,
-+	.num_span = ARRAY_SIZE(ltc2664_span_helper),
-+	.internal_vref = 2500,
-+	.manual_span_support = true,
-+	.rfsadj_support = false,
-+};
-+
-+static const struct ltc2664_chip_info ltc2672_chip = {
-+	.id = LTC2672,
-+	.name = "ltc2672",
-+	.scale_get = ltc2672_scale_get,
-+	.offset_get = ltc2672_offset_get,
-+	.measurement_type = IIO_CURRENT,
-+	.num_channels = ARRAY_SIZE(ltc2672_channels),
-+	.iio_chan = ltc2672_channels,
-+	.span_helper = ltc2672_span_helper,
-+	.num_span = ARRAY_SIZE(ltc2672_span_helper),
-+	.internal_vref = 1250,
-+	.manual_span_support = false,
-+	.rfsadj_support = true,
-+};
-+
-+static int ltc2664_set_span(const struct ltc2664_state *st, int min, int max,
-+			    int chan)
-+{
-+	const struct ltc2664_chip_info *chip_info = st->chip_info;
-+	const int (*span_helper)[2] = chip_info->span_helper;
-+	int span, ret;
-+
-+	st->iio_channels[chan].type = chip_info->measurement_type;
-+
-+	for (span = 0; span < chip_info->num_span; span++) {
-+		if (min == span_helper[span][0] && max == span_helper[span][1])
-+			break;
-+	}
-+
-+	ret = regmap_write(st->regmap, LTC2664_CMD_SPAN_N(chan),
-+			   (chip_info->id == LTC2672) ? span + 1 : span);
-+	if (ret)
-+		return ret;
-+
-+	return span;
-+}
-+
-+static int ltc2664_channel_config(struct ltc2664_state *st)
-+{
-+	const struct ltc2664_chip_info *chip_info = st->chip_info;
-+	struct device *dev = &st->spi->dev;
-+	u32 reg, tmp[2], mspan;
-+	int ret, span;
-+
-+	mspan = LTC2664_MSPAN_SOFTSPAN;
-+	ret = device_property_read_u32(dev, "adi,manual-span-operation-config",
-+				       &mspan);
-+	if (!ret) {
-+		if (!chip_info->manual_span_support)
-+			return dev_err_probe(dev, -EINVAL,
-+			       "adi,manual-span-operation-config not supported\n");
-+
-+		if (mspan > ARRAY_SIZE(ltc2664_mspan_lut))
-+			return dev_err_probe(dev, -EINVAL,
-+			       "adi,manual-span-operation-config not in range\n");
-+	}
-+
-+	st->rfsadj = 20000;
-+	ret = device_property_read_u32(dev, "adi,rfsadj-ohms", &st->rfsadj);
-+	if (!ret) {
-+		if (!chip_info->rfsadj_support)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "adi,rfsadj-ohms not supported\n");
-+
-+		if (st->rfsadj < 19000 || st->rfsadj > 41000)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "adi,rfsadj-ohms not in range\n");
-+	}
-+
-+	device_for_each_child_node_scoped(dev, child) {
-+		struct ltc2664_chan *chan;
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to get reg property\n");
-+
-+		if (reg >= chip_info->num_channels)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "reg bigger than: %d\n",
-+					     chip_info->num_channels);
-+
-+		chan = &st->channels[reg];
-+
-+		if (fwnode_property_read_bool(child, "adi,toggle-mode")) {
-+			chan->toggle_chan = true;
-+			/* assume sw toggle ABI */
-+			st->iio_channels[reg].ext_info = ltc2664_toggle_sym_ext_info;
-+			/*
-+			 * Clear IIO_CHAN_INFO_RAW bit as toggle channels expose
-+			 * out_voltage/current_raw{0|1} files.
-+			 */
-+			__clear_bit(IIO_CHAN_INFO_RAW,
-+				    &st->iio_channels[reg].info_mask_separate);
-+		}
-+
-+		chan->raw[0] = ltc2664_mspan_lut[mspan][1];
-+		chan->raw[1] = ltc2664_mspan_lut[mspan][1];
-+
-+		chan->span = ltc2664_mspan_lut[mspan][0];
-+
-+		ret = fwnode_property_read_u32_array(child, "adi,output-range-microvolt",
-+						     tmp, ARRAY_SIZE(tmp));
-+		if (!ret && mspan == LTC2664_MSPAN_SOFTSPAN) {
-+			chan->span = ltc2664_set_span(st, tmp[0] / 1000,
-+						      tmp[1] / 1000, reg);
-+			if (span < 0)
-+				return dev_err_probe(dev, span,
-+						     "Failed to set span\n");
-+
-+		}
-+
-+		ret = fwnode_property_read_u32(child,
-+					       "adi,output-range-microamp",
-+					       &tmp[0]);
-+		if (!ret) {
-+			chan->span = ltc2664_set_span(st, 0, tmp[0] / 1000, reg);
-+			if (span < 0)
-+				return dev_err_probe(dev, span,
-+						     "Failed to set span\n");
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int ltc2664_setup(struct ltc2664_state *st, struct regulator *vref)
-+{
-+	const struct ltc2664_chip_info *chip_info = st->chip_info;
-+	struct gpio_desc *gpio;
-+	int ret;
-+
-+	/* If we have a clr/reset pin, use that to reset the chip. */
-+	gpio = devm_gpiod_get_optional(&st->spi->dev, "clr", GPIOD_OUT_HIGH);
-+	if (IS_ERR(gpio))
-+		return dev_err_probe(&st->spi->dev, PTR_ERR(gpio),
-+				     "Failed to get reset gpio");
-+	if (gpio) {
-+		usleep_range(1000, 1200);
-+		gpiod_set_value_cansleep(gpio, 0);
-+	}
-+
-+	/*
-+	 * Duplicate the default channel configuration as it can change during
-+	 * @ltc2664_channel_config()
-+	 */
-+	st->iio_channels = devm_kmemdup(&st->spi->dev, chip_info->iio_chan,
-+					(chip_info->num_channels + 1) *
-+					sizeof(*chip_info->iio_chan),
-+					GFP_KERNEL);
-+
-+	ret = ltc2664_channel_config(st);
-+	if (ret)
-+		return ret;
-+
-+	if (!vref)
-+		return 0;
-+
-+	return regmap_set_bits(st->regmap, LTC2664_CMD_CONFIG, LTC2664_REF_DISABLE);
-+}
-+
-+static void ltc2664_disable_regulator(void *regulator)
-+{
-+	regulator_disable(regulator);
-+}
-+
-+static const struct regmap_config ltc2664_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.max_register = LTC2664_CMD_NO_OPERATION,
-+};
-+
-+static const struct iio_info ltc2664_info = {
-+	.write_raw = ltc2664_write_raw,
-+	.read_raw = ltc2664_read_raw,
-+	.read_avail = ltc2664_read_avail,
-+	.debugfs_reg_access = ltc2664_reg_access,
-+};
-+
-+static int ltc2664_probe(struct spi_device *spi)
-+{
-+	static const char * const regulators[] = { "vcc", "iovcc", "v-neg" };
-+	const struct ltc2664_chip_info *chip_info;
-+	struct device *dev = &spi->dev;
-+	struct regulator *vref_reg;
-+	struct iio_dev *indio_dev;
-+	struct ltc2664_state *st;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+	st->spi = spi;
-+
-+	chip_info = spi_get_device_match_data(spi);
-+	if (!chip_info)
-+		return -ENOMEM;
-+
-+	st->chip_info = chip_info;
-+
-+	mutex_init(&st->lock);
-+
-+	st->regmap = devm_regmap_init_spi(spi, &ltc2664_regmap_config);
-+	if (IS_ERR(st->regmap))
-+		return dev_err_probe(dev, PTR_ERR(st->regmap),
-+				     "Failed to init regmap");
-+
-+	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(regulators),
-+					     regulators);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
-+
-+	vref_reg = devm_regulator_get_optional(dev, "ref");
-+	if (IS_ERR(vref_reg)) {
-+		if (PTR_ERR(vref_reg) != -ENODEV)
-+			return dev_err_probe(dev, PTR_ERR(vref_reg),
-+					     "Failed to get ref regulator");
-+
-+		vref_reg = NULL;
-+
-+		st->vref = chip_info->internal_vref;
-+	} else {
-+		ret = regulator_enable(vref_reg);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to enable ref regulators\n");
-+
-+		ret = devm_add_action_or_reset(dev, ltc2664_disable_regulator,
-+					       vref_reg);
-+		if (ret)
-+			return ret;
-+
-+		ret = regulator_get_voltage(vref_reg);
-+		if (ret < 0)
-+			return dev_err_probe(dev, ret, "Failed to get ref\n");
-+
-+		st->vref = ret / 1000;
-+	}
-+
-+	ret = ltc2664_setup(st, vref_reg);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = chip_info->name;
-+	indio_dev->info = &ltc2664_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = st->iio_channels;
-+	indio_dev->num_channels = chip_info->num_channels;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct spi_device_id ltc2664_id[] = {
-+	{ "ltc2664", (kernel_ulong_t)&ltc2664_chip },
-+	{ "ltc2672", (kernel_ulong_t)&ltc2672_chip },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, ltc2664_id);
-+
-+static const struct of_device_id ltc2664_of_id[] = {
-+	{ .compatible = "adi,ltc2664", .data = &ltc2664_chip },
-+	{ .compatible = "adi,ltc2672", .data = &ltc2672_chip },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ltc2664_of_id);
-+
-+static struct spi_driver ltc2664_driver = {
-+	.driver = {
-+		.name = "ltc2664",
-+		.of_match_table = ltc2664_of_id,
-+	},
-+	.probe = ltc2664_probe,
-+	.id_table = ltc2664_id,
-+};
-+module_spi_driver(ltc2664_driver);
-+
-+MODULE_AUTHOR("Michael Hennerich <michael.hennerich@analog.com>");
-+MODULE_AUTHOR("Kim Seer Paller <kimseer.paller@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices LTC2664 and LTC2672 DAC");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+On 5/22/2024 6:03 PM, Miquel Raynal wrote:
+> Hi,
+> 
+>>>> +static int qcom_spi_ooblayout_ecc(struct mtd_info *mtd, int section,
+>>>> +				  struct mtd_oob_region *oobregion)
+>>>> +{
+>>>> +	struct nand_device *nand = mtd_to_nanddev(mtd);
+>>>> +	struct qcom_nand_controller *snandc = nand_to_qcom_snand(nand);
+>>>> +	struct qpic_ecc *qecc = snandc->qspi->ecc;
+>>>> +
+>>>> +	if (section > 1)
+>>>> +		return -ERANGE;
+>>>> +
+>>>> +	if (!section) {
+>>>> +		oobregion->length = (qecc->bytes * (qecc->steps - 1)) + qecc->bbm_size;
+>>>> +		oobregion->offset = 0;
+>>>
+>>> No, offset 0 is for the BBM. This is wrong.
+>>> The whole oob layout looks really really wrong.
+>>>
+>>> ECC bytes are where the ECC engine puts its bytes in the OOB area.
+>>> Free bytes start after the BBM and fill the gaps until the end of the
+>>> area, except where there are ECC bytes.
+>>    QPIC NAND controller having its own page layout with ecc and without ecc.
+>>    The same layout we are using in raw nand driver as well, so i used the
+>>    same here. The below info is already there in qcom raw nand driver file
+>>    in page layout info.
+>>
+>>    QPIC NAND controller layout as below:
+>>
+>>     Layout with ECC enabled:
+>>
+>>       |----------------------|  |---------------------------------|
+>>       |           xx.......yy|  |             *********xx.......yy|
+>>       |    DATA   xx..ECC..yy|  |    DATA     **SPARE**xx..ECC..yy|
+>>       |   (516)   xx.......yy|  |  (516-n*4)  **(n*4)**xx.......yy|
+>>       |           xx.......yy|  |             *********xx.......yy|
+>>       |----------------------|  |---------------------------------|
+>>        codeword 1,2..n-1                  codeword n
+>>       <---(528/532 Bytes)-->    <-------(528/532 Bytes)--------->
+>>
+>>       n = Number of codewords in the page
+>>       . = ECC bytes
+>>       * = Spare/free bytes
+>>       x = Unused byte(s)
+>>       y = Reserved byte(s)
+>>
+>>       2K page: n = 4, spare = 16 bytes
+>>       4K page: n = 8, spare = 32 bytes
+>>       8K page: n = 16, spare = 64 bytes
+>>
+>>       the qcom nand controller operates at a sub page/codeword level. each
+>>       codeword is 528 and 532 bytes for 4 bit and 8 bit ECC modes respectively.
+>>       the number of ECC bytes vary based on the ECC strength and the bus width.
+>>
+>>       the first n - 1 codewords contains 516 bytes of user data, the remaining
+>>       12/16 bytes consist of ECC and reserved data. The nth codeword contains
+>>       both user data and spare(oobavail) bytes that sum up to 516 bytes.
+>>
+>>       When we access a page with ECC enabled, the reserved bytes(s) are not
+>>       accessible at all. When reading, we fill up these unreadable positions
+>>       with 0xffs. When writing, the controller skips writing the inaccessible
+>>       bytes.
+>>
+>>       Layout with ECC disabled:
+>>
+>>       |------------------------------|  |---------------------------------------|
+>>       |         yy          xx.......|  |         bb          *********xx.......|
+>>       |  DATA1  yy  DATA2   xx..ECC..|  |  DATA1  bb  DATA2   **SPARE**xx..ECC..|
+>>       | (size1) yy (size2)  xx.......|  | (size1) bb (size2)  **(n*4)**xx.......|
+>>       |         yy          xx.......|  |         bb          *********xx.......|
+>>       |------------------------------|  |---------------------------------------|
+>>            codeword 1,2..n-1                        codeword n
+>>       <-------(528/532 Bytes)------>    <-----------(528/532 Bytes)----------->
+>>
+>>       n = Number of codewords in the page
+>>       . = ECC bytes
+>>       * = Spare/free bytes
+>>       x = Unused byte(s)
+>>       y = Dummy Bad Bock byte(s)
+>>       b = Real Bad Block byte(s)
+>>       size1/size2 = function of codeword size and 'n'
+>>
+>>       when the ECC block is disabled, one reserved byte (or two for 16 bit bus
+>>       width) is now accessible. For the first n - 1 codewords, these are dummy Bad
+>>       Block Markers. In the last codeword, this position contains the real BBM
+>>
+>>       In order to have a consistent layout between RAW and ECC modes, we assume
+>>       the following OOB layout arrangement:
+>>
+>>       |-----------|  |--------------------|
+>>       |yyxx.......|  |bb*********xx.......|
+>>       |yyxx..ECC..|  |bb*FREEOOB*xx..ECC..|
+>>       |yyxx.......|  |bb*********xx.......|
+>>       |yyxx.......|  |bb*********xx.......|
+>>       |-----------|  |--------------------|
+>>       first n - 1       nth OOB region
+>>       OOB regions
+>>
+>>       n = Number of codewords in the page
+>>       . = ECC bytes
+>>       * = FREE OOB bytes
+>>       y = Dummy bad block byte(s) (inaccessible when ECC enabled)
+>>       x = Unused byte(s)
+>>       b = Real bad block byte(s) (inaccessible when ECC enabled)
+>>
+>>       This layout is read as is when ECC is disabled. When ECC is enabled, the
+>>       inaccessible Bad Block byte(s) are ignored when we write to a page/oob,
+>>       and assumed as 0xffs when we read a page/oob. The ECC, unused and
+>>       dummy/real bad block bytes are grouped as ecc bytes (i.e, ecc->bytes is
+>>       the sum of the three).
+> 
+> Thanks for the detailed explanation (which would benefit from being
+> added somewhere in a comment, maybe at the top of the file).
+Ok
+> 
+> Unfortunately, these ooblayout callbacks do work on a flat <data><oob>
+> layout, not on the hardware ECC engine layout. So whatever the real
+> physical position of the bad block marker within the NAND array, these
+> markers will always be at offset 0 and 1 in the OOB final buffer.
+Ok , will fix in next patch.
+> 
+> Same applies to the spare and ECC bytes. These layouts are totally
+> wrong and must be fixed. If the layouts are the same in both raw/spi
+> cases, maybe they should be part of the common file?
+Ok , will fix in next patch.
+> 
+>>>> +	} else {
+>>>> +		oobregion->length = qecc->ecc_bytes_hw + qecc->spare_bytes;
+>>>> +		oobregion->offset = mtd->oobsize - oobregion->length;
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static int qcom_spi_ooblayout_free(struct mtd_info *mtd, int section,
+>>>> +				   struct mtd_oob_region *oobregion)
+>>>> +{
+>>>> +	struct nand_device *nand = mtd_to_nanddev(mtd);
+>>>> +	struct qcom_nand_controller *snandc = nand_to_qcom_snand(nand);
+>>>> +	struct qpic_ecc *qecc = snandc->qspi->ecc;
+>>>> +
+>>>> +	if (section)
+>>>> +		return -ERANGE;
+>>>> +
+>>>> +	oobregion->length = qecc->steps * 4;
+>>>> +	oobregion->offset = ((qecc->steps - 1) * qecc->bytes) + qecc->bbm_size;
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>
+>>> ...
+>>>    
+>>>> +static int qcom_spi_ecc_prepare_io_req_pipelined(struct nand_device *nand,
+>>>> +						 struct nand_page_io_req *req)
+>>>> +{
+>>>> +	struct qcom_nand_controller *snandc = nand_to_qcom_snand(nand);
+>>>> +	struct qpic_ecc *ecc_cfg = nand_to_ecc_ctx(nand);
+>>>> +	struct mtd_info *mtd = nanddev_to_mtd(nand);
+>>>> +
+>>>> +	snandc->qspi->ecc = ecc_cfg;
+>>>> +	snandc->qspi->pagesize = mtd->writesize;
+>>>> +	snandc->qspi->raw_rw = false;
+>>>> +	snandc->qspi->oob_rw = false;
+>>>> +	snandc->qspi->page_rw = false;
+>>>> +
+>>>> +	if (req->datalen)
+>>>> +		snandc->qspi->page_rw = true;
+>>>> +
+>>>> +	if (req->ooblen) {
+>>>> +		snandc->qspi->oob_rw = true;
+>>>> +		if (req->ooblen == BAD_BLOCK_MARKER_SIZE)
+>>>> +			snandc->qspi->read_last_cw = true;
+>>>
+>>> ???
+>>     As per QPIC controller layout , the actual babd block marker will
+>>     be present in last code word. Thats why i have added this check.
+>>     to read only last codeword for bad block check.
+> 
+> You need to comply with the request. If ooblen is != 0, you need to
+> read the codeword(s) where the oob is. Please don't try to be smarter
+> than that. Checking the _value_ of ooblen is an optimization I don't
+> think is worth.
+Ok, will try to cleanup all the indirection in next patch.
+> 
+>>>    
+>>>> +	}
+>>>> +
+>>>> +	if (req->mode == MTD_OPS_RAW)
+>>>> +		snandc->qspi->raw_rw = true;
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static int qcom_spi_ecc_finish_io_req_pipelined(struct nand_device *nand,
+>>>> +						struct nand_page_io_req *req)
+>>>> +{
+>>>> +	struct qcom_nand_controller *snandc = nand_to_qcom_snand(nand);
+>>>> +	struct mtd_info *mtd = nanddev_to_mtd(nand);
+>>>> +
+>>>> +	if (req->mode == MTD_OPS_RAW || req->type != NAND_PAGE_READ)
+>>>> +		return 0;
+>>>> +
+>>>> +	if (snandc->qspi->ecc_stats.failed)
+>>>> +		mtd->ecc_stats.failed += snandc->qspi->ecc_stats.failed;
+>>>> +	mtd->ecc_stats.corrected += snandc->qspi->ecc_stats.corrected;
+>>>
+>>> Seems strange
+>>     In flash error check for each code word i am updating the error value.
+>>     So on finishing on io i am assigning that error to mtd variables so that
+>>     upper layer check for error.
+> 
+> You don't clear the qspi ecc_stats so this cannot work properly.
+  I am clearing in the qcom_spi_check_error() api, before reading status for the next page.
 
+  snandc->qspi->ecc_stats.failed = 0;
+  snandc->qspi->ecc_stats.corrected = 0;
+> 
+> Plus, I would welcome an else statement for incrementing the corrected
+> field.
+Ok
+> 
+>>>    
+>>>> +
+>>>> +	if (snandc->qspi->ecc_stats.failed)
+>>>> +		return -EBADMSG;
+>>>> +	else
+>>>> +		return snandc->qspi->ecc_stats.bitflips;
+>>>> +}
+>>>> +
+>>>> +static struct nand_ecc_engine_ops qcom_spi_ecc_engine_ops_pipelined = {
+>>>> +	.init_ctx = qcom_spi_ecc_init_ctx_pipelined,
+>>>> +	.cleanup_ctx = qcom_spi_ecc_cleanup_ctx_pipelined,
+>>>> +	.prepare_io_req = qcom_spi_ecc_prepare_io_req_pipelined,
+>>>> +	.finish_io_req = qcom_spi_ecc_finish_io_req_pipelined,
+>>>> +};
+>>>> +
+>>>
+>>> ...
+>>>    
+>>>> +static int qcom_spi_read_page_raw(struct qcom_nand_controller *snandc,
+>>>> +				  const struct spi_mem_op *op)
+>>>> +{
+>>>> +	struct qpic_ecc *ecc_cfg = snandc->qspi->ecc;
+>>>> +	u8 *data_buf = NULL, *oob_buf = NULL;
+>>>> +	int ret, cw;
+>>>> +	u32 num_cw = snandc->qspi->num_cw;
+>>>> +
+>>>> +	if (snandc->qspi->page_rw)
+>>>
+>>> I don't like this indirection very much. Can't you simplify this and
+>>> just follow the spi-mem op instead of constantly trying to add
+>>> additional stuff?
+>>     This indirection needed due to QPIC controller will not take all the instruction
+>>     one-by-one , once we will set CMD_EXEC = 1, then it will execute all the instruction
+>>     at once.
+> 
+> The spi_mem_op structure already describes the whole operation. Why do
+> you split the operation in sub routines if you can't actually do that?
+Ok , will try to cleanup in next patch.
+> 
+>>>
+>>> The hardware is already quite complex, but it feels like your adding
+>>> yet another pile of unnecessary complexity.
+>>     Yes hardware is complex. let me check if i can further optimize as per spi-mem op
+>>     as you suggested.
+>>>    
+>>>> +		data_buf = op->data.buf.in;
+>>>> +
+>>>> +	if (snandc->qspi->oob_rw)
+>>>> +		oob_buf = op->data.buf.in;
+> 
+> ...
+> 
+>>>> +static int qcom_spi_write_page_cache(struct qcom_nand_controller *snandc,
+>>>> +				     const struct spi_mem_op *op)
+>>>> +{
+>>>> +	struct qpic_snand_op s_op = {};
+>>>> +	u32 cmd;
+>>>> +
+>>>> +	cmd = qcom_spi_cmd_mapping(snandc, op->cmd.opcode);
+>>>
+>>> I've asked for switch cases to return an error in case they could not
+>>> handle the request. If you don't check the returned values, it
+>>> does not make any sense.
+>>    Ok, will fix in next patch.
+>>>    
+>>>> +	s_op.cmd_reg = cmd;
+>>>> +
+>>>> +	if (op->cmd.opcode == SPINAND_PROGRAM_LOAD) {
+>>>> +		if (snandc->qspi->page_rw)
+>>>> +			snandc->qspi->data_buf = (u8 *)op->data.buf.out;
+>>>
+>>> What you do here does not write anything in a page cache.
+>>     No here just updating the buffer , actual write will happen in program_execute.
+>>     This is due to QPIC controller will not take all the instruction one-by-one.
+>>     once we will set CMD_EXEC = 1, then it will execute all the instruction
+>>     at once. So accumulating all the instruction and then executing at once in
+>>     program_execute.
+>>>
+>>> I also don't understand why you would have to check against the
+>>> SPINAND_PROGRAM_LOAD opcode.
+>>     Because the actual write will happen in program_execute. and here
+>>     PROGRAM_EXECUTE command will also land, so that added the check.
+>>>    
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static int qcom_spi_send_cmdaddr(struct qcom_nand_controller *snandc,
+>>>> +				 const struct spi_mem_op *op)
+>>>> +{
+>>>> +	struct qpic_snand_op s_op = {};
+>>>> +	u32 cmd;
+>>>> +	int ret, opcode;
+>>>> +
+>>>> +	cmd = qcom_spi_cmd_mapping(snandc, op->cmd.opcode);
+>>>> +
+>>>> +	s_op.cmd_reg = cmd;
+>>>> +	s_op.addr1_reg = op->addr.val;
+>>>> +	s_op.addr2_reg = 0;
+>>>> +
+>>>> +	opcode = op->cmd.opcode;
+>>>> +
+>>>> +	switch (opcode) {
+>>>> +	case SPINAND_WRITE_EN:
+>>>> +		return 0;
+>>>> +	case SPINAND_PROGRAM_EXECUTE:
+>>>> +		s_op.addr1_reg = op->addr.val << 16;
+>>>> +		s_op.addr2_reg = op->addr.val >> 16 & 0xff;
+>>>> +		snandc->qspi->addr1 = s_op.addr1_reg;
+>>>> +		snandc->qspi->addr2 = s_op.addr2_reg;
+>>>> +		snandc->qspi->cmd = cmd;
+>>>> +		return qcom_spi_program_execute(snandc, op);
+>>>> +	case SPINAND_READ:
+>>>> +		s_op.addr1_reg = (op->addr.val << 16);
+>>>> +		s_op.addr2_reg = op->addr.val >> 16 & 0xff;
+>>>> +		snandc->qspi->addr1 = s_op.addr1_reg;
+>>>> +		snandc->qspi->addr2 = s_op.addr2_reg;
+>>>> +		snandc->qspi->cmd = cmd;
+>>>> +		return 0;
+>>>> +	case SPINAND_ERASE:
+>>>> +		s_op.addr2_reg = (op->addr.val >> 16) & 0xffff;
+>>>> +		s_op.addr1_reg = op->addr.val;
+>>>> +		snandc->qspi->addr1 = (s_op.addr1_reg << 16);
+>>>> +		snandc->qspi->addr2 = s_op.addr2_reg;
+>>>> +		snandc->qspi->cmd = cmd;
+>>>> +		qcom_spi_block_erase(snandc);
+>>>> +		return 0;
+>>>> +	default:
+>>>> +		break;
+>>>> +	}
+>>>> +
+>>>> +	snandc->buf_count = 0;
+>>>> +	snandc->buf_start = 0;
+>>>> +	qcom_clear_read_regs(snandc);
+>>>> +	qcom_clear_bam_transaction(snandc);
+>>>> +
+>>>> +	snandc->regs->cmd = s_op.cmd_reg;
+>>>> +	snandc->regs->exec = 1;
+>>>> +	snandc->regs->addr0 = s_op.addr1_reg;
+>>>> +	snandc->regs->addr1 = s_op.addr2_reg;
+>>>> +
+>>>> +	qcom_write_reg_dma(snandc, &snandc->regs->cmd, NAND_FLASH_CMD, 3, NAND_BAM_NEXT_SGL);
+>>>> +	qcom_write_reg_dma(snandc, &snandc->regs->exec, NAND_EXEC_CMD, 1, NAND_BAM_NEXT_SGL);
+>>>> +
+>>>> +	ret = qcom_submit_descs(snandc);
+> 
+> And you really don't want to check the validity of the opcode with what
+> you support before submitting the descriptors?
+Ok , will do in next patch.
+> 
+>>>> +	if (ret)
+>>>> +		dev_err(snandc->dev, "failure in sbumitting cmd descriptor\n");
+>>>
+>>> typo
+>>    Ok , will fix in next patch.
+>>>    
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>> +static int qcom_spi_io_op(struct qcom_nand_controller *snandc, const struct spi_mem_op *op)
+>>>> +{
+>>>> +	int ret, val, opcode;
+>>>> +	bool copy = false, copy_ftr = false;
+>>>> +
+>>>> +	ret = qcom_spi_send_cmdaddr(snandc, op);
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>> +
+>>>> +	snandc->buf_count = 0;
+>>>> +	snandc->buf_start = 0;
+>>>> +	qcom_clear_read_regs(snandc);
+>>>> +	qcom_clear_bam_transaction(snandc);
+>>>> +	opcode = op->cmd.opcode;
+>>>> +
+>>>> +	switch (opcode) {
+>>>> +	case SPINAND_READID:
+>>>> +		snandc->buf_count = 4;
+>>>> +		qcom_read_reg_dma(snandc, NAND_READ_ID, 1, NAND_BAM_NEXT_SGL);
+>>>> +		copy = true;
+>>>> +		break;
+>>>> +	case SPINAND_GET_FEATURE:
+>>>> +		snandc->buf_count = 4;
+>>>> +		qcom_read_reg_dma(snandc, NAND_FLASH_FEATURES, 1, NAND_BAM_NEXT_SGL);
+>>>> +		copy_ftr = true;
+>>>> +		break;
+>>>> +	case SPINAND_SET_FEATURE:
+>>>> +		snandc->regs->flash_feature = *(u32 *)op->data.buf.out;
+>>>> +		qcom_write_reg_dma(snandc, &snandc->regs->flash_feature,
+>>>> +				   NAND_FLASH_FEATURES, 1, NAND_BAM_NEXT_SGL);
+>>>> +		break;
+>>>> +	case SPINAND_RESET:
+>>>> +		return 0;
+>>>> +	case SPINAND_PROGRAM_EXECUTE:
+>>>> +		return 0;
+>>>> +	case SPINAND_WRITE_EN:
+>>>> +		return 0;
+>>>> +	case SPINAND_ERASE:
+>>>> +		return 0;
+>>>> +	case SPINAND_READ:
+>>>> +		return 0;
+>>>
+>>> You can stack the cases
+>> Ok
+>>>    
+>>>> +	default:
+>>>> +		return -EOPNOTSUPP;
+>>>> +	}
+>>>> +
+>>>> +	ret = qcom_submit_descs(snandc);
+>>>> +	if (ret)
+>>>> +		dev_err(snandc->dev, "failure in submitting descriptor for:%d\n", opcode);
+>>>> +
+>>>> +	if (copy) {
+>>>> +		qcom_nandc_dev_to_mem(snandc, true);
+>>>> +		memcpy(op->data.buf.in, snandc->reg_read_buf, snandc->buf_count);
+>>>> +	}
+>>>> +
+>>>> +	if (copy_ftr) {
+>>>> +		qcom_nandc_dev_to_mem(snandc, true);
+>>>> +		val = le32_to_cpu(*(__le32 *)snandc->reg_read_buf);
+>>>> +		val >>= 8;
+>>>> +		memcpy(op->data.buf.in, &val, snandc->buf_count);
+>>>> +	}
+>>>> +
+>>>> +	return ret;
+>>>> +}
+> 
+> Thanks,
+> Miquèl
 
