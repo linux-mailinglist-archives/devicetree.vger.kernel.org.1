@@ -1,130 +1,172 @@
-Return-Path: <devicetree+bounces-68791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9735D8CDA54
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:01:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4A98CDA62
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:06:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82B81C21E43
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 19:01:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E641FB20B27
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 19:06:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D08762DC;
-	Thu, 23 May 2024 19:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F263B48CCC;
+	Thu, 23 May 2024 19:06:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="nIS/d4Lq"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="jDxnH/WO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A7A28F5;
-	Thu, 23 May 2024 19:01:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8790B662;
+	Thu, 23 May 2024 19:06:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716490878; cv=none; b=N0iBzhNLUI0/ivX1CKk2dVtIGmbUx2uvuyzC0G+qGqqtgstir1h6c7u2wgib83kXT6X3i3O0rN4K8n7rwFAEYVWJplWBrJhQ/me+aCKEHZBwTW7gWv9PijAukzAYcHEUi7txgpHvvBRA0oVJ1/cXo04YqO/AECUPvQrqUFW4Grc=
+	t=1716491186; cv=none; b=Q0n3vhAvXmzEUhPJYBok9lqv3cAFawRp8g4L7g/NPBRvbdP7SWTcuNtyN5NU8DQ2+kxHyqtyvKyR5giDV8UG+1NBqLebpi+3XB0cUz/Wsvdy9zLP5o0IDzNp4mfniyAPbPBzW8JmDheoAGwSxcz4I0bHqN8iwi4QOrjKGbsseHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716490878; c=relaxed/simple;
-	bh=3EiyLqgYby63BWgHIZFCD3c4sW1g12fHPqHi9WFjwdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dZUG0OdqdrdeWvOyAKw6N5Ppv3qiCjVMTwooQJZ71cUHw0O52WcakkcfYfDHmKyBy1FOOqnAitMd3aTbiA7wtjwjmWWnPV2M1ExCvG5Ehr+Q/SxFkmPywNPZMIRaouSLdr5y6sJLVdSIaWM5EFg6s2ocPwyM4TsUbfDaWDRDJtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=nIS/d4Lq; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353728.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44NIlAWp024151;
-	Thu, 23 May 2024 19:00:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=bAaqPBMTRdF77PtXGmWOWLFomk8hgMqj951WpPyFeM8=;
- b=nIS/d4LqR6kwfPCrHzTykgmzlJsA2MhUQFTJb/+rdm0aaOVJN/ORmWKIBYNYGU4yCl2y
- IMejNabF9C5FOVkeWnNH8WNN2HneYeXWdfHnSxr+vIrkgrc4FeY4y+hKM7Us4RhB3/CW
- XYJ+9dWivzpqBO7FkwA5Q23cKSMzEb9dV2lgrtULn0ttfuIXmJq20d+oGuWEYqZ07L/X
- gRKfUlobgWnz+ArSUhaOV3KaBF4lWSjUFwcC2wJgZBN+/W15niJtmp6gKncV1qvgY9F/
- Au9bO6mxaVFF5f54e5xWifvC6IcHZSZ4K5Moz/wOjCegFyfJo0m8JwKp9Kz1UlcaNnJX MQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yabcn80uy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 May 2024 19:00:31 +0000
-Received: from m0353728.ppops.net (m0353728.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 44NJ0UJg013258;
-	Thu, 23 May 2024 19:00:30 GMT
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yabcn80uw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 May 2024 19:00:30 +0000
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44NI0Grn026474;
-	Thu, 23 May 2024 19:00:29 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3y785mun5k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 May 2024 19:00:29 +0000
-Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
-	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44NJ0Ptp16908898
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 23 May 2024 19:00:27 GMT
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id CAC5A58077;
-	Thu, 23 May 2024 19:00:23 +0000 (GMT)
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 037865807C;
-	Thu, 23 May 2024 19:00:23 +0000 (GMT)
-Received: from [9.61.104.209] (unknown [9.61.104.209])
-	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 23 May 2024 19:00:22 +0000 (GMT)
-Message-ID: <910b18b7-3717-4087-b028-fcaf5f2a604b@linux.ibm.com>
-Date: Thu, 23 May 2024 14:00:22 -0500
+	s=arc-20240116; t=1716491186; c=relaxed/simple;
+	bh=LwMRjWBblHxb3Sq219BjxEbobPeNjcTYUBz+AtZHW5s=;
+	h=Date:To:From:Subject:Message-ID:MIME-Version:Content-Type; b=MonvjPzMoCkvnZIw6DdC6BtEQujzUCoCNBjL4+j7QXaEPf0QPbDCNnUyr3IXwwyZdQ3Y0Bqgf2Ljl9yKUsw0vn9RND5zVLybHgmpOv1Zr1RIesA+E9QMfcyaJK0ZDVqnMDBbBfNjpfpyNwhJDFV/QKt64crjM1I70ghmE1lPtAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=jDxnH/WO; arc=none smtp.client-ip=51.77.79.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1716491168; x=1716750368;
+	bh=nKVtgmNgCPvFw75ETX/ZyMKoiz86YChWiGXW6xRcOCA=;
+	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=jDxnH/WOznYscoYQtxSgB0KyFrCgko4jGpNbfRU1q6u9PW1fvjaq5ji1tAjO6zsNL
+	 S7RENnVYq60wH3vazDTW6Nk18PoptOaJhkm7oEI63LkmUKp43csQUqYvJ+YnzvBqJA
+	 lofoN1gpO3vfdrzHEbJWV7bD2JI9D+zWIhsWQFD+wKgH2ZALKDKhK3NUPpFvR1gSDg
+	 2FMj32edjwrAfI/Uv+nECX3xxbh1byGyTWAAyH4ryJGAfbZfjMDY5XfX8V6ua1PuE/
+	 2fiBcJDQjbKUXQDIriqkxsHOVesBTQuWgg+FmxedLmofS2rw/jnrdLmXwKir4dXkIi
+	 kiNByXT99DRFA==
+Date: Thu, 23 May 2024 19:06:04 +0000
+To: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+From: H Bell <dmoo_dv@protonmail.com>
+Subject: [PATCH] RISC-V: add Star64 board devicetree
+Message-ID: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
+Feedback-ID: 106097379:user:proton
+X-Pm-Message-ID: b780bb72757bb9f05bb140b9d649e489d2401f2e
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 17/20] ARM: dts: aspeed: Add IBM Huygens BMC system
-To: Markus Elfring <Markus.Elfring@web.de>, linux-fsi@lists.ozlabs.org,
-        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-        kernel-janitors@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Andrew Jeffery <andrew@codeconstruct.com.au>,
-        Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
-        Mark Brown <broonie@kernel.org>, Ninad Palsule <ninad@linux.ibm.com>,
-        Rob Herring <robh@kernel.org>
-References: <20240522192524.3286237-18-eajames@linux.ibm.com>
- <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: DaHk4BGi1JnBbJEcYTxavb7ks4_-OLx7
-X-Proofpoint-ORIG-GUID: lzx1m2_L4JsKlNwhIn4n44hDV1LcZcty
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-23_11,2024-05-23_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- spamscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
- clxscore=1011 impostorscore=0 phishscore=0 mlxlogscore=849
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2405010000 definitions=main-2405230130
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+The Pine64 Star64 is a development board based on the Starfive JH7110 SoC.
+The board features:
+
+- JH7110 SoC
+- 4/8 GiB LPDDR4 DRAM
+- AXP15060 PMIC
+- 40 pin GPIO header
+- 1x USB 3.0 host port
+- 3x USB 2.0 host port
+- 1x eMMC slot
+- 1x MicroSD slot
+- 1x QSPI Flash
+- 2x 1Gbps Ethernet port
+- 1x HDMI port
+- 1x 4-lane DSI
+- 1x 2-lane CSI
+- 1x PCIe 2.0 x1 lane
+
+Signed-off-by: Henry Bell <dmoo_dv@protonmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>
+---
+ arch/riscv/boot/dts/starfive/Makefile         |  1 +
+ .../dts/starfive/jh7110-pine64-star64.dts     | 62 +++++++++++++++++++
+ 2 files changed, 63 insertions(+)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+
+diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/st=
+arfive/Makefile
+index 2fa0cd7f31c3..7a163a7d6ba3 100644
+--- a/arch/riscv/boot/dts/starfive/Makefile
++++ b/arch/riscv/boot/dts/starfive/Makefile
+@@ -9,5 +9,6 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-beaglev-starlight.d=
+tb
+ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-visionfive-v1.dtb
+=20
+ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-mars.dtb
++dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-pine64-star64.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/r=
+iscv/boot/dts/starfive/jh7110-pine64-star64.dts
+new file mode 100644
+index 000000000000..c70fffd51181
+--- /dev/null
++++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+@@ -0,0 +1,62 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++* Copyright (C) 2022 StarFive Technology Co., Ltd.
++* Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
++*/
++
++/dts-v1/;
++#include "jh7110-common.dtsi"
++
++/ {
++=09model =3D "Pine64 Star64";
++=09compatible =3D "pine64,star64", "starfive,jh7110";
++=09=09aliases {
++=09=09=09=09ethernet1 =3D &gmac1;
++=09=09};
++};
++
++&gmac0 {
++=09starfive,tx-use-rgmii-clk;
++=09assigned-clocks =3D <&aoncrg JH7110_AONCLK_GMAC0_TX>;
++=09assigned-clock-parents =3D <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
++};
++
++&gmac1 {
++=09phy-handle =3D <&phy1>;
++=09phy-mode =3D "rgmii-id";
++=09status =3D "okay";
++=09starfive,tx-use-rgmii-clk;
++=09assigned-clocks =3D <&syscrg JH7110_SYSCLK_GMAC1_TX>;
++=09assigned-clock-parents =3D <&syscrg JH7110_SYSCLK_GMAC1_RMII_RTX>;
++
++=09mdio {
++=09=09#address-cells =3D <1>;
++=09=09#size-cells =3D <0>;
++=09=09compatible =3D "snps,dwmac-mdio";
++
++=09=09phy1: ethernet-phy@1 {
++=09=09=09reg =3D <0>;
++=09=09};
++=09};
++};
++
++&phy0 {
++=09motorcomm,tx-clk-adj-enabled;
++=09motorcomm,tx-clk-10-inverted;
++=09motorcomm,tx-clk-100-inverted;
++=09motorcomm,tx-clk-1000-inverted;
++=09motorcomm,rx-clk-drv-microamp =3D <2910>;
++=09motorcomm,rx-data-drv-microamp =3D <2910>;
++=09rx-internal-delay-ps =3D <1900>;=20
++=09tx-internal-delay-ps =3D <1500>;
++};
++
++&phy1 {
++=09motorcomm,tx-clk-adj-enabled;
++=09motorcomm,tx-clk-10-inverted;
++=09motorcomm,tx-clk-100-inverted;
++=09motorcomm,rx-clk-drv-microamp =3D <2910>;
++=09motorcomm,rx-data-drv-microamp =3D <2910>;
++=09rx-internal-delay-ps =3D <0>;
++=09tx-internal-delay-ps =3D <300>;
++};
+--=20
+2.44.0
 
 
-On 5/23/24 13:45, Markus Elfring wrote:
->> The Huygens is a Rainier with modifed FSI wiring.
-> Will imperative wordings become helpful for a better commit message here?
-
-
-This statement is a description of hardware. I cannot word that 
-imperatively. The commit message is imperative - "Add Huygens system".
-
-
->
-> Regards,
-> Markus
 
