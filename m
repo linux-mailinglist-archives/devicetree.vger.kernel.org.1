@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-68557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D208CCBF5
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 08:02:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8A8A8CCC06
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 08:04:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32D291F20EFF
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:02:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C86C2B22343
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBBA51016;
-	Thu, 23 May 2024 06:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33B47D412;
+	Thu, 23 May 2024 06:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LebcymsR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cQjB89iE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2227A1C20
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 06:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521B747A7C
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 06:04:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716444138; cv=none; b=gWvv6V6pasK0dub8hMSawMc1dmvdbmNAkpiZhvweOWbj4jcUhlqUWOiFDWwRBbPWgbmQ2yv5a9pKOdW7PGUzOgI2taC45fPW2SNsc5vHndfys87UIngyR0g6t14RnJQXdc82ub7NxnUrioQJErV63LRIC3gpMwaitmfPSDYrKCY=
+	t=1716444257; cv=none; b=spaQum/s8WaUfxCeDIEylTjlktbjw/BEIYlKAbjK4CHIcbtSH7fYc3EtKXukVj6RB80zXZ+5JCti4+px5mdnlVMqAoeBHRDDaPfFu1YsNBJoiPvjxv0pI7D7WN3/8stBKG+dHs69CVsxWTbQlZBR7vIgD9jrcpq9dP8e07hWLwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716444138; c=relaxed/simple;
-	bh=2gmKtc+dZO5bDPMUobHzDeKPQg4fDrYmuDcbFtmuwk8=;
+	s=arc-20240116; t=1716444257; c=relaxed/simple;
+	bh=hYQUWqhl5uPTPNh8C7/UgZ8wfXvUfoa7XdL7RCMYTs0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cDOERZ0v22+pwaXoL94iTi229QgRlWvlucDCZWXdG/MEuTSu++TW3Wj+CBJ0F4G2DNQ8wcP4oQernZZiPJ3oBiiUoGwwOwFkgXt5IJz0fhDXTXeYwvt/A8LnddO2/j5o4VruSfynMHB2+bD7dLecn6R8hrykFvfZqSdhbk8FHdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LebcymsR; arc=none smtp.client-ip=209.85.128.46
+	 In-Reply-To:Content-Type; b=Ml+8drCccujy5d4xtWdhjHvxrcyf/tmUh1Lj+tFBvT0NxkJ82N1qYWpVAKEzkc3mA8/zMy+VQFmYp3eXG8UrC1DPdZyxUy/QSpMYQNou7e1XBVwJ0rJOr77KCirfi/bOvWxNs7pwHYJumrpC/3OcqQMYNI/zpVr/tXQYgl2ELa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cQjB89iE; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4202c1d19d5so48288685e9.2
-        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 23:02:16 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-34d9c9f2cf0so1878506f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 22 May 2024 23:04:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716444135; x=1717048935; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716444255; x=1717049055; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4X7BoLbMdMqQ1pM0nUAVzFWjxzrTvVPMC5L9TnHQ9rg=;
-        b=LebcymsR3oC0hrj4SUOU7MnKoc24fe8OO/kDpokvMvjbKXrtrYXcFFK0X0SiGTQCVi
-         vNWwKOO1smVtHKIvLrfeZQdQa9vkElDXEk+BlLxJ9H4YdH4q4cackvbso+ioG6p0XMcF
-         juUqd2O5fwd3LKah0kSxvyTHX/wV3DoCakXBpe1b0ltfhS8vKo8Uch8oX2su2pCwpx+O
-         T/6LmiZfTXsJY2G+no+Z6PD4BTZMhFdadzmJt8WXKAbPMdOP5CN5sLnc0nekW9JSiuDb
-         kX3ua2Oa2YLheKg7AT8bQR8MF20HsMHKtu/kRKm8eA8m00WUfsTnp3PkrJwChb3dSsAx
-         tbXQ==
+        bh=i6dbk9a+uth7yFh6CNI3vvuN+SA1MsPZmlUVqAH6eR8=;
+        b=cQjB89iEpbFKLouBjAseI7NSSITbi8PAff8Kfz5VkmJDlNIFI6ihu4C2qKn5DWyQmL
+         oImc7s3rpY0H7/5KubfjrgPbZScbIAbcHubdfuQDj0eoNSlRKCc2NAltFZNjWMHIgmR4
+         s2OQsqXHec+fXaS+sNsiOg9VBTFap4eKP/F8Vh6Wep/7xhClI8p5JVHte7f+npEOlvpn
+         Gh/uiWTdA+9L1Gc3XizTAMSe+v2U6cOoZoFNvvw4iRM8U2UvI9/mg7rm4cp+050aIelF
+         BybjSRg4igYagbQbWQZouwWpjD5D5IuA2CsCoSvSbtzpDMUHVxcTsaM3NqONjP+5XprJ
+         aJkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716444135; x=1717048935;
+        d=1e100.net; s=20230601; t=1716444255; x=1717049055;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4X7BoLbMdMqQ1pM0nUAVzFWjxzrTvVPMC5L9TnHQ9rg=;
-        b=qH2pPcTtUMFuLR5BuBCTm44s+XavMjq/2SdNSm2TvToscD84fA1t7MUPVpmFTbTg6d
-         NjSNQMS/jAevYs93skSIt7sE1Xi3rOnVF3OeOKEKoPjjrcifh2uqkIahdCfuYXitlIuB
-         NzwzAWAVM94tUg7ZpFOn9FEJVLcaJ72KqPlWBYml39/AVRhhUqhthzhImhUoK7JqaE9S
-         XY68vDvNqxWwbEKoYtq6t7MCHSacrBeHBNXQUnSvpRIM39GSaWkJLStr5xWDUFP23wDU
-         K0j0dt+kBaMWCqEFhNmUTIgoociZR4kV9kWCk15F9E/E0hULNgopViIAEk7LQFuU/D7P
-         f6Vw==
-X-Forwarded-Encrypted: i=1; AJvYcCWBmsm9VdU8wR/LmVH6jTKF/2qg2lCjFeRgo2W65gSJy3IwUEiamwigO4j09j6bTUrxcEXWI9/cOXInucDoXLQ16Fin0+0xlFHGtA==
-X-Gm-Message-State: AOJu0YyazZqYvsUy7dSv5kBcVtNAAnmqJtdVyktGzgawp7CwGIDv7fBf
-	vBKJHiS4rI2m6mYg5d7QE9Hzbx/eVHpaFyn9v1Xq/CfFKDrElznzICzlN5LlUsU=
-X-Google-Smtp-Source: AGHT+IH+Yyh7MGsCftvGjwNM71yhQHJe6ieTfmevs7FGjmgK0uGBnTLTxGnFm1/0fYuMPKGVlL1pmA==
-X-Received: by 2002:a7b:cd17:0:b0:418:fb6f:5f59 with SMTP id 5b1f17b1804b1-420fd2dd186mr31257765e9.2.1716444135435;
-        Wed, 22 May 2024 23:02:15 -0700 (PDT)
+        bh=i6dbk9a+uth7yFh6CNI3vvuN+SA1MsPZmlUVqAH6eR8=;
+        b=JOw/zqQpKKXRDWvy+WdxU04iDCNAypEJ/fB2SoypCEKHLMbwTpm9mwDMkxkIMg216i
+         98qcYQxOO7WxgB+G2cSe4lc0ukNQsYj61S0Rpg5VE2Ldpow8Sh6W+pcBzg1cU3dUEzVU
+         I7Z9UY38vL5FcFMhiNrccvhJN79HqehuC+mqJv9/55oiHMbnaU6Z43CNIo76uYSzbtH8
+         oKeFGih8LKDZUOx2F8dIeSMmsJUHqh92HhpxC9N8MincvaphLERHZffo6x/Li4c3k+2t
+         G/pj/qRrcATeMDfQoVz8SvuCUXrFOuoocTa9dUEePypenVmMIBYcpFiAhT4hUaFc0h8b
+         q42w==
+X-Forwarded-Encrypted: i=1; AJvYcCXJvz98RdtHbxJDOkJzmGUZ8JVGUAyJiEtM5HoHGsCkerkgvRnlA8A4V3Fp7BiJsgdvdPkR+VxZk8bhuXAVBIDXsJs62sKLTpyAKQ==
+X-Gm-Message-State: AOJu0YxuIIMYuLBEdMfLhcD+g4b6+VRmjxB9Q9eYfI5kKbYJp0rpDGP4
+	fCirm1ijf0Etsl0AH3JU7BlZAlEhbi5JvXpaNjaU7x/BwOu3rAMSr1Qt23QrzoLI66zll6npVGE
+	w
+X-Google-Smtp-Source: AGHT+IGxh5Tk8DFPD8rFp7ALYpXsYOIlALKHags95KPmf6Hf+jMmQIvoRHGyEUGwvmQTTwMbFR4/2g==
+X-Received: by 2002:a5d:457b:0:b0:34a:4227:e9e8 with SMTP id ffacd0b85a97d-354d8d8de10mr4617489f8f.47.1716444254670;
+        Wed, 22 May 2024 23:04:14 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100f759f0sm14493435e9.28.2024.05.22.23.02.14
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-354e736c71bsm2618353f8f.5.2024.05.22.23.04.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 May 2024 23:02:14 -0700 (PDT)
-Message-ID: <aced3d43-5f79-4b57-8663-5762db1ad2f6@linaro.org>
-Date: Thu, 23 May 2024 08:02:13 +0200
+        Wed, 22 May 2024 23:04:14 -0700 (PDT)
+Message-ID: <dc50ee9a-1fd3-429c-9b4c-5a8b8824ae1b@linaro.org>
+Date: Thu, 23 May 2024 08:04:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +78,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/2] dt-bindings: soc: qcom,smsm: Allow specifying
- mboxes instead of qcom,ipc
-To: Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240424-smsm-mbox-v1-0-555f3f442841@z3ntu.xyz>
- <5780452.DvuYhMxLoT@g550jk> <12896bf6-412c-40af-9ad5-f9391ff81f63@kernel.org>
- <6253429.lOV4Wx5bFT@g550jk>
+Subject: Re: [PATCH] ASoC: dt-bindings: mt6358: Convert to dtschema
+To: Kartik Agarwala <agarwala.kartik@gmail.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20240518081621.63386-1-agarwala.kartik@gmail.com>
+ <c05f91f5-a878-4f36-b325-0ac8e038a7e5@linaro.org>
+ <dc8a05ee-ed84-4517-baad-a220d8702f07@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,80 +134,84 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6253429.lOV4Wx5bFT@g550jk>
+In-Reply-To: <dc8a05ee-ed84-4517-baad-a220d8702f07@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/05/2024 19:34, Luca Weiss wrote:
-> On Mittwoch, 22. Mai 2024 08:49:43 MESZ Krzysztof Kozlowski wrote:
->> On 21/05/2024 22:35, Luca Weiss wrote:
->>> On Dienstag, 21. Mai 2024 10:58:07 MESZ Krzysztof Kozlowski wrote:
->>>> On 20/05/2024 17:11, Luca Weiss wrote:
->>>>> Hi Krzysztof
->>>>>
->>>>> Ack, sounds good.
->>>>>
->>>>> Maybe also from you, any opinion between these two binding styles?
->>>>>
->>>>> So first using index of mboxes for the numbering, where for the known
->>>>> usages the first element (and sometimes the 3rd - ipc-2) are empty <>.
->>>>>
->>>>> The second variant is using mbox-names to get the correct channel-mbox
->>>>> mapping.
->>>>>
->>>>> -               qcom,ipc-1 = <&apcs 8 13>;
->>>>> -               qcom,ipc-2 = <&apcs 8 9>;
->>>>> -               qcom,ipc-3 = <&apcs 8 19>;
->>>>> +               mboxes = <0>, <&apcs 13>, <&apcs 9>, <&apcs 19>;
->>>>>
->>>>> vs.
->>>>>
->>>>> -               qcom,ipc-1 = <&apcs 8 13>;
->>>>> -               qcom,ipc-2 = <&apcs 8 9>;
->>>>> -               qcom,ipc-3 = <&apcs 8 19>;
->>>>> +               mboxes = <&apcs 13>, <&apcs 9>, <&apcs 19>;
->>>>> +               mbox-names = "ipc-1", "ipc-2", "ipc-3";
->>>>
->>>> Sorry, don't get, ipc-1 is the first mailbox, so why would there be <0>
->>>> in first case?
+On 22/05/2024 23:04, Kartik Agarwala wrote:
+> On 5/20/24 12:39 PM, Krzysztof Kozlowski wrote:
+>> On 18/05/2024 10:16, Kartik Agarwala wrote:
+>>> Convert Mediatek MT6358 Audio Codec bindings from text to dtschema.
 >>>
->>> Actually not, ipc-0 would be permissible by the driver, used for the 0th host
+>>> Signed-off-by: Kartik Agarwala <agarwala.kartik@gmail.com>
+>>> ---
+>>>  .../bindings/sound/mediatek,mt6358.yaml       | 47 +++++++++++++++++++
+>>>  .../devicetree/bindings/sound/mt6358.txt      | 26 ----------
+>>>  2 files changed, 47 insertions(+), 26 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+>>>  delete mode 100644 Documentation/devicetree/bindings/sound/mt6358.txt
 >>>
->>> e.g. from:
->>>
->>> 	/* Iterate over all hosts to check whom wants a kick */
->>> 	for (host = 0; host < smsm->num_hosts; host++) {
->>> 		hostp = &smsm->hosts[host];
->>>
->>> Even though no mailbox is specified in any upstream dts for this 0th host I
->>> didn't want the bindings to restrict that, that's why in the first example
->>> there's an empty element (<0>) for the 0th smsm host
->>>
->>>> Anyway, the question is if you need to know that some
->>>> mailbox is missing. But then it is weird to name them "ipc-1" etc.
->>>
->>> In either case we'd just query the mbox (either by name or index) and then
->>> see if it's there? Not quite sure I understand the sentence..
->>> Pretty sure either binding would work the same way.
+>>> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+>>> new file mode 100644
+>>> index 000000000..f57ef2aa5
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt6358.yaml
+>>> @@ -0,0 +1,47 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/sound/mediatek,mt6358.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Mediatek MT6358 Audio Codec
+>>> +
+>>> +maintainers:
+>>> +  - Kartik Agarwala <agarwala.kartik@gmail.com>
+>>> +
+>>> +description: |
 >>
->> The question is: does the driver care only about having some mailboxes
->> or the driver cares about each specific mailbox? IOW, is skipping ipc-0
->> important for the driver?
+>> Do not need '|' unless you need to preserve formatting.
 > 
-> There's nothing special from driver side about any mailbox. Some SoCs have
-> a mailbox for e.g. hosts 1&2&3, some have only 1&3, and apq8064 even has
-> 1&2&3&4.
+> Noted
 > 
-> And if the driver doesn't find a mailbox for a host, it just ignores it
-> but then of course it can't 'ring' the mailbox for that host when necessary.
+>>
+>>> +  The communication between MT6358 and SoC is through Mediatek PMIC wrapper.
+>>> +  For more detail, please visit Mediatek PMIC wrapper documentation.
+>>> +  Must be a child node of PMIC wrapper.
+>>
+>> Did you update the PMIC wrapper binding with ref to this?
 > 
-> Not sure how much more I can add here, to be fair I barely understand what
-> this driver is doing myself apart from the obvious.
+> I am sorry but if I understand this comment, you are asking me to update this
+> file [1], correct?
+> 
+> 1. https://www.kernel.org/doc/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> 
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - mediatek,mt6358-sound
+>>> +      - mediatek,mt6366-sound
+>>
+>> You did not test the DTS.
+>>
+>> I think I raised the issue already: please make necessary fixes to the
+>> binding (with explanation) or to the DTS, when converting the binding.
+>>
+> 
+> Apologies again. Just to be sure, am I correct to assume that you want 
+> me to fix the dts file [1] as it has both these compatibles 
+> mentioned instead of only one and I should fix that by dropping one of 
+> the two compatibles?
+> 
+> [1] https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi#L1246
 
-From what you said, it looks like it is enough to just list mailboxes,
-e.g. for ipc-1, ipc-2 and ipc-4 (so no ipc-0 and ipc-3):
+No. I want these to be in sync and correct. dtbs_check must pass, which
+requires either changing binding or DTS, whichever is the correct action
+to do.
 
-mboxes = <&apcs 13>, <&apcs 9>, <&apcs 19>;
+https://social.kernel.org/notice/Ai9hYRUKo8suzX3zNY
 
 Best regards,
 Krzysztof
