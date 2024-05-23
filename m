@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-68744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 575F98CD5B6
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:27:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 874A48CD5C2
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:29:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAA931F22109
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:27:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C45E2821E1
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D2DB14B966;
-	Thu, 23 May 2024 14:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC6114D71A;
+	Thu, 23 May 2024 14:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="aYKML+Hz"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="QcgUb3hm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EEF13DBA0;
-	Thu, 23 May 2024 14:27:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B189C14D2A2
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 14:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716474464; cv=none; b=TEuQ03ldJdJIrShOjf+3mhJF3smfv9VEPHxstwzMk1fg7OYKIRs8rjp0NTR+51jH7VK8XF6LKjY57yrc3xr9a6uGlO7GhfGzpcL9R4o+pjgnj4KQkork/IR/hvOTMCmMmPUS0dBppXn6feWMIKhK68itb3uW7sqYEfbK8d8RJeA=
+	t=1716474539; cv=none; b=VFg9ZTyq/abW1h0TBv4T6NAzfDgQoMN4JM8RzVNIerS340E2YHBkXF73W2wt+edppetJ1Tow8/GZELcI6boXE4VF5AmFLypdtlYMw2afuWrVOfbr0ZnLisR/f+GPLPXwgoJZPwGsWOlzYkQ+NbBcfuNAlWva5WlxRKaLBYniWXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716474464; c=relaxed/simple;
-	bh=QEOsbs8q/uNlrzyIF2AnVE4QjTKvwI0YcIYzzR9VZGw=;
+	s=arc-20240116; t=1716474539; c=relaxed/simple;
+	bh=zaeMrFY2WEalSntOcIU1Zi30vA/q91IKHU5hWjxbg1U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NIxz2QiaPmLGZOeTJc1sGCh+4J7b1u5d24T6ByHyGvsCM7UsmdiDCgabXThIiD9LmB0SX/mJH/Chd54HxdGO7E8nMM0kQfu00nv9B1ga0yyXNJIogeg3HVnl6ZImn2KyYEeW3zBsEpSuFgFNiV7HP/rJf1CwIYWJoPzE+Rdsf4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=aYKML+Hz; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 93D7D7E1;
-	Thu, 23 May 2024 16:27:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1716474447;
-	bh=QEOsbs8q/uNlrzyIF2AnVE4QjTKvwI0YcIYzzR9VZGw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aYKML+HzDDvhk7o3iUGxoMI143zmxO+8bAKYb83yd7uaqnP5tFesaCvn2ba1cd0zw
-	 Hx+dGO3+Javn7DxWRaIXVy3QQ+EH9lyKRyBleAL66a9vqH2Y2WtrzIHzUcHuu8jphD
-	 4QNCZzxjCJ4OpJi0KKMMPu9ZPEtPvg+TbA2OlaYs=
-Message-ID: <4ea66114-37a4-413f-b672-43ec3d4631c6@ideasonboard.com>
-Date: Thu, 23 May 2024 15:27:36 +0100
+	 In-Reply-To:Content-Type; b=Rd772WyiqvPdl7qhBkGD0aFX0ofK55MJjXHIYtpfLtayMLH8uoH9MfZFoDMzbMDH5R1N5US5iY/94zUNJDE6sNldJsvlMnWKhaKBok/H19QdwMcRgnKwv7M0yjt3wAZ7iBRsEwGtQ8Dsh0HSIas8In3Dxks8CMurjwINHBqyYc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=QcgUb3hm; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-245435c02e1so3369455fac.0
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:28:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716474537; x=1717079337; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5rSMKPqlVmyB8QJzbwpvKr56z/Yxr4Zld0KaM7W8/ao=;
+        b=QcgUb3hmBdvwMxhND8tTznaGcqEcoC4y2gb7b46F7qSbQd/lcAGrMjt0xwhd9qhO5C
+         do3WRUz/yfXWRNxjc48tJdpjux27ckS6k3eRpKHvoiFPknWWxVjWKwXBYAaGOmQvqaAh
+         KlLu7xicKpEHbRWq2R5BNcGjaSSrKU+xbHaP269VVpTaGeXXKBNHATgs9Ua4xQWy2TRb
+         tYXsMjAX+dr8ngFa+ALCAUJYOw8Ho3LmpvQGps0HH/r/63OccxqwI4FHK5XGDZRwLE5s
+         9e8I1gKgAvwAuGEgFaEVQDNO5Z/lqwJjGOXnHuHcl9wGfVzCibGT5SXcxlY++JQUIq24
+         zhKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716474537; x=1717079337;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5rSMKPqlVmyB8QJzbwpvKr56z/Yxr4Zld0KaM7W8/ao=;
+        b=wMRuZjejuQdK493uifa867R4dgYiloMM9mTnWP6rtBCqMPsCr5nF2AePxmgUdK5SJ5
+         NHWYBGYvSf7GeUWzvUVrYaL5TDNy3q4OaiN1rMYWCeysYOq/hxk7VM/WX8R7x81UjM/+
+         aiekB7HtAdUNObPHpfKBLbRhlXEFazQR3+YW1Thqz4Onz5XsQmYql7pbpVrQ75HoqYZB
+         kOUUmJ+u6Ga0LulxG5tbewL8OVtC50cIBHz7gTxUrSsHgrYR8LaCMN5grssgjVwh9q5E
+         cWVuafzT9y2CifsZKD7OjYqQL6g+0y3q6QdGtHW6Y0xCzFqnxqkbu/b1YdIkNkA+lU0a
+         9amw==
+X-Forwarded-Encrypted: i=1; AJvYcCVgUMdvPSf6Aav/Uuz0FiNevM4i1uNFhUZCxdpsyY8DZj658dvtGh8a/PKld9DAdQQvWq/nRo/n/rzxvrlnnjxRURNR0nUj6wDh4Q==
+X-Gm-Message-State: AOJu0YyA0uB8dEmNaC/t2s7ZlU7KNarxEfYCP8//tZY/SkgIn/liIAJG
+	YgK0pJBvPqGHhm+tJzgxgtnJmNKd78bjg/9tw5OIt16hvntipRWoLhgiLAsqQJE=
+X-Google-Smtp-Source: AGHT+IEmnlTOuI97MwBndYJ3jehFfvs/fsHkM0Y7ReJssf8Wlf+3CQIb09ick1EQmGSi0NWqMlZKdQ==
+X-Received: by 2002:a05:6871:330a:b0:24c:5e82:1b59 with SMTP id 586e51a60fabf-24c68bac5b1mr5650043fac.1.1716474536651;
+        Thu, 23 May 2024 07:28:56 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f0f785b6eesm4586461a34.9.2024.05.23.07.28.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 May 2024 07:28:55 -0700 (PDT)
+Message-ID: <59df2cc3-5a62-45be-a0aa-5bbff13c2ae4@baylibre.com>
+Date: Thu, 23 May 2024 09:28:54 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,128 +76,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] media: mali-c55: Add Mali-C55 ISP driver
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- laurent.pinchart@ideasonboard.com
-References: <20240418090825.624747-1-dan.scally@ideasonboard.com>
- <20240418090825.624747-4-dan.scally@ideasonboard.com>
- <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
+Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
+ spi-offloads property
+To: Conor Dooley <conor@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com>
+ <20240510-dlech-mainline-spi-engine-offload-2-v2-1-8707a870c435@baylibre.com>
+ <20240513-headsman-hacking-d51fcc811695@spud>
+ <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
+ <20240514-aspire-ascension-449556da3615@spud>
+ <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
+ <20240516-rudder-reburial-dcf300504c0a@spud>
+ <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
+ <20240519-abreast-haziness-096a57ef57d3@spud>
+ <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
+ <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
 Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- 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
-In-Reply-To: <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Sakari - sorry, one part I missed...
+On 5/22/24 1:24 PM, Conor Dooley wrote:
+> On Tue, May 21, 2024 at 09:54:39AM -0500, David Lechner wrote:
+>> On Sun, May 19, 2024 at 7:53 AM Conor Dooley <conor@kernel.org> wrote:
+>>>
+>>> On Fri, May 17, 2024 at 11:51:58AM -0500, David Lechner wrote:
+>>>> On Thu, May 16, 2024 at 4:32 PM Conor Dooley <conor@kernel.org> wrote:
+>>>>> On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wrote:
+>>>
 
-On 23/05/2024 09:03, Sakari Ailus wrote:
->> +
->> +int mali_c55_isp_s_stream(struct mali_c55_isp *isp, int enable)
-> Have you considered {enable,disable}_streams? All new drivers should use
-> these instead of s_stream() now.
+...
+
+>> This time, the periodic trigger (PWM) is connected to the pin on the
+>> ADC that triggers a sample conversion (CNV). The ADC has a BUSY output
+>> that will go high at the start of the conversion and go low at the end
+>> of the conversion. The BUSY output of the ADC is wired as the hardware
+>> trigger input of the offload.
+>>
+>> In this case would we still consider the PWM as part of the SPI
+>> controller/offload since it can only be used in conjunction with the
+>> SPI offload? It isn't connected to it at all though.
+> 
+> No, in this case the ADC is a PWM consumer and the offload engine is
+> not. The ADC is a "trigger" provider and the SPI offload engine is a
+> trigger consumer.
+
+Makes sense.
+
+...
 
 
-Although named s_stream this is actually a purely internal function - it's not exposed as part of 
-the subdev video ops. The resizer subdevices similarly don't expose an .s_stream() operation, 
-they're simply started in the callpath of mali_c55_vb2_start_streaming(). I'll split the stop 
-functionality into mali_c55_isp_stop_stream() and rename this mali_c55_isp_start_stream() to make 
-that less confusing.
+> 
+>>> In fact, looking at the documentation for the "spi engine" some more, I
+>>> am even less convinced that the right place for describing the offload is
+>>> the peripheral as I (finally?) noticed that the registers for the offload
+>>> engine are mapped directly into the "spi engine"'s memory map, rather than
+>>> it being a entirely separate IP in the FPGA fabric.
+>>
+>> True, but we don't use these registers, e.g., to configure the
+>> sampling frequency of a trigger (if it can even be done). That is done
+>> in a completely separate IP block with it's own registers.
+> 
+> Where is the binding for that IP block? I think describing that is
+> pretty key. goto continuation;
+
+For the real-world case I used to test this series, it is an AXI PWMGEN
+[1] that is providing the trigger event source. It has a typical PWM
+provider binding with #pwm-cells [2].
+
+Calling this a "trigger" provider to the SPI offload instance just like the
+case above where the ADC is directly connected as the offload trigger makes
+sense to me.
+
+What I was going for in this patch (slightly revised to use #cells) is that
+this trigger provider, whatever it is, is selected by one of the cells of
+#spi-offload-cells. It doesn't seem like there should be a special case for
+if the trigger provider is a clock or PWM where the SPI controller node
+becomes a consumer of the clock or PWM provider rather than just describing
+the trigger relationship.
+
+For example, supposing we had an FPGA/HDL that could handle all 3 wiring
+configurations we have discussed so far. A) PWM connected directly to SPI
+offload as trigger, B) PWM connected to CNV of ADC and BSY of ADC connected
+to SPI offload as trigger, C) self clocked ADC with RDY of ADC connected
+to SPI offload as trigger. So the DT would have:
+
+controller:
+#spi-offload-cells = <2>: /* 1st cell = offload instance
+                           * 2nd cell = trigger provider */
+
+peripheral (choose one based on actual wiring):
+spi-offloads = <0 0>; /* case A */
+spi-offloads = <0 1>; /* case B */
+spi-offloads = <0 2>; /* case C */
 
 
-The TPG subdevice on the other hand does expose an .s_stream() operation, since the intention was to 
-model it exactly like a connected external subdevice. I can switch to the .enable_streams() 
-operation there.
+As to what is the actual consumer of the PWM provider in each of these
+cases...
 
->
->> +{
->> +	struct mali_c55 *mali_c55 = isp->mali_c55;
->> +	struct media_pad *source_pad;
->> +	struct media_pad *sink_pad;
->> +	int ret;
->> +
->> +	if (!enable) {
->> +		if (isp->source)
->> +			v4l2_subdev_call(isp->source, video, s_stream, false);
->> +		isp->source = NULL;
->> +
->> +		mali_c55_isp_stop(mali_c55);
->> +
->> +		return 0;
->> +	}
->> +
->> +	sink_pad = &isp->pads[MALI_C55_ISP_PAD_SINK_VIDEO];
->> +	source_pad = media_pad_remote_pad_unique(sink_pad);
->> +	if (IS_ERR(source_pad)) {
->> +		dev_err(mali_c55->dev, "Failed to get source for ISP\n");
->> +		return PTR_ERR(source_pad);
->> +	}
->> +
->> +	isp->source = media_entity_to_v4l2_subdev(source_pad->entity);
->> +
->> +	isp->frame_sequence = 0;
->> +	ret = mali_c55_isp_start(mali_c55);
->> +	if (ret) {
->> +		dev_err(mali_c55->dev, "Failed to start ISP\n");
->> +		isp->source = NULL;
->> +		return ret;
->> +	}
->> +
->> +	ret = v4l2_subdev_call(isp->source, video, s_stream, true);
->> +	if (ret) {
->> +		dev_err(mali_c55->dev, "Failed to start ISP source\n");
->> +		mali_c55_isp_stop(mali_c55);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
+* C is easy. There isn't a PWM provider since the ADC is self-clocked.
+* B, as discussed elsewhere is fairly straight forward. The ADC node is
+  the consumer since the PWM is connected directly to the ADC.
+* A is the one we need to figure out. I'm proposing that the PWM consumer
+  should be whatever kind of composite device node we come up with that
+  also solves the issue described below about where does the CRC checker
+  (or whatever) go. I think we are in agreement here at least on the point
+  that it doesn't belong in the SPI controller node?
+
+[1]: http://analogdevicesinc.github.io/hdl/library/axi_pwm_gen/index.html
+[2]: https://lore.kernel.org/linux-pwm/20240424125850.4189116-2-tgamblin@baylibre.com/
+
+
+
+> 
+> I think you're right something like that is a stretch to say that that
+> is a feature of the SPI controller - but I still don't believe that
+> modelling it as part of the ADC is correct. I don't fully understand the
+> io-backends and how they work yet, but the features you describe there
+> seem like something that should/could be modelled as one, with its own
+> node and compatible etc. Describing custom RTL stuff ain't always
+> strightforward, but the stuff from Analog is versioned and documented
+> etc so it shouldn't be quite that hard.
+> 
+> continuation:
+> If offload engines have their own register region in the memory map,
+> their own resources (the RTL is gonna need at the very least a clock)
+> and potentially also provide other services (like acting as an
+> io-backend type device that pre-processes data) it doesn't sound like
+> either the controller or peripheral nodes are the right place for these
+> properties. And uh, spi-offloads gets a phandle once more...
+> 
 
