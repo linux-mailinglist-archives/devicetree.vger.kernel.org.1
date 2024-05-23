@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-68569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83358CCCA8
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:02:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6C1C8CCCBE
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FA13283D25
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:02:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA1D71C21F09
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 215DA13C9AB;
-	Thu, 23 May 2024 07:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592AF13C9D0;
+	Thu, 23 May 2024 07:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XmBX3r/R"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QVD1OZ9I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761333BB30
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9647413C9BD;
+	Thu, 23 May 2024 07:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716447773; cv=none; b=mR5Sn9wCb6ionN9ismAbHDBi1+iSaJbL0ShLNZOnHdAvfS6gl2Mn20ph2vDetk7bofFZ4HZxx3MkvMF8p+o6xRlbJ4JrCJCC9qdTx8rusrRb8vebOEQ6Msi732/1Lko55XsEkp1JaT0RzO9gEwoGA2GqSzrDo3zR2jKWFjTXzVM=
+	t=1716448108; cv=none; b=uCXLPJJu9seRvkO37yGG4KR1DWhtAUiLXkJ+yrakn51Nub99yvSUGSCZqjvl7vPjO/LYonZATJb09pfIL6XWJWNCi5LF8RuTNTqOB/RV2UmSrYO5ZU2mRx5tKBxCC/SD+CFRIr1cb66gO9bUcr72w9RveyIdA+fwi/qOn5GRA9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716447773; c=relaxed/simple;
-	bh=2iwAMzrl4dDMMQsEIaTB4uokRYYhC3LD8qk0O9UaQeU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=nfNA8HBZcYkKyYUUJ3/KiYQrJN2h38G99neNbmodpAb+tl6HffwNNxMbGciMKK1B05GYfrAXKgsiInw+tJsF7yDEkaDnZI2O8Qb1FvCDqZk3LY+l4TfJDzJuiMUVVanG8FZmSy9FVx/YKfy0qMjzeLnYpj2cxdnDZSBjBUJjtpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XmBX3r/R; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42016c8db2aso16096535e9.0
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 00:02:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716447769; x=1717052569; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8itbzUF/Z2ZMEmOObc0N18iAGI/cMcrQQ08PQ71w8q4=;
-        b=XmBX3r/RHLGmGYW5YP3+hwQecZ+qoq66xQRirSg0V5gFOkCrA131c9vZGouqkVqGCD
-         1dgPeMQArYCc3lq8kHVIUeVVg9tqcYKncPqaEhjyGT57AKQb7wrxhEtn6FFT91YRKb8y
-         Q9GtuGV1PSpzf8e7v8sBLopi4E1HK8Gji7PkYPdBwplsRuhojnAmRZgFd0oAr7jN8L7+
-         HaIEo7EkkpnMXFndz0jinFDiJ+8+igTpneverya2j4d3Zi/SP4rh5aSdY1w4k6az51zC
-         scqFAVbFYaAw3YfxYaYENCeQ7v5jtaQvbzZR9kBO68V+LzIB7i8jDJC8vJuIrvYEwANI
-         cv7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716447769; x=1717052569;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8itbzUF/Z2ZMEmOObc0N18iAGI/cMcrQQ08PQ71w8q4=;
-        b=PLsVhKj6O1Inp6cLKpSC5CKk1ssFJZudi7cSs6gYfREvQGWNteDJT/FxL8X9Eb/O6b
-         WWtgnP009zM441LZdEEGPAYayHjn1mmaxoNVtY/reoOTN9CSUyB9jIrPdCaujDJhwYVe
-         DbTVVeQOOX9jw5bKQAzOWGJFnILI5jtOLJwBY40QhYIvxnUUfqGIo7FDE1nLdTOO5WOB
-         YwM0F+ae+RJugXy08vVBU+iwDrYsNENJU//zydCcDu3MOlZ9ZgqSTM4eFHk4KEmnalV2
-         ywzP25dYjtWNlw6l+WMtRB3sM96l1WgyzqnRT7kFib8MaTIgC3fySF7mJ7jSDPZPk/BH
-         M64A==
-X-Forwarded-Encrypted: i=1; AJvYcCU3rTeGi8auaYTblbGmTPFVmb+3nHFlPuNHojSxa4EJBBQ+L9keBqqH2GOvMKSta/LUbTxXVMHFUDZ6GEUS/iWtdEXz+SS4PsxgbQ==
-X-Gm-Message-State: AOJu0YyknWp3TuNqgBcSIwRQ+BBbDy5GzicyJx9ceJ+bBKaMZdKbf67G
-	p2wq7+TGPbpr+5w0MMY7BXCsUgC+8MBezhwCmqD7axPDCCm49ePPuIEId/bI458=
-X-Google-Smtp-Source: AGHT+IEULw/4bJ30NXLcAzBBA6aS68zSf6t9wgP7S71NPOAFLWawxehFRN+A4HA7vgdVZuWnS5fGwA==
-X-Received: by 2002:a05:600c:2047:b0:418:c2af:ab83 with SMTP id 5b1f17b1804b1-420fd363ab2mr36128485e9.36.1716447768844;
-        Thu, 23 May 2024 00:02:48 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ef3625sm16208925e9.7.2024.05.23.00.02.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 00:02:47 -0700 (PDT)
-Message-ID: <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org>
-Date: Thu, 23 May 2024 09:02:46 +0200
+	s=arc-20240116; t=1716448108; c=relaxed/simple;
+	bh=ijvfwmsIYrGBjX90Bb1NC8ZZ5eC7RXM7EAhrgy++/3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=C44U0O5/MuJ44JNWbKKAgvkjjQmIO0eLi4GcSo0PVHfoxGde2gWLqZmIQ9+YwWQqg0MwUeYUKdfFuD4Ro0TFSwpSrV68T0Xx0Zpmi7Y1p+BwX56lPQ4gQ5C3LhQMaG+NClRfwMtOJs3KXrzDZmtQEHw80UeCn4ZTt2hDMApPVLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QVD1OZ9I; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44N4jThT010543;
+	Thu, 23 May 2024 07:08:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	AJAgBM8RRNv0boYLbUX7vZhvxHDqRZaUH76fthHL5T8=; b=QVD1OZ9IVQjmAQUK
+	xIVPw3XTZbiszJlX+4djUVmfBYFwH/EkJN8/FyfptBZZ7dJij4S/nXNGEZK4uMV/
+	/7AWpttDA6xxKv4d3j+gwj0MPA8jEHH6kJzR4BmamHWW9btJ8QpkNw4PRVGOFeBg
+	KKbcjFh4zSkV56vd3nlbXAkGQqtcfxPuR925M83oJRW4dZp0l0Hv7JDB8ZVxgKah
+	QmTmi06l7JaXDlLdWsI0k/muxGxRoc8+r2LOiFwAfZErCWcltOSbpijm7ARuWRYa
+	v+tXcYy0CSO/PMjWuxHAItvOXseIirVQdZulHqOz8gKpeJV5rW4AY9DnjPuK2iJw
+	8TtxNg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y9y29r83b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 07:07:59 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44N77wXl018231
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 07:07:58 GMT
+Received: from [10.50.38.127] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 23 May
+ 2024 00:07:53 -0700
+Message-ID: <a4c77ac8-f417-4d91-99a6-0420bd1259aa@quicinc.com>
+Date: Thu, 23 May 2024 12:37:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,92 +65,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
-To: Tim Harvey <tharvey@gateworks.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20240522215043.3747651-1-tharvey@gateworks.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH V5 4/6] arm64: dts: qcom: ipq9574: Add PCIe PHYs and
+ controller nodes
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240522215043.3747651-1-tharvey@gateworks.com>
-Content-Type: text/plain; charset=UTF-8
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+References: <20240512082858.1806694-1-quic_devipriy@quicinc.com>
+ <20240512082858.1806694-5-quic_devipriy@quicinc.com>
+ <20240514073943.GB2463@thinkpad>
+From: Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <20240514073943.GB2463@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eQ-fLeVP4MIj0PUSQ70rZGe4jInovAs0
+X-Proofpoint-GUID: eQ-fLeVP4MIj0PUSQ70rZGe4jInovAs0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-23_04,2024-05-22_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
+ priorityscore=1501 suspectscore=0 bulkscore=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1015 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405010000
+ definitions=main-2405230045
 
-On 22/05/2024 23:50, Tim Harvey wrote:
-> The GW7905 was renamed to GW7500 before production release.
+
+
+On 5/14/2024 1:09 PM, Manivannan Sadhasivam wrote:
+> On Sun, May 12, 2024 at 01:58:56PM +0530, devi priya wrote:
+>> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
+>> found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane Gen3
+>> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
+>>
+>> Signed-off-by: devi priya <quic_devipriy@quicinc.com>
+>> ---
+>>   Changes in V5:
+>> 	- Dropped anoc and snoc lane clocks from Phy nodes and enabled them
+>> 	  via interconnect.
+>> 	- Dropped msi-parent as it is handled via msi IRQ
+>>
+>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 365 +++++++++++++++++++++++++-
+>>   1 file changed, 361 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> index 5b3e69379b1f..da6418c9d52b 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
 > 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> [...]
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 0027201e19f8..d8bc295079e3 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -920,8 +920,8 @@ properties:
->                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
->                - fsl,imx8mm-evk            # i.MX8MM EVK Board
->                - fsl,imx8mm-evkb           # i.MX8MM EVKB Board
-> +              - gateworks,imx8mm-gw75xx-0x # i.MX8MM Gateworks Board
+>> +		pcie1: pci@10000000 {
+> 
+> 'pcie@' since this is a PCIe controller.
+okay
+> 
+>> +			compatible = "qcom,pcie-ipq9574";
+>> +			reg =  <0x10000000 0xf1d>,
+>> +			       <0x10000F20 0xa8>,
+> 
+> Please use lower case for hex everywhere.
+okay
+> 
+>> +			       <0x10001000 0x1000>,
+>> +			       <0x000F8000 0x4000>,
+>> +			       <0x10100000 0x1000>;
+>> +			reg-names = "dbi", "elbi", "atu", "parf", "config";
+>> +			device_type = "pci";
+>> +			linux,pci-domain = <2>;
+>> +			bus-range = <0x00 0xff>;
+>> +			num-lanes = <1>;
+>> +			#address-cells = <3>;
+>> +			#size-cells = <2>;
+>> +
+>> +			ranges = <0x01000000 0x0 0x00000000 0x10200000 0x0 0x100000>,  /* I/O */
+>> +				 <0x02000000 0x0 0x10300000 0x10300000 0x0 0x7d00000>; /* MEM */
+>> +
+>> +			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "msi";
+> 
+> Are you sure that this platform only has single MSI SPI IRQ?
+It has 8 MSI SPI IRQs, will define all of them
+> 
+>> +			#interrupt-cells = <1>;
+>> +			interrupt-map-mask = <0 0 0 0x7>;
+>> +			interrupt-map = <0 0 0 1 &intc 0 0 35 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+>> +					<0 0 0 2 &intc 0 0 49 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+>> +					<0 0 0 3 &intc 0 0 84 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+>> +					<0 0 0 4 &intc 0 0 85 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+>> +
+>> +			/* clocks and clock-names are used to enable the clock in CBCR */
+> 
+> This comment is redundant.
+okay
+> 
+>> +			clocks = <&gcc GCC_PCIE1_AHB_CLK>,
+>> +				 <&gcc GCC_PCIE1_AUX_CLK>,
+>> +				 <&gcc GCC_PCIE1_AXI_M_CLK>,
+>> +				 <&gcc GCC_PCIE1_AXI_S_CLK>,
+>> +				 <&gcc GCC_PCIE1_AXI_S_BRIDGE_CLK>,
+>> +				 <&gcc GCC_PCIE1_RCHNG_CLK>;
+>> +			clock-names = "ahb",
+>> +				      "aux",
+>> +				      "axi_m",
+>> +				      "axi_s",
+>> +				      "axi_bridge",
+>> +				      "rchng";
+>> +
+>> +			resets = <&gcc GCC_PCIE1_PIPE_ARES>,
+>> +				 <&gcc GCC_PCIE1_CORE_STICKY_ARES>,
+>> +				 <&gcc GCC_PCIE1_AXI_S_STICKY_ARES>,
+>> +				 <&gcc GCC_PCIE1_AXI_S_ARES>,
+>> +				 <&gcc GCC_PCIE1_AXI_M_STICKY_ARES>,
+>> +				 <&gcc GCC_PCIE1_AXI_M_ARES>,
+>> +				 <&gcc GCC_PCIE1_AUX_ARES>,
+>> +				 <&gcc GCC_PCIE1_AHB_ARES>;
+>> +			reset-names = "pipe",
+>> +				      "sticky",
+>> +				      "axi_s_sticky",
+>> +				      "axi_s",
+>> +				      "axi_m_sticky",
+>> +				      "axi_m",
+>> +				      "aux",
+>> +				      "ahb";
+>> +
+>> +			phys = <&pcie1_phy>;
+>> +			phy-names = "pciephy";
+>> +			interconnects = <&gcc MASTER_ANOC_PCIE1 &gcc SLAVE_ANOC_PCIE1>,
+>> +					<&gcc MASTER_SNOC_PCIE1 &gcc SLAVE_SNOC_PCIE1>;
+> 
+> Is this really the interconnect paths between PCIe-DDR and PCIe-CPU? I doubt...
 
-That's not even equivalent. You 7500 != 75xx.
+We actually designed a minimalistic ICC driver for enabling the NoC 
+clocks based on the suggestions received from the community.
+Please find the link to the discussions that went in for introducing the 
+ICC driver for NoC clock enablement
 
->                - gateworks,imx8mm-gw7904
-> -              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gateworks Board
+https://lore.kernel.org/linux-arm-msm/abd29b47-a8ab-4e2a-8147-d5d8ded98065@linaro.org/
 
-Compatibles do not change. It's just a string. Fixed string.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Devi Priya
+> 
+> - Mani
+> 
 
