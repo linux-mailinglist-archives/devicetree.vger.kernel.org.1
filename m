@@ -1,348 +1,261 @@
-Return-Path: <devicetree+bounces-68741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9B98CD464
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:24:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AE58CD4FC
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:43:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A289F1C2111D
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 13:24:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FDFF282ADC
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 13:43:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BC814AD36;
-	Thu, 23 May 2024 13:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E552F14A4FF;
+	Thu, 23 May 2024 13:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="koZB+EFR"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="jmcH9P+Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2071.outbound.protection.outlook.com [40.107.105.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C533714A60E
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 13:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716470646; cv=none; b=fhK19Wso2Z/9oCqWdpYU1BkitBgcjj1XF3V6zJZtgq2Ar0nvgZ649J7ZGqQfJScvtI9v8X1laM7UUIEOcueNt8gyDSrcW2rw0a6nSD/14iNtDdoYD9UCLF6tjwIQjkDa8xO40BDcGkS8o8+Rz6tqEaCB7qRlFrzTgSvNkebqb6E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716470646; c=relaxed/simple;
-	bh=NGwPr7Z67/7znzHkXoOkccT+OKYhRJioZ0H0WNeR2Ak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nXybqst+MlcHqmodRaU76LGvTm/FJ5U5ARJ8sGNLjA1g8kZbjfcq2g93aHERK/qy2CuvDTcpYQBn2nYOGoKjfTi4WRi/nzjxttAPyRMr7DLZvrAtTGKGhDOl2L7NQahun0rHJ63gahgcArgaMe1QaOTv1PzNmFr9sj+cUCKydU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=koZB+EFR; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4200ee78f34so18330305e9.3
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 06:24:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716470642; x=1717075442; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b1bEXVq0kjirSToKmi5rGdt49BYr5FRGBXpMPxi+kOw=;
-        b=koZB+EFRxprRe2NIqCCrwEOknZ5xyjogeACJw1ehjDsv17i/PEKbNVHQ9Nns/xroMk
-         M/h0DLqBGYVZQAo4PvW75UoA+clsqiWHgQcKg/K4vvMaNbbWx3Lm9foKTbwLf14PIDPb
-         XnhUQON2mHK0aDQpWaK94BXLFRTdRO0Oqlt8rcv0cOkYZYDFAZPsGn71KLAYh+WieP8H
-         e/K520HIGaxzTjELu8USDH3BfojE/3HImDdyuKKtJJf0xvE+v7pn6ZL15yS2OkEJ+50h
-         idv5OXhpU1J09LZ+TjbC5lXBOwMAOzMVj2YDbNg6gq6IeqaEqdkiKfYmztoz8DjNw2ic
-         nKeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716470642; x=1717075442;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b1bEXVq0kjirSToKmi5rGdt49BYr5FRGBXpMPxi+kOw=;
-        b=HhQciXxVqZG862WWZiJFftHnYbtzwrDOS6R5HxkfnP05VvZFQFsNlIQWpdGDIDcsXD
-         HOI32NMiQW7tn0+Wq7ScAZkdNMTWbmzSGuI9Q+2OPgBVTGy9H727dlYdtsxojqNRRXmO
-         LA1jeAwXEXW82ViKZx4AGjdMxnPEd+/i4Dh2G5Ohok2qY3phOa/3bToXE1cqtKU1OfBl
-         oPifgSyHvWRtx4P6o88wN+VpAyQ3fuZ7ZLe26UrmFMYce9XzDqmlSydsCmIP0HvSYNQ2
-         GQEqqzieakYYvEDQZufqMLwpZQ4mwGqBo1PF8XUyFVAFoVhJzymn+FfnJ2218CTOPajj
-         g1rA==
-X-Forwarded-Encrypted: i=1; AJvYcCUdDc+e3oG2TB9lYpeDhlHwASLMLFTcsje5gQdp8AT0YF8tgQ+aVnE3v6O1Fo0MQ2jkRECp4ItJfNam/5f7tkMITYZJgEvI59gbVQ==
-X-Gm-Message-State: AOJu0Yw45XaHu1HX2tq4r+RJDdNa+ZGwmapBq3xSiGeQqnmWBnbuIBmP
-	WmfLrT+m0p0b14/fknxXla/VntW13VAUsCacrMCKJYeb0XAU0zjKI1OXe4t70Qg=
-X-Google-Smtp-Source: AGHT+IEmASdfZKnXNv6IGUCEuEhwh0HO1qVFlUYCx6ZCIO7fIrZ4lZuzh8+txvcQCC9JRq0nnaNXoA==
-X-Received: by 2002:a1c:4c10:0:b0:420:1585:7a99 with SMTP id 5b1f17b1804b1-420fd384c7emr39170205e9.38.1716470642181;
-        Thu, 23 May 2024 06:24:02 -0700 (PDT)
-Received: from ?IPV6:2a04:cec2:21:7ed1:cc40:dfff:5a22:b06a? ([2a04:cec2:21:7ed1:cc40:dfff:5a22:b06a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100fb7fe1sm25098895e9.45.2024.05.23.06.24.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 06:24:00 -0700 (PDT)
-Message-ID: <dfb5a14d-bd35-4271-9ded-888eb5c0cff3@baylibre.com>
-Date: Thu, 23 May 2024 15:23:59 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E802113C80E;
+	Thu, 23 May 2024 13:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716471833; cv=fail; b=luqteJC9tvNq6cFvPpTdHDlKefgVw660cHSeq8bzJA7dzBcsOi3UPbEVmshSxTsQOmM/m0VqKt5kHfU4VAQ2d0qhv5skg/RdeXEDxtKpoiNnCskHMa6504QBkuXncswOEUqmTeEbQ7+dPpieGSuIZC3e51dW35T+J67vbLYUpfE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716471833; c=relaxed/simple;
+	bh=KmIohq93iaYVBv+4XtRrdpqLG4gOMBJZOEVIQoxum9g=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=eJWGJsKvveGfPrX4NnEwtgZd1LQZfWElcWU1k4Sj5nTtrQdCsgASmmqmmr2aUuqQJGT3LswQxx/Nc2WCzxhUj1e0PCI4pnQBGBu/DKeN7E2hHgBXnuRH4hT34zpk02o6IUqgFEqMtBFTPXWhY7zKV+5z0xdUfSXcRPw/H2evAyI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=jmcH9P+Y; arc=fail smtp.client-ip=40.107.105.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iALMQBVgy+IG/IByeDbJjJFMusUhnzwF9OSKvXgi3psnTkG2AzfuzwXc6ffQBeAzYYp6ObI01coVcOnpYNebABfV9INESPsHUQoQJZG0uU30YnaiV7TPtyE+D9QM8QVYVJaTHaJPFLn47EMJlARDrZnSTcxkGAf+JEP5bpErLqi3lwNKVmFT8JFc4Zkg3LEWhCfXJweiZY6d1lNR6HrI1faet0/E1FBEVUB3GPf7Z75zuUhlaL/cxbYxL+6xeSwgEOUCb6THp6t8Fq6Vwep+UORjCVRSZbE9J8y7yEPJ7y26/8drvzQvzDTFTp5KCT6CASSqYgOaK3TA5e+hIIi9bQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PrWJeae89CsBHouHo+EeQIRU5tNVcq3gj4Vfy/vv7kU=;
+ b=iR06mHrnPeZ20j+uaK6zgQ5CZeN/s7wTA5e9sfTndnxgpaCexhc5J/2dhu7wm9xXhdiELyzNAjwD/8H0aMqyUnHiXTupAUfu/LfqL30EkvSpMrMJznSMW3xbkvp9iix8ns/9mRZoxa07rvuK4AOrKENZQiekDQ5xy1BMmUcXPSRorGSZItJSz2jEFBuvg4r6UtYguC6Vf3A+7gKImBZbf6kNLXzJxkIO9tTLLztaYM26AN2H9vdd8nAsZmHad3v4eEiehClX8/1Hv++hGeo3ZwPl8ehYbCNSNMf/s0Djti11mvAQTX8VJ2yS/VEzidekx04hg86N8XbeUW37KmsrTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PrWJeae89CsBHouHo+EeQIRU5tNVcq3gj4Vfy/vv7kU=;
+ b=jmcH9P+Y7gcZGITR/bMs+Ahud7V0qjNwAoMYkQR+OKhU/fj/F2FmET5TWOICTFT7wWHvHS44fHjKCmANg7BPgW6QZpwBpfItFkqYKfilRvEyeRIRiWEPovqCGaTavCb7auCIATEZ2cJp/eFN7ZCdaaIE4iEcOi4ShhioksvzMxU=
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
+ by AS8PR04MB8884.eurprd04.prod.outlook.com (2603:10a6:20b:42f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Thu, 23 May
+ 2024 13:43:47 +0000
+Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
+ ([fe80::e751:223e:aa3d:5827%4]) with mapi id 15.20.7587.035; Thu, 23 May 2024
+ 13:43:46 +0000
+From: Pankaj Gupta <pankaj.gupta@nxp.com>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+CC: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Pengutronix Kernel
+ Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Thread-Topic: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Thread-Index: AQHarP9ayLdOqCtfLEqTQR0Rf+AVuLGkztWAgAADNvA=
+Date: Thu, 23 May 2024 13:43:46 +0000
+Message-ID:
+ <AM9PR04MB86047218A243EEB5BA79F69D95F42@AM9PR04MB8604.eurprd04.prod.outlook.com>
+References: <20240523-imx-se-if-v2-0-5a6fd189a539@nxp.com>
+ <20240523-imx-se-if-v2-4-5a6fd189a539@nxp.com>
+ <Zk9DV6Ko-KO0kym_@pengutronix.de>
+In-Reply-To: <Zk9DV6Ko-KO0kym_@pengutronix.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|AS8PR04MB8884:EE_
+x-ms-office365-filtering-correlation-id: 11782e91-b808-4947-896a-08dc7b2e5e57
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230031|7416005|376005|366007|1800799015|38070700009;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?LSx1z05ijJj7dC805hKqONXAfHI1C3lnDVlgnj347J2FDtlJPQkKLzcQdphZ?=
+ =?us-ascii?Q?adcSqzyDJCwodQE9SggV0dmCaXVlSmK9VhkgCruJ7S7RxSv+lZPa03aL8Ufb?=
+ =?us-ascii?Q?SjXY1k1KnLYzS7TjdHIvqp2m6yzfx5zKGfTWmuu+QwhWGZlRC1PSGXeKnS4x?=
+ =?us-ascii?Q?Kb0aqgVUUn0o8tGm/cz//9HFJvns/0gW5lfpkK2Rxh5kngfjnJThhGBcLF8m?=
+ =?us-ascii?Q?4V2NZhWBYS0xMFD/wDrOD2M7IjN4CkAO7GFIiuG38CQln7Yvqmjsg9IXH1u+?=
+ =?us-ascii?Q?VveELjGO5gsd+dY3CeZR0LyLYwj8253TVpgmEu1ftQ4/ysRHRaN1ostQOqJd?=
+ =?us-ascii?Q?8KU1+iNsljNzyi4jFYPxJtjiFci4lUWJSazXjAbIAprb18fDUhPVAklJjUUi?=
+ =?us-ascii?Q?jCtPvZXocbzOSoVQx4gavxtnzUxoCE6G7pyVqy+vlrPui43KEvx8UQXCQp7a?=
+ =?us-ascii?Q?M1hgQHW3ZREY9EKb3X42kktH3XCiR0xOXyJ8lSL/C6lkId22N6hIgGs+4WJo?=
+ =?us-ascii?Q?yTB7ZAyc3fJutPgNnkJ0mk/i71cEwJ6lTiZQb0QXaOTNQ3G+R856hWLAXEIv?=
+ =?us-ascii?Q?MVlNPfuJmepYxttMsJiUMChG/RdcbJTfHpYIauvF4kFkhuC7RTpVeaq54Xe+?=
+ =?us-ascii?Q?xwTKWMXckQxnoYP1R9cpbGhBrOMdzEozBZ7tKnVB89eSywj71pendJLesalY?=
+ =?us-ascii?Q?X/g2z7klf/9eTUKJC27KNB0WZWPEEIeS7bw5mifJAchraZ+np+/L5cux7WVv?=
+ =?us-ascii?Q?F5IRpDUHFVQArgAoKPrmmMLIwJFxnR5/c+dmZTk1C961/miFxZ91t1DIgt7f?=
+ =?us-ascii?Q?osdk1P03+P0RtdRGuMe/XFLf+P5nni7uDrlpwpvyM6Ddcw2ffRKTrFNNHgDJ?=
+ =?us-ascii?Q?LG+fw7CPIkJLoOUmDbR/+FbucD/b89zLMy/BizC3FGK7uc7Rf4nQtGJjglva?=
+ =?us-ascii?Q?kwv3kcEhEkiv/CKWt/xULQvr5Iy1kTH9QXxDBAtnBaDcufvWZhArFjLTl96/?=
+ =?us-ascii?Q?YQDoawpDi1pTqCvTu06vTVrS2Wm3oJ0P2I08aax3B6z67rwLtyF8yj5ml8Ro?=
+ =?us-ascii?Q?FiUkfov5+TcprVeOkxgzshXfGyLlp2GZ67rv6WgpYQc9A2/rxbhBQc5dO6BH?=
+ =?us-ascii?Q?5LEfg3DfEjs0bMUzwYwfB5urZH9XP5BSZrad9l6cc+pkwQVBZf5qGLp4cEeh?=
+ =?us-ascii?Q?D7cgRtKXdmyLgJcNcngeuqvZ+P8IHkxfvdeeJR15WQfi84mFsfPI32742cC1?=
+ =?us-ascii?Q?dHhXFYH4RSeN6seygG43WBVGJ7QDcmAKGEjkIPE51w=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(366007)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?dCs3iXFZJZR/xWHIhE1AvsfU7nw4zD0j0pJ5oKXcAIuP94203rOyuZleoMYk?=
+ =?us-ascii?Q?wte5uJnj6ER/amPueiQiKAmj+g2PegQuiWYk5/MXTYrphK9OLtCPjZGRhpIi?=
+ =?us-ascii?Q?8KNhiRsy8xlIHYP5fz0Y/gQFiiwyiFODA+MuGuADjKe+g2+tWIcb3pLT+obt?=
+ =?us-ascii?Q?RM5lRZmoGzksQR8jPfuXhjWJPq7KJaxUshVCn6cfN/rjCfVJffnC7mVwIiNg?=
+ =?us-ascii?Q?WxuMDbQUc3frkjNPcuZyi8WYA6h6pUEyfSJHhiBXM5vB8iAmuwGXqDdrLTu5?=
+ =?us-ascii?Q?T5s/2EnHbV6rxQhsgvHDkOjhqAo+R44/FBIW1bFs4B5eUtcXnYw5DRAe/Ll7?=
+ =?us-ascii?Q?ItYC5VrAZ5iryO6xxvizFJESnr1SWto8l30EpRjwJn50L6Lt+fKn6NeayMSU?=
+ =?us-ascii?Q?c/pXMbnpvNhCpBCbkDY1cxHaHqDeBnRHTmLeHppoI7x52om7rifx4WF55iWB?=
+ =?us-ascii?Q?pGlblWcezkpewakLzZRnpYv0gq7N10zb9W3JCfBrF9tbyqlOy3de/TnZ7JI4?=
+ =?us-ascii?Q?Ve/pDz2kHnVVQRmIELN0kqjBwoAYWRP4H7pJEWozkdzQrNL0sl3HE+7U1Bzk?=
+ =?us-ascii?Q?dL2s/poR3Zpr8iu4+l/puIl/G89h5P8i8DyEvoQfobW7caTYU8e8b28XImXf?=
+ =?us-ascii?Q?xyuf5jpOUThJHDTsvjxKHxwqQ0LxdDSlMxT1eZgAd6wFCR0bM9GHkJcGFSvQ?=
+ =?us-ascii?Q?7rEFe3PcavCRS1OCPo0WH9WC6NEbKMXvSZuA3eLieew3ILMhmTIWDvm8vryn?=
+ =?us-ascii?Q?9851AdLT33t+w5UsLIqov/c9tXrNNqDOz6TTQ47LYbifJPUN+/hGT+d5vXLm?=
+ =?us-ascii?Q?CFMuZW6wEZzLcopuv32o0M1wVfi/dgajMaQ0z4G8DYNGLDXrR4KZAlxa8BrY?=
+ =?us-ascii?Q?JLofBu8SwAkVBbDYQmPU3mpums3Kv7Sj8VWFvMDkp0O1l3jkmme1fX9DKTJq?=
+ =?us-ascii?Q?z1ZcSraPaF2HuhP1QnMx2k0hOuoSB7YgSrIeSdzFy1ibo6nuL2qjbCSC6Llk?=
+ =?us-ascii?Q?O1fgFZgBK8YObRaw0EvVj0dX3F0i079ga9FQwvOvIRLcfvoRB7YpvZ3MWQsW?=
+ =?us-ascii?Q?pOzQo2+9mcqh3iaR8tlVQkC18YhkxjfIvl9k5acY8EPXdHMf9Ck0aN6KTl8X?=
+ =?us-ascii?Q?IhNUU6J8y17rGBzodXiHsUL6tHAVaGRF0h3hRIAjyh7Vs3vGUKDFFKsLe/xZ?=
+ =?us-ascii?Q?RcfKo6T7p5kbbNLaIcuQ92riUOAw3PGYztUhsLUJFLGWyjY/2nRBemLZAnLI?=
+ =?us-ascii?Q?Ah+SRYOnGqIw7o8hlmXqPRuLcAhtXbPra5sh1X7MktUNNchgNpaknRpcbtUK?=
+ =?us-ascii?Q?Sc780Pr5uvFGLlClEoENt3Do7/lWRusfqWK0AvgOYLO/b2WViZbJgjPdbp5w?=
+ =?us-ascii?Q?lhmHDISm6xz6MdLLovt3znvrvSl3SeKkg9lPf3WB/artzCAgkiRKJZV+5sC3?=
+ =?us-ascii?Q?jFFuxN9j2fMZSCgMBJh+FT03lJfXyt+kCdMn0mH3Ywx+hS+WOO+1Dc/pVrvV?=
+ =?us-ascii?Q?JilVabASqEBWQ1Of/wVYApsRPv0rxJ/1qfYk1Wf8+Z/LVIfHtbBbj2DCH1cj?=
+ =?us-ascii?Q?Ju9uMFPmaxx7TXYMqljnvoU7uXGejmxFGrVPGLvI?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] thermal: Add support of multi sensors to
- thermal_core
-To: Pin-yen Lin <treapking@chromium.org>
-Cc: rafael@kernel.org, daniel.lezcano@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, rui.zhang@intel.com,
- lukasz.luba@arm.com, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hsin-Te Yuan <yuanhsinte@chromium.org>
-References: <20240119110842.772606-1-abailon@baylibre.com>
- <20240119110842.772606-3-abailon@baylibre.com>
- <CAEXTbpeJ=3kxeKy4rXUfNEO==XYQ2DQx+ex2nLNkur_X6p1VVQ@mail.gmail.com>
-Content-Language: en-US
-From: Alexandre Bailon <abailon@baylibre.com>
-In-Reply-To: <CAEXTbpeJ=3kxeKy4rXUfNEO==XYQ2DQx+ex2nLNkur_X6p1VVQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11782e91-b808-4947-896a-08dc7b2e5e57
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2024 13:43:46.1004
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7yWGzJfBqsj7tEEEypXpWCVPeIsiNu7HVIRwfGtw1m3FOOMg5e2NTsudSljEQ0c4HKfBepAz7h+AREyfdbUMNw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8884
 
-Hi Pin-yen,
 
-> Hi Alexandre,
-> 
-> On Thu, Apr 11, 2024 at 4:34 PM Alexandre Bailon <abailon@baylibre.com> wrote:
->>
->> This adds support of multi sensors to thermal.
->> Currently, this only support the get_temp operation.
->> This returns an average temperature of all the sensors.
->> If defined, a coefficient is applied to the value read from the sensor
->> before computing the average.
->>
->> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
->> ---
->>   drivers/thermal/Makefile        |   1 +
->>   drivers/thermal/thermal_core.h  |   7 ++
->>   drivers/thermal/thermal_multi.c | 178 ++++++++++++++++++++++++++++++++
->>   3 files changed, 186 insertions(+)
->>   create mode 100644 drivers/thermal/thermal_multi.c
->>
->> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
->> index c934cab309ae..757289a406f7 100644
->> --- a/drivers/thermal/Makefile
->> +++ b/drivers/thermal/Makefile
->> @@ -6,6 +6,7 @@ CFLAGS_thermal_core.o           := -I$(src)
->>   obj-$(CONFIG_THERMAL)          += thermal_sys.o
->>   thermal_sys-y                  += thermal_core.o thermal_sysfs.o
->>   thermal_sys-y                  += thermal_trip.o thermal_helpers.o
->> +thermal_sys-y                  += thermal_multi.o
->>
->>   # netlink interface to manage the thermal framework
->>   thermal_sys-$(CONFIG_THERMAL_NETLINK)          += thermal_netlink.o
->> diff --git a/drivers/thermal/thermal_core.h b/drivers/thermal/thermal_core.h
->> index 0a3b3ec5120b..26e83a5c8298 100644
->> --- a/drivers/thermal/thermal_core.h
->> +++ b/drivers/thermal/thermal_core.h
->> @@ -138,6 +138,13 @@ ssize_t weight_show(struct device *, struct device_attribute *, char *);
->>   ssize_t weight_store(struct device *, struct device_attribute *, const char *,
->>                       size_t);
->>
->> +/* Multi sensors */
->> +int thermal_multi_sensor_validate_coeff(int *coeff, int count, int offset);
->> +int thermal_multi_sensor_register(const char *name,
->> +       struct thermal_zone_device *sensor_tz, int coeff);
->> +void thermal_multi_sensor_unregister(struct thermal_zone_device *sensor_tz);
->> +
->> +
->>   #ifdef CONFIG_THERMAL_STATISTICS
->>   void thermal_cooling_device_stats_update(struct thermal_cooling_device *cdev,
->>                                           unsigned long new_state);
->> diff --git a/drivers/thermal/thermal_multi.c b/drivers/thermal/thermal_multi.c
->> new file mode 100644
->> index 000000000000..a5a4f1f2d594
->> --- /dev/null
->> +++ b/drivers/thermal/thermal_multi.c
->> @@ -0,0 +1,178 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +#include <linux/err.h>
->> +#include <linux/export.h>
->> +#include <linux/of.h>
->> +#include <linux/slab.h>
->> +#include <linux/thermal.h>
->> +#include <linux/types.h>
->> +#include <linux/string.h>
->> +
->> +#include "thermal_core.h"
->> +
->> +struct sensor_interface {
->> +       struct thermal_zone_device *tz;
->> +       int coeff;
->> +
->> +       struct list_head node;
->> +};
->> +
->> +struct multi_sensor_thermal_zone {
->> +       struct thermal_zone_device *tz;
->> +       struct mutex sensors_lock;
->> +       struct list_head sensors;
->> +
->> +       struct list_head node;
->> +};
->> +
->> +static DEFINE_MUTEX(multi_tz_mutex);
->> +static LIST_HEAD(multi_tz_list);
->> +
->> +#define TJ_MAX 120000
->> +
->> +static int multi_sensor_get_temp(struct thermal_zone_device *tz, int *temp)
->> +{
->> +       struct multi_sensor_thermal_zone *multi_tz = tz->devdata;
->> +       struct sensor_interface *sensor;
->> +       int accumulated_temp = 0;
->> +       u32 accumulated_coeff;
-> 
-> Should we initialize accumulated_coeff to 0 as well?
-Yes, indeed, I will fix it.
-> 
->> +       int ret;
->> +
->> +       mutex_lock(&multi_tz->sensors_lock);
->> +
->> +       if (list_empty(&multi_tz->sensors)) {
->> +               mutex_unlock(&multi_tz->sensors_lock);
->> +               return -ENODEV;
->> +       }
->> +
->> +       list_for_each_entry(sensor, &multi_tz->sensors, node) {
->> +               ret = thermal_zone_get_temp(sensor->tz, temp);
->> +               if (ret) {
->> +                       mutex_unlock(&multi_tz->sensors_lock);
->> +                       return ret;
->> +               }
->> +
->> +               accumulated_temp += *temp * sensor->coeff;
->> +               accumulated_coeff += sensor->coeff;
->> +       }
->> +
->> +       mutex_unlock(&multi_tz->sensors_lock);
->> +
->> +       *temp = accumulated_temp / accumulated_coeff;
->> +       return ret;
->> +}
->> +
->> +struct thermal_zone_device_ops multi_sensor_ops = {
->> +       .get_temp = multi_sensor_get_temp,
->> +};
->> +
->> +int thermal_multi_sensor_validate_coeff(int *coeff, int count, int offset)
->> +{
->> +       int max_accumulated_temp = 0;
->> +       int i;
->> +
->> +       for (i = 0; i < count; i++) {
->> +               max_accumulated_temp += TJ_MAX * coeff[i];
->> +               if (max_accumulated_temp < 0)
->> +                       return -EOVERFLOW;
->> +       }
->> +
->> +       max_accumulated_temp += offset;
->> +       return max_accumulated_temp < 0 ? -EOVERFLOW : 0;
->> +}
->> +
->> +static struct thermal_zone_device *multi_sensor_tz_alloc(const char *name)
->> +{
->> +       struct thermal_zone_device *tz;
->> +       struct thermal_zone_params tzp = {};
->> +       struct multi_sensor_thermal_zone *multi_tz;
->> +
->> +       tz = thermal_zone_get_zone_by_name(name);
->> +       if (!IS_ERR(tz)) {
->> +               mutex_unlock(&multi_tz_mutex);
->> +               return tz;
->> +       }
->> +
->> +       multi_tz = kzalloc(sizeof(*multi_tz), GFP_KERNEL);
->> +       if (!multi_tz)
->> +               return ERR_PTR(-ENOMEM);
->> +       mutex_init(&multi_tz->sensors_lock);
->> +       INIT_LIST_HEAD(&multi_tz->sensors);
->> +
->> +       tzp.no_hwmon = true;
->> +       tzp.slope = 1;
->> +       tzp.offset = 0;
->> +
->> +       tz = thermal_tripless_zone_device_register(name, multi_tz,
->> +                                                  &multi_sensor_ops, &tzp);
->> +       if (IS_ERR(tz)) {
->> +               kfree(multi_tz);
->> +       } else {
->> +               multi_tz->tz = tz;
->> +               list_add(&multi_tz->node, &multi_tz_list);
->> +       }
->> +
->> +       return tz;
->> +}
->> +
->> +int thermal_multi_sensor_register(const char *name,
->> +       struct thermal_zone_device *sensor_tz, int coeff)
->> +{
->> +       struct thermal_zone_device *tz;
->> +       struct multi_sensor_thermal_zone *multi_tz;
->> +       struct sensor_interface *sensor;
->> +
->> +       mutex_lock(&multi_tz_mutex);
->> +
->> +       tz = multi_sensor_tz_alloc(name);
->> +       if (IS_ERR(tz)) {
->> +               mutex_unlock(&multi_tz_mutex);
->> +               return PTR_ERR(tz);
->> +       }
->> +       multi_tz =  tz->devdata;
->> +
->> +       sensor = kzalloc(sizeof(*sensor), GFP_KERNEL);
->> +       if (!sensor) {
->> +               mutex_unlock(&multi_tz_mutex);
->> +               return -ENOMEM;
->> +       }
->> +
->> +       sensor->tz = sensor_tz;
->> +       sensor->coeff = coeff;
->> +       mutex_lock(&multi_tz->sensors_lock);
->> +       list_add(&sensor->node, &multi_tz->sensors);
->> +       mutex_unlock(&multi_tz->sensors_lock);
->> +
->> +       thermal_zone_device_enable(tz);
->> +
->> +       mutex_unlock(&multi_tz_mutex);
->> +
->> +       return 0;
->> +}
->> +
->> +void thermal_multi_sensor_unregister(struct thermal_zone_device *sensor_tz)
->> +{
->> +       struct multi_sensor_thermal_zone *multi_tz;
->> +       struct sensor_interface *sensor, *tmp;
->> +
->> +       mutex_lock(&multi_tz_mutex);
->> +       list_for_each_entry(multi_tz, &multi_tz_list, node) {
->> +               mutex_lock(&multi_tz->sensors_lock);
->> +               list_for_each_entry_safe(sensor, tmp, &multi_tz->sensors, node) {
->> +                       if (sensor->tz == sensor_tz) {
->> +                               list_del(&sensor->node);
->> +                               kfree(sensor);
->> +                               break;
->> +                       }
->> +               }
->> +
->> +               if (list_empty(&multi_tz->sensors)) {
->> +                       thermal_zone_device_unregister(multi_tz->tz);
->> +                       mutex_unlock(&multi_tz->sensors_lock);
->> +                       kfree(multi_tz);
->> +               } else {
->> +                       mutex_unlock(&multi_tz->sensors_lock);
->> +               }
->> +       }
->> +       mutex_unlock(&multi_tz_mutex);
->> +}
->> --
->> 2.41.0
->>
-> 
-> By the way, may I know why min/max aggregation is dropped in this
-> version? I thought that checking max temperature is the most direct
-> approach to protect the hardware and the users from high temperature.
-You are right. The main reason was device tree bindings.
-I was expecting getting this accepted first before adding max and min.
 
-Thanks,
-Alexandre
-> 
-> Best regards,
-> Pin-yen
+> -----Original Message-----
+> From: Sascha Hauer <s.hauer@pengutronix.de>
+> Sent: Thursday, May 23, 2024 6:54 PM
+> To: Pankaj Gupta <pankaj.gupta@nxp.com>
+> Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh+dt@kernel.org>;
+> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Pengutronix
+> Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> <festevam@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> <krzk+dt@kernel.org>; linux-doc@vger.kernel.org; linux-
+> kernel@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.dev;
+> linux-arm-kernel@lists.infradead.org
+> Subject: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP EdgeL=
+ock
+> Enclave
+>
+> Caution: This is an external email. Please take care when clicking links =
+or
+> opening attachments. When in doubt, report the message using the 'Report
+> this email' button
+>
+>
+> On Thu, May 23, 2024 at 04:19:35PM +0530, Pankaj Gupta wrote:
+> > NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE), are
+> > embedded in the SoC to support the features like HSM, SHE & V2X, using
+> > message based communication interface.
+> >
+> > The secure enclave FW communicates on a dedicated messaging unit(MU)
+> > based interface(s) with application core, where kernel is running.
+> > It exists on specific i.MX processors. e.g. i.MX8ULP, i.MX93.
+> >
+> > This patch adds the driver for communication interface to
+> > secure-enclave, for exchanging messages with NXP secure enclave HW
+> > IP(s) like EdgeLock Enclave (ELE) from Kernel-space, used by kernel
+> > management layers like
+> > - DM-Crypt.
+> >
+> > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> > ---
+> >  drivers/firmware/imx/Kconfig        |  12 +
+> >  drivers/firmware/imx/Makefile       |   2 +
+> >  drivers/firmware/imx/ele_base_msg.c | 286 +++++++++++++++++++
+> > drivers/firmware/imx/ele_base_msg.h |  92 +++++++
+> >  drivers/firmware/imx/ele_common.c   | 239 ++++++++++++++++
+> >  drivers/firmware/imx/ele_common.h   |  43 +++
+> >  drivers/firmware/imx/se_ctrl.c      | 531
+> ++++++++++++++++++++++++++++++++++++
+> >  drivers/firmware/imx/se_ctrl.h      |  99 +++++++
+> >  include/linux/firmware/imx/se_api.h |  14 +
+> >  9 files changed, 1318 insertions(+)
+>
+> [...]
+>
+> >
+> > +int imx_ele_msg_send(struct se_if_priv *priv, void *tx_msg) {
+> > +     struct se_msg_hdr *header;
+> > +     int err;
+> > +
+> > +     header =3D (struct se_msg_hdr *) tx_msg;
+> > +
+> > +     if (header->tag =3D=3D priv->cmd_tag)
+> > +             lockdep_assert_held(&priv->se_if_cmd_lock);
+> > +
+> > +     scoped_guard(mutex, &priv->se_if_lock);
+>
+> scoped_guard() with an empty block doesn't make much sense. Either use
+> scope_guard() { /* do something locked */ }; or guard().
+>
+Need to allow send more than one message at a time. Hence, done it after ta=
+king the lock.
+Once message sent, scope of lock is over.
+Thus, scope of the lock se_if_lock, to execute the function "mbox_send_mess=
+age()", keeping the "se_if_lock" locked.
+
+> Sascha
+>
+> --
+> Pengutronix e.K.                           |                             =
+|
+> Steuerwalder Str. 21                       |
+> http://www.pe/
+> ngutronix.de%2F&data=3D05%7C02%7Cpankaj.gupta%40nxp.com%7Cbf79ff917
+> 442406e454308dc7b2b8ef2%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0
+> %7C0%7C638520674210595147%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiM
+> C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7
+> C%7C%7C&sdata=3DUUYK6KTYzgxY5kO4McFy0%2FGrXxTrf2MG5g4cvJ6E4Qk%
+> 3D&reserved=3D0  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    =
+|
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
+|
 
