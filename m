@@ -1,76 +1,56 @@
-Return-Path: <devicetree+bounces-68573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C3B8CCCF0
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:22:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0297B8CCCF6
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C87A01C21060
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:22:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92B3B1F225E5
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217F413C9D3;
-	Thu, 23 May 2024 07:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4FD13C9D5;
+	Thu, 23 May 2024 07:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cPGO3KAq"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Gw3UHFgn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 261C72D60A
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B3C3CF51;
+	Thu, 23 May 2024 07:24:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716448927; cv=none; b=kek9/HzABRtzGqKBSUyVmLhu7djkaFqpQe8dx3eUjdeZmPt5LY9xqjc9jEub9QlI55w7kOXGvLnkJPQ9ZHmV1CfyPd+MvtJQiuCTKzO7H8UgzmQ8iwdc+Ut3e572tDp8G4O+lJpdpt1qCR28OJn0QVptifnO4NRKff8paJksnjA=
+	t=1716449064; cv=none; b=T/f00Rl37qWaLGKqBM5wNXqhhU4wrCUdPXD6kjuCxKlhK84fV0P8l/ekoHCmhrx14r+lRoLzULSybJtotx21PAPSgUIK9ZgIVfyt0Bxb/fAOxk89teFSV9NOmw8hdCM0MOlKhqJYovjgOg8lZgRXtT3OzGeHap4rqlb1nOB7vW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716448927; c=relaxed/simple;
-	bh=CyPLZVnB/DanKVAH6e9CYdWNhAO3p1CUC8qOiudUuJ0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=LRhKeTlHyD4yndmFpj5UOkhtddqFggk0DeHyfIA9783gZHbzBQViDF8tj2h0Oa0V54XKqDBempACpdzkHGMZNnsfdjxXPrONuVyroBrpA6D6UdUpVgUcfBPLsNHq0yhdFTl1aWRltl8JwWk7qM/NxL4noFYXWKCi1/4yb1nEQa4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cPGO3KAq; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a59a9d66a51so973903266b.2
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 00:22:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716448923; x=1717053723; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B1eaJa9pGQU7S2YJvtO3vDk5kdB4Sw7kAba4zxjrsUs=;
-        b=cPGO3KAqcAkAramiSYPSnyYA0Ngfo9TBuPvvreFnwbe1CIsWVcZe//oTPl55Fedbyx
-         Tj6Ooj2OIJQdnW3jmpd7y8wz+MejFqUngCEfqYAQVOf6c1Af5nF+ASL1wjfhVzOeDJAz
-         V9UF54EL+locCy7a7MCGd4wC4hBkhcuuNeyNC1a9ECe71z5xKnhfvQCPCx9SDgtZQar1
-         NtRCyl+8Ot+0ZSqiF0PfI/3dsr5QxrXfcjHw0u+1f4yrMQk52eHTwi9P4UneaRq1OTJj
-         3XhPghluq7f5O2GtsnCYNGkSG8BXIypo/cn7hVXAmQChZkMULvsxe/EWUPSkFjZw8R4m
-         ulfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716448923; x=1717053723;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=B1eaJa9pGQU7S2YJvtO3vDk5kdB4Sw7kAba4zxjrsUs=;
-        b=nztBD5LPbgqWcTk8rNVljjuvcMNchQgXpZX7iIxo3wjjjbR5hrUPCTGUJTDTNrRTH2
-         wIzByl9DfsL858bInzsUtKjb/aj2cFLcZm2r7J3movUPxLCC13RkEbZ2pe9+bbxNxGbh
-         CZzh0ETWziCHQaN3CF+Q34a+UP2hcYZpzBxcVJwjA5JlQIyxNRNFXWJ97G35lIjMkwEd
-         b/JiE32fFMJVbuXDpz2RmBUJWipn6FHvp6EUHJnzgRubpMdB7bWZOmlrhlMnkIo1HQ/g
-         xw28hoJeBpxLDYQCqags6ouGlLnRFDyYh6tivlSK8KEEwJ110MMhH/xzvJxvrT9bzaw6
-         BHOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUc//kqd5/GQBdTVtO5MeFzQ3b65uwzOoeFHnFkX1oY2lmzq/L/XhKY1g3zqNwCETKctx2O6Me7Bk5wdvcdTk58Ipd0akPqw0Fw1Q==
-X-Gm-Message-State: AOJu0YzXpEcnHqfsR2wIcAGrmxZ2tXZD8v5FAnoY7cBa0ojoyt2nLimn
-	E3QyCl9sBTLtKmIp7oqTxp9p1PRl3GDhcaKK04C1H+Jq3kp4rbxr5guhFeF/4FU=
-X-Google-Smtp-Source: AGHT+IGHQ70hXNp/B9UnuQ8B827LgRin78upYW/dgAxokP5RsjGBSWMTlvzsJQDwo9+u9Uqen+AA/w==
-X-Received: by 2002:a17:906:c799:b0:a59:d2ac:3858 with SMTP id a640c23a62f3a-a622806b89amr255766266b.11.1716448923186;
-        Thu, 23 May 2024 00:22:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:825d:600a:c16:a973? ([2a01:e0a:982:cbb0:825d:600a:c16:a973])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1781cdb5sm1885070766b.29.2024.05.23.00.22.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 00:22:02 -0700 (PDT)
-Message-ID: <53c97dc2-8c2b-4765-ade7-6c9d0b2084ef@linaro.org>
-Date: Thu, 23 May 2024 09:22:01 +0200
+	s=arc-20240116; t=1716449064; c=relaxed/simple;
+	bh=quICu62D43k69goYAzJ786xXbgVdCuVtKje/qBcaq7U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=bZhNjvP6vwcNukDvXRBYcFCyvTowp5l5nUJzvRF4xPUKkUe3WtN5VAbLL8szCm8haziljNuVG2fa3en3flN0+/Wmq4mEnhLWmpfgdDC+IGZQlmLw2+oWOOStiGY5TmDoYjAOMb2yTPJyDcCljw947EAAS/Y8/y5yIQRXYQTTI5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Gw3UHFgn; arc=none smtp.client-ip=212.227.17.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1716449045; x=1717053845; i=wahrenst@gmx.net;
+	bh=3ewq43Fy7KxVWBn6uVYPi8Gd3oGUm4UZeASUASFFE7I=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=Gw3UHFgneGv5EdEHoD8RrdPrg9wcnaSx5LF5JDukXYmB0kKSd3HsyFgn9F/utbLP
+	 K8RdXfMKa9WDQg3uXfevRM32ozHlQ1M2hpE8PRUqxTTHPUd65dAwffRkmCsZLALxD
+	 jeo/my5/vcvLMqpEBdUsAkm4sTn9Bo0LwjnVbdKNGRaNFe03q8wOjlCCz8RG/0ClH
+	 kHG3BYKBZWZHwxGYWLf1Rd63YfwGpo1TUwyejuQ5BZTIJKYlq9OMdFZc4F8mdTaxc
+	 sUtg9EkpdatXl4hM0I60wvT3fqA/9xfhCaj/DEI0l9AK61BML0t5M4/OhX76hC+e1
+	 VyNywiyvCIMgq/BPsg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.126] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MOzOm-1rtTtB0zgy-00MOO0; Thu, 23
+ May 2024 09:24:05 +0200
+Message-ID: <be9cc413-6780-45f9-913c-056238be2451@gmx.net>
+Date: Thu, 23 May 2024 09:24:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,153 +58,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 0/3] Introduce initial support of Amlogic AC200 board
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
- Xianwei Zhao <xianwei.zhao@amlogic.com>, Lucas Tanure <tanure@linux.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Dmitry Rokosov <ddrokosov@sberdevices.ru>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20240521222155.28094-1-jan.dakinevich@salutedevices.com>
- <171638551693.3169786.7201121718393921307.robh@kernel.org>
- <edc6241b-195f-4188-b802-24706ebc9541@salutedevices.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <edc6241b-195f-4188-b802-24706ebc9541@salutedevices.com>
+Subject: Re: [PATCH] dt-bindings: soc: bcm: document brcm,bcm2711-avs-monitor
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240517125138.53441-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20240517125138.53441-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:lpEl9pH82QtZCaEEQBU+SlhJdTRsqw/TzdYu/1R7pCIxgvKQhDq
+ ZtDqozaHVbGQE8lV7/iJCXhHV+l+ZOQrNfr5FmKBH5lGyGMssqhxVnEYsDfx+XeafnVeIvp
+ 5/0xWEog7gvflqIzFfKwufvmtDy8TdC9xsNb+d+jmy7OXL48VOR88Zk6JzeNcF20Lj/kHYH
+ DZdcq+/aaaREJeR3yQD0Q==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:FF5cBb4Tl4w=;a25RE8LFwJUsg79MzEK46cPjfe+
+ 6+HDs3EwkjhXECGycMIVClBLvAMkvqCXr3fm8IqEx5PVnlno5Rx09xOy0fKWQxcP6NaRfHZEa
+ zpJBp8TexRA4s6vajGW4VxmlvvB15+KyJxhmy9/kt1F9TblcwwtYs40nsoG3BLHH+LBjmXO+C
+ el8OWqAgrY1CseQ/OTq897TbJ2+pnzERtpVjPtF4nerjRCP9sJgKLlqrBbsZkGe5jhJbCZhda
+ qrn3vjzqOFp/njbdIt/MmQArGRLIyWVkA/vMz20sRRS5aTYLITlB5eSXTqdt0xe+SCZwOFKU5
+ g+dJlzSNmC7e6tq1EnPLBMYTNAA8pNhl+y8nU3UVv3At2713L8H/PHkkgwJ3mbMXoNuJbChFM
+ dz2aw/cZ0uyAjNTHHqPXbHS4NzBBZqF1gzGbRmaNdb4TBSkEfO9Q1MqF1S96w12x6xxl5Vx0Z
+ KETPVe6H8vZ6+P9ioCed0kFmpN5CEr9pql79H4ipAtjHHP0AQJVM7XXXphoNOr8JnXowD6UDN
+ NruOq/E3U9sjo9K1sQw+O112Uky47vTS8uYGQhUVXe74mhHeYOhoM/2s2l/LCr/3TjzR3V6PY
+ yrNnl1rZZxyrgeE/XObbaD2M/+yDhjv+pkjNICKI6Hyn0/knnOEeZHMyLjbH1aaYJiPaXt4TF
+ qip1SwbBpfeMbYq0J7rL92rPBoQxdZsbjatrnUv8rQeLfhajpDGkTnqVViU9p1fLKjUPwS8MA
+ FOxCfgl4wt1tqUu/q5b8kP6Eq1EOnhl91vdbnUTz/Lf9sc6xJ+MKFsBZSu/GKIgNVPCg16Sia
+ w6uVPy3w0iJ4V9DFf/MmVaJeTBCL33HNKSS071vWWmvm8=
 
-On 22/05/2024 19:40, Jan Dakinevich wrote:
-> On 5/22/24 16:46, Rob Herring (Arm) wrote:
->>
->> On Wed, 22 May 2024 01:21:52 +0300, Jan Dakinevich wrote:
->>>   - Make some cosmetics in existing device tree files;
->>>
->>>   - Add the board.
->>>
->>> Jan Dakinevich (3):
->>>    arch/arm64: dts: ac2xx: make common the sound card
->>>    dt-bindings: arm: amlogic: document AC200 support
->>>    arch/arm64: dts: ac200: introduce initial support of the board
->>>
->>>   .../devicetree/bindings/arm/amlogic.yaml      |  1 +
->>>   .../dts/amlogic/meson-sm1-a95xf3-air-gbit.dts | 87 -------------------
->>>   .../boot/dts/amlogic/meson-sm1-a95xf3-air.dts | 87 -------------------
->>>   .../boot/dts/amlogic/meson-sm1-ac200.dts      | 22 +++++
->>>   .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 87 +++++++++++++++++++
->>>   .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 87 -------------------
->>>   .../dts/amlogic/meson-sm1-x96-air-gbit.dts    | 87 -------------------
->>>   .../boot/dts/amlogic/meson-sm1-x96-air.dts    | 87 -------------------
->>>   8 files changed, 110 insertions(+), 435 deletions(-)
->>>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dts
->>>
->>> --
->>> 2.34.1
->>>
->>>
->>>
->>
->>
->> My bot found new DTB warnings on the .dts files added or changed in this
->> series.
->>
->> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
->> are fixed by another series. Ultimately, it is up to the platform
->> maintainer whether these warnings are acceptable or not. No need to reply
->> unless the platform maintainer has comments.
->>
->> If you already ran DT checks and didn't see these error(s), then
->> make sure dt-schema is up to date:
->>
->>    pip3 install dtschema --upgrade
->>
->>
->> New warnings running 'make CHECK_DTBS=y amlogic/meson-sm1-a95xf3-air-gbit.dtb amlogic/meson-sm1-a95xf3-air.dtb amlogic/meson-sm1-ac200.dtb amlogic/meson-sm1-h96-max.dtb amlogic/meson-sm1-x96-air-gbit.dtb amlogic/meson-sm1-x96-air.dtb' for 20240521222155.28094-1-jan.dakinevich@salutedevices.com:
->>
->> arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/clock-controller@0: failed to match any schema with compatible: ['amlogic,sm1-audio-clkc']
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: /soc/bus@ff600000/bus@60000/audio-controller@744: failed to match any schema with compatible: ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
->> 	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
->> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
->> arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dtb: sound: 'anyOf' conditional failed, one must be fixed:
->> 	'clocks' is a required property
->> 	'#clock-cells' is a required property
->> 	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
->>
->>
->>
->>
->>
-> 
-> These errors were here before my modifications, and they require extra
-> efforts to rework generic 'meson-sm1.dtsi' etc. But it is not the goal
-> of this series. Should I do anything about this right now?
+Hi,
 
-No just make sure you don't introduce new errors.
-
-Thanks,
-Neil
-
-> 
+Am 17.05.24 um 14:51 schrieb Krzysztof Kozlowski:
+> Document alreasdy used binding for Syscon / AVS monitor:
+s/alreasdy/already excepted of that: Reviewed-by: Stefan Wahren
+<wahrenst@gmx.net> Thanks
+> brcm,bcm2711-avs-monitor to fix dt_binding_check and dtbs_check warnings
+> like:
+>
+>    brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: fai=
+led to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'sys=
+con', 'simple-mfd']
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../soc/bcm/brcm,bcm2711-avs-monitor.yaml     | 44 +++++++++++++++++++
+>   1 file changed, 44 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2=
+711-avs-monitor.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2711-avs-=
+monitor.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2711-avs-=
+monitor.yaml
+> new file mode 100644
+> index 000000000000..e02d9d7e7d9a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2711-avs-monitor=
+.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/bcm/brcm,bcm2711-avs-monitor.yam=
+l#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom AVS Monitor
+> +
+> +maintainers:
+> +  - Stefan Wahren <wahrenst@gmx.net>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: brcm,bcm2711-avs-monitor
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  thermal:
+> +    $ref: /schemas/thermal/brcm,avs-ro-thermal.yaml
+> +    description: Broadcom AVS ring oscillator thermal
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - thermal
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    avs-monitor@7d5d2000 {
+> +        compatible =3D "brcm,bcm2711-avs-monitor", "syscon", "simple-mf=
+d";
+> +        reg =3D <0x7d5d2000 0xf00>;
+> +
+> +        thermal: thermal {
+> +            compatible =3D "brcm,bcm2711-thermal";
+> +            #thermal-sensor-cells =3D <0>;
+> +        };
+> +    };
+> +...
 
 
