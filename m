@@ -1,154 +1,133 @@
-Return-Path: <devicetree+bounces-68770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03DF8CD86E
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:31:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4558CD884
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:37:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B29E282314
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:31:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853722824E8
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B83A12B7F;
-	Thu, 23 May 2024 16:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XtVl1yCb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1011018633;
+	Thu, 23 May 2024 16:37:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD16B1CF8F;
-	Thu, 23 May 2024 16:31:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19999D304;
+	Thu, 23 May 2024 16:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716481898; cv=none; b=gehDIJ6+RO7imdpCghp1kek7g1eLeZyNWf5iutoUlI6XghgdCsXdp19ET2GzTwsi/oFnFammC14eOF0HsTMBNHk5fxf6dQY0uw5g1Xosim0SDCfzmVCAqvHWpgwrfd1g0q93ouVAGDLA4LASi/uvvsRGMNPC4iEtwua1JKftabo=
+	t=1716482256; cv=none; b=aGzO9Ywm5owY/bMiVYb0+CYrXXnGVU0/vgfGJ/gZSU8KBco3tgod0atU/TkM5FIK/zSiFocJ8va7FgruWxfYdbYSR1Rl4bo8urtNaZ3pK3rpSQ+dggFpT48QuI2p3W9KbjWPuOUqI6RTGbCm/7Iv7SEsw0flmrTqXDU6upmHs6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716481898; c=relaxed/simple;
-	bh=yFdXknMEp6BoBRx9d/a3Xb7qQPDAPn3S0QNRYt4ZMwQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FR84PJYkLp/o0zTiAM9Wa1Z3n3lPL3c0GJvoUdyZj1ulxKnYubhQTdveDRPYaIqvwbvPOfGhEk2VBqXNJabxd6ugUeFg7rXTsfSLKtdo2yXavRHydJT0wIp1NTi62BwtcmblZf87r57JOlQNtXNwRWMYjODgPL7RASFy5HsytMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XtVl1yCb; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42016c8db2aso21208065e9.0;
-        Thu, 23 May 2024 09:31:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716481895; x=1717086695; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BkFgbsBHw567DO162agH6xtszv6nFxh3v/OqHAXAYQA=;
-        b=XtVl1yCbHcsASENET0tbWaPdkK/ToyDTNTbRtiG4NlXpZhNkBWWd7MnMy578pnhfG2
-         7bLHEaLNqZ+ESZ2kB4xzJ2Xx8k5T6oj2NVKV+MsJo1EL3hQlLpPWKUseh1pAV3YcJriB
-         sMKMeKXbF3G8S6ETEiPJPuZt1BGrsz3sRWhE/fFkvx9wAdDpU80Aecn+2I1t/OKL7TXI
-         cXcKpBabwob6xoo+r6iLJ36Cr1/UnjSyA59WklhZF6sBi76XcBywcY1p/Aqa5udCoLnv
-         6CmVsCZn0gzG5CA5iTWcBZ7ZLCgWNqCGkR3TS4AoN5gggl6i8QqUwRDEYHBv79ogpmPP
-         fmCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716481895; x=1717086695;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BkFgbsBHw567DO162agH6xtszv6nFxh3v/OqHAXAYQA=;
-        b=wOSrM2cv2CIRlZVpl9vzJII4S8uj4uycSY51qqSzStpvlFWTiEYz4GfKCXmUNNxws8
-         lDxB39US65D5KZL1EG0OgPHQNMiCyzYjcxAUf5Lsqc4OpOSNsbNJJ5N6b4r388HVqnfC
-         mzElOORV5VqVZexAi/sktO4HJ6WO2gXXpsl223j1Za1XM+Zb/Sb0MMHztelYhQmLarOz
-         5KcZyy/lHJxD/TvM6Hsje4aZULVOcWicClzQ2+fGjqBe2Bf51lfa6FC1i5w74LSkpSSo
-         C1bS5uxWWAdqzhBJNNTIRxeEZSmrdRMqNR/YbMMhrJO7pB7Jsgd83lRKEJOhbWbyX04u
-         pwVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNB5bq3exj4r6dDHlAxL9CejA2jV8Gi4k0dK8tMGb4LxMRk8wHvw2l6vp5GP0ALqZP3cotScE4eaXz1VqELladsBtmaTCot7EdECg1kOVdxEeiWQoriTIi5swNVYCP4SD6tTk5WSqm0A==
-X-Gm-Message-State: AOJu0YwPBhj6Ye5xgLUffIGnSTCrHYiw9k5K+8ufpgrUoPR/RqakGgmZ
-	oWW4Vx6rPRi2cZH6z6hg/Av2pdIBZul2HZ8aL5p0TnGkLSegKBKv
-X-Google-Smtp-Source: AGHT+IGERajLeL6v45YR+OnIu7rQ+Rz0hkkeUorXN4ovcimgSqTBgypDrtLU+Fnhe8uBHynPnppIZw==
-X-Received: by 2002:a5d:5612:0:b0:354:eb32:6d1a with SMTP id ffacd0b85a97d-354eb326e3amr3792720f8f.59.1716481894901;
-        Thu, 23 May 2024 09:31:34 -0700 (PDT)
-Received: from [192.168.0.31] (84-115-212-250.cable.dynamic.surfer.at. [84.115.212.250])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-354c2a40548sm12143109f8f.34.2024.05.23.09.31.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 09:31:34 -0700 (PDT)
-Message-ID: <865295e7-30c8-4abf-9992-fcb9b3186ebb@gmail.com>
-Date: Thu, 23 May 2024 18:31:32 +0200
+	s=arc-20240116; t=1716482256; c=relaxed/simple;
+	bh=qgkGDIjpEJfoA4a2AkMyyAveyC2iOGefHU0U1EkSN+k=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UUIfvDcBstNOeEs6fwkZZxKTvYI58kQDnt58R3M7sOi1If1jQg+0EVK6BtjXfSHQepmKQHo34hvqvk97PZk8PDjdf4p823+DNwlGXfyj2FAoXyA1RaKiXNAQypIPCxJwvb9JqdLBpY9dLsXPQGU9GPLsWuyxgtdp5puoSn9bdm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VlYj14d1vz6K9XP;
+	Fri, 24 May 2024 00:36:37 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 443F5140B3C;
+	Fri, 24 May 2024 00:37:29 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 23 May
+ 2024 17:37:28 +0100
+Date: Thu, 23 May 2024 17:37:27 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: "Gradinariu, Ramona" <Ramona.Gradinariu@analog.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<noname.nuno@gmail.com>, Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "corbet@lwn.net"
+	<corbet@lwn.net>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"robh@kernel.org" <robh@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>
+Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16545/7
+ families
+Message-ID: <20240523173727.000040ea@Huawei.com>
+In-Reply-To: <BL1PR03MB5992653C0A426BAC69D7033197EB2@BL1PR03MB5992.namprd03.prod.outlook.com>
+References: <20240423084210.191987-1-ramona.gradinariu@analog.com>
+	<20240423084210.191987-5-ramona.gradinariu@analog.com>
+	<20240428162555.3ddf31ea@jic23-huawei>
+	<e62f8df4b06abc371b1e9fe3232cb593e468d54c.camel@gmail.com>
+	<BL1PR03MB5992DEBF82C0DB7BDC5EA0FF971B2@BL1PR03MB5992.namprd03.prod.outlook.com>
+	<20240429204027.3e47074a@jic23-huawei>
+	<BL1PR03MB5992653C0A426BAC69D7033197EB2@BL1PR03MB5992.namprd03.prod.outlook.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: DT schema bindings conversion mentorships (was Re: [PATCH v5]
- ASoC: dt-bindings: omap-mcpdm: Convert to DT schema)
-To: Rob Herring <robh@kernel.org>, Daniel Baluta <daniel.baluta@nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- Shuah Khan <skhan@linuxfoundation.org>, Julia Lawall
- <julia.lawall@inria.fr>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
- linux-kernel@vger.kernel.org
-References: <20240522075245.388-1-bavishimithil@gmail.com>
- <0594944d-c158-4840-8724-b3f2edaab1ca@gmail.com>
- <4f722e53-011f-4176-b6af-080522165007@kernel.org>
- <bb44d588-9316-4509-b545-9bbaa2d240cb@gmail.com>
- <3c6c5be1-fb8e-4bf0-9f58-cfb09672e8c1@kernel.org>
- <d999bc26-9bb1-44a8-92a3-bcbe14c5a1c3@gmail.com>
- <58ada5ce-5c02-4ff5-8bdd-d6556c9d141f@kernel.org>
- <60989c44-6d16-4698-bf3f-b3c5dcd7b3e0@kernel.org>
- <dc31c4ba-1bea-4056-a68f-87d742eb8da3@nxp.com>
- <CAL_JsqJp133hGSkja9tabtsE9D7MSA9JErVkmkcy91piHMgfwg@mail.gmail.com>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <CAL_JsqJp133hGSkja9tabtsE9D7MSA9JErVkmkcy91piHMgfwg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On 23/05/2024 18:24, Rob Herring wrote:
-> On Thu, May 23, 2024 at 7:30 AM Daniel Baluta <daniel.baluta@nxp.com> wrote:
->>
->>
->> On 5/22/24 20:05, Krzysztof Kozlowski wrote:
->>> Dear Daniel, Shuah, Julia, Javier and other mentorship managers,
->>>
->>> I see some contributions regarding Devicetree bindings which look like
->>> efforts of some mentorship programs. It's great, I really like it. Only
->>> sadness is that no one ever asked us, Devicetree maintainers, about some
->>> sort of guidelines. This leads to sub-optimal allocation of tasks and
->>> quite a strain on reviewers side: for example we receive contributions
->>> which were never tested (tested as in make target - make
->>> dt_binding_check). Or people converted bindings which really do not
->>> matter thus their work soon will become obsolete.
->>>
->>
->> Hi Krzysztof,
->>
->> Some of the faulty patches are on me! Sorry for that. We had an
->> unexpected high
->>
->> number of people sending contributions for Google Summer of Code and I
->> couldn't watch them all.
->>
->> Now, the application period has ended and we have 1 intern working for
->> the summer!
->>
->> Will follow your guidance! Thanks a lot for your help!
-> 
-> To be specific, there are several ways to prioritize what to work on.
-> 
-> - There's a list maintained in CI of number of occurrences of
-> undocumented (by schema) compatibles[1]. Start at the top.
-> - Pick a platform (or family of platform) and get the warnings down to
-> 0 or close. There's a grouping of warnings and undocumented
-> compatibles by platform family at the same link.
-> - Prioritize newer platforms over older (arm64 rather than
-> arm32(though there's still new arm32 stuff)).
-> - Fix warnings treewide from common schemas (i.e. from dtschema).
-> That's not conversions, but related.
-> 
-> Rob
-> 
-> [1] https://gitlab.com/robherring/linux-dt/-/jobs/6918723853
+On Wed, 22 May 2024 12:01:21 +0000
+"Gradinariu, Ramona" <Ramona.Gradinariu@analog.com> wrote:
 
-Thank you Rob, I forwarded your recommendations to the LFX mentees.
+> > 
+> > If you are using bursts, the data is getting read anyway - which is the main
+> > cost here. The real question becomes what are you actually saving by supporting all
+> > the combinations of the the two subsets of channels in the pollfunc?
+> > Currently you have to pick the channels out and repack them, if pushing them all
+> > looks to me like a mempcy and a single value being set (unconditionally).  
+> 
+> I did not get a chance to look at this again until now. Unfortunately, a
+> memcpy will not work.
+> The current implementation is as follows:
+> /* The lower register data is sequenced first */
+> st->data[i++] = buffer[2 * bit + offset + 3];
+> st->data[i++] = buffer[2 * bit + offset + 2];
 
-Best regards,
-Javier Carrasco
+Ah. That's horrible... :(
+Thanks for pointing that out!
+
+> 
+> The device first sends the 16LSB, then the next 16MSB in big endian
+> format.
+> 
+> So then I wonder, can we keep the same implementation logic? The code
+> is implemented in the same manner for adis16475 driver which uses the
+> same channels data packing approach.
+
+Not much choice and given the need to handle a mixed endian stream
+you might as well do the packing here as well.  So sure, keep the
+code as you have it.
+
+> 
+> > 
+> > Then it's a question of what the overhead of the channel demux in the core is.
+> > What you pass out of the driver via iio_push_to_buffers*()
+> > is not what ends up in the buffer if you allow the IIO core to do data demuxing
+> > for you - that is enabled by providing available_scan_masks.  At buffer
+> > start up the demux code computes a fairly optimal set of copies to repack
+> > the incoming data to match with what channels the consumer (here probably
+> > the kfifo on the way to userspace) is expecting.
+> > 
+> > That demux adds a small overhead but it should be small as long
+> > as the channels wanted aren't pathological (i.e. every other one).
+> > 
+> > Advantage is the driver ends up simpler and in the common case of turn
+> > on all the channels (why else did you buy a device with those measurements
+> > if you didn't want them!) the demux is zerocopy so effectively free which
+> > is not going to be the case for the bitmap walk and element copy in the
+> > driver.
+> > 
+> > Jonathan
+> >   
+> 
+
 
