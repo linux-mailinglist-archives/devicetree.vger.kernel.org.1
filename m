@@ -1,119 +1,168 @@
-Return-Path: <devicetree+bounces-68576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47BB48CCD1F
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:38:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E89008CCD58
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 09:54:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF2DB1F21250
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:38:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51D5C282DC6
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 07:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890FC13CA9C;
-	Thu, 23 May 2024 07:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D240A13CAAD;
+	Thu, 23 May 2024 07:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F95qfjXL"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yBaEPaHv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D735C13A3E3
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:38:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A5D13BAC6
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 07:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716449884; cv=none; b=VtPtMSJzMdhJXNIdoEy0ALZkZ4/SdWOEJSu4cgHkvv8jbw0k8bl4O0+J4BthmB/bFGuXOIrDgf2GNhARDtDfACLr5LIoD3ZniWJusUv32+/QvMRxwrbBNL5oQf3llfOcPCJODsEPe7R6BLUJVV0N5E2f55O6y3VWmPSG7Oin0Sk=
+	t=1716450866; cv=none; b=p9EqzWiZ1sxD9aqVkHdO5CpZ5H7vcZInv4SzdQ1gPlA9aVMRrCm0u43LQlqd6G8bxVc18exUzTNr4pn3dWieP1PCKPvM3nDFj6/Q2bEvY+mga/YavXNMB+9ODnXaJoem7jn6Z657GGctMpyA3DJmQNiK9FYUGP1pNqnzTEup4zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716449884; c=relaxed/simple;
-	bh=J2DG/3/GCMldpCtcfPH9RS5eOzOUlMSVGLLyw5WQIEw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=WWFlgcOyQDvcgYF9lE6eBPotpTZa+AfajrJO7gUqsbZt8s8+JIHkro+qYAgUbua0a953pggzRdZL/BYHLswfIJpl54QlZA6SrBA/paK4S1govpEGsOQCbrFtZ7tDYXS2toJlClNiTKYfEHQUG0MdFp+DxY71MDZQrvEc3Lq86Po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F95qfjXL; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-34f0e55787aso4793016f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 00:38:02 -0700 (PDT)
+	s=arc-20240116; t=1716450866; c=relaxed/simple;
+	bh=6TUTSQLYTCUXIs3aeg91Rm5y9++WOvlHb8bfQgVmnOo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O8wvSYNemTw6zP9zALTpj5QfKI1cAXNiHTFCVWBnJvKg23Az8w328o72rmJejYq+qWHYvoGwT6NfM25e/JTT2WuySq08M9pE58PHO/tABuiUogxAsw5TBMRHHvuut19bh1nzbvNTwm+aj/j9w3Us3B5UO2G+qNwxb+n0mtYOXxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yBaEPaHv; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2e45c0a8360so64382631fa.3
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 00:54:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716449881; x=1717054681; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4O+SS1GsRMB8bjPXT+6PVKoi06ILz48Vqq1L93jlgPo=;
-        b=F95qfjXLkXr8NYTHZPifLpVeBUkqfR2ZWlpDhe1C84DAa1MnQs4ui6a+tmYL3ND19n
-         btiU7Uq+/J4BqGUvmj0XUCFESLuri12cx7yBMLWJbLcalyeZcppExhKMV7kMvI8qs2Ag
-         t2K70eoS8Xm7rUVFiTfZZXkl3JsTHwRIF1fhe1O5cX6UtQITI4kx/eQ7lIQLvjCrmA6w
-         MZ5gUq0Kewpz16ZxL87vqxVdjpmu90HQQCzoozHhGr2Em9u8BUATn5sIhdo0fBz+iR/y
-         n2B538Y09EVIMDGK6FLK6EKQzEZBsZwO46R3mJGPxA2rcX5TvcSD3u2aCY8WBEwdfAgf
-         wNuw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716450863; x=1717055663; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NO+7TP5WD33s7UxZDGhnr50qHmYrw+DG3n3RuvKTKAk=;
+        b=yBaEPaHvMhb6JhqKTT7NICNmNkBb7AcJDdinIQxt+Wje26d/lB74llcw+xJ14oGq7Y
+         ouXflFjtN89OI5+MsRnSXoLZeIeBGLMA/IwU1pNP1Tt3rGGrry9WgiLr59WZDgWBTxzs
+         oEA1aQddfbDiSMHJNNbg5YbOzAxjwmtKCvqU8eEHX+rLJUws4au4BtmPpe4QXOkYlraH
+         V1vckaPyMShn6cGqZD9DzzVxiVZgCTtftqhnSzXOVp/SEFVpZFUIbdjx7lKYko2NKHwY
+         KQyBKvoS7LrmFvis3zY5OnNaWQaEHz3I+NBCrI8YGy+JWg4O/no0cLyR3mSgy+rq5feb
+         c3tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716449881; x=1717054681;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4O+SS1GsRMB8bjPXT+6PVKoi06ILz48Vqq1L93jlgPo=;
-        b=q0gFY6TXUlPHEdqqgDDX4sSGCR7UyVE0VOjad/MMUcL6dnOMGhVvN/lOMZTy3Y/4u+
-         ez6MQD+L/80ZnxgTVEGfkvuwl1uHbhU8JUBIfpuzG1tBXfpTsNlCr0wKbGS0jN5qgX0v
-         0RyY74Zg/ILpqiTBXQ5sHU/zNJa7m6RIQAqvqJa9/cEyEx/5HsUV5g7QsOgOdSVlq0aL
-         ZfAHu8KE+W2ycQOLxZW5I6+p7U7ly1NaNvWOXCF+3bxWrfgTg70fYs9Fv+WDBZiphJBm
-         H5k5JriBhemxuOTn3YE3BShtbf7Ph0lu52Ip/zCN0IsW3uxg70pyXg7bc+xc4DujalGW
-         bi/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUftXZ/7o2A8C30NxsLDc5hXG8qhsbKmYTvXJJJu0cAYuu9b91gZIEwj//XJYj7TsIZxLJTbr/JboldA0kYlhaQzTaXL7sGIt2DIw==
-X-Gm-Message-State: AOJu0Yxb74bDRltFLuy6bmZ0nfVfB+y3GPpMaS965Rx/lgvhadv3XrdM
-	I47/qVcR61wUTrndB53P1KDqsYYMimHZlA/2sMwGvDzNM+zr44H3vK6aXQPoMMcYHaSxvcIBoJr
-	w
-X-Google-Smtp-Source: AGHT+IHK3gd8xnykZzZ98OHITQnyjeTmM56u8J6DJqBPYDwpo+keFdbr+WPnivHIFoDfG6N4ETBJbw==
-X-Received: by 2002:adf:f50d:0:b0:354:fa69:aacb with SMTP id ffacd0b85a97d-354fa69ab18mr613176f8f.43.1716449881025;
-        Thu, 23 May 2024 00:38:01 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-354fcf20f4csm282500f8f.47.2024.05.23.00.38.00
+        d=1e100.net; s=20230601; t=1716450863; x=1717055663;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NO+7TP5WD33s7UxZDGhnr50qHmYrw+DG3n3RuvKTKAk=;
+        b=GBNgDNVu/psuFFCsQvkS1gjlc9gUKJtfFY1GC+9XJGglxQa+2m8I1zlFJxQ6ecibHL
+         SeMRTR8/uRtIYYQ+kmKYsyjaimoyCkqZMI+XANv4pZ+xbhRaeDgcTpg/qKGwW6IDsnep
+         sCISgW/f314JW3ubr0S99Zk93TNQtlGCHbjjVRzHRr+I+IhjoTsbWc9kLDLu1sQobZjd
+         l7M6L6bShQtPnjf2/GKIEGADv1nIUnxzyVadbiCvFciYcjdCOBEGp7+Uyq8Nhg8aNNY4
+         JXMaOVjs6HSeyzNIav1aquJNgAh5p93Vc7nRoffPPiWdahfAgMSMXTtmz+kfqvVgDEGU
+         t7Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCWRPdrTYslcXSdBdh/hJ5lC5cAjBwbmDfO33G83Cj32M01xg/+4KQOPIz6UEjQmFCx2Xt1KYmafXw48QH/btvS9IrQRiYzaGh2cCA==
+X-Gm-Message-State: AOJu0YyF1BUM9r6e0Ptn0GgU3C/7x3T2gQzoPcKYr3FYX0rjH+BzCoRZ
+	BWaRTm5wSaB0BIAwYX36pMN3Cpi3A0mWJBmRH2t5Ta18vUb6IGvXTgLyRGU4vAw=
+X-Google-Smtp-Source: AGHT+IG1TPrM5IWcLsL0gQR7Oe9oP76a2EOliWzZVJoOaGxGy+vZJRo/X57iPhY+5O8GnBw4G2JH9A==
+X-Received: by 2002:a2e:874c:0:b0:2e7:2907:a63b with SMTP id 38308e7fff4ca-2e94946e2bfmr26921751fa.21.1716450862499;
+        Thu, 23 May 2024 00:54:22 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4091:a246:821e:6f3b:6b50:4762:8343])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3502baad074sm36501833f8f.70.2024.05.23.00.54.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 May 2024 00:38:00 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jeffrey Hugo <jeffrey.l.hugo@gmail.com>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Douglas Anderson <dianders@chromium.org>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240520153813.1.Iefaa5b93ca2faada269af77deecdd139261da7ec@changeid>
-References: <20240520153813.1.Iefaa5b93ca2faada269af77deecdd139261da7ec@changeid>
-Subject: Re: [PATCH] dt-bindings: display: Reorganize legacy eDP panel
- bindings
-Message-Id: <171644988011.2016197.234222014770021280.b4-ty@linaro.org>
-Date: Thu, 23 May 2024 09:38:00 +0200
+        Thu, 23 May 2024 00:54:22 -0700 (PDT)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: Vibhore Vardhan <vibhore@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Dhruva Gole <d-gole@ti.com>,
+	=?UTF-8?q?Martin=20Hundeb=C3=B8ll?= <martin@geanix.com>,
+	Simon Horman <horms@kernel.org>,
+	linux-can@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH 0/7] can: m_can: Add am62 wakeup support
+Date: Thu, 23 May 2024 09:53:40 +0200
+Message-ID: <20240523075347.1282395-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Transfer-Encoding: 8bit
 
 Hi,
 
-On Mon, 20 May 2024 15:38:17 -0700, Douglas Anderson wrote:
-> Back in the day, we used to need to list the exact panel in dts for
-> eDP panels. This led to all sorts of problems including a large number
-> of cases where people listed a bogus panel in their device tree
-> because of the needs of second sourcing (and third sourcing, and
-> fourth sourcing, ...). Back when we needed to add eDP panels to dts
-> files we used to list them in "panel-simple.yaml".
-> 
-> [...]
+am62, am62a and am62p support Partial-IO, a poweroff SoC state with a
+few pin groups being active for wakeup.
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+To support mcu_mcan0 and mcu_mcan1 wakeup for the mentioned SoCs, the
+series introduces a notion of wake-on-lan for m_can. If the user decides
+to enable wake-on-lan for a m_can device, the device is set to wakeup
+enabled. A 'wakeup' pinctrl state is selected to enable wakeup flags for
+the relevant pins. If wake-on-lan is disabled the default pinctrl is
+selected.
 
-[1/1] dt-bindings: display: Reorganize legacy eDP panel bindings
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/bd0fc87d5adc8e3a0d6fb84c9ed3c77da1f1242d
+It is based on v6.9-rc1.
+
+This series is part of a bigger topic to support Partial-IO on am62,
+am62a and am62p. Partial-IO is a poweroff state in which some pins are
+able to wakeup the SoC. In detail MCU m_can and two serial port pins can
+trigger the wakeup.
+
+These two other series are relevant for the support of Partial-IO:
+
+ - firmware: ti_sci: Partial-IO support
+ - serial: 8250: omap: Add am62 wakeup support
+
+A test branch is available here that includes all patches required to
+test Partial-IO:
+
+https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-lp-sk-partialio/v6.9?ref_type=heads
+
+After enabling Wake-on-LAN the system can be powered off and will enter
+the Partial-IO state in which it can be woken up by activity on the
+specific pins:
+    ethtool -s can0 wol p
+    ethtool -s can1 wol p
+    poweroff
+
+I tested these patches on am62-lp-sk.
+
+Best,
+Markus
+
+Markus Schneider-Pargmann (6):
+  dt-bindings: can: m_can: Add wakeup-source property
+  dt-bindings: can: m_can: Add wakeup pinctrl state
+  can: m_can: Map WoL to device_set_wakeup_enable
+  can: m_can: Support pinctrl wakeup state
+  arm64: dts: ti: k3-am62: Mark mcu_mcan0/1 as wakeup-source
+  arm64: dts: ti: k3-am62a-mcu: Mark mcu_mcan0/1 as wakeup-source
+
+Vibhore Vardhan (1):
+  arm64: dts: ti: k3-am62p-mcu: Mark mcu_mcan0/1 as wakeup-source
+
+ .../bindings/net/can/bosch,m_can.yaml         | 20 +++++++++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi       |  2 +
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi      |  2 +
+ arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi      |  2 +
+ drivers/net/can/m_can/m_can.c                 | 43 +++++++++++++++++++
+ drivers/net/can/m_can/m_can.h                 |  4 ++
+ 6 files changed, 73 insertions(+)
 
 -- 
-Neil
+2.43.0
 
 
