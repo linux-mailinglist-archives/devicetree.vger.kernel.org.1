@@ -1,261 +1,1356 @@
-Return-Path: <devicetree+bounces-68742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AE58CD4FC
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:43:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E5828CD4FE
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:44:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FDFF282ADC
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 13:43:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D92DF1F2385A
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 13:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E552F14A4FF;
-	Thu, 23 May 2024 13:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB3A14A606;
+	Thu, 23 May 2024 13:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="jmcH9P+Y"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sHRdmUQa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2071.outbound.protection.outlook.com [40.107.105.71])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E802113C80E;
-	Thu, 23 May 2024 13:43:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716471833; cv=fail; b=luqteJC9tvNq6cFvPpTdHDlKefgVw660cHSeq8bzJA7dzBcsOi3UPbEVmshSxTsQOmM/m0VqKt5kHfU4VAQ2d0qhv5skg/RdeXEDxtKpoiNnCskHMa6504QBkuXncswOEUqmTeEbQ7+dPpieGSuIZC3e51dW35T+J67vbLYUpfE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716471833; c=relaxed/simple;
-	bh=KmIohq93iaYVBv+4XtRrdpqLG4gOMBJZOEVIQoxum9g=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=eJWGJsKvveGfPrX4NnEwtgZd1LQZfWElcWU1k4Sj5nTtrQdCsgASmmqmmr2aUuqQJGT3LswQxx/Nc2WCzxhUj1e0PCI4pnQBGBu/DKeN7E2hHgBXnuRH4hT34zpk02o6IUqgFEqMtBFTPXWhY7zKV+5z0xdUfSXcRPw/H2evAyI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=jmcH9P+Y; arc=fail smtp.client-ip=40.107.105.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iALMQBVgy+IG/IByeDbJjJFMusUhnzwF9OSKvXgi3psnTkG2AzfuzwXc6ffQBeAzYYp6ObI01coVcOnpYNebABfV9INESPsHUQoQJZG0uU30YnaiV7TPtyE+D9QM8QVYVJaTHaJPFLn47EMJlARDrZnSTcxkGAf+JEP5bpErLqi3lwNKVmFT8JFc4Zkg3LEWhCfXJweiZY6d1lNR6HrI1faet0/E1FBEVUB3GPf7Z75zuUhlaL/cxbYxL+6xeSwgEOUCb6THp6t8Fq6Vwep+UORjCVRSZbE9J8y7yEPJ7y26/8drvzQvzDTFTp5KCT6CASSqYgOaK3TA5e+hIIi9bQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PrWJeae89CsBHouHo+EeQIRU5tNVcq3gj4Vfy/vv7kU=;
- b=iR06mHrnPeZ20j+uaK6zgQ5CZeN/s7wTA5e9sfTndnxgpaCexhc5J/2dhu7wm9xXhdiELyzNAjwD/8H0aMqyUnHiXTupAUfu/LfqL30EkvSpMrMJznSMW3xbkvp9iix8ns/9mRZoxa07rvuK4AOrKENZQiekDQ5xy1BMmUcXPSRorGSZItJSz2jEFBuvg4r6UtYguC6Vf3A+7gKImBZbf6kNLXzJxkIO9tTLLztaYM26AN2H9vdd8nAsZmHad3v4eEiehClX8/1Hv++hGeo3ZwPl8ehYbCNSNMf/s0Djti11mvAQTX8VJ2yS/VEzidekx04hg86N8XbeUW37KmsrTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PrWJeae89CsBHouHo+EeQIRU5tNVcq3gj4Vfy/vv7kU=;
- b=jmcH9P+Y7gcZGITR/bMs+Ahud7V0qjNwAoMYkQR+OKhU/fj/F2FmET5TWOICTFT7wWHvHS44fHjKCmANg7BPgW6QZpwBpfItFkqYKfilRvEyeRIRiWEPovqCGaTavCb7auCIATEZ2cJp/eFN7ZCdaaIE4iEcOi4ShhioksvzMxU=
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com (2603:10a6:20b:43b::21)
- by AS8PR04MB8884.eurprd04.prod.outlook.com (2603:10a6:20b:42f::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.19; Thu, 23 May
- 2024 13:43:47 +0000
-Received: from AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827]) by AM9PR04MB8604.eurprd04.prod.outlook.com
- ([fe80::e751:223e:aa3d:5827%4]) with mapi id 15.20.7587.035; Thu, 23 May 2024
- 13:43:46 +0000
-From: Pankaj Gupta <pankaj.gupta@nxp.com>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-CC: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Pengutronix Kernel
- Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Thread-Topic: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Thread-Index: AQHarP9ayLdOqCtfLEqTQR0Rf+AVuLGkztWAgAADNvA=
-Date: Thu, 23 May 2024 13:43:46 +0000
-Message-ID:
- <AM9PR04MB86047218A243EEB5BA79F69D95F42@AM9PR04MB8604.eurprd04.prod.outlook.com>
-References: <20240523-imx-se-if-v2-0-5a6fd189a539@nxp.com>
- <20240523-imx-se-if-v2-4-5a6fd189a539@nxp.com>
- <Zk9DV6Ko-KO0kym_@pengutronix.de>
-In-Reply-To: <Zk9DV6Ko-KO0kym_@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR04MB8604:EE_|AS8PR04MB8884:EE_
-x-ms-office365-filtering-correlation-id: 11782e91-b808-4947-896a-08dc7b2e5e57
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230031|7416005|376005|366007|1800799015|38070700009;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?LSx1z05ijJj7dC805hKqONXAfHI1C3lnDVlgnj347J2FDtlJPQkKLzcQdphZ?=
- =?us-ascii?Q?adcSqzyDJCwodQE9SggV0dmCaXVlSmK9VhkgCruJ7S7RxSv+lZPa03aL8Ufb?=
- =?us-ascii?Q?SjXY1k1KnLYzS7TjdHIvqp2m6yzfx5zKGfTWmuu+QwhWGZlRC1PSGXeKnS4x?=
- =?us-ascii?Q?Kb0aqgVUUn0o8tGm/cz//9HFJvns/0gW5lfpkK2Rxh5kngfjnJThhGBcLF8m?=
- =?us-ascii?Q?4V2NZhWBYS0xMFD/wDrOD2M7IjN4CkAO7GFIiuG38CQln7Yvqmjsg9IXH1u+?=
- =?us-ascii?Q?VveELjGO5gsd+dY3CeZR0LyLYwj8253TVpgmEu1ftQ4/ysRHRaN1ostQOqJd?=
- =?us-ascii?Q?8KU1+iNsljNzyi4jFYPxJtjiFci4lUWJSazXjAbIAprb18fDUhPVAklJjUUi?=
- =?us-ascii?Q?jCtPvZXocbzOSoVQx4gavxtnzUxoCE6G7pyVqy+vlrPui43KEvx8UQXCQp7a?=
- =?us-ascii?Q?M1hgQHW3ZREY9EKb3X42kktH3XCiR0xOXyJ8lSL/C6lkId22N6hIgGs+4WJo?=
- =?us-ascii?Q?yTB7ZAyc3fJutPgNnkJ0mk/i71cEwJ6lTiZQb0QXaOTNQ3G+R856hWLAXEIv?=
- =?us-ascii?Q?MVlNPfuJmepYxttMsJiUMChG/RdcbJTfHpYIauvF4kFkhuC7RTpVeaq54Xe+?=
- =?us-ascii?Q?xwTKWMXckQxnoYP1R9cpbGhBrOMdzEozBZ7tKnVB89eSywj71pendJLesalY?=
- =?us-ascii?Q?X/g2z7klf/9eTUKJC27KNB0WZWPEEIeS7bw5mifJAchraZ+np+/L5cux7WVv?=
- =?us-ascii?Q?F5IRpDUHFVQArgAoKPrmmMLIwJFxnR5/c+dmZTk1C961/miFxZ91t1DIgt7f?=
- =?us-ascii?Q?osdk1P03+P0RtdRGuMe/XFLf+P5nni7uDrlpwpvyM6Ddcw2ffRKTrFNNHgDJ?=
- =?us-ascii?Q?LG+fw7CPIkJLoOUmDbR/+FbucD/b89zLMy/BizC3FGK7uc7Rf4nQtGJjglva?=
- =?us-ascii?Q?kwv3kcEhEkiv/CKWt/xULQvr5Iy1kTH9QXxDBAtnBaDcufvWZhArFjLTl96/?=
- =?us-ascii?Q?YQDoawpDi1pTqCvTu06vTVrS2Wm3oJ0P2I08aax3B6z67rwLtyF8yj5ml8Ro?=
- =?us-ascii?Q?FiUkfov5+TcprVeOkxgzshXfGyLlp2GZ67rv6WgpYQc9A2/rxbhBQc5dO6BH?=
- =?us-ascii?Q?5LEfg3DfEjs0bMUzwYwfB5urZH9XP5BSZrad9l6cc+pkwQVBZf5qGLp4cEeh?=
- =?us-ascii?Q?D7cgRtKXdmyLgJcNcngeuqvZ+P8IHkxfvdeeJR15WQfi84mFsfPI32742cC1?=
- =?us-ascii?Q?dHhXFYH4RSeN6seygG43WBVGJ7QDcmAKGEjkIPE51w=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8604.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(366007)(1800799015)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?dCs3iXFZJZR/xWHIhE1AvsfU7nw4zD0j0pJ5oKXcAIuP94203rOyuZleoMYk?=
- =?us-ascii?Q?wte5uJnj6ER/amPueiQiKAmj+g2PegQuiWYk5/MXTYrphK9OLtCPjZGRhpIi?=
- =?us-ascii?Q?8KNhiRsy8xlIHYP5fz0Y/gQFiiwyiFODA+MuGuADjKe+g2+tWIcb3pLT+obt?=
- =?us-ascii?Q?RM5lRZmoGzksQR8jPfuXhjWJPq7KJaxUshVCn6cfN/rjCfVJffnC7mVwIiNg?=
- =?us-ascii?Q?WxuMDbQUc3frkjNPcuZyi8WYA6h6pUEyfSJHhiBXM5vB8iAmuwGXqDdrLTu5?=
- =?us-ascii?Q?T5s/2EnHbV6rxQhsgvHDkOjhqAo+R44/FBIW1bFs4B5eUtcXnYw5DRAe/Ll7?=
- =?us-ascii?Q?ItYC5VrAZ5iryO6xxvizFJESnr1SWto8l30EpRjwJn50L6Lt+fKn6NeayMSU?=
- =?us-ascii?Q?c/pXMbnpvNhCpBCbkDY1cxHaHqDeBnRHTmLeHppoI7x52om7rifx4WF55iWB?=
- =?us-ascii?Q?pGlblWcezkpewakLzZRnpYv0gq7N10zb9W3JCfBrF9tbyqlOy3de/TnZ7JI4?=
- =?us-ascii?Q?Ve/pDz2kHnVVQRmIELN0kqjBwoAYWRP4H7pJEWozkdzQrNL0sl3HE+7U1Bzk?=
- =?us-ascii?Q?dL2s/poR3Zpr8iu4+l/puIl/G89h5P8i8DyEvoQfobW7caTYU8e8b28XImXf?=
- =?us-ascii?Q?xyuf5jpOUThJHDTsvjxKHxwqQ0LxdDSlMxT1eZgAd6wFCR0bM9GHkJcGFSvQ?=
- =?us-ascii?Q?7rEFe3PcavCRS1OCPo0WH9WC6NEbKMXvSZuA3eLieew3ILMhmTIWDvm8vryn?=
- =?us-ascii?Q?9851AdLT33t+w5UsLIqov/c9tXrNNqDOz6TTQ47LYbifJPUN+/hGT+d5vXLm?=
- =?us-ascii?Q?CFMuZW6wEZzLcopuv32o0M1wVfi/dgajMaQ0z4G8DYNGLDXrR4KZAlxa8BrY?=
- =?us-ascii?Q?JLofBu8SwAkVBbDYQmPU3mpums3Kv7Sj8VWFvMDkp0O1l3jkmme1fX9DKTJq?=
- =?us-ascii?Q?z1ZcSraPaF2HuhP1QnMx2k0hOuoSB7YgSrIeSdzFy1ibo6nuL2qjbCSC6Llk?=
- =?us-ascii?Q?O1fgFZgBK8YObRaw0EvVj0dX3F0i079ga9FQwvOvIRLcfvoRB7YpvZ3MWQsW?=
- =?us-ascii?Q?pOzQo2+9mcqh3iaR8tlVQkC18YhkxjfIvl9k5acY8EPXdHMf9Ck0aN6KTl8X?=
- =?us-ascii?Q?IhNUU6J8y17rGBzodXiHsUL6tHAVaGRF0h3hRIAjyh7Vs3vGUKDFFKsLe/xZ?=
- =?us-ascii?Q?RcfKo6T7p5kbbNLaIcuQ92riUOAw3PGYztUhsLUJFLGWyjY/2nRBemLZAnLI?=
- =?us-ascii?Q?Ah+SRYOnGqIw7o8hlmXqPRuLcAhtXbPra5sh1X7MktUNNchgNpaknRpcbtUK?=
- =?us-ascii?Q?Sc780Pr5uvFGLlClEoENt3Do7/lWRusfqWK0AvgOYLO/b2WViZbJgjPdbp5w?=
- =?us-ascii?Q?lhmHDISm6xz6MdLLovt3znvrvSl3SeKkg9lPf3WB/artzCAgkiRKJZV+5sC3?=
- =?us-ascii?Q?jFFuxN9j2fMZSCgMBJh+FT03lJfXyt+kCdMn0mH3Ywx+hS+WOO+1Dc/pVrvV?=
- =?us-ascii?Q?JilVabASqEBWQ1Of/wVYApsRPv0rxJ/1qfYk1Wf8+Z/LVIfHtbBbj2DCH1cj?=
- =?us-ascii?Q?Ju9uMFPmaxx7TXYMqljnvoU7uXGejmxFGrVPGLvI?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0976714A4D9;
+	Thu, 23 May 2024 13:44:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716471856; cv=none; b=hnElabN/gxfVXD9YiVOHuy55BoPhcD175/+U4uq64HDIZ4uFN9LdRyev3R13aM794fpm2USb7bYZQfJuqy/GjHpjWWBkJBHfk0O0lHsqsIrjwpBykh7wuhYKAwqFXfBe61BgrlCBCMeI6ADYdVVFi7krGvquEPWKx+y3ri3HqOU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716471856; c=relaxed/simple;
+	bh=+iTmD4KmlsOon4xvNgR0mTlpZEKmT9QAKSvOFvN6ZkA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=He0Dtcbc4d28jW3tobE0DtOp35SUtBTwaBNJhbhhV+Lep9UdIoaKN4HHSrz09dmHW3sUHE/mQ4/mkHICA1CvdZK7wdIG78PmISWvb5jQZBjBp86o5ozpbl8K3O+EBGFgFIge4Av5A0qdU8go0Kjcf/TQOb4cre78G37hks2M9DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sHRdmUQa; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A8138475;
+	Thu, 23 May 2024 15:43:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1716471837;
+	bh=+iTmD4KmlsOon4xvNgR0mTlpZEKmT9QAKSvOFvN6ZkA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sHRdmUQaZhnvh71nqUJbhcvbb8EgPO+pXHsmZmPKAu5vTYcyvRQ0XeOz7uq2uBvuq
+	 MFf+iN06ljLOBhVWqN7MZu4SkbnBFD6p67UrCLN8xsmETIB+NBq1cldE1yZUpXT4Gu
+	 XJB/th2zAQue524co4NhQQxv/Hmz09a1oYxGtE0c=
+Message-ID: <20996978-aace-4d59-92b8-39041da2ebd3@ideasonboard.com>
+Date: Thu, 23 May 2024 14:44:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8604.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11782e91-b808-4947-896a-08dc7b2e5e57
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2024 13:43:46.1004
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7yWGzJfBqsj7tEEEypXpWCVPeIsiNu7HVIRwfGtw1m3FOOMg5e2NTsudSljEQ0c4HKfBepAz7h+AREyfdbUMNw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8884
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] media: mali-c55: Add Mali-C55 ISP driver
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ laurent.pinchart@ideasonboard.com
+References: <20240418090825.624747-1-dan.scally@ideasonboard.com>
+ <20240418090825.624747-4-dan.scally@ideasonboard.com>
+ <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
+Content-Language: en-US
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi Sakari - thanks for the review. Snipping some bits for which I have no comment...
+
+On 23/05/2024 09:03, Sakari Ailus wrote:
+
+<snip>
+>> +
+>> +static unsigned int mali_c55_calculate_bank_num(struct mali_c55 *mali_c55,
+>> +						unsigned int crop,
+>> +						unsigned int scale)
+>> +{
+>> +	unsigned int tmp;
+>> +	unsigned int i;
+>> +
+>> +	tmp = (scale * 1000) / crop;
+> This looks like something that can overflow. Can it?
 
 
+Shouldn't be able to; maximum scale width is 8192.
 
-> -----Original Message-----
-> From: Sascha Hauer <s.hauer@pengutronix.de>
-> Sent: Thursday, May 23, 2024 6:54 PM
-> To: Pankaj Gupta <pankaj.gupta@nxp.com>
-> Cc: Jonathan Corbet <corbet@lwn.net>; Rob Herring <robh+dt@kernel.org>;
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Pengutronix
-> Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> <festevam@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
-> <krzk+dt@kernel.org>; linux-doc@vger.kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.dev;
-> linux-arm-kernel@lists.infradead.org
-> Subject: [EXT] Re: [PATCH v2 4/5] firmware: imx: add driver for NXP EdgeL=
-ock
-> Enclave
 >
-> Caution: This is an external email. Please take care when clicking links =
-or
-> opening attachments. When in doubt, report the message using the 'Report
-> this email' button
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(mali_c55_coefficient_banks); i++) {
+>> +		if (tmp >= mali_c55_coefficient_banks[i].bottom &&
+>> +		    tmp <= mali_c55_coefficient_banks[i].top)
+>> +			return mali_c55_coefficient_banks[i].bank;
+>> +	}
+>> +
+>> +	/*
+>> +	 * We shouldn't ever get here, in theory. As we have no good choices
+>> +	 * simply warn the user and use the first bank of coefficients.
+>> +	 */
+>> +	dev_warn(mali_c55->dev, "scaling factor outside defined bounds\n");
+>> +	return 0;
+>> +}
+>> +
+>> +#endif /* _MALI_C55_RESIZER_COEFS_H */
+>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-resizer.c b/drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
+>> new file mode 100644
+>> index 000000000000..8e0669a5f391
+>> --- /dev/null
+>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
+>> @@ -0,0 +1,740 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * ARM Mali-C55 ISP Driver - Image signal processor
+>> + *
+>> + * Copyright (C) 2024 Ideas on Board Oy
+>> + */
+>> +
+>> +#include <linux/math.h>
+>> +#include <linux/minmax.h>
+>> +
+>> +#include <media/media-entity.h>
+>> +#include <media/v4l2-subdev.h>
+>> +
+>> +#include "mali-c55-common.h"
+>> +#include "mali-c55-registers.h"
+>> +#include "mali-c55-resizer-coefs.h"
+>> +
+>> +/* Scaling factor in Q4.20 format. */
+>> +#define MALI_C55_RZR_SCALER_FACTOR	1048576
+> (1U << 20)
 >
+> ?
 >
-> On Thu, May 23, 2024 at 04:19:35PM +0530, Pankaj Gupta wrote:
-> > NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE), are
-> > embedded in the SoC to support the features like HSM, SHE & V2X, using
-> > message based communication interface.
-> >
-> > The secure enclave FW communicates on a dedicated messaging unit(MU)
-> > based interface(s) with application core, where kernel is running.
-> > It exists on specific i.MX processors. e.g. i.MX8ULP, i.MX93.
-> >
-> > This patch adds the driver for communication interface to
-> > secure-enclave, for exchanging messages with NXP secure enclave HW
-> > IP(s) like EdgeLock Enclave (ELE) from Kernel-space, used by kernel
-> > management layers like
-> > - DM-Crypt.
-> >
-> > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> > ---
-> >  drivers/firmware/imx/Kconfig        |  12 +
-> >  drivers/firmware/imx/Makefile       |   2 +
-> >  drivers/firmware/imx/ele_base_msg.c | 286 +++++++++++++++++++
-> > drivers/firmware/imx/ele_base_msg.h |  92 +++++++
-> >  drivers/firmware/imx/ele_common.c   | 239 ++++++++++++++++
-> >  drivers/firmware/imx/ele_common.h   |  43 +++
-> >  drivers/firmware/imx/se_ctrl.c      | 531
-> ++++++++++++++++++++++++++++++++++++
-> >  drivers/firmware/imx/se_ctrl.h      |  99 +++++++
-> >  include/linux/firmware/imx/se_api.h |  14 +
-> >  9 files changed, 1318 insertions(+)
+>> +
+>> +static const u32 rzr_non_bypass_src_fmts[] = {
+>> +	MEDIA_BUS_FMT_RGB121212_1X36,
+>> +	MEDIA_BUS_FMT_YUV10_1X30
+>> +};
+>> +
+>> +static const char * const mali_c55_resizer_names[] = {
+>> +	[MALI_C55_RZR_FR] = "resizer fr",
+>> +	[MALI_C55_RZR_DS] = "resizer ds",
+>> +};
+>> +
+>> +static int mali_c55_rzr_program_crop(struct mali_c55_resizer *rzr,
+>> +				     struct v4l2_subdev_state *state)
+>> +{
+>> +	unsigned int reg_offset = rzr->cap_dev->reg_offset;
+>> +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+>> +	struct v4l2_mbus_framefmt *fmt;
+>> +	struct v4l2_rect *crop;
+>> +
+>> +	/* Verify if crop should be enabled. */
+>> +	fmt = v4l2_subdev_state_get_format(state, MALI_C55_RZR_SINK_PAD, 0);
+>> +	crop = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD, 0);
+>> +
+>> +	if (fmt->width == crop->width && fmt->height == crop->height)
+>> +		return MALI_C55_BYPASS_CROP;
+>> +
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_X_START(reg_offset),
+>> +		       crop->left);
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_Y_START(reg_offset),
+>> +		       crop->top);
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_X_SIZE(reg_offset),
+>> +		       crop->width);
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_Y_SIZE(reg_offset),
+>> +		       crop->height);
+>> +
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_CROP_EN(reg_offset),
+>> +		       MALI_C55_CROP_ENABLE);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_rzr_program_resizer(struct mali_c55_resizer *rzr,
+>> +					struct v4l2_subdev_state *state)
+>> +{
+>> +	unsigned int reg_offset = rzr->cap_dev->reg_offset;
+>> +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+>> +	struct v4l2_rect *crop, *scale;
+>> +	unsigned int h_bank, v_bank;
+>> +	u64 h_scale, v_scale;
+>> +
+>> +	/* Verify if scaling should be enabled. */
+>> +	crop = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD, 0);
+>> +	scale = v4l2_subdev_state_get_compose(state, MALI_C55_RZR_SINK_PAD, 0);
+>> +
+>> +	if (crop->width == scale->width && crop->height == scale->height)
+>> +		return MALI_C55_BYPASS_SCALER;
+>> +
+>> +	/* Program the V/H scaling factor in Q4.20 format. */
+>> +	h_scale = crop->width * MALI_C55_RZR_SCALER_FACTOR;
+>> +	v_scale = crop->height * MALI_C55_RZR_SCALER_FACTOR;
+>> +
+>> +	do_div(h_scale, scale->width);
+>> +	do_div(v_scale, scale->height);
+>> +
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_IN_WIDTH(reg_offset),
+>> +		       crop->width);
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_IN_HEIGHT(reg_offset),
+>> +		       crop->height);
+>> +
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_OUT_WIDTH(reg_offset),
+>> +		       scale->width);
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_OUT_HEIGHT(reg_offset),
+>> +		       scale->height);
+>> +
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_HFILT_TINC(reg_offset),
+>> +		       h_scale);
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_VFILT_TINC(reg_offset),
+>> +		       v_scale);
+>> +
+>> +	h_bank = mali_c55_calculate_bank_num(mali_c55, crop->width,
+>> +					     scale->width);
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_HFILT_COEF(reg_offset),
+>> +		       h_bank);
+>> +
+>> +	v_bank = mali_c55_calculate_bank_num(mali_c55, crop->height,
+>> +					     scale->height);
+>> +	mali_c55_write(mali_c55,
+>> +		       MALI_C55_REG_SCALER_VFILT_COEF(reg_offset),
+>> +		       v_bank);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void mali_c55_rzr_program(struct mali_c55_resizer *rzr,
+>> +				 struct v4l2_subdev_state *state)
+>> +{
+>> +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+>> +	u32 bypass = 0;
+>> +
+>> +	/* Verify if cropping and scaling should be enabled. */
+>> +	bypass |= mali_c55_rzr_program_crop(rzr, state);
+>> +	bypass |= mali_c55_rzr_program_resizer(rzr, state);
+>> +
+>> +	mali_c55_update_bits(mali_c55, rzr->id == MALI_C55_RZR_FR ?
+>> +			     MALI_C55_REG_FR_BYPASS : MALI_C55_REG_DS_BYPASS,
+>> +			     MALI_C55_BYPASS_CROP | MALI_C55_BYPASS_SCALER,
+>> +			     bypass);
+>> +}
+>> +
+>> +/*
+>> + * Inspect the routing table to know which of the two (mutually exclusive)
+>> + * routes is enabled and return the sink pad id of the active route.
+>> + */
+>> +static unsigned int mali_c55_rzr_get_active_sink(struct v4l2_subdev_state *state)
+>> +{
+>> +	struct v4l2_subdev_krouting *routing = &state->routing;
+>> +	struct v4l2_subdev_route *route;
+>> +
+>> +	/* A single route is enabled at a time. */
+>> +	for_each_active_route(routing, route)
+>> +		return route->sink_pad;
+>> +
+>> +	return MALI_C55_RZR_SINK_PAD;
+>> +}
+>> +
+>> +static int __mali_c55_rzr_set_routing(struct v4l2_subdev *sd,
+>> +				      struct v4l2_subdev_state *state,
+>> +				      struct v4l2_subdev_krouting *routing)
+>> +{
+>> +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+>> +						    sd);
+>> +	unsigned int active_sink = UINT_MAX;
+>> +	struct v4l2_rect *crop, *compose;
+>> +	struct v4l2_subdev_route *route;
+>> +	unsigned int active_routes = 0;
+>> +	struct v4l2_mbus_framefmt *fmt;
+>> +	int ret;
+>> +
+>> +	ret = v4l2_subdev_routing_validate(sd, routing, 0);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Only a single route can be enabled at a time. */
+>> +	for_each_active_route(routing, route) {
+>> +		if (++active_routes > 1) {
+>> +			dev_err(rzr->mali_c55->dev,
+>> +				"Only one route can be active");
+>> +			return -EINVAL;
+>> +		}
+>> +
+>> +		active_sink = route->sink_pad;
+>> +	}
+>> +	if (active_sink == UINT_MAX) {
+>> +		dev_err(rzr->mali_c55->dev, "One route has to be active");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	ret = v4l2_subdev_set_routing(sd, state, routing);
+>> +	if (ret) {
+>> +		dev_err(rzr->mali_c55->dev, "Failed to set routing\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	fmt = v4l2_subdev_state_get_format(state, active_sink, 0);
+>> +	crop = v4l2_subdev_state_get_crop(state, active_sink, 0);
+>> +	compose = v4l2_subdev_state_get_compose(state, active_sink, 0);
+>> +
+>> +	fmt->width = MALI_C55_DEFAULT_WIDTH;
+>> +	fmt->height = MALI_C55_DEFAULT_HEIGHT;
+>> +	fmt->colorspace = V4L2_COLORSPACE_SRGB;
+>> +	fmt->field = V4L2_FIELD_NONE;
+>> +
+>> +	if (active_sink == MALI_C55_RZR_SINK_PAD) {
+>> +		fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+>> +
+>> +		crop->left = crop->top = 0;
+>> +		crop->width = MALI_C55_DEFAULT_WIDTH;
+>> +		crop->height = MALI_C55_DEFAULT_HEIGHT;
+>> +
+>> +		*compose = *crop;
+>> +	} else {
+>> +		fmt->code = MEDIA_BUS_FMT_SRGGB12_1X12;
+>> +	}
+>> +
+>> +	/* Propagate the format to the source pad */
+>> +	*v4l2_subdev_state_get_format(state, MALI_C55_RZR_SOURCE_PAD, 0) = *fmt;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_rzr_enum_mbus_code(struct v4l2_subdev *sd,
+>> +				       struct v4l2_subdev_state *state,
+>> +				       struct v4l2_subdev_mbus_code_enum *code)
+>> +{
+>> +	struct v4l2_mbus_framefmt *sink_fmt;
+>> +	const struct mali_c55_isp_fmt *fmt;
+>> +	unsigned int index = 0;
+>> +	u32 sink_pad;
+>> +
+>> +	switch (code->pad) {
+>> +	case MALI_C55_RZR_SINK_PAD:
+>> +		if (code->index)
+>> +			return -EINVAL;
+>> +
+>> +		code->code = MEDIA_BUS_FMT_RGB121212_1X36;
+>> +
+>> +		return 0;
+>> +	case MALI_C55_RZR_SOURCE_PAD:
+>> +		sink_pad = mali_c55_rzr_get_active_sink(state);
+>> +		sink_fmt = v4l2_subdev_state_get_format(state, sink_pad, 0);
+>> +
+>> +		/*
+>> +		 * If the active route is from the Bypass sink pad, then the
+>> +		 * source pad is a simple passthrough of the sink format.
+>> +		 */
+>> +
+>> +		if (sink_pad == MALI_C55_RZR_SINK_BYPASS_PAD) {
+>> +			if (code->index)
+>> +				return -EINVAL;
+>> +
+>> +			code->code = sink_fmt->code;
+>> +			return 0;
+>> +		}
+>> +
+>> +		/*
+>> +		 * If the active route is from the non-bypass sink then we can
+>> +		 * select either RGB or conversion to YUV.
+>> +		 */
+>> +
+>> +		if (code->index >= ARRAY_SIZE(rzr_non_bypass_src_fmts))
+>> +			return -EINVAL;
+>> +
+>> +		code->code = rzr_non_bypass_src_fmts[code->index];
+>> +
+>> +		return 0;
+>> +	case MALI_C55_RZR_SINK_BYPASS_PAD:
+>> +		for_each_mali_isp_fmt(fmt) {
+>> +			if (index++ == code->index) {
+>> +				code->code = fmt->code;
+>> +				return 0;
+>> +			}
+>> +		}
+>> +
+>> +		break;
+>> +	}
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int mali_c55_rzr_enum_frame_size(struct v4l2_subdev *sd,
+>> +					struct v4l2_subdev_state *state,
+>> +					struct v4l2_subdev_frame_size_enum *fse)
+>> +{
+>> +	if (fse->index)
+>> +		return -EINVAL;
+>> +
+>> +	fse->max_width = MALI_C55_MAX_WIDTH;
+>> +	fse->max_height = MALI_C55_MAX_HEIGHT;
+>> +	fse->min_width = MALI_C55_MIN_WIDTH;
+>> +	fse->min_height = MALI_C55_MIN_HEIGHT;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_rzr_set_sink_fmt(struct v4l2_subdev *sd,
+>> +				     struct v4l2_subdev_state *state,
+>> +				     struct v4l2_subdev_format *format)
+>> +{
+>> +	struct v4l2_mbus_framefmt *fmt = &format->format;
+>> +	struct v4l2_rect *rect;
+>> +	unsigned int sink_pad;
+>> +
+>> +	/*
+>> +	 * Clamp to min/max and then reset crop and compose rectangles to the
+>> +	 * newly applied size.
+>> +	 */
+>> +	clamp_t(unsigned int, fmt->width,
+>> +		MALI_C55_MIN_WIDTH, MALI_C55_MAX_WIDTH);
+>> +	clamp_t(unsigned int, fmt->height,
+>> +		MALI_C55_MIN_HEIGHT, MALI_C55_MAX_HEIGHT);
+>> +
+>> +	sink_pad = mali_c55_rzr_get_active_sink(state);
+>> +	if (sink_pad == MALI_C55_RZR_SINK_PAD) {
+>> +		fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+>> +
+>> +		rect = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD);
+>> +		rect->left = 0;
+>> +		rect->top = 0;
+>> +		rect->width = fmt->width;
+>> +		rect->height = fmt->height;
+>> +
+>> +		rect = v4l2_subdev_state_get_compose(state,
+>> +						     MALI_C55_RZR_SINK_PAD);
+>> +		rect->left = 0;
+>> +		rect->top = 0;
+>> +		rect->width = fmt->width;
+>> +		rect->height = fmt->height;
+>> +	} else {
+>> +		/*
+>> +		 * Make sure the media bus code is one of the supported
+>> +		 * ISP input media bus codes.
+>> +		 */
+>> +		if (!mali_c55_isp_is_format_supported(fmt->code))
+>> +			fmt->code = MALI_C55_DEFAULT_MEDIA_BUS_FMT;
+>> +	}
+>> +
+>> +	*v4l2_subdev_state_get_format(state, sink_pad, 0) = *fmt;
+>> +	*v4l2_subdev_state_get_format(state, MALI_C55_RZR_SOURCE_PAD, 0) = *fmt;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_rzr_set_source_fmt(struct v4l2_subdev *sd,
+>> +				       struct v4l2_subdev_state *state,
+>> +				       struct v4l2_subdev_format *format)
+>> +{
+>> +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+>> +						    sd);
+>> +	struct v4l2_mbus_framefmt *fmt = &format->format;
+>> +	struct v4l2_mbus_framefmt *sink_fmt;
+>> +	struct v4l2_rect *crop, *compose;
+>> +	unsigned int sink_pad;
+>> +	unsigned int i;
+>> +
+>> +	sink_pad = mali_c55_rzr_get_active_sink(state);
+>> +	sink_fmt = v4l2_subdev_state_get_format(state, sink_pad, 0);
+>> +	crop = v4l2_subdev_state_get_crop(state, sink_pad, 0);
+>> +	compose = v4l2_subdev_state_get_compose(state, sink_pad, 0);
+>> +
+>> +	/* FR Bypass pipe. */
+>> +
+>> +	if (sink_pad == MALI_C55_RZR_SINK_BYPASS_PAD) {
+>> +		/*
+>> +		 * Format on the source pad is the same as the one on the
+>> +		 * sink pad.
+>> +		 */
+>> +		fmt->code = sink_fmt->code;
+>> +
+>> +		/* RAW bypass disables scaling and cropping. */
+>> +		crop->top = compose->top = 0;
+>> +		crop->left = compose->left = 0;
+>> +		fmt->width = crop->width = compose->width = sink_fmt->width;
+>> +		fmt->height = crop->height = compose->height = sink_fmt->height;
+>> +
+>> +		*v4l2_subdev_state_get_format(state,
+>> +					      MALI_C55_RZR_SOURCE_PAD) = *fmt;
+>> +
+>> +		return 0;
+>> +	}
+>> +
+>> +	/* Regular processing pipe. */
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(rzr_non_bypass_src_fmts); i++) {
+>> +		if (fmt->code == rzr_non_bypass_src_fmts[i])
+>> +			break;
+>> +	}
+>> +
+>> +	if (i == ARRAY_SIZE(rzr_non_bypass_src_fmts)) {
+>> +		dev_dbg(rzr->mali_c55->dev,
+>> +			"Unsupported mbus code 0x%x: using default\n",
+>> +			fmt->code);
+>> +		fmt->code = MEDIA_BUS_FMT_RGB121212_1X36;
+>> +	}
+>> +
+>> +	/*
+>> +	 * The source pad format size comes directly from the sink pad
+>> +	 * compose rectangle.
+>> +	 */
+>> +	fmt->width = compose->width;
+>> +	fmt->height = compose->height;
+>> +
+>> +	*v4l2_subdev_state_get_format(state, MALI_C55_RZR_SOURCE_PAD) = *fmt;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_rzr_set_fmt(struct v4l2_subdev *sd,
+>> +				struct v4l2_subdev_state *state,
+>> +				struct v4l2_subdev_format *format)
+>> +{
+>> +	/*
+>> +	 * On sink pads fmt is either fixed for the 'regular' processing
+>> +	 * pad or a RAW format or 20-bit wide RGB/YUV format for the FR bypass
+>> +	 * pad.
+>> +	 *
+>> +	 * On source pad sizes are the result of crop+compose on the sink
+>> +	 * pad sizes, while the format depends on the active route.
+>> +	 */
+>> +
+>> +	if (format->pad != MALI_C55_RZR_SOURCE_PAD)
+>> +		return mali_c55_rzr_set_sink_fmt(sd, state, format);
+>> +
+>> +	return mali_c55_rzr_set_source_fmt(sd, state, format);
+>> +}
+>> +
+>> +static int mali_c55_rzr_get_selection(struct v4l2_subdev *sd,
+>> +				      struct v4l2_subdev_state *state,
+>> +				      struct v4l2_subdev_selection *sel)
+>> +{
+>> +	if (sel->pad != MALI_C55_RZR_SINK_PAD)
+>> +		return -EINVAL;
+>> +
+>> +	if (sel->target != V4L2_SEL_TGT_CROP &&
+>> +	    sel->target != V4L2_SEL_TGT_COMPOSE)
+>> +		return -EINVAL;
+>> +
+>> +	sel->r = sel->target == V4L2_SEL_TGT_CROP
+>> +	       ? *v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD)
+>> +	       : *v4l2_subdev_state_get_compose(state, MALI_C55_RZR_SINK_PAD);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_rzr_set_selection(struct v4l2_subdev *sd,
+>> +				      struct v4l2_subdev_state *state,
+>> +				      struct v4l2_subdev_selection *sel)
+>> +{
+>> +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+>> +						    sd);
+>> +	struct v4l2_mbus_framefmt *source_fmt;
+>> +	struct v4l2_mbus_framefmt *sink_fmt;
+>> +	struct v4l2_rect *crop, *compose;
+>> +
+>> +	if (sel->pad != MALI_C55_RZR_SINK_PAD)
+>> +		return -EINVAL;
+>> +
+>> +	if (sel->target != V4L2_SEL_TGT_CROP &&
+>> +	    sel->target != V4L2_SEL_TGT_COMPOSE)
+>> +		return -EINVAL;
+>> +
+>> +	source_fmt = v4l2_subdev_state_get_format(state,
+>> +						  MALI_C55_RZR_SOURCE_PAD);
+>> +	sink_fmt = v4l2_subdev_state_get_format(state, MALI_C55_RZR_SINK_PAD);
+>> +	crop = v4l2_subdev_state_get_crop(state, MALI_C55_RZR_SINK_PAD);
+>> +	compose = v4l2_subdev_state_get_compose(state, MALI_C55_RZR_SINK_PAD);
+>> +
+>> +	/* RAW bypass disables crop/scaling. */
+>> +	if (mali_c55_format_is_raw(source_fmt->code)) {
+>> +		crop->top = compose->top = 0;
+>> +		crop->left = compose->left = 0;
+>> +		crop->width = compose->width = sink_fmt->width;
+>> +		crop->height = compose->height = sink_fmt->height;
+>> +
+>> +		sel->r = sel->target == V4L2_SEL_TGT_CROP ? *crop : *compose;
+>> +
+>> +		return 0;
+>> +	}
+>> +
+>> +	/* During streaming, it is allowed to only change the crop rectangle. */
+>> +	if (rzr->streaming && sel->target != V4L2_SEL_TGT_CROP)
+>> +		return -EINVAL;
+>> +
+>> +	 /*
+>> +	  * Update the desired target and then clamp the crop rectangle to the
+>> +	  * sink format sizes and the compose size to the crop sizes.
+>> +	  */
+>> +	if (sel->target == V4L2_SEL_TGT_CROP)
+>> +		*crop = sel->r;
+>> +	else
+>> +		*compose = sel->r;
+>> +
+>> +	clamp_t(unsigned int, crop->left, 0,  sink_fmt->width);
+>> +	clamp_t(unsigned int, crop->top, 0,  sink_fmt->height);
+>> +	clamp_t(unsigned int, crop->width, MALI_C55_MIN_WIDTH,
+>> +		sink_fmt->width - crop->left);
+>> +	clamp_t(unsigned int, crop->height, MALI_C55_MIN_HEIGHT,
+>> +		sink_fmt->height - crop->top);
+>> +
+>> +	if (rzr->streaming) {
+>> +		/*
+>> +		 * Apply at runtime a crop rectangle on the resizer's sink only
+>> +		 * if it doesn't require re-programming the scaler output sizes
+>> +		 * as it would require changing the output buffer sizes as well.
+>> +		 */
+>> +		if (sel->r.width < compose->width ||
+>> +		    sel->r.height < compose->height)
+>> +			return -EINVAL;
+>> +
+>> +		*crop = sel->r;
+>> +		mali_c55_rzr_program(rzr, state);
+>> +
+>> +		return 0;
+>> +	}
+>> +
+>> +	compose->left = 0;
+>> +	compose->top = 0;
+>> +	clamp_t(unsigned int, compose->left, 0,  sink_fmt->width);
+>> +	clamp_t(unsigned int, compose->top, 0,  sink_fmt->height);
+>> +	clamp_t(unsigned int, compose->width, crop->width / 8, crop->width);
+>> +	clamp_t(unsigned int, compose->height, crop->height / 8, crop->height);
+>> +
+>> +	sel->r = sel->target == V4L2_SEL_TGT_CROP ? *crop : *compose;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_rzr_set_routing(struct v4l2_subdev *sd,
+>> +				    struct v4l2_subdev_state *state,
+>> +				    enum v4l2_subdev_format_whence which,
+>> +				    struct v4l2_subdev_krouting *routing)
+>> +{
+>> +	if (which == V4L2_SUBDEV_FORMAT_ACTIVE &&
+>> +	    media_entity_is_streaming(&sd->entity))
+>> +		return -EBUSY;
+>> +
+>> +	return __mali_c55_rzr_set_routing(sd, state, routing);
+>> +}
+>> +
+>> +static const struct v4l2_subdev_pad_ops mali_c55_resizer_pad_ops = {
+>> +	.enum_mbus_code		= mali_c55_rzr_enum_mbus_code,
+>> +	.enum_frame_size	= mali_c55_rzr_enum_frame_size,
+>> +	.get_fmt		= v4l2_subdev_get_fmt,
+>> +	.set_fmt		= mali_c55_rzr_set_fmt,
+>> +	.get_selection		= mali_c55_rzr_get_selection,
+>> +	.set_selection		= mali_c55_rzr_set_selection,
+>> +	.set_routing		= mali_c55_rzr_set_routing,
+>> +};
+>> +
+>> +void mali_c55_rzr_start_stream(struct mali_c55_resizer *rzr)
+>> +{
+>> +	struct mali_c55 *mali_c55 = rzr->mali_c55;
+>> +	struct v4l2_subdev *sd = &rzr->sd;
+>> +	struct v4l2_subdev_state *state;
+>> +	unsigned int sink_pad;
+>> +
+>> +	state = v4l2_subdev_lock_and_get_active_state(sd);
+>> +
+>> +	sink_pad = mali_c55_rzr_get_active_sink(state);
+>> +	if (sink_pad == MALI_C55_RZR_SINK_BYPASS_PAD) {
+>> +		/* Bypass FR pipe processing if the bypass route is active. */
+>> +		mali_c55_update_bits(mali_c55, MALI_C55_REG_ISP_RAW_BYPASS,
+>> +				     MALI_C55_ISP_RAW_BYPASS_FR_BYPASS_MASK,
+>> +				     MALI_C55_ISP_RAW_BYPASS_RAW_FR_BYPASS);
+>> +		goto unlock_state;
+>> +	}
+>> +
+>> +	/* Disable bypass and use regular processing. */
+>> +	mali_c55_update_bits(mali_c55, MALI_C55_REG_ISP_RAW_BYPASS,
+>> +			     MALI_C55_ISP_RAW_BYPASS_FR_BYPASS_MASK, 0);
+>> +	mali_c55_rzr_program(rzr, state);
+>> +
+>> +unlock_state:
+>> +	rzr->streaming = true;
+>> +	v4l2_subdev_unlock_state(state);
+>> +}
+>> +
+>> +void mali_c55_rzr_stop_stream(struct mali_c55_resizer *rzr)
+>> +{
+>> +	struct v4l2_subdev *sd = &rzr->sd;
+>> +	struct v4l2_subdev_state *state;
+>> +
+>> +	state = v4l2_subdev_lock_and_get_active_state(sd);
+>> +	rzr->streaming = false;
+>> +	v4l2_subdev_unlock_state(state);
+>> +}
+>> +
+>> +static const struct v4l2_subdev_ops mali_c55_resizer_ops = {
+>> +	.pad	= &mali_c55_resizer_pad_ops,
+>> +};
+>> +
+>> +static int mali_c55_rzr_init_state(struct v4l2_subdev *sd,
+>> +				   struct v4l2_subdev_state *state)
+>> +{
+>> +	struct mali_c55_resizer *rzr = container_of(sd, struct mali_c55_resizer,
+>> +						    sd);
+>> +	struct v4l2_subdev_krouting routing = { };
+>> +	struct v4l2_subdev_route *routes;
+>> +	unsigned int i;
+>> +	int ret;
+>> +
+>> +	routes = kcalloc(rzr->num_routes, sizeof(*routes), GFP_KERNEL);
+>> +	if (!routes)
+>> +		return -ENOMEM;
+>> +
+>> +	for (i = 0; i < rzr->num_routes; ++i) {
+>> +		struct v4l2_subdev_route *route = &routes[i];
+>> +
+>> +		route->sink_pad = i
+>> +				? MALI_C55_RZR_SINK_BYPASS_PAD
+>> +				: MALI_C55_RZR_SINK_PAD;
+>> +		route->source_pad = MALI_C55_RZR_SOURCE_PAD;
+>> +		if (route->sink_pad != MALI_C55_RZR_SINK_BYPASS_PAD)
+>> +			route->flags = V4L2_SUBDEV_ROUTE_FL_ACTIVE;
+>> +	}
+>> +
+>> +	routing.num_routes = rzr->num_routes;
+>> +	routing.routes = routes;
+>> +
+>> +	ret = __mali_c55_rzr_set_routing(sd, state, &routing);
+>> +	kfree(routes);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct v4l2_subdev_internal_ops mali_c55_resizer_internal_ops = {
+>> +	.init_state = mali_c55_rzr_init_state,
+>> +};
+>> +
+>> +static void mali_c55_resizer_program_coefficients(struct mali_c55 *mali_c55,
+>> +						  unsigned int index)
+>> +{
+>> +	unsigned int scaler_filt_coefmem_addrs[][2] = {
+> This should be const.
 >
-> [...]
+>> +		[MALI_C55_RZR_FR] = {
+>> +			0x034A8, /* hfilt */
+>> +			0x044A8  /* vfilt */
+>> +		},
+>> +		[MALI_C55_RZR_DS] = {
+>> +			0x014A8, /* hfilt */
+>> +			0x024A8  /* vfilt */
+>> +		},
+>> +	};
+>> +	unsigned int haddr = scaler_filt_coefmem_addrs[index][0];
+>> +	unsigned int vaddr = scaler_filt_coefmem_addrs[index][1];
+>> +	unsigned int i, j;
+>> +
+>> +	for (i = 0; i < MALI_C55_RESIZER_COEFS_NUM_BANKS; i++) {
+>> +		for (j = 0; j < MALI_C55_RESIZER_COEFS_NUM_ENTRIES; j++) {
+>> +			mali_c55_write(mali_c55, haddr,
+>> +				mali_c55_scaler_h_filter_coefficients[i][j]);
+>> +			mali_c55_write(mali_c55, vaddr,
+>> +				mali_c55_scaler_v_filter_coefficients[i][j]);
+>> +
+>> +			haddr += 4;
+>> +			vaddr += 4;
+> sizeof(u32) ?
 >
-> >
-> > +int imx_ele_msg_send(struct se_if_priv *priv, void *tx_msg) {
-> > +     struct se_msg_hdr *header;
-> > +     int err;
-> > +
-> > +     header =3D (struct se_msg_hdr *) tx_msg;
-> > +
-> > +     if (header->tag =3D=3D priv->cmd_tag)
-> > +             lockdep_assert_held(&priv->se_if_cmd_lock);
-> > +
-> > +     scoped_guard(mutex, &priv->se_if_lock);
->
-> scoped_guard() with an empty block doesn't make much sense. Either use
-> scope_guard() { /* do something locked */ }; or guard().
->
-Need to allow send more than one message at a time. Hence, done it after ta=
-king the lock.
-Once message sent, scope of lock is over.
-Thus, scope of the lock se_if_lock, to execute the function "mbox_send_mess=
-age()", keeping the "se_if_lock" locked.
+> Up to you.
 
-> Sascha
+
+I think I'll keep it if it's all the same to you
+
 >
-> --
-> Pengutronix e.K.                           |                             =
-|
-> Steuerwalder Str. 21                       |
-> http://www.pe/
-> ngutronix.de%2F&data=3D05%7C02%7Cpankaj.gupta%40nxp.com%7Cbf79ff917
-> 442406e454308dc7b2b8ef2%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0
-> %7C0%7C638520674210595147%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiM
-> C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7
-> C%7C%7C&sdata=3DUUYK6KTYzgxY5kO4McFy0%2FGrXxTrf2MG5g4cvJ6E4Qk%
-> 3D&reserved=3D0  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    =
-|
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
-|
+>> +		}
+>> +	}
+>> +}
+>> +
+>> +int mali_c55_register_resizers(struct mali_c55 *mali_c55)
+>> +{
+>> +	unsigned int i;
+>> +	int ret;
+>> +
+>> +	for (i = 0; i < MALI_C55_NUM_RZRS; ++i) {
+>> +		struct mali_c55_resizer *rzr = &mali_c55->resizers[i];
+>> +		struct v4l2_subdev *sd = &rzr->sd;
+>> +		unsigned int num_pads = MALI_C55_RZR_NUM_PADS;
+>> +
+>> +		rzr->id = i;
+>> +		rzr->streaming = false;
+>> +
+>> +		if (rzr->id == MALI_C55_RZR_FR)
+>> +			rzr->cap_dev = &mali_c55->cap_devs[MALI_C55_CAP_DEV_FR];
+>> +		else
+>> +			rzr->cap_dev = &mali_c55->cap_devs[MALI_C55_CAP_DEV_DS];
+>> +
+>> +		mali_c55_resizer_program_coefficients(mali_c55, i);
+>> +
+>> +		v4l2_subdev_init(sd, &mali_c55_resizer_ops);
+>> +		sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE
+>> +			  | V4L2_SUBDEV_FL_STREAMS;
+> "|" should be aligned with beginning of the rvalue, i.e. "V" of
+> V4L2_SUBDEV_FL_HAS_DEVNODE.
+>
+>> +		sd->entity.function = MEDIA_ENT_F_PROC_VIDEO_SCALER;
+>> +		sd->owner = THIS_MODULE;
+>> +		sd->internal_ops = &mali_c55_resizer_internal_ops;
+>> +		snprintf(sd->name, ARRAY_SIZE(sd->name), "%s %s",
+>> +			 MALI_C55_DRIVER_NAME, mali_c55_resizer_names[i]);
+>> +
+>> +		rzr->pads[MALI_C55_RZR_SINK_PAD].flags = MEDIA_PAD_FL_SINK;
+>> +		rzr->pads[MALI_C55_RZR_SOURCE_PAD].flags = MEDIA_PAD_FL_SOURCE;
+>> +
+>> +		/* Only the FR pipe has a bypass pad. */
+>> +		if (rzr->id == MALI_C55_RZR_FR) {
+>> +			rzr->pads[MALI_C55_RZR_SINK_BYPASS_PAD].flags =
+>> +							MEDIA_PAD_FL_SINK;
+>> +			rzr->num_routes = 2;
+>> +		} else {
+>> +			num_pads -= 1;
+>> +			rzr->num_routes = 1;
+>> +		}
+>> +
+>> +		ret = media_entity_pads_init(&sd->entity, num_pads, rzr->pads);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		ret = v4l2_subdev_init_finalize(sd);
+>> +		if (ret)
+>> +			goto err_cleanup;
+>> +
+>> +		ret = v4l2_device_register_subdev(&mali_c55->v4l2_dev, sd);
+>> +		if (ret)
+>> +			goto err_cleanup;
+>> +
+>> +		rzr->mali_c55 = mali_c55;
+>> +	}
+>> +
+>> +	return 0;
+>> +
+>> +err_cleanup:
+>> +	for (; i >= 0; --i) {
+>> +		struct mali_c55_resizer *rzr = &mali_c55->resizers[i];
+>> +		struct v4l2_subdev *sd = &rzr->sd;
+>> +
+>> +		v4l2_subdev_cleanup(sd);
+>> +		media_entity_cleanup(&sd->entity);
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +void mali_c55_unregister_resizers(struct mali_c55 *mali_c55)
+>> +{
+>> +	unsigned int i;
+>> +
+>> +	for (i = 0; i < MALI_C55_NUM_RZRS; i++) {
+>> +		struct mali_c55_resizer *resizer = &mali_c55->resizers[i];
+>> +
+>> +		if (!resizer->mali_c55)
+>> +			continue;
+>> +
+>> +		v4l2_device_unregister_subdev(&resizer->sd);
+>> +		v4l2_subdev_cleanup(&resizer->sd);
+>> +		media_entity_cleanup(&resizer->sd.entity);
+>> +	}
+>> +}
+>> diff --git a/drivers/media/platform/arm/mali-c55/mali-c55-tpg.c b/drivers/media/platform/arm/mali-c55/mali-c55-tpg.c
+>> new file mode 100644
+>> index 000000000000..042851a4b42d
+>> --- /dev/null
+>> +++ b/drivers/media/platform/arm/mali-c55/mali-c55-tpg.c
+>> @@ -0,0 +1,424 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * ARM Mali-C55 ISP Driver - Test pattern generator
+>> + *
+>> + * Copyright (C) 2024 Ideas on Board Oy
+>> + */
+>> +
+>> +#include <linux/minmax.h>
+>> +#include <linux/string.h>
+>> +
+>> +#include <media/media-entity.h>
+>> +#include <media/v4l2-ctrls.h>
+>> +#include <media/v4l2-subdev.h>
+>> +
+>> +#include "mali-c55-common.h"
+>> +#include "mali-c55-registers.h"
+>> +
+>> +#define MALI_C55_TPG_SRC_PAD		0
+>> +#define MALI_C55_TPG_FIXED_HBLANK	0x20
+>> +#define MALI_C55_TPG_MAX_VBLANK		0xFFFF
+>> +#define MALI_C55_TPG_PIXEL_RATE		100000000
+>> +
+>> +static const char * const mali_c55_tpg_test_pattern_menu[] = {
+>> +	"Flat field",
+>> +	"Horizontal gradient",
+>> +	"Vertical gradient",
+>> +	"Vertical bars",
+>> +	"Arbitrary rectangle",
+>> +	"White frame on black field"
+>> +};
+>> +
+>> +static const u32 mali_c55_tpg_mbus_codes[] = {
+>> +	MEDIA_BUS_FMT_SRGGB16_1X16,
+>> +	/*
+>> +	 * This is a lie. In RGB mode the Test Pattern Generator actually output
+>> +	 * 16-bits-per-colour data. However, RGB data follows one of the Bypass
+>> +	 * paths which has a 12-bit limit at the insertion point, meaning it
+>> +	 * would be truncated there to match the internal 12-bit format that
+>> +	 * would be output from the debayering block. The same is true of RGB
+>> +	 * data output by a sensor and streamed to the ISP's input port, however
+>> +	 * in that case the ISP's input port requires that data be converted to
+>> +	 * a 20-bit MSB aligned format. Given:
+>> +	 *
+>> +	 *	1. Our chosen topology represents the TPG as a subdevice
+>> +	 *	   linked to the ISP's input port.
+>> +	 *	2. We need to restrict the ISP's sink pad to only accepting that
+>> +	 *	   20-bit RGB format from sensors / CSI-2 receivers.
+>> +	 *	3. All the data ultimately ends up in the same format anyway and
+>> +	 *	   these data from the TPG are purely internal to the ISP
+>> +	 *
+>> +	 * It seems best to reduce the programming complexity by simply
+>> +	 * pretending that the TPG outputs data in the same format that the ISP
+>> +	 * input port requires, even though it doesn't really.
+>> +	 */
+>> +	MEDIA_BUS_FMT_RGB202020_1X60,
+>> +};
+>> +
+>> +static void __mali_c55_tpg_calc_vblank(struct v4l2_mbus_framefmt *format,
+>> +				       int *def_vblank, int *min_vblank)
+>> +{
+>> +	unsigned int hts;
+>> +	int tgt_fps;
+>> +	int vblank;
+>> +
+>> +	hts = format->width + MALI_C55_TPG_FIXED_HBLANK;
+>> +
+>> +	/*
+>> +	 * The ISP has minimum vertical blanking requirements that must be
+>> +	 * adhered to by the TPG. The minimum is a function of the Iridix blocks
+>> +	 * clocking requirements and the width of the image and horizontal
+>> +	 * blanking, but if we assume the worst case iVariance and sVariance
+>> +	 * values then it boils down to the below.
+>> +	 */
+>> +	*min_vblank = 15 + (120500 / hts);
+>> +
+>> +	/*
+>> +	 * We need to set a sensible default vblank for whatever format height
+>> +	 * we happen to be given from set_fmt(). This function just targets
+>> +	 * an even multiple of 15fps. If we can't get 15fps, let's target 5fps.
+>> +	 * If we can't get 5fps we'll take whatever the minimum vblank gives us.
+>> +	 */
+>> +	tgt_fps = MALI_C55_TPG_PIXEL_RATE / hts / (format->height + *min_vblank);
+>> +
+>> +	if (tgt_fps < 5)
+>> +		vblank = *min_vblank;
+>> +	else
+>> +		vblank = MALI_C55_TPG_PIXEL_RATE / hts
+>> +		       / max(rounddown(tgt_fps, 15), 5);
+>> +
+>> +	*def_vblank = ALIGN_DOWN(vblank, 2) - format->height;
+>> +}
+>> +
+>> +static int mali_c55_tpg_s_ctrl(struct v4l2_ctrl *ctrl)
+>> +{
+>> +	struct mali_c55_tpg *tpg = container_of(ctrl->handler,
+>> +						struct mali_c55_tpg,
+>> +						ctrls.handler);
+>> +	struct mali_c55 *mali_c55 = container_of(tpg, struct mali_c55, tpg);
+>> +
+>> +	switch (ctrl->id) {
+>> +	case V4L2_CID_TEST_PATTERN:
+>> +		mali_c55_write(mali_c55, MALI_C55_REG_TEST_GEN_CH0_PATTERN_TYPE,
+>> +			       ctrl->val);
+>> +		break;
+>> +	case V4L2_CID_VBLANK:
+>> +		mali_c55_update_bits(mali_c55, MALI_C55_REG_BLANKING,
+>> +				     MALI_C55_REG_VBLANK_MASK, ctrl->val);
+>> +		break;
+>> +	default:
+>> +		dev_err(mali_c55->dev, "invalid V4L2 control ID\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct v4l2_ctrl_ops mali_c55_tpg_ctrl_ops = {
+>> +	.s_ctrl = &mali_c55_tpg_s_ctrl,
+>> +};
+>> +
+>> +static void mali_c55_tpg_configure(struct mali_c55 *mali_c55,
+>> +				   struct v4l2_subdev *sd)
+>> +{
+>> +	struct v4l2_subdev_state *state;
+>> +	struct v4l2_mbus_framefmt *fmt;
+>> +
+>> +	/*
+>> +	 * hblank needs setting, but is a read-only control and thus won't be
+>> +	 * called during __v4l2_ctrl_handler_setup(). Do it here instead.
+>> +	 */
+>> +	mali_c55_update_bits(mali_c55, MALI_C55_REG_BLANKING,
+>> +			     MALI_C55_REG_HBLANK_MASK,
+>> +			     MALI_C55_TPG_FIXED_HBLANK);
+>> +	mali_c55_update_bits(mali_c55, MALI_C55_REG_GEN_VIDEO,
+>> +			     MALI_C55_REG_GEN_VIDEO_MULTI_MASK, 0x01);
+>> +
+>> +	state = v4l2_subdev_lock_and_get_active_state(sd);
+>> +	fmt = v4l2_subdev_state_get_format(state, MALI_C55_TPG_SRC_PAD);
+>> +
+>> +	mali_c55_update_bits(mali_c55, MALI_C55_REG_TPG_CH0,
+>> +			     MALI_C55_TEST_PATTERN_RGB_MASK,
+>> +			     fmt->code == MEDIA_BUS_FMT_RGB202020_1X60 ?
+>> +					  0x01 : 0x0);
+>> +
+>> +	v4l2_subdev_unlock_state(state);
+>> +}
+>> +
+>> +static int mali_c55_tpg_s_stream(struct v4l2_subdev *sd, int enable)
+>> +{
+>> +	struct mali_c55_tpg *tpg = container_of(sd, struct mali_c55_tpg, sd);
+>> +	struct mali_c55 *mali_c55 = container_of(tpg, struct mali_c55, tpg);
+>> +
+>> +	if (!enable) {
+>> +		mali_c55_update_bits(mali_c55, MALI_C55_REG_TPG_CH0,
+>> +				     MALI_C55_TEST_PATTERN_ON_OFF, 0x00);
+>> +		mali_c55_update_bits(mali_c55, MALI_C55_REG_GEN_VIDEO,
+>> +				     MALI_C55_REG_GEN_VIDEO_ON_MASK, 0x00);
+>> +	} else {
+>> +		/*
+>> +		 * One might reasonably expect the framesize to be set here
+>> +		 * given it's configurable in .set_fmt(), but it's done in the
+>> +		 * ISP subdevice's .s_stream() instead, as the same register is
+>> +		 * also used to indicate the size of the data coming from the
+>> +		 * sensor.
+>> +		 */
+>> +		mali_c55_tpg_configure(mali_c55, sd);
+>> +		__v4l2_ctrl_handler_setup(sd->ctrl_handler);
+>> +
+>> +		mali_c55_update_bits(mali_c55, MALI_C55_REG_TPG_CH0,
+>> +				     MALI_C55_TEST_PATTERN_ON_OFF,
+>> +				     MALI_C55_TEST_PATTERN_ON_OFF);
+>> +		mali_c55_update_bits(mali_c55, MALI_C55_REG_GEN_VIDEO,
+>> +				     MALI_C55_REG_GEN_VIDEO_ON_MASK,
+>> +				     MALI_C55_REG_GEN_VIDEO_ON_MASK);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct v4l2_subdev_video_ops mali_c55_tpg_video_ops = {
+>> +	.s_stream = &mali_c55_tpg_s_stream,
+>> +};
+>> +
+>> +static int mali_c55_tpg_enum_mbus_code(struct v4l2_subdev *sd,
+>> +				       struct v4l2_subdev_state *state,
+>> +				       struct v4l2_subdev_mbus_code_enum *code)
+>> +{
+>> +	if (code->pad >= sd->entity.num_pads)
+>> +		return -EINVAL;
+> This check is done by the framework, you can drop it here.
+>
+>> +
+>> +	if (code->index >= ARRAY_SIZE(mali_c55_tpg_mbus_codes))
+>> +		return -EINVAL;
+>> +
+>> +	code->code = mali_c55_tpg_mbus_codes[code->index];
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_tpg_enum_frame_size(struct v4l2_subdev *sd,
+>> +					struct v4l2_subdev_state *state,
+>> +					struct v4l2_subdev_frame_size_enum *fse)
+>> +{
+>> +	if (fse->index > 0 || fse->pad > sd->entity.num_pads)
+>> +		return -EINVAL;
+>> +
+>> +	fse->min_width = MALI_C55_MIN_WIDTH;
+>> +	fse->max_width = MALI_C55_MAX_WIDTH;
+>> +	fse->min_height = MALI_C55_MIN_HEIGHT;
+>> +	fse->max_height = MALI_C55_MAX_HEIGHT;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mali_c55_tpg_set_fmt(struct v4l2_subdev *sd,
+>> +				struct v4l2_subdev_state *state,
+>> +				struct v4l2_subdev_format *format)
+>> +{
+>> +	struct mali_c55_tpg *tpg = container_of(sd, struct mali_c55_tpg, sd);
+>> +	struct v4l2_mbus_framefmt *fmt = &format->format;
+>> +	int vblank_def, vblank_min;
+>> +	unsigned int i;
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(mali_c55_tpg_mbus_codes); i++) {
+>> +		if (fmt->code == mali_c55_tpg_mbus_codes[i])
+>> +			break;
+>> +	}
+>> +
+>> +	if (i == ARRAY_SIZE(mali_c55_tpg_mbus_codes))
+>> +		fmt->code = MEDIA_BUS_FMT_SRGGB16_1X16;
+>> +
+>> +	/*
+>> +	 * The TPG says that the test frame timing generation logic expects a
+>> +	 * minimum framesize of 4x4 pixels, but given the rest of the ISP can't
+>> +	 * handle anything smaller than 128x128 it seems pointless to allow a
+>> +	 * smaller frame.
+>> +	 */
+>> +	clamp_t(unsigned int, fmt->width, MALI_C55_MIN_WIDTH,
+>> +		MALI_C55_MAX_WIDTH);
+>> +	clamp_t(unsigned int, fmt->height, MALI_C55_MIN_HEIGHT,
+>> +		MALI_C55_MAX_HEIGHT);
+>> +
+>> +	*v4l2_subdev_state_get_format(state, MALI_C55_TPG_SRC_PAD) = *fmt;
+>> +
+> Shouldn't the controls below only be changed for the active format?
+
+
+Yes! Thank you
+
+>
+>> +	__mali_c55_tpg_calc_vblank(fmt, &vblank_def, &vblank_min);
+>> +	__v4l2_ctrl_modify_range(tpg->ctrls.vblank, vblank_min,
+>> +				 MALI_C55_TPG_MAX_VBLANK, 1, vblank_def);
+>> +	__v4l2_ctrl_s_ctrl(tpg->ctrls.vblank, vblank_def);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct v4l2_subdev_pad_ops mali_c55_tpg_pad_ops = {
+>> +	.enum_mbus_code		= mali_c55_tpg_enum_mbus_code,
+>> +	.enum_frame_size	= mali_c55_tpg_enum_frame_size,
+>> +	.get_fmt		= v4l2_subdev_get_fmt,
+>> +	.set_fmt		= mali_c55_tpg_set_fmt,
+>> +};
+>> +
+>> +static const struct v4l2_subdev_ops mali_c55_tpg_ops = {
+>> +	.video	= &mali_c55_tpg_video_ops,
+>> +	.pad	= &mali_c55_tpg_pad_ops,
+>> +};
+>> +
+>> +static int mali_c55_tpg_init_state(struct v4l2_subdev *sd,
+>> +				   struct v4l2_subdev_state *sd_state)
+>> +{
+>> +	struct v4l2_mbus_framefmt *fmt;
+>> +
+>> +	fmt = v4l2_subdev_state_get_format(sd_state, MALI_C55_TPG_SRC_PAD);
+> Can be assigned in the declaration.
+
+
+How would you make it fit that way?
+
+>
+>> +
+>> +	fmt->width = MALI_C55_DEFAULT_WIDTH;
+>> +	fmt->height = MALI_C55_DEFAULT_HEIGHT;
+>> +	fmt->field = V4L2_FIELD_NONE;
+>> +	fmt->code = MEDIA_BUS_FMT_SRGGB16_1X16;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct v4l2_subdev_internal_ops mali_c55_tpg_internal_ops = {
+>> +	.init_state = mali_c55_tpg_init_state,
+>> +};
+>> +
+>> +static int mali_c55_tpg_init_controls(struct mali_c55 *mali_c55)
+>> +{
+>> +	struct mali_c55_tpg_ctrls *ctrls = &mali_c55->tpg.ctrls;
+>> +	struct v4l2_subdev *sd = &mali_c55->tpg.sd;
+>> +	struct v4l2_mbus_framefmt *format;
+>> +	struct v4l2_subdev_state *state;
+>> +	int vblank_def, vblank_min;
+>> +	int ret;
+>> +
+>> +	state = v4l2_subdev_lock_and_get_active_state(sd);
+>> +	format = v4l2_subdev_state_get_format(state, MALI_C55_TPG_SRC_PAD);
+>> +
+>> +	ret = v4l2_ctrl_handler_init(&ctrls->handler, 1);
+>> +	if (ret)
+>> +		goto err_unlock;
+>> +
+>> +	ctrls->test_pattern = v4l2_ctrl_new_std_menu_items(&ctrls->handler,
+>> +				&mali_c55_tpg_ctrl_ops, V4L2_CID_TEST_PATTERN,
+>> +				ARRAY_SIZE(mali_c55_tpg_test_pattern_menu) - 1,
+>> +				0, 3, mali_c55_tpg_test_pattern_menu);
+>> +
+>> +	/*
+>> +	 * We fix hblank at the minimum allowed value and control framerate
+>> +	 * solely through the vblank control.
+>> +	 */
+>> +	ctrls->hblank = v4l2_ctrl_new_std(&ctrls->handler,
+>> +				&mali_c55_tpg_ctrl_ops,
+>> +				V4L2_CID_HBLANK, MALI_C55_TPG_FIXED_HBLANK,
+>> +				MALI_C55_TPG_FIXED_HBLANK, 1,
+>> +				MALI_C55_TPG_FIXED_HBLANK);
+>> +	if (ctrls->hblank)
+>> +		ctrls->hblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+>> +
+>> +	__mali_c55_tpg_calc_vblank(format, &vblank_def, &vblank_min);
+>> +	ctrls->vblank = v4l2_ctrl_new_std(&ctrls->handler,
+>> +					  &mali_c55_tpg_ctrl_ops,
+>> +					  V4L2_CID_VBLANK, vblank_min,
+>> +					  MALI_C55_TPG_MAX_VBLANK, 1,
+>> +					  vblank_def);
+>> +
+>> +	if (ctrls->handler.error) {
+>> +		dev_err(mali_c55->dev, "Error during v4l2 controls init\n");
+>> +		ret = ctrls->handler.error;
+>> +		goto err_free_handler;
+>> +	}
+>> +
+>> +	ctrls->handler.lock = &mali_c55->tpg.lock;
+>> +	mali_c55->tpg.sd.ctrl_handler = &ctrls->handler;
+>> +
+>> +	v4l2_subdev_unlock_state(state);
+>> +
+>> +	return 0;
+>> +
+>> +err_free_handler:
+>> +	v4l2_ctrl_handler_free(&ctrls->handler);
+>> +err_unlock:
+>> +	v4l2_subdev_unlock_state(state);
+>> +	return ret;
+>> +}
+>> +
+>> +int mali_c55_register_tpg(struct mali_c55 *mali_c55)
+>> +{
+>> +	struct mali_c55_tpg *tpg = &mali_c55->tpg;
+>> +	struct v4l2_subdev *sd = &tpg->sd;
+>> +	struct media_pad *pad = &tpg->pad;
+>> +	int ret;
+>> +
+>> +	mutex_init(&tpg->lock);
+>> +
+>> +	v4l2_subdev_init(sd, &mali_c55_tpg_ops);
+>> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+>> +	sd->entity.function = MEDIA_ENT_F_CAM_SENSOR;
+>> +	sd->owner = THIS_MODULE;
+>> +	sd->internal_ops = &mali_c55_tpg_internal_ops;
+>> +	strscpy(sd->name, MALI_C55_DRIVER_NAME " tpg", sizeof(sd->name));
+>> +
+>> +	pad->flags = MEDIA_PAD_FL_SOURCE | MEDIA_PAD_FL_MUST_CONNECT;
+>> +	ret = media_entity_pads_init(&sd->entity, 1, pad);
+>> +	if (ret) {
+>> +		dev_err(mali_c55->dev,
+>> +			"Failed to initialize media entity pads\n");
+>> +		goto err_destroy_mutex;
+>> +	}
+>> +
+>> +	ret = v4l2_subdev_init_finalize(sd);
+>> +	if (ret)
+>> +		goto err_cleanup_media_entity;
+>> +
+>> +	ret = mali_c55_tpg_init_controls(mali_c55);
+>> +	if (ret) {
+>> +		dev_err(mali_c55->dev,
+>> +			"Error initialising controls\n");
+>> +		goto err_cleanup_subdev;
+>> +	}
+>> +
+>> +	ret = v4l2_device_register_subdev(&mali_c55->v4l2_dev, sd);
+>> +	if (ret) {
+>> +		dev_err(mali_c55->dev, "Failed to register tpg subdev\n");
+>> +		goto err_free_ctrl_handler;
+>> +	}
+>> +
+>> +	/*
+>> +	 * By default the colour settings lead to a very dim image that is
+>> +	 * nearly indistinguishable from black on some monitor settings. Ramp
+>> +	 * them up a bit so the image is brighter.
+>> +	 */
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_TPG_R_BACKGROUND,
+>> +		       MALI_C55_TPG_BACKGROUND_MAX);
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_TPG_G_BACKGROUND,
+>> +		       MALI_C55_TPG_BACKGROUND_MAX);
+>> +	mali_c55_write(mali_c55, MALI_C55_REG_TPG_B_BACKGROUND,
+>> +		       MALI_C55_TPG_BACKGROUND_MAX);
+>> +
+>> +	tpg->mali_c55 = mali_c55;
+>> +
+>> +	return 0;
+>> +
+>> +err_free_ctrl_handler:
+>> +	v4l2_ctrl_handler_free(&tpg->ctrls.handler);
+>> +err_cleanup_subdev:
+>> +	v4l2_subdev_cleanup(sd);
+>> +err_cleanup_media_entity:
+>> +	media_entity_cleanup(&sd->entity);
+>> +err_destroy_mutex:
+>> +	mutex_destroy(&tpg->lock);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +void mali_c55_unregister_tpg(struct mali_c55 *mali_c55)
+>> +{
+>> +	struct mali_c55_tpg *tpg = &mali_c55->tpg;
+>> +
+>> +	if (!tpg->mali_c55)
+>> +		return;
+>> +
+>> +	v4l2_device_unregister_subdev(&tpg->sd);
+>> +	v4l2_subdev_cleanup(&tpg->sd);
+>> +	media_entity_cleanup(&tpg->sd.entity);
+>> +	v4l2_ctrl_handler_free(&tpg->ctrls.handler);
+>> +	mutex_destroy(&tpg->lock);
+>> +}
 
