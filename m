@@ -1,109 +1,228 @@
-Return-Path: <devicetree+bounces-68552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F0FD8CCB59
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:24:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78C788CCB5D
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:28:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A8A92835A7
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 04:24:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D7151C20DD4
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 04:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA6053363;
-	Thu, 23 May 2024 04:24:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0CB52F9B;
+	Thu, 23 May 2024 04:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gyPu2ARK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U18rOPfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E83538FA8;
-	Thu, 23 May 2024 04:24:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF58121362;
+	Thu, 23 May 2024 04:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716438257; cv=none; b=hO2R3RVyK1HyiycUuyaVejtCp/uB0uSxEIE8dM7Ou4MrA2Sr6jG5o0FOwWo+96zpsAKj6PyQgzTtE7ofWiJnuTuApH80W7v3VaGfGnWkgJ/ryHwiySlpggzy31WLOeaEpPFLiBw7tzHqNTu3zJHUPHcKK7Pnx4WahSLnn3niuQo=
+	t=1716438481; cv=none; b=rAVxuzhLdjgWGMawePP6JgrM6hsTXH5niluX8Ip5LUiOvpIK8oL7VvECcWB9JXU7ePgS1OHpUtHBYjP7DQpH673ONEOTUx0IUDmjRpjLa1ITP2iEfej1nnDG5uIHL4cF+nfE1+DaHH9Llp1KZ14McnXNmZTQUG7fTRlT4VJFnBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716438257; c=relaxed/simple;
-	bh=0wOFUajYamp8413E77jipahrUa270OFvH9nZ8xjqUDc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=j8Usu7GqWsxik5PWCc5I5akI5coaZSPLxJA8L0vrWPjKtJSwVFGmXpIIdRK/zBvb6D+Rr0fwVsA9vfW2RoqogAcoC5hhbyg58xA+RV2qAP584Wrm1+lCaHW6smDVIpw/BxfUOaQBMXWnGU2z8FWpw3mO1a1bxJB1+YiGfTp2d3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gyPu2ARK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF913C2BD10;
-	Thu, 23 May 2024 04:24:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716438257;
-	bh=0wOFUajYamp8413E77jipahrUa270OFvH9nZ8xjqUDc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=gyPu2ARKMQyxy+orRMjl2ZUXnvVy0ThmGMjqxmUU3Cc1ETH3Rg5d4YJo3APVVHitK
-	 Xiyq+5xsq4RZH8MZNnLaGyHGMY4lSuPFbPnp9Qb1JwxHUhnmNFHJOp3t2L0ym8+XnY
-	 CmYmXITon/97HnMByy6IH7DPa8oie9pOnJHA4uFdQPp5QagBW8v6OMr6PDCGfQJ+sV
-	 4SOdMErAeNrEF6srWnJWDUoRCdwsiiJlPh+nTXY7mz3+5rQWgvcdmF2XFSLwpd0g5L
-	 ghTtWvQF8sqQEdS4QFRD/7JIRILc9/+LDTNJVT9ZYKK5csNkikWk6gb+N2bwuXF4dT
-	 UnnyzKAdFlmsw==
-Date: Wed, 22 May 2024 23:24:15 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1716438481; c=relaxed/simple;
+	bh=kg0vDCZE3Sr0m++mwJzUr9KmPYN+QyJtuSg5/+VM0Vo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=U0kV9axPauM2Q7A8rmez3N2crVY/c+TN1ND2TGMxdo2Vo8vi1E3MFKMoPuwgB6w6+8FvE92FUBY1XQKyZj16ZfD5lDnuHLCUNwIR4F//VYGyilS9uPaBszlQzpm5p7ukm9BuYDOUGgwF66F76Vj9Z0IwJv3YeRYKrq7FQx+98Bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U18rOPfz; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-571be483ccaso10696851a12.2;
+        Wed, 22 May 2024 21:27:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716438478; x=1717043278; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aLv+CQXekteymTi7LH8Cffmlg26XMDlTY03oC8KCX8Q=;
+        b=U18rOPfzBVOwZTxoIAeBXK6YWc8hpNSTORRYUznOcBrVSevpksflyKPXHbfKGyPVC/
+         Og7Tgcj1CmdZ7wFTj7UfJn/zmxsz4gFMGGdmkVSjs1pbseEJN12t0a8BRXNpKEQMp32N
+         +fwiwsAILQxr/MJUyaeskV2M0H9xJ4jmGoe9pyyPByEtZX3QWOm6KgxWAEY3ZXi6AP1h
+         rkuKwOd24mgDexbyvUZTXH5hWPBceofNJIrhHsnp/gfg9g7rLFEZg55erHnkx9aqmvgO
+         ReC4YrfxWdEGyf3nk7eMbITnlcu2VvaffSW9Al9/yFQCEPlS34vluqb/NTqkz3lJMggu
+         AokQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716438478; x=1717043278;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aLv+CQXekteymTi7LH8Cffmlg26XMDlTY03oC8KCX8Q=;
+        b=IzoEtUTCxRdpd5bGbkuDj+dkNnUuppv2//Yf+hco2ue1o+8dNzUxmWpT6lhyWFYvWr
+         4/+kRD2Srg1D7sw7dVh3iVDd9q5zisT6lQ7ZvczW6Qb9e1+8S9MXbk2MZQaVk7yVC33+
+         /6UoRW4HGsF3vfXcqAGlQIBWxK5f+thkQUD8LRHdnnoFaA3QEr2vzz4o5TdFCXheE0vY
+         UxcisZepuNqe+HHaJb8wx+61nuU9P2A2xVJ6wY8OCcKVaLFTJM34fYfPLX6404eQua/P
+         t6/OW55va2q2uybZ/QlsjBIoIlwBzVzmW7B2txuHWfCH5yaarSGQh1aXkLamXz0DuQuD
+         Vzbg==
+X-Forwarded-Encrypted: i=1; AJvYcCX5e788rGkUoctWMt/dG3dDnzzLdDlC4kO5XE367Dm+ZSP1Lk8fRTRFM27yvcnGAgc6bNvzqy53jMArTksab1f5Pj49aP20e9xO5Q==
+X-Gm-Message-State: AOJu0YznSJ5LNXRxoNMuzVYpRDKXoXKo7t+UU/WjWkoI9cbQMSDknth4
+	Q/TbiP2p9OtaxvARj06aicnQDPzRElGBYnOm+8O2SQ8zYdt3C6F2
+X-Google-Smtp-Source: AGHT+IEABJIJRi2xyujrDhXEgGBEtUJZ9mCywroIgEk/FF2rhQyneDrQGqeW+Teu5gAyJfsQRgV4Ow==
+X-Received: by 2002:a17:906:ca11:b0:a62:187b:e7f5 with SMTP id a640c23a62f3a-a622819ad50mr209860866b.57.1716438478086;
+        Wed, 22 May 2024 21:27:58 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b01652sm1872112566b.167.2024.05.22.21.27.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 May 2024 21:27:57 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: omap: convert NVMEM content to layout syntax
+Date: Thu, 23 May 2024 06:27:50 +0200
+Message-Id: <20240523042750.26238-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-iio@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
- =?utf-8?q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-In-Reply-To: <20240523031909.19427-5-kimseer.paller@analog.com>
-References: <20240523031909.19427-1-kimseer.paller@analog.com>
- <20240523031909.19427-5-kimseer.paller@analog.com>
-Message-Id: <171643825573.1037396.2749703571529285460.robh@kernel.org>
-Subject: Re: [PATCH v2 4/5] dt-bindings: iio: dac: Add adi,ltc2672.yaml
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Thu, 23 May 2024 11:19:08 +0800, Kim Seer Paller wrote:
-> Add documentation for ltc2672.
-> 
-> Co-developed-by: Michael Hennerich <michael.hennerich@analog.com>
-> Signed-off-by: Michael Hennerich <michael.hennerich@analog.com>
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
->  .../bindings/iio/dac/adi,ltc2672.yaml         | 159 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml
-> 
+Use cleaner (and non-deprecated) bindings syntax. See commit
+bd912c991d2e ("dt-bindings: nvmem: layouts: add fixed-layout") for
+details.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../boot/dts/ti/omap/am335x-bone-common.dtsi  | 64 +++++++++++++------
+ arch/arm/boot/dts/ti/omap/am335x-boneblue.dts | 12 ++--
+ 2 files changed, 52 insertions(+), 24 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/adi,ltc2672.yaml: patternProperties:^channel@[0-4]$:properties:adi,output-range-microamp: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240523031909.19427-5-kimseer.paller@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
+index 2d0216840ff5..898f862acf3e 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
+@@ -221,10 +221,14 @@ baseboard_eeprom: baseboard_eeprom@50 {
+ 		reg = <0x50>;
+ 		vcc-supply = <&ldo4_reg>;
+ 
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		baseboard_data: baseboard_data@0 {
+-			reg = <0 0x100>;
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			baseboard_data: baseboard_data@0 {
++				reg = <0 0x100>;
++			};
+ 		};
+ 	};
+ };
+@@ -239,40 +243,60 @@ &i2c2 {
+ 	cape_eeprom0: cape_eeprom0@54 {
+ 		compatible = "atmel,24c256";
+ 		reg = <0x54>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		cape0_data: cape_data@0 {
+-			reg = <0 0x100>;
++
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			cape0_data: cape_data@0 {
++				reg = <0 0x100>;
++			};
+ 		};
+ 	};
+ 
+ 	cape_eeprom1: cape_eeprom1@55 {
+ 		compatible = "atmel,24c256";
+ 		reg = <0x55>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		cape1_data: cape_data@0 {
+-			reg = <0 0x100>;
++
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			cape1_data: cape_data@0 {
++				reg = <0 0x100>;
++			};
+ 		};
+ 	};
+ 
+ 	cape_eeprom2: cape_eeprom2@56 {
+ 		compatible = "atmel,24c256";
+ 		reg = <0x56>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		cape2_data: cape_data@0 {
+-			reg = <0 0x100>;
++
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			cape2_data: cape_data@0 {
++				reg = <0 0x100>;
++			};
+ 		};
+ 	};
+ 
+ 	cape_eeprom3: cape_eeprom3@57 {
+ 		compatible = "atmel,24c256";
+ 		reg = <0x57>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		cape3_data: cape_data@0 {
+-			reg = <0 0x100>;
++
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			cape3_data: cape_data@0 {
++				reg = <0 0x100>;
++			};
+ 		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts b/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
+index 801399702547..8878da773d67 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
++++ b/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
+@@ -317,10 +317,14 @@ baseboard_eeprom: baseboard_eeprom@50 {
+ 		compatible = "atmel,24c256";
+ 		reg = <0x50>;
+ 
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		baseboard_data: baseboard_data@0 {
+-			reg = <0 0x100>;
++		nvmem-layout {
++			compatible = "fixed-layout";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			baseboard_data: baseboard_data@0 {
++				reg = <0 0x100>;
++			};
+ 		};
+ 	};
+ };
+-- 
+2.35.3
 
 
