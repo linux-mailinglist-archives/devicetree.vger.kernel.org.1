@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-68800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521FE8CDB53
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 22:24:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31C5C8CDB56
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 22:25:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7488E1C21165
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:24:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCA5928214A
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C3484DE6;
-	Thu, 23 May 2024 20:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AF184D30;
+	Thu, 23 May 2024 20:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LtVdXSrZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DRK+qRtZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCC784D1F
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 20:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AB684A40
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 20:25:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716495856; cv=none; b=dpM1lKsjpcmoIz0QBNQPCKhYKs5oZ9i4Nd7eMthw4egXHIvbcEx3i36BFouz7pzkjVXQqEn5z5WkhCkYqSkkDkq0Eo7k/swhVgsrp1OqyLsbUlTFuyq+/lv3K5faXrd9EBSzPX4yL2+Pjerb0o2AYl2gQpIaxulhSdu0cMNguTE=
+	t=1716495910; cv=none; b=m26sBsPLKt0nzJCJRNzXvAZTkb9W0J/1d1D4CbD7ZiJM7pn7P+Jbq0d0DM9FDoyXAHrYaXfPR7NtQyUqNcWI0SlkEM+0stFu5vplL5ZC6bYSY+CaHDktH/xmyRHdd/VJj69EFvDXfIMDv3Hxa07l8FvyXl5mHatCurweqNZ9IGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716495856; c=relaxed/simple;
-	bh=trLp/zqMsxPkYHNpAoOaUAFirZpTDPAcqutqKmdqkvo=;
+	s=arc-20240116; t=1716495910; c=relaxed/simple;
+	bh=T53Qq6geUKMePsO3PpM709s0ZqBNoDAk8S13cUqTa2g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SIJXx2kkUeNpFZCUckuN/3IkJAzMaQuqHo5RfHM4Xt4JwC+8U0HZ01+DXc+kQxyFzauxzSZ4+wkon7FrmxaxTSupUSbth5ClTMTy00/Az0uqMNhaEugnRloz8HyFOxA0BeBw6VaAEeDMq69ds3c9eSwwUHGFAr16Z9idXoSJ5AI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LtVdXSrZ; arc=none smtp.client-ip=209.85.218.45
+	 In-Reply-To:Content-Type; b=dHfG5BoUiahNwXB/9+ocxf72O3D6Z2CLCHJe9ZRxBFTKRaBo/xmiIhUYT4SinkvMXnR4uVojjT3LREH7TFcLL7bZknu6LnCUzlhzAhT/PILgsPMfd/57ajCpzshUKkxtc0+M5ArdTc4fDiaa1s6ghwmoRDToc0HgHcgPM1Ng0yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DRK+qRtZ; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a626919d19dso18406266b.0
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 13:24:14 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57851052d4aso227201a12.0
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 13:25:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716495853; x=1717100653; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716495907; x=1717100707; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=pLYxifaBnTwd6v2VqQzlnZWV2Y1C/HZmXP7m6TLRDnI=;
-        b=LtVdXSrZMCsgOfKYNo2WYLkvO1759Y+cusrAS9k2xrDkeNqvtzMlLJQxBO2wbN82Lf
-         Xh7O5lY33oQ/PIm26Hg82Ouevq8T44F5UikezP1CMGMQId5w0gWKnnT354eWdNk4XBpf
-         nVwfcgOEUmFOGEW2ntp0i7mby9p1ihLYLQhqlPhs3li++/7c2EgSVzi7jDls/UkaAGLr
-         FeYFrLC+cvG6gxQF9939PoJh68k6xedj1QoY87zVlQQneEU67QbhocwBtbVn3WqUqdNT
-         kkk4QuNE/+BB4ydsWQKGcKAp5axPV4KH+brd/fOEbyuJ6eUAuD5Mi3eyBl1ZAJwCMI99
-         zxeA==
+        bh=gJ/+0iPILoCl4fYJ5JFyaYwZeFs4qxyfRvegHxvQq4I=;
+        b=DRK+qRtZxLHWzPilgEI80/kTEzB3CPRF8x1c4e1SCyMYpPQyS3+lEMRrUcoHci8nn7
+         dekP7fjCkOiRQLGVdQbOFfAKknXatpWRUITUfay4vZ7B3+fNPS2QLva4c0+EKPp8h/Gm
+         AbVXuDAy+5XDOVzdX/CMAcqRc78grw0oMPUht6Zvj788DH4QP1x9Usacjjx8FugbTFg5
+         GYIIMeUzGpm9g11/0w6hg0kJjTk3qxtsN+K6dm+toO7/kqcGIbqFT07eUQOFzcZNZX/k
+         WNgwd2xBxPnf8Nz68Z4uPd3rFGdYUi2Tu9BDZiGkLtTma7iZ5SQLQmmRnuYZJbsfz9Z2
+         VqeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716495853; x=1717100653;
+        d=1e100.net; s=20230601; t=1716495907; x=1717100707;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pLYxifaBnTwd6v2VqQzlnZWV2Y1C/HZmXP7m6TLRDnI=;
-        b=KdxVDuOq+PHSN1VkHSrZeC0wFKfkjSPyqopQSiVB17JUhdSiZHkEvLqWgmy2W5l3LO
-         Rsc/VccJOuocKztd3PdXIoVVPz1L5J0EJy3GhpY1sPznmUynwVjrQ/3BVsPG8YyALx9Y
-         TgkLKKiwjA9Ie/6RIhf7/T/WtkH6iKCn55fInawA9kO8ta0RcWHw351r6xTOp1cj9RK3
-         JqkYffc3N68eSrVOEfMll8hvs1/df5p2ct9dr7tYaQBUEn1lKFlEXH3IWRmlEjDl5neg
-         g0fRn6ghNudNn6U4PMi3t6l1vvSk6+sCa6EiASkgxRfRd6aTTu/IAANBEZ4cIuY9B+Mf
-         +wRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUwwBd2wXUkBaTbrKIyqryE3+txE9vCP7Gjlcfwn/3TyxlN8GrDFBxlPbvnAtGKv+zZDQiFFfKEEGhL7dZDq9ktBj03sBjc+gr+vQ==
-X-Gm-Message-State: AOJu0YzXz9UIbsVlXoBj7l5CNhvqHC66T6tid62fecEvm24rFXb++XG0
-	G4XYY9toiZphY/cJEL9CqBe2Mc/QFFnPTbkcShF+01VvXOcQlY05dN6ZAGKBZ/E=
-X-Google-Smtp-Source: AGHT+IEpQcnn/MO2wXSF2wIEtLlbmHIff5/dN2bTkKyHBGbFjuDdyMLgtnQ37NUeIArnmaObSLQcJw==
-X-Received: by 2002:a17:906:34d3:b0:a59:ac10:9be5 with SMTP id a640c23a62f3a-a626250e4dfmr40903166b.27.1716495853059;
-        Thu, 23 May 2024 13:24:13 -0700 (PDT)
+        bh=gJ/+0iPILoCl4fYJ5JFyaYwZeFs4qxyfRvegHxvQq4I=;
+        b=dlJB6NOnZ9eNq7GkIBg3xFDv1PYqyhKmp3Av2mNuX7WSOhT1VbcpxRCWvDq2tJonsx
+         px+mjC6UVLljiHVr4UDNDaislVIFFlG1p6U20eCiugA8jhNPfiUoWaznzW4mulxf1/VB
+         sZo3WhHwKoQmxf0MaF4oFBJW6NpHm0npsLDLLEqMkKmPpkIBkUpfoPLePRpcj6QNGPxc
+         IV4fiT7YQGzCfgW4Lq1rHi+UmPABgni/r/cFQ/+C2Uun1U2UdvaJwUmZx0XP4sel0QTL
+         2dYjsjX8zzHPiZOw2Ai7fFrGEhLLQftWtaTH8xuT+yAFxNW50nprbuEggEu6jsVpeVx5
+         tLpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUP8cGScKifSLAL7aEgJDRwC7SUTlxFQfa+IHLPYrDJHg0rUCMIXSkA12bhjL5jccj6TSAIeuN+OAWlBf9BagpjYRY6CdMBSFRORA==
+X-Gm-Message-State: AOJu0YyyKclRfb+6psUNsCBkUmQwpSCikjVTwh2gJEgDtC/hHJXJeduu
+	LbxC/qtPqGmZSdrkdsAmo+aIrlj8JadoA8E6gGV85Pl234X5BTeymV/dkV9UwAE=
+X-Google-Smtp-Source: AGHT+IH0kSQVioE6QrkcWMRYqJsVE/G7bhrqp9bayeccrwTPqnCrnAClAN12t1htANyO2JKbYDRBZg==
+X-Received: by 2002:a17:906:af8d:b0:a59:ca9c:4de9 with SMTP id a640c23a62f3a-a626537535cmr22590266b.76.1716495907100;
+        Thu, 23 May 2024 13:25:07 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cda5698sm5134066b.205.2024.05.23.13.24.11
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c93bbcesm6162266b.65.2024.05.23.13.25.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 13:24:12 -0700 (PDT)
-Message-ID: <acced98c-79fb-4c32-abf3-66fe93031f36@linaro.org>
-Date: Thu, 23 May 2024 22:24:10 +0200
+        Thu, 23 May 2024 13:25:06 -0700 (PDT)
+Message-ID: <8df0c766-adae-4009-826d-be863e77c609@linaro.org>
+Date: Thu, 23 May 2024 22:25:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,20 +77,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 17/20] ARM: dts: aspeed: Add IBM Huygens BMC system
-To: Eddie James <eajames@linux.ibm.com>,
- Markus Elfring <Markus.Elfring@web.de>, linux-fsi@lists.ozlabs.org,
- linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Cc: LKML <linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Lakshmi Yadlapati <lakshmiy@us.ibm.com>, Mark Brown <broonie@kernel.org>,
- Ninad Palsule <ninad@linux.ibm.com>, Rob Herring <robh@kernel.org>
-References: <20240522192524.3286237-18-eajames@linux.ibm.com>
- <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
- <910b18b7-3717-4087-b028-fcaf5f2a604b@linux.ibm.com>
+Subject: =?UTF-8?Q?Re=3A_=5BPATCH_1/2=5D_ti=3A_omap=3A_MAINTAINERS=3A_move_B?=
+ =?UTF-8?Q?eno=C3=AEt_Cousson_to_CREDITS?=
+To: Kevin Hilman <khilman@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Olof Johansson <olof@lixom.net>, arm@kernel.org, soc@kernel.org,
+ Antoine Tenart <atenart@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Benoit Cousson <bcousson@baylibre.com>
+References: <20240520074013.9672-1-krzysztof.kozlowski@linaro.org>
+ <7httio2zta.fsf@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -137,25 +136,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <910b18b7-3717-4087-b028-fcaf5f2a604b@linux.ibm.com>
+In-Reply-To: <7httio2zta.fsf@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/05/2024 21:00, Eddie James wrote:
+On 23/05/2024 19:38, Kevin Hilman wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 > 
-> On 5/23/24 13:45, Markus Elfring wrote:
->>> The Huygens is a Rainier with modifed FSI wiring.
->> Will imperative wordings become helpful for a better commit message here?
+>> Last email from Benoît Cousson was in 2014 [1], so remove him from
+>> maintainers of the TI OMAP platform.  Stale maintainer entries hide
+>> information whether subsystem needs help, has a bus-factor or is even
+>> orphaned.
+>>
+>> Benoît Cousson, thank you for TI OMAP contributions and maintenance.
 > 
-> 
-> This statement is a description of hardware. I cannot word that 
-> imperatively. The commit message is imperative - "Add Huygens system".
+> Not sure why Benoît is not cc'd, so adding him now so he can ack.
 
-Feel free to ignore all comments coming from Markus (or implement,
-entirely up to you).
+Ah, my bad, I am sorry. I used my script which relied on maintainer
+entries but the entries got updated.
 
-Markus is banned from mailing lists and most of maintainers already
-ignore him or already marked as spam.
+Apologies.
 
 Best regards,
 Krzysztof
