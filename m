@@ -1,122 +1,200 @@
-Return-Path: <devicetree+bounces-68541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E90C98CCAB6
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 04:26:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2CE18CCAC7
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 04:36:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87FD61F21F3D
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 02:26:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9470B20D12
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 02:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B2D4C9F;
-	Thu, 23 May 2024 02:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDF613A275;
+	Thu, 23 May 2024 02:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hE5o4wD8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LNO9S6KF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DD5C4690;
-	Thu, 23 May 2024 02:26:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C78A3FD4;
+	Thu, 23 May 2024 02:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716431180; cv=none; b=hQktHYrtd7rfVfoB2kuvEOET2TqJ+D3D/x9jhDlEcmi1DYW8pkosW3q7LuoV4k7m/k/5uZB4cKOc31Sp2pk55Ll33FFzPlQRwg8ExHkx5BEE69W/zJ+Vr69ZA20MWVRG0KAp/Fyjb7dO7VNvYtFlJ5n2L4rY8P0UTn8daOsrbWE=
+	t=1716431753; cv=none; b=Z1t4ervQvBY367fbkGkZqgT4O54dvtFSjcedB/PdRF20wkYDNhlP370BTOBGX28JF7cyLhVDYnkmAIyTkm/O+5OvSlZZ1Y0uhD7M7GT0iklLK9GGTHQCr23H3jUy/2ZtThPftsanKgJMC74rXnNz25LXwXwqX4esaBxL3bEI1bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716431180; c=relaxed/simple;
-	bh=6pXbAmaEPZXIqK0WH+L/c24D/aC57W7K7SWkfWovUKE=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=UqY4DGTtqBkfsjYVDjYX5jcb3E9y+dq6DBes8fsCBx1w5t9Dsid8qmnlJzSrxHawyT1Ai+WRArv+XKj3oefeJZOFDzQc82hdUkrMS1wB9x08bNV93k3b+8shQLhDNHO+hk3nyPgyZe0dFpOreK4KmylmaGJFW3l3aOpUxrSFpNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hE5o4wD8; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-61bee45d035so59634247b3.1;
-        Wed, 22 May 2024 19:26:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716431178; x=1717035978; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=14MDcznVSAxWvh6NcnmWmS1Snv6rWvGAAp6hU32730s=;
-        b=hE5o4wD8q4ZYtnrFPRC9Ps4qdDIbAiTCQ7QhyxkFEGebPmI9SCqjz2ZugckD87fqDH
-         9ZLLhO1dadjIx1mo1bTM4EFe/e65sAxmVCP52Qax8R7PDZHvG2suxzx5u3heXbR56lT6
-         ooXydp92qjue20mYXzfxAeFe1IEMOK6naZHYakWKoo3SwyyptYX6/tpbjRO2Oky0e4S9
-         gtPYAcI9DnmYM0Ytf8QsCTdFHD5axHrvQ31AZs0qwfTddKpAPOcPfEloMCN905KFMiYb
-         ZVK3MKjILl/YNZyMjUmWWKfIPvz3dQQxM0uF7/KWkjqNshM2VME6ebUtcc32UZt1Uo5l
-         VYIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716431178; x=1717035978;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=14MDcznVSAxWvh6NcnmWmS1Snv6rWvGAAp6hU32730s=;
-        b=Rxgywjfl8pPlTfgmAteRnl35tPTe/Fhzgu1p5/1Trfyz9dUDzsFbEg36ZxoYfcmoU6
-         VVXczSrebhx6fnrbkuNW7P3CSLTykfZU2zbgvRRrIQa3GhwvTV/cr8XG3hPVXLdwI3Gz
-         ACaXbPs6PwKGC0GO0QRm5oTfG5YMtOoqPucuiiT08PQ39mssi4JlxawBFGnFXYmfE83E
-         f10iVDk1Wgt/EQ12r3ULSZ1qaqhssaEvHG/S1Vfl/nCFMctwgJCehPrD0VT7MXhrgc2R
-         moO8H6T71026ux062vT9PO8NK0lfSBt6rnSiENDyyW6D2Voj2hZ6EqQigXV7CoGfktKu
-         K0Mg==
-X-Forwarded-Encrypted: i=1; AJvYcCUAsZyk86YLiNThbpryfUtmSGgw9xgjij6gvsjiy6hD4AoMrW6BCbAMq3SeoaqUsyBNXZdb6N/8I3KIq97Av6QaA1tA+1bGEk3GMBGl+H1C1QsDzWXnMJ0K5s5pHQBmV28/Hch/83GQoJtXAqDjrNNqeXQrjymjLlWKOt8GgAYuXSUOCw==
-X-Gm-Message-State: AOJu0Yx7x0MhGISL1tekMKjr8oOzzqnQavc2dsdXE8JBiXVm4+XrBCo7
-	WXfIjMsuIkB2EeyqSHCKmD73DYnwPasascVIb6iw4DwruJpEwncu/Re+//fCrcPDaTsocBZWKJx
-	H4qs16NrYnsQ99o7H46JExNPhrns=
-X-Google-Smtp-Source: AGHT+IEzZ3d/y1htQ50ghcV3RsJuT9Nmb23jVS0kW1Opjrk11BX2iM4RFV1kES07q4M/y7BLnPYzixD6kqgZrYjmEI8=
-X-Received: by 2002:a0d:e64c:0:b0:627:dd88:5f1a with SMTP id
- 00721157ae682-627e46cf82amr36209267b3.21.1716431178362; Wed, 22 May 2024
- 19:26:18 -0700 (PDT)
+	s=arc-20240116; t=1716431753; c=relaxed/simple;
+	bh=zhQmBBMVvVCkundq1HInPxU/OC6UeXZbEC1QHoq4MM0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=VR6R4twHhQKP1EuPiWFlTrwYAYMmb2oIJnNaZI2jZgasViwGlG8VgOJfvvOUNeRmwSU3PFJ1UvIEDpoV8OlbE4O1xOU8Irezp+VlEuYZ3n7FuA8cDbyTYwlPZT5poY2W/nD1QjDaGH31vRn6eIG7xxg3+ckuVZkRfho0jC9uKrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LNO9S6KF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D00BC2BBFC;
+	Thu, 23 May 2024 02:35:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716431751;
+	bh=zhQmBBMVvVCkundq1HInPxU/OC6UeXZbEC1QHoq4MM0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=LNO9S6KF9l4oOc3kcBGJfxz5pKwqRYXEmJYz3V9pgrdttmlESBaQm/hoMx3+KOaY7
+	 FkxP5yzzbYHruF0zmZtpP7ykzAho52khy2ht7lVarOnqDTFfdQc0sLPbGKqhXl5laB
+	 qliAvxnzrW0rtc9YgYifg+6mjCWp3SbIHe2VHel9IfIliZxIyP7MprmwiTFjG3TMvt
+	 epw8JG0eE9GbqmpgalCCTjmpRMF2fLummkTK/6uS2ZHtw7h0MeUg8YwI9cHzsC5bgM
+	 w6EVMARW4sQXbpDIWWukIP+I/uCHwCB9gFNNL5BLK0YK6l7IrUkvr1RJFx5OyhyjgW
+	 0hjOf2wQ/B4UA==
+Date: Wed, 22 May 2024 21:35:49 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v16 08/22] PCI: microchip: Change the argument of
+ plda_pcie_setup_iomems()
+Message-ID: <20240523023549.GA105928@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: =?UTF-8?B?44GN44GP44Gh44KD44KT44GV44KT?= <kikuchan98@gmail.com>
-Date: Thu, 23 May 2024 11:26:07 +0900
-Message-ID: <CAG40kxGMu-TSchNezkcC_A97hzPnWU3KxeL-X-hJfPhjr_COyQ@mail.gmail.com>
-Subject: Re: [PATCH v9 0/3] Add support for Allwinner PWM on D1/T113s/R329 SoCs
-To: privatesub2@gmail.com
-Cc: aou@eecs.berkeley.edu, bigunclemax@gmail.com, conor+dt@kernel.org, 
-	contact@jookia.org, devicetree@vger.kernel.org, fusibrandon13@gmail.com, 
-	jernej.skrabec@gmail.com, krzk+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, mkl@pengutronix.de, p.zabel@pengutronix.de, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org, 
-	samuel@sholland.org, ukleinek@kernel.org, wens@csie.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SHXPR01MB086345C911E227889E3A4211E6F42@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 
-Hello Aleksandr,
+On Thu, May 23, 2024 at 01:09:58AM +0000, Minda Chen wrote:
+> > On Wed, May 22, 2024 at 01:50:57AM +0000, Minda Chen wrote:
+> > > > The patch is OK, but the subject line is not very informative.  It
+> > > > should be useful all by itself even without the commit log.
+> > > > "Change the argument of X" doesn't say anything about why we would
+> > > > want to do that.
+> > > >
+> > > > On Thu, Mar 28, 2024 at 05:18:21PM +0800, Minda Chen wrote:
+> > > > > If other vendor do not select PCI_HOST_COMMON, the driver data is
+> > > > > not struct pci_host_bridge.
+> > > >
+> > > > Also, I don't think this is the real problem.  Your
+> > > > PCIE_MICROCHIP_HOST Kconfig selects PCI_HOST_COMMON, and the
+> > driver
+> > > > calls pci_host_common_probe(), so the driver wouldn't even build
+> > > > without PCI_HOST_COMMON.
+> > > >
+> > > > This patch is already applied and ready to go, but if you can tell
+> > > > us what's really going on here, I'd like to update the commit log.
+> > > >
+> > > It is modified for Starfive code. Starfive JH7110 PCIe do not select
+> > > PCI_HOST_COMMON
+> > > plda_pcie_setup_iomems() will be changed to common plda code.
+> > >
+> > > I think I can modify the title and commit log like this.
+> > >
+> > > Title:
+> > > PCI: microchip: Get struct pci_host_bridge pointer from platform code
+> > >
+> > > Since plda_pcie_setup_iomems() will be a common PLDA core driver
+> > > function, but the argument0 is a struct platform_device pointer.
+> > > plda_pcie_setup_iomems() actually using struct pci_host_bridge pointer
+> > > other than platform_device pointer. Further more if a new PLDA core
+> > > PCIe driver do not select PCI_HOST_COMMON, the platform driver data is
+> > > not struct pci_host_bridge pointer. So get struct pci_host_bridge
+> > > pointer from platform code function
+> > > mc_platform_init() and make it to be an argument of
+> > > plda_pcie_setup_iomems().
+> > 
+> > OK, I see what you're doing.  This actually has nothing to do with whether
+> > PCI_HOST_COMMON is *enabled*.  It has to do with whether drivers use
+> > pci_host_common_probe().  Here's what I propose:
+> > 
+> >   PCI: plda: Pass pci_host_bridge to plda_pcie_setup_iomems()
+> > 
+> >   plda_pcie_setup_iomems() needs the bridge->windows list from struct
+> >   pci_host_bridge and is currently used only by pcie-microchip-host.c.  This
+> >   driver uses pci_host_common_probe(), which sets a pci_host_bridge as the
+> >   drvdata, so plda_pcie_setup_iomems() used platform_get_drvdata() to find
+> >   the pci_host_bridge.
+> > 
+> >   But we also want to use plda_pcie_setup_iomems() in the new pcie-starfive.c
+> >   driver, which does not use pci_host_common_probe() and will have struct
+> >   starfive_jh7110_pcie as its drvdata, so pass the pci_host_bridge directly
+> >   to plda_pcie_setup_iomems() so it doesn't need platform_get_drvdata() to
+> >   find it.
+> > 
+> OK, Thanks. 
+> 
+> I see PCIe 6.10 changed have been merged to main line. 
+> Should I resend this patch set base on 6.10-rc1? 
 
-I had coincidentally developed a PWM driver for the device.
-Based on my experience, I find that dynamically changing the coupled
-DIV_M value is quite complex.
-The current approach has limitations, especially with resolution
-changes, which can be unpredictable for users. For example:
+No need, I rebased it to f0bae243b2bc ("Merge tag 'pci-v6.10-changes'
+of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci") already and
+it will be a trivial rebase to v6.10-rc1 next week.
 
-  1. Enabling channel A automatically selects DIV_M.
-  2. Enabling coupled channel B with a specific period may result in
-poor resolution for channel B, as the DIV_M value depends on the
-period of channel A.
-  3. If channel B is enabled first, channel A may not be enabled if
-its period doesn't fit the DIV_M range selected by channel B.
+The current pci/controller/microchip branch is at:
+https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/log/?h=ed261441e224
+Let me know if anything is missing from there.  I can't merge it into
+linux-next until v6.10-rc1 is tagged, but as soon as it is, I'll put
+it in linux-next.
 
-Additionally, using APB as a clock source for the channels would
-further complicate the process.
-
-To simplify this, I suggest (maybe for the future) specifying these
-values directly in the Device Tree like this:
-```
-allwinner,pwm-coupled-channel-clock-sources="hosc", "apb", "hosc";
-allwinner,pwm-coupled-channel-clock-prescales=<0>, <3>, <8>;
-```
-This would delegate the complexity to the DT, making the resolution
-predictable for users.
-As a bonus, it introduces a way to select clock sources for each
-coupled channels.
-
-For the meantime, I think it is enough to use fixed "hosc" and <0> for
-regular use.
-
-Looking forward to your thoughts.
-
-Best regards,
-kikuchan.
+> > > > > Move calling platform_get_drvdata() to mc_platform_init().
+> > > > >
+> > > > > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > ---
+> > > > >  drivers/pci/controller/plda/pcie-microchip-host.c | 6 +++---
+> > > > >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > > > b/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > > > index 9b367927cd32..805870aed61d 100644
+> > > > > --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > > > +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> > > > > @@ -876,11 +876,10 @@ static void plda_pcie_setup_window(void
+> > > > > __iomem
+> > > > *bridge_base_addr, u32 index,
+> > > > >  	writel(0, bridge_base_addr + ATR0_PCIE_WIN0_SRC_ADDR);  }
+> > > > >
+> > > > > -static int plda_pcie_setup_iomems(struct platform_device *pdev,
+> > > > > +static int plda_pcie_setup_iomems(struct pci_host_bridge *bridge,
+> > > > >  				  struct plda_pcie_rp *port)
+> > > > >  {
+> > > > >  	void __iomem *bridge_base_addr = port->bridge_addr;
+> > > > > -	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
+> > > > >  	struct resource_entry *entry;
+> > > > >  	u64 pci_addr;
+> > > > >  	u32 index = 1;
+> > > > > @@ -1018,6 +1017,7 @@ static int mc_platform_init(struct
+> > > > > pci_config_window *cfg)  {
+> > > > >  	struct device *dev = cfg->parent;
+> > > > >  	struct platform_device *pdev = to_platform_device(dev);
+> > > > > +	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
+> > > > >  	void __iomem *bridge_base_addr =
+> > > > >  		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> > > > >  	int ret;
+> > > > > @@ -1031,7 +1031,7 @@ static int mc_platform_init(struct
+> > > > pci_config_window *cfg)
+> > > > >  	mc_pcie_enable_msi(port, cfg->win);
+> > > > >
+> > > > >  	/* Configure non-config space outbound ranges */
+> > > > > -	ret = plda_pcie_setup_iomems(pdev, &port->plda);
+> > > > > +	ret = plda_pcie_setup_iomems(bridge, &port->plda);
+> > > > >  	if (ret)
+> > > > >  		return ret;
+> > > > >
+> > > > > --
+> > > > > 2.17.1
+> > > > >
 
