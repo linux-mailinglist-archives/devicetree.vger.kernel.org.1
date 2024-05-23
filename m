@@ -1,151 +1,124 @@
-Return-Path: <devicetree+bounces-68822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85B648CDD15
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 01:05:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F9C8CDD66
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 01:16:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49C91284918
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 23:05:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2325C1F21321
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 23:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66E2C823B0;
-	Thu, 23 May 2024 23:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE80127E25;
+	Thu, 23 May 2024 23:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b="IHMELPK9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rBc97HNN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F4F5763E6
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 23:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C6122628D;
+	Thu, 23 May 2024 23:16:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716505505; cv=none; b=Mxhx57IUDLhaf/O3I3fLzJd28/H9B7Rhz2elWHf/3rBZ3CxXdAHck9hsA4fM3l3l0J7NYaZ8xjeOctq0GkcPMTnBRWIKWQKuUaWktZCfzFFvBCfZOMM+BhD6yoNUXSmKXxFToLGU4Q5jUuxi0+qd3FQQaXhgdVEChMVWfL21/NU=
+	t=1716506180; cv=none; b=KiiyVfaww0eMkcnp4fKKdVncIrjUI3oTxBV9qS7FFwn2C3etVNb9iMJiXAr+wExkCa4m9vVvcfEzn7MHV1NcpqMiNVkoY6UGlzzUpqBe4lbv3xgkLQC2khiRzruhzQpbaVhAxze0OPS7RAx+qYDMLmVyyBt6LuH3I3QSAfDQrXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716505505; c=relaxed/simple;
-	bh=BHiJmgEBa1gvLNWntn5RfkJD/TJ7EaO5QDPUeZlRx5Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sGjasLI+OADzL6bNgshD4Na9p4eLpb5csaKi1ivTK76bB7eWNRDQCWx+oklve2z88X2hAbPEENQ0A8CdkoOXkV3lUlt+PzGOz4Y6fy0ppF65twYxZmXjyHCSvDUuTVfP792EKruH8IPuYTZIPDSgyrYmSc5CwWuopZr/aqZjIWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b=IHMELPK9; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-529644ec0ebso272107e87.3
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 16:05:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks.com; s=google; t=1716505501; x=1717110301; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QNpjFzKLRaM/fVkxEdNIFaPzfJ+DbE01S4ZDfPlVfB0=;
-        b=IHMELPK9/4ypLFW5wg4nTxVkJwgUoOF9GZ3d1ePcF76wn9BLpNyQLuQ1mSqLgro5yv
-         9etqbQSF8L8OXkByHr5unmdydnjQ6M+DvS/qyLbNmbGQ5syR4pXWbnnCpckaWVvnKABL
-         E1PuJqriFx+SOoTcH4XmCjXuZuTw57oD2A9AtqYqxn4RZqu6dBK0t2xoCZefAkJxv3pm
-         NLnNADn6ephbT/Y4STbaa3N19q7bBvFCSVSmWq7niMKV9ur0QLRmjfKU0Ruh2vmFzcf8
-         ouatAxFmyS4Eay935ZahhIvtBe6KcLWhRUWREJxJ4TxxBOYwy3c3PgTjRimldIBOsixk
-         DQXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716505501; x=1717110301;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QNpjFzKLRaM/fVkxEdNIFaPzfJ+DbE01S4ZDfPlVfB0=;
-        b=KifZCPAIuc2YNlfPGfOrwKoylSUQFp9ICixR6lEe3tTINtG4HOO6tLZRqid7CGYJsO
-         /OCcg1Zix7hqJIrNQrjsOpOwocqevnxZS5pjdaNwHIywG/dr+BU6a/bZHG1pzgkje1OM
-         WDRLtZDlE9J36atsJko3TgRE7Ai2dtMsvEGQiYZ4z429xu5ZVIyGm2uKgFHenCpXPrI4
-         2bYUcPkrGpEUzhnFrfCA9qyojXBaodtVi+dKXZJaVXaX/6rDwB6fZKEQ/sqzTKQJhIcP
-         F18Wuh1ra93/AbHKgcdar0b9Dv1JVv4EJTDUxSOZTlCEXeKhUNtSd9tdVwH0niKIJhYR
-         ACFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkQuZrsx+49Z1bvAHpa0PqQnhYt6YGBsnJN586Wt3Q1qx0tm8ncamLmBu8uIxWkSI3ZmXSZG4KurnWycdVwHWH8Xwio0syTRqxCQ==
-X-Gm-Message-State: AOJu0YwZ+CTdxuZVBeiCN11KtxRpYDAvvkqoV8/fooibeEiqnvfguk9w
-	wIa/IW1SBgVuQ7lCKFmYI71FjtROsiAHk3zm1POllzY+/jHReR7LpYJdvWPcP/06fGNZfXVTtsv
-	H94Pp9itWNi35eeqHExAvWaW5rhk0m5fpBWJRrg==
-X-Google-Smtp-Source: AGHT+IEmckQyii9d5h+3SwFO5raoGBU1nq40RxOH1XcjOxKLm2r5qPhAiY+i55UsHnYaFQnU8ydp+dzH7XdOV3iZv2I=
-X-Received: by 2002:a19:7008:0:b0:522:3487:3f3b with SMTP id
- 2adb3069b0e04-52966005c1dmr291285e87.36.1716505501582; Thu, 23 May 2024
- 16:05:01 -0700 (PDT)
+	s=arc-20240116; t=1716506180; c=relaxed/simple;
+	bh=RMvLc10WWkec9Bi31rmmFKbk2xAmd6fxCrUUK6JQnKY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BByClvYGaFDO9BOrE37tbVG4WB8hbNeNgg8c/L42zg9lziZp9SDA+sA5Bop+/7xXnko28CsMA79KcSK4OBCgCWoShOnLtDhVkvQOle53toltdYYryfbsrm7UDyk1Uzdhfw3hi4xoEUoq4ZjlLYkNa+YJDjf22enDzPFJW7XCJG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rBc97HNN; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44NNFGDH024880;
+	Thu, 23 May 2024 18:15:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716506116;
+	bh=qZ1DEGnaLNezLOzzeQrglFpvM2/JdS3Dq5AU/Q5NwRg=;
+	h=From:To:CC:Subject:Date;
+	b=rBc97HNNBmZj3M+HyXfTX/UITDf7MiizL6f6aj+cprIVXkE9cdh+ac1SHWFEUfpdx
+	 HDRCqaUZM+VSrrwbG9GbV5NeBcVefcCuPnfNt4qXKiJHy7hdSxK6P2u9R5XuYSuYEq
+	 cFezM4fZTjCsTnLhSHSedgiJ21Kz/0W97TYL1BcQ=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44NNFGrl047687
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 23 May 2024 18:15:16 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 23
+ May 2024 18:15:16 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 23 May 2024 18:15:16 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44NNFGqK008143;
+	Thu, 23 May 2024 18:15:16 -0500
+From: Judith Mendez <jm@ti.com>
+To: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>
+CC: David Lechner <david@lechnology.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        Nishanth Menon
+	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: [PATCH v2 0/8] Enable eQEP DT support for Sitara K3 platforms
+Date: Thu, 23 May 2024 18:15:08 -0500
+Message-ID: <20240523231516.545085-1-jm@ti.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240522215043.3747651-1-tharvey@gateworks.com>
- <07250029-7cea-4a82-9e70-22e0e6f7fb37@linaro.org> <20240523-vividly-sequester-d85ac7bccbbd@spud>
-In-Reply-To: <20240523-vividly-sequester-d85ac7bccbbd@spud>
-From: Tim Harvey <tharvey@gateworks.com>
-Date: Thu, 23 May 2024 16:04:50 -0700
-Message-ID: <CAJ+vNU3fQt=6t3a_QFU_3jb5mTVLGJiptPnGEmWvvXZYGEPOFQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Li Yang <leoyang.li@nxp.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, May 23, 2024 at 7:47=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Thu, May 23, 2024 at 09:02:46AM +0200, Krzysztof Kozlowski wrote:
-> > On 22/05/2024 23:50, Tim Harvey wrote:
-> > > The GW7905 was renamed to GW7500 before production release.
-> > >
-> > > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documen=
-tation/devicetree/bindings/arm/fsl.yaml
-> > > index 0027201e19f8..d8bc295079e3 100644
-> > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > @@ -920,8 +920,8 @@ properties:
-> > >                - fsl,imx8mm-ddr4-evk       # i.MX8MM DDR4 EVK Board
-> > >                - fsl,imx8mm-evk            # i.MX8MM EVK Board
-> > >                - fsl,imx8mm-evkb           # i.MX8MM EVKB Board
-> > > +              - gateworks,imx8mm-gw75xx-0x # i.MX8MM Gateworks Board
-> >
-> > That's not even equivalent. You 7500 !=3D 75xx.
-> >
->
-> > >                - gateworks,imx8mm-gw7904
-> > > -              - gateworks,imx8mm-gw7905-0x # i.MX8MM Gateworks Board
-> >
-> > Compatibles do not change. It's just a string. Fixed string.
->
-> I think there's justification here for removing it, per the commit
-> message, the rename happened before the device was available to
-> customers.
-> Additionally, I think we can give people that upstream things before they=
-'re
-> publicly available a bit of slack, otherwise we're just discouraging
-> people from upstreaming early.
+This patch series adds eQEP DT nodes for K3 Sitara devices:
+- AM62x
+- AM62ax
+- AM62px
+- AM64x
 
-Hi Conor,
+Also enable eQEP to be built as a module for ARCH_k3.
 
-Thanks for understanding - that's exactly what happened. I'm in the
-habit of submitting patches early and often and it's no fun when
-something like a silly product name gets changed and breaks all the
-hard work.
+Changes since v1:
+- Add new compatible ti,am62-eqep
+- Fix eqep binding for new compatible, require
+ power-domains for new compatible
+- Fix eQEP DT node to use new ti,am62-eqep compatible
 
-The board model number is stored in an EEPROM at manufacturing time
-and that EEPROM model is used to build a dt name. So instead of GW7905
-which would be a one-off custom design it was decided to change the
-product to a GW75xx. The difference between GW7500 and GW75xx is
-because we subload components on boards between GW7500/GW7501/GW7502
-etc but the dt is the same.
+Judith Mendez (8):
+  counter/ti-eqep: Add new ti-am62-eqep compatible
+  dt-bindings: counter: Add new ti,am62-eqep compatible
+  arm64: dts: ti: k3-am62-main: Add eQEP nodes
+  arm64: dts: ti: k3-am62a-main: Add eQEP nodes
+  arm64: dts: ti: k3-am62p-main: Add eQEP nodes
+  arm64: dts: ti: k3-am64-main: Add eQEP nodes
+  counter: ti-eqep: Allow eQEP driver to be built for K3 devices
+  arm64: defconfig: Enable TI eQEP Driver
 
-If there is resistance to a patch that renames it then I guess I'll
-have to submit a patch that removes the obsolete board, then adds back
-the same board under a different name. Shall I do that?
+ .../devicetree/bindings/counter/ti-eqep.yaml  | 53 +++++++++++++++++--
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 27 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 27 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 27 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 27 ++++++++++
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/counter/Kconfig                       |  2 +-
+ drivers/counter/ti-eqep.c                     |  1 +
+ 8 files changed, 159 insertions(+), 6 deletions(-)
 
-Best Regards,
 
-Tim
+base-commit: 534ad093bb80f19c20b251a89f09ce1a0e3d4f2d
+-- 
+2.45.1
+
 
