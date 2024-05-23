@@ -1,427 +1,146 @@
-Return-Path: <devicetree+bounces-68736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0F8A8CD2CB
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 14:53:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24FBC8CD343
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:10:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3A431C2156B
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 12:53:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A802CB21970
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 13:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54695152165;
-	Thu, 23 May 2024 12:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B133414A4D9;
+	Thu, 23 May 2024 13:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y6mmgywH"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SJ7zIdPY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5880114A634
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 12:49:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC0113BAE3
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 13:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716468590; cv=none; b=efSSPX5YwiUw46NuHqKS40qn2ye8xwyx1bPL6trFtSX70AGz5uCMscjB4Bo2wXCS443703mS4SsA5orySWKKK31KY8n7mzH3UDfcFCigoDaD7/NVmKmmZ2xpeb4wTmEyXyso9SergV7MYgou2LlDDdJkFkrjqlsm9+SQq9g3A8g=
+	t=1716469810; cv=none; b=QxC+0T6oBg/A1GXcDrfnQ9bwWXzM217Z+UCyTeeddjJdTpae3twKbVoR6pgIV9pjOfixtGWJ+dkqqgvN4qOfDiaVWG+jwUcLbyX343EcO7mCgnbbvwEVwYa4C7Vc2IFKYJu52JNhSHxdXiVbUfUuffDhYo/Y4HE2vWGBdomNvzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716468590; c=relaxed/simple;
-	bh=Miid+XRLrzyZJ6tHRL1QimqZm1BYrPtI1n+pX0IpuHI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=i8tpzjBRdmb98QzgTfGrWllcBCYJ+7Us5tkoj4vDGpuNbeoWnrvkI6XINSZBf5KR2fO4p3JQ2dlH35AvbZBAH4UUKWke/4hgOQaURHAnEPWIGT0XP8nNntGNets09SZW9gxFz0V+hQdY5COqGJrhf7ezsny+qCTsuebJNIICkII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y6mmgywH; arc=none smtp.client-ip=209.85.221.49
+	s=arc-20240116; t=1716469810; c=relaxed/simple;
+	bh=7/zN4LutuvDH5MlsPYdxcjgISQwlC47iGGavoXQlvDA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hZORzktfrNgI9jB4zAXiKjWeA81Um1Egp9IguZVreAumcRQgYBmNErzyoo0rSrJJa2TniVRJubs/MIlsuL7D/GU54ORm5d4AJZuyJm9L52jNm9/qJoZyGmVFs0nJDCmrzr3/hzC2VurrQo77I8EU8AACMR/mA4rv0MmzT5TjC3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=SJ7zIdPY; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-354de97586cso2215816f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 05:49:48 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2e45c0a8360so67491911fa.3
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 06:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716468587; x=1717073387; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oycOZ7tNpDXuadcC0Px0ysSti2axPPJ+EdThdDwGHQA=;
-        b=y6mmgywH0/pBj0GYa3/SgTO/JJguEkei+7CLjh9hRz3gslg0vD1tVuxSBzg+1jxJvU
-         lwCg+48R6KT5VK+O/wObYASVLizkHp/LhJbx5JRjuivuT+5XITYawdQGPbrCF2CxwNMH
-         /wyVA8/bEs0Y70KrEXwiwhqcQ/9XNcRYBSd4nePh9JaVoO30DeBLOcISaVayj2AwrA5a
-         ArlNL2xnucWQ36ku703WjteO4fGoz3YvVFC68z/cu6vL9ogXd877/Vu81z6ojkKISbIS
-         GEe4hNmTq66e9Hvmzddm1Bxrgnbw/ULMF6DqpPlWBFkwMGr+SpVRwbLlKfOBHqhvXTSI
-         t+ag==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716469806; x=1717074606; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NccXt9V6EN2SZG8Lr1Uq+9HYjGPYWjd0QyMlNEPIscY=;
+        b=SJ7zIdPYJcDoZQDp9mfkzz/2gh9LjUVxz3X801uIKrfamHZhoDN/cvIjvzFe70gZYG
+         CZ2PdHU3+9I8NKHcaT5JnpPTtkBcWn1s4XemYC04Iig8fV5Vf7zZIiE9jcpTZ4vmnDVx
+         KU6wAW2l9XDtVr7YrDtH5VIPAuO3lL5ZV8Sdg49AVHr9mNmUlGmOQc3bNlPTaJAzEGBK
+         CVnBx6wcdi9GhArCUXiCDEt8zZvMcOw1nU46qIeQUm0Gboll4QbycAx+JvAjM0npctmd
+         K9imgDDwcXZVfXPn1/ZNIUMYAB+IFe2hYh9k68ajjUWqSxktAwALOX1KejeKMbBFYQZi
+         cBDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716468587; x=1717073387;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oycOZ7tNpDXuadcC0Px0ysSti2axPPJ+EdThdDwGHQA=;
-        b=TtEAvlWefMHL3v5tafJRhXuzQ9VMkLv2TmwU3JekGJhsGCTcxJiN6WICFN5jmkjh20
-         1ku0gqeBK8v/zYPXSzFXcwLYLpPLroQ7gEY3qBxN0PRCBog6aiarMreS1uUVUiNqEA4F
-         FM1j31uT7Lv0wuaG8r+OMJgl0mmfsTIcatBKwY/i+M2gvHL0EN8L3EBW/9Yw+UnqrbiD
-         J/6BNVSdstHNqKHawUFwhGB9VuDDFvZRE+Vg9EMgTq3SMaibY3EyQZOWNiGfmtvn5LHQ
-         CJck59MHRYY7ee9WB75VdwTS6MNf20xfXaj60P6vB+5fZJrRHPCKbv63LEqiCW/7x+Q5
-         Pf9A==
-X-Forwarded-Encrypted: i=1; AJvYcCU/P2RPLCqBO7aWZFNK+Gm3z4hh0pvana5WgraPusAfTb6HDWMDrsqbXOBmFJn2m7i4B9xuaqs2JL9Sbq98ueK1WSxzIf214r/BhQ==
-X-Gm-Message-State: AOJu0YxgOnmgfcEVDsUq2wxblSHLRhdA/lsR1tOL23hp1iSPOzKYuSen
-	44OZhAytRT+eKaelKRmM1MYW1mUSTRThbdOmhOk+kYkvFCXuyp5UVd/dliJQNro=
-X-Google-Smtp-Source: AGHT+IEZBKw4aRDaUfqIZ3HhxIEs0XVj22IR3fb3hJtSwVaakG3EHrDMERpceHbfsvVhrvnaHwM2Yw==
-X-Received: by 2002:a5d:6e0e:0:b0:34a:e884:977b with SMTP id ffacd0b85a97d-354d8cde868mr3706774f8f.32.1716468586704;
-        Thu, 23 May 2024 05:49:46 -0700 (PDT)
-Received: from [127.0.1.1] ([93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-354faf3fa68sm1259611f8f.116.2024.05.23.05.49.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 May 2024 05:49:46 -0700 (PDT)
-From: Alexandre Mergnat <amergnat@baylibre.com>
-Date: Thu, 23 May 2024 14:49:28 +0200
-Subject: [PATCH v4 15/15] arm64: dts: mediatek: add display support for
- mt8365-evk
+        d=1e100.net; s=20230601; t=1716469806; x=1717074606;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NccXt9V6EN2SZG8Lr1Uq+9HYjGPYWjd0QyMlNEPIscY=;
+        b=YyDjis/5unfo+yxBPeYDTIKwXD3HnxlaDOcEJOeNqQGZRcJ1QcYDPzXWFLu003xrAs
+         P7n7wJ7MAVMAd5MWut9yz1g0vYw8E02NRkAHIpTh0byxcXgS61unadVgzseVe8cpSEaT
+         +pGpuwMcliEXlfRu0TcECFNHmleF+I/cZ5huLcuhiu0q6a/IOe97Wke3pH0NKbB0tPe6
+         ziCOXefzK/7YBhAopydwT2k/J6NMx0kdAljJ/TlZoB6R3/h0qkWLyS4CKiNUqWS5PTL0
+         +gYIsV9X382+epPbmIWhCE0yqiJdizHDqgMFry3Mqfs2zeUjOKq+e7MvnQn1MGf9zkI4
+         /JRA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVUjky54hBmZxHup6He9Ps0nKToGBa6kzjg7782DKnree5fK9JA0c4feiSdmBYvyq0iAmEy38k4GLg10ATHIcHRqB/ZMkTQ5xPRQ==
+X-Gm-Message-State: AOJu0YyGm79ca2/l8ehkYUP2P9v3BxZNLLGLghwI//XZkznPorhrFUmu
+	vq0liozaQkTo6eD83oSO8rQZi57lvYifx75j6rphWm/1gM2E3tahgICW1UliNnY=
+X-Google-Smtp-Source: AGHT+IF//hB8svNbFPr+Fzi5E4/LRkRs6MwKRwT77fKfQWBL+TGZH5TPLNErkfhtpJJqNcroXOX4DA==
+X-Received: by 2002:a2e:a444:0:b0:2e5:2c7e:257 with SMTP id 38308e7fff4ca-2e94949dfa2mr32000371fa.30.1716469806333;
+        Thu, 23 May 2024 06:10:06 -0700 (PDT)
+Received: from ?IPV6:2a04:cec2:21:7ed1:cc40:dfff:5a22:b06a? ([2a04:cec2:21:7ed1:cc40:dfff:5a22:b06a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100f64f98sm24634225e9.24.2024.05.23.06.10.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 May 2024 06:10:05 -0700 (PDT)
+Message-ID: <f00a65a9-e7b0-4811-ba25-2a5a0f932a49@baylibre.com>
+Date: Thu, 23 May 2024 15:10:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231023-display-support-v4-15-ed82eb168fb1@baylibre.com>
-References: <20231023-display-support-v4-0-ed82eb168fb1@baylibre.com>
-In-Reply-To: <20231023-display-support-v4-0-ed82eb168fb1@baylibre.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7338; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=Miid+XRLrzyZJ6tHRL1QimqZm1BYrPtI1n+pX0IpuHI=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBmTztT5vXYcQ4OqH46y/UQ4yMaKGBks0Vn1gzo0f3u
- /sBJobuJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZk87UwAKCRArRkmdfjHURfz8EA
- CxQ2SYZy/golUmlaRHjwXobDoreqHuQxY/59fsMFVIAOlaebtWs6zAjZpasYJyvBXdqsk1zztecnPD
- P9813ZmEpeETVyb4TR1JBjpkRbZSDIMJZrps3Fcy6jpFo8Lu7zsUj6OcYB2BmVdCDqYJ6IP4Bx+7tJ
- h2JhhyhIMoSOh+8Sonm6NrQ67pYCXox3ygX5hV1lOUSk7+hlOkQqydg0BWXf8aoVIbiszauu8dUMMc
- uKe/F/TbNeE5QXy8+ZjDO1QZlMXuKFi+b2cnO0Pl60UtxSAiddfCDPcTLWuTB5I6E/vSRF+aCcjlAw
- IGQ0wPZ17t52s1YfUtg+KDFE4yX7CwUCKBtMY9VQn1WcLPBq4L1381kJP1hWx4FG/ozo8XpfaAGb+9
- SvRST6gL9JnVcbqDCltfVsXOyQcPATDLLFAY8z0FNxnyZ8NY5CHwBlPPBait+4UlkKP90skXAkjK28
- DFtDBR/EJNkEvMI8KjxQI2z7xV2WFKSprHVODt8wNKXz2HeGxzG54Po1XMvMP2IZLL1uzGAhtbiLKr
- epOx0DoRGs5+Q8VTk5P124G7PTSogLkHwyWsLMspSkc6lwwXR+6M6ltAvqHV6URtIuukdqQghyQdOw
- aNcKNiib+aSHhqDIGIqJMienVEgncy7DwaSFG2+r8zV+zbbHi4kT9WmV2BhA==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] thermal: Add support of multiple sensors
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, rafael@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: rui.zhang@intel.com, lukasz.luba@arm.com, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240119110842.772606-1-abailon@baylibre.com>
+ <03fbaefa-de17-47f0-a48d-7b40e5df50f6@linaro.org>
+Content-Language: en-US
+From: Alexandre Bailon <abailon@baylibre.com>
+In-Reply-To: <03fbaefa-de17-47f0-a48d-7b40e5df50f6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-MIPI DSI:
-- Add "vsys_lcm_reg" regulator support and setup the "mt6357_vsim1_reg",
-to power the pannel plugged to the DSI connector.
-- Setup the Display Parallel Interface.
-  - Add the startek kd070fhfid015 pannel support.
+Hi Daniel,
 
-HDMI:
-- Add HDMI connector support.
-- Add the "ite,it66121" HDMI bridge support, driven by I2C1.
-- Setup the Display Parallel Interface.
+On 4/30/24 16:37, Daniel Lezcano wrote:
+> 
+> Hi Alexandre,
+> 
+> On 19/01/2024 12:08, Alexandre Bailon wrote:
+>> Following this comment [1], this updates thermal_of to support multiple
+>> sensors.
+>>
+>> This has some limitations:
+>> - A sensor must have its own termal zone, even if it is also registered
+>>    inside a thermal zone supporting multiple sensors.
+>> - Only support weighted average
+> 
+> Is it possible to elaborate why this feature is needed ?
+> 
+> The thermal framework is able to aggregate the cooling device requests, 
+> so having multiple sensors aggregated or the cooling device requests is 
+> from my point of view the same.
+> 
+> I can imagine one reason to do that is to group the sensors in order to 
+> use the IPA because it won't work the setup mentioned above.
+> 
+> Is that the goal you want to achieve ?
+Yes, the goal is to use IPA.
+I will give more details in the v3.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 236 ++++++++++++++++++++++++++++
- 1 file changed, 236 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 50cbaefa1a99..6e972e2c1586 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -26,6 +26,21 @@ chosen {
- 		stdout-path = "serial0:921600n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "d";
-+
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			hdmi_connector_in: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&hdmi_connector_out>;
-+			};
-+		};
-+	};
-+
- 	firmware {
- 		optee {
- 			compatible = "linaro,optee-tz";
-@@ -86,6 +101,15 @@ optee_reserved: optee@43200000 {
- 			reg = <0 0x43200000 0 0x00c00000>;
- 		};
- 	};
-+
-+	vsys_lcm_reg: regulator-vsys-lcm {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&pio 129 GPIO_ACTIVE_HIGH>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "vsys_lcm";
-+	};
- };
- 
- &cpu0 {
-@@ -108,6 +132,89 @@ &cpu3 {
- 	sram-supply = <&mt6357_vsram_proc_reg>;
- };
- 
-+&dither0_out {
-+	remote-endpoint = <&dsi0_in>;
-+};
-+
-+&dpi0 {
-+	pinctrl-0 = <&dpi_default_pins>;
-+	pinctrl-1 = <&dpi_idle_pins>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+			dpi0_in: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&rdma1_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+			dpi0_out: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&it66121_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "startek,kd070fhfid015";
-+		reg = <0>;
-+		enable-gpios = <&pio 67 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&pio 20 GPIO_ACTIVE_HIGH>;
-+		iovcc-supply = <&mt6357_vsim1_reg>;
-+		power-supply = <&vsys_lcm_reg>;
-+
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			panel_in: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&dsi0_out>;
-+			};
-+		};
-+	};
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+			dsi0_in: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&dither0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+			dsi0_out: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
- &ethernet {
- 	pinctrl-0 = <&ethernet_pins>;
- 	pinctrl-names = "default";
-@@ -138,6 +245,56 @@ &i2c0 {
- 	status = "okay";
- };
- 
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-div = <2>;
-+	clock-frequency = <100000>;
-+	pinctrl-0 = <&i2c1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	it66121_hdmi: hdmi@4c {
-+		#sound-dai-cells = <0>;
-+		compatible = "ite,it66121";
-+		interrupt-parent = <&pio>;
-+		interrupts = <68 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&ite_pins>;
-+		pinctrl-names = "default";
-+		reg = <0x4c>;
-+		reset-gpios = <&pio 69 GPIO_ACTIVE_LOW>;
-+		vcn18-supply = <&mt6357_vsim2_reg>;
-+		vcn33-supply = <&mt6357_vibr_reg>;
-+		vrf12-supply = <&mt6357_vrf12_reg>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0>;
-+				it66121_in: endpoint@0 {
-+					reg = <0>;
-+					bus-width = <12>;
-+					remote-endpoint = <&dpi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <1>;
-+				hdmi_connector_out: endpoint@0 {
-+					reg = <0>;
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &mmc0 {
- 	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
- 	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
-@@ -180,7 +337,55 @@ &mt6357_pmic {
- 	#interrupt-cells = <2>;
- };
- 
-+&mt6357_vsim1_reg {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+};
-+
- &pio {
-+	dpi_default_pins: dpi-default-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_0_GPIO0__FUNC_DPI_D0>,
-+				 <MT8365_PIN_1_GPIO1__FUNC_DPI_D1>,
-+				 <MT8365_PIN_2_GPIO2__FUNC_DPI_D2>,
-+				 <MT8365_PIN_3_GPIO3__FUNC_DPI_D3>,
-+				 <MT8365_PIN_4_GPIO4__FUNC_DPI_D4>,
-+				 <MT8365_PIN_5_GPIO5__FUNC_DPI_D5>,
-+				 <MT8365_PIN_6_GPIO6__FUNC_DPI_D6>,
-+				 <MT8365_PIN_7_GPIO7__FUNC_DPI_D7>,
-+				 <MT8365_PIN_8_GPIO8__FUNC_DPI_D8>,
-+				 <MT8365_PIN_9_GPIO9__FUNC_DPI_D9>,
-+				 <MT8365_PIN_10_GPIO10__FUNC_DPI_D10>,
-+				 <MT8365_PIN_11_GPIO11__FUNC_DPI_D11>,
-+				 <MT8365_PIN_12_GPIO12__FUNC_DPI_DE>,
-+				 <MT8365_PIN_13_GPIO13__FUNC_DPI_VSYNC>,
-+				 <MT8365_PIN_14_GPIO14__FUNC_DPI_CK>,
-+				 <MT8365_PIN_15_GPIO15__FUNC_DPI_HSYNC>;
-+			drive-strength = <4>;
-+		};
-+	};
-+
-+	dpi_idle_pins: dpi-idle-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_0_GPIO0__FUNC_GPIO0>,
-+				 <MT8365_PIN_1_GPIO1__FUNC_GPIO1>,
-+				 <MT8365_PIN_2_GPIO2__FUNC_GPIO2>,
-+				 <MT8365_PIN_3_GPIO3__FUNC_GPIO3>,
-+				 <MT8365_PIN_4_GPIO4__FUNC_GPIO4>,
-+				 <MT8365_PIN_5_GPIO5__FUNC_GPIO5>,
-+				 <MT8365_PIN_6_GPIO6__FUNC_GPIO6>,
-+				 <MT8365_PIN_7_GPIO7__FUNC_GPIO7>,
-+				 <MT8365_PIN_8_GPIO8__FUNC_GPIO8>,
-+				 <MT8365_PIN_9_GPIO9__FUNC_GPIO9>,
-+				 <MT8365_PIN_10_GPIO10__FUNC_GPIO10>,
-+				 <MT8365_PIN_11_GPIO11__FUNC_GPIO11>,
-+				 <MT8365_PIN_12_GPIO12__FUNC_GPIO12>,
-+				 <MT8365_PIN_13_GPIO13__FUNC_GPIO13>,
-+				 <MT8365_PIN_14_GPIO14__FUNC_GPIO14>,
-+				 <MT8365_PIN_15_GPIO15__FUNC_GPIO15>;
-+		};
-+	};
-+
- 	ethernet_pins: ethernet-pins {
- 		phy_reset_pins {
- 			pinmux = <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPIO133>;
-@@ -222,6 +427,33 @@ pins {
- 		};
- 	};
- 
-+	i2c1_pins: i2c1-pins {
-+		pins {
-+			pinmux = <MT8365_PIN_59_SDA1__FUNC_SDA1_0>,
-+				 <MT8365_PIN_60_SCL1__FUNC_SCL1_0>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	ite_pins: ite-pins {
-+		irq_ite_pins {
-+			pinmux = <MT8365_PIN_68_CMDAT0__FUNC_GPIO68>;
-+			input-enable;
-+			bias-pull-up;
-+		};
-+
-+		pwr_pins {
-+			pinmux = <MT8365_PIN_70_CMDAT2__FUNC_GPIO70>,
-+				 <MT8365_PIN_71_CMDAT3__FUNC_GPIO71>;
-+			output-high;
-+		};
-+
-+		rst_ite_pins {
-+			pinmux = <MT8365_PIN_69_CMDAT1__FUNC_GPIO69>;
-+			output-high;
-+		};
-+	};
-+
- 	mmc0_default_pins: mmc0-default-pins {
- 		clk-pins {
- 			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
-@@ -377,6 +609,10 @@ &pwm {
- 	status = "okay";
- };
- 
-+&rdma1_out {
-+	remote-endpoint = <&dpi0_in>;
-+};
-+
- &ssusb {
- 	dr_mode = "otg";
- 	maximum-speed = "high-speed";
-
--- 
-2.25.1
-
+Thanks,
+Alexandre
+> 
+>> Changes in v2:
+>> - Rebased on 6.7
+>> - Seperated generic multi sensor and dt specfic code
+>> - Simplified the code
+>> - Drop min / max and only do weighted average (seems more adequate for 
+>> IPA)
+>>
+>> [1]: https://patchwork.kernel.org/comment/24723927/
+>>
+>> Alexandre Bailon (3):
+>>    dt-bindings: thermal: Restore the thermal-sensors property
+>>    thermal: Add support of multi sensors to thermal_core
+>>    thermal: Add support of multi sensors to thermal_of
+>>
+>>   .../bindings/thermal/thermal-zones.yaml       |   5 +-
+>>   drivers/thermal/Makefile                      |   1 +
+>>   drivers/thermal/thermal_core.h                |   7 +
+>>   drivers/thermal/thermal_multi.c               | 178 ++++++++++++++++++
+>>   drivers/thermal/thermal_of.c                  | 139 ++++++++++++++
+>>   5 files changed, 327 insertions(+), 3 deletions(-)
+>>   create mode 100644 drivers/thermal/thermal_multi.c
+>>
+> 
 
