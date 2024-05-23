@@ -1,123 +1,89 @@
-Return-Path: <devicetree+bounces-68796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFEC8CDAEE
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:33:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF6C8CDAFB
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:45:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D6C3B236F6
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 19:33:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A33BB22612
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 19:45:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3665684A34;
-	Thu, 23 May 2024 19:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B0E284A30;
+	Thu, 23 May 2024 19:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJ8wCSnQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8W0AOho"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF07C84A27;
-	Thu, 23 May 2024 19:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC4355FB9C;
+	Thu, 23 May 2024 19:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716492825; cv=none; b=gmH8VHrbq7SI1i2QXFqpuovVfDu9JB5UdoasfmAQUDVAc26tjZ7bsWvVqWiGIsEv0ZQ7rhu8HEdnny0C4sPAFXzDeIerdsrTp7GFEj4jepxXlEzWScNJw2yZ6o+/Jms5PG97rWYrAK0mXHS15gOrAUL71oPfMZW94wt0l+sOWXE=
+	t=1716493511; cv=none; b=Fwc0ajzU3/Egly0mWJkxR5ApyF18uAqyhd8R6s9Gcq2rLVh0Rkyq9rsJ16NRisagRC1cODnOvfNVeYYw/VtDAzeKYlQu0i3qAjS7z7OKH81Hnu3sQjGkMecbhBaLMAAxinJkljYrFr3O6TX15sI7oXhKdpRCt8nJWqAV3jtRaZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716492825; c=relaxed/simple;
-	bh=b6J+elZwD4xE9hgMeYlYy/kGwaXhneuYcL/jeP1V5OM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FpD+q5tTz/FNSp6y2RWV1nAzHa5yCbxYtyHcUK7odHtku0F8bjuvsGh0AzHUZVxmpv9+zUdw+QUkhnSp+pUW0w3vdp+fODyJckkLpuCy8yKgyTnttbRz9jOx1LuhjCarhosjYrj5Yyo3dikzm0H4wthbUzsy7hKoFs51Lk2qBBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJ8wCSnQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F03DAC2BD10;
-	Thu, 23 May 2024 19:33:40 +0000 (UTC)
+	s=arc-20240116; t=1716493511; c=relaxed/simple;
+	bh=JbL1YQc7XIQR2UADcbvWlAd8dwqij8i2yvBbh/aBN54=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O3+RNvnpnDitLXhtFDWuQjIT26xAklOF5n1RrT4FuOXZ0VfKgBCmzuqaItnGICBooPzWvMfmlHRYgQW1dcP3y1+itWor2+XYy/cdqnIt5NbzwF5HHK93GxPIbxoyJmFcHrdoCpVw/JyI6QdZcqAjgOUjnOwZbh1m2fAXxTXcly4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8W0AOho; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38D8CC3277B;
+	Thu, 23 May 2024 19:45:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716492824;
-	bh=b6J+elZwD4xE9hgMeYlYy/kGwaXhneuYcL/jeP1V5OM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qJ8wCSnQCyP1Y5lWQZxFLADe/4lC2KWx8fUn4klan9iPI4CjeDFl3zBOLWUkaOui5
-	 1CthTA4Z8+w5hkKWS1AlPAwtAHXDUqVhd48lanEkG1XezDHlVMjg+lG3YlqT6dNUfz
-	 U5jAKnlNbq4O7HZ37jrR8WDbhBZfNUqnIeJwqmWu5bS2EjhWKicjLqkF7pSNomGPZH
-	 W190I2rDbrBz912EgZbHmBcXoAuriOkxfQT5elzB6/BMshF0MPk3P2fY0rcW/WijSV
-	 5iuvns3sK6jG4XIge95T/1BFNszGsGJds3vmf1fsZthDvnYttaf5bJbctitYFBa7bh
-	 +MdfyQSLz25Eg==
-Date: Thu, 23 May 2024 20:33:38 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org,
-	linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-	kernel-janitors@vger.kernel.org,
-	LKML <linux-kernel@vger.kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
-	Mark Brown <broonie@kernel.org>,
-	Ninad Palsule <ninad@linux.ibm.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [v6 17/20] ARM: dts: aspeed: Add IBM Huygens BMC system
-Message-ID: <20240523-rinse-sturdily-7c78d8517884@spud>
-References: <20240522192524.3286237-18-eajames@linux.ibm.com>
- <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
- <910b18b7-3717-4087-b028-fcaf5f2a604b@linux.ibm.com>
- <398bf753-6701-4925-b814-781a68a75cc5@web.de>
+	s=k20201202; t=1716493509;
+	bh=JbL1YQc7XIQR2UADcbvWlAd8dwqij8i2yvBbh/aBN54=;
+	h=From:To:Cc:Subject:Date:From;
+	b=u8W0AOho/ZcpS7IMP8I+Rg3DUahaQ24B69IGzgC/TjwNfxDEF+hBV9A0SL9r7GONm
+	 LnBOdelRcangdL1aObr85Cxg90s0pUlaSywkYSshS5ZNXMCJSb0uTYri+irgcdJmeW
+	 qoR2FvYu5IbgoMXgxv24qmrOqaEOW5QwA6RwDUl9MtFJbBEQu90l13b5aQ1JcE07D6
+	 IJvhg3JXVuYhJ3/M7Fi0kz5LZqAFNP1Z6PbGaQVVS2VtYIcKC62A+3tp7Krf0Vi+6u
+	 xD0xyConBiekYJaqoYuXNZFx0EbVzWhLUMiQfFaZtfVfl7x+uhYvC2JLHTzTkwh2LE
+	 cFxrpkaXww16A==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Stephen Boyd <swboyd@chromium.org>
+Cc: linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: realtek,rts5411: Add missing "additionalProperties" on child nodes
+Date: Thu, 23 May 2024 14:44:59 -0500
+Message-ID: <20240523194500.2958192-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="F3aOdyo1Rjmg6l29"
-Content-Disposition: inline
-In-Reply-To: <398bf753-6701-4925-b814-781a68a75cc5@web.de>
+Content-Transfer-Encoding: 8bit
 
+All nodes need an explicit additionalProperties or unevaluatedProperties
+unless a $ref has one that's false. As that is not the case with
+usb-device.yaml, "additionalProperties" is needed here.
 
---F3aOdyo1Rjmg6l29
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: c44d9dab31d6 ("dt-bindings: usb: Add downstream facing ports to realtek binding")
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/usb/realtek,rts5411.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Markus,
+diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+index 0874fc21f66f..6577a61cc075 100644
+--- a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
++++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+@@ -65,6 +65,7 @@ patternProperties:
+     description: The hard wired USB devices
+     type: object
+     $ref: /schemas/usb/usb-device.yaml
++    additionalProperties: true
+ 
+ required:
+   - peer-hub
+-- 
+2.43.0
 
-On Thu, May 23, 2024 at 09:30:55PM +0200, Markus Elfring wrote:
-> >>> The Huygens is a Rainier with modifed FSI wiring.
-> >> Will imperative wordings become helpful for a better commit message he=
-re?
-> >
-> >
-> > This statement is a description of hardware. I cannot word that imperat=
-ively.
->=20
-> Please take another look at corresponding improvement possibilities.
->=20
->=20
-> > The commit message is imperative - "Add Huygens system".
->=20
-> This information fits to the summary phrase.
->=20
-> Would you like to mention in the changelog that a hardware description
-> should be extended anyhow?
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/D=
-ocumentation/process/submitting-patches.rst?h=3Dv6.9#n94
-
-You are talking absolute crap here. Stop harassing contributors with
-your inane comments.
-
-Thanks,
-Conor.
-
---F3aOdyo1Rjmg6l29
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZk+aEgAKCRB4tDGHoIJi
-0mb/AQDX7B+NkGBYPuEc6h8NwJ+uUcyqGhHnz75SmYF7f+e18wEA0SPKX+z6SMf8
-FVfYwuJ8FPV4UOZultKHc8HwIWcuBws=
-=nUOM
------END PGP SIGNATURE-----
-
---F3aOdyo1Rjmg6l29--
 
