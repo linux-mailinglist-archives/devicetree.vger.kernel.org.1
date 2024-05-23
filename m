@@ -1,149 +1,130 @@
-Return-Path: <devicetree+bounces-68790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FA308CDA4E
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9735D8CDA54
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:01:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B15291C21D3A
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:58:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82B81C21E43
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 19:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AF6F7FBDD;
-	Thu, 23 May 2024 18:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D08762DC;
+	Thu, 23 May 2024 19:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="nIS/d4Lq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from unicorn.mansr.com (unicorn.mansr.com [81.2.72.234])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1761D4F602;
-	Thu, 23 May 2024 18:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.2.72.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A7A28F5;
+	Thu, 23 May 2024 19:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716490690; cv=none; b=gCpi9SJhTjyMGoA9O8LY0SDlYCRvTdkN4Kuz35CAaFKCvBH+pOjER5N9XzAdDoHotjY6AfmmL+hhcim5hNm9POj1aUnzsgO+x4qRuRuK8fUgvuKrjCxKDG/SkgJjfRfk9+AbmOhF6Oo152p8M8XlDAOY7QfUsVfNOym+sJpYrGA=
+	t=1716490878; cv=none; b=N0iBzhNLUI0/ivX1CKk2dVtIGmbUx2uvuyzC0G+qGqqtgstir1h6c7u2wgib83kXT6X3i3O0rN4K8n7rwFAEYVWJplWBrJhQ/me+aCKEHZBwTW7gWv9PijAukzAYcHEUi7txgpHvvBRA0oVJ1/cXo04YqO/AECUPvQrqUFW4Grc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716490690; c=relaxed/simple;
-	bh=QQNdtzoOdLf6SuKfsjdq8VOWrAdYs1aQG2dt+TDRoKM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Ls34WKFO/0TOGc7CjLU+ahs5Si74WilWqfomIzwfg7L8T+sOb/oUvpoI1uZmfTjrGnQDRvqZEySDAlmS86UTESvibwLB/lpGVlaLy9S4bq7otN7j5SiAVWYKd4Aksgj5XtcJSsyyWFn2vGfUPIMFSjV7IL4I5KTJxUP4rURNQjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mansr.com; spf=pass smtp.mailfrom=mansr.com; arc=none smtp.client-ip=81.2.72.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mansr.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mansr.com
-Received: from raven.mansr.com (raven.mansr.com [IPv6:2001:8b0:ca0d:1::3])
-	by unicorn.mansr.com (Postfix) with ESMTPS id DA6A515364;
-	Thu, 23 May 2024 19:58:00 +0100 (BST)
-Received: by raven.mansr.com (Postfix, from userid 51770)
-	id CACE3219FCA; Thu, 23 May 2024 19:58:00 +0100 (BST)
-From: =?iso-8859-1?Q?M=E5ns_Rullg=E5rd?= <mans@mansr.com>
-To: Frank Oltmanns <frank@oltmanns.dev>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Guido
- =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>, Purism Kernel Team
- <kernel@puri.sm>, Ondrej
- Jirman <megi@xff.cz>, Neil Armstrong <neil.armstrong@linaro.org>, Jessica
- Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] clk: sunxi-ng: common: Support minimum and
- maximum rate
-In-Reply-To: <yw1x4jap90va.fsf@mansr.com> (=?iso-8859-1?Q?=22M=E5ns_Rullg?=
- =?iso-8859-1?Q?=E5rd=22's?= message of "Wed,
-	22 May 2024 19:07:21 +0100")
-References: <20240310-pinephone-pll-fixes-v4-0-46fc80c83637@oltmanns.dev>
-	<20240310-pinephone-pll-fixes-v4-1-46fc80c83637@oltmanns.dev>
-	<yw1xo78z8ez0.fsf@mansr.com>
-	<c4c1229c-1ed3-4b6e-a53a-e1ace2502ded@oltmanns.dev>
-	<yw1x4jap90va.fsf@mansr.com>
-Date: Thu, 23 May 2024 19:58:00 +0100
-Message-ID: <yw1xo78w73uv.fsf@mansr.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/29.3 (gnu/linux)
+	s=arc-20240116; t=1716490878; c=relaxed/simple;
+	bh=3EiyLqgYby63BWgHIZFCD3c4sW1g12fHPqHi9WFjwdk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dZUG0OdqdrdeWvOyAKw6N5Ppv3qiCjVMTwooQJZ71cUHw0O52WcakkcfYfDHmKyBy1FOOqnAitMd3aTbiA7wtjwjmWWnPV2M1ExCvG5Ehr+Q/SxFkmPywNPZMIRaouSLdr5y6sJLVdSIaWM5EFg6s2ocPwyM4TsUbfDaWDRDJtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=nIS/d4Lq; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353728.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44NIlAWp024151;
+	Thu, 23 May 2024 19:00:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=bAaqPBMTRdF77PtXGmWOWLFomk8hgMqj951WpPyFeM8=;
+ b=nIS/d4LqR6kwfPCrHzTykgmzlJsA2MhUQFTJb/+rdm0aaOVJN/ORmWKIBYNYGU4yCl2y
+ IMejNabF9C5FOVkeWnNH8WNN2HneYeXWdfHnSxr+vIrkgrc4FeY4y+hKM7Us4RhB3/CW
+ XYJ+9dWivzpqBO7FkwA5Q23cKSMzEb9dV2lgrtULn0ttfuIXmJq20d+oGuWEYqZ07L/X
+ gRKfUlobgWnz+ArSUhaOV3KaBF4lWSjUFwcC2wJgZBN+/W15niJtmp6gKncV1qvgY9F/
+ Au9bO6mxaVFF5f54e5xWifvC6IcHZSZ4K5Moz/wOjCegFyfJo0m8JwKp9Kz1UlcaNnJX MQ== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yabcn80uy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 19:00:31 +0000
+Received: from m0353728.ppops.net (m0353728.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 44NJ0UJg013258;
+	Thu, 23 May 2024 19:00:30 GMT
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yabcn80uw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 19:00:30 +0000
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44NI0Grn026474;
+	Thu, 23 May 2024 19:00:29 GMT
+Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3y785mun5k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 19:00:29 +0000
+Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
+	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44NJ0Ptp16908898
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 23 May 2024 19:00:27 GMT
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id CAC5A58077;
+	Thu, 23 May 2024 19:00:23 +0000 (GMT)
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 037865807C;
+	Thu, 23 May 2024 19:00:23 +0000 (GMT)
+Received: from [9.61.104.209] (unknown [9.61.104.209])
+	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Thu, 23 May 2024 19:00:22 +0000 (GMT)
+Message-ID: <910b18b7-3717-4087-b028-fcaf5f2a604b@linux.ibm.com>
+Date: Thu, 23 May 2024 14:00:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 17/20] ARM: dts: aspeed: Add IBM Huygens BMC system
+To: Markus Elfring <Markus.Elfring@web.de>, linux-fsi@lists.ozlabs.org,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        kernel-janitors@vger.kernel.org
+Cc: LKML <linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Andrew Jeffery <andrew@codeconstruct.com.au>,
+        Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
+        Mark Brown <broonie@kernel.org>, Ninad Palsule <ninad@linux.ibm.com>,
+        Rob Herring <robh@kernel.org>
+References: <20240522192524.3286237-18-eajames@linux.ibm.com>
+ <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: DaHk4BGi1JnBbJEcYTxavb7ks4_-OLx7
+X-Proofpoint-ORIG-GUID: lzx1m2_L4JsKlNwhIn4n44hDV1LcZcty
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-23_11,2024-05-23_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ spamscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
+ clxscore=1011 impostorscore=0 phishscore=0 mlxlogscore=849
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2405010000 definitions=main-2405230130
 
-M=E5ns Rullg=E5rd <mans@mansr.com> writes:
 
-> Frank Oltmanns <frank@oltmanns.dev> writes:
+On 5/23/24 13:45, Markus Elfring wrote:
+>> The Huygens is a Rainier with modifed FSI wiring.
+> Will imperative wordings become helpful for a better commit message here?
+
+
+This statement is a description of hardware. I cannot word that 
+imperatively. The commit message is imperative - "Add Huygens system".
+
+
 >
->> Hi M=E5ns,
->>
->> 21.05.2024 15:43:10 M=E5ns Rullg=E5rd <mans@mansr.com>:
->>
->>> Frank Oltmanns <frank@oltmanns.dev> writes:
->>>
->>>> The Allwinner SoC's typically have an upper and lower limit for their
->>>> clocks' rates. Up until now, support for that has been implemented
->>>> separately for each clock type.
->>>>
->>>> Implement that functionality in the sunxi-ng's common part making use =
-of
->>>> the CCF rate liming capabilities, so that it is available for all clock
->>>> types.
->>>>
->>>> Suggested-by: Maxime Ripard <mripard@kernel.org>
->>>> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
->>>> Cc: stable@vger.kernel.org
->>>> ---
->>>> drivers/clk/sunxi-ng/ccu_common.c | 19 +++++++++++++++++++
->>>> drivers/clk/sunxi-ng/ccu_common.h |=A0 3 +++
->>>> 2 files changed, 22 insertions(+)
->>>
->>> This just landed in 6.6 stable, and it broke HDMI output on an A20 based
->>> device, the clocks ending up all wrong as seen in this diff of
->>> /sys/kernel/debug/clk/clk_summary:
-
-[...]
-
->>> Reverting this commit makes it work again.
->>
->> Thank you for your detailed report!
->>
->> I've had a first look at hdmi-tmds and hdmi-ddc, and neither seems to
->> be calling ccu_is_better_rate() in their determine_rate()
->> functions. Their parents have the exact same rates in your diff, so,
->> my current working assumption is that they can't be the cause either.
->>
->> I'll have a more detailed look over the weekend. Until then, if anyone
->> has some ideas where I should have a look next, please share your
->> thoughts.
->
-> In case it's relevant, this system doesn't use the HDMI DDC, the
-> physical DDC pins being connected to a different I2C adapter for
-> various reasons.
->
-> From the clk_summary diff, I see a few things:
->
-> 1. hdmi-tmds has changed parent from pll-video1-2x to pll-video0-2x.
-> 2. The ratio of hdmi-tmds to its parent has changed from 1/8 to 1.
-> 3. The resulting rate bears no relation to the pixel clock from EDID.
->
-> I tried kernel 6.9.1 as well, and that doesn't work either.  I'll keep
-> digging and try to narrow it down.
-
-It turns out HDMI output is broken in v6.9 for a different reason.
-However, this commit (b914ec33b391 clk: sunxi-ng: common: Support
-minimum and maximum rate) requires two others as well in order not
-to break things on the A20:
-
-cedb7dd193f6 drm/sun4i: hdmi: Convert encoder to atomic
-9ca6bc246035 drm/sun4i: hdmi: Move mode_set into enable
-
-With those two (the second depends on the first) cherry-picked on top of
-v6.6.31, the HDMI output is working again.  Likewise on v6.8.10.
-
---=20
-M=E5ns Rullg=E5rd
+> Regards,
+> Markus
 
