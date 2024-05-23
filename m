@@ -1,136 +1,172 @@
-Return-Path: <devicetree+bounces-68757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5976C8CD708
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 17:28:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4209B8CD712
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 17:31:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AAD71C20969
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:28:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB2D1281AFA
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 15:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA2310A0A;
-	Thu, 23 May 2024 15:28:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FF013ACC;
+	Thu, 23 May 2024 15:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="gSDqsHyG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B0u3tzJ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E011170F
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 15:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1897E10A22;
+	Thu, 23 May 2024 15:30:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716478097; cv=none; b=S8moDkVhu6GDssBggPFUrYuaDr81blioo5Xp2xpoMUnUBJJ4Ei2p7OB8siqsQoY3qrllfTX7ZJ3HPfXyWDcu0b2BDdlJ5A9cFfMkyB8HowrBMGPKvFBn9XoG+RVsbMha+nqFqtP2uEWP4UB1MOKxylpD7hDDGEzcFA/2XCoeCnc=
+	t=1716478250; cv=none; b=RjGFqbnMvG86Zaah15x65HJUhN8XqiKsjGyO7+1tLC1W+/7WzTTt/Oq1TmQ6PMFojadz2mObS46qODa8H3cbbR567WnQa5qkYYexTII1rH8qQu5R9hG+kkZCSzUDad/mEGCsnBiQYwj2+pp5XzQvNVNsTxljrOwXWPZi6GN7hdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716478097; c=relaxed/simple;
-	bh=lHxOGmWdlihXCTgHVfb+T5jI7AtAtZWCWZ88p7h5se0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tns0YyyedSbQ7eBhPpPtSGhxcUSqMn/m6CbbHuiCUcwGpkgoCqxmSXqsg6KZwE97FUZgJd4D1qybHg8YBj+MvkixeoGL8VasqUECpYIasIb9FZn7mT6h84YUQ7QNCYjzsFL91Ebuu9HPZB8iFMitQ6Qw1UkMNY1Ny6P6KJMc6RU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=gSDqsHyG; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-792ba098eccso469483885a.2
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 08:28:15 -0700 (PDT)
+	s=arc-20240116; t=1716478250; c=relaxed/simple;
+	bh=p4leqlSbvV4n9s+nxM6Epxfl0MIAt/4Z4Qkdhp5RFCE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=bVXwqdqPAww0GRmFSRGaAGL1NAgnfsYfviiVNDAII3zcX3aajwIwaSwyRXg/D2CftqqyAC4rln+r6PsqK0r6ivvNIqFG+Bvm/kwWRNCYan8Z+85X1YuGI1HmMJ+9q+FqbfqpTxGEvTs+C3IusRlOvRsvWdC/11G/gmM32pLFw3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B0u3tzJ+; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a5a0013d551so650205766b.2;
+        Thu, 23 May 2024 08:30:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1716478094; x=1717082894; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hmfyLYVCfyswQ3c7xb61Hr7O417fd5EFVF7yNKTH3w8=;
-        b=gSDqsHyGsOcsBt5SvjKR7sU1nSqFoxJueeACqx5yt/MllU2s416ZjOM9lrDCh53QDI
-         FFxmxXP0+D8KjGUd2EDlsNXBV7nqWQnBifaM39U6IBqXy20yAffFZ3I1qGPJP30xSacx
-         xe7C/3mEB2SkSRTUqbX84uQe015fxVKlT1NdobcTwbM+JD7tQgXJ7ZqCgfOiGyFPcJwD
-         iiYpFMjGd7WxGt/fzZZnn+aIdv2enMWPjI/Z8RlBL4/kRrC2L1ngQDoSNXwLGAG91sRK
-         svoZamPEk2fwm54unYH9UWDYWsk+RcJrTAJVLGk/BikofGjzWdVuwh2QcAXXH0nGMEWO
-         HicQ==
+        d=gmail.com; s=20230601; t=1716478247; x=1717083047; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=p4leqlSbvV4n9s+nxM6Epxfl0MIAt/4Z4Qkdhp5RFCE=;
+        b=B0u3tzJ+AwQoHS5GnQr2jxzLldx98sZhS06P9f6jJJK6mL9Jj3pJkxLoe6Xijp0zQh
+         ERjUGaMXb39Hn3m407f/5UzHmcCZewVMRCpiftGXaudPM4IdVq+SvwHfnuoLgqeS4tL6
+         igl8aJlu+eYbJD/ZDelhfwSRBMxPi5HxZbyVOr1igXZDBmxLf1f7VJBd6YiNhddexmrj
+         IaiiurAxHRr2P0tiYwu8Up5adYNwsuLkBE2iQLtU7qyl12i1XPbLviWBaXBPrX2TzDyr
+         INBknTyHqCLqqhq/grREV7lrUEq2af7Hi7eT2tLkCe093hDQvUWkb54dvgqL/UUaDNs+
+         u2Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716478094; x=1717082894;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hmfyLYVCfyswQ3c7xb61Hr7O417fd5EFVF7yNKTH3w8=;
-        b=pncYnIPt1LqoiPB3Sp6O9Vze4nQpLMFiSG0WqJA8hHeE6y+L8mU1H3Aro5kKQi5gvC
-         s9xtgw77LjKriCUFcosOl4J9mxwsGVru781Yyts7O6iymKJzOenBiE7VTfn/kxMksEtB
-         cJiy0meL9D9F+5VnoeaM/swluRtsxCWiC+/ZnGMFDjgUD03GrjfrfOdqyhmvMaMZnsyb
-         VvZe8hGqUTDvbOGGWh2k9FBQ2EZaHGyKg8vFvOMjfWGm8HOjDjGIzteg07/rET4gJMCG
-         mdAyIrT4hO4TuHMKc1ssdUCHWF8nH4xdKmb7SUkltCTcK7XxuB+/boSY4LAFxabZMqa7
-         1SOA==
-X-Forwarded-Encrypted: i=1; AJvYcCVy0B2n00rQLh2UJ/UKQupG3+mwIZwpWEKn3G/Urk4693P0aOZIJKDp1cxDIE4pidaMPB9XsMkhw92Fa/oYRvO0xU9ymXODwKGE4A==
-X-Gm-Message-State: AOJu0Yyharigeytt4ZCRpKRbgRM9mzCSZwufUjzwSYFYdefGWvSzlvkg
-	ob3tIMnNthsrQaM3+UQxyM+A030v20B+gSBwaJ7pF3kiBJg+wHlzpZmBc6n4Hmg=
-X-Google-Smtp-Source: AGHT+IHTBzzwi4PjhcyoMTsLG+C6xPlPNq6v4XQ9szwtINNcWYZzWlV7kEZtWT8wPy12nifAJzgm5Q==
-X-Received: by 2002:a0c:f593:0:b0:6ab:8cbb:79f4 with SMTP id 6a1803df08f44-6ab8cbb7b85mr30572656d6.56.1716478094519;
-        Thu, 23 May 2024 08:28:14 -0700 (PDT)
-Received: from ziepe.ca ([128.77.69.89])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ab84cd6d93sm15777036d6.127.2024.05.23.08.28.12
+        d=1e100.net; s=20230601; t=1716478247; x=1717083047;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p4leqlSbvV4n9s+nxM6Epxfl0MIAt/4Z4Qkdhp5RFCE=;
+        b=cz72SlSWRlRjaVyufEpouKaShBumrBvVtjZJ0uzSkGr7m3Dgt4FpyeYlxerLJ4zw2T
+         xhK3KQcrVNyU4f+C5yjPdrQE0Dd00d1Yj16WSvGXs1eY2g+kylfZkWRQJhbA2VbV0Osf
+         nGux1jDjoPLUQU6nqaN+d/dzyFJiEOl3eC/7sKNpcSKysc5x6TyjMjy4MtViEk6Z/6S/
+         KV/Z7i6190wB2lPo8A+yEXAh8WN7WaLvP0IRVLZaTFKVm10TSBf+9jGv+ZKTm/UXUTwu
+         lhWB3suAVeaKIcOnowAj58WNdRk36mHCuU2FEK+CNh5YZCOsXZ9XtsAbn0LdPRTxllFP
+         A84g==
+X-Forwarded-Encrypted: i=1; AJvYcCWDaBtSzjkxrrHx38UdhN1s+uCKZ4f8NekSJ0SG1Wc9XZh9TRdyIPOC/UhVgiwrLLyrHjIfGL2w2W6tA2WR9RzRWv81gd2aCvQSykvIqnDLHvhDME7S74bhEvGX2BpH56cN9gmBlkaFc842GbZYPAKH3TY+W0ex8hshP5toEBXklDcUgI55vKIWEvqou1qiOsUit2ej0MLr73a6D17azA==
+X-Gm-Message-State: AOJu0Yxql8WSqwf1nl9Xw0DY25P4NQsLL5sqZ80dJa6veU9mTVonJFQ8
+	g5E6avRKbhYii66gyoTML2Tq4QT/dT9wNWp5U7+xVyRAJmviFmzq
+X-Google-Smtp-Source: AGHT+IFc0PcZnindC0CNOM4kMam3gZvP2VwaE74Pn0IMDie8VokywzDhv8M5Y/LxXFVwwr6ZZvVs1Q==
+X-Received: by 2002:a50:d794:0:b0:578:4ab9:544e with SMTP id 4fb4d7f45d1cf-5784ab954bamr1301129a12.30.1716478247112;
+        Thu, 23 May 2024 08:30:47 -0700 (PDT)
+Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a1787c686sm1944815866b.47.2024.05.23.08.30.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 May 2024 08:28:12 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1sAAMU-00Frqn-OL;
-	Thu, 23 May 2024 12:28:10 -0300
-Date: Thu, 23 May 2024 12:28:10 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux@rivosinc.com,
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Sebastien Boeuf <seb@rivosinc.com>, iommu@lists.linux.dev,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: Re: [PATCH v5 7/7] iommu/riscv: Paging domain support
-Message-ID: <20240523152810.GL69273@ziepe.ca>
-References: <cover.1715708679.git.tjeznach@rivosinc.com>
- <1ddb50a47c86d384157a979a7475b45f807ba81e.1715708679.git.tjeznach@rivosinc.com>
- <20240522-b25680db03b547123f1cd59a@orel>
+        Thu, 23 May 2024 08:30:46 -0700 (PDT)
+Message-ID: <61147de8e3761c5d3c000ee5ea0d9d146da89602.camel@gmail.com>
+Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
+ spi-offloads property
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Conor Dooley <conor@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org
+Date: Thu, 23 May 2024 17:30:45 +0200
+In-Reply-To: <3fad2e61-c3e4-4bb1-bbea-101d5d0f91ee@baylibre.com>
+References: 
+	<20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com>
+	 <20240510-dlech-mainline-spi-engine-offload-2-v2-1-8707a870c435@baylibre.com>
+	 <20240513-headsman-hacking-d51fcc811695@spud>
+	 <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
+	 <20240514-aspire-ascension-449556da3615@spud>
+	 <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
+	 <20240516-rudder-reburial-dcf300504c0a@spud>
+	 <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
+	 <20240519-abreast-haziness-096a57ef57d3@spud>
+	 <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
+	 <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
+	 <59df2cc3-5a62-45be-a0aa-5bbff13c2ae4@baylibre.com>
+	 <35de37c08331a8384aa9ebde3a9be5fec6fc418e.camel@gmail.com>
+	 <3fad2e61-c3e4-4bb1-bbea-101d5d0f91ee@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240522-b25680db03b547123f1cd59a@orel>
 
-On Wed, May 22, 2024 at 10:07:14AM +0200, Andrew Jones wrote:
-> On Tue, May 14, 2024 at 11:16:19AM GMT, Tomasz Jeznach wrote:
-> ...
-> > +static int riscv_iommu_bond_link(struct riscv_iommu_domain *domain,
-> > +				 struct device *dev)
-> > +{
-> > +	struct riscv_iommu_device *iommu = dev_to_iommu(dev);
-> > +	struct riscv_iommu_bond *bond;
-> > +	struct list_head *bonds;
-> > +
-> > +	bond = kzalloc(sizeof(*bond), GFP_KERNEL);
-> > +	if (!bond)
-> > +		return -ENOMEM;
-> > +	bond->dev = dev;
-> > +
-> > +	/*
-> > +	 * List of devices attached to the domain is arranged based on
-> > +	 * managed IOMMU device.
-> > +	 */
-> > +
-> > +	spin_lock(&domain->lock);
-> > +	list_for_each_rcu(bonds, &domain->bonds)
-> > +		if (dev_to_iommu(list_entry(bonds, struct riscv_iommu_bond, list)->dev) == iommu)
-> > +			break;
-> 
-> We should wrap this list_for_each_rcu() in rcu_read_lock() and
-> rcu_read_unlock().
+On Thu, 2024-05-23 at 10:09 -0500, David Lechner wrote:
+> On 5/23/24 9:57 AM, Nuno S=C3=A1 wrote:
+> > On Thu, 2024-05-23 at 09:28 -0500, David Lechner wrote:
+> > > On 5/22/24 1:24 PM, Conor Dooley wrote:
+> > > > On Tue, May 21, 2024 at 09:54:39AM -0500, David Lechner wrote:
+> > > > > On Sun, May 19, 2024 at 7:53=E2=80=AFAM Conor Dooley <conor@kerne=
+l.org> wrote:
+> > > > > >=20
+> > > > > > On Fri, May 17, 2024 at 11:51:58AM -0500, David Lechner wrote:
+> > > > > > > On Thu, May 16, 2024 at 4:32=E2=80=AFPM Conor Dooley <conor@k=
+ernel.org> wrote:
+> > > > > > > > On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wro=
+te:
+> > > > > >=20
+> > >=20
+> >=20
+> > ...
+> >=20
+> > >=20
+> > > controller:
+> > > #spi-offload-cells =3D <2>: /* 1st cell =3D offload instance
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 * 2nd cell =3D trigger provider */
+> > >=20
+> >=20
+> > What about things like DMA? I'm mentioning it a lot because it's way mo=
+re complex
+> > having it on the controller (from a SW perspective). But from an HW poi=
+nt of
+> > view,
+> > it's always very similar (if not the same) as your case A.
+> >=20
+>=20
+> If we had a setup where there was more than one place that, e.g. the
+> RX stream from the offload could be piped, then I would add a 3rd
+> cell to describe that. If the hardware is fixed and the RX stream
+> always goes to a specific DMA channel, then it doesn't seem like we
+> need to describe that in the SPI controller node because the hardware
+> is fixed.
+>=20
 
-Not quite this is the write side, it is holding the spinlock so it
-doesn't need RCU. It should just call the normal list_for_each_entry()
+Well, yes, still the DMA channel is connected on the controller and not the
+peripheral. Same deal as we discussed on the IIO backends stuff. But there,=
+ since
+it's all IIO it was easy to make the DMA a property of the backend device. =
+That said,
+I can surely see having the property in the peripheral.
 
-Jason
+Another thing that came to mind for the trigger case. What about an additio=
+nal spi
+interface for configuring/setting the trigger rate? Sounds generic and then=
+ we would
+not really need the trigger on the peripheral right (did not checked the CR=
+C issue
+you mentioned so not sure if it's somehow trigger related)?
+
+Hmm but sometimes there's other things than rate/period (like offset) to ca=
+re about
+so maybe not doable... Bah!
+
+- Nuno S=C3=A1
 
