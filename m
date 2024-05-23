@@ -1,97 +1,104 @@
-Return-Path: <devicetree+bounces-68814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9418CDBD6
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 23:21:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E63B8CDC1C
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 23:30:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E02061F246A3
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:21:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 079F6B23503
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 21:30:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB42185274;
-	Thu, 23 May 2024 21:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A610127E35;
+	Thu, 23 May 2024 21:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mwkCorZZ"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="cKTRDqmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40CA784A54
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 21:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CF9127E29;
+	Thu, 23 May 2024 21:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716499282; cv=none; b=r3DWeZtDHj4b8SXYOCTac2onT8mohJE9KMzOaGGAWgmvA7BBY4OoaFztFemUhbiKLBcBTBnXvmLRAcHzUltSow92cikI3NgQVRWilBFBoeO2VtSMdPc33fvkiPVnnD23TzQo2WOcXqc6vBrUAlPulZyywppIcsNsrSUPVsJykgs=
+	t=1716499807; cv=none; b=VPA43IzF4Vz/fYRUnii1/98qlOqzZe428ZS8P21gXebpuKscprxfa9N3qTIY5EYBtViuUalHmAU2A9UU2SdVOmgiEKX1cwz6TADCG1VOxno09AMJFA9Nm1gkQwC1Mzv1cCenv0SV5xTjzkcenCLJJzw/sV/7ouQYGjujymR4+vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716499282; c=relaxed/simple;
-	bh=vZ83DITT8+71M9hZZLFbFwj221tiAKCa3CoSsZtHtG0=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fpmiaIKC6wV3N2Rv4u+FxgyiKXritWunbOUPK4x39hXwSkCbarKUdd1OQ/MZw7OS6sylo8hqXnTKibhTLRdai7hScU4dzkk05HFr9NOtOr9O+BpRbObtFmc1xOnRoNkgWdwu/4lb6ZJLPmr6XEioyzPzcjGfWBB9+p2eon8enNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mwkCorZZ; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-794ab0acfbeso9835185a.0
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 14:21:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1716499280; x=1717104080; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vZ83DITT8+71M9hZZLFbFwj221tiAKCa3CoSsZtHtG0=;
-        b=mwkCorZZFgx1BxAueNuTcBOSggPKz0OYGo33ul3jWegyIJkWO8rYWFmX9pss/0dD79
-         VfgpcaJjz3NGxOS7+Ho4rFwwo5WwvvFklSHlGMl6Ew8ZeiFFGTXhQfNcBqKTYOq31a/5
-         +6YZtrq24JAan4OhhoH0JTKn6noel/VkkV0fg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716499280; x=1717104080;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vZ83DITT8+71M9hZZLFbFwj221tiAKCa3CoSsZtHtG0=;
-        b=ouws/LW8SiovsdbPP68zweZVdRYqBLYLD9wVBuxTafSpSX/GnrWTz0DuJX8V7yJdGR
-         ibqjcXe3Yvxa1C5oDqYpWetzqv9k/JuGn62+lAF+DHBdPxaMNgMp6UgZs9wcet2K+4/j
-         HkQbBn/htQHRAVzV3Mkh9uJPS7X4dGfkcE5P3gSp79HeuRe0VYiVRtyxf5cOgK6rLkrk
-         pL3e+k7VeIUspHJEBhod3wFhbD4lNMf2w4MBdqZb8rg07tSrM3Tau9ky5BOe5EiUiE7q
-         soAiz7RM39X00eo7xVuTbPvPbqXucqxwMu/eys8Qo1mj7QogR+YOhiFw/DleghoPuRLn
-         7kcg==
-X-Forwarded-Encrypted: i=1; AJvYcCV27nH9IQV5xr4Hr4LLx/EvmZS/N4vdLpXRSfOjRn2OuKMFKcas1tDR4jFd1/G4rtgg8w2oEjBiuJKg/SuwhzCc5e1lWJZqEEuGjA==
-X-Gm-Message-State: AOJu0YxdftzLWFDgD57DPHJFJ0bjv4MSCUnhfFGmkcT8qcbPfIRzBfhX
-	Z4PHiXFHXXSL2d/1nYWgKdQGxPR/ByYDSloH9VwFA+0KD7Ze0K5EdqnnhFaTmAkc7aZHLplPlQk
-	y1bwsXUd1pdXGW6QStv3Sgj4BP9fvWpR97JtO
-X-Google-Smtp-Source: AGHT+IFjL+VWQfPxSqxR4aZu/onNvALWc1WiN/6Uf4tzU7N3k9tqKuSjNUhBCdKJsEsHttt47nWNY6CUCfaDhionSzs=
-X-Received: by 2002:a05:620a:268f:b0:790:b192:3b9d with SMTP id
- af79cd13be357-794ab0f8350mr45174985a.58.1716499280217; Thu, 23 May 2024
- 14:21:20 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 23 May 2024 17:21:19 -0400
+	s=arc-20240116; t=1716499807; c=relaxed/simple;
+	bh=6DS3VPbtZ6K+MswhTHFpSZiWdd0ezBo62nEDDcuZzRc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=VvtF5236G05u6EBFPddQkUfiNAsQV5i+OlmCKRHSHedD6lxWt/+u4ET0pOn+xJd7EaOrihZsW6Ql3rO7Y4jVioyG9jDKDYArRCum0tZGUNbzL9t7sMfdoFu8sciQoMMLUX5yweJhdsxEAZerPVIrrjxrb6o/OGKz4hngiqibGDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=cKTRDqmo; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353722.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44NKuiFE016493;
+	Thu, 23 May 2024 21:29:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding; s=pp1;
+ bh=6DS3VPbtZ6K+MswhTHFpSZiWdd0ezBo62nEDDcuZzRc=;
+ b=cKTRDqmoCkYseLpUyD0p42Z5BaC8227SdVNpC+vHMMJXLj5SGXZqRpZ+tAEPerK/KOyo
+ Eym2O5NFT7MxQpU0mApxg7US4T3mdolXafu2bOLQudZZCcUA80yy+k4OpkYzt2BwdszV
+ 6wir/H6qnEyBc79Tz1hNQBQIsRcj0KGI3H96HGZ7A2NlpIk/p8WEOsGomGJ1gySlfK1i
+ cEosdZ7cz/gv+wUNSCZSz9aVKy1RIYkZ6zApkL4qf68oQK7tExoNHcJLyrxJBKu/UXuT
+ tr8u5k8XKJOidyQj3pMpyOZEKi1nJkGWxW6Ria1o5GBzwSa68MNU9GEmaxWTCFt05IF5 3Q== 
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yac0089su-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 21:29:48 +0000
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44NKuDZU026470;
+	Thu, 23 May 2024 21:29:47 GMT
+Received: from smtprelay02.wdc07v.mail.ibm.com ([172.16.1.69])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3y785mvd46-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 21:29:47 +0000
+Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
+	by smtprelay02.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44NLTinE20775564
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 23 May 2024 21:29:46 GMT
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 1F26F58063;
+	Thu, 23 May 2024 21:29:44 +0000 (GMT)
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id D81AD5803F;
+	Thu, 23 May 2024 21:29:43 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Thu, 23 May 2024 21:29:43 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: eajames@linux.ibm.com
+Cc: andi.shyti@kernel.org, andrew@codeconstruct.com.au, broonie@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org, joel@jms.id.au,
+        krzk+dt@kernel.org, lakshmiy@us.ibm.com, linux-aspeed@lists.ozlabs.org,
+        linux-fsi@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        ninad@linux.ibm.com, robh@kernel.org
+Subject: Re: [PATCH v6 20/20] fsi: scom: Update compatible string to match documentation
+Date: Thu, 23 May 2024 16:29:40 -0500
+Message-Id: <20240523212940.4078787-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20240522192524.3286237-21-eajames@linux.ibm.com>
+References: <20240522192524.3286237-21-eajames@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240523194500.2958192-1-robh@kernel.org>
-References: <20240523194500.2958192-1-robh@kernel.org>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Thu, 23 May 2024 17:21:19 -0400
-Message-ID: <CAE-0n52UhgxauMgctx903UW=smEiYQSoRWdym2kkKGvODvztQA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: realtek,rts5411: Add missing
- "additionalProperties" on child nodes
-To: Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>, Rob Herring <robh@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: VHFoqfan6yYRiNI6-oq_NUv_eYDJg2Sw
+X-Proofpoint-ORIG-GUID: VHFoqfan6yYRiNI6-oq_NUv_eYDJg2Sw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-23_12,2024-05-23_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ spamscore=0 bulkscore=0 impostorscore=0 malwarescore=0 mlxlogscore=617
+ suspectscore=0 lowpriorityscore=0 mlxscore=0 clxscore=1011
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2405010000 definitions=main-2405230149
 
-Quoting Rob Herring (Arm) (2024-05-23 12:44:59)
-> All nodes need an explicit additionalProperties or unevaluatedProperties
-> unless a $ref has one that's false. As that is not the case with
-> usb-device.yaml, "additionalProperties" is needed here.
->
-> Fixes: c44d9dab31d6 ("dt-bindings: usb: Add downstream facing ports to realtek binding")
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Ninad Palsule <ninad@linux.ibm.com>
 
