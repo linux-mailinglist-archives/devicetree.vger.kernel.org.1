@@ -1,133 +1,106 @@
-Return-Path: <devicetree+bounces-68772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE4558CD884
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:37:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED9C8CD89F
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:44:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853722824E8
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:37:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EA0E1F2169E
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 16:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1011018633;
-	Thu, 23 May 2024 16:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF741B7FD;
+	Thu, 23 May 2024 16:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dHdg/qDv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19999D304;
-	Thu, 23 May 2024 16:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B760418633
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 16:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716482256; cv=none; b=aGzO9Ywm5owY/bMiVYb0+CYrXXnGVU0/vgfGJ/gZSU8KBco3tgod0atU/TkM5FIK/zSiFocJ8va7FgruWxfYdbYSR1Rl4bo8urtNaZ3pK3rpSQ+dggFpT48QuI2p3W9KbjWPuOUqI6RTGbCm/7Iv7SEsw0flmrTqXDU6upmHs6M=
+	t=1716482671; cv=none; b=pBKhBrTSNfhWCWeLyyZCyYrnKTTDOv9Gc/yGSiQGOJDGTuAJTQ5ZHDMNvz4vTi483F0xiPjAPSgKsle+WjjwHIYl2oDHyoj0xWoskowQo3s9bbrLTVaFcnX3BfazOfj12DU3LJG7mQjAnAaiQnsAMIpC6pgKuc5Z8IRuQ/+yZsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716482256; c=relaxed/simple;
-	bh=qgkGDIjpEJfoA4a2AkMyyAveyC2iOGefHU0U1EkSN+k=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UUIfvDcBstNOeEs6fwkZZxKTvYI58kQDnt58R3M7sOi1If1jQg+0EVK6BtjXfSHQepmKQHo34hvqvk97PZk8PDjdf4p823+DNwlGXfyj2FAoXyA1RaKiXNAQypIPCxJwvb9JqdLBpY9dLsXPQGU9GPLsWuyxgtdp5puoSn9bdm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VlYj14d1vz6K9XP;
-	Fri, 24 May 2024 00:36:37 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 443F5140B3C;
-	Fri, 24 May 2024 00:37:29 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 23 May
- 2024 17:37:28 +0100
-Date: Thu, 23 May 2024 17:37:27 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: "Gradinariu, Ramona" <Ramona.Gradinariu@analog.com>
-CC: Jonathan Cameron <jic23@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?=
-	<noname.nuno@gmail.com>, Ramona Gradinariu <ramona.bolboaca13@gmail.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "corbet@lwn.net"
-	<corbet@lwn.net>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"robh@kernel.org" <robh@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>
-Subject: Re: [PATCH 4/5] iio: adis16480: add support for adis16545/7
- families
-Message-ID: <20240523173727.000040ea@Huawei.com>
-In-Reply-To: <BL1PR03MB5992653C0A426BAC69D7033197EB2@BL1PR03MB5992.namprd03.prod.outlook.com>
-References: <20240423084210.191987-1-ramona.gradinariu@analog.com>
-	<20240423084210.191987-5-ramona.gradinariu@analog.com>
-	<20240428162555.3ddf31ea@jic23-huawei>
-	<e62f8df4b06abc371b1e9fe3232cb593e468d54c.camel@gmail.com>
-	<BL1PR03MB5992DEBF82C0DB7BDC5EA0FF971B2@BL1PR03MB5992.namprd03.prod.outlook.com>
-	<20240429204027.3e47074a@jic23-huawei>
-	<BL1PR03MB5992653C0A426BAC69D7033197EB2@BL1PR03MB5992.namprd03.prod.outlook.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1716482671; c=relaxed/simple;
+	bh=HPT2RRVWhwMnX33TN37zfYv6LrIgtDsgNFtTyyUEQ3Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NbgDwlMR6X5w+xqmEDCE8GboPbqpPWu+T9n9USM7qPIXc5JFP53UceWec8ShFuSWwivqDX3woPGDFS0Yfh39veLm8/W+QxLFI24NE4DNGJcjLdN6zBv9o54tUuk2OFspzeYFaAntsxTiLkzOITmWeDDl6+BAhD3bdj9olhWwu5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=dHdg/qDv; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1716482668;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HPT2RRVWhwMnX33TN37zfYv6LrIgtDsgNFtTyyUEQ3Q=;
+	b=dHdg/qDv5LneIbfnYG0O9Y6i/J9CIU7wMyvuuQBxVS5wDdcIilJAd/iBfpY95In32IbskY
+	o4aTnlF4i0VLV4gOlX/++qV36vAKZ5NtyAaxLCiSfPmfbdi6sDIfv1kpdGkZFmAQkzSrXs
+	WxoirvSnleJiJtmmMBMLmyvEjrDSGTQ=
+Received: from mail-vk1-f200.google.com (mail-vk1-f200.google.com
+ [209.85.221.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-635-Iag2w_LyPJyUnmGSynQ8sA-1; Thu, 23 May 2024 12:44:27 -0400
+X-MC-Unique: Iag2w_LyPJyUnmGSynQ8sA-1
+Received: by mail-vk1-f200.google.com with SMTP id 71dfb90a1353d-4df77ebd825so133725e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 09:44:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716482667; x=1717087467;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HPT2RRVWhwMnX33TN37zfYv6LrIgtDsgNFtTyyUEQ3Q=;
+        b=gY1Gv8GAXNiQ14Ti3qt3evYTg7goDfyCIC6Kx8LNB3KvZ31k68b9xeUtMzDQry+CmC
+         FBjCaDDLVv5vbiy8y8/cgvBbpd4bc3A7m3bdX0f1/WDUvubUjBrwWznleQHHeXpsyE6n
+         yJ8wCvZ7/7sEFqJUhv3c6TKF30DiIuAC9q6aOeQOl/Ztjed+GXR90n0WJ4CvtrlzPUzj
+         V2FDVG+kkevU9ZFQGHMD6SHPtzs4pglCF9lZw00TCXUF5grYQkyLVmlTzXGW4LixkTkQ
+         TPEHIKbsTC1ad5dk7P0AtFp/SPfd5akfvM41izlUA2ZlIE20IUT1bGXCKJW12zokseyC
+         OBjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUNTlMOnrlYuCoEMbvKurmaGL0Xa6vrO9BPLRp0mE6nlXk3+5GjGqd7nw8fznZANgNFPFHYUhWF6hN1qtyFcz9eJJQYgjR3yJCrIA==
+X-Gm-Message-State: AOJu0Ywp5zPhcoqxpCZv1DFj6Tbh7C42q3jKLaJRk6CroS5CMYCEd+nO
+	Wp0GkiqzVq9EyIEl7m9/XakRLejRqp+duvJnntdlQNmMEfEFBX3fEWWsZp0fvtMDJiOKmU04QMh
+	vW0zV3q06rVnswqsvKM7GRxCqjQwPFbmT6UVTuVjgFlohhYxAX00AY169SZ4=
+X-Received: by 2002:a05:6122:3122:b0:4e4:ee6b:1783 with SMTP id 71dfb90a1353d-4e4ee6b196bmr530993e0c.5.1716482666419;
+        Thu, 23 May 2024 09:44:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFLBwTV5zswphEdhcg5dwd3Tg7XgWPeJ+Fd7A2WYQ8yqdldsjVOD91qLK0HSFYF757vHRP9lQ==
+X-Received: by 2002:a05:6122:3122:b0:4e4:ee6b:1783 with SMTP id 71dfb90a1353d-4e4ee6b196bmr530936e0c.5.1716482665365;
+        Thu, 23 May 2024 09:44:25 -0700 (PDT)
+Received: from x1gen2nano ([2600:1700:1ff0:d0e0::13])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ab8ca20630sm11394766d6.92.2024.05.23.09.44.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 May 2024 09:44:25 -0700 (PDT)
+Date: Thu, 23 May 2024 11:44:22 -0500
+From: Andrew Halaney <ahalaney@redhat.com>
+To: Ravi Gunasekaran <r-gunasekaran@ti.com>
+Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, srk@ti.com, rogerq@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] Add USB 3.0 support for J784S4
+Message-ID: <4rtzlvbfkvkomdteic2intesanf3udwfqg56vtzrghe2h46qrd@udzkjofpndqe>
+References: <20240507095545.8210-1-r-gunasekaran@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240507095545.8210-1-r-gunasekaran@ti.com>
 
-On Wed, 22 May 2024 12:01:21 +0000
-"Gradinariu, Ramona" <Ramona.Gradinariu@analog.com> wrote:
+On Tue, May 07, 2024 at 03:25:43PM GMT, Ravi Gunasekaran wrote:
+> J784S4 has one USB sub system.
+> This series adds and enables support for USB 3.0 for
+> J784S4 EVM.
 
-> > 
-> > If you are using bursts, the data is getting read anyway - which is the main
-> > cost here. The real question becomes what are you actually saving by supporting all
-> > the combinations of the the two subsets of channels in the pollfunc?
-> > Currently you have to pick the channels out and repack them, if pushing them all
-> > looks to me like a mempcy and a single value being set (unconditionally).  
-> 
-> I did not get a chance to look at this again until now. Unfortunately, a
-> memcpy will not work.
-> The current implementation is as follows:
-> /* The lower register data is sequenced first */
-> st->data[i++] = buffer[2 * bit + offset + 3];
-> st->data[i++] = buffer[2 * bit + offset + 2];
+For the series:
 
-Ah. That's horrible... :(
-Thanks for pointing that out!
+Tested-by: Andrew Halaney <ahalaney@redhat.com> # k3-j784s4-evm
 
-> 
-> The device first sends the 16LSB, then the next 16MSB in big endian
-> format.
-> 
-> So then I wonder, can we keep the same implementation logic? The code
-> is implemented in the same manner for adis16475 driver which uses the
-> same channels data packing approach.
-
-Not much choice and given the need to handle a mixed endian stream
-you might as well do the packing here as well.  So sure, keep the
-code as you have it.
-
-> 
-> > 
-> > Then it's a question of what the overhead of the channel demux in the core is.
-> > What you pass out of the driver via iio_push_to_buffers*()
-> > is not what ends up in the buffer if you allow the IIO core to do data demuxing
-> > for you - that is enabled by providing available_scan_masks.  At buffer
-> > start up the demux code computes a fairly optimal set of copies to repack
-> > the incoming data to match with what channels the consumer (here probably
-> > the kfifo on the way to userspace) is expecting.
-> > 
-> > That demux adds a small overhead but it should be small as long
-> > as the channels wanted aren't pathological (i.e. every other one).
-> > 
-> > Advantage is the driver ends up simpler and in the common case of turn
-> > on all the channels (why else did you buy a device with those measurements
-> > if you didn't want them!) the demux is zerocopy so effectively free which
-> > is not going to be the case for the bitmap walk and element copy in the
-> > driver.
-> > 
-> > Jonathan
-> >   
-> 
+Thanks for the patches!
+Andrew
 
 
