@@ -1,74 +1,56 @@
-Return-Path: <devicetree+bounces-68802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF068CDB5B
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 22:27:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F3F8CDB64
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 22:33:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B6331F224ED
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:27:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA709281E9C
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41C684A40;
-	Thu, 23 May 2024 20:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D1884D3B;
+	Thu, 23 May 2024 20:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HZ65mTBD"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="DflBNhIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16BA928F5
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 20:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88DEF1755C;
+	Thu, 23 May 2024 20:33:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716496055; cv=none; b=fPB2AQ+PfV09fkE4+Gcu0pSoBH/kndN2VRrJi2p4PuUVUc51+WfBPzthaAtAhFrxdA7PtRoUdub6C84ZtxYNyJ0fRsZdmROyJJ8jK3vk800ynWN/cdpbeDqSV7RVwvsl3apQNLJZnPi/4q39GM4ZDLznA2t3P0kg3XYl7fD1Lzg=
+	t=1716496415; cv=none; b=gn8jTg4rZwWSPbsyJy/tEanUFHvNdK57veVWy9ywLiHKKVdL5doc+g9zydlWiY0yupfmrAG8DSVBsG0+mswl0kdn4+Frlc3leBOI0bK2BOzf24RMU10Nrs6DslTT99KPFv6ooZLmavLJc12yOuEQXEgm4IzmGSfAENTTg8S8uBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716496055; c=relaxed/simple;
-	bh=c2lXC7rZq0RgDOLyx0NsOE+TDxw1lwT1aLua6AP15yo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=TdwT2FVfpYpTaV0czTSyjOncxT06IKBJ74Qt72MiWaCMLaiuntivqURI5CinLO3aQPPtDOZu5xTDnJvQd1KdKGEW+Y22GNUfL8h3lvcnrj/0we6xTRwe5ZJ5Av/rY5Y92OQ/QNg8htpX8sfLb6hAZVpvJI6DGmIzh0I+PJXqmto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HZ65mTBD; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-351da5838fcso6314773f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 13:27:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716496052; x=1717100852; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4mCYQOucXHkzPzuxeSXoj7RNoEsjBU+3ZqxpnS0/TLs=;
-        b=HZ65mTBDTmhstLav8ffJ81eEeyt+6SLLAXi3YLzw4EGONMsTYCheZslQpnl0GYjRA2
-         CftKAQ90zTff3G7cQqkTH6ISy6BQCqFnU4nXRcSAFCCWSjOvP6vxr+WMud5knt3FRQI5
-         pX4GxK5kG/vMBZ8lj8rUOblNR7e8DkhH1BLFtpWuTA6E3MxWqLGwASWPUVlCTksJgTzz
-         japRxS1anao7Jf5I3+PwOslM3HO6Rjytp8OA9Vr+Mpfjr41+qi3F0/H4/CttJitYVXa/
-         /kfhybNpWEEtWGzT3pWZNDnC/fBqkd5x0YSDjFa3mjs62O2fcBMn7OWjo2ozs9WIzeml
-         bhcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716496052; x=1717100852;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4mCYQOucXHkzPzuxeSXoj7RNoEsjBU+3ZqxpnS0/TLs=;
-        b=ZM0VAnHjp2xWs+XDDaQbMbqnbQ+AuVPA5o/wZgj29z/slhD7C1IYLT1oIIQy8HnKDN
-         zu4yluPufJ3IwD3gk//liU35aLflpSLIBEUqIBHIWIWuhGyDQU46XhBPQd1EqXxnlXLt
-         dRPypvHD2P0LqOA6r1Do8ltdkyyuU+z0FTgFWs6M8mbK6DhqxVEJi9ucp+9ESK32wL4U
-         KCETGBDRSfSZ8zl6TcYUemcFwmH33zH9TR/UL6IWMz1Ba4hNIVPtS4ZgKh0JcGwyOSvN
-         hf9C2zHy7Mx8WMXmAGob3wD83y55rmouqdykMZb2ietWLOIA/RjVTtDcOc/jWRzp0DUx
-         iB8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXKtfD+6utnWTC39a6Yr9D4i08E4EQ17HqkYZ0efWXKCi8GiitMiv4mSPncnq5L/l7uIM8NsWJX450pf7iG81UUvT3TeJWwrgiqVw==
-X-Gm-Message-State: AOJu0YzH6sUklQTeotephnTeClah6W0mbPvANpbWSLr/AnAlWOXhjjOd
-	fXSru070dXnT2uqM6lsa04CiFRg0wWkjjEXJREorbBX+007dYl9Nkqsckg6V5QU=
-X-Google-Smtp-Source: AGHT+IHkQxdVhHRUF2A3htjJRXvtthNPCjIjURm8kPBRBUe1GbHeUrZg7uMBl5UoYMDjslbgpN7p3w==
-X-Received: by 2002:a7b:c40e:0:b0:41e:1bc1:36de with SMTP id 5b1f17b1804b1-42108a03095mr1484915e9.26.1716496052347;
-        Thu, 23 May 2024 13:27:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c817974sm6629166b.25.2024.05.23.13.27.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 13:27:31 -0700 (PDT)
-Message-ID: <0ccbc35a-434a-47cd-b54c-02fec2cd9ccb@linaro.org>
-Date: Thu, 23 May 2024 22:27:30 +0200
+	s=arc-20240116; t=1716496415; c=relaxed/simple;
+	bh=DIDQ2tYtq8MFdZfE3oj6pVt4+VDDvCMI+FvVKdCMQSo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ebk2w0euHAY7m8JBiJ5UNiW4lq5MDZJJ4U+4SlJNDmqLhYdcdsCRhlPrDzolBUh1gsEB5Rkj/hq38ubbhzuL+RpgbK8b2o0P0tLtTxv2c6C4CR4jtJjrigRnsDbXHoI/KNw1ICIjc7R1jJty/SA2IkRE5Y2acMw1wydpP31REgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=DflBNhIa; arc=none smtp.client-ip=212.227.17.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1716496394; x=1717101194; i=markus.elfring@web.de;
+	bh=DIDQ2tYtq8MFdZfE3oj6pVt4+VDDvCMI+FvVKdCMQSo=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=DflBNhIauaAVPv7df71cbgjmYvPUxpSWvxhEzsJ8ncl8EsS5d4W+2i7KJiQWLzlz
+	 KAM6W/3pkgrOLTNBSXh1Sb5Q5aOD4bbQavFraOZl1y6iWIacP4VT4PqibFWbiwCKL
+	 ibSe5POriSau7agC0M6rVkJf/GMkS2FKxO3luDDa6B7X5dvz/OmC8VIpTGovj7hKp
+	 A82VLkWAwpQDDHs1/BIf2xn3fkAW+q2XUN71UoJZeRktCEE2ATxK8B+NPYsatTgBO
+	 0ip7ZzWqPtrL3tVnoS1DQWjxkZTNyRZPdVRnMzIo1HckBhcbn6b/5bGoSIF6rmAi5
+	 PwUtMeKL3yAp27Dslg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.82.95]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MBSB3-1sEslR0qQJ-007SV7; Thu, 23
+ May 2024 22:33:14 +0200
+Message-ID: <f90267e9-e62b-4504-954a-0306cb9de1c3@web.de>
+Date: Thu, 23 May 2024 22:33:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,160 +58,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] RISC-V: add Star64 board devicetree
-To: H Bell <dmoo_dv@protonmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
+Subject: Re: [v6 17/20] ARM: dts: aspeed: Add IBM Huygens BMC system
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org,
+ linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+Cc: LKML <linux-kernel@vger.kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Lakshmi Yadlapati <lakshmiy@us.ibm.com>, Mark Brown <broonie@kernel.org>,
+ Ninad Palsule <ninad@linux.ibm.com>, Rob Herring <robh@kernel.org>
+References: <20240522192524.3286237-18-eajames@linux.ibm.com>
+ <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
+ <910b18b7-3717-4087-b028-fcaf5f2a604b@linux.ibm.com>
+ <acced98c-79fb-4c32-abf3-66fe93031f36@linaro.org>
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <acced98c-79fb-4c32-abf3-66fe93031f36@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:jLabXc4sQh1w4S6fXJXVoj9rwHkBKzpssIKqnS3KTM4STAHIjIi
+ kFcGsxBOlyKNoMTI6E4/rdvAT3hwJwkWRnJaCPGBPRd5nG7NqrnTR4b/bwAQFLjzR2cBudb
+ YPNThBg1kfbI9hWv8uySONQkiRcTyK+SbhDcPy6mCZH0HU53K5AQtRo4rqsEHNy70WTEMw3
+ 0sZpRTI2S4BA60StiBH2A==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ZVE0sWfFGGY=;IkuDhKwp5Y3ZkWOdaYr5BeXEQtk
+ K5CZqEANOKAKvnJerp5A/YOUgs/WK/X9FFFT8wo0VcMVpW4CVlafIw9BbfpR8CZ0n6q0z8kLq
+ eLIdgXnYivKN5O64ot1v3X9BghpK9xMzEBccM9+W7mLSSpCHe7P4SF5synYrfjTSNGxP6VoVl
+ Rk8vsWfP6BrlPwQn1qEsJ4lfEaxl14gMN5S2ObPlEPksClbzYm2y1kP58Un2j2IVWXscMFpX0
+ iCzHdUsRBArQj/8dPHYyPE2KEyzlA3C0HHYuq0fum5gkkj5TLU+TJEvLBk8CaTe9r2kT5zGP1
+ LGzQorh4AtFrg1egbkrGratKE8F2XRtniwHX7Yrw02X+ZOqcS/KU3ZPVqaMYPs/ulDicwTGtx
+ mpkTmc0t7Gpm9ZduHiPYuBYcfUjeNVK+KQGELf5LeM6OAhltl8UiU1Pq2kltX7Fc/mt3EFDJH
+ 5bUC69MjwoTGzc/8Uri3kSnCS+pdAWgQZuVPv2blUvccUIey02FH/pDfnUo44LhaGXTR87fr+
+ WXVNA652/YEooX0ZXUyvqNuA+ij5gdp5+IgORM/xpTpDvjdb3wwLl6Q0RvzdojN8kA0GPU/Qo
+ l7pEANZizhd0K/MRz0TEVR26cEWMy4BK08szyd0pecvrAMwU1ijtORF5sqOaXVGHMWIWuucZd
+ +kMKHYy1yI1xFLwz7jf5MWXLzKe1tz9/Axd+jbJK81K9f40OERuL569Azzdu1SYs0yzFJ/LIb
+ 4wBvm/3X3CuEx1VHSfcqUWJ0wLWPyJJjf4g4FSJNv47+9IeZ2enQC5Nqks7Q05088LYnx+sHR
+ v4QdJ01YEw5gWgwu3YmAPLkodxSd+uGGvPWRtUkgZrRCw=
 
-On 23/05/2024 21:06, H Bell wrote:
-> The Pine64 Star64 is a development board based on the Starfive JH7110 SoC.
-> The board features:
-> 
-> - JH7110 SoC
-> - 4/8 GiB LPDDR4 DRAM
-> - AXP15060 PMIC
-> - 40 pin GPIO header
-> - 1x USB 3.0 host port
-> - 3x USB 2.0 host port
-> - 1x eMMC slot
-> - 1x MicroSD slot
-> - 1x QSPI Flash
-> - 2x 1Gbps Ethernet port
-> - 1x HDMI port
-> - 1x 4-lane DSI
-> - 1x 2-lane CSI
-> - 1x PCIe 2.0 x1 lane
-> 
-> Signed-off-by: Henry Bell <dmoo_dv@protonmail.com>
-> Cc: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |  1 +
->  .../dts/starfive/jh7110-pine64-star64.dts     | 62 +++++++++++++++++++
->  2 files changed, 63 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-> index 2fa0cd7f31c3..7a163a7d6ba3 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -9,5 +9,6 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
->  
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
-> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> new file mode 100644
-> index 000000000000..c70fffd51181
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> @@ -0,0 +1,62 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> +* Copyright (C) 2022 StarFive Technology Co., Ltd.
-> +* Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
-> +*/
-> +
-> +/dts-v1/;
-> +#include "jh7110-common.dtsi"
-> +
-> +/ {
-> +	model = "Pine64 Star64";
-> +	compatible = "pine64,star64", "starfive,jh7110";
+> Markus is banned from mailing lists and most of maintainers already
+> ignore him or already marked as spam.
 
-Please run scripts/checkpatch.pl and fix reported warnings. Then please
-run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
-Some warnings can be ignored, especially from --strict run, but the code
-here looks like it needs a fix. Feel free to get in touch if the warning
-is not clear.
+The running patch review can eventually become more constructive
+despite of recurring communication difficulties.
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-> +		aliases {
-> +				ethernet1 = &gmac1;
-> +		};
-
-Messed indentation.
-
-
-> +};
-> +
-> +&gmac0 {
-> +	starfive,tx-use-rgmii-clk;
-> +	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-> +	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-> +};
-> +
-> +&gmac1 {
-> +	phy-handle = <&phy1>;
-> +	phy-mode = "rgmii-id";
-> +	status = "okay";
-
-Status is the last property. Please read DTS coding style.
-
-
-Best regards,
-Krzysztof
-
+Regards,
+Markus
 
