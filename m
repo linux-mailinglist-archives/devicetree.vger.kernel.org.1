@@ -1,228 +1,142 @@
-Return-Path: <devicetree+bounces-68553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78C788CCB5D
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 364C78CCB61
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 06:30:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D7151C20DD4
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 04:28:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63B8C1C2120B
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 04:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0CB52F9B;
-	Thu, 23 May 2024 04:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE9312B15A;
+	Thu, 23 May 2024 04:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U18rOPfz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RPTYm7jl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF58121362;
-	Thu, 23 May 2024 04:27:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165B653363;
+	Thu, 23 May 2024 04:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716438481; cv=none; b=rAVxuzhLdjgWGMawePP6JgrM6hsTXH5niluX8Ip5LUiOvpIK8oL7VvECcWB9JXU7ePgS1OHpUtHBYjP7DQpH673ONEOTUx0IUDmjRpjLa1ITP2iEfej1nnDG5uIHL4cF+nfE1+DaHH9Llp1KZ14McnXNmZTQUG7fTRlT4VJFnBQ=
+	t=1716438602; cv=none; b=LpkOYmjI3xxnB8utuHeIz4nvIpSeveSQG0LFgXiw8040uxcpduY6G4IEa6ENTowNwkzzw6kHl0Om5+sHX5WO6SqdN7kO5l5e2prwjc7YONvl2M9fOMOHkAwQCQGdVx/bpQJOLr6DTNuOi4kHQtU70Ca94wasbY73PC3EtHmj1g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716438481; c=relaxed/simple;
-	bh=kg0vDCZE3Sr0m++mwJzUr9KmPYN+QyJtuSg5/+VM0Vo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=U0kV9axPauM2Q7A8rmez3N2crVY/c+TN1ND2TGMxdo2Vo8vi1E3MFKMoPuwgB6w6+8FvE92FUBY1XQKyZj16ZfD5lDnuHLCUNwIR4F//VYGyilS9uPaBszlQzpm5p7ukm9BuYDOUGgwF66F76Vj9Z0IwJv3YeRYKrq7FQx+98Bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U18rOPfz; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-571be483ccaso10696851a12.2;
-        Wed, 22 May 2024 21:27:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716438478; x=1717043278; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aLv+CQXekteymTi7LH8Cffmlg26XMDlTY03oC8KCX8Q=;
-        b=U18rOPfzBVOwZTxoIAeBXK6YWc8hpNSTORRYUznOcBrVSevpksflyKPXHbfKGyPVC/
-         Og7Tgcj1CmdZ7wFTj7UfJn/zmxsz4gFMGGdmkVSjs1pbseEJN12t0a8BRXNpKEQMp32N
-         +fwiwsAILQxr/MJUyaeskV2M0H9xJ4jmGoe9pyyPByEtZX3QWOm6KgxWAEY3ZXi6AP1h
-         rkuKwOd24mgDexbyvUZTXH5hWPBceofNJIrhHsnp/gfg9g7rLFEZg55erHnkx9aqmvgO
-         ReC4YrfxWdEGyf3nk7eMbITnlcu2VvaffSW9Al9/yFQCEPlS34vluqb/NTqkz3lJMggu
-         AokQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716438478; x=1717043278;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aLv+CQXekteymTi7LH8Cffmlg26XMDlTY03oC8KCX8Q=;
-        b=IzoEtUTCxRdpd5bGbkuDj+dkNnUuppv2//Yf+hco2ue1o+8dNzUxmWpT6lhyWFYvWr
-         4/+kRD2Srg1D7sw7dVh3iVDd9q5zisT6lQ7ZvczW6Qb9e1+8S9MXbk2MZQaVk7yVC33+
-         /6UoRW4HGsF3vfXcqAGlQIBWxK5f+thkQUD8LRHdnnoFaA3QEr2vzz4o5TdFCXheE0vY
-         UxcisZepuNqe+HHaJb8wx+61nuU9P2A2xVJ6wY8OCcKVaLFTJM34fYfPLX6404eQua/P
-         t6/OW55va2q2uybZ/QlsjBIoIlwBzVzmW7B2txuHWfCH5yaarSGQh1aXkLamXz0DuQuD
-         Vzbg==
-X-Forwarded-Encrypted: i=1; AJvYcCX5e788rGkUoctWMt/dG3dDnzzLdDlC4kO5XE367Dm+ZSP1Lk8fRTRFM27yvcnGAgc6bNvzqy53jMArTksab1f5Pj49aP20e9xO5Q==
-X-Gm-Message-State: AOJu0YznSJ5LNXRxoNMuzVYpRDKXoXKo7t+UU/WjWkoI9cbQMSDknth4
-	Q/TbiP2p9OtaxvARj06aicnQDPzRElGBYnOm+8O2SQ8zYdt3C6F2
-X-Google-Smtp-Source: AGHT+IEABJIJRi2xyujrDhXEgGBEtUJZ9mCywroIgEk/FF2rhQyneDrQGqeW+Teu5gAyJfsQRgV4Ow==
-X-Received: by 2002:a17:906:ca11:b0:a62:187b:e7f5 with SMTP id a640c23a62f3a-a622819ad50mr209860866b.57.1716438478086;
-        Wed, 22 May 2024 21:27:58 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a5a17b01652sm1872112566b.167.2024.05.22.21.27.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 May 2024 21:27:57 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] ARM: dts: omap: convert NVMEM content to layout syntax
-Date: Thu, 23 May 2024 06:27:50 +0200
-Message-Id: <20240523042750.26238-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	s=arc-20240116; t=1716438602; c=relaxed/simple;
+	bh=yoojRH4ide105GN6ojTQqE2X18u3pw9SmuGlClZ1oQk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=eAse0XBY5fdsJa+6WP02wlgB2B04jWzjQe2m3y4Kz4AJl8DSxi7PtmMgp1VaFzhvx0zp5SVCvrUxCsNOMd2QVvrQC1q5TxO4o4SSu/bD4Iju2nZwFrvDN18BjbaawV+qrnaEcaHJwnoUNO12+uqfAs6mNQHArRZIykrWpvUNfqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RPTYm7jl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44N4TmWW014104;
+	Thu, 23 May 2024 04:29:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=j4Kb6l8HeqhXUxmTOgLT085k+1NuizCjW5HVIpNYDFA=; b=RP
+	TYm7jlmHPZ118QjGvaa6ZkbvXs2MqYZszFimvyDYcCk83jCcJk/BiW2UnEZN7j+2
+	Af6B1Ilv3Cd3Rpa/0OA9KQWGDIPLchAXbmNQdJ5MABd/l1/pL+2Pam1c2igPrXXS
+	bnY0+dffY4tFSdU1Qz2HJaCMKTV6qgo8IA7u1gzfi88lpUV8+4/WBTeh+tv/ttsz
+	t/z9jGzZMb0lYxm41T4MDJ7TXPdpL24o+fbqqyHzI8YOYSSoeAPRC2wWNEsUhLMm
+	fhAZJIAJtGE+jgvVieYrzyQWDKu6MDFz3VaWD06i6rOfdRCrW+Y42YZkNX48eKWE
+	NBhlvO7jcYkwUIFX84wA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y6n4gjq80-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 04:29:48 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44N4TZeJ015724
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 04:29:35 GMT
+Received: from [10.50.38.127] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 May
+ 2024 21:29:29 -0700
+Message-ID: <03f7c498-775d-43a1-a8b1-8c340ef6a81f@quicinc.com>
+Date: Thu, 23 May 2024 09:59:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5 3/6] dt-bindings: PCI: qcom: Document the IPQ9574 PCIe
+ controller.
+To: Krzysztof Kozlowski <krzk@kernel.org>, <bhelgaas@google.com>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+References: <20240512082858.1806694-1-quic_devipriy@quicinc.com>
+ <20240512082858.1806694-4-quic_devipriy@quicinc.com>
+ <b3199f40-0983-4185-bd0c-2e2d45d690ad@kernel.org>
+Content-Language: en-US
+From: Devi Priya <quic_devipriy@quicinc.com>
+In-Reply-To: <b3199f40-0983-4185-bd0c-2e2d45d690ad@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qQ3oEreRA_vKjHSeGu3EQ_pH0qeAcnWF
+X-Proofpoint-ORIG-GUID: qQ3oEreRA_vKjHSeGu3EQ_pH0qeAcnWF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-23_02,2024-05-22_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1011 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0 mlxlogscore=969
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405010000 definitions=main-2405230029
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-Use cleaner (and non-deprecated) bindings syntax. See commit
-bd912c991d2e ("dt-bindings: nvmem: layouts: add fixed-layout") for
-details.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../boot/dts/ti/omap/am335x-bone-common.dtsi  | 64 +++++++++++++------
- arch/arm/boot/dts/ti/omap/am335x-boneblue.dts | 12 ++--
- 2 files changed, 52 insertions(+), 24 deletions(-)
+On 5/13/2024 12:18 PM, Krzysztof Kozlowski wrote:
+> On 12/05/2024 10:28, devi priya wrote:
+> 
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,pcie-ipq9574
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 6
+>> +          maxItems: 6
+>> +        clock-names:
+>> +          items:
+>> +            - const: ahb  # AHB clock
+>> +            - const: aux  # Auxiliary clock
+>> +            - const: axi_m # AXI Master clock
+>> +            - const: axi_s # AXI Slave clock
+>> +            - const: axi_bridge # AXI bridge clock
+>> +            - const: rchng
+> 
+> That's introducing one more order of clocks... Please keep it
+> consistent. The only existing case with ahb has it at after axi_m and
+> others. Why making things everytime differently?
+> 
+> I also to propose to finally drop the obvious comments, like "AHB
+> clock". It cannot be anything else. AXI Master / slave are descriptive,
+> so should stay.
+Sure okay, will update this in next spin.
 
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
-index 2d0216840ff5..898f862acf3e 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am335x-bone-common.dtsi
-@@ -221,10 +221,14 @@ baseboard_eeprom: baseboard_eeprom@50 {
- 		reg = <0x50>;
- 		vcc-supply = <&ldo4_reg>;
- 
--		#address-cells = <1>;
--		#size-cells = <1>;
--		baseboard_data: baseboard_data@0 {
--			reg = <0 0x100>;
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			baseboard_data: baseboard_data@0 {
-+				reg = <0 0x100>;
-+			};
- 		};
- 	};
- };
-@@ -239,40 +243,60 @@ &i2c2 {
- 	cape_eeprom0: cape_eeprom0@54 {
- 		compatible = "atmel,24c256";
- 		reg = <0x54>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		cape0_data: cape_data@0 {
--			reg = <0 0x100>;
-+
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			cape0_data: cape_data@0 {
-+				reg = <0 0x100>;
-+			};
- 		};
- 	};
- 
- 	cape_eeprom1: cape_eeprom1@55 {
- 		compatible = "atmel,24c256";
- 		reg = <0x55>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		cape1_data: cape_data@0 {
--			reg = <0 0x100>;
-+
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			cape1_data: cape_data@0 {
-+				reg = <0 0x100>;
-+			};
- 		};
- 	};
- 
- 	cape_eeprom2: cape_eeprom2@56 {
- 		compatible = "atmel,24c256";
- 		reg = <0x56>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		cape2_data: cape_data@0 {
--			reg = <0 0x100>;
-+
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			cape2_data: cape_data@0 {
-+				reg = <0 0x100>;
-+			};
- 		};
- 	};
- 
- 	cape_eeprom3: cape_eeprom3@57 {
- 		compatible = "atmel,24c256";
- 		reg = <0x57>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		cape3_data: cape_data@0 {
--			reg = <0 0x100>;
-+
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			cape3_data: cape_data@0 {
-+				reg = <0 0x100>;
-+			};
- 		};
- 	};
- };
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts b/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
-index 801399702547..8878da773d67 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
-+++ b/arch/arm/boot/dts/ti/omap/am335x-boneblue.dts
-@@ -317,10 +317,14 @@ baseboard_eeprom: baseboard_eeprom@50 {
- 		compatible = "atmel,24c256";
- 		reg = <0x50>;
- 
--		#address-cells = <1>;
--		#size-cells = <1>;
--		baseboard_data: baseboard_data@0 {
--			reg = <0 0x100>;
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			baseboard_data: baseboard_data@0 {
-+				reg = <0 0x100>;
-+			};
- 		};
- 	};
- };
--- 
-2.35.3
-
+Thanks,
+Devi Priya
+> 
+> Best regards,
+> Krzysztof
+> 
 
