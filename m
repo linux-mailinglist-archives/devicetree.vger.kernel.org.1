@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-68801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31C5C8CDB56
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 22:25:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF068CDB5B
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 22:27:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCA5928214A
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:25:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B6331F224ED
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AF184D30;
-	Thu, 23 May 2024 20:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41C684A40;
+	Thu, 23 May 2024 20:27:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DRK+qRtZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HZ65mTBD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AB684A40
-	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 20:25:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16BA928F5
+	for <devicetree@vger.kernel.org>; Thu, 23 May 2024 20:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716495910; cv=none; b=m26sBsPLKt0nzJCJRNzXvAZTkb9W0J/1d1D4CbD7ZiJM7pn7P+Jbq0d0DM9FDoyXAHrYaXfPR7NtQyUqNcWI0SlkEM+0stFu5vplL5ZC6bYSY+CaHDktH/xmyRHdd/VJj69EFvDXfIMDv3Hxa07l8FvyXl5mHatCurweqNZ9IGU=
+	t=1716496055; cv=none; b=fPB2AQ+PfV09fkE4+Gcu0pSoBH/kndN2VRrJi2p4PuUVUc51+WfBPzthaAtAhFrxdA7PtRoUdub6C84ZtxYNyJ0fRsZdmROyJJ8jK3vk800ynWN/cdpbeDqSV7RVwvsl3apQNLJZnPi/4q39GM4ZDLznA2t3P0kg3XYl7fD1Lzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716495910; c=relaxed/simple;
-	bh=T53Qq6geUKMePsO3PpM709s0ZqBNoDAk8S13cUqTa2g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dHfG5BoUiahNwXB/9+ocxf72O3D6Z2CLCHJe9ZRxBFTKRaBo/xmiIhUYT4SinkvMXnR4uVojjT3LREH7TFcLL7bZknu6LnCUzlhzAhT/PILgsPMfd/57ajCpzshUKkxtc0+M5ArdTc4fDiaa1s6ghwmoRDToc0HgHcgPM1Ng0yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DRK+qRtZ; arc=none smtp.client-ip=209.85.208.50
+	s=arc-20240116; t=1716496055; c=relaxed/simple;
+	bh=c2lXC7rZq0RgDOLyx0NsOE+TDxw1lwT1aLua6AP15yo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=TdwT2FVfpYpTaV0czTSyjOncxT06IKBJ74Qt72MiWaCMLaiuntivqURI5CinLO3aQPPtDOZu5xTDnJvQd1KdKGEW+Y22GNUfL8h3lvcnrj/0we6xTRwe5ZJ5Av/rY5Y92OQ/QNg8htpX8sfLb6hAZVpvJI6DGmIzh0I+PJXqmto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HZ65mTBD; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-57851052d4aso227201a12.0
-        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 13:25:08 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-351da5838fcso6314773f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 13:27:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716495907; x=1717100707; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716496052; x=1717100852; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gJ/+0iPILoCl4fYJ5JFyaYwZeFs4qxyfRvegHxvQq4I=;
-        b=DRK+qRtZxLHWzPilgEI80/kTEzB3CPRF8x1c4e1SCyMYpPQyS3+lEMRrUcoHci8nn7
-         dekP7fjCkOiRQLGVdQbOFfAKknXatpWRUITUfay4vZ7B3+fNPS2QLva4c0+EKPp8h/Gm
-         AbVXuDAy+5XDOVzdX/CMAcqRc78grw0oMPUht6Zvj788DH4QP1x9Usacjjx8FugbTFg5
-         GYIIMeUzGpm9g11/0w6hg0kJjTk3qxtsN+K6dm+toO7/kqcGIbqFT07eUQOFzcZNZX/k
-         WNgwd2xBxPnf8Nz68Z4uPd3rFGdYUi2Tu9BDZiGkLtTma7iZ5SQLQmmRnuYZJbsfz9Z2
-         VqeQ==
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4mCYQOucXHkzPzuxeSXoj7RNoEsjBU+3ZqxpnS0/TLs=;
+        b=HZ65mTBDTmhstLav8ffJ81eEeyt+6SLLAXi3YLzw4EGONMsTYCheZslQpnl0GYjRA2
+         CftKAQ90zTff3G7cQqkTH6ISy6BQCqFnU4nXRcSAFCCWSjOvP6vxr+WMud5knt3FRQI5
+         pX4GxK5kG/vMBZ8lj8rUOblNR7e8DkhH1BLFtpWuTA6E3MxWqLGwASWPUVlCTksJgTzz
+         japRxS1anao7Jf5I3+PwOslM3HO6Rjytp8OA9Vr+Mpfjr41+qi3F0/H4/CttJitYVXa/
+         /kfhybNpWEEtWGzT3pWZNDnC/fBqkd5x0YSDjFa3mjs62O2fcBMn7OWjo2ozs9WIzeml
+         bhcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716495907; x=1717100707;
+        d=1e100.net; s=20230601; t=1716496052; x=1717100852;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gJ/+0iPILoCl4fYJ5JFyaYwZeFs4qxyfRvegHxvQq4I=;
-        b=dlJB6NOnZ9eNq7GkIBg3xFDv1PYqyhKmp3Av2mNuX7WSOhT1VbcpxRCWvDq2tJonsx
-         px+mjC6UVLljiHVr4UDNDaislVIFFlG1p6U20eCiugA8jhNPfiUoWaznzW4mulxf1/VB
-         sZo3WhHwKoQmxf0MaF4oFBJW6NpHm0npsLDLLEqMkKmPpkIBkUpfoPLePRpcj6QNGPxc
-         IV4fiT7YQGzCfgW4Lq1rHi+UmPABgni/r/cFQ/+C2Uun1U2UdvaJwUmZx0XP4sel0QTL
-         2dYjsjX8zzHPiZOw2Ai7fFrGEhLLQftWtaTH8xuT+yAFxNW50nprbuEggEu6jsVpeVx5
-         tLpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUP8cGScKifSLAL7aEgJDRwC7SUTlxFQfa+IHLPYrDJHg0rUCMIXSkA12bhjL5jccj6TSAIeuN+OAWlBf9BagpjYRY6CdMBSFRORA==
-X-Gm-Message-State: AOJu0YyyKclRfb+6psUNsCBkUmQwpSCikjVTwh2gJEgDtC/hHJXJeduu
-	LbxC/qtPqGmZSdrkdsAmo+aIrlj8JadoA8E6gGV85Pl234X5BTeymV/dkV9UwAE=
-X-Google-Smtp-Source: AGHT+IH0kSQVioE6QrkcWMRYqJsVE/G7bhrqp9bayeccrwTPqnCrnAClAN12t1htANyO2JKbYDRBZg==
-X-Received: by 2002:a17:906:af8d:b0:a59:ca9c:4de9 with SMTP id a640c23a62f3a-a626537535cmr22590266b.76.1716495907100;
-        Thu, 23 May 2024 13:25:07 -0700 (PDT)
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4mCYQOucXHkzPzuxeSXoj7RNoEsjBU+3ZqxpnS0/TLs=;
+        b=ZM0VAnHjp2xWs+XDDaQbMbqnbQ+AuVPA5o/wZgj29z/slhD7C1IYLT1oIIQy8HnKDN
+         zu4yluPufJ3IwD3gk//liU35aLflpSLIBEUqIBHIWIWuhGyDQU46XhBPQd1EqXxnlXLt
+         dRPypvHD2P0LqOA6r1Do8ltdkyyuU+z0FTgFWs6M8mbK6DhqxVEJi9ucp+9ESK32wL4U
+         KCETGBDRSfSZ8zl6TcYUemcFwmH33zH9TR/UL6IWMz1Ba4hNIVPtS4ZgKh0JcGwyOSvN
+         hf9C2zHy7Mx8WMXmAGob3wD83y55rmouqdykMZb2ietWLOIA/RjVTtDcOc/jWRzp0DUx
+         iB8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXKtfD+6utnWTC39a6Yr9D4i08E4EQ17HqkYZ0efWXKCi8GiitMiv4mSPncnq5L/l7uIM8NsWJX450pf7iG81UUvT3TeJWwrgiqVw==
+X-Gm-Message-State: AOJu0YzH6sUklQTeotephnTeClah6W0mbPvANpbWSLr/AnAlWOXhjjOd
+	fXSru070dXnT2uqM6lsa04CiFRg0wWkjjEXJREorbBX+007dYl9Nkqsckg6V5QU=
+X-Google-Smtp-Source: AGHT+IHkQxdVhHRUF2A3htjJRXvtthNPCjIjURm8kPBRBUe1GbHeUrZg7uMBl5UoYMDjslbgpN7p3w==
+X-Received: by 2002:a7b:c40e:0:b0:41e:1bc1:36de with SMTP id 5b1f17b1804b1-42108a03095mr1484915e9.26.1716496052347;
+        Thu, 23 May 2024 13:27:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c93bbcesm6162266b.65.2024.05.23.13.25.05
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c817974sm6629166b.25.2024.05.23.13.27.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 May 2024 13:25:06 -0700 (PDT)
-Message-ID: <8df0c766-adae-4009-826d-be863e77c609@linaro.org>
-Date: Thu, 23 May 2024 22:25:04 +0200
+        Thu, 23 May 2024 13:27:31 -0700 (PDT)
+Message-ID: <0ccbc35a-434a-47cd-b54c-02fec2cd9ccb@linaro.org>
+Date: Thu, 23 May 2024 22:27:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +76,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=5BPATCH_1/2=5D_ti=3A_omap=3A_MAINTAINERS=3A_move_B?=
- =?UTF-8?Q?eno=C3=AEt_Cousson_to_CREDITS?=
-To: Kevin Hilman <khilman@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Olof Johansson <olof@lixom.net>, arm@kernel.org, soc@kernel.org,
- Antoine Tenart <atenart@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- Benoit Cousson <bcousson@baylibre.com>
-References: <20240520074013.9672-1-krzysztof.kozlowski@linaro.org>
- <7httio2zta.fsf@baylibre.com>
+Subject: Re: [PATCH] RISC-V: add Star64 board devicetree
+To: H Bell <dmoo_dv@protonmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -136,26 +133,101 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7httio2zta.fsf@baylibre.com>
+In-Reply-To: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/05/2024 19:38, Kevin Hilman wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+On 23/05/2024 21:06, H Bell wrote:
+> The Pine64 Star64 is a development board based on the Starfive JH7110 SoC.
+> The board features:
 > 
->> Last email from Benoît Cousson was in 2014 [1], so remove him from
->> maintainers of the TI OMAP platform.  Stale maintainer entries hide
->> information whether subsystem needs help, has a bus-factor or is even
->> orphaned.
->>
->> Benoît Cousson, thank you for TI OMAP contributions and maintenance.
+> - JH7110 SoC
+> - 4/8 GiB LPDDR4 DRAM
+> - AXP15060 PMIC
+> - 40 pin GPIO header
+> - 1x USB 3.0 host port
+> - 3x USB 2.0 host port
+> - 1x eMMC slot
+> - 1x MicroSD slot
+> - 1x QSPI Flash
+> - 2x 1Gbps Ethernet port
+> - 1x HDMI port
+> - 1x 4-lane DSI
+> - 1x 2-lane CSI
+> - 1x PCIe 2.0 x1 lane
 > 
-> Not sure why Benoît is not cc'd, so adding him now so he can ack.
+> Signed-off-by: Henry Bell <dmoo_dv@protonmail.com>
+> Cc: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>  .../dts/starfive/jh7110-pine64-star64.dts     | 62 +++++++++++++++++++
+>  2 files changed, 63 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> index 2fa0cd7f31c3..7a163a7d6ba3 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -9,5 +9,6 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+>  
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+> new file mode 100644
+> index 000000000000..c70fffd51181
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+> @@ -0,0 +1,62 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> +* Copyright (C) 2022 StarFive Technology Co., Ltd.
+> +* Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+> +*/
+> +
+> +/dts-v1/;
+> +#include "jh7110-common.dtsi"
+> +
+> +/ {
+> +	model = "Pine64 Star64";
+> +	compatible = "pine64,star64", "starfive,jh7110";
 
-Ah, my bad, I am sorry. I used my script which relied on maintainer
-entries but the entries got updated.
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
 
-Apologies.
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +		aliases {
+> +				ethernet1 = &gmac1;
+> +		};
+
+Messed indentation.
+
+
+> +};
+> +
+> +&gmac0 {
+> +	starfive,tx-use-rgmii-clk;
+> +	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+> +	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
+> +};
+> +
+> +&gmac1 {
+> +	phy-handle = <&phy1>;
+> +	phy-mode = "rgmii-id";
+> +	status = "okay";
+
+Status is the last property. Please read DTS coding style.
+
 
 Best regards,
 Krzysztof
