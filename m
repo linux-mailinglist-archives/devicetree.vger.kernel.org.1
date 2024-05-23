@@ -1,161 +1,142 @@
-Return-Path: <devicetree+bounces-68781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209A28CD987
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 19:56:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC8C28CD9A3
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 20:06:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4C431F2181D
-	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 17:56:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD25D1C2146B
+	for <lists+devicetree@lfdr.de>; Thu, 23 May 2024 18:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31E4B7D3E6;
-	Thu, 23 May 2024 17:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AFD8289C;
+	Thu, 23 May 2024 18:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="tHHXyUBW"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="g71+vPPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2F072628D;
-	Thu, 23 May 2024 17:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716486961; cv=pass; b=aM+UWSdIS5WHtMhYpHMRIPkKpzr+8zqpMuNXJr3N0eR2mtXziWWorj1ekcNC7X+MoORN91IaUeRSupwfvl57d2XrcB9kqrCw/Hbyj3Ldbrt+iIA4Qx8YPtHoE2xEC9aK+/mfGuZWAH8X9TiUJc5TFFPRXR3r3Q3kleBEVQuLg5E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716486961; c=relaxed/simple;
-	bh=YplcTJCGw4DR3KGZcjn8t+aHGYhGtP1JeLsDIaFdpcc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yta6Gm7UxAGNqZn9W4kFo+P+ENzD0t+bix8s/exf6s42s0iLJMGMrbEfWLb23J0J+NvZmk7mwnYf7eAt1dT1soHVnIiktLqEubF6L8YKiNkMDZE4RgYoGoH0CB2ddiPS+wfA1SaPHVxnD+8OZUV0H5TKiwnwesutUivJUmP7RbM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=tHHXyUBW; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4VlbST6t1QzyQq;
-	Thu, 23 May 2024 20:55:53 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1716486954;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+c+GW5pHAqfA3tI7UbjkwKBlWYbEbBo4+2ZrQFNWYpA=;
-	b=tHHXyUBWWZYsbxON0Lshg0XE/aAmbKuxTYIGl0+Q77h98OidReu+KOEPtodqeIORrsfPVs
-	6r01HJoZhxiFuWv/Z+GxgGyMQ+A4mRqg7zf/xswKaudLgZLxbCC8Ae1b7+J58HWL2ruMKh
-	gY3jAVBqCGt2vo+YpNf/Rtq/tLwyiL0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1716486954;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+c+GW5pHAqfA3tI7UbjkwKBlWYbEbBo4+2ZrQFNWYpA=;
-	b=aJYJ8RJ7vYnJrN+dJrZLn3Ycdk2ImUmwGlkFpMGCoKon8rHkvsbpopXp6sBTxw5UbievJb
-	2bxMVuU2/1KCK3r030Syfoj/jXKHChJ58bESMtL9k618fygB3Cr0xU2dCF/l++lvFTrgrF
-	Rloi9zzqrzR/xAtlLHHEgxFvU2LdBfo=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1716486954; a=rsa-sha256; cv=none;
-	b=Sa/lC5WRNWk7E70LBg7VjhjUG5d/QM46yDFymKlyoB7XWse5P8Ewru30GxEHCTpZifw+Yc
-	eZIS6ui/nSYdjCeTN/A7aZnYFscdr0CSKFTA2rBGFe087QXkSve1slEBxbR9u+9Mx3gcY4
-	k2+/Q/3GS6a/4hmmSo76YnVTfYLeToc=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 5C182634C94;
-	Thu, 23 May 2024 20:53:14 +0300 (EEST)
-Date: Thu, 23 May 2024 17:53:13 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Dan Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH v4 3/5] media: mali-c55: Add Mali-C55 ISP driver
-Message-ID: <Zk-CiRmQ5QRIyTgR@valkosipuli.retiisi.eu>
-References: <20240418090825.624747-1-dan.scally@ideasonboard.com>
- <20240418090825.624747-4-dan.scally@ideasonboard.com>
- <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
- <20996978-aace-4d59-92b8-39041da2ebd3@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC2C981723;
+	Thu, 23 May 2024 18:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716487553; cv=none; b=aiyC3RxN6PLJBPUenfHZ3L5aGBdGgdiMUb8KlU4I4TRahX11zwtMcFdnEfgvdjOW0vvK2TvfJr/SkVcM6lTVP8KogkhAyE8SvZ3r5HeOe35PKiiTj06o3ey7riDbY72G2Wmr07y7TCN4kY7K9f9NqVAu4rWmP9PGusMT/qWw3T8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716487553; c=relaxed/simple;
+	bh=AsaeKSwTzhcRyWKh5+2LKndNSSsb37+HBmFxmiu6nfA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hUNYitDGGJnfAXU51V4c3mmCQC6BcH+QpQqb8218mRa7A7NDek5a00iMRu8rLxmdIgsX1mghB00H76vORTind74T7v7KAFaV0CuSMxrgHbZm6mYi515jYAZHMBggtI8duDIrhMNYwp8RCBxfuPMvrbC6a1iolgy58lTEKmtvqNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=g71+vPPc; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44NHUR7w016252;
+	Thu, 23 May 2024 20:05:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=DH8LgcGQni+MPZrykXYaYa
+	wW21NSo9zAq2v3pQC/Wms=; b=g71+vPPcNMk3qJKETtWwdKKi3gp8Dwm7pTkEcu
+	UlqyHB+nc2XPNi9vnomYZq41Rt1R46bUbfgmDDDmuJOJuzxcqDnX5JgoHTItoWWU
+	pIjSUWR2QSwXZgp0jlemCelUplSbaBBe2tRnlcXstdwZk62yxa5IKTUYhvjknISh
+	5lZ9o2fFBOt6wRUaSf/k9tjO9ZTfmbBPmNPlmy5ZbnHC8AMDYep/jDSzDZHTj8At
+	WV0t5Xm+JaepV8oI7naOiL+iDw+TLi0MEWXOFgIemQx9FBPcNvhPvq3e35yjU3hw
+	uPZyNLZ9pn9B8x2pTItfbwvgKuENX6SKg5cQlpVznrF9omdg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yaa8qg2h8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 May 2024 20:05:28 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A084E4002D;
+	Thu, 23 May 2024 20:05:24 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 412EC21BF58;
+	Thu, 23 May 2024 20:04:38 +0200 (CEST)
+Received: from localhost (10.48.87.205) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 23 May
+ 2024 20:04:37 +0200
+From: Patrick Delaunay <patrick.delaunay@foss.st.com>
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Pascal
+ Paillet <p.paillet@foss.st.com>
+CC: Marek Vasut <marex@denx.de>,
+        Patrick Delaunay
+	<patrick.delaunay@foss.st.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: [PATCH v4 0/2] ARM: st: add new compatible for PWR regulators on STM32MP13
+Date: Thu, 23 May 2024 20:04:32 +0200
+Message-ID: <20240523180435.583257-1-patrick.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20996978-aace-4d59-92b8-39041da2ebd3@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-23_11,2024-05-23_01,2024-05-17_01
 
-Hi Dan,
 
-On Thu, May 23, 2024 at 02:44:06PM +0100, Dan Scally wrote:
-> Hi Sakari - thanks for the review. Snipping some bits for which I have no comment...
-> 
-> On 23/05/2024 09:03, Sakari Ailus wrote:
-> 
-> <snip>
-> > > +
-> > > +static unsigned int mali_c55_calculate_bank_num(struct mali_c55 *mali_c55,
-> > > +						unsigned int crop,
-> > > +						unsigned int scale)
-> > > +{
-> > > +	unsigned int tmp;
-> > > +	unsigned int i;
-> > > +
-> > > +	tmp = (scale * 1000) / crop;
-> > This looks like something that can overflow. Can it?
-> 
-> 
-> Shouldn't be able to; maximum scale width is 8192.
+This patchset adds the new PWR regulators compatible for STM32MP13:
+"st,stm32mp13-pwr-reg".
 
-Ok.
+As this node is just introduced by [1] and it is is not used by any
+board in Linux,  it is the good time to introduced this compatible
+and update the STM32MP13 SoC dtsi without ABI break.
 
-1000U in that case?
+A new compatible is needed as the content of the PWR_CR3 register,
+used by this driver change with new bits on STM32MP13 for SD IO domain:
+- bit 23: VDDSD2VALID
+- bit 22: VDDSD1VALID
+- bit 16: VDDSD2RDY
+- bit 15: VDDSD2EN
+- bit 14: VDDSD1RDY
+- bit 13: VDDSD1EN
 
-> > > +	for (i = 0; i < MALI_C55_RESIZER_COEFS_NUM_BANKS; i++) {
-> > > +		for (j = 0; j < MALI_C55_RESIZER_COEFS_NUM_ENTRIES; j++) {
-> > > +			mali_c55_write(mali_c55, haddr,
-> > > +				mali_c55_scaler_h_filter_coefficients[i][j]);
-> > > +			mali_c55_write(mali_c55, vaddr,
-> > > +				mali_c55_scaler_v_filter_coefficients[i][j]);
-> > > +
-> > > +			haddr += 4;
-> > > +			vaddr += 4;
-> > sizeof(u32) ?
-> > 
-> > Up to you.
-> 
-> 
-> I think I'll keep it if it's all the same to you
+I will push a update on STM32MP13 SoC dtsi if this new compatible
+is accepted to preserve the bisectability.
 
-Well, not the same but I'll let you decide. :-)
+[1] commit f798f7079233 ("ARM: dts: stm32: add PWR regulators support on stm32mp131")
+    https://lore.kernel.org/linux-arm-kernel/b89d0531-067f-4356-91b0-ed7434cee3d7@foss.st.com/
 
-...
 
-> > > +static int mali_c55_tpg_init_state(struct v4l2_subdev *sd,
-> > > +				   struct v4l2_subdev_state *sd_state)
-> > > +{
-> > > +	struct v4l2_mbus_framefmt *fmt;
-> > > +
-> > > +	fmt = v4l2_subdev_state_get_format(sd_state, MALI_C55_TPG_SRC_PAD);
-> > Can be assigned in the declaration.
-> 
-> 
-> How would you make it fit that way?
+Changes in v4:
+- use fallback as proposed by Marek on V3 for STM32MP13:
+  compatible = "st,stm32mp13-pwr-reg", "st,stm32mp1,pwr-reg"
 
-	struct v4l2_mbus_framefmt *fmt =
-		v4l2_subdev_state_get_format(sd_state, MALI_C55_TPG_SRC_PAD);
+Changes in v3:
+- Replace oneOf/const by enum; solve the V2 issues for dt_binding_check
+
+Changes in v2:
+- Add new compatible for STM32MP13 and change title after Rob remarks
+  V1: "ARM: st: use a correct pwr compatible for stm32mp15"
+
+Patrick Delaunay (2):
+  dt-bindings: regulator: st,stm32mp1-pwr-reg: add compatible for
+    STM32MP13
+  regulator: stm32-pwr: add support of STM32MP13
+
+ .../devicetree/bindings/regulator/st,stm32mp1-pwr-reg.yaml | 7 ++++++-
+ drivers/regulator/stm32-pwr.c                              | 1 +
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
 -- 
-Regards,
+2.25.1
 
-Sakari Ailus
 
