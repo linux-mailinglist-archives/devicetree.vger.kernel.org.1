@@ -1,130 +1,175 @@
-Return-Path: <devicetree+bounces-69010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E378CE58A
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 14:56:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C126F8CE690
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 16:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45CFE1F2182B
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 12:56:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7566E282503
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 14:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6315286628;
-	Fri, 24 May 2024 12:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49EBC12C472;
+	Fri, 24 May 2024 14:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DXAZNvdH"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="b4jILbP0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA108405F
-	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 12:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC54086254;
+	Fri, 24 May 2024 14:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716555395; cv=none; b=aElHnl/Hz+ZGYzXxkxTwtoB0etUaq7urVVAAi59+l3u69nCWtMayHa7Mvpw8q1ig+XhCDesQYcfI85iR6FXFwo/J1G8z8QmLslLmNYS40tqxihkQmJ98U6Bk+pXd1FxdjsGwHNTqOu1RYkwED0afMSVxmzAnrM88Jp9QktgdjHo=
+	t=1716559261; cv=none; b=jm/0oj6uf0otA48tUCHXvkA8hG+buohdnOTguLjEQb1eTapnSWn2RFA5xAnCM4EOJWPgDJw8Phypx9VGbXhmjhYKCFdxpGUb9ddleqTAbr85sgRun66trI7n35JVDjpWpoV1YUjySVCiIbRR9zxx2zhG4SnDZ7WSKnGocEGE+d4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716555395; c=relaxed/simple;
-	bh=4iD27Sim4+e2wzlhpjRuO8FmRH3AJxgJ6ximiXPdbq8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=nx3wtTSQ9jZbVUaZ00I7VE0XtRkL93TFVKJv06xki80iRuO6oBQ4gIHfg39LIYDu8uNRSQhJZ7t5Nqgw69/pq3jtX932SD9Rp/s8a6Rcy1wFdH4ZmtqZnuA/Xz2h1HwvR7DBOzh7XrbdaeUdv16mF92O1mLdeUwB8HJJBUDYvHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DXAZNvdH; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a6266ffdba8so75802866b.1
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2024 05:56:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716555391; x=1717160191; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=abVzUJ4nv1X5c9kfchVIBpN3UehgMPQfJIiYqIjebGY=;
-        b=DXAZNvdHMeH+i3W7oHa082We8UknQUGJ1WiULjvPqlXeCAaKVLySD3mktOdjJXDEAB
-         He9qV6mL58N26P4TOXWt8FCTjtdLzNAe0RHmT849UxdHN0pbiiFDX0F8FVcycEmFdqM2
-         GOxo/6LYUycq3eRLym6Q8Utde6eon8gIiqwxvCSqTWw4fNYI8y+3r/meZb0iOPDR4wI0
-         DsfcO/RzcgiW8Y4JfkN8p7hprkBthwH7Q4W45/GDdwnfI3RF+YHn19yNsQ6FhA2PzpU9
-         sTpfvpVcS3W8frIxClrgl+ksZ3o3PRYEcVmBKfYAYtA8PLPwgJ5EO/sHdyhKDaRafJDb
-         VGeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716555391; x=1717160191;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=abVzUJ4nv1X5c9kfchVIBpN3UehgMPQfJIiYqIjebGY=;
-        b=qTskpaGe+hWOPNxp9qOIzRZJurA/j45cyCF8BCTFE62w3Zz9m3CWjKNFpA5nvM0chp
-         lHb8aFXzZutX+UqB/G5CKK1Zo30kvuMoj4OJ2ap8g9+M9vd/9cxS5tslDMu6MlBE2Bkd
-         86y4nSaD/2Q67N2fz5BF4am6776NYFjK3dQ1sCRF3uKX4AwjgxnswEbQYSJHQjIJVwNB
-         9MxlgAjo57auk4tHDJZN+0xKfevSU/bZONTyhlV0TdM5TEFwpA/DFCliCeD0YchA+/XJ
-         kcEV5jRSTfOhO/MJ2owOVaZvBrPRNZtP5tjDZ7y7GefqW62jhOSlL77UfvOGml8NBgqy
-         LvMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjKeW3YJfDrESVF1D9V6ND/u/ntpkA9uyAUaI6umEdRVF466yXRjrX/OXRK2vsKCW6Hq7GRVoxqvP1MBfShSO8lCHNpbyImVPAZg==
-X-Gm-Message-State: AOJu0YzYeaVbpm6EVZT+HeAViYdCtRrBMvEdmT9lm7b1frnKzPRTX14T
-	XwDKFiEhvOOKVKYeV3BJL6QFV0UdycEGbb6qKIPhb8GMFQYAfXHK
-X-Google-Smtp-Source: AGHT+IHAdm3URxyXEPEqKRZPPrqmxvMxskLMKPdy8zLQHfXI81NFq3NKjCdR+jhr+YMpB4aoyggwEQ==
-X-Received: by 2002:a17:906:cb8b:b0:a59:c3d0:550c with SMTP id a640c23a62f3a-a62643e4d86mr124642666b.43.1716555391165;
-        Fri, 24 May 2024 05:56:31 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cda7cd3sm127570666b.216.2024.05.24.05.56.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 May 2024 05:56:30 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1716559261; c=relaxed/simple;
+	bh=jlLqTeyFNimagEyn2QXeWiWSjrXWXmTIx1RR3hrKgtg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=RgKbJiludp1RoWtNrMwfO+xKhC2ya30eGKGlWSb3qD+fBKVSKM46/eEQF9ZQ3We/iCx9jCbFGx6PWJXsXj7gGzoYB+5QNbingZurzwLW1pbEh0uJuKs0lJUSYGlb+tkEaDMGi6SG5kd6c9tvzz8p9P2YZgqTVBmHaPHe8TAqR+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=b4jILbP0; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B59782CD9;
+	Fri, 24 May 2024 16:00:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1716559237;
+	bh=jlLqTeyFNimagEyn2QXeWiWSjrXWXmTIx1RR3hrKgtg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=b4jILbP092DLQhZ76A7aAigJEtWLTciXsasEE1iytdIvapWF0ie/Y9JYHQuBAxwWi
+	 bQrHoTLl9djfSdsS1JLS0JjZOOpR+IS2sFRq62IuOXp+MKAza/fiiiT4G6ML4e8c7o
+	 oh9UgpKOblRXvCJEM56tgYiTPiqi2X+mS7czKlAM=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Linux Media Mailing List <linux-media@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: allwinner: convert NanoPi R1S H5 NVMEM content to layout syntax
-Date: Fri, 24 May 2024 14:56:17 +0200
-Message-Id: <20240524125617.27714-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v7 6/8] media: dt-bindings: Add bindings for Raspberry Pi PiSP Back End
+Date: Fri, 24 May 2024 16:00:21 +0200
+Message-ID: <20240524140024.161313-7-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.45.1
+In-Reply-To: <20240524140024.161313-1-jacopo.mondi@ideasonboard.com>
+References: <20240524140024.161313-1-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
+signal processor.
 
-Use cleaner (and non-deprecated) bindings syntax. See commit
-bd912c991d2e ("dt-bindings: nvmem: layouts: add fixed-layout") for
-details.
+Datasheet:
+https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Naushir Patuck <naush@raspberrypi.com>
 ---
- .../boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts   | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 64 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-index 3a7ee44708a2..36e46e40b8f8 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-@@ -146,11 +146,15 @@ eeprom@51 {
- 		reg = <0x51>;
- 		pagesize = <16>;
- 		read-only;
--		#address-cells = <1>;
--		#size-cells = <1>;
- 
--		eth_mac1: mac-address@fa {
--			reg = <0xfa 0x06>;
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+new file mode 100644
+index 000000000000..1fc62a1d8eda
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			eth_mac1: mac-address@fa {
-+				reg = <0xfa 0x06>;
-+			};
- 		};
- 	};
- };
--- 
-2.35.3
++title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
++
++maintainers:
++  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++
++description: |
++  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
++  processor that fetches images in Bayer or Grayscale format from DRAM memory
++  in tiles and produces images consumable by applications.
++
++  The full ISP documentation is available at
++  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - brcm,bcm2712-pispbe
++      - const: raspberrypi,pispbe
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        isp@880000  {
++             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
++             reg = <0x10 0x00880000 0x0 0x4000>;
++             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
++             clocks = <&firmware_clocks 7>;
++             iommus = <&iommu2>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7c9a858f2989..ba595fad2fb5 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18521,6 +18521,7 @@ M:	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+ L:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+ F:	include/uapi/linux/media/raspberrypi/
+
+ RC-CORE / LIRC FRAMEWORK
+--
+2.45.1
 
 
