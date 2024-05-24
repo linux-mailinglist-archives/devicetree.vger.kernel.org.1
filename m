@@ -1,94 +1,109 @@
-Return-Path: <devicetree+bounces-69002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7470F8CE4B1
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 13:08:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4381C8CE4D8
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 13:26:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30DF3282959
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 11:08:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0011C281F03
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 11:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBF142078;
-	Fri, 24 May 2024 11:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFF186AE7;
+	Fri, 24 May 2024 11:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jj4bSNlN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DWOZeX6T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACBC126F0F
-	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 11:08:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA4278593B
+	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 11:26:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716548897; cv=none; b=qTBQ3HK0NhNj4iKjW675iRDn265n7vQjxmWM5vKCA6uhQ9/HLmKZnW4mkpcYDGn2wZ3i4vLU54DuhSC7Uaz84EshJ9V+9JfuhvhwioVIqr+380IzaE4ZhzW+8tNzq1pVYviidZiunGkNF7Ix97aeDuYxCJ0Md8T6v1EwmPzwLi4=
+	t=1716549977; cv=none; b=HdDbu0cnHEdUDMceivkf53EV3VZyV+dFITVmMnhlApWCFkFC0SrBUvNm5om7+f+RxiwKtbz+szaBIW65G3l+d8ZKEOcQjj17nf/kD3jj04JzrwfTeMnUCy4A7c11mx1nYOjTpnyDtpuEMTI/AApxEz/v0AAGqn6xi79MLrg9sRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716548897; c=relaxed/simple;
-	bh=YIKm1y4gY2lJsOegqZ3pNgy8uY1r/NNidQZmyALCU+Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MafCND+ngqaZxu4LuaGonunwf5ablDtYIqcwgCXRdJ9pjwnzIrk3cGcOcPLdpFknMHxuiZYXVpmEq7NJpLKm3Vy8fznJ2gDmpzN3y7DHIaLxvE7kJPKqDt/D+YMsgsKgt7LdctaefEdXVivZPvZEHJrOmVovStYit3Tet7liS7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jj4bSNlN; arc=none smtp.client-ip=209.85.219.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-df771bddc0dso728070276.3
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2024 04:08:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716548895; x=1717153695; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YIKm1y4gY2lJsOegqZ3pNgy8uY1r/NNidQZmyALCU+Q=;
-        b=Jj4bSNlNof+LSEV0zo8JYm/x5nDYPEkEZK2/esL9Pk41It60cH6pBS39qjYNOQlaZO
-         LT+Lgl+8YxnQK+daYASN3IFHDqO4yL5VFNgsqT1SJrvkQrf1IfJVfxqe0eUlHVoKlHI5
-         srBDO7DWYnQ5Or4Rd5x6H4jBmyiEbhQoC4OQDChrKjVnBPE3egM5y2Dlh1Hdtddhs/Sb
-         WFX4awRCvdVxb+DX3K6MyA6iTKxDmjt8r8cH+Q3dena2C2M553cOsI1yY3CrdlhaXcFd
-         RtBoIXSqtX3O1GHbhZBpk9Bzven95T6Lu+lmuXdS/W+wStfeHbDAdZ2w8dZtXFBA7dS4
-         T6xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716548895; x=1717153695;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YIKm1y4gY2lJsOegqZ3pNgy8uY1r/NNidQZmyALCU+Q=;
-        b=kTFfA6zgwAo4HEeZNbQ7xjg3yOkA76kUvPd1/OkZ9jtnbgC8wWrT1ekRuDugxgtAOj
-         thrVrmRsKQpu9ji/KNeM6OJcF04cvehfpX/BQYm5nB+1f4JNqahDn2qQMIb4YLGGQ/Ek
-         mJcLlZbe6u2j5KfG3tqnIhvpiSGK3RspASe3FPPygYoXwH3vHBKBJFfbaWhzaK23VmEn
-         7Tr51ufiUxZqcQaXcnCfgTkNi988pjM7YP8UeMEIkuNKmAypldxGNbWIUm9YeZ3SZfaO
-         JZPnVabjTbcWod5wzTEbJOKLpOBdVCsffJaAPGvYOOHNzmMN5QpwG5sO4aG0CPyRGhOW
-         3c8w==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ8bYWiQfF7BkrkWqDhAVnhVs7lFBF405qKWxeowab3Df9CHZJsaamMhTUxRXK62Ojl6nUG3uPws9EA5bD/pvhhGe3BX1fvlbkgA==
-X-Gm-Message-State: AOJu0YzGpmCMwVYV5Vcg1wd8+a416ygqLYPJISBQiLjeVLmifKpURRbF
-	I27YeAYdERMLWkGYeb2ZPlBUzfyTJvZlUcyl5JJX/BWPmTotB3/t/0lbPqTXLMGzb3YwAl5dW/h
-	4PU3GYeTsn4s9JPW+HnAkGVcsVS9d+QU47RZhZA==
-X-Google-Smtp-Source: AGHT+IFAGfPJGrXOnaH/Gx2u24PuxTtPCsvl4gdJyfYHcmy5PG5TQGqzudRXoxNzaVhKmKUUbKPRP0m59zS/YBd+TMM=
-X-Received: by 2002:a25:90f:0:b0:df4:2beb:344e with SMTP id
- 3f1490d57ef6-df77215e3f6mr1767903276.2.1716548893984; Fri, 24 May 2024
- 04:08:13 -0700 (PDT)
+	s=arc-20240116; t=1716549977; c=relaxed/simple;
+	bh=KCII9VvhTDTvyblIy2kt5S8OlDcHA9ogMutW/tsAaBo=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=pAJX4gb+iiHVM+HaDCzJiof4uNXsQ3M/TK3NKj0pKcwE22rpjuK0/doT1W68g+gFHNODsnjvas1zeZx6uSchUuBYoTaU5z1m0ikKJDzEFFfltWHug+duasbSviYg5NDPQnOpfzgHafrSFWl4/S5WnDLH2CSx6hiqCrarowkni3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DWOZeX6T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6F28C32782;
+	Fri, 24 May 2024 11:26:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716549977;
+	bh=KCII9VvhTDTvyblIy2kt5S8OlDcHA9ogMutW/tsAaBo=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=DWOZeX6Tk0NC57W0YtgVJEZLodphgxVbDKoCA54TTdEve3netFZn6FEkvDJVMJMRu
+	 I75BCayT1MSigUG96V2JCMqDyZIXGBskh14PMWMjZHCwBSxaEVTlDxGIqSNERipHHu
+	 pi+kAzkDv3RIWba3/zH4WSqJ+9SWXcBd8EFCQrGjP+14OPPTLWrnToaiO0M3lGpAOf
+	 HgtUp4MQbby6P/a5KPpSlLS57J4KNeL36/Pce43hcGyQdA056e1Ge2xVLW8FYUclze
+	 Bz9D5Ndg4k6PMUOR8ujQEQQFpMagAa/PdQ2OI7Erki9AiRZldODLI5Yw5jVg4+96Yj
+	 DNW8/ZzrK3LXw==
+Date: Fri, 24 May 2024 06:26:15 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240524103506.187277-1-ryan@testtoast.com> <20240524103506.187277-3-ryan@testtoast.com>
-In-Reply-To: <20240524103506.187277-3-ryan@testtoast.com>
-From: =?UTF-8?B?44GN44GP44Gh44KD44KT44GV44KT?= <kikuchan98@gmail.com>
-Date: Fri, 24 May 2024 20:08:02 +0900
-Message-ID: <CAG40kxFTT-K2LPZOM=0TLKREye8ooa+uvo5Rj7tYC1Um0rzNnw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm: panel: nv3052c: Add WL-355608-A8 panel
+From: "Rob Herring (Arm)" <robh@kernel.org>
 To: Ryan Walklin <ryan@testtoast.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chris Morgan <macroalpha82@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, 
+ dri-devel@lists.freedesktop.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ David Airlie <airlied@gmail.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org, 
+ Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel@ffwll.ch>, 
+ Hironori KIKUCHI <kikuchan98@gmail.com>
+In-Reply-To: <20240524103506.187277-2-ryan@testtoast.com>
+References: <20240524103506.187277-1-ryan@testtoast.com>
+ <20240524103506.187277-2-ryan@testtoast.com>
+Message-Id: <171654997579.661410.2485055226401871531.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add WL-355608-A8
+ panel
 
-Hi Ryan,
 
-Thanks for your contribution. Here's my sign-off:
+On Fri, 24 May 2024 22:33:13 +1200, Ryan Walklin wrote:
+> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unknown
+> OEM, used in a number of handheld gaming devices made by Anbernic.
+> 
+> Add a device tree binding for the panel.
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> ---
+>  .../bindings/display/panel/wl-355608-a8.yaml  | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml
+> 
 
-Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/panel/wl-355608-a8.example.dtb: /example-0/spi/panel@0: failed to match any schema with compatible: ['wl_355608_a8']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240524103506.187277-2-ryan@testtoast.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
