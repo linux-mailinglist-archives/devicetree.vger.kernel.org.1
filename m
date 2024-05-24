@@ -1,191 +1,201 @@
-Return-Path: <devicetree+bounces-69069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29848CEA2F
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:11:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E228CEA3E
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:23:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E58931C20C46
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 19:11:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C74B41F211B7
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 19:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022F247F45;
-	Fri, 24 May 2024 19:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A1F5674B;
+	Fri, 24 May 2024 19:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="cvl34NI5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dkaR7NBw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 391E042072
-	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 19:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC5950263;
+	Fri, 24 May 2024 19:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716577890; cv=none; b=CHGWtDGhPJAJT8nuge1D9WytIdyN6BZzXmddQ07PP0dO30oOVFDsGbx+ZvD3R82dmRcEC/QsgownH5UoqNGvFuYwUSWMSyCS6u5YLDWh61UTC+wlG+eaQtp2Luaa3cnOWeM/sXaL1+RVKplPiYtPjhBMOlaLAAyqXs0+gOrYe90=
+	t=1716578605; cv=none; b=cowQklS2LLVZ2PSaWeuxr5JI/GgfBNKRIN1HBiL5+jXZf0NVxOkJKAuag1t6ch/YoYhpA2D51fF/KsuTfByP/xp4N/o4X3ji3nC4crEuaeryzPm32dX8AsWd8lvWQARNphUqyP8qfOTQgS1J8GSZKU9DINLurw3DTkQBLRad5z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716577890; c=relaxed/simple;
-	bh=ekJ4PIWteF0STOLt8GEwvTZKcTBrMpP/XnMQSDaKdFE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qg84aYVrC2WR/eCeUftTErO6qwBi5UICYp/AYUDP5/Jb1DcaFccU4CcFXADzX0r2UlEDkvqBLmS6/MTxTez4//dWFKCpDlEgCUB0ebHKjJoKhtMF0X/pkPuIqvgDwGBXZW9hVSsy6XIfEHJifInTzLyj7Na9Lys9H9IaV+hJ0p4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=cvl34NI5; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6fcbd812b33so56816b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2024 12:11:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1716577887; x=1717182687; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NHWDoWZZfWuUu/P0x+kbvgCTb8gOtuuYHKkIDhOcYik=;
-        b=cvl34NI5VpJxkDOSy7KYVz/xK3ENQGCrkfRLgQ4/IO8GkFp1fUFXllN1DETVJl1aoB
-         F71hMlbxt64dut/e7wQyxc02fWBbI/wEMjW4bYitcIs2XIkLlxrsCHLBcPEmRhN9GtPQ
-         doeACI5uJUIXrVR4AMrrNkpz0KFyV4iTui3z/il+6kBHJ0vjW9XlRrScJDr/hzIi+GqF
-         14rgtxrXUN1124OkrFiRuHysCB9XYa82gBmQjA2Wg3GbHhww85RBvGZC2EkywHNdQvGc
-         LiphDU8ybvD0bpkJs504lph7tZuiXrGzmVYxfcixqboZVnVfSeoreuGgMT2+I4lnXgWB
-         GXbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716577887; x=1717182687;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NHWDoWZZfWuUu/P0x+kbvgCTb8gOtuuYHKkIDhOcYik=;
-        b=fdD07n+tbAj77XbLYhfb5MZSjSISEF64oC1KAVsPiuAlF4LcSuItoArsrrouFVVQTP
-         np36DSHbpcQqGNZumfmyhzI8K3EKE3BlG9m4Iu5BDopeIYsTPJ4aPhQ1tsWG0uDE1dhw
-         SgTOld9HPOiXyZoCKNEhhJ3vv9uoRoOOiFUjRZYdF5J4R+sBu8yVj8/xJkqTpyi888k2
-         Lku2JAwZsyKGEwTNyLy0GXenah0hQhxmvFGuk6EnrdmxxAxbJ6Jd/clSsyx+157UMHJ2
-         TbD/L5mf4Wyq3TEFFSOWiNDJotnkSLeGdJ14M/JAuMJx67TaqkE0UKqFiQpGAsegoKem
-         CU/A==
-X-Forwarded-Encrypted: i=1; AJvYcCW9Oks86I/cQMrr1JuIwX2kqi0bd9gQ+aiuI/1SdRtEhmeCDtN7rZSJdeDciD1JVQXpG+Lz/53GWtlrz08V2PdGdb2zXy9QqmV/4w==
-X-Gm-Message-State: AOJu0YzhPFN3CwC5rVgRv0LyH0mGITVE+D7WY/VerIFfe/yVplRtflx4
-	tZdV4Xqbe7wxuQT3cv6jPbgywAMKQosQGfKHECNBjxrmyQw7DPGAwSw9YfsPMzk=
-X-Google-Smtp-Source: AGHT+IEwWQZpFilaYbUUGlopJo1f2TdPyB2rRnSl7U/MDmzei8hNgpy175SX2dTVTzyB8unJyM8ICQ==
-X-Received: by 2002:a05:6a20:12ca:b0:1af:93b0:f007 with SMTP id adf61e73a8af0-1b212cc4fd5mr4361727637.1.1716577887327;
-        Fri, 24 May 2024 12:11:27 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f8fcfe5961sm1424089b3a.164.2024.05.24.12.11.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 May 2024 12:11:26 -0700 (PDT)
-Date: Fri, 24 May 2024 12:11:22 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Andy Chiu <andy.chiu@sifive.com>
-Cc: paul.walmsley@sifive.com, rick.p.edgecombe@intel.com,
-	broonie@kernel.org, Szabolcs.Nagy@arm.com, kito.cheng@sifive.com,
-	keescook@chromium.org, ajones@ventanamicro.com,
-	conor.dooley@microchip.com, cleger@rivosinc.com,
-	atishp@atishpatra.org, alex@ghiti.fr, bjorn@rivosinc.com,
-	alexghiti@rivosinc.com, samuel.holland@sifive.com, conor@kernel.org,
-	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mm@kvack.org, linux-arch@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, corbet@lwn.net, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, oleg@redhat.com,
-	akpm@linux-foundation.org, arnd@arndb.de, ebiederm@xmission.com,
-	Liam.Howlett@oracle.com, vbabka@suse.cz, lstoakes@gmail.com,
-	shuah@kernel.org, brauner@kernel.org, jerry.shih@sifive.com,
-	hankuan.chen@sifive.com, greentime.hu@sifive.com, evan@rivosinc.com,
-	xiao.w.wang@intel.com, charlie@rivosinc.com,
-	apatel@ventanamicro.com, mchitale@ventanamicro.com,
-	dbarboza@ventanamicro.com, sameo@rivosinc.com,
-	shikemeng@huaweicloud.com, willy@infradead.org,
-	vincent.chen@sifive.com, guoren@kernel.org, samitolvanen@google.com,
-	songshuaishuai@tinylab.org, gerg@kernel.org, heiko@sntech.de,
-	bhe@redhat.com, jeeheng.sia@starfivetech.com, cyy@cyyself.name,
-	maskray@google.com, ancientmodern4@gmail.com,
-	mathis.salmen@matsal.de, cuiyunhui@bytedance.com,
-	bgray@linux.ibm.com, mpe@ellerman.id.au, baruch@tkos.co.il,
-	alx@kernel.org, david@redhat.com, catalin.marinas@arm.com,
-	revest@chromium.org, josh@joshtriplett.org, shr@devkernel.io,
-	deller@gmx.de, omosnace@redhat.com, ojeda@kernel.org,
-	jhubbard@nvidia.com
-Subject: Re: [PATCH v3 22/29] riscv sigcontext: adding cfi state field in
- sigcontext
-Message-ID: <ZlDmWoo6EVZ1MKbN@debug.ba.rivosinc.com>
-References: <20240403234054.2020347-1-debug@rivosinc.com>
- <20240403234054.2020347-23-debug@rivosinc.com>
- <CABgGipW4ZTFLh1dkiRuWD0WP4RRkfhyFCc+RsUjCD2EkA5GhSQ@mail.gmail.com>
+	s=arc-20240116; t=1716578605; c=relaxed/simple;
+	bh=4HdjJxDS632Jutci0KWaPaUjAgNj8gcwwbCZhlcby+w=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tfIOHyXqlCBs9CZElHnm6J7ho92+czdA1wDpTKWObf8w3FsWCNNNW1hRB/LtV2mhzTdOBd6fh55gAHYwtRZMn32umRIpmZynrIQQfDNl7eCy8qyvnF+4pOSBnt0Q+1vHP2Agd7D2e8JXSKAshYNdzs23E0vlxXNc8PSDIELgLIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dkaR7NBw; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44OICRXI004145;
+	Fri, 24 May 2024 19:23:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Yo4szzBQzp8Ht3GJEpO+uw2J
+	dr21qqXRV9Tz5vrPbEw=; b=dkaR7NBwRI62SSCMagMr+Qksuzyyce7VTJAFA8I6
+	f9tOv6DS3orkIwI/Er/memBGaxQDgJfJW34uNXy2xuHYNNzV1pJAc6LM9GJrnXxe
+	qkN74tqH5JlbvZIFLWDwtv9V4I0/+1UPsu6QKWEVcBbxKoBxtfKhAr/mBH7U4e/R
+	JoeJQsU8S3bmM1D7SP3e5adjTjEVXuZQrR7k4m4JO5D+tNLb4ET9D129Cuh/+of8
+	ZDsFaX6z2LFmLmHSxKIOi/LKUKQ8CaUEYyxzMa8ZgA1p1lr6VfI5ydsY2pxXJ/TD
+	t7tMv3BnnaisIkfAd4WKeHRQuOsYyeIl8lQ1kp0BQzcb5Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yaa8j3ay3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 May 2024 19:23:03 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44OJN2v1007873
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 May 2024 19:23:02 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 24 May 2024 12:23:02 -0700
+Date: Fri, 24 May 2024 12:23:01 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Chris Lew <quic_clew@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Peter Zijlstra
+	<peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+        Will Deacon
+	<will@kernel.org>, Waiman Long <longman@redhat.com>,
+        Boqun Feng
+	<boqun.feng@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 5/7] dt-bindings: remoteproc: qcom,pas: Add hwlocks
+Message-ID: <ZlDpFV8bL8/lwGOP@hu-bjorande-lv.qualcomm.com>
+References: <20240516-hwspinlock-bust-v1-0-47a90a859238@quicinc.com>
+ <20240516-hwspinlock-bust-v1-5-47a90a859238@quicinc.com>
+ <3521519f-34b8-472d-be37-f0e64bba24fc@kernel.org>
+ <a944418a-1699-44fa-bdfc-2e57129adea1@quicinc.com>
+ <c9882ba0-bbbf-44ec-9606-ebe68bcb8866@kernel.org>
+ <ZkzzY311XiRigJPt@hu-bjorande-lv.qualcomm.com>
+ <92dcd555-69b1-4111-92dd-debe5107d526@kernel.org>
+ <Zk4wab/NZOOZ3hA6@hu-bjorande-lv.qualcomm.com>
+ <aed37430-7e87-4516-86da-3997c01a8aa8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABgGipW4ZTFLh1dkiRuWD0WP4RRkfhyFCc+RsUjCD2EkA5GhSQ@mail.gmail.com>
+In-Reply-To: <aed37430-7e87-4516-86da-3997c01a8aa8@kernel.org>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: baizeiFtqEWoMIhvTHs3ZxbMP0M6bg0r
+X-Proofpoint-ORIG-GUID: baizeiFtqEWoMIhvTHs3ZxbMP0M6bg0r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-24_06,2024-05-24_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ clxscore=1015 phishscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
+ adultscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
+ definitions=main-2405240137
 
-On Fri, May 24, 2024 at 05:46:16PM +0800, Andy Chiu wrote:
->Hi Deepak,
->
->On Thu, Apr 4, 2024 at 7:42 AM Deepak Gupta <debug@rivosinc.com> wrote:
->>
->> Shadow stack needs to be saved and restored on signal delivery and signal
->> return.
->>
->> sigcontext embedded in ucontext is extendible. Adding cfi state in there
->> which can be used to save cfi state before signal delivery and restore
->> cfi state on sigreturn
->>
->> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->> ---
->>  arch/riscv/include/uapi/asm/sigcontext.h | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/riscv/include/uapi/asm/sigcontext.h b/arch/riscv/include/uapi/asm/sigcontext.h
->> index cd4f175dc837..5ccdd94a0855 100644
->> --- a/arch/riscv/include/uapi/asm/sigcontext.h
->> +++ b/arch/riscv/include/uapi/asm/sigcontext.h
->> @@ -21,6 +21,10 @@ struct __sc_riscv_v_state {
->>         struct __riscv_v_ext_state v_state;
->>  } __attribute__((aligned(16)));
->>
->> +struct __sc_riscv_cfi_state {
->> +       unsigned long ss_ptr;   /* shadow stack pointer */
->> +       unsigned long rsvd;             /* keeping another word reserved in case we need it */
->> +};
->>  /*
->>   * Signal context structure
->>   *
->> @@ -29,6 +33,7 @@ struct __sc_riscv_v_state {
->>   */
->>  struct sigcontext {
->>         struct user_regs_struct sc_regs;
->> +       struct __sc_riscv_cfi_state sc_cfi_state;
->
->I am concerned about this change as this could potentially break uabi.
->Let's say there is a pre-CFI program running on this kernel. It
->receives a signal so the kernel lays out the sig-stack as presented in
->this structure. If the program accesses sc_fpregs, it would now get
->sc_cfi_state. As the offset has changed, and the pre-CFI program has
->not been re-compiled.
+On Thu, May 23, 2024 at 08:15:54AM +0200, Krzysztof Kozlowski wrote:
+> On 22/05/2024 19:50, Bjorn Andersson wrote:
+> >>>>>
+> >>>>> We did consider tying this to the SMEM instance, but the entitiy 
+> >>>>> relating to firmware is the remoteproc instance.
+> >>>>
+> >>>> I still do not understand why you have to add hwlock to remoteproc, even
+> >>>> though it is not directly used. Your driver problem looks like lack of
+> >>>> proper driver architecture - you want to control the locks not from the
+> >>>> layer took the lock, but one layer up. Sorry, no, fix the driver
+> >>>> architecture.
+> >>>>
+> >>>
+> >>> No, it is the firmware's reference to the lock that is represented in
+> >>> the remoteproc node, while SMEM deals with Linux's reference to the lock.
+> >>>
+> >>> This reference would be used to release the lock - on behalf of the
+> >>> firmware - in the event that the firmware held it when it
+> >>> stopped/crashed.
+> >>
+> >> I understood, but the remoteproc driver did not acquire the hardware
+> >> lock. It was taken by smem, if I got it correctly, so you should poke
+> >> smem to bust the spinlock.
+> >>
+> > 
+> > The remoteproc instance is the closest representation of the entity that
+> > took the lock (i.e. the firmware). SMEM here is just another consumer of
+> > the same lock.
+> > 
+> >> The hwlock is not a property of remote proc, because remote proc does
+> >> not care, right? Other device cares... and now for every smem user you
+> >> will add new binding property?
+> >>
+> > 
+> > Right, the issue seen relates to SMEM, because the remote processor (not
+> > the remoteproc driver) took the lock.
+> > 
+> >> No, you are adding a binding based on your driver solution.
+> > 
+> > Similar to how hwspinlocks are used in other platforms (e.g. TI) the
+> > firmware could take multiple locks, e.g. to synchronize access to other
+> > shared memory mechanism (i.e. not SMEM). While I am not aware of such
+> > use case today, my expectation was that in such case we just list all
+> > the hwlocks related to the firmware and bust those from the remoteproc
+> > instance.
+> > 
+> > Having to export APIs from each one of such drivers and make the
+> > remoteproc identify the relevant instances and call those APIs does
+> > indeed seem inconvenient.
+> > SMEM is special here because it's singleton, but this would not
+> > necessarily be true for other cases.
+> 
+> I don't think that exporting such API is unreasonable, but quite
+> opposite - expected. The remote processor crashed, so the remoteproc
+> driver is supposed to call some sort of smem_cleanup() or
+> smem_cleanup_on_crash() and call would bust/release the lock. That way
+> lock handling is encapsulated entirely in one driver which already takes
+> and releases the lock.
+> 
 
-Yeah this is a problem if program was built with older kernel/old toolchain
-(or cfi unaware toolchain). Thanks.
+I don't agree.
 
->
->>         union {
->>                 union __riscv_fp_state sc_fpregs;
->>                 struct __riscv_extra_ext_header sc_extdesc;
->> --
->> 2.43.2
->>
->
->There may be two ways to deal with this. One is to use a different
->signal ABI for CFI-enabled programs. This may complicate the user
->space because new programs will have to determine whether it should
->use the CFI-ABI at run time. Another way is to follow what Vector does
->for signal stack. It adds a way to introduce new extensions on signal
->stack without impacting ABI.
->
->Please let me know if I misunderstand anything, thanks.
+SMEM does indeed acquire and release the same, shared, lock. But the
+SMEM driver instance on our side is not involved in taking the lock for
+the firmware.
 
-I think following how vector does would be cleaner.
-Let me munch on this a little bit.
+There exist an equivalent SMEM driver instance in the firmware that
+crashed and that's the thing that needs to be released.
 
->
->Cheers,
->Andy
+
+We're also not tearing down, or cleaning up anything in our SMEM
+instance. It is simply "when remoteproc id N died, check if N is holding
+the lock and if so force a release of the lock - so that others can grab
+it".
+
+> Just like freeing any memory. remoteproc driver does not free other
+> driver's memory only because processor crashed.
+> 
+
+That's a good comparison. Because when the firmware running on the
+remote processor crashes, it is indeed the job of the remoteproc driver
+to clean up the memory allocated to run the remote processor.
+
+Regards,
+Bjorn
 
