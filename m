@@ -1,118 +1,117 @@
-Return-Path: <devicetree+bounces-69092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB328CEC63
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 00:27:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACFA58CECFB
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 01:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCF4C281EC6
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 22:27:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 504E9B21F32
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 23:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A382E84D37;
-	Fri, 24 May 2024 22:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F72158876;
+	Fri, 24 May 2024 23:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="P8f73AVw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p62/M8bq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980B41DFFC;
-	Fri, 24 May 2024 22:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87403A268
+	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 23:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716589668; cv=none; b=b+5gbZGT3OIxnvc5yTcF4ZNWNnoXk6UDHITOIiocCCjNqJrI7zRVwS+I62NX1hewWrqgeTg007pPXnTKESxvYOpRZWr4L8VWO/BceYmYPtETTHayeZCLbUj2EhZpyRI07cQyegpOecrDIsOjq3yMWn/pXgBgdmITNqY2ZGdDIks=
+	t=1716593855; cv=none; b=XI+84/+SwbqmmPgAOZWly69iqkc/LmfxDQ8j+bBLC2421K11JdbHn/JMFNC/E6TO/8LqTScR5ySpfP045Nk7jdDxzPVz1fuvdCpt+orvlxwUrIautmxG2U1fpZmXQ8CGb12A25bRSa1ABld0h4DJTslYmFCj25+dI3Q84fSqEro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716589668; c=relaxed/simple;
-	bh=iXH9XdZj6ElZjG8H8PzcGVxUnfrO4WKMqmUf3o3c0g8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qgIjjHVXKn96PLvmc6eBFoQp1E6vE4V7FC0U6yIzcFHi+WcQm5O1My/RG31JATgnwHUgYH+B3e3Pky0vQPW9OY1Pzhl4MgdHtyOmlMgr+P1T8egUlkIboaPusHSVhKQulEzdPYXqDi6TxD4gRVcGoAgNUN+IOnXAvWQJvYxhisc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=P8f73AVw; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353728.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 44OMMQtW013623;
-	Fri, 24 May 2024 22:27:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=mABNMy86l8KP+yPjxHU9m+yjpNAlq2nHkJ+scDyy1GM=;
- b=P8f73AVw1LmH0i02WkI9DVxVeuNX7Lx8wjYDfzcDFmFvALpnPGURyB1StQJE/VbHHF+J
- sWCQ3lko8kv1dkSrslLKJns4kFTHNCPvWwl0jruCRVNNca7mFhh1a/2Tx18uR8hscDrR
- syFww0t1FzXvRCbo4dM5HKEEQmFDbJyhK0zYCY68hcDm7KnSJnDfHDCGmFnf+ngUQuCq
- mg1Geon2KPqnJQGK8mR+gqmPfOf5VRMAylRRswFswGRd2zlGCz+L/j3S/6mzSBpA3qdr
- Z342gwyivv5rfoc1mlKu7ftY3z8GBeFOavtzAdMbxR70jowLFCP5/MRAzCjTfaga/rHh cQ== 
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3yb3me00cg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 May 2024 22:27:31 +0000
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 44OJEqYG026457;
-	Fri, 24 May 2024 22:27:30 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3y785n38f6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 24 May 2024 22:27:30 +0000
-Received: from smtpav03.wdc07v.mail.ibm.com (smtpav03.wdc07v.mail.ibm.com [10.39.53.230])
-	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 44OMRRLv49808028
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 24 May 2024 22:27:29 GMT
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E920B5805C;
-	Fri, 24 May 2024 22:27:26 +0000 (GMT)
-Received: from smtpav03.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 66E815805A;
-	Fri, 24 May 2024 22:27:25 +0000 (GMT)
-Received: from [9.61.107.154] (unknown [9.61.107.154])
-	by smtpav03.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Fri, 24 May 2024 22:27:25 +0000 (GMT)
-Message-ID: <56d16579-137f-4473-a9f1-44f7d030c166@linux.ibm.com>
-Date: Fri, 24 May 2024 17:27:24 -0500
+	s=arc-20240116; t=1716593855; c=relaxed/simple;
+	bh=JflTLH918455b/UulNgm7hAclN0c2bENLU63KxD2kD4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oLd+8uXh0Ck8T9tRc7ovTPpxpSWpGOA++CG3o7rUMmQ+3IQdI6QEcqTZbMshG7w3It75anCZ9PwDy1y9pMzW8yJjiL2hoE9ZDIYuE5fDLWVu2PpAzCIeJjXky9kj3Apd+8JfNvTHR5J4GAPxAh8BxUt4iCTVZEUC2qMfD9prUcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p62/M8bq; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-354de97586cso4352176f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2024 16:37:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716593851; x=1717198651; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NlfoWRsou0FGSAU+bRIZe3/8khkmJp6TNl2qzTYp4WU=;
+        b=p62/M8bqiw+FXFtETOXYMWxqhn+VKlEzbEsETO9q+07ilVpgspvlRPV1iFfttI8u1f
+         48KCp3n0B3ULuUI6FCra9hw72pNmSvWmqFNEwsmaZ5z8UpUvp8POJ3/7kdBzcyP85ovS
+         W137+bADq5MiZWzn5W9DdnEO8zr1aYem9Wk7FIYuwumaeLCu3/3SB0yX6o3OYCPYWRmT
+         l4zMTpmG2FBkPHuTdIFpJGGWbuqkRuVk8s/LXpTIW32duR85R+obGlaeuGzFIr7poBHQ
+         T8CGm4sO0wP6yFDhwFbgQWfq0MhytDp/wI6rjuPsVIpcokAYANu0FB9FWChOB867BBSO
+         1xJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716593851; x=1717198651;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NlfoWRsou0FGSAU+bRIZe3/8khkmJp6TNl2qzTYp4WU=;
+        b=eqCerGzqIAeFMDrYI2wCVbfjesxVWBb6EEiJfDuScQ+muw/GtXr+IRB2VIq5DxNJfq
+         NRSNE6YpwlmM2kFUdfAeUhOjEiTLPkNTbT9zWjZQ1UGqHqL8zM+ApBQjJx4X32rpl0oX
+         ScX+xhtofciwukIiH2sjyxcg8zve1jF++VsS09rIGyO6laPAG8iDDhdpY2LC9rCMKTiy
+         jcz/Av/Op2f5Thx+KSa74z6BaXKVO7r0+f37hYNdMyxmM41NNGPvPCQeNiciwbUr9Hk5
+         D6ANER+/vs4kMYDu4HTZL4J3HIFP1tHOc7RZYWE/9JemXpeBrSIA/W3lz+oQqRQoeZYx
+         qzNg==
+X-Forwarded-Encrypted: i=1; AJvYcCWYSpb2lB8M69NnKupewO/GrSP6fz86KG5NMCf+w/uDOCzn1tK7Wfrii1gmiKgUlAP8A8LmsvPZZnBRSwg3dl8lza8vMEANq2gLHw==
+X-Gm-Message-State: AOJu0YysJhcemv5e1KFgvCOqasTftshcDVBqSJDB2fyNbMTK3xsR4ar/
+	o4Tx0SrLM+pUGDf7nzFHfJ3halVo4yjSmcUo7HPBt81LVRBI5hQJvRa93Ixcv44=
+X-Google-Smtp-Source: AGHT+IHp/7fVQoSDDRZK62VLrQPVjXx7HLE+bPisvOuROu6qqrD/CTxst4QM9J4x5BskJua1Fbqmjw==
+X-Received: by 2002:a5d:504d:0:b0:354:f168:9862 with SMTP id ffacd0b85a97d-355221273fbmr2746662f8f.0.1716593851065;
+        Fri, 24 May 2024 16:37:31 -0700 (PDT)
+Received: from [127.0.1.1] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c938815sm189475466b.78.2024.05.24.16.37.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 May 2024 16:37:30 -0700 (PDT)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v2 0/2] PMC8380 PMIC pinctrl
+Date: Sat, 25 May 2024 01:37:27 +0200
+Message-Id: <20240525-topic-pmc8380_gpio-v2-0-2de50cb28ac1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 15/20] ARM: dts: aspeed: Add IBM P11 Blueridge 4U BMC
- system
-To: Eddie James <eajames@linux.ibm.com>, linux-fsi@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lakshmiy@us.ibm.com, linux-i2c@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        andrew@codeconstruct.com.au, joel@jms.id.au, robh@kernel.org,
-        conor+dt@kernel.org, krzk+dt@kernel.org, andi.shyti@kernel.org,
-        broonie@kernel.org
-References: <20240522192524.3286237-1-eajames@linux.ibm.com>
- <20240522192524.3286237-16-eajames@linux.ibm.com>
-Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <20240522192524.3286237-16-eajames@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: CEKzfqnM2HtdiKClRyl_p3omOimFr-Zu
-X-Proofpoint-ORIG-GUID: CEKzfqnM2HtdiKClRyl_p3omOimFr-Zu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-24_08,2024-05-24_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=736 clxscore=1015 mlxscore=0 spamscore=0 suspectscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2405010000 definitions=main-2405240162
+X-B4-Tracking: v=1; b=H4sIALckUWYC/32NQQrCMBBFr1JmbSSZakxdeQ8pEtppOqBJSEpRS
+ u5u7AFcvgf//Q0yJaYM12aDRCtnDr4CHhoYZusdCR4rA0o8yTOiWELkQcTXYFojHy5yEKTHVhq
+ tJqMR6jAmmvi9R+995ZnzEtJn/1jVz/7NrUpIccHO2Ml2pIy6PdnbFI4hOehLKV/QwKoTtQAAA
+ A==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.14-dev
 
-Reviewed-by: Ninad Palsule <ninad@linux.ibm.com>
+nothing special, just some boilerplate
 
-On 5/22/24 14:25, Eddie James wrote:
-> The 4U Blueridge is identical to the Blueridge system but has two extra
-> power supplies.
->
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->   .../aspeed/aspeed-bmc-ibm-blueridge-4u.dts    | 21 +++++++++++++++++++
->   1 file changed, 21 insertions(+)
->   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge-4u.dts
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Changes in v2:
+- Restrict # of GPIO line names (bindings)
+- Link to v1: https://lore.kernel.org/r/20240522-topic-pmc8380_gpio-v1-0-7298afa9e181@linaro.org
+
+---
+Konrad Dybcio (2):
+      dt-bindings: pinctrl: qcom,pmic-gpio: Document PMC8380
+      pinctrl: qcom: spmi: Add PMC8380
+
+ Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c                      | 1 +
+ 2 files changed, 3 insertions(+)
+---
+base-commit: 8314289a8d50a4e05d8ece1ae0445a3b57bb4d3b
+change-id: 20240522-topic-pmc8380_gpio-e6d30861f862
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
 
