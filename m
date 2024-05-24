@@ -1,115 +1,147 @@
-Return-Path: <devicetree+bounces-69085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B91948CEBCC
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 23:27:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D398CEBD2
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 23:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB7161C20C1C
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:27:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BA591C20F1E
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9CF85264;
-	Fri, 24 May 2024 21:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FE143AD7;
+	Fri, 24 May 2024 21:31:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pi03JtCu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wNlifsgj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7EF745D6;
-	Fri, 24 May 2024 21:27:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3D17494;
+	Fri, 24 May 2024 21:31:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716586056; cv=none; b=V14xWwsRc5X3PERY5dYMCPyXVYeUvJn0A8PIXc1sFZLeZx0kGP8gcQimrSAL3H+X1xHlQfLbxZ2t/jRfDDJsIvPUhU12q+INOysW/3xXLJUk8+CqoGIxAAw9kJJVS/CdZ8zPO4LTG7yWvBF7cJ0tDbiHFbAbzUKaXPzfQk5oGFM=
+	t=1716586289; cv=none; b=IyIsPO45J0YgNla3JVMEN8rAlz2N1yU5YEdsDXugY8vse5pcOfSqMkWMcxUo53KLuJEF9/SXHJ0+my0MXny9CLTsicmBdxqIj2OQaSgpUGV5y12WpFHdp194f85oUeYbEW5LqO07V8OeM++Dcfsu4BzyS56R1UZ8+KRKwc0zZME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716586056; c=relaxed/simple;
-	bh=rqtlw0z4hOj1gZm+shEm88N1id6NRVqqJzHHMUDNIlg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lbINSP6ufRj0vij0EVyMmH0g+9C+0XVQFRQ7q4Tyj1AvyWuuB9ELac7s7P8rjn72MaNOfEBqPKuDqNmCozN4+wwyN+swTyWHUbsEJHfOOBAjNypt7H7h3LfjqFnPd5xO+SPDhIpje3ZxX7hHzYV/Pkfuqi4M6Z8KssGFrsMhN1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pi03JtCu; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=BBvkVB+4xDDjF7vawfQZr2UKRLImlEM7McAxqrR+4QQ=; b=pi
-	03JtCuK+O664Zt74745BE9SG+BZi4cuw8JbVhwXN5fVoN2mFcTIkFBz/C9XUXbj9v0JqHQPz+UTvR
-	r0FaRjRoXNCGlerdDue5/I+KXlU5jnDOHYgp5BZcaCBXPl9NF7DNiqzZ49uGkxFyyxtOVVnolj3pX
-	l1uzrZxsjZBptVg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sAcRY-00Fyk0-R3; Fri, 24 May 2024 23:27:16 +0200
-Date: Fri, 24 May 2024 23:27:16 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-Cc: "Parthiban.Veerasooran@microchip.com" <Parthiban.Veerasooran@microchip.com>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"horms@kernel.org" <horms@kernel.org>,
-	"saeedm@nvidia.com" <saeedm@nvidia.com>,
-	"anthony.l.nguyen@intel.com" <anthony.l.nguyen@intel.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"corbet@lwn.net" <corbet@lwn.net>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
-	"ruanjinjie@huawei.com" <ruanjinjie@huawei.com>,
-	"Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
-	"vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>,
-	"UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-	"Thorsten.Kummermehr@microchip.com" <Thorsten.Kummermehr@microchip.com>,
-	Piergiorgio Beruto <Pier.Beruto@onsemi.com>,
-	"Nicolas.Ferre@microchip.com" <Nicolas.Ferre@microchip.com>,
-	"benjamin.bigler@bernformulastudent.ch" <benjamin.bigler@bernformulastudent.ch>
-Subject: Re: [PATCH net-next v4 00/12] Add support for OPEN Alliance
- 10BASE-T1x MACPHY Serial Interface
-Message-ID: <6e4c8336-2783-45dd-b907-6b31cf0dae6c@lunn.ch>
-References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
- <5f73edc0-1a25-4d03-be21-5b1aa9e933b2@lunn.ch>
- <32160a96-c031-4e5a-bf32-fd5d4dee727e@lunn.ch>
- <2d9f523b-99b7-485d-a20a-80d071226ac9@microchip.com>
- <6ba7e1c8-5f89-4a0e-931f-3c117ccc7558@lunn.ch>
- <8b9f8c10-e6bf-47df-ad83-eaf2590d8625@microchip.com>
- <44cd0dc2-4b37-4e2f-be47-85f4c0e9f69c@lunn.ch>
- <b941aefd-dbc5-48ea-b9f4-30611354384d@microchip.com>
- <BYAPR02MB5958A4D667D13071E023B18F83F52@BYAPR02MB5958.namprd02.prod.outlook.com>
+	s=arc-20240116; t=1716586289; c=relaxed/simple;
+	bh=iRsfZhHHk71N/q9aE51lLLyvA9UPU40D5vl1+FqnZ9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KnCbVv1qfs2h48cYdTEts+BN+Pb6Z/93k5WnULL4rtFdsp209DayHqpFk7JTV5gHa4dyfkqYLKylpZ3StdlCCGm4SWD0KHfRLw3CRosLZlHTcEX34dKKWi58gHzlv8x9lAje8cLWYkY+E+Zdz961UqZ9uu8n1KePKfh8GzfIYFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wNlifsgj; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44OLUXdN074423;
+	Fri, 24 May 2024 16:30:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716586233;
+	bh=D2pCSFcs7g2kozusYYwZ2vVwg6i86RchvcpGVG5lRMA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=wNlifsgj8VBfqBup3/kAVMgUQeXAI00abMy0LNki1nv1BurZ8nlJI7fPpd3rmu1yv
+	 miYMiGVATO4OgwapDHnGpVtfU8urBkAXgb5uhV3+TCraxd55QvQuKiuXkP0sqP6ubt
+	 K0aopZY4CFAP0P4ux+s2+ltl59zY4CKJRvWOfKA0=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44OLUWSp007969
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 24 May 2024 16:30:32 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 24
+ May 2024 16:30:32 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 24 May 2024 16:30:32 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44OLUWcn076348;
+	Fri, 24 May 2024 16:30:32 -0500
+Message-ID: <57e4f7b1-2955-4dd5-b9d9-f3b1f27aab75@ti.com>
+Date: Fri, 24 May 2024 16:30:32 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <BYAPR02MB5958A4D667D13071E023B18F83F52@BYAPR02MB5958.namprd02.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/8] dt-bindings: counter: Add new ti,am62-eqep
+ compatible
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        David Lechner
+	<david@lechnology.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+References: <20240523231516.545085-1-jm@ti.com>
+ <20240523231516.545085-3-jm@ti.com>
+ <20240524-wrecker-busybody-2c082b87ddef@spud>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20240524-wrecker-busybody-2c082b87ddef@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-> In our MDIO functions, we do certain things based on PHY ID, also
-> our driver deal with vendor specific register, MMS 12 (refer Table 6
-> in section 9.1
+On 5/24/24 1:38 PM, Conor Dooley wrote:
+> On Thu, May 23, 2024 at 06:15:10PM -0500, Judith Mendez wrote:
+>> Add new compatible ti,am62-eqep for TI K3 devices. If a device
+>> uses this compatible, require power-domains property.
+>>
+>> Since there is only one functional and interface clock for eqep,
+>> clock-names is not really required. The clock-name also changed
+>> for TI K3 SoCs so make clock-names optional for the new compatible
+>> since there is only one clock that is routed to the IP.
+> 
+> Really the clock should be named after the function it has in the IP
+> block - it looks like "sysoutclk" is more likely the name of the clock
+> routed to the IP rather than the role it has?
 
-That is a bad design. Vendor specific PHY registers should be in MMS 4
-which is MMD 31, where the PHY driver can access them. Table 6 says:
-"PHY – Vendor Specific" for MMS 4, so clearly that is where the
-standards committee expected PHY vendor registers to be.
+It is the name of the clock, though id like to keep sysclkout for
+backwards compatibility, even though the name is confusing.
+~ Judith
 
-Anyway, does the PHY driver actually need to access MMS 12? Or can the
-MAC driver do it? That is the same question i asked Ramón about the
-Microchip part. We really should avoid layering violations as much as
-we can, and we should not have the framework make it easy to violate
-layering. We want all such horrible hacks hidden in the MAC driver
-which needs such horrible hacks because of bad design.
 
-	Andrew
+>>
+>> While we are here, add an example using ti,am62-eqep compatible.
+>>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>> Changes since v1:
+>> - Fix eqep binding for new compatible, require
+>>   power-domains for new compatible
+>> ---
+>>   .../devicetree/bindings/counter/ti-eqep.yaml  | 53 +++++++++++++++++--
+>>   1 file changed, 48 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/counter/ti-eqep.yaml b/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+>> index 85f1ff83afe72..c4bb0231f166a 100644
+>> --- a/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+>> +++ b/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+>> @@ -11,7 +11,9 @@ maintainers:
+>>   
+>>   properties:
+>>     compatible:
+>> -    const: ti,am3352-eqep
+>> +    enum:
+>> +      - ti,am3352-eqep
+>> +      - ti,am62-eqep
+> 
+> I'm going to ack this even though the driver makes it seem like the
+> devices are compatible (there's no match data etc) given the addition of
+> the power domain and changes in required properties.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Cheers,
+> Conor.
+> 
 
 
