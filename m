@@ -1,114 +1,101 @@
-Return-Path: <devicetree+bounces-69063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E9958CEA0F
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 20:54:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0ECF8CEA10
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 20:55:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED8FA282A09
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 18:54:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D254D1C210AA
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 18:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0DC640848;
-	Fri, 24 May 2024 18:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FDE14084D;
+	Fri, 24 May 2024 18:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSUslT03"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29393EA64
-	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 18:54:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C783EA64;
+	Fri, 24 May 2024 18:55:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716576891; cv=none; b=up6ahe6r8SCByAOwjbQ3hYuyGhgR48w/MCuFrPiQiCLL4ezT+yP4lgFy/6xHu8xxHijk/2+/+4ucwgjj1iwMvzI0mVXjs03Sr5W1uYc4nF5oVxHhwPuV0QJQjqCZmbXrLvi4a+zP726ciYXxB1oapbV5QzdnU3CtVdLEbXNLPRo=
+	t=1716576929; cv=none; b=jLnu2/iBjTvgkk+cd88AKvwgAMwOwB6S1tll0crOLlynhMn6qQTskI/Y2oSAjBOB2XnF0I6LMZmP729ltp3fJO//U0jNkrJ99HQ9LUdql45puYqTCZKuWyNIcUarBpuxRi/jxbZkVhxbFUw+O2Op4njLTYvCi3qUdfXejJOhhUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716576891; c=relaxed/simple;
-	bh=qn6Vkvzj5JGs44Cc6xvsUt9I7gZyNx3518aH165iGSw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JaXtKgac42gWPQTHHDOgBXk3YOMikCu7y9x+Mp54HEtV7B+Yf4V04yKh8Ipj2FKUyIysOcQfLRT2bD7eq3X3qc4GzEx/iY1Bb7USKGa5oRZXfsO0HSMKrP2zxgGRff36X9ICVe0UEX75GQS46lYlyp0/syvW6Y+wlVW6SVtD0tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A140339;
-	Fri, 24 May 2024 11:55:11 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A395F3F762;
-	Fri, 24 May 2024 11:54:45 -0700 (PDT)
-Date: Fri, 24 May 2024 19:52:36 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] arm64: dts: allwinner: convert NanoPi R1S H5 NVMEM
- content to layout syntax
-Message-ID: <20240524195236.289b4e8f@minigeek.lan>
-In-Reply-To: <20240524125617.27714-1-zajec5@gmail.com>
-References: <20240524125617.27714-1-zajec5@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1716576929; c=relaxed/simple;
+	bh=V55crGx9DJS5MiBJVv/+LEY0ZPYPpfjGvUfBJMEw2h8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cr9H9XYLYIg82NzIOixIwc4N2z2EvoCu26DXUmoB/o82rEbvP/bk1J2avQ5j8tQE5rwzwtbPtsLpaRrxtIjHaHN7V0v6UWHjK9Nd0/IlEg6+9Mjjl7btAVpt3YSgX5wml3kEY6i6/h8/C5pwkV3kbU4VXZdT4bXmRUn5zKnvCUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSUslT03; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACE30C2BBFC;
+	Fri, 24 May 2024 18:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716576928;
+	bh=V55crGx9DJS5MiBJVv/+LEY0ZPYPpfjGvUfBJMEw2h8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NSUslT03br2Zde0/wO+jMVdw6sK7NAOIuEh4K1LUO6Loi6/dV7aaBHppO7dblbAUw
+	 BWx6lqAoWYfImY9bA9iA/FFycLRyYvWxZ63byq1VLzEupR7NBOteKJlPJ6uF1KDOzN
+	 sfa8AcqlKS+amQnLqTc6jkaWxq724BT2jmvdMFqfgOfXLgBEY4E1gvLRGBFbd+T3ce
+	 VFW+QkpBxVJ/vgOBRv+ieMzaUC46u18LNf5Vad3/SLXcRG3JWunFqjrskBY3xfUZ8p
+	 7dqeFkE5i5zke9aMHvAMqto/yNU3n6F06wRQYtoWw8FooJaXhKAWDfKCohezy0Qwus
+	 ijwmLFwU0fuUw==
+Date: Fri, 24 May 2024 19:55:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Patrick Delaunay <patrick.delaunay@foss.st.com>
+Cc: Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Pascal Paillet <p.paillet@foss.st.com>, Marek Vasut <marex@denx.de>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: regulator: st,stm32mp1-pwr-reg: add
+ compatible for STM32MP13
+Message-ID: <20240524-reorder-tattoo-13af5d569e3f@spud>
+References: <20240523180435.583257-1-patrick.delaunay@foss.st.com>
+ <20240523200353.v4.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="C5nojw+CH6iHfaud"
+Content-Disposition: inline
+In-Reply-To: <20240523200353.v4.1.Ia0a99d90acb512aa020a6e7a8cca8cc1b71f1759@changeid>
+
+
+--C5nojw+CH6iHfaud
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 24 May 2024 14:56:17 +0200
-Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> wrote:
-
-Hi Rafa=C5=82,
-
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+On Thu, May 23, 2024 at 08:04:33PM +0200, Patrick Delaunay wrote:
+> Add new compatible "st,stm32mp13-pwr-reg" for STM32MP13 SoC family.
 >=20
-> Use cleaner (and non-deprecated) bindings syntax. See commit
-> bd912c991d2e ("dt-bindings: nvmem: layouts: add fixed-layout") for
-> details.
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
 
-Is there anything that this commit fixes, or is it just "nicer"?
-If I see this correctly, then this commit would break with older
-kernels, or more precisely anything that doesn't support the
-"fixed-layout" compatible string, right?
-For sunxi we try to keep the DTs compatible both ways, so that the
-latest DT (as imported in U-Boot, for instance), can run with both
-older stable and the newest kernels.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
-Andre
+Conor.
 
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> ---
->  .../boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts   | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts b/=
-arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-> index 3a7ee44708a2..36e46e40b8f8 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dts
-> @@ -146,11 +146,15 @@ eeprom@51 {
->  		reg =3D <0x51>;
->  		pagesize =3D <16>;
->  		read-only;
-> -		#address-cells =3D <1>;
-> -		#size-cells =3D <1>;
-> =20
-> -		eth_mac1: mac-address@fa {
-> -			reg =3D <0xfa 0x06>;
-> +		nvmem-layout {
-> +			compatible =3D "fixed-layout";
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +
-> +			eth_mac1: mac-address@fa {
-> +				reg =3D <0xfa 0x06>;
-> +			};
->  		};
->  	};
->  };
+--C5nojw+CH6iHfaud
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlDimwAKCRB4tDGHoIJi
+0qMMAQCifoMtFkXnySZ7EmWtDmoZFR86d/CLsf2nWTYn2dAs5wEAmlR2PAW4Z2ic
+GAGmr55uU4Ay8/FGlfegcoU/KbXmKQg=
+=HKMv
+-----END PGP SIGNATURE-----
+
+--C5nojw+CH6iHfaud--
 
