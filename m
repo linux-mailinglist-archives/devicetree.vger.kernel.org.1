@@ -1,184 +1,149 @@
-Return-Path: <devicetree+bounces-68961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB2F8CE2F3
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 11:06:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C516E8CE2F6
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 11:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2015E28191B
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 09:06:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 016F81C21B31
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 09:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FCAE12C470;
-	Fri, 24 May 2024 09:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66522127E2A;
+	Fri, 24 May 2024 09:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JAu3bLlA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nQ8LxpPi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED54D12BF39;
-	Fri, 24 May 2024 09:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0D1129A6D;
+	Fri, 24 May 2024 09:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716541499; cv=none; b=qJUUgzTvVBPhStVDi6lc78AWsD8PrDHA46dgSBfE+eDlfTB4TVrJKa+yNibgA+DxsM/V7ht2+M56DERfeodHuyykaJ8AmwvuH4thkDRLkBKqgZVY/kFKLLlm20kf0/l0qFehGVP/pTJ4IpAks5SXbShe3DhdKbD+2jZjrQWL9hI=
+	t=1716541539; cv=none; b=FWiCIv7fVfX748rmKioeDTxy6ZoBTwMTwLa3dvlwfGNVcS+iMfF9EpeIg4HrjFdkND7znkr4hUWdhrgPI8kJmCwtvShWPxTzFXcdDDu4VxTqHa04sjeuNfePNwQNnmLXdpgUs0jVEELUz7OuXmLF3RYTmqsKv3wQYhID0ZLjuDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716541499; c=relaxed/simple;
-	bh=Z77VheR66Z7lEhZ6SC9Ykid78mt0MPVMzdy6qVPoPRQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nw7DqIoWleUYxIHg9hA2RreQiN4k1cRj92iEOqxY6W43CWDsTTOHQ4BlrzPJnBAo7jRTtl3ULJnbm6ma4MRtvykdSZDx41h7eSTKn96JpJDJKHBjkFO6E4P9ZiEcHFG5Zt8fBuzclSnyVqVHEDqJak2kGT4Fy1me598TjbU5+X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JAu3bLlA; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 78735471;
-	Fri, 24 May 2024 11:04:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1716541482;
-	bh=Z77VheR66Z7lEhZ6SC9Ykid78mt0MPVMzdy6qVPoPRQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JAu3bLlAAfK3iG38IUZ2dL+NxKpt5suOYQ3rSUiUfJLPRi+uIzdPj0MQ4rjzJw3+/
-	 a8WQZnf5gqSnqcLCxMVpNkLYZ7lU7TH2WpIZQVI/g2nypbndfujUZ0rtQmXNEEkUzY
-	 nLWEev7YMMqlYLh2Abo8uEkdGGeAjT12PR5Pjsm4=
-Message-ID: <d12bbfcb-68d4-4c67-b8c8-34dd7f96b5fc@ideasonboard.com>
-Date: Fri, 24 May 2024 10:04:52 +0100
+	s=arc-20240116; t=1716541539; c=relaxed/simple;
+	bh=+zt3DFxO0fnlmonm94eGfk5hJBfckoxqrYa5hNmXlqs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SRZZOLIicL0zsFB8CJcKFg6lgA1++K9zi+HmSz4jbmoRJTXs6SIi913zKqtWEU0oSgtnfmVpxI03r5nM72xTGWx7qMQC8rxVNsfMOFLuG/xw9RP6EazY4kjeDq3ywr5rGM2a78mXcnZ0HBsqbJPQjxn+xfc0XVYctJ0BC5JjG4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nQ8LxpPi; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44O95K8m071471;
+	Fri, 24 May 2024 04:05:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716541520;
+	bh=ERdEWnZaf8wEUS9yivBfRntCDoHPogtyIgugw5XQBgc=;
+	h=From:To:CC:Subject:Date;
+	b=nQ8LxpPiJVzvV6eCpzfGnAjTwECW/tyi3KUurUc5i/IvuLvrsN4bjE5+GSxt6X8e4
+	 UygUl+hx/uBm+JV53cVSxT/AztzzIBRurI+yrKUL34kfDLZTbM2goxA7Rjb8u4+QdT
+	 pqZSarm40pIjE9RIWefO6o0kaRW/BPTyThQqQPsc=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44O95KCR029558
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 24 May 2024 04:05:20 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 24
+ May 2024 04:05:19 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 24 May 2024 04:05:19 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44O95F7F017455;
+	Fri, 24 May 2024 04:05:15 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <afd@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <rogerq@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <danishanwar@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v3 0/7] Add PCIe and USB device-tree support for J722S
+Date: Fri, 24 May 2024 14:35:07 +0530
+Message-ID: <20240524090514.152727-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] media: mali-c55: Add Mali-C55 ISP driver
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- laurent.pinchart@ideasonboard.com
-References: <20240418090825.624747-1-dan.scally@ideasonboard.com>
- <20240418090825.624747-4-dan.scally@ideasonboard.com>
- <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
- <20996978-aace-4d59-92b8-39041da2ebd3@ideasonboard.com>
- <Zk-CiRmQ5QRIyTgR@valkosipuli.retiisi.eu>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- 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
-In-Reply-To: <Zk-CiRmQ5QRIyTgR@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Sakari
+Hello,
 
-On 23/05/2024 18:53, Sakari Ailus wrote:
-> Hi Dan,
->
-> On Thu, May 23, 2024 at 02:44:06PM +0100, Dan Scally wrote:
->> Hi Sakari - thanks for the review. Snipping some bits for which I have no comment...
->>
->> On 23/05/2024 09:03, Sakari Ailus wrote:
->>
->> <snip>
->>>> +
->>>> +static unsigned int mali_c55_calculate_bank_num(struct mali_c55 *mali_c55,
->>>> +						unsigned int crop,
->>>> +						unsigned int scale)
->>>> +{
->>>> +	unsigned int tmp;
->>>> +	unsigned int i;
->>>> +
->>>> +	tmp = (scale * 1000) / crop;
->>> This looks like something that can overflow. Can it?
->>
->> Shouldn't be able to; maximum scale width is 8192.
-> Ok.
->
-> 1000U in that case?
+This series adds device-tree support for PCIe and USB on J722S SoC.
+This series is the v3 for the v2 USB series at:
+https://lore.kernel.org/r/20240513114443.16350-1-r-gunasekaran@ti.com/
+and is also the v1 series for enabling PCIe device-tree support for J722S.
 
+Since the v2 USB series combined portions of the PCIe changes incorrectly,
+I have updated this series to contain USB specific changes in the first 3
+patches of this series while moving the PCIe specific changes to the
+remaining 4 patches in this series.
 
-Done
+Series is based on linux-next tagged next-20240524.
 
->
->>>> +	for (i = 0; i < MALI_C55_RESIZER_COEFS_NUM_BANKS; i++) {
->>>> +		for (j = 0; j < MALI_C55_RESIZER_COEFS_NUM_ENTRIES; j++) {
->>>> +			mali_c55_write(mali_c55, haddr,
->>>> +				mali_c55_scaler_h_filter_coefficients[i][j]);
->>>> +			mali_c55_write(mali_c55, vaddr,
->>>> +				mali_c55_scaler_v_filter_coefficients[i][j]);
->>>> +
->>>> +			haddr += 4;
->>>> +			vaddr += 4;
->>> sizeof(u32) ?
->>>
->>> Up to you.
->>
->> I think I'll keep it if it's all the same to you
-> Well, not the same but I'll let you decide. :-)
+v2 for USB:
+https://lore.kernel.org/r/20240513114443.16350-1-r-gunasekaran@ti.com/
+Changes since v2 USB series:
+- For patch 1:
+  => Renamed serdes0_ln_ctrl to serdes_ln_ctrl to keep the format
+  consistent across SoCs where a single node is sufficient to
+  represent the Lane-Muxing for all instances of the Serdes.
+- For patch 2:
+  => No changes since v2.
+- For patch 3:
+  => Renamed serdes0_ln_ctrl to serdes_ln_ctrl corresponding to the change
+  made in patch 1.
+  => Dropped Serdes1 idle-states since it has not yet been added in the
+  serdes_ln_ctrl node.
+  => Dropped Serdes1 specific Lane-Muxing macros in "k3-serdes.h".
+  => Added newline after /* J722S */ in "k3-serdes.h" following the file
+  convention.
 
+v1 for USB:
+https://lore.kernel.org/r/20240429120932.11456-1-r-gunasekaran@ti.com/
+Changes since v1 USB series:
+- Introduced k3-j722s-main.dtsi newly to add the main domain
+  peripherals that are present additionally in J722S as suggested by
+  Andrew Davis.
+- Used generic node names as suggested by Roger Quadros.
+- Removed the aliases for usb as suggested by Rob Herring.
 
-OK you're right, the sizeof() is better
+This series has no dependencies and has been tested on J722S-EVM.
+Logs testing PCIe functionality with an NVMe SSD connected to the
+J722S-EVM and testing USB functionality limited to "lsusb" output:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/6a9cdcec24add0114e63db736b3e23fb
 
->
-> ...
->
->>>> +static int mali_c55_tpg_init_state(struct v4l2_subdev *sd,
->>>> +				   struct v4l2_subdev_state *sd_state)
->>>> +{
->>>> +	struct v4l2_mbus_framefmt *fmt;
->>>> +
->>>> +	fmt = v4l2_subdev_state_get_format(sd_state, MALI_C55_TPG_SRC_PAD);
->>> Can be assigned in the declaration.
->>
->> How would you make it fit that way?
-> 	struct v4l2_mbus_framefmt *fmt =
-> 		v4l2_subdev_state_get_format(sd_state, MALI_C55_TPG_SRC_PAD);
+Regards,
+Siddharth.
 
+Ravi Gunasekaran (3):
+  arm64: dts: ti: k3-j722s-main: Add support for SERDES0
+  arm64: dts: ti: k3-j722s-main: Redefine USB1 node description
+  arm64: dts: ti: k3-j722s-evm: Update USB0 and USB1
 
-Done - thank you!
+Siddharth Vadapalli (4):
+  arm64: dts: ti: k3-serdes: Add Serdes1 lane-muxing macros for J722S
+  arm64: dts: ti: k3-j722s: Add lane mux for Serdes1
+  arm64: dts: ti: k3-j722s-main: Add WIZ1 and Serdes1 nodes
+  arm64: dts: ti: k3-j722s: Add support for PCIe0
 
->
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts   |  72 +++++++++
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 177 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j722s.dtsi      |   5 +
+ arch/arm64/boot/dts/ti/k3-serdes.h        |   8 +
+ 4 files changed, 262 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+
+-- 
+2.40.1
+
 
