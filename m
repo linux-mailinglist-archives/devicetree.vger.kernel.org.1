@@ -1,175 +1,134 @@
-Return-Path: <devicetree+bounces-69011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C126F8CE690
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 16:01:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B548CE696
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 16:02:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7566E282503
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 14:01:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D78411C219EB
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 14:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49EBC12C472;
-	Fri, 24 May 2024 14:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="b4jILbP0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB8B86636;
+	Fri, 24 May 2024 14:01:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC54086254;
-	Fri, 24 May 2024 14:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914B686255
+	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 14:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716559261; cv=none; b=jm/0oj6uf0otA48tUCHXvkA8hG+buohdnOTguLjEQb1eTapnSWn2RFA5xAnCM4EOJWPgDJw8Phypx9VGbXhmjhYKCFdxpGUb9ddleqTAbr85sgRun66trI7n35JVDjpWpoV1YUjySVCiIbRR9zxx2zhG4SnDZ7WSKnGocEGE+d4=
+	t=1716559319; cv=none; b=kRX5jnwMUBJw20Dgee56w2cZES1NNR44wqPUPzLj7UVmH32joTRSGPqXxAX8NaZhK0PCxKuR5REPMFEBc9hNU5MKpEAb2NIG8LnoyYKE8Ze+yLUWEJiZNdHTmT0BrlJ7X4LN91p4jdv6GGfRTqYBsWb4xAAi+2WjJOt3YOn0WeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716559261; c=relaxed/simple;
-	bh=jlLqTeyFNimagEyn2QXeWiWSjrXWXmTIx1RR3hrKgtg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RgKbJiludp1RoWtNrMwfO+xKhC2ya30eGKGlWSb3qD+fBKVSKM46/eEQF9ZQ3We/iCx9jCbFGx6PWJXsXj7gGzoYB+5QNbingZurzwLW1pbEh0uJuKs0lJUSYGlb+tkEaDMGi6SG5kd6c9tvzz8p9P2YZgqTVBmHaPHe8TAqR+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=b4jILbP0; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B59782CD9;
-	Fri, 24 May 2024 16:00:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1716559237;
-	bh=jlLqTeyFNimagEyn2QXeWiWSjrXWXmTIx1RR3hrKgtg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=b4jILbP092DLQhZ76A7aAigJEtWLTciXsasEE1iytdIvapWF0ie/Y9JYHQuBAxwWi
-	 bQrHoTLl9djfSdsS1JLS0JjZOOpR+IS2sFRq62IuOXp+MKAza/fiiiT4G6ML4e8c7o
-	 oh9UgpKOblRXvCJEM56tgYiTPiqi2X+mS7czKlAM=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Linux Media Mailing List <linux-media@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 6/8] media: dt-bindings: Add bindings for Raspberry Pi PiSP Back End
-Date: Fri, 24 May 2024 16:00:21 +0200
-Message-ID: <20240524140024.161313-7-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240524140024.161313-1-jacopo.mondi@ideasonboard.com>
-References: <20240524140024.161313-1-jacopo.mondi@ideasonboard.com>
+	s=arc-20240116; t=1716559319; c=relaxed/simple;
+	bh=NY5DZo2keldw1Tp/cmGYN8DjxzuoD7v9MPhLqsijU0s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qL0kMprZCeCLO+FkFGtXXkzRjx4NObsWp6RQGuQbVdVzFsV0oCjvijZvz7YXD16AcYJnprwr9F3Abbm+ndrccxWgzEtDLse0ZZz64Zad2XniUd1fFPfUsd3iR8pGiDrfRFf66XONpjExTcDBNEVv0htCMn6bLkqWi8gADBTXwk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1sAVUI-0001KR-2V; Fri, 24 May 2024 16:01:38 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1sAVUC-002nnD-Qc; Fri, 24 May 2024 16:01:32 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1sAVUC-00BNeg-2L;
+	Fri, 24 May 2024 16:01:32 +0200
+Date: Fri, 24 May 2024 16:01:32 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH v3 2/2] pwm: Add Loongson PWM controller support
+Message-ID: <aqcpf2tjt4iywxc7vgddkzaxtotlua2mnnpfsivpwobrc64neo@gylq5sl6sahk>
+References: <cover.1713164810.git.zhoubinbin@loongson.cn>
+ <c89917023b49fff70bc89ddb66be7da4e0fe67ef.1713164810.git.zhoubinbin@loongson.cn>
+ <t3efvxh4d2xvjh4pfrdnho6mwonwm6spjer72ww3wiqx2v3a2x@52ufzsdhc44i>
+ <CAMpQs4KyX3A-Bxyp7+evBT5Umb03OvpV0VtqrNjAnZPYZ_dNQw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="m6qvlzhmbrdzg3ms"
+Content-Disposition: inline
+In-Reply-To: <CAMpQs4KyX3A-Bxyp7+evBT5Umb03OvpV0VtqrNjAnZPYZ_dNQw@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
-signal processor.
 
-Datasheet:
-https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+--m6qvlzhmbrdzg3ms
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Naushir Patuck <naush@raspberrypi.com>
----
- .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+Hello Binbin,
 
-diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-new file mode 100644
-index 000000000000..1fc62a1d8eda
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
-+
-+maintainers:
-+  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+
-+description: |
-+  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
-+  processor that fetches images in Bayer or Grayscale format from DRAM memory
-+  in tiles and produces images consumable by applications.
-+
-+  The full ISP documentation is available at
-+  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm2712-pispbe
-+      - const: raspberrypi,pispbe
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        isp@880000  {
-+             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
-+             reg = <0x10 0x00880000 0x0 0x4000>;
-+             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-+             clocks = <&firmware_clocks 7>;
-+             iommus = <&iommu2>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7c9a858f2989..ba595fad2fb5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18521,6 +18521,7 @@ M:	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
- L:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
- F:	include/uapi/linux/media/raspberrypi/
+On Fri, May 24, 2024 at 02:29:35PM +0600, Binbin Zhou wrote:
+> > > +     ddata->duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
+> > > +     ddata->period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
+> >
+> > The rounding looks wrong. Did you test with PWM_DEBUG enabled?
+> >
+> > I think the value assigned to ddata->period and the other members isn't
+> > used. Unless I'm mistaken, please drop the assignment.
+> >
+>=20
+> The period, duty and ctrl are prepared for PM. I plan to put these
+> three parameters separately into the pwm_loongson_context structure. I
+> think it will look clearer:
+>=20
+> struct pwm_loongson_context {
+>         u32 ctrl;
+>         u32 duty;
+>         u32 period;
+> };
 
- RC-CORE / LIRC FRAMEWORK
---
-2.45.1
+But .suspend() reads the value from the registers and rewrites these
+three members itself, too. So the write in .apply() is unused and can be
+dropped.
 
+The suggestion to put this in a struct is nice. I'd call it something
+with "suspend" though, maybe "pwm_loongson_suspend_store"?
+=20
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--m6qvlzhmbrdzg3ms
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZQnbsACgkQj4D7WH0S
+/k52zwf/Q2TCGQKtD2L4IwNcg0/uwjW65m8tsFTF7ir7jcOQySLXwPbZ5efUrLu2
+mKQT0Inkk1oGzdv9RT3nBBmCKl39FrH5ErFDJY924irw52NxosBwYSRHJAdH10xl
+Mbs44d9JGJNqK0sxHvC9JSmz0xq1ymUgT02bDgPnM7n+scA4Ne3LQlc2vRLRAxjT
+FDdUP3c56RbpNzTNxcVBI/WG/elYX35t6OL9rdQIuH7sfQYDxaNVXhRmqRUVRyB3
+MyXUPZqlik3bwZKr8BIU6swR5bw4wpq1Cl3bxrStGF3gFxA6lA2bUkOuOym6V1x4
+sAOrHYtDJ4Gi9jAInQMT3bNfRHzeeA==
+=cm1l
+-----END PGP SIGNATURE-----
+
+--m6qvlzhmbrdzg3ms--
 
