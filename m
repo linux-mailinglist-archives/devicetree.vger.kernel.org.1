@@ -1,150 +1,175 @@
-Return-Path: <devicetree+bounces-68908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF6198CE10D
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 08:39:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 052A68CE12C
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 08:51:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 596E9B21B34
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 06:39:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F1F71F220AE
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 06:51:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7B26EB56;
-	Fri, 24 May 2024 06:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3658C5A4FD;
+	Fri, 24 May 2024 06:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="sOpAnTvY"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="JPB3o/uY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.3])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254CA2207A;
-	Fri, 24 May 2024 06:38:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73571CD06
+	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 06:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716532736; cv=none; b=OJDHpQXv+jb3xK3mwo9H7Ldjihh4H1rcj6uEn9VEwleHUYiDZPnXIrZ077Gr7sAFJI/WIedxrpQOk44sIRTy7iHmNXH+9OLPCmu3ElEoE8/BBM/XWKFIR74NJ1UelMON5XYE0Np3Xp9UJybqyViWpK1xxrjTTHYXPFAjBBWTQmQ=
+	t=1716533507; cv=none; b=SXjtDqwLbzz5fOb6lSfAetBvUCSZc6h2orjrqDxsdOn/z6Nxn5dhlUxsx6ldROrrc1zn3r2YMOQvhiwyuSve6BjUYRwHmVba8q1D+38MEIgZsJQ2TBXJhQnucEBfEvlAkW0DjLoNjfdQEl5OQi8sp3nC4pk88JYeeXGuI9zQ9Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716532736; c=relaxed/simple;
-	bh=/zgxCyuQmfba06hzzw8jaE81x2r+bW7Tb1LVqVcwEgA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vw9SJh1FprXghkPK41yOrSaAICquU2hSsy/xj5ETXYg0AVBtmTCAlQMvxwJGIAKgoLOeijOX3kNTAIwEAG/X76mgtun+Gf/4EjQKGzqaR5o/acxkVnYi5x4KCMMYTJ7HpMXTKlG5l1Arju8PoeDd9ivNl/Aaes/O7UvRUcP9atY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=sOpAnTvY; arc=none smtp.client-ip=212.227.15.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1716532702; x=1717137502; i=markus.elfring@web.de;
-	bh=Umioa2mJKM7ga4XuEYMOnM1K4xmUwt4dK5hfLV9jtS8=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=sOpAnTvYvGjPTY8/5f/WIwlpSkgsAsOjUR3CloKRJQ4PoF3WFicyV7+gQsZWei/T
-	 tpbqfNZrvMg+7CiGDrUUphgSuiV3Rf0Nu4RNaxTXMXVQzMp1K87p1oJlfobkGAFqj
-	 QWHAoNHhsvsOnMt1EktHXGCeaxJuzXKT9A2YzgNMtbvKow+CyjbxF8VpRKBRuT03j
-	 a/i94/92lZ2EcKxDtTq9wil6NtsghS9nW4jsqZBzC2KK5j4pch70K1ucPeF27B7Gm
-	 TStm14AT7sXVYWIHfvmJF+DDni6ThkVX5UyMMtdc3TyDHrf8sv5QMRDDKOU8hphAC
-	 OPxH6WNhzhx8fc9KlQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MjBRZ-1sggNX0bbB-00eylk; Fri, 24
- May 2024 08:38:22 +0200
-Message-ID: <8a92a08c-2a57-454d-a7ff-3edb3528b78e@web.de>
-Date: Fri, 24 May 2024 08:38:08 +0200
+	s=arc-20240116; t=1716533507; c=relaxed/simple;
+	bh=bQ0F2m4aBg8Va1VvxQeZ4hY5GUZdpIU111SIkEQdJR4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=NpT2pmxCdoeKiGq/8pnNJwhIWVqVrf+IacIHhwjBiAqmqVJKdGiYHy5OnZleQvI17WB1r00xTDNMFm6AARbLuXRREe1X/ebWjOSFKOFHJJsF2CZJ9niqSSPGnIULoXnIl8EZjmM2mXwvNp6BT1JvdBKJoOpJoM4AfKDyrFjZaEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=JPB3o/uY; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5295f201979so523101e87.2
+        for <devicetree@vger.kernel.org>; Thu, 23 May 2024 23:51:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1716533503; x=1717138303; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8AM6VA18bFGFYY5kMPUR9rqKd9gSuqX5euarcCf0EZ4=;
+        b=JPB3o/uYSvuidL+Z6sDJghVko9dUg0T9Cc8e/HNqOXeaWgqYuqR6ySsCpxTKt85UAf
+         b99ytJ/vViHhqeTsPBe2Dtt8LSEHju/KuohBWjyHdyX8jXpQgJb7d87e/MJCkllseVf0
+         eq7NeiFRX7WI1bvbYa/EOdFiBZXL+zZqeA69wR9iFKFISoNFvP5ixiOKTWl+8FmGkYBw
+         Nzzb91bAkINUaNHfgREUGnOcAwU1dSM0y2M23E3uzgs6F8tgIUU+cAdJuyw62i3JRkY+
+         DTMe/8nWNTdzX60IrRX5feamnUPPIA9DY8a6fB2O1GaSi3BGLh66AY9YI2vDefU+GeK5
+         e7Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716533503; x=1717138303;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8AM6VA18bFGFYY5kMPUR9rqKd9gSuqX5euarcCf0EZ4=;
+        b=UD3eJgl2vKfjJ1KXdEbolDVkDeEKeQb4cM/XejKQaqMvmAJ1lAjx5ep+nEGZaqf00w
+         KfQpyXru/jiVOPwTPqiPYzfqopG1bR+li4x+o9TuoSgSCy2aL4LCI+VivmPg92KUlo+p
+         JR9zhxs+Rt+LUXPGbrcK0v6ngrWPIv+frYQx4h2vEP2sr9+PXaCwSvf61r7TNGGos2e3
+         rNggAzSD97HWZH0jHeeon4UHdGD7TvsM+DHmMJ1XzllWTStRIcgTtccm5bQPyVYDHO++
+         zcqMUcoMsQcd55YRszU9pxjC4wAAV+OVd90/IwNhnomgMJgCpQ4aKTeSSkYZcOA+dLoB
+         xfMg==
+X-Forwarded-Encrypted: i=1; AJvYcCVZ6P9IAXcXpwKmY6kCTC+r7iQqniqHEOaXJsIMT1+EqozRpsKUSjdzOGf6SGg5SZYlmiA+F+VNvID5o/312JR2kU1BlpBgPydS3g==
+X-Gm-Message-State: AOJu0YxX9+Aki52/BIsI080rpcrTuqXB3NiYKItMIP8bSAOWIvbHHlLI
+	E1/QjJRE+HH2BuGmmO1Ut0ekmD0DHjcbPplrIVHu3xInN/Ke3MChyfJpifIcwW4=
+X-Google-Smtp-Source: AGHT+IFF5NGys5h91On8M/+eUNTfZssOWAGaxJkGIKXJhJWSzEy0HxwULqIkVug0I42xC4SkbqA2rg==
+X-Received: by 2002:ac2:5b12:0:b0:523:df53:93c2 with SMTP id 2adb3069b0e04-529666d81a6mr733669e87.51.1716533503025;
+        Thu, 23 May 2024 23:51:43 -0700 (PDT)
+Received: from localhost (2a02-a210-20ba-5a00-9ceb-707b-2d57-26f7.cable.dynamic.v6.ziggo.nl. [2a02:a210:20ba:5a00:9ceb:707b:2d57:26f7])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5297066ba0bsm109560e87.163.2024.05.23.23.51.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 May 2024 23:51:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v6 17/20] ARM: dts: aspeed: Add IBM Huygens BMC system
-To: Al Viro <viro@zeniv.linux.org.uk>, linux-fsi@lists.ozlabs.org,
- linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
- kernel-janitors@vger.kernel.org
-Cc: Eddie James <eajames@linux.ibm.com>, LKML <linux-kernel@vger.kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Lakshmi Yadlapati <lakshmiy@us.ibm.com>, Mark Brown <broonie@kernel.org>,
- Ninad Palsule <ninad@linux.ibm.com>, Rob Herring <robh@kernel.org>
-References: <20240522192524.3286237-18-eajames@linux.ibm.com>
- <2fe45df6-01a2-488b-99fb-5ee20491554c@web.de>
- <910b18b7-3717-4087-b028-fcaf5f2a604b@linux.ibm.com>
- <398bf753-6701-4925-b814-781a68a75cc5@web.de>
- <20240523-rinse-sturdily-7c78d8517884@spud>
- <d6289d1c-deae-49a3-9fc9-98a2f2e57802@web.de>
- <20240523203339.GS2118490@ZenIV>
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <20240523203339.GS2118490@ZenIV>
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:r06ohMYipjx7MaDK2OvRnKAwkIBVsS5fvyAmsplcvM21XF7HMAm
- A0Src/BHL8flyhJsz3MdFdif8NmB9aq/3fPsFxXcV0kugN2P4baA5bybyQbqJ/d6dNe9V+y
- KfQwRn3SQK5W6mReVOGkQ2OSBIazmuosZVNLZ33w5EUM3wEEBDegS2xAFsb1BzNwauzEvv0
- 3DSCxroZyv2XOPlUjbbcQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:kCE3UA8E6+4=;ji6T0ME+UaTyDdrzMP3bhGy4KvJ
- x6/ZMWjLm/maIjQj8faQ8jaaXxne+4RWYF2gWiwqpZFSRptL6UemOufq0G5J/LuJUqlKprCRO
- /gLLi2bzQNuv7L5dPd+cQ+jDFNVKlL7COeE1EczqTQNoUOdebG5s43B/sjNI5vSfEx5m+gvlS
- uD7wXufB3FmjWU1Npmatn16cvxxNHci4pYVniVX/jOaqtsE14DiOzrf1vIl2+IbmdBTuMovrd
- WxLSMdoOW98/tOqyFBxx0LUmyqKFdUBB5P7vBkGLRoqesA71fZYv3VGAco4KGWNAwmEYHVGCA
- 8KZH7zZsPHUaEcLJQxXiX2IxyCnEFxsZ5hKfgqbfIyUDom/zuAw/nrTu5O26LEs9sg3cNqoNz
- Ajd+7kqFOY761H+OmpG+4Sh4ZWhOqZOP57ngiqhhLXQp1HXL6D7pUaOZH/SISHpJ/KUpvwyc7
- CsCwY1rlgRzt8OHnhhwCwXFX8rEjGdFZ/lzuTtkxo2kul297iEZvM16PdEERo8xWSxnEwZK6C
- y8Vnc245eoWOZTxRh45sPoCL56j69Guxz2NZNENIG6egmMLAVdDPmkeHkerpC805YEUMT9iYj
- jaQhBbtwrOeFTQc0CB3MmF/cdeR/gJKQ/vhnIRKf9HX0T3u9jfKOkbhtVyqQHPKJXSqztp3iy
- X+x2+EfCK7jIjHqRl1Q2EG1lYoAWnE+UwXvkc4XoUoecguH4JfaURbK+vljt7vZPoWrpqV5+i
- H9MsnTFswl8dXlkNEs3OhuYN6yAHkdSiSBptLw6RwEyfZcUZzOVClcorvQ4n9TEtIwDJxpp4W
- mLutMFCP5rXz2JvcO73g1uR3r6UH0Y2DHPF5Y7mCr2JYQ=
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 24 May 2024 08:51:40 +0200
+Message-Id: <D1HOCBW6RG72.1B2RKGKW2Q5VC@fairphone.com>
+Cc: "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay Abraham I"
+ <kishon@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Abhinav Kumar" <quic_abhinavk@quicinc.com>,
+ <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH RFT 0/7] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: <neil.armstrong@linaro.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+ "Bjorn Andersson" <andersson@kernel.org>
+X-Mailer: aerc 0.17.0
+References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org> <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com> <7a7aa05f-9ae6-4ca0-a423-224fc78fbd0c@linaro.org> <liah4xvkfattlen7s2zi3vt2bl5pbbxqgig3k5ljqpveoao656@iacnommxkjkt> <236a104c-fc16-4b3d-9a00-e16517c00e3a@linaro.org> <D064242SMIVM.1GUC1I9GE9IGC@fairphone.com> <963b60e5-6ab7-4d9f-885a-ba744c2b7991@linaro.org> <D0C42YR1270X.23P9WCWWNB8XF@fairphone.com> <f2d96f99-d8ac-4ff1-83fa-742e541565e4@linaro.org> <864063fb-eeae-4eb7-9089-0d98011a0343@linaro.org> <D15RKEU49B4G.1B6A2MYB4LH3X@fairphone.com> <cbc8a2c6-0047-4345-8c93-afdba9c2bd10@linaro.org>
+In-Reply-To: <cbc8a2c6-0047-4345-8c93-afdba9c2bd10@linaro.org>
 
->> Why do you interpret my patch review contributions in this direction
->> when the official Linux development documentation provides special advi=
-ce
->> on affected wording details?
+On Thu May 23, 2024 at 11:06 AM CEST,  wrote:
+> Hi Lucas,
 >
-> Your "contributions" are garbage in general,
-
-My contributions are also varying (as usual) through the years.
-
-
->                                              and this thread is not an e=
-xception.
-
-It is just another example for involved communication challenges.
-
-
-> More specifically, you are picking an advice
-
-Some development activities are reminders according to known information s=
-ources.
-
-
->                                              that is inapplicable,
-> transforming it into a question and "contributing" the result.
+> On 10/05/2024 08:51, Luca Weiss wrote:
+> > On Tue Apr 23, 2024 at 4:08 PM CEST,  wrote:
+> >> On 23/04/2024 15:03, Konrad Dybcio wrote:
+> >>>
+> >>>
+> >>> On 4/5/24 12:19, Luca Weiss wrote:
 >
-> And your entire modus operandi fits that pattern - you spew random garba=
-ge and
-> expect the contributors to spend their time and efforts on checking if y=
-our
-> (contents-free) "advice" happens to make any sense.
+> <snip>
+>
+> >=20
+> > Next, with DP 4 lane (not working on mainline but still plugged into a
+> > screen) the diff is quite a bit bigger.
+> >=20
+> > See attachments for the full files:
+> > * usb_1_qmpphy_20240503_151052_android_4lane.txt
+> > * usb_1_qmpphy_20240503_122443_mainline_4lane.txt
+> >=20
+> > Not attaching the diff because it's quite a lot
+> > $ diff --ignore-case -U0 usb_1_qmpphy_20240503_151052_android_4lane.txt=
+ usb_1_qmpphy_20240503_122443_mainline_4lane.txt
+> >=20
+> > Not sure this is helpful to anyone, but at least wanted to share what
+> > I've done so far here.
+>
+> Thanks a lot for the traces, it founds out the QPHY_V3_DP_COM_PHY_MODE_CT=
+RL stays at 0x3,
+> which means the mode doesn't get broadcasted to the phy because.... the r=
+etimer only broadcasts
+> the orientation and not the mode... and it works on the HDKs and the X13s=
+ because they don't have retimers.
 
-Do you express special concerns here which can be reconsidered because of
-advices and requirements from software development guidelines?
+Hi Neil,
 
+This was it!
 
-=E2=80=A6
->                           Unfortunately, the kernel development is clear=
-ly
-> not among those.
+>
+> So I made the changes in nb7vpq904m and ptn36502 drivers to get the next =
+mux and broadcast the typec mode,
+> if you find time could you test it ?
+>
+> Bjorn could you also test on the rb3gen2 ?
+>
+> The changes:
+> https://git.codelinaro.org/neil.armstrong/linux/-/commit/a61fb3b816ecbe28=
+a12480367d9e09b700ec09e1
 
-How does such a view fit to an other data representation?
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/?qt=
-=3Dauthor&q=3DElfring
+With this ptn36502 patch on top, I can confirm that DP 4-lane seems to
+work on qcm6490-fairphone-fp5 smartphone with DP over USB-C!
 
-Regards,
-Markus
+Tested with a USB-C dongle that only has a HDMI port on the other side
+(so no USB), and cat'ing dp_debug while connected showed num_lanes =3D 4
+
+So feel free to add my:
+
+Tested-by: Luca Weiss <luca.weiss@fairphone.com>
+
+Regards
+Luca
+
+> https://git.codelinaro.org/neil.armstrong/linux/-/commit/f6f976ff692bad43=
+0cd945f02b835e355f19632b
+>
+> Thanks,
+> Neil
+>
+> >=20
+> > Regards
+> > Luca
+> >=20
+> >>
+> >> Neil
+> >>
+> >>>
+> >>> Konrad
+> >=20
+> >=20
+
 
