@@ -1,140 +1,233 @@
-Return-Path: <devicetree+bounces-68879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-68880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C378CDF28
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 03:21:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECCA48CDF4A
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 03:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC93A1F23E7D
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 01:21:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8750B20DB4
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 01:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAA51CD38;
-	Fri, 24 May 2024 01:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F9FE17578;
+	Fri, 24 May 2024 01:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CPPtpMqv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X25gAqII"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2CA21BF53;
-	Fri, 24 May 2024 01:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28C163B8;
+	Fri, 24 May 2024 01:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716513683; cv=none; b=rVhZlWmcq605l8pjHCGMxqkGa8cDmnmFvWbKyqKsw3rB+Ky/2BSJ4VURLc1abbYsC7DLJhQICIqdNfp79K5Wsdhlc4s2KKkRL0RP15RgBhovcVB8dE9bocu2OJ4h9xNtQyGp3kZtIhNPTZh1JOFFqOB8PlAM95bvoIgcZ4mMW10=
+	t=1716515362; cv=none; b=MWGuHL1Bne6mIFKUSSXTg+rwwOhbxO/93KdV+IL5/fKQ9HsYl8gIEL7HyojxRfb7X8i9a1cLjxY0jnFMMCkmCm9Lsnja3tNSHELvC7bfeiffkR9nAzKojTU5Krkiy1U0i2weHvUUCbydWq8XaEFrSqGOovqYMxjQN6O77z1riig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716513683; c=relaxed/simple;
-	bh=NoaOUjbYffG2oVE1+cnE1at9BkX9K3GHUrejZJ+nR1c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=a1ePTSXxJiLNU6F7lHID5WeM4C6TzBthSWFQbdIc4HgKLUyioXZz+lMw3NjA1bWleWnU9rEBv267mH7W4mPPD1tg9RWRWAMnIPOLS4lErBK7KvnwCzT0yV53JiqxTxoElKQitP1Vs51wK5/aNpbkVebliwCVMwoe+i+MJmo+G78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CPPtpMqv; arc=none smtp.client-ip=209.85.219.178
+	s=arc-20240116; t=1716515362; c=relaxed/simple;
+	bh=fOK2TCE5oDIMbTwzI9DfT0ukFf7sfhp16ruyzkZnJtE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cylVhUSDAUJRRtOFtCn5K3NU1n6csuBbLbZLMdA1F05ysr9i6kM9AqeDeZohUM5Lhsfliun7rVmAyq+hE0QUUKQL2cV1IwK1On0Txr20SrSDIkGaiXMGH0t+42L+jyLzfhhKeVh8pNvIuheiJCH7eCJ5215GeS7GcxRhiNw8bzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X25gAqII; arc=none smtp.client-ip=209.85.166.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-df4f05e5901so2325839276.0;
-        Thu, 23 May 2024 18:21:21 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-3737b26657fso2162105ab.0;
+        Thu, 23 May 2024 18:49:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716513681; x=1717118481; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1716515360; x=1717120160; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sxW8siyxw1AYj0VmMo8J0Cm5HJ0SxGgND32Gg2jRRuk=;
-        b=CPPtpMqvrk/b0tIp1vfnUwtgIoiWe0zeXbTsZSJ+9Slnb3LjMNnBhE0H+CtuteJYon
-         TCnxYB2nCrzcvUHXfdrG/hUGyKsXojsKprjsfWIcMAIabt5qug6CQl3ilnDQluKIPZrL
-         3+/V0+uWQo5ADrgoKIIaQp0+wrvdfRrBoG4dt/Cg+jCm8QUF1ISmRxgu8qQ1EEAcRa5L
-         zKVa8NHtBQZDV5h+kF6o2eNjVWGVZ26oQvdNgZ8UVBd971WIa4vj4qRF7HqcDbeVJJOK
-         XkOUkyW+2R+VG+kDm4YWcQaZ/eswMMWjvQqO/lJ4Qci7bDArj39nvLU61e3sLz0QRB/2
-         wi5g==
+        bh=QaHuh4+m6vv2JYkBPChLg2kvgbF787xvUsagVVKzGy4=;
+        b=X25gAqIIN1YjBYrwcAcD824tq3Tf2sO6EVWmrKsuimaKJR7WH/7pB0U2/cqp0xRKx2
+         29KEjdCiCx0JiY3qsD1me1sHOQhT5j2b1BoU4ck+rIL7RbxmT4m41DDiQcRaUwx3/PcZ
+         k5v2qUBs2GVDk3x/kU4Sbx3GrXxy3Y0vspHiVhx4TzT/gzTJOYFtR9nBL/kTOghT5hC5
+         /0P5SCp6prHrtQRjMdfO0/FqA3g6SWnpwAzJMoiDMDM0SaFPKRvrTLXH+o7E6+Dm49El
+         ERyn6w1ze541VBKwZvAiqABBhgyBdeskkR+sTOQOX05q0QEqr3ek6TIKkxHxzwwIgOR+
+         Yb0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716513681; x=1717118481;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1716515360; x=1717120160;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sxW8siyxw1AYj0VmMo8J0Cm5HJ0SxGgND32Gg2jRRuk=;
-        b=MF3rWDNPEQLO1KqtIuJr4HFwkviZuMTqv+jqZT8XGalks2jPz9sGcS2Dw6BqrwThXi
-         YgafMiX0pG+cpNodApYm4JeufD4WufWyvbeRhH29gKpszrhgL8e494RsNwwYEvcCEwTh
-         pIOlv7siMVSRAC3LtgIzx05pu8cYdzp1kNALwXuN2zZjb7yzT9RqwMyBjeU4Dar/7KAe
-         bfeXnQZ12jO6yMWulBo6t1RIEQSeE8nXmMOcWKQnMRFmpahdvArfeV/+y0skBY+b1NYp
-         gLszQwsaclsiw487jYAj7OFwbpEALZ2f98CATxe/GErY+2/DSBWmFuyOEVow77/bCrcb
-         VyoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbAYg6l9gZ5sfpGKPRXxxsty7g/KQZgPF5NXKAlyE6cktzNJI0WXhiV1E1UM+faNC6od1+TF1n6jmd58ONv5qX13SvNWDeuBZMkfP6GW/fhxqmVZOju+ois39HHo+iVMHBuSoELESmZ3g=
-X-Gm-Message-State: AOJu0YyhI4VB4RxE4Tb8OeUYhFDCkdqFxGmX5WyGOZ4tjoEp/eZXV+fm
-	VIEA2K4MmpJ8JZoezxGRS2ZOsJ+QSm8nsIPEC70NJRtvxfw88ep8
-X-Google-Smtp-Source: AGHT+IGtKfQ34xgOCE+DPD1gQTyODdr6YwdHpmwMVlQe6TuP7MiHQ1A8OYo4jvzI7zHzvNdn9o4Wog==
-X-Received: by 2002:a25:ae1e:0:b0:df4:df14:61bc with SMTP id 3f1490d57ef6-df7721b7236mr992243276.29.1716513680910;
-        Thu, 23 May 2024 18:21:20 -0700 (PDT)
-Received: from localhost ([2607:fea8:52a3:d200:324c:b818:b179:79b])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ac070f05d5sm2253716d6.50.2024.05.23.18.21.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 May 2024 18:21:20 -0700 (PDT)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: sdm670: add smem region
-Date: Thu, 23 May 2024 21:20:27 -0400
-Message-ID: <20240524012023.318965-8-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240524012023.318965-5-mailingradian@gmail.com>
-References: <20240524012023.318965-5-mailingradian@gmail.com>
+        bh=QaHuh4+m6vv2JYkBPChLg2kvgbF787xvUsagVVKzGy4=;
+        b=ucg4UgtEl41KEftqejY6VLcBInETagLyAr+09Jb55zUJt/Yud5ecEXikrsyVb6xVkL
+         lXNbFgE8wgqRc/eOpTePnwJVLoUbJJl5l5VK/D7V66/u+LG8byBSqBgqgnGM+Ui+5YnJ
+         9WMttVsezVVEnxoNVK3RJYQ8Jp/GFWMN3xW8Vx8U1d+n6anfrL4EMyMigMvQvmeukEUp
+         Ov5UO6glQrREJQMZPJdR/aUj69KrN8g4/iaaMwCbM/0a79URfa5wZKSDPeoINnmd+r6C
+         RSrLPXjfjJzQf+upKWlTicLFPCCFjsF9EoMLvBBkI8/GO30B9v5KorM8zrceQXk1SDVw
+         Ne3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXs0O0XIyUFyaSk7JqLVwNoKaFNX2cVF0nnDpWoYerfktF9F65OUgCGQE78c9909zPYRkuhLkBIwjRymPv6oKJabvC09fm5aBJN8cOzsTaVpLjE/eK8B11lmKqFRWRsOz2Wah/86cdX1w041p+HeTiXKwZOujKXzPgSTlrmNCHCydwcMQ==
+X-Gm-Message-State: AOJu0YzBXblQIds50KpvuglWCFSyPkycu9oOgSDSlsAZGvtJcR8MrjaT
+	7mCFt9bfGRjFzQAdQ61scDuC8KR7N8PeYpL8G5OkNPWJSTQpwsyE8fS6aNd8Lyv6b+HwjGDFR/y
+	hoeCyzA2gBhi4LGZdenBG+UH2Vjo=
+X-Google-Smtp-Source: AGHT+IEK9vmj8neF4F55N645JBC1EaRdY3npShutVz5Cv3dOxwoge7Qm5GttoeiQi1A3WlSKb4Zn6OT23sNlHff/HF4=
+X-Received: by 2002:a92:c249:0:b0:371:b5a7:e44c with SMTP id
+ e9e14a558f8ab-3737b35f477mr10159775ab.25.1716515359840; Thu, 23 May 2024
+ 18:49:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1716458390-20120-1-git-send-email-shengjiu.wang@nxp.com>
+ <1716458390-20120-3-git-send-email-shengjiu.wang@nxp.com> <Zk+oxAh9+c0RIQ/t@lizhi-Precision-Tower-5810>
+In-Reply-To: <Zk+oxAh9+c0RIQ/t@lizhi-Precision-Tower-5810>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Fri, 24 May 2024 09:49:08 +0800
+Message-ID: <CAA+D8ANOQ8Pgt8QZWduZoVKCcb8Mdc=Xzotu4zAqakTjHO8pBQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/5] clk: imx: clk-audiomix: Add reset controller
+To: Frank Li <Frank.li@nxp.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org, peng.fan@nxp.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The shared memory region is used for information about the SoC and
-communication with remote processors. Add the smem region for SDM670.
+On Fri, May 24, 2024 at 4:36=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Thu, May 23, 2024 at 05:59:47PM +0800, Shengjiu Wang wrote:
+> > Audiomix block control can be a reset controller for
+> > Enhanced Audio Return Channel (EARC), which is one of
+> > modules in this audiomix subsystem.
+> >
+> > The reset controller is supported by the auxiliary device
+> > framework.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  drivers/clk/imx/Kconfig               |  1 +
+> >  drivers/clk/imx/clk-imx8mp-audiomix.c | 60 +++++++++++++++++++++++++++
+> >  2 files changed, 61 insertions(+)
+> >
+> > diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
+> > index 6da0fba68225..9edfb030bea9 100644
+> > --- a/drivers/clk/imx/Kconfig
+> > +++ b/drivers/clk/imx/Kconfig
+> > @@ -81,6 +81,7 @@ config CLK_IMX8MP
+> >       tristate "IMX8MP CCM Clock Driver"
+> >       depends on ARCH_MXC || COMPILE_TEST
+> >       select MXC_CLK
+> > +     select AUXILIARY_BUS
+> >       help
+> >           Build the driver for i.MX8MP CCM Clock Driver
+> >
+> > diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/cl=
+k-imx8mp-audiomix.c
+> > index b381d6f784c8..2ee68f518850 100644
+> > --- a/drivers/clk/imx/clk-imx8mp-audiomix.c
+> > +++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
+> > @@ -5,6 +5,7 @@
+> >   * Copyright (C) 2022 Marek Vasut <marex@denx.de>
+> >   */
+> >
+> > +#include <linux/auxiliary_bus.h>
+> >  #include <linux/clk-provider.h>
+> >  #include <linux/device.h>
+> >  #include <linux/io.h>
+> > @@ -13,6 +14,7 @@
+> >  #include <linux/of.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/pm_runtime.h>
+> > +#include <linux/slab.h>
+> >
+> >  #include <dt-bindings/clock/imx8mp-clock.h>
+> >
+> > @@ -217,6 +219,60 @@ struct clk_imx8mp_audiomix_priv {
+> >       struct clk_hw_onecell_data clk_data;
+> >  };
+> >
+> > +#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
+> > +
+> > +static void clk_imx8mp_audiomix_reset_unregister_adev(void *_adev)
+> > +{
+> > +     struct auxiliary_device *adev =3D _adev;
+> > +
+> > +     auxiliary_device_delete(adev);
+> > +     auxiliary_device_uninit(adev);
+> > +}
+> > +
+> > +static void clk_imx8mp_audiomix_reset_adev_release(struct device *dev)
+> > +{
+> > +     struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
+> > +
+> > +     kfree(adev);
+> > +}
+> > +
+> > +static int clk_imx8mp_audiomix_reset_controller_register(struct device=
+ *dev,
+> > +                                                      struct clk_imx8m=
+p_audiomix_priv *priv)
+> > +{
+> > +     struct auxiliary_device __free(kfree) * adev =3D NULL;
+>
+> nit:  *adev =3D NULL;
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- arch/arm64/boot/dts/qcom/sdm670.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Actually,  the checkpatch.pl told me need to have space after '*'...
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-index 80e81c4233b3..187c6698835d 100644
---- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-@@ -509,6 +509,18 @@ aop_cmd_db_mem: aop-cmd-db-mem@85fe0000 {
- 			no-map;
- 		};
- 
-+		smem@86000000 {
-+			compatible = "qcom,smem";
-+			reg = <0 0x86000000 0 0x200000>;
-+			no-map;
-+			hwlocks = <&tcsr_mutex 3>;
-+		};
-+
-+		tz_mem: tz@86200000 {
-+			reg = <0 0x86200000 0 0x2d00000>;
-+			no-map;
-+		};
-+
- 		camera_mem: camera-mem@8ab00000 {
- 			reg = <0 0x8ab00000 0 0x500000>;
- 			no-map;
-@@ -1139,6 +1151,12 @@ mmss_noc: interconnect@1740000 {
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		tcsr_mutex: hwlock@1f40000 {
-+			compatible = "qcom,tcsr-mutex";
-+			reg = <0 0x01f40000 0 0x20000>;
-+			#hwlock-cells = <1>;
-+		};
-+
- 		tlmm: pinctrl@3400000 {
- 			compatible = "qcom,sdm670-tlmm";
- 			reg = <0 0x03400000 0 0xc00000>;
--- 
-2.45.1
+Best regards
+Shengjiu Wang
 
+>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>
+> > +     int ret;
+> > +
+> > +     adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
+> > +     if (!adev)
+> > +             return -ENOMEM;
+> > +
+> > +     adev->name =3D "reset";
+> > +     adev->dev.parent =3D dev;
+> > +     adev->dev.release =3D clk_imx8mp_audiomix_reset_adev_release;
+> > +
+> > +     ret =3D auxiliary_device_init(adev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D auxiliary_device_add(adev);
+> > +     if (ret) {
+> > +             auxiliary_device_uninit(adev);
+> > +             return ret;
+> > +     }
+> > +
+> > +     return devm_add_action_or_reset(dev, clk_imx8mp_audiomix_reset_un=
+register_adev,
+> > +                                     no_free_ptr(adev));
+> > +}
+> > +
+> > +#else /* !CONFIG_RESET_CONTROLLER */
+> > +
+> > +static int clk_imx8mp_audiomix_reset_controller_register(struct clk_im=
+x8mp_audiomix_priv *priv)
+> > +{
+> > +     return 0;
+> > +}
+> > +
+> > +#endif /* !CONFIG_RESET_CONTROLLER */
+> > +
+> >  static void clk_imx8mp_audiomix_save_restore(struct device *dev, bool =
+save)
+> >  {
+> >       struct clk_imx8mp_audiomix_priv *priv =3D dev_get_drvdata(dev);
+> > @@ -337,6 +393,10 @@ static int clk_imx8mp_audiomix_probe(struct platfo=
+rm_device *pdev)
+> >       if (ret)
+> >               goto err_clk_register;
+> >
+> > +     ret =3D clk_imx8mp_audiomix_reset_controller_register(dev, priv);
+> > +     if (ret)
+> > +             goto err_clk_register;
+> > +
+> >       pm_runtime_put_sync(dev);
+> >       return 0;
+> >
+> > --
+> > 2.34.1
+> >
 
