@@ -1,177 +1,115 @@
-Return-Path: <devicetree+bounces-69084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19F348CEBCB
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 23:27:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B91948CEBCC
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 23:27:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B18D1C20B9C
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:27:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB7161C20C1C
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B535FDD2;
-	Fri, 24 May 2024 21:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9CF85264;
+	Fri, 24 May 2024 21:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="JK7n9fkO";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Y8qVUtd9"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pi03JtCu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA463745D6
-	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 21:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7EF745D6;
+	Fri, 24 May 2024 21:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716586032; cv=none; b=fSX79a+T+ASIR0KOFw7QVZKl2HFfwBpcMYJZD7mEa1yBkmQ1PiiLXuzwNuwMSEYVA5DmWGGV49byasdiQOu4i3jXB2GB/8+MXfdAKRCTrrAaretFgfqilxldh/n8aTupa+9q5Q8Gx39FKkP4JAwZE7cmwRbPa3PGZnrMVkLTZcY=
+	t=1716586056; cv=none; b=V14xWwsRc5X3PERY5dYMCPyXVYeUvJn0A8PIXc1sFZLeZx0kGP8gcQimrSAL3H+X1xHlQfLbxZ2t/jRfDDJsIvPUhU12q+INOysW/3xXLJUk8+CqoGIxAAw9kJJVS/CdZ8zPO4LTG7yWvBF7cJ0tDbiHFbAbzUKaXPzfQk5oGFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716586032; c=relaxed/simple;
-	bh=q18x2/ghEDQxRgttvtjlBdSmEhFM5JNm+4kgqArajnU=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=Vvvb4kTPGaR5bWFzC+kDLsDjnrS8Lx0j5VkK9JFEVXt+jnxeynT4f+SOYR0uzLVH5GaCyG0mRHKQxXx/UlxMeYnvqiF46MSIgueD3BbWjKNnJXmyEAdZ+rdlrooGxahqBnUPTAc4EgKDcBQgRuj3Z3OYgGFy6bll9ZiZwXnbsqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=JK7n9fkO; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Y8qVUtd9; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.nyi.internal (Postfix) with ESMTP id AC440138008B;
-	Fri, 24 May 2024 17:27:09 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Fri, 24 May 2024 17:27:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1716586029; x=
-	1716672429; bh=L5Cz52RVph7F6Rz/UoF8bzO6tfbd8rJHqTcSj+Y/Hdk=; b=J
-	K7n9fkOJQqW0CvA9oqEQysJO3dzub1T3KNSlXMO/svItlhEKhpjn8rXccYZ/XKfI
-	MbMxH3w/qMF4ZZVQ14N4OU+AI6BKsRAejqI5FqnMSSWkqhN+ZiaKGUxeGwDWDJso
-	F2TzZDoomjt0rizRcnXeeAKyQvud1eAvqc/X1RU2OAoZrFXwlxZc2NnMuxJQ8k/d
-	0WlBv4V64Up3aMGE6NOcp39vAD2EIhhP2uksOtwkcYQLSk7tKQH6lRhgUFxBXs5i
-	phq9tXXeFRlwkxbVh/uhTfhmJ1UMGb1oNxctn5tgXdXE9jHJR/ipKxdxdQT+/HwM
-	dVr2y6BtPqvDm/k2gmdng==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1716586029; x=1716672429; bh=L5Cz52RVph7F6Rz/UoF8bzO6tfbd
-	8rJHqTcSj+Y/Hdk=; b=Y8qVUtd96Y9KYvvliGFxvtLhWxeINyr0UMAGXd+fZm+m
-	r8Tg41Mni8SQSHXKQn1e1sScWojUHRQhy0ImCNeoiMRb9ssAz9OWUygXbavNzAHC
-	K7fOfo+u1PSYdVoWHxvXP253+S3F2DfOo0hwvBmEk6poAFGsAcmzv10t7ui3CTwx
-	vKOiXkQCgm2qzybdOYMZktFLIqmLabjHs25L7V8aTacUUpYgkzOHMOSOHeYuv/wL
-	ebOgIIUfBwvB77mq5aBPC0OPYewnPot3lokEHC+z8+gCO89gRxU0VRGPWByV0h3E
-	XlQiSUFWCgkqo37slwyJR6uuqxYWd0HNULHbg/fexw==
-X-ME-Sender: <xms:LAZRZjjZxfZdsptbZlhWw6zctDkRsjPSVenvDbUtWKaxF3gl3Rx07g>
-    <xme:LAZRZgDp--qW-z-9E2BgISt-GPO5J5bsCunY5Cjyf_V5XF18zvXuTbKEydrWpNc8J
-    OVGAD9_vK_sFKsQpA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdeikedgudehjecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdft
-    higrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenuc
-    ggtffrrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefg
-    teeuveeiudeijeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomh
-X-ME-Proxy: <xmx:LAZRZjGN-COkrZpZyoODpRFVx5y3M8L48pHgnMPRfj3YnxeoDGENQw>
-    <xmx:LAZRZgSQvYuSGl4SVAMauHWN6ScvgF2wWMl4Y4sQ-KBTdBNuwgKh_A>
-    <xmx:LAZRZgyuDUcCs7IYMhGxuXrs1b8mFJDTe6swL9yqtmX8k0-M_xKMLg>
-    <xmx:LAZRZm5_KOcd0KPnUopDULYeHSSDB8IoHRayzdIoy9sxhwFlmEGSmQ>
-    <xmx:LQZRZsBqRECEEWrs2HLNsKJ7BnpCILTfcQZZGDGFIjzVpwSXYxEtg7jk>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id AF44BA60078; Fri, 24 May 2024 17:27:08 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-480-g515a2f54a-fm-20240515.001-g515a2f54
+	s=arc-20240116; t=1716586056; c=relaxed/simple;
+	bh=rqtlw0z4hOj1gZm+shEm88N1id6NRVqqJzHHMUDNIlg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lbINSP6ufRj0vij0EVyMmH0g+9C+0XVQFRQ7q4Tyj1AvyWuuB9ELac7s7P8rjn72MaNOfEBqPKuDqNmCozN4+wwyN+swTyWHUbsEJHfOOBAjNypt7H7h3LfjqFnPd5xO+SPDhIpje3ZxX7hHzYV/Pkfuqi4M6Z8KssGFrsMhN1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pi03JtCu; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=BBvkVB+4xDDjF7vawfQZr2UKRLImlEM7McAxqrR+4QQ=; b=pi
+	03JtCuK+O664Zt74745BE9SG+BZi4cuw8JbVhwXN5fVoN2mFcTIkFBz/C9XUXbj9v0JqHQPz+UTvR
+	r0FaRjRoXNCGlerdDue5/I+KXlU5jnDOHYgp5BZcaCBXPl9NF7DNiqzZ49uGkxFyyxtOVVnolj3pX
+	l1uzrZxsjZBptVg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sAcRY-00Fyk0-R3; Fri, 24 May 2024 23:27:16 +0200
+Date: Fri, 24 May 2024 23:27:16 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+Cc: "Parthiban.Veerasooran@microchip.com" <Parthiban.Veerasooran@microchip.com>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"horms@kernel.org" <horms@kernel.org>,
+	"saeedm@nvidia.com" <saeedm@nvidia.com>,
+	"anthony.l.nguyen@intel.com" <anthony.l.nguyen@intel.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"corbet@lwn.net" <corbet@lwn.net>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"Horatiu.Vultur@microchip.com" <Horatiu.Vultur@microchip.com>,
+	"ruanjinjie@huawei.com" <ruanjinjie@huawei.com>,
+	"Steen.Hegelund@microchip.com" <Steen.Hegelund@microchip.com>,
+	"vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>,
+	"UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+	"Thorsten.Kummermehr@microchip.com" <Thorsten.Kummermehr@microchip.com>,
+	Piergiorgio Beruto <Pier.Beruto@onsemi.com>,
+	"Nicolas.Ferre@microchip.com" <Nicolas.Ferre@microchip.com>,
+	"benjamin.bigler@bernformulastudent.ch" <benjamin.bigler@bernformulastudent.ch>
+Subject: Re: [PATCH net-next v4 00/12] Add support for OPEN Alliance
+ 10BASE-T1x MACPHY Serial Interface
+Message-ID: <6e4c8336-2783-45dd-b907-6b31cf0dae6c@lunn.ch>
+References: <20240418125648.372526-1-Parthiban.Veerasooran@microchip.com>
+ <5f73edc0-1a25-4d03-be21-5b1aa9e933b2@lunn.ch>
+ <32160a96-c031-4e5a-bf32-fd5d4dee727e@lunn.ch>
+ <2d9f523b-99b7-485d-a20a-80d071226ac9@microchip.com>
+ <6ba7e1c8-5f89-4a0e-931f-3c117ccc7558@lunn.ch>
+ <8b9f8c10-e6bf-47df-ad83-eaf2590d8625@microchip.com>
+ <44cd0dc2-4b37-4e2f-be47-85f4c0e9f69c@lunn.ch>
+ <b941aefd-dbc5-48ea-b9f4-30611354384d@microchip.com>
+ <BYAPR02MB5958A4D667D13071E023B18F83F52@BYAPR02MB5958.namprd02.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <a7363cd2-4e2e-4894-8a16-f1913927e332@app.fastmail.com>
-In-Reply-To: <20240524-purveyor-outlying-5201f700a56e@spud>
-References: <20240524103506.187277-1-ryan@testtoast.com>
- <20240524103506.187277-2-ryan@testtoast.com>
- <20240524-purveyor-outlying-5201f700a56e@spud>
-Date: Sat, 25 May 2024 09:26:48 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Jessica Zhang" <quic_jesszhan@quicinc.com>,
- "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Chris Morgan" <macroalpha82@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BYAPR02MB5958A4D667D13071E023B18F83F52@BYAPR02MB5958.namprd02.prod.outlook.com>
 
-On Sat, 25 May 2024, at 7:10 AM, Conor Dooley wrote:
+> In our MDIO functions, we do certain things based on PHY ID, also
+> our driver deal with vendor specific register, MMS 12 (refer Table 6
+> in section 9.1
 
-Thanks for the review!
+That is a bad design. Vendor specific PHY registers should be in MMS 4
+which is MMD 31, where the PHY driver can access them. Table 6 says:
+"PHY – Vendor Specific" for MMS 4, so clearly that is where the
+standards committee expected PHY vendor registers to be.
 
->> +
->> +properties:
->> +  compatible:
->> +    const: wl-355608-a8
->
-> You're missing a vendor prefix here. And when you add it, update the
-> filename to match.
+Anyway, does the PHY driver actually need to access MMS 12? Or can the
+MAC driver do it? That is the same question i asked Ramón about the
+Microchip part. We really should avoid layering violations as much as
+we can, and we should not have the framework make it easy to violate
+layering. We want all such horrible hacks hidden in the MAC driver
+which needs such horrible hacks because of bad design.
 
-Thanks, I don't actually know the vendor, would it be acceptable to just use "wl"?
+	Andrew
 
->> +
->> +        sck-gpios = <&pio 8 9 GPIO_ACTIVE_HIGH>; // PI9
->> +        mosi-gpios = <&pio 8 10 GPIO_ACTIVE_HIGH>; // PI10
->> +        cs-gpios = <&pio 8 8 GPIO_ACTIVE_HIGH>; // PI8
->> +        num-chipselects = <1>;
->
-> All of this is not needed in the example, all you need to have here is:
->
-> spi {
->     #address-cells = <1>;
->     #size-cells = <0>;
->
-Thanks, will clean it up.
->> +
->> +        panel: panel@0 {
->
-> This "panel" label is not used, you should drop it.
->
-Noted, ta.
->> +            compatible = "wl_355608_a8";
->
-> This doesn't match what you documented, be sure to run dt_binding_check.
-
-Thanks, changed underscore to dash mid-patch and neglected to fix all the examples (and the subsequent code patch it seems. Will correct. Is there a preference one way or another? 
-
->
->> +            reg = <0>;
->> +
->> +            spi-3wire;
->> +            spi-max-frequency = <3125000>;
->> +
->> +            reset-gpios = <&pio 8 14 GPIO_ACTIVE_LOW>; // PI14
->> +
->> +            backlight = <&backlight>;
->> +            power-supply = <&reg_lcd>;
->> +            pinctrl-0 = <&lcd0_rgb888_pins>;
->> +            pinctrl-names = "default";
->> +
->> +            port {
->> +            	panel_in_rgb: endpoint {
->
-> Neither is this label afaict.
->
-> Thanks,
-> Conor.
-
-
-Regards,
-
-Ryan
 
