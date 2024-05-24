@@ -1,101 +1,138 @@
-Return-Path: <devicetree+bounces-69059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8338CE9F1
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 20:34:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A46B8CE9F9
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 20:38:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35698285BF6
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 18:34:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51BE41F22B8B
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 18:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B950842072;
-	Fri, 24 May 2024 18:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FB893E462;
+	Fri, 24 May 2024 18:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZBNDhN4m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6GaHx1U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE7141C85;
-	Fri, 24 May 2024 18:32:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6E43A268;
+	Fri, 24 May 2024 18:38:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716575535; cv=none; b=m+uzyGfEmiwDN4NWtGl06CngDHXH1nEiDC7ntx609UJUTKffBDc7RCcRwst8BdGFLhl+YWr9aIBZlWTEqgdvoR/Skp2hJTZvx/RE3PUKn3pRBmM0dSttOgWsmiSj5IStrKkc4jqIij9g63i8vehDi6QpkXf2DFCf35m5IAJtfvs=
+	t=1716575905; cv=none; b=ZCKT7xyL81YTKO5sgDqDh8HBJa9O/DD76CQEP9WPV42cDr/FwmLnisQzzFB8iQi3feiFjrRbunU6O8gpxAKV/Kwdj67I1vCefyqyefuYrb7inAPLbCFt/u7H9kj0zelLH+v3LFhXpE4PY5wpjwss8p2xR9MoTmtN4iWQudwTyrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716575535; c=relaxed/simple;
-	bh=ZDW6n8R+BbYSZWdXmek/HnmZttNw+oIvTXE643uclug=;
+	s=arc-20240116; t=1716575905; c=relaxed/simple;
+	bh=MPzmwM32Cfa/hwgRGrz2r65tg31njSxJUb69ic81vwY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IBB7v3MZp6cuFpgSbcwxh+lznojv0HHHE5ZNMt3mqKQa/G9hNTiyTpXJ+YBRPk+WwLCsHJWb2uXC15CqohFz0VMxLWNaRSkV3bUDJ8l8me7wnfRd4myt4Ly43tifRzH4geqvtQxdhxM8XCe88/qDlonN5fzLbtiLhv3eFePDaE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZBNDhN4m; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=K03GNtWVmJPKVVQMTb7a854Ol2QjAiRCHfbNxrRekzI=; b=ZBNDhN4mHvJ+uJ7Nn43x5PtElC
-	zwBeXSm6fuQRM4NIbuYbs9Kl7sLYc+iR+wt45j4h7nP19aW5ivLR03hIftzsQLAEZhRvWh+1xR7iX
-	PZMUtXY2lqOGXzjbZ90YrnzQ+QS4Wddd3IHXLoojOMBK5ApH7u5Y6nSWOG5axhfStUWI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sAZhp-00FyHj-J9; Fri, 24 May 2024 20:31:53 +0200
-Date: Fri, 24 May 2024 20:31:53 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-Cc: Parthiban.Veerasooran@microchip.com, Pier.Beruto@onsemi.com,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Selvamani.Rajagopal@onsemi.com,
-	Nicolas.Ferre@microchip.com, benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v4 05/12] net: ethernet: oa_tc6: implement error
- interrupts unmasking
-Message-ID: <7aaff08b-a770-4d93-b691-e89b4c40625e@lunn.ch>
-References: <ae801fb9-09e0-49a3-a928-8975fe25a893@microchip.com>
- <fd5d0d2a-7562-4fb1-b552-6a11d024da2f@lunn.ch>
- <BY5PR02MB678683EADBC47A29A4F545A59D1C2@BY5PR02MB6786.namprd02.prod.outlook.com>
- <ZkG2Kb_1YsD8T1BF@minibuilder>
- <708d29de-b54a-40a4-8879-67f6e246f851@lunn.ch>
- <ZkIakC6ixYpRMiUV@minibuilder>
- <6e4207cd-2bd5-4f5b-821f-bc87c1296367@microchip.com>
- <ZkUtx1Pj6alRhYd6@minibuilder>
- <e75d1bbe-0902-4ee9-8fe9-e3b7fc9bf3cb@microchip.com>
- <ZlDYqoMNkb-ZieSZ@minibuilder>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hMi3ztcvzBtjPjOaYKYxIG0y7GaXzUxJL85y2gI5NcjdAgn/mEIye1LmIKfeww3CThlEAnd+RETNqW0nBfO0mNc4egajzcXNdFOGfe8y/IoIc4JApkr+rFWN7QjuJLMeu5IhJwrh6QZuT5GfysG6tBR3NdTtpk/I7jZhgpYR4DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6GaHx1U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87618C2BBFC;
+	Fri, 24 May 2024 18:38:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716575904;
+	bh=MPzmwM32Cfa/hwgRGrz2r65tg31njSxJUb69ic81vwY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k6GaHx1UFKxCCQOn/EREl8jRcMX7uh5PFRGJIL4uBstfyoNK2qOZZH2uKwPHcDoLc
+	 QSHgQPSpy7G3X7TcYfo2tVrKOaNpyTDx69E7DcsB1oW7ESCVzyrtxjmXa/gAU9vHTR
+	 v4gVk/Ts6vXIuIpj0ipsnKwdD0RiFQiOyNx6biyi4yGJdsq2pTDlBnCK10nvyGWv9o
+	 agTT0flNJD/j82LKP0ZzphzS4cV2tiaRBfKpM1I+njyacuGVX+WXnMMCJY32kGU4IK
+	 ivXn5mSaHal/yCu9Q70ypYWDfeaTGii9C3np/ORKZTpshVEAZGfR/+vBEK+ykOcG6k
+	 PiHmC2ekGaKig==
+Date: Fri, 24 May 2024 19:38:19 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Judith Mendez <jm@ti.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	William Breathitt Gray <william.gray@linaro.org>,
+	David Lechner <david@lechnology.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: counter: Add new ti,am62-eqep
+ compatible
+Message-ID: <20240524-wrecker-busybody-2c082b87ddef@spud>
+References: <20240523231516.545085-1-jm@ti.com>
+ <20240523231516.545085-3-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="E9Q3nvSBq6suiBDa"
+Content-Disposition: inline
+In-Reply-To: <20240523231516.545085-3-jm@ti.com>
+
+
+--E9Q3nvSBq6suiBDa
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZlDYqoMNkb-ZieSZ@minibuilder>
+Content-Transfer-Encoding: quoted-printable
 
-> After a considerable ammount of headscratching it seems that disabling collision
-> detection on the macphy is the only way of getting it stable.
-> When PLCA is enabled it's expected that CD causes problems, when running
-> in CSMA/CD mode it was unexpected (for me at least).
+On Thu, May 23, 2024 at 06:15:10PM -0500, Judith Mendez wrote:
+> Add new compatible ti,am62-eqep for TI K3 devices. If a device
+> uses this compatible, require power-domains property.
+>=20
+> Since there is only one functional and interface clock for eqep,
+> clock-names is not really required. The clock-name also changed
+> for TI K3 SoCs so make clock-names optional for the new compatible
+> since there is only one clock that is routed to the IP.
 
-Now we are back to, why is your system different? What is triggering a
-collision for you, but not Parthiban?
+Really the clock should be named after the function it has in the IP
+block - it looks like "sysoutclk" is more likely the name of the clock
+routed to the IP rather than the role it has?=20
+>=20
+> While we are here, add an example using ti,am62-eqep compatible.
+>=20
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+> Changes since v1:
+> - Fix eqep binding for new compatible, require
+>  power-domains for new compatible
+> ---
+>  .../devicetree/bindings/counter/ti-eqep.yaml  | 53 +++++++++++++++++--
+>  1 file changed, 48 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/counter/ti-eqep.yaml b/Doc=
+umentation/devicetree/bindings/counter/ti-eqep.yaml
+> index 85f1ff83afe72..c4bb0231f166a 100644
+> --- a/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+> +++ b/Documentation/devicetree/bindings/counter/ti-eqep.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+> =20
+>  properties:
+>    compatible:
+> -    const: ti,am3352-eqep
+> +    enum:
+> +      - ti,am3352-eqep
+> +      - ti,am62-eqep
 
-There is nothing in the standard about reporting a collision. So this
-is a Microchip extension? So the framework is not doing anything when
-it happens, which will explain why it becomes a storm.... Until we do
-have a mechanism to handle vendor specific interrupts, the frame work
-should disable them all, to avoid this storm.
+I'm going to ack this even though the driver makes it seem like the
+devices are compatible (there's no match data etc) given the addition of
+the power domain and changes in required properties.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Does the datasheet document what to do on a collision? How are you
-supposed to clear the condition?
+Cheers,
+Conor.
 
-       Andrew
+
+--E9Q3nvSBq6suiBDa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlDemwAKCRB4tDGHoIJi
+0tf1AQDclii2PIEAKJGAD1KJi4QZdecV3uYhCax+XAtJTBcW8QEA4KwtQwk4Mfib
+jGDANn12fw8QkA7cVDzLlPckUIpdoAI=
+=BbQp
+-----END PGP SIGNATURE-----
+
+--E9Q3nvSBq6suiBDa--
 
