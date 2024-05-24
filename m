@@ -1,136 +1,140 @@
-Return-Path: <devicetree+bounces-69026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE8CB8CE78D
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 17:09:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7DD68CE7D3
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 17:25:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 833B428287B
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 15:09:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10BBFB215FE
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 15:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B256812CDB2;
-	Fri, 24 May 2024 15:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651BA12CD82;
+	Fri, 24 May 2024 15:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="gsgvX6Hj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="liUNCJIf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557AB12CD9D
-	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 15:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F142EC7
+	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 15:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716563378; cv=none; b=C99/uoooKPMbt+xZbj4ALKzWMtxHwi1bF+FxVPUzYwiGGs6VXCpMYGUazc+85m/xBuIDv7pxshYBl4maZ28WflwtdLjuTY3Jmn1WbhxSARvXKIk0pmjT+vndJ+95AhJNV0dvygJEGSdveJHb/BesvLFFjWlGVW12LJldVkDCD/s=
+	t=1716564343; cv=none; b=ahNsfmMYxJSvPAjXsXc+ftlWk0evC8tr41JyEjGRsqflQVRsC3M87XsyT8VA7Th7vZO1sbXXV9Jo7lRAXfKe2hF+e1ctDxRHI9cQnn2s3H1VqlrGf+4XLeiHFP6THiCoch13rNSJtXHCRLKPkoeC0uksc4HQRW2NQNyXhXrxE98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716563378; c=relaxed/simple;
-	bh=ZHnaZHaZskD/xonYeSEZFFMg+YXeoBIVEBxcMi8GbMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uEEsqZenzTZuvIQE5g8gIjnC/mHdINLdcITO/aXDL4bTJi/iNRMDR80IVZpInFfAQo8y/4ar1ZOBsmm925HQ7Nf+Wd6LNVVA/eg63/irDzcKDvln6TyF3PbYjOvNNWzsmviFJIX17+AG2lZgCmMgeHaxEMWTu68lNW2K3a5FXjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=gsgvX6Hj; arc=none smtp.client-ip=209.85.222.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-794b1052194so8819285a.1
-        for <devicetree@vger.kernel.org>; Fri, 24 May 2024 08:09:37 -0700 (PDT)
+	s=arc-20240116; t=1716564343; c=relaxed/simple;
+	bh=EXBbYWDTZ5vMudbL6r3S9G6s5w07YixVypmFO+v1x98=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=WXxWH3jYzwzEOYPAk9wjIMlvqNBNrSs9AmBeUZKQiAtNohQGoPGfiUXm6l5TH86YgPoihmPYxkYK6xvL/i/CUJqdrpIfO8U6uwM6j3+G36Rr0mwHliGX0MonedWkPoVb214Z+6dAQAnVvQ880fOCKYcBkmFJaubBfZztZg0eAXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=liUNCJIf; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a5d67064885so868305766b.1
+        for <devicetree@vger.kernel.org>; Fri, 24 May 2024 08:25:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1716563376; x=1717168176; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JPPk9ZMB0Ku0hRWNSYQthiNRSt0noAUHxb8eADGB9tY=;
-        b=gsgvX6HjugJJ0dQc6gTulNKF8t0nJmmC/VSsBCBv7yr07ySteF8jDoolV6WS3cGRfx
-         4I4Dte3aYty2pVGmlAw6+hBvjKwq06Vh1eS9LEWgXs5+smKd/lch5AxR4sdgztBagxMK
-         t5DpFdTc/Dn2psnbn8xvy/NhTLicqpXZKnISF/xC4f1zBNE7VZIbdt9lRbLbxBo5cjg0
-         QEDTPpsAzCUKIzmM2qdLKBfVBMSZ74TkgLF8LTAM+aqyl8DgF6j9ZHFo11oVFc+0UmAq
-         b8wkqau1zPRGUl6+Kv2nEjw+ZBDJBqftbuqsN+lqs3aMcJi+/PXgNjFrtqcNy5VU4Kcb
-         O6fw==
+        d=linaro.org; s=google; t=1716564339; x=1717169139; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=fRxtYgnQO5H1s1nb28f6mNffAm5rNdVhsv3KUCOVO4w=;
+        b=liUNCJIfMqE/X+1lVFHeGGqyFucnStB773a7UNN+QhHc4GCCPXn1NdErpeozOKVaD3
+         AVmzyZHu0ePJ0vY31mdtHd4uQZWM0zQI1X8TccXgTDvgnb5dTMGn49wmxC7y7bEdQWlK
+         WiLPaj+evKRhNmZm7VWcRptzwyFv3xYX8olRb5tvs7uh3DN07sP90XJg0mLlEtN6Fh9a
+         ac+TpyL3YjrP7jbJwHClGpWrE5MM5hMdcVUS1tsrvLt4SlW80RSr/8+W+QVribrNnz0k
+         u8zM6Mf3XCStwZ8n9M3jOYAIxsWxhAimcXfET6oNqXxedWYz2Jtob7FjIa+QrBO3DcaI
+         E51g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716563376; x=1717168176;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JPPk9ZMB0Ku0hRWNSYQthiNRSt0noAUHxb8eADGB9tY=;
-        b=B7BkWq8KGuJJ9csHWzUUh4368bVyYlgQD7MxvMeOjVAoLBNBHeuO3FRvyGc9r3m6Zb
-         xik17u/XS2ZMdbp6OlnXyjUU39MrtKoejNt9UTI2q7RsBvqN0Ut+gOAoh1Qrk5vTByA5
-         0S70MDAmfPDGQ8ix6oEqZ/afH/wzhAfbuFlW77YMPz4EYrms1kSCCeJStDQCbT2juWA0
-         +quccrboJoKawpR2tlcT8MkEO3tTNl8Aqie0ABQnRz+mICPvpnxus2eWns0iAiu0wX24
-         Av5Pkjy9e5YmsfgvtjJQo19L+FaArZQxsUFO1VHCmfyz330zjW78YLA3xifinWXxtWFR
-         S2Qg==
-X-Forwarded-Encrypted: i=1; AJvYcCVLvj+FWT+QHJV8NEu6QS0WqjN25M0J1g4XWNeAFGXjaOFDWi1+FTuqs1PZiyUzuvUBQqqjdG/MHAzuRL1U3Qqv5MRZjg/axYC5rQ==
-X-Gm-Message-State: AOJu0Yw4WW8QTbghmUn7iZ3FTjUUJ7tR/6A+sf1962ucTIZHsMqhuQrs
-	kN5KWq1BlMnHpJjgfrZUiLS6rahJ4lgMMP18vY2qnFPO565F3DuTnRYSY7xbar8=
-X-Google-Smtp-Source: AGHT+IF+iMK+Fk/kuTHFaJ9i9wXeJLcDfA5+fUTHGZpkoNnrMobEJ8vPGJL+mvQIBsyXRFWw9nLt/A==
-X-Received: by 2002:a05:620a:2603:b0:790:d62a:da09 with SMTP id af79cd13be357-794ab08688dmr336194185a.5.1716563376237;
-        Fri, 24 May 2024 08:09:36 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-794abcc0f04sm71408585a.42.2024.05.24.08.09.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 May 2024 08:09:35 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.95)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1sAWY2-001QzP-Mh;
-	Fri, 24 May 2024 12:09:34 -0300
-Date: Fri, 24 May 2024 12:09:34 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Anup Patel <apatel@ventanamicro.com>, Zong Li <zong.li@sifive.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux@rivosinc.com,
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Sebastien Boeuf <seb@rivosinc.com>, iommu@lists.linux.dev,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Nick Kossifidis <mick@ics.forth.gr>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: Re: [PATCH v5 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-Message-ID: <20240524150934.GR69273@ziepe.ca>
-References: <cover.1715708679.git.tjeznach@rivosinc.com>
- <4a1ac62b8b452f9face321c29502dee8ee88191c.1715708679.git.tjeznach@rivosinc.com>
- <CANXhq0os1R3kR7dCKWs1Yu1ZeaKoQ2b3Q7QbvyU9nRgbB8ZFmA@mail.gmail.com>
- <CAH2o1u4j9MS9Pq7d=4skq-nLM7c_x0Dwqy8WxVfO1FBSWqA0yg@mail.gmail.com>
- <CAK9=C2Wff07Q72LXrB9POz=91t4SNZ8AaLhQdjjjXhbqTYKCHA@mail.gmail.com>
- <CAH2o1u5N9ZdXePh=aJHkYOpLMXeuwQTzCuQJyLdgc3-FAKim2A@mail.gmail.com>
- <CAK9=C2VAWa4jzCW63q366rB60wk2KDUJmF86EtQkVcMYLyiPBg@mail.gmail.com>
- <CAH2o1u4jbObtXDAiXkedy_7P6VyRVTFj9OtmqwjgGYYfys1RmA@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1716564339; x=1717169139;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fRxtYgnQO5H1s1nb28f6mNffAm5rNdVhsv3KUCOVO4w=;
+        b=MCmGPoauG0Pwd+HlGEKGwS4ZnBAkHU0pYmMWPT+UJSA7kkH8VB9GF1X1fnop01x5na
+         sjbiqWhLLhtI05slXku01gi7JhzAESg1uUrBnpoYmMO5xEaUI5jXBIoyHwZk7Y6CCy+G
+         qsWsvt/EXkAvIVVsGV26qaOWv9YDiA+gcMoWOStgEsXwI6x92FAoNEaaTmCko9zOjgrK
+         9wfY0wIsShqjZKOPPdpDHQe9lbNidmvBTCVZtTEHxXjRxj3r2xWQiJ6eE7YLE57WhYYL
+         ALYBHzL3JoO5ilsF0EpQ5oWEUtJLg80pOvie7TbyMaD+o2SEKN5dk5JYxEduil122Tr1
+         M/bg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8qdoGwcXJ8Kyaj6GISNE3Qvg77k6XEc5DGG7XOzkwehBiMLY7SNBJipfOjfZWlFbnkNt5+sE0ZYS6/bXja2ST375mZfhzGcaRIg==
+X-Gm-Message-State: AOJu0Yx3vWbbEaMB1sqpJJ5oDNIaiVc8GQzPyXi1tR6Z9pccxKl26uoO
+	wqea2eXUiLUNl9pNj7aQP08vGWYbn300LGb3x2djuaKn5TovN/kXroMb6S3e/+wXVWMjjn0Sn0P
+	RHfM=
+X-Google-Smtp-Source: AGHT+IEpvTd4g3feQSSGBGiXoWWyO+K9DkelekEXcAtdBf8B0TYiNw1/ZOzzQJlBNE6Q+uPLEp61fQ==
+X-Received: by 2002:a17:906:2343:b0:a60:c514:31d9 with SMTP id a640c23a62f3a-a62641c2e74mr263714166b.6.1716564339570;
+        Fri, 24 May 2024 08:25:39 -0700 (PDT)
+Received: from [192.168.128.139] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c93b4cfsm144364966b.69.2024.05.24.08.25.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 May 2024 08:25:39 -0700 (PDT)
+Message-ID: <4a31fc5a-5d34-465a-84a4-1b6f2393130e@linaro.org>
+Date: Fri, 24 May 2024 17:25:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAH2o1u4jbObtXDAiXkedy_7P6VyRVTFj9OtmqwjgGYYfys1RmA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom,ids: Add SoC ID for SDM670
+To: Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240524012023.318965-5-mailingradian@gmail.com>
+ <20240524012023.318965-6-mailingradian@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240524012023.318965-6-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, May 23, 2024 at 09:13:43AM -0700, Tomasz Jeznach wrote:
-> > > The activation of IOMMU_DMA for the RISC-V architecture will be
-> > > feasible once the core components achieve compatibility with the DMA
-> > > subsystem, which unfortunately is currently not the case. Without
-> > > IOMMU_DMA enabled, driver will recognize RISC-V IOMMU hardware,
-> > > register itself in the IOMMU core subsystem, and will provide basic
-> > > IDENTITY protection domains for connected devices.
-> >
-> > I am not asking for IOMMU_DMA feature instead I am asking for
-> > supporting device MSIs in this series.
-> >
+On 24.05.2024 3:20 AM, Richard Acayan wrote:
+> The socinfo driver uses SoC IDs from the device tree bindings.
+> Add the SoC ID for SDM670.
 > 
-> Ok. Makes sense.
-> I've looked at the option to pull in / add small change to enable MSI
-> bypass window for systems with IMSIC enabled. With that, MSIs will be
-> supported, however without full interrupt remapping capabilities that
-> could IOMMU provide. If that sounds as sufficient change I'll add it
-> to this series.
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
 
-Honestly I would prefer you keep that seperate as we really need to
-discuss the irq window stuff in alot of detail. The current thing ARM
-has done comes with alot of problems.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-This series seems pretty good to me as is, let's get it merged.
-
-Jason
+Konrad
 
