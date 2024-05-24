@@ -1,58 +1,65 @@
-Return-Path: <devicetree+bounces-69036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F40888CE968
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 20:20:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AECFB8CE972
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 20:25:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67A49B21E9A
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 18:20:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 359C0B219EC
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 18:24:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67248364A9;
-	Fri, 24 May 2024 18:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA203BBF2;
+	Fri, 24 May 2024 18:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YseXi/5h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RODCe2Rf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6AB3D994;
-	Fri, 24 May 2024 18:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1403FB81;
+	Fri, 24 May 2024 18:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716574805; cv=none; b=JEdaJWPaOygZMxav7tzATghmqf41bK/jGpmtwDuKXBG6/bzJmgxzCvk+Iko9A24QnAcEjunx7h4XkYH8ioJTvQj704SKNV4TuHOLsOmSth2b47cPbt74nqQL2+4GIFPw2oj68rpq9djZ4wixYFQMGJBqovFkO0vBsWJdTgqJ8z8=
+	t=1716575093; cv=none; b=JbmhcUcPVe2/oGPjewxEls7OqhZki96pVrZGr4CFAJ9mE7ZdM795cQJVq1YXl3VGsriR8wLAZTcdVl+2hIqhyFnXutrKOXnSJypPFb9GTakR7KQug+lzhLilNygdqyYOs4oAuiYmYA1uXSwqIOm6A/wvAeIQTWm1r2YHRSxQvVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716574805; c=relaxed/simple;
-	bh=+8Fbxlx5eo/oIR6yTo80tZtLDDGQUpDOc4GEdoiNLys=;
+	s=arc-20240116; t=1716575093; c=relaxed/simple;
+	bh=dQAvYzPorRE89EfGzh8i8K3dM861qHxxGaH5yINN8yM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sj9GQySfJx0GbIyAchNgQF7N0Tcep/zXf/DyafIFQ9PPyDfT1BJ/i1hWcUPs7fWEhoWWdHlc6yKhBpCeLnI5hH0KyHDb8KTNi7+W1voey9tURV4hzZCufKPkx78pPPiELwFXCjJQ3+EyObO0osjQA43+d+YNhApcVpQ7XKCZSrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YseXi/5h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B13E7C2BBFC;
-	Fri, 24 May 2024 18:20:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p/DQYLAjzsPXNjHBxKZ+r3lcKBqGRW9df5Lkhm2S8fZI8btoEeUkJBrylZNa4pl5TNMmMv/QqJcj3XEyLp1QfKuhIYs7ctXkG8U336hbAoAIAI01GW1eU2JFkzAKno8Y8HW3Sjp3gG/LeiIyRUb/VZ93sziwoqKQz/l2Pf8M7CM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RODCe2Rf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73617C2BBFC;
+	Fri, 24 May 2024 18:24:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716574804;
-	bh=+8Fbxlx5eo/oIR6yTo80tZtLDDGQUpDOc4GEdoiNLys=;
+	s=k20201202; t=1716575092;
+	bh=dQAvYzPorRE89EfGzh8i8K3dM861qHxxGaH5yINN8yM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YseXi/5h2BMoThQr36j8Sb1Zo9jVbI43GB4WuAYe+GZ1F6tIpcKa95PSSl1ckFHub
-	 EPSwqSZV+4kazDQtmalMcKzBTHJ067ZGR2tU7+w3zRizrVb5jqind3yJ/LGz+r3x8r
-	 CTSDG/SQoQprTgjvkjxoebwN+bGMjHn2fVCipOvGH2/a5nqkLbgrqVQ6w+l9nErGXH
-	 aHRsGhwx9GdEXJYUTihb2qY1LLYKp/hPHxbRzlsMWm/SQwDB5pKMcMCgsR4TnmcNkA
-	 MM/yYOpAnYogBJuJnGztg8+LCh6tJNVO7O9aqVNFU5gbMjaLcGBRxjELoH+TNFtcUc
-	 LrIOscbZ2nGBg==
-Date: Fri, 24 May 2024 19:20:00 +0100
+	b=RODCe2RfnalsYZlh1raT+J+hlOnLKlOLEFrU7ogy/+lfPkotL0bgKTRXyLc2FoP3r
+	 KCJc47bVnKinr+kCpFO8Mtxpgq/dfHFHQGW16zuKMfWb8sbwrp0g4wq0lG0PpdBDiQ
+	 K4coGuPcmP6wvWvTBwI+r40PcDOSAlPp9ypel1extK4lbio6uzHn+rs2hjY2TYsaOv
+	 HrrfQczEa9KWhAf8JDDCSIYucYKGdawj5OM0BBE82WFtta3pCGxkRJkBQLKYTURsAe
+	 MzaloccbeQboBAUqo3q8PkfLkwrikEf/qgyYa2QhAOADreidlipc1uTLUGJHDnpTF1
+	 yqGpHAB2pOwbQ==
+Date: Fri, 24 May 2024 19:24:47 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
-Message-ID: <20240524-engraving-scrimmage-4b7e470fe5db@spud>
-References: <20240524105929.557129-1-naresh.solanki@9elements.com>
+To: Julien Panis <jpanis@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Nicolas Pitre <npitre@baylibre.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 1/6] dt-bindings: thermal: mediatek: Rename thermal
+ zone definitions for MT8186 and MT8188
+Message-ID: <20240524-concerned-fritter-262f5e16293e@spud>
+References: <20240524-mtk-thermal-mt818x-dtsi-v5-0-56f8579820e7@baylibre.com>
+ <20240524-mtk-thermal-mt818x-dtsi-v5-1-56f8579820e7@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,36 +67,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ikdhEzjYvs4Y3VNX"
+	protocol="application/pgp-signature"; boundary="nUnx8yrvH8DVkbj0"
 Content-Disposition: inline
-In-Reply-To: <20240524105929.557129-1-naresh.solanki@9elements.com>
+In-Reply-To: <20240524-mtk-thermal-mt818x-dtsi-v5-1-56f8579820e7@baylibre.com>
 
 
---ikdhEzjYvs4Y3VNX
+--nUnx8yrvH8DVkbj0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 24, 2024 at 04:29:23PM +0530, Naresh Solanki wrote:
-> Document the new compatibles used on IBM SBP1.
+On Fri, May 24, 2024 at 11:04:34AM +0200, Julien Panis wrote:
+> Use thermal zone names that make more sense.
 >=20
-> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Removing the defines is an ABI break. If these are all the same devices,
+but with more accurate naming, then keep the old defines and add new
+ones. However, the GPU1 define changes in the course of this patch which
+is more problematic.
 
-Cheers,
+Why do these names even make more sense? Where did the old names come
+=66rom and where do the new?
+
+Thanks,
 Conor.
 
---ikdhEzjYvs4Y3VNX
+> ---
+>  include/dt-bindings/thermal/mediatek,lvts-thermal.h | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/includ=
+e/dt-bindings/thermal/mediatek,lvts-thermal.h
+> index bf95309d2525..ddc7302a510a 100644
+> --- a/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+> +++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+> @@ -24,7 +24,7 @@
+>  #define MT8186_BIG_CPU1	5
+>  #define MT8186_NNA		6
+>  #define MT8186_ADSP		7
+> -#define MT8186_MFG		8
+> +#define MT8186_GPU		8
+> =20
+>  #define MT8188_MCU_LITTLE_CPU0	0
+>  #define MT8188_MCU_LITTLE_CPU1	1
+> @@ -34,11 +34,11 @@
+>  #define MT8188_MCU_BIG_CPU1	5
+> =20
+>  #define MT8188_AP_APU		0
+> -#define MT8188_AP_GPU1		1
+> -#define MT8188_AP_GPU2		2
+> -#define MT8188_AP_SOC1		3
+> -#define MT8188_AP_SOC2		4
+> -#define MT8188_AP_SOC3		5
+> +#define MT8188_AP_GPU0		1
+> +#define MT8188_AP_GPU1		2
+> +#define MT8188_AP_ADSP		3
+> +#define MT8188_AP_VDO		4
+> +#define MT8188_AP_INFRA		5
+>  #define MT8188_AP_CAM1		6
+>  #define MT8188_AP_CAM2		7
+> =20
+>=20
+> --=20
+> 2.37.3
+>=20
+
+--nUnx8yrvH8DVkbj0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlDaUAAKCRB4tDGHoIJi
-0ke8AP9eoKw/VC5gTmKmKg2tNZmY6NF7Daql17nntRTwULugFQD+MOhoqb2A5sgU
-zkv569pLnAS+0M+eL6heZfvgEmS8eww=
-=UaWu
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlDbbwAKCRB4tDGHoIJi
+0pUoAP0dmBcOmsdDvQ5P4PIIeZXUssG4s57m1H3nSypoY8IHtwEA2+8PySEExvRJ
+l+6ydH0nKFhDmkLEJ9IJUVAyimv5tAU=
+=ozOf
 -----END PGP SIGNATURE-----
 
---ikdhEzjYvs4Y3VNX--
+--nUnx8yrvH8DVkbj0--
 
