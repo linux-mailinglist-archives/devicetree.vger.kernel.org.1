@@ -1,142 +1,177 @@
-Return-Path: <devicetree+bounces-69083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B87978CEBC1
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 23:18:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19F348CEBCB
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 23:27:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F1701F2181A
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:18:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B18D1C20B9C
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 21:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8DE344376;
-	Fri, 24 May 2024 21:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B535FDD2;
+	Fri, 24 May 2024 21:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lechnology.com header.i=@lechnology.com header.b="PZafrCh9"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="JK7n9fkO";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Y8qVUtd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vern.gendns.com (vern.gendns.com [98.142.107.122])
+Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE8C29403;
-	Fri, 24 May 2024 21:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=98.142.107.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA463745D6
+	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 21:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716585491; cv=none; b=W3JvK7B1dgX7b37BP/+uKykDV0AsuzgK4uZTS827Tesk61xnW1+NLH1fpiJvJPx/RdIAhuzKGDHZkkanAL93Gc9dmD0ZnL4xfGBIxdi5QMS2ak3Kkb/iaThPXixm/VsdgGVTbs2vkI2QKHH8YhZsO4FNNXSazL1xyuUC4kM4cJk=
+	t=1716586032; cv=none; b=fSX79a+T+ASIR0KOFw7QVZKl2HFfwBpcMYJZD7mEa1yBkmQ1PiiLXuzwNuwMSEYVA5DmWGGV49byasdiQOu4i3jXB2GB/8+MXfdAKRCTrrAaretFgfqilxldh/n8aTupa+9q5Q8Gx39FKkP4JAwZE7cmwRbPa3PGZnrMVkLTZcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716585491; c=relaxed/simple;
-	bh=oROgi6cW5VOrIvXKDoxANqqpCD+XvoJV5dJb1gpyPvM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m2x0vZou+U/7bPOQdBaLP4etx+Jad9wxiFCx7a0eFQCVRs8/f+YD+51gx2Q0RBks1Z0gHZDhsaqYFwPKI/2VGb9mjpa8w8BOdUW1iRF2yuXDBFzxqYBDqUyL2bvRRUUB8riCdjqZ3L2Fp2gvQ3gjR7FAxzTPP7AUF1qtqdYmr0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lechnology.com; spf=pass smtp.mailfrom=lechnology.com; dkim=pass (2048-bit key) header.d=lechnology.com header.i=@lechnology.com header.b=PZafrCh9; arc=none smtp.client-ip=98.142.107.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lechnology.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lechnology.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=8K9YIt8Xuf96IZuzLNykL3prlV4rmYksMmIVxMKfEio=; b=PZafrCh90nzp5HYVSIqgjMW0rE
-	qzgyuWcw7URB9qUqZNheuNyxPUWErvm3gY1XY+6XYVVcmDN+0TemBIivdax+GD91s+m/v5UfsOEEG
-	ztGpeLzukTFUnzGTwqeT4fIAp6cx91vjmQUQ5+3VPC6hIE2pUcpO+x7ZxGG/5EKDFEFWY4LogSPtC
-	ZLAI9J5giziT9f8kwx7+k3jhp8yP4v9+xJwA81nFTPrg7CZCxl5uUBuzRWIQVcmqKX9TvzpM9/Lf8
-	Yhns/sNrZW/TiC3aHtZFfQGLAPcCkp7C1M0sd+1XVqh5pE1T2fLFeu2qLpU3qDcVn8YtsSJ1pACf5
-	GtV/WwRg==;
-Received: from ip98-183-112-25.ok.ok.cox.net ([98.183.112.25]:40592 helo=[192.168.0.142])
-	by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <david@lechnology.com>)
-	id 1sAcM3-0002xk-0g;
-	Fri, 24 May 2024 17:18:08 -0400
-Message-ID: <78e25e9a-579c-4816-b1b2-a09d291f8480@lechnology.com>
-Date: Fri, 24 May 2024 16:18:05 -0500
+	s=arc-20240116; t=1716586032; c=relaxed/simple;
+	bh=q18x2/ghEDQxRgttvtjlBdSmEhFM5JNm+4kgqArajnU=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=Vvvb4kTPGaR5bWFzC+kDLsDjnrS8Lx0j5VkK9JFEVXt+jnxeynT4f+SOYR0uzLVH5GaCyG0mRHKQxXx/UlxMeYnvqiF46MSIgueD3BbWjKNnJXmyEAdZ+rdlrooGxahqBnUPTAc4EgKDcBQgRuj3Z3OYgGFy6bll9ZiZwXnbsqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=JK7n9fkO; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Y8qVUtd9; arc=none smtp.client-ip=103.168.172.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfout.nyi.internal (Postfix) with ESMTP id AC440138008B;
+	Fri, 24 May 2024 17:27:09 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Fri, 24 May 2024 17:27:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-type:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm1; t=1716586029; x=
+	1716672429; bh=L5Cz52RVph7F6Rz/UoF8bzO6tfbd8rJHqTcSj+Y/Hdk=; b=J
+	K7n9fkOJQqW0CvA9oqEQysJO3dzub1T3KNSlXMO/svItlhEKhpjn8rXccYZ/XKfI
+	MbMxH3w/qMF4ZZVQ14N4OU+AI6BKsRAejqI5FqnMSSWkqhN+ZiaKGUxeGwDWDJso
+	F2TzZDoomjt0rizRcnXeeAKyQvud1eAvqc/X1RU2OAoZrFXwlxZc2NnMuxJQ8k/d
+	0WlBv4V64Up3aMGE6NOcp39vAD2EIhhP2uksOtwkcYQLSk7tKQH6lRhgUFxBXs5i
+	phq9tXXeFRlwkxbVh/uhTfhmJ1UMGb1oNxctn5tgXdXE9jHJR/ipKxdxdQT+/HwM
+	dVr2y6BtPqvDm/k2gmdng==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1716586029; x=1716672429; bh=L5Cz52RVph7F6Rz/UoF8bzO6tfbd
+	8rJHqTcSj+Y/Hdk=; b=Y8qVUtd96Y9KYvvliGFxvtLhWxeINyr0UMAGXd+fZm+m
+	r8Tg41Mni8SQSHXKQn1e1sScWojUHRQhy0ImCNeoiMRb9ssAz9OWUygXbavNzAHC
+	K7fOfo+u1PSYdVoWHxvXP253+S3F2DfOo0hwvBmEk6poAFGsAcmzv10t7ui3CTwx
+	vKOiXkQCgm2qzybdOYMZktFLIqmLabjHs25L7V8aTacUUpYgkzOHMOSOHeYuv/wL
+	ebOgIIUfBwvB77mq5aBPC0OPYewnPot3lokEHC+z8+gCO89gRxU0VRGPWByV0h3E
+	XlQiSUFWCgkqo37slwyJR6uuqxYWd0HNULHbg/fexw==
+X-ME-Sender: <xms:LAZRZjjZxfZdsptbZlhWw6zctDkRsjPSVenvDbUtWKaxF3gl3Rx07g>
+    <xme:LAZRZgDp--qW-z-9E2BgISt-GPO5J5bsCunY5Cjyf_V5XF18zvXuTbKEydrWpNc8J
+    OVGAD9_vK_sFKsQpA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdeikedgudehjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdft
+    higrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpeehvdevieegudejueefgeffhefhffevudfhieejgfdtffetlefg
+    teeuveeiudeijeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:LAZRZjGN-COkrZpZyoODpRFVx5y3M8L48pHgnMPRfj3YnxeoDGENQw>
+    <xmx:LAZRZgSQvYuSGl4SVAMauHWN6ScvgF2wWMl4Y4sQ-KBTdBNuwgKh_A>
+    <xmx:LAZRZgyuDUcCs7IYMhGxuXrs1b8mFJDTe6swL9yqtmX8k0-M_xKMLg>
+    <xmx:LAZRZm5_KOcd0KPnUopDULYeHSSDB8IoHRayzdIoy9sxhwFlmEGSmQ>
+    <xmx:LQZRZsBqRECEEWrs2HLNsKJ7BnpCILTfcQZZGDGFIjzVpwSXYxEtg7jk>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id AF44BA60078; Fri, 24 May 2024 17:27:08 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-480-g515a2f54a-fm-20240515.001-g515a2f54
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] counter/ti-eqep: Add new ti-am62-eqep compatible
-To: Judith Mendez <jm@ti.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- William Breathitt Gray <william.gray@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-References: <20240523231516.545085-1-jm@ti.com>
- <20240523231516.545085-2-jm@ti.com>
-Content-Language: en-US
-From: David Lechner <david@lechnology.com>
-Autocrypt: addr=david@lechnology.com; keydata=
- xsFNBFFxkZ8BEADXzbnj9t8XSZYxKJGHdHqYgEBVzRElb3+f11qhDZKzVCMsn1+AN+PlHqC7
- VrCWLsWTSY7WsHB2fW3aXaoidtac5FYoX2IXAun1Sbv15NcBdapImkMv6zxhAyWz6LqPfdCp
- QV+3x6qwUPFeLHdmew8mkSq56qTFgDQr9oQhsrXKHkXFD7aIAf5bM6janQCHgGTVDraRDfEO
- rV9rj7Wu/SfjUCVSCvW/SuWBa3IXTLNgbrNwBfo7Pl/tHuto0jxkVCIJ6J3xa85BKMw1WjA+
- jKzh12S6KWrLUfhEUt64G9WJHiZOnVAjxgCR7TUahVM2OQHcp49ouG/JZsGNniulXH4ErA2O
- Wt6seUEx8XQIm48H96RWgKrwKJ+1WoLEmUcYOJDZUcguMZVc3Astx8aSaRjf6IRBO8XlJSJV
- OorkguvrTQBZJfjoicuFx7VlpdMggMZayv0cqEvzZMSHUt8DCUG74rLhtab9LCg/9wdCwqyE
- JEi/8jaV7JWxwiCmzVpw0mHn1DiUlp5kapZT+Hart0Gc1WW915psA4G6KneisFM5DJe+S5mn
- dUJb5IttTOx37jQQi2igwlSBdSC/M+Zy3sb+DXYJUVjVxK56RGAnlSvjHUx/TkID6Vb6HXvm
- Fgm9vQamTEf+C3XzlY2v1YaMMX8yQjfrzQSoGfB0+9zaD9J/cwARAQABzSREYXZpZCBMZWNo
- bmVyIDxkYXZpZEBsZWNobm9sb2d5LmNvbT7CwXgEEwECACIFAlFxkZ8CGwMGCwkIBwMCBhUI
- AgkKCwQWAgMBAh4BAheAAAoJEB+K+IyC93wDdcMQALkIsjA/nWJZY+Z6AkpL9HfeyYA6D2LK
- LFwWQ5fPok9G5wArvf+yHnbnVvtlZKPEdUAzbBacaATeLGRC0Kzei1asDgb/IR5YXQRMdshj
- 5Bd+DutTbT270p6jrzI3p7r1K7AycFcpfgSpOUQY7Wde7AT7KHCHaDjsy/a4d8EVjEhKZBg1
- wgBr8L+2lVgjQP4x/tuj4KrWKygcCNiombhKW4iz2uR7EspoS18D+9MD8vLVrOqDKBWGswes
- cDblcjMv8FXIc7JR8x6ZbubFODoRzAs4MAlOgGT8FBAK/DUD63gMHTtKJrVghjoDNe77pmW1
- zQK0P0zu9zciPg4h3AE+ENsJxqHoOEwCvJMQbhliFVYL4O0tM648V6K0o1btt4Ps0FEFASfX
- ZDa7uO30YZG+uqevP4wp6bfPpiHEUku32tSKZstbxljprLe0wDwYFSgXvVYUDUD6G3N1e3p0
- xDXo+Oj/8yoZaPrOzMbqL66uSVghVTya7FjgT2aG1HfzH19NfO7SN+BQ4ld94gnDL2wWjA6h
- pddm+me8Aqa/xp0Wfhzs77/tyYd2FhV8RRs/tt1RN/8COblLnFGpNjtHCtpUuPCMTPN04+hg
- fEQVsW03//yRgt4teDogaklG+mYSbpkANMjyMN1LKVWM3YJTQcKIgpT8HvZwdrYBjB8CMHLb
- K2zgzsFNBFFxkZ8BEADSVjyceG8Up24FFXwv5YmV7yX520kM97N11e1RJVMI1RSU+Na3Xo9J
- 1BW6EFMAdibD6hH8PiMmToKxBrfYSLStLh2MbHA2T/3zqicU1nuk376LMyrAuoV/fl8/7Jld
- wh1c9AADaYXNQfZ84R6nyaTRjy4fqcc/dG2kw5ZMln909SMKZc3HdVynmo9pLT2HBOnXu2d3
- bIGmzuDnDXzh1X8+ods4gViuvB31xU1WiANr4TbhaNU+/LmEVfvhS+34Cmz3U5Xs5x7nWdpM
- 6fFfDOSz2sIYXOGAcaV3oJ121Uul2U2bMTsXxiwdbjmZP9jrzEfvhD5KIOutX+0OzdtM9QVB
- 70QQOEh3maW/FwGdL5stYcadsBiEEI6Y2ymVpBgzrPS6HzC+UZLUShOE+aLx+SYBYAuypikM
- PvG9W3MqWHCsXXEfyp2mCeorKb7PafyaBO/E5REjPmYUpkGMNZH1lGV3jegE9WdOBfXW9xvC
- wf0UefoFaVhjsjtzvl8lMQndrDBdKPpJ7zIIG6FGSsUYmCtvE+JAk83tfpUpSZKDSzsqtLTI
- 8GE2fQzEuZcBqm6Yk2V1+u6rjUjmqEBIzunyeUupaUc+p00JiwNE8v/wcx7UbD5m+PGOkNoL
- MLe0ti0O7nFlY8avZzy3eLBQenu4WsJjPVYeQGeGB3oLvCGIhT9/WwARAQABwsFfBBgBAgAJ
- BQJRcZGfAhsMAAoJEB+K+IyC93wDC44P/0bAjHgFUPHl7jG5CrWGwgdTNN8NrjpmIxSk37kI
- uKMzcwP9BWhFF0mx6mCUEaxvGdAQ9Va/uXB2TOyhLCGXhlf8uCwxcIyrOlhi2bK6ZIwwovyj
- jh7GCRnm8cP8ohDCJlDUpHkOpmU4tcapbZiBrFaFAahxPMjwK9GJ3JY0lx63McgCEIwm6txN
- cMnVX5Y3HeW5Wo8DtmeM3XajJLFaBXIhEfoNHMfDON6UGiXFeR8S9W8dpaX8XEwzPUjZyOG2
- LvOMAEPXx+kB9mZPTogong8LekL1HZHSY4OYffzQy5fVE+woHAMADkrmuosGkTRCP4IQHXOa
- goax/Dox01lKTLnlUL1iWWQjfRaFXVKxEc2PF1RZUpoO/IQYFB1twcaF2ibT3TlGolbmb3qU
- YBo/Apl5GJUj/xOWwrbikD+Ci+vx8yuFUlulbS9Ht+3z1dFjBUDbtZ4Bdy/1heNpA9xORiRs
- +M4GyTil33pnBXEZp29nh7ev4VJ96sVvnQFzls3motvG+pq/c37Ms1gYayeCzA2iCDuKx6Zk
- ybHg7IzNEduqZQ4bkaBpnEt+vwE3Gg5l4dAUFWAs9qY13nyBANQ282FNctziEHCUJZ/Map6T
- dzHWO6hU1HuvmlwcJSFCOey8yhkt386E6KfVYzrIhwTtabg+DLyMZK40Rop1VcU7Nx0M
-In-Reply-To: <20240523231516.545085-2-jm@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Message-Id: <a7363cd2-4e2e-4894-8a16-f1913927e332@app.fastmail.com>
+In-Reply-To: <20240524-purveyor-outlying-5201f700a56e@spud>
+References: <20240524103506.187277-1-ryan@testtoast.com>
+ <20240524103506.187277-2-ryan@testtoast.com>
+ <20240524-purveyor-outlying-5201f700a56e@spud>
+Date: Sat, 25 May 2024 09:26:48 +1200
+From: "Ryan Walklin" <ryan@testtoast.com>
+To: "Conor Dooley" <conor@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Jessica Zhang" <quic_jesszhan@quicinc.com>,
+ "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Hironori KIKUCHI" <kikuchan98@gmail.com>,
+ "Chris Morgan" <macroalpha82@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
+Content-Type: text/plain
 
-On 5/23/24 6:15 PM, Judith Mendez wrote:
-> Add new compatible for ti-am62-eqep for TI K3 SoC's.
-> 
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
-> Changes since v1:
-> - Add new compatible ti,am62-eqep
-> ---
+On Sat, 25 May 2024, at 7:10 AM, Conor Dooley wrote:
 
-Reviewed-by: David Lechner <david@lechnology.com>
+Thanks for the review!
+
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: wl-355608-a8
+>
+> You're missing a vendor prefix here. And when you add it, update the
+> filename to match.
+
+Thanks, I don't actually know the vendor, would it be acceptable to just use "wl"?
+
+>> +
+>> +        sck-gpios = <&pio 8 9 GPIO_ACTIVE_HIGH>; // PI9
+>> +        mosi-gpios = <&pio 8 10 GPIO_ACTIVE_HIGH>; // PI10
+>> +        cs-gpios = <&pio 8 8 GPIO_ACTIVE_HIGH>; // PI8
+>> +        num-chipselects = <1>;
+>
+> All of this is not needed in the example, all you need to have here is:
+>
+> spi {
+>     #address-cells = <1>;
+>     #size-cells = <0>;
+>
+Thanks, will clean it up.
+>> +
+>> +        panel: panel@0 {
+>
+> This "panel" label is not used, you should drop it.
+>
+Noted, ta.
+>> +            compatible = "wl_355608_a8";
+>
+> This doesn't match what you documented, be sure to run dt_binding_check.
+
+Thanks, changed underscore to dash mid-patch and neglected to fix all the examples (and the subsequent code patch it seems. Will correct. Is there a preference one way or another? 
+
+>
+>> +            reg = <0>;
+>> +
+>> +            spi-3wire;
+>> +            spi-max-frequency = <3125000>;
+>> +
+>> +            reset-gpios = <&pio 8 14 GPIO_ACTIVE_LOW>; // PI14
+>> +
+>> +            backlight = <&backlight>;
+>> +            power-supply = <&reg_lcd>;
+>> +            pinctrl-0 = <&lcd0_rgb888_pins>;
+>> +            pinctrl-names = "default";
+>> +
+>> +            port {
+>> +            	panel_in_rgb: endpoint {
+>
+> Neither is this label afaict.
+>
+> Thanks,
+> Conor.
 
 
+Regards,
+
+Ryan
 
