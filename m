@@ -1,73 +1,72 @@
-Return-Path: <devicetree+bounces-69016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA5328CE713
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 16:32:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 431358CE714
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 16:32:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26B722827F9
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 14:32:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 677191C22413
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 14:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9279412CD9D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28E586AE2;
 	Fri, 24 May 2024 14:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="K5E0dJYk"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zmT5rMh9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6606612C552
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BF3B12C801
 	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 14:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716561121; cv=none; b=OCGbo+HYjNsjs6S+eudy3KnM54IPh3gtPzhTvUlo/fy0R0eEpOCtj3OtbrVOlPq9Xlo8xc/1UKl7wW7YiqSpj7b2v/VnwznbU0S2MNAgtppEh2hksro0Z6mNpa+EO6Yl47gr5BiI4Ke3tm3Ng3PRfdFTvVmupCINPhXC4l4CKe4=
+	t=1716561121; cv=none; b=pcjzTLPpS5yA+TOlfwtnNv7bogNFP65nBpGxmwBhUs5NpLXybzHRV8SyDhWwVFy1+FC8l3aSe1MCIwhYmDrC7KU470JoyeSALGdhHBP64oWkjrJdyrbC3f6pI8sq7gPRij7DWCqwMwO9eYxk0iIN8DuDpMStgi47j89scesWcqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1716561121; c=relaxed/simple;
-	bh=mPXSWVM/lWJTvxx8Sk78MOF9pL+YlUVhGWXRjiz7bfY=;
+	bh=XxQPs+CKFd+C8xKkktDLuby2qDkISiDB0yAv0iDwLio=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fedXs2HX0RE6d2RYXLD0iie/2OQctSdKQxzIfShZDSy/r2NRiexiWg9I9U/Knd5SrTbYOJCj1f8LQGQglOg/U0c9oUGvFALapdbJntBcR7jjtdrtkwzdt0zfa4vPQTgPz2JidJoCBAVXpcCtWBNK/B/O0cKp7D7kv0NDczNRAt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=K5E0dJYk; arc=none smtp.client-ip=209.85.221.53
+	 MIME-Version; b=LyTQeLZZy78+al+CG6riypfhFI1FsS1Ld0RFbQJwWNA8wSbSDqtLN3PvYKF/kRxyvNlznv50kNaWU7SR6wbtxiVtcBC+5ylJiH3gmCjqQx9rN+WUOlF7bIzhBbvpWJ65j6aKJ0/4rVqsdJhhVks85E7XE/EAl76RXjh0Y9GZEno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zmT5rMh9; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-354f8a0cd08so2290682f8f.2
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-35507e3a5deso475697f8f.1
         for <devicetree@vger.kernel.org>; Fri, 24 May 2024 07:31:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716561118; x=1717165918; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6+j9xOE0tYjxUOHMPpSuPZogtIBOsTQZVZMBTvXII0g=;
-        b=K5E0dJYkZaZjooZzdssubRRRjVemvkEzI3Q4pMLIeZmBJ7RGZYGeQUH2DfJgr5tR3o
-         MraRTaFpOJa5IATWuXiXXPjzSI57cTXHOSpTp6U5Wm5qox/JIbTujcuPRpEEbhO9sqNH
-         dgosnspKTplnwRhfaNdW6WoQpJ6JvgTI3ijSOSSts44zJNBUSJ7iN7cbH77LwkY07jhc
-         Z97SZ/PwntEGhkdclhuYPSbgGXIqmp6+GiGXJLw0MoIClj3i5DIMe+6IybLBEmFdzbUL
-         VZCD5UHbRICMJdB8Fy7VwWVakYT0npPVVUtIfHj4F3FYggcAIj6b57yWyToNr+ipGBra
-         8xfA==
+        bh=5NZtcu9PAYXkGaMFVFG3nx6sddIRSoZPbItA3KPqh64=;
+        b=zmT5rMh9zaxZCK/RNMgXtQhVH80OwCuawwlsXa+0ZB7wdl+aRghR0MkLu/OXkXUsUI
+         NJczJMjI4C/5P6F7ovB9mW9fHe1YpfGRdkvIQ6XUzoXl72LnoDtPrurNPWPq2cPDCpf3
+         BYog2sf49jjB75kyRwa8jaPxKLMNNuCqF49024mDZ/dEMoncXM62uxTNHacTq8bNOs1Y
+         y2A/paPNpLtYJOeC8fOmWmkhSslAS64VCxHsASEyaHFsr51MqXosxN/vzb0lctkuWQUI
+         47MW9NyB1niq62Yo5pGC7o4p+U+L0nLl+JptIvNE7jfbwH+wvYzsLzlofiQlpd34e8W5
+         uSwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1716561118; x=1717165918;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6+j9xOE0tYjxUOHMPpSuPZogtIBOsTQZVZMBTvXII0g=;
-        b=A/8l8swBeSeGgv+kMQKQ7cS8dh0gkH7/dsjGTNmtCHsdVEMqVoQCmwMtV6XuEp5qtJ
-         +CZR8MmvMM4gcRgnKgXd1NXXXETIaDRCA8V3VpmHsvd0XICNCU41FDg5R01DL+4xiXM0
-         rAQhDB80xSQNuOCHzTAIuM1NjKRNYJgWjblL0CddtqxV2iIh+Hc83CUrpaDsCit+j/gE
-         1pKzqEMqR/MYABqdRMTGSgeKjC7cAPy+kKzb11kx6Sg1WcfGen0+S8iRZkyMfhyVeTD+
-         ohNmYsjW8/cLmLg3axDj8/wzYbeMad7a2+bHGF3lkKvi4nfh6i1h6KbDEGGA+VgXJvZv
-         2+Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCW6SO3Gh3Nf8CtDa/Z1pGnv2FL1+YYA+tdU4LwMzOGwX69qghodnCi+H43BvYIKnd31gYJuPOKZkUbiTyAjKaevdLqTABDeXs3/rg==
-X-Gm-Message-State: AOJu0YynNKwgR5qhuaXC1wKW2K8hJljnH5Tm8Dgso4jhV+r2liV1eSkJ
-	j/4vb1HDFSULVf63+ifMwc2Ml8gnW+Bj2bcMCwb32aRL2/jK/L0i0zXWu4MHdeHg7nP8Kfdl7v0
-	77Co=
-X-Google-Smtp-Source: AGHT+IH5y0F3sHdzgvtSPWAAwV1/nrn57MOWODWjtpU2gpn/5+qDWgV6Q2DiZ9JVGquT4dNU8LJy9w==
-X-Received: by 2002:adf:f746:0:b0:354:eb62:365c with SMTP id ffacd0b85a97d-3552217fd10mr1577173f8f.15.1716561117567;
-        Fri, 24 May 2024 07:31:57 -0700 (PDT)
+        bh=5NZtcu9PAYXkGaMFVFG3nx6sddIRSoZPbItA3KPqh64=;
+        b=jD4PsXeq8G7hwOgl/XQVAGTIATeiDoxwKTT5s1voBGV9+4zHLB7mKeZfeMmCM4wcC1
+         /qQEufx40tTvo/60VBrqksQZbUQot3UVXhMSsANai1pw0CDQellGfjmV8zpX1lXDG2pv
+         BVlyp+PHFs+Et2HEeC+Hbc19Tcoi/99XgwXM+F9A11m8YicR15CRfExycS3whfmK1Gb9
+         1ryPnpg7/sQJKridmPZmVo9ykJGwYs58INIui4hYONxeNawGr8/dRSVQQE5b/tgDzQPn
+         x/Drj5Im38foMXH4xkQOqzsHuX6USRzFEkI1wXkN/uWi1zF6KdE2HuAsCIhZtnAjmsG4
+         F9tw==
+X-Forwarded-Encrypted: i=1; AJvYcCWgKxsfOZJZjbF89tCnyNOra9FRnOePEgYk5aoppv4z8MpzIy0S5wnMBH+N4XX5DyiI3ODOTdvgaUSPGWcuXCMKSTWTE2sL6+b6Mg==
+X-Gm-Message-State: AOJu0YzNHZfr7t7zUVdnT0vcZRTLJRa56SBDZObuk5r0wLQdBdGOsMg/
+	MvvxGAjHXFzp/fVkpJJLmyJmH/qRd34s8TeOI6Gu74FV6HO4KS91fEOzk07SW3Y=
+X-Google-Smtp-Source: AGHT+IFWU8gG+e37pZmxQTBYP+ymcZvgVYFKwYUoy5BLlIk1BxT5PROIa+A09uXjEL4pfbi1jnhA8g==
+X-Received: by 2002:a05:6000:11cf:b0:351:debf:a39e with SMTP id ffacd0b85a97d-354f757d1a5mr5109406f8f.27.1716561118543;
+        Fri, 24 May 2024 07:31:58 -0700 (PDT)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a090c2bsm1719611f8f.59.2024.05.24.07.31.56
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a090c2bsm1719611f8f.59.2024.05.24.07.31.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 May 2024 07:31:56 -0700 (PDT)
+        Fri, 24 May 2024 07:31:58 -0700 (PDT)
 From: Alexandre Bailon <abailon@baylibre.com>
 To: rafael@kernel.org,
 	daniel.lezcano@linaro.org,
@@ -80,9 +79,9 @@ Cc: rui.zhang@intel.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alexandre Bailon <abailon@baylibre.com>
-Subject: [PATCH v3 2/6] thermal: Add support of multi sensors to thermal_core
-Date: Fri, 24 May 2024 16:31:46 +0200
-Message-ID: <20240524143150.610949-3-abailon@baylibre.com>
+Subject: [PATCH v3 3/6] thermal: Add support of multi sensors to thermal_of
+Date: Fri, 24 May 2024 16:31:47 +0200
+Message-ID: <20240524143150.610949-4-abailon@baylibre.com>
 X-Mailer: git-send-email 2.44.1
 In-Reply-To: <20240524143150.610949-1-abailon@baylibre.com>
 References: <20240524143150.610949-1-abailon@baylibre.com>
@@ -94,413 +93,329 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This adds support of multi sensors to thermal.
-Currently, this only support the get_temp operation.
-This returns an average temperature of all the sensors.
-If defined, a coefficient is applied to the value read from the sensor
-before computing the average.
+This updates thermal_of to support more than one sensor.
+If during the registration we find another thermal zone referencing
+this sensors and some other, then we create the multi sensor thermal
+zone (if it doesn't exist) and register the sensor to it.
 
 Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
 ---
- drivers/thermal/Makefile        |   1 +
- drivers/thermal/thermal_core.h  |  15 ++
- drivers/thermal/thermal_multi.c | 332 ++++++++++++++++++++++++++++++++
- include/uapi/linux/thermal.h    |   5 +
- 4 files changed, 353 insertions(+)
- create mode 100644 drivers/thermal/thermal_multi.c
+ drivers/thermal/thermal_of.c | 250 +++++++++++++++++++++++++++++++++--
+ 1 file changed, 241 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-index 5cdf7d68687f..872190f9062b 100644
---- a/drivers/thermal/Makefile
-+++ b/drivers/thermal/Makefile
-@@ -6,6 +6,7 @@ CFLAGS_thermal_core.o		:= -I$(src)
- obj-$(CONFIG_THERMAL)		+= thermal_sys.o
- thermal_sys-y			+= thermal_core.o thermal_sysfs.o
- thermal_sys-y			+= thermal_trip.o thermal_helpers.o
-+thermal_sys-y			+= thermal_multi.o
+diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
+index aa34b6e82e26..75e3cfb8488a 100644
+--- a/drivers/thermal/thermal_of.c
++++ b/drivers/thermal/thermal_of.c
+@@ -18,6 +18,8 @@
  
- # netlink interface to manage the thermal framework
- thermal_sys-$(CONFIG_THERMAL_NETLINK)		+= thermal_netlink.o
-diff --git a/drivers/thermal/thermal_core.h b/drivers/thermal/thermal_core.h
-index 0d8a42bb7ce8..224735b644bc 100644
---- a/drivers/thermal/thermal_core.h
-+++ b/drivers/thermal/thermal_core.h
-@@ -142,6 +142,21 @@ ssize_t weight_show(struct device *, struct device_attribute *, char *);
- ssize_t weight_store(struct device *, struct device_attribute *, const char *,
- 		     size_t);
+ #include "thermal_core.h"
  
-+/* Multi sensors */
-+struct thermal_zone_device *thermal_multi_sensor_find_tz(const char *type);
-+struct thermal_zone_device_ops *thermal_multi_sensor_alloc_ops(int aggr_type);
-+struct thermal_zone_device *thermal_multi_sensor_tz_alloc(const char *type,
-+						  struct thermal_trip *trips,
-+						  int num_trips,
-+						  struct thermal_zone_device_ops *ops,
-+						  int passive_delay, int polling_delay);
-+void thermal_multi_sensor_tz_free(struct thermal_zone_device *tz);
-+int thermal_multi_sensor_validate_coeff(int *coeff, int count, int offset);
-+int thermal_multi_sensor_register(struct thermal_zone_device *tz,
-+	struct thermal_zone_device *sensor_tz, int coeff);
-+void thermal_multi_sensor_unregister(struct thermal_zone_device *sensor_tz);
++#define STRLEN_ID (8)
 +
-+
- #ifdef CONFIG_THERMAL_STATISTICS
- void thermal_cooling_device_stats_update(struct thermal_cooling_device *cdev,
- 					 unsigned long new_state);
-diff --git a/drivers/thermal/thermal_multi.c b/drivers/thermal/thermal_multi.c
-new file mode 100644
-index 000000000000..cee0ded8dc25
---- /dev/null
-+++ b/drivers/thermal/thermal_multi.c
-@@ -0,0 +1,332 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/err.h>
-+#include <linux/export.h>
-+#include <linux/of.h>
-+#include <linux/slab.h>
-+#include <linux/thermal.h>
-+#include <linux/types.h>
-+#include <linux/string.h>
-+
-+#include "thermal_core.h"
-+
-+struct sensor_interface {
-+	struct thermal_zone_device *tz;
-+	int coeff;
-+
-+	struct list_head node;
-+};
-+
-+struct multi_sensor_thermal_zone {
-+	struct thermal_zone_device *tz;
-+	struct mutex sensors_lock;
-+	struct list_head sensors;
-+
-+	struct list_head node;
-+};
-+
-+static DEFINE_MUTEX(multi_tz_mutex);
-+static LIST_HEAD(multi_tz_list);
-+
-+#define TJ_MAX 120000
-+
-+static int multi_sensor_get_temp(struct thermal_zone_device *tz, int *temp)
+ /***   functions parsing device tree nodes   ***/
+ 
+ static int of_find_trip_id(struct device_node *np, struct device_node *trip)
+@@ -222,6 +224,77 @@ static struct device_node *of_thermal_zone_find(struct device_node *sensor, int
+ 	return tz;
+ }
+ 
++static int thermal_of_multi_sensor_get_name(struct device_node *sensor, int id,
++					    struct device_node *tz, char *name)
 +{
-+	struct multi_sensor_thermal_zone *multi_tz = tz->devdata;
-+	struct sensor_interface *sensor;
-+	int accumulated_temp = 0;
-+	u32 accumulated_coeff = 0;
-+	int ret;
++	struct of_phandle_args sensor_specs;
++	int count, i;
 +
-+	mutex_lock(&multi_tz->sensors_lock);
-+
-+	if (list_empty(&multi_tz->sensors)) {
-+		mutex_unlock(&multi_tz->sensors_lock);
++	tz = of_thermal_zone_find(sensor, id);
++	if (!tz) {
++		pr_debug("No thermal zones description\n");
 +		return -ENODEV;
 +	}
 +
-+	list_for_each_entry(sensor, &multi_tz->sensors, node) {
-+		ret = thermal_zone_get_temp(sensor->tz, temp);
-+		if (ret) {
-+			mutex_unlock(&multi_tz->sensors_lock);
-+			return ret;
-+		}
-+
-+		accumulated_temp += *temp * sensor->coeff;
-+		accumulated_coeff += sensor->coeff;
-+	}
-+
-+	mutex_unlock(&multi_tz->sensors_lock);
-+
-+	*temp = accumulated_temp / accumulated_coeff;
-+	return ret;
-+}
-+
-+static int multi_sensor_get_temp_max(struct thermal_zone_device *tz, int *temp)
-+{
-+	struct multi_sensor_thermal_zone *multi_tz = tz->devdata;
-+	struct sensor_interface *sensor;
-+	int max_temp;
-+	int ret;
-+
-+	mutex_lock(&multi_tz->sensors_lock);
-+
-+	if (list_empty(&multi_tz->sensors)) {
-+		mutex_unlock(&multi_tz->sensors_lock);
-+		return -ENODEV;
-+	}
-+
-+	list_for_each_entry(sensor, &multi_tz->sensors, node) {
-+		ret = thermal_zone_get_temp(sensor->tz, temp);
-+		if (ret) {
-+			mutex_unlock(&multi_tz->sensors_lock);
-+			return ret;
-+		}
-+
-+		max_temp = max(max_temp, *temp * sensor->coeff);
-+	}
-+
-+	mutex_unlock(&multi_tz->sensors_lock);
-+
-+	*temp = max_temp;
-+	return ret;
-+}
-+
-+/**
-+ * Check if the sum of the coefficients multiplied by sensors temperature plus
-+ * an offset won't overflow during the aggregation.
-+ * @coeff: An array of coefficient
-+ * @count: Number of coefficient
-+ * @offset: The offset
-+ *
-+ * Returns: 0 if the coefficient are safe, -EOVERFLOW otherwise
-+ */
-+int thermal_multi_sensor_validate_coeff(int *coeff, int count, int offset)
-+{
-+	int max_accumulated_temp = 0;
-+	int i;
++	count = of_count_phandle_with_args(tz, "thermal-sensors",
++						"#thermal-sensor-cells");
++	if (count <= 0)
++		return count;
 +
 +	for (i = 0; i < count; i++) {
-+		max_accumulated_temp += TJ_MAX * coeff[i];
-+		if (max_accumulated_temp < 0)
-+			return -EOVERFLOW;
++
++		int ret;
++
++		ret = of_parse_phandle_with_args(tz, "thermal-sensors",
++							"#thermal-sensor-cells",
++							i, &sensor_specs);
++		if (ret < 0) {
++			pr_err("%pOFn: Failed to read thermal-sensors cells: %d\n", tz, ret);
++			return ret;
++		}
++
++		if ((sensor == sensor_specs.np) && id == (sensor_specs.args_count ?
++								sensor_specs.args[0] : 0)) {
++			snprintf(name, THERMAL_NAME_LENGTH, "%s%d", tz->name, id);
++			return 0;
++		}
 +	}
 +
-+	max_accumulated_temp += offset;
-+	return max_accumulated_temp < 0 ? -EOVERFLOW : 0;
++	return -ENODEV;
 +}
 +
-+/**
-+ * Find a multi sensor thermal zone
-+ * @type: The thermal zone type to find
-+ *
-+ * Returns: a pointer to the thermal zone or NULL  if not found
-+ */
-+struct thermal_zone_device *thermal_multi_sensor_find_tz(const char *type)
++static int thermal_of_multi_sensor_get_id(struct device_node *sensor,
++					 struct device_node *tz, int id)
 +{
-+	struct thermal_zone_device *tz;
++	struct of_phandle_args sensor_specs;
++	int count, i;
 +
-+	tz = thermal_zone_get_zone_by_name(type);
-+	if (IS_ERR(tz))
-+		return NULL;
-+	return tz;
-+}
++	count = of_count_phandle_with_args(tz, "thermal-sensors",
++						"#thermal-sensor-cells");
++	if (count <= 0)
++		return 0;
 +
-+/**
-+ * Allocate a struct thermal_zone_device_ops for the multi sensor thermal zoen
-+ *
-+ * This allocates a struct thermal_zone_device_ops with a predifiend get_temp
-+ * operation. This allows setting the other function pointers before registering
-+ * the thermal zone.
-+ *
-+ * @aggr_type: The aggregation type to use (THERMAL_AGGR_AVG or THERMAL_AGGR_MAX)
-+ *
-+ * Returns: a pointer to the created struct thermal_zone_device_ops or an
-+ * in case of error, an ERR_PTR. Caller must check return value with
-+ * IS_ERR*() helpers.
-+ */
-+struct thermal_zone_device_ops *thermal_multi_sensor_alloc_ops(int aggr_type)
-+{
-+	struct thermal_zone_device_ops *ops;
++	for (i = 0; i < count; i++) {
 +
-+	ops = kzalloc(sizeof(*ops), GFP_KERNEL);
-+	if (!ops)
-+		return ERR_PTR(-ENOMEM);
++		int ret;
 +
-+	switch (aggr_type) {
-+	case THERMAL_AGGR_AVG:
-+		ops->get_temp = multi_sensor_get_temp;
-+		break;
-+	case THERMAL_AGGR_MAX:
-+		ops->get_temp = multi_sensor_get_temp_max;
-+		break;
-+	default:
-+		kfree(ops);
-+		return ERR_PTR(-EINVAL);
++		ret = of_parse_phandle_with_args(tz, "thermal-sensors",
++							"#thermal-sensor-cells",
++							i, &sensor_specs);
++		if (ret < 0) {
++			pr_err("%pOFn: Failed to read thermal-sensors cells: %d\n", tz, ret);
++			return 0;
++		}
++
++		if ((sensor == sensor_specs.np) && id == (sensor_specs.args_count ?
++								sensor_specs.args[0] : 0)) {
++			return i;
++		}
 +	}
 +
-+	return ops;
++	return -ENODEV;
 +}
 +
-+/**
-+ * Register a new thermal zone device that supports multi sensors
-+ * @type:	the thermal zone device type
-+ * @trips:	a pointer to an array of thermal trips
-+ * @num_trips:	the number of trip points the thermal zone support
-+ * @mask:	a bit string indicating the writeablility of trip points
-+ * @ops:	standard thermal zone device callbacks
-+ * @passive_delay: number of milliseconds to wait between polls when
-+ *		   performing passive cooling
-+ * @polling_delay: number of milliseconds to wait between polls when checking
-+ *		   whether trip points have been crossed (0 for interrupt
-+ *		   driven systems)
-+ *
-+ * This function allocates and register a multi sensor thermal zone.
-+ * To register a sensor to this thermal zone, use thermal_multi_sensor_register().
-+ * thermal_multi_sensor_unregister() must be called to unregister the sensors
-+ * and release this thermal zone when it is not used anymore.
-+ *
-+ * Return: a pointer to the created struct thermal_zone_device or an
-+ * in case of error, an ERR_PTR. Caller must check return value with
-+ * IS_ERR*() helpers.
-+ */
-+struct thermal_zone_device *thermal_multi_sensor_tz_alloc(const char *type,
-+					struct thermal_trip *trips,
-+					int num_trips,
-+					struct thermal_zone_device_ops *ops,
-+					int passive_delay, int polling_delay)
-+{
-+	struct thermal_zone_device *tz;
-+	struct thermal_zone_params tzp = {};
-+	struct multi_sensor_thermal_zone *multi_tz;
+ static int thermal_of_monitor_init(struct device_node *np, int *delay, int *pdelay)
+ {
+ 	int ret;
+@@ -281,6 +354,17 @@ static struct device_node *thermal_of_zone_get_by_name(struct thermal_zone_devic
+ 		return ERR_PTR(-ENODEV);
+ 
+ 	tz_np = of_get_child_by_name(np, tz->type);
++	if (!tz_np) {
++		char tmp[THERMAL_NAME_LENGTH];
++		char *ptr;
 +
-+	mutex_lock(&multi_tz_mutex);
++		ptr = strrchr(tz->type, '.');
++		if (!ptr)
++			return ERR_PTR(-ENODEV);
 +
-+	tz = thermal_zone_get_zone_by_name(type);
-+	if (!IS_ERR(tz))
-+		goto unlock;
-+
-+	multi_tz = kzalloc(sizeof(*multi_tz), GFP_KERNEL);
-+	if (!multi_tz) {
-+		tz = ERR_PTR(-ENOMEM);
-+		goto unlock;
++		strscpy(tmp, tz->type, (ptr - tz->type) + 1);
++		tz_np = of_get_child_by_name(np, tmp);
 +	}
-+	mutex_init(&multi_tz->sensors_lock);
-+	INIT_LIST_HEAD(&multi_tz->sensors);
-+
-+	tzp.no_hwmon = true;
-+	tzp.slope = 1;
-+	tzp.offset = 0;
-+
-+	tz = thermal_zone_device_register_with_trips(type, trips, num_trips,
-+						     multi_tz, ops, &tzp,
-+						     passive_delay, polling_delay);
-+	if (IS_ERR(tz)) {
-+		kfree(multi_tz);
-+	} else {
-+		multi_tz->tz = tz;
-+		list_add(&multi_tz->node, &multi_tz_list);
-+	}
-+
-+unlock:
-+	mutex_unlock(&multi_tz_mutex);
-+	return tz;
-+}
-+
-+/**
-+ * Remove all sensors from multi sensor thermal zone and release it
-+ *
-+ * This function must not be used except on error path to correctly
-+ * release all the allocated resources.
-+ * Use thermal_multi_sensor_unregister() to unregister a sensor and
-+ * release a thermal zone that is not used anymore.
-+ *
-+ * @tz: Pointer to thermal zone to release
-+ */
-+void thermal_multi_sensor_tz_free(struct thermal_zone_device *tz)
+ 
+ 	of_node_put(np);
+ 
+@@ -444,10 +528,140 @@ static int thermal_of_unbind(struct thermal_zone_device *tz,
+  */
+ static void thermal_of_zone_unregister(struct thermal_zone_device *tz)
+ {
++	thermal_multi_sensor_unregister(tz);
+ 	thermal_zone_device_disable(tz);
+ 	thermal_zone_device_unregister(tz);
+ }
+ 
++static int thermal_of_multi_sensor_validate_coeff(struct device_node *sensor, int id,
++						  struct device_node *tz_np)
 +{
-+	struct multi_sensor_thermal_zone *multi_tz = tz->devdata;
-+	struct thermal_trip *trips = tz->trips;
-+	struct thermal_zone_device_ops *ops = &tz->ops;
-+	struct sensor_interface *sensor, *tmp;
++	u32 *coeff;
++	int ret;
++	int i;
 +
-+	list_for_each_entry_safe(sensor, tmp, &multi_tz->sensors, node) {
-+		list_del(&sensor->node);
-+		kfree(sensor);
-+	}
++	int count;
++	int index;
++	int offset;
 +
-+	thermal_zone_device_unregister(tz);
-+	list_del(&multi_tz->node);
-+	kfree(multi_tz);
-+	kfree(trips);
-+	kfree(ops);
-+}
++	index = thermal_of_multi_sensor_get_id(sensor, tz_np, id);
++	if (index < 0)
++		return -ENODEV;
 +
-+/**
-+ * Register a thermal sensor to a multi sensor thermal zone
-+ * @tz: The multi sensor thermal zone
-+ * @sensor_tz: The thermal zone of the zensor to register
-+ * @coeff: The coefficient to apply to the temperature returned by the sensor
-+ *
-+ * Returns: On success 0, a negative value in case of error
-+ */
-+int thermal_multi_sensor_register(struct thermal_zone_device *tz,
-+				  struct thermal_zone_device *sensor_tz,
-+				  int coeff)
-+{
-+	struct multi_sensor_thermal_zone *multi_tz;
-+	struct sensor_interface *sensor;
 +
-+	mutex_lock(&multi_tz_mutex);
++	count = of_count_phandle_with_args(tz_np,
++					   "thermal-sensors",
++					   "#thermal-sensor-cells");
++	if (count < 0)
++		return count;
 +
-+	multi_tz =  tz->devdata;
-+
-+	sensor = kzalloc(sizeof(*sensor), GFP_KERNEL);
-+	if (!sensor) {
-+		mutex_unlock(&multi_tz_mutex);
++	coeff = kmalloc_array(count, sizeof(*coeff), GFP_KERNEL);
++	if (!coeff)
 +		return -ENOMEM;
++
++	for (i = 0; i < count; i++) {
++		ret = of_property_read_u32_index(tz_np,
++						 "coefficients",
++						 i, coeff + i);
++		if (ret)
++			coeff[i] = 1;
 +	}
 +
-+	sensor->tz = sensor_tz;
-+	sensor->coeff = coeff;
-+	mutex_lock(&multi_tz->sensors_lock);
-+	list_add(&sensor->node, &multi_tz->sensors);
-+	mutex_unlock(&multi_tz->sensors_lock);
++	ret = of_property_read_u32_index(tz_np, "coefficients",
++					 count, &offset);
++	if (ret)
++		offset = 0;
 +
-+	thermal_zone_device_enable(tz);
++	/* Make sure the coeff and offset won't cause an overflow */
++	ret = thermal_multi_sensor_validate_coeff(coeff, count, offset);
 +
-+	mutex_unlock(&multi_tz_mutex);
++	kfree(coeff);
++
++	return ret;
++}
++
++static int thermal_of_mutli_sensor_coeff(struct device_node *sensor, int id,
++					 struct device_node *tz_np,
++					 u32 *coeff)
++{
++	int index;
++	int ret;
++
++	index = thermal_of_multi_sensor_get_id(sensor, tz_np, id);
++	if (index < 0)
++		return index;
++
++	ret = of_property_read_u32_index(tz_np, "coefficients", index, coeff);
++	if (ret)
++		*coeff = 1;
 +
 +	return 0;
 +}
 +
-+/**
-+ * Unregister a thermal sensor from a multi sensor thermal zone
-+ *
-+ * This unregister a thermal sensor from a multi sensor thermal zone.
-+ * If all the sensors have been removed then this also release the multi sensor
-+ * thermal zone.
-+ * @sensor_tz: The sensor to unregister
-+ */
-+void thermal_multi_sensor_unregister(struct thermal_zone_device *sensor_tz)
++static struct thermal_zone_device *
++thermal_of_register_multi_tz(struct device_node *sensor, int id, struct device_node *np,
++			     const char *type, struct thermal_trip *trips, int num_trips,
++			     void *devdata, struct thermal_zone_device_ops *ops,
++			     const struct thermal_zone_params *tzp, int passive_delay,
++			     int polling_delay)
 +{
-+	struct multi_sensor_thermal_zone *multi_tz, *tmp_tz;
-+	struct sensor_interface *sensor, *tmp;
++	struct thermal_zone_device *multi_tz, *tz;
++	char name[THERMAL_NAME_LENGTH];
++	u32 coeff;
++	int ret;
 +
-+	mutex_lock(&multi_tz_mutex);
-+	list_for_each_entry_safe(multi_tz, tmp_tz, &multi_tz_list, node) {
-+		mutex_lock(&multi_tz->sensors_lock);
-+		list_for_each_entry_safe(sensor, tmp, &multi_tz->sensors, node) {
-+			if (sensor->tz == sensor_tz) {
-+				list_del(&sensor->node);
-+				kfree(sensor);
-+				break;
-+			}
++	multi_tz = thermal_multi_sensor_find_tz(type);
++	if (!multi_tz) {
++		struct thermal_zone_device_ops *multi_ops;
++
++		ret = thermal_of_multi_sensor_validate_coeff(sensor, id, np);
++		if (ret)
++			return ERR_PTR(ret);
++
++		multi_ops = thermal_multi_sensor_alloc_ops(THERMAL_AGGR_AVG);
++		if (IS_ERR_OR_NULL(multi_ops))
++			return ERR_PTR(PTR_ERR(multi_ops));
++		multi_ops->bind = thermal_of_bind;
++		multi_ops->unbind = thermal_of_unbind;
++
++		multi_tz = thermal_multi_sensor_tz_alloc(type, trips, num_trips,
++							 multi_ops,
++							 passive_delay, polling_delay);
++		if (IS_ERR_OR_NULL(multi_tz)) {
++			kfree(multi_ops);
++			return multi_tz;
 +		}
-+		mutex_unlock(&multi_tz->sensors_lock);
-+
-+		if (list_empty(&multi_tz->sensors))
-+			thermal_multi_sensor_tz_free(multi_tz->tz);
 +	}
-+	mutex_unlock(&multi_tz_mutex);
-+}
-diff --git a/include/uapi/linux/thermal.h b/include/uapi/linux/thermal.h
-index fc78bf3aead7..e4f6c4c5e6fd 100644
---- a/include/uapi/linux/thermal.h
-+++ b/include/uapi/linux/thermal.h
-@@ -16,6 +16,11 @@ enum thermal_trip_type {
- 	THERMAL_TRIP_CRITICAL,
- };
- 
-+enum thermal_aggregation_type {
-+	THERMAL_AGGR_AVG = 0,
-+	THERMAL_AGGR_MAX = 1,
-+};
 +
- /* Adding event notification support elements */
- #define THERMAL_GENL_FAMILY_NAME		"thermal"
- #define THERMAL_GENL_VERSION			0x01
++	ret = thermal_of_multi_sensor_get_name(sensor, id, np, name);
++	if (ret)
++		goto out_release_multi_tz;
++
++	tz = thermal_tripless_zone_device_register(name, devdata, ops, tzp);
++	if (IS_ERR_OR_NULL(tz)) {
++		ret = PTR_ERR(tz);
++		goto out_release_multi_tz;
++	}
++
++	ret = thermal_of_mutli_sensor_coeff(sensor, id, np, &coeff);
++	if (ret)
++		goto out_release_tz;
++
++	ret = thermal_multi_sensor_register(multi_tz, tz, coeff);
++	if (ret)
++		goto out_release_tz;
++
++	return tz;
++
++out_release_tz:
++	thermal_zone_device_unregister(tz);
++out_release_multi_tz:
++	thermal_multi_sensor_tz_free(multi_tz);
++
++	return ERR_PTR(ret);
++}
++
++
+ /**
+  * thermal_of_zone_register - Register a thermal zone with device node
+  * sensor
+@@ -479,6 +693,7 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
+ 	const char *action;
+ 	int delay, pdelay;
+ 	int ntrips;
++	int count;
+ 	int ret;
+ 
+ 	np = of_thermal_zone_find(sensor, id);
+@@ -488,10 +703,19 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
+ 		return ERR_CAST(np);
+ 	}
+ 
+-	trips = thermal_of_trips_init(np, &ntrips);
+-	if (IS_ERR(trips)) {
+-		pr_err("Failed to find trip points for %pOFn id=%d\n", sensor, id);
+-		return ERR_CAST(trips);
++	count = of_count_phandle_with_args(np, "thermal-sensors",
++						"#thermal-sensor-cells");
++	if (count <= 0)
++		return ERR_PTR(count);
++
++	/* Only allocate trips if the thermal zone doesn't exist yet */
++	if (!thermal_multi_sensor_find_tz(np->name)) {
++		trips = thermal_of_trips_init(np, &ntrips);
++		if (IS_ERR(trips)) {
++			pr_err("Failed to find trip points for %pOFn id=%d\n", sensor, id);
++			ret = PTR_ERR(trips);
++			goto out_kfree_trips;
++		}
+ 	}
+ 
+ 	ret = thermal_of_monitor_init(np, &delay, &pdelay);
+@@ -502,17 +726,25 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
+ 
+ 	thermal_of_parameters_init(np, &tzp);
+ 
+-	of_ops.bind = thermal_of_bind;
+-	of_ops.unbind = thermal_of_unbind;
++	if (count == 1) {
++		of_ops.bind = thermal_of_bind;
++		of_ops.unbind = thermal_of_unbind;
++	}
+ 
+ 	ret = of_property_read_string(np, "critical-action", &action);
+ 	if (!ret)
+ 		if (!of_ops.critical && !strcasecmp(action, "reboot"))
+ 			of_ops.critical = thermal_zone_device_critical_reboot;
+ 
+-	tz = thermal_zone_device_register_with_trips(np->name, trips, ntrips,
+-						     data, &of_ops, &tzp,
+-						     pdelay, delay);
++	if (count == 1) {
++		tz = thermal_zone_device_register_with_trips(np->name, trips, ntrips,
++							     data, &of_ops, &tzp,
++							     pdelay, delay);
++	} else {
++		tz = thermal_of_register_multi_tz(sensor, id, np, np->name, trips,
++						  ntrips, data, &of_ops, &tzp,
++						  pdelay, delay);
++	}
+ 	if (IS_ERR(tz)) {
+ 		ret = PTR_ERR(tz);
+ 		pr_err("Failed to register thermal zone %pOFn: %d\n", np, ret);
 -- 
 2.44.1
 
