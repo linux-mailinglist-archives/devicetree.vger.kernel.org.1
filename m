@@ -1,134 +1,123 @@
-Return-Path: <devicetree+bounces-69012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6B548CE696
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 16:02:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B63478CE7E1
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 17:29:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D78411C219EB
-	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 14:02:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E47EB1C21EFF
+	for <lists+devicetree@lfdr.de>; Fri, 24 May 2024 15:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB8B86636;
-	Fri, 24 May 2024 14:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACF512DDB8;
+	Fri, 24 May 2024 15:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="GkfVqmOe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail-m12776.qiye.163.com (mail-m12776.qiye.163.com [115.236.127.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914B686255
-	for <devicetree@vger.kernel.org>; Fri, 24 May 2024 14:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1EA12DDA2;
+	Fri, 24 May 2024 15:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716559319; cv=none; b=kRX5jnwMUBJw20Dgee56w2cZES1NNR44wqPUPzLj7UVmH32joTRSGPqXxAX8NaZhK0PCxKuR5REPMFEBc9hNU5MKpEAb2NIG8LnoyYKE8Ze+yLUWEJiZNdHTmT0BrlJ7X4LN91p4jdv6GGfRTqYBsWb4xAAi+2WjJOt3YOn0WeI=
+	t=1716564545; cv=none; b=SQWYhNGVLhOcGN4qEhQj+NF3ELG/Wps96OPq2W1w+ny0xqFDZMSpNygGPC1Tq60HLow7Lyz5zWOrBHuQElGIQwiTx0VHLVu6wDvSXWyLgeDdvUPSui9RIUeiS0BcGLs9FLSHgDMbsXERkrVtUHlqb6i80F22fcQ8VKE6jUWj+u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716559319; c=relaxed/simple;
-	bh=NY5DZo2keldw1Tp/cmGYN8DjxzuoD7v9MPhLqsijU0s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qL0kMprZCeCLO+FkFGtXXkzRjx4NObsWp6RQGuQbVdVzFsV0oCjvijZvz7YXD16AcYJnprwr9F3Abbm+ndrccxWgzEtDLse0ZZz64Zad2XniUd1fFPfUsd3iR8pGiDrfRFf66XONpjExTcDBNEVv0htCMn6bLkqWi8gADBTXwk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1sAVUI-0001KR-2V; Fri, 24 May 2024 16:01:38 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1sAVUC-002nnD-Qc; Fri, 24 May 2024 16:01:32 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1sAVUC-00BNeg-2L;
-	Fri, 24 May 2024 16:01:32 +0200
-Date: Fri, 24 May 2024 16:01:32 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-Subject: Re: [PATCH v3 2/2] pwm: Add Loongson PWM controller support
-Message-ID: <aqcpf2tjt4iywxc7vgddkzaxtotlua2mnnpfsivpwobrc64neo@gylq5sl6sahk>
-References: <cover.1713164810.git.zhoubinbin@loongson.cn>
- <c89917023b49fff70bc89ddb66be7da4e0fe67ef.1713164810.git.zhoubinbin@loongson.cn>
- <t3efvxh4d2xvjh4pfrdnho6mwonwm6spjer72ww3wiqx2v3a2x@52ufzsdhc44i>
- <CAMpQs4KyX3A-Bxyp7+evBT5Umb03OvpV0VtqrNjAnZPYZ_dNQw@mail.gmail.com>
+	s=arc-20240116; t=1716564545; c=relaxed/simple;
+	bh=tQkcd34q1QaxaTpHWMI8oxRvSlHE+4YCiXIDNlF99hI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=rnkBDmLf3KIyUS9fhZt2eR7AyivTD0GRhRpwInCiDjfu5lxtRgDm+sfoqTs4rr2jhiSIbOin4bTWqNlck6pjdhXfc2X+ZL/MmVLN+iwGA+QevoXVVL+T4ma9FlQm4Od0j4d/kz6x0L7Sq5tjNshZcnw4CubwF7x2++R15rSUB4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=GkfVqmOe; arc=none smtp.client-ip=115.236.127.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=GkfVqmOeodjSsHUIq7QZo9oKtwtbKwTt1qnHgCTG7/yWGhv2yHi+u/CK66SOf+nx56G2fHNn+AAnB5zgRSEuWjsTBo7MLRQ4oNxI3lq9VLlgWAJc6ywdMRjS2vUfXHuxgqyIoQ9fOYEhpFMhZiu+gSqQmlvfR259P0J6HSLXrSY=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=vlYy6kfDRcuOHsQw1Qcrcg0CgVRI1V2ODtI9AvFKsJ4=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id ADE8E840B0B;
+	Fri, 24 May 2024 18:41:51 +0800 (CST)
+Message-ID: <5dec9bd2-88ed-46e6-bb8d-fa899b563fd3@rock-chips.com>
+Date: Fri, 24 May 2024 18:41:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="m6qvlzhmbrdzg3ms"
-Content-Disposition: inline
-In-Reply-To: <CAMpQs4KyX3A-Bxyp7+evBT5Umb03OvpV0VtqrNjAnZPYZ_dNQw@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v5 00/16] Add VOP2 support on rk3588
+From: Andy Yan <andy.yan@rock-chips.com>
+To: Heiko Stuebner <heiko@sntech.de>, Andy Yan <andyshrk@163.com>
+Cc: sebastian.reichel@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+ chris.obbard@collabora.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
+ kever.yang@rock-chips.com, linux-rockchip@lists.infradead.org,
+ hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20231211115547.1784587-1-andyshrk@163.com>
+ <170247871959.753029.11166929824242336708.b4-ty@sntech.de>
+ <7a20761b-4cec-4b65-b9fa-efce73ac4c83@rock-chips.com>
+Content-Language: en-US
+In-Reply-To: <7a20761b-4cec-4b65-b9fa-efce73ac4c83@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJOS1YdTExOHUoeTRlOTkhVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8faa315ab403a4kunmade8e840b0b
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MRw6Kxw6QzNDMRcDFi5ISUMR
+	Gj8KCi5VSlVKTEpNTk9MSEpJTU5OVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSEhCTTcG
 
+Hi Heiko,
 
---m6qvlzhmbrdzg3ms
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 12/14/23 14:46, Andy Yan wrote:
+> Hi Heiko:
+> 
+> On 12/13/23 22:46, Heiko Stuebner wrote:
+>> On Mon, 11 Dec 2023 19:55:47 +0800, Andy Yan wrote:
+>>> From: Andy Yan <andy.yan@rock-chips.com>
+>>>
+>>> This patch sets aims at enable the VOP2 support on rk3588.
+>>>
+>>> Main feature of VOP2 on rk3588:
+>>> Four video ports:
+>>> VP0 Max 4096x2160
+>>> VP1 Max 4096x2160
+>>> VP2 Max 4096x2160
+>>> VP3 Max 2048x1080
+>>>
+>>> [...]
+>>
+>> Applied, thanks!
+>>
+>> [10/16] dt-bindings: display: vop2: Add rk3588 support
+>>          commit: 4ccdc92c1fea732fac8f3438d6288719055fa141
+>> [11/16] dt-bindings: rockchip,vop2: Add more endpoint definition
+>>          commit: dc7226acacc6502291446f9e33cf96246ec49a30
+>> [12/16] drm/rockchip: vop2: Add support for rk3588
+>>          commit: 5a028e8f062fc862f051f8e62a0d5a1abac91955
+>> [13/16] drm/rockchip: vop2: rename VOP_FEATURE_OUTPUT_10BIT to VOP2_VP_FEATURE_OUTPUT_10BIT
+>>          commit: 9d7fe7704d534c2d043aff2987f10671a8b4373d
+>> [16/16] MAINTAINERS: Add myself as a reviewer for rockchip drm
+>>          commit: 6c3ab21f37a97a868193ccbeb8a492e51210ff31
+>>
+>>
+>> I skipped the debugfs patch for now, as I need to look at that separately
+>> and of course the dts patch as that needs to wait for iommu maintainers
+>> to pick up the binding addition.
+> 
+> That's fine. Thanks for picking these series.
 
-Hello Binbin,
+Would you please take a look at the debugfs patch when it's convenient for you?
+It's really useful for development and bug hunting.
 
-On Fri, May 24, 2024 at 02:29:35PM +0600, Binbin Zhou wrote:
-> > > +     ddata->duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
-> > > +     ddata->period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
-> >
-> > The rounding looks wrong. Did you test with PWM_DEBUG enabled?
-> >
-> > I think the value assigned to ddata->period and the other members isn't
-> > used. Unless I'm mistaken, please drop the assignment.
-> >
->=20
-> The period, duty and ctrl are prepared for PM. I plan to put these
-> three parameters separately into the pwm_loongson_context structure. I
-> think it will look clearer:
->=20
-> struct pwm_loongson_context {
->         u32 ctrl;
->         u32 duty;
->         u32 period;
-> };
-
-But .suspend() reads the value from the registers and rewrites these
-three members itself, too. So the write in .apply() is unused and can be
-dropped.
-
-The suggestion to put this in a struct is nice. I'd call it something
-with "suspend" though, maybe "pwm_loongson_suspend_store"?
-=20
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---m6qvlzhmbrdzg3ms
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmZQnbsACgkQj4D7WH0S
-/k52zwf/Q2TCGQKtD2L4IwNcg0/uwjW65m8tsFTF7ir7jcOQySLXwPbZ5efUrLu2
-mKQT0Inkk1oGzdv9RT3nBBmCKl39FrH5ErFDJY924irw52NxosBwYSRHJAdH10xl
-Mbs44d9JGJNqK0sxHvC9JSmz0xq1ymUgT02bDgPnM7n+scA4Ne3LQlc2vRLRAxjT
-FDdUP3c56RbpNzTNxcVBI/WG/elYX35t6OL9rdQIuH7sfQYDxaNVXhRmqRUVRyB3
-MyXUPZqlik3bwZKr8BIU6swR5bw4wpq1Cl3bxrStGF3gFxA6lA2bUkOuOym6V1x4
-sAOrHYtDJ4Gi9jAInQMT3bNfRHzeeA==
-=cm1l
------END PGP SIGNATURE-----
-
---m6qvlzhmbrdzg3ms--
+> 
+>>
+>>
+>> Best regards,
 
