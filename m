@@ -1,124 +1,122 @@
-Return-Path: <devicetree+bounces-69140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D012B8CEFF3
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 17:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F13288CF01E
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:35:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6959AB21291
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 15:52:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A79DB20DF6
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 16:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A825A7A0;
-	Sat, 25 May 2024 15:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC47884FB0;
+	Sat, 25 May 2024 16:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RyUxLVqb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="obBvJa60"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8AC85628;
-	Sat, 25 May 2024 15:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6109473;
+	Sat, 25 May 2024 16:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716652342; cv=none; b=GqP8umVACdSKu3MPJjyLrnCWEWMSvzOXqaIc/BXyfO2DnewHMtvQxzJ5tX9juqrnLHT0D+pWugDf0wm3btK86S/+9loZeeThjBaWPg0tH3vMpKexBXSeioiPwsmUpwOVTrdr75c+VTlib6CHzn7SU65eoqXxJOk36WEUclNYprg=
+	t=1716654950; cv=none; b=ePWI/CREhpm91UM7BGZfqr71dBcAe07NuWnRd2jo8AF4Cx2uujyRkeOVkElPL3pVQG3xk4PmkDBv62X1NnrPz6aOzkLNLQuj0C/Uz3MxoiFOZUVp3UnCkeY2n8Yma9O+zK84AwJRt2coAub5QxYIyFavm5bRjb4gcBU723kRFJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716652342; c=relaxed/simple;
-	bh=2qvfe4Hqy1g41g1MNI1wwUBi2pgt//ZFn04XX9hGjVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g45rkHv3gG9C5rsBnysurGx7I9C8cuQ21qGGjKG6+lZCk6UfdQu9TtP3mk1z/6mguk194rLzxkd8+bSCd/7iD6+TbZRvOqUPKYXrMD9avFs7PTvZFmpPLW/7gbr2bqI4FIaQQX/NYwJqsHcZSNMBuxvHBupAw3PcP9CqWUfun7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RyUxLVqb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0016C2BD11;
-	Sat, 25 May 2024 15:52:17 +0000 (UTC)
+	s=arc-20240116; t=1716654950; c=relaxed/simple;
+	bh=Sqqz1FjK+oJdzV4g2FjKietB7+W/O0D+oOGIlfRmPMI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t5TJfiV24G5SayPjcUFjX3+URV4NLsWUgtVpOVH0DRrpp9ScnvXVrCZmrhXx7HcJA+XwYNDNSXvJSuVcqtKThFK8i6+tlg+BWoGCsvTyfmcFvITm7+5z0Y5plmIKWZYfitO6FFkVv5noH7eqmTllZTNY/ZGq5p00RNEFPpWhniY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=obBvJa60; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2200C2BD11;
+	Sat, 25 May 2024 16:35:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716652342;
-	bh=2qvfe4Hqy1g41g1MNI1wwUBi2pgt//ZFn04XX9hGjVs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RyUxLVqbnr66RHDchWK1j9fcjgjOUbNBdfzUnplaSXjNXdIxRk2Kzz7x7q7tR31hg
-	 7llkAV+pzz6y2aUcVCT5qvl6J0Hb8NIqVAYK5yJ9StvuzBt/+lYo99oexZbtZnQWyK
-	 CIb/u9d/+yWhmdAtvYvxQaT3T9PZJKx7ZNqcgyW23HEnCM3VCYluXepj4aM0Y7O2SX
-	 kxHgr4zV2rQbEbSsHYBBos+TnUGTKrkCPupik65vrCjb7zIrmNlZ3KfrMaU2FeCLf/
-	 uNtNVxHYBXkgctSHG0QE+kAqqV5j219gk/M/v6W8aCzseDiP3z7M4QvI4dlQTfVXyS
-	 Ga6u+ge/bMyYw==
-Date: Sat, 25 May 2024 16:52:15 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Vibhore Vardhan <vibhore@ti.com>,
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
-	Martin =?iso-8859-1?Q?Hundeb=F8ll?= <martin@geanix.com>,
-	Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/7] dt-bindings: can: m_can: Add wakeup-source property
-Message-ID: <20240525-outdated-unopposed-857d30708413@spud>
-References: <20240523075347.1282395-1-msp@baylibre.com>
- <20240523075347.1282395-2-msp@baylibre.com>
+	s=k20201202; t=1716654949;
+	bh=Sqqz1FjK+oJdzV4g2FjKietB7+W/O0D+oOGIlfRmPMI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=obBvJa60w7bIvZhP5zGUyHSOKm1zYl+fQcZpLIlXCimrlFMbS1hJfE/jBznPoMgzN
+	 gOpONnT4wZJ7Z8wOMexRxewOt2rSgM6VOjVMse7kkhujZ7EdaRjgCPRehpvy+eCNVe
+	 CmXL2RNiEbK5plhmTZfyVJ0UW2hPddmseEPsF3/4ZS0fnkNskMjaqKdtHKvLCrVM4i
+	 k8d+Vrc4jOt0cUk4dzSQZZc9TDzCGF3e85J8rn0ONdrwZfvWQ/nqp1YnqBHPBEmw0g
+	 jQPwCVTwRQmAbn0soiQUFIVCs+iaFYYLTHN9kRMWKBGbyJ6z9CH2oQiGkUp09WGEUi
+	 w5p/D6kJi7QSQ==
+Date: Sat, 25 May 2024 17:35:31 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: andy@kernel.org, Jonathan.Cameron@huawei.com, alisa.roman@analog.com,
+ bigunclemax@gmail.com, broonie@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dlechner@baylibre.com, fr0st61te@gmail.com,
+ krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de, lgirdwood@gmail.com,
+ liambeguin@gmail.com, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, marcelo.schmitt@analog.com,
+ marcus.folkesson@gmail.com, michael.hennerich@analog.com,
+ nuno.sa@analog.com, okan.sahin@analog.com, robh@kernel.org,
+ schnelle@linux.ibm.com
+Subject: Re: [PATCH] fix
+Message-ID: <20240525173515.02b38d7a@jic23-huawei>
+In-Reply-To: <20240522095023.35189-1-alisa.roman@analog.com>
+References: <ZktB5Ex5oQ2E45QR@smile.fi.intel.com>
+	<20240522095023.35189-1-alisa.roman@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nfBgOn45vCwmUCoC"
-Content-Disposition: inline
-In-Reply-To: <20240523075347.1282395-2-msp@baylibre.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Wed, 22 May 2024 12:50:23 +0300
+Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
 
---nfBgOn45vCwmUCoC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, May 23, 2024 at 09:53:41AM +0200, Markus Schneider-Pargmann wrote:
-> m_can can be a wakeup source on some devices. Especially on some of the
-> am62* SoCs pins, connected to m_can in the mcu, can be used to wakeup
-> the SoC.
->=20
-> This property defines on which devices m_can can be used for wakeup.
->=20
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b=
-/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> index f9ffb963d6b1..33f1688ca208 100644
-> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> @@ -118,6 +118,10 @@ properties:
->    phys:
->      maxItems: 1
-> =20
-> +  wakeup-source:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: This device is capable to wakeup the SoC.
+> 
+> Would this fix be alright, since writing something like if(!ret) may be
+> confusing?
+> 
+Looks fine to me. Squashed into original commit that I messed up.
 
-It seems to me like patch 1 & 2 should be squashed, with "wakeup-source"
-depending on the correct pinctrl setup?
+Thanks for sorting this out.
 
---nfBgOn45vCwmUCoC
-Content-Type: application/pgp-signature; name="signature.asc"
+Jonathan
 
------BEGIN PGP SIGNATURE-----
+> And regarding the comment, my bad, there is nothing wrong there.
+> 
+>  drivers/iio/adc/ad7192.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
+> index 101afce49378..0789121236d6 100644
+> --- a/drivers/iio/adc/ad7192.c
+> +++ b/drivers/iio/adc/ad7192.c
+> @@ -1101,14 +1101,12 @@ static int ad7194_parse_channels(struct iio_dev *indio_dev)
+>  		ret = fwnode_property_read_u32_array(child, "diff-channels",
+>  						     ain, ARRAY_SIZE(ain));
+>  		if (ret == 0) {
+> -			ret = ad7194_validate_ain_channel(dev, ain[0]);
+> -			if (ret)
+> +			if (!ad7194_validate_ain_channel(dev, ain[0]))
+>  				return dev_err_probe(dev, -EINVAL,
+>  						     "Invalid AIN channel: %u\n",
+>  						     ain[0]);
+>  
+> -			ret = ad7194_validate_ain_channel(dev, ain[1]);
+> -			if (ret)
+> +			if (!ad7194_validate_ain_channel(dev, ain[1]))
+>  				return dev_err_probe(dev, -EINVAL,
+>  						     "Invalid AIN channel: %u\n",
+>  						     ain[1]);
+> @@ -1125,8 +1123,7 @@ static int ad7194_parse_channels(struct iio_dev *indio_dev)
+>  				return dev_err_probe(dev, ret,
+>  						     "Missing channel property\n");
+>  
+> -			ret = ad7194_validate_ain_channel(dev, ain[0]);
+> -			if (ret)
+> +			if (!ad7194_validate_ain_channel(dev, ain[0]))
+>  				return dev_err_probe(dev, -EINVAL,
+>  						     "Invalid AIN channel: %u\n",
+>  						     ain[0]);
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlIJLwAKCRB4tDGHoIJi
-0romAQCU+ufTErbUDP+o6575ok++8ihKyYxbBj8T5Nwl6VZJHAEA8xmFsrpPwQOV
-YAip06pvaKrUzD5redLLLU+5MWfopwk=
-=rATI
------END PGP SIGNATURE-----
-
---nfBgOn45vCwmUCoC--
 
