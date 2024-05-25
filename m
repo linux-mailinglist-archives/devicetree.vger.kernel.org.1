@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-69182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80EB38CF105
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 20:40:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD8B8CF10E
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 20:58:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99BFA1C20982
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:40:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D5D5281B78
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBBF126F08;
-	Sat, 25 May 2024 18:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9AD127B6A;
+	Sat, 25 May 2024 18:58:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tv6JSaeR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wIgmQ2wD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9DB4AEF8;
-	Sat, 25 May 2024 18:39:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A507E574
+	for <devicetree@vger.kernel.org>; Sat, 25 May 2024 18:58:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716662399; cv=none; b=DaDtyHAqDEFLS/oP1USCOmjvMubgYFByK6e0Gg/C5gDr4I2D6NMDfPbm+Ijdkbp2ONe7ld8CiNj/aFewShhgjy2M7pcCypD0teFBPMVdyQEYT3y+1jFWf7RQcSKz6PJTFjTyVeCXV+EOLS6P9XNPaLjM8yAAzzxh/QIVGKCNlRI=
+	t=1716663523; cv=none; b=Xe01N5psj1D8bnvvHMfBhxYcdsweNoQ0eVLuvx5kPPVP4YA/SsxV7sAy+VSeLajyhdibBBCXAzlwcZfJ+zSL1k7xcF0VXytgtrePOBFyo43+h8ff94CAlLucGOGUb+6jFjWKoz8m2imQgNluE9yXkb3ZsWXfn8kvNRRwvpbI/cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716662399; c=relaxed/simple;
-	bh=+Wdxh9pPLwNtyelouBv9RsJhb0YW1U3TgG+5clqC2kY=;
+	s=arc-20240116; t=1716663523; c=relaxed/simple;
+	bh=iKEIVO+4VmSS9Oc5MntKhaJZ/iGMcGlkEC+aUBukEHo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m0OHik5UYb7lNCrkY2rBKZxQand8adfmYnrrVo5TwTQ6a4cGX4iZyHS61UwNfW8Xn7wNMIKMcDTv/0fy0I7WQ+Sr+MKHnzWZHR337W4pVh+jnUW9IDQzKj47ndSHNQxVwCzJl1TSHMtv+BemjbNVn50GZDjUu9WoXpRLvvAJN6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tv6JSaeR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51DD0C2BD11;
-	Sat, 25 May 2024 18:39:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716662399;
-	bh=+Wdxh9pPLwNtyelouBv9RsJhb0YW1U3TgG+5clqC2kY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tv6JSaeRZpP59Zb9HXvrmH/x/v6Sl8JyKP0ELumfQ109RCpfnXorFAp96vlp8j/Xg
-	 lnO8RPuVs4dEC2aC2oggSn+ple+/wpE+Y2EjVj4e8TEitYYSsrnJK1Gt7zT1bOknFu
-	 NROgR9p2gnCMNCHqYo2R4Za9CeBnK8UI6O7jagka9NJQm6yj9T9/qm49d/1qCwAzK8
-	 I9gwpJC8Ti5jh88InR3yNmW+iF9eRoPWkaoq8DRkZjDj4koBhLhM/K/3M3qH66H+5j
-	 5iEjLT7rbZptv0xGCB+oYOEMKrgHHB+M4WvqlJoLF81/39C20GOuEycjZVrY5q1/qs
-	 QeJzuXO66X3gQ==
-Message-ID: <0b7099b6-8eab-41b4-9685-1b27350bbcb9@kernel.org>
-Date: Sat, 25 May 2024 20:39:53 +0200
+	 In-Reply-To:Content-Type; b=ixPY4pCgRqXrQEmSn/2Ya04/Xs5NDnDxyjYNmDOVgrCX+76wHBIAOOplW7BE6w3yEJMsGGQ8mBoEs6qQptgRy/h3F3L1aappjQa2g3M1PVhC/DLEMEICcgWEmq17ngFaFpY0DciWEsgSoP2a6OtmQ2X0XjObkJgjxVTUlqn3CYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wIgmQ2wD; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4202959b060so71151155e9.2
+        for <devicetree@vger.kernel.org>; Sat, 25 May 2024 11:58:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716663520; x=1717268320; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=t7he0sZ2GZcZ4jN7OuNxSgoGWU8clRyZzA1mrnUKwrw=;
+        b=wIgmQ2wD9cwXdPB00KF2TNgBPy2LfhiyvHlQwzrhihPP3mzT7nrG1YKd6cVJf4PrwC
+         z8XzH1viKmIDqk5nCRJPCFVxC8J1egiIcuihWH6XniW+2/6235r2YRpTimw840+lvOwg
+         iyHEggY1aBUwTK2Xv50ZuiEWIqU8POFI9kgu2vKTPXPKF+41avskEZ2uUp3GRg9JoMEz
+         c8nLH/v8zgA9ld9kUMWQ4ojo4RgJc4cscNWovY/ZfcOPLyXhMUzqpk5KdOnVmw6KmEM9
+         NkYVnpTzHW8jRA/goq7kPXmZ4erUvBVlcCzmixsq2JbfgFaPnNEVBIY97Sre26xIjR4c
+         9TbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716663520; x=1717268320;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t7he0sZ2GZcZ4jN7OuNxSgoGWU8clRyZzA1mrnUKwrw=;
+        b=hUrcSTglFcC0HZhtcHrizXjLqFIUz260wLcBzTy7QmCer2Wc8K56S2/EH4QyLYm6zi
+         TDswdUDlpZ1Wfavwnlf/eKrVVfoJnEFMVdk/HfxNNLuTk7YviooKGap14mF909eZP0nt
+         qbmg088q3/GdoEC0w6Z7U+fdYTEEY2pi+qZf+qtNWhjkZj+5rsZAyqOBdIZMstLJ/0L+
+         UyWElMuS2KMunV9wcfXfu5oXXtJGD0NBHSH5o9uSaqmGmCeNrGR9XlYwgUKi5Kfk2J6U
+         JAJBT8EEe2TUUCoVBdiU3B4DVELo5cJE1NrHE6MGxZNxLsfzkBF+4eYYuBaOvY4adOyg
+         cUfg==
+X-Forwarded-Encrypted: i=1; AJvYcCWoJb1v1lXNiZNlZoga8a8Vn3AKAZ0WUcFmPm6A/sui7AifjpA5iG40RHCC54Hn6evJXV5jVcJnKbsiLq4YX6oYLOe+YNdQ66AHZw==
+X-Gm-Message-State: AOJu0Yx19o5hVJBWyhOcazuwr75Kn4dFlFZhujUG/y1RYxKCfltq3EgW
+	JxYhO1Y9HL/t6lpIAbZ6orINAS9A94RLuxiId4/H8pN60njbDxzpTBRZqga9XJs=
+X-Google-Smtp-Source: AGHT+IG+6KpN0Pe/v3SLZ8mnBfNrJmJz9mBszytORzY3EJM2Uw7jCaB0GzXeJ11/zaPwbSB6qOj0kg==
+X-Received: by 2002:a05:600c:35c5:b0:420:1db0:53c1 with SMTP id 5b1f17b1804b1-42108a17b9fmr33015355e9.41.1716663519804;
+        Sat, 25 May 2024 11:58:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.206.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-356c8daef27sm2426626f8f.115.2024.05.25.11.58.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 May 2024 11:58:39 -0700 (PDT)
+Message-ID: <bdb78a67-ec6b-4178-81a0-212796f9738a@linaro.org>
+Date: Sat, 25 May 2024 20:58:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/10] dt-bindings: ROHM BD96801 PMIC regulators
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <cover.1716533790.git.mazziesaccount@gmail.com>
- <6a7d3b9dc594f253bf190508df98395556449068.1716533790.git.mazziesaccount@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v24 4/4] dt-binding: clock: remove nuvoton npcm845-clk
+ bindings
+To: Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240509192411.2432066-1-tmaimon77@gmail.com>
+ <20240509192411.2432066-5-tmaimon77@gmail.com>
+ <20240513155330.GA2676859-robh@kernel.org>
+ <CAP6Zq1hRw6xfNKKfBFGuKbZk0su3ys6+hnMzqRWrZeKzDoKLEw@mail.gmail.com>
+ <CAP6Zq1gKp+Hu93CK=78chvNk70WtKMKUv8ny0Mzkw47wn7Af2g@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -72,53 +102,85 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 fv0=
-In-Reply-To: <6a7d3b9dc594f253bf190508df98395556449068.1716533790.git.mazziesaccount@gmail.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAP6Zq1gKp+Hu93CK=78chvNk70WtKMKUv8ny0Mzkw47wn7Af2g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/05/2024 10:16, Matti Vaittinen wrote:
-> ROHM BD96801 is a highly configurable automotive grade PMIC. Introduce
-> DT bindings for the BD96801 regulators.
+On 22/05/2024 18:34, Tomer Maimon wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Kind reminder about the question in the mail thread below.
+> Your response would be greatly appreciated.
 > 
-> ---
+> Thanks,
+> 
+> Tomer
+> 
+> On Thu, 16 May 2024 at 12:44, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> Thanks for your comment.
+>>
+>> On Mon, 13 May 2024 at 18:53, Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Thu, May 09, 2024 at 10:24:11PM +0300, Tomer Maimon wrote:
+>>>> Remove nuvoton,npcm845-clk binding since the NPCM8xx clock driver
+>>>> using the auxiliary device framework and not the device tree framework.
+>>>
+>>> Again, this is an ABI break. Changing driver architecture for 1 OS is
+>>> not a reason to change DT.
+>> Is it an ABI break even if the NPCM8xx clock driver hasn't upstream
+>> the kernel vanilla yet?
+>>
+>> I thought that since the NPCM8xx clock driver hasn't upstream the
+>> kernel vanilla yet and and in the latest NPCM8xx clock driver patch
+>> the NPCM8xx clock driver.
+>> using auxiliary device framework instead of DT we should remove the
+>> nuvoton,npcm845-clk.yaml file.
+>> https://patchwork.kernel.org/project/linux-clk/patch/20240509192411.2432066-4-tmaimon77@gmail.com/
+>>
 
+Binding goes with the driver, so I wonder how did it happen that driver
+is not in mainline but binding is?
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Anyway, once binding is released other users might start to use it, so
+yeah, could still be ABI break.
+
 
 Best regards,
 Krzysztof
