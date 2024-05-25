@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-69108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90288CEE30
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 09:56:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 400BF8CEE56
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 11:38:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DAE81F2156E
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 07:56:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1B891F216DE
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 09:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D26CE570;
-	Sat, 25 May 2024 07:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A8419479;
+	Sat, 25 May 2024 09:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="XQIGJ2wW"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="uqgZDG7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804A529A1;
-	Sat, 25 May 2024 07:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAC518635;
+	Sat, 25 May 2024 09:38:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716623761; cv=none; b=MNeTgCRY8ISL6eCQ4HVwETclA76/Jo1w7RksgxC94KdFyoUx4zj56QKwvCBXmU0xAUIfbz2WBJzpFSuZVX7NJjla9/rE/eW1OW1p0QId0QfytvQJ5p/iJCUtzQaV/v3QP61Kht9hHjn+FfvZ56jYXzqRkxGBqbudBBIbQ1AfHWM=
+	t=1716629909; cv=none; b=ckNPUfH5BqTM2GNtS5JaRn1+ebxqtbWL18XeREzykOlNFEC7/7W12Txxvl4Owptcn7KkstVXGG3/2bv6BAdujY2++cdXgt1ZJ1esnR49Eo+gU8LXo/TziX7OQ8vqB+Ks/OWNI0fV5hW5/pn+0tjZuEOyMRB9kquU7FfqsRry7No=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716623761; c=relaxed/simple;
-	bh=zNvagCiFQlEBJ2V2WaqD1hNPPhtIuYBADiTXOIv4iXo=;
+	s=arc-20240116; t=1716629909; c=relaxed/simple;
+	bh=Al99sxoejdNoINbkYNcTmfr2Q6A57jN5aK9I7dlIghk=;
 	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
-	 In-Reply-To:Content-Type; b=kzIc2X9FT23GNms4VH/2zzg6XNVKUftrR1kiEUEBoDuE5c0EqGq5h5m9wf3+dg5mN/VXPGmNcLxn+SUCyT4rNjApBFRnCCu8HLmS6vcNI8rAmgW+U6gLJPIDpsLpf8QDvkvyUOxEt4Ib41Omf6YlGDg/W3q/rX5DzT6xI9F1vtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=XQIGJ2wW; arc=none smtp.client-ip=212.227.15.4
+	 In-Reply-To:Content-Type; b=mfjqfA8RkezVtckLr6FSmsMQVeU+6DtKJzAUC415hcGBkPt2XCL/9z9Z2AhGBPG3v1laj8WNIB14aE2UUs4gq2l0oiJllf/LTSJLTgMvToQvU42uwpdDDVK1/gxozy/3hmaA+Qo0f92LhnzTX7V/cqZPI1Dny98PT7uAcaKU2bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=uqgZDG7R; arc=none smtp.client-ip=212.227.15.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1716623731; x=1717228531; i=markus.elfring@web.de;
-	bh=zNvagCiFQlEBJ2V2WaqD1hNPPhtIuYBADiTXOIv4iXo=;
+	s=s29768273; t=1716629878; x=1717234678; i=markus.elfring@web.de;
+	bh=Al99sxoejdNoINbkYNcTmfr2Q6A57jN5aK9I7dlIghk=;
 	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
 	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
 	 cc:content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=XQIGJ2wWNkooZLiH9ykL+s9D1Jp/h7XyOyIqB4B/ZF4156HUTr6t5/QoSOnPUP+i
-	 69tO954AV7XBmj8M1iIrJo3/G+KObqUk4qHrIxOXjWS8NE/c0ZMTkDwstITEVnPtk
-	 hZ3Bp6kzAnAE2aohz4iOJQiZdBPqpDpaTJagrTdKjgMIYXOSV2XO8P4/gQ1QzbYeL
-	 9Fvf0Plrka8SJfuG+1YWHYJSokJMR2qgA1PQ/DiwVHjW21mQckHdKtAzmPaFPhEI7
-	 3HOZT1XxVuhieJzGX9hPwsEJ718TLCrnoPHzmEmMzUjvQwth85u+rHPfBCXg2mnh9
-	 WpK/nE7TBQE8U6Iqwg==
+	b=uqgZDG7RGglf64ipJsRc76zS7mUyZQSqvxNKO16OcTp6oN6qBHWJtseVhGIn9pj8
+	 HvcDL17L60l/QXDR5TBAu4ouVKXeA9WaetYAVaR0EnzeCBGW8XGk8AbQ3nbpThJ+L
+	 3fwhZrhPHFHQT7b0rtGHqy1O/8TEQbroEwmI8EMCOOBrS2QDb1ZFnHgQ7Npo2P6mZ
+	 Hk55GMLx9wb1BkBssoOAUoa3EMOJUwRv+tKBrVHlsuWRK4ih//iY7RLA8r/uUf9f8
+	 6/eYkB7qoy0hfluD7B3VqPV3e6qIbqjvO24OW+4cUOSN/HjsIeIF2G1JSa8vvQX9E
+	 FLVS8rs36dzpiWmKZQ==
 X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1N5CQT-1sbyAY01zR-01166w; Sat, 25
- May 2024 09:55:31 +0200
-Message-ID: <9fe12ecc-c4c2-4adb-a62c-4c8fe91b6613@web.de>
-Date: Sat, 25 May 2024 09:55:29 +0200
+Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MSZMD-1s3yCV0MCf-00LqqR; Sat, 25
+ May 2024 11:37:58 +0200
+Message-ID: <1b55aad1-1442-41a5-acc6-16baab90c021@web.de>
+Date: Sat, 25 May 2024 11:37:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,54 +57,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel-janitors@vger.kernel.org, imx@lists.linux.dev,
- Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Marek Vasut <marex@denx.de>,
- Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sascha Hauer
- <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de,
- Shengjiu Wang <shengjiu.wang@gmail.com>
-References: <1716458390-20120-6-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v5 5/5] clk: imx: clk-audiomix: Corrent parent clock for
- earc_phy and audpll
+To: Henry Bell <dmoo_dv@protonmail.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>
+References: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
+Subject: Re: [PATCH] RISC-V: add Star64 board devicetree
 Content-Language: en-GB
 From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <1716458390-20120-6-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:+Y8RZ2euW0PVsjjmirk2PPULrmxZDg8ex4ooenqfMi/uUTvAPbJ
- 97nEDosbWPobp6ainbMMsYAxR/DSRSHyRVrqNoPpiPQ8W7nJDlC7hNa+O2dD3Yxx+SfZYI2
- WaZIj2Z1bIO8c5T5GIaqtSw7g27d+0I5sQyS6ADMV/tuRHY5UI2iDweRETxL8KMVflWICpc
- YGJznrb9DtsaDJOmL20oA==
+X-Provags-ID: V03:K1:LsMJemhnw4gC5uXuCjSjRdCcV3bKa3+UZqXcRQZ+pwQN5gmBe8l
+ n0ltfZxBuUO0OGWzTwFOlWfJzaemmJdyk7Z5JxUyEo0fiWi+t5lbvslIc4eR0E0oMwmulzv
+ 1tOrWDykoCco1XE82Bhuw6iKFjUCy5R/Rihi7FDWetxphcQQyvUmVoOyb+KHEZKBrkyN4ie
+ pIPu8IW62eHl+3k7IY/zw==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:1d1X/haDOVk=;YgC1d6or9qyXrEPVXDekffAk5nE
- xj2NyIa/QqjwbTI3z3wyAWSGSbiKebbbVBTiDB+2ysc7F00bHcnrX+WVY810vkXgVMrp1Iivx
- l0dH480jOgsK1EeSJp0jV5PBB7YlxfGz4jtZW2uQopt2yc7v1YA7I8TtG2CfF8Z2p3oiKChno
- jT++5rfnI4Nqfr41ekSXGap39/lxRUnDGqdP2fD6a3l8Ca/oIW2yBbD3qkSjCvnOu3eTkNMM8
- m2gdjSpTf7PK0enARfGhaUT+nEmlwbNPFqpGxBwhR1yvbqmdaWN+Hjf51ns8QE3XxRXswYW0X
- 0HbzcgcZOsK20+XFB6VwP+N2tbEZB8nX8HsKPm9mpDpc4rznXzoDH2gSZenIWVGpiRsPEl2o8
- OTir4qDjYAvmTsZZZGrXGyBZfmyw3i0w3K6aVvNFNdDtFghNHtP2tQkzoqPVVp4vHnXdQdLUK
- 0qTPq/Lqk7a56PlJsZkAAK02//pBCY/G+kNyW1FTrVn231BmJ+VKYgzY1IH0EB/J41ocBQanw
- VjyutO7nEb+UiKJocyYq2N+oZ3DI0NRb7o7EN3sKfcQpPLR/OJg3nYa2d/mKUSfbltwZ9gUkQ
- lG1TW33UZTMC7FlXxR6PObEsOpHP5QyJKVVDP6HAa8a00E8rpKlQtAjHPtlj6C7/QLzk4cpPS
- OPXgI8VDfaMZBwNjWGXRJFmhtR4DGt9wW1zKtoitjkD0t8y0vfwXZBIslugoJDYE9CsAKjh6i
- i5XwRrK2AupGJG8s/UuuCibG4YZVc5prnsRhE/3tE9zjkLk/NQanaFzX5b3IRQccZQrhafcul
- 2y/T9RH4Yh0h5j+hMvkwnTd6cAHqiJnvndHsi/p8SDnxA=
+UI-OutboundReport: notjunk:1;M01:P0:PKJGWqlBrl4=;cM0/ZXfhYqM1Mkum3lccwU7cwUH
+ yRVzM89bgfn3q6Aj+ZPzQNcfzxMedaytYENGuqIceaIA8zds1VjJU6a6A6IobeANATya7q5av
+ AzH3ZBQXsGmLMiftWnDvLV65YAdJUkd+jby3884ieSAf11ioleUpWNbYiEwlENtabRpAP35zz
+ 3/5nJh4Zc4I+PDi+6fp6jBe3D6Z7SE6CfU+fYeafGqzYEaeWxgsJy6htOfx1kBHCemulfx/nF
+ ankBqYwpKpRg/s4vSf+/Sr1Q6mE5ofukvoNs4ct8VpVCd5VMJNJVtt+dJm30arD5Huran1Z10
+ UVLY9qsMYnTAif5sLR/3+sWhauWctlwIg+bY+0gk3r3+G4D++klCo7FQ+5ZkIJjR2RTgKIwhN
+ 1ZYNJvob+WFoSCEGGiUL1qwKJw+MjubE7bttwxb8iK1FS+R9/7zqSMyHgDj97c0HhyfIXAFk5
+ I9Ouy4GCfhf8FtGM9UU7LzlBaRNCmZBHfe6W8V2zomLdiA351HHX285nv89IAkGjPjTX6gn2G
+ kaBpIcOG+Mxf3zmjJNnjjG+xNH3SjaFDrbiScwsyCmCqtaGGBK3aBNuC0ZalGRpw9DrMCfbEX
+ OOUNnk6l3D257qjrcKN7fKyzXZY01YJJxi3HjrUedb9vgiLc79xtpELaRuS+50eFMNQYistGO
+ fBPuhOgZ0zkYjmGDWzq3pW8KNYXt600+jef3SPszomAx2+SRzpeIaxmZiyUWrT7+uRrXSWjvC
+ dftrfrzFOC0FezvpZSr3FlQJn/vgtuG0W1qORpAi41K0C/ex65DaafMsG7s6aL1H1aX4Tz8Av
+ Gh5eJ00QSWZ1tzwNmG903i3q7k7Jyfg6qUTrH0IWsWtWo=
 
-> According to Reference Manual of i.MX8MP
-> The parent clock of "earc_phy" is "sai_pll_out_div2",
-> The parent clock of "audpll" is "osc_24m".
 =E2=80=A6
-> Fixes: 6cd95f7b151c ("clk: imx: imx8mp: Add audiomix block control")
+> The board features:
+=E2=80=A6
 
-Does such information indicate that the word =E2=80=9CCorrect=E2=80=9D wou=
-ld be more appropriate
-(instead of =E2=80=9CCorrent=E2=80=9D) in the summary phrase?
+Would you like to add an imperative wording for an improved change descrip=
+tion?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/submitting-patches.rst?h=3Dv6.9#n94
 
 Regards,
 Markus
