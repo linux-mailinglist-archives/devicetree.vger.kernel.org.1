@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-69147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D94598CF04B
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:59:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66728CF04D
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 19:01:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 908C61F21681
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 16:59:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 142EF1C20970
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 17:01:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F90F8627E;
-	Sat, 25 May 2024 16:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40C15E091;
+	Sat, 25 May 2024 17:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BOri3+5r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fmqWjl/I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73DC685C77;
-	Sat, 25 May 2024 16:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1553F9F8;
+	Sat, 25 May 2024 17:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716656365; cv=none; b=McK5T1vEA2CAo4nZwE3maNeuur9s0lozZReblVnsdcJCa/a+aH+5Mr9IWMSG73tALaFh9fPVXq0q4jb+DY5TQi3UWOqPhP9c95V6ac+OSupO+ITKgh6dmCRiOrh9+ii5Ga7f3KNkW1q+gCrLMxPqRQrkXxWyUNTOXu3pWdBT0f4=
+	t=1716656484; cv=none; b=cZ6pIU5TrwQ8JcGEfkgcxO7K0KKM2RHxxCCdSiZzoJaGLiMgiZ0/MYDu25YG3UuQzPed3OJXpU05IDwiOdTNhkjJ7+cBpbovFTS//86oIxME6aecJm743Q75f7G+gJwdoqwmLQSw5dUes2Qc/q/+4cpESS7g6plOdOxNMZb6cEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716656365; c=relaxed/simple;
-	bh=L5rF1U6u+dgqhRDH+CwtH1ADSUsO7kxEHotp8qUYkmA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=VvuhAE81NPIsz/aAZo3Bn7GDZyIKNxT8UaJjIwWhVLA8sTOHlps8wEtOmCTPu5+yXz9PwMV2mBfw2UQ+tMOkS0D3hJii74UKgk5W1vNfhexVHaIGFYWc71s2zMc9RdG32mITrAnb23WnuGm2FQRZpi//XXiS/C/+C4mrTI77oXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BOri3+5r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51983C2BD11;
-	Sat, 25 May 2024 16:59:21 +0000 (UTC)
+	s=arc-20240116; t=1716656484; c=relaxed/simple;
+	bh=/XhqLlNFPdwYGW6GA2lsso7cTXnh8Mkx+G2m3EcCAHg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b+S9grzjmHG9//BN23Q5uUxaJbLCTMQNcU6DFXu13pyGyh9GyA3Lj9wsMwngquEueQn/lI651k7tZD6yfOXgrNn86PSPf2sywdv1cBaksRP3hNjNtVBrpr2fNewrqEASL/7r0+iAZpeGFs+K9qIuOZ6HYIA0kb47zqiAbZuVbkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fmqWjl/I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7717DC2BD11;
+	Sat, 25 May 2024 17:01:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716656365;
-	bh=L5rF1U6u+dgqhRDH+CwtH1ADSUsO7kxEHotp8qUYkmA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=BOri3+5rcKtt5S1PklzG5CzUVoaEsdI+EGgZdsl0ODHGNlVNB1ErCGpcEdTgK/7Si
-	 50gCk+jkOOxp3AxndqJG8Xc59F9P4AgKVTwbhUiak7XA9hZs3KxAR1HKZbgWliM20Z
-	 r6CrVRAz4YRdi/TqJzFApS+EDmjSpM14TRN6ebsHKPsllg2RuEoXTvk/cieDC7b9tq
-	 dFXVLnxbMPmMyNaTVFQK99HEmmej6x0iLqu9qHkby8EIaCv62o6M9v19XolR8z/k4M
-	 ZknrxODNE7abRcsJIZvyKKukKmpb+EuvOd4VwS/TkHs8UyUZYmY+G1py8UTL0UdwaM
-	 LYUIN/5Qw7maw==
-Message-ID: <34c76368-70b4-4582-833a-589653dc192e@kernel.org>
-Date: Sat, 25 May 2024 18:59:20 +0200
+	s=k20201202; t=1716656484;
+	bh=/XhqLlNFPdwYGW6GA2lsso7cTXnh8Mkx+G2m3EcCAHg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fmqWjl/I+NtBC1KYIrkwoj3esGfEV9ItfowymhioSGC7tlq5AxS7vIdiRi8IKXYHL
+	 kYDSY5cn4fr2JrEdDNrRQTdTG81dMGJ9ECSCa4pUL4ZerKpYEXY50R7JENHpZFsJfl
+	 P98gCtz0RD+JIeZ7RW8utVc1Wq8plQFHfhSx/UISJTt92cihR+A5nBaQlfM0f7G68W
+	 7OcJPrxN7s5FAeS6qrQhnNvE17jrXAn0Gnb2N+2fDTor8dUrXUCdOWmwVP8Fo63mny
+	 MQyksepHnVIdyQ6dPCMa3OIKe/56q+HAnaz56Vw7SYoeiHmgKU1yNwAUilRzD+Uabl
+	 oKAReJOizLKrA==
+Message-ID: <bd01676e-edf2-42e2-a689-d9a89819c490@kernel.org>
+Date: Sat, 25 May 2024 19:01:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom,ids: Add SoC ID for SDM670
-To: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 2/3] dt-bindings: input: document Novatek NVT
+ touchscreen controller
+To: joelselvaraj.oss@gmail.com, Hans de Goede <hdegoede@redhat.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240524012023.318965-5-mailingradian@gmail.com>
- <20240524012023.318965-6-mailingradian@gmail.com>
+ <conor+dt@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+References: <20240524-nvt-ts-devicetree-regulator-support-v2-0-b74947038c44@gmail.com>
+ <20240524-nvt-ts-devicetree-regulator-support-v2-2-b74947038c44@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,21 +106,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240524012023.318965-6-mailingradian@gmail.com>
+In-Reply-To: <20240524-nvt-ts-devicetree-regulator-support-v2-2-b74947038c44@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/05/2024 03:20, Richard Acayan wrote:
-> The socinfo driver uses SoC IDs from the device tree bindings.
-> Add the SoC ID for SDM670.
+On 24/05/2024 16:39, Joel Selvaraj via B4 Relay wrote:
+> From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  include/dt-bindings/arm/qcom,ids.h | 1 +
->  1 file changed, 1 insertion(+)
+> Document the Novatek NVT touchscreen controller present in devices like
+> the Xiaomi Poco F1 [1]. Also, include the devictree binding file in the
+
+Just name the DTS, no need for external link.
+
+> MAINTAINERS file.
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dts?h=v6.9
 > 
 
+
+> +
+> +  vcc-supply: true
+> +  iovcc-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        touchscreen@1 {
+> +          compatible = "novatek,nt36672a-ts";
+
+Messed indentation. Use 4 spaces for example indentation.
+
+With above fixes:
+
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
