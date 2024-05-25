@@ -1,48 +1,50 @@
-Return-Path: <devicetree+bounces-69165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4043D8CF0A6
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 19:54:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5148CF0B0
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 19:59:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 711621C20F97
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 17:54:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71A2BB20FA2
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 17:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C024A126F39;
-	Sat, 25 May 2024 17:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5E31272C4;
+	Sat, 25 May 2024 17:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dkZP4p+C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBmneknL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9486A86ADC;
-	Sat, 25 May 2024 17:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71F723A1C9;
+	Sat, 25 May 2024 17:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716659644; cv=none; b=YNNeFeRk5rH+JCHKVROjWztaLjan/bychKGcXt5Rep951AFoP2PeometjladAb6oB/7yw3Wh2htwtDOBkigkk0UXWyJZgTD+zeXJrxy9kMtxKeGqRQw2iZrAW9qKFEYMr31rHY+rmDw8pCwrhnUec7dvd1E9mSPiGwYUN7K8+kU=
+	t=1716659949; cv=none; b=nTBVflWTdt2adyUvNoFwROJmGMzGkszoPMHvNVgCmZ9pxvjjbNi+/gd38siY59fjieSEbALbK7gzIgNfI1ps8A/g7ZX+keQdpYN4BoduWMk896U8vwX2/y1KjHIMewc5+725m1I7LYz7gqiz3gsFk/yVXRgGfDQV8hhcqYDgmNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716659644; c=relaxed/simple;
-	bh=/9E54IUa5vKqZmcSc3DLwHGDSPhA2ETj0P/v7ZZUru0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Ljic0iIM50V98u2tLBCMdCdX4qtHhJ1huJcwTKf8q0tpIKfqUmO/zixnKqhqAMzFaqXfis5iN5vBGDn3m5vkXyCrkOuo9Kb3xAzsGiBjYxy3tfNWd7EUyLeYX7WGmszJtbBRCzZqFKPiUCPSXdyMVJDBOVxWdW1R7wYt7XL9VME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dkZP4p+C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 621E2C2BD11;
-	Sat, 25 May 2024 17:54:03 +0000 (UTC)
+	s=arc-20240116; t=1716659949; c=relaxed/simple;
+	bh=D+M5uC/gLzRtwYP8kRKD2zieRkaDxcHiXzI6VKM923E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hmc74j4RnrYGzCTp67hsnWPaCcQtW1mflPFNfFKAi4ql9Iy3BjBT7/D48qgVaVXLXdWLzRwreKwhpi3EClvvJSLRdbxPqUO5X9KSYF0blcy96raMfnDwihCKE2mV12IkJS8Fb68E3HBCApFEc4nm3sX9jKuNcImGoKEaasML7p4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QBmneknL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9CC9C2BD11;
+	Sat, 25 May 2024 17:59:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716659644;
-	bh=/9E54IUa5vKqZmcSc3DLwHGDSPhA2ETj0P/v7ZZUru0=;
-	h=From:Date:Subject:To:Cc:From;
-	b=dkZP4p+CKgUo2frJeR4ZNrwFaSroISb/+RALAfMT+9P7Qn3o1Fcho4RomV6G1SZ7S
-	 AJCsj7mJvISR6+qDxDakuqufuUTgKWIVZ7q27lRjh5fp8LJvNGbty4Qj5BYVwO0908
-	 DZpHIKMdtx/b/Pm7F3VQEzKsdnPbvXb8G9YdSf/1MbccBpJgcb5VIoA6ivCGJ96lew
-	 WTI60mWQdDv/f2P0MCTxEP/ffXOf8ZK3ZZ8d8mPa7669LkyPQhIGT2tArUU7wGverI
-	 2VluggiTpVRdSNabE1KehI60K+rr31FGIZ44DvLU4hXj78QpUhfNPF9R+qFv+NdW6F
-	 R4nHQSKxPbMGw==
+	s=k20201202; t=1716659948;
+	bh=D+M5uC/gLzRtwYP8kRKD2zieRkaDxcHiXzI6VKM923E=;
+	h=From:Subject:Date:To:Cc:From;
+	b=QBmneknLLtl4Pb9C54CyKSYirsSIUkfWLTaivAUcgoKnCROBDNg1dJV6qTnb3GJJG
+	 SnROZcHiP4KWR/7zgp+01Lq5ftBjJFmEfbmcJorQUdQRwDVdCdiGqrkTQsyN5aynkF
+	 l5a7gOCCCmn4BRDnVoOqf9tG7BrIWSgyJJG0ogKYTQkGyQodQGDmxnEoKQZJlR7RY9
+	 EXJRiLeXIKL/XamFQGW2GF2ZDg+1yMRiiPMt7SP9LFeiQ5GjgLLAHllfJc4UJh8C8f
+	 YB99eKZGKnQyZRgSRHTtfzS8WxRQ1q9H8vCJ3Wc9XrMNoeNJNmGx1grJPQYw3qR/Ym
+	 v4KG3hRSHe0nw==
 From: Bjorn Andersson <andersson@kernel.org>
-Date: Sat, 25 May 2024 10:58:52 -0700
-Subject: [PATCH] dt-bindings: arm-smmu: Fix Qualcomm SC8180X binding
+Subject: [PATCH 00/10] arm64: dts: qcom: sc8180x: Enable the USB multiport
+ controller
+Date: Sat, 25 May 2024 11:03:53 -0700
+Message-Id: <20240525-sc8180x-usb-mp-v1-0-60a904392438@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,78 +53,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240525-sc8180x-adreno-smmu-binding-fix-v1-1-e3c00aa9b9d4@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIANsmUmYC/x2NywqEMAwAf0VyNtCHYtlfEQ+1jZqDcWlQBPHft
- +xx5jDzgFJhUvg0DxS6WPmQCrZtIG1RVkLOlcEZ15ne9agp2GBujLmQHKj7fuLMkllWXPhGb/1
- gbAqdjwPUyrdQ1f/DOL3vDy3NWTNxAAAA
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAAkoUmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDUyMT3eJkC0MLgwrd0uIk3dwCXZPUJCNzi5Q089Q0QyWgpoKi1LTMCrC
+ B0bG1tQD35vd1YAAAAA==
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-usb@vger.kernel.org, 
  Bjorn Andersson <quic_bjorande@quicinc.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1620;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1715;
  i=quic_bjorande@quicinc.com; h=from:subject:message-id;
- bh=uqLaeur6Ki8/NC3RQKXPLAWlmHc2yAqNwMSVoGUCLyU=;
- b=owEBgwJ8/ZANAwAIAQsfOT8Nma3FAcsmYgBmUibc0PlVG63qaFlnc+puNVGs19t2Z7OG+HJS8
- FjWRWn9bi2JAkkEAAEIADMWIQQF3gPMXzXqTwlm1SULHzk/DZmtxQUCZlIm3BUcYW5kZXJzc29u
- QGtlcm5lbC5vcmcACgkQCx85Pw2ZrcWZJBAAtDfq5SYykwEK4mJdGQCrC4NB/TIa/FtbhGBXcsg
- YKsSK8uGfNsIZoecNB6CeCIhV35y6FzOljAdXNRmXUetjz8kdLUxHKUx6X9BBRiiJcqp8MITh6+
- WdjIva44w+5tKxoGrSn1y5j7vGAjmRf8UXuYUFQpvx0MiVqjpFuXFyUFZWrFBI+CBiawWNOzna1
- EgrkDbGZ7SRUNB8I4wGC010Z8L6xO1+BmlXm/5nCKv+LPxCNCT7NB5PGfpklWZixrywihLu1sB7
- y49ZSgfpTsS87yYvlkojkWbS/SjtS/4wDo+CQa8Qpw9SzOa9M8Y5/6DWGPwe4NNhd4KI6HA9N2N
- GV17QHtwlxEdZse+niZsCPWHcUyaaRQxDZOlNPZOR04VDsmAdo/ee9IpJLC26WMt5US9FxR5oix
- xTxn2R6pAUKL+6PgEwMZlkB7qu+RgvJ53iIIZ8vQY9CTefqe/AdUxcyjPinl3EAICyjI2vPC4oz
- CWlxxxJP+RSn/eKC6X9xYlaAt8t5VCuG7hiWjsMI7TeR8lbHajUXt+FjAAL9+4xXS1p3xT/BJw9
- CmzECvcD/8RiXlgY3mxMkp+6vzwSiPQlRKSSlPrHi9ztU6qVNlcZBTGVD5NgYjFUsJdzyki5S/I
- kbUf+sRdU9TXtYvY2lDRK3sEafmi6UgwjV8iJGKPwCVY=
+ bh=D+M5uC/gLzRtwYP8kRKD2zieRkaDxcHiXzI6VKM923E=;
+ b=owEBgwJ8/ZANAwAIAQsfOT8Nma3FAcsmYgBmUigMuXpF5bHXK2P2/HJqaYU/pcjYTCVfnLLc8
+ 1gUlADCE2SJAkkEAAEIADMWIQQF3gPMXzXqTwlm1SULHzk/DZmtxQUCZlIoDBUcYW5kZXJzc29u
+ QGtlcm5lbC5vcmcACgkQCx85Pw2ZrcWE1BAAipMBeEOeI+AJ7au7JeaOu0DBn7s4jXiS84x5qzv
+ CPSqza4RbM3FtKrwSQs23BfOJFV9S/ZLrjO+zW4daRJJ5XOAKRCywrgcuhct2Arf/ZzNnd29kvz
+ 4e2LJAmPSh6oyESHvPHNz+MO9ZVvARzysIdk0JUvMmkyUJdryS+yxD17Y/1QCwUQQeful+fWV3f
+ WJNw1s4qDi+9zaKnuOG54Gx1Ead/QdOko02hME3OONx9iicRjXMHA64Hy9RKn+TWBpTwC3B52Jb
+ qL8+R0ku/W43FDuM3VHyidN2i3hKSZlOiMOc9fZa5AHZRRYzVr6hZLX/EgrMHmfoAtW+P03fDAY
+ ub3chdOWDzHt8OAbyujHu+6e6dYJ49FpiEb2h8sMWC3xaWHBbmrgSQhblXpCw88jRSG5yfBMen3
+ rpZWhZNs3j06tD+R7GnqyFmSBd9McbGbmY7dzRCNGwXmEnZi9qp6SjWC4GCjHLEbJzCydyA+ugy
+ dMC2NtNU1oLwa3znMUp+P8/GyOzKp6dc9IT9NyWrODwr3XF1ej8TtzE4LwBwRM0mK8KSU1LH/12
+ Iw+8e3DPp6yOOUPdwq4CCn3/30LDbz5oCGTO6ef2z1orwIhsDSU6y00Ub3+pmGFhG0rBFIN6XqU
+ uqX9+hycBFYnLrUYkCAG/dZb9bcg+NY9yH8Bm17094KM=
 X-Developer-Key: i=quic_bjorande@quicinc.com; a=openpgp;
  fpr=05DE03CC5F35EA4F0966D5250B1F393F0D99ADC5
 
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-
-Update the Qualcomm SC8180X SMMU binding to allow describing the Adreno
-SMMU, with its three clocks.
+The USB multiport controller found in SC8180X is used to driver the
+camera in the Lenovo Flex 5G, and a couple of additional USB ports on
+the Primus AUX board.
 
 Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 ---
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Bjorn Andersson (10):
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add sc8180x USB3 compatible
+      phy: qcom-qmp-usb: Add sc8180x USB UNIPHY
+      dt-bindings: clock: qcom: Add missing USB MP resets
+      clk: qcom: gcc-sc8180x: Add missing USB MP resets
+      dt-bindings: usb: qcom,dwc3: Add SC8180X compatibles
+      arm64: dts: qcom: sc8180x-pmics: Add second PMC8180 GPIO
+      arm64: dts: qcom: sc8180x: Align USB nodes with binding
+      arm64: dts: qcom: sc8180x: Add USB MP controller and phys
+      arm64: dts: qcom: sc8180x-primus: Enable the two MP USB ports
+      arm64: dts: qcom: sc8180x-lenovo-flex-5g: Enable USB multiport controller
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 5c130cf06a21..7f584ce4bb22 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -86,6 +86,7 @@ properties:
-               - qcom,qcm2290-smmu-500
-               - qcom,sa8775p-smmu-500
-               - qcom,sc7280-smmu-500
-+              - qcom,sc8180x-smmu-500
-               - qcom,sc8280xp-smmu-500
-               - qcom,sm6115-smmu-500
-               - qcom,sm6125-smmu-500
-@@ -415,6 +416,7 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - qcom,sc8180x-smmu-500
-               - qcom,sm6350-smmu-v2
-               - qcom,sm7150-smmu-v2
-               - qcom,sm8150-smmu-500
-@@ -550,7 +552,6 @@ allOf:
-               - nvidia,smmu-500
-               - qcom,qdu1000-smmu-500
-               - qcom,sc7180-smmu-500
--              - qcom,sc8180x-smmu-500
-               - qcom,sdm670-smmu-500
-               - qcom,sdm845-smmu-500
-               - qcom,sdx55-smmu-500
-
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        |   3 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |  29 ++++
+ .../arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts |  32 ++++
+ arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi        |  16 +-
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts        |  60 +++++++
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 175 +++++++++++++++++++--
+ drivers/clk/qcom/gcc-sc8180x.c                     |   4 +
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c            |   3 +
+ include/dt-bindings/clock/qcom,gcc-sc8180x.h       |   4 +
+ 9 files changed, 312 insertions(+), 14 deletions(-)
 ---
 base-commit: 3689b0ef08b70e4e03b82ebd37730a03a672853a
-change-id: 20240525-sc8180x-adreno-smmu-binding-fix-313701c843a7
+change-id: 20240524-sc8180x-usb-mp-4eb278df7ef1
 
 Best regards,
 -- 
