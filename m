@@ -1,119 +1,132 @@
-Return-Path: <devicetree+bounces-69116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 105A08CEEE0
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 14:25:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 415B88CEEE9
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 14:41:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 881B61F21617
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 12:25:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72C8C1C20A60
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 12:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632B93C08F;
-	Sat, 25 May 2024 12:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A403C08F;
+	Sat, 25 May 2024 12:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WBZou4/4"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="wgneB7Q/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381C025601;
-	Sat, 25 May 2024 12:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82395DF62;
+	Sat, 25 May 2024 12:41:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716639950; cv=none; b=DmHhK5ZQTMpkckk3Bq7jCkzhbmiNLPwyXAcpdnLzIDayQffb2IG9nWEC3bbIuO2cLgdaRwHKdp5o8DySD20TZVnRltZnvhh97B/vkNRSzJDyrHzxenBFrNfdTIdZXBhey5q4ofXN2vccZEFqApWt9+GHhRVIBPeQ6S1hMTzOjD8=
+	t=1716640879; cv=none; b=dJl4stIeuBuR4sVc5t3EaC6MjtKBWSTmkm/UWYTzKSNhL6/uplW7wthp3ckP9Vb2RmYP+q2PqXnsPReHlxBAkG99mpvVCg4dQhbGDRaq7gShiPD4/LsWolw5m1ODKTkNNq6WZzD/UUQGDTJFWKg410CqKCN3w6XuTkI1och3bto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716639950; c=relaxed/simple;
-	bh=uuutn1siWRfLN8VrmLQsvkar1/xh4in+lXCkVh75NNE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V8S78Bfkexd8zBcod05S2XIJR5O+YZZz/SRcPX0LydaTub9mjCQXCTzdt8KGRcZeJK5Zl1j5dcNfVmlGU8QSwKuuo1TgxP5Pj9T3Ph0cgqFbR/NI2jP8UNq4XF0/eaqG3s2RM4OoQMkQcTpFkXYVWvJnxPMoapYc6XsbvSwfCqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WBZou4/4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51AFEC2BD11;
-	Sat, 25 May 2024 12:25:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716639949;
-	bh=uuutn1siWRfLN8VrmLQsvkar1/xh4in+lXCkVh75NNE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WBZou4/4P5uSEv7MlskTVJ8tOAnh1CurHxktslMywg/aVBTxLd0yHQnlopmMJOQZP
-	 9zMUwcSPMfzhxw6XXGAdYuT3N+3jKIkfkckiDqEYN08hCCdm+3Z1z80IA4ejMcy4Mn
-	 nFwy8nVkYRGJRhILFK4300UaJXoaOJnYYHRr+guvJKWFp1FSgP3coKXGkcM8ozRczF
-	 KqJCWak29MjcrIDHjWsLkrXhlN8xwmMXWKDi17wVEp2Mz/uRFlp5i7nyU5GuAW0A4A
-	 JQq2N9wY49GWimQQsKpgs5zVK7pwCryLU3ixytCWpc4w0NMJUntuT5C09cEfyBSG6J
-	 h14wh0R4pNsKw==
-Date: Sat, 25 May 2024 13:25:45 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: Henry Bell <dmoo_dv@protonmail.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: RISC-V: add Star64 board devicetree
-Message-ID: <20240525-shirt-scratch-6708b2a4f63b@spud>
-References: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
- <1b55aad1-1442-41a5-acc6-16baab90c021@web.de>
- <caCBlFpvjmhO9G1A1_2qHImmuoGai2NoPYonB5RCVftq4zIrSxlP8Msh9z_FX9GwQXzfSrB40dRxy1zfxZesOJENeebWQsERa03sDvArzec=@protonmail.com>
- <20240525-dumpster-bootlace-10123081a6f2@spud>
- <b52685a3-127a-4367-b11a-54ab88467dcf@web.de>
+	s=arc-20240116; t=1716640879; c=relaxed/simple;
+	bh=7ZviCUB/6lSFNWCT4XaECeaxvcTOrRra9ubMc9FPOP4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QJRcaO/+b19LUfdW+F7XX912q9YOvOXbz/DbS6pJxZW8gen8bdoKnDRIVL8BVPBZ3b6aQZ59aH45Uwk9CaR+DTCS/p+kG1jvnpPIowneXvNnc4eak5C2b1jtnlygU9Z+eZ01DLBjZ9Aftl2XjioAj0dheWj3iQ8oNyGq6fHQKsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=wgneB7Q/; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1716640862; x=1717245662; i=markus.elfring@web.de;
+	bh=7ZviCUB/6lSFNWCT4XaECeaxvcTOrRra9ubMc9FPOP4=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=wgneB7Q/+jVmeHNdKGzQxIHu4OkyOgIjaer+RuHSun7lABKV9b92tPk8BL7OoAGD
+	 gs3lhU89WmbTxA5x09HbJ9CfojMgMxAng0FxGwBd3dUzaWLO9mcjEfwYNZx/G0QKL
+	 ytKsxOBiz1UcGyQ0QGcpRh26xiVew946O9xXEbS3vuB26kPyavFwCS3ysn2lr5wHm
+	 RQ2GBm8zgyUPoO5l1y3WOulWZSs1emvTJXnTM5KUZ59AdM8vGM7wy0M+PIYr+btm9
+	 1X7HixKKVzu/URFT++M1DFUjC4z0Pl8xmDcJUhMNNBpdz0YaS+BPhQHAJfHyKR3cz
+	 AzvqNkxIcViNNNeANg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MWzD3-1rzW1U49Yv-00QEPd; Sat, 25
+ May 2024 14:41:02 +0200
+Message-ID: <3aeb3813-9a82-4b1f-9dd6-5baad2d45f2e@web.de>
+Date: Sat, 25 May 2024 14:41:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6WI4GTcOugy2KI8b"
-Content-Disposition: inline
-In-Reply-To: <b52685a3-127a-4367-b11a-54ab88467dcf@web.de>
-
-
---6WI4GTcOugy2KI8b
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: RISC-V: add Star64 board devicetree
+To: Conor Dooley <conor@kernel.org>, Henry Bell <dmoo_dv@protonmail.com>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor+dt@kernel.org>,
+ Emil Renner Berthing <kernel@esmil.dk>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Rob Herring <robh@kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>
+References: <IPHlm5mOKUzYfwGy0auyufx-oPkSrtQjUjiQLbtvspD69UPX9O98iB8P2mqM8ahNaerz0yUa009f4XABRniq7aj2PUp83hbRVVhhKmqT0Ss=@protonmail.com>
+ <1b55aad1-1442-41a5-acc6-16baab90c021@web.de>
+ <caCBlFpvjmhO9G1A1_2qHImmuoGai2NoPYonB5RCVftq4zIrSxlP8Msh9z_FX9GwQXzfSrB40dRxy1zfxZesOJENeebWQsERa03sDvArzec=@protonmail.com>
+ <20240525-dumpster-bootlace-10123081a6f2@spud>
+ <b52685a3-127a-4367-b11a-54ab88467dcf@web.de>
+ <20240525-shirt-scratch-6708b2a4f63b@spud>
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20240525-shirt-scratch-6708b2a4f63b@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:CxPNXD7l6EM9E57TBcClo6tiFuHrL+82ELChilSGwI5G+i6gBZ6
+ /5SsVq1xUBJVOQCDKy1aYKX//RozpMRI4fznh6el42YVnrr3ZEzIloNMgvW2BWuRlmVchCE
+ N28MO4QJZzdMdC5+XLEEhZPJhVeXQVOF8LPXzKS37ILeLbRMgeGTW4lPt6T/LZMklvMsRX+
+ e2/QXchk8/MjP/lQ2dTDQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:jkgHsTc38j8=;eVO6GgRHlUgM/p7JnxdTdFAMzkE
+ Rxbk08XB7XnfNSsOOWF8BNoumfxz9zwuDS2JYe7rfFV/R7zKCbEpo7galTmlwzeOTxSkVM+Gt
+ Ejgp6/RVrUxAoj0/HU783BraiZ+OpA53MMcpLcPRUvpwOCyRfKlwIC07olO55pUxzbumeOswL
+ Ch7fsHgvCmVxgfdcm9OYHwQ0gp5sBtTHNkS+IPEPVxrhHOJSEdCEYzLNXW9SdYMPllAnEbByN
+ GytMFzm3DJCqnsOlQgEzk0lAmw6Odq1qQTyB77+R7KwM4AGswc7mY0skGIMctqmk0KiSzeyNL
+ wwruCAnhMnw+vgDS9UaZlS8+uqGja8tKI11+tv4HxO32S8JDFKsdsBLcASMlr4x1TzUgWanp1
+ YCwFKmbNXeDChNNNdj8UiKeX1JnEYw6NhtAVA2xqDQ9eSbHwr3zGSCx7xZ1QXQCa+DlkkI8Be
+ so49rILwDUx6KyJjcKGg6nll3RMJVUg4rstg/2/2tMGf5BLbtHS4b4xZbAKye10hjESyAOp7x
+ RiQmN3P8zq/HB/hvrUlO9VIJltKa9I6bggaWrvC3bqTtQsQh8xBGH/jiVcS9REOWTetADP76t
+ 4yVMSA2xXO6APwftKb7JwVElXjAPYZodqEfMJssRbru/PdlXsqQZRzQFBHh4xKzTWtptUGOiH
+ 8YgadPhbRN/KI+6zziOAXNC6nEnleAkzfAeGmEV/FOlO7QXoPNIXefKhrweyCMH0rhEhwn0nO
+ tGS2cj8WWLEembz1gb7D2UVUjHKKzXYXI0zcxBzOwED+Qxpn7J48efclCcbruToh3irG5++vY
+ 5UE2lby9AUDj0Rp1PbmP4wm0j6ymRIkAZsJ5/pvS+WN9M=
 
-On Sat, May 25, 2024 at 02:11:05PM +0200, Markus Elfring wrote:
-> >>> Would you like to add an imperative wording for an improved change de=
-scription?
-> >>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/Documentation/process/submitting-patches.rst?h=3Dv6.9#n94
-> =E2=80=A6
-> >> I'm happy to change it, but was going off the format used in Conor's  =
-Milkv Mars commit
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit=
-/?id=3D04a228aadb84d894721b13197649ca741f3018bc
-> >
-> > Don't worry about Markus, most maintainers (myself included) ignore his
-> > comments on patches. The commit message here is fine.
->=20
-> Would such a response mean also that you are occasionally ignoring requir=
-ements
-> from a referenced Linux development guideline?
+>>> Don't worry about Markus, most maintainers (myself included) ignore hi=
+s
+>>> comments on patches. The commit message here is fine.
+>>
+>> Would such a response mean also that you are occasionally ignoring requ=
+irements
+>> from a referenced Linux development guideline?
+>
+> I do ignore it from time to time, yes. Being a stickler to the
+> guidelines wastes everybody's time (just like this discussion).
+> That said, the tense used in this patch is perfectly in-line with the
+> guideline you reference.
 
-I do ignore it from time to time, yes. Being a stickler to the
-guidelines wastes everybody's time (just like this discussion).
-That said, the tense used in this patch is perfectly in-line with the
-guideline you reference. "Add Star64 board devicetree" is in the
-imperative and the commit message body contains additional information
-about the board's configuration.
+Partly, yes.
 
-Thanks,
-Conor.
 
---6WI4GTcOugy2KI8b
-Content-Type: application/pgp-signature; name="signature.asc"
+> "Add Star64 board devicetree" is in the imperative
 
------BEGIN PGP SIGNATURE-----
+This information fits to the summary phrase.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlHYyQAKCRB4tDGHoIJi
-0oTUAP94LrOxy2p8XfaXuefNL2Vk1HswZhmUTF28/ERnU2emAQD+I1g497DfVS6G
-WaJk05M15ZqUswocaw+gXzJOKt7XjAs=
-=LQw1
------END PGP SIGNATURE-----
 
---6WI4GTcOugy2KI8b--
+> and the commit message body contains additional information about
+> the board's configuration.
+
+I hope that further contributors can follow the recommendation better
+also for the imperative mood in changelogs.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/submitting-patches.rst?h=3Dv6.9#n94
+
+Regards,
+Markus
 
