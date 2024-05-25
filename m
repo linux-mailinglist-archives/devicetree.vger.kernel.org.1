@@ -1,65 +1,69 @@
-Return-Path: <devicetree+bounces-69139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04DBC8CEFEB
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 17:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D012B8CEFF3
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 17:52:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 468A0B21268
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 15:50:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6959AB21291
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 15:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1DC376F4;
-	Sat, 25 May 2024 15:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A825A7A0;
+	Sat, 25 May 2024 15:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QTzyfmWB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RyUxLVqb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFD01877;
-	Sat, 25 May 2024 15:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8AC85628;
+	Sat, 25 May 2024 15:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716652225; cv=none; b=ojHzVmbVuodR1npw+89Opss2oKfNz9CFqTjUeeVubT6lJibaWJrxjWV36Z1gcP1MW1RmvwZ7o01jGQ3iLhbuU59Yw35JbdZidcnu/yafDqmsTnee2bk2wmn+GIEZ3siCJM5NjVjrlgbkPNQIuGvg0kPMaxxTI2GW0pwwfoZjPo4=
+	t=1716652342; cv=none; b=GqP8umVACdSKu3MPJjyLrnCWEWMSvzOXqaIc/BXyfO2DnewHMtvQxzJ5tX9juqrnLHT0D+pWugDf0wm3btK86S/+9loZeeThjBaWPg0tH3vMpKexBXSeioiPwsmUpwOVTrdr75c+VTlib6CHzn7SU65eoqXxJOk36WEUclNYprg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716652225; c=relaxed/simple;
-	bh=vEFLHVjNtQlgF5brmdGsKTnFnwRA9guZrFAtVbbZVcM=;
+	s=arc-20240116; t=1716652342; c=relaxed/simple;
+	bh=2qvfe4Hqy1g41g1MNI1wwUBi2pgt//ZFn04XX9hGjVs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FqvvDPs0e/o32SdC6CGtrQQNKRPi5OFYs9L7/k++1IxDraqBuZTnL9vZ3IokJtCVt9u3P/9PX9HR66jXHTK+F46rgHxVTrq4C32q7ac9fQSzQIXNBojkwLXR0ykS8Quebzj1XuosA0j4dmWvJ4VZB731i9vDYwCeS3H5jywnzlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QTzyfmWB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79266C2BD11;
-	Sat, 25 May 2024 15:50:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g45rkHv3gG9C5rsBnysurGx7I9C8cuQ21qGGjKG6+lZCk6UfdQu9TtP3mk1z/6mguk194rLzxkd8+bSCd/7iD6+TbZRvOqUPKYXrMD9avFs7PTvZFmpPLW/7gbr2bqI4FIaQQX/NYwJqsHcZSNMBuxvHBupAw3PcP9CqWUfun7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RyUxLVqb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0016C2BD11;
+	Sat, 25 May 2024 15:52:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716652224;
-	bh=vEFLHVjNtQlgF5brmdGsKTnFnwRA9guZrFAtVbbZVcM=;
+	s=k20201202; t=1716652342;
+	bh=2qvfe4Hqy1g41g1MNI1wwUBi2pgt//ZFn04XX9hGjVs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QTzyfmWBMdY17vX/jDE7j0qh0ahmwEg7XjmbIdNxPJBaPYAxnuaOm2kutm8DNhOEq
-	 IgrR6hQChy6k4M3B2v9OYp/7BmUAszrTYFSsX/b6e0G6sKxIy012I7usOlfQex5QFl
-	 z2hTwFJq3D2P43Qu+aAaoDRm3uZVdBKN6FnAMdzIXVFlELfCTpv7FM/X7sxAkyhP0d
-	 VlI56sJc6aLtLDpmhmYpHu3vECznM3oOlh46CSmH2kkEGJR4AzEiYaEo6t8zaFpbzt
-	 jFEou3RLL81bc31bBDvK7ZXPjr7lOlPS2TdpMUGB1a/uVJsnFqUW/2jrP+cIXmHOFk
-	 EseoNK09Xi7+Q==
-Date: Sat, 25 May 2024 16:50:19 +0100
+	b=RyUxLVqbnr66RHDchWK1j9fcjgjOUbNBdfzUnplaSXjNXdIxRk2Kzz7x7q7tR31hg
+	 7llkAV+pzz6y2aUcVCT5qvl6J0Hb8NIqVAYK5yJ9StvuzBt/+lYo99oexZbtZnQWyK
+	 CIb/u9d/+yWhmdAtvYvxQaT3T9PZJKx7ZNqcgyW23HEnCM3VCYluXepj4aM0Y7O2SX
+	 kxHgr4zV2rQbEbSsHYBBos+TnUGTKrkCPupik65vrCjb7zIrmNlZ3KfrMaU2FeCLf/
+	 uNtNVxHYBXkgctSHG0QE+kAqqV5j219gk/M/v6W8aCzseDiP3z7M4QvI4dlQTfVXyS
+	 Ga6u+ge/bMyYw==
+Date: Sat, 25 May 2024 16:52:15 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/4] dt-bindings: clock: renesas: Document RZ/V2H(P) SoC
- CPG driver
-Message-ID: <20240525-filling-revolving-307de19dd4c5@spud>
-References: <20240524082800.333991-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240524082800.333991-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Vibhore Vardhan <vibhore@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+	Martin =?iso-8859-1?Q?Hundeb=F8ll?= <martin@geanix.com>,
+	Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/7] dt-bindings: can: m_can: Add wakeup-source property
+Message-ID: <20240525-outdated-unopposed-857d30708413@spud>
+References: <20240523075347.1282395-1-msp@baylibre.com>
+ <20240523075347.1282395-2-msp@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,157 +71,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YrfRGz1H/vfng7dJ"
+	protocol="application/pgp-signature"; boundary="nfBgOn45vCwmUCoC"
 Content-Disposition: inline
-In-Reply-To: <20240524082800.333991-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240523075347.1282395-2-msp@baylibre.com>
 
 
---YrfRGz1H/vfng7dJ
+--nfBgOn45vCwmUCoC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 24, 2024 at 09:27:57AM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, May 23, 2024 at 09:53:41AM +0200, Markus Schneider-Pargmann wrote:
+> m_can can be a wakeup source on some devices. Especially on some of the
+> am62* SoCs pins, connected to m_can in the mcu, can be used to wakeup
+> the SoC.
 >=20
-> Document the device tree bindings of the Renesas RZ/V2H(P) SoC
-> Clock Pulse Generator (CPG).
+> This property defines on which devices m_can can be used for wakeup.
 >=20
-> CPG block handles the below operations:
-> - Handles the generation and control of clock signals for the IP modules
-> - The generation and control of resets
-> - Control over booting
-> - Low power consumption and the power supply domains
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->  .../bindings/clock/renesas,rzv2h-cpg.yaml     | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzv2h=
--cpg.yaml
+>  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.ya=
-ml b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-> new file mode 100644
-> index 000000000000..baa0f2a5b6f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/renesas,rzv2h-cpg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/V2H(P) Clock Pulse Generator (CPG)
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description: |
-> +  On Renesas RZ/V2H(P) SoC's, the CPG (Clock Pulse Generator) handles th=
-e generation
-> +  and control of clock signals for the IP modules, the generation and co=
-ntrol of resets,
-> +  and control over booting, low power consumption and the power supply d=
-omains.
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a09g057-cpg
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description:
-> +      Clock source to CPG can be either from external clock input (EXCLK=
-) or
-> +      crystal oscillator (XIN/XOUT).
+> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b=
+/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> index f9ffb963d6b1..33f1688ca208 100644
+> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> @@ -118,6 +118,10 @@ properties:
+>    phys:
+>      maxItems: 1
+> =20
+> +  wakeup-source:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: This device is capable to wakeup the SoC.
 
-I think this description should be in clocks, not clock names.
+It seems to me like patch 1 & 2 should be squashed, with "wakeup-source"
+depending on the correct pinctrl setup?
 
-> +    const: extal
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      - For CPG core clocks, the two clock specifier cells must be "CPG_=
-CORE"
-> +        and a core clock reference, as defined in
-> +        <dt-bindings/clock/r9a09g057-cpg.h>,
-> +      - For module clocks, the two clock specifier cells must be "CPG_MO=
-D" and
-> +        a module number, as defined in <dt-bindings/clock/r9a09g057-cpg.=
-h>.
-
-Can you please explain the difference and why it matters? Why isn't the
-unique number for a given clock sufficient?
-
-Thanks,
-Conor.
-
-> +    const: 2
-> +
-> +  '#power-domain-cells':
-> +    description:
-> +      SoC devices that are part of the CPG/Module Standby Mode Clock Dom=
-ain and
-> +      can be power-managed through Module Standby should refer to the CP=
-G device
-> +      node in their "power-domains" property, as documented by the gener=
-ic PM
-> +      Domain bindings in Documentation/devicetree/bindings/power/power-d=
-omain.yaml.
-> +      The power domain specifiers defined in <dt-bindings/clock/r9a09g05=
-7-cpg.h> could
-> +      be used to reference individual CPG power domains.
-> +
-> +  '#reset-cells':
-> +    description:
-> +      The single reset specifier cell must be the module number, as defi=
-ned in
-> +      <dt-bindings/clock/r9a09g057-cpg.h>.
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#power-domain-cells'
-> +  - '#reset-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    cpg: clock-controller@10420000 {
-> +            compatible =3D "renesas,r9a09g057-cpg";
-> +            reg =3D <0x10420000 0x10000>;
-> +            clocks =3D <&extal_clk>;
-> +            clock-names =3D "extal";
-> +            #clock-cells =3D <2>;
-> +            #power-domain-cells =3D <0>;
-> +            #reset-cells =3D <1>;
-> +    };
-> --=20
-> 2.34.1
->=20
-
---YrfRGz1H/vfng7dJ
+--nfBgOn45vCwmUCoC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlIIuwAKCRB4tDGHoIJi
-0n4GAQD921aZa5FY8XO8s+yulU416c2y8te4wVBJ03h/gT9KGQD+ICZ0JYB74irE
-Twf060MsdzypmYOhBIigNoztmynchAA=
-=OxST
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlIJLwAKCRB4tDGHoIJi
+0romAQCU+ufTErbUDP+o6575ok++8ihKyYxbBj8T5Nwl6VZJHAEA8xmFsrpPwQOV
+YAip06pvaKrUzD5redLLLU+5MWfopwk=
+=rATI
 -----END PGP SIGNATURE-----
 
---YrfRGz1H/vfng7dJ--
+--nfBgOn45vCwmUCoC--
 
