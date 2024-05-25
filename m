@@ -1,224 +1,142 @@
-Return-Path: <devicetree+bounces-69102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2BA8CED5E
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 03:27:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F398CEDEF
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 07:08:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA2E01C20DD1
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 01:27:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 952D5281E9A
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 05:08:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A9279D8;
-	Sat, 25 May 2024 01:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E3B28F77;
+	Sat, 25 May 2024 05:08:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ipRCtaUF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gxXMZxHh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4CC246A4;
-	Sat, 25 May 2024 01:27:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAEEB6FB2;
+	Sat, 25 May 2024 05:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716600450; cv=none; b=qZ05I4oDQMAbV1AFShgvnZnVrDRAV8KwMtDUWKhMVrlvTLAxD2A2X9gP+pNNaiNw7m6ue6yQVhUWY+SrXNRnC/2DUjAx16Kdjj5/M/u4MRN0RDas/aJgHc8cPZtKkf1RchgJCviKQ0BSzugZh/O37pNoj9QW30K2iQVlZ7xT7lY=
+	t=1716613731; cv=none; b=CU/0LKQ+t1LFOiUEGkK7Ypx1nWyu5OJCWpXXLTP7TKnqWvZRpT3bomNpGiVDTm3EXk4cKk9uOFotSQxsPQKnRxRWvA3CkXFV4ivSvAjaN12m0qtt9sXLCeqQCaLLTGCX+LNfHNJzeSkOaMQFbS+fCCuNQJl7ZhERPysEpX8dv30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716600450; c=relaxed/simple;
-	bh=h8/x/nojwmlf2HnpF6hwawLk+eFeNc0MudxL4faEzdc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=SO9u66ES9jmufzhwV+q8E/wAPTApWVavPgfcSxhNCpYa6rtxC8zH6cKH5hjRSNLXnZRLihcvPXnMmpSVw2doRjNXElfOyZ8HcPUOnpWGLUgmN1ACKVUbdLjGcjGoqW7HUzstlnAZERDYtjBdUhOorRooSWhCFHGbJgi8bPxqLsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ipRCtaUF; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44P0JiMu017055;
-	Sat, 25 May 2024 01:27:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	08bJfs2H660VcmuoqOaZBlaE5FuMCkgrQv4/h/sI1t8=; b=ipRCtaUFB/e5y8Z/
-	w4yujab4GiKxbBKkEj017WTYf+IxvmoJiTTCBLZqJG8QZrczXvKSRtwwZQshLFqs
-	EsGc36rn8G7yp8Oce5jkbKDZGivWzJTrOohvY4BWKGCRVpsUjdYei6onQt8ieuqH
-	q7hlyKiaGOM5mayr0EqDVP+4Sy+P2aniQbG3BtoJKdkTuiGpR7MAl8Xp+eyZR+p/
-	y6eWHr0+Do4IZuTgT7osjBN/IvGy9LLMj+Dh73LSgJOm7Kh+c4b2T4c3A9n5wFn5
-	+q4JWH8xI8CCZP2cl7tkFGypRlZ4h5F4Zpz1hvOG3VVxX8d/hHgD40XRAHr0fV4a
-	FYV0VQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yaa9turp7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 25 May 2024 01:27:01 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44P1Qxc7032128
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 25 May 2024 01:27:00 GMT
-Received: from hu-clew-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 24 May 2024 18:26:59 -0700
-From: Chris Lew <quic_clew@quicinc.com>
-Date: Fri, 24 May 2024 18:26:43 -0700
-Subject: [PATCH v2 4/4] remoteproc: qcom_q6v5_pas: Add hwspinlock bust on
- stop
+	s=arc-20240116; t=1716613731; c=relaxed/simple;
+	bh=Ch8fTXsEA6nnZ1sGlkl9+pY+oU2puWTkcg2fbAtuuvU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OJu+m7X9UUBIf8h9WrhoERkNU6T2LWTnCGmWzdnZclt//nQs2v9Efw4QvI/1lhGqJHdN0IHJ4DGd2vc/9GiVRkuIQ/9Q4kHcWJtY2YnOzCzwrGFJifn6Ni9+ZTldhC1EJ+7lHEl+TTyBNxzS3P9ypyZ1wp91okP+uZOUbZ8px5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gxXMZxHh; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-62a08091c2bso17295307b3.0;
+        Fri, 24 May 2024 22:08:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716613729; x=1717218529; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XSgk+baR844zAblUaDMkEpfZeYyV0sBZ5dGlC1oDI/A=;
+        b=gxXMZxHhkk6AOHcuoHhVB0tNDl7eD/GHJxTfvl0gvW2GhfrjgNMzvm+3wvhhue+4VE
+         4nx/029eA1gXLLW0sq4E4zKKu7D4lj8ND3V0cOhaHRyLEbN3iuqSA2DGT8r3E1sumXgT
+         aOqJqji8FVeZ8Mjtpj55JYAxk7/rg8HSYmhHXmbMW9oLADAiObKKIZFIoqgz1FX/L/C/
+         FHDw2W8vHbf7w9jDrldiYNAYnaXg55ozi0eBK+Y/d3jCEetymf+sWzm1pKI7i0jBaRe9
+         2syP9hemBuOIkwWjG15Sz1cTT0AGJ7LJ0tdlVgHxxnRiy1rWlhqktKaXuZxEwDU9YZVU
+         13aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716613729; x=1717218529;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XSgk+baR844zAblUaDMkEpfZeYyV0sBZ5dGlC1oDI/A=;
+        b=qFFHyRVHXsbX0Fp40aviwFNLakdtqSkerpssjcFq+AjAo+fNsW8gqFpO27rwqzLUz2
+         iA938nIl2vFvV73uyzHUb1YRqPfvQ4uoKwilSfTv5VLA4ynjjlypFqteoPVgSSnX/wpO
+         To5xi9JbpD8y/ZzecE2TjUrBjvhecSDsHZ5oPakdqggSl/AyMBXbOn6M6CPdf0CSRuyx
+         4DOxHd4NsI3WZmBp1d2wqJIR08NhpidC00CJsOPSJQ8EtUtiFTQMnG0FRZ1feH/jehTW
+         rq2vLUrIFojr+MIankRYI1ovKChz+JpeRdetochHoXCJ6R/TXq19gRAVR7DoumOJIWM3
+         G+yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVrNmPBMpgT6nkrBCb3jtG1wD9scRsMe9Nr3t4IyeGTFILnaybOWGidtKiaUwzQxf0wK7GllPlsV8IEcfpqYWkxMG79IBqGhAImXa1ottBOBLZnkJkyEaGKsPQOR/yYixygxGX6NA==
+X-Gm-Message-State: AOJu0YxT8eRhzUvoErSBUDd4QKU1ATc9aYV5VfgAB+D76hXZVeN+7zGI
+	VZ7mZqajthbj+4He6stxAzwZkuAZLuB5hqCvCksdIed2CZPy+IFuhDSNHwrkhf83T7LGrsW4dH4
+	ele0xZQsWvoH2g9rsQHDNwolKq2M=
+X-Google-Smtp-Source: AGHT+IEe7T93CH3JvuuRNGnGd/OvQHiVdTzH9WQxyAVXavCVmBP09n+osepSlfsoMrC0vCqXCTQlEhoHubeqYF2/rLs=
+X-Received: by 2002:a0d:cb85:0:b0:61b:9369:ef37 with SMTP id
+ 00721157ae682-62a08fa9dd2mr38836907b3.46.1716613728725; Fri, 24 May 2024
+ 22:08:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240524-hwspinlock-bust-v2-4-fb88fd17ca0b@quicinc.com>
-References: <20240524-hwspinlock-bust-v2-0-fb88fd17ca0b@quicinc.com>
-In-Reply-To: <20240524-hwspinlock-bust-v2-0-fb88fd17ca0b@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Baolin Wang
-	<baolin.wang@linux.alibaba.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        "Ingo
- Molnar" <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-        Waiman Long
-	<longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-        Jonathan Corbet
-	<corbet@lwn.net>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Chris Lew <quic_clew@quicinc.com>,
-        "Richard
- Maina" <quic_rmaina@quicinc.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716600418; l=3371;
- i=quic_clew@quicinc.com; s=20240508; h=from:subject:message-id;
- bh=04VWK3g6daj/n9WPpcOfbHpyv8+UkjZcCDj0SDZ6cE8=;
- b=rkRDw9j/Vbw5Sfy9p7uhuLgqMbtCxt99HCUMSJLbzl3BX0avLe+RswqlwChprCCCiBSsJvtw4
- sPg+0yWJYFOCCXD7VnFeTi0qhFwQFiQWSxDSzDNPhRzOaThpgTxVcBh
-X-Developer-Key: i=quic_clew@quicinc.com; a=ed25519;
- pk=lEYKFaL1H5dMC33BEeOULLcHAwjKyHkTLdLZQRDTKV4=
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2BqomTspuyfdFmaWviBMMXYn6-8mCn4L
-X-Proofpoint-ORIG-GUID: 2BqomTspuyfdFmaWviBMMXYn6-8mCn4L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-24_09,2024-05-24_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- spamscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- malwarescore=0 adultscore=0 suspectscore=0 phishscore=0 impostorscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405250010
+References: <cover.1713164810.git.zhoubinbin@loongson.cn> <c89917023b49fff70bc89ddb66be7da4e0fe67ef.1713164810.git.zhoubinbin@loongson.cn>
+ <t3efvxh4d2xvjh4pfrdnho6mwonwm6spjer72ww3wiqx2v3a2x@52ufzsdhc44i>
+ <CAMpQs4KyX3A-Bxyp7+evBT5Umb03OvpV0VtqrNjAnZPYZ_dNQw@mail.gmail.com> <aqcpf2tjt4iywxc7vgddkzaxtotlua2mnnpfsivpwobrc64neo@gylq5sl6sahk>
+In-Reply-To: <aqcpf2tjt4iywxc7vgddkzaxtotlua2mnnpfsivpwobrc64neo@gylq5sl6sahk>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Sat, 25 May 2024 13:08:37 +0800
+Message-ID: <CAMpQs4KH97LXJSU5g6r55UKDA6Rg9UdCO2+6K5owDDVcG2YCkA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] pwm: Add Loongson PWM controller support
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Richard Maina <quic_rmaina@quicinc.com>
+Hi Uwe:
 
-When remoteproc goes down unexpectedly this results in a state where any
-acquired hwspinlocks will remain locked possibly resulting in deadlock.
-In order to ensure all locks are freed we include a call to
-qcom_smem_bust_hwspin_lock_by_host() during remoteproc shutdown.
+On Fri, May 24, 2024 at 10:01=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> Hello Binbin,
+>
+> On Fri, May 24, 2024 at 02:29:35PM +0600, Binbin Zhou wrote:
+> > > > +     ddata->duty =3D pwm_loongson_readl(ddata, PWM_DUTY);
+> > > > +     ddata->period =3D pwm_loongson_readl(ddata, PWM_PERIOD);
+> > >
+> > > The rounding looks wrong. Did you test with PWM_DEBUG enabled?
+> > >
+> > > I think the value assigned to ddata->period and the other members isn=
+'t
+> > > used. Unless I'm mistaken, please drop the assignment.
+> > >
+> >
+> > The period, duty and ctrl are prepared for PM. I plan to put these
+> > three parameters separately into the pwm_loongson_context structure. I
+> > think it will look clearer:
+> >
+> > struct pwm_loongson_context {
+> >         u32 ctrl;
+> >         u32 duty;
+> >         u32 period;
+> > };
+>
+> But .suspend() reads the value from the registers and rewrites these
+> three members itself, too. So the write in .apply() is unused and can be
+> dropped.
 
-For qcom_q6v5_pas remoteprocs, each remoteproc has an assigned smem
-host_id. Remoteproc can pass this id to smem to try and bust the lock on
-remoteproc stop.
+Yes, you are right, I will fix it.
+>
+> The suggestion to put this in a struct is nice. I'd call it something
+> with "suspend" though, maybe "pwm_loongson_suspend_store"?
+>
 
-This edge case only occurs with q6v5_pas watchdog crashes. The error
-fatal case has handling to clear the hwspinlock before the error fatal
-interrupt is triggered.
+Ah, The name sounds more readable.
 
-Signed-off-by: Richard Maina <quic_rmaina@quicinc.com>
-Signed-off-by: Chris Lew <quic_clew@quicinc.com>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index 54d8005d40a3..8458bcfe9e19 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -52,6 +52,7 @@ struct adsp_data {
- 	const char *ssr_name;
- 	const char *sysmon_name;
- 	int ssctl_id;
-+	unsigned int smem_host_id;
- 
- 	int region_assign_idx;
- 	int region_assign_count;
-@@ -81,6 +82,7 @@ struct qcom_adsp {
- 	int lite_pas_id;
- 	unsigned int minidump_id;
- 	int crash_reason_smem;
-+	unsigned int smem_host_id;
- 	bool decrypt_shutdown;
- 	const char *info_name;
- 
-@@ -399,6 +401,9 @@ static int adsp_stop(struct rproc *rproc)
- 	if (handover)
- 		qcom_pas_handover(&adsp->q6v5);
- 
-+	if (adsp->smem_host_id)
-+		ret = qcom_smem_bust_hwspin_lock_by_host(adsp->smem_host_id);
-+
- 	return ret;
- }
- 
-@@ -727,6 +732,7 @@ static int adsp_probe(struct platform_device *pdev)
- 	adsp->pas_id = desc->pas_id;
- 	adsp->lite_pas_id = desc->lite_pas_id;
- 	adsp->info_name = desc->sysmon_name;
-+	adsp->smem_host_id = desc->smem_host_id;
- 	adsp->decrypt_shutdown = desc->decrypt_shutdown;
- 	adsp->region_assign_idx = desc->region_assign_idx;
- 	adsp->region_assign_count = min_t(int, MAX_ASSIGN_COUNT, desc->region_assign_count);
-@@ -1196,6 +1202,7 @@ static const struct adsp_data sm8550_adsp_resource = {
- 	.ssr_name = "lpass",
- 	.sysmon_name = "adsp",
- 	.ssctl_id = 0x14,
-+	.smem_host_id = 2,
- };
- 
- static const struct adsp_data sm8550_cdsp_resource = {
-@@ -1216,6 +1223,7 @@ static const struct adsp_data sm8550_cdsp_resource = {
- 	.ssr_name = "cdsp",
- 	.sysmon_name = "cdsp",
- 	.ssctl_id = 0x17,
-+	.smem_host_id = 5,
- };
- 
- static const struct adsp_data sm8550_mpss_resource = {
-@@ -1236,6 +1244,7 @@ static const struct adsp_data sm8550_mpss_resource = {
- 	.ssr_name = "mpss",
- 	.sysmon_name = "modem",
- 	.ssctl_id = 0x12,
-+	.smem_host_id = 1,
- 	.region_assign_idx = 2,
- 	.region_assign_count = 1,
- 	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
-@@ -1275,6 +1284,7 @@ static const struct adsp_data sm8650_cdsp_resource = {
- 	.ssr_name = "cdsp",
- 	.sysmon_name = "cdsp",
- 	.ssctl_id = 0x17,
-+	.smem_host_id = 5,
- 	.region_assign_idx = 2,
- 	.region_assign_count = 1,
- 	.region_assign_shared = true,
-@@ -1299,6 +1309,7 @@ static const struct adsp_data sm8650_mpss_resource = {
- 	.ssr_name = "mpss",
- 	.sysmon_name = "modem",
- 	.ssctl_id = 0x12,
-+	.smem_host_id = 1,
- 	.region_assign_idx = 2,
- 	.region_assign_count = 3,
- 	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
-
--- 
-2.25.1
-
+Thanks.
+Binbin
+> Best regards
+> Uwe
+>
+> --
+> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
+     |
+> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
+|
 
