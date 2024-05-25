@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-69183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AD8B8CF10E
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 20:58:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04CB08CF111
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 20:59:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D5D5281B78
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:58:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56861B2108E
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9AD127B6A;
-	Sat, 25 May 2024 18:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371E9127B51;
+	Sat, 25 May 2024 18:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wIgmQ2wD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u7woUNvd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A507E574
-	for <devicetree@vger.kernel.org>; Sat, 25 May 2024 18:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8848786653
+	for <devicetree@vger.kernel.org>; Sat, 25 May 2024 18:59:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716663523; cv=none; b=Xe01N5psj1D8bnvvHMfBhxYcdsweNoQ0eVLuvx5kPPVP4YA/SsxV7sAy+VSeLajyhdibBBCXAzlwcZfJ+zSL1k7xcF0VXytgtrePOBFyo43+h8ff94CAlLucGOGUb+6jFjWKoz8m2imQgNluE9yXkb3ZsWXfn8kvNRRwvpbI/cQ=
+	t=1716663543; cv=none; b=mdwpdVlPAgBX4B4u4g+HJ4erVrM7892tA81P9xxrkRVKh+byKLFzEvmU4UwMXDuwV8W3GYfsflK3xpgtBoA6u+9s1nHLgT7Zi1BpUL18FwYiEpUYQOZvQ++N9WANt3behBEd9BCNPvpWbYsrr7KxKFq1jfD0NJbwGUTtu/jIyLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716663523; c=relaxed/simple;
-	bh=iKEIVO+4VmSS9Oc5MntKhaJZ/iGMcGlkEC+aUBukEHo=;
+	s=arc-20240116; t=1716663543; c=relaxed/simple;
+	bh=EKyzkvw7ItMT2A1KApog1OWblbXsMQaqWtGfoyM3PzQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ixPY4pCgRqXrQEmSn/2Ya04/Xs5NDnDxyjYNmDOVgrCX+76wHBIAOOplW7BE6w3yEJMsGGQ8mBoEs6qQptgRy/h3F3L1aappjQa2g3M1PVhC/DLEMEICcgWEmq17ngFaFpY0DciWEsgSoP2a6OtmQ2X0XjObkJgjxVTUlqn3CYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wIgmQ2wD; arc=none smtp.client-ip=209.85.128.48
+	 In-Reply-To:Content-Type; b=bmXlarXeix9KBmajfSqo3pt/WWED8wcR7TbvUGMjIBjOTpFnJ+EpJ/XZo2HNB7QLvzxO9Ux3hN8VTcD0vfZcDd0ES4KsgFwmZ5Fa/YDqRJj3gaeWg68RdnIJ5jcSv7DFF5bjIAOboePY1YIUbJ0RYgqRra52HJbCTl0FlG4zCj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u7woUNvd; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4202959b060so71151155e9.2
-        for <devicetree@vger.kernel.org>; Sat, 25 May 2024 11:58:41 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42016c8daa7so72875645e9.2
+        for <devicetree@vger.kernel.org>; Sat, 25 May 2024 11:59:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716663520; x=1717268320; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716663540; x=1717268340; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=t7he0sZ2GZcZ4jN7OuNxSgoGWU8clRyZzA1mrnUKwrw=;
-        b=wIgmQ2wD9cwXdPB00KF2TNgBPy2LfhiyvHlQwzrhihPP3mzT7nrG1YKd6cVJf4PrwC
-         z8XzH1viKmIDqk5nCRJPCFVxC8J1egiIcuihWH6XniW+2/6235r2YRpTimw840+lvOwg
-         iyHEggY1aBUwTK2Xv50ZuiEWIqU8POFI9kgu2vKTPXPKF+41avskEZ2uUp3GRg9JoMEz
-         c8nLH/v8zgA9ld9kUMWQ4ojo4RgJc4cscNWovY/ZfcOPLyXhMUzqpk5KdOnVmw6KmEM9
-         NkYVnpTzHW8jRA/goq7kPXmZ4erUvBVlcCzmixsq2JbfgFaPnNEVBIY97Sre26xIjR4c
-         9TbQ==
+        bh=C1ltb2McNZuu2wPm9iznTsJgQEP1zyUhfvWhmZMyoGA=;
+        b=u7woUNvdU8F0WrbLq0im1Wl7bJCbZSYb1D37msa1KGSRXnqMGyZc2ahPpcgXXCNCpr
+         50/xfM4EPHtwbBc/NSOd2NKh+K7QT0kr7WgJ1fwWFUjxV2ZL9AUYiBXgC0/2QP7i0FA0
+         fEMFdN9H6JTMJ6eNRrco1/NOUAZWMIV7zkZb9MODv3J3T6t1RQL4WlyUZDazsAZ8pn4F
+         fyp0CPJUW0Vt0DvSpfiTlhO+BWAaR7E1GCXLNPD0ISOAGvvb1zGZX+fHTs5+Q24PChcW
+         o9HH8ddAWTC/k4Oh0qw5L6DfzMrHdCR4N0phRxrwIMcHe8pfmzes/7XePQxx4DG28KIC
+         oBAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716663520; x=1717268320;
+        d=1e100.net; s=20230601; t=1716663540; x=1717268340;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=t7he0sZ2GZcZ4jN7OuNxSgoGWU8clRyZzA1mrnUKwrw=;
-        b=hUrcSTglFcC0HZhtcHrizXjLqFIUz260wLcBzTy7QmCer2Wc8K56S2/EH4QyLYm6zi
-         TDswdUDlpZ1Wfavwnlf/eKrVVfoJnEFMVdk/HfxNNLuTk7YviooKGap14mF909eZP0nt
-         qbmg088q3/GdoEC0w6Z7U+fdYTEEY2pi+qZf+qtNWhjkZj+5rsZAyqOBdIZMstLJ/0L+
-         UyWElMuS2KMunV9wcfXfu5oXXtJGD0NBHSH5o9uSaqmGmCeNrGR9XlYwgUKi5Kfk2J6U
-         JAJBT8EEe2TUUCoVBdiU3B4DVELo5cJE1NrHE6MGxZNxLsfzkBF+4eYYuBaOvY4adOyg
-         cUfg==
-X-Forwarded-Encrypted: i=1; AJvYcCWoJb1v1lXNiZNlZoga8a8Vn3AKAZ0WUcFmPm6A/sui7AifjpA5iG40RHCC54Hn6evJXV5jVcJnKbsiLq4YX6oYLOe+YNdQ66AHZw==
-X-Gm-Message-State: AOJu0Yx19o5hVJBWyhOcazuwr75Kn4dFlFZhujUG/y1RYxKCfltq3EgW
-	JxYhO1Y9HL/t6lpIAbZ6orINAS9A94RLuxiId4/H8pN60njbDxzpTBRZqga9XJs=
-X-Google-Smtp-Source: AGHT+IG+6KpN0Pe/v3SLZ8mnBfNrJmJz9mBszytORzY3EJM2Uw7jCaB0GzXeJ11/zaPwbSB6qOj0kg==
-X-Received: by 2002:a05:600c:35c5:b0:420:1db0:53c1 with SMTP id 5b1f17b1804b1-42108a17b9fmr33015355e9.41.1716663519804;
-        Sat, 25 May 2024 11:58:39 -0700 (PDT)
+        bh=C1ltb2McNZuu2wPm9iznTsJgQEP1zyUhfvWhmZMyoGA=;
+        b=nOEhv1/OkLWuU9q008eS852BaufpZvV5siiFw8RQEaYaf+BC0HfoK72m8bejzJQDcJ
+         jZF8Z+IA4jD2H4CZmd7r4cWEs2fhABcwhSBL/UUKF9lkWuyl/rtxA3UFTX+Lg1PmxXt4
+         5CQNkfD/wTR0Alriask8QQiJXkY2xL42SM2WQWEn1VWqQKin4Rdq1a1qzz4TXG02Kspa
+         SpmE9ZY2aG62kxayFgwZm6VAcD8q7JzpM9ggYc3VRZvOtEpcKfXcl/FuABYV23Rz211/
+         wIfmJtwtMolKYeRiiePJ7Ckzao17037GR66vaMmjnqX426cWoeAaIZmmoVba5Vgioyqe
+         T95g==
+X-Forwarded-Encrypted: i=1; AJvYcCX0eDsgiEPdYa0VHG+v2EMQaunDU6KPt4/6wFHNjDS2F+rHnSPQAyVx+tYkbqiYApIKoeZnBXGbwvqqKVGQv2GdZ+pquYGZpUoufA==
+X-Gm-Message-State: AOJu0YzHM+14FBZ20kNkA6BKWmLNlDVGPyox3dOzJ1osTEXI4bzurcc1
+	GLpcZvLzKnWKTqUEtSC9zoF0lBFFFCKlIAUpW0QvdMSdJdMSDp3gLN12rrcIyEo=
+X-Google-Smtp-Source: AGHT+IHI+mBtTEcC58bs/lQSj2ZRcVFjCFjDftFjbvks/j0ZOZdiYC24EihRv026a89MlOJq5l169Q==
+X-Received: by 2002:a05:600c:19d2:b0:418:2ccf:cbc7 with SMTP id 5b1f17b1804b1-421089ebd3dmr39580715e9.2.1716663539942;
+        Sat, 25 May 2024 11:58:59 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-356c8daef27sm2426626f8f.115.2024.05.25.11.58.38
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42108970b4esm56327965e9.14.2024.05.25.11.58.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 May 2024 11:58:39 -0700 (PDT)
-Message-ID: <bdb78a67-ec6b-4178-81a0-212796f9738a@linaro.org>
-Date: Sat, 25 May 2024 20:58:37 +0200
+        Sat, 25 May 2024 11:58:59 -0700 (PDT)
+Message-ID: <f2650797-f681-4363-8a67-87c8c16226e3@linaro.org>
+Date: Sat, 25 May 2024 20:58:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,19 +77,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 4/4] dt-binding: clock: remove nuvoton npcm845-clk
- bindings
-To: Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240509192411.2432066-1-tmaimon77@gmail.com>
- <20240509192411.2432066-5-tmaimon77@gmail.com>
- <20240513155330.GA2676859-robh@kernel.org>
- <CAP6Zq1hRw6xfNKKfBFGuKbZk0su3ys6+hnMzqRWrZeKzDoKLEw@mail.gmail.com>
- <CAP6Zq1gKp+Hu93CK=78chvNk70WtKMKUv8ny0Mzkw47wn7Af2g@mail.gmail.com>
+Subject: Re: [PATCH v2 02/10] dt-bindings: mfd: bd96801 PMIC core
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1716533790.git.mazziesaccount@gmail.com>
+ <bd468e695d8331762d5be77196368b82366be7af.1716533790.git.mazziesaccount@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -136,51 +132,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAP6Zq1gKp+Hu93CK=78chvNk70WtKMKUv8ny0Mzkw47wn7Af2g@mail.gmail.com>
+In-Reply-To: <bd468e695d8331762d5be77196368b82366be7af.1716533790.git.mazziesaccount@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/05/2024 18:34, Tomer Maimon wrote:
-> Hi Rob,
+On 24/05/2024 10:17, Matti Vaittinen wrote:
+> ROHM BD96801 is a highly configurable automotive grade PMIC. Introduce
+> DT bindings for the BD96801 core.
 > 
-> Kind reminder about the question in the mail thread below.
-> Your response would be greatly appreciated.
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 > 
-> Thanks,
-> 
-> Tomer
-> 
-> On Thu, 16 May 2024 at 12:44, Tomer Maimon <tmaimon77@gmail.com> wrote:
->>
->> Hi Rob,
->>
->> Thanks for your comment.
->>
->> On Mon, 13 May 2024 at 18:53, Rob Herring <robh@kernel.org> wrote:
->>>
->>> On Thu, May 09, 2024 at 10:24:11PM +0300, Tomer Maimon wrote:
->>>> Remove nuvoton,npcm845-clk binding since the NPCM8xx clock driver
->>>> using the auxiliary device framework and not the device tree framework.
->>>
->>> Again, this is an ABI break. Changing driver architecture for 1 OS is
->>> not a reason to change DT.
->> Is it an ABI break even if the NPCM8xx clock driver hasn't upstream
->> the kernel vanilla yet?
->>
->> I thought that since the NPCM8xx clock driver hasn't upstream the
->> kernel vanilla yet and and in the latest NPCM8xx clock driver patch
->> the NPCM8xx clock driver.
->> using auxiliary device framework instead of DT we should remove the
->> nuvoton,npcm845-clk.yaml file.
->> https://patchwork.kernel.org/project/linux-clk/patch/20240509192411.2432066-4-tmaimon77@gmail.com/
->>
 
-Binding goes with the driver, so I wonder how did it happen that driver
-is not in mainline but binding is?
 
-Anyway, once binding is released other users might start to use it, so
-yeah, could still be ABI break.
-
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
