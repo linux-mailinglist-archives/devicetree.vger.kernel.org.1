@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-69144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41B018CF038
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:49:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB0BB8CF042
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 18:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAEAD281916
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 16:49:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59110B20FC1
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 16:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CED386151;
-	Sat, 25 May 2024 16:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5AF86270;
+	Sat, 25 May 2024 16:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dNF0lNsd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HKFepBF1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC7DF4FC;
-	Sat, 25 May 2024 16:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FDC85C77;
+	Sat, 25 May 2024 16:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716655786; cv=none; b=ADZjUI8WbmyklxyP3fgd80n4DLB6kou76K01GSo3BQcLixM+oBLv63gYlArbVK7yuxuFQ+DcOKsz3jI0YTtCURO+kRsWCuuGzGEKQAdv5DvrWbU4WT4wb4rc2nnmCMTeYRVItq/13zazJ+HK8ZvF66497Ch2HoT1O0DDasxGWxA=
+	t=1716656056; cv=none; b=ujGP85TGZMGCRmDDcvTzIGJdmsmIdsnZMSyBHYpFrsrm8c/rYv1W5wQ8OCWsdmc8nMV1oWE8GVOtyXrv97KydB9ijjTsgunb7ivsMtuObixSCnAobiAw9JOHephjoDNAqUBF/GUiVg7QTogIfZOGdoFYNjp/XS6FR8wdcODc2JI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716655786; c=relaxed/simple;
-	bh=g+GXgokgnraVNmt3XZgsH3MhDJt6PYQpo8++yls+FPY=;
+	s=arc-20240116; t=1716656056; c=relaxed/simple;
+	bh=2+Kr6XXPgPmdgZ4u7qxFqlXy+juIof5nyaRlxJQac2M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KSJeY3u+Z/BgbETpi8sbpwZBz1lzVCTmIfeqDgAtYOsHPPpgDfHgVx7FVeDghD29pKFICu1rpsceUHWbThdm9gnMeQVpl5K9m3fSQLA5GgiV/8vrsIl8/1dV730aURctehzDagmJWKHD6Mgm3x7q7qjr3xSh1kL/wLItYWJxlgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dNF0lNsd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79CC6C2BD11;
-	Sat, 25 May 2024 16:49:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ybiig2KBt2RO0hW/XAaaBiZWxttc0uHXm40/H/3OZzyMpn83D43+tSSn3mk+gNosjPe1R1njTNyVFFqoaz8U8HLwtenYzAbYb19w6Sb7yWbY5ZpGhpDjIrCTtnO4WV29m9n+R0vMpx3dSCJtAEqrApdd3K/WVMp+2pbjjyzTsGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HKFepBF1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ACFAC2BD11;
+	Sat, 25 May 2024 16:54:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716655785;
-	bh=g+GXgokgnraVNmt3XZgsH3MhDJt6PYQpo8++yls+FPY=;
+	s=k20201202; t=1716656056;
+	bh=2+Kr6XXPgPmdgZ4u7qxFqlXy+juIof5nyaRlxJQac2M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dNF0lNsdI+Ta3HpHd/zBBT97KoC/Qqxoci7phyESv1VGXzw+2dV7vcH1IuoK/0Yyp
-	 LF9LvR4/YTlzY0iMuDeR6Oz+2fNdHoQTC4Y3x4El8bV0wK3LfDM42ImoKlOEQ1Qzqh
-	 N08ZbdzTx9xXhKN6Dfb1kmaoV1dViDQQ93+RpN+Xfy+ofVsFd9MoikyUC6l0AI9OsC
-	 d4GFSCJNdZ3NIa+4eCekK2rLrx/5aFlH4SaqwmvP6dew49xw0MaVIgoSsGeZbwuWq/
-	 EgsDG0js+6yZw2TgdWVEcq2tCWEt/7vhLVS09hAgMu2oio9neRJ9xo+39XvRFZaCvi
-	 RhbrSZpeDEQcg==
-Message-ID: <65019fa4-9e69-43b5-ac6c-c7607486cf69@kernel.org>
-Date: Sat, 25 May 2024 18:49:39 +0200
+	b=HKFepBF1SyMDSlE78H872P6Tsvc4B2YX48VYgFxtYRVQshLN0E9d525HmBoz0ARnD
+	 cZ8/JiXE0m8Vd+vFWkCg9/zFg8Clm/7T/rsSFHjoSpS3o3jxRCzyE0Be38MHqKCWbi
+	 SCCfrudfYXGZKAb86OdaJWC0PTt4LVopykNIukCfQO+m2vlyspxUe6O64fF29JjNjL
+	 AUm4OftfCl3Hy+s8N7mQJyOBYllhYz60IGlf7ZlgncRUiaVfkfPdyEsd6O5knFh+JW
+	 SSb3Td9fuHcm4e67JlRH20L8b1hZ87qJzy6wUjsPYeLscbR8QxTXfebeTFYrOVnxcS
+	 14DuVXxjzyOvQ==
+Message-ID: <b9a45cf0-ceff-488f-a532-eff47f1ca79c@kernel.org>
+Date: Sat, 25 May 2024 18:54:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] dt-bindings: iio: dac: Add adi,ltc2664.yaml
-To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Dimitri Fedrau <dima.fedrau@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "Hennerich, Michael" <Michael.Hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
-References: <20240523031909.19427-1-kimseer.paller@analog.com>
- <20240523031909.19427-4-kimseer.paller@analog.com>
- <d1c3dd0c-9f24-4d0f-b15a-b727522a9662@kernel.org>
- <PH0PR03MB71411D6F23D918723B9A5DA7F9F52@PH0PR03MB7141.namprd03.prod.outlook.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom,pmic-gpio: Document
+ PMC8380
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240525-topic-pmc8380_gpio-v2-0-2de50cb28ac1@linaro.org>
+ <20240525-topic-pmc8380_gpio-v2-1-2de50cb28ac1@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,52 +105,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <PH0PR03MB71411D6F23D918723B9A5DA7F9F52@PH0PR03MB7141.namprd03.prod.outlook.com>
+In-Reply-To: <20240525-topic-pmc8380_gpio-v2-1-2de50cb28ac1@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 24/05/2024 08:28, Paller, Kim Seer wrote:
+On 25/05/2024 01:37, Konrad Dybcio wrote:
+> PMC8380 is a new PMIC used with X1 SoCs. Document it
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Thursday, May 23, 2024 2:40 PM
->> To: Paller, Kim Seer <KimSeer.Paller@analog.com>; linux-
->> kernel@vger.kernel.org; linux-iio@vger.kernel.org; devicetree@vger.kernel.org
->> Cc: Jonathan Cameron <jic23@kernel.org>; David Lechner
->> <dlechner@baylibre.com>; Lars-Peter Clausen <lars@metafoo.de>; Liam
->> Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
->> Dimitri Fedrau <dima.fedrau@gmail.com>; Krzysztof Kozlowski
->> <krzk+dt@kernel.org>; Rob Herring <robh@kernel.org>; Conor Dooley
->> <conor+dt@kernel.org>; Hennerich, Michael
->> <Michael.Hennerich@analog.com>; Nuno Sá <noname.nuno@gmail.com>
->> Subject: Re: [PATCH v2 3/5] dt-bindings: iio: dac: Add adi,ltc2664.yaml
->>
->> [External]
->>
->> On 23/05/2024 05:19, Kim Seer Paller wrote:
->>> Add documentation for ltc2664.
->>>
->>
->>
->>> +
->>> +  ref-supply:
->>> +    description:
->>> +      Reference Input/Output. The voltage at the REF pin sets the full-scale
->>> +      range of all channels. If not provided the internal reference is used and
->>> +      also provided on the VREF pin.
->>> +
->>> +  clr-gpios:
->>> +    description:
->>> +      Active-low Asynchronous Clear Input. A logic low at this level-triggered
->>> +      input clears the part to the reset code and range determined by the
->>> +      hardwired option chosen using the MSPAN pins. The control registers are
->>> +      cleared to zero.
->>
->> So this is a reset gpio?
-> 
-> Yes, this is a reset gpio.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Then call it that - reset-gpios (see gpio-consumer-common).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
