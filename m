@@ -1,134 +1,204 @@
-Return-Path: <devicetree+bounces-69200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D95EC8CF178
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 23:41:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C638CF1DA
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 00:08:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E6411F21144
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 21:41:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDA771C20A43
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 22:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504E41272D9;
-	Sat, 25 May 2024 21:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35AE1272A0;
+	Sat, 25 May 2024 22:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="BmR2WNOW";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="QgdM7xhX"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="K8T19hoD";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ZGnGFUur"
 X-Original-To: devicetree@vger.kernel.org
 Received: from wfout5-smtp.messagingengine.com (wfout5-smtp.messagingengine.com [64.147.123.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 441B73032A
-	for <devicetree@vger.kernel.org>; Sat, 25 May 2024 21:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A288F138E;
+	Sat, 25 May 2024 22:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716673291; cv=none; b=FNavZ4la3U4lMpKRDt1IHcXTgzp7iGBQlw9luFkn06GF4nx6JnPcCYslakuiZicEOj/VVrzj/yFpk0ZRe3pH+nnXcvSUSiO9KiZ9f3PHZTPKc4XVPyew39+BG1xeN+savCGpND2l47CtdHxN98/D3lsakS8xqMFi1kIf52/DQVc=
+	t=1716674877; cv=none; b=FtLOpJ33RY2vanESV9DvpRnn+Nuq6kV74dpV47pBIkKRdS2I6hUAe4T6Ts5PEzqSNEguFeQBx0r2C2Ug0WvlkARIu3WKTGZZa8zwrRonhd3pj/txx3Q1cke+Ny/aqQXz9FEazO7TLE+VQaUsTbdGpgXJa+BjoU430e3JkziLErs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716673291; c=relaxed/simple;
-	bh=sjM8oO08DOoPCM1nitdLhKso4y80dl7G1EyTAUCvZeo=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=D/AVkrW7aWxJf4lUfcUi6g3veJE9wIptDJcc3ucr1d6JKf2LtZ7U/jFAOAIVum4yCGPQ2A9qZc5x3t5Tf1CS2JXgY6J7RLkFVu9lFU20Dlo28stp0ulSUO0e0/WjW9oC43SD2ldTo92gR4IISqIBJPD74y6Qxxn0dy1lA5Q9eKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=BmR2WNOW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=QgdM7xhX; arc=none smtp.client-ip=64.147.123.148
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailfout.west.internal (Postfix) with ESMTP id 66C7A1C0007C;
-	Sat, 25 May 2024 17:41:27 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute5.internal (MEProxy); Sat, 25 May 2024 17:41:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-type:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1716673287; x=
-	1716759687; bh=77klsfvfcOZG10PZknXMDeYJc7yaylYKZFfQRcOUhtQ=; b=B
-	mR2WNOWinNERIEw/ItVHpjXJWZhd6+JNro+mX+oDuB0QyaJIVq+GiN+KUv5inyCl
-	BnLqQKH7y+hOPEXxVrNuGx8VS8713b8f0qbBm+8uRV5vIz6WcIPbKpEEm8Vj9oSB
-	BkTR2Dyz+Uk90V12OwY5yR53iOjTDW3rXJHI2piA8WEd9fYQke6iHIO6vov5dWns
-	Rv/YH+/SUtQqqErsR/RWCDtbf7ZsKtP3+z6eQLoLvT17BH6Oktv/i6GfceJ9rWsc
-	+nnMlgXOHOzBspLDprCJ53AtvCl2OIoGXFnen6MQMUCuUGuZgc+8+bwBAG+GJYRa
-	3MQyHwtiKC5Xa59tLEdfA==
+	s=arc-20240116; t=1716674877; c=relaxed/simple;
+	bh=D++cyd23myqJmAvGTVFI5XlB7Y32eLoQevngNsZ/Qu0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=nVzzJdMQtOrKWToBVkXPbDV0eTFVZeq3QfWT5wdW5j9NSNx1md1NsBjj4TgrynsPsmgjHyO6Ruix3sPJBKtZbDo0L6m88bZR04Gm5QKXSI3O5ahW0MqE9PyHdtwlevbzUHRNsqPSmvEeX/PM81Sm65+XUr2fh7W776O+Oqo9Afk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=K8T19hoD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ZGnGFUur; arc=none smtp.client-ip=64.147.123.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfout.west.internal (Postfix) with ESMTP id 259A61C000AE;
+	Sat, 25 May 2024 18:07:52 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Sat, 25 May 2024 18:07:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm3; t=1716674871; x=1716761271; bh=gh
+	vJEjFN1pc4+Ka4C90JficqAuhjmM6V8ECjsNb52P4=; b=K8T19hoDmCNRbsOdpF
+	lBJOgaErXxjYVUqNKMnOD7pggWVSDl+FWCsnrIdWVJbygKp3Fb6lTOdeBYj++Z64
+	qkEmC+h3/MK1oumUm8TjvIVsLL1uCdOODgFfgLLp18kzDGb0cJTryyAiMXumLi7h
+	5CsO3J+X5W+EBvwuoA3nRuphepvK59ihzcrYcQBH9TC7p2A9iQVTfNFx6iyY5SeQ
+	evBX4I5ync0bfaqGUn8/VpQKGNg8GTKWYQD+3bk2I9BtraTNHfc89LFzDJhOvEFr
+	+bO2Gs1U4ISHcAhkit1tb7630FcVqhKdb6aoJLv6WzZCnnAjdoDDzWIdW94DcUZ5
+	VE+w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1716673287; x=1716759687; bh=77klsfvfcOZG10PZknXMDeYJc7ya
-	ylYKZFfQRcOUhtQ=; b=QgdM7xhXDTXWBrG3+lAale/o4rsMglwKkQLpW2Qz+qo4
-	aE1swVRXqPKDhriEZv0R5TCO1mnZvMa9Sk8ZLZ4v+FX6mFjQO3G+D2Zgp1lkGX6/
-	/Ztc0GpYvd1J+Z1cWHAOcK03JkX1i7/J33DpAf4Qyl5ozamOPoxsMfZ81tI1xOOB
-	R8G6WYJg0F0ZcWZtpl5u3Nd3suL08f80hNMeAlW79Q2cyxv0UMa8yP3YUNq1qz02
-	J6DzwxLQ1YMKzAtjlyobVyD+X0JI+a9opJu+PRI63kFTo+5ei84M+e+ESFGb4BgF
-	tazda/QvxHhoBCBGEoaNy9D0iIgUW2sC1Ag5Mre8wQ==
-X-ME-Sender: <xms:BVtSZpC2zCHDl3XVQINatSDgaoP5_oreelPFciMGEqABc2wJUiVKCw>
-    <xme:BVtSZng35cTqrP8TJT-Bc8X5cS2Cd6QClBnWXb6fiu55r7OFT43A2hEpPb63IWeC6
-    er9c8Ej0ZH2VA9tFQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdejuddgtdduucetufdoteggodetrfdotf
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1716674871; x=1716761271; bh=ghvJEjFN1pc4+
+	Ka4C90JficqAuhjmM6V8ECjsNb52P4=; b=ZGnGFUurDu8QpmqRe68BI9VrGbytC
+	VQxH/Tx61NTinFc4jfqo1i3jk6lt8/vTmhFr71zCdphBvruw+bvgamMZZPjQnjM3
+	9wk+iC3TiwCPm6bDkMFpkSoQ6i4QQU0oPGDJZVQpGzFF9xusDCRpcG+SCEWD68/3
+	5gkiBKPpxzj5pQmvprgG2atqnwuVyAkb2uIoJgzzi5i85BN6Cqa73ch/4trG/cg4
+	XD0ZlEpbgku/PVgurZcMEvzSHMu2XxM1MvOvrAbBdKnkD+x5MIq2ygSgkN4Wyc4H
+	mfA+eXCltQvllTLAshFpggKXGjBqnUPY3wMbhWcTwYwFYlhfu8P1oxgwA==
+X-ME-Sender: <xms:N2FSZkAay4maTb88EMH-_aiC0vfsWZd3bvT0TXZeWdr69A6b4E7Clg>
+    <xme:N2FSZmjJBSCH5JHp4xjJLfuOV8l9qfbvrdQg4P-GYS9rTYQQTmaw7kjIGtDlxWFnB
+    GC111zCOA4lZsa5Bcs>
+X-ME-Received: <xmr:N2FSZnmJqqgD2lBKnr00ZlhiWeax86lfVILp0c3HjT65wkFkzHJmjQ53-YKostWObOoB5PWT-sv6YfyLKVt8Aab6eF29JYE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdejuddgtdehucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftfih
-    rghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtthhorghsthdrtghomheqnecugg
-    ftrfgrthhtvghrnhephedvveeigedujeeufeegffehhfffveduhfeijefgtdffteelgfet
-    ueevieduieejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homheprhihrghnsehtvghsthhtohgrshhtrdgtohhm
-X-ME-Proxy: <xmx:BVtSZknGbu-05aladTeSN7-Bd-biWO3VQrBb_t1ykdjVQn8RoNVM2A>
-    <xmx:BVtSZjxvf9bI_9VPzyHcBolhKgoP8PqUFP5vXSl0L2wj7cyUPq6uYQ>
-    <xmx:BVtSZuQIxqH02iZGwdxqAWImSa-5z8DFyj934fxFh8yqGrnGEqJ88Q>
-    <xmx:BVtSZmY9ZThbddWd9uviVf2tdJcdyciOS2P-CGJtRGvkHETPSO0LhA>
-    <xmx:B1tSZjheAPLXFYJ3MhKSm5aP9_IcMvMp7OpXrQBU4PMv8hvd8Qdv0BbB>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 9F479A60078; Sat, 25 May 2024 17:41:25 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-480-g515a2f54a-fm-20240515.001-g515a2f54
+    cujfgurhepfffhvfevuffkgggtugfgsehtkeertddttdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrg
+    htvggthhdrshgvqeenucggtffrrghtthgvrhhnpeegfeegieefueeggfetteekudejfeej
+    fedtvefgkeegheeggefgueffueejieekheenucffohhmrghinhephhhusghsphhothhush
+    gvrhgtohhnthgvnhhtqdhnrgdurdhnvghtnecuvehluhhsthgvrhfuihiivgeptdenucfr
+    rghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnh
+    grthgvtghhrdhsvg
+X-ME-Proxy: <xmx:N2FSZqyqjvbdAjjK4uGDxcTh0-ingrmfNleMOvtKs7NBLKkm7hNYvQ>
+    <xmx:N2FSZpT36OIaHqGUFj28Yl-aVM3CUDja-73fefSODnk2Kg1cPUQyvA>
+    <xmx:N2FSZlb-9gCwt8RhGNIeoqPzEXfZRYzq3VZVWKSBWaPKAZOtG-2D_g>
+    <xmx:N2FSZiQgkc_oGL2V23Zt_01LxjE4CBlNacxU141vVA0ptO8ocz6ArA>
+    <xmx:N2FSZm_Ok6r0hZ-Pfj2ioZLImoW7k1APr0gnMCU06nloZlb81TQjB2Oq>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 25 May 2024 18:07:50 -0400 (EDT)
+Date: Sun, 26 May 2024 00:07:47 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+Subject: [RFC] dt-bindings: media: video-interfaces: How to describe physical
+ lanes for CSI-2 C-PHY
+Message-ID: <20240525220747.GD1900917@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <bb8b54de-c894-4fcd-a2ea-89b22cdb3a47@app.fastmail.com>
-In-Reply-To: <20240525-velvet-citable-a45dd06847a7@spud>
-References: <20240524103506.187277-1-ryan@testtoast.com>
- <20240524103506.187277-2-ryan@testtoast.com>
- <20240524-purveyor-outlying-5201f700a56e@spud>
- <a7363cd2-4e2e-4894-8a16-f1913927e332@app.fastmail.com>
- <20240525-velvet-citable-a45dd06847a7@spud>
-Date: Sun, 26 May 2024 09:41:04 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Jessica Zhang" <quic_jesszhan@quicinc.com>,
- "Sam Ravnborg" <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Hironori KIKUCHI" <kikuchan98@gmail.com>,
- "Chris Morgan" <macroalpha82@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add WL-355608-A8 panel
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Sun, 26 May 2024, at 3:22 AM, Conor Dooley wrote:
->> 
->> Thanks, I don't actually know the vendor, would it be acceptable to just use "wl"?
->
-> You mean, "wl,355608-a8"? I did a wee bit of googling of the thing, and
-> yeah, there's nothing that a surface level search turns up for it -
-> other than they appeared to have a logo with a W in a circle...
-> I think if we genuinely do not know what the vendor is then we just
-> don't have a prefix.
+Hello,
 
-I was going to go with "wl,wl-355608-a8" as the whole string seems to be the product/serial code, but happy to just not have the vendor prefix as per my V1 if that's acceptable, seems pretty obscure as you've found.
->
->> >> +            compatible = "wl_355608_a8";
-> Not _s :)
-Noted, ta.
+I'm trying to figure out how to best describe the ordering of the three 
+physical copper (?) lanes that make up a logical lane in MIPI CSI-2 
+C-PHY. As far as I can tell there is no generic binding for this yet.
 
-Regards,
+Background:
 
-Ryan
+A logical lane in the MIPI CSI-2 C-PHY specification is created from 
+three physical lanes on the SoC. The three physical lanes are commonly 
+referred to as lane A, B and C.
+
+One or more logical lanes can be used to create a CSI-2 C-PHY bus. These 
+logical lanes are commonly referred to in numerical incremental order.
+
+I don't have access to the MIPI CSI-2 C-PHY specification as that is 
+available to MIPI members only. But I found these slides which I think 
+can help illustrate the setup.
+
+https://2384176.fs1.hubspotusercontent-na1.net/hubfs/2384176/MIPI-C-PHY-Introduction-From-Basic-to-Implementation.pdf
+
+Problem:
+
+There is generic DT properties in video-interfaces.yaml to describe the 
+logical lanes, 'data-lanes'. This property is used to describe how many 
+logical lanes exists, and the order which they are connected. The order 
+is important as logical lanes might be swapped between sender and 
+receiver, and the sender and/or receiver can correct for this using 
+software configuration.
+
+There are however no generic DT property in video-interfaces.yaml to 
+describe the order of the A, B and C physical lanes that make up a 
+logical lane. But just as the logical lanes these can be swapped between 
+sender and receiver, and the device on either end of the link needs to
+correct for this with software configuration.
+
+For MIPI CSI-2 D-PHY lanes the same problem exists but is made simpler 
+as each logical lane in D-PHY mode is made up of a differential pair of 
+only two physical lanes. And the generic property 'lane-polarities' is
+used to describe if the P and N physical lanes have been swapped.
+
+  lane-polarities:
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+    minItems: 1
+    maxItems: 9
+    items:
+      enum: [ 0, 1 ]
+    description:
+      An array of polarities of the lanes starting from the clock lane and
+      followed by the data lanes in the same order as in data-lanes. Valid
+      values are 0 (normal) and 1 (inverted). The length of the array should be
+      the combined length of data-lanes and clock-lanes properties. If the
+      lane-polarities property is omitted, the value must be interpreted as 0
+      (normal). This property is valid for serial busses only.
+
+How to best do something similar for the three physical lanes used for 
+C-PHY which can be configured as either ABC, CBA, ACB, CAB, BAC or BCA?
+
+Any solutions I can think of feels wrong, but for different reasons.
+
+1. We could add a new generic property to fulfill the 'lane-polarities' 
+   function for C-PHY, 'lane-polarities-mipi-cphy'. That would only be 
+   valid for C-PHY buses.
+
+   The structure would be the same as for lane-polarities but the items 
+   enum would allow a value from 0-5 for each entry in the array. And we 
+   could define mappings in dt-bindings/media/video-interfaces.h to 
+   allow names in DTS, MEDIA_BUS_CSI2_CPHY_{ABC,CBA,ACB,CAB,BAC,BCA}?
+
+   This feels wrong as we already have 'lane-polarities' and it is used 
+   for CSI-2 D-PHY configurations already.
+
+2. We could extend the 'lane-polarities' property to accept values 0-5 
+   and in video-interfaces.yaml describe that values other than 0 and 1 
+   are only valid for CSI-2 C-PHY buses. We could still define the 
+   descriptive names in video-interfaces.h.
+
+   This feels wrong as we would lose the ability to validate DTS files 
+   for D-PHY configurations only contain values 0 or 1.
+
+3. We could use vendor specific properties to deal with C-PHY lane 
+   polarities.
+
+   This just feels wrong as this is not a vendor specific issue.
+
+Maybe I'm overlooking a better solution? Any feedback on this problem 
+would be appreciated.
+
+My current feeling for the least bad option is number 2 as it aligns how 
+CSI-2 C-PHY and D-PHY are described. Unless a better idea comes along, 
+or I'm educated on why this is a bad idea I will create a patch for this 
+and see how it works out.
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
