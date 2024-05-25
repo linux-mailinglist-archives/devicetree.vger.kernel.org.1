@@ -1,137 +1,198 @@
-Return-Path: <devicetree+bounces-69127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B96768CEF14
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 15:30:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B96B68CEF4F
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 16:33:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA6141C20996
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 13:30:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47EC11F20FA5
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 14:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF78986266;
-	Sat, 25 May 2024 13:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B8F643AD1;
+	Sat, 25 May 2024 14:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nFPOoWPZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LbziSav6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CC9D84FAF;
-	Sat, 25 May 2024 13:28:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC833B297;
+	Sat, 25 May 2024 14:33:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716643701; cv=none; b=bLPKsX0ekAkufb/KKj0dXokpacTNFYsH3/d68rG0VnYNivTXX5g0p/+yNa5M1HHAVukGpUtNU1R8AmKKNvycP8qHaG6k0OnpRTIHuJDc8eupPfC0SeugWEoqScRQODYe9G6SVbD4x/NUGhM5PlXc54InhStCKZo0+3H7VgC8B1g=
+	t=1716647632; cv=none; b=IzVt6Va1igtDPr+vzy5nSKy7sOHtE7fpUnFfh330ckMrgFMXHyHZDReX9Wvzpus60hU/rkAGX6OqOYwPLHQNaSVVOIfxBxH7UwTSBJx1T0o+RoEzx+t7yPUs9XeWuUgwRNgqi7tQpUqqkcnrd+GADWdMiHnlRJC+S1iFyGXAgd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716643701; c=relaxed/simple;
-	bh=JqmBRm5p/y60vQho/QixG5OijJiMY4yvo8+3qIYS2Eg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SH8gdJuaqUT0qorFw+D3eKRszsXGhz3U36gQP0JCpuRsv3A5X+8lLGzZ6FAVXmcUNhUqce7O9f9khlj+BSOgSuYIQ59Bo9G9vN2Oj2+Ct+fjjJK9sviLfC5X2l/WqGXYRbdXo7Q9ov6d+Dkb3/69a6jEhE6AQIx/u8pgw/EK/Dk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nFPOoWPZ; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1716647632; c=relaxed/simple;
+	bh=5n7lkDxcP7/xIQnHH72V11GBJnBkIwLKgCjvbVNGbAU=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ou4emxU0yAC2z0U2xOL/bnopJ2Kzq1K7E6TiGUyEXosTOzZv2S4R4Up+xS8t2yBAmGLVfv8d4twunUPvXmvc5oobSxaCul3aXP1FOXy6Q6kZO2uEFoW/bsm1/jZjPhQWQERtn5zXP+VzT7sPfqJyswkNQeusZYjBEN+ZTkckzLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LbziSav6; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a5a5cce2ce6so1245061566b.3;
-        Sat, 25 May 2024 06:28:19 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-354be94c874so2992923f8f.3;
+        Sat, 25 May 2024 07:33:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716643698; x=1717248498; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xAevoRwyHB/hjeggss8BgF1gg74yCzQU/uk4mIsOlV8=;
-        b=nFPOoWPZz3CxJg744QldMKzU17p190cSKbnz6wr2xcV5zLZ6FLxZiJbsLmMfcDKzYd
-         qOPuUQR0izmWaoPyHKiYqwrx3jcvKTtuY+Bi0Yg/PJYzomxv71gGLgTVdn+xf0eIU8yb
-         crrtQejtqYS25X+Z17HBXNRv58OrwuDyS0ImQYe5hBQBKcoMgoahLskEkPvlcym8s6r8
-         0OCce3Neurk6p3GSlvqaQBoeD99DI5p4EMdPH+OajnZphhvbcl/31wv0ZQji3mg2hkBM
-         O3+nM1QRTZrzButmAZrzU4plr7NMi0Q34V0bi9iuUvuCjD1G+fNRRGOKUIM4GbGYwJRA
-         B0iw==
+        d=gmail.com; s=20230601; t=1716647629; x=1717252429; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=CErVniz+W5wR3XMrkvKFk+LDivHl4mX/Bk33d4Ln3XM=;
+        b=LbziSav6NEzr95dC/Ukztuvu9dholwTFaWpANoDRjj4MiTZ7yrUrBIf8cgsK/3TarO
+         n4A1UxcqrxVMg7nfld6nLX68EOuDdnmGSDgYiGlD7fvJfzkPgSZeF+BWp0ClBTToYvHA
+         /ZWuGot+v30Q5YDZ1gqP45H2Yn2fcwx++dxWOf0dBknnCuZ7tVMUMGhiQewDoB5gXg5S
+         0j+LfyxBmKe/rpC69/SVdCrd8wXquRA/iBE3moDjeLMtVZPgHOZ6X7wI8Ch1Zn1oO9YF
+         yHx4fwo4XXynHRtng3GH8HAGD+rGvcM66sA0hmnrg+KkCELeu97rYZC5rPT+P0VAhinW
+         zgOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716643698; x=1717248498;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xAevoRwyHB/hjeggss8BgF1gg74yCzQU/uk4mIsOlV8=;
-        b=qN5I02eBjaVVy31Oei3GBs5ZTbbqwnFeKiaagZhXEs3DwUI+RMtOxtxmqA68s5hS/1
-         eXH7y7eE1EswNUQKxfTMDA2wzfpfaNNzBsKrXFOCa5eP84cbS+VddrDP/0GofRBg4huQ
-         PzZyY3SnnVQMteWHVXz+bMOFJpuhCgW757cvWZ7xgosLHWXOM5gzgy0ZXYM98iR55xoh
-         49xVlYKvgwxDRXuayNCjfqNEFCIj8IwDetxxFl3ZGNN69vGEd8vEcdi0MlCCi087R9ui
-         Ie3sBU7xznTAu1HMHQOR3VM+T333676OQxgYJpxi8zOc/UQfEN8kH1mfzGF/9XrzObk3
-         tMEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW3YWvGMj2F/650tcx5o6MLxPjlynfO1EvcDkCufJyF2dt2YDz7a/jzJnIhbe3WqumVvgIWFwqpAQplo5dwkLlej0dshiDObnomZg3akM5Lw53g8mIdi91PInfQwfgoEDsKg2bCqZswRTHmX92M14iZfOEdn8T2ZBKeUz9c1sGQdqB2rKGU9Zn/5oaIA/dx8d2PXZ9qkkVZJgT1xZlvOM487sD0B3/xl3Y=
-X-Gm-Message-State: AOJu0Yzs72b2GKkCsVo2v0KWdbQKeQL9sq+/CTxMA8TDeXCuUmYV6mxq
-	EE6S6KoM8GKPr0xkeHjXr2e6NOqlR0RogiOf3tp+ZYNyImGrpWC0
-X-Google-Smtp-Source: AGHT+IHjDWw31Jpb0flKPT54OLT41uuXKaoyPQviyN3N7/UlfI6Rk1BZIMko/WbbCb3qjGua2q1M2w==
-X-Received: by 2002:a17:906:68c7:b0:a59:ab57:7413 with SMTP id a640c23a62f3a-a62651341ffmr304999866b.73.1716643698275;
-        Sat, 25 May 2024 06:28:18 -0700 (PDT)
-Received: from hex.my.domain (83.8.128.191.ipv4.supernova.orange.pl. [83.8.128.191])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cda46e1sm251842566b.196.2024.05.25.06.28.17
+        d=1e100.net; s=20230601; t=1716647629; x=1717252429;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CErVniz+W5wR3XMrkvKFk+LDivHl4mX/Bk33d4Ln3XM=;
+        b=CDTqBjm0gWqSHcPnijo8CKhY8bNRPjphkeNOPCxYGnUcFOz1zReyoExHd0do73BBBb
+         uEx3EM3MMLGpkp6YNFxeSI+1cGia+JOEzAEwW+fJGZEFCtcmROaVgP7EmMIsWcSWqoBO
+         ls28O0w/I9d119av+qWpcNMXPN3slsgR+r56Kl1diLFOH/drIeIXuk6HlMbTuXMCWGO1
+         5B6C2Gs2Mmkg7c/IjwgD6kDyM9WOASEL9Aca8MXUrT+EBADRPenQD/lzSs4+O7HEJfoL
+         e9idvfEWU2HA8LJQeaQ6KWenrVtyrCfpms0owbt091nSvRG4ZsBZSemoCPAtaaxpZoDY
+         ZOFw==
+X-Forwarded-Encrypted: i=1; AJvYcCWGHeUqdoy6aPCEXvkcm5a/mde0iP63f0kcNjPduesRW9v5KR0x6Qe4fvdtny+hjKhKHOo9VWqBHGZQb/ADSRpDu5+pfXxZy1GWqVTh2AQftaw2zBtSFaKyaEhchqFDTaWA6hkkCmPXwTOWYGSSKxW9qlzv4vKYNtPkgVZ3R40AUP/htzP1
+X-Gm-Message-State: AOJu0Yy0VsdXBrc3UuQEK1t9OoXTkBY9g46akz1rTGxwdKPD7HWcZL4w
+	vExPgZjuJHj6G0XgGlNcQFtt2Agxjhovo+oZaoDBqUf6OVlTUpBo
+X-Google-Smtp-Source: AGHT+IHfpJHAR0xPYbhrdjzlHYOsMFn+Fuu2j5n/W/C7wWfej0FrMq1yPZIpjCe6kSIFT9ivsGgj6Q==
+X-Received: by 2002:adf:e444:0:b0:356:4cfa:b4a2 with SMTP id ffacd0b85a97d-3564cfaebb7mr2911205f8f.3.1716647628458;
+        Sat, 25 May 2024 07:33:48 -0700 (PDT)
+Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a090185sm4116340f8f.47.2024.05.25.07.33.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 May 2024 06:28:17 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Sat, 25 May 2024 15:28:13 +0200
-Subject: [PATCH v4 9/9] ARM: dts: samsung: exynos4212-tab3: Drop interrupt
- from WM1811 codec
+        Sat, 25 May 2024 07:33:48 -0700 (PDT)
+Message-ID: <6651f6cc.050a0220.6f744.fff3@mx.google.com>
+X-Google-Original-Message-ID: <ZlHBu6Fsy1HU3Igy@Ansuel-XPS.>
+Date: Sat, 25 May 2024 12:47:23 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] hwmon: g672: add support for g761
+References: <20240525102914.22634-1-ansuelsmth@gmail.com>
+ <20240525102914.22634-3-ansuelsmth@gmail.com>
+ <bbcce511-1105-40f7-b6e7-beef07971205@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240525-midas-wm1811-gpio-jack-v4-9-f488e03bd8c7@gmail.com>
-References: <20240525-midas-wm1811-gpio-jack-v4-0-f488e03bd8c7@gmail.com>
-In-Reply-To: <20240525-midas-wm1811-gpio-jack-v4-0-f488e03bd8c7@gmail.com>
-To: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>, alsa-devel@alsa-project.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716643685; l=1130;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=JqmBRm5p/y60vQho/QixG5OijJiMY4yvo8+3qIYS2Eg=;
- b=att6PI+S7xL/90ESu59NSz4LR4vIES/yJXLYib2LgY8EMPIGeok1wNdGajg7ym3EcfPb7CnFU
- Pwld1M2ToFDAxruK69JapsFnNIrDHO+vaCy7Kw72doBiWQPqda/rdnC
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bbcce511-1105-40f7-b6e7-beef07971205@roeck-us.net>
 
-This was initially copied from the Midas DTSI, but there is no
-proof that the same interrupt is also used on the Tab 3. The pin
-listed as the interrupt here is GPIO_HDMI_CEC on the Midas,
-but for the Tab 3 it is the headset button GPIO - GPIO_EAR_SEND_END.
+On Sat, May 25, 2024 at 07:29:55AM -0700, Guenter Roeck wrote:
+> On 5/25/24 03:29, Christian Marangi wrote:
+> > Add support for g761 PWM Fan Controller.
+> > 
+> > The g761 is a copy of the g763 with the only difference of supporting
+> > and internal clock. This can be configured with the gmt,internal-clock
+> > property and in such case clock handling is skipped.
+> > 
+> 
+> Do you happen to have a datasheet ? The datasheet is not available from GMT,
+> making it impossible to validate the changes.
+>
 
-Drop the interrupt, since there is no proof that it is used.
+No datasheet, online there is only the first page that describe the
+features.
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
-Changes in v3:
-- Split out from "[PATCH v2 7/7] ARM: dts: samsung: exynos4212-tab3:
-  Fix up wm1811 codec config"
----
- arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+This internal clock feature is the only difference to g763 and is
+present in a downstream driver from a Asus ipq807x router.
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-index 47e9a230f2e8..20e5e7ba6b92 100644
---- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-@@ -534,8 +534,6 @@ wm1811: audio-codec@1a {
- 		clock-names = "MCLK1", "MCLK2";
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
--		interrupt-parent = <&gpx3>;
--		interrupts = <6 IRQ_TYPE_LEVEL_HIGH>;
- 
- 		gpio-controller;
- 		#gpio-cells = <2>;
+I verified that all the regs match.
+
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >   drivers/hwmon/g762.c | 23 ++++++++++++++++++++---
+> >   1 file changed, 20 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/hwmon/g762.c b/drivers/hwmon/g762.c
+> > index af1228708e25..1629a3141c11 100644
+> > --- a/drivers/hwmon/g762.c
+> > +++ b/drivers/hwmon/g762.c
+> > @@ -69,6 +69,7 @@ enum g762_regs {
+> >   #define G762_REG_FAN_CMD1_PWM_POLARITY  0x02 /* PWM polarity */
+> >   #define G762_REG_FAN_CMD1_PULSE_PER_REV 0x01 /* pulse per fan revolution */
+> > +#define G761_REG_FAN_CMD2_FAN_CLOCK     0x20 /* choose internal clock*/
+> >   #define G762_REG_FAN_CMD2_GEAR_MODE_1   0x08 /* fan gear mode */
+> >   #define G762_REG_FAN_CMD2_GEAR_MODE_0   0x04
+> >   #define G762_REG_FAN_CMD2_FAN_STARTV_1  0x02 /* fan startup voltage */
+> > @@ -115,6 +116,7 @@ enum g762_regs {
+> >   struct g762_data {
+> >   	struct i2c_client *client;
+> > +	bool internal_clock;
+> >   	struct clk *clk;
+> >   	/* update mutex */
+> > @@ -566,6 +568,7 @@ static int do_set_fan_startv(struct device *dev, unsigned long val)
+> >   #ifdef CONFIG_OF
+> >   static const struct of_device_id g762_dt_match[] = {
+> > +	{ .compatible = "gmt,g761" },
+> >   	{ .compatible = "gmt,g762" },
+> >   	{ .compatible = "gmt,g763" },
+> >   	{ },
+> > @@ -597,6 +600,16 @@ static int g762_of_clock_enable(struct i2c_client *client)
+> >   	if (!client->dev.of_node)
+> >   		return 0;
+> > +	data = i2c_get_clientdata(client);
+> > +
+> > +	/* Skip CLK detection and handling if we use internal clock */
+> > +	data->internal_clock = of_property_read_bool(client->dev.of_node,
+> > +						     "gmt,internal-clock");
+> > +	if (data->internal_clock) {
+> > +		do_set_clk_freq(&client->dev, 32768); > +		return 0;
+> > +	}:
+> > +
+> >   	clk = of_clk_get(client->dev.of_node, 0);
+> >   	if (IS_ERR(clk)) {
+> >   		dev_err(&client->dev, "failed to get clock\n");
+> > @@ -616,7 +629,6 @@ static int g762_of_clock_enable(struct i2c_client *client)
+> >   		goto clk_unprep;
+> >   	}
+> > -	data = i2c_get_clientdata(client);
+> >   	data->clk = clk;
+> >   	ret = devm_add_action(&client->dev, g762_of_clock_disable, data);
+> > @@ -1029,12 +1041,17 @@ static inline int g762_fan_init(struct device *dev)
+> >   	if (IS_ERR(data))
+> >   		return PTR_ERR(data);
+> > +	if (data->internal_clock)
+> > +		data->fan_cmd2 |= G761_REG_FAN_CMD2_FAN_CLOCK;
+> > +
+> 
+> This and the property must only be accepted for G761.
+>
+
+Yes you are right. I limit this only in Documentation but as a failsafe
+I should also verify this here. Will do in V2.
+
+> >   	data->fan_cmd1 |= G762_REG_FAN_CMD1_DET_FAN_FAIL;
+> >   	data->fan_cmd1 |= G762_REG_FAN_CMD1_DET_FAN_OOC;
+> >   	data->valid = false;
+> > -	return i2c_smbus_write_byte_data(data->client, G762_REG_FAN_CMD1,
+> > -					 data->fan_cmd1);
+> > +	return (i2c_smbus_write_byte_data(data->client, G762_REG_FAN_CMD1,
+> > +					  data->fan_cmd1) |
+> > +		i2c_smbus_write_byte_data(data->client, G762_REG_FAN_CMD2,
+> > +					  data->fan_cmd2));
+> 
+> This is wrong. It would logically combine error codes, and execute
+> the second write even after the first failed.
+> 
+
+Ok will change the thing. 
+
+> >   }
+> >   static int g762_probe(struct i2c_client *client)
+> 
 
 -- 
-2.45.1
-
+	Ansuel
 
