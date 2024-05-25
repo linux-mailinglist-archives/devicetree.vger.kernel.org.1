@@ -1,56 +1,55 @@
-Return-Path: <devicetree+bounces-69106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECE68CEE19
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 09:00:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CE98CEE23
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 09:27:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 333F1281E8D
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 07:00:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFD761C20BDA
+	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 07:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E693BE55;
-	Sat, 25 May 2024 07:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C586E566;
+	Sat, 25 May 2024 07:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="S+3HKbea"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="d/QKjmuN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+Received: from mout.web.de (mout.web.de [212.227.15.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813B0138C;
-	Sat, 25 May 2024 07:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5A4101F4;
+	Sat, 25 May 2024 07:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716620418; cv=none; b=Bek/ic0A/teTvsHdliIlTDycV+fwBjHArGjAteGxFyb+0ENVXWW1jwSxtWSdZcdQNiMItMEGFC8Uuo11j27ratL4t0NfloNlTD4CHX3MeAMADkSxkRG4eFmt1qhPBGyZu9ToBSBKSei2rLH83QWbTyZiIMb9YY2Iv86uN8/q4Ws=
+	t=1716622065; cv=none; b=nULokn2ZUU0czvwGXDUWSSvzZQ2PQBn5hQoOfbvn251fj/7yhvfPqDDCC1DgVFACCgiGDmiOmJOuhRgNR8W4oxzjUKV5MTqORaEOBMgGQ8cxVFqKS85O6xZ2wvr3lXoSr0JgSR3EoWhvB/Z9Nmr6gIIoJI7TjJDQC3HYxYjSHuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716620418; c=relaxed/simple;
-	bh=zZ4Z9htX4zC9singJrmMJUDyjOTFxoOpSU+SUW4zRMk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=CPkLYRtzqYBrKP6UmIeBYJhFifA4QaIQGp+GsImIastZqUx0ReimMHo3FhcEx1+C6nFgjTQ5jcHYBHMV3EFtYswBHFJgcNg8YPCxdzurxJni+I5cGT7ctwO5hqEkIsD/RfO11nhw3jQ7D6XXB9tNUAphON146jqMrT/FvMAlWWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=S+3HKbea; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1716620396; x=1717225196; i=wahrenst@gmx.net;
-	bh=nIqWSc3ZaklDz+cAaEm24M8PzXmEYNEtLVLtIyG2WCE=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=S+3HKbeaIDQM2KvndCVAk0XoUyNd65tKLv7tGEoLbS+SJGRU/zsRnlZSNxe2rDxN
-	 ZFQi+miEt8NqBrnEkxff4vmbJ5mXD3dQSjZchBjtX5eC05Z3NWfYtASS9aXi8l98q
-	 GImt5IcerQ6MRKmVQaQjhF2Hs0jFo4N7Kn3RqdFhfgmugSabd5LvkVszuek5TJagN
-	 eSCytHCAW2QZJb1quNnr/uWpdth1ETXCN942LAekH3G3aq9kM4mosBKFzLDj5TwCB
-	 k9mZ9eilOq29ZylRjjrcXPsdT8DvpmcxqhZL0hn8732qrSmSF9dI1P59P8RDmHjXV
-	 PADEi2i77lXVY59Uog==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.126] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N49h5-1saqyL2YYj-0104rZ; Sat, 25
- May 2024 08:59:56 +0200
-Message-ID: <9ef2d8c2-621a-4e05-8afa-5d2b99a36caa@gmx.net>
-Date: Sat, 25 May 2024 08:59:54 +0200
+	s=arc-20240116; t=1716622065; c=relaxed/simple;
+	bh=1vV2rcZq7Yv8cvgatVorPcVsxAzQmPjkjKoLUVSD/9s=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=ed6/Dl8Nzuxe+qlXjU7q1ot4ksgvd5+pQ9/N+mIpAaZBxxLZQ+amFrg1Ws/PocXqoZyWdOhJ8+tQQ6Rmv4gAnwqiegTAyrJvn5Qc6dzn17M+b+KKTVeteTNv1tzAKTAUrmav5H3TEJgMDuZHUWcoAU1pW2Rth8kIuAXNS9EWizc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=d/QKjmuN; arc=none smtp.client-ip=212.227.15.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1716622028; x=1717226828; i=markus.elfring@web.de;
+	bh=6INwEjwgOCmGgOy8ZeWOLJOHl6t8dOZTr0bTagI6Hpo=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=d/QKjmuNUNl6skSonlt7xy84QrYC/aZ0HCBqQG4gmpdqxUSK84BhZD1yhSfvSlU+
+	 O64klxkS96ENhWSFFe7YZ4ONRBSLXxjG6ofmL/mMKMwWy4cBOA0ShKgoxbkCV1JK6
+	 OhqSbau51ESD5fyaVUrMmUZa3znhsRCECtrfDfDtlDzVw8dbHCrtsDpHzjvC0SPaN
+	 YdDIKSeceeeJRpIgSlkAgdS9PxX3t/OOmoSAoDTtDxApVeSidrISVtBDLWPUkvphY
+	 tZZCoInsRQXcRK1+2KWKXiec23+QW0LhgyPbCYgiEDsV8qOy7cuF24UPHOv9jQ7Bj
+	 rlizL3NhTPz/meEUow==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.83.95]) by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MMGyA-1rutLe2qpi-00JTf8; Sat, 25
+ May 2024 09:27:08 +0200
+Message-ID: <4c53b063-ad12-405d-b088-9b992284ba08@web.de>
+Date: Sat, 25 May 2024 09:26:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,273 +57,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] mmc: sdhci-brcmstb: Add BCM2712 support
-To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Marc Zyngier <maz@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org
-References: <cover.1716277695.git.andrea.porta@suse.com>
- <c413737f538d9bd403c30104a83a7fbb1ea7461d.1716277695.git.andrea.porta@suse.com>
- <f27aaf92-8109-4cad-94ba-6f72cd9bdabf@gmx.net> <ZlF5dQbNpZ921e66@apocalypse>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <ZlF5dQbNpZ921e66@apocalypse>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Shengjiu Wang <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel-janitors@vger.kernel.org, imx@lists.linux.dev,
+ Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+ Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de,
+ Shengjiu Wang <shengjiu.wang@gmail.com>
+References: <1716458390-20120-3-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v5 2/5] clk: imx: clk-audiomix: Add reset controller
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <1716458390-20120-3-git-send-email-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:5xZGo4wnACFwuy26GkUhX2rvxLsKoEsJ77Ch9n51a7NFLRACtOx
- NQS5WtbostbzDR/Vzbn2ipQdqOPoTHVz1PpkS7khxrzhA+If8HwE/WRtMBuqs7mt4YJ+DRA
- RQeSCVkS6o4uiXbtvNyBjS9zzUSUEg/rUqd/Xivti9NQLNk+hyfEuNH07C7+Klxdi9GaBHy
- OcP4KGd7j9y+JMhY8cs2w==
+X-Provags-ID: V03:K1:7xxTsM6Kf1mc/B2+VvsoIat3BsnLAt64foHiT/NelZ+ffJkbhTB
+ jRZhxyhS/V83g6c87aCUT7I6AaL9YMRyuQb+mjx7nHxlo1ILCOYgD5SkAPBH5K236dRojH8
+ DkLl0DLpgSDFicN/cR1Ou/JiQTCBCjOMtLzDjg4za1pLhDiuIPtheIBUamPhP4+9qKACOs/
+ bEEQNF+ZAvhtPwcLVSO6w==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:+4jXvxIqCvo=;pE6vlU6J684NpgZjySC/5Pf3iDv
- sfO9DFL1njcIttJ7k51Ez0c8Kn22XMgWAM0CvIDk/mG8mZl9GeDDFBkcPM9GSgLqqjgcNz7ev
- 3AVryZC6zgOszxVF2UlZrdD/UBH2YC+bgOHP9adxSm3SzWdCt33ejHJUNZnijTPzy02HzGjVt
- WrNylzQ6yspRMO+/J9H+8404JpMMDejME/YqeqepAH6Hs8FR9lW5xxoK33fnK3kqVnqeRTC4+
- 2EximiyCf/S02sshcqxyRj7oylxMDUaPPxKxxqycZLEwH5lhYcsUDqu6nIifRpAc9neVOFEYi
- 9QVTcpdxK0LECjxVH6mbtXmUt/3RdVIzkqbLkHNXqvE1zPwhEKezLH2BUkgWOGkHpM4RggdDf
- aLGe6zUavCxIR2+MRUbG3cjlch15QI9zNrU39in4PKrugydFU10RPWEf8bZSPqsHUtb9Fx6m6
- //V+0jFCVf9jrQA3k8iyc42nkGww3Whb8GKSlXJapGebpWLFuM913TPlkrk1X5XopwfQizZeN
- lw+h4+Lg2WpMtPyKObjoCpGnxqZscwwtsjdZmWs/nj8rTh9GeJeVo6UHZlThZ0T856ygW52+u
- A3ieP7q9xfJ6n6nehB3Ld+BEjREMlZKQQV6sNPCM47nKg38l+FIkbeyzUx9Qpeh7QJ6GlzNY5
- AtxKRuTLA/JMb7IsFf0fUoM2SBEz5YBaCVg6zjNhtKErOtKmNjVQy3gozXsYt3LiFFv+95I69
- LJMrs4RUXkQiP8fuHlaPgjZXI5bRKy2P3Cx7IloYdTPkwGrDvE6o8KXZcBPUaFow+KEY1B33c
- TJ1WP6blC/hp8MDpCn/dMPvbVbqQDrqtgYrzHc1gILufc=
+UI-OutboundReport: notjunk:1;M01:P0:UOryPKNMsTk=;uYxEyA1BlH+rnEbdOgIk74ncs0l
+ M6cbmCB5kSEPC2OR55JRYwah+nhOnwB6z8Fr5WvrcLlUHtV6S0edcGimlqIVtuDxp89HHtOOW
+ WfrSntW2IVbigwWt244GTuRRf9zQTmdL5A1H7IVnNhGfhupT5MlEzQ74Wc6uRowrM1w5rXCN5
+ 0HwhhCDJ+mj6UDnUY6NrGD+zof3NzOmzKZd3FaGctVxBmhbmimlHEpJYNLRc0DyFUoJpy6T0i
+ Bpt2zFT82/TzCHWETZmecYCSQERCyOn77TMWe3X42WDb8MKp7YlwNEw/NcTjJ8tUnmaDmJTGV
+ M+BnC/hZsblGTY3xcYQJ+K2aIWie/J8MmqjfhN+eX+MyGBejnXmkgWu5Xxn0NApsAimdh54Lk
+ ozxurWtoqjMydj7PzVZ5anpl/4f2msb+szhJGD+LYp4Qbge23NIb2NmJMDvB2v+YIDKqWIqco
+ ju528YTrrTUhIcWVXaxSSwhPeXCZTeYM9dq88bcahk27mzEjkoYJ0CMeQHL35K2BioaSLeBr0
+ OX2Rf7LJv7+YkUmtL5rK3uuFactKgZT5oV8Fta+F0MMbfs/YoToXDY6VNvgtwvMtHKeCWZb8R
+ N3HpW9mbiMUgyzw7p2yO85rOD09HT521s5yB9iknZavcZ5bOQr4mWnYFCIzfZ3a9lrcjJnssd
+ Aw/H3r1yNyPsp+94J9KZwPh5FFgUDphqqlHj0vLRzlvt1sGQWWfY/13glClPpNscJe0blf2SO
+ O14rVbN+L62Kmq9DsNfuO0kU651ZiCY6o1mXaTCopjTKizw4h3wLvIzkYseUAstv9bIREnhzD
+ ORo7QH9ejyKjr0vo74zMw6ZEDT2pgYYo4CEgqsZLnXffc=
 
-Hi Andrea,
+=E2=80=A6
+> The reset controller is supported by the auxiliary device
+> framework.
 
-Am 25.05.24 um 07:39 schrieb Andrea della Porta:
-> On 14:26 Tue 21 May     , Stefan Wahren wrote:
->> Hi Andrea,
->>
->> Am 21.05.24 um 10:35 schrieb Andrea della Porta:
->>> Broadcom BCM2712 SoC has an SDHCI card controller using the SDIO CFG
->>> register block present on other STB chips. Add support for BCM2712
->>> SD capabilities of this chipset.
->>> The silicon is SD Express capable but this driver port does not curren=
-tly
->>> include that feature yet.
->>> Based on downstream driver by raspberry foundation maintained kernel.
->>>
->>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
->>> ---
->>>    drivers/mmc/host/sdhci-brcmstb.c | 65 +++++++++++++++++++++++++++++=
-+++
->>>    1 file changed, 65 insertions(+)
->>>
->>> diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci=
--brcmstb.c
->>> index 9053526fa212..b349262da36e 100644
->>> --- a/drivers/mmc/host/sdhci-brcmstb.c
->>> +++ b/drivers/mmc/host/sdhci-brcmstb.c
->>> @@ -30,6 +30,21 @@
->>>
->>>    #define SDHCI_ARASAN_CQE_BASE_ADDR		0x200
->>>
->>> +#define SDIO_CFG_CQ_CAPABILITY			0x4c
->>> +#define SDIO_CFG_CQ_CAPABILITY_FMUL		GENMASK(13, 12)
->>> +
->>> +#define SDIO_CFG_CTRL				0x0
->>> +#define SDIO_CFG_CTRL_SDCD_N_TEST_EN		BIT(31)
->>> +#define SDIO_CFG_CTRL_SDCD_N_TEST_LEV		BIT(30)
->>> +
->>> +#define SDIO_CFG_MAX_50MHZ_MODE			0x1ac
->>> +#define SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE	BIT(31)
->>> +#define SDIO_CFG_MAX_50MHZ_MODE_ENABLE		BIT(0)
->>> +
->>> +#define MMC_CAP_HSE_MASK	(MMC_CAP2_HSX00_1_2V | MMC_CAP2_HSX00_1_8V)
->>> +/* Select all SD UHS type I SDR speed above 50MB/s */
->>> +#define MMC_CAP_UHS_I_SDR_MASK	(MMC_CAP_UHS_SDR50 | MMC_CAP_UHS_SDR10=
-4)
->>> +
->>>    struct sdhci_brcmstb_priv {
->>>    	void __iomem *cfg_regs;
->>>    	unsigned int flags;
->>> @@ -38,6 +53,7 @@ struct sdhci_brcmstb_priv {
->>>    };
->>>
->>>    struct brcmstb_match_priv {
->>> +	void (*cfginit)(struct sdhci_host *host);
->>>    	void (*hs400es)(struct mmc_host *mmc, struct mmc_ios *ios);
->>>    	struct sdhci_ops *ops;
->>>    	const unsigned int flags;
->>> @@ -168,6 +184,38 @@ static void sdhci_brcmstb_set_uhs_signaling(struc=
-t sdhci_host *host,
->>>    	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
->>>    }
->>>
->>> +static void sdhci_brcmstb_cfginit_2712(struct sdhci_host *host)
->>> +{
->>> +	struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
->>> +	struct sdhci_brcmstb_priv *brcmstb_priv =3D sdhci_pltfm_priv(pltfm_h=
-ost);
->>> +	u32 reg, base_clk_mhz;
->>> +
->>> +	/*
->>> +	 * If we support a speed that requires tuning,
->>> +	 * then select the delay line PHY as the clock source.
->>> +	 */
->>> +	if ((host->mmc->caps & MMC_CAP_UHS_I_SDR_MASK) || (host->mmc->caps2 =
-& MMC_CAP_HSE_MASK)) {
->>> +		reg =3D readl(brcmstb_priv->cfg_regs + SDIO_CFG_MAX_50MHZ_MODE);
->>> +		reg &=3D ~SDIO_CFG_MAX_50MHZ_MODE_ENABLE;
->>> +		reg |=3D SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE;
->>> +		writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_MAX_50MHZ_MODE);
->>> +	}
->>> +
->>> +	if ((host->mmc->caps & MMC_CAP_NONREMOVABLE) ||
->>> +	    (host->mmc->caps & MMC_CAP_NEEDS_POLL)) {
->>> +		/* Force presence */
->>> +		reg =3D readl(brcmstb_priv->cfg_regs + SDIO_CFG_CTRL);
->>> +		reg &=3D ~SDIO_CFG_CTRL_SDCD_N_TEST_LEV;
->>> +		reg |=3D SDIO_CFG_CTRL_SDCD_N_TEST_EN;
->>> +		writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_CTRL);
->>> +	}
->>> +
->>> +	/* Guesstimate the timer frequency (controller base clock) */
->>> +	base_clk_mhz =3D max_t(u32, clk_get_rate(pltfm_host->clk) / (1000 * =
-1000), 1);
->>> +	reg =3D SDIO_CFG_CQ_CAPABILITY_FMUL | base_clk_mhz;
->>> +	writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_CQ_CAPABILITY);
->> This part assumes the clock isn't changed afterwards, see below ...
->>> +}
->>> +
->>>    static void sdhci_brcmstb_dumpregs(struct mmc_host *mmc)
->>>    {
->>>    	sdhci_dumpregs(mmc_priv(mmc));
->>> @@ -200,6 +248,14 @@ static struct sdhci_ops sdhci_brcmstb_ops =3D {
->>>    	.set_uhs_signaling =3D sdhci_set_uhs_signaling,
->>>    };
->>>
->>> +static struct sdhci_ops sdhci_brcmstb_ops_2712 =3D {
->>> +	.set_clock =3D sdhci_set_clock,
->>> +	.set_power =3D sdhci_set_power_and_bus_voltage,
->>> +	.set_bus_width =3D sdhci_set_bus_width,
->>> +	.reset =3D sdhci_reset,
->>> +	.set_uhs_signaling =3D sdhci_set_uhs_signaling,
->>> +};
->>> +
->>>    static struct sdhci_ops sdhci_brcmstb_ops_7216 =3D {
->>>    	.set_clock =3D sdhci_brcmstb_set_clock,
->>>    	.set_bus_width =3D sdhci_set_bus_width,
->>> @@ -214,6 +270,11 @@ static struct sdhci_ops sdhci_brcmstb_ops_74165b0=
- =3D {
->>>    	.set_uhs_signaling =3D sdhci_brcmstb_set_uhs_signaling,
->>>    };
->>>
->>> +static const struct brcmstb_match_priv match_priv_2712 =3D {
->>> +	.cfginit =3D sdhci_brcmstb_cfginit_2712,
->>> +	.ops =3D &sdhci_brcmstb_ops_2712,
->>> +};
->>> +
->>>    static struct brcmstb_match_priv match_priv_7425 =3D {
->>>    	.flags =3D BRCMSTB_MATCH_FLAGS_NO_64BIT |
->>>    	BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
->>> @@ -238,6 +299,7 @@ static struct brcmstb_match_priv match_priv_74165b=
-0 =3D {
->>>    };
->>>
->>>    static const struct of_device_id __maybe_unused sdhci_brcm_of_match=
-[] =3D {
->>> +	{ .compatible =3D "brcm,bcm2712-sdhci", .data =3D &match_priv_2712 }=
-,
->>>    	{ .compatible =3D "brcm,bcm7425-sdhci", .data =3D &match_priv_7425=
- },
->>>    	{ .compatible =3D "brcm,bcm7445-sdhci", .data =3D &match_priv_7445=
- },
->>>    	{ .compatible =3D "brcm,bcm7216-sdhci", .data =3D &match_priv_7216=
- },
->>> @@ -370,6 +432,9 @@ static int sdhci_brcmstb_probe(struct platform_dev=
-ice *pdev)
->>>    	    (host->mmc->caps2 & MMC_CAP2_HS400_ES))
->>>    		host->mmc_host_ops.hs400_enhanced_strobe =3D match_priv->hs400es;
->>>
->>> +	if (match_priv->cfginit)
->>> +		match_priv->cfginit(host);
->>> +
->> I'm not sure this is the right place to call cfginit.
->> sdhci_brcmstb_cfginit_2712 retrives the current controller base clock,
->> but at the end of=C2=A0 sdhci_brcmstb_probe this clock frequency could =
-be
->> adjusted by the device property "clock-frequency". So i'm not sure this
->> is intended.
-> I've tried to interpret the meaning of those two clocks since unfortunat=
-ely I don't
-> own the datasheet for any of the platforms involved, so please take the =
-following
-> as the result of my own (possibly wrong) intuition and (mostly wild) gue=
-ssing.
->
-> The main clock is 'sw_sdio' while 'sdio_freq' is optional and the latter=
- seems to be
-> orthogonal to the former.
-> While sw_sdio is mostly used for SD storage card, sdio_freq seems more r=
-elated to
-> SDIO family of cards (wifi, gps, camera, etc) for which you could specif=
-y a particular
-> (and higher) base frequency.
-> Unfortunately I wasn't able to find any reference to sdio_freq in curren=
-t devicetree
-> so it's probably only specific to custom appliances: to be honest I'm no=
-t even sure
-> that BCM2712 is supporting that improved clock source.  Also, from the f=
-ollowing lines
-> at the end of cfginit function:
->
-> /* Guesstimate the timer frequency (controller base clock) */
-> base_clk_mhz =3D max_t(u32, clk_get_rate(pltfm_host->clk) / (1000 * 1000=
-), 1);
-> reg =3D SDIO_CFG_CQ_CAPABILITY_FMUL | base_clk_mhz;
-> writel(reg, brcmstb_priv->cfg_regs + SDIO_CFG_CQ_CAPABILITY);
->
-> judging from the name of SDIO_CFG_CQ_CAPABILITY register, I'd guess that=
- it relates
-> to some Command Queue (timeout?) setting so it's probably only important=
- if CQE is
-> enabled specifying 'supports-cqe' property, which is not in current devi=
-cetree (nor
-> in  downstream one). If this is the case it's mostly a performance impro=
-vement, and
-> as such something that we are not necessarily interested in right now si=
-nce this
-> patchset adds just minimal boot support. I would then drop those lines, =
-as we could
-> just reintroduce them if they need be once we have a better understandin=
-g of that
-> specific register and/if the cqe support will be enabled. As a matter of=
- fact those
-> lines are not working as expected in any case since pltfm_host->clk is s=
-et at the
-> very end of sdhci_brcmstb_probe() while the cfginit function is invoked =
-much earlier.
-> The result is that right now the value set ito SDIO_CFG_CQ_CAPABILITY re=
-gister is always
-> equal to 1MHz. Further testing reveals that it is indeed working fine ev=
-en with those
-> lines dropped, so I would deem that code as unnecessary for this early p=
-atchset.
-> Is it a viable solution?
-I don't have any knowledge about this hardware, so my opinion based on
-your good investigations. But i would be fine with this.
+Would you like to add an imperative wording for an improved change descrip=
+tion?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
+cumentation/process/submitting-patches.rst?h=3Dv6.9#n94
 
-Just to make it clear, this works with and without U-Boot in the bootchain=
-?
 
-Thanks
->
-> Many thanks,
-> Andrea
->
->>>    	/*
->>>    	 * Supply the existing CAPS, but clear the UHS modes. This
->>>    	 * will allow these modes to be specified by device tree
+=E2=80=A6
+> +++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
+=E2=80=A6
+> +static int clk_imx8mp_audiomix_reset_controller_register(struct device =
+*dev,
+> +							 struct clk_imx8mp_audiomix_priv *priv)
+> +{
+> +	struct auxiliary_device __free(kfree) * adev =3D NULL;
+> +	int ret;
+> +
+> +	adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
+=E2=80=A6
 
+May the following source code variant be applied here?
+
+	int ret;
+	struct auxiliary_device __free(kfree) *adev =3D kzalloc(sizeof(*adev), GF=
+P_KERNEL);
+
+
+Regards,
+Markus
 
