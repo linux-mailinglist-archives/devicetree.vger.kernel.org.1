@@ -1,238 +1,241 @@
-Return-Path: <devicetree+bounces-69245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1649C8CF4AF
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 17:04:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E45578CF4C1
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 17:43:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2711B20AB5
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 15:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D084C1C20847
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 15:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A83175AD;
-	Sun, 26 May 2024 15:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AA2175AD;
+	Sun, 26 May 2024 15:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LhqTNn2C";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="Ruw09VBU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iFLlqHZj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C51BBE5A;
-	Sun, 26 May 2024 15:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716735868; cv=fail; b=oVESNu3Nvd9A9rKsdknceB1S3WgjaxTwb44eE67b97aQRTXN1n5Kbs0KZlTCgaDiUDq3t1LqhdH2uIsjYc1/OnQ1fYVQiZsNr2Qv6GwBfUdOwOyU97Urh9Tel+Ir7RjmfuHI5jpZavJ+B0XMoB8ijXohJTi3aC1+D8X/hCFDXIk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716735868; c=relaxed/simple;
-	bh=6YcqYxniIGbzMpZ08c6pZiMtS4wE4aOGTHYw0oA8+XM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=tlEA1Zs1V++Wv+hXUuXGAtjK9ioVZqh+Msj5UYXjRRRcQNooHfeA6acuaLso2XBbp9w0OyIcJCdGh8Kz8bKaF2p7yX3xcqO4ocL+HJT+1hxqVg4opV/V3+aTKuvRY/984X73tfQVUaO+ry/J4V7cc4JJij0JLI6r/KMy/nlzM9I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LhqTNn2C; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=Ruw09VBU; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 39530ca81b7111ef8c37dd7afa272265-20240526
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=6YcqYxniIGbzMpZ08c6pZiMtS4wE4aOGTHYw0oA8+XM=;
-	b=LhqTNn2C2rSH5/aExgCXp9icJ3Z6zksqaHB4fcOG+8vz6Ofor1SGRmMyuNB2gGH4vxzbh9HscqbnA9iF2jg2pI5jcVU6ueFD/iQsYotqBeuypwghNBk2ytNCm7BD9viOG4e2s+Sx87mYsDULZC+3XVsy8iGx1Mr0emWw2Oa8qys=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.38,REQID:f4c81945-ac11-4d79-bd40-c2d60f9550b6,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:82c5f88,CLOUDID:fad1d387-8d4f-477b-89d2-1e3bdbef96d1,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 39530ca81b7111ef8c37dd7afa272265-20240526
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 479988454; Sun, 26 May 2024 23:04:17 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sun, 26 May 2024 23:04:16 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sun, 26 May 2024 23:04:16 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=epL+3x8vmRqlp/1C2DnzgF777VVgl4GO5jvkbdPjurfpC+/mr9ca8G8zRn8Npbcec6ROvRjzrYOBLPtr7Egqk5bsOsfVY5UVc2Zdhvz2h9GSNkYOWmRFumdPk34svNVPaPCPimg6N6QCUPdGVwolwWVK3SPyWx3PsDMQ3/Smi9cNzvu3Q/oMxpNx0wqmKdhLOhQXxOm22aSEXWQ8RDcTJmcKzTPVWm5k2Rm3/Ol+oOIFKfZxOYTjpsmQZhY7Ury1Ds09pxfw+wnHIYcnGW1ZRyl9ZlnUMVK7UXKvWD/tTRdaFQb7cogZK8SvajhogdadVV1U/wxUrmTgRhUnwHGuzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6YcqYxniIGbzMpZ08c6pZiMtS4wE4aOGTHYw0oA8+XM=;
- b=AMZtsUcT+9aNNMXbyZNF18Zk1sLgfAeYu0SyHQ43KjpnqHbQbaFDDzKhHxwHcVaDRS+9P0Jqn9pHUBFkfdxpuFRlW7n1Nuw+Fr6l3lTtXtuppiG8orfHigkWUDPq0bckCkyqeNGPm/BlG1db7TwgDFgkaCFGGxdQAdIuOSYgMTUPCBjBaHLlPA5H8gU870USBEZP60SAzFc+CPNSXxIaOEyzls6urNZxEgpaJADbo+kcDuHKenMbMcRSN9kFgN/Js4fj05/AbWbvwZj3yG4Wzapy5Ihdkic6yjtcAzj2dVrt6YUvdv39hZvzzs76LfVSmRJn2OWoxjfzGkdyKtD67A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6YcqYxniIGbzMpZ08c6pZiMtS4wE4aOGTHYw0oA8+XM=;
- b=Ruw09VBUDWNl1/5SUA6ecqfPanAmn0nXzECzvp9yl//Lu30zyP3fjcJapF9i3W8WTmQkovdYsCV3abH2WQy0lx1dzaR1xT4daEn+EvdyoguRwKZGfvuIcAyoSqVSjwjBepQTqzkqHS0HRhjwpkO8v7EJgtjnQd7COxfyPtHtMxs=
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com (2603:1096:101:149::11)
- by SEZPR03MB6667.apcprd03.prod.outlook.com (2603:1096:101:7e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.16; Sun, 26 May
- 2024 15:04:13 +0000
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6]) by SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6%7]) with mapi id 15.20.7633.001; Sun, 26 May 2024
- 15:04:12 +0000
-From: =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-To: "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "chunkuang.hu@kernel.org"
-	<chunkuang.hu@kernel.org>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
-	=?utf-8?B?Sm9obnNvbiBXYW5nICjnjovogZbpkasp?= <Johnson.Wang@mediatek.com>,
-	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	=?utf-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
-	<Jason-ch.Chen@mediatek.com>, =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?=
-	<Shawn.Sung@mediatek.com>, =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
-	<Nancy.Lin@mediatek.com>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "fshao@chromium.org"
-	<fshao@chromium.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: mailbox: Add mediatek,gce-props.yaml
-Thread-Topic: [PATCH v4 1/3] dt-bindings: mailbox: Add mediatek,gce-props.yaml
-Thread-Index: AQHaTmLiMoH4NLRf/EqMjmvpP6g6fLDoqeqAgMG1PoA=
-Date: Sun, 26 May 2024 15:04:12 +0000
-Message-ID: <2a2a939c9cb56de0383ec3e42db9bcf8e8518775.camel@mediatek.com>
-References: <20240124011459.12204-1-jason-jh.lin@mediatek.com>
-	 <20240124011459.12204-2-jason-jh.lin@mediatek.com>
-	 <f91d3ac1-0a7d-4ca2-bf0f-c5e471c2f6bb@collabora.com>
-In-Reply-To: <f91d3ac1-0a7d-4ca2-bf0f-c5e471c2f6bb@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR03MB7682:EE_|SEZPR03MB6667:EE_
-x-ms-office365-filtering-correlation-id: f68756ea-0d4a-4e6e-b399-08dc7d951a85
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230031|366007|1800799015|376005|7416005|38070700009;
-x-microsoft-antispam-message-info: =?utf-8?B?Unp6RjZCbnVHWGkzNGlSZFhOU1BkRE9EOXNMMVhXTjVoM0dRT1d3VUx4RGJO?=
- =?utf-8?B?UnJrRXEyZGZjQmtaTy9jcmdjcmRqdnlGV09oNVNGK0FHemQ0N0ZnSHBhNmFL?=
- =?utf-8?B?YzZMYjdndUduaTl0OXp4aitkYTFMS0tkUXZxMWJhcEowS3FEM0hTdVo5WFFW?=
- =?utf-8?B?ZE1SdjhQRDZCZXJnL01HMmg3RnVMaTRURjRnR093V1ppdk9KSEtGY054dUJi?=
- =?utf-8?B?c0hqWmdSekpKcWdWbVpUTmVIWFplSUQzVXhwZ2ZmVFVjdUtjYjI1dE1mdWxP?=
- =?utf-8?B?cjNOTjY4OUVVNU1FSU9MVUpGcjM1OUZ3NXRPcmcyODFtTDAzeFR4cGk2RFpI?=
- =?utf-8?B?c2lWcjZpNXlqaWxBdzU0TTlFalJpN1c2a21iSW5LZFd0enRaNTQvUGQ5cnd0?=
- =?utf-8?B?czliRTMvZHFCVDRxaE9mWVVNNW5lZkVrdlZGOGVobjBKeFU1OTF2YjN6RVBq?=
- =?utf-8?B?MjFqbWJTU1Y2Ty8yNTViSWtnbkZBSnJHdXp6WGdpZUZlNW5xbkw1M2lIWmt2?=
- =?utf-8?B?cy8vd3dtYzRkcXFEQUdoaGlIdEZleFd1Z1pCNG1FUHB3NUxTSjBkNW52OGZz?=
- =?utf-8?B?NzRBK1hvWWVTYTN0N21JSXNKQ3BrSElBRUIyVkZGc2JKc0ZlRTVTbi9ITERC?=
- =?utf-8?B?ck1HWTNlZzJGQ003RTg1YlNZZlRNYWNkVUdFRGFjR1ZpdndncXNhQUZ1RER5?=
- =?utf-8?B?Q25BOTZwaVZBbUJid2NCaUpSTjIzcitxUVVOWFI1TTlQWGtWamJLcm5xYUNu?=
- =?utf-8?B?cnkyTUdXK0MvaVIxRzZFZ001VHA3NmJCUHN5TFpMVXYwbWVDSk0xZEp2MGRC?=
- =?utf-8?B?M1V5ZGhoQVptOW5jM3Q1VlZmc2FUNjFiTy8vK0kxejIvZFdIQnZZT043c0Fj?=
- =?utf-8?B?SVNJY1EyUnFSL2JRVzVHT0x2UWlJenM4R1lGdGE2YzZoOU0wUjRuZDRONkZQ?=
- =?utf-8?B?SmNRWVRSVFNHbVJpcERqdUphZlcwM3RFN3p6d01uTmlDemNIVjRRSFlGRFZr?=
- =?utf-8?B?ZmozZnBBNXBlOEVWa0JqbHB2emxtWGZrV2lGeE1PT1pEMm1CV2VNK0VLMWlS?=
- =?utf-8?B?bFBwbi9pRy9tempKM1RhL3grZkhkNXZSd2c5NFIwaW1ZdjBHeDBvVW5pNFBV?=
- =?utf-8?B?d0VINjl3QUJ3UUR0ajRiMU0xazJESElEbktrMzQyTURIVG5KczUrM1FvRDRH?=
- =?utf-8?B?bUZUcWo4alNFb1pPV3RlZUQ1eUx6blRtcklsRHJOWHRuamtRVzFlZ2ZNVTBR?=
- =?utf-8?B?M1lDNjNhcEw2bmx2cm9yYndWL0lGdCtHdjlaRTFmNHY1bTVxa0t0NU1SQkZy?=
- =?utf-8?B?NVBvVjFxakpkRDNHVENPNlB3bnVuUldNa3EzQmFHTzBPM2tieEpEOStVdmhm?=
- =?utf-8?B?WjcxNEF2UkJ5Q1FqMkhTSmJzT2hBbDZUUmg3UlZqeW9BazBqODF2REhLOEox?=
- =?utf-8?B?MlJ1VG9POHY4Qk94V2F6K1pKdkt0bDFoR04rcExYaHlmVHpobVNOcUEvaTJN?=
- =?utf-8?B?Ukg3VmVhL1d0WHU2aThHYnhmbWlpaldmUkRSc3pZSGdidGRSY1M3VWJ0NFJN?=
- =?utf-8?B?Ylh0RE9CZmZtS2N1bHFNajlaVWFHOEt6V0FuU2JIZ2t5aWk2VDRxSnlMOWVu?=
- =?utf-8?B?TFBJcE1YbklOS29rbVJZZ0lUM3NId2NXNWtiS3duSkRBb25ZNVVpdXd0UjFN?=
- =?utf-8?B?TVlhd1FiOVBxYXQvL3JFZm02a0QzZmtVclFKY0pMNW1iZGpmODh6Zk85NHQ5?=
- =?utf-8?B?b2FCckZwbGhSL3BWb2MvRnpnYUZVZ3I5QzZyc0ZaMWFzTVhkVnR3MnZwUHow?=
- =?utf-8?B?cDU5RWptQWlSR0YzSjlPdz09?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB7682.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(7416005)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?STlBalg3MXBzQzhmMFhPNERWYnBQYXRzSDZBK3ZPYkJMb241WFhWOTc2TzZr?=
- =?utf-8?B?ZmJQRUpTNzcxMjdqaFJQdXRmVGcweGxENlVLS2xUc1Bldm9QSnNhOE5kSlBE?=
- =?utf-8?B?Y0EwVUtMRXQxY1Q3N1J2SmZjZHZWTnphTFBWa1hBRVRJOUVxK2orbmozYWpv?=
- =?utf-8?B?SGhVM0xvR2R4M1ZYdGh6S09jWFVVY1ZRU0dpTnpMY0w4cHRrRnA5M1BYYlFF?=
- =?utf-8?B?bVR1dGNDV28wUlk4d29OUmhCMkdOcnNnekd4eEVPNFZKKy94MEwvM1lydDRJ?=
- =?utf-8?B?cEVtMGJ0UTBJMHZCWG5mSkJmUzY1R2tsSU5aRTZNMGNGd21qcmdNRmRTZ2ow?=
- =?utf-8?B?WjFWQ1lPZTZKM2pxOENHaHJMekVvTlpGWnJWZDdmZWUwQVRGaUtCWkh3Nncw?=
- =?utf-8?B?TWxKSWloSkY2SjMzRisrNTI5WUxPbTErTHZjTHB0R0hXdWZuWmxyQ0NqQUhT?=
- =?utf-8?B?ZU4yMStWWU0zZWN5ZFBtRjVkNmwvUDZxUFFPZElnVGhKMDJtWmdzZEZ5ZzI0?=
- =?utf-8?B?YUgzWXRqV3loMWpUQmw1cFNBdFd1Y0VMcC9WZHlBRHlsNDA0U2lCV2lwRU1i?=
- =?utf-8?B?ZStlTjU5OUkzMGUydVpxOWIvajdrQjRRUFc1SUozK3NiWk03RXhtRzdVbURw?=
- =?utf-8?B?eTV4VjNHak4wR09WaXhFaitMSC9zQS8wdmUzZllYMUpNbUNjTm9EeGFGcURs?=
- =?utf-8?B?bTJSQzRWRm5kRVRwSHZRaVdLdHUxZjU3WGN6bjRuS0ZRVFgrSmhJdGtqU1Zo?=
- =?utf-8?B?M2lSMy91MlBrR2k5a0RsRmZOL1ZUMGtHWU4xT1dGRTBGY203cW5IbitsNGU0?=
- =?utf-8?B?d0F6M2JoY3JsV0Nkb2hreG96N3IrUG52ZTBtRzgvR0dpYXByQUtUZEIvbjlQ?=
- =?utf-8?B?RjRFc0NwN3dGdW9TanJBbC9XRmZMRndaZ05GTnhLVlNkK2txT29SOG41UkZi?=
- =?utf-8?B?R2R5d1NpRit2V3BKUDBPVmhKNlorMWpTeVYwQ1EzNjJsOStKNHJnRnFJY21n?=
- =?utf-8?B?ckxXUVRpMnFQS3FtVWY5b1NnMjg4d2Z6ekxpK0szRC95YjJ6Y0NFMkNWaGlw?=
- =?utf-8?B?ZGhYMmJ3MUVKNkRVOWNON3ZEV2c4SzgzV2hYbEczMzlYcmxhaFlOLzRSWk11?=
- =?utf-8?B?alU0U0ROK0tUVXBCenFEbXFxbVBmTGQvRUVrMnkrUXdURTBLTkZkYTc1M2I3?=
- =?utf-8?B?T1NvVS92SDFEQmxFL0MvaWUvREdQTzRyUUdJR0YyVHkvNXFtbkFXYU9lTlpz?=
- =?utf-8?B?ZTQ2WVBCa2pOK2JzZlo4a3dJMjUwNnRLa1hpK0NjZDY2WFFMNFhRbmUzZW8r?=
- =?utf-8?B?U1FkaWlQUEVaZjRZOXNDZHlEdHFKbUZJYUt5RWsvY1JLdnZyLzNoSmk4ZnMx?=
- =?utf-8?B?TU5ROE9hc2pnU2VZbTUvMmZZTUJYNnhxV1dMZ05DQ3N0SU0wS25OaXBQcS80?=
- =?utf-8?B?dkRoVTFSb3ZSSEljUzl4VkZDYTh4YU9jSm9RNms3d0RmNW93d1FIV2JXNE1R?=
- =?utf-8?B?aFNmN2t0Z1luS3kySnlnNkY0cFRaUFJOL1o2ekRodXlIRnVNTlhQVFhOSlBu?=
- =?utf-8?B?c1YzbGxzN0tDMWtqTUdjNW1rOWpibkNwQ0YzUzcxb3U0VENvWk5sajAydG1S?=
- =?utf-8?B?aW45Z3FRM0E3VHdrVEtwZkMvMm9XalFtQllXdlo2TXhrNGoxQ2R2dTlSOUxx?=
- =?utf-8?B?VDdVckF4QnhINlpmK2xQTFM5WGN3T0FZNG45MEZISnNoR3NwNFBNSm1IUjBN?=
- =?utf-8?B?U3FNNTJKaHlFT21udnJWWmFzaXhFcmNIQklqZ1ZjN2I5bktzSmM1am9VUXc4?=
- =?utf-8?B?UXFnL2ZhYTVHNHo0TnpXUjM5WGxwWkc3L1hUWGVuVnRXdDFsOXhrejdkYVJt?=
- =?utf-8?B?TWpyeHdFOGRPYmo0bC83SHJzRDgwbjRmUDJjbHRaYmE0bWJYeCs2RWNlQkp2?=
- =?utf-8?B?ckxLeGdSRmNlSjduZ2ZOcXRvQTIwUFFTemt1QloycWZuL3kyZmZ4S1BrQmVj?=
- =?utf-8?B?YW45cU0yMlBjVFpib0didVJWS3dYUE1MY1hlOS83MC9aMG93T09pbUQ1UjdZ?=
- =?utf-8?B?emMybFphMFdpNjdZajQ2ZkU0bU9SN3FwcFNibDE1b3JhYUtGRmpRNm9PdVlE?=
- =?utf-8?B?STV3MlBaM0dsS2VRVlpWdTc1b1dGaFhZNnllYlJrY1ZYeVcxSjBIVkJuR0xU?=
- =?utf-8?B?c1E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4C35E577F20E5A41B68F583BC84EE9DA@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6FBB17C60;
+	Sun, 26 May 2024 15:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716738176; cv=none; b=fefi37gOZRNi89+z1v+xk8H+CqW+25EZNoNmMksZde4i9k7IJsy+7N4Vj+92xpbRza3ovkoQajHwKtfZGJ67x7ZyDBLcBq/Qp5cvvE7YCejYAkokw+QigKTRCxpTHpaMFq4KtajqANH4BaTXCUHgBxANekh9yMgHC5Mna3lxmXU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716738176; c=relaxed/simple;
+	bh=w1hV+o9VMoEuHtxMcY5o2sdXb9ZgHMWgw7Zcrosmm9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qsAnTTQwGmwuW221D4b/1+OXu9Y48XnE8aIABF/od00MItvq8pqfno+kxt/hTG7Wcxyan5us7LtxYQpOK8dn4ySbNKdTEXScZDwtvcKnH9BW/zTQJfyS1SJMfXeioava6J9ijm1yAysciOBe99NK/5mH8CeTveUd65jF0hr2P1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFLlqHZj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43538C2BD10;
+	Sun, 26 May 2024 15:42:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716738175;
+	bh=w1hV+o9VMoEuHtxMcY5o2sdXb9ZgHMWgw7Zcrosmm9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iFLlqHZj5dP1+EsmPRPfJRKKlDubmvVR2+GtJtV/+s6tuToyvZpYHHvYnanLKRlLx
+	 JhwbPLXhz5pDWE8IYQjuPlhmqlhifCnTV46E7b6Sm2V/zXPfSzwmc3HOHYgBEO+bSy
+	 +XZWocMZp2z/Yu+byru68egErXTi02yfF53W2Gvk3s6hPjQgKRLs/RN1GNKR8r8HOg
+	 +FqMUrgk8d0s1VIqfFzx6z0e0mcVSuCDjHX89DGFPloL66xoFDIGBuQsIoZBmxRqGz
+	 fUqafOP9CpI/X3VGbKFKpA5pdxQqgR4rCznXzpMhgFbjc//+wEV2nILhxmXU+GnSt5
+	 45SXQ5WRfKKuw==
+Date: Sun, 26 May 2024 16:42:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
+ spi-offloads property
+Message-ID: <20240526-spotting-relapsing-ffb60b535c18@spud>
+References: <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
+ <20240514-aspire-ascension-449556da3615@spud>
+ <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
+ <20240516-rudder-reburial-dcf300504c0a@spud>
+ <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
+ <20240519-abreast-haziness-096a57ef57d3@spud>
+ <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
+ <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
+ <5ad0b5782434eaf4cf565cffb0e4c14b7414ae38.camel@gmail.com>
+ <6e929426-25fa-4e91-8790-0774d59b34e0@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB7682.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f68756ea-0d4a-4e6e-b399-08dc7d951a85
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2024 15:04:12.7911
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6ireoFN4HG8M5PFvU0V2v9J1Bwrxp72NenUpOajv9X+sTnL4tdSXEyORJY7l9e/qu2roao3VusdFsUciUO73zyI1iINAgJv5OPNBK0pD0bk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6667
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="38StDdanHQmO3L2P"
+Content-Disposition: inline
+In-Reply-To: <6e929426-25fa-4e91-8790-0774d59b34e0@baylibre.com>
 
-SGkgQW5nZWxvLCBKYXNzaSwNCg0KQ291bGQgeW91IGhlbHAgbWUgYXBwbHkgdGhpcyBzZXJpZXM/
-DQpUaGFua3MhDQoNClJlZ2FyZHMsDQpKYXNvbi1KSC5MaW4NCg0KT24gV2VkLCAyMDI0LTAxLTI0
-IGF0IDA5OjU3ICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4gSWwg
-MjQvMDEvMjQgMDI6MTQsIEphc29uLUpILkxpbiBoYSBzY3JpdHRvOg0KPiA+IEFkZCBtZWRpYXRl
-ayxnY2UtcHJvcHMueWFtbCBmb3IgY29tbW9uIEdDRSBwcm9wZXJ0aWVzIHRoYXQgaXMgdXNlZA0K
-PiA+IGZvcg0KPiA+IGJvdGggbWFpbGJveCBwcm92aWRlcnMgYW5kIGNvbnN1bWVycy4gV2UgcGxh
-Y2UgdGhlIGNvbW1vbiBwcm9wZXJ0eQ0KPiA+ICJtZWRpYXRlayxnY2UtZXZlbnRzIiBpbiB0aGlz
-IGJpbmRpbmcgY3VycmVudGx5Lg0KPiA+IA0KPiA+IFRoZSBwcm9wZXJ0eSAibWVkaWF0ZWssZ2Nl
-LWV2ZW50cyIgaXMgdXNlZCBmb3IgR0NFIGV2ZW50IElEDQo+ID4gY29ycmVzcG9uZGluZw0KPiA+
-IHRvIGEgaGFyZHdhcmUgZXZlbnQgc2lnbmFsIHNlbnQgYnkgdGhlIGhhcmR3YXJlIG9yIGEgc29m
-dHdhcmUNCj4gPiBkcml2ZXIuDQo+ID4gSWYgdGhlIG1haWxib3ggcHJvdmlkZXJzIG9yIGNvbnN1
-bWVycyB3YW50IHRvIG1hbmlwdWxhdGUgdGhlIHZhbHVlDQo+ID4gb2YNCj4gPiB0aGUgZXZlbnQg
-SUQsIHRoZXkgbmVlZCB0byBrbm93IHRoZSBzcGVjaWZpYyBldmVudCBJRC4NCj4gPiANCj4gPiBT
-aWduZWQtb2ZmLWJ5OiBKYXNvbi1KSC5MaW4gPGphc29uLWpoLmxpbkBtZWRpYXRlay5jb20+DQo+
-ID4gUmV2aWV3ZWQtYnk6IENvbm9yIERvb2xleSA8Y29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20+
-DQo+IA0KPiBSZXZpZXdlZC1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8gPA0KPiBhbmdl
-bG9naW9hY2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+DQo+IA0KDQo=
+
+--38StDdanHQmO3L2P
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, May 23, 2024 at 10:05:49AM -0500, David Lechner wrote:
+> On 5/23/24 7:15 AM, Nuno S=C3=A1 wrote:
+> > On Wed, 2024-05-22 at 19:24 +0100, Conor Dooley wrote:
+> >> On Tue, May 21, 2024 at 09:54:39AM -0500, David Lechner wrote:
+> >>> On Sun, May 19, 2024 at 7:53=E2=80=AFAM Conor Dooley <conor@kernel.or=
+g> wrote:
+> >>>>
+> >>>> On Fri, May 17, 2024 at 11:51:58AM -0500, David Lechner wrote:
+> >>>>> On Thu, May 16, 2024 at 4:32=E2=80=AFPM Conor Dooley <conor@kernel.=
+org> wrote:
+> >>>>>> On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wrote:
+> >>>>
+>=20
+> ...
+>=20
+> >> To remind myself, "Application 2" featured an offload engine designed
+> >> specifically to work with a particular data format that would strip a
+> >> CRC byte and check the validity of the data stream.
+> >>
+> >=20
+> > I think the data manipulation is not really a property of the engine. T=
+ypically data
+> > going out of the offload engine goes into another "data reorder" block =
+that is pure
+> > HW.
+> >=20
+> >> I think you're right something like that is a stretch to say that that
+> >> is a feature of the SPI controller - but I still don't believe that
+> >> modelling it as part of the ADC is correct. I don't fully understand t=
+he
+> >> io-backends and how they work yet, but the features you describe there
+> >> seem like something that should/could be modelled as one, with its own
+> >> node and compatible etc. Describing custom RTL stuff ain't always
+> >> strightforward, but the stuff from Analog is versioned and documented
+> >> etc so it shouldn't be quite that hard.
+> >>
+> >=20
+> > Putting this in io-backends is likely a stretch but one thing to add is=
+ that the
+> > peripheral is always (I think) kind of the consumer of the resources. T=
+aking the
+> > trigger (PWM) as an example and even when it is directly connected with=
+ the offload
+> > block, the peripheral still needs to know about it. Think of sampling f=
+requency...
+> > The period of the trigger signal is strictly connected with the samplin=
+g frequency of
+> > the peripheral for example. So I see 2 things:
+> >=20
+> > 1) Enabling/Disabling the trigger could be easily done from the periphe=
+ral even with
+> > the resource in the spi engine. I think David already has some code in =
+the series
+> > that would make this trivial and so having the property in the spi cont=
+roller brings
+> > no added complexity.
+> >=20
+> > 2) Controlling things like the trigger period/sample_rate. This could b=
+e harder to do
+> > over SPI (or making it generic enough) so we would still need to have t=
+he same
+> > property on the peripheral (even if not directly connected to it). I ki=
+nd of agree
+> > with David that having the property both in the peripheral and controll=
+er is a bit
+> > weird.
+> >=20
+> > And the DMA block is a complete different story. Sharing that data back=
+ with the
+> > peripheral driver (in this case, the IIO subsystem) would be very inter=
+esting at the
+> > very least. Note that the DMA block is not really something that is par=
+t of the
+> > controller nor the offload block. It is an external block that gets the=
+ data coming
+> > out of the offload engine (or the data reorder block). In IIO, we alrea=
+dy have a DMA
+> > buffer interface so users of the peripheral can get the data without an=
+y intervention
+> > of the driver (on the data). We "just" enable buffering and then everyt=
+hing happens
+> > on HW and userspace can start requesting data. If we are going to attac=
+h the DMA in
+> > the controller, I have no idea how we can handle it. Moreover, the offl=
+oad it's
+> > really just a way of replaying the same spi transfer over and over and =
+that happens
+> > in HW so I'm not sure how we could "integrate" that with dmaengine.
+> >=20
+> > But maybe I'm overlooking things... And thinking more in how this can b=
+e done in SW
+> > rather than what makes sense from an HW perspective.
+> >=20
+> >=20
+> >> continuation:
+> >> If offload engines have their own register region in the memory map,
+> >=20
+> >=20
+> > Don't think it has it's own register region... David?
+>=20
+> I think the question here was if the CRC checker IP block (or descrambler=
+ shown
+> in the link below, or whatever) had registers in the offload/SPI controll=
+er
+> to control that extra part or if they had their own dedicated registers.
+
+I don't think there was a question here at all. I was simply stating
+that if the offload engine was not just a subordinate feature of the SPI
+controller, but also provided additional data processing features then
+treating the offload engine as a component of the SPI controller would
+not be accurate.
+
+> So far,
+> these have been fixed-purpose, so have no registers at all. But I could s=
+ee
+> needing a register, e.g. for turning it on or off. In this case, I think =
+it
+> does become something like an io-backend. Or would we add this on/off swi=
+tch
+> to the AXI SPI Engine registers?
+
+Seems to be that the CRC checking is a separate piece of IP though, and
+so is not part of the offload engine at all, so my concern was
+misplaced. I think whether or not you have registers to control it, it
+should be represented in DT. How do you know it is there otherwise?
+
+> Also, as shown in the link below, the extra bits share a clock domain wit=
+h the
+> AXI SPI Engine. So, yes, technically I suppose they could/should? be inde=
+pendent
+> consumers of the same clock like Conor suggests below. It does seems kind=
+ of
+> goofy if we have to write a driver just to turn on a clock that is already
+> guaranteed to be on though.
+
+You wouldn't necessarily need to write a driver for it, you could reach
+out and turn it on from the backend consumer for example. And, obviously
+there may be other ways that the FPGA design is configured where the
+clock is not shared with the SPI controller or the offload engine.
+
+--38StDdanHQmO3L2P
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlNYegAKCRB4tDGHoIJi
+0p//AP94S+X1TgXzvOP8jFQtnTOXCYT5iXNNaILC5azI/oPwmAEAhpLXc29r8igQ
+eiVFFU2qSsUCwA+W1hiajgJZLdKtDQA=
+=zON3
+-----END PGP SIGNATURE-----
+
+--38StDdanHQmO3L2P--
 
