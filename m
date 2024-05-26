@@ -1,142 +1,278 @@
-Return-Path: <devicetree+bounces-69216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6271C8CF22D
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 01:30:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E86728CF251
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 02:29:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B49C5B2116C
-	for <lists+devicetree@lfdr.de>; Sat, 25 May 2024 23:30:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 814E81C20916
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 00:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14E112AACA;
-	Sat, 25 May 2024 23:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F63E389;
+	Sun, 26 May 2024 00:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="M99oINRF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LZI9ZL8F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2783127E34;
-	Sat, 25 May 2024 23:29:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07B2C7E2;
+	Sun, 26 May 2024 00:29:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716679781; cv=none; b=RxrH6gF+ThdWSB6I0EUOEuS5ELVpgjAX+jc3hrE9PnUQAf5Sg6iySY7LYbIFRD4l191aZUT7umn24IiqRVUNsoehKZSqukbQUmHWx+gKKi06o5UYEC80FkIfTa9JX7TOQuLqkzbRGE3OlxT16h8MSOJnKIOufC41FR79IQvME3E=
+	t=1716683393; cv=none; b=rFgqrbBHYULsSJ/pmdQkICyVbK2q16wyb3nQ6Mlh5HtyA21aO4h7/FVyGeGaIrQZJGqihi8hKG3BAqqLjMpqMGS28MYZPmPLDmemYMCrNqlzPGLdVkeAbacTaJR6VNrEAVeoLPiv19tA0SpliSzJm3eew2WjzQZpdQkPjFk+b3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716679781; c=relaxed/simple;
-	bh=PBNn0jdNfUp4z8i6OCekSOpLNXWwmbOY9aEsHfW/x5E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Xd0fq7UR+eDDP+nboAoE8+dgJVWtmEZxPd4olw6dRxUdzpXGReLEKJth4N7An8f1x+u5chqin1lfP92L6cm4mCDrtnNIaueqhOlglLhSKq3ejisIiYIOCTEZKjo8HKzeEPhu+iekEzWI1VQdLsSlv8bxZeUCx+Pbh2F2H615HY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=M99oINRF; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: a452f6a41aee11ef8c37dd7afa272265-20240526
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Tl2QN13jl/RXNBMTp3Wzf+yLZtDlERtwTZOrjciV6eA=;
-	b=M99oINRFyM9yICI92W0c3g6n6V1A4krihoJGlUgqEXeDep49dmgcE9n1oZdSF7slV+67OTq1Hzo5SoG2w3Y8tFGb+61GrInuRwDdVXQOg9FuaBddUB9hAd57M9EmgnceCRUxyVaPA20y/cAiL3zBCES2kUbGvg8pyLPIdOl9oNg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.38,REQID:7915aedf-e663-40c8-a289-c5881c836dad,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:82c5f88,CLOUDID:e060cd43-4544-4d06-b2b2-d7e12813c598,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: a452f6a41aee11ef8c37dd7afa272265-20240526
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1552233013; Sun, 26 May 2024 07:29:33 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sun, 26 May 2024 07:29:31 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sun, 26 May 2024 07:29:31 +0800
-From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Maxime Ripard <mripard@kernel.org>
-CC: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Matthias Brugger <matthias.bgg@gmail.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>, "Jason-ch
- Chen" <jason-ch.chen@mediatek.com>, "Jason-JH . Lin"
-	<jason-jh.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, "Nancy
- Lin" <nancy.lin@mediatek.com>, Shawn Sung <shawn.sung@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jeffrey Kardatzke
-	<jkardatzke@google.com>
-Subject: [PATCH v6 7/7] drm/mediatek: Add cmdq_insert_backup_cookie before secure pkt finalize
-Date: Sun, 26 May 2024 07:29:28 +0800
-Message-ID: <20240525232928.5524-8-jason-jh.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240525232928.5524-1-jason-jh.lin@mediatek.com>
-References: <20240525232928.5524-1-jason-jh.lin@mediatek.com>
+	s=arc-20240116; t=1716683393; c=relaxed/simple;
+	bh=q1Jhkpl3iDvcAU4fBElGK4J5v4FGJ5LX4ANgAjn4C8s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p9IujbuHMxFuZ+SOo6UP0jVq9ZXoF4AyR6VUAan/ZOBOfc+uWFWX9yikie+IQK9RIX+zw8RkGkZF7U4+lVnImHgxFVCP8HPbM4YSfmGK+VVgcCXGIzl9Dn5Q+XCjTJB5JOhJy1BaD/qxjwgVUdtBE+QwG683Z0QkvPGJ6iIWg/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LZI9ZL8F; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6f8e98784b3so1650169b3a.1;
+        Sat, 25 May 2024 17:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716683391; x=1717288191; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/+5YmaJeNF7VkilJwtRMH480JqWzFXOSu6W99rW8D4c=;
+        b=LZI9ZL8F1zQeZDG7U7FEoFNNwOaRSPSeAbAyuwnZ87rO/VL96wxCQo0tilo1+nw5jV
+         n1uZlQS1DxPy7HE2jQEb8GO4Ige+nsly5tAc1edEVaQCF3wotKxrafVfeeqz1JpncS7w
+         OCOPiYH7iY6FiONpVDgd2TyXML6iQHWitzjIMC339hqiyS1wgnTXlWG3RlDH1EG5kWw6
+         nT436AoTVec2b3NmRkA5Z8DX+OfgS5jRe21/Bh4b4qnZzz9NsMbP/WwkbTHnoybiF4AN
+         GQmQzs0iiGTYLIEYiNvJvmkq6uS+gDJVbJN4584+3dQf/SaT3vswtd409u9VRZFeVQuW
+         5+xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716683391; x=1717288191;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/+5YmaJeNF7VkilJwtRMH480JqWzFXOSu6W99rW8D4c=;
+        b=uOfxhNuMynR/3FVtfQ1T0nXTS79aWGANwhaXglcBmkvwwsjbro8j0uHQWs3zPhsd3s
+         Jzam7vxWghLumjH761nVu0U5gJCApKP+N2tp1lWzsiFWo5+mjGoE9M4qTqIros0GB+MR
+         TjWEwXGrDBxBFSN23vTJAAGiehTODOvUhKc9+4ChdK06iC+NswqCzuf/2Xy/G7/aw3wd
+         70RaeUZd2m4gXCKjQPYaxDJ1yuVxtM1Rkk+I9IAKZc98FFsLTb/wMnyBpoZtbcnJAeqU
+         9/eAc4okouzBMu0oXMvJPbRl4wzxlheZwqAeibscGFOTrKHMiesd5ivoVCVs1E3KBwLZ
+         peZA==
+X-Forwarded-Encrypted: i=1; AJvYcCWreRrynOfujJnVlngSeXHQUv2C9fAIP1YBkgDuoZBh+410fjEcaKXa7rITacDBB4b8Ukt+nG2w6nkbX2llYZ5v0RWUucuCangSSenp5ZbqFo6xI+XEyhL1pHBKF5LrE/cdzXxO1LAeNr0Zauj6vezfdcvb5w0atJ+thT7Ht74A3Hv9MA==
+X-Gm-Message-State: AOJu0YzId354hvj/lL4KE7YTqvWWOyuB/qDmUrvGLKPf16DHLt/lNEFb
+	WCzvD+kKE0mFkamHnRS9Sk5WBNUs8XiOHuASMZ04ItdEt++mzP23
+X-Google-Smtp-Source: AGHT+IGUZjdlXPa7clpLDcvEVhq+KdFx2TGsH1Y7xC6ULI6j5cpmdRyve+7RmvGBNhWtnAjJ18gVIw==
+X-Received: by 2002:a05:6a00:2917:b0:6f8:c1b6:d06a with SMTP id d2e1a72fcca58-6f8f3d84ba1mr6078678b3a.29.1716683390933;
+        Sat, 25 May 2024 17:29:50 -0700 (PDT)
+Received: from archlinux ([189.101.162.253])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-6822073f067sm3410868a12.5.2024.05.25.17.29.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 May 2024 17:29:50 -0700 (PDT)
+Date: Sat, 25 May 2024 21:29:42 -0300
+From: Gustavo Silva <gustavograzs@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	lars@metafoo.de, christophe.jaillet@wanadoo.fr, gerald.loacker@wolfvision.net, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/6] iio: chemical: add driver for ENS160 sensor
+Message-ID: <wsaoofbe3gvwyejkhkqv3xx4q36a6wupn2yr7ntyklzwxovxhs@s6s2fcy5yebg>
+References: <20240512210444.30824-1-gustavograzs@gmail.com>
+ <20240512210444.30824-4-gustavograzs@gmail.com>
+ <20240519150151.291a21dc@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--11.595200-8.000000
-X-TMASE-MatchedRID: XAa2d/45j8Tob/hVdrvnXjPDkSOzeDWW+eBf9ovw8I27eXIF2U7rKy+8
-	OxujShyxE/UmhJjBrzZC3mgca9yt8kttpN+KVVd9syNb+yeIRArvJY9pBzgg1P+RKQghHjkeBgH
-	mCxujQvyjmrD+IUq29hI7tf+6KnxtiBoFctaOhN8jRwcsjqWGAgrefVId6fzVCqIJhrrDy2/jZY
-	67L74Lw7o3/co+ykK6UFTYnego7LJccQ8eam5EfRRFJJyf5BJe3QfwsVk0UbtuRXh7bFKB7gRuY
-	qpRzYwt5tYzjYMxVNFdPwsV1FdNCbaRD1c+EJMdvuvB6gAgryg=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--11.595200-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	9AEA3DB8CB88483491FE005922C30F1CE0AE72AEC367029CE1464088C652F4422000:8
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240519150151.291a21dc@jic23-huawei>
 
-Add cmdq_insert_backup_cookie to append some commands before EOC:
-1. Get GCE HW thread execute count from the GCE HW register.
-2. Add 1 to the execute count and then store into a shared memory.
-3. Set a software event siganl as secure irq to GCE HW.
+Hi Jonathan,
 
-Since the value of execute count + 1 is stored in a shared memory,
-CMDQ driver in the normal world can use it to handle task done in irq
-handler and CMDQ driver in the secure world will use it to schedule
-the task slot for each secure thread.
+Thank you for your review. I've got a few questions inline.
 
-Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_crtc.c | 3 +++
- 1 file changed, 3 insertions(+)
+On Sun, May 19, 2024 at 03:01:51PM GMT, Jonathan Cameron wrote:
+> On Sun, 12 May 2024 18:04:39 -0300
+> Gustavo Silva <gustavograzs@gmail.com> wrote:
+> 
+> > ScioSense ENS160 is a digital metal oxide multi-gas sensor, designed
+> > for indoor air quality monitoring. The driver supports readings of
+> > CO2 and VOC, and can be accessed via both SPI and I2C.
+> > 
+> > Signed-off-by: Gustavo Silva <gustavograzs@gmail.com>
+> 
+> > +
+> > +static int ens160_read_raw(struct iio_dev *indio_dev,
+> > +			   struct iio_chan_spec const *chan,
+> > +			   int *val, int *val2, long mask)
+> > +{
+> > +	struct ens160_data *data = iio_priv(indio_dev);
+> > +	__le16 buf;
+> > +	int ret;
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_RAW:
+> > +		ret = regmap_bulk_read(data->regmap, chan->address,
+> > +					&buf, sizeof(buf));
+> 
+> As below, should use a DMA safe buffer.
+> 
+> > +static int ens160_chip_init(struct ens160_data *data)
+> > +{
+> > +	struct device *dev = regmap_get_device(data->regmap);
+> > +	u8 fw_version[3];
+> > +	__le16 part_id;
+> > +	unsigned int status;
+> > +	int ret;
+> > +
+> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_RESET);
+> > +	if (ret)
+> > +		return ret;
+> 
+> No docs that I can see on what this means for access to registers etc.
+> Good to add a comment if you have info on this.
+> 
+Performing a reset at this point isn't strictly necessary. When we reach
+this point the chip should be in idle state because:
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_crtc.c b/drivers/gpu/drm/mediatek/mtk_crtc.c
-index 59f6263ae806..0df9bf695f65 100644
---- a/drivers/gpu/drm/mediatek/mtk_crtc.c
-+++ b/drivers/gpu/drm/mediatek/mtk_crtc.c
-@@ -178,6 +178,7 @@ void mtk_crtc_disable_secure_state(struct drm_crtc *crtc)
- 
- 	cmdq_sec_pkt_set_data(&mtk_crtc->sec_cmdq_handle, sec_scn);
- 
-+	cmdq_sec_insert_backup_cookie(&mtk_crtc->sec_cmdq_handle);
- 	cmdq_pkt_finalize(&mtk_crtc->sec_cmdq_handle);
- 	dma_sync_single_for_device(mtk_crtc->sec_cmdq_client.chan->mbox->dev,
- 				   mtk_crtc->sec_cmdq_handle.pa_base,
-@@ -795,6 +796,8 @@ static void mtk_crtc_update_config(struct mtk_crtc *mtk_crtc, bool needs_vblank)
- 		cmdq_pkt_clear_event(cmdq_handle, mtk_crtc->cmdq_event);
- 		cmdq_pkt_wfe(cmdq_handle, mtk_crtc->cmdq_event, false);
- 		mtk_crtc_ddp_config(crtc, cmdq_handle);
-+		if (cmdq_handle->sec_data)
-+			cmdq_sec_insert_backup_cookie(cmdq_handle);
- 		cmdq_pkt_finalize(cmdq_handle);
- 		dma_sync_single_for_device(cmdq_client.chan->mbox->dev,
- 					   cmdq_handle->pa_base,
--- 
-2.18.0
+a) it was just powered on
+
+b) the driver had been previously removed
+
+This is documented in the state diagram on page 24 of the datasheet.
+
+I'll remove this reset.
+
+> > +
+> > +	ret = regmap_bulk_read(data->regmap, ENS160_REG_PART_ID, &part_id,
+> > +			       sizeof(part_id));
+> 
+> Ah. So this is a fun corner case.  Currently regmap makes not guarantees
+> to always bounce buffer things (though last time I checked it actually did
+> do so - there are optimisations that may make sense where it will again
+> not do so).  So given we have an SPI bus involved, we should ensure that
+> only DMA safe buffers are used. These need to ensure that no other data
+> that might be changed concurrently with DMA is in the same IIO_DMA_MINALIGN
+> of aligned data (traditionally a cacheline but it gets more complex in some
+> systems and is less in others).  Upshot is that if you are are doing
+> bulk accesses you need to use a buffer that is either on the heap (kzalloc etc)
+> or carefully placed at the end of the iio_priv() structure marked
+> __align(IIO_DMA_MINALIGN). Lots of examples of that in tree.
+> If you are curious, wolfram did a good talk on the i2c equivalent of this
+> a few years back. 
+> https://www.youtube.com/watch?v=JDwaMClvV-s I think.
+>
+Interesting. Thank you for the detailed info.
+
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (le16_to_cpu(part_id) != ENS160_PART_ID)
+> > +		return -ENODEV;
+> > +
+> > +	ret = ens160_set_mode(data, ENS160_REG_MODE_IDLE);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_write(data->regmap, ENS160_REG_COMMAND,
+> > +			   ENS160_REG_COMMAND_CLRGPR);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_write(data->regmap, ENS160_REG_COMMAND,
+> > +			   ENS160_REG_COMMAND_GET_APPVER);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	msleep(ENS160_BOOTING_TIME_MS);
+> 
+> Why here?  Not obviously associated with a boot command?
+> A comment might make this easier to follow.  I 'think' it is
+> because this next read is the first time it matters. If so that
+> isn't obvious.  Also, there is an existing sleep in the mode set,
+> so I'm not sure why we need another one.
+>
+The usage of booting time is not documented in the datasheet. From
+ScioSense's arduino driver the booting time is necessary after setting
+the operation mode. I performed some tests that confirm this.
+
+In this case in particular it is not necessary. Maybe I forgot to remove
+it after some testing.
+> > +
+> > +	ret = regmap_bulk_read(data->regmap, ENS160_REG_GPR_READ4,
+> > +			       fw_version, sizeof(fw_version));
+> 
+Does this bulk read also need to be made DMA safe? I'm guessing in this
+case it would be best to devm_kzalloc() a buffer of three bytes?
+
+> The first datasheet that google provided me has this 
+> GPR_READ0/GPR_READ1 and only 2 bytes. I hope they have maintained backwards
+> compatibility with that earlier doc!
+> 
+> When you do a separate DT binding in v2, make sure to include a link
+> to the datasheet you are using.  Also use a Datasheet: tag
+> in this patch to make it easy to find that.
+> I dug a little deeper and found the one on sciosense own website
+> - ah, you do have it in the comments.  Add to the commit message
+> and DT binding as well.
+> 
+> 
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	msleep(ENS160_BOOTING_TIME_MS);
+> Why again?
+Again, not needed. I'll remove it.
+
+> > +	data = iio_priv(indio_dev);
+> > +	dev_set_drvdata(dev, indio_dev);
+> 
+> After you've moved to devm_add_action_or_reset() for the unwind of
+> ens160_chip_init() you probably don't need to set the drvdata.
+> 
+I don't get it. Could you please elaborate on why it isn't needed to
+set drvdata after the change?
+
+> > +	data->regmap = regmap;
+> > +
+> > +	indio_dev->name = name;
+> > +	indio_dev->info = &ens160_info;
+> > +	indio_dev->modes = INDIO_DIRECT_MODE;
+> > +	indio_dev->channels = ens160_channels;
+> > +	indio_dev->num_channels = ARRAY_SIZE(ens160_channels);
+> > +
+> > +	ret = ens160_chip_init(data);
+> > +	if (ret) {
+> > +		dev_err_probe(dev, ret, "chip initialization failed\n");
+> > +		return ret;
+> 		return dev_err_probe();
+> 
+> > +	}
+> > +
+> > +	return devm_iio_device_register(dev, indio_dev);
+> > +}
+> > +EXPORT_SYMBOL_NS(ens160_core_probe, IIO_ENS160);
+> > +
+> > +void ens160_core_remove(struct device *dev)
+> > +{
+> > +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> > +	struct ens160_data *data = iio_priv(indio_dev);
+> > +
+> > +	ens160_set_mode(data, ENS160_REG_MODE_IDLE);
+> 
+> This looks to be mixing devm and manual cleanup.
+> My guess is this is the unwind for code in ens160_chip_init()
+> If so that unwind should definitely happen after we unregister
+> the userspace intefaces in the unwind of devm_iio_device_register().
+> Currently it happens before this.
+> 
+> This is an even stronger reason to use devm_add_action_or_reset()
+> for this than tidying up as mentioned below (note I tend to
+> review backwards through patches so my comments may make more
+> sense read that way around).
+>
+The intention was to transition the chip into idle mode upon driver
+removal, ensuring the sensor ceased data readings.
+I'll use devm_add_action_or_reset() as suggested.
 
 
