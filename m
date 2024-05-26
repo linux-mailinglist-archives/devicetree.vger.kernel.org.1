@@ -1,231 +1,200 @@
-Return-Path: <devicetree+bounces-69223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4DB58CF26B
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 04:00:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C52368CF2DC
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 10:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B643E280E30
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 02:00:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 021AA1C2061D
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 08:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C45EEC4;
-	Sun, 26 May 2024 02:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7DD2F55;
+	Sun, 26 May 2024 08:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VxdMoxRz"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="HBMmJm0O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C59F622;
-	Sun, 26 May 2024 02:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC667AD51;
+	Sun, 26 May 2024 08:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716688840; cv=none; b=hQ87BruC+KlCI8gpuBkTtkwtsJqvIOxkAr6QBWRH00kYCF2RasFAQPGjOmpalSD+e1kIcmYIPDulcCrBDLXwi6Mljwvisc5WFCXHpB7U1SSwc/cT7H8qnj0JAtlU8zfOLh54s+5OHCIQer5kFKjpFP/kitCcAhUtxJ7DR/4R4TQ=
+	t=1716713018; cv=none; b=vFGTceK8oIGsctIyYTpjMShg1v6lTUgAl5BwXegTS/cX1cbUC50NzaGWxqhOy3+G46CZRRBPLdo9EVPb1Dl/FWBVnD8VbCcCdOCp67NS/pemQ/EFeatEwfcl4dVXKIrkuAE7772iuSz4EtE4J1pHVc4QSV7ARUO2bMHMCW2eZbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716688840; c=relaxed/simple;
-	bh=CzcVNZjWSshoEFL81VKFzrkOMmouWtgwix9NhZydeTI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L+xFf0AutU35ruOTSYrExXJCb9IMO/AIbzD3WK2YnBggeZmhG1K2xa3/XRFwOpi2D5F0+kQPrpFI5DgMf7XUrxdkwH4CH9s3vlXYE7x8hxnRdAP65x0pjjULAjnEf2A03iMOrx0jwABxE1hqavXzbX1Fi+pa8Hb2jt4DxtiNFKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VxdMoxRz; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1716688838; x=1748224838;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CzcVNZjWSshoEFL81VKFzrkOMmouWtgwix9NhZydeTI=;
-  b=VxdMoxRz92gshTyPJq1I4JjAYf5ezusgQWSy2PB5cFf4Wuq5Qe4ySG8R
-   b06yFUm88BKzxT4xCFIXD/9ByfhAjXOxggTa7+0loXiGWRAMLL2JFTC02
-   phmBPDGzcM/BvZ9e2gULNQ1r5vtqtPVVIDiSPbV03iDdI0j+BQKiSTQF+
-   hlukmo4evdHcpXTbkm96xp9LTuumO44/+4m3aTyK6pnfQwT5DwijECGcj
-   IUQ3a0avL4cdSPK0t4nKgpWVHurAhu/rx+GKM3DyWa5ABIxV/7X02IrtG
-   vDA3f8ljX/NppGuuJD5oPNP4tc6BF24ImfIEQ4jg6oPWkMkx/IUzga6b1
-   g==;
-X-CSE-ConnectionGUID: lxaRk+Q2QvKxq0zoGNsnaw==
-X-CSE-MsgGUID: 35Pe1xyMQ0mMB1174gT7Vw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11083"; a="23633382"
-X-IronPort-AV: E=Sophos;i="6.08,189,1712646000"; 
-   d="scan'208";a="23633382"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2024 19:00:37 -0700
-X-CSE-ConnectionGUID: 8bgepjOfSp2uABOKzPJRSg==
-X-CSE-MsgGUID: qqwx/AslRHOoP6sn78rbyQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,189,1712646000"; 
-   d="scan'208";a="39375336"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 25 May 2024 19:00:33 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sB3BW-0007df-0g;
-	Sun, 26 May 2024 02:00:30 +0000
-Date: Sun, 26 May 2024 09:59:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: oe-kbuild-all@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>,
-	Jason-ch Chen <jason-ch.chen@mediatek.com>,
-	"Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-	Singo Chang <singo.chang@mediatek.com>,
-	Nancy Lin <nancy.lin@mediatek.com>,
-	Shawn Sung <shawn.sung@mediatek.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v6 6/8] mailbox: mediatek: Add CMDQ secure mailbox driver
-Message-ID: <202405260953.uzQ4Rwg2-lkp@intel.com>
-References: <20240525230810.24623-7-jason-jh.lin@mediatek.com>
+	s=arc-20240116; t=1716713018; c=relaxed/simple;
+	bh=rqls52QsTwTEMqEaclSyHk4FQVIg+A9t4zcX9jS+Wkc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DxzC53Awe6jDiSLPPJUMBodhYQae0NGBqy78so++dWE8S1SlKBKMK8xql2i+UgyG/W1J5+uZ0VP1Rot8xImPDmBqAkFEQDkva6XKLguh+uNXocFJdssbOgEC7k5ALrdrGHngJXO+H9A9+4Gm8PHPlwjBW0NyHMuowWMF5UyNedQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=HBMmJm0O; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+X-Virus-Scanned: SPAM Filter at disroot.org
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1716712619; bh=rqls52QsTwTEMqEaclSyHk4FQVIg+A9t4zcX9jS+Wkc=;
+	h=From:To:Cc:Subject:Date;
+	b=HBMmJm0ODLLNIJN+VPFgjz6u+qJhZmF9pg3DCDhNVBveoT6Zz/N0dnW6DED5f60r5
+	 9QMGA6isdveZeEXbmsA91DPTPOPpP5hxOPqmMVqSXKQg0V0ItIkTmCf5U03wQjMfs6
+	 TjtAQTZLorRkX0w3SakLYm8QpOCeI/UMir/jiC45mr3cbYY6NaBc3HUVej698SeHJJ
+	 ZMJeT3WKJX1EuFRfJjdGVYJoIO5AId9y+kmkbfTlpEN9aaA6oJtX3KDO+f+1CQLPS9
+	 /wLt7hV4lgzDncvysm7kAaMI6nELJX1f8DW9HMkacUcIrP2tN+RN/snQ6vy2Ip3KXV
+	 QPxw8d71CSgcg==
+To: linux-iio@vger.kernel.org,
+	jic23@kernel.org,
+	denis.ciocca@st.com
+Cc: devicetree@vger.kernel.org,
+	linus.walleij@linaro.org,
+	robh+dt@kernel.org,
+	kauschluss@disroot.org
+Subject: [PATCH] iio: accel: st_accel: add LIS2DS12
+Date: Sun, 26 May 2024 14:03:02 +0530
+Message-ID: <20240526083302.87172-1-kauschluss@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240525230810.24623-7-jason-jh.lin@mediatek.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Jason-JH.Lin,
+The LIS2DS12 accelerometer by STMicroelectronics is mostly compatible
+with the LIS2DE12 variant, except the WhoAmI value (0x43).
 
-kernel test robot noticed the following build warnings:
+Define sensor settings for LIS2DS12, and add support in the I2C
+driver.
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on next-20240523]
-[cannot apply to robh/for-next krzk-dt/for-next fujitsu-integration/mailbox-for-next v6.9]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+ drivers/iio/accel/st_accel.h      |  1 +
+ drivers/iio/accel/st_accel_core.c | 76 +++++++++++++++++++++++++++++++
+ drivers/iio/accel/st_accel_i2c.c  |  5 ++
+ 3 files changed, 82 insertions(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jason-JH-Lin/dt-bindings-gce-mt8195-Add-CMDQ_SYNC_TOKEN_SECURE_THR_EOF-event-id/20240526-071102
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20240525230810.24623-7-jason-jh.lin%40mediatek.com
-patch subject: [PATCH v6 6/8] mailbox: mediatek: Add CMDQ secure mailbox driver
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20240526/202405260953.uzQ4Rwg2-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240526/202405260953.uzQ4Rwg2-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405260953.uzQ4Rwg2-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/mailbox/mtk-cmdq-sec-mailbox.c: In function 'cmdq_sec_task_exec_work':
->> drivers/mailbox/mtk-cmdq-sec-mailbox.c:619:31: warning: variable 'data' set but not used [-Wunused-but-set-variable]
-     619 |         struct cmdq_sec_data *data;
-         |                               ^~~~
-
-
-vim +/data +619 drivers/mailbox/mtk-cmdq-sec-mailbox.c
-
-   611	
-   612	static void cmdq_sec_task_exec_work(struct work_struct *work_item)
-   613	{
-   614		struct cmdq_sec_task *sec_task = container_of(work_item,
-   615							      struct cmdq_sec_task, exec_work);
-   616		struct cmdq_sec_thread *sec_thread = container_of(sec_task->task.thread,
-   617								 struct cmdq_sec_thread, thread);
-   618		struct cmdq_sec *cmdq = container_of(sec_thread->dev, struct cmdq_sec, dev);
- > 619		struct cmdq_sec_data *data;
-   620		unsigned long flags;
-   621		int err;
-   622	
-   623		dev_dbg(&cmdq->dev, "%s gce:%#lx sec_task:%p pkt:%p thread:%u",
-   624			__func__, (unsigned long)cmdq->base_pa,
-   625			sec_task, sec_task->task.pkt, sec_thread->idx);
-   626	
-   627		if (!sec_task->task.pkt->sec_data) {
-   628			dev_err(&cmdq->dev, "pkt:%p without sec_data", sec_task->task.pkt);
-   629			return;
-   630		}
-   631		data = (struct cmdq_sec_data *)sec_task->task.pkt->sec_data;
-   632	
-   633		mutex_lock(&cmdq->exec_lock);
-   634	
-   635		spin_lock_irqsave(&sec_thread->thread.chan->lock, flags);
-   636		if (!sec_thread->task_cnt) {
-   637			mod_timer(&sec_thread->timeout, jiffies +
-   638				  msecs_to_jiffies(sec_thread->timeout_ms));
-   639			sec_thread->wait_cookie = 1;
-   640			sec_thread->next_cookie = 1;
-   641			sec_thread->task_cnt = 0;
-   642			__raw_writel(0, (void __iomem *)cmdq->shared_mem->va +
-   643				     CMDQ_SEC_SHARED_THR_CNT_OFFSET + sec_thread->idx * sizeof(u32));
-   644		}
-   645	
-   646		sec_task->reset_exec = sec_thread->task_cnt ? false : true;
-   647		sec_task->wait_cookie = sec_thread->next_cookie;
-   648		sec_thread->next_cookie = (sec_thread->next_cookie + 1) % CMDQ_MAX_COOKIE_VALUE;
-   649		list_add_tail(&sec_task->task.list_entry, &sec_thread->thread.task_busy_list);
-   650		sec_thread->task_cnt += 1;
-   651		spin_unlock_irqrestore(&sec_thread->thread.chan->lock, flags);
-   652		sec_task->trigger = sched_clock();
-   653	
-   654		if (!atomic_cmpxchg(&cmdq_path_res, 0, 1)) {
-   655			err = cmdq_sec_task_submit(cmdq, NULL, CMD_CMDQ_IWC_PATH_RES_ALLOCATE,
-   656						   CMDQ_INVALID_THREAD);
-   657			if (err) {
-   658				atomic_set(&cmdq_path_res, 0);
-   659				goto task_end;
-   660			}
-   661		}
-   662	
-   663		if (sec_thread->task_cnt > CMDQ_MAX_TASK_IN_SECURE_THREAD) {
-   664			dev_err(&cmdq->dev, "task_cnt:%u cannot more than %u sec_task:%p thread:%u",
-   665				sec_thread->task_cnt, CMDQ_MAX_TASK_IN_SECURE_THREAD,
-   666				sec_task, sec_thread->idx);
-   667			err = -EMSGSIZE;
-   668			goto task_end;
-   669		}
-   670	
-   671		err = cmdq_sec_task_submit(cmdq, sec_task, CMD_CMDQ_IWC_SUBMIT_TASK,
-   672					   sec_thread->idx);
-   673		if (err)
-   674			dev_err(&cmdq->dev, "cmdq_sec_task_submit err:%d sec_task:%p thread:%u",
-   675				err, sec_task, sec_thread->idx);
-   676	
-   677	task_end:
-   678		if (err) {
-   679			struct cmdq_cb_data cb_data;
-   680	
-   681			cb_data.sta = err;
-   682			cb_data.pkt = sec_task->task.pkt;
-   683			mbox_chan_received_data(sec_thread->thread.chan, &cb_data);
-   684	
-   685			spin_lock_irqsave(&sec_thread->thread.chan->lock, flags);
-   686			if (!sec_thread->task_cnt)
-   687				dev_err(&cmdq->dev, "thread:%u task_cnt:%u cannot below zero",
-   688					sec_thread->idx, sec_thread->task_cnt);
-   689			else
-   690				sec_thread->task_cnt -= 1;
-   691	
-   692			sec_thread->next_cookie = (sec_thread->next_cookie - 1 +
-   693				CMDQ_MAX_COOKIE_VALUE) % CMDQ_MAX_COOKIE_VALUE;
-   694			list_del(&sec_task->task.list_entry);
-   695			dev_dbg(&cmdq->dev, "gce:%#lx err:%d sec_task:%p pkt:%p",
-   696				(unsigned long)cmdq->base_pa, err, sec_task, sec_task->task.pkt);
-   697			dev_dbg(&cmdq->dev, "thread:%u task_cnt:%u wait_cookie:%u next_cookie:%u",
-   698				sec_thread->idx, sec_thread->task_cnt,
-   699				sec_thread->wait_cookie, sec_thread->next_cookie);
-   700			spin_unlock_irqrestore(&sec_thread->thread.chan->lock, flags);
-   701	
-   702			kfree(sec_task);
-   703		}
-   704	
-   705		mutex_unlock(&cmdq->exec_lock);
-   706	}
-   707	
-
+diff --git a/drivers/iio/accel/st_accel.h b/drivers/iio/accel/st_accel.h
+index e7525615712b..2659f536cef6 100644
+--- a/drivers/iio/accel/st_accel.h
++++ b/drivers/iio/accel/st_accel.h
+@@ -35,6 +35,7 @@
+ #define LIS3DHH_ACCEL_DEV_NAME		"lis3dhh"
+ #define LIS3DE_ACCEL_DEV_NAME		"lis3de"
+ #define LIS2DE12_ACCEL_DEV_NAME		"lis2de12"
++#define LIS2DS12_ACCEL_DEV_NAME		"lis2ds12"
+ #define LIS2HH12_ACCEL_DEV_NAME		"lis2hh12"
+ #define LIS302DL_ACCEL_DEV_NAME		"lis302dl"
+ #define LSM303C_ACCEL_DEV_NAME		"lsm303c_accel"
+diff --git a/drivers/iio/accel/st_accel_core.c b/drivers/iio/accel/st_accel_core.c
+index d2104e14e255..8552faea1913 100644
+--- a/drivers/iio/accel/st_accel_core.c
++++ b/drivers/iio/accel/st_accel_core.c
+@@ -925,6 +925,82 @@ static const struct st_sensor_settings st_accel_sensors_settings[] = {
+ 		.multi_read_bit = true,
+ 		.bootime = 2,
+ 	},
++	{
++		.wai = 0x43,
++		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
++		.sensors_supported = {
++			[0] = LIS2DS12_ACCEL_DEV_NAME,
++		},
++		.ch = (struct iio_chan_spec *)st_accel_8bit_channels,
++		.odr = {
++			.addr = 0x20,
++			.mask = 0xf0,
++			.odr_avl = {
++				{ .hz = 1, .value = 0x01, },
++				{ .hz = 10, .value = 0x02, },
++				{ .hz = 25, .value = 0x03, },
++				{ .hz = 50, .value = 0x04, },
++				{ .hz = 100, .value = 0x05, },
++				{ .hz = 200, .value = 0x06, },
++				{ .hz = 400, .value = 0x07, },
++				{ .hz = 1620, .value = 0x08, },
++				{ .hz = 5376, .value = 0x09, },
++			},
++		},
++		.pw = {
++			.addr = 0x20,
++			.mask = 0xf0,
++			.value_off = ST_SENSORS_DEFAULT_POWER_OFF_VALUE,
++		},
++		.enable_axis = {
++			.addr = ST_SENSORS_DEFAULT_AXIS_ADDR,
++			.mask = ST_SENSORS_DEFAULT_AXIS_MASK,
++		},
++		.fs = {
++			.addr = 0x23,
++			.mask = 0x30,
++			.fs_avl = {
++				[0] = {
++					.num = ST_ACCEL_FS_AVL_2G,
++					.value = 0x00,
++					.gain = IIO_G_TO_M_S_2(15600),
++				},
++				[1] = {
++					.num = ST_ACCEL_FS_AVL_4G,
++					.value = 0x01,
++					.gain = IIO_G_TO_M_S_2(31200),
++				},
++				[2] = {
++					.num = ST_ACCEL_FS_AVL_8G,
++					.value = 0x02,
++					.gain = IIO_G_TO_M_S_2(62500),
++				},
++				[3] = {
++					.num = ST_ACCEL_FS_AVL_16G,
++					.value = 0x03,
++					.gain = IIO_G_TO_M_S_2(187500),
++				},
++			},
++		},
++		.drdy_irq = {
++			.int1 = {
++				.addr = 0x22,
++				.mask = 0x10,
++			},
++			.addr_ihl = 0x25,
++			.mask_ihl = 0x02,
++			.stat_drdy = {
++				.addr = ST_SENSORS_DEFAULT_STAT_ADDR,
++				.mask = 0x07,
++			},
++		},
++		.sim = {
++			.addr = 0x23,
++			.value = BIT(0),
++		},
++		.multi_read_bit = true,
++		.bootime = 2,
++	},
+ 	{
+ 		.wai = 0x41,
+ 		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
+diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
+index fd3749871121..329a4d6fb2ec 100644
+--- a/drivers/iio/accel/st_accel_i2c.c
++++ b/drivers/iio/accel/st_accel_i2c.c
+@@ -102,6 +102,10 @@ static const struct of_device_id st_accel_of_match[] = {
+ 		.compatible = "st,lis2de12",
+ 		.data = LIS2DE12_ACCEL_DEV_NAME,
+ 	},
++	{
++		.compatible = "st,lis2ds12",
++		.data = LIS2DS12_ACCEL_DEV_NAME,
++	},
+ 	{
+ 		.compatible = "st,lis2hh12",
+ 		.data = LIS2HH12_ACCEL_DEV_NAME,
+@@ -154,6 +158,7 @@ static const struct i2c_device_id st_accel_id_table[] = {
+ 	{ LIS2DW12_ACCEL_DEV_NAME },
+ 	{ LIS3DE_ACCEL_DEV_NAME },
+ 	{ LIS2DE12_ACCEL_DEV_NAME },
++	{ LIS2DS12_ACCEL_DEV_NAME },
+ 	{ LIS2HH12_ACCEL_DEV_NAME },
+ 	{ LIS302DL_ACCEL_DEV_NAME },
+ 	{ LSM303C_ACCEL_DEV_NAME },
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.1
+
 
