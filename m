@@ -1,163 +1,124 @@
-Return-Path: <devicetree+bounces-69268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF598CF6E6
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 02:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B23EB8CF70B
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 02:42:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 736271F21754
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 00:03:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A1951F2211D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 00:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB223EDE;
-	Mon, 27 May 2024 00:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE5464D;
+	Mon, 27 May 2024 00:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PiWZpHOm"
+	dkim=pass (2048-bit key) header.d=web.de header.i=seb-dev@web.de header.b="FvyhgoxR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912AD2107;
-	Mon, 27 May 2024 00:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2612536C;
+	Mon, 27 May 2024 00:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716768202; cv=none; b=OzEtulal0QwdH+CS/UBanpk/UEpgIns6mYRftkHLc5olL9vjb0XaoZAo3xC7/u1uou1Jzt48IZqzdaeVMNTDhdDBo2zQEh0bqx8ChQH4uFE59kqetfhcx4OsbuhZ+E+QFuTJIh3sqE4HUkE8p4rTpsuy+02ob7BGjiqndzieHHo=
+	t=1716770549; cv=none; b=HekzSQVZ/sRMNmSV9Mwu+o75VtLK/f43Ix20qimXAWKf5j1Daor2805rPAU0Gr8DMWMDWhzmuOe69+0AbDG5VZDHW8RxNFQKbveUwRlxbeUIpVOeWVHJ1/xxupYpiGHAhoDpkQf2Dp+ddd/aeWNqlg5+m3kh9N9kPQetJbaWI90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716768202; c=relaxed/simple;
-	bh=Mz3OF3B15X3H0lFrcQA68DoS91Or2bDicgLrhyGKkHU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rFn9hTVxVZIEPoQXLP4ZlhlNmxvqUxRfyn5s1U1JKGra4aOFlCEG1+QuDYMyHdZH9QRMNbVBSLS+g/YGYsJMP2slqSkFkd0w3EyKH67MEFo6FdEgty+JDsJW4pzlA/uLOHsqpUGQTCOjMgmJMNKRt9eMDhnAAvxHDMQAZOXUM3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PiWZpHOm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B72ECC2BD10;
-	Mon, 27 May 2024 00:03:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716768202;
-	bh=Mz3OF3B15X3H0lFrcQA68DoS91Or2bDicgLrhyGKkHU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PiWZpHOmjAl9W7sSk/AgizPxT4u6NWhZCOXL9upKTDepm+qKTvZ7eDCLfAixbOF6q
-	 IbsyX0FsJ0Pgibq2XOV1KDtBTfg3MCqKg9kSX76bFTI95JIavlYfmGbVdeq9u0pc/i
-	 7gTcLx3TogltDrGtDRXKAAsBe7QZYXRmAU4Wh0/95T1W6FMrz2o51i6AAWQ++KK/i+
-	 mHs21opCxjoBOUPK9MuRj8cYL3L1RUHDoQNyou0uz1/jPcgliZD6v+y0aY8gIQS+1f
-	 Bwd8zGM/VEkjL7sM3DUMNTvUZZ/YXv5DDzZf/54PPqHBodMIahLU4C/poid5uke4c9
-	 iJMTFOBG4YPDQ==
-Date: Sun, 26 May 2024 19:03:18 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Connor Abbott <cwabbott0@gmail.com>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jun Nie <jun.nie@linaro.org>, Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v3 2/6] firmware: qcom_scm: Add gpu_init_regs call
-Message-ID: <5uvps3a2zn2q4eokzx5ptmylid4cqt6e6gaasv4qssblczaklv@yr3nfhswn7dt>
-References: <20240430-a750-raytracing-v3-0-7f57c5ac082d@gmail.com>
- <20240430-a750-raytracing-v3-2-7f57c5ac082d@gmail.com>
+	s=arc-20240116; t=1716770549; c=relaxed/simple;
+	bh=TOXuydf6kmrCdRgJX4EWgy9jhoi4MBlPqj8fUxfVgmk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=FJurL84s7hvaO07dPv1xgb8niN2hBZwJx8mY7bghpC8crXiSvs3w6PizxbAA4tAUc0qc7fekAvukWItTae9XUDHawMaZo6XoH4zuNMya+RPf+tQXDoEwQK7ExAsSms4uVO7K+0ck+CUiu7716yBt571xgyDYJNd7meHefQR3I/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=seb-dev@web.de header.b=FvyhgoxR; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1716770531; x=1717375331; i=seb-dev@web.de;
+	bh=frJ0lI8uicyNb2amZaZ+JjmJ6+ptKOdlxCG1Cr4tB24=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
+	 References:MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=FvyhgoxR9pswppgtaepeMLhibem16GBxIrisWItGNokJYJ8JPLFFQYSK4ljnsDpW
+	 R0yS7X2lLJBItQsU8PElSbIAzwp3CddShEmmu1BhBDdT9iZCWOZDfOHUqPhRDxuHz
+	 GKjszeSz0uAoamBRuxdq1UGYUlS+Y0H8aA1J5/0QPZcl1urRpT2mLfZavfCLnk+v7
+	 Yiw+od5VBnRhCgeZBjahcBLcYhkl1/JFf7kJOKWto40Tt8SqfImOzPA9m21UHxmMe
+	 173anCLOkmAAUGisLzkHtQ1TbSRq6fIWTJkBlzFmMZvKQQzk/LBZTxADfsnbE628V
+	 6nqPWtCpiHI6HQ2e/w==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from localhost.localdomain ([84.155.184.248]) by smtp.web.de
+ (mrweb005 [213.165.67.108]) with ESMTPSA (Nemesis) id
+ 1N2BI2-1seN2q3Wla-00tG0q; Mon, 27 May 2024 02:42:10 +0200
+From: Sebastian Kropatsch <seb-dev@web.de>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Kropatsch <seb-dev@web.de>
+Subject: [PATCH 1/2] dt-bindings: arm: rockchip: Add CM3588 NAS
+Date: Sun, 26 May 2024 23:46:22 +0200
+Message-ID: <20240526214625.8830-1-seb-dev@web.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240526214340.8459-1-seb-dev@web.de>
+References: <20240526214340.8459-1-seb-dev@web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240430-a750-raytracing-v3-2-7f57c5ac082d@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:eDvQynp6rlZyxtMKGWx5rnGRjj8VMcE0Df3Mot2Fj73oulGPFk9
+ YitcjfcUUj2onb+BqftY/Kez/h7VYIK2JHJjPH6hQRhivqoDHGPvNXiBtolQzBf0qayzZqf
+ CZjMgLxlVfbByS4q7/rdkE0zp10ypiPV06Pkz/oQsGefz0A2ZLyOq8KKXfZJDMQvkc8jeXQ
+ Z8UTC0CDGhlPAxeLIurOA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:7rTnEiaqkUc=;C+r37ENNb8ObuTCUnBL8kCFvDY9
+ m8XPPSnC7bhX6kTzi1v9ZI9EPjdpbjXIbsSkNGyOSwVViICeiKsGeB2b2TvNYMzDSY35Kveqz
+ GG6upZcGjS4f3SNt219cmAqRLHRXpg8mkmULb+RZjTmjdxt0L71aBkKTh8GkdIond0+5JWl6z
+ 8zCyO3p4p39u9+K6TnUUiEMCqXNFI89XpSD5ktY3xmW87ujehq8l3G20XwzZiZ7COzNMYsFPS
+ MBV5blAhLmCj7kgqnR6eFcig1b8OBU/HpVzQK3IHRa4TrQoZoz5aVgdNSNx3a1m5krTCdub7U
+ Oxesej3CUoKy9N1+N70GrC5r9K5f58T26nJwkM4DH/eD/qVsyZ9Z8D0+on7Nka2NfFhBKueIb
+ F1xz1YzbPDZLZ1rmpd4IvgNwLq1miHdBAyfJqa79If32z0HztrZe/jL/TmTPBYTJtfRc1Z3/x
+ AhnnrvuO1B//Pc8czODYYgxUgW5utBb/akPXoZoD8OClpCeI5uh3E+HgZTH10W2OvoiS02Mbi
+ 2LcAIkqojLj0W3SDNrGCXbRdWxBh6ClrmBEw5wKiGbAlT2q8llV51w/nZ6Kn/PZxRJgGSVWEm
+ CDzPsE1klYMCxUWbwu7Pg0mCcljjC5NT0JEW/z8mjv5jDYbdA82me/F9qQTZF1C/hz/umJSEe
+ OK2dVFKY1RA/IP8YQuRRxk5zzpyMCeKyNGRIb8WiwLFF8xO4q6WAhW0QBpNdl/NNXDtcIH1lM
+ Pta+DO8YpcqSmNwiluClcGmiamCmhpfe+RbtEky0Z8KJUSUDzAgICrkJy94nhoh358W+bcO6Y
+ noV0Y1FlYTNiAX62cvbY8W8Wjae5M14CAv40Z4yJREwUQ=
 
-On Tue, Apr 30, 2024 at 11:43:16AM GMT, Connor Abbott wrote:
-> This will used by drm/msm to initialize GPU registers that Qualcomm's
-> firmware doesn't make writeable to the kernel.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Connor Abbott <cwabbott0@gmail.com>
+Add devicetree binding for the FriendlyElec CM3588 NAS board.
 
-Acked-by: Bjorn Andersson <andersson@kernel.org>
+The CM3588 NAS by FriendlyElec pairs the CM3588 compute module, based on
+the Rockchip RK3588 SoC, with the CM3588 NAS Kit carrier board.
 
-Regards,
-Bjorn
+Signed-off-by: Sebastian Kropatsch <seb-dev@web.de>
+=2D--
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> ---
->  drivers/firmware/qcom/qcom_scm.c       | 14 ++++++++++++++
->  drivers/firmware/qcom/qcom_scm.h       |  3 +++
->  include/linux/firmware/qcom/qcom_scm.h | 23 +++++++++++++++++++++++
->  3 files changed, 40 insertions(+)
-> 
-> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-> index 06e46267161b..f8623ad0987c 100644
-> --- a/drivers/firmware/qcom/qcom_scm.c
-> +++ b/drivers/firmware/qcom/qcom_scm.c
-> @@ -1394,6 +1394,20 @@ int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
->  }
->  EXPORT_SYMBOL_GPL(qcom_scm_lmh_dcvsh);
->  
-> +int qcom_scm_gpu_init_regs(u32 gpu_req)
-> +{
-> +	struct qcom_scm_desc desc = {
-> +		.svc = QCOM_SCM_SVC_GPU,
-> +		.cmd = QCOM_SCM_SVC_GPU_INIT_REGS,
-> +		.arginfo = QCOM_SCM_ARGS(1),
-> +		.args[0] = gpu_req,
-> +		.owner = ARM_SMCCC_OWNER_SIP,
-> +	};
-> +
-> +	return qcom_scm_call(__scm->dev, &desc, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(qcom_scm_gpu_init_regs);
-> +
->  static int qcom_scm_find_dload_address(struct device *dev, u64 *addr)
->  {
->  	struct device_node *tcsr;
-> diff --git a/drivers/firmware/qcom/qcom_scm.h b/drivers/firmware/qcom/qcom_scm.h
-> index 4532907e8489..484e030bcac9 100644
-> --- a/drivers/firmware/qcom/qcom_scm.h
-> +++ b/drivers/firmware/qcom/qcom_scm.h
-> @@ -138,6 +138,9 @@ int scm_legacy_call(struct device *dev, const struct qcom_scm_desc *desc,
->  #define QCOM_SCM_WAITQ_RESUME			0x02
->  #define QCOM_SCM_WAITQ_GET_WQ_CTX		0x03
->  
-> +#define QCOM_SCM_SVC_GPU			0x28
-> +#define QCOM_SCM_SVC_GPU_INIT_REGS		0x01
-> +
->  /* common error codes */
->  #define QCOM_SCM_V2_EBUSY	-12
->  #define QCOM_SCM_ENOMEM		-5
-> diff --git a/include/linux/firmware/qcom/qcom_scm.h b/include/linux/firmware/qcom/qcom_scm.h
-> index aaa19f93ac43..a221a643dc12 100644
-> --- a/include/linux/firmware/qcom/qcom_scm.h
-> +++ b/include/linux/firmware/qcom/qcom_scm.h
-> @@ -115,6 +115,29 @@ int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
->  int qcom_scm_lmh_profile_change(u32 profile_id);
->  bool qcom_scm_lmh_dcvsh_available(void);
->  
-> +/*
-> + * Request TZ to program set of access controlled registers necessary
-> + * irrespective of any features
-> + */
-> +#define QCOM_SCM_GPU_ALWAYS_EN_REQ BIT(0)
-> +/*
-> + * Request TZ to program BCL id to access controlled register when BCL is
-> + * enabled
-> + */
-> +#define QCOM_SCM_GPU_BCL_EN_REQ BIT(1)
-> +/*
-> + * Request TZ to program set of access controlled register for CLX feature
-> + * when enabled
-> + */
-> +#define QCOM_SCM_GPU_CLX_EN_REQ BIT(2)
-> +/*
-> + * Request TZ to program tsense ids to access controlled registers for reading
-> + * gpu temperature sensors
-> + */
-> +#define QCOM_SCM_GPU_TSENSE_EN_REQ BIT(3)
-> +
-> +int qcom_scm_gpu_init_regs(u32 gpu_req);
-> +
->  #ifdef CONFIG_QCOM_QSEECOM
->  
->  int qcom_scm_qseecom_app_get_id(const char *app_name, u32 *app_id);
-> 
-> -- 
-> 2.31.1
-> 
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documen=
+tation/devicetree/bindings/arm/rockchip.yaml
+index e04c213a0dee..93d671e13f18 100644
+=2D-- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -248,6 +248,11 @@ properties:
+           - const: friendlyarm,nanopc-t6
+           - const: rockchip,rk3588
+
++      - description: FriendlyElec CM3588 NAS
++        items:
++          - const: friendlyarm,cm3588-nas
++          - const: rockchip,rk3588
++
+       - description: GameForce Chi
+         items:
+           - const: gameforce,chi
+=2D-
+2.43.0
+
 
