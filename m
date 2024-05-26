@@ -1,57 +1,64 @@
-Return-Path: <devicetree+bounces-69234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42F738CF45B
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 15:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35FE88CF46A
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 15:49:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4F431F212D5
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 13:01:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8C031F2148D
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 13:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE96EDDD8;
-	Sun, 26 May 2024 13:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C61E57F;
+	Sun, 26 May 2024 13:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PA+CJcb5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AdkeXcWb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C848F6A;
-	Sun, 26 May 2024 13:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4508F55;
+	Sun, 26 May 2024 13:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716728506; cv=none; b=NmOULs1+h2KA9WFtnzGJYNVUu9G15VmrJ4ckRW1hTSNRHMPqsTLW7gT/qHgdxC3JGkD1z462IKEuMYxgFZdzESJPIvH2sePUHENLZ5m3esI+c5200x0Qw2gNxhLWks+GqMn0LarMsJIZgWD1FhQRvZ+BApVXcrNSYFnJFMwtUm8=
+	t=1716731346; cv=none; b=g2lNeyf37OZFy3I35gJxFdRRGToat73qB6NYzS9jY4lEovxsMjmTLR0QmXHw6xhjXUynoDkVw0HPitQgyjyUAzmlryURUAqPSKsrDH9O7GF3uRL4dIJ5A2bk+3f+i1ZA8gHP7Otdsj9KZtseW/rA4NgbEFMTOxrA0dScA+IFR0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716728506; c=relaxed/simple;
-	bh=mUAswdY4bkKjHRY+od08oRhrXZZBaKuBJrPUOu+kkyY=;
+	s=arc-20240116; t=1716731346; c=relaxed/simple;
+	bh=Fvd2yMfinY76Ir6MHTON59Mb9cqtnlP19SKf1KtXrYE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PfEGlQJtNkWNAV+rV3ldj7+MoAM+lu3X9IRxdpKbNEFfMx+ETISHaih38YvSr5kyomEGyq/ukh1N+JTc6WEF/u7B6DZKVJaMHbEEOXrC8yKqGtqLMHPHiReNSQ/TVqxbJuYPjNt46vfMNVjjePmdgge16BsrtCgYz5SoGlsOlII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PA+CJcb5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49B34C2BD10;
-	Sun, 26 May 2024 13:01:30 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Pd4JNOhzDWOu6GZ0wdU4GBA6eTYLo2ukFlWjVaVnQgDxAfXJv9VxIH83b4r7srlpop7a7DoWphGp4nRiLWNiG58NrUhExCgI0YWuq1u5jG1k9OPz9qF8/SxZTceM+5Lf0xQwkrf2WG3StT85ygh5I2mdnz9B9d6FDZdHIxPTiws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AdkeXcWb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D58E6C2BD10;
+	Sun, 26 May 2024 13:49:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716728506;
-	bh=mUAswdY4bkKjHRY+od08oRhrXZZBaKuBJrPUOu+kkyY=;
+	s=k20201202; t=1716731346;
+	bh=Fvd2yMfinY76Ir6MHTON59Mb9cqtnlP19SKf1KtXrYE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=PA+CJcb5Gd8Bidlh90pG+Uk1TjcCimjj9/c0tyAt4C5/0A0MCAeIJKMmI1MW/KEw5
-	 XXszos+HjQubyM87KxlNwJutTsuiTymdMidKNK05bU+Nzd+zzQrv7Hez3FX7nV82F3
-	 928uMZ0H6IUQ4DVZsbGfdmYFnZ1ZFFBTMQmIfO5RqLsww9CSEhoZF67FzNT1PszGOJ
-	 xiEVWlHuhqFk/JUh11rGg4I8Bk60uOLOZcXp3Gn2zyO8Bns6GD+9PNm68bSAJuzk/8
-	 2ZeyPV3O5EjhtVijflCFVgnJwtuiaqr0cN2PN/s1zJc/sTxnrU+Pk13Cr4l2eYEQlK
-	 J318T/De1Ex9w==
-Date: Sun, 26 May 2024 14:01:08 +0100
+	b=AdkeXcWbj4BASWi1RboTFZxjneV9YZ7iD+i0qZXEJ/XKBGDVuWZU6D0z9bMK8xjtd
+	 56Zdjbtj54wEyiFsRtMMSXyPiSCLv0tQdMyxMouPtW21NGQJh76YyLv4+Vod0id1Ba
+	 jPwbTR5PP1BDJ67vgu3RUK7oye27YS5aNeWQbWRH4Xx/t64qc8jCIFazET3xz/1z9s
+	 y4nfOcFu2fOrmEfzeHBDJ8YfdL9N/QQX03Z4xuvE4/OOnD92NJcFk27a8PJDBXisLR
+	 7bBbEkU+v7wCFkAl/k/4h22utLuO5weEJnMYNyr3MriayQTxbngoGmVWJcpBmbTEGz
+	 xAqWvJAR7ZwGg==
+Date: Sun, 26 May 2024 14:48:51 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, conor+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, nuno.sa@analog.com
-Subject: Re: [PATCH v4 10/10] drivers: iio: imu: Add support for adis1657x
- family
-Message-ID: <20240526140108.0abd1ef5@jic23-huawei>
-In-Reply-To: <20240524090329.340810-1-ramona.bolboaca13@gmail.com>
-References: <20240524090329.340810-1-ramona.bolboaca13@gmail.com>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>, Heikki Krogerus
+ <heikki.krogerus@linux.intel.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Jean Delvare <jdelvare@suse.com>, Guenter
+ Roeck <linux@roeck-us.net>, Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] hwmon: (ltc2992) Use
+ fwnode_for_each_available_child_node_scoped()
+Message-ID: <20240526144851.493dd3f2@jic23-huawei>
+In-Reply-To: <20240523-fwnode_for_each_available_child_node_scoped-v2-3-701f3a03f2fb@gmail.com>
+References: <20240523-fwnode_for_each_available_child_node_scoped-v2-0-701f3a03f2fb@gmail.com>
+	<20240523-fwnode_for_each_available_child_node_scoped-v2-3-701f3a03f2fb@gmail.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,156 +69,89 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 24 May 2024 12:03:29 +0300
-Ramona Gradinariu <ramona.bolboaca13@gmail.com> wrote:
+On Thu, 23 May 2024 17:47:16 +0200
+Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
 
-> Add support for ADIS1657X family devices in already exiting ADIS16475
-> driver.
+> The scoped version of the fwnode_for_each_available_child_node() macro
+> automates object recfount decrement, avoiding possible memory leaks
+> in new error paths inside the loop like it happened when
+> commit '10b029020487 ("hwmon: (ltc2992) Avoid division by zero")'
+> was added.
 > 
-> Signed-off-by: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
+> The new macro removes the need to manually call fwnode_handle_put() in
+> the existing error paths and in any future addition. It also removes the
+> need for the current child node declaration as well, as it is internally
+> declared.
+> 
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-Some minor comments seeing as you will be doing a v5.
-Many of these I might have just tweaked whilst applying (line breaks etc)
-but easier for me if you do it ;)
+This looks like another instances of the lack of clarify about 
+what device_for_each_child_node[_scoped]() guarantees about node availability.
+On DT it guarantees the node is available as ultimately calls
+of_get_next_available_child()
+
+On ACPI it doesn't (I think).
+For swnode, there isn't an obvious concept of available.
+
+It would be much better if we reached some agreement on this and
+hence could avoid using the fwnode variants just to get the _available_ form
+as done here.  Or just add the device_for_each_available_child_node[_scoped]()
+and call that in almost all cases.
+
+In generic code, do we ever want to walk unavailable child nodes?
 
 Jonathan
 
 
-> +
->  static const struct adis_timeout adis16475_timeouts = {
->  	.reset_ms = 200,
->  	.sw_reset_ms = 200,
-> @@ -760,7 +929,7 @@ static const struct adis16475_chip_info adis16475_chip_info[] = {
->  		.sync = adis16475_sync_mode,
->  		.num_sync = ARRAY_SIZE(adis16475_sync_mode),
->  		.adis_data = ADIS16475_DATA(16470, &adis16475_timeouts,
-> -					    ADIS16475_BURST32_MAX_DATA,
-> +					    ADIS16475_BURST32_MAX_DATA_NO_TS32,
 
-Avoid the noise in here by moving the rename to where this was extended in an earlier
-patch.  Just add a note there to say why you are naming it NO_TS32
-at that point.
 
->  };
 
-> @@ -1264,20 +1582,30 @@ static int adis16475_push_single_sample(struct iio_poll_func *pf)
->  	__be16 *buffer;
->  	u16 crc;
->  	bool valid;
-> +	u8 crc_offset = 9;
-> +	u16 burst_size = ADIS16475_BURST_MAX_DATA;
-> +	u16 start_idx = (st->info->flags & ADIS16475_HAS_TIMESTAMP32) ? 2 : 0;
-> +
->  	/* offset until the first element after gyro and accel */
->  	const u8 offset = st->burst32 ? 13 : 7;
+> ---
+>  drivers/hwmon/ltc2992.c | 15 ++++-----------
+>  1 file changed, 4 insertions(+), 11 deletions(-)
 > 
-> +	if (st->burst32) {
-> +		crc_offset = (st->info->flags & ADIS16475_HAS_TIMESTAMP32) ? 16 : 15;
-> +		burst_size = (st->info->flags & ADIS16475_HAS_TIMESTAMP32) ?
-> +			     ADIS16575_BURST32_DATA_TS32 : ADIS16475_BURST32_MAX_DATA_NO_TS32;
-> +	}
-> +
->  	ret = spi_sync(adis->spi, &adis->msg);
->  	if (ret)
-> -		goto check_burst32;
-> +		return ret;
-> 
->  	buffer = adis->buffer;
-> 
-> -	crc = be16_to_cpu(buffer[offset + 2]);
-> -	valid = adis16475_validate_crc(adis->buffer, crc, st->burst32);
-> +	crc = be16_to_cpu(buffer[crc_offset]);
-> +	valid = adis16475_validate_crc(adis->buffer, crc, burst_size, start_idx);
->  	if (!valid) {
->  		dev_err(&adis->spi->dev, "Invalid crc\n");
-> -		goto check_burst32;
-> +		return ret;
->  	}
-> 
->  	for_each_set_bit(bit, indio_dev->active_scan_mask,
-> @@ -1337,23 +1665,127 @@ static int adis16475_push_single_sample(struct iio_poll_func *pf)
+> diff --git a/drivers/hwmon/ltc2992.c b/drivers/hwmon/ltc2992.c
+> index d4a93223cd3b..3feee400ecf8 100644
+> --- a/drivers/hwmon/ltc2992.c
+> +++ b/drivers/hwmon/ltc2992.c
+> @@ -855,32 +855,25 @@ static const struct regmap_config ltc2992_regmap_config = {
+>  static int ltc2992_parse_dt(struct ltc2992_state *st)
+>  {
+>  	struct fwnode_handle *fwnode;
+> -	struct fwnode_handle *child;
+>  	u32 addr;
+>  	u32 val;
+>  	int ret;
+>  
+>  	fwnode = dev_fwnode(&st->client->dev);
+>  
+> -	fwnode_for_each_available_child_node(fwnode, child) {
+> +	fwnode_for_each_available_child_node_scoped(fwnode, child) {
+>  		ret = fwnode_property_read_u32(child, "reg", &addr);
+> -		if (ret < 0) {
+> -			fwnode_handle_put(child);
+> +		if (ret < 0)
+>  			return ret;
+> -		}
+>  
+> -		if (addr > 1) {
+> -			fwnode_handle_put(child);
+> +		if (addr > 1)
+>  			return -EINVAL;
+> -		}
+>  
+>  		ret = fwnode_property_read_u32(child, "shunt-resistor-micro-ohms", &val);
+>  		if (!ret) {
+> -			if (!val) {
+> -				fwnode_handle_put(child);
+> +			if (!val)
+>  				return dev_err_probe(&st->client->dev, -EINVAL,
+>  						     "shunt resistor value cannot be zero\n");
+> -			}
+>  			st->r_sense_uohm[addr] = val;
 >  		}
 >  	}
 > 
-> -	iio_push_to_buffers_with_timestamp(indio_dev, st->data, pf->timestamp);
-> -check_burst32:
-> +	if (adis->data->has_fifo)
-> +		iio_push_to_buffers(indio_dev, st->data);
-> +	else
-> +		iio_push_to_buffers_with_timestamp(indio_dev, st->data, pf->timestamp);
-You could be lazy here and not separate the two cases. I think we are guaranteed
-in the has_fifo case that the timestamp will never be turned on. Hence
-iio_push_to_buffers_with_timestamp() is effectively identical to
-iio_push_to_buffers().
-
-However for reasons of potential tightening on buffer sizing that we have
-been talking about (adding checks into the iio_push_to_buffers() family that
-enough data is pushed), this may need to come back.  However that set of changes
-will require a per driver move to new interfaces anyway.
-
-So if you want to just always call iio_push_to_buffers_with_timestamp()
-go ahead but add a comment here that there might not be a timestamp option
-for some devices.
-
-> +
-> +	return 0;
-> +}
-> +
-
-> @@ -1367,6 +1799,14 @@ static int adis16475_config_sync_mode(struct adis16475 *st)
->  	u32 sync_mode;
->  	u16 max_sample_rate = st->info->int_clk + 100;
-> 
-> +	/* if available, enable 4khz internal clock */
-> +	if (st->info->int_clk == 4000) {
-> +		ret = __adis_update_bits(&st->adis, ADIS16475_REG_MSG_CTRL,
-> +					 ADIS16575_SYNC_4KHZ_MASK, (u16)ADIS16575_SYNC_4KHZ(1));
-line break in line above.  
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->  	/* default to internal clk */
->  	st->clk_freq = st->info->int_clk * 1000;
-> 
-> @@ -1444,34 +1884,67 @@ static int adis16475_config_irq_pin(struct adis16475 *st)
-...
-> +	if (st->adis.data->has_fifo) {
-> +		/*
-> +		 * It is possible to configure the fifo watermark pin polarity.
-> +		 * Furthermore, we need to update the adis struct if we want the
-> +		 * watermark pin active low.
-> +		 */
-> +		if (irq_type == IRQ_TYPE_LEVEL_HIGH) {
-> +			polarity = 1;
-> +			st->adis.irq_flag = IRQF_TRIGGER_HIGH;
-> +		} else if (irq_type == IRQ_TYPE_LEVEL_LOW) {
-> +			polarity = 0;
-> +			st->adis.irq_flag = IRQF_TRIGGER_LOW;
-> +		} else {
-> +			dev_err(&spi->dev, "Invalid interrupt type 0x%x specified\n",
-> +				irq_type);
-> +			return -EINVAL;
-> +		}
-> +
-> +		/* Configure the watermark pin polarity. */
-> +		ret = adis_update_bits(&st->adis, ADIS16475_REG_FIFO_CTRL,
-> +				       ADIS16575_WM_POL_MASK, (u16)ADIS16575_WM_POL(polarity));
-
-Add a line beak in the line above.
-
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* Enable watermark interrupt pin. */
-> +		ret = adis_update_bits(&st->adis, ADIS16475_REG_FIFO_CTRL,
-> +				       ADIS16575_WM_EN_MASK, (u16)ADIS16575_WM_EN(1));
-
-Line break in line above.
-
-> +		if (ret)
-> +			return ret;
-> +
->  	} else {
 
 
