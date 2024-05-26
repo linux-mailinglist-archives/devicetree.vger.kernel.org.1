@@ -1,131 +1,231 @@
-Return-Path: <devicetree+bounces-69222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF89C8CF254
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 02:31:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4DB58CF26B
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 04:00:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C5481C20EA2
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 00:31:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B643E280E30
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 02:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15B9F65F;
-	Sun, 26 May 2024 00:31:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C45EEC4;
+	Sun, 26 May 2024 02:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWUuIeOQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VxdMoxRz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE36463E;
-	Sun, 26 May 2024 00:31:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C59F622;
+	Sun, 26 May 2024 02:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716683491; cv=none; b=X97hDTMIk34RzJZ0yePdWf8aFWe1q0GNTJVp6Ud/AghEpehMoHH8dSU2wbJ4w3e1ifKVMjRrgEiwdNhSlYc36BTmzLjq5KjAv3Lz0xE1dTG1+dLrv+C7Uir4wpis2RXKe/XBbJMH2AxTro2X5W5ZNQubuazdlpRibYcjUBiFsCo=
+	t=1716688840; cv=none; b=hQ87BruC+KlCI8gpuBkTtkwtsJqvIOxkAr6QBWRH00kYCF2RasFAQPGjOmpalSD+e1kIcmYIPDulcCrBDLXwi6Mljwvisc5WFCXHpB7U1SSwc/cT7H8qnj0JAtlU8zfOLh54s+5OHCIQer5kFKjpFP/kitCcAhUtxJ7DR/4R4TQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716683491; c=relaxed/simple;
-	bh=tLBbbj7vrivOQBPs31i4Rk8bNdwrtQx9xSQ5x5v7dRs=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Cdg3HTcNjdPfqgkCOMGEkpv9J4lkAUEeqYEVWmpRDnNmYPXYbQ6vuYlx/GKcPIvs/4Xsy3BESViYS0q6q/GBzRwg8izyTmuVwDLVo3qFpv/yjUcuvHlWAGQTMXfzLtCX6JHhW2iu7hvFVjsnNX3ZMUlJRzjXV8qWxIo6OZSwRAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWUuIeOQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B158C2BD11;
-	Sun, 26 May 2024 00:31:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716683490;
-	bh=tLBbbj7vrivOQBPs31i4Rk8bNdwrtQx9xSQ5x5v7dRs=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=PWUuIeOQ2FKzGraLtFcDykcvJ/bwO54n+4BCw71Tpj0SuRXTUyRZGO9q++pZ6jQM1
-	 YlJCT20K1fdKtMu8BQerJUYdcYulu9gqP3n+/SwsjLDfkUeKdGUoGdreVpRlhf6/Oj
-	 SN8gxoE0atbIcU6Zdj8D7ZvIM0pvZcqk3l1QteY+dfVI+Ht/ZRdOgKdo2VFJ6/xqGt
-	 7ganyu2M1LlAfOPJceyRkPHogt5PiRhYZt1EqeQMUiSWH2I6XA8dwYfMusEfaXa2hv
-	 U4slhHmf4/+6mbwKlAygHM24yaVKUfVief5+hAHW3XjorkymGt54q73rYDi1vtYhOh
-	 tRmHsxIxZ+Tlg==
-Date: Sat, 25 May 2024 19:31:29 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1716688840; c=relaxed/simple;
+	bh=CzcVNZjWSshoEFL81VKFzrkOMmouWtgwix9NhZydeTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L+xFf0AutU35ruOTSYrExXJCb9IMO/AIbzD3WK2YnBggeZmhG1K2xa3/XRFwOpi2D5F0+kQPrpFI5DgMf7XUrxdkwH4CH9s3vlXYE7x8hxnRdAP65x0pjjULAjnEf2A03iMOrx0jwABxE1hqavXzbX1Fi+pa8Hb2jt4DxtiNFKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VxdMoxRz; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716688838; x=1748224838;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CzcVNZjWSshoEFL81VKFzrkOMmouWtgwix9NhZydeTI=;
+  b=VxdMoxRz92gshTyPJq1I4JjAYf5ezusgQWSy2PB5cFf4Wuq5Qe4ySG8R
+   b06yFUm88BKzxT4xCFIXD/9ByfhAjXOxggTa7+0loXiGWRAMLL2JFTC02
+   phmBPDGzcM/BvZ9e2gULNQ1r5vtqtPVVIDiSPbV03iDdI0j+BQKiSTQF+
+   hlukmo4evdHcpXTbkm96xp9LTuumO44/+4m3aTyK6pnfQwT5DwijECGcj
+   IUQ3a0avL4cdSPK0t4nKgpWVHurAhu/rx+GKM3DyWa5ABIxV/7X02IrtG
+   vDA3f8ljX/NppGuuJD5oPNP4tc6BF24ImfIEQ4jg6oPWkMkx/IUzga6b1
+   g==;
+X-CSE-ConnectionGUID: lxaRk+Q2QvKxq0zoGNsnaw==
+X-CSE-MsgGUID: 35Pe1xyMQ0mMB1174gT7Vw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11083"; a="23633382"
+X-IronPort-AV: E=Sophos;i="6.08,189,1712646000"; 
+   d="scan'208";a="23633382"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2024 19:00:37 -0700
+X-CSE-ConnectionGUID: 8bgepjOfSp2uABOKzPJRSg==
+X-CSE-MsgGUID: qqwx/AslRHOoP6sn78rbyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,189,1712646000"; 
+   d="scan'208";a="39375336"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 25 May 2024 19:00:33 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sB3BW-0007df-0g;
+	Sun, 26 May 2024 02:00:30 +0000
+Date: Sun, 26 May 2024 09:59:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: oe-kbuild-all@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>,
+	Jason-ch Chen <jason-ch.chen@mediatek.com>,
+	"Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
+	Singo Chang <singo.chang@mediatek.com>,
+	Nancy Lin <nancy.lin@mediatek.com>,
+	Shawn Sung <shawn.sung@mediatek.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v6 6/8] mailbox: mediatek: Add CMDQ secure mailbox driver
+Message-ID: <202405260953.uzQ4Rwg2-lkp@intel.com>
+References: <20240525230810.24623-7-jason-jh.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-Cc: dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- Singo Chang <singo.chang@mediatek.com>, linux-mediatek@lists.infradead.org, 
- Shawn Sung <shawn.sung@mediatek.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Jason-ch Chen <jason-ch.chen@mediatek.com>, 
- Jassi Brar <jassisinghbrar@gmail.com>, linux-kernel@vger.kernel.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Nancy Lin <nancy.lin@mediatek.com>, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20240525230810.24623-3-jason-jh.lin@mediatek.com>
-References: <20240525230810.24623-1-jason-jh.lin@mediatek.com>
- <20240525230810.24623-3-jason-jh.lin@mediatek.com>
-Message-Id: <171668348904.396809.16922327479169657625.robh@kernel.org>
-Subject: Re: [PATCH v6 2/8] dt-bindings: mailbox: Add property for CMDQ
- secure driver
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240525230810.24623-7-jason-jh.lin@mediatek.com>
+
+Hi Jason-JH.Lin,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on linus/master]
+[also build test WARNING on next-20240523]
+[cannot apply to robh/for-next krzk-dt/for-next fujitsu-integration/mailbox-for-next v6.9]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Jason-JH-Lin/dt-bindings-gce-mt8195-Add-CMDQ_SYNC_TOKEN_SECURE_THR_EOF-event-id/20240526-071102
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20240525230810.24623-7-jason-jh.lin%40mediatek.com
+patch subject: [PATCH v6 6/8] mailbox: mediatek: Add CMDQ secure mailbox driver
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20240526/202405260953.uzQ4Rwg2-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240526/202405260953.uzQ4Rwg2-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202405260953.uzQ4Rwg2-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/mailbox/mtk-cmdq-sec-mailbox.c: In function 'cmdq_sec_task_exec_work':
+>> drivers/mailbox/mtk-cmdq-sec-mailbox.c:619:31: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+     619 |         struct cmdq_sec_data *data;
+         |                               ^~~~
 
 
-On Sun, 26 May 2024 07:08:04 +0800, Jason-JH.Lin wrote:
-> 1. Add mboxes property to define a GCE loopping thread as a secure IRQ
-> handler.
-> The CMDQ secure driver requests a mbox channel and sends a looping
-> command to the GCE thread. The looping command will wait for a secure
-> packet done event signal from secure world and then jump back to the
-> first instuction. Each time it waits for an event, it notifies the
-> CMDQ driver to perform the same action as the IRQ handler.
-> 
-> 2. Add gce-events property from gce-props.yaml to define a
-> secure packet done signal in secure world.
-> There are 1024 events IDs for GCE to use to execute instructions in
-> the specific event happened. These events could be signaled by HW or SW
-> and their value would be different in different SoC because of HW event
-> IDs distribution range from 0 to 1023.
-> If we set a static event ID: 855 for mt8188, it might be conflict the
-> event ID original set in mt8195.
-> So we define an event ID that will be set when GCE runs to the end of
-> secure cmdq packet in the secure world.
-> 
-> This can reduce the latency of software communication between normal
-> world and secure world. In addition, we can also remove the complex
-> logic after the secure packet done in the secure world.
-> 
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
-> ---
->  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
+vim +/data +619 drivers/mailbox/mtk-cmdq-sec-mailbox.c
 
-My bot found errors running 'make dt_binding_check' on your patch:
+   611	
+   612	static void cmdq_sec_task_exec_work(struct work_struct *work_item)
+   613	{
+   614		struct cmdq_sec_task *sec_task = container_of(work_item,
+   615							      struct cmdq_sec_task, exec_work);
+   616		struct cmdq_sec_thread *sec_thread = container_of(sec_task->task.thread,
+   617								 struct cmdq_sec_thread, thread);
+   618		struct cmdq_sec *cmdq = container_of(sec_thread->dev, struct cmdq_sec, dev);
+ > 619		struct cmdq_sec_data *data;
+   620		unsigned long flags;
+   621		int err;
+   622	
+   623		dev_dbg(&cmdq->dev, "%s gce:%#lx sec_task:%p pkt:%p thread:%u",
+   624			__func__, (unsigned long)cmdq->base_pa,
+   625			sec_task, sec_task->task.pkt, sec_thread->idx);
+   626	
+   627		if (!sec_task->task.pkt->sec_data) {
+   628			dev_err(&cmdq->dev, "pkt:%p without sec_data", sec_task->task.pkt);
+   629			return;
+   630		}
+   631		data = (struct cmdq_sec_data *)sec_task->task.pkt->sec_data;
+   632	
+   633		mutex_lock(&cmdq->exec_lock);
+   634	
+   635		spin_lock_irqsave(&sec_thread->thread.chan->lock, flags);
+   636		if (!sec_thread->task_cnt) {
+   637			mod_timer(&sec_thread->timeout, jiffies +
+   638				  msecs_to_jiffies(sec_thread->timeout_ms));
+   639			sec_thread->wait_cookie = 1;
+   640			sec_thread->next_cookie = 1;
+   641			sec_thread->task_cnt = 0;
+   642			__raw_writel(0, (void __iomem *)cmdq->shared_mem->va +
+   643				     CMDQ_SEC_SHARED_THR_CNT_OFFSET + sec_thread->idx * sizeof(u32));
+   644		}
+   645	
+   646		sec_task->reset_exec = sec_thread->task_cnt ? false : true;
+   647		sec_task->wait_cookie = sec_thread->next_cookie;
+   648		sec_thread->next_cookie = (sec_thread->next_cookie + 1) % CMDQ_MAX_COOKIE_VALUE;
+   649		list_add_tail(&sec_task->task.list_entry, &sec_thread->thread.task_busy_list);
+   650		sec_thread->task_cnt += 1;
+   651		spin_unlock_irqrestore(&sec_thread->thread.chan->lock, flags);
+   652		sec_task->trigger = sched_clock();
+   653	
+   654		if (!atomic_cmpxchg(&cmdq_path_res, 0, 1)) {
+   655			err = cmdq_sec_task_submit(cmdq, NULL, CMD_CMDQ_IWC_PATH_RES_ALLOCATE,
+   656						   CMDQ_INVALID_THREAD);
+   657			if (err) {
+   658				atomic_set(&cmdq_path_res, 0);
+   659				goto task_end;
+   660			}
+   661		}
+   662	
+   663		if (sec_thread->task_cnt > CMDQ_MAX_TASK_IN_SECURE_THREAD) {
+   664			dev_err(&cmdq->dev, "task_cnt:%u cannot more than %u sec_task:%p thread:%u",
+   665				sec_thread->task_cnt, CMDQ_MAX_TASK_IN_SECURE_THREAD,
+   666				sec_task, sec_thread->idx);
+   667			err = -EMSGSIZE;
+   668			goto task_end;
+   669		}
+   670	
+   671		err = cmdq_sec_task_submit(cmdq, sec_task, CMD_CMDQ_IWC_SUBMIT_TASK,
+   672					   sec_thread->idx);
+   673		if (err)
+   674			dev_err(&cmdq->dev, "cmdq_sec_task_submit err:%d sec_task:%p thread:%u",
+   675				err, sec_task, sec_thread->idx);
+   676	
+   677	task_end:
+   678		if (err) {
+   679			struct cmdq_cb_data cb_data;
+   680	
+   681			cb_data.sta = err;
+   682			cb_data.pkt = sec_task->task.pkt;
+   683			mbox_chan_received_data(sec_thread->thread.chan, &cb_data);
+   684	
+   685			spin_lock_irqsave(&sec_thread->thread.chan->lock, flags);
+   686			if (!sec_thread->task_cnt)
+   687				dev_err(&cmdq->dev, "thread:%u task_cnt:%u cannot below zero",
+   688					sec_thread->idx, sec_thread->task_cnt);
+   689			else
+   690				sec_thread->task_cnt -= 1;
+   691	
+   692			sec_thread->next_cookie = (sec_thread->next_cookie - 1 +
+   693				CMDQ_MAX_COOKIE_VALUE) % CMDQ_MAX_COOKIE_VALUE;
+   694			list_del(&sec_task->task.list_entry);
+   695			dev_dbg(&cmdq->dev, "gce:%#lx err:%d sec_task:%p pkt:%p",
+   696				(unsigned long)cmdq->base_pa, err, sec_task, sec_task->task.pkt);
+   697			dev_dbg(&cmdq->dev, "thread:%u task_cnt:%u wait_cookie:%u next_cookie:%u",
+   698				sec_thread->idx, sec_thread->task_cnt,
+   699				sec_thread->wait_cookie, sec_thread->next_cookie);
+   700			spin_unlock_irqrestore(&sec_thread->thread.chan->lock, flags);
+   701	
+   702			kfree(sec_task);
+   703		}
+   704	
+   705		mutex_unlock(&cmdq->exec_lock);
+   706	}
+   707	
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.example.dtb: mailbox@10212000: False schema does not allow {'compatible': ['mediatek,mt8173-gce'], 'reg': [[0, 270606336, 0, 4096]], 'interrupts': [[0, 135, 8]], '#mbox-cells': [[2]], 'clocks': [[4294967295, 4]], 'clock-names': ['gce'], '$nodename': ['mailbox@10212000']}
-	from schema $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240525230810.24623-3-jason-jh.lin@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
