@@ -1,425 +1,140 @@
-Return-Path: <devicetree+bounces-69266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 103C88CF620
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 23:25:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BABC48CF6D1
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 01:33:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82A44B216AB
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 21:25:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D92CD1C20750
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 23:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA32613A242;
-	Sun, 26 May 2024 21:24:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A64717552;
+	Sun, 26 May 2024 23:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rt1rDe5W"
+	dkim=pass (2048-bit key) header.d=web.de header.i=seb-dev@web.de header.b="QptUMr+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C798F139D00;
-	Sun, 26 May 2024 21:24:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0821C8494;
+	Sun, 26 May 2024 23:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716758696; cv=none; b=eZxyDAEML4DqvAyFlwS0gA56Xpn888n+YabW+WIC16z4dkgyoQ+aNddyQRJGipfb4RhQ1IfP7Hd/gNJixbPzcD1CfKHjUE+YLpnrAwYM4uzoyik792L1+srTSobeYxnot8yGvghWRX5503zzeqeZmdtsAHUnfyeDRGBGzcHfHng=
+	t=1716766434; cv=none; b=iXKvU8VAeCltPv9BI+5ACI00aF40Bdv3gmtKubsy0Y1IYvoO79ni6Od1Wli58FVdXT7pBcfZUpVppG8U4Zu1v3+2eyXxk7Qq5KVOJs73C+40ozNjKo3ToWjEeFAeJXzTQm1qEW0F/bUBLFE2jsESzUmJ9iNtDh6Avrd1KxodryE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716758696; c=relaxed/simple;
-	bh=uZ39KIbWJ8d7A2MhC1kIGNvMH8Bm0uXEpnAWuCr8jPE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fod79wLXOF2jg/ocqSnskHzYlwBhiE1A87dRti1wK3QL41EJ57x4M6/n4W1Axa+J7Fmx69q6gc7kTpRux8NXzFauXVXD9fc8hrXgGgCru65SbfexCN99UnCCpyG5O4X1DxZcKM0JwXuFOWS8N1OrPCH1SG3774QsBdUSYN0wLYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rt1rDe5W; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-57857e0f45cso2480709a12.1;
-        Sun, 26 May 2024 14:24:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716758693; x=1717363493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZD4KnpsZe+1fwVEBLmQxNQ3vyqVmLh7NO03oOECCVqY=;
-        b=Rt1rDe5WmdKKfmtGIGYbmhUf1SGBqDpi11ZBPj5YpY2+ppCAWFGi8XfZq6NYmpfdVq
-         Pyvqwjjq34pSh0X5xAg0oSeUauxmY2ZAJZFB1PvkpYWleUVKzTtj18BcEL7WaJM6BYm7
-         Ak3rrZFgaE+8NmXb6LSDAwKcPzWcRMJ32JkpHkKlC7Fo+BxmoQxxtcm6MtWhp3cRPcCu
-         HCydGGngHOYV3A3JVMcYumrwU8yj5K5CyT64wSERAv9XqsKQz2rEJtdcZJIkQkb3meZG
-         Kkgc+0Cz0HVDVJPHsBOTuQA0HUslg5NNUkDozhibJLNxoemv9NbWYqM6MUzG9fZSLime
-         Eyxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716758693; x=1717363493;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZD4KnpsZe+1fwVEBLmQxNQ3vyqVmLh7NO03oOECCVqY=;
-        b=todPJ2CENy0pwXc7luCYnMKTLdLLfz5qyUv3a3996Eusp6aN9krbgLR4JAvdHC1X1V
-         ZJmuR1ytZHhhNyyTkp5nFxxM/K/vyeCHzOHeWxKd1To877GjcrBwS7+R5/0yfcLVuUBx
-         8pUAC+Y/UMrKv8LXMVs7KTdNJNDuNhmu7pUzPcZ4wqU25+y3hWoeFsEabgXXplFW5CcW
-         P0Yg0Pn92V5RSmcDi1ybR6ku4vbvXudUPwenofy2H2bzORFnFcLoqoedfPk+hVJZgd+s
-         AiCcsKIs4RUqzEq4uumtqgib1M/t+Dq9HJ+aNgqHfUoj8Gul7ixTeHDLZbMLl6lePbkh
-         HQLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVI5MB2wDN5wWyxk4bZtRh2TZmrN6rF/06JKRDjngjKn+EucRiT+1zbMVM4aLycAdOsrWoSjHYKrox7u6tS6u5Q6AIahIZaTGNrXL5qZKxyBjD9PyfminViMCSGBb80F+o55scOCsGgAw==
-X-Gm-Message-State: AOJu0YztndJJXbzqJodg19/hHbGiCHjZcg02mvIvESaRR87eOr3OZXse
-	gU1YU04nZcnh0LfFmZ0xcC3IHItcvtxp3U24Dv9t4N9tJFrZiGL+Pk+Hjw==
-X-Google-Smtp-Source: AGHT+IGIJlRzEMS916ayVUC+xxdHJmNW7PpZcdIayTPguYZyK9+umiNlNW8nUJicT5Qj1uR7hJdF3Q==
-X-Received: by 2002:a17:907:971c:b0:a62:cecd:26e3 with SMTP id a640c23a62f3a-a62cecd2767mr227821366b.39.1716758692795;
-        Sun, 26 May 2024 14:24:52 -0700 (PDT)
-Received: from kuzhyl-vm.. (89-64-18-73.dynamic.chello.pl. [89.64.18.73])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c817088sm418093066b.24.2024.05.26.14.24.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 May 2024 14:24:52 -0700 (PDT)
-From: Oleh Kuzhylnyi <kuzhylol@gmail.com>
-To: linux-input@vger.kernel.org
-Cc: dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	kuzhylol@gmail.com,
+	s=arc-20240116; t=1716766434; c=relaxed/simple;
+	bh=/yahvlFAlI1KiXni2dKRY5F1eLx91D3e5J7ZQamDkoI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rtYLpkM2+wz5MAbSPX+URy8FQqwHrU7h2XCRdHLoJ9T1Gl0VIBE4azVufX0OWqWNwASI5flNf0PwZtmQCrvDGmUBNZSxPNZkz7rXHCY4jfoLAXFzha7xcGAxJXmespv1D+8QyoH9FzuloZ1AvLmjN3ZEuHt+hAYC55qQnhHgUNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=seb-dev@web.de header.b=QptUMr+a; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1716766402; x=1717371202; i=seb-dev@web.de;
+	bh=Ck9yiP7ihI2T91SwUO4f1rkfndnqU2p6BXfIvig2gCk=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=QptUMr+arYl5MZp/xa6LZ8b3ptXqm/cOxcMvWNiuSf3Zi2G3eQ7cpcoUu2zvfIvJ
+	 iOe7bf797xsyweXv1uN0b1rVd6eH+bLEmJWUPAaTXdJGlio3bycorF68EpPQV1olT
+	 mqsF266MB6RE7EprOQPNJaVofBbwWfcG36I6zPpCL3Qv94GWyyz7C1hW5QWkYAap0
+	 1u46QGzk1pij3Zi/WoWrPWgtlyl0qwMB6wQ8h3ZPbiL544YF7lloaeo0EKomAh2kn
+	 zgip5aG62kIjfAs1Pywk3tqfH31v9BZdiOZlkiiVv1XrSn2vsbqYt5UJwf7AsOfM+
+	 mQQ9mBcTevUmoFFE0w==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from localhost.localdomain ([84.155.184.248]) by smtp.web.de
+ (mrweb006 [213.165.67.108]) with ESMTPSA (Nemesis) id
+ 1MUUAG-1s2Xf02wlc-00Qf6F; Mon, 27 May 2024 01:33:22 +0200
+From: Sebastian Kropatsch <seb-dev@web.de>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
 	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	jeff@labundy.com,
-	neil.armstrong@linaro.org,
-	hdegoede@redhat.com,
-	artur.serhiienko@gmail.com,
-	igor.opaniuk@gmail.com
-Subject: [PATCH v3 2/2] input: add driver for Hynitron CST816X touchscreen
-Date: Sun, 26 May 2024 23:24:42 +0200
-Message-Id: <20240526212443.8496-2-kuzhylol@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240526212443.8496-1-kuzhylol@gmail.com>
-References: <20240526212443.8496-1-kuzhylol@gmail.com>
+	Sebastian Kropatsch <seb-dev@web.de>
+Subject: [PATCH 0/2] RK3588: FriendlyElec CM3588 NAS board support
+Date: Sun, 26 May 2024 23:42:15 +0200
+Message-ID: <20240526214340.8459-1-seb-dev@web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:UgF7Y/I2rFfSRmOfe5K9q7vLJJ0MHmaYtmPoJ40u8djNgfnfKlk
+ +q5ycSPzDccYAp0qkQpvwxAJvxy4N3/Z8dld+M4F43q0zR2JV5QfisMxtOFNXqoRz0BPrQi
+ nwkfA+8Qufr2ar+eRszvoaCFbJe6nMs0ZOQg6yFeud5Fem68IUyA6kP29co/AeRittvstoz
+ +n2Ifsq9V1zmbsmZ/xxYg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:mCzxCoR1YFo=;U39Y6KVr2BoiWscYlUxP30KLxFB
+ d1aIuZq+RiHz+5DlSNZcjT4FEnz4mTrOEegtDs6z23CNcEXlP8XKxIRiPLHMG5tuQgYukDjTW
+ NxhCpX5smb9jVAk8Fqd3hXLYjIiBCexwGNgl9jUdEtW7grUH6SjX223v1WpP9BerBLoM3Vq3I
+ 2IzI1PvX0tHmZTvNEStBRkhNd0KipV2XjfgyvnAzsXUCetsQyfGq+em7XwnerPVgRCQQhs4ie
+ QkmMHslnqnlQnbPVbgLzuPRneI7L9XFGs0NKtYJrvjzlw2vq3kJZWxL5IIy0kapGY6st10oFT
+ JjtvEJSs/O6vp78aw1If+yob+bCBNCv0uNz7rpN5Mp0g6War8rettZgbBw1yfgEtp2MLy15HU
+ AQvxCK8YSymI0TD47eqE+HyluxI8H9ml3bdZDgc26NEzi3AIEl6j4i/A1axBe8AndkAkcrq6V
+ vkIlaxLButWpWvhweiZNRjRZoOmRFpuyHlYiMmtli34VntIkznlD8tqzptiIAIcXV0Nba4GVm
+ izgsBVaibPcA9uq4AS8QimJPeVwCgdUIsilqxiKbyjS8Mte1JUhPvIwsm2ynEchm2N8MdEI3g
+ NbRcfmvhy9vdG7/4QFFu+QKyUQihIlbklv3k72laiINiX6GkmSSuJMVSOnSPlpEHZyNJ1F6Mb
+ G1STDjwc8pb774XK5uXcsNVXOkTztqwxDL9BKQaYWY8+s4lj2voMN/OZcrZAqYTRxsedBZjpD
+ IzxyvGrhXWh2iI36j5G/9kmSSfgxDdmiWSz6NJZaACvymPa0d2i5FRd+jBrajb58yCXwIwg5I
+ +EVgGwCnR74YER28y0BlelmfpUWuAX1AoooPvzPVbYk68=
 
-Introduce support for the Hynitron CST816X touchscreen controller
-used for 240×240 1.28-inch Round LCD Display Module manufactured
-by Waveshare Electronics. The driver is designed based on an Arduino
-implementation marked as under MIT License. This driver is written
-for a particular round display based on the CST816S controller, which
-is not compatiable with existing driver for Hynitron controllers.
+Hello!
 
-Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
----
+This adds support for the FriendlyElec CM3588 NAS board.
+The board's device tree makes use of the latest upstream advances on the
+RK3588 like USB3 DRD and GPU support as well as the latest Rockchip PCIe
+driver bifurcation fixes, but some features such as thermal management
+and HDMI will have to be added later when SoC support for these features
+is merged.
+Since the hardware has similarities with FriendlyElec's NanoPC T6, the
+device tree for the CM3588 NAS also partially shares some sections with
+the NanoPC T6 tree.
 
-Changes in v3:
- - Drop timer and delayed work
- - Process touch in threaded IRQ context
- - Fix chip reset sequence
- - Move input_register() before devm_request_threaded_irq()
- - Re-arrange and document input reporting
- - Set u16 data type for event_code
- - Remove double tap event to prevent continuous double side sliding
+Minor issue:
+The device enumeration of NVMe SSDs plugged into the four PCIe M.2 slots
+does not follow the order of the slots on the board: The slots are
+physically named from 1 to 4, top to bottom. However, they do not show
+up in this same order in Linux when all slots are polulated:
+   - SSD in physical slot 1 shows up as nvme0
+   - SSD in physical slot 2 shows up as nvme2
+   - SSD in physical slot 3 shows up as nvme1
+   - SSD in physical slot 4 shows up as nvme3
+This is the same order in which the data lanes are mapped for PCIe
+bifurcation (dts property: data-lanes =3D <1 3 2 4>).
+I could not solve this by using aliases for the PCIe nodes in the device
+tree. Perhaps this is something that can only be solved at driver level?
+I am not sure if this behaviour is even considered a bug or if this is
+intended behaviour by design.
 
- drivers/input/touchscreen/Kconfig            |  12 +
- drivers/input/touchscreen/Makefile           |   1 +
- drivers/input/touchscreen/hynitron-cst816x.c | 257 +++++++++++++++++++
- 3 files changed, 270 insertions(+)
- create mode 100644 drivers/input/touchscreen/hynitron-cst816x.c
+Devicetree validation:
+`make CHECK_DTBS=3Dy rockchip/rk3588-cm3588-nas.dtb` does not give any
+warnings or errors, tested on Linux next-20240523.
 
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index c821fe3ee794..02f40d0fbac0 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -481,6 +481,18 @@ config TOUCHSCREEN_HYNITRON_CSTXXX
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called hynitron-cstxxx.
- 
-+config TOUCHSCREEN_HYNITRON_CST816X
-+	tristate "Hynitron CST816X touchscreen support"
-+	depends on I2C
-+	help
-+	  Say Y here if you have a touchscreen using a Hynitron
-+	  CST816X touchscreen controller.
-+
-+	  If unsure, say N.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called hynitron-cst816x.
-+
- config TOUCHSCREEN_ILI210X
- 	tristate "Ilitek ILI210X based touchscreen"
- 	depends on I2C
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index a81cb5aa21a5..a92a87417a97 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -51,6 +51,7 @@ obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_CORE)	+= goodix_berlin_core.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_I2C)	+= goodix_berlin_i2c.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_SPI)	+= goodix_berlin_spi.o
- obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
-+obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CST816X)	+= hynitron-cst816x.o
- obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
- obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
- obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
-diff --git a/drivers/input/touchscreen/hynitron-cst816x.c b/drivers/input/touchscreen/hynitron-cst816x.c
-new file mode 100644
-index 000000000000..5bb85ec1d60e
---- /dev/null
-+++ b/drivers/input/touchscreen/hynitron-cst816x.c
-@@ -0,0 +1,257 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Driver for I2C connected Hynitron CST816X Touchscreen
-+ *
-+ * Copyright (C) 2024 Oleh Kuzhylnyi <kuzhylol@gmail.com>
-+ */
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/input.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+
-+enum cst816x_registers {
-+	CST816X_FRAME = 0x01,
-+	CST816X_MOTION = 0xEC,
-+};
-+
-+enum cst816x_gestures {
-+	CST816X_SWIPE_UP = 0x01,
-+	CST816X_SWIPE_DOWN = 0x02,
-+	CST816X_SWIPE_LEFT = 0x03,
-+	CST816X_SWIPE_RIGHT = 0x04,
-+	CST816X_SINGLE_TAP = 0x05,
-+	CST816X_LONG_PRESS = 0x0C,
-+};
-+
-+struct cst816x_touch_info {
-+	u8 gesture;
-+	u8 touch;
-+	u8 abs_x;
-+	u8 abs_y;
-+} __packed;
-+
-+struct cst816x_priv {
-+	struct device *dev;
-+	struct i2c_client *client;
-+	struct gpio_desc *reset;
-+	struct input_dev *input;
-+	struct cst816x_touch_info info;
-+
-+	u8 rxtx[8];
-+};
-+
-+struct cst816x_event_mapping {
-+	enum cst816x_gestures gesture;
-+	u16 event_code;
-+};
-+
-+static const struct cst816x_event_mapping cst816x_event_map[] = {
-+	{CST816X_SWIPE_UP, BTN_FORWARD},
-+	{CST816X_SWIPE_DOWN, BTN_BACK},
-+	{CST816X_SWIPE_LEFT, BTN_LEFT},
-+	{CST816X_SWIPE_RIGHT, BTN_RIGHT},
-+	{CST816X_SINGLE_TAP, BTN_TOUCH},
-+	{CST816X_LONG_PRESS, BTN_TOOL_TRIPLETAP}
-+};
-+
-+static int cst816x_i2c_read_register(struct cst816x_priv *priv, u8 reg)
-+{
-+	struct i2c_client *client;
-+	struct i2c_msg xfer[2];
-+	int rc;
-+
-+	client = priv->client;
-+
-+	xfer[0].addr = client->addr;
-+	xfer[0].flags = 0;
-+	xfer[0].len = sizeof(reg);
-+	xfer[0].buf = &reg;
-+
-+	xfer[1].addr = client->addr;
-+	xfer[1].flags = I2C_M_RD;
-+	xfer[1].len = sizeof(priv->rxtx);
-+	xfer[1].buf = priv->rxtx;
-+
-+	rc = i2c_transfer(client->adapter, xfer, ARRAY_SIZE(xfer));
-+	if (rc != ARRAY_SIZE(xfer)) {
-+		if (rc >= 0)
-+			rc = -EIO;
-+	} else {
-+		rc = 0;
-+	}
-+
-+	if (rc < 0)
-+		dev_err(&client->dev, "i2c rx err: %d\n", rc);
-+
-+	return rc;
-+}
-+
-+static int cst816x_process_touch(struct cst816x_priv *priv)
-+{
-+	u8 *raw;
-+	int rc;
-+
-+	rc = cst816x_i2c_read_register(priv, CST816X_FRAME);
-+	if (!rc) {
-+		raw = priv->rxtx;
-+
-+		priv->info.gesture = raw[0];
-+		priv->info.touch = raw[1];
-+		priv->info.abs_x = ((raw[2] & 0x0F) << 8) | raw[3];
-+		priv->info.abs_y = ((raw[4] & 0x0F) << 8) | raw[5];
-+
-+		dev_dbg(priv->dev, "x: %d, y: %d, t: %d, g: 0x%x\n",
-+			priv->info.abs_x, priv->info.abs_y, priv->info.touch,
-+			priv->info.gesture);
-+	}
-+
-+	return rc;
-+}
-+
-+static int cst816x_register_input(struct cst816x_priv *priv)
-+{
-+	priv->input = devm_input_allocate_device(priv->dev);
-+	if (!priv->input)
-+		return -ENOMEM;
-+
-+	priv->input->name = "Hynitron CST816X Touchscreen";
-+	priv->input->phys = "input/ts";
-+	priv->input->id.bustype = BUS_I2C;
-+	input_set_drvdata(priv->input, priv);
-+
-+	for (unsigned int i = 0; i < ARRAY_SIZE(cst816x_event_map); i++) {
-+		input_set_capability(priv->input, EV_KEY,
-+				     cst816x_event_map[i].event_code);
-+	}
-+
-+	input_set_abs_params(priv->input, ABS_X, 0, 240, 0, 0);
-+	input_set_abs_params(priv->input, ABS_Y, 0, 240, 0, 0);
-+
-+	return input_register_device(priv->input);
-+}
-+
-+static void cst816x_reset(struct cst816x_priv *priv)
-+{
-+	gpiod_set_value_cansleep(priv->reset, 1);
-+	msleep(50);
-+	gpiod_set_value_cansleep(priv->reset, 0);
-+	msleep(100);
-+}
-+
-+static void report_gesture_event(const struct cst816x_priv *priv,
-+				 enum cst816x_gestures gesture, bool touch)
-+{
-+	for (unsigned int i = 0; i < ARRAY_SIZE(cst816x_event_map); i++) {
-+		if (cst816x_event_map[i].gesture == gesture) {
-+			input_report_key(priv->input,
-+					 cst816x_event_map[i].event_code,
-+					 touch);
-+			break;
-+		}
-+	}
-+
-+	if (!touch)
-+		input_report_key(priv->input, BTN_TOUCH, 0);
-+}
-+
-+/*
-+ * Supports five gestures: TOUCH, LEFT, RIGHT, FORWARD, BACK, and LONG_PRESS.
-+ * Reports surface interaction, sliding coordinates and finger detachment.
-+ *
-+ * 1. TOUCH Gesture Scenario:
-+ *
-+ * [x/y] [touch] [gesture] [Action] [Report ABS] [Report Key]
-+ *  x y   true    0x00      Touch    ABS_X_Y      BTN_TOUCH
-+ *  x y   true    0x00      Slide    ABS_X_Y
-+ *  x y   false   0x05      Gesture               BTN_TOUCH
-+ *
-+ * 2. LEFT, RIGHT, FORWARD, BACK, and LONG_PRESS Gestures Scenario:
-+ *
-+ * [x/y] [touch] [gesture] [Action] [Report ABS] [Report Key]
-+ *  x y   true    0x00      Touch    ABS_X_Y      BTN_TOUCH
-+ *  x y   true    0x01      Gesture  ABS_X_Y      BTN_FORWARD
-+ *  x y   true    0x01      Slide    ABS_X_Y
-+ *  x y   false   0x01      Detach                BTN_FORWARD | BTN_TOUCH
-+ */
-+static irqreturn_t cst816x_irq_cb(int irq, void *cookie)
-+{
-+	struct cst816x_priv *priv = (struct cst816x_priv *)cookie;
-+
-+	if (!cst816x_process_touch(priv)) {
-+		if (priv->info.touch) {
-+			input_report_abs(priv->input, ABS_X, priv->info.abs_x);
-+			input_report_abs(priv->input, ABS_Y, priv->info.abs_y);
-+			input_report_key(priv->input, BTN_TOUCH, 1);
-+		}
-+
-+		if (priv->info.gesture)
-+			report_gesture_event(priv, priv->info.gesture,
-+					     priv->info.touch);
-+
-+		input_sync(priv->input);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int cst816x_probe(struct i2c_client *client)
-+{
-+	struct cst816x_priv *priv;
-+	struct device *dev = &client->dev;
-+	int rc;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = dev;
-+	priv->client = client;
-+
-+	priv->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(priv->reset))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset),
-+				     "reset gpio not found\n");
-+
-+	cst816x_reset(priv);
-+
-+	rc = cst816x_register_input(priv);
-+	if (rc)
-+		return dev_err_probe(dev, rc, "input register failed\n");
-+
-+	rc = devm_request_threaded_irq(dev, client->irq, NULL, cst816x_irq_cb,
-+				       IRQF_ONESHOT, dev->driver->name, priv);
-+	if (rc)
-+		return dev_err_probe(dev, rc, "irq request failed\n");
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id cst816x_id[] = {
-+	{ .name = "cst816s", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, cst816x_id);
-+
-+static const struct of_device_id cst816x_of_match[] = {
-+	{ .compatible = "hynitron,cst816s", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cst816x_of_match);
-+
-+static struct i2c_driver cst816x_driver = {
-+	.driver = {
-+		.name = "cst816x",
-+		.of_match_table = cst816x_of_match,
-+	},
-+	.id_table = cst816x_id,
-+	.probe = cst816x_probe,
-+};
-+
-+module_i2c_driver(cst816x_driver);
-+
-+MODULE_AUTHOR("Oleh Kuzhylnyi <kuzhylol@gmail.com>");
-+MODULE_DESCRIPTION("Hynitron CST816X Touchscreen Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+Best regards,
+Sebastian Kropatsch
+
+=2D--
+Sebastian Kropatsch (2):
+  dt-bindings: arm: rockchip: Add CM3588 NAS
+  arm64: dts: rockchip: Add CM3588 NAS board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../boot/dts/rockchip/rk3588-cm3588-nas.dts   | 1269 +++++++++++++++++
+ 3 files changed, 1275 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-cm3588-nas.dts
+
+=2D-
+2.43.0
 
 
