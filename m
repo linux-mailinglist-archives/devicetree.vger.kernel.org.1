@@ -1,125 +1,247 @@
-Return-Path: <devicetree+bounces-69260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8D28CF56F
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 20:24:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 925298CF57D
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 20:45:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36AED281163
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 18:24:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B629E1C208BC
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 18:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D073610A;
-	Sun, 26 May 2024 18:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEB3DF59;
+	Sun, 26 May 2024 18:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FaJyUSC+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OfgLfjod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0781EB35;
-	Sun, 26 May 2024 18:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6A21FA5;
+	Sun, 26 May 2024 18:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716747874; cv=none; b=em1vO45fUYIPTy1/XO873vwV8CO/mogrjbBh4/BmBUpLhG37kVCId0gBXvuGHX0jpfLsK56gY/ju16nIWOEKfHc/dmGL2kf1KnphUO/hxZ5seRh/3/xzkT+vySHxdmiq5xCf/UsSdOIS5b0VnaW8PmKCB0P1boM3CJaDlvofJGk=
+	t=1716749138; cv=none; b=IPJ4M4vPPbMtc0jGsdbnh/LDdg/Dm4pRC1v64XQVkrVwc2Q1ENatcQkPMboRP0XCJqrM2t83MTjhkIwWfyzpC8OH/vCFudMAyhHn4+xdyai8ZWtDkZYgo0zn2Wr3JHDfDdSBnHzdy6XpEf5zW1Dl+R6d76P6TKMpgs8uIPCFcLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716747874; c=relaxed/simple;
-	bh=A/KN+uWOMo5RgRCbJAyfJKRSejWeu8pmAzZob15UkMk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SmLKTbBFqC3KC8L2D5hxZKv3z460zEmeAD2KSuWVIKL3UHIzDLKWclCauvUubhtnEANH0qLjq3rOuxkeayXy+zRoLmHy4nTaXRV5/plTvSyajxXOA1oNVwuh8KuX/WL1f5P8fmU1x/+Li9bKvPK9dDpUVmshPFTRQ6LI5c/UoLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FaJyUSC+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDBC5C2BD10;
-	Sun, 26 May 2024 18:24:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716747873;
-	bh=A/KN+uWOMo5RgRCbJAyfJKRSejWeu8pmAzZob15UkMk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FaJyUSC+5rJpflqFMh8FAN7OfyZ/9BCVAni0vqEbcCqcShE1dkfqTUrfrB+S9j5pp
-	 MIiIB2js0IeThLk7c+EhcEpDzXIXJlJSaLNhPfOqFF62C/qNRY/VQ7q1YkJFoSuLo2
-	 Wf3S0Yx+FkKDKEo5dHdAHzQcBSlUt/hleCa3Prq7q4T9PUc7RleHbPSM1D1whDocX+
-	 Crhr5mJlz3oq6Evr4nutQdkJyxz0wHmUvwSjFhjxzZf2RLjIz3GjElm3YIfNRmGqob
-	 4+ttQgB9/Um/i+/QZHnGeuLMz295u59Z0zcdzbH8MtTJhvSlqkM5RMH5K3go9V2xTE
-	 kIwLKlU0RYGKw==
-Message-ID: <b0a003df-97f3-4423-b0ff-c5f425a2bdce@kernel.org>
-Date: Sun, 26 May 2024 20:24:27 +0200
+	s=arc-20240116; t=1716749138; c=relaxed/simple;
+	bh=kBxqKZt3yNiBobYLsd+AE4sKuvGrJdLiY2b+Bt+0qno=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=bkadFg7/213RerL1ceQWdcb00RnRzjX5HvdBtlSj5tL0xiDx0SiYKpMMOYAYc2UKqbzLIxiXVlhk1/HKlycB8v6JwNbA4MPee3GZBbnCshkn0+pKopHHuX1djtWr1rJAvh3cjfW7LkQ3yQ25kuKMFSWO5UBcADdVNy0Z2QyFvEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OfgLfjod; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2e95a1f9c53so31491101fa.0;
+        Sun, 26 May 2024 11:45:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716749135; x=1717353935; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=miLZb61bb6eHKVsGFJqgSUKqREuKVQ85VCQ63BLN4t4=;
+        b=OfgLfjod2vU9NMat+fTqXCOPcJsT0fTMlMP+7GLbkBWkQVhSkH5XJuzj2ZPJmUdfDy
+         7+wB5MIbO66zEe5bMROt35ox6jSX/holij+z1KNL3VHDYZjRnMKX4MeaR6tPxhl3fMxQ
+         0lYmfZ7t1nuidxj55Zn3lUseLTLEHDzjfwvDoiRnvkFkljzERcO+9UuBi1QRMD2W/9rw
+         JoaseO251qrENwQO5LXEayrDhs+bbib6GJ4IcLrf3SxNSOfTdF/ArHobBIGiDfqeOAjr
+         Xe7Ll7EmbIS2Y0deThbDEMz506QdXCRywdSc2vhI6NG5ED/V0pS5QHX68edp0DDmiz6t
+         TTgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716749135; x=1717353935;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=miLZb61bb6eHKVsGFJqgSUKqREuKVQ85VCQ63BLN4t4=;
+        b=Ksc++e5yn2I73lISYf5NlE8uMjQQrmSizA6TV5Sb3j3fJ7FJl+4rZsAr6JwY6ql8ei
+         sFfio8WG0MW66JrVoxKzxnEQ1xF2EcmrUrOHyussLhYPsFlxewNJjpRUskEIz49oI3oJ
+         6lIfNg1uxt47ErFP6VTZtfrCcxC121RsPm6qqKJ0OhMMiPHINX7P7uKU23KuAw6+bGNv
+         ygliATAhHzUXX9xeoEYy0LVilJuvMAupSpMjXeEfcc1lBVtug3n61M2dLCt+GZFUQUPM
+         JNNBxO+lEBCfEIFiOUHTyi8ZqfgLE1ASyBb5YIVV6knhdhS7s9CRiHrHExWRZwY3G2xu
+         cloA==
+X-Forwarded-Encrypted: i=1; AJvYcCUW1egqPbbemvRNRMN3R1lSbfAB1drcHJdpIEcSisQ9Cco8vG5Dj2CpO5JFZTpwAVG4JZq+rVmIAsl2gU5w9YB7RH2kY4ASGBQ5gLSWwuCViOneGwXgc+3UTLI0XPxOF8T4PNPzr7Cnf6vDsBJyJnLYHI5vFKkb2+vVS4d8e1Xwbvu9dJNZ
+X-Gm-Message-State: AOJu0Yx2N67vpY/i5UEPwHjflbC9TnHlZyzTSh9LEi9ZE6UVsttN6XPQ
+	R8eJHVe5YwyZ0kVxGq/rDrcF/Xiaa7XaQ0rEUbyA/mbgkjnnqQz8
+X-Google-Smtp-Source: AGHT+IHSCfugX/hh3BML+J946B+KyEq7nhGjevAknvFRJgmvi01bsdZjuw2ImLGRO7NGEScNBD0o/g==
+X-Received: by 2002:a2e:b70a:0:b0:2e1:adc4:47f6 with SMTP id 38308e7fff4ca-2e95b0945d4mr45205081fa.6.1716749134608;
+        Sun, 26 May 2024 11:45:34 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-421089cc504sm84960075e9.40.2024.05.26.11.45.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 May 2024 11:45:34 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: hwmon: g762: Convert to yaml schema
+Date: Sun, 26 May 2024 20:45:23 +0200
+Message-ID: <20240526184526.21010-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm-smmu: Fix Qualcomm SC8180X binding
-To: Bjorn Andersson <andersson@kernel.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bjorn Andersson <quic_bjorande@quicinc.com>
-References: <20240525-sc8180x-adreno-smmu-binding-fix-v1-1-e3c00aa9b9d4@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240525-sc8180x-adreno-smmu-binding-fix-v1-1-e3c00aa9b9d4@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/05/2024 19:58, Bjorn Andersson wrote:
-> From: Bjorn Andersson <quic_bjorande@quicinc.com>
-> 
-> Update the Qualcomm SC8180X SMMU binding to allow describing the Adreno
-> SMMU, with its three clocks.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
+Convert g762 Documentation to yaml schema.
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Since it supports various device, change the name to g76x and add the
+vendor prefix.
 
-Best regards,
-Krzysztof
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ .../devicetree/bindings/hwmon/g762.txt        | 47 -----------
+ .../devicetree/bindings/hwmon/gmt,g76x.yaml   | 83 +++++++++++++++++++
+ 2 files changed, 83 insertions(+), 47 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/g762.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/gmt,g76x.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/g762.txt b/Documentation/devicetree/bindings/hwmon/g762.txt
+deleted file mode 100644
+index 6d154c4923de..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/g762.txt
++++ /dev/null
+@@ -1,47 +0,0 @@
+-GMT G762/G763 PWM Fan controller
+-
+-Required node properties:
+-
+- - "compatible": must be either "gmt,g762" or "gmt,g763"
+- - "reg": I2C bus address of the device
+- - "clocks": a fixed clock providing input clock frequency
+-	     on CLK pin of the chip.
+-
+-Optional properties:
+-
+- - "fan_startv": fan startup voltage. Accepted values are 0, 1, 2 and 3.
+-	       The higher the more.
+-
+- - "pwm_polarity": pwm polarity. Accepted values are 0 (positive duty)
+-	       and 1 (negative duty).
+-
+- - "fan_gear_mode": fan gear mode. Supported values are 0, 1 and 2.
+-
+-If an optional property is not set in .dts file, then current value is kept
+-unmodified (e.g. u-boot installed value).
+-
+-Additional information on operational parameters for the device is available
+-in Documentation/hwmon/g762.rst. A detailed datasheet for the device is available
+-at http://natisbad.org/NAS/refs/GMT_EDS-762_763-080710-0.2.pdf.
+-
+-Example g762 node:
+-
+-   clocks {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	g762_clk: fixedclk {
+-		 compatible = "fixed-clock";
+-		 #clock-cells = <0>;
+-		 clock-frequency = <8192>;
+-	}
+-   }
+-
+-   g762: g762@3e {
+-	compatible = "gmt,g762";
+-	reg = <0x3e>;
+-	clocks = <&g762_clk>
+-	fan_gear_mode = <0>; /* chip default */
+-	fan_startv = <1>;    /* chip default */
+-	pwm_polarity = <0>;  /* chip default */
+-   };
+diff --git a/Documentation/devicetree/bindings/hwmon/gmt,g76x.yaml b/Documentation/devicetree/bindings/hwmon/gmt,g76x.yaml
+new file mode 100644
+index 000000000000..bfefe49f54bf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/gmt,g76x.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/gmt,g76x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GMT G762/G763 PWM Fan controller
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++description: |
++  GMT G762/G763 PWM Fan controller.
++
++  If an optional property is not set in DT, then current value is kept
++  unmodified (e.g. bootloader installed value).
++
++  Additional information on operational parameters for the device is available
++  in Documentation/hwmon/g762.rst. A detailed datasheet for the device is available
++  at http://natisbad.org/NAS/refs/GMT_EDS-762_763-080710-0.2.pdf.
++
++properties:
++  compatible:
++    enum:
++      - gmt,g762
++      - gmt,g763
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: a fixed clock providing input clock frequency on CLK
++      pin of the chip.
++    maxItems: 1
++
++  fan_startv:
++    description: Fan startup voltage step
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  pwm_polarity:
++    description: PWM polarity (psotivie or negative duty)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  fan_gear_mode:
++    description: FAN gear mode. Configure High speed fan setting factor
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2]
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    clocks {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        g762_clk: fixedclk {
++            compatible = "fixed-clock";
++            #clock-cells = <0>;
++            clock-frequency = <8192>;
++        };
++    };
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        g762@3e {
++            compatible = "gmt,g762";
++            reg = <0x3e>;
++            clocks = <&g762_clk>;
++            fan_gear_mode = <0>;
++            fan_startv = <1>;
++            pwm_polarity = <0>;
++        };
++    };
+-- 
+2.43.0
 
 
