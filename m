@@ -1,56 +1,85 @@
-Return-Path: <devicetree+bounces-69224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C52368CF2DC
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 10:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6798B8CF405
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 13:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 021AA1C2061D
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 08:43:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 959311C20D51
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 11:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7DD2F55;
-	Sun, 26 May 2024 08:43:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B39DF43;
+	Sun, 26 May 2024 11:10:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="HBMmJm0O"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b="eVMliy08";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b="eVMliy08"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx107.easyname.com (mx107.easyname.com [217.74.15.3])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC667AD51;
-	Sun, 26 May 2024 08:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BD8D524;
+	Sun, 26 May 2024 11:10:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.74.15.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716713018; cv=none; b=vFGTceK8oIGsctIyYTpjMShg1v6lTUgAl5BwXegTS/cX1cbUC50NzaGWxqhOy3+G46CZRRBPLdo9EVPb1Dl/FWBVnD8VbCcCdOCp67NS/pemQ/EFeatEwfcl4dVXKIrkuAE7772iuSz4EtE4J1pHVc4QSV7ARUO2bMHMCW2eZbM=
+	t=1716721842; cv=none; b=kgH0hRmNFB7OZcVWRn59wfZn1yb/6appc/7y90hyBEi0SY1xTNzpHMvDTvJwEpHW6EPS/Zzazf+qX48TvvCOrywjsJzLf8JXwY7Wdd3PTXrrukdpeRWU7VemXbMlCt8lpb/ulFyv9V6Xth9YUJ1vWppS/Y2cOqfa1ZzMjNOAeB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716713018; c=relaxed/simple;
-	bh=rqls52QsTwTEMqEaclSyHk4FQVIg+A9t4zcX9jS+Wkc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DxzC53Awe6jDiSLPPJUMBodhYQae0NGBqy78so++dWE8S1SlKBKMK8xql2i+UgyG/W1J5+uZ0VP1Rot8xImPDmBqAkFEQDkva6XKLguh+uNXocFJdssbOgEC7k5ALrdrGHngJXO+H9A9+4Gm8PHPlwjBW0NyHMuowWMF5UyNedQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=HBMmJm0O; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-X-Virus-Scanned: SPAM Filter at disroot.org
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1716712619; bh=rqls52QsTwTEMqEaclSyHk4FQVIg+A9t4zcX9jS+Wkc=;
-	h=From:To:Cc:Subject:Date;
-	b=HBMmJm0ODLLNIJN+VPFgjz6u+qJhZmF9pg3DCDhNVBveoT6Zz/N0dnW6DED5f60r5
-	 9QMGA6isdveZeEXbmsA91DPTPOPpP5hxOPqmMVqSXKQg0V0ItIkTmCf5U03wQjMfs6
-	 TjtAQTZLorRkX0w3SakLYm8QpOCeI/UMir/jiC45mr3cbYY6NaBc3HUVej698SeHJJ
-	 ZMJeT3WKJX1EuFRfJjdGVYJoIO5AId9y+kmkbfTlpEN9aaA6oJtX3KDO+f+1CQLPS9
-	 /wLt7hV4lgzDncvysm7kAaMI6nELJX1f8DW9HMkacUcIrP2tN+RN/snQ6vy2Ip3KXV
-	 QPxw8d71CSgcg==
-To: linux-iio@vger.kernel.org,
-	jic23@kernel.org,
-	denis.ciocca@st.com
-Cc: devicetree@vger.kernel.org,
-	linus.walleij@linaro.org,
-	robh+dt@kernel.org,
-	kauschluss@disroot.org
-Subject: [PATCH] iio: accel: st_accel: add LIS2DS12
-Date: Sun, 26 May 2024 14:03:02 +0530
-Message-ID: <20240526083302.87172-1-kauschluss@disroot.org>
+	s=arc-20240116; t=1716721842; c=relaxed/simple;
+	bh=FSzONcmAL58vinmBF8IEjcRWq/HhTFkgIH7TtQ8hLHA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F4oJZNSwKLdJFFXJpvmlpnjhUKgaeMLSxPeoGXa4b3hlFaHuaBUKZj2I5sw98C8FsfV4TxUxdtsZk2coWUYzjWA5iWqfW7alVnNWN6xqvSwjDgZmimugxmOIpvnFQnIcfkhCwpy57HPjbwndV0vXKLu9gNpV1+q0BAvq6jOXGHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=paroga.com; spf=pass smtp.mailfrom=paroga.com; dkim=pass (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b=eVMliy08; dkim=pass (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b=eVMliy08; arc=none smtp.client-ip=217.74.15.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=paroga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=paroga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=paroga.com;
+	 s=easyname; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=3aXGfsIt9R394loRp+3WF8arPd+Dmc7dX8LDibAPSlU=; b=eVMliy088Ng/ln3LbHY2H9U50a
+	hl5Lt0SocfhopF/klQMQTmR1AXoG6Z826v9P7vDe+wJp2R9VDiMgVAbvgAw0UbL1auFwWSCM+TKJ9
+	1LLUamA8Shwza+nl7mTMPFFBRC85G/xNsJMy5LzQMWq5WHJc4MD2X53BGmyLoUAWuu69H6ZXArIhD
+	FVA7bmrL7LTAfkY+yPoiDrRw2oFN4nENaRhLfPs9J+j/gfqVi7Rw3ZxkYLa5c6bHzPE5mTBT/5ngA
+	hQei/QBGfP0GOUlbS1GLpHmQfzQlv1QFx1+KldidxXCm7XObs1y5nqbysqYwemKc8P7g1sbLX5LEg
+	RIVrgw0A==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=paroga.com;
+	 s=easyname; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=3aXGfsIt9R394loRp+3WF8arPd+Dmc7dX8LDibAPSlU=; b=eVMliy088Ng/ln3LbHY2H9U50a
+	hl5Lt0SocfhopF/klQMQTmR1AXoG6Z826v9P7vDe+wJp2R9VDiMgVAbvgAw0UbL1auFwWSCM+TKJ9
+	1LLUamA8Shwza+nl7mTMPFFBRC85G/xNsJMy5LzQMWq5WHJc4MD2X53BGmyLoUAWuu69H6ZXArIhD
+	FVA7bmrL7LTAfkY+yPoiDrRw2oFN4nENaRhLfPs9J+j/gfqVi7Rw3ZxkYLa5c6bHzPE5mTBT/5ngA
+	hQei/QBGfP0GOUlbS1GLpHmQfzQlv1QFx1+KldidxXCm7XObs1y5nqbysqYwemKc8P7g1sbLX5LEg
+	RIVrgw0A==;
+Received: from 84-115-225-171.cable.dynamic.surfer.at ([84.115.225.171] helo=localhost.localdomain)
+	by mx.easyname.com with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <paroga@paroga.com>)
+	id 1sBBTq-00073L-Vj; Sun, 26 May 2024 10:52:03 +0000
+From: Patrick Gansterer <paroga@paroga.com>
+To: dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Cc: Patrick Gansterer <paroga@paroga.com>,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Helge Deller <deller@gmx.de>,
+	Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v6 0/2] backlight: Add new lm3509 backlight driver
+Date: Sun, 26 May 2024 12:51:28 +0200
+Message-ID: <20240526105136.721529-1-paroga@paroga.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,142 +87,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Easy-Autoreply: EN
 
-The LIS2DS12 accelerometer by STMicroelectronics is mostly compatible
-with the LIS2DE12 variant, except the WhoAmI value (0x43).
-
-Define sensor settings for LIS2DS12, and add support in the I2C
-driver.
-
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+This is a general driver for LM3509 backlight chip of TI.
+LM3509 is High Efficiency Boost for White LEDs and/or OLED Displays with
+Dual Current Sinks. This driver supports OLED/White LED select, brightness
+control and sub/main control.
+The datasheet can be found at http://www.ti.com/product/lm3509.
 ---
- drivers/iio/accel/st_accel.h      |  1 +
- drivers/iio/accel/st_accel_core.c | 76 +++++++++++++++++++++++++++++++
- drivers/iio/accel/st_accel_i2c.c  |  5 ++
- 3 files changed, 82 insertions(+)
+Changes in v6:
+  Removed unnecessary allOf in device tree binding
 
-diff --git a/drivers/iio/accel/st_accel.h b/drivers/iio/accel/st_accel.h
-index e7525615712b..2659f536cef6 100644
---- a/drivers/iio/accel/st_accel.h
-+++ b/drivers/iio/accel/st_accel.h
-@@ -35,6 +35,7 @@
- #define LIS3DHH_ACCEL_DEV_NAME		"lis3dhh"
- #define LIS3DE_ACCEL_DEV_NAME		"lis3de"
- #define LIS2DE12_ACCEL_DEV_NAME		"lis2de12"
-+#define LIS2DS12_ACCEL_DEV_NAME		"lis2ds12"
- #define LIS2HH12_ACCEL_DEV_NAME		"lis2hh12"
- #define LIS302DL_ACCEL_DEV_NAME		"lis302dl"
- #define LSM303C_ACCEL_DEV_NAME		"lsm303c_accel"
-diff --git a/drivers/iio/accel/st_accel_core.c b/drivers/iio/accel/st_accel_core.c
-index d2104e14e255..8552faea1913 100644
---- a/drivers/iio/accel/st_accel_core.c
-+++ b/drivers/iio/accel/st_accel_core.c
-@@ -925,6 +925,82 @@ static const struct st_sensor_settings st_accel_sensors_settings[] = {
- 		.multi_read_bit = true,
- 		.bootime = 2,
- 	},
-+	{
-+		.wai = 0x43,
-+		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
-+		.sensors_supported = {
-+			[0] = LIS2DS12_ACCEL_DEV_NAME,
-+		},
-+		.ch = (struct iio_chan_spec *)st_accel_8bit_channels,
-+		.odr = {
-+			.addr = 0x20,
-+			.mask = 0xf0,
-+			.odr_avl = {
-+				{ .hz = 1, .value = 0x01, },
-+				{ .hz = 10, .value = 0x02, },
-+				{ .hz = 25, .value = 0x03, },
-+				{ .hz = 50, .value = 0x04, },
-+				{ .hz = 100, .value = 0x05, },
-+				{ .hz = 200, .value = 0x06, },
-+				{ .hz = 400, .value = 0x07, },
-+				{ .hz = 1620, .value = 0x08, },
-+				{ .hz = 5376, .value = 0x09, },
-+			},
-+		},
-+		.pw = {
-+			.addr = 0x20,
-+			.mask = 0xf0,
-+			.value_off = ST_SENSORS_DEFAULT_POWER_OFF_VALUE,
-+		},
-+		.enable_axis = {
-+			.addr = ST_SENSORS_DEFAULT_AXIS_ADDR,
-+			.mask = ST_SENSORS_DEFAULT_AXIS_MASK,
-+		},
-+		.fs = {
-+			.addr = 0x23,
-+			.mask = 0x30,
-+			.fs_avl = {
-+				[0] = {
-+					.num = ST_ACCEL_FS_AVL_2G,
-+					.value = 0x00,
-+					.gain = IIO_G_TO_M_S_2(15600),
-+				},
-+				[1] = {
-+					.num = ST_ACCEL_FS_AVL_4G,
-+					.value = 0x01,
-+					.gain = IIO_G_TO_M_S_2(31200),
-+				},
-+				[2] = {
-+					.num = ST_ACCEL_FS_AVL_8G,
-+					.value = 0x02,
-+					.gain = IIO_G_TO_M_S_2(62500),
-+				},
-+				[3] = {
-+					.num = ST_ACCEL_FS_AVL_16G,
-+					.value = 0x03,
-+					.gain = IIO_G_TO_M_S_2(187500),
-+				},
-+			},
-+		},
-+		.drdy_irq = {
-+			.int1 = {
-+				.addr = 0x22,
-+				.mask = 0x10,
-+			},
-+			.addr_ihl = 0x25,
-+			.mask_ihl = 0x02,
-+			.stat_drdy = {
-+				.addr = ST_SENSORS_DEFAULT_STAT_ADDR,
-+				.mask = 0x07,
-+			},
-+		},
-+		.sim = {
-+			.addr = 0x23,
-+			.value = BIT(0),
-+		},
-+		.multi_read_bit = true,
-+		.bootime = 2,
-+	},
- 	{
- 		.wai = 0x41,
- 		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
-diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
-index fd3749871121..329a4d6fb2ec 100644
---- a/drivers/iio/accel/st_accel_i2c.c
-+++ b/drivers/iio/accel/st_accel_i2c.c
-@@ -102,6 +102,10 @@ static const struct of_device_id st_accel_of_match[] = {
- 		.compatible = "st,lis2de12",
- 		.data = LIS2DE12_ACCEL_DEV_NAME,
- 	},
-+	{
-+		.compatible = "st,lis2ds12",
-+		.data = LIS2DS12_ACCEL_DEV_NAME,
-+	},
- 	{
- 		.compatible = "st,lis2hh12",
- 		.data = LIS2HH12_ACCEL_DEV_NAME,
-@@ -154,6 +158,7 @@ static const struct i2c_device_id st_accel_id_table[] = {
- 	{ LIS2DW12_ACCEL_DEV_NAME },
- 	{ LIS3DE_ACCEL_DEV_NAME },
- 	{ LIS2DE12_ACCEL_DEV_NAME },
-+	{ LIS2DS12_ACCEL_DEV_NAME },
- 	{ LIS2HH12_ACCEL_DEV_NAME },
- 	{ LIS302DL_ACCEL_DEV_NAME },
- 	{ LSM303C_ACCEL_DEV_NAME },
+v5: https://lore.kernel.org/all/20240330145931.729116-1-paroga@paroga.com/
+
+Changes in v5:
+  Renamed lm3509_bl_led_pdata to lm3509_bl_led_data
+  Set backlight_properties.scale to BACKLIGHT_SCALE_NON_LINEAR
+  Add dev_err_probe() for first write to a register
+  Use dev_err_probe() instead of dev_err()
+
+v4: https://lore.kernel.org/all/20240310135344.3455294-1-paroga@paroga.com/
+
+Changes in v4:
+  Use backlight_*() to access backlight_device
+  Do not set backlight_properties.power
+
+v3: https://lore.kernel.org/all/20240309132521.1290173-1-paroga@paroga.com/
+
+Changes in v3:
+  Improved device tree bindings documentation
+
+v2: https://lore.kernel.org/all/20240308215617.1729664-1-paroga@paroga.com/
+
+Changes in v2:
+  Add device tree nodes for each output
+  Addressed multiple smaller review comments
+
+v1: https://lore.kernel.org/all/20240302212757.1871164-1-paroga@paroga.com/
+
+Patrick Gansterer (2):
+  dt-bindings: backlight: Add Texas Instruments LM3509
+  backlight: Add new lm3509 backlight driver
+
+ .../bindings/leds/backlight/ti,lm3509.yaml    | 136 +++++++
+ drivers/video/backlight/Kconfig               |   7 +
+ drivers/video/backlight/Makefile              |   1 +
+ drivers/video/backlight/lm3509_bl.c           | 340 ++++++++++++++++++
+ 4 files changed, 484 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/ti,lm3509.yaml
+ create mode 100644 drivers/video/backlight/lm3509_bl.c
+
 -- 
 2.45.1
 
