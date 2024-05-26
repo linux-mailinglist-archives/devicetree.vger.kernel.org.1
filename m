@@ -1,203 +1,131 @@
-Return-Path: <devicetree+bounces-69247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8B588CF4C5
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 17:45:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C20F68CF4D9
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 18:13:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01A3B1C208EF
-	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 15:45:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3F211C20893
+	for <lists+devicetree@lfdr.de>; Sun, 26 May 2024 16:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1167717741;
-	Sun, 26 May 2024 15:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9C317C96;
+	Sun, 26 May 2024 16:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LYox2exv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O/92gJPI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D377C171CC;
-	Sun, 26 May 2024 15:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345418F6A;
+	Sun, 26 May 2024 16:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716738345; cv=none; b=XY0/upiNmVoUzKssytanbSttCX9677r6xkKLSsUbNraUMWchZJOag+8bW5DObXG8bWh6UQZlIn4G2kS+FC/n3zBYOxPaBYtXo/jJJDenWhm18/LSKWSf0c65fpmEGbSNCYU1hdTGP5kJUGPfm5jryi7yxqRlLrX66CtJfQcwCSo=
+	t=1716740020; cv=none; b=SEqDgWp/A9+tU3FsarX0t2Ain/2YJXHCBmClUHRdFigk6HS3i0UGHo1XDRPeHDB5vPiO88f3wjBpjrFngv2y2aBtD9xKNyX96/6mF4uUYZ5ztvt05Am6DwrY2AYkO8DJXRGhSvqreMD5+/10uhvWirfUDiCVpUvKQxgtdCOeonk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716738345; c=relaxed/simple;
-	bh=9yFVJ82e242IH9QBdMocDHZK6zErfeb2QrxlJvc4+fg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WAp8Fw7Q8XyVadBNBlKMdD6cw+zE8O2aPEDzeFRfJhHgqXa/iJV98YmMpOuNBzaPgCOS2D1+Flf1NV6xYUDpD/+AZE8eAD/6sOAFvZwqK+ipESzSSr9YewT1ClkWUC0fMu7oLpd35WG7nNV1hM3pPNIXuBnM5Pi8Jzi26HaP5Dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LYox2exv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6696AC2BD10;
-	Sun, 26 May 2024 15:45:41 +0000 (UTC)
+	s=arc-20240116; t=1716740020; c=relaxed/simple;
+	bh=leD2S7lpS8n5EdWPOzT2u2+2bVeUmpHLgfDZY3EfIow=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=hbxRJIpwvEbYXu/BTKuqCOzTdYMkZJHkqTOI0EOzyXjGpVXpZdI8qONchzwfqSfeWszMgn5c28tSb7qTohoxeLn2KtuaxxXKF5Jv/+7WgdQyU5nLDibIelL7LJFKo2Z286kPuDs7VAouoV5bhkNevRUNBZCJRabmSExhA7A0ZvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O/92gJPI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FA1AC2BD10;
+	Sun, 26 May 2024 16:13:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716738344;
-	bh=9yFVJ82e242IH9QBdMocDHZK6zErfeb2QrxlJvc4+fg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LYox2exv3GKpYl83K76KDfOGC8GHvq3APF42q1kgLtN3G/T44a421CX0gDjGUips0
-	 rV2hSgV+OEsMga852Z0C5/wVVAXjgU1jhSsTzfFO6lLFQY7iKKOmi3UDWqV3waLIWa
-	 lsufu6wB2Q2GkMIIGxN2UkB108IuIFgl0nlXvwYtck86oWZgi5P3I6xnSJWa1kqx4y
-	 OEvqSurzWj8PiNopZXafNvI6qz/aHsS0svXPqNbC1LJyd9ZuPjSGFG02N/8uhLns1O
-	 Vwamw9aduhCTyWmIE2+1oYuxTtBehNMRDjIKppM3TQ3SHY/rdc8OaKmuRs+9d6WBiK
-	 mU+2MG13ZRgzQ==
-Date: Sun, 26 May 2024 16:45:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	David Jander <david@protonic.nl>,
-	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
- spi-offloads property
-Message-ID: <20240526-stylized-preaching-d0b15a95fe19@spud>
-References: <20240513-headsman-hacking-d51fcc811695@spud>
- <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
- <20240514-aspire-ascension-449556da3615@spud>
- <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
- <20240516-rudder-reburial-dcf300504c0a@spud>
- <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
- <20240519-abreast-haziness-096a57ef57d3@spud>
- <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
- <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
- <59df2cc3-5a62-45be-a0aa-5bbff13c2ae4@baylibre.com>
+	s=k20201202; t=1716740019;
+	bh=leD2S7lpS8n5EdWPOzT2u2+2bVeUmpHLgfDZY3EfIow=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=O/92gJPIjF8h703XZyIrycQN5bhPIfL5bQPmr5DgAPmGgDDKXrDPq3vHLNjXDStd0
+	 l10/ktzrPqKjDKHqMg4GWoUDdHxvgaO3Pnz6tjcZ60AQoCqOJI+OglswsCSq9H5VDU
+	 pQE5xbgDrhCCfMazsLYfJ+zBFbVqxJtT3Cr3Z+Y4uPM5zbZANNuNImzGPhnhtQbWNy
+	 dhmwoZAL8e2u77Y/GHbDEXe9gUYuisBnZ4f8a/Lu+SGKsjU8i4/Xekz5h54CXXSIHr
+	 Q1dAgnBD3YzA+U2VPioe4/VqTLziOGyMeTdf/JpXEQ4PbJH6NMbNyp1yAG46C/gFNQ
+	 rxMLI9nun3CQQ==
+Date: Sun, 26 May 2024 11:13:38 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QI9Azi51wmSyyaZK"
-Content-Disposition: inline
-In-Reply-To: <59df2cc3-5a62-45be-a0aa-5bbff13c2ae4@baylibre.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+Cc: dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>, 
+ Jassi Brar <jassisinghbrar@gmail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Singo Chang <singo.chang@mediatek.com>, Rob Herring <robh+dt@kernel.org>, 
+ Nancy Lin <nancy.lin@mediatek.com>, devicetree@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, Shawn Sung <shawn.sung@mediatek.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ linux-kernel@vger.kernel.org, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Jason-ch Chen <jason-ch.chen@mediatek.com>
+In-Reply-To: <20240526144443.14345-3-jason-jh.lin@mediatek.com>
+References: <20240526144443.14345-1-jason-jh.lin@mediatek.com>
+ <20240526144443.14345-3-jason-jh.lin@mediatek.com>
+Message-Id: <171674001829.1684465.16088341885457355919.robh@kernel.org>
+Subject: Re: [PATCH RESEND,v6 2/8] dt-bindings: mailbox: Add property for
+ CMDQ secure driver
 
 
---QI9Azi51wmSyyaZK
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sun, 26 May 2024 22:44:37 +0800, Jason-JH.Lin wrote:
+> 1. Add mboxes property to define a GCE loopping thread as a secure IRQ
+> handler.
+> The CMDQ secure driver requests a mbox channel and sends a looping
+> command to the GCE thread. The looping command will wait for a secure
+> packet done event signal from secure world and then jump back to the
+> first instuction. Each time it waits for an event, it notifies the
+> CMDQ driver to perform the same action as the IRQ handler.
+> 
+> 2. Add gce-events property from gce-props.yaml to define a
+> secure packet done signal in secure world.
+> There are 1024 events IDs for GCE to use to execute instructions in
+> the specific event happened. These events could be signaled by HW or SW
+> and their value would be different in different SoC because of HW event
+> IDs distribution range from 0 to 1023.
+> If we set a static event ID: 855 for mt8188, it might be conflict the
+> event ID original set in mt8195.
+> So we define an event ID that will be set when GCE runs to the end of
+> secure cmdq packet in the secure world.
+> 
+> This can reduce the latency of software communication between normal
+> world and secure world. In addition, we can also remove the complex
+> logic after the secure packet done in the secure world.
+> 
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+> ---
+>  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
 
-On Thu, May 23, 2024 at 09:28:54AM -0500, David Lechner wrote:
-> On 5/22/24 1:24 PM, Conor Dooley wrote:
-> > On Tue, May 21, 2024 at 09:54:39AM -0500, David Lechner wrote:
-> >> On Sun, May 19, 2024 at 7:53=E2=80=AFAM Conor Dooley <conor@kernel.org=
-> wrote:
-> >>>
-> >>> On Fri, May 17, 2024 at 11:51:58AM -0500, David Lechner wrote:
-> >>>> On Thu, May 16, 2024 at 4:32=E2=80=AFPM Conor Dooley <conor@kernel.o=
-rg> wrote:
-> >>>>> On Tue, May 14, 2024 at 05:56:47PM -0500, David Lechner wrote:
-> >>>
->=20
-> ...
->=20
-> >> This time, the periodic trigger (PWM) is connected to the pin on the
-> >> ADC that triggers a sample conversion (CNV). The ADC has a BUSY output
-> >> that will go high at the start of the conversion and go low at the end
-> >> of the conversion. The BUSY output of the ADC is wired as the hardware
-> >> trigger input of the offload.
-> >>
-> >> In this case would we still consider the PWM as part of the SPI
-> >> controller/offload since it can only be used in conjunction with the
-> >> SPI offload? It isn't connected to it at all though.
-> >=20
-> > No, in this case the ADC is a PWM consumer and the offload engine is
-> > not. The ADC is a "trigger" provider and the SPI offload engine is a
-> > trigger consumer.
->=20
-> Makes sense.
->=20
-> ...
->=20
->=20
-> >=20
-> >>> In fact, looking at the documentation for the "spi engine" some more,=
- I
-> >>> am even less convinced that the right place for describing the offloa=
-d is
-> >>> the peripheral as I (finally?) noticed that the registers for the off=
-load
-> >>> engine are mapped directly into the "spi engine"'s memory map, rather=
- than
-> >>> it being a entirely separate IP in the FPGA fabric.
-> >>
-> >> True, but we don't use these registers, e.g., to configure the
-> >> sampling frequency of a trigger (if it can even be done). That is done
-> >> in a completely separate IP block with it's own registers.
-> >=20
-> > Where is the binding for that IP block? I think describing that is
-> > pretty key. goto continuation;
->=20
-> For the real-world case I used to test this series, it is an AXI PWMGEN
-> [1] that is providing the trigger event source. It has a typical PWM
-> provider binding with #pwm-cells [2].
->=20
-> Calling this a "trigger" provider to the SPI offload instance just like t=
-he
-> case above where the ADC is directly connected as the offload trigger mak=
-es
-> sense to me.
->=20
-> What I was going for in this patch (slightly revised to use #cells) is th=
-at
-> this trigger provider, whatever it is, is selected by one of the cells of
-> #spi-offload-cells. It doesn't seem like there should be a special case f=
-or
-> if the trigger provider is a clock or PWM where the SPI controller node
-> becomes a consumer of the clock or PWM provider rather than just describi=
-ng
-> the trigger relationship.
->=20
-> For example, supposing we had an FPGA/HDL that could handle all 3 wiring
-> configurations we have discussed so far. A) PWM connected directly to SPI
-> offload as trigger, B) PWM connected to CNV of ADC and BSY of ADC connect=
-ed
-> to SPI offload as trigger, C) self clocked ADC with RDY of ADC connected
-> to SPI offload as trigger. So the DT would have:
->=20
-> controller:
-> #spi-offload-cells =3D <2>: /* 1st cell =3D offload instance
->                            * 2nd cell =3D trigger provider */
->=20
-> peripheral (choose one based on actual wiring):
-> spi-offloads =3D <0 0>; /* case A */
-> spi-offloads =3D <0 1>; /* case B */
-> spi-offloads =3D <0 2>; /* case C */
->=20
->=20
-> As to what is the actual consumer of the PWM provider in each of these
-> cases...
->=20
-> * C is easy. There isn't a PWM provider since the ADC is self-clocked.
-> * B, as discussed elsewhere is fairly straight forward. The ADC node is
->   the consumer since the PWM is connected directly to the ADC.
-> * A is the one we need to figure out. I'm proposing that the PWM consumer
->   should be whatever kind of composite device node we come up with that
->   also solves the issue described below about where does the CRC checker
->   (or whatever) go. I think we are in agreement here at least on the point
->   that it doesn't belong in the SPI controller node?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-To be clear, you're saying that we agree that the CRC checker doesnt
-belong in the SPI controller node, right?
+yamllint warnings/errors:
 
---QI9Azi51wmSyyaZK
-Content-Type: application/pgp-signature; name="signature.asc"
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.example.dtb: mailbox@10212000: False schema does not allow {'compatible': ['mediatek,mt8173-gce'], 'reg': [[0, 270606336, 0, 4096]], 'interrupts': [[0, 135, 8]], '#mbox-cells': [[2]], 'clocks': [[4294967295, 4]], 'clock-names': ['gce'], '$nodename': ['mailbox@10212000']}
+	from schema $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
 
------BEGIN PGP SIGNATURE-----
+doc reference errors (make refcheckdocs):
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlNZIwAKCRB4tDGHoIJi
-0rcJAP4wlXLinDBuLMMunDenDCKzMAGTqwXYWCzQ/j3lCyGyoQD/VtLRpzJv9NSw
-f18ipYHVyeIm4uS0jnHQHIEOmj5gjAo=
-=AKAC
------END PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240526144443.14345-3-jason-jh.lin@mediatek.com
 
---QI9Azi51wmSyyaZK--
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
