@@ -1,99 +1,111 @@
-Return-Path: <devicetree+bounces-69606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E498D08B6
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:34:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9900C8D08A5
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:31:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7B3EB24D3B
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:31:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA7541C2320D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62E47345F;
-	Mon, 27 May 2024 16:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B5DD15A85D;
+	Mon, 27 May 2024 16:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bsah57Hz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WI07Fnqb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A911173451;
-	Mon, 27 May 2024 16:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0EA73471;
+	Mon, 27 May 2024 16:31:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716827450; cv=none; b=fiPmSgsrB8f70B5gDfMwKdvw8/93sh8LZeel5T2TyZKKYcGykhIQ0MIT4u63GXPzqdmri59OI/SVmL0bO9hIsQvLQtfplfEpGSYr0ajIiiQz6xGPptCYLjipsCD3H2u852ZSqsFlx4dPk8s3E9qV4PRs5YMmU9wnM5N+3nLXgoY=
+	t=1716827475; cv=none; b=Kf9K+2bD7XSnJ3tV5H5RwnvHgPYKYtmmdWC8FzWMlqWcnjrR0PcpBjm7vYmSKk7lsM7uSNuotumsuNvWoqXehNHxxbXK3aRE9thHsdfqasHZAhboG4jMo3Ji3YAC/LCUS8BRxVFiMkqh48xduCsiEpaFsIJTQ2hFPAI6LbRSe8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716827450; c=relaxed/simple;
-	bh=b7bgwRLi1QVwtqQdf6LMJT1yHV4WWN3TjLr0JQuI8D4=;
+	s=arc-20240116; t=1716827475; c=relaxed/simple;
+	bh=kHiQLHbetuxnlitKhP5pqkXLjWuAvxC6iOHciLI0M8s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cFLqWg1tiWU98GIrAASvLv6l8Y4Ht8MTRTrZ7YKfVZR60hrHRCrM5ASX/tXql8Wg1ZxDLmgh31VuVzN5B87c5SaZMNV+TdXm2Al1xzNejiKUmwNLVAXiAJYu3PqGtRXfvA0mLvbckkDU2NO0oNBXYIdoxeeTAkVsElV0BqA7MzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bsah57Hz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6253DC32789;
-	Mon, 27 May 2024 16:30:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716827450;
-	bh=b7bgwRLi1QVwtqQdf6LMJT1yHV4WWN3TjLr0JQuI8D4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bsah57HzN2qYj+/na64i4iC3vUpjaM41VXU8sc/M0mbP0oAFMooXrV+WgGVpsRGYj
-	 0vCjreZlhE0gWOX3PhPgR/iBpZ9he7OM3vDiaOcvjsyBbSl3NF/poHCZyOVYps5HOj
-	 Glm8EOWt2xC2dlB4den79sJcQ9CRXAku5dSu85Re+KpcxRJIujO3Bu7o+URc+qtEyi
-	 CtKMC9hSingpfKquPSfHqM0byf+Ipos8+yUmeQCn4cHXbMsRZtD09lFPPkFacw1EYs
-	 FAi5MGHw/E5fxfMB97YeVtfHvoA3kT898px8TnsxMGhiiebyCOkqfePOVdJQ6jL6ik
-	 eZZxJXhd2OdGQ==
-Date: Mon, 27 May 2024 17:30:46 +0100
-From: Conor Dooley <conor@kernel.org>
-To: arthur.becker@sentec.com
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS
- bindings
-Message-ID: <20240527-effort-hungry-c7bbb0b0e36b@spud>
-References: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
- <20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tr0e9Ec0m70ZpsxVrzYqqnCvqfo215c/wbauKD/2/JL5DxFLuCCeNLESjEKH6YDChuB7R0yb/AhoI4fcQTLs5ume/3Q5YU3ae/X5FhYoAbnEmyO6BWbnqWHgLyNWWe+mJFKDGymNbsswTQtq13JnZP1xMoIP/UfzB6B4eRkiQ9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WI07Fnqb; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716827473; x=1748363473;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kHiQLHbetuxnlitKhP5pqkXLjWuAvxC6iOHciLI0M8s=;
+  b=WI07Fnqby95kK8z1I5NjuUtl0ynOyutIafv1HeoCI2/SiAcjB0nw97lP
+   bPOaeLhQxOLjQw7CGRSBv+Ks5JMZNCkhRqqWUmh1tMFExcP4WwHmRucjm
+   6J8IybtDUptNcOd5/XjF3kMpJlZHqFo9GAfFcxmL5yUQYl/IcPkle1JtW
+   DxjiX3yYHsL/VEDvfOjP3z7w/wlkx+z0IylaTv6Nq6LGLdaaxCBDw6LJd
+   KhMQlbwjaihcHXtvk5w2foc0zh9EkKdkKVCAh1FB0RWIkd96FhVx0J6N5
+   rD1G41r7SPUhgRFbsiPXN1kLHrk63X3RUE2afIGDj+AeULGyNbj6QM1HS
+   Q==;
+X-CSE-ConnectionGUID: 3Arsl4kaT5K1mZDLxrG4lg==
+X-CSE-MsgGUID: erw5N53jQg656h0CKpMNtQ==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="12932131"
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; 
+   d="scan'208";a="12932131"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2024 09:31:12 -0700
+X-CSE-ConnectionGUID: PvjWJ3gBSWq0qo3gmJ8euQ==
+X-CSE-MsgGUID: 4H5QHxAfS0aPFz5735Kw0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; 
+   d="scan'208";a="34886155"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2024 09:31:08 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sBdFZ-0000000BJzV-1GlW;
+	Mon, 27 May 2024 19:31:05 +0300
+Date: Mon, 27 May 2024 19:31:05 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	John Ogness <john.ogness@linutronix.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Ronald Wahl <ronald.wahl@raritan.com>,
+	Thomas Richard <thomas.richard@bootlin.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Arnd Bergmann <arnd@arndb.de>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Vibhore Vardhan <vibhore@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/5] serial: 8250: omap: Set wakeup capable, do not enable
+Message-ID: <ZlS1SenIEFnH6TX2@smile.fi.intel.com>
+References: <20240523075819.1285554-1-msp@baylibre.com>
+ <20240523075819.1285554-4-msp@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1Iu929YBt0ECJpdr"
-Content-Disposition: inline
-In-Reply-To: <20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
-
-
---1Iu929YBt0ECJpdr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240523075819.1285554-4-msp@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, May 27, 2024 at 05:12:09PM +0200, Arthur Becker via B4 Relay wrote:
-> From: Arthur Becker <arthur.becker@sentec.com>
->=20
-> Device tree bindings for the vishay VEML6040 RGBW light sensor iio
-> driver
->=20
-> Signed-off-by: Arthur Becker <arthur.becker@sentec.com>
+On Thu, May 23, 2024 at 09:58:17AM +0200, Markus Schneider-Pargmann wrote:
+> The driver sets wakeup enable by default. But not all uarts are meant to
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+UARTs
 
-Cheers,
-Conor.
+> be wakeup enabled. Change the default to be wakeup capable but not
+> enabled. The user can enable wakeup when needed.
 
---1Iu929YBt0ECJpdr
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+With Best Regards,
+Andy Shevchenko
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlS1NgAKCRB4tDGHoIJi
-0gb8APwJWEHJYeTg86kAgqTRwFhNoJZO6TLLYpvDKkohxiOn7gEAsJTbrGISCElz
-x0wNOXCDMjotKoDKzFrLEay2Y4tZEQ4=
-=GyS3
------END PGP SIGNATURE-----
-
---1Iu929YBt0ECJpdr--
 
