@@ -1,149 +1,121 @@
-Return-Path: <devicetree+bounces-69611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6318D08BC
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:35:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F118D08C0
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:35:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3AD31F22272
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:35:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D041F28E9FB
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C6173470;
-	Mon, 27 May 2024 16:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCFEF155C96;
+	Mon, 27 May 2024 16:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KIBZlm1g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MOthbMJW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B9A73445;
-	Mon, 27 May 2024 16:34:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE77173474;
+	Mon, 27 May 2024 16:35:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716827699; cv=none; b=EbReUTweh3lATSapZ9BcFqyfxcdTsiHWnOkb6aQvOA78yUAPmxQMW+QWYfNnQmVU8ReHFdjI3GSjxSpTQj27pJQKGVtCi9YID9snaOsc7keXVmrMNmCV0oMGXxFKwEylKgYfZVusqxnc7xqo1L9LjraDgkbS9O2BXWrDmZu5spI=
+	t=1716827735; cv=none; b=iNE7nQ8r1827RvK0kUmL2Tn5/Mnt5BDNiJRgqukDyS/0F25QJGrclk2RSiNL073d39hZdovKnLqLJquI/zb9tv+i7IvOrE5ZQFRpi5TEDvBkGWRXdgki8YC4h9wDBw6rpweFi/15mDOhJ8iqo/+vNPtdVPNT6H/z8S/z+4W58Ao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716827699; c=relaxed/simple;
-	bh=ihoIInyQ1nQiDRSMqX8qvdNjwykHb3a5VANVzbNeL2s=;
+	s=arc-20240116; t=1716827735; c=relaxed/simple;
+	bh=t2vPzI1PKumTQZg4X9Tb5UYqtmDPnozYgV2LwA4D4vQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zep60jjfD6IQK9e1JfONnYRN51nMlYSUZ2rykY4TplZ0hZ1hrgaSBstnp1YMXeHbYH6yEvuq6WsrE+zJcHSvENfSD8bjMQFfgdT2kFCH8+821RZLOX7c36PKWERLbBBvPp0LgbLgB2+u/6PuiM3CebJezxlASvzajnpolXS70DU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KIBZlm1g; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1716827697; x=1748363697;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ihoIInyQ1nQiDRSMqX8qvdNjwykHb3a5VANVzbNeL2s=;
-  b=KIBZlm1glDmVfLqocYrkpBc58Z/RGYX2e0H12pchJC7UJ6Qz3NAj7maA
-   ShRpITJrpemgAOorEsaNcjwO0QBYxNoJDEFHoagSkOhlm7Z1qLtFpofxX
-   KCCKYdAOzhrcrtr/tUlRL2QbcgC3kn2oHmDqyHtC3ZJLoFBcjF4uV6pDN
-   0ncN5XrgzpiosWSYsjxQybOd7GQdT2E6I7cBJMEPJpQOi0wHh0EgPTGKT
-   7y4uf9RztlI8Y+uKi2CowFOolpmlVv4Hn/h/iwfy/RV32UeGcvAvdCXqA
-   iCEW/SFP11MPrC7MmrvUqzW0rjCjW6kvDSoc7tGCnL/K3DRJxhdYAOCgA
-   A==;
-X-CSE-ConnectionGUID: dpJul9EJSEOKtLFFAMMHzQ==
-X-CSE-MsgGUID: cREq3zU+Q5yw1g6BHZ35uQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="38539789"
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; 
-   d="scan'208";a="38539789"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2024 09:34:57 -0700
-X-CSE-ConnectionGUID: sy1SRhdXScqp6CFkYpsWWA==
-X-CSE-MsgGUID: YCKghfLgR6Sw7Xfp8z9PKw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; 
-   d="scan'208";a="39213195"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2024 09:34:52 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sBdJA-0000000BK1x-46rD;
-	Mon, 27 May 2024 19:34:48 +0300
-Date: Mon, 27 May 2024 19:34:48 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JF4pzUiRc2uk0qXi+z9kb3cTECbpEUZmGaM3IsJ+cFKKsrU8v8lD6B21ul8+JtLHfCQfXk7K5RJ9N8tUSgQlS1eWiCB/axXOr/YijROIcIcnNnSHpS2nnyiQBZy/aWHeIhaeIb9ikiCqyxUVASGK8Ze/NQFHcAQr04FlDDI9dFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MOthbMJW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55E3DC2BBFC;
+	Mon, 27 May 2024 16:35:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716827735;
+	bh=t2vPzI1PKumTQZg4X9Tb5UYqtmDPnozYgV2LwA4D4vQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MOthbMJWWqS2mDdQuqguvwsq366v9fKTYGQ4YNPPnilf+kZLPi4dfWkkoS9DBzfV7
+	 1Pqj+yAQaiVdpTOQ2E5w8bzRORC+d+W9PgpLDq+syjJGBTWvtdaA4DloXuNLiqahWk
+	 qQmOGtRxmZfxueakEqDwTc7lowX1OGb9VJaMLNmktrAoX+Ie+gOlqQS6GG5pAViP4v
+	 8EPNCl0YRoMyDLW72sNLKrEKJDZLlswlvgqptnieblypqFOwHNigYlpbXNbKngiKlp
+	 BBreqKYQ4aQWs7l0jOdQzn29Y/GRe446UzzhciTobzQ8Z8L3z6q07/kiimwixyghk0
+	 Z2V/JY8HP6boQ==
+Date: Mon, 27 May 2024 17:35:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	John Ogness <john.ogness@linutronix.de>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Ronald Wahl <ronald.wahl@raritan.com>,
-	Thomas Richard <thomas.richard@bootlin.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Arnd Bergmann <arnd@arndb.de>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Vibhore Vardhan <vibhore@ti.com>,
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] serial: 8250: omap: Support wakeup pinctrl state
-Message-ID: <ZlS2KBTvhizdmow-@smile.fi.intel.com>
-References: <20240523075819.1285554-1-msp@baylibre.com>
- <20240523075819.1285554-5-msp@baylibre.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: renesas,csi2: Add binding for V4M
+Message-ID: <20240527-sip-retention-43e2a16a7a41@spud>
+References: <20240527132046.1680595-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="x8YAXeBb7nud+2Ex"
 Content-Disposition: inline
-In-Reply-To: <20240523075819.1285554-5-msp@baylibre.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Thu, May 23, 2024 at 09:58:18AM +0200, Markus Schneider-Pargmann wrote:
-> UART can be used as a wakeup source for am62 from a powered-off SoC
-> state. To enable wakeup from UART am62 requires a wakeup flag being set
-> in the pinctrl.
-> 
-> If the device is marked as wakeup enabled, select the 'wakeup' pinctrl
-> state on sys_off.
-
-...
-
->  #include <linux/pm_qos.h>
->  #include <linux/pm_wakeirq.h>
->  #include <linux/dma-mapping.h>
-
-> +#include <linux/reboot.h>
-
-See below.
-
->  #include <linux/sys_soc.h>
->  #include <linux/pm_domain.h>
-
-> +#include <linux/pinctrl/consumer.h>
-
-Can we make some order here and put this before above pm_*.h or even earlier
-according to the alphabet?
-
-...
-
-> +	priv->pinctrl = devm_pinctrl_get(&pdev->dev);
-> +	if (!IS_ERR_OR_NULL(priv->pinctrl))
-
-Shouldn't we report an error to the user? I assume that NULL is for optional
-pin control, otherwise it's an error state which at bare minimum has to be
-reported.
-
-> +		priv->pinctrl_wakeup = pinctrl_lookup_state(priv->pinctrl, "wakeup");
-
-> +	devm_register_sys_off_handler(&pdev->dev,
-
-No error check?
-
-> +				      SYS_OFF_MODE_POWER_OFF_PREPARE,
-> +				      SYS_OFF_PRIO_DEFAULT,
-> +				      omap8250_sysoff_handler, NULL);
-> +
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <20240527132046.1680595-1-niklas.soderlund+renesas@ragnatech.se>
 
 
+--x8YAXeBb7nud+2Ex
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 27, 2024 at 03:20:46PM +0200, Niklas S=F6derlund wrote:
+> Document support for the CSI-2 module in the Renesas V4M (r8a779h0) SoC.
+>=20
+> Signed-off-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech.se>
+
+Another one not in a series, this should be with:
+https://lore.kernel.org/all/20240527133221.1688830-8-niklas.soderlund+renes=
+as@ragnatech.se/
+Why isn't it?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Send it with the driver next time,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/media/renesas,csi2.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/=
+Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> index 977ab188d654..80b77875874d 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> @@ -32,6 +32,7 @@ properties:
+>            - renesas,r8a77990-csi2 # R-Car E3
+>            - renesas,r8a779a0-csi2 # R-Car V3U
+>            - renesas,r8a779g0-csi2 # R-Car V4H
+> +          - renesas,r8a779h0-csi2 # R-Car V4M
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.45.1
+>=20
+
+--x8YAXeBb7nud+2Ex
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlS2UwAKCRB4tDGHoIJi
+0o7dAPwIm/LVpHCub3hWPWSb6X50dqkbE4NZIaEA0foezkZyigD/Y4HdMRt8Ckuu
+zcSV7KZ8l8VYzcGAB+2s6T+PWfwc8gQ=
+=nd3V
+-----END PGP SIGNATURE-----
+
+--x8YAXeBb7nud+2Ex--
 
