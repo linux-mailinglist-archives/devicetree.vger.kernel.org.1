@@ -1,216 +1,174 @@
-Return-Path: <devicetree+bounces-69635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF928D09A4
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 19:58:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314FE8D09B1
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 20:03:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49875B26760
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:58:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA68E281B9F
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:03:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863D915F415;
-	Mon, 27 May 2024 17:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D14715F330;
+	Mon, 27 May 2024 18:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dEfnYxEW"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="kXkkwWGH";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="AUsuKECK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from wfhigh4-smtp.messagingengine.com (wfhigh4-smtp.messagingengine.com [64.147.123.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DCA515F324;
-	Mon, 27 May 2024 17:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E59761FE9;
+	Mon, 27 May 2024 18:03:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716832699; cv=none; b=DMwr7piv8Fqi2ufD+ea/GZXo+6v9tn09v90Npwygutc9xkZ7KtL2sdXqJFxH/jnsjvTsd0CB4DhCmFHVDE7BAAoIi7d3Ozo+/Scpq82I7JlhqRcnI021/PSvAwfp1Ofun0ApqkuKhZRyZV9IQNNuKZ0a80eWfSpv+sVy3c2vySA=
+	t=1716832998; cv=none; b=SymUs/rnVUksXaXkCnGGi//Vq3f0MlpEz8EChYo5u7F9mBeBGLhrw+4moEmWMYim/KCdNVpjQUSG0fkxj3ucl6iyW8Mn691t1T0zd0ItyGAQtyGVzgvEKFb3FgG5+pTswG0JecF0Vr2FQzBhe51HhWpLTyOuFkC+RAdj5O+lZ50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716832699; c=relaxed/simple;
-	bh=gCXv+nHNnQD7augX4DlW+RaGEwwmei/GP6Fq18AYOB0=;
+	s=arc-20240116; t=1716832998; c=relaxed/simple;
+	bh=Gij2SXdHB2l3sqivc5i7TaNn9/BKYVFYIgFDx6y6WiM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YupWdvC39F0v6ZnPhZ1HsGOp2vSOqq3/POSmVt2wYMEoEv70gTErNVbXamt6WWLed2GdKOtY9HfqywnucHMxnHhG/dREUpnjewYlgLHF6HeDfN9/D4nYVCUiJbaGtPMr3/l8W8J2YqCsD0hC/rG4ktm2pxlZJq1CyS6K1H54W9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dEfnYxEW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D1E5C2BBFC;
-	Mon, 27 May 2024 17:58:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716832699;
-	bh=gCXv+nHNnQD7augX4DlW+RaGEwwmei/GP6Fq18AYOB0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dEfnYxEWOIJJ8TcgU5mQLgdr25Lj3LkIbx2lb8YaKbc8P0mC1J6crboBXOLtFLA0S
-	 0GtKjPYNS60L9jCAIXwTrafWDWT/3WgDPhvqx6mmh4CvZee/O4YMUvKfAfCAwzeFwp
-	 rlBePPnxvXtin0XTLykd4ooP3UsnSQAavttFTZhvdJ7DPV8rG/mrORskIeUbYY1YZU
-	 N7kXSxyb8v+rg1kc32vGwgm3xfvRECiodVyBW1MKuvlj+4jmxEA7V8bDqhE5agHw47
-	 n9OIJyzHnFHQfaS9py2AwsnfR3346f85zlIdGdR+BOHx/Zn9uUpHeWqfs9A8V9aq8U
-	 CbBC3tdALZ3Ww==
-Date: Mon, 27 May 2024 18:58:15 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Henry Bell <dmoo_dv@protonmail.com>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=kd0xSnPvAtrIX6ORy843Ey3mC6lMIcIJQn/7ByMzciHIscX53EHlgsMMCD0nMcUd/Bou3/s8qi1vOg5/2NUvlv3YLvzXeLpgG5k+/zuSkDHwWvLsl0P0weOOVJYT4em01ML3sbi/RsOtWSOtvjHpBhehVBmlXBB1C+KHvmfm1Ds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=kXkkwWGH; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=AUsuKECK; arc=none smtp.client-ip=64.147.123.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfhigh.west.internal (Postfix) with ESMTP id 324AE18000F0;
+	Mon, 27 May 2024 14:03:15 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Mon, 27 May 2024 14:03:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1716832994;
+	 x=1716919394; bh=2n6AVHqDSQch5st1ep4vz0PYL3OeAAZ7tpvPAc6MR68=; b=
+	kXkkwWGHdEg/kQ8fOis+S04UKn2fDz6X0GksKgNF46ubDMbVWi5A+aUQeWsfJNwD
+	kef2Mdq4kAH46mXmb8UIT9QwcOt5JKgJr1zIsIuaKkOaaougIHJ4r3NkwYzpUH+A
+	nrDLG45CyIVGNNjdz0kCKkUZ1MhU/MHFWoM5tf7Kur01SIZzyZRfXTT/EewGWxA6
+	5fc42w6h/8VADx2Jh852OiXKBWe6L07/m8vpjJr1ytjsF2Fi04Q3ILs5A0lUbHQE
+	4DcOrh9kPU3ZbFHuHMyb9pTSGJEbzookNZ8nIeXPeMa/MzgpZk+uCaOzNMOGsLpP
+	HocMhWxzVuQd9B0KBWMPIQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1716832994; x=
+	1716919394; bh=2n6AVHqDSQch5st1ep4vz0PYL3OeAAZ7tpvPAc6MR68=; b=A
+	UsuKECKXJ7ZDqFn9rRBQ1QPJOHN8cU4qPpfOJqy13VB2/jjRLkp4RkbgG2mj6wYd
+	b0lVJUmemgbkqSUdYifCcLLUqA0OLe3aKX/lxwJpT1nnqHuH3K72becDvDQMkDIL
+	YFHuAzcb8Cc7cvI2qINtvG8WGoItiJeEz8Y/BWO97H1tM1jmsLvC/qjMKidyOsNZ
+	5abId9JUQXEYgtY0FJA5voQHi4hVsaN6GVz7xumx2W3s2Wet39rDOUqp+Px15/nw
+	qNfflUG5XO+hKDqGT0mH4r0RQb694rpaTQxptyeaqpqpDdpMBALOGUAbKGnyYl3j
+	SMwv1RuYs41LJE3uxw2/g==
+X-ME-Sender: <xms:4spUZvk52BdvK5Fushhyo59_Xqu_x1ON70nMPEbFJlCloUJ2514EeQ>
+    <xme:4spUZi2BqBLnIfhTguLAYrFyGayiy7ft6qGF9PApa1W3oC_0BpyQcV2UFAQfVd94T
+    04g-DlMW9oJ2D_xmtY>
+X-ME-Received: <xmr:4spUZlrGqWhahRLCYE-RzV7OYQT35H1jUewSvvsIOqzIowXlTNvKBQLQwYjxkJEVsD5ikj2ICFT3UgagG9PZW22QdHDfFaU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdejgedguddukecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhi
+    khhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvg
+    hnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepffekgfdu
+    keeghffhjeetvdeitdegteeikeffieduhfegveetjeevtdffvdekffdtnecuffhomhgrih
+    hnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
+    mhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrh
+    grghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:4spUZnm8WUTcOuetX21ONkldHZlLjj_CWyxNnro_Zzuw9Gcl0HIGWw>
+    <xmx:4spUZt25WaOnmq_VrygUGHsSQCNYbxeiUsxrAyJNauTUq6YTTNZiKA>
+    <xmx:4spUZmtN06gcJZuhyW5uiggQGc0lH5d6fz6AGgpbehBH2NHkWOEBTw>
+    <xmx:4spUZhWqx1Q1GSQ2soY8-0ZzmDdDx6VhAane-FIAqTlEsdlJqQw8ZA>
+    <xmx:4spUZnztKvJ5HdK7OciwFcOYMCKrb2K0DQkWk03zVJRQxxMHDQDTnpRV>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 27 May 2024 14:03:14 -0400 (EDT)
+Date: Mon, 27 May 2024 20:03:12 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Conor Dooley <conor@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2 v2] RISC-V: add Star64 board devicetree
-Message-ID: <20240527-securely-crafter-17dd1dd3b765@spud>
-References: <3Rwq1VegQtSiNjWbBny27eDBw9sCw4cXHBe_3FgihJ1i3dGI6rMS8xI32f2syRXKoa-XZubm7fMr2SED1haIWWygYWJA9azHqRzV6JSmTVo=@protonmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: renesas,vin: Add binding for V4M
+Message-ID: <20240527180312.GA226593@ragnatech.se>
+References: <20240527131849.1678877-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240527-replica-mace-2306a85ad5d7@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9gaHJ4IdlRivnZAb"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <3Rwq1VegQtSiNjWbBny27eDBw9sCw4cXHBe_3FgihJ1i3dGI6rMS8xI32f2syRXKoa-XZubm7fMr2SED1haIWWygYWJA9azHqRzV6JSmTVo=@protonmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240527-replica-mace-2306a85ad5d7@spud>
+
+Hi Conor,
+
+Thanks for your feedback.
+
+On 2024-05-27 17:37:21 +0100, Conor Dooley wrote:
+> On Mon, May 27, 2024 at 03:18:49PM +0200, Niklas Söderlund wrote:
+> > Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
+> 
+> Which is different from the other devices how?
+
+Compared to the other Gen4 SoC supported it only supports D-PHY. I will 
+add this to next version, thanks for spotting it.
+
+> Should be with the driver:
+> https://lore.kernel.org/all/20240527132429.1683547-1-niklas.soderlund+renesas@ragnatech.se/
+
+As I mentioned in the other thread about the ISPCS bindings, I 
+intentionally posted the bindings separately to allow parallel 
+upstreaming of driver and DT users.
+
+Is it really a bad idea to do it this way? For other work I have done 
+that involves more complex DT changes then adding a compatible, such as 
+adding a new device or adding more properties to cover more features 
+only available in a later version of a device. I always post the DT 
+parts first as this can spur discussions about the design and only after 
+they are agreed upon do I post the driver parts that make use of them.
+
+Seems like this would consume less review resources as the bindings can 
+be agreed upon first, before anyone have to spend time reviewing a 
+driver that might need to be redesigned as the bindings could be 
+improved.
+
+> 
+> Thanks,
+> Conor.
+> 
+> > 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > ---
+> >  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > index 5539d0f8e74d..168cb02f8abe 100644
+> > --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
+> > @@ -54,6 +54,7 @@ properties:
+> >                - renesas,vin-r8a77995 # R-Car D3
+> >                - renesas,vin-r8a779a0 # R-Car V3U
+> >                - renesas,vin-r8a779g0 # R-Car V4H
+> > +              - renesas,vin-r8a779h0 # R-Car V4M
+> >  
+> >    reg:
+> >      maxItems: 1
+> > -- 
+> > 2.45.1
+> > 
 
 
---9gaHJ4IdlRivnZAb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 23, 2024 at 09:55:38PM +0000, Henry Bell wrote:
-> The Pine64 Star64 is a development board based on the Starfive JH7110 SoC.
-> The board features:
->=20
-> - JH7110 SoC
-> - 4/8 GiB LPDDR4 DRAM
-> - AXP15060 PMIC
-> - 40 pin GPIO header
-> - 1x USB 3.0 host port
-> - 3x USB 2.0 host port
-> - 1x eMMC slot
-> - 1x MicroSD slot
-> - 1x QSPI Flash
-> - 2x 1Gbps Ethernet port
-> - 1x HDMI port
-> - 1x 4-lane DSI
-> - 1x 2-lane CSI
-> - 1x PCIe 2.0 x1 lane
->=20
-> Signed-off-by: Henry Bell <dmoo_dv@protonmail.com>
-> ---
->=20
-> Changes since v1:
->=20
-> - Fix indentation and issues with field ordering
-> - Update Copyright
-> - Move from patch 1 to patch 2
-> ---
->  arch/riscv/boot/dts/starfive/Makefile         |  1 +
->  .../dts/starfive/jh7110-pine64-star64.dts     | 61 +++++++++++++++++++
->  2 files changed, 62 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
-starfive/Makefile
-> index 2fa0cd7f31c3..7a163a7d6ba3 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -9,5 +9,6 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-beaglev-starlight=
-=2Edtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-visionfive-v1.dtb
-> =20
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-mars.dtb
-> +dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-pine64-star64.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch=
-/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> new file mode 100644
-> index 000000000000..fe7e5f3f7f23
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> @@ -0,0 +1,61 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2024 Henry Bell <dmoo_dv@protonmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-common.dtsi"
-> +
-> +/ {
-> +	model =3D "Pine64 Star64";
-> +	compatible =3D "pine64,star64", "starfive,jh7110";
-> +		aliases {
-> +			ethernet1 =3D &gmac1;
-> +		};
-
-There was still some funky looking indentation here, so I fixed that up
-on application.
-
-Emil, shout if you spot something awry, it's gonna be at the top of the
-branch for a while I bet so plenty of time to drop etc.
-
-Thanks,
-Conor.
-
-> +};
-> +
-> +&gmac0 {
-> +	starfive,tx-use-rgmii-clk;
-> +	assigned-clocks =3D <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-> +	assigned-clock-parents =3D <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-> +};
-> +
-> +&gmac1 {
-> +	phy-handle =3D <&phy1>;
-> +	phy-mode =3D "rgmii-id";
-> +	starfive,tx-use-rgmii-clk;
-> +	assigned-clocks =3D <&syscrg JH7110_SYSCLK_GMAC1_TX>;
-> +	assigned-clock-parents =3D <&syscrg JH7110_SYSCLK_GMAC1_RMII_RTX>;
-> +	status =3D "okay";
-> +
-> +	mdio {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		compatible =3D "snps,dwmac-mdio";
-> +
-> +		phy1: ethernet-phy@1 {
-> +			reg =3D <1>;
-> +		};
-> +	};
-> +};
-> +
-> +&phy0 {
-> +	rx-internal-delay-ps =3D <1900>;
-> +	tx-internal-delay-ps =3D <1500>;
-> +	motorcomm,rx-clk-drv-microamp =3D <2910>;
-> +	motorcomm,rx-data-drv-microamp =3D <2910>;
-> +	motorcomm,tx-clk-adj-enabled;
-> +	motorcomm,tx-clk-10-inverted;
-> +	motorcomm,tx-clk-100-inverted;
-> +	motorcomm,tx-clk-1000-inverted;
-> +};
-> +
-> +&phy1 {
-> +	rx-internal-delay-ps =3D <0>;
-> +	tx-internal-delay-ps =3D <300>;
-> +	motorcomm,rx-clk-drv-microamp =3D <2910>;
-> +	motorcomm,rx-data-drv-microamp =3D <2910>;
-> +	motorcomm,tx-clk-adj-enabled;
-> +	motorcomm,tx-clk-10-inverted;
-> +	motorcomm,tx-clk-100-inverted;
-> +};
-> --=20
-> 2.44.0
->=20
->=20
-
---9gaHJ4IdlRivnZAb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlTJtwAKCRB4tDGHoIJi
-0qu8AQCA9UW29IzxSz09cAmZHuac48ZMGd79RXS66A35/pXDYAD/WDL31TIu5Hzb
-3hYNciS/mj7KD67rbeVCrRp6EtqPegk=
-=H9/m
------END PGP SIGNATURE-----
-
---9gaHJ4IdlRivnZAb--
+-- 
+Kind Regards,
+Niklas Söderlund
 
