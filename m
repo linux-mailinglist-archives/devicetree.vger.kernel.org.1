@@ -1,146 +1,238 @@
-Return-Path: <devicetree+bounces-69483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B278CFF2F
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:39:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE6B8CFF34
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:43:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9A4E1C221A1
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:39:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF1471C20FE6
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEAF15E5C8;
-	Mon, 27 May 2024 11:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28F215D5D7;
+	Mon, 27 May 2024 11:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YWG0pUdO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d7861i/q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5559815DBC6;
-	Mon, 27 May 2024 11:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B21E15D5CA
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 11:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716809965; cv=none; b=f8oijMWzHKdejf7VDLJz9Q50UezRIdPjp0Qgl9mFtCHYfYQTOn6D3UrbgRyBIpWwwHrlZYHWz8KVlFElQdEVfpliDHRdNzF6tYdcsnpr+G0vursBZwp6yB62h3nG4Cn2J38qW1Tc1kiG6B1ozSwzqVavnPiq/KZKIS35IXjoOCA=
+	t=1716810178; cv=none; b=OCF89pLiA59wX7gBCDWeixZuGjigktuZq784MwhTuIyJLgGRhkNXWqd2Gp/6Kd//neOprQCt6ZXOallyfkjc4REr/95LNVEwixrgyk7vw92CWrhbMiGo2jFvMExC8P+tivQMy/2bLizHk4G8Tuj3bWNz6jck3cPQWJw0bg1Mv2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716809965; c=relaxed/simple;
-	bh=CziR8tGg5qwYNvJIC+QQYLKyVrnjY04Q5lyj/7UJ7ts=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GUul2IMY59h61Zmxp63qh/sv8V3ogoUk1z5diW4HnA7qL9to23RhKxVaTaapQxUmHedLf/rBjDigJnRHKaSPJUlwXCp9jeMyydooGL4lvj9zu5W8i5n4OVywZbzw7IzeunLsTXhWL9OzCPXrYShlyIc71V98LOtsgFAJKqNHcEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YWG0pUdO; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id B4BA61C0008;
-	Mon, 27 May 2024 11:39:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1716809956;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bzjZT6VO3PxtG5290LSf4VPSnmjoCdCbJpas0iFjQn4=;
-	b=YWG0pUdOVE5ttqrJyGb+Y9ye+4BRUS6/YkTrUf+78IMYXx8jFDFyaPYa1Fj/cEYPtuAmbC
-	8lmCWTvWanyDCzHd5zuq30E4O+i2G74wW5dqt856qXVCE+JqaDPFlfNKMdQIAnv/U5R+Ky
-	4FcHVkstnXr3R4eSSgB/VwFyLuS2L82wQBqFaxppOxc6CBUx3YMfN/As5cC9fhKqNHcsCG
-	EDmRIUfC0nc/LZqh7tB6ST78SuHrYuDGxaZ+CB5A3SPGw6ykF70tsfJXkTKkUqqA3z2+eM
-	qCeWsHKHOFtivTHWQPVPWw4Nwx2Jk/uh23u9qf6utgYGOJmMVyDGXe/5nFYpZg==
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-To: Peter Rosin <peda@axentia.se>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Korsgaard <peter.korsgaard@barco.com>,
-	Wolfram Sang <wsa@kernel.org>
-Cc: linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	herve.codina@bootlin.com,
-	christophercordahi@nanometrics.ca,
-	Bastien Curutchet <bastien.curutchet@bootlin.com>
-Subject: [PATCH 3/3] i2c: mux: gpio: Add support for the 'transition-delay-ms' property
-Date: Mon, 27 May 2024 13:39:08 +0200
-Message-ID: <20240527113908.127893-4-bastien.curutchet@bootlin.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240527113908.127893-1-bastien.curutchet@bootlin.com>
-References: <20240527113908.127893-1-bastien.curutchet@bootlin.com>
+	s=arc-20240116; t=1716810178; c=relaxed/simple;
+	bh=EOsL7NiepwoktnPHVm7DC3r9sxjI4Vg8cl11xkZfn/w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gpIxs0YgAeRkiDyfwWNH1RUEgy+xR58fLZ/2xDIJquvaC3vzhUX2KK+PxLKpthvbUZ8sMPAP5vRwFK9qsV5zsheIeUJimBKYp2r4rxmHVrNcukchrxJpzWHqEDiqG4zFE8pi2uQrqLA9Q3WshaAD3Mx5xX9F59S/U1gdmWCkF6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d7861i/q; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-df4e6ece05aso4829941276.0
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 04:42:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716810176; x=1717414976; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=32DpmCz616oJj3sZ30ujufGqTcF/NmhflobLHv+4XM8=;
+        b=d7861i/qM8mmHt9KUfU21uZAfNVNoYbH4rxjOZpXcq38zqoiduEENgsSIH1mF6uQdP
+         nRu87lIPLcmnKZlm6IKD5ZZUZXlsvxhkDwyTDYGu8ICwe8UOXAe4gFSw6LMClChr++w9
+         BTCeZ12IThw0xQMUHUV7LXgrdfi7kGrlkUM9imCjA0BgAdWodaG2JrAVDYjsz6ya0yiu
+         ORHTGkKDRBRo+vBYh6o7JTv0zqKoQHmbei/vAATnkJLXqyxbWPyj7NL5r38L7Wn6o5s3
+         vU7Dyh72oS0Wzd6Q0DHJ0o8nJgahNaY9pIBsYKNdxkX5EtB8eLivSLrhdw/ZpV29J/B0
+         k7OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716810176; x=1717414976;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=32DpmCz616oJj3sZ30ujufGqTcF/NmhflobLHv+4XM8=;
+        b=TPUdBlOA9aGDXCa24n5AonVa2dtSLWxnshc0BjECmrNLzIb6s2mQhHNoPfAHnamRYN
+         X8e9c4KEaU6iCsxt9rPTlGtr5jU0bvUTUfqOKLxKOr4rTYlg1q9GnlZTIoHoD9Y3QnWw
+         XDl+Az7sofR3VUMHqfqc0VN/C7130C1MUjEkkE9l+eNt3WA0bsSw41PwbWYp5Fj3IuVr
+         xuaMtGZGzKEElXErQTGvMkRyisH4eh1WodtQg1eDZAeqdrpdyjXpbtoWEEdMP5TDGGq9
+         vkgOkt7uyxl8YX2a09F/syhSvQRzG0XbsPpJ3dYGNyGeOX38+Kic9PvZrMAQ2LcLkYy4
+         3QKg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWR7231mlUNHdFNIUvFbiDqPm6Pn5IdneTsHBZbdj488srSF7+bnFurKgFvqg3vFB5z+DJKxyj19ExVEb8ezMU+C+p5HsAAUyLCg==
+X-Gm-Message-State: AOJu0YxTcHNKOmk2qu+Fk2NCDYQ4FUrw/YM2I6fnnWi+9l3itiGCXFWl
+	Hk9B7jkEdmn4x/MaOxSjuzXqcPr31JW4g2EMEPZ1YwmTSPD/R+wVOQXmyGH09sTyEbEt2hX+Rfm
+	FaZnKEz72qQCMWIAbptV66XBpWrBJ0DmgH7Jovg==
+X-Google-Smtp-Source: AGHT+IFHwGY0a+7rv/7KMXy9+d+MKKeKjUaKRmg/b92ApME6fLHQGJOLc1NGnxd/PGhiSwgle60+hRRnygz1Kpak1qw=
+X-Received: by 2002:a25:e310:0:b0:de5:4b1f:7e00 with SMTP id
+ 3f1490d57ef6-df77215f566mr8579337276.15.1716810175995; Mon, 27 May 2024
+ 04:42:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: bastien.curutchet@bootlin.com
+References: <20240521-qcom-firmware-name-v1-0-99a6d32b1e5e@linaro.org>
+ <20240521-qcom-firmware-name-v1-1-99a6d32b1e5e@linaro.org>
+ <a45b53f3-b2a5-4094-af5a-1281e0f94d2f@linaro.org> <CAA8EJprxYsoug0ipRHTmX45vaFLzJCUF0dQWOc=QLs4y6uZ1rA@mail.gmail.com>
+ <878r03csxn.fsf@kernel.org> <CAA8EJpqkgpCb57DGka0ckbPz=2YiaHzxmiNzG39ad5y6smgO5A@mail.gmail.com>
+ <Zk52IHqAfOnVDm50@hu-bjorande-lv.qualcomm.com>
+In-Reply-To: <Zk52IHqAfOnVDm50@hu-bjorande-lv.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 27 May 2024 14:42:44 +0300
+Message-ID: <CAA8EJpogG5wW2mUUkYFtnnZLMVuneU4Wie6GBfYytSYe0zQ77Q@mail.gmail.com>
+Subject: Re: [PATCH 01/12] soc: qcom: add firmware name helper
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Kalle Valo <kvalo@kernel.org>, neil.armstrong@linaro.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Loic Poulain <loic.poulain@linaro.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 
-Some hardware need some time to switch from a bus to another. This can
-cause the first transfers following the selection of a bus to fail.
-There is no way to configure this kind of waiting time in the driver.
+On Thu, 23 May 2024 at 01:48, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
+>
+> On Tue, May 21, 2024 at 03:08:31PM +0200, Dmitry Baryshkov wrote:
+> > On Tue, 21 May 2024 at 13:20, Kalle Valo <kvalo@kernel.org> wrote:
+> > >
+> > > Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+> > >
+> > > > On Tue, 21 May 2024 at 12:52, <neil.armstrong@linaro.org> wrote:
+> > > >>
+> > > >> On 21/05/2024 11:45, Dmitry Baryshkov wrote:
+> > > >> > Qualcomm platforms have different sets of the firmware files, which
+> > > >> > differ from platform to platform (and from board to board, due to the
+> > > >> > embedded signatures). Rather than listing all the firmware files,
+> > > >> > including full paths, in the DT, provide a way to determine firmware
+> > > >> > path based on the root DT node compatible.
+> > > >>
+> > > >> Ok this looks quite over-engineered but necessary to handle the legacy,
+> > > >> but I really think we should add a way to look for a board-specific path
+> > > >> first and fallback to those SoC specific paths.
+> > > >
+> > > > Again, CONFIG_FW_LOADER_USER_HELPER => delays.
+> > >
+> > > To me this also looks like very over-engineered, can you elaborate more
+> > > why this is needed? Concrete examples would help to understand better.
+> >
+> > Sure. During the meeting last week Arnd suggested evaluating if we can
+> > drop firmware-name from the board DT files. Several reasons for that:
+> > - DT should describe the hardware, not the Linux-firmware locations
+> > - having firmware name in DT complicates updating the tree to use
+> > different firmware API (think of mbn vs mdt vs any other format)
+> > - If the DT gets supplied by the vendor (e.g. for
+> > SystemReady-certified devices), there should be a sync between the
+> > vendor's DT, linux kernel and the rootfs. Dropping firmware names from
+> > DT solves that by removing one piece of the equation
+> >
+> > Now for the complexity of the solution. Each SoC family has their own
+> > firmware set. This includes firmware for the DSPs, for modem, WiFi
+> > bits, GPU shader, etc.
+> > For the development boards these devices are signed by the testing key
+> > and the actual signature is not validated against the root of trust
+> > certificate.
+> > For the end-user devices the signature is actually validated against
+> > the bits fused to the SoC during manufacturing process. CA certificate
+> > (and thus the fuses) differ from vendor to vendor (and from the device
+> > to device)
+> >
+> > Not all of the firmware files are a part of the public linux-firmware
+> > tree. However we need to support the rootfs bundled with the firmware
+> > for different platforms (both public and vendor). The non-signed files
+> > come from the Adreno GPU and can be shared between platforms. All
+> > other files are SoC-specific and in some cases device-specific.
+> >
+> > So for example the SDM845 db845c (open device) loads following firmware files:
+> > Not signed:
+> > - qcom/a630_sqe.fw
+> > - qcom/a630_gmu.bin
+> >
+> > Signed, will work for any non-secured sdm845 device:
+> > - qcom/sdm845/a630_zap.mbn
+> > - qcom/sdm845/adsp.mbn
+> > - qcom/sdm845/cdsp.mbn
+> > - qcom/sdm485/mba.mbn
+> > - qcom/sdm845/modem.mbn
+> > - qcom/sdm845/wlanmdsp.mbn (loaded via TQFTP)
+> > - qcom/venus-5.2/venus.mbn
+> >
+> > Signed, works only for DB845c.
+> > - qcom/sdm845/Thundercomm/db845c/slpi.mbn
+> >
+> > In comparison, the SDM845 Pixel-3 phone (aka blueline) should load the
+> > following firmware files:
+> > - qcom/a630_sqe.fw (the same, non-signed file)
+> > - qcom/a630_gmu.bin (the same, non-signed file)
+> > - qcom/sdm845/Google/blueline/a630_zap.mbn
+>
+> How do you get from "a630_zap.mbn" to this? By extending the lookup
+> table for every target, or what am I missing?
 
-Add support for the 'transition-delay-ms' device-tree property. When set,
-the i2c_mux_gpio_select() applies a delay before returning, leaving
-enough time to the hardware to switch to the new bus.
+More or less so. Matching the root OF node gives us the firmware
+location, then it gets prepended to all firmware targets. Not an ideal
+solution, as there is no fallback support, but at least it gives us
+some points to discuss (and to decide whether to move to some
+particular direction or to abandon the idea completely, making Arnd
+unhappy again).
 
-Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
----
- drivers/i2c/muxes/i2c-mux-gpio.c           | 6 ++++++
- include/linux/platform_data/i2c-mux-gpio.h | 2 ++
- 2 files changed, 8 insertions(+)
+>
+> Regards,
+> Bjorn
+>
+> > - qcom/sdm845/Google/blueline/adsp.mbn
+> > - qcom/sdm845/Google/blueline/cdsp.mbn
+> > - qcom/sdm845/Google/blueline/ipa_fws.mbn
+> > - qcom/sdm845/Google/blueline/mba.mbn
+> > - qcom/sdm845/Google/blueline/modem.mbn
+> > - qcom/sdm845/Google/blueline/venus.mbn
+> > - qcom/sdm845/Google/blueline/wlanmdsp.mbn
+> > - qcom/sdm845/Google/blueline/slpi.mbn
+> >
+> > The Lenovo Yoga C630 WoS laptop (SDM850 is a variant of SDM845) uses
+> > another set of files:
+> > - qcom/a630_sqe.fw (the same, non-signed file)
+> > - qcom/a630_gmu.bin (the same, non-signed file)
+> > - qcom/sdm850/LENOVO/81JL/qcdxkmsuc850.mbn
+> > - qcom/sdm850/LENOVO/81JL/qcadsp850.mbn
+> > - qcom/sdm850/LENOVO/81JL/qccdsp850.mbn
+> > - qcom/sdm850/LENOVO/81JL/ipa_fws.elf
+> > - qcom/sdm850/LENOVO/81JL/qcdsp1v2850.mbn
+> > - qcom/sdm850/LENOVO/81JL/qcdsp2850.mbn
+> > - qcom/sdm850/LENOVO/81JL/qcvss850.mbn
+> > - qcom/sdm850/LENOVO/81JL/wlanmdsp.mbn
+> > - qcom/sdm850/LENOVO/81JL/qcslpi850.mbn
+> >
+> > If we look at one of the recent platforms, e.g. SM8650-QRD, this list
+> > also grows up:
+> > - qcom/gen70900_sqe.fw (generic, non-signed)
+> > - qcom/gmu_gen70900.bin (generic, non-signed)
+> > - qcom/sm8650/gen70900_zap.mbn
+> > - qcom/sm8650/adsp.mbn
+> > - qcom/sm8650/adsp_dtb.mbn
+> > - qcom/sm8650/cdsp.mbn
+> > - qcom/sm8650/cdsp_dtb.mbn
+> > - qcom/sm8650/ipa_fws.mbn
+> > - qcom/sm8650/modem.mbn
+> > - qcom/sm8650/modem_dtb.mbn
+> > - qcom/sm8650/vpu33_4v.mbn (or maybe qcom/vpu-33/vpu_4v.mbn)
+> >
+> > --
+> > With best wishes
+> > Dmitry
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+> >
 
-diff --git a/drivers/i2c/muxes/i2c-mux-gpio.c b/drivers/i2c/muxes/i2c-mux-gpio.c
-index c61e9d9ea695..d2cbbaa09485 100644
---- a/drivers/i2c/muxes/i2c-mux-gpio.c
-+++ b/drivers/i2c/muxes/i2c-mux-gpio.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <linux/bits.h>
-+#include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/gpio/driver.h>
- #include <linux/i2c.h>
-@@ -37,6 +38,9 @@ static int i2c_mux_gpio_select(struct i2c_mux_core *muxc, u32 chan)
- 
- 	i2c_mux_gpio_set(mux, chan);
- 
-+	if (mux->data.transition_delay)
-+		mdelay(mux->data.transition_delay);
-+
- 	return 0;
- }
- 
-@@ -116,6 +120,8 @@ static int i2c_mux_gpio_probe_fw(struct gpiomux *mux,
- 	if (device_property_read_u32(dev, "idle-state", &mux->data.idle))
- 		mux->data.idle = I2C_MUX_GPIO_NO_IDLE;
- 
-+	device_property_read_u32(dev, "transition-delay-ms", &mux->data.transition_delay);
-+
- 	return 0;
- }
- 
-diff --git a/include/linux/platform_data/i2c-mux-gpio.h b/include/linux/platform_data/i2c-mux-gpio.h
-index 816a4cd3ccb5..c449f714d32b 100644
---- a/include/linux/platform_data/i2c-mux-gpio.h
-+++ b/include/linux/platform_data/i2c-mux-gpio.h
-@@ -19,6 +19,7 @@
-  *	position
-  * @n_values: Number of multiplexer positions (busses to instantiate)
-  * @idle: Bitmask to write to MUX when idle or GPIO_I2CMUX_NO_IDLE if not used
-+ * @transition_delay: Delay to wait when a new bus is selected
-  */
- struct i2c_mux_gpio_platform_data {
- 	int parent;
-@@ -26,6 +27,7 @@ struct i2c_mux_gpio_platform_data {
- 	const unsigned *values;
- 	int n_values;
- 	unsigned idle;
-+	int transition_delay;
- };
- 
- #endif /* _LINUX_I2C_MUX_GPIO_H */
+
+
 -- 
-2.44.0
-
+With best wishes
+Dmitry
 
