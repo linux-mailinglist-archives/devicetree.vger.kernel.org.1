@@ -1,65 +1,74 @@
-Return-Path: <devicetree+bounces-69356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533F88CFB50
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:25:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 779D28CFAED
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09EAB281814
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:25:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19E641F21D01
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40DD4D5A2;
-	Mon, 27 May 2024 08:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48DA53D978;
+	Mon, 27 May 2024 08:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="KEDL/IVA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="QWpcrwuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 476A746453;
-	Mon, 27 May 2024 08:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DD6381A4
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716798337; cv=none; b=t2bfgipkj9We5dscdwQO8ywsfCNbF+JDeQ4oAKCDfFjLTwW2CwyZBePZUWldvOikxFuQoJ4s3J311a1/NqiYCOv6zsN6Kfn/n3N6JW3TTwq+KBtuO4kRrdUfrXCYHlQl9DQPRrrlSB1zBBs9UdV8XkNhBmb/+8ZR9QRLhGOA+P8=
+	t=1716797150; cv=none; b=s3lppHg79vpgZGhLcInre6QhgfYmWWdkTv2UxrwqL4HGGYc5hWR7ulQPoP1ixnUlo/kILbe6QKwogqA0zdMNjnMQWDPKP7Vwg0KlrrIGrjCPgxCIplfR+VRZGdO+ir2NXEZjtMrr1gmqc86LhQ+f04ZKRIFz2TQgQEJwX8v6Zhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716798337; c=relaxed/simple;
-	bh=Bn2vs455rOM+Jl5xxl3oCGu3ebgM2zxGmcs3r52XYYc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JSHVW599kvvsB3biJ52m7BkK9Gf11NCB3lCzLY6UoOgt9g1BobiaENonfF2ERG7J6Yy/ttP4hxEQs9Z9mlicMjNqHm3y5rbVBiRMQH9qQhJvw2gy0u/OXCRr+R4oEqCCW2VrC0rBmijgOh+ZtAUddX9MkWwZ5N/mCPnzzVUhMBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=KEDL/IVA; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44QMsgXK002040;
-	Mon, 27 May 2024 09:45:03 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	5MlVXLL0h6fGrepjEUKqMT+GSQ1qSjrne66KbCMAXKE=; b=KEDL/IVAUCy42ZKP
-	+HzNbTV8UT63/1WBgbgLqijzZm0mRX1RLz1JU8SPEEUN06rNTV/ArtLOOVWpaI+I
-	15Y+Owrei7MLgXqT8pNtvpLqBc1qfwyHhI8jEJbQSFnXJzt+AFOGzUIswrnziaZ9
-	xjbD9MR8aS76SK0HWEsJ9EAOOvyELXUbXQeByY7+f1Hb2pRM5IviNMSX+cA/HcOC
-	sWRhRc2aTW4yg0Zr6L9KuR4aGzEqnAG1rJue3s38laiPSiGyCBtJ2BWZ6ovYmEf+
-	x/pnCU21suyPQi9Vp2ia8BPKcvo0eMGl0wwwoaw6gAtiufYS3yoUybeqTxVPvbCx
-	l5IuHg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yba51nn38-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 May 2024 09:45:03 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 442B84002D;
-	Mon, 27 May 2024 09:44:57 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 67915211975;
-	Mon, 27 May 2024 09:44:16 +0200 (CEST)
-Received: from [10.130.72.241] (10.130.72.241) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 27 May
- 2024 09:44:15 +0200
-Message-ID: <864dc1d3-2478-46a2-84a5-c7c51f96268f@foss.st.com>
-Date: Mon, 27 May 2024 09:44:15 +0200
+	s=arc-20240116; t=1716797150; c=relaxed/simple;
+	bh=0PSvznaULgAMyci1Cuzw0gj53Rvyogvjy4WMf8Yb64Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WGB1/8p2QWxLKApgeyiUS1LqIJfUDYbYOVPo/H1/F/3PyEqwfshDzUCZVeZO7F5sbQ/lFOFL4/X4Vzh7H00P3SDOYdghWCY08S5nSnqY8TOswcZSF5T9SRq2FWvM76BqxbqPcAN1UVVENjeX3B6iLDWx+1S+kQYcd2oNJaxmPbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=QWpcrwuB; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4202ca70318so76798025e9.1
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 01:05:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716797144; x=1717401944; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5BtQhzjdT5QYL2ZvPWoXdnXVCwFUxuBDZKoHrk+bMdg=;
+        b=QWpcrwuBowqCLGFx6vE6zilTO1GGaS9zAS0kXlx3hh4o8e6SmtCAgUAcsVivUqUoII
+         UTuM9M+jAyqP5LsI+7ZbvVxBGtdi9BMdbjhV7S80/uSVRzN1XsVe95A+39RFoIwLti/G
+         ckC8DD3QyU6uoOQy2IsFoDrFtWfQCk7ZIxkev6Mlcbe/1cCz7HW75EFldrCddWJYt5+h
+         PmLo0deSaBXv3y4G3gPYkm/vCqC7rrCD2sjAn9ppuz0tUU5npwJFEjNrO8lDWSww6raO
+         OS2LvTEM8dKlCqbccbQ5CnHKp/yUcAQHnu8kJHIlMr9Oi2YWlTqZANmFutNaTQHfNb7u
+         m5zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716797144; x=1717401944;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5BtQhzjdT5QYL2ZvPWoXdnXVCwFUxuBDZKoHrk+bMdg=;
+        b=FfShKOR9NtAwhGZrsMQ5vusJhRdZZNCwyZ6SPoH4OeK5I9vj/0///5CnUyhk2hJen1
+         9xQaiomXoxLdFzmaY3nqq/L/8lXzQElAeLnsH9ObksOU/Krqsvhl5q/fTkiC1Uuu25Hk
+         XuFin5GIK4/SaDqDdHboVj2TtO8Fg25u+HlmLoLUOt9oaazAufwEVybKThHJnYxwnKuL
+         eHRk5PUPvFXibpwGEPGZGT6vJKejTl5JlE04ZvywTvp0MRzosiVp931ryNQKfJY8oLPi
+         xRu2ID0SH6guSD26r8Xzp6+nXbslfAa5iQMxk/ikcYrn7C2GUfF9litxsbcKu3ttBn3z
+         37mA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnh/JkVQfL9dKooGAg1xQX+wA4L62DwRMXy3zADpc77o87wN8Yw02MV07aHa9Cr+DpQQqT49Wdjkc9CrNazqwWakOor+KwPUUMkg==
+X-Gm-Message-State: AOJu0Yy3MJYRRCbB8BZlxxrhK7RXI+MQNJKztNYv0T4ZekQRLjdo6Nks
+	jJRehMwdlfHg/P1WPQD5w5m5rKptSoGzDyKtuXyBs+rLX7ak2LpFOxQTExyrZ/8=
+X-Google-Smtp-Source: AGHT+IFjTh3sALivWS8cyiG3P2VqGfa6WZ9uRwNWd0jWYgzVAeeUnrCZ0dIfl1hzkqKwPke1T7cB2w==
+X-Received: by 2002:a05:600c:56d6:b0:41f:f144:5623 with SMTP id 5b1f17b1804b1-421089cd2a7mr57708205e9.14.1716797144380;
+        Mon, 27 May 2024 01:05:44 -0700 (PDT)
+Received: from [192.168.0.2] (host-87-9-236-85.retail.telecomitalia.it. [87.9.236.85])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421089cc504sm100277335e9.40.2024.05.27.01.05.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 May 2024 01:05:43 -0700 (PDT)
+Message-ID: <fe9d08e4-fc47-461f-8715-98aed484535d@baylibre.com>
+Date: Mon, 27 May 2024 10:05:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,84 +76,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: i2c: Add driver for ST VD56G3 camera sensor
-To: Sakari Ailus <sakari.ailus@iki.fi>
-CC: Sylvain Petinot <sylvain.petinot@foss.st.com>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <hdegoede@redhat.com>, <laurent.pinchart@ideasonboard.com>
-References: <20240417133453.17406-1-sylvain.petinot@foss.st.com>
- <20240417133453.17406-3-sylvain.petinot@foss.st.com>
- <Zil1wiCcCdwZs5Df@valkosipuli.retiisi.eu>
- <d45a2ea1-bc2d-441a-b036-1da40290c6b3@foss.st.com>
- <c9b35dc4-6f52-48e2-8952-5a43c500f819@foss.st.com>
- <ZlQ2zymJguCipLMl@valkosipuli.retiisi.eu>
+Subject: Re: [PATCH v2 0/6] minor fixes and improvements
+To: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <noname.nuno@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, lars@metafoo.de, Michael.Hennerich@analog.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240522150141.1776196-1-adureghello@baylibre.org>
+ <751faef385f81f8a2dd0dcc2acd2d4519bebebe5.camel@gmail.com>
+ <20240525180631.13446abc@jic23-huawei>
 Content-Language: en-US
-From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-In-Reply-To: <ZlQ2zymJguCipLMl@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-26_09,2024-05-24_01,2024-05-17_01
+From: Angelo Dureghello <adureghello@baylibre.com>
+In-Reply-To: <20240525180631.13446abc@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Sakari,
+Hi,
 
-On 5/27/24 09:31, Sakari Ailus wrote:
-> Hi Benjamin,
-> 
-> On Mon, May 13, 2024 at 03:37:25PM +0200, Benjamin Mugnier wrote:
->>>>> +static int vd56g3_read_expo_cluster(struct vd56g3 *sensor, bool force_cur_val)
->>>>> +{
->>>>> +	u64 exposure = 0;
->>>>> +	u64 again = 0;
->>>>> +	u64 dgain = 0;
->>>>
->>>> Do you need the assignments? The values are assigned by cci_read() below,
->>>> right?
+On 25/05/24 7:06 PM, Jonathan Cameron wrote:
+> On Thu, 23 May 2024 14:45:01 +0200
+> Nuno Sá <noname.nuno@gmail.com> wrote:
+>
+>> On Wed, 2024-05-22 at 17:01 +0200, Angelo Dureghello wrote:
+>>> From: Angelo Dureghello <adureghello@baylibre.com>
 >>>
->>> Well initially, I didn't have those assignments and some checker
->>> complains (Honestly I didn't investigate the warning).
->>> I will double check and see if they are necessary.
+>>> After testing this driver, add some minor fixes and improvements,
+>>> as adding single channel variants support (ad3541r, ad3551r), also as a
+>>> preparatory step to bigger future improvements related to fast-rate mode
+>>> for this DAC family.
 >>>
+>>> Previous patches (v1, 3/3)
+>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-1-adureghello@baylibre.org
+>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-2-adureghello@baylibre.org/
+>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-3-adureghello@baylibre.org/
+>>>
+>>> Angelo Dureghello (6):
+>>>    dt-bindings: iio: dac: fix ad3552r gain parameter names
+>>>    dt-bindings: iio: dac: add ad35xxr single output variants
+>>>    iio: dac: ad3552r: add model data structure
+>>>    iio: dac: ad3552r: add support for ad3541r and ad3551r
+>>>    iio: dac: ad3552r: change AD3552R_NUM_CH define name
+>>>    iio: dac: ad3552r: uniform structure names
+>>>
+>>>   .../bindings/iio/dac/adi,ad3552r.yaml         |  43 ++++--
+>>>   drivers/iio/dac/ad3552r.c                     | 140 ++++++++++++------
+>>>   2 files changed, 128 insertions(+), 55 deletions(-)
+>>>    
+>> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 >>
->> Since I have smatch ready, I ran it without these initialization against
->> the latest media tree. I got these :
->>
->> drivers/media/i2c/st-vd56g3.c:403 vd56g3_read_expo_cluster() error:
->> uninitialized symbol 'exposure'.
->> drivers/media/i2c/st-vd56g3.c:404 vd56g3_read_expo_cluster() error:
->> uninitialized symbol 'again'.
->> drivers/media/i2c/st-vd56g3.c:405 vd56g3_read_expo_cluster() error:
->> uninitialized symbol 'dgain'.
->> drivers/media/i2c/st-vd56g3.c:407 vd56g3_read_expo_cluster() error:
->> uninitialized symbol 'exposure'.
->> drivers/media/i2c/st-vd56g3.c:408 vd56g3_read_expo_cluster() error:
->> uninitialized symbol 'again'.
->> drivers/media/i2c/st-vd56g3.c:409 vd56g3_read_expo_cluster() error:
->> uninitialized symbol 'dgain'.
->>
->> cci_read() is indeed not modifying its 'var' argument in the default
->> case of the switch [1]. Spawning these errors.
->> Adding a '*val = 0' in the default case would also fix it, but will
->> change the function behavior.
-> 
-> I think I'd add the assignment to cci_read(). This isn't the only driver
-> that's affected. In the best case smatch would be fixed to figure this out.
-> 
-> Any thoughts?
+> This series crossed with a series using
+> device_for_each_child_node_scoped()
+>
+> I've rebased on top of that. Was moderately straightforwards but
+> given last week I messed a similar change up completely please
+> check the testing branch of iio.git!
+>
+> The mess was all it the patch adding model_data
 
-IMHO adding the assignment to cci_read() is the cleanest way to handle it.
+Thanks for this, sure, will check.
 
-> 
-> Cc also Hans and Laurent.
-> 
 
--- 
+> Thanks,
+>
+> Jonathan
+
 Regards,
+angelo
 
-Benjamin
 
