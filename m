@@ -1,251 +1,137 @@
-Return-Path: <devicetree+bounces-69304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19E618CF815
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:26:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7903E8CF827
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:43:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FD371F21D2A
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:26:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 158E6B209C4
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE758BE7;
-	Mon, 27 May 2024 03:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924606FB0;
+	Mon, 27 May 2024 03:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UroemmQb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z5oKuML4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA3B6FCB;
-	Mon, 27 May 2024 03:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D47D4C85;
+	Mon, 27 May 2024 03:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716780395; cv=none; b=LPteHRgqCjpwXyBidxdOw5m95p+k5t0HkpH55bNS+iFmh2Y+V9lOdP41U++bBlzFkXRGuUGQciRCoJ2PCRfUtWUOAaEn94w10x2WNFW4If2gA0ScWcDRN7sjlBKRFsoWLvITXtWZdOfOr2a0hDvLLNy+xI7C8kfj2CmCn4WMJsI=
+	t=1716781421; cv=none; b=tMjDYA4beERmCQe5biVDLyty2/E1alwkmABAC6bYe1CtlT4wVnrIQ9MiiQe2Xdi8b6cd3xR7YRZuxijbpvOp8uNBqtvriYL1LCFBKg6sFCDECXmmznpQmP4AEWogoIAHJV+4A77hf1blrurQdVG9d76ZmYEbzh0nUNjfZZAhh70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716780395; c=relaxed/simple;
-	bh=sRnU5qC2PxVrGwCNhW2CRwScmAF/9srHVz76HkT1GDY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ba3DXN6A6DzQODg1Ss1kMrNjStnelRtPnFKiYSWO+rHCHXDdZyfqVIwrG4jASu1YslFWsbXFTDrw6JjJDz/jK1M0h7I+FKH+q/GnI0t+7gQoL0YT+nPpH4z5td6sbtcKxIRaYhCjppnR7tjinOptC8K7voilrMS6qgSu43HVap0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UroemmQb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 498CAC4AF08;
-	Mon, 27 May 2024 03:26:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716780395;
-	bh=sRnU5qC2PxVrGwCNhW2CRwScmAF/9srHVz76HkT1GDY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=UroemmQb1iS8M22O9HDplMfp2oH2nX7Ms//Park4TtfLTG0CrESsk617sABLDbNOC
-	 0vZRF7c2I5yn/crhT7WktLhW2ZYg08r5emUf++20sSSP1k9VQTOAHgX6rJZc8li754
-	 I7tXzNqfXYpObcaukBZNqpCS75ajwBmDPOJPUDqosQAyh9S+VJBVxEwI1X09aR/us3
-	 NqBsvb4ZLJSW3GHuhHM8rZSLTDqloJsqTJtoLmrA2200l0TEJ15UbyTcnRoVYL46Rh
-	 b6vs2RtthHO5z9pcW4ZxANh3ZyxHXi+6KkDXEJ5VAksC/K6/Qf+1SrntLAo5BfCBp7
-	 qLI7MWXn3vj5Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B0EEC25B74;
-	Mon, 27 May 2024 03:26:35 +0000 (UTC)
-From: Joel Selvaraj via B4 Relay <devnull+joelselvaraj.oss.gmail.com@kernel.org>
-Date: Sun, 26 May 2024 22:26:26 -0500
-Subject: [PATCH v3 3/3] Input: novatek-nvt-ts: add support for NT36672A
- touchscreen
+	s=arc-20240116; t=1716781421; c=relaxed/simple;
+	bh=53XFiw3wcH5MEHYvmgoOoQBcB9x5uThYREaPmL4h+tI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kpXzzQcGz14V0/R0CtUDL37T8f3JQzo/xX6WKrJqpqZ0HJYSP40pLbFpQfonlhghl7kEpjrG4pakRlavO3M57eOKrQoRkGGFdRpN/6HiLqZOfApoe/ednxYdi7AHBpOP0/WNWHZMeCqzWuvP9DhWTz9ut0hGKkma4osmIOQchr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z5oKuML4; arc=none smtp.client-ip=209.85.166.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3737b281d89so13548525ab.0;
+        Sun, 26 May 2024 20:43:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716781419; x=1717386219; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JRrRcXmuLZcVS0a1HI//2b0lm2ojNew43pXaiTtTIT0=;
+        b=Z5oKuML4msXzlF0gJWN8Gr/LCqzyGTGj7bmkLAczzn4ykIpoBk64OLOu/UiD0wAsQz
+         EZyWvjKOlY1zE7KUWDVqHRLpZ9CMhKc2EsxDellGShNCpC9KxfewtzrPWZdA0X8+vcSw
+         DzhgpZ8z9eWPBVEMqkdojlBXKMLRDPUFUHFEP4qqmPP94PKWxplu+zUpdkWNkHKVqKB1
+         Sp25yMMknNqcJfGUthnXLjp3yAgu7ig+TcSqoA5D+tMOd/ZTXd0JUs9Iw8TUjMYcTxfk
+         +d9Te43YrWhG+67YiWFno9cKYANztXmWfBOrBm7Jb5PcVtclvftJ5rDBiuuZBNLPvu88
+         CqKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716781419; x=1717386219;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JRrRcXmuLZcVS0a1HI//2b0lm2ojNew43pXaiTtTIT0=;
+        b=RHADU8GqFXDXXj7Qsw53KNFnbDp7O5TS84CGTr56WAfK3YzVPT2bgBqnb6N0iUlQc9
+         nYxhf01HvhL5s/ooPq/t903ePXpEBEGpceEBpGy4wimKPxZqL2LFGY2N1dB4m2MpEAgr
+         N0MFQCveVh3/3vyl9RXo2DX4bXBrSg2637t3FBOZiG+O8FacRz/Uslwrp8nHwpXdDXkP
+         hRDaE5o1ppxbMmOa2lmF6wEs9NaHieGL1Q1JWX5+u/QVi0R9drvbbxv2ZrOyKAwFfXtY
+         wug3GE1+nQYt0UzSMfxSmV8/N6Q1VDi6G8KkGaoyoMX4mnZplsfzYly3VUNtNo37CIj1
+         e9+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUO28xAHfh6WfoKYO1xtM7k5llEk+KhmfOk8JCFD7ostNPvIOVKIpHCZXWMqWHxh2rtC4ppiBBk256AVfE0L/GHWArsdqw7orVWUDd5zbqlsICWUun+W+jrhXuhovwhQJMYi2hP6rl6SvBb5veq6pKByR4b3ZU9E23tSUC/M9OoSEfkGtvf7A+ameY/zVc2nB6P48P4/eSmJrcT4ohvAV2BrIcvKg==
+X-Gm-Message-State: AOJu0YzoOt56PxQGGg1NTjr7yK+8M3svxb8CT9SzxYoC6+fmS1SpDA/2
+	vu45D88Tia3Z7S/q6TvMej8F93doGBkoRLQYSreODjQdP+4GmwpURp9lf9YFO7DDYuZaCusVmBo
+	9gw5+nH11NSDe1n9XiF+ePHPg3dE=
+X-Google-Smtp-Source: AGHT+IFer+okIhIMWyZ3KDB5sub/J3A98AWgoEcUO098+9PFGoUSKu3O2L2vhwhC/BxcGv8gjuJlt8qOcDZPXnhr1ww=
+X-Received: by 2002:a05:6e02:1c07:b0:371:252c:d8f6 with SMTP id
+ e9e14a558f8ab-3737b3032f7mr94193515ab.11.1716781419196; Sun, 26 May 2024
+ 20:43:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240526-nvt-ts-devicetree-regulator-support-v3-3-aa88d10ccd9a@gmail.com>
-References: <20240526-nvt-ts-devicetree-regulator-support-v3-0-aa88d10ccd9a@gmail.com>
-In-Reply-To: <20240526-nvt-ts-devicetree-regulator-support-v3-0-aa88d10ccd9a@gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- Joel Selvaraj <joelselvaraj.oss@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716780394; l=5304;
- i=joelselvaraj.oss@gmail.com; s=20240420; h=from:subject:message-id;
- bh=MB6mu8tW7G0nPCXhHpubqPGJ+o4YFgHR52Qhx/rofXY=;
- b=SdHqukimWtDJ9sPHoMQR0BVDdUPCUQol75wSA8aMy9UBE7zjfzP9wP/J0Y1CwdPukDdm+GIQe
- B49CcwhH0vUCbLKsbMew7ntMe02WY+vFGD0kJnRg/cHGWBtNDHY7aAd
-X-Developer-Key: i=joelselvaraj.oss@gmail.com; a=ed25519;
- pk=qT4gsuVtlPE0Dpr+tQA/Fumm7wzVP6qfeVaY+6pX04s=
-X-Endpoint-Received: by B4 Relay for joelselvaraj.oss@gmail.com/20240420
- with auth_id=165
-X-Original-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Reply-To: joelselvaraj.oss@gmail.com
+References: <1716458390-20120-3-git-send-email-shengjiu.wang@nxp.com> <4c53b063-ad12-405d-b088-9b992284ba08@web.de>
+In-Reply-To: <4c53b063-ad12-405d-b088-9b992284ba08@web.de>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Mon, 27 May 2024 11:43:28 +0800
+Message-ID: <CAA+D8ANu6S1vrmAD4FU2X7=9U-B6SwnZu245mu4dXTfgetjDEA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/5] clk: imx: clk-audiomix: Add reset controller
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel-janitors@vger.kernel.org, imx@lists.linux.dev, 
+	Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+On Sat, May 25, 2024 at 3:27=E2=80=AFPM Markus Elfring <Markus.Elfring@web.=
+de> wrote:
+>
+> =E2=80=A6
+> > The reset controller is supported by the auxiliary device
+> > framework.
+>
+> Would you like to add an imperative wording for an improved change descri=
+ption?
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/D=
+ocumentation/process/submitting-patches.rst?h=3Dv6.9#n94
 
-Extend the novatek touchscreen driver to support NT36672A chip which
-is found in phones like qcom/sdm845-xiaomi-beryllium-tianma.dts.
-Added devicetree support for the driver and used i2c chip data to handle
-the variation in chip id and wake type. Also added vcc and iovcc
-regulators which are used to power the touchscreen hardware.
+ok, will update it.
 
-Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
----
- drivers/input/touchscreen/novatek-nvt-ts.c | 78 +++++++++++++++++++++++++++---
- 1 file changed, 72 insertions(+), 6 deletions(-)
+>
+>
+> =E2=80=A6
+> > +++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
+> =E2=80=A6
+> > +static int clk_imx8mp_audiomix_reset_controller_register(struct device=
+ *dev,
+> > +                                                      struct clk_imx8m=
+p_audiomix_priv *priv)
+> > +{
+> > +     struct auxiliary_device __free(kfree) * adev =3D NULL;
+> > +     int ret;
+> > +
+> > +     adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
+> =E2=80=A6
+>
+> May the following source code variant be applied here?
+>
+>         int ret;
+>         struct auxiliary_device __free(kfree) *adev =3D kzalloc(sizeof(*a=
+dev), GFP_KERNEL);
 
-diff --git a/drivers/input/touchscreen/novatek-nvt-ts.c b/drivers/input/touchscreen/novatek-nvt-ts.c
-index 224fd112b25a9..7a82a1b09f9d5 100644
---- a/drivers/input/touchscreen/novatek-nvt-ts.c
-+++ b/drivers/input/touchscreen/novatek-nvt-ts.c
-@@ -31,9 +31,6 @@
- #define NVT_TS_PARAMS_CHIP_ID		0x0e
- #define NVT_TS_PARAMS_SIZE		0x0f
- 
--#define NVT_TS_SUPPORTED_WAKE_TYPE	0x05
--#define NVT_TS_SUPPORTED_CHIP_ID	0x05
--
- #define NVT_TS_MAX_TOUCHES		10
- #define NVT_TS_MAX_SIZE			4096
- 
-@@ -51,11 +48,18 @@ static const int nvt_ts_irq_type[4] = {
- 	IRQF_TRIGGER_HIGH
- };
- 
-+struct nvt_ts_i2c_chip_data {
-+	u8 wake_type;
-+	u8 chip_id;
-+};
-+
- struct nvt_ts_data {
- 	struct i2c_client *client;
- 	struct input_dev *input;
- 	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data regulators[2];
- 	struct touchscreen_properties prop;
-+	const struct nvt_ts_i2c_chip_data *chip;
- 	int max_touches;
- 	u8 buf[NVT_TS_TOUCH_SIZE * NVT_TS_MAX_TOUCHES];
- };
-@@ -139,9 +143,23 @@ static irqreturn_t nvt_ts_irq(int irq, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
-+static void nvt_ts_disable_regulators(void *_data)
-+{
-+	struct nvt_ts_data *data = _data;
-+
-+	regulator_bulk_disable(ARRAY_SIZE(data->regulators), data->regulators);
-+}
-+
- static int nvt_ts_start(struct input_dev *dev)
- {
- 	struct nvt_ts_data *data = input_get_drvdata(dev);
-+	int error;
-+
-+	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators), data->regulators);
-+	if (error) {
-+		dev_err(&data->client->dev, "failed to enable regulators\n");
-+		return error;
-+	}
- 
- 	enable_irq(data->client->irq);
- 	gpiod_set_value_cansleep(data->reset_gpio, 0);
-@@ -155,6 +173,7 @@ static void nvt_ts_stop(struct input_dev *dev)
- 
- 	disable_irq(data->client->irq);
- 	gpiod_set_value_cansleep(data->reset_gpio, 1);
-+	nvt_ts_disable_regulators(data);
- }
- 
- static int nvt_ts_suspend(struct device *dev)
-@@ -199,9 +218,37 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	if (!data)
- 		return -ENOMEM;
- 
-+	data->chip = device_get_match_data(&client->dev);
-+	if (!data->chip)
-+		return -EINVAL;
-+
- 	data->client = client;
- 	i2c_set_clientdata(client, data);
- 
-+	/*
-+	 * VCC is the analog voltage supply
-+	 * IOVCC is the digital voltage supply
-+	 */
-+	data->regulators[0].supply = "vcc";
-+	data->regulators[1].supply = "iovcc";
-+	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(data->regulators), data->regulators);
-+	if (error) {
-+		dev_err(dev, "cannot get regulators: %d\n", error);
-+		return error;
-+	}
-+
-+	error = regulator_bulk_enable(ARRAY_SIZE(data->regulators), data->regulators);
-+	if (error) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		return error;
-+	}
-+
-+	error = devm_add_action_or_reset(dev, nvt_ts_disable_regulators, data);
-+	if (error) {
-+		dev_err(dev, "failed to install regulator disable handler\n");
-+		return error;
-+	}
-+
- 	data->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
- 	error = PTR_ERR_OR_ZERO(data->reset_gpio);
- 	if (error) {
-@@ -225,8 +272,8 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	if (width > NVT_TS_MAX_SIZE || height >= NVT_TS_MAX_SIZE ||
- 	    data->max_touches > NVT_TS_MAX_TOUCHES ||
- 	    irq_type >= ARRAY_SIZE(nvt_ts_irq_type) ||
--	    data->buf[NVT_TS_PARAMS_WAKE_TYPE] != NVT_TS_SUPPORTED_WAKE_TYPE ||
--	    data->buf[NVT_TS_PARAMS_CHIP_ID] != NVT_TS_SUPPORTED_CHIP_ID) {
-+	    data->buf[NVT_TS_PARAMS_WAKE_TYPE] != data->chip->wake_type ||
-+	    data->buf[NVT_TS_PARAMS_CHIP_ID] != data->chip->chip_id) {
- 		dev_err(dev, "Unsupported touchscreen parameters: %*ph\n",
- 			NVT_TS_PARAMS_SIZE, data->buf);
- 		return -EIO;
-@@ -277,8 +324,26 @@ static int nvt_ts_probe(struct i2c_client *client)
- 	return 0;
- }
- 
-+static const struct nvt_ts_i2c_chip_data nvt_nt11205_ts_data = {
-+	.wake_type = 0x05,
-+	.chip_id = 0x05,
-+};
-+
-+static const struct nvt_ts_i2c_chip_data nvt_nt36672a_ts_data = {
-+	.wake_type = 0x01,
-+	.chip_id = 0x08,
-+};
-+
-+static const struct of_device_id nvt_ts_of_match[] = {
-+	{ .compatible = "novatek,nt11205-ts", .data = &nvt_nt11205_ts_data },
-+	{ .compatible = "novatek,nt36672a-ts", .data = &nvt_nt36672a_ts_data },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nvt_ts_of_match);
-+
- static const struct i2c_device_id nvt_ts_i2c_id[] = {
--	{ "NT11205-ts" },
-+	{ "NT11205-ts", (unsigned long) &nvt_nt11205_ts_data },
-+	{ "NT36672A-ts", (unsigned long) &nvt_nt36672a_ts_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, nvt_ts_i2c_id);
-@@ -287,6 +352,7 @@ static struct i2c_driver nvt_ts_driver = {
- 	.driver = {
- 		.name	= "novatek-nvt-ts",
- 		.pm	= pm_sleep_ptr(&nvt_ts_pm_ops),
-+		.of_match_table = nvt_ts_of_match,
- 	},
- 	.probe = nvt_ts_probe,
- 	.id_table = nvt_ts_i2c_id,
+ok, will update it.
 
--- 
-2.45.1
-
-
+best regards
+Shengjiu Wang
+>
+>
+> Regards,
+> Markus
 
