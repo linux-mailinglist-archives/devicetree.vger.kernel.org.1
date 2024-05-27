@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-69517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13E78D00A1
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:58:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E62218D00A9
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:58:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7CD01C228D1
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:58:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1512A1C22962
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A91015FA66;
-	Mon, 27 May 2024 12:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6995115FCF2;
+	Mon, 27 May 2024 12:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="us2JMFZf"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="i9Wk1uEA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 143FE15F3F1
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:56:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E94915F406
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716814613; cv=none; b=Blea9ZDYjRyXVCCTBOf3LYK8awp0aR8xs5wgf5dzMnk3wYOPvJ0KoCeOcSaVjQC+Y4vlxdIUkBi2Lw5+d9qmP7GTmIzqzJqZWu3OZj53Bv5cWyD69UmRw1ELFTdh01ZnZr+xFE7mIOHskxUZA+TDoN79mXtsA7ARMYqTQeqUh2w=
+	t=1716814615; cv=none; b=fEEoAhvwPPDkapNs97c2nM94QJl1RhpmrWySqlafBnrWcSBg4FGvQuq4r5lk3ni33CoH/fRWhqCiEcWwMQBHUme40lbiWYEZjCYojBHpnrUBFinAp0uoBdFgBrRP0eX901mZsfAxfSv1jb5UNo5/92qxv10Ljc8/KXk05NLDsU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716814613; c=relaxed/simple;
-	bh=H7pseenH3L02JxfV7omW/31iV86Lwn0PZV9E6T5f71c=;
+	s=arc-20240116; t=1716814615; c=relaxed/simple;
+	bh=VYDo6jzomkuy4JdOPo08LJWfL+6TdFoDBjONKt90Fys=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NdlVS0yoanUrUV4xTlwAm6RgVgY0K85lmHe65pzlw3ELfaIHSVzXn7ZAr0aiTzFSrB2rME2snyrFos8w8DoAAZJEuA7Ac7b83bWFIwwq3PxL+zp98fY7hs6jtdtNEImtQGhpdpClwQwiU2EhZmgrJrqq71Sm+84ur0xiCs5vTsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=us2JMFZf; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:To:Cc; b=DmeFWl9oneicxQ9WbOB2uKPnNlDr5VbqSo2tutjHsnckx3Xc3alGMbrcVloYKZkE7G4qvkCxhEZkVbCkpF3YR5yqlw7Y3258OmTj2zN4z0nE/UnqaJphcYppRltaANBy3Q1zJt5i7zYuhZ6VChYBOA30bL9XNQSWo5jUG67JDcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=i9Wk1uEA; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4211245e889so9590575e9.2
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:56:50 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4202ca70287so32184935e9.3
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:56:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716814609; x=1717419409; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716814610; x=1717419410; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=F2tGSXM64q5CkEofoukaYDnOH1U7xvQ9rdr6WJfwwYM=;
-        b=us2JMFZfcCsrXbXu+DgepLB03hPwvWVNaes8P+gZZvWmtnI2hALbF80CgWNS+SZX++
-         Wgj/+fHXbpdhKaiYRUJSAyjlfE8FosBGfqirA775Pdmkoq13AvtUQ+RQTxoi+0PsxHlv
-         gu/3zMa9h/UGxDkxxst1e2/m8JRZbE0epJzDQpjJ84B5k1vx5OCjK+TMjfafxSqImOWU
-         lVoeYJtVk+LWjBRqLhB2GCpVmNuRVK88jiePIXChPIYMDvD7sqL4fte6MvDHgQduq7EK
-         x1niuLBz6N7tXXRl9jU4ADIcWJpleWqhC1lNZ4QBFA8M/4rNRi9OJog7kX4Q9zmv2fDj
-         xNGg==
+        bh=hwqjl/ua5BMkegCLuGyA1/eY3rbR4AbTFjr6wje8pn4=;
+        b=i9Wk1uEArmXGRsSaTravi7w/ya1pxnRpXvpQIb8CigF0qN2NCkBnRzE0j+H0ftpKGZ
+         JajFpZ4CKYP699OtDIfzZGb1CrPAF6x4sqhPZU0CeghIvF/DbX4qXj+QJHGeHoFULgo3
+         1ZMrjAZ9PmOE5rW2JdY/4qNgSmcytrXO7+lkp9TsCEZEpQ6tdfJYE8Cg76UuiP3dp+Jd
+         uxoKkQ79eiw9Uw76DngKuKXmgRWPTHS9UdmwbXHm4P4dRwm9Q/Ft2XXwYxxb1OG7OCsv
+         pn9meMnR1NpvyspwF2QIktmYANmthaEPkr0UpNxxdbR+1s7GBanTkxZs0nnKktxVdLEO
+         Jy3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716814609; x=1717419409;
+        d=1e100.net; s=20230601; t=1716814610; x=1717419410;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=F2tGSXM64q5CkEofoukaYDnOH1U7xvQ9rdr6WJfwwYM=;
-        b=id2yM1LSkWF2yXVNlA80M/IhUN+TlcH+pqKHYTIJea1HHRsbwAaYlAnXHTRoFHkcxx
-         Rfbqcp0vEqIRi07RWuiSDRevB76VkPl+gvA4fpk6QBKJT/yP2wtz5UbUy609htFvTeAA
-         6bkc98MmBAZTMylK+o948Vs0SzC02E6XK/6Q6TkZqDdztHNu31ntOvGjF9c2zm977x3F
-         9Hr/H52/tu+qaMIcysrsAm1kOIqMx5psUAL/TY4tKHRxSjqLmEQGTeioTpGYatWcTV4t
-         ce1ed07WehI3ZQ99+TZPhdiOMV0I7BAFAHHl1kHfEfms+MF35VBy7NOEGTijsvB2qty0
-         nu4g==
-X-Forwarded-Encrypted: i=1; AJvYcCXb6i2S/3yz1ZjMFLbIPIIk820briQ52T5iC/RvfmO9X9MBKD48HronUosvCLR1NQHPNRDWBD1OEjhHHqDefG8dwAJO5FK5RpXocQ==
-X-Gm-Message-State: AOJu0YzpnR66nuoi69OMScMZhdljllj38H7EFHw3UWdaCgNf9zcBguRa
-	qB8+HxxVEQyZT5I5hIZ5Mh5MHLxfntk0HZbg4QR3eRS3kYqMOr9onnCu+DdfSo8=
-X-Google-Smtp-Source: AGHT+IFiFkZN2ztJz4aq4ARQTndSRHhYuJJSLUpwf/uPp1OX4TcFw1jCbi8J6K1zQHHsp2lLkGM7tw==
-X-Received: by 2002:a05:600c:6b0e:b0:41b:285:8417 with SMTP id 5b1f17b1804b1-42108a2e796mr66785555e9.40.1716814609554;
-        Mon, 27 May 2024 05:56:49 -0700 (PDT)
+        bh=hwqjl/ua5BMkegCLuGyA1/eY3rbR4AbTFjr6wje8pn4=;
+        b=eVY2vy2aTJLAkqGhHdEGCT3hvLH4/v7xWoTFjgWMWGoWN+GQGKXFEQjqLD6QP1mrye
+         yp+5Z6IJXt1ZuYb/yWuYAvrooRR9Du7XqmpXvQ9tCgOaEb3YowDWncVtYTaKHJgkF3r9
+         hpSMPuWpfY7P6lH3YjZMGbSdxO4TgNg7W1nYnuGFGBcCnDbFsYp9Qi7qgspIBSJr8eng
+         LK26yxgIWSatHKkrTTSOcLzffoKwPMn6U2fGwsZ51xP8FnggcvLFvxOCz6/XMXDsYAAT
+         NZVfgW78Essxo9rgViBGFXafVAG+e+viJtT+r5J8RL2kC3gUTN+AK1iOdEGw+Fm78MdK
+         hbsw==
+X-Forwarded-Encrypted: i=1; AJvYcCUSGcrE6wIzTWPKzfOSGjnSpCOQiKV5fgCacN6Ez6ZAXs3EAk7lAuuAf/6h+5OnQR7KmLCQSaji2rNiRvIQ7rIcY/nArFvtdITNwg==
+X-Gm-Message-State: AOJu0YzPLxZRbpMo8XLtE5FFEXJc/ubCoT6XXhPCvYEr1PwHBhM1n34x
+	at7mmRtSrVC9gOB+lTqZPIYq9ZnycIFq1FwtGfAYx9rPA8FBZ0xHQPfVJZ2QIWA=
+X-Google-Smtp-Source: AGHT+IEkkOnfkm2D13BrEQ3/361Fm2xiC1eRGcXiFJMGscUWHvqf4qBhm46RUioe2i98CYXq1xagcQ==
+X-Received: by 2002:a05:600c:4fc2:b0:421:1611:cd8a with SMTP id 5b1f17b1804b1-4211611ced2mr17280225e9.4.1716814610493;
+        Mon, 27 May 2024 05:56:50 -0700 (PDT)
 Received: from [127.0.1.1] ([2a01:cb1d:75a:e000:c322:131e:ff9d:ef41])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100f64f98sm138753635e9.24.2024.05.27.05.56.48
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100f64f98sm138753635e9.24.2024.05.27.05.56.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 05:56:49 -0700 (PDT)
+        Mon, 27 May 2024 05:56:50 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 27 May 2024 14:54:55 +0200
-Subject: [PATCH v10 05/15] firmware: qcom: scm: make qcom_scm_assign_mem()
+Date: Mon, 27 May 2024 14:54:56 +0200
+Subject: [PATCH v10 06/15] firmware: qcom: scm: make qcom_scm_ice_set_key()
  use the TZ allocator
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240527-shm-bridge-v10-5-ce7afaa58d3a@linaro.org>
+Message-Id: <20240527-shm-bridge-v10-6-ce7afaa58d3a@linaro.org>
 References: <20240527-shm-bridge-v10-0-ce7afaa58d3a@linaro.org>
 In-Reply-To: <20240527-shm-bridge-v10-0-ce7afaa58d3a@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -98,21 +98,21 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  kernel@quicinc.com, Andrew Halaney <ahalaney@redhat.com>, 
  Deepti Jaggi <quic_djaggi@quicinc.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2241;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2079;
  i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=9Erqvqgiad5rjTJsNR0YSbu/CRguRxvgVp+lpYCpIVk=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmVIMIKOO9v8eTMGirexp87ho1NlUlhkeO/Hz9j
- WAf+2zXRZeJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlSDCAAKCRARpy6gFHHX
- crGMD/0YS7UnmIE3KqMGN3f/lgIUFTePpK9qvRMHBPLj2Dpag/edaQyVnec1ocNJlO8pz/bNR03
- UdWI8Po0hrZN8wLxgwxiAytFfl+Sa/aJ99bbZjwnd7nk9o8icNvkBmE6wtg3OFHSx4rJspet0cf
- tD7cJ93DyEg8nVqzSw4anW94zC0NczKotQmHBvEmXzuITPwUmAsIVjey3it0QaXigk3k1LN4yLj
- pQmOTt0CINtQexASpTZAFvC++O0u708QBAU12SjPXB+9vNWpd/9OHS/P1Sp3ISzJqQP37QH+Ozz
- opcFF0t5siyZ5FgdRvui5YOcoIMdAmy1i4XhIqlAo5+UlhqsOqrAvV218vnNdsJFooB8Mm162Ga
- lqRB/8qrODadaf4jJY/5k2/mkL7jcCOZw9eFJQfnDNN8VMZdry4pcX/nnYDGMwgPV2I/1/xxCm3
- qbbCV1RsuS56M2JZtdWxrbPwwvxPlAdCaRm9nmC7rPuKHPg38FoEglA7uz8iLYLSSSvw7CdUVP0
- L0KLtJGnM6v8AFX0lR0wQ6ka+np8QNJYiU2/rLCL7QWAEXNgTDe2MIICEUkrR/RH05lP3cGml7a
- x6R0LfAwyWSeue/g49j07ahDu21bvrhvd/+tgJ63nVLSILaYCqg0v2LVevZbxkLcYmL99Ifhy3L
- 6DqEfDKi8bRUI8Q==
+ bh=MwBEmBbakFP8mlp72MFfpWCULQKICitWzxgwxI2nn+U=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmVIMJUy60Czjqag7xEYc7ahX2YHMBSOfNGP/+O
+ 3e+knl2ozuJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlSDCQAKCRARpy6gFHHX
+ cpb7D/4k0RoNmUPSLf9pVkBFfOLzL5VCbdT/rLt9zoANLGewCzYTlfvevPcAPxYcnPdVNxNOOsS
+ 3VXMio/WlodYtrHhKM1jf3/YJxMis4vXMvQheuHxFiBah7735lA0IDUmZV0Y9SBMLd8XMYbzLIp
+ 05gFaSIZkhvLVzzRNquuPq41VZpPpHFZnK2124ftvaesthOzdGPenn3F4MMMHunTtIaURjWEmJe
+ 5exqKcCw8mtxtQhVw9VngQROJKUIE9xTf/8I89j0ITxquPXgPawilUvC3imwaIYv5o92UN75oyZ
+ het5o9/XtuuGCnPl0dw8gA4hcOe8SJiZDoQUVAXp8/DBlW0JpsbnWmcioV8DfYHq5pHy+Xp/Ogb
+ FTbgrA604bdVrYMxp3NBb/+ciCfiJEzUsTOQBbQ77KJblwh6ga81EPQlvAXriK8lKFKhOAVcpab
+ q2kHrKK2NqesBOqKjrJaT1IjGe7jDA921eHyEAXZr0qw27EWYtt43O+7e3s5dyB0fBwU8TFr4ra
+ SIlURWmItONYJRVfOhu4IzwRq74cpznca1b5sIksYOPsU0e4M4VNUTazf1rt1WBfvGGGrb/CnlG
+ nEgnrJBy5fujQNRDlszNtrIhBemtxfigF2MQZGxyYpe6pzZ301OCp2a2KX0+ZVlntNF+QuKMQm0
+ +uP6Ntt5HyVprvg==
 X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
  fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
@@ -127,60 +127,51 @@ Tested-by: Andrew Halaney <ahalaney@redhat.com> # sc8280xp-lenovo-thinkpad-x13s
 Tested-by: Deepti Jaggi <quic_djaggi@quicinc.com> #sa8775p-ride
 Reviewed-by: Elliot Berman <quic_eberman@quicinc.com>
 ---
- drivers/firmware/qcom/qcom_scm.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/firmware/qcom/qcom_scm.c | 21 +++++----------------
+ 1 file changed, 5 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index 1d207c14afc8..ea4d71bb0ad3 100644
+index ea4d71bb0ad3..2c350de1df07 100644
 --- a/drivers/firmware/qcom/qcom_scm.c
 +++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -6,6 +6,7 @@
- #include <linux/arm-smccc.h>
- #include <linux/bitfield.h>
- #include <linux/bits.h>
-+#include <linux/cleanup.h>
- #include <linux/clk.h>
- #include <linux/completion.h>
- #include <linux/cpumask.h>
-@@ -1019,14 +1020,13 @@ int qcom_scm_assign_mem(phys_addr_t mem_addr, size_t mem_sz,
- 	struct qcom_scm_mem_map_info *mem_to_map;
- 	phys_addr_t mem_to_map_phys;
- 	phys_addr_t dest_phys;
--	dma_addr_t ptr_phys;
-+	phys_addr_t ptr_phys;
- 	size_t mem_to_map_sz;
- 	size_t dest_sz;
- 	size_t src_sz;
- 	size_t ptr_sz;
- 	int next_vm;
- 	__le32 *src;
--	void *ptr;
- 	int ret, i, b;
- 	u64 srcvm_bits = *srcvm;
- 
-@@ -1036,10 +1036,13 @@ int qcom_scm_assign_mem(phys_addr_t mem_addr, size_t mem_sz,
- 	ptr_sz = ALIGN(src_sz, SZ_64) + ALIGN(mem_to_map_sz, SZ_64) +
- 			ALIGN(dest_sz, SZ_64);
- 
--	ptr = dma_alloc_coherent(__scm->dev, ptr_sz, &ptr_phys, GFP_KERNEL);
-+	void *ptr __free(qcom_tzmem) = qcom_tzmem_alloc(__scm->mempool,
-+							ptr_sz, GFP_KERNEL);
- 	if (!ptr)
- 		return -ENOMEM;
- 
-+	ptr_phys = qcom_tzmem_to_phys(ptr);
+@@ -1218,32 +1218,21 @@ int qcom_scm_ice_set_key(u32 index, const u8 *key, u32 key_size,
+ 		.args[4] = data_unit_size,
+ 		.owner = ARM_SMCCC_OWNER_SIP,
+ 	};
+-	void *keybuf;
+-	dma_addr_t key_phys;
 +
- 	/* Fill source vmid detail */
- 	src = ptr;
- 	i = 0;
-@@ -1068,7 +1071,6 @@ int qcom_scm_assign_mem(phys_addr_t mem_addr, size_t mem_sz,
+ 	int ret;
  
- 	ret = __qcom_scm_assign_mem(__scm->dev, mem_to_map_phys, mem_to_map_sz,
- 				    ptr_phys, src_sz, dest_phys, dest_sz);
--	dma_free_coherent(__scm->dev, ptr_sz, ptr, ptr_phys);
- 	if (ret) {
- 		dev_err(__scm->dev,
- 			"Assign memory protection call failed %d\n", ret);
+-	/*
+-	 * 'key' may point to vmalloc()'ed memory, but we need to pass a
+-	 * physical address that's been properly flushed.  The sanctioned way to
+-	 * do this is by using the DMA API.  But as is best practice for crypto
+-	 * keys, we also must wipe the key after use.  This makes kmemdup() +
+-	 * dma_map_single() not clearly correct, since the DMA API can use
+-	 * bounce buffers.  Instead, just use dma_alloc_coherent().  Programming
+-	 * keys is normally rare and thus not performance-critical.
+-	 */
+-
+-	keybuf = dma_alloc_coherent(__scm->dev, key_size, &key_phys,
+-				    GFP_KERNEL);
++	void *keybuf __free(qcom_tzmem) = qcom_tzmem_alloc(__scm->mempool,
++							   key_size,
++							   GFP_KERNEL);
+ 	if (!keybuf)
+ 		return -ENOMEM;
+ 	memcpy(keybuf, key, key_size);
+-	desc.args[1] = key_phys;
++	desc.args[1] = qcom_tzmem_to_phys(keybuf);
+ 
+ 	ret = qcom_scm_call(__scm->dev, &desc, NULL);
+ 
+ 	memzero_explicit(keybuf, key_size);
+ 
+-	dma_free_coherent(__scm->dev, key_size, keybuf, key_phys);
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(qcom_scm_ice_set_key);
 
 -- 
 2.43.0
