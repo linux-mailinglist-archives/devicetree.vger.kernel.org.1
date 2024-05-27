@@ -1,294 +1,178 @@
-Return-Path: <devicetree+bounces-69349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A2F8CFB05
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:08:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3448CFB17
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D360280F43
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:08:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49AD2B2056C
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE2456470;
-	Mon, 27 May 2024 08:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4893B298;
+	Mon, 27 May 2024 08:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lh2gEfGI"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kSPol2IA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFE14779F
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:07:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19E6C3D548
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716797266; cv=none; b=L23h70Q5Wtqlt4tgjP7PqT+3lsOpll1CQMPzwEYOmU4iH4RcpgbcBBJHk8shN6kzZaideCeXiREA68+g9r24H6WTeT4MzBwYNQdge3qVJxHheB3spCcl8Fak1gKNg8DD2/secGTtIMLtEywcyQi7qcsR51sqSnzyTv2OJpnjKMU=
+	t=1716797689; cv=none; b=pzmbFVmyVv23VC5Mzbs7EkqhMXhdCip0T5gRD220yiIYpr+IdNHpnLrs4iPocBmSjaDYQFCGMfrz9fgvOHsgtYPN8jfTKd6GnOFNxz+O36CQAAjyuTiTqZDJgpyXAyvoiCTdKcIhj7Cesv4kSuFof4rzkXiTt0G7skfEFGlGsJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716797266; c=relaxed/simple;
-	bh=XI2FDb/7NtFHwP6ncH4VK34anbbKyDSEs2qwvfVMI3g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=srXVFLpmM3GfT4Ea2h9LtegJAKjNFzcSlLyWlWgk7thpmdlx4mjhhkEItN/dL51g6EA/EWtWZFcgbFMmtPjwPL50KvPYP7U3OfaWJZVtPsGt1ukZhJj1MNFH2bBaVv9isAYBYm0ALliNEipFfadXqPxwiUqPJHUU97wknZlnUoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lh2gEfGI; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5785199e0d6so3777320a12.2
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 01:07:44 -0700 (PDT)
+	s=arc-20240116; t=1716797689; c=relaxed/simple;
+	bh=lsx7EwUwBi3NvHqO1utE290g0jz7B/NyZB8DGC2Ks9g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pEpSUox2cEQkT6wXezf32rDHQWSlOp6s6i33ObLEfTftv170j+suKb0tUEUUz4hgIkHmEGlrdm5eGQl+lLppewj6McP9/96t8Cs8i06gatUV3hVu1dJF+OR01Mo3eG+g60QiKtJsMGRtlqTBsXMCFtVhjTTqq1I6eQkW8/UjaHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kSPol2IA; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2e968e77515so22099841fa.0
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 01:14:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716797263; x=1717402063; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w794Jc9ulQoga5+/dsXAFbxB9u1U937YIUKTLLXw2s4=;
-        b=Lh2gEfGIng01ToyPe7ZDFfM5aYQoF2H/SId04ePgDSpiuj9SHxe9MnvXaQEDJAGbFo
-         +xoQ5SQY10oRHkge0yVkYYxjjwni7pFlJrgguivcKs/y8sV16/HN8/6ZbsEvs3bOOqhs
-         xPVigwxooGvKCKicBFiD0LI9sbr0/uvAbQVFGIr7hAhUpnsiRWvU7Fdh/ZF+9+ocoXO/
-         cR5coEcjmzNLLWZkJGbuHnXYlz0k3CQ8mUu6Mgl95YsSJ7R7oBHtKZzzwQwUCDYmTKvM
-         heiB2DEa1jjUNgIT2Jlw/AGhxcCMWxHZsaOp2xPa5NrnspSb2HnHvIAE1eqWj6exfocs
-         H5kA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716797685; x=1717402485; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U9TONvTEWThGczkgWTi4O6+TwYpFpcfs3Yxs9Jjw9zo=;
+        b=kSPol2IA2xiMjgdGFJhhfMWXFP/aXTGwmOwGXnjbVObp2W5nj48gH9f2ejpCb29crH
+         zEEkQoc3E4tdkbeQVIyJcsE75ZZkSwz3mdW7N4Ez48hBnBxm9ExAcGUtPNT+1Gq1ktEw
+         S0qRofu48vzmkt3utEjyMXjdmQMhsLWjfi/akKenyyGWMH+pe+belC60EpRcR+Uq0Z6m
+         HSIIQ6sFs90QPhuMF1AcT/myDDBowxZ8EvP9z6u4pTRXuSdMjJoDYmYPW+rGspShd8ql
+         MjePuEGAFPJPXVwCB+zvq6k48hg2SCw1k97UEx6JPjm2llQ+xPmZgxuuSC6sbzx7w80P
+         E44g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716797263; x=1717402063;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w794Jc9ulQoga5+/dsXAFbxB9u1U937YIUKTLLXw2s4=;
-        b=jgUk1yqVxgjJeqS8kmvRsQ+SepNEWUfiTHWkjncJY3LEgUif9wqk7/m6JmRYS3kbXY
-         5ThhDRhKPmLxvY3xe+7UydauWFHjgdVQuMREPYmmzysTl8dEeUos3PHEtU60MuHJ+tEU
-         C3DujEJnCScnAtW4o2GP1aqzWNUsty4B6aemSs+br6V9WWDbatPYMrJ0lb1DrEMvRDOX
-         U/1JabVyVd3qU9cSHKXyYJGmZJMifouewqp9JnZpqdOUaU46XCHG2/6X+qvSBwGN1Q6I
-         LqoepNt8+daYivtKJm375T10EZ6O7r4y656KLPihHZjzvZVJE7RFRWBCXlcUzgFDZWqk
-         Fuxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUZhmrlgllz/0db+tDn9mJV7kN4FKFz+j+0azG4r1dvi0hZmCC1AMn5BDo/PCGCsmySPO12faFtyip3VoaWusn4G0HRb3pIKnxp6Q==
-X-Gm-Message-State: AOJu0YwGq+X0ZlVOXBG74AntVq1E4OJtvqorkLzwIdK7JqQpnsgmvC6g
-	3OlDLEwA+L7OA8Lwz+xreA1NjXGd/gol5QsF3DK/scN/pCqzXvDUnAMuoi60n5w=
-X-Google-Smtp-Source: AGHT+IHO6xpHvKtn4O43UeuIe2iUm+SXjZCQWp8L1B2yzeSGdV4oZrBT948cCyAZlkVeAr4aTiA9Ww==
-X-Received: by 2002:a50:c2d2:0:b0:578:42fb:a4d with SMTP id 4fb4d7f45d1cf-578519aa3ffmr8537851a12.30.1716797263231;
-        Mon, 27 May 2024 01:07:43 -0700 (PDT)
-Received: from [127.0.1.1] ([188.27.161.69])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579d30b82a8sm1240893a12.79.2024.05.27.01.07.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 01:07:42 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Mon, 27 May 2024 11:07:29 +0300
-Subject: [PATCH 3/3] arm64: dts: qcom: x1e80100-qcp: Add pmic-glink node
- with all 3 connectors
+        d=1e100.net; s=20230601; t=1716797685; x=1717402485;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U9TONvTEWThGczkgWTi4O6+TwYpFpcfs3Yxs9Jjw9zo=;
+        b=MDGW7K7yYLBcZM1/73SKUKTpMWVylK1clCmRMOG02b2nICq5IrKIneDRRCBRQD+lD6
+         8o3UXRxiMukIxCtStHMGJLPMpx+ZLGAw3C2tceXuhECSjGdZyK20JboJOGgwzQhTPb18
+         noX3jWXaow+KxmGAfNiP8bx8Ud2GSntwokJ66I8SeGfSXoIgwkcwNDN+D8Ypquv/+tIs
+         wOEaJxE6qZJu87K+9OVOnHfOKoFnglDEmkeot7khl8WOm8IGVUCB2Rvavz8FNSyOqHzt
+         eCPkB5Scp1k5SxhBkRiA0layz52xc1gRBWu5Jd1vfJrb6yBci8xxKkBbf8vG4ukUfeoL
+         IkOA==
+X-Forwarded-Encrypted: i=1; AJvYcCVEIzNxnagglq4YHKcIWSjXeHAEh25U2185N9EnBA+Cc/tJm2zwpVJOEMf8a63hGyJbtY/ZankmSAFKBVzAhBy4aDlr9e2cRe2A8A==
+X-Gm-Message-State: AOJu0Yy5x0F+oL2C4Kr7FXOXTAukAEBFJOU84B4W3S9hWiGhxHK5Te2G
+	Q9o5TT2hus6JTav3VRuv82v3/lQCWcEvy5yLuRInbYJDSE0kIzF0892SU2qHS+U=
+X-Google-Smtp-Source: AGHT+IE5hwvA+dnXZp0Ce0d7BlZoXZS8BtrFd0HTMRigsC5U6EqzAEtorNHmX+hus94f/jH5p+ygFg==
+X-Received: by 2002:a2e:9819:0:b0:2e9:6d3e:e91f with SMTP id 38308e7fff4ca-2e96d3ee9b2mr28178891fa.52.1716797685169;
+        Mon, 27 May 2024 01:14:45 -0700 (PDT)
+Received: from [192.168.27.173] ([77.205.21.89])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4210896fc8asm100562585e9.13.2024.05.27.01.14.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 May 2024 01:14:44 -0700 (PDT)
+Message-ID: <bb07e774-ba80-4fc5-a57e-ad5ef6360c32@baylibre.com>
+Date: Mon, 27 May 2024 10:14:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/6] dt-bindings: thermal: mediatek: Rename thermal
+ zone definitions for MT8186 and MT8188
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Nicolas Pitre <npitre@baylibre.com>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
+References: <20240524-mtk-thermal-mt818x-dtsi-v5-0-56f8579820e7@baylibre.com>
+ <20240524-mtk-thermal-mt818x-dtsi-v5-1-56f8579820e7@baylibre.com>
+ <20240524-concerned-fritter-262f5e16293e@spud>
+Content-Language: en-US
+From: Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <20240524-concerned-fritter-262f5e16293e@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240527-x1e80100-dts-pmic-glink-v1-3-7ea5c8eb4d2b@linaro.org>
-References: <20240527-x1e80100-dts-pmic-glink-v1-0-7ea5c8eb4d2b@linaro.org>
-In-Reply-To: <20240527-x1e80100-dts-pmic-glink-v1-0-7ea5c8eb4d2b@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3938; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=XI2FDb/7NtFHwP6ncH4VK34anbbKyDSEs2qwvfVMI3g=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmVD9JIuGpagS3kazFLBrzcKj2DLF0EHbtHf0rU
- SV4Qc3h1I+JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZlQ/SQAKCRAbX0TJAJUV
- VgzAD/kBAvCtqp7dxEI+ETdOOMzYGNvCFspkEHntdq7NDIgZDl+JP89mL8Fj63BrC9cLZSz3brE
- ZTlfUYCtZalbXVtev2aq3qDyhceGRn22umNclV8Dc20psnpukQach25zkGcpj4wiathGYOVgPP8
- raI2yigxzh8u8T1BcU0lern4fqemL8T+EpykIgfRGbvK53PgMrmg/ANlHPijRIUBUvXgA7birrm
- j+D+s13ObQa8rBtBE9QlbYKU5OefC5s0/hrbJakVGlwnIP+R88Mo+PvV20p6f6411Ubh5HoNcE9
- EOo612QAdAMLveGyyG4UOySRfELY745oTwj3Vho+++zu1hg8rbWyEXEIgkgIkFE34cB6eOE+S1t
- TsTY3sjmSPYR1nGC4uNV/i/ZLWEdJqv0S45yQ54hwte7TdQBTay+PppVbNc8wz+tPOoC9HG7sCY
- ZVPrJ/1woFV1AwtZ4WxJ74qTPhvMdFj6abcZXi+Uu3NnsXxZ1c/6kD0HAcMqmlEWKaS7TsAwKuk
- ekF8Qqj+ZI9b15tjqsftoVZcrwVjf1hHOwAyy55nxptPC4NGAaZ4vgbeaEPG4NThvHdP3kmMRTX
- 55HRrv3jE/cmVHeHg+sXQ8U1e8YIBK8Wlf70CdFguo4YZ5Cg4ybo/b17TzO15YBdAaNaLKi5IKH
- D7UfhJMStBLsj3w==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Add the pmic-glink node and describe all 3 USB Type-C connectors. Do this
-for USB only, for now. The DP port will come at a later stage since it
-uses a mux.
+On 5/24/24 20:24, Conor Dooley wrote:
+> On Fri, May 24, 2024 at 11:04:34AM +0200, Julien Panis wrote:
+>> Use thermal zone names that make more sense.
+>>
+>> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> Removing the defines is an ABI break. If these are all the same devices,
+> but with more accurate naming, then keep the old defines and add new
+> ones. However, the GPU1 define changes in the course of this patch which
+> is more problematic.
+>
+> Why do these names even make more sense? Where did the old names come
+> from and where do the new?
+>
+> Thanks,
+> Conor.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 143 ++++++++++++++++++++++++++++++
- 1 file changed, 143 insertions(+)
+Thanks for your comment.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index 2061fbe7b75a..a7eecf84b6d6 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -23,6 +23,101 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	pmic-glink {
-+		compatible = "qcom,x1e80100-pmic-glink",
-+			     "qcom,sm8550-pmic-glink",
-+			     "qcom,pmic-glink";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
-+				    <&tlmm 123 GPIO_ACTIVE_HIGH>,
-+				    <&tlmm 125 GPIO_ACTIVE_HIGH>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss0_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss0_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss0_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss0_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss1_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss1_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss1_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@2 {
-+			compatible = "usb-c-connector";
-+			reg = <2>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_ss2_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_ss2_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss2_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_ss2_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 
-@@ -548,6 +643,22 @@ &usb_1_ss0_dwc3 {
- 	usb-role-switch;
- };
- 
-+&usb_1_ss0_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss0_hs_in>;
-+};
-+
-+&usb_1_ss0_dwc3_ss {
-+	remote-endpoint = <&usb_1_ss0_qmpphy_usb_ss_in>;
-+};
-+
-+&usb_1_ss0_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss0_ss_in>;
-+};
-+
-+&usb_1_ss0_qmpphy_usb_ss_in {
-+	remote-endpoint = <&usb_1_ss0_dwc3_ss>;
-+};
-+
- &usb_1_ss1_hsphy {
- 	vdd-supply = <&vreg_l2e_0p8>;
- 	vdda12-supply = <&vreg_l3e_1p2>;
-@@ -570,6 +681,22 @@ &usb_1_ss1_dwc3 {
- 	usb-role-switch;
- };
- 
-+&usb_1_ss1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss1_hs_in>;
-+};
-+
-+&usb_1_ss1_dwc3_ss {
-+	remote-endpoint = <&usb_1_ss1_qmpphy_usb_ss_in>;
-+};
-+
-+&usb_1_ss1_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss1_ss_in>;
-+};
-+
-+&usb_1_ss1_qmpphy_usb_ss_in {
-+	remote-endpoint = <&usb_1_ss1_dwc3_ss>;
-+};
-+
- &usb_1_ss2_hsphy {
- 	vdd-supply = <&vreg_l2e_0p8>;
- 	vdda12-supply = <&vreg_l3e_1p2>;
-@@ -591,3 +718,19 @@ &usb_1_ss2_dwc3 {
- 	dr_mode = "host";
- 	usb-role-switch;
- };
-+
-+&usb_1_ss2_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_ss2_hs_in>;
-+};
-+
-+&usb_1_ss2_dwc3_ss {
-+	remote-endpoint = <&usb_1_ss2_qmpphy_usb_ss_in>;
-+};
-+
-+&usb_1_ss2_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss2_ss_in>;
-+};
-+
-+&usb_1_ss2_qmpphy_usb_ss_in {
-+	remote-endpoint = <&usb_1_ss2_dwc3_ss>;
-+};
+For mt8188, the old name 'soc' came from a document by MTK, which is not
+public: MT8188G Functional Specification. This document does not explain
+what 'soc' are/do exactly, it just says that some temperature sensors are
+located on them.
 
--- 
-2.34.1
+Then, there was a comment about these 'soc' names:
+https://lore.kernel.org/all/ff12e104-da8b-4800-bfbe-a006ffe1b840@collabora.com/
+
+So, I had a discussion with MTK to understand what these 'soc1/2/3'
+are/do. The new names comes from this discussion and were given by MTK.
+
+For the other SoC of this series (mt8186), the same kind of document exists
+(MT8186G Functional Specification) and explains what 'soc' are/do exactly:
+('cam', 'dsp', 'nna'...which are used in 'mt8186.dtsi').
+Using the same logic in 'mt8188.dtsi' would be more consistent. Besides,
+these names are more explicit.
+
+Julien
+
+>
+>> ---
+>>   include/dt-bindings/thermal/mediatek,lvts-thermal.h | 12 ++++++------
+>>   1 file changed, 6 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+>> index bf95309d2525..ddc7302a510a 100644
+>> --- a/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+>> +++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+>> @@ -24,7 +24,7 @@
+>>   #define MT8186_BIG_CPU1	5
+>>   #define MT8186_NNA		6
+>>   #define MT8186_ADSP		7
+>> -#define MT8186_MFG		8
+>> +#define MT8186_GPU		8
+>>   
+>>   #define MT8188_MCU_LITTLE_CPU0	0
+>>   #define MT8188_MCU_LITTLE_CPU1	1
+>> @@ -34,11 +34,11 @@
+>>   #define MT8188_MCU_BIG_CPU1	5
+>>   
+>>   #define MT8188_AP_APU		0
+>> -#define MT8188_AP_GPU1		1
+>> -#define MT8188_AP_GPU2		2
+>> -#define MT8188_AP_SOC1		3
+>> -#define MT8188_AP_SOC2		4
+>> -#define MT8188_AP_SOC3		5
+>> +#define MT8188_AP_GPU0		1
+>> +#define MT8188_AP_GPU1		2
+>> +#define MT8188_AP_ADSP		3
+>> +#define MT8188_AP_VDO		4
+>> +#define MT8188_AP_INFRA		5
+>>   #define MT8188_AP_CAM1		6
+>>   #define MT8188_AP_CAM2		7
+>>   
+>>
+>> -- 
+>> 2.37.3
+>>
 
 
