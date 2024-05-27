@@ -1,202 +1,114 @@
-Return-Path: <devicetree+bounces-69320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212328CF901
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:21:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 039DA8CF915
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:29:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8ED8DB21E66
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 06:21:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 350BA1C20C1C
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 06:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59650107B6;
-	Mon, 27 May 2024 06:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D02A10A0D;
+	Mon, 27 May 2024 06:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HghwV+WQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Rqzk1GdZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E41184E;
-	Mon, 27 May 2024 06:21:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E912E3F7;
+	Mon, 27 May 2024 06:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716790897; cv=none; b=EoDnroQlqSYZ0H7EEDSTmNUyrT+MSLclkuP1Qi7xjivzejuAkQovEJ2JyKqz3c34mLC/1hzSqvP+cog5wEUSCZH9LH1t2R2wcmPOnEoU9BJb9xTeFGEksXMJYawVQpj7xCuxUWE1BfRToqGXMAES+W0k4Nd8kKKO3Z1Q9rWixeU=
+	t=1716791341; cv=none; b=qvk1Goc+mOCkeyAqpBuePGWfhg/uzlDQUDu427uh8VVqKy61q1VPZFn8US+IKtHUnchtv61+6BjnqZZs3MNynErve9cAz5vperMpEB3fprUhc5mUfQuP4noWAnyNPf5M3RcrWyIAhWzzT6+KGEfHA4WJ1Gzz4vH5d3JxkzU85CI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716790897; c=relaxed/simple;
-	bh=dpE2HlfRkKb0DLeLWGLVLyay4xnMktyTzs9M/wjQ4ck=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lY5GRWvbfBrVFvEKnWCjQ4z1DvOezniAzpBOtWRjeKA7jgB2a790t0jeYURkp8uD58j2ZRGReNxLz4aPKIT6g/FwMwN7z6NKsuJosUfbv47iJ+lgJm7QeBg+AokaDqKpNVDb05i7clFaIFjbAxjvIDd7IPN3AlRYQ2ATmqNk6yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HghwV+WQ; arc=none smtp.client-ip=209.85.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6f8d688ba3cso1314101a34.3;
-        Sun, 26 May 2024 23:21:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716790895; x=1717395695; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YvSiz0zQERHcAfsNur3dKA1ZbSTkh+Qxqa0oHiQYJWg=;
-        b=HghwV+WQIsvIPNc0VLnce3fWl0A/AW+6VzQlaxjiYKlx0Ba7V5lFJTYnmQCM2WMtEn
-         SslVqpTI/i6Gj1rCc7A8TVWqVXDlxtSnffnadzfR8ZsgYelsJejwwfPUWHmR8tL+iwaF
-         y0DBXO3jIsGSM8MSQ1R3Zz9mjHgrFKGoSBZhy9dijD9Dns1S4DF//A2raFNt4tuZEZ/u
-         y2RkyPAcl15kvpZYeOuV9AtGzumd771GfemJ1gbAYfFGWN2st7tmLwSHVL2hELR83z0A
-         qwX6xQw53Sb+y7H7FXGm2AR9K/4ghD9lLMgX9sMVOEeL10KpVKFUsI9nipAI1D+PqZ3+
-         nS1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716790895; x=1717395695;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YvSiz0zQERHcAfsNur3dKA1ZbSTkh+Qxqa0oHiQYJWg=;
-        b=oZSe//k78w7Oj0DCEBz8B5iWmHjEhy5r+Cw+gPO1imWq/jxAPLIiAyTT3CCrMqjEFJ
-         8oPawQvwwuu33jEMqLemLbLnxO3MSIWF5BMcMZfvkX+PteudNP2liX7mhVLRRZJEfgu+
-         0yfZO1EUUzjEHR4qUyszTNkubteTkppkuNnmkkxDjmco68/qlclBN+/dSU0SFnl48I6t
-         I2BUDHt0c5tOuzVm4Mr1mTjM3LNrDBX3pL5E3elK25SKzPjnlGNqj0HK9SgHuQyDCxeU
-         vblGknqp8l+JmKKw4Knlrz747vI7iDiFWXzEySC5h3iEJ1o+GFwTrxduD9vrqJhnR2dW
-         bzwA==
-X-Forwarded-Encrypted: i=1; AJvYcCU0+XUFuDivXbxppaTO24TZPvMCwPJKJOz92v8bAbQShMSPIoepVTDGzIEUl9rrcE0ingAOn+/K/SkaC2XoHoryHmghNIGjPDlIkUf5ct/+/Wm6n/b3Mm7Az4x0kCQsTy1TxGdjilWinw==
-X-Gm-Message-State: AOJu0YzUag5AiYeNccny1ui3oMaEWEo/3MKnpnkxvClQ+4MUKn1GZV+B
-	KjhnKVPugDwpcM8aPQ15kXNUHYVa97zEhsXb2CSl72HXIUd4lL/6
-X-Google-Smtp-Source: AGHT+IHU4P45YQAZO0KWR6MN2FjxKvMFIH3S78MCIuLEGKiCzlvXGH5BxquSlFWU3q0vdFe3XezASA==
-X-Received: by 2002:a05:6870:2cc:b0:24c:54cf:f39 with SMTP id 586e51a60fabf-24ca1471c9bmr8603286fac.52.1716790894516;
-        Sun, 26 May 2024 23:21:34 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:8099:c268:61a8:1d83:f7a2:365])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f8fd4d87a4sm4258777b3a.207.2024.05.26.23.21.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 May 2024 23:21:34 -0700 (PDT)
-From: Shresth Prasad <shresthprasad7@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	skhan@linuxfoundation.org,
-	javier.carrasco.cruz@gmail.com,
-	Shresth Prasad <shresthprasad7@gmail.com>
-Subject: [PATCH] dt-bindings: watchdog: img,pdc-wdt: Convert to dtschema
-Date: Mon, 27 May 2024 11:51:03 +0530
-Message-ID: <20240527062102.3816-2-shresthprasad7@gmail.com>
-X-Mailer: git-send-email 2.45.1
+	s=arc-20240116; t=1716791341; c=relaxed/simple;
+	bh=pinZAqIq0fek5EBdAQ53Yyws1XvkSCwWytUCnfhXbw4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WPBEMLoUQWiKAv7HY+lV+PmD33czFwEtvonxA1ZOKsCKhFOY3oBJoKumyp83ZVtUrLohhRLzoeYCVDxmAyBbqz4agp1oQFSlqtkGU4WpdwjsOqH24JwG89tDRnyGOYwI+ZBwtittaJkJZTiMMbyB1YRU0eakZHTH6Aqo//d5N10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Rqzk1GdZ; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716791339; x=1748327339;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=pinZAqIq0fek5EBdAQ53Yyws1XvkSCwWytUCnfhXbw4=;
+  b=Rqzk1GdZdcdzPJ4xPzF0bdPXSPNzAhY8d9nBJ2KjxAZPgPxpi56JqHwI
+   CwkFZozNU2HzFRT8OzOZSQznJqwCwUF+BsdTx+AWH+zARRIyosQaKERfy
+   bbCdCnbqJrDNOLUGL7Pfi9kV7/0mbL/z6R7zNTiAfgHIg9eviAizXsbq+
+   rZ8Q/h1xy6hess5Hu026o1RbEsKUazR0febIEu75KnLGN3ldsGMDBRzZJ
+   WjD3PpASgGurOBgV7UM3nlC7I1vkNL5WpbNTUpdUS9vcoLCLuu9Sxt1YS
+   IvFGMsDbs+lKEkXOIvHS5XCOTdCU5Lan4yp5iNdTbDPDRhWZx0ODFWr8g
+   A==;
+X-CSE-ConnectionGUID: 4IV8gIHKQCKYLxiBDXxNgQ==
+X-CSE-MsgGUID: pPUE2zJAQKG0sPb3jGLF5g==
+X-IronPort-AV: E=McAfee;i="6600,9927,11084"; a="12932518"
+X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; 
+   d="scan'208";a="12932518"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2024 23:28:59 -0700
+X-CSE-ConnectionGUID: kh05NKg+R7mVbEOl6ZyXpg==
+X-CSE-MsgGUID: 1bwzVecxT7S5GsW9QSnxIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,191,1712646000"; 
+   d="scan'208";a="34728862"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2024 23:28:57 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 47D0511FB89;
+	Mon, 27 May 2024 09:28:54 +0300 (EEST)
+Date: Mon, 27 May 2024 06:28:54 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [RFC] dt-bindings: media: video-interfaces: How to describe
+ physical lanes for CSI-2 C-PHY
+Message-ID: <ZlQoJtxXBqrwI8_U@kekkonen.localdomain>
+References: <20240525220747.GD1900917@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240525220747.GD1900917@ragnatech.se>
 
-Convert txt bindings of ImgTec's PDC watchdog timer to dtschema to allow
-for validation.
+Hejssan Niklas,
 
-Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
----
-The binding has been checked and tested against `img/pistachio_marduk.dts`
-with no errors or warnings.
----
- .../bindings/watchdog/img,pdc-wdt.yaml        | 62 +++++++++++++++++++
- .../bindings/watchdog/imgpdc-wdt.txt          | 19 ------
- 2 files changed, 62 insertions(+), 19 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/img,pdc-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/imgpdc-wdt.txt
+On Sun, May 26, 2024 at 12:07:47AM +0200, Niklas Söderlund wrote:
+> 1. We could add a new generic property to fulfill the 'lane-polarities' 
+>    function for C-PHY, 'lane-polarities-mipi-cphy'. That would only be 
+>    valid for C-PHY buses.
+> 
+>    The structure would be the same as for lane-polarities but the items 
+>    enum would allow a value from 0-5 for each entry in the array. And we 
+>    could define mappings in dt-bindings/media/video-interfaces.h to 
+>    allow names in DTS, MEDIA_BUS_CSI2_CPHY_{ABC,CBA,ACB,CAB,BAC,BCA}?
+> 
+>    This feels wrong as we already have 'lane-polarities' and it is used 
+>    for CSI-2 D-PHY configurations already.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/img,pdc-wdt.yaml b/Documentation/devicetree/bindings/watchdog/img,pdc-wdt.yaml
-new file mode 100644
-index 000000000000..8aecbcbd700f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/img,pdc-wdt.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/img,pdc-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ImgTec PowerDown Controller (PDC) Watchdog Timer (WDT)
-+
-+maintainers:
-+  - Shresth Prasad <shresthprasad7@gmail.com>
-+
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - img,pdc-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: wdt
-+      - const: sys
-+
-+  interrupts:
-+    description:
-+      Should contain WDT interrupt
-+    maxItems: 1
-+
-+  assigned-clocks:
-+    maxItems: 2
-+
-+  assigned-clock-rates:
-+    maxItems: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    watchdog@18102100 {
-+      compatible = "img,pdc-wdt";
-+      reg = <0x18102100 0x100>;
-+      clocks = <&pdc_wdt_clk>, <&sys_clk>;
-+      clock-names = "wdt", "sys";
-+      interrupts = <0 52 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/imgpdc-wdt.txt b/Documentation/devicetree/bindings/watchdog/imgpdc-wdt.txt
-deleted file mode 100644
-index b2fa11fd43de..000000000000
---- a/Documentation/devicetree/bindings/watchdog/imgpdc-wdt.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--*ImgTec PowerDown Controller (PDC) Watchdog Timer (WDT)
--
--Required properties:
--- compatible : Should be "img,pdc-wdt"
--- reg : Should contain WDT registers location and length
--- clocks: Must contain an entry for each entry in clock-names.
--- clock-names: Should contain "wdt" and "sys"; the watchdog counter
--               clock and register interface clock respectively.
--- interrupts : Should contain WDT interrupt
--
--Examples:
--
--watchdog@18102100 {
--	compatible = "img,pdc-wdt";
--	reg = <0x18102100 0x100>;
--	clocks = <&pdc_wdt_clk>, <&sys_clk>;
--	clock-names = "wdt", "sys";
--	interrupts = <0 52 IRQ_TYPE_LEVEL_HIGH>;
--};
+Could you add a property for this called "line-orders" with matching data
+line order in MIPI DisCo for Imaging specification
+<URL:https://www.mipi.org/specifications/mipi-disco-imaging>?
+
+The polarity isn't a right term here as it's not a differential pair as on
+D-PHY.
+
 -- 
-2.45.1
+Hälsningar,
 
+Sakari Ailus
 
