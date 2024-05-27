@@ -1,131 +1,95 @@
-Return-Path: <devicetree+bounces-69608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAAE28D08AA
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:32:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE80A8D08B2
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:34:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82EBD1F23FA5
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:32:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 813572879CC
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:34:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02307344B;
-	Mon, 27 May 2024 16:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED57561FF8;
+	Mon, 27 May 2024 16:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mOpA+paO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WJPYjlpf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8322761FD0;
-	Mon, 27 May 2024 16:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC40E61FE1;
+	Mon, 27 May 2024 16:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716827518; cv=none; b=aBN/FmwNP+xczc2aCMDi9CYHtWoYmrc1Oo33uHcinAQbf1F5Esd76gA03qDQGClVNK4+BNrC2rP7qz1N5MTN3UTx5/h+T930BiTJfvP4+kJ2hvPN9dQAhMkzMwFpUMU3zv9YJxgP/JRllAM4fE/pAD5iQS+b21YTn+mFWfKfnhE=
+	t=1716827638; cv=none; b=ajjWKDP+Yl0fwIw4HgXJq6bvOk0RoM3eSkYrkK+pXaNpYcGJ72j9kSEFfLsAS8kpxA7oJlPY7iCuNB0pKEuR8lQwd+zsGKBc2ETqJ+a4hv14+dR9ELMLf/XQMdmyeFDiG7FAfbcxVwQoo8jCebNdyyrHsykLfh7pHzCMa3ELBRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716827518; c=relaxed/simple;
-	bh=qq+K3zC4sWDPFdYv3oIG6Xmyzeyk8vN3IfD+Xy75TaE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pIHgMxDXIJSKNqFIHO7CZQ1KEkfo4Y+99LCcJGgYx7Kokg5d76blGYj/6y49KvpTD+v/EEzj3Ve04jWBbzZQq/qQK8oKjw6yP18B5HjyeKM/HghJuC/CrWjbpCajP/yIvynqdjdwnw95ec9QChv0gVw/dp5VdiJfHvydw4mXih4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mOpA+paO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F175C2BBFC;
-	Mon, 27 May 2024 16:31:54 +0000 (UTC)
+	s=arc-20240116; t=1716827638; c=relaxed/simple;
+	bh=FqwLRmZq7+sdJul6dGAtnX2DgoqP9PXXAfeDCFAU9F0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V0FAx6hA+6Gj+TWrxtIvuKZ1w7IyUMxJYREa0afsuxo70LXe4hOZkN9DAl0nNiSvUmaDoOsNyO9P3rlXOLFcdxNgQnHDbjQla7vqB6+VyxXRtS8Z8c81rHacCDjWYy/s6b+2twqaChtB8+t3F0nBlq+U9s7JNMHEx1sBI6/U/KE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WJPYjlpf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61CD7C2BBFC;
+	Mon, 27 May 2024 16:33:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716827518;
-	bh=qq+K3zC4sWDPFdYv3oIG6Xmyzeyk8vN3IfD+Xy75TaE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mOpA+paOmCqzyYVFWYVrwI70R8cA7OcU+meWcn5OGTCQyenKwe+iWSk5Yo+mjUxIE
-	 yd5Xkvq3IjmRVoYzLnzsTjDxV3IMEEfRlXkIQC6s/XOCncWK3P8MEGuHJR4Y9RSEM9
-	 4C03CT9OVSjbkYCFxUiEdTKhZwX1UuY6aDYgSOW+VWqA3hm7s3OWn89rPSD9gC1QOX
-	 OlgvuS+QZtV4J7q8VcPWtfCCwp2hFLMR3W8ENsK7u155vJojVI4/FEWd4hwPC+3lWZ
-	 Px+cecMeoKHfTxQcjqGNFM1arsvfcpJpCQx1XXS7Wl8DjgUXU2y4Ht/2lEXpq0QdE+
-	 XhQI5g4cMTtbw==
-Message-ID: <e47de936-8cb4-4cef-a346-74835767e203@kernel.org>
-Date: Mon, 27 May 2024 18:31:53 +0200
+	s=k20201202; t=1716827638;
+	bh=FqwLRmZq7+sdJul6dGAtnX2DgoqP9PXXAfeDCFAU9F0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WJPYjlpfQfU1/Omo2Hf+yu0gJGY/UyDbMlGw+tPR1grvIwXGPv8YVJxVIZ7Mymkoj
+	 pio6+HfD+hWdU4TwlPSe9XtlJnM8Ix5kRh8jSUPFgUFjtrZZ2YtItH2N95gou//KtY
+	 CKL397Fvt5D8QtnkIxu3091HHRFzaC+gmxv+bTipNF91tZP1p02LnL9y3/1PFbcwE9
+	 z6/aoDbAYv1m4QiCykYoWjFEumHi6X8QkdWyxeatpOnj7h9KT5JxJtR/J6atyzw+Xi
+	 wgUchisEMjGRqxgNyDO5EBwueCVglI/nkflD5NdS04iUC9GNWh0yx7AGujlBg0hp2J
+	 rXVOEsBIuEanw==
+Date: Mon, 27 May 2024 11:33:54 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm450: add Lenovo Smart Tab M10
+ DTS
+Message-ID: <r243r56bz7nrp2guaqj2n26exdv6y5jyjtoytmceutd3cqbaao@r5xk3qlspwsi>
+References: <20240523-topic-sdm450-upstream-tbx605f-v1-0-e52b89133226@linaro.org>
+ <20240523-topic-sdm450-upstream-tbx605f-v1-3-e52b89133226@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS
- bindings
-To: arthur.becker@sentec.com, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
- <20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240523-topic-sdm450-upstream-tbx605f-v1-3-e52b89133226@linaro.org>
 
-On 27/05/2024 17:12, Arthur Becker via B4 Relay wrote:
-> From: Arthur Becker <arthur.becker@sentec.com>
-> 
-> Device tree bindings for the vishay VEML6040 RGBW light sensor iio
-> driver
-> 
-> Signed-off-by: Arthur Becker <arthur.becker@sentec.com>
-> ---
-> V1 -> V3: Addressed review comments (v1 of the dt-bindings was sent
-> along with v2 of the driver but not in a set)
+On Thu, May 23, 2024 at 09:59:35AM GMT, Neil Armstrong wrote:
+> diff --git a/arch/arm64/boot/dts/qcom/sdm450-lenovo-tbx605f.dts b/arch/arm64/boot/dts/qcom/sdm450-lenovo-tbx605f.dts
+[..]
+> +&rpm_requests {
+> +	regulators {
+> +		compatible = "qcom,rpm-pm8953-regulators";
+[..]
+> +		pm8953_l8: l8 {
+> +			regulator-min-microvolt = <2900000>;
+> +			regulator-max-microvolt = <2900000>;
+> +		};
+[..]
+> +		pm8953_l11: l11 {
+> +			regulator-min-microvolt = <3300000>;
+> +			regulator-max-microvolt = <3300000>;
+> +		};
+[..]
+> +	};
+> +};
+> +
+> +&sdhc_1 {
+> +	vmmc-supply = <&pm8953_l8>;
 
-It's basically the same as veml6075, so should be put there...
+JFYI. Not ensuring that the vmmc-supply is in HPM mode bitten us
+multiple times in the past. 
 
-Eh,
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Regards,
+Bjorn
 
