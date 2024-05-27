@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-69561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B99F8D0514
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:01:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFBC8D0577
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:11:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F35328AB74
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:01:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4C55B34A51
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:01:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A42A16C454;
-	Mon, 27 May 2024 14:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932C315F3EA;
+	Mon, 27 May 2024 14:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lj3JfLsb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sfUXTTJ/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7399715F33A
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 14:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E60C15F33A
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 14:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716820293; cv=none; b=IbmeQviUTlfN5+xueUjyzfjkw0BJfdDgd4/hBEZX/PFwbotwLn6OamyVfYDPHhpfxdqvE4W/eox6WrrXadDKiX+YIqfxadq2PTkjZix7snKJ7iQ7BBiFDX4dCLU2NaPiWUyPMfOEce72YzjJsyK3Jaye2mBpHwDxJTRDfTvH/I0=
+	t=1716820325; cv=none; b=V/WjmPh0InM1d5bNcRBcIPSx1zSPZ5rNrU8p0nJmIpxt30DU6iU9Ow7P6cO6JRjnX77BQzpn0Pz6cmorMS6J2fGOBN072TJtruzKy2tF9miJz+pWyFJixrspR8SvVrK1xGmbiqhJkFb43cT2EiUhmu3RtLmRgSwN5DtkqDlydUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716820293; c=relaxed/simple;
-	bh=uApgsJJxOubvE2eBsFgoGQECDj08o4Q3rliHOrn3NK8=;
+	s=arc-20240116; t=1716820325; c=relaxed/simple;
+	bh=ud+xc3Woes3dtWt2WEOvs7TmXHnOAhJ5zvYhFMRyKlA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nQRYV6CwWUzlWqiWKJ9mOijzCoK3v7vr/NakfmJhcxSGtY+tpAwP7w+tI4QQhkA+HxjKUUQzlwAb0tUBt1sbJziNtGXqDLHxiZoa/W4Ut08ZYMJ2U31v+dy9qWRgYYLWt7ezx0JAOnf+ytCo/H34bhqXjL3yxudc3EhlxyvmeUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lj3JfLsb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEADFC2BBFC;
-	Mon, 27 May 2024 14:31:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=W8vLJpOKGnMTJAatqYFmq12GTprSpnoMcYJ3pF/hksVV519g76/wN4ghavS1FnViWEQLJEfQFR6urJb7HUp/aVP42NSMXzNaB+DR8OtniXyi4Ab7mzNY+YahXSNro2NF4aE5+TW2gBWWRrSE4EWzNUa1J9+Q91+6LAOh6eLZkt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sfUXTTJ/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD814C2BBFC;
+	Mon, 27 May 2024 14:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716820293;
-	bh=uApgsJJxOubvE2eBsFgoGQECDj08o4Q3rliHOrn3NK8=;
+	s=k20201202; t=1716820325;
+	bh=ud+xc3Woes3dtWt2WEOvs7TmXHnOAhJ5zvYhFMRyKlA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Lj3JfLsb6I2Lo69yyV0+ilNR42gLkM7TPJ/3RwKwiaOPqxeXuls9aHp/BvpyBMNV0
-	 iFPfpK1m32mFpc3mHrYVQOnU1XDpabvBE+PfRy5n60gf15iJ801qQkfeSkOwulP0W/
-	 Sqcjtx+Ez02Yz8cJx8piu173KkGrxi7iani0ICveFkQ3aY+2j0bjbNazHIABvWxU6A
-	 zmIosKdbfAMG3p+ZEJlXXkFTZFWM0oAsV9fH8XQVdDjLX/li1QWOlQ9N6kv9+L0J2M
-	 rJuouMIp+lr0KF9nbJIfNQgWvyGfAWqLjp07AF7lgPV7XI4Jp+2Ne3iVfkvRWeUK2v
-	 Ncp8fyP9xUQ+A==
-Message-ID: <b7e4842d-279e-45c8-9650-f4044e6af808@kernel.org>
-Date: Mon, 27 May 2024 16:31:26 +0200
+	b=sfUXTTJ/9TLSJVqKwTe58rUjutXxgczZ8xOpGSoyrFongXFywsDio70ElpuDS5vhm
+	 uIEkgzGqzct1TWVunVj5Jc4C6K1EVA22Req9RITKcDcTtwpWrcLHY3LG8kpMC00vZT
+	 ALOKy4b4HrYUTHJapVmGV8tJ6pWSxrCehP6g6rT/4QVHdqnlBJH+nT6yAJtZGVSvBo
+	 vwup7FybTBdLHEOOc199ug197wSpnH1ceYWDEEX6Q24JEv3Ix6hZUZBzSoKiTat9AB
+	 WGYyJOcNYD3Q1ezoLhpLItG0vydaIQyRX0640ERFpGN2b/YLITQX4tLlolnh9shwko
+	 +aTgFuD3+ruYg==
+Message-ID: <0cf39ca2-a951-49c8-81a3-c92a73bcc6d5@kernel.org>
+Date: Mon, 27 May 2024 16:31:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add OpenWrt
+Subject: Re: [PATCH 2/3] dt-bindings: arm64: dts: mediatek: Add OpenWrt One
 To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -68,7 +68,7 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
  openwrt-devel@lists.openwrt.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
  <rafal@milecki.pl>
 References: <20240527115933.7396-1-zajec5@gmail.com>
- <20240527115933.7396-2-zajec5@gmail.com>
+ <20240527115933.7396-3-zajec5@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,18 +114,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240527115933.7396-2-zajec5@gmail.com>
+In-Reply-To: <20240527115933.7396-3-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 On 27/05/2024 13:59, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> OpenWrt project (with the help of MediaTek and Banana Pi) has produced
-> its very first own hardware. It needs its own prefix.
+> OpenWrt One is the first ever OpenWrt product. It's based on MT7981B and
+> has entered an early production stage.
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
