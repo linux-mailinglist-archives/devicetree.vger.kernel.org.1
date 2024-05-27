@@ -1,83 +1,87 @@
-Return-Path: <devicetree+bounces-69413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8AEA8CFCD2
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:26:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E1938CFCD6
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:29:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A05F71F245E4
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:26:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4273D1C21712
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F3E13A27D;
-	Mon, 27 May 2024 09:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BAB13A26E;
+	Mon, 27 May 2024 09:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LCOcdCJR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jJ3zRkc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C888F13A24D
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 09:26:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E768E139D18
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 09:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716802001; cv=none; b=Jfo58LuwrHBsaTlzXlCCeqg56ankcT5tURk5yy0hDBAbZ8BLY2eXKCdaVIas0GXQw6N6WuUj4TziuPf+OhZbC2QlL3kUut+47W7yGs7Pos1BCgMJsc/1ldZ8MVd+UVPRWy9VSfgm4xykp5iMnD5GM2t06lTZnBhclkcgqupfi5E=
+	t=1716802162; cv=none; b=HkBr4G4I/cN87lGNlv5BYAQgd768YWG6XyDaLn+I8k2pnbiweimOuoDJ3AqfG3hNOBkZ6u1T6GPhjAV0N1rZpRXhj6zxhXY2NSWZaOzMliYqmVjOhhezHSHDHeecHPEtTeflnu+t/opizll3oJYzaHr3RDl9bL0IFFQPBlQ8pXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716802001; c=relaxed/simple;
-	bh=DGxHrrgHhYai0N2daSd1UGb+KKSqPFjkxRo0Dluke6I=;
+	s=arc-20240116; t=1716802162; c=relaxed/simple;
+	bh=kvVFdGrNcegGGGe43bP7T/2vXbXZD1tWa+/RduW+LMo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LdEU+llxz0JZ3V0Gnf7wB17aZ3J34CLlbV8ExlDGzsxnHJbga1/vtk0xg/zLy0tlFDhb84PvuF2Q999T6NVrKZ/ofaeKlLApR74hsBGpjZEnxivzjUrCOuLIPZ6Y7EypNHV9dRZcjwMyD109ua87Qi3a0NnN0HldVbv3CTMWxUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LCOcdCJR; arc=none smtp.client-ip=209.85.167.49
+	 Content-Type:Content-Disposition:In-Reply-To; b=XcAUvCq4DrfvCYrYKYG3IOteRRvwTXTMjE4B+H7O+GbNKROG3QTX1ucgNSklzD9knMcCCzU2/l3O0sVnkNhgDS8RF16CvgltOhLrxebITOetduBWwEnRJ0IP9O0xIEEWPdcxvqx9XyHyMBhp7zgaIO/CvhJ31lrjdtQfSuGkwMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jJ3zRkc0; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-529682e013dso3066891e87.3
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 02:26:39 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5295c65d3fdso2610978e87.0
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 02:29:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716801998; x=1717406798; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716802159; x=1717406959; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8jmNjC58UAWsrwXzwM2Fn0FgE946HqXq8JLs+H9s+h8=;
-        b=LCOcdCJRdWdtm6lBRVgb2JIjari3jlqqJReHkaZxudx+X5JT/p2sYVmKr7K+ip7pux
-         zRpILkhxVq/Ps3drcgYRkL2hIk9B5/6oO/qjnxDyCSABi0+AcgCav3U+Rh2Yl01qH3Ls
-         xihxwzpCu9PnhLOoeHqKeqQSSXuht6hMFIeAS0Yic5fdho8iVjAS7YIPX8A8wa6ka2Ah
-         Mpg0sm0ZpCbsZp75qakvuKh4+b2yeMg/Y5R77t4Pi2qJIl7puL2DpcrGH5AUag2O5IwM
-         nEJPhrUmI/3HBnag8ZzOJY2lCmnzNy9A9cncTcjbskxnjdvtQ4Vx3VsXqUJKZNXOpKXU
-         sn/g==
+        bh=ChcvXVThIVG5TbcAKCOtU8ihiPd2mzmq71DfR9Nr0H0=;
+        b=jJ3zRkc0hm78tZOlN35Ri/K7Z9nKz+iySihdLsLTT40pnP41keMhP6OD2Gn2KLDt1r
+         hRsPHVzGaee/xihE4eLBUOMPwxquaKjoQGzboKjQ5RJWMiwBaZDup/hzrpyQ4PSc3iSV
+         ZC80O0Lpi0Z9ENHvf8DpG72kbj5sjw92UMtDda80KSykQhWFzR/9rxfg+jhkPEo+805p
+         4q/t4cBYsHy0Znnh35oH4hW90Owrs1c60fApGMGNgvmSqiN+ULVJ4obno92VMJwnPPrg
+         nID+CibQ77Hg80ksx9VhetChQrsIYxi3WULnpDlpRqiga1qdMkBdLj1f1NO/GKgrnvYn
+         2DYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716801998; x=1717406798;
+        d=1e100.net; s=20230601; t=1716802159; x=1717406959;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8jmNjC58UAWsrwXzwM2Fn0FgE946HqXq8JLs+H9s+h8=;
-        b=OTn523okyy67vRgF+Q9UAUqm4ZkIwGUGEd3eCgKrJCY6yscoAV3UIBQiZNj3xfTh8j
-         CMK3CAj8YV1QlrRdCVHIf/NaavScYhuMxeJkVLwlbXzYsBtq4KZ78/r4fI/j8+WT8HLC
-         m2A1mYCEV4oj9sHgRBgtzTMbe7xGFDqrph+nrpeyySdyj7mcdwBCP2aR6ITWqqK66r9t
-         lH4XAbei2TrcqB/+xNjM91wIj2ybR/AhL3maauge0BrYQ2xBB2ZCpBlMLvyEM9llOEFp
-         SMciJXEHGpFxYhMW/bfs1VIiIZ201LnnXRoUc2Iqw+4+9DcbPTRUYgGoY26NTOL8HjuO
-         uHxw==
-X-Forwarded-Encrypted: i=1; AJvYcCVhGU0954lk8qcDJnIr9bdmhXb5N+fMPUYpIft59mVg6Hp5qVgkEiOA0qLRxc11+ht9bVUKuSoFB0e7T8AXa+fYoeI11/29Stenfg==
-X-Gm-Message-State: AOJu0YymRVdZG4XPf6rDg9rMGnXhD+Il7c/Pps50ktHNj7/MyHRDW0Kw
-	Tw/kH30n/b+6F5Gkz6TH9r/ziP4BgEwPMNqg+rh0gIUVDdBpPeKcICAExyn9kVQ=
-X-Google-Smtp-Source: AGHT+IGXbo23AoDOvpoVJig+SaNExvQo5Qosda9tFG7q7WP0xeYJkr/vdoubpjwLXasIU10WVbWhtw==
-X-Received: by 2002:a05:6512:3241:b0:51c:df1f:2edc with SMTP id 2adb3069b0e04-529644ebe8cmr4942441e87.2.1716801997919;
-        Mon, 27 May 2024 02:26:37 -0700 (PDT)
+        bh=ChcvXVThIVG5TbcAKCOtU8ihiPd2mzmq71DfR9Nr0H0=;
+        b=jboRYulI3ZgWTKJ+sNR+dRrS+HbBFNURWKRT6almuZKSsWv+3DvUwLV985rmmO8GJ1
+         Saq6dYcF9iKj+9AYsnnr2DJtTyDEAoR4vOi9hqb0GzVKj6xjaoKguxEs6AThpCXqEx/n
+         62iqHOVZaTHjQDb/uiH/bJM2zl/ixiT0gAIkyMNNGHf1pxvuBV1sV/e2hPkjUb77ZPnq
+         eUvuXQh9CneQDGe45HWcO/1G8ma2ENZNdQbchwdWFUD/B4J5FvUwIpsSRsloCS+AYjWb
+         Hlv0Ht+0KuGAU96Xr4GNmriVMg+7VxiWmLoQSiZKw+OMXgCjcCyWa9PUkLKr25qwKVVo
+         bCTg==
+X-Forwarded-Encrypted: i=1; AJvYcCVdHnHiooXz1qp5kywPgXEZ1g+oEOUo6ugUoneYyRp23VhIZX6S15f4Xf9ZUhfJUZAbjjm8bKD1UUEr57Cg3v5DybStArCbQyP7tw==
+X-Gm-Message-State: AOJu0YzWaCI6vf4UqLJTi79IfbcHUqHxMHPxCieYXxPAhcvOFF0bHMIT
+	UgP0/BFaAnXNuL+/12dhophG+URY7ZDwnlcz6iF7TvXkpBEgDq/PHERBywKaLOc=
+X-Google-Smtp-Source: AGHT+IEUQfcVQur+d8EXVuV+Z6FnGa6g3dG1LyX/QDfvUkdTANYheRA0kp5x4fUXbjvtAWsLpazd/A==
+X-Received: by 2002:a05:6512:12cc:b0:529:a76f:e172 with SMTP id 2adb3069b0e04-529a76fe18cmr1964113e87.14.1716802159079;
+        Mon, 27 May 2024 02:29:19 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5296e885c9asm494864e87.33.2024.05.27.02.26.37
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-529716df1fasm519782e87.308.2024.05.27.02.29.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 02:26:37 -0700 (PDT)
-Date: Mon, 27 May 2024 12:26:36 +0300
+        Mon, 27 May 2024 02:29:18 -0700 (PDT)
+Date: Mon, 27 May 2024 12:29:17 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abel Vesa <abel.vesa@linaro.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
 Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100-qcp: Add pmic-glink node
- with all 3 connectors
-Message-ID: <xqrlvvucbdbp7qvs7gupd3ns24efkavpx3ul3gtl6tixf5t5cm@zddgoiwqg4bi>
-References: <20240527-x1e80100-dts-pmic-glink-v1-0-7ea5c8eb4d2b@linaro.org>
- <20240527-x1e80100-dts-pmic-glink-v1-3-7ea5c8eb4d2b@linaro.org>
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Tengfei Fan <quic_tengfan@quicinc.com>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Alex Elder <elder@kernel.org>
+Subject: Re: [PATCH v2 3/5] remoteproc: qcom_q6v5_pas: Add support for
+ SA8775p ADSP, CDSP and GPDSP
+Message-ID: <jb2ug4gabow7v3kjxo5aszyjpsyh7nvnmsvrn57vpnvmkkr6fp@d6atdj2suaff>
+References: <20240527-topic-lemans-iot-remoteproc-v2-0-8d24e3409daf@linaro.org>
+ <20240527-topic-lemans-iot-remoteproc-v2-3-8d24e3409daf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,45 +90,154 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240527-x1e80100-dts-pmic-glink-v1-3-7ea5c8eb4d2b@linaro.org>
+In-Reply-To: <20240527-topic-lemans-iot-remoteproc-v2-3-8d24e3409daf@linaro.org>
 
-On Mon, May 27, 2024 at 11:07:29AM +0300, Abel Vesa wrote:
-> Add the pmic-glink node and describe all 3 USB Type-C connectors. Do this
-> for USB only, for now. The DP port will come at a later stage since it
-> uses a mux.
+On Mon, May 27, 2024 at 10:43:50AM +0200, Bartosz Golaszewski wrote:
+> From: Tengfei Fan <quic_tengfan@quicinc.com>
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Add support for PIL loading on ADSP, CDSP0, CDSP1, GPDSP0 and GPDSP1 on
+> SA8775p SoCs.
+> 
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 143 ++++++++++++++++++++++++++++++
->  1 file changed, 143 insertions(+)
+>  drivers/remoteproc/qcom_q6v5_pas.c | 92 ++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 92 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-> index 2061fbe7b75a..a7eecf84b6d6 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-> @@ -23,6 +23,101 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index 54d8005d40a3..16053aa99298 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> @@ -820,6 +820,23 @@ static const struct adsp_data adsp_resource_init = {
+>  	.ssctl_id = 0x14,
+>  };
 >  
-> +	pmic-glink {
-> +		compatible = "qcom,x1e80100-pmic-glink",
-> +			     "qcom,sm8550-pmic-glink",
-> +			     "qcom,pmic-glink";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
-> +				    <&tlmm 123 GPIO_ACTIVE_HIGH>,
-> +				    <&tlmm 125 GPIO_ACTIVE_HIGH>;
-> +
-> +		connector@0 {
-> +			compatible = "usb-c-connector";
-> +			reg = <0>;
-> +			power-role = "dual";
-> +			data-role = "dual";
+> +static const struct adsp_data sa8775p_adsp_resource = {
+> +	.crash_reason_smem = 423,
+> +	.firmware_name = "adsp.mdt",
 
-Same question as for the previous patch.
+mbn please.
 
+Other than that LGTM
+
+> +	.pas_id = 1,
+> +	.minidump_id = 5,
+> +	.auto_boot = true,
+> +	.proxy_pd_names = (char*[]){
+> +		"lcx",
+> +		"lmx",
+> +		NULL
+> +	},
+> +	.load_state = "adsp",
+> +	.ssr_name = "lpass",
+> +	.sysmon_name = "adsp",
+> +	.ssctl_id = 0x14,
+> +};
 > +
+>  static const struct adsp_data sdm845_adsp_resource_init = {
+>  	.crash_reason_smem = 423,
+>  	.firmware_name = "adsp.mdt",
+> @@ -933,6 +950,42 @@ static const struct adsp_data cdsp_resource_init = {
+>  	.ssctl_id = 0x17,
+>  };
+>  
+> +static const struct adsp_data sa8775p_cdsp0_resource = {
+> +	.crash_reason_smem = 601,
+> +	.firmware_name = "cdsp0.mdt",
+> +	.pas_id = 18,
+> +	.minidump_id = 7,
+> +	.auto_boot = true,
+> +	.proxy_pd_names = (char*[]){
+> +		"cx",
+> +		"mxc",
+> +		"nsp0",
+> +		NULL
+> +	},
+> +	.load_state = "cdsp",
+> +	.ssr_name = "cdsp",
+> +	.sysmon_name = "cdsp",
+> +	.ssctl_id = 0x17,
+> +};
+> +
+> +static const struct adsp_data sa8775p_cdsp1_resource = {
+> +	.crash_reason_smem = 633,
+> +	.firmware_name = "cdsp1.mdt",
+> +	.pas_id = 30,
+> +	.minidump_id = 20,
+> +	.auto_boot = true,
+> +	.proxy_pd_names = (char*[]){
+> +		"cx",
+> +		"mxc",
+> +		"nsp1",
+> +		NULL
+> +	},
+> +	.load_state = "nsp",
+> +	.ssr_name = "cdsp1",
+> +	.sysmon_name = "cdsp1",
+> +	.ssctl_id = 0x20,
+> +};
+> +
+>  static const struct adsp_data sdm845_cdsp_resource_init = {
+>  	.crash_reason_smem = 601,
+>  	.firmware_name = "cdsp.mdt",
+> @@ -1074,6 +1127,40 @@ static const struct adsp_data sm8350_cdsp_resource = {
+>  	.ssctl_id = 0x17,
+>  };
+>  
+> +static const struct adsp_data sa8775p_gpdsp0_resource = {
+> +	.crash_reason_smem = 640,
+> +	.firmware_name = "gpdsp0.mdt",
+> +	.pas_id = 39,
+> +	.minidump_id = 21,
+> +	.auto_boot = true,
+> +	.proxy_pd_names = (char*[]){
+> +		"cx",
+> +		"mxc",
+> +		NULL
+> +	},
+> +	.load_state = "gpdsp0",
+> +	.ssr_name = "gpdsp0",
+> +	.sysmon_name = "gpdsp0",
+> +	.ssctl_id = 0x21,
+> +};
+> +
+> +static const struct adsp_data sa8775p_gpdsp1_resource = {
+> +	.crash_reason_smem = 641,
+> +	.firmware_name = "gpdsp1.mdt",
+> +	.pas_id = 40,
+> +	.minidump_id = 22,
+> +	.auto_boot = true,
+> +	.proxy_pd_names = (char*[]){
+> +		"cx",
+> +		"mxc",
+> +		NULL
+> +	},
+> +	.load_state = "gpdsp1",
+> +	.ssr_name = "gpdsp1",
+> +	.sysmon_name = "gpdsp1",
+> +	.ssctl_id = 0x22,
+> +};
+> +
+>  static const struct adsp_data mpss_resource_init = {
+>  	.crash_reason_smem = 421,
+>  	.firmware_name = "modem.mdt",
+> @@ -1315,6 +1402,11 @@ static const struct of_device_id adsp_of_match[] = {
+>  	{ .compatible = "qcom,qcs404-adsp-pas", .data = &adsp_resource_init },
+>  	{ .compatible = "qcom,qcs404-cdsp-pas", .data = &cdsp_resource_init },
+>  	{ .compatible = "qcom,qcs404-wcss-pas", .data = &wcss_resource_init },
+> +	{ .compatible = "qcom,sa8775p-adsp-pas", .data = &sa8775p_adsp_resource},
+> +	{ .compatible = "qcom,sa8775p-cdsp0-pas", .data = &sa8775p_cdsp0_resource},
+> +	{ .compatible = "qcom,sa8775p-cdsp1-pas", .data = &sa8775p_cdsp1_resource},
+> +	{ .compatible = "qcom,sa8775p-gpdsp0-pas", .data = &sa8775p_gpdsp0_resource},
+> +	{ .compatible = "qcom,sa8775p-gpdsp1-pas", .data = &sa8775p_gpdsp1_resource},
+>  	{ .compatible = "qcom,sc7180-adsp-pas", .data = &sm8250_adsp_resource},
+>  	{ .compatible = "qcom,sc7180-mpss-pas", .data = &mpss_resource_init},
+>  	{ .compatible = "qcom,sc7280-adsp-pas", .data = &sm8350_adsp_resource},
+> 
+> -- 
+> 2.43.0
+> 
 
 -- 
 With best wishes
