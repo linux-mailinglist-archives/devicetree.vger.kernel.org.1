@@ -1,238 +1,200 @@
-Return-Path: <devicetree+bounces-69457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61DE8CFDCC
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:05:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF0878CFDE9
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:12:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 502631F22F73
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:05:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ECD2B21D33
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEA813D242;
-	Mon, 27 May 2024 10:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DFEB13AA5A;
+	Mon, 27 May 2024 10:12:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lYP8TUHT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ck9Kh7DQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E47113BC26
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 10:03:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E7213AA4E;
+	Mon, 27 May 2024 10:12:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716804241; cv=none; b=UsrYgA+wBrcsVPY1Nuy+ZVuY0K2hThzG1ozQ8trlvJJ62R8VZLc8LH8nvSUHdlMCJBUSmX4dCryg1ZpGA47MQ/+SbM02Ru5+9SswOsux1ox20EwPidifoFZpgD+pFMLS1FMGtsg1WLjJJM3lkr4c0W0Jhbm4/YOZHwBnicvgfAo=
+	t=1716804757; cv=none; b=En88YpYQ9X/qFJGnpS46lulUWYwIRjLGqONDy9sjFr4IJeukmqLYFxEURN1bna1/AiCDpnOl1VJRkJ1PthAXBvsInmIf8aUaQdFbJ+AWOBgAB3gn3xDoF2kDdXQjujOXdRDw38oyRJQ/YF2XnBFbxM6S/ZZKQgtPGxycohuKcgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716804241; c=relaxed/simple;
-	bh=1f4iet1HTBS4Mmb9vrYq33EtT3IRuk2VufwStag23ec=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QLlSOhdPM3QLHkb/F/g+dzGCPiIU0igesG1eH742l7CJlmFODN05EVWDTMSa2E0sxmuaHE8lsiRiBv7vCN1jYF1owmMZ0KF17chwt0jEcjByWX8My3r94YyGQCeYoYXTE3CPp2uedYv1HrJXBMLO5bN5EmFruHBqfwQD9A5LI1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lYP8TUHT; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2e96f298fbdso20087551fa.1
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 03:03:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716804236; x=1717409036; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IhsQ0AxYI/taNxhIBwrt/kibagKuJoiy3QOR9Xxw7P8=;
-        b=lYP8TUHTIJePAfWJdEPzAnEt8Kh7WBp/xPLomukaY+kqYLesQ5HpCgh4GnhSqNr9ta
-         iAPj51nuBc4TwPAPuzI02JLxDscZJC0l8knqxQ26SCx+akIjP0+FNB6XMwge644kG+S7
-         67BKApyWakR6WTfSLCbOCAeWi2BnEXQZ5i86tI+BP0QjZBXmGm2WOZPg7raz0Q4IkVXG
-         PLBZwrSfk7tIwLl0zfidTmyolmzh/ccN+YzeTXZ+a3qy/jPfiV+etSyMtIYzRIHfTE8w
-         unz8F+h8MEVBsGi33ISJSyUMGgZb9FlOLaLqCcPqPvmIqN7SFOWxTeA8+3vq4kbhBxgG
-         nbTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716804236; x=1717409036;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IhsQ0AxYI/taNxhIBwrt/kibagKuJoiy3QOR9Xxw7P8=;
-        b=tnNeXUwGU+85HnXFXSUXvVtg5RkuwG00t24QB+tM7UfsmtBc53Qfo1xgPdv58GiAhX
-         gPvWxAji1Bj2VL6gav7Kdp8InJ8y3O8CnrCWS2DzqaVuSrq8/pGysQ/YQiHBgFtCs8kZ
-         QdgxWlJD67FfAEHko8tPrvxzYduwfuwj+LSLxEisd2nZP2n4uB+FKWOPdmd67ms8MQp7
-         ErhSnX4GQvyY2VJlFvPJfwC01oL0jukRKtg1xh7F/vXDAMFTimlhLv1EThSZOSz12Px+
-         fSbj/I/AmMb0ONICsUXwLILY2/8I8SffDYvBvcbfJ0xgRkls7fTTktijbal9BmY3dnm/
-         Z9rg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4coSExCv+3IWeBFKMSBefCP9119dhOKO11CH0LzTXHStmdQ8wdmuj0t1BMjNzMaD3TLlA87XkahBkAQ2lu6Kjjpqr8bomKZEFrw==
-X-Gm-Message-State: AOJu0YyYA/vUE/MorCUGhn3LzZqa7yadsPQkfwuAqs0FOr+FtQrlTzj7
-	1d/dUlBNo549TObNeN4j6/6KNdDcgLFr7j1NuHwstlWrhRPjBzJjWR79iMsAH5g=
-X-Google-Smtp-Source: AGHT+IGYiaW2TNvfPRe1lCeGg51g38Vwx2MwekE6ExyMeiFb7GB6hnlqxRDoGzQKKTAAll+RXubLTQ==
-X-Received: by 2002:a2e:87c7:0:b0:2e9:794c:19ae with SMTP id 38308e7fff4ca-2e9794c1b09mr11532141fa.23.1716804236189;
-        Mon, 27 May 2024 03:03:56 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e95bcf4bdfsm18616651fa.63.2024.05.27.03.03.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 03:03:55 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 27 May 2024 13:03:51 +0300
-Subject: [PATCH v3 6/6] arm64: dts: qcom: c630: Add Embedded Controller
- node
+	s=arc-20240116; t=1716804757; c=relaxed/simple;
+	bh=Nu4zFkf+vdG4f/A//Ee3j7+2qsOZTO1MLXeLI38A08U=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=I6sQsajFrsVgILwLtdWQOb/31AIz2dn/QWn/rjmSaUanauT/WqsbhXxeiBOwYL0GhDQJdn2UwSqvsoCe7B8w1ZsFME7wk3fDdbc971j1wKbC6BH9Ob9FcQUZjpcpumRtA6Hki1VfPcKPn3LLPZpbJFH4X4ia/sNgO3gj1qYms/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ck9Kh7DQ; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44RABxF5067492;
+	Mon, 27 May 2024 05:11:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716804719;
+	bh=Oqc/Z6XWmRCD3Quoa8HVoha1OHkZHirIPRb60TQWAz4=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date;
+	b=ck9Kh7DQK8i+/r/GF/AeKcKwodcJ+kzERxRO9A2sBv0kjnvJZBulI6LBVN9bbD2ST
+	 fdmB1dBNOXxtHs7Z42BL2sSncP9c0Z0OQ9jD2AEA0nH+0cgs9mLkE7O4MsJii6wA7+
+	 LapD8AwpsLx/5vwKvuO3MQD9rZ69lGrVfTDPJhX4=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44RABxLF011380
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 27 May 2024 05:11:59 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 27
+ May 2024 05:11:58 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 27 May 2024 05:11:58 -0500
+Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44RABwvV091740;
+	Mon, 27 May 2024 05:11:58 -0500
+From: Kamlesh Gurudasani <kamlesh@ti.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley
+	<conor@kernel.org>
+CC: Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: crypto: Add Texas Instruments MCRC64
+In-Reply-To: <c5aa0c8b-b2b4-4ad2-a8a8-ab26ee0edd22@linaro.org>
+References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
+ <20230719-mcrc-upstream-v2-3-4152b987e4c2@ti.com>
+ <20230811-crestless-gratify-21c9bb422375@spud>
+ <20230811-imminent-fancied-89663c373ab5@spud>
+ <87plt7acgg.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+ <c5aa0c8b-b2b4-4ad2-a8a8-ab26ee0edd22@linaro.org>
+Date: Mon, 27 May 2024 15:41:57 +0530
+Message-ID: <87ikyza7iq.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240527-yoga-ec-driver-v3-6-327a9851dad5@linaro.org>
-References: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
-In-Reply-To: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Hans de Goede <hdegoede@redhat.com>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Nikita Travkin <nikita@trvn.ru>, Bjorn Andersson <andersson@kernel.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2543;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=YLVMl0P34IY99ph1CvUkOzuJ/s5orG53vowWD8rL0Ds=;
- b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ1pIVNvKRwkBM9WvbTntr8P4TFebN+nsx/mOewXZtpSsE
- dh+XW9DJ6MxCwMjF4OsmCKLT0HL1JhNyWEfdkythxnEygQyhYGLUwAmsk+L/b934JLwV5p9IeUO
- V0Ped3HMC9vCpuwmFOr2sufbLemZj36bW+q2hXp/fVupcLPNXeKeY+C6xj0c+tllYrFXOe3z/Jj
- LGadysFSqT/0Sk5SQL3dJ9V/ZotBDW4x8r5nYb0+ZX+PRteNmf2BrXGOjjbR1uKZBeUXN7ve/r1
- 4S9IjdIuXhKOqck/Hg4dSeirwZDzdd9sz7IP9D3WRv3f+Gi88F/76K1hKqK486acVWqbT5QFFd0
- pSV7HIrxX/dKos/sscmpFrh+6EzJY6FLq/EtXja2OZJyr5af/WhXKp37X71K+8qVN2ME57t+R8/
- 0SmLme/Jer44r3orgzNT698lz25bnjFhZUfj2rsyFzcBAA==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Bjorn Andersson <andersson@kernel.org>
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-The Embedded Controller in the Lenovo Yoga C630 is accessible on &i2c1
-and provides battery and adapter status, as well as altmode
-notifications for the second USB Type-C port.
+> This message was sent from outside of Texas Instruments. 
+> Do not click links or open attachments unless you recognize the source of this email and know the content is safe. If you wish
+> to report this message to IT Security, please forward the message as an attachment to phishing@list.ti.com 
+>  
+> On 27/05/2024 10:25, Kamlesh Gurudasani wrote:
+>> Conor Dooley <conor@kernel.org> writes:
+>> 
+>>> On Fri, Aug 11, 2023 at 04:34:33PM +0100, Conor Dooley wrote:
+>>>> On Fri, Aug 11, 2023 at 12:58:50AM +0530, Kamlesh Gurudasani wrote:
+>>>>> Add binding for Texas Instruments MCRC64
+>>>>>
+>>>>> MCRC64 engine calculates 64-bit cyclic redundancy checks (CRC)
+>>>>> according to the ISO 3309 standard.
+>>>>>
+>>>>> The ISO 3309 64-bit CRC model parameters are as follows:
+>>>>>     Generator Polynomial: x^64 + x^4 + x^3 + x + 1
+>>>>>     Polynomial Value: 0x000000000000001B
+>>>>>     Initial value: 0x0000000000000000
+>>>>>     Reflected Input: False
+>>>>>     Reflected Output: False
+>>>>>     Xor Final: 0x0000000000000000
+>>>>>
+>>>>> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+>>>>>  MAINTAINERS                                             |  5 +++++
+>>>>>  2 files changed, 52 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml b/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..38bc7efebd68
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/crypto/ti,mcrc64.yaml
+>>>>> @@ -0,0 +1,47 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/crypto/ti,mcrc64.yaml*__;Iw!!G3vK!Qw75749h2ysFlROkyfLIUT9MGWlHfBEvPAbLVjScJXCPJ7vbwgxH-8hNWlJGBXGwz9Ny47eQi2mPS5R6La54vZo$
+>>>>> +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!G3vK!Qw75749h2ysFlROkyfLIUT9MGWlHfBEvPAbLVjScJXCPJ7vbwgxH-8hNWlJGBXGwz9Ny47eQi2mPS5R6P2LNJCQ$
+>>>>> +
+>>>>> +title: Texas Instruments MCRC64
+>>>>> +
+>>>>> +description: The MCRC64 engine calculates 64-bit cyclic redundancy checks
+>>>>
+>>>> A newline after "description" please.
+>>>>
+>>>>> +  (CRC) according to the ISO 3309 standard.
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Kamlesh Gurudasani <kamlesh@ti.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: ti,am62-mcrc64
+>>>>
+>>>> Is the am62 an SoC or a family of SoCs? I googled a wee bit for am62 &
+>>>> there seems to be an am625 and an am623?
+>>>
+>>> Or is it an am62p5, in which case the compatible should contain
+>>> ti,am62p5 I suppose. Sorry for my confusion here, its not really clear
+>>> me too since I've been seeing many different-but-similar product names
+>>> the last few days.
+>>>
+>>> Thanks,
+>>> Conor.
+>>>
+>> Hi Conor,
+>> 
+>> Thanks for the review.
+>> 
+>> am62 is family of SOCs.
+>> 
+>> All devices under this family, like am623/5/p5 and etc, have MCRC64.
+>> 
+>> I have kept the naming convention similar to SA2UL/SA3UL[0].
+>> 
+>> [0] https://urldefense.com/v3/__https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml*L18__;Iw!!G3vK!Qw75749h2ysFlROkyfLIUT9MGWlHfBEvPAbLVjScJXCPJ7vbwgxH-8hNWlJGBXGwz9Ny47eQi2mPS5R6afCEd8s$
+>
+> Usual answer is: no families. There are exceptions, though, so is this
+> case on the exception list?
+Okay, will use ti,am625-mcrc64 as compatible and as fallback compatible for
+other devices. I hope that is right.
 
-Add a definition for the EC.
+Thanks.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      | 76 ++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 47dc42f6e936..d975f78eb3ab 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -370,6 +370,66 @@ zap-shader {
- &i2c1 {
- 	status = "okay";
- 	clock-frequency = <400000>;
-+
-+	embedded-controller@70 {
-+		compatible = "lenovo,yoga-c630-ec";
-+		reg = <0x70>;
-+
-+		interrupts-extended = <&tlmm 20 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ec_int_state>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "host";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ucsi0_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ucsi0_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					ucsi0_sbu: endpoint {
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "host";
-+
-+			/*
-+			 * connected to the onboard USB hub, orientation is
-+			 * handled by the controller
-+			 */
-+		};
-+	};
- };
- 
- &i2c3 {
-@@ -694,6 +754,14 @@ mode_pin_active: mode-pin-state {
- 
- 		bias-disable;
- 	};
-+
-+	ec_int_state: ec-int-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+
-+		input-enable;
-+		bias-disable;
-+	};
- };
- 
- &uart6 {
-@@ -741,6 +809,10 @@ &usb_1_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&ucsi0_hs_in>;
-+};
-+
- &usb_1_hsphy {
- 	status = "okay";
- 
-@@ -761,6 +833,10 @@ &usb_1_qmpphy {
- 	vdda-pll-supply = <&vdda_usb1_ss_core>;
- };
- 
-+&usb_1_qmpphy_out {
-+	remote-endpoint = <&ucsi0_ss_in>;
-+};
-+
- &usb_2 {
- 	status = "okay";
- };
-
--- 
-2.39.2
-
+Kamlesh
+>
+> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v6.10-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst*L42__;Iw!!G3vK!Qw75749h2ysFlROkyfLIUT9MGWlHfBEvPAbLVjScJXCPJ7vbwgxH-8hNWlJGBXGwz9Ny47eQi2mPS5R6WaRq1VM$
+>
+> P.S. Your email client added some weird subject prefix - please fix it.
+Thanks for bringing this to my notice, Will fix it.
+>
+>
+>
+> Best regards,
+> Krzysztof
 
