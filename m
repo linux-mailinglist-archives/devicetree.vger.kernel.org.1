@@ -1,231 +1,165 @@
-Return-Path: <devicetree+bounces-69632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE3B8D0985
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 19:48:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A1A8D098F
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 19:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C63C283570
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D28D1C21452
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8915B15F30F;
-	Mon, 27 May 2024 17:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015F315F314;
+	Mon, 27 May 2024 17:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="angG1vvB"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="TKZJv1QS";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="dFSEMYa7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from wfout1-smtp.messagingengine.com (wfout1-smtp.messagingengine.com [64.147.123.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5747915EFCC;
-	Mon, 27 May 2024 17:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BB2155C8D;
+	Mon, 27 May 2024 17:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716832120; cv=none; b=ViZDxVGy81K/ws4RZ9LgeGRsxxXLdwP7JZUUUMVr+rELqIJjnIcKDdJzuaUXiII8hP9Tv5VWso9D6qWhmuI5pZNdfQMXerzrnfpNup500H3CINgl6hBgOkJYZFXHGGpoYfCMYR5Bs0wgNQNd8LXTUzXsSF1CDXsrVldJzHJ6KtI=
+	t=1716832450; cv=none; b=LxSsIaTKPLoiYXbY+X95IExIMUwgW4yqj/nFzPfU+Ihf8VOiVHzQ5eCK8rdXEIXyMHnHF1+rSl5E+P/BbB3o1JARp4sWDaVXBLUfqnJ9X9yYDwDdkh404bViN3dP4V0i4bivPaAYqxZXgNf3uxW2WN/5KD60cdGw1GW4RLffGfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716832120; c=relaxed/simple;
-	bh=Osjj8NjnFAIZU2NVPkIF21tWTVtBoakiM3p/XGDg+2Y=;
+	s=arc-20240116; t=1716832450; c=relaxed/simple;
+	bh=fPWenfo+U38jaagHHWM8b2q1AgrEX6WrkLJJVIupgQA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WP4KpU7l8NXXGA3mwZP4bKXeDt7eN2vkuANOcU59Ie9IIVlaSFod5Q6K6Wbp6xH7MJqdC6EkEE6gVkZ6UIVGJVa5TN9Cz8IbCjz/WENHsIB/MW1npbkTu/Z/v1klUh/VCOh3gJlan+Du6TpplShcR18RJ4XHeST6BsGVSme6G+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=angG1vvB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FF0CC2BBFC;
-	Mon, 27 May 2024 17:48:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716832119;
-	bh=Osjj8NjnFAIZU2NVPkIF21tWTVtBoakiM3p/XGDg+2Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=angG1vvBB/tISqrSMgWTWIbf561kOmcQ+2YRLZ8hOmXgWKdyKc5jrn1KxIkn3xgUA
-	 7ItUxqSGbJYMhWd5AgC3lhXZnxaoywxAtQx78m8WtWT46ovOLXI2klMAr8KLT8qc6w
-	 JRr93tFRa2CAO5P+UpYPpKkUGGdSP3WEdvL0sEqICVwRyfkUb3vyRs5GtCCwr5gOTg
-	 wSdmgtC/a5Gw14NtE0Pjm9elV1LCik59I5TIinkEcbLlPIvTyz+9TlRhEfQ9CruP7J
-	 20a03DPvhHLMeUbrNql+prYlpgisTVDJyYRTqYvscOcawZEG9zTw5058jci6aPpyg8
-	 9/hI9lo1QUdew==
-Date: Mon, 27 May 2024 18:48:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=p3zHRbd7ThEcrzrqN0JQJAEGEKSm6Vhq+Ki8ormyOsevmjczItUJSAZTXsh4ERs/R5dE2biH+IMmdIIyn5SJxssT85HYVjiAZCFJD32VAyEcq2pfwUYb6N2v/ehJupxkEHmEYnndCA7nbGw9Emgq79qh0UpCsnn04wst2C7pLp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=TKZJv1QS; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=dFSEMYa7; arc=none smtp.client-ip=64.147.123.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+	by mailfout.west.internal (Postfix) with ESMTP id D9B551C0010D;
+	Mon, 27 May 2024 13:54:05 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 27 May 2024 13:54:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1716832445;
+	 x=1716918845; bh=G0NAta/lh9onOsL1EDtQB+THN92GtsjAVH1XbX5tt3E=; b=
+	TKZJv1QSLQND6DfaWa1C2pgSS22QDAmOUhie8eB9CikIInaj9uoMhfau0qdqdJQ2
+	ozBc8/lYF1kW6zL9XP2iR2Y6qerob+ZqltT1Q7/UPtEg+fa/8+HsspHr2GWtVN8a
+	OAuEHI1b3DEbn+ocXqtewpBOR1yyhDStB1VkQ4C0G1lhH1fl5HfjnFlVm9lQU60s
+	mUGBkbC62PerjrrzeiRpT9427WyEY8/lzdy3mr63EPBN0x1VzZmimliNf0X+A1VT
+	C8RrNOulX61GOuux2JBL/GAHB0vjRtBOcvWN9EEgufqV+hHeuEK6E0NLT6qiTZZp
+	k+iX+pEJ0+UBcYuY2jyYiw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1716832445; x=
+	1716918845; bh=G0NAta/lh9onOsL1EDtQB+THN92GtsjAVH1XbX5tt3E=; b=d
+	FSEMYa7lqfIMEbFbPmvUFlpEwXjGUs7cCsDuwq0D3B2TpqllvZJQopdUQK4IRutb
+	FrzOC14XK/qsyu459aN9WrvF6LhJ80UEO0jh0oFJxTbAw0GPWvX0W9TkTc1pNMTa
+	+Da/A4eON2iFOGa+jSIKQ0xuFUClONX+apdHDDPHMeURqhAnM97PVsk1lGZSFtvH
+	sxhxZnMdqAAOiNt5HAGaM9T7b9uT59eR2gHd8rsz+We2Qf4poV9Dzpfys8I5xTvb
+	mgC9hA/TV90hxHxDKxh/I1MSZjFo2LdSlpHVW2Pj2rx7dRmbXE2cba4nglW34zZI
+	GnDeGymjvyCrQUAazv7MQ==
+X-ME-Sender: <xms:vchUZsK4mr0qG38fORdL_K8rL8PD0i4AhknvGiz565Cz6TGTaQh_9A>
+    <xme:vchUZsISrZO6ztxVXrIiMkxDx7sjCjrzN6qFziwUqv6oH7CZTK9OWYgM5OstLJE15
+    yJlegMWzhV6uycfhdU>
+X-ME-Received: <xmr:vchUZsugw91shEmpLTkdJfYto3ZKLLFcOOZVU0c6QdQEG0Fy4viHC0G6DrpX2R5y4x6peSFTKhc29TjzMi9I94pSTWdW1YU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdejgedgudduiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhi
+    khhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvg
+    hnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepffekgfdu
+    keeghffhjeetvdeitdegteeikeffieduhfegveetjeevtdffvdekffdtnecuffhomhgrih
+    hnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
+    mhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrh
+    grghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:vchUZpZEybioqxMNa7ov9FxDwik2LyP4VbaapBguPnnhUmcp2ZL6SA>
+    <xmx:vchUZja83AvLV13OzmSUHBqZPwM91ua2x0aPVVIlydSTJOTxNFBxcQ>
+    <xmx:vchUZlBDwzT6dPstGK2TFeLCfANG5hcHbmlj321n4lyijJxnikU_5A>
+    <xmx:vchUZpYa-8UuGNKIdLfTHz77i8gtnZDAuf2sXB8E8_PVzWGtZ8tJNw>
+    <xmx:vchUZtm2sO5Iww14mDV2-eI7prAwpSsr_vlO6Ba3e7bgh4IjmosPeGZw>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 27 May 2024 13:54:04 -0400 (EDT)
+Date: Mon, 27 May 2024 19:54:02 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Conor Dooley <conor@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: adc: ad7173: add support for ad411x
-Message-ID: <20240527-arguably-said-361184ad848e@spud>
-References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
- <20240527-ad4111-v3-1-7e9eddbbd3eb@analog.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: media: renesas,isp: Add binding for V4M
+Message-ID: <20240527175402.GI1900917@fsdn.se>
+References: <20240527131945.1679661-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240527-causal-flyable-c34004c298bf@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4cO0smBLoF4dPAzc"
-Content-Disposition: inline
-In-Reply-To: <20240527-ad4111-v3-1-7e9eddbbd3eb@analog.com>
-
-
---4cO0smBLoF4dPAzc
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240527-causal-flyable-c34004c298bf@spud>
 
-On Mon, May 27, 2024 at 08:02:34PM +0300, Dumitru Ceclan via B4 Relay wrote:
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->=20
-> Add support for: AD4111, AD4112, AD4114, AD4115, AD4116.
->=20
-> AD411x family ADCs support a VCOM pin, dedicated for single-ended usage.
-> AD4111/AD4112 support current channels, usage is implemented by
->  specifying channel reg values bigger than 15.
->=20
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7173.yaml    | 122 +++++++++++++++=
-+++++-
->  1 file changed, 120 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> index ea6cfcd0aff4..5b1af382dad3 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> @@ -19,7 +19,18 @@ description: |
->    primarily for measurement of signals close to DC but also delivers
->    outstanding performance with input bandwidths out to ~10kHz.
-> =20
-> +  Analog Devices AD411x ADC's:
-> +  The AD411X family encompasses a series of low power, low noise, 24-bit,
-> +  sigma-delta analog-to-digital converters that offer a versatile range =
-of
-> +  specifications. They integrate an analog front end suitable for proces=
-sing
-> +  fully differential/single-ended and bipolar voltage inputs.
-> +
->    Datasheets for supported chips:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD4111.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD4112.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD4114.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD4115.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD4116.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-2.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-4.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7173-8.pdf
-> @@ -31,6 +42,11 @@ description: |
->  properties:
->    compatible:
->      enum:
-> +      - adi,ad4111
-> +      - adi,ad4112
-> +      - adi,ad4114
-> +      - adi,ad4115
-> +      - adi,ad4116
->        - adi,ad7172-2
->        - adi,ad7172-4
->        - adi,ad7173-8
-> @@ -129,10 +145,36 @@ patternProperties:
->          maximum: 15
-> =20
->        diff-channels:
-> +        description: |
-> +          For using current channels specify select the current inputs
-> +           and enable the adi,current-channel property.
-> +
-> +          Family AD411x supports a dedicated VINCOM voltage input.
-> +          To select it set the second channel to 16.
-> +            (VIN2, VINCOM) -> diff-channels =3D <2 16>
-> +
-> +          There are special values that can be selected besides the volt=
-age
-> +          analog inputs:
-> +            21: REF+
-> +            22: REF=E2=88=92
-> +          Supported only by AD7172-2, AD7172-4, AD7175-2, AD7175-8, AD71=
-77-2:
-> +            19: ((AVDD1 =E2=88=92 AVSS)/5)+
-> +            20: ((AVDD1 =E2=88=92 AVSS)/5)=E2=88=92
-> +
->          items:
->            minimum: 0
->            maximum: 31
-> =20
-> +      single-channel:
-> +        description: |
-> +          Models AD4111 and AD4112 support single-ended current channels.
-> +          To select the desired current input, specify the desired input=
- pair:
-> +            (IIN2+, IIN2=E2=88=92) -> single-channel =3D <2>
-> +
-> +        items:
-> +          minimum: 1
-> +          maximum: 16
-> +
->        adi,reference-select:
->          description: |
->            Select the reference source to use when converting on
-> @@ -154,9 +196,26 @@ patternProperties:
->            - avdd
->          default: refout-avss
-> =20
-> +      adi,current-channel:
-> +        description: |
-> +          Signal that the selected inputs are current channels.
-> +          Only available on AD4111 and AD4112.
-> +        type: boolean
-> +
-> +      adi,channel-type:
-> +        description:
-> +          Used to differentiate between different channel types as the d=
-evice
-> +           register configurations are the same for all usage types.
-> +          Both pseudo-differential and single-ended channels will use the
-> +           single-ended specifier.
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        enum:
-> +          - single-ended
-> +          - differential
-> +        default: differential
+Hi Conor,
 
-I dunno if my brain just ain't workin' right today, or if this is not
-sufficiently explained, but why is this property needed? You've got
-diff-channels and single-channels already, why can you not infer the
-information you need from them? What should software do with this
-information?
-Additionally, "pseudo-differential" is not explained in this binding.
+Thanks for your feedback.
 
-Also, what does "the device register configurations are the same for
-all uses types" mean? The description here implies that you'd be reading
-the registers to determine the configuration, but as far as I understand
-it's the job of drivers to actually configure devices.
-The only way I could interpret this that makes sense to me is that you're
-trying to say that the device doesn't have registers that allow you to
-do runtime configuration detection - but that's the norm and I would not
-call it out here.
+On 2024-05-27 17:36:23 +0100, Conor Dooley wrote:
+> On Mon, May 27, 2024 at 03:19:45PM +0200, Niklas Söderlund wrote:
+> > Document support for the ISP module in the Renesas V4M (r8a779h0) SoC.
+> > 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> 
+> Should be with:
+> https://lore.kernel.org/all/20240527132513.1684232-1-niklas.soderlund+renesas@ragnatech.se/
 
-Thanks,
-Conor.
+I posted the bindings separate from the driver with the intention that 
+once they are accepted I can upstream the driver and the DT for the 
+device using it in parallel. The V4L2 subsystem is at times overloaded 
+and in the past waiting for both driver and binding to be accepted as a 
+whole unit have delayed entablement of SoC features unneeded for one or 
+more releases.
 
---4cO0smBLoF4dPAzc
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> No mention of why this can't just fall back to an existing device here
+> or in the driver. Why not?
 
------BEGIN PGP SIGNATURE-----
+For better or worse that is how all Renesas devices are handled, one new 
+device compatible for each device. This have worked well as each device 
+usually have a quirk or extra future that is enabled later.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlTHcwAKCRB4tDGHoIJi
-0kRjAPsG84+KDR7s4y1gNjTV2xf5bXRkzPtrvnplSviQITN4QgD/XKQvmuVdBUba
-oKS3NOU3/HdgiortQmm/UlCPF14I/ww=
-=NQX0
------END PGP SIGNATURE-----
+> 
+> > ---
+> >  Documentation/devicetree/bindings/media/renesas,isp.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,isp.yaml b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > index 33650a1ea034..d335d5595429 100644
+> > --- a/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > +++ b/Documentation/devicetree/bindings/media/renesas,isp.yaml
+> > @@ -22,6 +22,7 @@ properties:
+> >        - enum:
+> >            - renesas,r8a779a0-isp # V3U
+> >            - renesas,r8a779g0-isp # V4H
+> > +          - renesas,r8a779h0-isp # V4M
+> >    reg:
+> >      maxItems: 1
+> >  
+> > -- 
+> > 2.45.1
+> > 
 
---4cO0smBLoF4dPAzc--
+
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
