@@ -1,106 +1,130 @@
-Return-Path: <devicetree+bounces-69542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07188D01E5
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:40:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1CC18D01F7
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FD771F280C4
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:40:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F0D61C22008
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1799415F3E1;
-	Mon, 27 May 2024 13:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 042F615ECEC;
+	Mon, 27 May 2024 13:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KOnIKTNj"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="kNk1sejW";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="UttSIhgN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wfhigh1-smtp.messagingengine.com (wfhigh1-smtp.messagingengine.com [64.147.123.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C10515EFAA
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 13:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9171815DBDD;
+	Mon, 27 May 2024 13:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716817160; cv=none; b=dzfJ1bkbqMAB+x2xdv5844SeAXrir7PyJI9X2ZCRh+5RIBe9LuMSRF3ave9Rg7WonPmJXsKXHI+aDo+5NTb8NIuIfjknxLuynKLB7prQJNnZbJO5YK5TdX6H7ZM4RVoLzoQWnpUQE+dTHjFeyUr+tJaQ22mqQuTGyh/v22cK+2I=
+	t=1716817306; cv=none; b=PpN9HaQdHfyUFXb5592HaQSkPa5oOYrhLpyqCgnWkVFWHlZJvWu5Srze9f3xkvWJAyt8e4XOnN1hgMx2eGcCylIkX5bkej4qoXlbXl10wqlzCYNJgqF5UcT6nHRL87Aek3MLRdHRtv7kijnnMTnM5is8h0LyO/lvr8j7ZMMdgoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716817160; c=relaxed/simple;
-	bh=Q0QJSfZ51BjlCjV1fzHNY8jwcshLWXrd/Y3XqvZCfeY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p8WubCJsTrdDh9L+Y4GaUqbroMn/x6hVayfgRNI+e7aW8stNAnL9nmbykJaZSyADz13AuEg1bGdJ3k2Xj8Vhu3flCrxSHFiTgnVkWqIRlA6T++ipTKeZAeJZ6bIX7kUDkHoyUK1RhslZ8wazBTq/SdoBDLdS3cu5bSD7+Vosi5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KOnIKTNj; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-df7719583d0so3422001276.1
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 06:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716817157; x=1717421957; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q0QJSfZ51BjlCjV1fzHNY8jwcshLWXrd/Y3XqvZCfeY=;
-        b=KOnIKTNjBXSL4sXJB2DG3Utd4EPV6UXPpNtvQkN+GYrjgA3h5QiMDJMfYjK83v1m/P
-         SVpf5HywWLSvSuh3Tjzf6x76F9B2byAmMwV4k65B9ZpcmU2s+GVvcFpHolxMhTdRPrX4
-         RWotj1b+PSBs3P4uCGTtIexf2z2fNsC3R1ipvmObb/RsV/3dgMTCT+7wAM9ldthiWEPP
-         r3GgbFrrnDJdRfJczwWHnVqcUxO5JGBG0BY9YcF3Nghcox1+PbsqENHOlSyoygI4cSPd
-         aPBUHvcXQ1rYTPToxbu0sxN0ynq/tqwbFC9ErL/VJWPIGDUniUSHruAJR80+YWn7vnXS
-         fu3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716817157; x=1717421957;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q0QJSfZ51BjlCjV1fzHNY8jwcshLWXrd/Y3XqvZCfeY=;
-        b=FX6xgI1DPxQ0S3tSPF+OOI1+2M+0saRL5s/AQmDDuAReUOcbns7s/PyKQRlR0wJkrD
-         a8oSQAt6no/9g381oWoEVnBoujGOsxHz+I6GJwUIa6F9E1+WEQ+pwt0w5qknuxKlocP9
-         KdTBCvbZn109Lsz2HgSK+BK4aaD9Y4aOseyL7jbewSazkaI2UTfiKL/ThnXPpkzN+UGN
-         kAvlI7lpZFQK4NNqGPjZcIlg4+3cAo63iYmILEqQwO9Nd8oUO+yoIN9QrHf7TI97N0py
-         v1Qj8zIIcHSGH0UE45Is5u5CO4yGm2ILTK5vcw7SusoDbg27lYODI5q87wEVfLTeC0m6
-         nDLA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDITLkUTBIzx6DCE0NOTaqyl38V9wF/ADnaa0k8wm7fDoZuEgocY5XvafAvUTBmGwUThirugujRMLQu5H6tZecHRy/kdqH2YzgjA==
-X-Gm-Message-State: AOJu0Yz2l1MOcVQfXYqqv5j90WQ/tCdrwG+53EbK0EGtWOGmwsM1WL79
-	UH7tmKBRKl0UvWN5vWLiGGoJHod4Bu74fyVuwKXDRjgOA2YoStCIqcoGFOa5LGSHvHrA6p1cKcQ
-	5OWbrJBnJvu+laHKKKJIFK/x2FB9X3lubS/IxZw==
-X-Google-Smtp-Source: AGHT+IFc+duNcD3dnl5PlfSWaeU543iVanFJg7u8zsI0JSvx+fv5ZxRzO7wGY0GpKjQer78ULichDeY/NaieOEgzTKI=
-X-Received: by 2002:a25:b11c:0:b0:de5:1553:4351 with SMTP id
- 3f1490d57ef6-df77218b217mr9183346276.15.1716817157481; Mon, 27 May 2024
- 06:39:17 -0700 (PDT)
+	s=arc-20240116; t=1716817306; c=relaxed/simple;
+	bh=WzVU9PIoOshReO0MCV1N1jKZLnrydo8XPEfmAgKd0Qk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KET3ba2gy/0DLlc1vRzXeXf1FvMv+WN/lmJWqudeQjyTE8oVmXwTXceTDbJSw/qcJbqkjuyMyz8wjI8sWTJATZoL4frXLOHXEse4IXinBAUAREmUXTbpXN9Sao21AAMNqWFzh/enOint9UoDccS/Tq6RLRuRBwwQKtqLJaU36rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=kNk1sejW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=UttSIhgN; arc=none smtp.client-ip=64.147.123.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailfhigh.west.internal (Postfix) with ESMTP id 81DD618000AA;
+	Mon, 27 May 2024 09:41:44 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Mon, 27 May 2024 09:41:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm3; t=1716817304; x=1716903704; bh=oM
+	t6fguTndhazqVb76NTrYgiSior/wNV901yQg81jwc=; b=kNk1sejWWvIDCHhWNJ
+	60/wI/xgJw/RFUch8Eh3agbBmkIWGsBLf2koffjmAvioOQBAEdnIDdjVpuTE+OZC
+	nckS5bhJopDtjWF8upTbikEAl8ZGo8hTtDTe+nCMTpNua5XoxxR44sadjXOI4oeT
+	4JOd8WIV67qqKrjeqjOF7c6AyPRn58EPwhdAtlc7Be/D/ZDBLID1maN2Py7SZA3K
+	zkvSnM0JgoGzEDc+7tKprbpjRrOXcvmXG9rh1ZonxMvmXo10J6kPWT9lOC8U2VY6
+	cYmDS7aaHHpFoPWz2bLCjaLjS/78tsDRfBZJDjliGAoULuvzH2eAthzFJ1Eax4bX
+	DmYw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1716817304; x=1716903704; bh=oMt6fguTndhaz
+	qVb76NTrYgiSior/wNV901yQg81jwc=; b=UttSIhgNOVGfa/HbD99ZooqC5bXyx
+	PgVe2vf30gfliTq+U+OBFVj9MSWythMNydONTy19U6PbnUliuKQIGdWh3/FauKsR
+	PY2gkIhFqapkPnkEDCTK0ydZjvBO6iTMFw3q9pLWCBoIJdeOUHcIFuw1r4E7Brkl
+	vLpmgOURJ3bh7sXEVYjugOwoD1WSeu1W4WF5VmHlzg4gHpUw8dWSJXa6+6Oxr6CZ
+	d1WdQdj4y5cNgxa1ib3pO/PoDSvOcrMlWwfrKTOq16yv9sJ2dW32lG8cKl65qUNL
+	zMzwWxmd30Pqj8cMm9bCXYB45lWXN8Qz2tqMPqBCEwoW3ks1LcdtEoYaQ==
+X-ME-Sender: <xms:l41UZlBebQW52PNaAIA2qUEi8LUxqlhFglobHDZHTpHaqT2eZ6lmrw>
+    <xme:l41UZjgkAywFVY9XNFpULlgLK_amab9s8dvvxgbGXhuS2v8cWukR7OwgklXT5017L
+    Jup1wMx0m6YAq04QO8>
+X-ME-Received: <xmr:l41UZgkU4Xps1z9ry1S_p1tZu4ifJ7OdnT87mKhZXViquBaZSfD6zLNwIa_n7RLeIJ87X0wn3ET61neaI88EHi5bGOuk-htIhWUn>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdejgedgieehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvsh
+    grshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehudelteetkefg
+    ffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfeetgeenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhl
+    uhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
+X-ME-Proxy: <xmx:mI1UZvwJBRVBUbIGo92EixIIaMuwP6ipG0w4PzDjKcVFvkAtePXfcA>
+    <xmx:mI1UZqRssXKjwH_ftPN2Y-OhH3JUzsfnnm78gBBm7ERu_z7MiEghNw>
+    <xmx:mI1UZiY2PR065e2_ISC2YV9mBQc9LybVi5M0to0PrZA_rPVFE08cPw>
+    <xmx:mI1UZrTDW8NFt0VmFKZ-Lhty2bD7s9-6LCPTVMkJBVrun_jQT1FUfw>
+    <xmx:mI1UZnQs3o4AcztcFjxeU87rG2PkrlDEV0Wu6ZY6nFbEEU_yIc-zIuST>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 27 May 2024 09:41:42 -0400 (EDT)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/3] arm64: dts: renesas: gray-hawk: Add video capture pipeline
+Date: Mon, 27 May 2024 15:41:26 +0200
+Message-ID: <20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240506150830.23709-1-johan+linaro@kernel.org> <20240506150830.23709-4-johan+linaro@kernel.org>
-In-Reply-To: <20240506150830.23709-4-johan+linaro@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 May 2024 15:39:06 +0200
-Message-ID: <CACRpkdZrTPyv_4LuN7VNhL7VFqoNzPq_WcooJLzELfmCBaF_jA@mail.gmail.com>
-Subject: Re: [PATCH 03/13] mfd: pm8008: deassert reset on probe
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Satya Priya <quic_c_skakit@quicinc.com>, Stephen Boyd <swboyd@chromium.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 6, 2024 at 5:10=E2=80=AFPM Johan Hovold <johan+linaro@kernel.or=
-g> wrote:
+Hello Geert,
 
-> Request and deassert any (optional) reset gpio during probe in case it
-> has been left asserted by the boot firmware.
->
-> Note the reset line is not asserted to avoid reverting to the default
-> I2C address in case the firmware has configured an alternate address.
->
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+This series adds support for video capture on V4M.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+I only have schematics for the gray-hawk single board but I opted to 
+keep the structure from white-hawk and create a dedicated DTSI file for 
+the CSI-2 and DSI sub-board.
 
-Yours,
-Linus Walleij
+Patch 1 adds the IP nodes for VIN, ISPCS and CSI-2. While patch 2 and 3 
+creates and wires up the sub-board to the two MAX96724 CSI-2 
+transmitters.
+
+Niklas Söderlund (3):
+  arm64: dts: renesas: r8a779h0: Add video capture nodes
+  arm64: dts: renesas: gray-hawk: Create separate CSI/DSI sub-board
+  arm64: dts: renesas: gray-hawk-csi-dsi: Add and connect MAX96724
+
+ .../boot/dts/renesas/gray-hawk-csi-dsi.dtsi   | 201 ++++++
+ .../dts/renesas/r8a779h0-gray-hawk-single.dts |   8 +-
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi     | 666 ++++++++++++++++++
+ 3 files changed, 868 insertions(+), 7 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/gray-hawk-csi-dsi.dtsi
+
+-- 
+2.45.1
+
 
