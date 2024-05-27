@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-69281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62EBB8CF79C
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:02:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BEC28CF7A1
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AC331F216DC
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:02:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AE4D28144D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45178168C4;
-	Mon, 27 May 2024 03:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AF126AF9;
+	Mon, 27 May 2024 03:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cDDKPZEm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WY1wxS4X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19AE628387;
-	Mon, 27 May 2024 03:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9A03A8D2;
+	Mon, 27 May 2024 03:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716778860; cv=none; b=Y7dvud7L0YVHi0g72vOKqxd4bripj2OdsYE5G+ZjvdbvEBlqQaFFdeQOZWzn6VejEOVtZ8yWjMXQkdpyX4Gs1+R8MRCAVkG2nz1JGdvYe1QgsSgE2E0npsZgJanE4wXfvBxdgnlHG1d8tq+Wg4l+G9pD/OTYPM4ONjLmOGTGrTo=
+	t=1716778861; cv=none; b=i1Ixjn6Hs7eG5FzmCQwONgOwJD+rqghQNz/LjrfFav9H29zzVlcRNcVA6zPEq7O+VS3XwcVXTctpR/bGxYXwWokIBry5b0+vCM/FPh9JY9nD4QId/3zjWOIGK3H1YfbmHOzZ8zE7gc8X6fwx1htJ/AgWpBnKqBkuKQwvXXZxVmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716778860; c=relaxed/simple;
-	bh=/TY8I3X1jPyCLToOQbkts7NNqII11DhdDRlDcUoi8rc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nLD4b7DBC9uKAQmL7trpgWiYQ6Oyo+tIsQ2xuUQzYb9Jsb4cR3IBZyiMU80aDdxw36LB+ka4HiCZqPyzm/XmwdcaQr7JdyKhakaYmEk+greLcR5DDydyNa5i8mV0r4/mHwk7zdB8bHo0rbSDd2hYO2M4lU2kNpkTNSWZ+4ZFRCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cDDKPZEm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D01FDC4AF14;
-	Mon, 27 May 2024 03:00:58 +0000 (UTC)
+	s=arc-20240116; t=1716778861; c=relaxed/simple;
+	bh=9MLSu0qnCgkhUaHNx3Hu4l/wBvP3fJRfT3ZcAkazzDk=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mNAsCoHWGaiCclEonl/J1TqTzrv2e8Vq+HfrVMdaz46fpmkSo6Ny0Dtou2CIwUy9glm5VC9b7015avTmfiDmLVYWDGSRffKcwH3b/3o2Yspeul6ASpb/E9J5YISU4elta6HJTQul+DU+clHsbgd45vp5NbScPc4g5JeIq2xeoZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WY1wxS4X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A50C1C2BD10;
+	Mon, 27 May 2024 03:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716778859;
-	bh=/TY8I3X1jPyCLToOQbkts7NNqII11DhdDRlDcUoi8rc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cDDKPZEmfiZeHe4p8Io4W1jmblExreNz+OGGr91emlfm+iGiutjEoGdg9N2rm8IYr
-	 w3k18OwhlQVwbKGPM7Rl1b9ie3Dg97zcZhmHqzgXI01twtDyBIx/bSFguGC8b40c8v
-	 BcDTDqC2Qo3u9om7C7aLgdersr5TY884/TFCHjVcyNFS4UGaSR4eT0DrpL5ujKiaRB
-	 4/Jw/6jRzBRNdDuoaj+Y2jkJ7ZzbuRmeTPa+w4Pav0UkJoMcD6VZMgv9qqDzU6VwlG
-	 jD58TJjCijTzCpXAFINCFFF3CKgmAjz3h07Oq0urxT9hSYWq09BekJud9CE8/UZkuW
-	 MeF2g4wUrkb+g==
+	s=k20201202; t=1716778861;
+	bh=9MLSu0qnCgkhUaHNx3Hu4l/wBvP3fJRfT3ZcAkazzDk=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=WY1wxS4X5tJ0DBw+U81v7qEET0obmF9XyldDFy4UoSmnRcqksq6kTerWRzH1fqwkS
+	 9vu6m+/pH43+UtkSg3WlB4gHWoOkwpH+Y+MMMPoKHmkttkzE7ekFTpTKirwV+m9dsd
+	 KBGhcR+1P8mcP7x2mWUCyeKEtV63Urj4cuS0qnKv+zU/wEF/cCONG2MEYxM1BiRFpv
+	 uFRANF4iuBX21Ha2FEZv7qSxm0Kn5HySCQTbhwtv5TQ/Eqd6W6jy6MACL2FDO7P86f
+	 VzSAT7EJwLWkiRUzjOEbVKnnEA0iVcuJKMl0KhfvmPDD98AUc8LhV/2q7w+gthRsHa
+	 O7+eXQvitr4/Q==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-*: Allocate some CMA buffers
-Date: Sun, 26 May 2024 22:00:27 -0500
-Message-ID: <171677884195.490947.2226602783987880246.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qocm: sdx75: align smem node name with coding style
+Date: Sun, 26 May 2024 22:00:29 -0500
+Message-ID: <171677884208.490947.15212665184484115260.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240522-topic-x1e_cma-v1-1-b69e3b467452@linaro.org>
-References: <20240522-topic-x1e_cma-v1-1-b69e3b467452@linaro.org>
+In-Reply-To: <20240426123101.500676-1-krzysztof.kozlowski@linaro.org>
+References: <20240426123101.500676-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,21 +66,15 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 22 May 2024 13:40:09 +0200, Konrad Dybcio wrote:
-> In a fashion identical to commit 5f84c7c35d49 ("arm64: dts: qcom:
-> sc8280xp: Define CMA region for CRD and X13s"), there exists a need for
-> more than the default 32 MiB of CMA, namely for the ath12k_pci device.
+On Fri, 26 Apr 2024 14:31:01 +0200, Krzysztof Kozlowski wrote:
+> Node names should not have vendor prefixes.
 > 
-> Reserve a 128MiB chunk to make boot-time failures like:
->  cma: cma_alloc: reserved: alloc failed, req-size: 128 pages, ret: -12
-> go away.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1e80100-*: Allocate some CMA buffers
-      commit: 50b0516030fd549c9fd4498c9ac1f3a665521b2e
+[1/1] arm64: dts: qocm: sdx75: align smem node name with coding style
+      commit: bfb751d9221361185bd2331dbf6e751e351a6c5d
 
 Best regards,
 -- 
