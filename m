@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-69399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 687B68CFC51
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:00:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFA708CFC64
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2551A28326D
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:00:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8ED051F2269F
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:03:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDDE13A26E;
-	Mon, 27 May 2024 08:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A9853361;
+	Mon, 27 May 2024 09:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aoiqfWZq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iJFFVgoJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09CF1327E5
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BDE17BCD
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 09:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716800377; cv=none; b=PsuEiLV7tURE4XJ+X6n6yZtzmnBazaDhZlUey69rMI/msDVMudIIeVZYDZ/mPoB96k+Yo3ohNHjTkw5jbjzBV4Jk3xcPv8ShnErl//B8ZYW0h0pzN7Uoigf/9T9NCQghBOA0WBZGz24lV/R1K2AmiwqRQVrZVbPtWLJVpqaHiy0=
+	t=1716800617; cv=none; b=fLr8ZG87oUDqAd+N2bScSWu9Vsu+K8I2uzWv5UpUybqo8ed7YIPjo5Uqi1jQXHs9Qc1EiXG6dd/OoQO1nq3gYDyxZ1vXrrKXKWH2dnbhcqYF46sa5ZNnTZOpmszfOK3j6qL37u0ZXpczlLwlBt2fnDEGrBM6Y02F922OC4Dbn6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716800377; c=relaxed/simple;
-	bh=wmMNK/mGZPfXxGbNsHsz3bs35s6GdqGyNaBoQQp/a9M=;
+	s=arc-20240116; t=1716800617; c=relaxed/simple;
+	bh=G5Bh2X2s8X3dIBYLrkIYsnBHdHVh3//9YRXeeJxI2sQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EipkzS177SdML4Qw7nxd5Ieskn4QNyWX7Wd0oiLseAVr7RvIMUaXp1PiCwRoOsD7E2YQL09RneJXrCvrBcmWoQof3Mki3Vp23gNq47D8fTQcoPNVhM0dcH1irRaKOYn1S5aSXs2lKWYg6luTZRDZtuqRwP9haTmmKBW27nwghEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aoiqfWZq; arc=none smtp.client-ip=209.85.167.49
+	 Content-Type:Content-Disposition:In-Reply-To; b=NFrzHEisHpEUlp4VNsUkK8g/XrEhXnqAtXALFNNg8Lm/svNtc7Fo14u+X0DsOVreKju1ZE0046LXMMrvZuKbqXwHX8nvdQVGeIg6sLQZdxbZYKgOeYI0/vqb4FXX7MVG8lI3ogC8ba+QUHMb/ZIn86nl5uiD8gdKiEixJ88ChUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iJFFVgoJ; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-529648cd69dso2951205e87.2
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 01:59:34 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5241b49c0daso9044933e87.0
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 02:03:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716800373; x=1717405173; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716800614; x=1717405414; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IflnmrJEBByrw6RHNme/+1coaGuRNlHIrGL2PB8jagY=;
-        b=aoiqfWZqucJkXOzrd9gDCRdfWZbIVmzx31ecKKuVbgVxpVd47UNWV+mhup9YooArDy
-         a1muEsuMCu8bj2Af6DQ0rzHCYa10ayddi1ZNAX7Cpc8HB1uLenW8aJBv3kFrhPYNqRv/
-         6HRju9G458PSk6WQRZel4dhBAkySUPW4Czrwem7br+FSiAV131Bpw4OvQj0e4Pfv2Z/e
-         Yn+8HudZYoXOsH/rWped7VpclAMd+k0YVkyoOrrzJ+h7AdpaP1MWb+17X5rBDV3NQHW4
-         Iwa8l96EjwLJCP7A6nsy1V9GUuONl0iE5ePPtxrZ5E/rB8f5TXaidyIToZh+29EYuwQM
-         XUVQ==
+        bh=pDbfSg8Bk1OlV44IsJpk4n7yxHQg+kBBcGX0Pm6RSHY=;
+        b=iJFFVgoJ6Ex4O0PBiwRP671jlXp2VHvYUrmohAPCHAqP/fuYB33g0cBNPTnhMhTdkL
+         eIiygNBp3N7sQj5gSvz4Ijd5YrdoUJsnqjV6NXqVnv2Pt6W+KyF8Wr9upFj5x2GVHWPZ
+         zxMxnZJJj/91KxqmgLL2qz2sxjxnIMwxWeUi6S7cMbZTG/1weaM38O/XLrusPqXAdmaQ
+         7sjdsyyRDpbRGH7p0Mf/6+vxFxl6NlKO1iGC5tJI0qcvglUj6uFNH2YW5zvLp62t2c3L
+         imlig7IdorX7t9MAxpnUHU7xCMSTXN29q5sAogRPMXoVytSOO363MyP+qFT96XOUg7jV
+         mh2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716800373; x=1717405173;
+        d=1e100.net; s=20230601; t=1716800614; x=1717405414;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IflnmrJEBByrw6RHNme/+1coaGuRNlHIrGL2PB8jagY=;
-        b=r4epDsVR3xxxCS7n0sQ0XByagbIEp1CAQYwKb2buSxBJzpqBSYQhTLyeqVIiS6Y5CZ
-         W6vSU5GOKNgQYkuIKwehYHMvAdNUt9DDQJD7XFVZdX0F5EsNqTEKZ9wmaDrnWK3IDEeD
-         LoF5HtHz224V2/rJKyhBYxfKCjcLuMmWb9YSn+Qr8f/l8X3L2M/On4dmoqTX4QeTwCLX
-         klrgXf4Q93eUmbmm8O9a8FUpWCNPClweGiZyc6hWr6w5aPWAhWpdIGBY0Uq1+vMTCn9X
-         LhOwFgUJBLUHy34/J2uxnfoe+gIEvabs1f/WrluY7KZreWHV1mNLzY9BlLUPO2cgGE48
-         4RZA==
-X-Forwarded-Encrypted: i=1; AJvYcCVXS9YYhzScZG+/tvG+SHOdTGR8vqolttdaXYg1zRJ2k8EVBGJdUQ291u9dMl7Y48sm95Njwhd8fwUMiJTf/A7Gi09sYl4Gss/HLg==
-X-Gm-Message-State: AOJu0Yw/cO7cpADcC2/r8EGAKPoW6jj0MVZIO4E+e1zECZvxZ4izSaDZ
-	c31SeGC6HDDVYgB5g/4NuLX5UNFdftYs/bVwE96Ofl7d/MGCpfz3/ApGw+x/S04=
-X-Google-Smtp-Source: AGHT+IGxLF6Lsaiga0V2BV/ezr3upTDEyPXADhRzuAoievMrQwZKkYyAfjc3DSDTbeXZtZBAHPlTUA==
-X-Received: by 2002:a19:ad4a:0:b0:529:4864:9c17 with SMTP id 2adb3069b0e04-52967463e64mr6936847e87.57.1716800373131;
-        Mon, 27 May 2024 01:59:33 -0700 (PDT)
+        bh=pDbfSg8Bk1OlV44IsJpk4n7yxHQg+kBBcGX0Pm6RSHY=;
+        b=KXely9EDRaDmTc+pkDpvSxzx8r0sWdm1FGPGW819gypTYidQc8dCEFWEScKV3qJBUw
+         MEBfcWO7I/PrvCFGidRIgxBSqYKINmRmL9kfd1fkJ0IDSAe/bC171YcUcNOXKNQpmYAf
+         4LZUuxTir/dORmUXcjSk92Bcnros4jsjdSeuSyXmPqTx6xzhs+ZF+DLqGwpzeCfk6CLl
+         f19MQCz9neeF46mAHfQ+GFx/KmTBz/rvLr2AuVm3kdrmuMnzCiEhB4JLLcmazPPX89Be
+         qEKMYt34tP7gyQW7MpFI6391vFGLf/3MD2Y142oMQ87SEu6+q1hkNIrF7zAHBh1tlrTa
+         yJkw==
+X-Forwarded-Encrypted: i=1; AJvYcCUO3US9t3YXqiwp/VvB7/lMmyDyqJLb64GbXFDgbP2VJiRBVj4h43XgJ8Gv9c41aZaDRYS+9Lh0KiV7f3U4tfv20ZunbV0JI6b/zA==
+X-Gm-Message-State: AOJu0YzDpgV58H47EvmBH3vt2c1N3+gf6rVoiY+LF/+7n85O5eQKDxH9
+	BRycGS/DMKOF+S+lIygTJjf4NmOp0ULkgMeWfPujxC1lEPfM01u+cobCT56MRXo=
+X-Google-Smtp-Source: AGHT+IEmCeUDXcsw6FPQgssqSnh256ZdtCG0rOxDKXtIzEh9uHIxpd7toGyYzGtLMhIFgkbWc1Awmw==
+X-Received: by 2002:a05:6512:1d0:b0:527:a952:44c with SMTP id 2adb3069b0e04-52966ca6455mr4519498e87.55.1716800613864;
+        Mon, 27 May 2024 02:03:33 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-529716dd12fsm499151e87.305.2024.05.27.01.59.32
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5296ee4a9cfsm490355e87.75.2024.05.27.02.03.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 01:59:32 -0700 (PDT)
-Date: Mon, 27 May 2024 11:59:31 +0300
+        Mon, 27 May 2024 02:03:33 -0700 (PDT)
+Date: Mon, 27 May 2024 12:03:31 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
 Cc: Vinod Koul <vkoul@kernel.org>, 
@@ -75,12 +75,11 @@ Cc: Vinod Koul <vkoul@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/7] phy: qcom: qmp-combo: introduce QPHY_MODE
-Message-ID: <vze2yhxnd4vem6kg65kb3du4lgorluuitbtvkupwftrtgb2a3v@y3teljehz7xu>
+Subject: Re: [PATCH v2 5/7] arm64: dts: qcom-sm8550: allow 4 lanes for
+ DisplayPort and enable QMP PHY mode-switch
+Message-ID: <jwgt2aa662ig7max5k7f24uu4zpv4urvg5aplgl2pwo2ty4zp3@a644uqdn2avh>
 References: <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org>
- <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-3-a03e68d7b8fc@linaro.org>
- <v36mrliwd7rarqofbitv5mtb6kd3n3hmuwp6bgg67krnvzejd6@luityjlkb7nn>
- <c767bc42-f4f7-44f5-b712-5933a921b386@linaro.org>
+ <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-5-a03e68d7b8fc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,50 +88,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c767bc42-f4f7-44f5-b712-5933a921b386@linaro.org>
+In-Reply-To: <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-5-a03e68d7b8fc@linaro.org>
 
-On Mon, May 27, 2024 at 10:48:12AM +0200, Neil Armstrong wrote:
-> On 27/05/2024 10:46, Dmitry Baryshkov wrote:
-> > On Mon, May 27, 2024 at 10:42:35AM +0200, Neil Armstrong wrote:
-> > > Introduce an enum for the QMP Combo PHY modes, use it in the
-> > > QMP commmon phy init function and default to COMBO mode.
-> > > 
-> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > ---
-> > >   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 41 +++++++++++++++++++++++++++----
-> > >   1 file changed, 36 insertions(+), 5 deletions(-)
-> > > 
-
-[trimmed]
-
-> > > @@ -3603,6 +3631,9 @@ static int qmp_combo_probe(struct platform_device *pdev)
-> > >   	if (ret)
-> > >   		goto err_node_put;
-> > > +	/* Set PHY_MODE as combo by default */
-> > > +	qmp->init_mode = QPHY_MODE_COMBO;
-> > > +
-> > 
-> > I see that COMBO mode is backwards compatible with existing code. But
-> > shouldn't the USB-only be a default mode?
+On Mon, May 27, 2024 at 10:42:37AM +0200, Neil Armstrong wrote:
+> Allow up to 4 lanes for the DisplayPort link from the PHY to the Controller
+> and allow mode-switch events to the QMP Combo PHY.
 > 
-> No because it would break existing platforms without "mode-switch" in DT.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 3 ++-
+>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 3 ++-
+>  2 files changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> index ccff744dcd14..a95949c01f25 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+> @@ -941,7 +941,7 @@ &mdss_dp0 {
+>  
+>  &mdss_dp0_out {
+>  	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
+> -	data-lanes = <0 1>;
+> +	data-lanes = <0 1 2 3>;
+>  };
+>  
+>  &pcie0 {
+> @@ -1280,6 +1280,7 @@ &usb_dp_qmpphy {
+>  	vdda-phy-supply = <&vreg_l3e_1p2>;
+>  	vdda-pll-supply = <&vreg_l3f_0p88>;
+>  
+> +	mode-switch;
+>  	orientation-switch;
 
+Please rebase on top of https://lore.kernel.org/linux-arm-msm/20240429-usb-link-dtsi-v1-0-87c341b55cdf@linaro.org/
+
+After that:
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
+>  
+>  	status = "okay";
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> index 39ba3e9969b7..fbac5270b4d7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> @@ -795,7 +795,7 @@ &mdss_dp0 {
+>  };
+>  
+>  &mdss_dp0_out {
+> -	data-lanes = <0 1>;
+> +	data-lanes = <0 1 2 3>;
+>  	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
+>  };
+>  
+> @@ -1142,6 +1142,7 @@ &usb_dp_qmpphy {
+>  	vdda-phy-supply = <&vreg_l3e_1p2>;
+>  	vdda-pll-supply = <&vreg_l3f_0p88>;
+>  
+> +	mode-switch;
+>  	orientation-switch;
+>  
+>  	status = "okay";
 > 
-> Neil
-> 
-> > 
-> > >   	qmp->usb_phy = devm_phy_create(dev, usb_np, &qmp_combo_usb_phy_ops);
-> > >   	if (IS_ERR(qmp->usb_phy)) {
-> > >   		ret = PTR_ERR(qmp->usb_phy);
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
+> -- 
+> 2.34.1
 > 
 
 -- 
