@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-69649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95F38D0A31
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 20:56:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D018D0A99
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 21:02:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0260F1C21265
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:56:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6821B21B7D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 19:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF2815FA80;
-	Mon, 27 May 2024 18:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31328160787;
+	Mon, 27 May 2024 19:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lVQ2Y5pI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zr627DWc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411D915F321
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 18:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718DA1649CC
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 19:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716836189; cv=none; b=MvBPuHcO6mKvuvAYwE2IitBRhKokDNRug497SCqnDr4qMMAaRpH08sfUPZ3UTfLLHZ/bh67bRikGYLXHuHCQTNpvtXnrpjvuoMabk1GBwEqjk4Ukwheln9dR3X1365RhyTwfMl4HNIpUbekRlSwA5ytdReqjZTHDq5+DecBTF5w=
+	t=1716836463; cv=none; b=n2RmgXKB6U/pEDYAMouVPOgi/hH+TBNG37xLHaI/r67MLqJIaZPevF3DtCVzZPxJMmL/mfAOyDoLLhR1TjvzpM+CoWksGa7S1q5sognstjT88Mk5OAtBeAKlD+CXqe7Lvm8qJYDSyqwmuM7a4M7Qr99DwOLP28LQKLzCMzW91hE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716836189; c=relaxed/simple;
-	bh=kUY9DEBp++Ctjs4I1JA25clvPec+NnCPaNPtjIsS9cU=;
+	s=arc-20240116; t=1716836463; c=relaxed/simple;
+	bh=ZJykFrLkMw27Ap6h6e1bwUeJqwTUQU6oAVNdAHpj1/Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pLh1KkJon1l55P8xqe4zRzvH0j+WiaCKOOq7EPcTuoHgknYirapJLwfcXemvewTlqVV+y0u0571jNgm4GNIlVxlLblu/DSVEFde2e8z5jSANYeAEyf3b25+fTqKdIZd5z26L+ZLDKARd7MS7XfSJ3Rj83cgBO419SqI5n8n0Dmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lVQ2Y5pI; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:Content-Type; b=bRNoFBiirU33Go5jGh96GUABgn0zvXitHldzOEQT5xsLgidstpNQINTBRxxrdVfcohLh9QQCDOaKcT7bVFO7aWaPET3lA82J9rmhMnkYapXdVT0QMA3PnGjxAfnmNegsFsRZyK23BBAS0ADYiqmZseVkSwn9NZZLTVBnYX1z9xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zr627DWc; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a63359aaacaso6055766b.1
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 11:56:27 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-57869599ed5so29337a12.2
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:01:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716836186; x=1717440986; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1716836460; x=1717441260; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=d/cISQYa3WvwYduNy9SIKMSrIozzFXqbbJybM1s1MX0=;
-        b=lVQ2Y5pI3xGcXBDnCM4jimPklHfXyaUN7VKDLBiOf/FH/PS7ECrSlvPOCpgYjAFUQa
-         +eX9BNbjv9BOqEf1bASqBvesa6th5kV8DFgKnbPsT8zzja+xD/ffDJHXOi8UJ16GE6GI
-         eQzeb2Ax6d0wkbm5/npoFd3gJJAiEtcgutNgVcoLqoUrVhwYe4ytpt9rH554XlR3Yc8B
-         Qx5uFzDzEkz9eBou3Eck6ScCQtgYAObQT9Iz8b3ZIpYi51fl/GI7PEzl+p9L4wduI85i
-         0KKbjt9u4t5OeEcV0BGoE8TS2/rXt5uDYObpfgC5b13+3a8ds0Y+SNnkrqIeaxUCkCrt
-         EHjQ==
+        bh=VTJ3szqoHmc1+yUf2WmkBbMeHBDSss7x5+bTQB5BW00=;
+        b=Zr627DWc6Nb6ESeXj2t4BtxB2RK7aGgqVyCjB9arygWsAd4DI9g/wE21/HNewV3YG6
+         xjgfVO2wuV8E6kwUA8qydPlnjGeBQYa6VnZlpDP8WvxU/N0ld2cZDzezPCIUzse2dUIv
+         /OnD26u/LDWNS8GeSxK48rloPlVJPYurZFZ5KsDsiY2+opQLmArVWrqmZEI3LjEm1Gqe
+         Z45pm64STqeuQPdaGeqd/1yx77++/S4UsqzXsRzxLUFlJhBosR2eja/7uR90tbPDkQtI
+         AgM4o4rE1a/MEjLN8RxpCDhVWn6uzWUJicnZS4bDTBMyvLexEsgfabrjAcLAHS7AeCkQ
+         0uqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716836186; x=1717440986;
+        d=1e100.net; s=20230601; t=1716836460; x=1717441260;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=d/cISQYa3WvwYduNy9SIKMSrIozzFXqbbJybM1s1MX0=;
-        b=cuBTdDVV6+MPoqmg0OhOoUEq4/08dC5BY11aFm0+pBpopJQN2XWJEarygqa5BnhEUq
-         BH/6yHl8vX/dXSVq2gtZPOB0rjYvx2Al92JojJGZfR8e/QKWsnkaP1RXeaq7qIbccraR
-         /8nwBVLT2MrOypgjKKK5zc36vR2p01+dqg/BKsnZeRD/ObpTGoRZH7jPPC4zTHy3Tv0l
-         z68slhDTwFLoxv7lNCUK2m2Dnb94IlanDFPIaQPKL4gcevZQftPz46lgZOAUCIt1p9aU
-         8BvZWvU5VF9JnVfn0z7nidV/4B0OT+DeHGvn8BwQUgWlLC/SAReSP68IctbAkp8a58/L
-         rPAA==
-X-Forwarded-Encrypted: i=1; AJvYcCXlhbTuyymcC5mKeC2tNo4Lf5uy+pCvFT+pSe8IqGJJzIYLTSF9Grwd1bUhgh+54Ds53pdPfxfZQyGRr5A16Fl2wCWPq2vqk43eAw==
-X-Gm-Message-State: AOJu0YwDjDCQIh5mXFepR1u71Q0syzGXHTIWEEFHOqGzgj6QiANx7U30
-	TLb/4WvgpkbN+0B0NynSX+FuEp+lnNdMgHUq1biqPfUJ5IxdynRxy8LZEtyRA11ij8qux5hBWu1
-	f
-X-Google-Smtp-Source: AGHT+IG0zcPp7rQvO2C5IupR7AHoLnwUZIKWNZIv3Q0Kwa7dM2GoSS8iHFVDpXnT9bE70wqU+mA73A==
-X-Received: by 2002:a17:906:8ca:b0:a59:9a28:f1bd with SMTP id a640c23a62f3a-a62651341bcmr643845366b.66.1716836186617;
-        Mon, 27 May 2024 11:56:26 -0700 (PDT)
+        bh=VTJ3szqoHmc1+yUf2WmkBbMeHBDSss7x5+bTQB5BW00=;
+        b=g3DCyOVfuOh04Kx+1xecR35Quav4XunR6x5ZYOQmpLjEfXx6P+r8ObOvPz76k8LeMR
+         y5hECBpbuD3cP5sbFQqzXYPQMtVJdWem4bh+suA/uMosJYjUVYxxsiyA0cMq7g6Z2igt
+         RsnJBI0Z6rumsQkB6fKdn4ITlI3n7KtCtn7LT3nEHJJqjDms4OTfXY2b4Bgw5onyKBis
+         s9T87CXyUWxfQD0OmIqbu954XPX79TTvy59Al78SpPubWjYZTrE/C63l6yxL80BCdCNU
+         7Hh+D54mTUGFGvi+HpjmTodxjYtXnHXaaNfbgUITgFMug8kREUYpsznLhfQnNhp9j0w5
+         COUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVfj4R+BbcuREbadjY3qui+MfG063Vx7KCwe0wqUnUCFfem+5tuAEZ7am9XemlnTLVWQInCbGXwT7qq8MCgcPmGHLYZi66WHClzQ==
+X-Gm-Message-State: AOJu0YwVymfRKEpARUAUAHWz+gu2W3pRYimqlHAcV+bnnQfVsOaKtdFQ
+	krWRW3P4CbqPaoPvK7kOCp1wXBnpv0HE7+dl9HzrXKVZhFPY8lH8CgvfxtGr+0w=
+X-Google-Smtp-Source: AGHT+IG3MBNURabuDGXyBaUuxzKnC4IYrZQLyRMJSIaOzglHPMnCFJCoH6toE5x/eK7T1RxZcj5Skg==
+X-Received: by 2002:a50:a402:0:b0:573:5c4f:27a8 with SMTP id 4fb4d7f45d1cf-57851a1ed5emr7722421a12.35.1716836459874;
+        Mon, 27 May 2024 12:00:59 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.206.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a630f25943dsm85736466b.41.2024.05.27.11.56.25
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57868fbbd8dsm3996346a12.8.2024.05.27.12.00.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 May 2024 11:56:25 -0700 (PDT)
-Message-ID: <c5f5a471-1989-4d2e-a2cf-5d2d7cff2f2a@linaro.org>
-Date: Mon, 27 May 2024 20:56:24 +0200
+        Mon, 27 May 2024 12:00:59 -0700 (PDT)
+Message-ID: <ceab83fe-b741-4f9e-8b0c-9de3ca79fc55@linaro.org>
+Date: Mon, 27 May 2024 21:00:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,17 +77,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: i2c: maxim,max96712: Add compatible for
- MAX96724
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
-References: <20240527132216.1681903-1-niklas.soderlund+renesas@ragnatech.se>
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
+ binding
+To: Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ benjamin.mugnier@foss.st.com, mchehab@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ Sakari Ailus <sakari.ailus@iki.fi>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240521162950.6987-1-sylvain.petinot@foss.st.com>
+ <20240521162950.6987-2-sylvain.petinot@foss.st.com>
+ <2110ba34-658e-4d60-b524-2f5ead6c8d3e@linaro.org>
+ <77fa3ed3-2341-4106-adf2-ec8bd9de91ff@foss.st.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -135,34 +135,96 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240527132216.1681903-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <77fa3ed3-2341-4106-adf2-ec8bd9de91ff@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/05/2024 15:22, Niklas Söderlund wrote:
-> The MAX96712 and MAX96724 are almost identical and can be supported by
-> the same driver, add a compatible for MAX96724.
+On 27/05/2024 15:14, Sylvain Petinot wrote:
+>>
+>>> Signed-off-by: Sylvain Petinot <sylvain.petinot@foss.st.com>
+>>> ---
+>>>  .../bindings/media/i2c/st,st-vd56g3.yaml      | 132 ++++++++++++++++++
+>>>  MAINTAINERS                                   |   9 ++
+>>>  2 files changed, 141 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+>>> new file mode 100644
+>>> index 000000000000..22cb2557e311
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+>>
+>> Why duplicated 'st'?
 > 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> ---
->  .../devicetree/bindings/media/i2c/maxim,max96712.yaml        | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> Legacy : our first st-mipid02 driver was upstream this way few years back.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> index 6c72e77b927c..26f85151afbd 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-> @@ -25,7 +25,10 @@ description: |
->  
->  properties:
->    compatible:
-> -    const: maxim,max96712
-> +    items:
+> We have 3 options :
+> 
+> 1- keep this unpleasant naming to keep consistency with st-mipid02 [1]
+> and st-vgxy61 [2]
 
-Why adding items?
+? Unpleasant?
+Please follow generic rules. Filename must match compatible and
+compatible must follow vendor,device format.
 
-Where is any user of this binding? Please stop posting some random
-binding changes without users.
+> 2- rename this driver properly ('vd56g3') and keep the two others the
+> old way (I personally don't like this option)
+
+We do not talk about driver here. Does not matter.
+
+> 3- rename this driver properly ('vd56g3') and in a second patch rename
+> the two others drivers.
+> 
+> I would be interested to get Sakari's opinion on this subject.
+
+About what? Renaming drivers?
+
+> 
+> [1]:
+> https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-mipid02.c
+> 
+> [2]:
+> https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-vgxy61.c
+
+Howe are these drivers anyhow related to the *binding*?
+
+
+...
+
+>>> +
+>>> +  st,leds:
+>>> +    description:
+>>> +      Sensor's GPIOs used for external LED control. Signal being the enveloppe
+>>> +      of the integration time.
+>>
+>> More information is needed. GPIOs coming from LED or SoC? What's the
+>> meaning of values?
+> 
+> The vd56g3 image sensor provides 8 GPIOS that can be used for different
+> use cases (external led controls, synchronization between master/slave
+> sensors, external sensor trigger, etc.). This submission supports only
+> the first use case: the control of one(or multiple) external LED.
+
+What your driver supports is not really relevant. Describe hardware.
+
+> 
+> The vd56g3 sensor family are optimized for visible and near infrared
+> scenes. In NIR, external IR leds are generally used for illumination.
+> 
+> With such use case, a led (or a led driver) can be connected directly to
+> one of the 8 GPIOs of the sensor. On the driver side, when a led is
+> configured in the dt, the driver will configure the sensor accordingly.
+> It will also offer an optional "V4L2_FLASH_LED_MODE_FLASH" control to
+> start/stop the external control.
+> 
+> Different signal modes are supported by the HW, but the default
+> (implemented) one is a "strobe" mode where signal is the envelope of the
+> integration time (IR led is on while image sensor is integrating).
+
+You did not explain the meaning of the property. Please describe the
+hardware and the meaning of values used in this property.
+
+
 
 Best regards,
 Krzysztof
