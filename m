@@ -1,138 +1,113 @@
-Return-Path: <devicetree+bounces-69637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 793AC8D09B6
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 20:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2321E8D09C3
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 20:12:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA1971C20E1A
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:07:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53CDD1C2200A
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910E615F3E1;
-	Mon, 27 May 2024 18:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DBB15F3EE;
+	Mon, 27 May 2024 18:12:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvsIRrem"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gbZ8nyH6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627431D53F;
-	Mon, 27 May 2024 18:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3431DDC9;
+	Mon, 27 May 2024 18:12:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716833245; cv=none; b=E+LHAN87vy7CeAwYGo6tObyYo1QVQYylAJfhXFTeFKZrUH0kvzcPSMgnqCs0TEzxmT/HS/IRMs5AWDZsJ74e90DbY1lnvlspGnouSR1WiGjuRqhbCGwi6kV8FGdaSY6EiAqAM5flDCjckZeEznMqee3QMzGTGkS6xEuyyCcUabM=
+	t=1716833531; cv=none; b=shoL27b2kY6ARNtfPJFE8lYqXCwyln1capaRbBc8pRXzoVave5dH4wWdEzgeJ9pGBC5qL/D9lNMciqSa3/nxSXsnWNvA2aZs7gqs2D9EiUo+rX88gd5o/Ad6RHWLeYrDlNyDnW89E3rmghb0Rr3mgI9tWJrg3h1kKNoLX4Ge6L4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716833245; c=relaxed/simple;
-	bh=dJQFOmUFG6slSw+YyGmo5B3vMaqNN+hKWKTZhlmfMbM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TOKDcoaQYrvokxjfDDiWajpTeuIfmniIK98qIIwY4q1ezbf65xvHy5QytcFB98aRZngo/Zh/LIPZv1bGNEIfErItZJxffMXRE6ES2AhdX/ZiB4dCqdnBOXL/3nzBCpWICOe3jGDNMW5RhcZrWWGcpCdJi8lEeyY5uKfcf6Y5Xjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvsIRrem; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C3CC2BBFC;
-	Mon, 27 May 2024 18:07:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716833245;
-	bh=dJQFOmUFG6slSw+YyGmo5B3vMaqNN+hKWKTZhlmfMbM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fvsIRremEWlfo8py27HAjeqt0TEfl3ov+QZw6sl+5W2ue13v1rl+HqaYulLDq8Sr0
-	 JgykGrfmhaJH3Uosi8MhHToO6eJ9xxsgGxA1brHUL6W+mKmGCdgxZS+Cy/Rs1Bg8vi
-	 bpwh4CyjPSby+u86Ebm1hyN7t1Pdwvh99XuogiRKqVIsyotQtczfJhBsjyWCUtsBm4
-	 8w6wCh4twuKUqneOrfGi5I59xqlxHz0zT3mu2hOkqQoJD3dE8OcINSX13wrGcHU/VB
-	 MB/Yb+S1HmPevOX6cwvtYhhxN/ZvE2Ol1PKcjtGhZ+nGNCrNshWIq++Q+FpabFiWJu
-	 jAZ/J+eeSY1Fg==
-Date: Mon, 27 May 2024 19:07:20 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: renesas,isp: Add binding for V4M
-Message-ID: <20240527-boogeyman-caress-3c909952b283@spud>
-References: <20240527131945.1679661-1-niklas.soderlund+renesas@ragnatech.se>
- <20240527-causal-flyable-c34004c298bf@spud>
- <20240527175402.GI1900917@fsdn.se>
+	s=arc-20240116; t=1716833531; c=relaxed/simple;
+	bh=vyOPeMDydjG+3mtefSP68GvSsts0LUWn9Mx0JVnwW1c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dXaqgor8G9VT2gP3hmTVYjX2RpUDN1QcpokSmuMo7X8W/ATTzpPrEbqlbt3yfWp5IH6+MpXcG69u49I05YTRw0nqCynibQSUR/v/KvI9HBit6dwMYyObaDf/BUA7XPXCVhJRmDOmY0TQJN/ePIBQ27yWtNVSCt/0b+fjmwjNu/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gbZ8nyH6; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id ECA69240002;
+	Mon, 27 May 2024 18:12:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1716833526;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=84tR/MeWeFcIW4v7f6DJplwGROoeC+MxszrPF8W46tc=;
+	b=gbZ8nyH6pTNk7Q6vldoWwK/CoNlpxOkcJiJ5DMsp6UH91YzFPiS8OuNKTpWqe/p6bHhPK4
+	4vnED5Twr6ceiP2ABdMkobMY4NBihJG/Mw5UuB4UjF4MtY7WLDOnZOsW4650dt/Vl8N+sh
+	qOtKyO09LMhFg1JdHEGvrD1O46UjAYEy8JQYFk7etGuTWpE0t5tYC4jOcQYAfmaGU9l/3f
+	XnOEeO58kdR0NbsI993o1UnjSywrJWrEuZGBKsOON+Z8D9OcAt6cqy7ek2XxyuhcbE9Qhp
+	XPJlTZaY+ie139w7cTNLtfVAnCG/3NRgfKTX3WOE0ytNxge6BFTyzd0CzQ292w==
+Message-ID: <1b1d8d54-5440-40f1-9324-8476ebf4678f@bootlin.com>
+Date: Mon, 27 May 2024 20:12:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JwyVRn0YViJ0dQUR"
-Content-Disposition: inline
-In-Reply-To: <20240527175402.GI1900917@fsdn.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] riscv: dts: sophgo: Add LicheeRV Nano board device
+ tree
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20240527-sg2002-v1-0-1b6cb38ce8f4@bootlin.com>
+ <20240527-sg2002-v1-5-1b6cb38ce8f4@bootlin.com>
+Content-Language: en-US
+From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+In-Reply-To: <20240527-sg2002-v1-5-1b6cb38ce8f4@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
 
---JwyVRn0YViJ0dQUR
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 27, 2024 at 07:54:02PM +0200, Niklas S=F6derlund wrote:
-> Hi Conor,
->=20
-> Thanks for your feedback.
->=20
-> On 2024-05-27 17:36:23 +0100, Conor Dooley wrote:
-> > On Mon, May 27, 2024 at 03:19:45PM +0200, Niklas S=F6derlund wrote:
-> > > Document support for the ISP module in the Renesas V4M (r8a779h0) SoC.
-> > >=20
-> > > Signed-off-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech=
-=2Ese>
-> >=20
-> > Should be with:
-> > https://lore.kernel.org/all/20240527132513.1684232-1-niklas.soderlund+r=
-enesas@ragnatech.se/
->=20
-> I posted the bindings separate from the driver with the intention that=20
-> once they are accepted I can upstream the driver and the DT for the=20
-> device using it in parallel. The V4L2 subsystem is at times overloaded=20
-> and in the past waiting for both driver and binding to be accepted as a=
-=20
-> whole unit have delayed entablement of SoC features unneeded for one or=
-=20
-> more releases.
+On 5/27/24 12:28 PM, Thomas Bonnefille wrote:
+> LicheeRV Nano [1] is an embedded development platform base on the SOPHGO
+> SG2002 chip.
+> 
+> Add only support for UART.
+> 
+> Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html
+> [1]
+> 
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
+>   arch/riscv/boot/dts/sophgo/Makefile                |  1 +
+>   .../boot/dts/sophgo/sg2002-lichee-rv-nano.dts      | 25 ++++++++++++++++++++++
+>   2 files changed, 26 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
+> index 57ad82a61ea6..5759b21805dc 100644
+> --- a/arch/riscv/boot/dts/sophgo/Makefile
+> +++ b/arch/riscv/boot/dts/sophgo/Makefile
+> @@ -1,4 +1,5 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
+>   dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
+> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano.dtb
+>   dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
+>...
+> +++ b/arch/riscv/boot/dts/sophgo/sg2002-lichee-rv-nano.dts
 
-I don't really understand this argument at all. If you land the binding
-but not the driver changes, you're still waiting for the driver to get
-the feature functional. My understanding is that Geert takes dts patches
-when bindings are applied by the subsystems, rather than wait until they
-circle back to his tree a release later - so that isn't the issue either.
-
-All it seems like you're doing to me is making my "job" reviewing
-bindings harder, because I have to search on lore for your driver
-patches.
-
-> > No mention of why this can't just fall back to an existing device here
-> > or in the driver. Why not?
->=20
-> For better or worse that is how all Renesas devices are handled, one new=
-=20
-> device compatible for each device. This have worked well as each device=
-=20
-> usually have a quirk or extra future that is enabled later.
-
-If you're worried about the media subsystem being too busy to pick up
-patches with driver support, you know what's a way you can have the
-driver functional without a code change?
-
-/spoiler You guessed it, fallback compatibles!
-
---JwyVRn0YViJ0dQUR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlTL2AAKCRB4tDGHoIJi
-0sbsAP0VRB8xLi1FBGxWcggQDUIZBqd+jCDrKigAqOjb92k7lwEA74Z+FaGyiuIz
-MsdXqJgMplZfa+1IBGA9vP2esSU6Xwo=
-=KaDR
------END PGP SIGNATURE-----
-
---JwyVRn0YViJ0dQUR--
+I'm really sorry, it seems that I made a mistake here with git, the 
+device tree should not have an hyphen in its name, I'll send a new 
+version soon to correct this.
 
