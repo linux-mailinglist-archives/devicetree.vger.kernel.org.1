@@ -1,163 +1,103 @@
-Return-Path: <devicetree+bounces-69576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F628D065D
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:40:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 626978D0666
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:41:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DE7F1F238B5
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:40:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 198F5283D5D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB4A61FCF;
-	Mon, 27 May 2024 15:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF9B79E1;
+	Mon, 27 May 2024 15:41:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="bBYqcC4z"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="nWl5P62X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA9E2A1C9
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 15:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809521E4A9;
+	Mon, 27 May 2024 15:41:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716824421; cv=none; b=j7pUCqPf9a2XJY9C1Ut1EzakrVTSSVeyRw6CBj9mmjogU2QNgDI2aq1rn/pf2x3Z+HjGkIKuaZl/kU1USzaTeuRvcL5MKFJzJI3c7rVsLCtq6+2ACsQvxCzTPqGHj+KeKg4hd86cuFPIR/zCUDNU+pG+9crSqPIWrYYjseycGIg=
+	t=1716824482; cv=none; b=S1f4UCvgI/1O2Ku7ADBLp6BTnKDOSXMJkYtz4xJNavMFnDNaEMHi6lFWCc06atIu3Z21sN7YwHBuhg+XRL7wjit/UQQrd9y0xwn/i1gQ9uY20d8WY7gzldX/EY1bJuGxCrY60yZeGP+LgCCMgb/T4GZaNLpLSMBlJj3lOOGqXoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716824421; c=relaxed/simple;
-	bh=DVhtxKy/g6Jw9Zac26mbMJkQSFj9K9gpSNpyZiB8W28=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=cHvIKjyjYVgAASVIWXbA8r7awO8SdYDpD6bodyFUMnt/MkI56GKC21qVGUeFy8pgJzRRvstQevls+TuTCWXSGZMQpnv9RzPd3tNJGwp0DV6OElMMcNt9QwsaWAe+OJYH+2p0HofLVgeBD4M02zQf9p/IhqVrhKe0Rlz8us0mjwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=bBYqcC4z; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-354f14bd80cso3617565f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:40:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1716824417; x=1717429217; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:content-language:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XVr9JrV0nG2+wTrmTNe0v5f/mYkzf+N7lyxDsOb/dPs=;
-        b=bBYqcC4z7kpd20ffWLgjfuOK0qs4+++S+dPK154UB4UXNqcVmRCTZH48qjalexLZM3
-         bPvVHAx28YtAeejvinA4tSJqNGcT7kDFnA1akTZv6QAafokb75Yf02A6UbqrqCoeBs+/
-         vwT03OfADKLi06ymH8Fbm1RcSFkBYIedvZv1ZjRBdhU/QSw9IovIeu2WbaRoOeY/Tbpe
-         s0hcqLvnhcehGjgl7T1iIwN2oWTIfuOT0fIvkjtqSjnxFe3oZzcAIthdd8lXXlNjnX69
-         WOz1iN5vK/QaJvkl9pFsbd6m1sjlRxIYIy6PK6Ly45BJyg8/AL/9AzM8wZvCuSjE3PFY
-         xGMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716824417; x=1717429217;
-        h=content-transfer-encoding:cc:to:content-language:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XVr9JrV0nG2+wTrmTNe0v5f/mYkzf+N7lyxDsOb/dPs=;
-        b=tIlBgZIrEzEFzcK2raTgSj2UiGsErSM4AYIsxj2bmppWhM6DoFFTvOk2hJ0X1o5FDU
-         udEppXR432xXOTPNDgDxSONKqbhQXsi5MoQa/vTGbLd76oEgmKGk0re8RFTaKnvdT1pO
-         TkHxry7e5XgG3T4u/bDF3Kr2y7TJXNU9gbRpEI6j4EZgivIYHC3G88J6nCjeZHfytmqW
-         QHnVB9xc2P+NQ+EwJmAsk0iYeH6IbtvIAi9snHF3V6tvtCONpwfmDfqebzIxgKDw/b2W
-         Ys2wmxSzwoKUZ3ZEku8QOXTG/2+B2hjhDX77YOPUqS68KPAB8E7sHK4IbDcIhmf7CZYO
-         13Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCWUi4rzVyOSoFdJJvgQXR3V6LiNpfcF7bK8NNc35cH9PvsrABCf947TpcGe1CVrElXxm/YDG0nR+pUw+Kja2hY4JDbbpJtEYNiyqQ==
-X-Gm-Message-State: AOJu0Yx9cSRb9ZyxNzQL/fvINZf6nQpvcQhV386DBZtxUcwU3WQRg71O
-	2zSH+0fRc+dhgBXbyg10Wbc8UAzmt96kdkHM6NY4noB+i6OF4ZzVTVRNH9u1JzE=
-X-Google-Smtp-Source: AGHT+IF+VR8zvPqcmS9JVDxwhcv/vAODOlwnqPTA2SWhHKo1nHb3CASRkC8D7fFqdeGXUnHZPETx3A==
-X-Received: by 2002:a5d:5050:0:b0:355:75f:2876 with SMTP id ffacd0b85a97d-35526c3d541mr6991025f8f.5.1716824417139;
-        Mon, 27 May 2024 08:40:17 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a090366sm9221319f8f.56.2024.05.27.08.40.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 May 2024 08:40:16 -0700 (PDT)
-Message-ID: <8cc61db5-2920-4dd1-8132-5af434fb05b1@freebox.fr>
-Date: Mon, 27 May 2024 17:40:15 +0200
+	s=arc-20240116; t=1716824482; c=relaxed/simple;
+	bh=xi95REYMNGRInm8QTlaIsBRCKucC1a/x692ZYbFHYpE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=pDO1e210jsMt5pyNPIxfg86Ctl1qT1lAGEijT8aHoTHip7KufcVYG0dEhsRhbHIHLMpFLGjHgP9m0FdXbftQSEbdezsSZfPmW4eTwbXGH138EigvZTWy4Sw4mQxOUdUBPclSi/qt+LSHOnsJX1SyF/3lrUhyO3R1ouMeMGxt8O8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=nWl5P62X; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 208A11FC11;
+	Mon, 27 May 2024 17:41:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1716824469;
+	bh=/qL7ds6TPTDOqwgOF3TOtIR58e7jrv/FMc1WXB1AASw=; h=From:To:Subject;
+	b=nWl5P62XYKZ31HZHg54sxMgn8LeQnJnSyt33QM/wcS5uSHtYz/vubyXf+am5QLug4
+	 6uo6QURAWDJw0D0lmGq4i+jLvj5CuqtegZLEXowwhcKYrsEUlbIz1KQc2OB8U05F0O
+	 K+EQHEelgo5CRr7AgSJG5+7w/EMdgu00rGYDY4zl6aEXZMvn/kG/I1G9PW7Sw3dwTs
+	 UDtiqv2CASd5+USSMZa1mAlD2nfJ8lErXp25u+oGiN6EJtmyo5xasnhlB6iObCVW7Z
+	 sDv00s6DQjl7GTah7Tq+wgD/eSuGVHQNaioMs9oR9aMxuHnqHGmYxEMPDC9ouqmPVh
+	 wPB19Y94EGRqA==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Francesco Dolcini <francesco@dolcini.it>,
+	=?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] iio: adc: ti-ads1119: Add driver
+Date: Mon, 27 May 2024 17:40:48 +0200
+Message-Id: <20240527154050.24975-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Subject: [PATCH v1] arm64: dts: qcom: msm8998: add HDMI GPIOs
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>
-Cc: MSM <linux-arm-msm@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-MSM8998 GPIO pin controller reference design defines:
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-- CEC: pin 31
-- DDC: pin 32,33
-- HPD: pin 34
+The ADS1119 is a precision, 16-bit, analog-to-digital converter (ADC)
+that features two differential or four single-ended inputs through a
+flexible input multiplexer (MUX), rail-to-rail input
+buffers, a programmable gain stage, a voltage reference, and an
+oscillator.
 
-Downstream vendor code for reference:
+Apart from normal single conversion, the driver also supports
+continuous conversion mode using a triggered buffer. However, in this
+mode only one channel can be scanned at a time, and it only uses the data
+ready interrupt as a trigger. This is because the device channels are
+multiplexed, and using its own data ready interrupt as a trigger guarantees
+the signal sampling frequency.
 
-https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-pinctrl.dtsi#L2324-2400
+João Paulo Gonçalves (2):
+  dt-bindings: iio: adc: add ti,ads1119
+  iio: adc: ti-ads1119: Add driver
 
-mdss_hdmi_{cec,ddc,hpd}_{active,suspend}
+ .../bindings/iio/adc/ti,ads1119.yaml          | 122 +++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  13 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/ti-ads1119.c                  | 815 ++++++++++++++++++
+ 5 files changed, 959 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+ create mode 100644 drivers/iio/adc/ti-ads1119.c
 
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 42 +++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index edf379c28e1e1..ec4e967ed9b2a 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1424,6 +1424,48 @@ blsp2_spi6_default: blsp2-spi6-default-state {
- 				drive-strength = <6>;
- 				bias-disable;
- 			};
-+
-+			hdmi_cec_default: hdmi-cec-default-state {
-+				pins = "gpio31";
-+				function = "hdmi_cec";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			hdmi_cec_sleep: hdmi-cec-sleep-state {
-+				pins = "gpio31";
-+				function = "hdmi_cec";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			hdmi_ddc_default: hdmi-ddc-default-state {
-+				pins = "gpio32", "gpio33";
-+				function = "hdmi_ddc";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			hdmi_ddc_sleep: hdmi-ddc-sleep-state {
-+				pins = "gpio32", "gpio33";
-+				function = "hdmi_ddc";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			hdmi_hpd_default: hdmi-hpd-default-state {
-+				pins = "gpio34";
-+				function = "hdmi_hot";
-+				drive-strength = <16>;
-+				bias-pull-down;
-+			};
-+
-+			hdmi_hpd_sleep: hdmi-hpd-sleep-state {
-+				pins = "gpio34";
-+				function = "hdmi_hot";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
- 		};
- 
- 		remoteproc_mss: remoteproc@4080000 {
 -- 
-2.34.1
+2.39.2
+
 
