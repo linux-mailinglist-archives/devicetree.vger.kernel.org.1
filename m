@@ -1,114 +1,96 @@
-Return-Path: <devicetree+bounces-69528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A178D00EB
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B74818D00F0
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:05:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 358341C22643
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:04:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E95651C23BDF
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:05:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24DDD160860;
-	Mon, 27 May 2024 13:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7268161314;
+	Mon, 27 May 2024 13:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RphZbBsa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NPviPCJH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E24C1607B4
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 13:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC40161310;
+	Mon, 27 May 2024 13:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716814803; cv=none; b=dgzBGr+Ery37OxO/TnsoXA2GAkZ+jxEsnnnu4Vd0Go5c2S6CQqGy5rpEw0IQPsAS4DY3i3xhlkQIaEZhhM/FITdqvmW4hSRThL0EP5/2EtK1IbGOH709VNJQD/piMLdqF5tBHMVXSHARIIdoUWcKMs+uQDdkkJpKRubZm44cWHs=
+	t=1716814852; cv=none; b=eqaJVTxnCi7sV3lPETYCetCZUKIGZQRlBj+CFsEbQC1btIxJFCzpkM8/X0T33ZYj3qmBhTBdWkqK8QivR+we444qNI9jbnlZX0EdjVgox3TgnhB4gABT+SNYHGZdqSBLa7gGYRoV2D8tSxxC1TYYM8faj8W++UmK6TtaN0SbqBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716814803; c=relaxed/simple;
-	bh=HkaP6glwKL/GZZMmy621Cw2Bayb68Wj/BHPrr3EyiO4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qls2Rxhze55ku5M/LhScvTqgLyWNdLb/H5kCds1O1fO/YkBaAw9ewiJczyjviMuRZYRSETXjt0sJTt8GBjAcnX8a8C/7Ol4kcP8ktINCxVbikVPVslbNd5SywbmUVZx3j29KaUQeeKdS8kvCzIqEEqCimvmzLyzjiX/nFfeTZTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RphZbBsa; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-627dfbcf42aso51537267b3.1
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 06:00:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716814800; x=1717419600; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wywx+DoAm5KgDivz+e0k+JypCKJpEVBBW6X7OipnxCA=;
-        b=RphZbBsaDKHLL3mVGp//+NbB/i5gEiymO6lgy5ToTxx/TEtVM93laxTh3kdHxSHpuC
-         LIwg/a6JvRsonooJ5hboHx+tcOLiuTswOS35B/e/CUuhwv83/wTsKITxLhZfyWFvIAxO
-         13nvZqT3xds1FlTyYihvr9+Sp1/WfRlkG6jJI44PiQ2Y64K5v2d1S65gLRIt5VWefB62
-         ZsTG+BQ7yYxLoJg6UFqLAoxg919V29iMss5s8ydPbpyhP6yjVjQJ/+4bIAkst3ztT7vd
-         AR3VuXKbjr8MIQW/vwYk5iH0FGmJpCXOVinPjQyBBxXlZmVQfKjpIN5ZbqpOceLFg0ri
-         zC5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716814800; x=1717419600;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wywx+DoAm5KgDivz+e0k+JypCKJpEVBBW6X7OipnxCA=;
-        b=A8YKEVtSI4HEXdF6DDRzLFyqd28L9q6A645TghF7LInJJu+TEdYzKQUhgdjpSyGKn1
-         q/Prr+hymppi+fpHZt+p5O5B188kLSmEAY5bZboM1tQrLvSVn4D2r6jCdc5IyZEX/Gqm
-         DRcKBSmhaGKBx2XWP/XHAsT1jNGrOPNiFf38DKT2J/2HdO75KGjr1xmxbaHLaIa0yo4L
-         tTO+paH0jZWYadDnbaX36YvBmd58eVVRzW4jLvd0GVUEsjGz72J7CxiRclXXrT58E5OG
-         lIkBH7PxAl5e8uaD61wVJzHW208WaiYgFGqsiXvnvDvn5o59PDvCQvJYmdWGW1u4R5qz
-         6+IA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRFyIxyqYq+UTnO7LUuXOEDZAENs4RN4OdIYohjExLkNfqX6NRbyVpxo23rcKd+hV9TNR528zBSUZNCnkTQPcAJd0hq5efVPxTAw==
-X-Gm-Message-State: AOJu0Yw8gPJ2XGhShJoDjCjN7MiUcTlUIyenIve+ys+iqziIGLza8wmB
-	We8QCljVCT+C2L/znX1oqaamJ7yPbW/5RLBcu9v7vzLfPz6tiwjse9bBBHhDZFrS6n4jSYCC305
-	I1BcKx1sHAHlncKpq+EXaQyYYTnMi/bzWL932sg==
-X-Google-Smtp-Source: AGHT+IFb5DbLkPdaiOEZs/ep03FNPZZ+bNRgzDn0ZDr8Mf2yH8mLV7AhtYtaaqlTf4TIqDPk7TtDNMGL41zvuu8XISM=
-X-Received: by 2002:a25:8392:0:b0:df4:9a10:4e12 with SMTP id
- 3f1490d57ef6-df77223e466mr8632612276.57.1716814800453; Mon, 27 May 2024
- 06:00:00 -0700 (PDT)
+	s=arc-20240116; t=1716814852; c=relaxed/simple;
+	bh=bxoNFGZl9B71P1f8yTzsrhw1cEfhGFUvd46K3+cBqjw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pJ5zsiYH+Gc+Ea/4oNaooHWx2cITseLmkenF1OjuYVuALbtTe4LX63vtWQNKRmZMmnKP4LLYJkdP2uSJP0jTs232qXECoUPDD3g12U/MpzAQqOzMREBt/XIqboBi0E9F1puuc02iN5ebaZgTKtirDQkFQTvqkUqiW37IuW32YFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NPviPCJH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F93C2BBFC;
+	Mon, 27 May 2024 13:00:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716814852;
+	bh=bxoNFGZl9B71P1f8yTzsrhw1cEfhGFUvd46K3+cBqjw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NPviPCJHhzy4DuNZ/3eISq4MZ/Y5wjDv0AZT8+XXbHO+70gROgWe9bicZX+s7HAYB
+	 epRENlzF5J7GRZP42GAdBfGaZEU/Nxn3r2+1YtxNscKgpLEGqrNzAeHMJFglJbhjQk
+	 IXOLQCX7+VIbFHxQOhIjHl2sX3vCd9KzCBKiqrzIaIHb6shP5EPL1U65slH4/xr8Nw
+	 MDuUSJSNwdpqKmDpalQB1opDxAL12bC3FmCFgrgotVNGoPnsexvHviToFwhdmf+WXd
+	 Pbps1QjCBCiH2YJZgkssr1F2HYTRnmPyzrbHg0Lhx8K2k9ftDImdYL5I3i/FPBhNfD
+	 KWGHNJWYB5JoA==
+Date: Mon, 27 May 2024 14:00:47 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Alina Yu <alina_yu@richtek.com>
+Cc: lgirdwood@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	cy_huang@richtek.com
+Subject: Re: [PATCH 1/2] regulator: rtq2208: Add fixed LDO VOUT property and
+ check that matches the constraints
+Message-ID: <c0c7a63d-e435-4778-ad4c-3d93f0215116@sirena.org.uk>
+References: <cover.1715846612.git.alina_yu@richtek.com>
+ <7c28d2e61d2fc13066ba4814d1ecfab8f344aaad.1715846612.git.alina_yu@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240521012447.42211-1-ychuang570808@gmail.com>
-In-Reply-To: <20240521012447.42211-1-ychuang570808@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 May 2024 14:59:49 +0200
-Message-ID: <CACRpkdb9EZ6fpLHO7a+A4szM_wc6JT6pxH0e0EWCOX6Mg2KkcQ@mail.gmail.com>
-Subject: Re: [PATCH v9 0/3] Add support for nuvoton ma35d1 pin control
-To: Jacky Huang <ychuang570808@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, linux-arm-kernel@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QDby5NivKiXbMELT"
+Content-Disposition: inline
+In-Reply-To: <7c28d2e61d2fc13066ba4814d1ecfab8f344aaad.1715846612.git.alina_yu@richtek.com>
+X-Cookie: I am two with nature.
 
-On Tue, May 21, 2024 at 3:24=E2=80=AFAM Jacky Huang <ychuang570808@gmail.co=
-m> wrote:
 
-> From: Jacky Huang <ychuang3@nuvoton.com>
->
-> This patch series adds the pin control and GPIO driver for the nuvoton ma=
-35d1
-> ARMv8 SoC. It includes DT binding documentation and the ma35d1 pin contro=
-l driver.
->
-> This pin control driver has been tested on the ma35d1 som board with Linu=
-x 6.9.0-rc7.
->
-> v9:
->   - Update pinctrl driver:
->     - Fixed a compilation warning reported by testrobot.
->     - Removed unnecessary gpiochip_remove().
->     - Made other minor fixes.
+--QDby5NivKiXbMELT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Patch v9 applied for the v6.11 kernel.
+On Thu, May 16, 2024 at 05:20:33PM +0800, Alina Yu wrote:
+> A fixed LDO VOUT property has been added to specify the fixed_uV of the regulator_desc.
+> Additionally, a check has been included in this version
+> to ensure that the fixed_uV matches the constraints.
 
-9 iterations are certainly enough, if there are more comments they can be
-addressed in-tree.
+This doesn't apply against current code, please check and resend.
 
-Yours,
-Linus Walleij
+--QDby5NivKiXbMELT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZUg/4ACgkQJNaLcl1U
+h9APoQf9G99XUOOwSNV5b+597lA2qxJtEXECE0R6AbgfB+CKLJZ1Ejt1iIN06eti
+Q1SfESM4i8jf+jiR4kHhHk2GHYsHkfpYE99oiGyCgzY0PSmaMtLQnOgzRgDy+FeF
+4qEaBZ1pZZzm7UG6MxudzTQFW/9CSLGYkX3n8XsYuAydLOjpacTvE/xQW6HuYNLi
+GGHj8yWaj8H+p5dSli8gZZDtB1LKGYHf0WRJaBYBCBx+Z1txGjjDdrIVV/yD5TjJ
+pWIvEeJszjMZWb4MeobgRc1s+pmTt+sNuokDzE9GvY26UGsaVYcybG9zdHYySJdu
+EP/s9sZruxeOhR8m+IdNELkJKUkKng==
+=urjY
+-----END PGP SIGNATURE-----
+
+--QDby5NivKiXbMELT--
 
