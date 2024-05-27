@@ -1,126 +1,142 @@
-Return-Path: <devicetree+bounces-69602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F117C8D0860
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:26:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A388D0883
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:29:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E75A1C22900
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:26:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC50BB2198C
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7136E16EC1C;
-	Mon, 27 May 2024 16:15:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hZGkBaDT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D138438FB9;
+	Mon, 27 May 2024 16:28:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5538616EBF7;
-	Mon, 27 May 2024 16:15:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B62717E91C;
+	Mon, 27 May 2024 16:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716826536; cv=none; b=kkI4jVjVzahOTwC5j8aIa64QRCU2/pEl+RRn5NLaK8KFBSiruw4gzUHNIO9Kr9In9aKzvcoqgppzTTbnBXoM27ET2GzzvM1WLfgUZkltk3Isf9U0rP1Z3kNSFw3j7py+6b0CAVj4FfwsTwNSZfj+02ndzmvhmhVludJoaNpqlDE=
+	t=1716827338; cv=none; b=qgdjkc8HHx64Z0bQdG3+OqdvZcs60IhvRmBE8BC4XZmVHHJWSXIniArdOOY7UL60vZaj7AeO49OxnSTNM7gSc5JCNCXk72DAQ+G24l2OY8cWdiBt0HUPB6gUpT3Hf8cgIrWWrOUU4CHHFkd0wNh3NaspTMicQxItKeInsGIgDtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716826536; c=relaxed/simple;
-	bh=chCtCkqI/NY4Vy2ffwwkDxwHFQRfFlMjA49T/JZ0V2I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=r27VkhrCUxcO9+BNg6x5fcj6XWTsTiSNHju+p33+epUdJ70tV9yImdKBKJdRU+wVbg/IVn/08uyiZubi+r44uEO/5XYKGerI+6h0mE23gql7LtrV0LDvKX1k/6BDmAcCTObScGm/4b7bSU4E6tYjFVf7w0yOchHyGQjJq3aKuiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hZGkBaDT; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 7A5E0FF80E;
-	Mon, 27 May 2024 16:15:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1716826533;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S5EWnWVm8Boacgm88RxHxweJ58Kbq8GGMqtCde3uKZI=;
-	b=hZGkBaDT6XPUEKAWzhUuB2+uCGFMlArWDpCILqxRuPBbHcghizqQZSlO6wFCsZiI1gmal1
-	qJix31+53cvT67bFzT2JMWd2PWAYeSdFM1JBSybqfgMBH9ymCqyP6eNoMY5TS+PA0UvHr5
-	JP5evTTr7etsXnKUux/tPEQ/0JRsRD1zp8al+pZvukRpuvvTQUMs1ewOkEV/nbBaYldyXb
-	OdwNsy9IevypTwYfC/wG2jQvoCEMvMe81wNzeCXH//bQZkxfHBHW/lg+ax8mQk+C3xk030
-	GUKfOk8LDGvsh2bB27tPwafLEVhic2aBVX0Eu7S8iViYTvAmW7o8yOs4jNpA4Q==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Simon Horman <horms@kernel.org>,
-	Sai Krishna Gajula <saikrishnag@marvell.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Lee Jones <lee@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v2 19/19] MAINTAINERS: Add the Microchip LAN966x PCI driver entry
-Date: Mon, 27 May 2024 18:14:46 +0200
-Message-ID: <20240527161450.326615-20-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20240527161450.326615-1-herve.codina@bootlin.com>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1716827338; c=relaxed/simple;
+	bh=tenOVureWXg27A/BRhhEdtjSgdb2iCP2DVRnVahKpPk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mrP0jS29tFOXumDl4OaoyTRmLKvo90ractauoZAzC+9FNAcGeTxoVvIiSxJzf0uFDYUB52A15LryV62PvmLeDRf9z0IW3qNgQoU7Ph1m+9pRQV/yuG+Iq5T0Qu33JG5UFtsgtkBmxE6VstkgCQjcPZujb2Hf16UHRldQXRuv2Vg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+X-CSE-ConnectionGUID: 3kOW+QshRp2cQBpvXH/mbw==
+X-CSE-MsgGUID: 4bRUBYHhTRKlFm67aVp6Hw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11085"; a="23821203"
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; 
+   d="scan'208";a="23821203"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2024 09:28:56 -0700
+X-CSE-ConnectionGUID: u7ozXfdDQlyZg0xj64Fwpg==
+X-CSE-MsgGUID: 6BCTSqMYT8SubiDMHSGfnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,193,1712646000"; 
+   d="scan'208";a="34694966"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2024 09:28:52 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy.shevchenko@gmail.com>)
+	id 1sBdDN-0000000BJxg-3Sai;
+	Mon, 27 May 2024 19:28:49 +0300
+Date: Mon, 27 May 2024 19:28:49 +0300
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] hwmon: (ltc2992) Use
+ fwnode_for_each_available_child_node_scoped()
+Message-ID: <ZlS0wcbBXvSS26Qz@smile.fi.intel.com>
+References: <20240523-fwnode_for_each_available_child_node_scoped-v2-0-701f3a03f2fb@gmail.com>
+ <20240523-fwnode_for_each_available_child_node_scoped-v2-3-701f3a03f2fb@gmail.com>
+ <20240526144851.493dd3f2@jic23-huawei>
+ <ZlSY8tjYm5g9bEJ_@surfacebook.localdomain>
+ <20240527155717.58292509@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240527155717.58292509@jic23-huawei>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-After contributing the driver, add myself as the maintainer for the
-Microchip LAN966x PCI driver.
+On Mon, May 27, 2024 at 03:57:17PM +0100, Jonathan Cameron wrote:
+> On Mon, 27 May 2024 17:30:10 +0300
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > Sun, May 26, 2024 at 02:48:51PM +0100, Jonathan Cameron kirjoitti:
+> > > On Thu, 23 May 2024 17:47:16 +0200
+> > > Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index baeb307344cd..c84ec27ccbe4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14733,6 +14733,12 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/interrupt-controller/microchip,lan966x-oic.yaml
- F:	drivers/irqchip/irq-lan966x-oic.c
- 
-+MICROCHIP LAN966X PCI DRIVER
-+M:	Herve Codina <herve.codina@bootlin.com>
-+S:	Maintained
-+F:	drivers/mfd/lan966x_pci.c
-+F:	drivers/mfd/lan966x_pci.dtso
-+
- MICROCHIP LCDFB DRIVER
- M:	Nicolas Ferre <nicolas.ferre@microchip.com>
- L:	linux-fbdev@vger.kernel.org
+> > > This looks like another instances of the lack of clarify about 
+> > > what device_for_each_child_node[_scoped]() guarantees about node availability.
+> > > On DT it guarantees the node is available as ultimately calls
+> > > of_get_next_available_child()
+> > > 
+> > > On ACPI it doesn't (I think).
+> > > For swnode, there isn't an obvious concept of available.
+> > > 
+> > > It would be much better if we reached some agreement on this and
+> > > hence could avoid using the fwnode variants just to get the _available_ form
+> > > as done here.  
+> > 
+> > > Or just add the device_for_each_available_child_node[_scoped]()
+> > > and call that in almost all cases.  
+> > 
+> > device_for_each*() _implies_ availability. You need to talk to Rob about all
+> > this. The design of the device_for_each*() was exactly done in accordance with
+> > his suggestions...
+> 
+> Does it imply that for ACPI? I can't find a query of _STA in the callbacks
+> (which is there for the for fwnode_*available calls.
+
+IIRC for ACPI/swnode the availability is always "yes" as long as property can
+be found. Basically it means the fwnode_*() == fwnode_*available() for these
+back-ends.
+
+AFAIU ACPI concept here is that once parsed and namespaced (in terms of putting
+the respective part of description table into ACPI namespace) it's lways
+available. Otherwise it's not, but at the same time the respective child node
+(property) may not be found
+
+> Mind you it wouldn't be the first time I've missed something in the ACPI parsing
+> code, so maybe it is there indirectly.
+
+I might have a weak memory, but see my understanding above.
+
+> I know from previous discussions that the DT version was intentional, but
+> I'm nervous that the same assumptions don't apply to ACPI.
+> 
+> > > In generic code, do we ever want to walk unavailable child nodes?  
+> > 
+> > ...which are most likely like your question here, i.e. why we ever need to
+> > traverse over unavailable nodes.
+
 -- 
-2.45.0
+With Best Regards,
+Andy Shevchenko
+
 
 
