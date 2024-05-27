@@ -1,125 +1,119 @@
-Return-Path: <devicetree+bounces-69508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 391D68D0058
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6592E8D0069
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1A82284864
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:45:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F38B282D87
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58E115E5C4;
-	Mon, 27 May 2024 12:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F37415ECC5;
+	Mon, 27 May 2024 12:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LNxW912t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ar2Qq1t6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5193F15E5BF;
-	Mon, 27 May 2024 12:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0D715E5CE
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716813890; cv=none; b=flDN3IrW5N4WvpWYaG8Jr11QI2pxwN3GLmGzenkesABAi4BERk6dTA7a1lmEGTRPth52CbkNb93ilTRbcU0qm7OwYOIUfXXOrHlP4IV31ddGLvaaMZEL8Xfn5WMc4GenJiLsNpMWdOFuzii2NcmEpWZQZMJOLQd1PwaWhxsAmnU=
+	t=1716814228; cv=none; b=kPq0ZT4c4FPmD2V6d12f30aOiGVoDy+z6CW5hVQfdM7GhHJCULpMn3xretx8Gr1ff+/CbkjBKaVMOfCT8/OhjqDCINiSjW3qVbwLnVIeABVhfiJF5anLXlhlcz6a/sO8fRtCiefzwhIIfNpcIvPilvxBOQER6pzSyvSx1pXinhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716813890; c=relaxed/simple;
-	bh=yf7pA7Ivanmi3RMGzumv+NQfcs+QEVD5zl4cbYtHC0M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nq8H4UNo4SnYVWuMYHJMCt3bEgGcryVOXXY9Lt1ArdWBy8GUx+4twinYHfqJYj5JRP5P1Ilnf+91jHZ8LeT6arLRGg4QORWAoqB/ATLOH0VGjR0sHCZFcEHE1rZVwcXPk0kttTP+PdGY6GMTLKp80acDxBrQ0XSMYuNQFZyePP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LNxW912t; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44RCie5n000985;
-	Mon, 27 May 2024 07:44:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1716813880;
-	bh=o4gWqOIjKwTCFY8gybaZSHm1C8i4+ZRYp77p4a/hxpg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=LNxW912tIY2hULrm5H/ToNvIxrbU4zf3V1JcUm3WRyHBgQoEO/R79uQz750OIUm3n
-	 eP8CFnPkOEEz8hJt6eYopR48w9GgzJHiATtaYMF9Iszr5F5GAPPU9YFtsqk5/UizWp
-	 5E5wyI2o+dytf4wVPi+Ac61zVrH0iGv34J/gxUDw=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44RCie92124655
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 27 May 2024 07:44:40 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 27
- May 2024 07:44:39 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 27 May 2024 07:44:39 -0500
-Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44RCiMbW035499;
-	Mon, 27 May 2024 07:44:36 -0500
-From: Neha Malcom Francis <n-francis@ti.com>
-To: <robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>
-CC: <marten.lindahl@axis.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>, <n-francis@ti.com>
-Subject: [PATCH v2 3/3] arm64: boot: dts: ti: k3-j784s4-evm: Add TPS62873 node
-Date: Mon, 27 May 2024 18:14:22 +0530
-Message-ID: <20240527124422.3553828-4-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240527124422.3553828-1-n-francis@ti.com>
-References: <20240527124422.3553828-1-n-francis@ti.com>
+	s=arc-20240116; t=1716814228; c=relaxed/simple;
+	bh=14UMBsxwAYor7acU+f5R1XwmfsHblIByKkJ6KnVfk84=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iSuY4dKa5MoBedU3F1kU19tGV9ztMqBD6/sQVdD/AO6RKd/1G987ArNcH+IqD6FfCMVAZINX0wrFFOfeSz5FWXbBy61LcsL/yQo/M26dHAu1ZNrcFee57a3rdT5XLjzzW6JPOu2BNSvRDBnIoOm3eGQ+Z9G6Rdh8ad7DG8RQW6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ar2Qq1t6; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-df4e503983fso5343802276.2
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:50:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716814226; x=1717419026; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=14UMBsxwAYor7acU+f5R1XwmfsHblIByKkJ6KnVfk84=;
+        b=Ar2Qq1t6yWiFCSp2zWG7WxMY/cHBCa7Ldg9gcqkP1od3/0MiVOQjT2PTDceRS1edyd
+         v9LX02RIH+v2wLKtIX9i7sT6v9trhjRXGprLAp3f3uU3j2YMArhFBtw+29btJMVqOcse
+         eG+gnmo6/ZZ1PhPHtbxkh6kBQwPwlKLhnpJmFnLI4KmrhDmLAesWs/65FKPT4esNonit
+         Dz4X4P1SwMxynXCI3Z2cjDMgloabyMcm/GbV2lCneLjB+6vdfIietZ6uhw0LH1cADhNj
+         MZ85pBRO0ypzzuvMHupAtPZNMuLDGFCZGG4xDPzVwNbbeS9qIF8TBwnHg+NFHfS563Ly
+         1l0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716814226; x=1717419026;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=14UMBsxwAYor7acU+f5R1XwmfsHblIByKkJ6KnVfk84=;
+        b=tiQyzV6xd96M7bUdBTJ6vocTzLiYO9rwJBN79ZMvl8zaugEtuWfln9ePbZdBB9AN3N
+         DIpzZTiSmFLC65FlHBAHVXwyVYfkIpcEL1WZyZk75dL5X7g9DssSqkZxCG+NjMBQlLMj
+         +xZj6zvk88qSWbhM4yuNsK75idM8+n/etCKHCDOLwj8lHqSau6SOIH0P/vf/oRvQBK3f
+         JrY2/OqQyKplxwP20lzng4S/8jyoXlGXKlEU6ctyXDyOUXYXYnv2c+uS9MCDw2KOYab7
+         KvVZ6dYPHk24qBtcnmLIslaumDuY5FIETlW9uHkq+NSRycyQpGH6eHE7hM8zBv583Pf7
+         CsLA==
+X-Forwarded-Encrypted: i=1; AJvYcCVzT7bIRKC/7TUF6RnTHIn8ckzVN3PwM+6n87M5t8ZCcSllWIrvDWvXsxXg8y6n6ZfsXNfq1qoMPFFWAfT5izP0aPgIacpRMZbuxQ==
+X-Gm-Message-State: AOJu0YwZ3Ip9Z6BHdJhxa5u8XSnEu9TAqiT3YPRYE3EwdfuYJPpN9J8n
+	1OwBM2RML4DBcRnq5+sq1haEfg1qpVSh9wcQUm4pxB/Oe1gORGnWXkPZfWJKBolt2Svd/nZaJO6
+	CJKw/JHqfkxSQ5g2+SEgWRh4svd51NNawITeqqQ==
+X-Google-Smtp-Source: AGHT+IHQev4ydRTgpyByOzu2HFcpu2MVKpWBI6FXCN8mebkBNMtO53w2pge5I/hqSmzhTxgE+0KR4nyVgR2HhWJO7ro=
+X-Received: by 2002:a25:df50:0:b0:de5:4d41:80c3 with SMTP id
+ 3f1490d57ef6-df77223e718mr9210410276.55.1716814225824; Mon, 27 May 2024
+ 05:50:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240521-pinctrl-scmi-imx95-v1-0-9a1175d735fd@nxp.com> <DU0PR04MB941718F15619A907C15AA18588F02@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <DU0PR04MB941718F15619A907C15AA18588F02@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 27 May 2024 14:50:15 +0200
+Message-ID: <CACRpkdbpLcxZ0YNdvYCS3bpyd3e6Qx7Wf1Ju9Buy-TvkBQoYDQ@mail.gmail.com>
+Subject: Re: [PATCH 0/3] pinctrl: scmi: support i.MX95 OEM extensions with
+ fsl,pins property
+To: Peng Fan <peng.fan@nxp.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Aisheng Dong <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add Tulip TPS62873 nodes for J784S4 EVM. These are step-down regulators
-that supply VDD_CPU_AVS and VDD_CORE_0V8 to the SoC.
+On Mon, May 27, 2024 at 10:36=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
 
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+> Hi Linus, Sudeep, Cristian,
+>
+> > Subject: [PATCH 0/3] pinctrl: scmi: support i.MX95 OEM extensions with
+> > fsl,pins property
+>
+> Sorry if this is an early ping to you. Just wanna this not blocking i.MX9=
+5
+> upstream support.
+>
+> Are you ok with this patchset?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index d511b25d62e3..3884be9ca7f7 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -579,6 +579,27 @@ ldoa4: ldo4 {
- 			};
- 		};
- 	};
-+
-+	tps62873a: tps62873@40 {
-+		compatible = "ti,tps62873";
-+		bootph-pre-ram;
-+		reg = <0x40>;
-+		regulator-name = "VDD_CPU_AVS";
-+		regulator-min-microvolt = <750000>;
-+		regulator-max-microvolt = <1330000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	tps62873b: tps62873@43 {
-+		compatible = "ti,tps62873";
-+		reg = <0x43>;
-+		regulator-name = "VDD_CORE_0V8";
-+		regulator-min-microvolt = <760000>;
-+		regulator-max-microvolt = <840000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
- };
- 
- &mcu_uart0 {
--- 
-2.34.1
+Patch 1 is fine as it's ACKed by the DT maintainers.
 
+Patch 2 patches the SCMI pinctrl driver and patch 3 uses
+module_scmi_driver(), so I cannot merge any of these patches
+without ACK from the SCMI maintainers.
+
+The code in patch 3 looks OK but I will comment on it, no big
+deal though.
+
+Yours,
+Linus Walleij
 
