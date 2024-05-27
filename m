@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-69487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57228CFF7D
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:00:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2088CFF7E
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F553280DB7
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:00:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33D3A1C218E6
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9567A1581E2;
-	Mon, 27 May 2024 12:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE19715DBC5;
+	Mon, 27 May 2024 12:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C/9C2zXp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ayyKBS63"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E65BA15DBCE
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBE1134B6
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:00:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716811217; cv=none; b=NJCEPPKNfc1/ziMT/fh9W+ooW+ZgD+8mQCpA+ZTfx/Ggfo4Hn+auWpYkaGfkriMLus97w5Tw1262WaSlLySb03ekeekKDHIiQ3saePdeIu7xI7C7z6BqD2X2EAat6MJr03GviV9MWyXyCn2Raa6JRz8SkNYEjSx7JVvUAULcR8M=
+	t=1716811218; cv=none; b=fw8nb2ZEKnq07e0B0SO1Q2FMCWIG1n9z7o4zi3/AEZAUpE2DrelZbnxtSJhFr/nPF/JKcZTRwuze/o4O/n903XlPJJL6RdOi0NVSOfS3pAWsV9XQLpa9pUSg/Zty2aWfC6bQEoj6JFRBfRVSPcJfRVpS4171548+HW7Jrc8LUPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716811217; c=relaxed/simple;
-	bh=I1tf1HKbnvEtJN5mThs9AFWNMdgrA0egGTKJf49oICk=;
+	s=arc-20240116; t=1716811218; c=relaxed/simple;
+	bh=m/3Ar9UdD925AWyWRFKJfAr/rfLjsoesvD2HzZymGTY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N1OuGnftyN8yJuDjMgEWBxidsMvfCgBIlKAa6vr1aeXg8PLwddG1UqHXmCjgPsLFyS9unSIZiZD941pRAZIrqDeX1p4ucfc+gBe6OMs7DWjsSyUvqkNQHVWONjk+xpLrzu13pI0GME/mlZCDzi32OY1+jWS1uVSM8yFHUpjF9vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C/9C2zXp; arc=none smtp.client-ip=209.85.218.54
+	 MIME-Version:Content-Type; b=juOmQPYX1Qna92g1H60kfkIPrTwsNZSAxBJEuXThOOGlxS42cVzmr3DxPJO/um5hnIUcm+A+Vcmxpag40N5Up8JAYC9RtBhU3nwWMhfmjunLreNUwYiBo1D8KWu0WR2uawRDsSdaOV7sKLbUAuBvIsGyygnQYoCctk8tXDgtyWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ayyKBS63; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a6269ad71b6so357036966b.2
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:00:14 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a6303e13ffeso64940066b.3
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:00:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716811213; x=1717416013; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1716811215; x=1717416015; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=be+meMFX+lXLsoY1vauyMtoGL9wXpaeQ3cLiiOkxwWM=;
-        b=C/9C2zXpuX5V290hYU8yNtkaOC1u4suXeMTHXSjOD340PJv41IFrxEpli5Q0YakUBA
-         yW90mI6zXsD/zV+jXWAFafYZ2m/CgBcKLUNpwyG2yDvfe5tCPJehTODSYIZV4qvtBn93
-         WMtZsInPR07d83dcjHq+E0BcUqvIdH2Ex76o9XONgPAhdjM3XxvIRKVojpXnUmPXwtU2
-         LHkPqIwCPriy2+XMvVlPikoEqn7+tlLjvzRXQKoYrsGuU8/MlL1AWt5vmWfe5oFB1y5Q
-         tABxvTiNXQvjMfvc5LL6V4shm58UHeRJD7gCupo613vDiEgDC+vT3pJxWKQ4KxyRowJE
-         Tvcw==
+        bh=FfCeHjS+24EDjGWUbBotOmlzBOa+3LwxFW0+n/tqVOA=;
+        b=ayyKBS63aBsfIWbX5za2hIUhp9bBZG5P/gefc/fErk7Cwc3dLNZp/jiCdBmqaPCFyD
+         2w4lgDV3VixNa8tSuWn6C8lUJqAsxkM2ULm7/a1y4mEEopt4YeiR/wmVyk883Yb4uMh4
+         VQM+Ua5OCL8mmZpsUUsr+mLa9Ha83h+7mvzhQge5jidC9bUXcUJaDCrRiymcSO1i5TC8
+         CdTykA3m+Z/B/KTIQPFz7KAI7pbcAJuecRKYKRL15GMNQ53WZ8ZWDK+FJSe24DFD/UA6
+         +SIPKWTJuiYdypMxw1B1vw2yOGJC3sc34YdIVnRJgNQUGG90ZIB05pq/8YnfXDM+5Drn
+         PTZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716811213; x=1717416013;
+        d=1e100.net; s=20230601; t=1716811215; x=1717416015;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=be+meMFX+lXLsoY1vauyMtoGL9wXpaeQ3cLiiOkxwWM=;
-        b=DLE8lmf6/uHV40NC+R24zgmYZv10hVIUu1O6Li4rdXcZyGWVfhDZA4U8iatVKAGnav
-         ojxiTvdizPhBgTWa7c24FHXNRw8g+wInzibBPl084zZK4DwOCSmPLSyQEI3Rn9CdxWwk
-         kpRAJi2QpoDRCj5E52Lz+kmAPAwsAL8wyEoQsBH7TIDDoAUYYNg5snH9ILRt8KWJpwvs
-         2H1WeQneeHvwt3rbAA6jm4Rmv3oXQ9LDXaJ6yuaBv9mJu8MbNyJvR5+ca4+tB6gdU0+V
-         mzELuhtzwjY2OenVSyeXLo3B5M6x09r2A5AoPmhc1JoZxH4S7akGzai4cl+c1AMfuzqQ
-         9NaA==
-X-Forwarded-Encrypted: i=1; AJvYcCWOKrTq23kAZ3Ux98cuYbgY7ptZfwkFnTNVZdPcKBXEA+xFOTklCZ3/SygiPEO8EM4O9MvUbuJWp6knMyhEF8uzuDL4Cf1h4K+jWA==
-X-Gm-Message-State: AOJu0Yy8zXSfPxEy1/tkMNWOoZ6lEFvUCsJxPBKuOyT5NbFUZWbf/Lye
-	8QcEg4yCVDf+0JVhphJ87KxUHTihLiB3TfMO7sHwUCUh7cfJE378
-X-Google-Smtp-Source: AGHT+IHlmAFvgLS49lyX6ic7wbO5heyC9S7czR8KX49sC5/pb+ilLrFGYK3uJlCTdzLLSUVQ9HvEUg==
-X-Received: by 2002:a17:907:94cb:b0:a62:eab9:4be2 with SMTP id a640c23a62f3a-a62eab94d52mr228164166b.44.1716811213252;
-        Mon, 27 May 2024 05:00:13 -0700 (PDT)
+        bh=FfCeHjS+24EDjGWUbBotOmlzBOa+3LwxFW0+n/tqVOA=;
+        b=Nxn6yAf/a6CR9YU3gc0rLsf85giIfs2CvrrmFBmM11BoxZhxA0c3vvpGZTOAwbsNSb
+         CGximllnNZXvpztFLmV/1MR0hLdKqdLOjgy55A8yJgU9UVLmZODGI4pGOr3C1n+5DrY+
+         L9Nbci4QRsyC7BxSqlHlp6x/dHytjrcf9pCsfLQh8hTAKuj8p6cPym82KMaJ19O4y4a9
+         CB/ba/cr+5HA9L6KbR3Lmya70h4sKBkL2TnCaYa4hauikRQHJ/gEJbQD0IM5OZNeTnl/
+         Pm0DXyVrE4AfK+Sa+2DoZpV47h0XrlOaGQcb6yA9SVLatcmtdFbktuIO0Vg94kWcN3yW
+         dhpw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZIoYZTp1uKlcFvt53DofBN0sarX8agIlAtbWW5sOdCh9xyEaULGjVFG3hDrgq1q4ZWrUDAcqyR5BedDEwgXJzrCmg/mJ1GfR+/A==
+X-Gm-Message-State: AOJu0Ywi7jDg1rsvcMvuQ+YsRxPKEB9m3wv7Nay+w18cLw/Gi6QHpx8f
+	O+TBvjnqKXzpbGX6Tzu4bCLD/j55LNEOK8BViNCD62vE4/066jcfJ9iTiVgs
+X-Google-Smtp-Source: AGHT+IEM8oeuFJhoAvvCTnvnPABOftG2A+iSPr/DlNCJRz0DldQKpyblkdDhmCmRgoPYYa02crl3pQ==
+X-Received: by 2002:a17:906:f219:b0:a62:7ef:ca4a with SMTP id a640c23a62f3a-a6265134cd8mr474783666b.70.1716811215235;
+        Mon, 27 May 2024 05:00:15 -0700 (PDT)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cc8da37sm484669766b.183.2024.05.27.05.00.11
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cc8da37sm484669766b.183.2024.05.27.05.00.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 05:00:12 -0700 (PDT)
+        Mon, 27 May 2024 05:00:14 -0700 (PDT)
 From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -88,9 +88,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-mediatek@lists.infradead.org,
 	openwrt-devel@lists.openwrt.org,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/3] dt-bindings: arm64: dts: mediatek: Add OpenWrt One
-Date: Mon, 27 May 2024 13:59:32 +0200
-Message-Id: <20240527115933.7396-3-zajec5@gmail.com>
+Subject: [PATCH 3/3] arm64: dts: mediatek: Add OpenWrt One
+Date: Mon, 27 May 2024 13:59:33 +0200
+Message-Id: <20240527115933.7396-4-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20240527115933.7396-1-zajec5@gmail.com>
 References: <20240527115933.7396-1-zajec5@gmail.com>
@@ -105,26 +105,50 @@ Content-Transfer-Encoding: 8bit
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-OpenWrt One is the first ever OpenWrt product. It's based on MT7981B and
-has entered an early production stage.
+OpenWrt One is the first ever OpenWrt product. It's based on MT7981B
+(AKA Filogic 820) and has 1 GiB or DDR4 RAM. The rest of peripherals
+remains to be added later.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/mediatek/Makefile             |  1 +
+ .../boot/dts/mediatek/mt7981b-openwrt-one.dts     | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index eccc3f7cc4e6..c150acde1f90 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -86,6 +86,7 @@ properties:
-       - items:
-           - enum:
-               - cudy,wr3000-v1
-+              - openwrt,one
-               - xiaomi,ax3000t
-           - const: mediatek,mt7981b
-       - items:
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index 12f67959f257..06f960002ac2 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-openwrt-one.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-xiaomi-ax3000t.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-acelink-ew-7886cax.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+new file mode 100644
+index 000000000000..4f6cbb491287
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++
++/dts-v1/;
++
++#include "mt7981b.dtsi"
++
++/ {
++	compatible = "openwrt,one", "mediatek,mt7981b";
++	model = "OpenWrt One";
++
++	memory@40000000 {
++		reg = <0 0x40000000 0 0x40000000>;
++		device_type = "memory";
++	};
++};
 -- 
 2.35.3
 
