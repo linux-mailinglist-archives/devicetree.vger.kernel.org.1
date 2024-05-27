@@ -1,130 +1,150 @@
-Return-Path: <devicetree+bounces-69497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9166C8CFFFE
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:26:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 016918D000E
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:32:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DCE62839EB
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:26:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 793141F2374D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:32:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3128915E5AD;
-	Mon, 27 May 2024 12:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A59A15E5C6;
+	Mon, 27 May 2024 12:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="NQA7PTxb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wZ94hEaj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329D315DBC7
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:26:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEE415E5BB
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716812803; cv=none; b=EIdoFhodHb+SNj+doavtztmRvZrxwx0sSkR+Q1qlvFoU+GEki+1MHTu9zBzNbSRlDkcy4dMXmye8TxtmTMeQFarxVAfILppDt7lVChvAVNq3W/GaR8hivBWK4WnsnY3t4v3OjbR0PJxZmCHihV/wBTNYdtYRNtCOweJdaMWssto=
+	t=1716813125; cv=none; b=alq/EdfNlEYYqSU8yrDseoN3wXNgL/OX5kgRA+fNT5tU+92QmXb8TsdjJyD98GYHzivtUfMyzNs5+7qMODfF3tOooGv8/OZSFMDn+f1sNO/fdpECMXlED5ZKgz0gi52PA8o3LkBJ7tYtLRr5HY9HXx2qgxwMfYvUdM2czetsk50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716812803; c=relaxed/simple;
-	bh=uEBh5knVxjgMQ2FRyTCSQ4x+NhsByRN32pPubCK078Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RjRMy4CM+pwmp9bhuRER910JMcF+gd1KTn//QT7mofmOzsWdiQFO3sqgq2vp+mwcOn5MnQG2rHaqbSKwj0/cCVGtbRVpjTUlRYpHLuPKFFmvzrxg55FnmLe++5bdhHzbUbDHmV+yHZRS/LXXw53Co1UvyBC0W5TZBdDj8hYxmug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=NQA7PTxb; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5788eaf5366so1999348a12.2
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:26:40 -0700 (PDT)
+	s=arc-20240116; t=1716813125; c=relaxed/simple;
+	bh=goUxZvIFN/u5EojLxx/8XlvUz1D2u0hDwKrpvKzzkOs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sSerbxXxSke+4qvZ7VyN48pxVEik+EFjTIz8Tp6k3IxMV7YkJaoDpV1EheiEu9JT7SfCwdhOavhpuhOuoEo87qEeaX7HEAD8n2Cx0RP/xedkl7xTifLraGinQAcs50ztT4CadXxlzTbdIEwAXpmmy0HN/clsPYpnvU+vLO9axd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wZ94hEaj; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-df4e40a3cb6so5583571276.0
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:32:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1716812799; x=1717417599; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Z0jYksGWYDCzEC0W0rvVy6TJouZUOtG78WV9BnuANE=;
-        b=NQA7PTxbCPG0ilvX5Jmqt9nVvq7Q9khn1iJbRYalCvF8/5AF3M0Vc7K5j2wDUY0Q5X
-         bi4LLvY41IHuf1Fu5WQNOQKFlmlUHIrFucZS394h00CW8cZz6aEtwEQGBj2LBeJJXLIA
-         zOCBJjXbVBcNzz+9QNqFkVv+b0Qmm0GuBuADFSnU2qxCRSxnTiZXUQ7GLTPFJG8c/j2F
-         0tTc5qGV0SpG6KuB+eGCohUSIRDiphWhEjJto/z7A6iJ+ygJrBi78zNNF6UTqiQKdMKl
-         bS75WclvfdTksam1E4TmvTcOIKlVJlZ9BspwboQNQ4BbvrF5Lx2IuHUZEVpbwl1subnV
-         ZZSw==
+        d=linaro.org; s=google; t=1716813123; x=1717417923; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZJDUGLRRsJ0ivWLRLg9qi0jczqwj4hSiWcWfn/3vXsg=;
+        b=wZ94hEajKDOzWeuapHy1qeDKauQ3cUi6oHej+izwLshEw04NdiqxOfcM8rn/7mDDaw
+         luIlup2tPLkqBB+xgwqO8CcaPSPBJQZNgSFcygE8ndGjNVzhiw8qQ416IN3uRG9ofXqY
+         lFhsKcYYMOTwSrlN+ia10Qwo+RRaj/qQzEBJOvoCfQyL6pOL2lzdunEbZE0jz5NGu/L8
+         +iGLQoWpeTsmHqurEbPNfWNNUoGTU1AG/un6olg3skM9S+v2dDhJSxpv2UcROFJqTDBj
+         6jlC7T+hYXYhKUUk9aIxcSJfqaSwCxOQSMUhhSXrgxWPgdssj5o8vZ5HxFAmAHGyw9Ab
+         tR6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716812799; x=1717417599;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Z0jYksGWYDCzEC0W0rvVy6TJouZUOtG78WV9BnuANE=;
-        b=cOfpOyDsO0mBF2BCgY71p3FIjLSRixZbsPCqsB0MMzkX4LsYL+xXVpT4W9h7Y/zzVp
-         VV1Ki7/+fECwfmkCmb2CfckqgyRwCPcJsdIuS+M0FvvZZug5f8t+lPcFwchdLXfPUmPI
-         CEQz4zEpaXCH7lczOzyqjjegGLb5WLeGK/9HiLIs6cC+DAgc1uwJe47vHYTHvVanYJ0N
-         PGloYJCuNBBEJsTHR36lcr8rO1xzk6EomOed5wDsC/du/tPbvEnMfb/W4CiJb45XHASd
-         0Z07kGEMdQ8U+kPBkCm9gRxbl6UMDEOkV/gOdy4kgtzL8F18ear64SrcI/gHTgKglTtD
-         jCHw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbHXwwv3OOnO9CpvzfAc3Qa7zlErtVUvN53hXLWWLbRQyfLXr8j9qghNSibBUDyci7Mk2sPQTxTwWb6Xue5GTkqhaq+COlDYDVoQ==
-X-Gm-Message-State: AOJu0Yw0LDXB3pi+79y1kqJ5SshooGe9Q5SKXw+Z+re3KPPOY2DUIHd9
-	Zg0aqJoVOcPUm91XUQsTTVpxDNjTBJXHyjofBHl9SktRptv9mTICCe3rhaQRIlc=
-X-Google-Smtp-Source: AGHT+IGdiAI18N5SLWq542WfS9dm3HTYqjqz0CDg1sVYs7nLcvCMNTWyAiOq78S1awvR6RQ9LsxoIA==
-X-Received: by 2002:a17:906:478c:b0:a5a:7a1:5d9c with SMTP id a640c23a62f3a-a6265146984mr646663766b.62.1716812799534;
-        Mon, 27 May 2024 05:26:39 -0700 (PDT)
-Received: from ?IPV6:2001:a61:139b:bf01:e8eb:4d8f:8770:df82? ([2001:a61:139b:bf01:e8eb:4d8f:8770:df82])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c817bffsm488121266b.32.2024.05.27.05.26.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 May 2024 05:26:39 -0700 (PDT)
-Message-ID: <ceb1f7b3-2787-4166-846f-2427b44b3e62@suse.com>
-Date: Mon, 27 May 2024 14:26:36 +0200
+        d=1e100.net; s=20230601; t=1716813123; x=1717417923;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZJDUGLRRsJ0ivWLRLg9qi0jczqwj4hSiWcWfn/3vXsg=;
+        b=byTKrrf3f/rbnzx3M/35tDcgn5cqOXdiU5AEUFLc+3tdnkthpp7gbmKlWdxeM5W39i
+         UFfl7VwCQVOj5faxIO3LLkOLt+X3SM/GLLfm+aVZZVezUK414dGxKuS6IFqfSZ6gNal1
+         BqKdDzUQq6041O5xxKt0m7Fr5ZL/VQKlQOXorWv24Zr5LDdCjT7jVzTMlSWm58h7D6HY
+         8QMv3zzUsBqGgBl9u9GYkXIjDWpdC6lGxcsE44haqEen+iClgcKBt4osnXGASx6HL6TN
+         NbeHcoKE55Rm1qSJSdrzINGrRJEfg/4bICmL19xxRyitF9lecxXI7KmU6OlizWCWdflE
+         zBww==
+X-Forwarded-Encrypted: i=1; AJvYcCU6bPW7mMAj6S0btXqBcWbSyY/92/KireKG7GuKtqX38so39N0DvUFxmAvvm1t0+KcRpIZVrMCvaVaXeHcrBXv4yWbpX72QwXXiWw==
+X-Gm-Message-State: AOJu0YyCFUu38aPuKqXj4aPnlQfu9ejJu89y2YEbDCyuT1JYfQbDMtc7
+	QV8ZlpJ7ztvHqh2Fh1K8yu1QL9x+yMTmGgJ98ohmSvZI+h03UWX5h8FoGArlGvjF7g7jZauu/AH
+	7sVVDqjRS+78BUk6OAGFZDgor/Pkz+phHb1Koqw==
+X-Google-Smtp-Source: AGHT+IFbWEK6qKocYhw6f8EvHhlrGAgfVZ6YKjWo+tvRZyGR5zLrpIUyxn/pC4oFmBGHvnvExLlnPLbfXeXIcI3u80E=
+X-Received: by 2002:a25:abeb:0:b0:df7:69a2:f823 with SMTP id
+ 3f1490d57ef6-df77215546amr9090048276.7.1716813122592; Mon, 27 May 2024
+ 05:32:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] power: supply: lenovo_yoga_c630_battery: add
- Lenovo C630 driver
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Nikita Travkin <nikita@trvn.ru>
-References: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
- <20240527-yoga-ec-driver-v3-4-327a9851dad5@linaro.org>
-Content-Language: en-US
-From: Oliver Neukum <oneukum@suse.com>
-In-Reply-To: <20240527-yoga-ec-driver-v3-4-327a9851dad5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240503111436.113089-1-yuklin.soo@starfivetech.com> <20240503111436.113089-7-yuklin.soo@starfivetech.com>
+In-Reply-To: <20240503111436.113089-7-yuklin.soo@starfivetech.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 27 May 2024 14:31:51 +0200
+Message-ID: <CACRpkdajd1WkzscPiZL8JKvf10VHy5ppYjy-zAOaNTh0cFXtbQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 6/7] gpiolib: enable GPIO interrupt to wake up a
+ system from sleep
+To: Alex Soo <yuklin.soo@starfivetech.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Hal Feng <hal.feng@starfivetech.com>, 
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>, 
+	Jianlong Huang <jianlong.huang@starfivetech.com>, Emil Renner Berthing <kernel@esmil.dk>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Drew Fustini <drew@beagleboard.org>, linux-gpio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27.05.24 12:03, Dmitry Baryshkov wrote:
+On Fri, May 3, 2024 at 1:15=E2=80=AFPM Alex Soo <yuklin.soo@starfivetech.co=
+m> wrote:
 
-Hi,
+> Add function gpiochip_wakeup_irq_setup() to configure and enable a
+> GPIO pin with interrupt wakeup capability according to user-defined
+> wakeup-gpios property in the device tree. Interrupt generated by
+> toggling the logic level (rising/falling edge) on the specified
+> GPIO pin can wake up a system from sleep mode.
+>
+> Signed-off-by: Alex Soo <yuklin.soo@starfivetech.com>
 
-> +struct yoga_c630_psy {
-> +	struct yoga_c630_ec *ec;
-> +	struct device *dev;
-> +	struct device_node *of_node;
-> +	struct notifier_block nb;
-> +	struct mutex lock;
-> +
-> +	struct power_supply *adp_psy;
-> +	struct power_supply *bat_psy;
-> +
-> +	unsigned long last_status_update;
-> +
-> +	bool adapter_online;
-> +
-> +	bool unit_mA;
-> +
-> +	unsigned int scale;
+This is a very helpful patch I think.
 
-why do you store unit_mA and scale? This looks redundant and like a source
-of confusion to me.
+I'm looking forward to the next iteration.
 
-	Regards
-		Oliver
+> @@ -1045,8 +1047,15 @@ int gpiochip_add_data_with_key(struct gpio_chip *g=
+c, void *data,
+>                 if (ret)
+>                         goto err_remove_irqchip;
+>         }
+> +
+> +       ret =3D gpiochip_wakeup_irq_setup(gc);
+> +       if (ret)
+> +               goto err_remove_device;
+
+Do we have any in-tree drivers that do this by themselves already?
+
+In that case we should convert them to use this function in the same
+patch to avoid regressions.
+
+> +static irqreturn_t gpio_wake_irq_handler(int irq, void *data)
+> +{
+> +       struct irq_data *irq_data =3D data;
+
+I'm minimalist so I usually just call the parameter "d" instead of "data"
+and irq_data I would call *id but it's your pick.
+
+> +
+> +       if (!irq_data || irq !=3D irq_data->irq)
+> +               return IRQ_NONE;
+> +
+> +       return IRQ_HANDLED;
+
+Please add some debug print:
+
+struct gpio_chip *gc =3D irq_data->chip_data;
+
+chip_dbg(gc, "GPIO wakeup on IRQ %d\n", irq);
+
+The rest looks good to me (after fixing Andy's comments!)
+
+I would perhaps put some
+debug print that "GPIO wakeup enabled at offset %d" in the
+end as well, so people can easily follow this in the debug prints.
+
+Yours,
+Linus Walleij
 
