@@ -1,115 +1,163 @@
-Return-Path: <devicetree+bounces-69577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D0D8D0663
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:40:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F628D065D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:40:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B0181F238B0
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:40:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DE7F1F238B5
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:40:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084111E868;
-	Mon, 27 May 2024 15:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB4A61FCF;
+	Mon, 27 May 2024 15:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="bBYqcC4z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5DFB1640B
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 15:40:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA9E2A1C9
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 15:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716824427; cv=none; b=RiUAjfNCsq9a7KhrWzdBfR2CI2Ty7gm0WaczDHdrdd2AnO7VnQfejchfEzXniPG7xbNGbF99X4ETeta9GG6TICx+Vv0TRYeq8+p/2xHrfNIXylUy4GTkEg+Y2PkoxBRfYQ/YGKGEnGVzDKuEUlP86eV6C/m2jwSdCy5jdu7MU4c=
+	t=1716824421; cv=none; b=j7pUCqPf9a2XJY9C1Ut1EzakrVTSSVeyRw6CBj9mmjogU2QNgDI2aq1rn/pf2x3Z+HjGkIKuaZl/kU1USzaTeuRvcL5MKFJzJI3c7rVsLCtq6+2ACsQvxCzTPqGHj+KeKg4hd86cuFPIR/zCUDNU+pG+9crSqPIWrYYjseycGIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716824427; c=relaxed/simple;
-	bh=PEP0YuwSoPd8YJAS+tIwbrsSaYGrWZxHl/U3vGZ3I8M=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TpVC0vUbFoa9Kj0oRJX1bOQxaWi54rgatLE+LaYQtLdksH4v4j3FgWmutU+teiOVo0LLt/9WKsm7PcmigYYtnu/OIG/Hzgci0igRNyOJNq/e+RGpNdnfduqT9QtbU7C7MRR8v8JVdtkUWmjyCW1ERTa934xizODJDVBp8XFbmQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sBcSC-0005Mf-IW; Mon, 27 May 2024 17:40:04 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sBcSB-003D3H-BW; Mon, 27 May 2024 17:40:03 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sBcSB-000EmW-0r;
-	Mon, 27 May 2024 17:40:03 +0200
-Message-ID: <fbb666b99104241aae09fc5b2ae72433e1249c23.camel@pengutronix.de>
-Subject: Re: [PATCH v2 00/12] drm/imx/ipuv3: switch LDB and parallel-display
- driver to use drm_bridge_connector
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: Chris Healy <cphealy@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Date: Mon, 27 May 2024 17:40:03 +0200
-In-Reply-To: <yh4r2pgdl2m5wp627r35zse3obacmeanin5rjo34f7tctgpix2@dme3vwzaivag>
-References: <20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org>
-	 <yh4r2pgdl2m5wp627r35zse3obacmeanin5rjo34f7tctgpix2@dme3vwzaivag>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1716824421; c=relaxed/simple;
+	bh=DVhtxKy/g6Jw9Zac26mbMJkQSFj9K9gpSNpyZiB8W28=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=cHvIKjyjYVgAASVIWXbA8r7awO8SdYDpD6bodyFUMnt/MkI56GKC21qVGUeFy8pgJzRRvstQevls+TuTCWXSGZMQpnv9RzPd3tNJGwp0DV6OElMMcNt9QwsaWAe+OJYH+2p0HofLVgeBD4M02zQf9p/IhqVrhKe0Rlz8us0mjwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=bBYqcC4z; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-354f14bd80cso3617565f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:40:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1716824417; x=1717429217; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:content-language:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XVr9JrV0nG2+wTrmTNe0v5f/mYkzf+N7lyxDsOb/dPs=;
+        b=bBYqcC4z7kpd20ffWLgjfuOK0qs4+++S+dPK154UB4UXNqcVmRCTZH48qjalexLZM3
+         bPvVHAx28YtAeejvinA4tSJqNGcT7kDFnA1akTZv6QAafokb75Yf02A6UbqrqCoeBs+/
+         vwT03OfADKLi06ymH8Fbm1RcSFkBYIedvZv1ZjRBdhU/QSw9IovIeu2WbaRoOeY/Tbpe
+         s0hcqLvnhcehGjgl7T1iIwN2oWTIfuOT0fIvkjtqSjnxFe3oZzcAIthdd8lXXlNjnX69
+         WOz1iN5vK/QaJvkl9pFsbd6m1sjlRxIYIy6PK6Ly45BJyg8/AL/9AzM8wZvCuSjE3PFY
+         xGMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716824417; x=1717429217;
+        h=content-transfer-encoding:cc:to:content-language:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XVr9JrV0nG2+wTrmTNe0v5f/mYkzf+N7lyxDsOb/dPs=;
+        b=tIlBgZIrEzEFzcK2raTgSj2UiGsErSM4AYIsxj2bmppWhM6DoFFTvOk2hJ0X1o5FDU
+         udEppXR432xXOTPNDgDxSONKqbhQXsi5MoQa/vTGbLd76oEgmKGk0re8RFTaKnvdT1pO
+         TkHxry7e5XgG3T4u/bDF3Kr2y7TJXNU9gbRpEI6j4EZgivIYHC3G88J6nCjeZHfytmqW
+         QHnVB9xc2P+NQ+EwJmAsk0iYeH6IbtvIAi9snHF3V6tvtCONpwfmDfqebzIxgKDw/b2W
+         Ys2wmxSzwoKUZ3ZEku8QOXTG/2+B2hjhDX77YOPUqS68KPAB8E7sHK4IbDcIhmf7CZYO
+         13Jg==
+X-Forwarded-Encrypted: i=1; AJvYcCWUi4rzVyOSoFdJJvgQXR3V6LiNpfcF7bK8NNc35cH9PvsrABCf947TpcGe1CVrElXxm/YDG0nR+pUw+Kja2hY4JDbbpJtEYNiyqQ==
+X-Gm-Message-State: AOJu0Yx9cSRb9ZyxNzQL/fvINZf6nQpvcQhV386DBZtxUcwU3WQRg71O
+	2zSH+0fRc+dhgBXbyg10Wbc8UAzmt96kdkHM6NY4noB+i6OF4ZzVTVRNH9u1JzE=
+X-Google-Smtp-Source: AGHT+IF+VR8zvPqcmS9JVDxwhcv/vAODOlwnqPTA2SWhHKo1nHb3CASRkC8D7fFqdeGXUnHZPETx3A==
+X-Received: by 2002:a5d:5050:0:b0:355:75f:2876 with SMTP id ffacd0b85a97d-35526c3d541mr6991025f8f.5.1716824417139;
+        Mon, 27 May 2024 08:40:17 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a090366sm9221319f8f.56.2024.05.27.08.40.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 May 2024 08:40:16 -0700 (PDT)
+Message-ID: <8cc61db5-2920-4dd1-8132-5af434fb05b1@freebox.fr>
+Date: Mon, 27 May 2024 17:40:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v1] arm64: dts: qcom: msm8998: add HDMI GPIOs
+Content-Language: en-US
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+Cc: MSM <linux-arm-msm@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Dmitry,
+MSM8998 GPIO pin controller reference design defines:
 
-On Mi, 2024-04-17 at 00:58 +0300, Dmitry Baryshkov wrote:
-> On Sun, Mar 31, 2024 at 11:28:57PM +0300, Dmitry Baryshkov wrote:
-> > The IPUv3 DRM i.MX driver contains several codepaths for different
-> > usescases: both LDB and paralllel-display drivers handle next-bridge,
-> > panel and the legacy display-timings DT node on their own.
-> >=20
-> > Drop unused ddc-i2c-bus and edid handling (none of the DT files merged
-> > upstream ever used these features), switch to panel-bridge driver,
-> > removing the need to handle drm_panel codepaths separately and finally
-> > switch to drm_bridge_connector, removing requirement for the downstream
-> > bridges to create drm_connector on their own.
-> >=20
-> > This has been tested on the iMX53 with the DPI panel attached to LDB vi=
-a
-> > LVDS decoder, using all possible usecases (lvds-codec + panel, panel
-> > linked directly to LDB node and the display-timings node).
-> >=20
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> > Changes in v2:
-> > - Fixed drm_bridge_attach flags in imx/parallel-display driver.
-> > - Moved the legacy bridge to drivers/gpu/drm/bridge
-> > - Added missing EXPORT_SYMBOL_GPL to the iMX legacy bridge
-> > - Link to v1: https://lore.kernel.org/r/20240311-drm-imx-cleanup-v1-0-e=
-104f05caa51@linaro.org
->=20
-> Phillip, Shawn, Sascha, any comments on this patchset?
+- CEC: pin 31
+- DDC: pin 32,33
+- HPD: pin 34
 
-Sorry for the delay, this all looks sane to me. I can't find any users
-of the "edid" and "ddc-i2c-bus" properties either. But let me test on
-i.MX6 and with parallel-display as well.
+Downstream vendor code for reference:
 
-regards
-Philipp
+https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/caf_migration/kernel.lnx.4.4.r38-rel/arch/arm/boot/dts/qcom/msm8998-pinctrl.dtsi#L2324-2400
+
+mdss_hdmi_{cec,ddc,hpd}_{active,suspend}
+
+Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+---
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 42 +++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index edf379c28e1e1..ec4e967ed9b2a 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -1424,6 +1424,48 @@ blsp2_spi6_default: blsp2-spi6-default-state {
+ 				drive-strength = <6>;
+ 				bias-disable;
+ 			};
++
++			hdmi_cec_default: hdmi-cec-default-state {
++				pins = "gpio31";
++				function = "hdmi_cec";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_cec_sleep: hdmi-cec-sleep-state {
++				pins = "gpio31";
++				function = "hdmi_cec";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_ddc_default: hdmi-ddc-default-state {
++				pins = "gpio32", "gpio33";
++				function = "hdmi_ddc";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_ddc_sleep: hdmi-ddc-sleep-state {
++				pins = "gpio32", "gpio33";
++				function = "hdmi_ddc";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_hpd_default: hdmi-hpd-default-state {
++				pins = "gpio34";
++				function = "hdmi_hot";
++				drive-strength = <16>;
++				bias-pull-down;
++			};
++
++			hdmi_hpd_sleep: hdmi-hpd-sleep-state {
++				pins = "gpio34";
++				function = "hdmi_hot";
++				drive-strength = <2>;
++				bias-pull-down;
++			};
+ 		};
+ 
+ 		remoteproc_mss: remoteproc@4080000 {
+-- 
+2.34.1
 
