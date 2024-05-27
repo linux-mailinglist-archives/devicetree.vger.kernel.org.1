@@ -1,237 +1,115 @@
-Return-Path: <devicetree+bounces-69579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA058D0671
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:44:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FCFF8D07DE
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97CF3B2C2DB
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:41:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA3F11F21C06
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A0A61FDA;
-	Mon, 27 May 2024 15:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C6A16130A;
+	Mon, 27 May 2024 16:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="BPhqvm4B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hdX2ZPf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 042751E868;
-	Mon, 27 May 2024 15:41:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8237216089A;
+	Mon, 27 May 2024 16:04:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716824484; cv=none; b=aLnF3eC766rsxHj0Lo2TvO6K87uscZIW6K+zpcq7XGSWb0uQDEJGQUJuL8dTkQoj4h5DcLvLMAfHhk1muVM0gjtz/On9DUtzsTvrR2eMCVCyRrNdln2ppY+9LHEvAl3yBwBynTE1MRPvWRUzN3N9YhPB3jbTBQB/uYQAM9jPVhI=
+	t=1716825856; cv=none; b=g7JvDWJRFLEuzoYctBMBthGCW/dGPn07neYMnP/7zps6m7naE39ijAf4/kYSg3yjd8t8KXzCW3xoEKCmrWY88kDcl2n42gSMSfbxYYA+FzDaOPhHreaDrnisJ9sN4z6ubJ0Q7BJNRnnRqFED5uknCX7SxncMOEQnmKUDGVPQgCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716824484; c=relaxed/simple;
-	bh=Rj5PIlDFNaOJxdQqaPTtbgIWtQYQeE66I14+sbNsVTY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rZzpfvxT2TUAdfnk9Z6oOzAazjfSw10GmUIGSagzkDE0oD86d4x1wzT1FS156NQbepf42BU2Hp+wUjWnaK6P2qtYu4XwEt45M4j4mykH5jEfReYcVB+jgwD2SylsDlwo7DDVh9jp2JvDVC6fl41JfKVVumFFdWPK/ygxhrOR2Lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=BPhqvm4B; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 672EC206BF;
-	Mon, 27 May 2024 17:41:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1716824478;
-	bh=P55Jv4h7jsUm37sll4dvV/rarKgAJHPzr9ghJjpczzE=; h=From:To:Subject;
-	b=BPhqvm4BoBBhnE4O2cPXIQHB/NJXT40fjf1hmOiFyo6zfwV8NP4nwXlLl2nf+eLLt
-	 E85wbIsyDWHnBEr2fS5PGzxuWkkRuQPRNS+wfx5bltZ1rnDWdkvbNcO+4/geKpmOj0
-	 ZC+x0EIUenFLIm13ctII7MdHJZRWw2VFcQSfLh94aDROw2Scw0wesDgIpX6v/MhseO
-	 2QFmleAM1C7+kbedAx+rVACOARDqbfRMW4v58i0DogKYdgxyQXp0V15lSbwPpu7yNm
-	 OjSmtftn7hG+mHNNh5xBtwvhU3bnKfjrwGUd3Q248F/qjN5CPfzW/UOamKtFUJsv06
-	 ZBiUpVQK6QwyA==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Francesco Dolcini <francesco@dolcini.it>,
-	=?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1716825856; c=relaxed/simple;
+	bh=uacHh6EhTGWzGPaDWbj67AEeFIW5+96vG5JumV2wf8c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PgCXfpvHj9e5bz5hIkS27uCb1pGEldR57u1uX1zFVCCHJw5G0LtGxX2s4IyjA7qfz1yqf67WHThFH7pxw+acAsDFhcqwYD5zrZXMBOVsZW+ss3AyzpVINfhsVpHqrgVO4WQk2b4+5szrJIXC1drQ/msY6ZpmZz5pDASZdWGNDko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hdX2ZPf8; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-523b20e2615so12503057e87.1;
+        Mon, 27 May 2024 09:04:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716825853; x=1717430653; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=apgO11dWsw7OelFO7SGE1rP5mAwL0hohwTCwi5aPKr4=;
+        b=hdX2ZPf8TQX/06lw88IvBCXWseogAUNa4uvJVDp0Z7c2Xd9i67RlpSA8yo4FZ5CJzo
+         e9w5i7fgQD8OnzHwPFX1RQzgz9CptyL/bMJljoM7k+vph/y6AGtc4gG1C6GLZR+/M3YE
+         Eo5AE15eE1MLmdZjHX9BUvO3XhQK3Oq1CarEc4fafZ/fv7unlTNsTDJ6InFkfYbITXyJ
+         ApynQSisbEmSyHV0fPxu4wSvO9pgR0HOqZMp4kKKMBTmR3SeBPU/+VDKWKQ8dTZ5woaC
+         ZvLxuNUK9qRezn4UgMt6/wehMiNboPwb7FGcvUB1zTCmSFJ4vnsWN+Ukq58tY9Irf13F
+         pjMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716825853; x=1717430653;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=apgO11dWsw7OelFO7SGE1rP5mAwL0hohwTCwi5aPKr4=;
+        b=RbPypMa0SpxnrIWCkduyKbpsZYBG1P2E6tCxQ4qb3z7ErNgUm8lPuqdmz8hsc4QvhE
+         j8bXeLf0mCpWsrMUIse0LxPQ76fl1vpExG7WZMTTNkZL9zWwbkMbgaasuLO90/D38iWO
+         LP2F/JUW1RKwI5XQKQZ/Y3ZfZXwIQjAvI1FxjkwnIX6ky2S7JeBepLoR/SdXX4wysT11
+         7TELGHkC5DwyATLhzb24XpE2bN6BXXBvqbum0YqaUBeDbpIb59iVkTiHAfL8QoUEDpU3
+         1hWD2UznBledwaol05Q+3nYdoD8ufhSlvma0vy9fh5QeucZSsIMMl+mBFoK9HDY/ClsL
+         oGQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXAoBHpYZlpoLCu547HpFDc2hgi83DJuXsJe9P/CYKHtZHyjVZFaiZd1hWkWuCa0Ter1mlRSzEBxKj/Z8vSVk/D5fj7WIvzdNFk9z+cmctMgMwb4wqS+1zdOyLVJL7wRI49+Qxc7qm+8g==
+X-Gm-Message-State: AOJu0Yz1P12qeyY5LAztcWAj6uJUTSF8ZJmQ/VG5M9ZFb2Y6n7OdvSV9
+	8KT1yui3Jl6tAsyEvaqNenhkMHoFvoGEk4XIs6h80Ctcm1yMyiTD
+X-Google-Smtp-Source: AGHT+IHd8fZ9ZjNj+cQlcl9SkrUQUbQdMMCLLzdPkGhasZplYnYRHIfSakWwJL6yK3us9V6TLzOhaw==
+X-Received: by 2002:a05:6512:454:b0:529:b697:a0d6 with SMTP id 2adb3069b0e04-529b697a37cmr663484e87.8.1716825852032;
+        Mon, 27 May 2024 09:04:12 -0700 (PDT)
+Received: from toolbox.int.toradex.com (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35579f96519sm9349394f8f.26.2024.05.27.09.04.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 May 2024 09:04:11 -0700 (PDT)
+From: max.oss.09@gmail.com
+To: Max Krummenacher <max.krummenacher@toradex.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-	linux-iio@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v1 1/2] dt-bindings: iio: adc: add ti,ads1119
-Date: Mon, 27 May 2024 17:40:49 +0200
-Message-Id: <20240527154050.24975-2-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240527154050.24975-1-francesco@dolcini.it>
-References: <20240527154050.24975-1-francesco@dolcini.it>
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] arm64: dts: freescale: imx8m{m|p}: don't limit i2c2 max. clock
+Date: Mon, 27 May 2024 18:03:44 +0200
+Message-ID: <20240527160359.1965512-1-max.oss.09@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
-Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
-with I2C interface.
 
-Datasheet: https://www.ti.com/lit/gpn/ads1119
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- .../bindings/iio/adc/ti,ads1119.yaml          | 122 ++++++++++++++++++
- MAINTAINERS                                   |   7 +
- 2 files changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+This sets the I2C clock frequency to something people expect it to
+be by default.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-new file mode 100644
-index 000000000000..ab4f01199dbe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-@@ -0,0 +1,122 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads1119.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments ADS1119 ADC
-+
-+maintainers:
-+  - João Paulo Gonçalves <jpaulo.silvagoncalves@gmail.com>
-+
-+description: |
-+  The TI ADS1119 is a precision 16-bit ADC over I2C that offers single-ended and
-+  differential measurements using a multiplexed input. It features a programmable
-+  gain, a programmable sample rate, an internal oscillator and voltage reference,
-+  and a 50/60Hz rejection filter.
-+
-+properties:
-+  compatible:
-+    const: ti,ads1119
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  vref-supply:
-+    description:
-+      ADC external reference voltage (VREF).
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+patternProperties:
-+  "^channel@([0-6])$":
-+    $ref: adc.yaml
-+    type: object
-+    description: |
-+      ADC channels.
-+
-+    properties:
-+      reg:
-+        description: |
-+          0: Voltage over AIN0 and AIN1.
-+          1: Voltage over AIN2 and AIN3.
-+          2: Voltage over AIN1 and AIN2.
-+          3: Voltage over AIN0 and GND.
-+          4: Voltage over AIN1 and GND.
-+          5: Voltage over AIN2 and GND.
-+          6: Voltage over AIN3 and GND.
-+        items:
-+          - minimum: 0
-+            maximum: 6
-+
-+      ti,gain:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          PGA gain value.
-+        enum: [1, 4]
-+        default: 1
-+
-+      ti,datarate:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          Data acquisition rate in samples per second.
-+        enum: [20, 90, 330, 1000]
-+        default: 20
-+
-+    required:
-+      - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@40 {
-+            compatible = "ti,ads1119";
-+            reg = <0x40>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            #io-channel-cells = <1>;
-+
-+            channel@0 {
-+                reg = <0>;
-+                ti,gain = <4>;
-+                ti,datarate = <330>;
-+            };
-+
-+            channel@4 {
-+                reg = <4>;
-+                ti,datarate = <1000>;
-+            };
-+
-+            channel@5 {
-+                reg = <5>;
-+                ti,gain = <4>;
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d6c90161c7bf..f1b2c4b815e2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22380,6 +22380,13 @@ M:	Robert Richter <rric@kernel.org>
- S:	Odd Fixes
- F:	drivers/gpio/gpio-thunderx.c
- 
-+TI ADS1119 ADC DRIVER
-+M:	Francesco Dolcini <francesco@dolcini.it>
-+M:	João Paulo Gonçalves <jpaulo.silvagoncalves@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
-+
- TI ADS7924 ADC DRIVER
- M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
- L:	linux-iio@vger.kernel.org
+For I2C DDC we do want to lower the I2C clock to have more reliable
+communication. However that should be done where the I2C bus is
+assigned to a HDMI DDC, not as the default.
+
+
+Max Krummenacher (2):
+  arm64: dts: freescale: imx8mm-verdin: don't limit i2c2 max. clock
+  arm64: dts: freescale: imx8mp-verdin: don't limit i2c2 max. clock
+
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
 -- 
-2.39.2
+2.42.0
 
 
