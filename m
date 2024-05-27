@@ -1,166 +1,119 @@
-Return-Path: <devicetree+bounces-69390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F928CFC0F
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:47:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54AFA8CFC16
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2079282D1E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:47:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8666E1C21D77
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D15113D8BC;
-	Mon, 27 May 2024 08:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36D913E025;
+	Mon, 27 May 2024 08:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="YJ5Dls2K"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="bkMUmjYJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D4813AD07
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:44:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9D913DDDA;
+	Mon, 27 May 2024 08:44:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716799460; cv=none; b=dfXCrYYABqRxlCQuUtiSAOIMg1TEJUjsnF0LvDyNJlDiJPnQ+2LVxGD6iex/omGM8d2JVsVDHsT0xiALevxTH3DjsPufR0/bqDeiDwxSeyCQszrYa/nxMC2RXW4IOgGSCm+pEwAxAL5pSVB+4t55Vae7MzM8XE/dAN1nKApF1QY=
+	t=1716799467; cv=none; b=BhVOfGcyKajBdDRK3otaxF9xxNi+9+oh19J589boxxohZWDssxSuaZmVAoZrDvGh5VDVhXQiabfVEt1DKI8RrBfbdT20EjfjuL+lZnA4csVljZiC7rkK7JuL2v4T+UC8lzzJAV8XWWnjYqHkykVZKPYUgOvYOcPO+46O9ZaWH3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716799460; c=relaxed/simple;
-	bh=3EDAUHsXKoG/qKpImUuoYQAk+6P6yudy3+ZtIt3JzhE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SANmWelP2W37/mmVvPznaige95Fji8/McVjsruFdkf68iXLE7qiihDG+o/qw8kipj8wDDRTSazuUzuVo1We3vmdMSJ3jwXutpCbXoe/F5QBQG2IZkcHDMoPdD6i3Z7yrtsgXDy2lQoef8KcqSiNp26tDmv147lsuCTHSp/IgreA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=YJ5Dls2K; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-529682e013dso3024851e87.3
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 01:44:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716799457; x=1717404257; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ee+lz1uwo7ctAXz2XE2Pj87WD7POTM2aqHSnKbmZAtQ=;
-        b=YJ5Dls2KnR3/FHfrY/be1/4+7pyhCkIeysY3a77VIjKey+CIJkQaYCjNwZzZTlDCSH
-         uRhmMEdJdKtFYIiCK3cKzSgPEcFehvnsblpnrgaRWtRq4UgY4ncLC0LXXxh0/Wx3Dtu9
-         s8CdZmHot99sqK/y4ePvWO85GbS1Akr7p6seqtecKHgWP1v44Wv3SsH24PQLExwe1PgC
-         Iho2yOlF2GUoQWYcK7a7sTB9mCemEoskyYvuX6Cwe7pGatJ/3++mZdYRFQuaUMdscaoy
-         mSd15lEM+Qy7GypkTws5Z2iZEU8lBg7vIQOvfBbk6R/Ry0Em3XCDedKafJD6uqNFQkv2
-         5m+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716799457; x=1717404257;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ee+lz1uwo7ctAXz2XE2Pj87WD7POTM2aqHSnKbmZAtQ=;
-        b=sSDYuqPOiLAarOP+hYqB/1+MJ5rN56N42EIbxkxkYhqPmWd7rL8y6zIyrOjbqggGjV
-         ce+8V5BYc2fEARg0zXbxUq4zyRBSVlfwKMOK52cANeOFuV3QpJk6pbk1hPgc2SqqGgEv
-         Cs2kcBzaLxIiIWzf8pfmSCcUHuTPghLbJpJ9bsWsgRV6vcdo7PmjpSy486gYNrOqtn8p
-         ncR2Vdiu2+661RttqM/545vCBnNy8T6Sekax1ykw1idImEGHcQJlyiYP/THrCHZh0Ew1
-         Of/YpKaEXPZ2EcE7uIGx3/x7Zn5v0m/wSSbLpuJtKn+97+e4CTkQVkWRthyryPW/O376
-         oQtw==
-X-Forwarded-Encrypted: i=1; AJvYcCVG76IeX0TjEAaRjz014JPbaoBRR7KWRAe98JEk4bgEpqoIDdO41sDvtNcQNYA1yl18pKTBtwOZ2riM4l4KxeMNBnqreE4x9+ONqw==
-X-Gm-Message-State: AOJu0YyQsKSrpfNv9m6/wmgsMcGs2D32F4FDQY//s8+z+0K5QdB69YAX
-	A5+zoiuiCFKS/D13rawbSFh59mVTIscbIU1duzRbvdgyrwp/iNzPMp40uBu30vY=
-X-Google-Smtp-Source: AGHT+IHgNGBH0VfGcIy+2nfmBInkHcxkSMBQ3b9/ZSu+UgtuVTHHwuFH5qRtuL2AKhsJQ2UiDs7DyQ==
-X-Received: by 2002:a05:6512:328e:b0:51c:5171:bbed with SMTP id 2adb3069b0e04-529649c5d97mr5449550e87.15.1716799456936;
-        Mon, 27 May 2024 01:44:16 -0700 (PDT)
-Received: from [127.0.1.1] ([2a01:cb1d:75a:e000:c322:131e:ff9d:ef41])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42108966682sm101365575e9.2.2024.05.27.01.44.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 01:44:16 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 27 May 2024 10:43:52 +0200
-Subject: [PATCH v2 5/5] arm64: dts: qcom: sa8775p-ride: enable remoteprocs
+	s=arc-20240116; t=1716799467; c=relaxed/simple;
+	bh=Ukgl75mgGmk6IA6kEl0uX4YlVVB62XIsM+pDa30dGc0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bTtsZkEgnomXqubkx7SxXYVhKslLVJ6DeEAZPgGQbEU17Z0YYka3DuMOcsAUerGzwkSVkWonHcaJICUMT7nmt+H3pRhfrRpIR8DT2nsblZnEQj1ENpGTsNxxcelLMfmriQTMf6cyS9inweZ9En3pCbX5e/bCAdss+dk+vMrWCHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=bkMUmjYJ; arc=none smtp.client-ip=212.227.17.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1716799455; x=1717404255; i=wahrenst@gmx.net;
+	bh=Ukgl75mgGmk6IA6kEl0uX4YlVVB62XIsM+pDa30dGc0=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=bkMUmjYJDfhubujkLlJxNxkdfX+E+JjFzOmAI/a8E7LHnGBrYGcLXIGPEqKqFsca
+	 PLCsFUNFcTkdZ3Z16KxUHqnSi6uz7vLcUolnNl/1tzZY2/luvyFQjHTfTEHyde1ie
+	 eJtYzhxkIoCyqpd7H0uHHQw2qylQs1JV/6FMXtLE4iq+xeky3hnMHc3dRchUzdY8y
+	 YpyzVwvy0IQhVaI5EFPmMo6lhSjbdz/JfDth/Yex1RrRSbvPJNeuRhzKr/a1GWKK5
+	 2H59Erum3Gtnt65L6FI7NZM1+aIYp4z9pt+2DJnYMfBzpMYrTrrNZGKDZeQMm6qbR
+	 tWLW+ulE42GOHfwgZQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.126] ([37.4.248.43]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MmUHp-1stxOw1lj7-00iPmg; Mon, 27
+ May 2024 10:44:15 +0200
+Message-ID: <33d009cc-3378-42e0-8d40-a74a0b583a44@gmx.net>
+Date: Mon, 27 May 2024 10:44:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240527-topic-lemans-iot-remoteproc-v2-5-8d24e3409daf@linaro.org>
-References: <20240527-topic-lemans-iot-remoteproc-v2-0-8d24e3409daf@linaro.org>
-In-Reply-To: <20240527-topic-lemans-iot-remoteproc-v2-0-8d24e3409daf@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Jassi Brar <jassisinghbrar@gmail.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Tengfei Fan <quic_tengfan@quicinc.com>, 
- Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
- Alex Elder <elder@kernel.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1173;
- i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=ltuWgnMWBVzAFPrqL4rpwFznsQIrPKuJMFtG5UNQsAY=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmVEfZe/GoJRntgWCYkwxLrWLqW+XWv1z2ooQwe
- 6xSFV9LCNGJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlRH2QAKCRARpy6gFHHX
- csvFD/9V8wQHO7eGFPD5rqaV4OMF82bXwBTAmtVVnC/vZuILo+aKn7VhAyYD/PrKHGnj/yfyIFS
- 6hqBLaRJt3Kl6RAncH7CjxN+ROoJoZ7urrM1Egj98o697IidhPQyTcNgFNJdhNKnNu9TKFihyNF
- iwTej7Ux0TBrSyteCqt3SQ5ZwMYYlJoSqPk1xPM792Omh4twuYfyaLZaKoKRievmXvuCK23eTN3
- FPRntZSMvibTwohL1rs2P/hJwtLaEIXK9Z8+KiSg1LruzHt1tZInEqNCfDZS3ur5KuBXEXSyFL9
- OKAyR4pPvRnW0x9mfD2vWUE2CNJdTKK3Ns5bQfIErkt68wfNS2pU0amYDaZkpcKnrIDigex86nb
- 6E6uRLFqc5lFdQjkwOa9zM8s5OLI5aRUooUYpJDcel5Y19/VLEx86vygmKfzYjtFcgqhzjNnXks
- 7MG2BNwtiNBx2OfhI5DkpWPHFwvRT2Eo5wwRii36wnemTNeJw2QfZyTOER9Yd46W0J/KXMlDLBa
- 4mVoD538ANbF0ifNhlUhxsCGr6LLZ09/yTKaLFveMRgyMC+QSIxXTuFXjT12WoL2U0vqDAX+Pe/
- cP6YtqYH1rczE0KiMMk2gDEdlW6xYZkEaMEQ9NJHWS03wXT8yNmVoiQELnOSqUwDuApSyOjUfyB
- YojYZSuQAGCNwQg==
-X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
- fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 0/2] pwm: Add GPIO PWM driver
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+ Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+ Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <CACRpkdYmOECdug1g2gYxjHZ-+Y040SR70UtDAgKD8yCb58Ob6Q@mail.gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <CACRpkdYmOECdug1g2gYxjHZ-+Y040SR70UtDAgKD8yCb58Ob6Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ObUVH9ggdg+OxF4a7t862fLndJew2wtBfm8LG2edmsVR2Fttk5a
+ oB4uUeAjU09LlxcWDaoAvfNmpyFTFRl1CUuTYUA9t0Geata4dBbJfZu3mpL3twDlI74fcKy
+ NxLaIfgAWhw5xd2Zzb7JJTyMNJenWueAcmU/YrHU29cofdVjLcZCjceZBcUAtMQiWCHms83
+ nYiwhZMKjZFN6Z6w81WJw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:SdY9CAf9CpU=;69R23i35i9bHC15KD2b9tyFvb8r
+ /H/Mr3Cb8tA+2wzIZQIjBOs+CC1hPrknatORalm3abQNlUPpzCR+6FFe3qvqXKrnCqzOt3Jok
+ 9giJFa+lIXS5oJrQecZbXIwuHAUEvf3Hf091ng6ishsLwQ95XX5cxcE2j3f3hRmyX90cjKX7y
+ /H1i7mbBOgqFF1xvtALGzf7L36kNEo0MUrySSVUhOLd1GVe9jP6msyQND903SkC0TDTbXcStW
+ J+j0mW5E1UYHBTOZBRZk91DjzxBXLiDNx8UuBrRcjGNlmyGtU6CSD8tQO45lKztXfAOfrEvi4
+ JnzWn42R5Fjy/YrsSWnkg5x1VGLwvGi2mXO1hA5NeVENq4u9zb2lGRBDCXaxxX9fb3j9cE7zn
+ AfNGs3FN4LGt1oJd07Vkgi30Guw3vkcibu1co3A38aZvdtEdpa8OmBa2bTQs2QmKhkiDo0Fla
+ z1Vfl2bOZv7dBBgkxCOjGUdPseEpK2l1+mhj+lapLajwS4qc2N4tw6ADPUg1V4BEz7Mjg5YYf
+ fkb7mobnZDdXb/igCPJ6dbXE2HBnE2ZSYqA166FuZNgHyMYcYCI1DNi/1+cCdB0giY7AyqH57
+ foGgS/L+Fq92wH5kesXu7QLTak9m/KVIwt7zYAr7y74p+seryU/SpFYYFFUq6PB2eqFSOhcED
+ spuqujxWLX40zsxuHFPtwyAra+p0KMeRjQ3VWrtedtE4dTCc5b5yo9Kcda5jLbDstC/ovhc3a
+ qLvHWNm7UehfzHHRLnfvFkTTeYSGkU/W4Nxte6ez+zx33bBiaQq2CCBUaHMo4InBFK6XgMgCa
+ Q6lamLn4wE4Bqd9+rpUQtIzVMey69FCRoUktIBpE+Ba3g=
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi Linus,
 
-Enable all remoteproc nodes on the sa8775p-ride board and point to the
-appropriate firmware files.
+Am 27.05.24 um 10:22 schrieb Linus Walleij:
+> On Sun, Feb 4, 2024 at 11:09=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net>=
+ wrote:
+>
+>> Add a software PWM which toggles a GPIO from a high-resolution timer.
+> Is work still ongoing on this patch series?
+i addressed most of the comments of V4 except of the possible interrupt
+storm in case the period/duty cycle is set too short (comment by Sean
+Young). In the last time i prioritized other things and tbh it's
+unlikely i find enough time to finish this within 6.10 cycle.
+> I would use the patches and I like them a lot so I'm happy to help if ne=
+ed be.
+I could rebase my latest work on 6.10-rc1 and send it out as V5. I would
+be happy if you want to continue on that driver.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index 26ad05bd3b3f..071fcaf09364 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -727,6 +727,31 @@ &pcie1_phy {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sa8775p/adsp.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp0 {
-+	firmware-name = "qcom/sa8775p/cdsp0.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp1 {
-+	firmware-name = "qcom/sa8775p/cdsp1.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_gpdsp0 {
-+	firmware-name = "qcom/sa8775p/gpdsp0.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_gpdsp1 {
-+	firmware-name = "qcom/sa8775p/gpdsp1.mbn";
-+	status = "okay";
-+};
-+
- &uart10 {
- 	compatible = "qcom,geni-debug-uart";
- 	pinctrl-0 = <&qup_uart10_default>;
-
--- 
-2.43.0
+Thanks
+>
+> Yours,
+> Linus Walleij
 
 
