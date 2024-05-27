@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-69562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFBC8D0577
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:11:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BA2F8D052A
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:03:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4C55B34A51
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:01:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B16181F21D6C
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932C315F3EA;
-	Mon, 27 May 2024 14:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE3516D4D8;
+	Mon, 27 May 2024 14:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sfUXTTJ/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ql3U8QUD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E60C15F33A
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 14:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD0D16D4D4;
+	Mon, 27 May 2024 14:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716820325; cv=none; b=V/WjmPh0InM1d5bNcRBcIPSx1zSPZ5rNrU8p0nJmIpxt30DU6iU9Ow7P6cO6JRjnX77BQzpn0Pz6cmorMS6J2fGOBN072TJtruzKy2tF9miJz+pWyFJixrspR8SvVrK1xGmbiqhJkFb43cT2EiUhmu3RtLmRgSwN5DtkqDlydUc=
+	t=1716820705; cv=none; b=BYe4aGTBgivPvfbJGUsTgpDluJJeZy2usHtVHaJ8sME4T3rskAb13heXHa90dmLBs7vJ0CR6UQR1jRwMwJwC2CAkiaYffa7z16btri9Tgu8gMsKgVZHt4P5d7oHea+Hc1v6H7w7r9Z/gj5WO+GBgusjlZ0UtTQdQaOY/erF+j+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716820325; c=relaxed/simple;
-	bh=ud+xc3Woes3dtWt2WEOvs7TmXHnOAhJ5zvYhFMRyKlA=;
+	s=arc-20240116; t=1716820705; c=relaxed/simple;
+	bh=LYrxo21W1bsyvjfXuzeaTk8JC1rRC2D0zdpW+2zRoSU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W8vLJpOKGnMTJAatqYFmq12GTprSpnoMcYJ3pF/hksVV519g76/wN4ghavS1FnViWEQLJEfQFR6urJb7HUp/aVP42NSMXzNaB+DR8OtniXyi4Ab7mzNY+YahXSNro2NF4aE5+TW2gBWWRrSE4EWzNUa1J9+Q91+6LAOh6eLZkt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sfUXTTJ/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD814C2BBFC;
-	Mon, 27 May 2024 14:32:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DOdyaXG/Xm2Mbq6uNY3qyY0VfbY/BgJB+v0ttGXEkrrzaMuWt5TSLsK9bctc608H14Z5OUnBmY/jSnXhF5LVz/9TQivUzcnki874KlvC3O01kEIkJTj6Yxlq2oRZcAM2+lFBS5zTLq/sYvEiTpM2e8rz3GQ517I+4RfWivMnKgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ql3U8QUD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFF29C32781;
+	Mon, 27 May 2024 14:38:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716820325;
-	bh=ud+xc3Woes3dtWt2WEOvs7TmXHnOAhJ5zvYhFMRyKlA=;
+	s=k20201202; t=1716820704;
+	bh=LYrxo21W1bsyvjfXuzeaTk8JC1rRC2D0zdpW+2zRoSU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sfUXTTJ/9TLSJVqKwTe58rUjutXxgczZ8xOpGSoyrFongXFywsDio70ElpuDS5vhm
-	 uIEkgzGqzct1TWVunVj5Jc4C6K1EVA22Req9RITKcDcTtwpWrcLHY3LG8kpMC00vZT
-	 ALOKy4b4HrYUTHJapVmGV8tJ6pWSxrCehP6g6rT/4QVHdqnlBJH+nT6yAJtZGVSvBo
-	 vwup7FybTBdLHEOOc199ug197wSpnH1ceYWDEEX6Q24JEv3Ix6hZUZBzSoKiTat9AB
-	 WGYyJOcNYD3Q1ezoLhpLItG0vydaIQyRX0640ERFpGN2b/YLITQX4tLlolnh9shwko
-	 +aTgFuD3+ruYg==
-Message-ID: <0cf39ca2-a951-49c8-81a3-c92a73bcc6d5@kernel.org>
-Date: Mon, 27 May 2024 16:31:58 +0200
+	b=ql3U8QUDFQX5VUUIvPoFuIKCS7Xuc+wyXk4E60IlPLYYE4ZO0vLXIT5C+oUPjp9mZ
+	 L7Kzv8UkvZ2YMK7FPVrcNwtjvg+OgGeb+NnIrCLre1pmds+PjbMp18qniWCgZM5xe5
+	 8B4J4dtDJrhakp5vSNn7+HId5oNT1yzXunGmqVUO1fzqkLZCEkvkKUldznq5+Q+Eea
+	 GJwva9ipWej7AH/ZeJT3U7TbgX2u6U7uUsLVsr1N1Vc2qAyxoeyZXKlsITobvYUr2x
+	 1FLkq4+kHcbcIL1+8cT2JeJc/yKbZU0GStCBqqrDBmUaW9SK6TywEljZXkiQEMsiQF
+	 qM87b9M7Pt83Q==
+Message-ID: <4f4db483-6042-4f85-9c64-8d3ad9290506@kernel.org>
+Date: Mon, 27 May 2024 16:38:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm64: dts: mediatek: Add OpenWrt One
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: gpio: Add 'transition-delay-ms'
+ property
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>,
+ Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- openwrt-devel@lists.openwrt.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240527115933.7396-1-zajec5@gmail.com>
- <20240527115933.7396-3-zajec5@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Peter Korsgaard <peter.korsgaard@barco.com>, Wolfram Sang <wsa@kernel.org>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, herve.codina@bootlin.com,
+ christophercordahi@nanometrics.ca
+References: <20240527113908.127893-1-bastien.curutchet@bootlin.com>
+ <20240527113908.127893-2-bastien.curutchet@bootlin.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,20 +108,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240527115933.7396-3-zajec5@gmail.com>
+In-Reply-To: <20240527113908.127893-2-bastien.curutchet@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/05/2024 13:59, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 27/05/2024 13:39, Bastien Curutchet wrote:
+> The i2c-gpio-mux can be used to describe a multiplexer built upon
+> several i2c isolators having an enable pin (such as LTC4310). These
+> isolators can need some time between their enable pin's assertion and
+> the first i2c transfer.
 > 
-> OpenWrt One is the first ever OpenWrt product. It's based on MT7981B and
-> has entered an early production stage.
+> Add a 'transition-delay-ms' property that indicates the delay to be
+> respected before doing the first i2c transfer.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
+That's quite limited hardware description, comparing to cover letter.
+Please provide full description here, not in cover letter. This is the
+binding, so the hardware part.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Anyway, this does not look like property of mux itself. If there is no
+isolator, the mux would work fine, right?
+
+Then why you are not adding this property to every possible bus and I2C
+controller? I2C isolator could be placed there as well.
+
+So just like RC binding, that's not a property of I2C mux. Maybe this
+fits usage of GPIO RC / delay binding.
 
 Best regards,
 Krzysztof
