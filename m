@@ -1,171 +1,146 @@
-Return-Path: <devicetree+bounces-69332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68BC8CFA6E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:49:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C66D78CFA8A
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:52:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C1CEB220DD
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 07:49:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81DC52819E4
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 07:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2554C3C062;
-	Mon, 27 May 2024 07:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="tnoW2b8c"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F683BBE1;
+	Mon, 27 May 2024 07:51:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C638E2E40E;
-	Mon, 27 May 2024 07:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716796091; cv=pass; b=A//MkmnD1A+qOLgVFot7YMq9bJJFu8SMwH3Cn36vmWGx7GYOEAWhucyIqBfbve+WMkP/YsKz7LlLxoCR43Xl5uUrxfu1xd6QoxaXH3xSh3E2nX33P7+H5caBrbuXawAdER4mhA8EJ52Ft91gjf6qNjQz4fCqCWV/VxEWeIhwNZU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716796091; c=relaxed/simple;
-	bh=keh5W7U3dzsEif6ksUmuqn4x55o5x9L/8HfBAVTKtxY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C+xJwJO79JJLhVjmTP62k1C5ibd263pZKLdvK6tyCujG+xx+yLlC6dYxsKsq/XcHkSJC+ebjdqq95jPHzw6oFmT+TrhwkTrxGCZUkSKaBUDsEViStK4bmeRWYd1mM7W9yMVagnyt+RkcAGjNLG5mp8FfDoqNBA8x6gF//1kmrJw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=tnoW2b8c; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4VnnnK2tg0z49Pyk;
-	Mon, 27 May 2024 10:48:05 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1716796085;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hfBVpEPdEi/Ida+CmoF5UCxGqdboIgH47sljlECVuIs=;
-	b=tnoW2b8cLuTt8UKe7iN88sAtOeI9i9K2vjv+XJXvAFA0t+4SNnMdmEDOUNijRlBK/NsJ0h
-	uUzotMwRH1EZz/t8mO9ijz+S/7DK39MDXNuajhj2/pVrcw1FbQUFm1efCA+znDx5VUrQ2G
-	/Ckj+uOBdsRD3W7SQvwbU0OYwhqhDqe53nmjNs0kOUr4FWUBosMN3z2vTKFzjX5w+jA9eZ
-	WjVAdqkt78csYJcQauRuyhlh/Q511gsxo/tBueLhJmJme3coht+pvaDT57d6gx2qOO600D
-	T51rObGuRPWqyN6gkM7ngnh1VolzFWzQmgALHO7NLhTQyoHuH+dGj4MJrkem8A==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1716796085; a=rsa-sha256;
-	cv=none;
-	b=b7Jkeh351bThPsf2iZpujuWgqn01uSvebMT9Sm79zb6zO7o8ADi4MBXktkYRJisQ81cmBN
-	2yNpNO/MogsTWcb7ojhfw2aa1VPohy94WOHYCRKyBB1KAQR72kJhaGleppzN90qKjyKMpt
-	EVxKZdZkxXGzWTPnxj0+JCR2MU6D576G7EjSK5lFTNAE+y1xCXLlMS7eV8tYP+T8zU6qkg
-	sFHZ2GDoqq5qP+lEjLsZYFHpOCLlSCFV2FyDhxKx2cBXLLtLrdvXWAyU2lBh/SE9Zhm7Sg
-	vWJge4WryhijygAjn/gfO72Hox/pBZSo66UdKAdAotNxXniwyKMww1XdmUamHg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1716796085;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hfBVpEPdEi/Ida+CmoF5UCxGqdboIgH47sljlECVuIs=;
-	b=Mj58O8gZ3WhdDHzNm1zQxgpvo0+yrIqPafXCEkJnp4xgLIKznp8Mb05Wq7bBUv/2h5M1sz
-	XQFR+g2iuFKzKDEQ9i6hxOWi5GYpK1zkeG/7IE6Kc3jnx1qba0BxVqgYpYTNAzCeSsAxYp
-	YWkVcQ+mmbFshgC0FGVJdeXuIYJz5acZb4S27vVG9mZ7rmEJCqJEsOrN37YU/CUVr8/mcp
-	92JWYZG9vhTQHJntmDhQhl0jBiEp6zK8npQYo17R71X3BLV25hkLzj931GxFE+q/tMgJLD
-	/kI+AdMiu8amxFplZLJ5xPosR65k7oNWFqs35AnZHEJbGLVHt4vAYu/gWPNYmA==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 25730634C93;
-	Mon, 27 May 2024 10:45:10 +0300 (EEST)
-Date: Mon, 27 May 2024 07:45:09 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Cc: Sylvain Petinot <sylvain.petinot@foss.st.com>, mchehab@kernel.org,
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	hdegoede@redhat.com, laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH 2/2] media: i2c: Add driver for ST VD56G3 camera sensor
-Message-ID: <ZlQ6BV2sEw8PioBS@valkosipuli.retiisi.eu>
-References: <20240417133453.17406-1-sylvain.petinot@foss.st.com>
- <20240417133453.17406-3-sylvain.petinot@foss.st.com>
- <Zil1wiCcCdwZs5Df@valkosipuli.retiisi.eu>
- <d45a2ea1-bc2d-441a-b036-1da40290c6b3@foss.st.com>
- <c9b35dc4-6f52-48e2-8952-5a43c500f819@foss.st.com>
- <ZlQ2zymJguCipLMl@valkosipuli.retiisi.eu>
- <864dc1d3-2478-46a2-84a5-c7c51f96268f@foss.st.com>
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13A55339B;
+	Mon, 27 May 2024 07:51:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716796299; cv=none; b=t/TQeH/OWqBuQ2aowc59/FR3cwcS6KRGEqQOt+SxYYR9XnXrAi+PM+jmQ4OviMyu9qpAe5LG8ZBnitnVhDUcDQ4aQpaKR2bq3gXayNi4nVB53YAY/u36UkAW9KlNm/i8ZpoM/bZshHrzUVPZ8HAJ2Dh+pUjaTHkW40lINsWltKk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716796299; c=relaxed/simple;
+	bh=9zRpQfat7Oli3vay5767wDuuEKHzrn0huIwJEQ3gjfA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bFdsQZhn3nir4w0Sm0Giudca03E2DyoWJPnCzvju3NoPjHXA7LK/09lNsj4nBON6YjOioaBTmNkMKpuq8FxWcBjt6ESUsGUuGB664fnZIVOlBWF51Aj9P7DeFzIkF7P6DTUGJ5czEUhvvE4chtl3rNYqG5nfUOWy9rlRUk5ZeJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [112.20.112.247])
+	by gateway (Coremail) with SMTP id _____8DxzOqHO1RmkR8AAA--.433S3;
+	Mon, 27 May 2024 15:51:35 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.112.247])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8AxBMWCO1RmyeMKAA--.17909S2;
+	Mon, 27 May 2024 15:51:32 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Juxin Gao <gaojuxin@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v4 0/2] pwm: Introduce pwm driver for the Loongson family chips
+Date: Mon, 27 May 2024 15:51:10 +0800
+Message-ID: <cover.1716795485.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <864dc1d3-2478-46a2-84a5-c7c51f96268f@foss.st.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8AxBMWCO1RmyeMKAA--.17909S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7uryDurykCFW5WFyxZF4rCrX_yoW8ZF4UpF
+	Z8C343Kr18tr129rn3X3W8CF1Sva1fJFsrGFs3t348Wa98Ca4jq3y3Kw45ArZrur12vFy2
+	vrZ3CFWUKa4UurXCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUU9Yb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+	XVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
+	AKI48JMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v2
+	6r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17
+	CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF
+	0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIx
+	AIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIev
+	Ja73UjIFyTuYvjxU2MKZDUUUU
 
-Hi Benjamin,
+Hi all:
 
-On Mon, May 27, 2024 at 09:44:15AM +0200, Benjamin Mugnier wrote:
-> Hi Sakari,
-> 
-> On 5/27/24 09:31, Sakari Ailus wrote:
-> > Hi Benjamin,
-> > 
-> > On Mon, May 13, 2024 at 03:37:25PM +0200, Benjamin Mugnier wrote:
-> >>>>> +static int vd56g3_read_expo_cluster(struct vd56g3 *sensor, bool force_cur_val)
-> >>>>> +{
-> >>>>> +	u64 exposure = 0;
-> >>>>> +	u64 again = 0;
-> >>>>> +	u64 dgain = 0;
-> >>>>
-> >>>> Do you need the assignments? The values are assigned by cci_read() below,
-> >>>> right?
-> >>>
-> >>> Well initially, I didn't have those assignments and some checker
-> >>> complains (Honestly I didn't investigate the warning).
-> >>> I will double check and see if they are necessary.
-> >>>
-> >>
-> >> Since I have smatch ready, I ran it without these initialization against
-> >> the latest media tree. I got these :
-> >>
-> >> drivers/media/i2c/st-vd56g3.c:403 vd56g3_read_expo_cluster() error:
-> >> uninitialized symbol 'exposure'.
-> >> drivers/media/i2c/st-vd56g3.c:404 vd56g3_read_expo_cluster() error:
-> >> uninitialized symbol 'again'.
-> >> drivers/media/i2c/st-vd56g3.c:405 vd56g3_read_expo_cluster() error:
-> >> uninitialized symbol 'dgain'.
-> >> drivers/media/i2c/st-vd56g3.c:407 vd56g3_read_expo_cluster() error:
-> >> uninitialized symbol 'exposure'.
-> >> drivers/media/i2c/st-vd56g3.c:408 vd56g3_read_expo_cluster() error:
-> >> uninitialized symbol 'again'.
-> >> drivers/media/i2c/st-vd56g3.c:409 vd56g3_read_expo_cluster() error:
-> >> uninitialized symbol 'dgain'.
-> >>
-> >> cci_read() is indeed not modifying its 'var' argument in the default
-> >> case of the switch [1]. Spawning these errors.
-> >> Adding a '*val = 0' in the default case would also fix it, but will
-> >> change the function behavior.
-> > 
-> > I think I'd add the assignment to cci_read(). This isn't the only driver
-> > that's affected. In the best case smatch would be fixed to figure this out.
-> > 
-> > Any thoughts?
-> 
-> IMHO adding the assignment to cci_read() is the cleanest way to handle it.
+This patchset introduce a generic PWM framework driver for Loongson family.
+Each PWM has one pulse width output signal and one pulse input signal to be measured.
 
-A fix in smatch would be the best in my opinion as it could catch the use
-of the value in case of an error. But it's not going to be a short term
-solution, hence I'd also assign *val to 0 now.
+It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
 
-> 
-> > 
-> > Cc also Hans and Laurent.
-> > 
-> 
+Thanks.
+
+-------
+V4:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Addressed Uwe's review comments, thanks.
+   - Make use of devm_pwmchip_alloc() function;
+   - Add Limitations description;
+   - Add LOONGSON_ prefix for Loongson pwm register defines;
+   - Keep regs written only once;
+   - Rewrite duty/period calculation;
+   - Add dev_err_probe() in .probe();
+   - Put the parameters used by PM into a separate
+     structure(pwm_loongson_suspend_store);
+   - Fix some code style.
+
+Link to V3:
+https://lore.kernel.org/linux-pwm/cover.1713164810.git.zhoubinbin@loongson.cn/
+
+V3:
+patch (1/2):
+ - Add Reviewed-by tag from Krzysztof, thanks.
+patch (2/2):
+ - Several code stlye adjustments, such as line breaks.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
+
+v2:
+- Remove the dts-related patches and update dts at once after all
+relevant drivers are complete.
+patch (1/2):
+ - The dt-binding filename should match compatible, rename it as
+   loongson,ls7a-pwm.yaml;
+ - Update binding description;
+ - Add description for each pwm cell;
+ - Drop '#pwm-cells' from required, for pwm.yaml makes it required already.
+
+Link to v1:
+https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: pwm: Add Loongson PWM controller
+  pwm: Add Loongson PWM controller support
+
+ .../bindings/pwm/loongson,ls7a-pwm.yaml       |  66 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/pwm/Kconfig                           |  12 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-loongson.c                    | 295 ++++++++++++++++++
+ 5 files changed, 381 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-loongson.c
 
 -- 
-Regards,
+2.43.0
 
-Sakari Ailus
 
