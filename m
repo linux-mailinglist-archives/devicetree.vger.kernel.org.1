@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-69278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F34D8CF792
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:01:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBAC68CF796
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:01:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E46CB20D3D
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:01:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C5CD1F21601
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CDFADDC1;
-	Mon, 27 May 2024 03:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05125523D;
+	Mon, 27 May 2024 03:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhneOmv+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DdhEbs9u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31521D53F;
-	Mon, 27 May 2024 03:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6C1168C4;
+	Mon, 27 May 2024 03:00:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716778855; cv=none; b=JczQqRCJpWY2Soo7DPzZg0G7mwn97hf+xMSkmD4LIatP4kmnltxol0SMqCEsm/P2sVkhLoAoZNMZfky3Yh8KQEwa4i9P8h62HUJzpNYPuZ/IOHTGsiYMcx9fVMV801sN2HkWiJUc63iwccaLMn2k5A6Gy/ReG7YepVQFvP5QfYU=
+	t=1716778856; cv=none; b=nF0cb+q24sgdL+lRNrNmx8mBc0i7iw8IShBG5DWdopQQVSqmrcjBPNqrc9Ut1cJrGoYPz15U3MS5wEh/sbcYge56k4YbHq+nw9hqx+Bh3Eg6k5S+PSa3HqXKN/STMPt2DEuo1AOlVUZPTKEYOXt7PsGfnyB219EXKC9B6VjgaPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716778855; c=relaxed/simple;
-	bh=cjtXXm2phmfe6tZ3Dfr+4vLrieOMtsHK1BRhOat5euk=;
+	s=arc-20240116; t=1716778856; c=relaxed/simple;
+	bh=hCDjalwYJOsAlsf5juR1hFiClQXU4XZ8uKfKRwcoN2E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Tt2vg4HoFoRN2s4rIfkAmBz05SZWoDsMpiSyOwX4qvWEVrPM8iTto+15kMiKxqWEJwUhx7jqV7IjBgWMXus+/lXzMYaBeU+nXzky9MhqYJWEVJ+/C9WTYXjR7drK2B4wctYFVn5Fht/fwSYbu/AhtLKKxRAIP6HZ3KesO5ndL/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhneOmv+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38B8C2BD10;
-	Mon, 27 May 2024 03:00:53 +0000 (UTC)
+	 MIME-Version:Content-Type; b=GgKyK2fqXWYv5ldgmSmEzx2r3CB0jOEelo9HJzeyPmd5i7iKBdNUqngylxrx8wiyj7wdd4Q0S9lptiNlXN6jSImgmCdGDxMsC7CqbAHDCUK/k3EAkK2KqZpBgVX5c+ksD08z6qx8X4FnJ4GV3+G0MHSpIXgVzs+M/mgJbwVqZqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DdhEbs9u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A67A1C4AF0A;
+	Mon, 27 May 2024 03:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716778854;
-	bh=cjtXXm2phmfe6tZ3Dfr+4vLrieOMtsHK1BRhOat5euk=;
+	s=k20201202; t=1716778856;
+	bh=hCDjalwYJOsAlsf5juR1hFiClQXU4XZ8uKfKRwcoN2E=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dhneOmv+/BT2SDiaEuQieLSOmKercEhFdbLUVEMlHgJb14VxqwVzfW2pXtB9uS4bW
-	 7HzfsnC940DitlsZYsHAelqFSb26+qKH5Dch19FtsYeYziQJf2DGjMgoZPFCn8PG8o
-	 +VaAORKGa7XoOeAewmuciR/gVwYB26g00aKCtxo7atkwyh/ct1+bKEhn0AJ8bLuNQO
-	 4DeI2Rj174DE84yVpSspHwHmPqR00LRjc07Qb1WUrarzjOwgbIiOZ4uudYh28U5XVu
-	 oH0iKE41sglTbOUds9TvvD0IRNOO2Tcwohynnoz9uFRkrkE0xveLlohi/BaynclzmV
-	 eSovQh11AQaEA==
+	b=DdhEbs9uVtH0TasGL+rWhOsVMxFKsDy6cTkORiwgEyjH0pe/37alfik1xCSZk+tr/
+	 3+3zXLvCVEZuJ09zQfzTFkJerOOP4sDbMS+dS1PNuEiDoi6HE6uRfdXy9PyjnNJaSQ
+	 SyBTPOtDdemLXtAISdw1nnG9J6usf065i4Yu2/QhJRdfUs/f2fjPaNrHA/rSdh5XEk
+	 feFrRjY9PJHqfGbPcGPoJ0tLldqXJbdrnyXqf4vi1dfR0zXHTYxPzRaCooJb8k0W/W
+	 mZHcNu4ogSR3VXxGVWnVdpfY2JLxOx6veGSFyb2atS5ict9RZEoWSgsMQOjSeHNNoD
+	 NSSPkZhULFXzg==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bjorn Andersson <quic_bjorande@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8180x: Fix LLCC reg property again
-Date: Sun, 26 May 2024 22:00:23 -0500
-Message-ID: <171677884194.490947.13980440447323803565.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/12] arm64: dts: qcom: move common USB-related properties to SoC dtsi
+Date: Sun, 26 May 2024 22:00:25 -0500
+Message-ID: <171677884195.490947.4534241393412636380.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240525-sc8180x-llcc-reg-fixup-v1-1-0c13d4ea94f2@quicinc.com>
-References: <20240525-sc8180x-llcc-reg-fixup-v1-1-0c13d4ea94f2@quicinc.com>
+In-Reply-To: <20240429-usb-link-dtsi-v1-0-87c341b55cdf@linaro.org>
+References: <20240429-usb-link-dtsi-v1-0-87c341b55cdf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +66,40 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sat, 25 May 2024 10:44:11 -0700, Bjorn Andersson wrote:
-> Commit '74cf6675c35e ("arm64: dts: qcom: sc8180x: Fix LLCC reg
-> property")' transitioned the SC8180X LLCC node to describe each memory
-> region individually, but did not include all the regions.
+On Mon, 29 Apr 2024 15:43:37 +0300, Dmitry Baryshkov wrote:
+> Move common USB-related properties and nodes (e.g. PHY's
+> orientation-switch, generic endpoint connections) to the SoC file. If
+> the board has different needs, it has to override these generic
+> usecases.
 > 
-> The result is that Linux fails to find the last regions, so extend the
-> definition to cover all the blocks.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8180x: Fix LLCC reg property again
-      commit: 3df1627d8370a9c420b49743976b3eeba32afbbc
+[01/12] arm64: dts: qcom: sm8150: move USB graph to the SoC dtsi
+        commit: 4b699d2d569483760a18eeec1d80f691d635550e
+[02/12] arm64: dts: qcom: sm8350: move USB graph to the SoC dtsi
+        commit: 18eac39beb32cec920aaa29aaa15084cde6e366b
+[03/12] arm64: dts: qcom: sm8450: move USB graph to the SoC dtsi
+        commit: a84f3627f9d9765853b244f0cf50d3cafd1f0957
+[04/12] arm64: dts: qcom: sm8550: move USB graph to the SoC dtsi
+        commit: 2f212acedbbfe7119219935c8c670c3323f07186
+[05/12] arm64: dts: qcom: sm8650: move USB graph to the SoC dtsi
+        commit: 65931e59e0399129d845452c945b8017ad0570df
+[06/12] arm64: dts: qcom: sm8350: move PHY's orientation-switch to SoC dtsi
+        commit: 4f35b0fe2673655148d528982386d9ba5113d537
+[07/12] arm64: dts: qcom: sm8450: move PHY's orientation-switch to SoC dtsi
+        commit: 1a1322c8a698c8ccafed5379ae8c97dbf8480698
+[08/12] arm64: dts: qcom: sm8550: move PHY's orientation-switch to SoC dtsi
+        commit: d02c0027ea20f67a8dcf023786eb993abee2179e
+[09/12] arm64: dts: qcom: sm8650: move PHY's orientation-switch to SoC dtsi
+        commit: fbb22a182267c8de4056bd531caae1d5a32bb40c
+[10/12] arm64: dts: qcom: sm8650-mtp: connect USB-C SS port to QMP PHY
+        commit: c2f1d0c08fc11ad45d5980ffb1ba3a0a78cc8318
+[11/12] arm64: dts: qcom: delete wrong usb-role-switch properties
+        commit: dad66630a083263b513448426523a3b52a959c79
+[12/12] arm64: dts: qcom: x1e80100: drop wrong usb-role-switch properties
+        commit: 7c0922fc894ffff393ba57c4c20fc034e3a4917f
 
 Best regards,
 -- 
