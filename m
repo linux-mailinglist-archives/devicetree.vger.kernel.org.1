@@ -1,120 +1,110 @@
-Return-Path: <devicetree+bounces-69615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A48E58D08DA
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:40:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2708D08CF
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:37:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDAB0B2538B
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:37:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 705FC1C20E25
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA5E13A25E;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F7461FC6;
 	Mon, 27 May 2024 16:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6M409X/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TdAlFkuE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B609B61FDB;
-	Mon, 27 May 2024 16:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879B917E8E3;
+	Mon, 27 May 2024 16:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716827846; cv=none; b=aLcP55dmQ6rOExIrmr6gZyK9P1W8o5Fj9dq/xY3RG7acugt2zl9SUd8WULcdtIswHL+q7JOZbbwCADBLcgKiTNECEV8E6RnaYyhAvgip8qy9p2iQPLocNsNTExxek6yyAm/KcPl3QALhSwB0J6YOoaSWYeWwwYAIB0+iSwn+Jcw=
+	t=1716827846; cv=none; b=Skyk3T6elAZztvbrKWpCo1QXVYaRTMsyzJEEZiJ1We+WPuRb9W+EjXU81+wo/TD+PU0Gg7ixT3bsNgtmUw5ODh58uvbQHP/ydbqW+8fvFzPl0yjMNDtj4+sB1hnZljXbhcQeps2jmY6+Amwid2dlCyQwVV88WOMw0Z8ubUwLvyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1716827846; c=relaxed/simple;
-	bh=BjoUZstgL9cvzIbmFkn2AsuRLPgppqLofiy4CT1CceE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QSU6sIc2NvrQ9XZ5BSrLFyJTs7RsVEb2RFDIPMs0YxHwdPaesgxBgVe+XV6WIkN2MNPWQmQK/cOtOhH+ey0mYD5YDfNERLgyl35UcpIH5ENztroN+Vodw3MQf5OZrlA5elB0FQuJOvuVw3CdsIv7fORRnHAiclnO5GrmnC/tags=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6M409X/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA5B4C2BBFC;
-	Mon, 27 May 2024 16:37:23 +0000 (UTC)
+	bh=09vNHjWI7xZll07lwlGlHMkbk/dDA5bQd3OY0FlL8dQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Gukt+XaG6FIfVVtcULhp5SHqCqXWxdDttTr9BhlO53QJzhZydLZHWqGohfA2VHvdNAWS55Mo9SkwFPuxjE9mXiyqOCqukrCOXtpRU+j+QVvtn+PbH0N4vSy4XDUkZfVa4DqtzTP6MJZKU1XagLmOxkMdHWsoCkaw7/PQDIStGZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TdAlFkuE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31259C32781;
+	Mon, 27 May 2024 16:37:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716827845;
-	bh=BjoUZstgL9cvzIbmFkn2AsuRLPgppqLofiy4CT1CceE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H6M409X/dhwmjcQQXMUMdrnigSm0LER5SC+tiv3XeOm3er4G4qZTk0/buOXlf5E6T
-	 lp31eSd2ZWMZzfE2FmQJyG5PSwmip/jIwH5+iQNB5CAZqoAgx1FFNmtQ1s6VlPFhUl
-	 iodRcR+MB7k/7x7JY+fMJX/YPeKrShQ5FKCbSivEdlKp+Ak+WTSOnmaO8txJQrvWJv
-	 LUWEvTfU25kS9Qy5oRkXl9Od/qygUzBSRqtOgNnOdsBqCsTH3J3lSo18WdPayAWAGL
-	 Kcat7Jqb9tj97zW2CBuSGWrVwgjS3zaIQtxXBR/zxPg+Sb4ZQ30m3zl2DhRZAgJfyi
-	 UBiWz9RUVP5aQ==
-Date: Mon, 27 May 2024 17:37:21 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: renesas,vin: Add binding for V4M
-Message-ID: <20240527-replica-mace-2306a85ad5d7@spud>
-References: <20240527131849.1678877-1-niklas.soderlund+renesas@ragnatech.se>
+	s=k20201202; t=1716827844;
+	bh=09vNHjWI7xZll07lwlGlHMkbk/dDA5bQd3OY0FlL8dQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=TdAlFkuEs0ZPY3kb0w1T+tVNcDH2H0n/HLp+Hk0LPrWJoJ1NouhCK6xgMl/5EHQ2d
+	 rN/25tAEZbJgtTTPa2RdZCGedly/uf7mwRYQSLi5fJuYxRIgvxDuiNHROeUy136f07
+	 MXDrasFwvAay/e3A5KrnvDkv5v+soGk9WLP5kcjQL5rv8QMDkt6UM7Qqly5FLiNstc
+	 MBeMt3tWxjk8CsmZtBov3gA9+sCEXCXQqiTdQtBZ2InmXmWk0StKWm1cemfDqMTOWk
+	 5frOeSI/CKM6rr5p8nPQgsjr2N6pvgyLa/cHT9pjNA7x9YHpf1hkBGoAaUkVnr9UxS
+	 lJabOjceLyZAw==
+Date: Mon, 27 May 2024 11:37:23 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Av3drsAQvMamhbV6"
-Content-Disposition: inline
-In-Reply-To: <20240527131849.1678877-1-niklas.soderlund+renesas@ragnatech.se>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Francesco Dolcini <francesco.dolcini@toradex.com>, 
+ =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240527154050.24975-2-francesco@dolcini.it>
+References: <20240527154050.24975-1-francesco@dolcini.it>
+ <20240527154050.24975-2-francesco@dolcini.it>
+Message-Id: <171682784307.1866394.1200692340690360713.robh@kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: add ti,ads1119
 
 
---Av3drsAQvMamhbV6
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, May 27, 2024 at 03:18:49PM +0200, Niklas S=F6derlund wrote:
-> Document support for the VIN module in the Renesas V4M (r8a779h0) SoC.
-
-Which is different from the other devices how?
-Should be with the driver:
-https://lore.kernel.org/all/20240527132429.1683547-1-niklas.soderlund+renes=
-as@ragnatech.se/
-
-Thanks,
-Conor.
-
->=20
-> Signed-off-by: Niklas S=F6derlund <niklas.soderlund+renesas@ragnatech.se>
+On Mon, 27 May 2024 17:40:49 +0200, Francesco Dolcini wrote:
+> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> 
+> Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
+> with I2C interface.
+> 
+> Datasheet: https://www.ti.com/lit/gpn/ads1119
+> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
->  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/D=
-ocumentation/devicetree/bindings/media/renesas,vin.yaml
-> index 5539d0f8e74d..168cb02f8abe 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> @@ -54,6 +54,7 @@ properties:
->                - renesas,vin-r8a77995 # R-Car D3
->                - renesas,vin-r8a779a0 # R-Car V3U
->                - renesas,vin-r8a779g0 # R-Car V4H
-> +              - renesas,vin-r8a779h0 # R-Car V4M
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.45.1
->=20
+>  .../bindings/iio/adc/ti,ads1119.yaml          | 122 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+> 
 
---Av3drsAQvMamhbV6
-Content-Type: application/pgp-signature; name="signature.asc"
+My bot found errors running 'make dt_binding_check' on your patch:
 
------BEGIN PGP SIGNATURE-----
+yamllint warnings/errors:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlS2wQAKCRB4tDGHoIJi
-0pdmAQDqkPouk1LZTTZC3F2g0NFtuLoPzDNGZkPAdhDFTGSXIAD+MwZXvy0VMpKA
-IctRTkTHPEK5seAnMmjCrWCJ1GOZTAE=
-=Jrbd
------END PGP SIGNATURE-----
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml: ^channel@([0-6])$: Missing additionalProperties/unevaluatedProperties constraint
 
---Av3drsAQvMamhbV6--
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240527154050.24975-2-francesco@dolcini.it
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
