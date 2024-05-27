@@ -1,149 +1,143 @@
-Return-Path: <devicetree+bounces-69572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAB108D05E0
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 653EA8D05EA
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:22:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDEF21C2100E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:21:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 886CF1C21720
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC6815DBD8;
-	Mon, 27 May 2024 15:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DBD41667F7;
+	Mon, 27 May 2024 15:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r5sLHUNo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdHWblWg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD36115A874;
-	Mon, 27 May 2024 15:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F383C15EFC1;
+	Mon, 27 May 2024 15:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716822730; cv=none; b=JqmTyxapiMbuGJBSiv7rgrozu0QyISv6kHiYucEEbRS+kFkQCiaUCdRU8QUsLAsj6B+D9uHApAzaQisIm/ZMWW4043A5etwXmHz4RIKiuddlrlZdRy4TsdUV8qDSjZ4r+Ylo3Ug8dD/zi0LyxXqj2TYM1NYKu8/zNpYi5aPZQDI=
+	t=1716822824; cv=none; b=mx3GM3T7KIMai1FUK6Jwq/RcTCkH7BuGcIES2tnp1vDt22B6i5Ywlvv/jDiTAiZ3eVWGXRhAra3ia0QXzorK+XWSoFeyiS1nUbKW/DiHyj6/QSUS8Z35TZAvHzymaVRx0kQYIZsg2ZmKPBF+aPckKyBlgphfrNRfgGY9PrshtG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716822730; c=relaxed/simple;
-	bh=GC9XwJrAOyXHE+HoaYDJfgAuuuYZrjvZbTpFwyHEE3g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s8N/ut7L4oDT8fFVzQpcRKEaCOHVnOdVKlzb4+2m1vjaykrITyp3RkBx3YqALOxG/szo84qECmG15vCKDSClMejeRUpr3LB6uyBPToMw/VBd0mIV4jgm1rieV6fLlNc6p1w188gmKQBcYPx8+QiYRKMsIKk/a9C3ZGFMPjpHXzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r5sLHUNo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4E821C32789;
-	Mon, 27 May 2024 15:12:10 +0000 (UTC)
+	s=arc-20240116; t=1716822824; c=relaxed/simple;
+	bh=egYZu7mpvLzwydpwmayywDd5L8U40+7fstZ8YQUcFyU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nUapC/CB2y/zg/P8TTmTruhPE8++63LEu3LHPlUBKxH3Bf6FD0+xQUXCdmQ75CAx0JTYep1VZtYGRFVj2e0j+fIcRQY5iCK5iEr5XXTcZhWJpsoM4ghWNGk8Qogs5h0rTBbk15beYkq+LNVfr5ojQHpqVZN8AGKPm2NcVX0euiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdHWblWg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60864C4DDF6;
+	Mon, 27 May 2024 15:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716822730;
-	bh=GC9XwJrAOyXHE+HoaYDJfgAuuuYZrjvZbTpFwyHEE3g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=r5sLHUNo2y0BWPiPJp+UKv7TZYhiWWQUaWa3UY1uMsYIIt0XQDRUVN05nirFTKcKi
-	 AGooTeABUWelhtPGEsg6ZlWJDvp4wF+QaqKeOq6eCV0ykun99OBFsQaL5fiHVhac5B
-	 bQe8JbfWFhJvtcgMjr20pgZ53VW6vPl/g7DtatoYprAii/PMFqbaP/NbstPidqWDUL
-	 7iBe9qDiw+l5T4nsTqNo64Ssa9c1+IxyOEuMm5f4Rbmcdk5J8PAfYCW3XKs2ZQVaba
-	 Mr5c+VcAlHoK0gh1zW2Ysq60xM0yT4BoBaJSKf90Fd8TLHDT1IJkBvh3O1rOc15E7l
-	 XYRDicSnFiN+A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BA47C27C42;
-	Mon, 27 May 2024 15:12:10 +0000 (UTC)
-From: Arthur Becker via B4 Relay <devnull+arthur.becker.sentec.com@kernel.org>
-Date: Mon, 27 May 2024 17:12:09 +0200
-Subject: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS
- bindings
+	s=k20201202; t=1716822823;
+	bh=egYZu7mpvLzwydpwmayywDd5L8U40+7fstZ8YQUcFyU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mdHWblWgcUj+0AQMGqa/oH4Yz8JLZkIhv4wTf7yVoJtBqLmNQkBRhhTkskuQ/RMLa
+	 xr7+vc49FU8/DYFo9NIbxG5JOPbQcbctZozBYVrcvOamkK66XjEYcQ0MyURJfOL80R
+	 i5l4zTquIhK0pAoPrEVmx2HlUnKpMVlJlBolV5a+wvHHdZ6fXcplJ3qEyZA8m2OZJL
+	 T5XOMjNf1x95cxQW466mhnhoh3MlE2ULVmvUOGV3FpS9pl9DIlSFOCw8Ld5h1Jdnws
+	 GtnO/p1d8qAc1M2xPDpYM9AeU9t5V5QbhV6UqxNke+qYYbUpSdsPhHFvm1LEEPiLaC
+	 KlswnRU/PqNHw==
+Message-ID: <f709f17d-c20c-4777-b23b-8275f6d4f3f5@kernel.org>
+Date: Mon, 27 May 2024 17:13:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: set minItems for
+ interrupt-names
+To: Bartosz Golaszewski <brgl@bgdev.pl>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+References: <20240527144538.155704-1-brgl@bgdev.pl>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240527144538.155704-1-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
-References: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
-In-Reply-To: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Arthur Becker <arthur.becker@sentec.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716822728; l=1571;
- i=arthur.becker@sentec.com; s=20240521; h=from:subject:message-id;
- bh=u0p4w65fUlznIRwbLv+oCbf01W5aOcq+erfwbBRKE9w=;
- b=zCjYc68+a0u7/fUR6r+IMPoQXLqxz9nMLelPqjfSZeibSwRIsayNYpLVecj3SxZ04uGnDNdds
- xHdNaM8x2ouCb9AywBmXkiBFbEgqbcvrUAYlYgiCst0uUGksoXqr+92
-X-Developer-Key: i=arthur.becker@sentec.com; a=ed25519;
- pk=1GLsDBF6GZKt9oNFsvdnAB6sHyKKrSISlwM3AyWbx/k=
-X-Endpoint-Received: by B4 Relay for arthur.becker@sentec.com/20240521 with
- auth_id=163
-X-Original-From: Arthur Becker <arthur.becker@sentec.com>
-Reply-To: arthur.becker@sentec.com
 
-From: Arthur Becker <arthur.becker@sentec.com>
+On 27/05/2024 16:45, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> There's a set of compatibles for which we set a strict list of 5 interrupt
+> names even though minItems for the interrupts property is 4. One of the
+> USB controllers on sa8775p only consumes 4 interrupts which leads to
+> dtbs_check errors. Make the last entry optional by setting minItems to 4.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Device tree bindings for the vishay VEML6040 RGBW light sensor iio
-driver
+Can you also fix other cases? I found there at least two other. I missed
+that during review... or maybe we discussed it? I remember that commit
+was a pain :/
 
-Signed-off-by: Arthur Becker <arthur.becker@sentec.com>
----
-V1 -> V3: Addressed review comments (v1 of the dt-bindings was sent
-along with v2 of the driver but not in a set)
----
- .../bindings/iio/light/vishay,veml6040.yaml        | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+The commits from quicinc fix one issue and bring immediately one more.
 
-diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6040.yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6040.yaml
-new file mode 100644
-index 000000000000..101c2cc6506e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6040.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/vishay,veml6040.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: VEML6040 RGBW Light Sensor
-+
-+maintainers:
-+  - Arthur Becker <arthur.becker@sentec.com>
-+
-+description:
-+  Datasheet at https://www.vishay.com/docs/84276/veml6040.pdf
-+
-+properties:
-+  compatible:
-+    const: vishay,veml6040
-+
-+  reg:
-+    enum:
-+      - 0x10
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        light-sensor@10 {
-+            compatible = "vishay,veml6040";
-+            reg = <0x10>;
-+            vdd-supply = <&vdd_reg>;
-+        };
-+    };
-+...
+But be sure that this is what we actually want. Maybe intention was to
+have fixed number of interrupts (so no minItems in interrupts)?
 
--- 
-2.34.1
+Also, in any case:
+Fixes: 53c6d854be4e ("dt-bindings: usb: dwc3: Clean up hs_phy_irq in
+binding")
 
+
+Best regards,
+Krzysztof
 
 
