@@ -1,158 +1,125 @@
-Return-Path: <devicetree+bounces-69300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4118CF7FD
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:11:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233A58CF812
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 05:26:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC85228100E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:11:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B64D1B20A68
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 03:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00D123D7;
-	Mon, 27 May 2024 03:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CB479F5;
+	Mon, 27 May 2024 03:26:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X2aK+GHx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYWza3G5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5307DDA5;
-	Mon, 27 May 2024 03:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F84523A;
+	Mon, 27 May 2024 03:26:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716779507; cv=none; b=QtLEwqfbkXohVf2lzzI9s7LOqYE/hIpK3Rd4eT3dZ+8wC+jgXYf0FKk4KAHPH1s+Ht3gAYyP/RhRE9MWWjULdUSQWFEU+FVjDbAqjwma2Zfho/MLM1CSEyN6+gmuVTs20TymVkA8SzBTjgo2UZ4jKnXGWbxjap455GZMiFPqRzg=
+	t=1716780395; cv=none; b=IlH88wAPQEVspP28YMo8YJnhBeAegmxkBHoujNr0nr5xHeKdjAKc/HHmMJ1cS3ssXxN/wYQ6C7EK1oukt9VG0ckJPfoWLyxXTGvIvEz4Ej5JNbbrj6+l1saOvB9W+LrTBQzwyJaS3O5zjxO5f78aca9gqdq0ZX4ahTBHOhGBZ3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716779507; c=relaxed/simple;
-	bh=MRV95ptO8M8/LH3xJMcdozG2tVt7MtaRVLIZ99obl+s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZKm30GAcitz04H+VXPa2BDymVxmGxIi4Cd7Dx+Z7oYoVXfirmH2vQFtCUjgLhybQtE6xm70q1o0iypbRUJTN4SfMGGel6z+de0mqo7z0JGQabskRX7uPBJj10CqrJ/E8HXifsNRxRPmscFSI2iv7Dqc9WjpODh+yyqotV3vwYzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X2aK+GHx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DCF8C2BD10;
-	Mon, 27 May 2024 03:11:46 +0000 (UTC)
+	s=arc-20240116; t=1716780395; c=relaxed/simple;
+	bh=prpzGhuCLwgnWK4gbCVzha4BTqIB+FEnrv/OgDMS0Wo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=TaO34Q9//TScKshyqDj/Xk6vLUmardZYJdcEGv5Ln5hocSYvlIWsBTdJHYxCCXwnW4dyhtQn53LFfUiGz51XO4DvET8Lu76/90ykknnIP30iUhQitsuduFh/dGH1dlcNW5IyvrK8X/imHg8R7DNz217OlkmjBq+/lyGHSO+lDrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYWza3G5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1D2CAC32782;
+	Mon, 27 May 2024 03:26:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716779507;
-	bh=MRV95ptO8M8/LH3xJMcdozG2tVt7MtaRVLIZ99obl+s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X2aK+GHx2No830rQwQ9WBmzzlYbvWzJy9R3e5c/Ybb6vpwAQ6WmWfQjJjxzdlm1xj
-	 1hqe2CFWLcIP4jgYxSpkIPgjGEx3rdP2YFyRM0geHEMi+KGK2xUA+AjRWYLICHNgyB
-	 h5hIXwVek1uEmfoJeYTDhWSi9dR+WhaddDSL6sCRL46G3uwJ9d+C+ZZMWdUEn6AeR3
-	 OliQnhZNkg3O5OQfOn0X6qmaCxOj1ZLjFyUNv1cYLacimreEviviavzIbXkRd0tw89
-	 ikLHBVSuWEJjF3/288YG7UMujOGVB4M+Cq+NK1kM00V4msfFEc3b/+Y6qErHFNplgH
-	 6G4MMyyYOnBVA==
-Date: Sun, 26 May 2024 22:11:44 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com, Bjorn Andersson <quic_bjorande@quicinc.com>
-Subject: Re: [PATCH v5 2/5] soc: qcom: llcc: Add regmap for Broadcast_AND
- region
-Message-ID: <xykcsrfq7mpu7fkjvvhfcew2x2522xmq6poua5utcn2uu5h5ub@j45xpqkedgwa>
-References: <cover.1716228054.git.quic_uchalich@quicinc.com>
- <2c7654492ee436b41acddf2edc65d6722c3ad6aa.1716228054.git.quic_uchalich@quicinc.com>
+	s=k20201202; t=1716780395;
+	bh=prpzGhuCLwgnWK4gbCVzha4BTqIB+FEnrv/OgDMS0Wo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uYWza3G5RYCQbY4pRMoOX9ZzFMHiOMekV/IPr+tKi9UlyT7jM5Ky1Fk50AHgx4SCg
+	 SChjAn3JVI4mSwmwA/FdR9uFSmKuMAHK1/SoJH7ds5zs+98DOqsU8SF3sqSe1NT+uk
+	 wzYzkov6A00jXKT4PW/H3VNJqXIoRYIZK79/BQaXDUuTuo/z3LKXeUpkCDN8/GS762
+	 IJxRMz6iaO+OBLOm+RyhVvaat3sQyM1M0dW2p1oeoYapTEcJIJ3m7Qka037lraT4SO
+	 5JzY/myZM5D8AsGRyO0vqBETyP+8cUSQiq5ETQWFjI5MXZ40OZJn91BoBY/+q+tOaP
+	 mqwKp7ncCCIEA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F253BC25B74;
+	Mon, 27 May 2024 03:26:34 +0000 (UTC)
+From: Joel Selvaraj via B4 Relay <devnull+joelselvaraj.oss.gmail.com@kernel.org>
+Subject: [PATCH v3 0/3] novatek-nvt-ts: add support for NT36672A
+ touchscreen
+Date: Sun, 26 May 2024 22:26:23 -0500
+Message-Id: <20240526-nvt-ts-devicetree-regulator-support-v3-0-aa88d10ccd9a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2c7654492ee436b41acddf2edc65d6722c3ad6aa.1716228054.git.quic_uchalich@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF/9U2YC/43NQQ6DIBQE0KsY1v2NIEXtqvdoukD4VRIVA0jaG
+ O9eNF24dDmTyZuFeHQGPblnC3EYjTd2TKG4ZER1cmwRjE6ZsJzx/EYrGGOA4EGnrcLgEMFhO/c
+ yWAd+nibrAkhVI6+bspJUkCRNDt/ms788Xyl3xqf5dz+NdGv/PqOn/Eghh0qXQihR1FrJRztI0
+ 1+VHcjmR3Y0+TmTJbMpec3LvKgU50dzXdcfnJBIUSoBAAA=
+To: Hans de Goede <hdegoede@redhat.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ Joel Selvaraj <joelselvaraj.oss@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716780394; l=1813;
+ i=joelselvaraj.oss@gmail.com; s=20240420; h=from:subject:message-id;
+ bh=prpzGhuCLwgnWK4gbCVzha4BTqIB+FEnrv/OgDMS0Wo=;
+ b=/fj7cXabk4wL0lsditJEpA4IcJz+MDBlkYvmeKV7ZakhUe2pAOaYB5BunAAFWZyMK1asPVk6U
+ 0mMUttIFJD+DIWAlBX0us4ScW6BOZJhEl19LrrsJtvDud2tEBRvI9NG
+X-Developer-Key: i=joelselvaraj.oss@gmail.com; a=ed25519;
+ pk=qT4gsuVtlPE0Dpr+tQA/Fumm7wzVP6qfeVaY+6pX04s=
+X-Endpoint-Received: by B4 Relay for joelselvaraj.oss@gmail.com/20240420
+ with auth_id=165
+X-Original-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Reply-To: joelselvaraj.oss@gmail.com
 
-On Mon, May 20, 2024 at 02:00:14PM GMT, Unnathi Chalicheemala wrote:
-> Define new regmap structure for Broadcast_AND region and initialize
-> this regmap when HW block version is greater than 4.1, otherwise
-> initialize as a NULL pointer for backwards compatibility.
-> 
-> Switch from broadcast_OR to broadcast_AND region (when defined in DT)
-> for checking status bit 1 as Broadcast_OR region checks only for bit 0.
-> 
+Extend the novatek touchscreen driver to support NT36672A chip which
+is found in phones like qcom/sdm845-xiaomi-beryllium-tianma.dts.
+Added devicetree support for the driver and used i2c chip data to handle
+the variation in chip id and wake type. Also added vcc and iovcc
+regulators which are used to power the touchscreen hardware.
 
-This is a good technical description of the change you're making. But
-it's been long enough since we discussed this that I've forgotten which
-problem it solves, and the commit message doesn't tell me.
+Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+---
+Changes in v3:
+- Fix indentation in the binding as suggested by Krzysztof Kozlowski.
+- Picked up Krzysztof Kozlowski's Reviewed-by tag for the binding.
+- Link to v2: https://lore.kernel.org/r/20240524-nvt-ts-devicetree-regulator-support-v2-0-b74947038c44@gmail.com
 
-Please add a paragraph on the top describing the actual problem this
-solves?
+Changes in v2:
+- The generic i2c device id is now replaced with the correct IC variant
+  provided by Hans de Goede
+- Updated the bindings to reflect the latest changes and also incorporated
+  the suggestions provided by Krzysztof Kozlowski
+- Link to v1: https://lore.kernel.org/r/20240521-nvt-ts-devicetree-regulator-support-v1-0-8d766c639dca@gmail.com
 
-Regards,
-Bjorn
+---
+Joel Selvaraj (3):
+      Input: novatek-nvt-ts: replace generic i2c device id with specific IC variant
+      dt-bindings: input: document Novatek NVT touchscreen controller
+      Input: novatek-nvt-ts: add support for NT36672A touchscreen
 
-> Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
-> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
->  drivers/soc/qcom/llcc-qcom.c       | 16 +++++++++++++++-
->  include/linux/soc/qcom/llcc-qcom.h |  4 +++-
->  2 files changed, 18 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> index cbef0dea1d5d..5eac6aa567e7 100644
-> --- a/drivers/soc/qcom/llcc-qcom.c
-> +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -821,6 +821,7 @@ EXPORT_SYMBOL_GPL(llcc_slice_putd);
->  static int llcc_update_act_ctrl(u32 sid,
->  				u32 act_ctrl_reg_val, u32 status)
->  {
-> +	struct regmap *regmap;
->  	u32 act_ctrl_reg;
->  	u32 act_clear_reg;
->  	u32 status_reg;
-> @@ -849,7 +850,8 @@ static int llcc_update_act_ctrl(u32 sid,
->  		return ret;
->  
->  	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
-> -		ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
-> +		regmap = drv_data->bcast_and_regmap ?: drv_data->bcast_regmap;
-> +		ret = regmap_read_poll_timeout(regmap, status_reg,
->  				      slice_status, (slice_status & ACT_COMPLETE),
->  				      0, LLCC_STATUS_READ_DELAY);
->  		if (ret)
-> @@ -1284,6 +1286,18 @@ static int qcom_llcc_probe(struct platform_device *pdev)
->  
->  	drv_data->version = version;
->  
-> +	/* Applicable only when drv_data->version >= 4.1 */
-> +	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
-> +		drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
-> +		if (IS_ERR(drv_data->bcast_and_regmap)) {
-> +			ret = PTR_ERR(drv_data->bcast_and_regmap);
-> +			if (ret == -EINVAL)
-> +				drv_data->bcast_and_regmap = NULL;
-> +			else
-> +				goto err;
-> +		}
-> +	}
-> +
->  	llcc_cfg = cfg->sct_data;
->  	sz = cfg->size;
->  
-> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
-> index 1a886666bbb6..9e9f528b1370 100644
-> --- a/include/linux/soc/qcom/llcc-qcom.h
-> +++ b/include/linux/soc/qcom/llcc-qcom.h
-> @@ -115,7 +115,8 @@ struct llcc_edac_reg_offset {
->  /**
->   * struct llcc_drv_data - Data associated with the llcc driver
->   * @regmaps: regmaps associated with the llcc device
-> - * @bcast_regmap: regmap associated with llcc broadcast offset
-> + * @bcast_regmap: regmap associated with llcc broadcast OR offset
-> + * @bcast_and_regmap: regmap associated with llcc broadcast AND offset
->   * @cfg: pointer to the data structure for slice configuration
->   * @edac_reg_offset: Offset of the LLCC EDAC registers
->   * @lock: mutex associated with each slice
-> @@ -129,6 +130,7 @@ struct llcc_edac_reg_offset {
->  struct llcc_drv_data {
->  	struct regmap **regmaps;
->  	struct regmap *bcast_regmap;
-> +	struct regmap *bcast_and_regmap;
->  	const struct llcc_slice_config *cfg;
->  	const struct llcc_edac_reg_offset *edac_reg_offset;
->  	struct mutex lock;
-> -- 
-> 2.34.1
-> 
+ .../bindings/input/touchscreen/novatek,nvt-ts.yaml | 62 +++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ drivers/input/touchscreen/novatek-nvt-ts.c         | 78 ++++++++++++++++++++--
+ drivers/platform/x86/x86-android-tablets/other.c   |  2 +-
+ 4 files changed, 136 insertions(+), 7 deletions(-)
+---
+base-commit: 6578aac6a270bd6deb9f9319b991dd430de263dd
+change-id: 20240518-nvt-ts-devicetree-regulator-support-ac9e49b78a16
+
+Best regards,
+-- 
+Joel Selvaraj <joelselvaraj.oss@gmail.com>
+
+
 
