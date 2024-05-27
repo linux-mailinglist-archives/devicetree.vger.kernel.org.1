@@ -1,119 +1,187 @@
-Return-Path: <devicetree+bounces-69391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54AFA8CFC16
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:48:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE7C8CFC1C
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8666E1C21D77
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:48:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51103283A2F
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 08:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36D913E025;
-	Mon, 27 May 2024 08:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E1813A3EB;
+	Mon, 27 May 2024 08:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="bkMUmjYJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FRTSsGab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9D913DDDA;
-	Mon, 27 May 2024 08:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102AE13A3EC
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 08:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716799467; cv=none; b=BhVOfGcyKajBdDRK3otaxF9xxNi+9+oh19J589boxxohZWDssxSuaZmVAoZrDvGh5VDVhXQiabfVEt1DKI8RrBfbdT20EjfjuL+lZnA4csVljZiC7rkK7JuL2v4T+UC8lzzJAV8XWWnjYqHkykVZKPYUgOvYOcPO+46O9ZaWH3c=
+	t=1716799594; cv=none; b=pG41pFuQ9j9cgGvLMs5JcwZxp7kdqwLIzDt34/FELEjaFLUbp1ZM30bfpfTuHie+b1h9mfdwcYC5TRqeshtlUxPfpE43mxl0GZauwgB7hJT3ZmZilUIOUl0QFZe4LAgr232ZjCrA5B0MOcIa39HDxer4IdMxhvVHnmRckJRpuGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716799467; c=relaxed/simple;
-	bh=Ukgl75mgGmk6IA6kEl0uX4YlVVB62XIsM+pDa30dGc0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bTtsZkEgnomXqubkx7SxXYVhKslLVJ6DeEAZPgGQbEU17Z0YYka3DuMOcsAUerGzwkSVkWonHcaJICUMT7nmt+H3pRhfrRpIR8DT2nsblZnEQj1ENpGTsNxxcelLMfmriQTMf6cyS9inweZ9En3pCbX5e/bCAdss+dk+vMrWCHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=bkMUmjYJ; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1716799455; x=1717404255; i=wahrenst@gmx.net;
-	bh=Ukgl75mgGmk6IA6kEl0uX4YlVVB62XIsM+pDa30dGc0=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=bkMUmjYJDfhubujkLlJxNxkdfX+E+JjFzOmAI/a8E7LHnGBrYGcLXIGPEqKqFsca
-	 PLCsFUNFcTkdZ3Z16KxUHqnSi6uz7vLcUolnNl/1tzZY2/luvyFQjHTfTEHyde1ie
-	 eJtYzhxkIoCyqpd7H0uHHQw2qylQs1JV/6FMXtLE4iq+xeky3hnMHc3dRchUzdY8y
-	 YpyzVwvy0IQhVaI5EFPmMo6lhSjbdz/JfDth/Yex1RrRSbvPJNeuRhzKr/a1GWKK5
-	 2H59Erum3Gtnt65L6FI7NZM1+aIYp4z9pt+2DJnYMfBzpMYrTrrNZGKDZeQMm6qbR
-	 tWLW+ulE42GOHfwgZQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.126] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MmUHp-1stxOw1lj7-00iPmg; Mon, 27
- May 2024 10:44:15 +0200
-Message-ID: <33d009cc-3378-42e0-8d40-a74a0b583a44@gmx.net>
-Date: Mon, 27 May 2024 10:44:14 +0200
+	s=arc-20240116; t=1716799594; c=relaxed/simple;
+	bh=70rY50aseYI64Qm8+oXFaZPxdIOsmiHvyjmjaE2BkRU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VhViwlFLDZP86kOBloCAiQwHVSBkIMNlndw1vfzoy2Ls5/K4kuOI9svMeWY76MldblRq1z5xzcw/zRVHU+UPDd4IxKMkM0Jc5tGLVM1xqvNoyXqsPqmYWiXYU8STDn1fKeDvIVG6psgYiCK/iRzan7skbSl+Pe041OO9Pq3BrY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FRTSsGab; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2e95b03e0d6so25862381fa.1
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 01:46:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716799591; x=1717404391; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TCW+HFtoeaierrg0K+2TVOUHq8VHzqfUi+kUPqpq30g=;
+        b=FRTSsGabWb+ngqdHMp3yhgqdJ+Tl21ir+gQNAsEqVuVyFsGJijN33MIIbgmCIbDXiT
+         bTeMQP4z7G7ZL5HY8hQl2dZfEgbb//4j4RsLFfrQ/qldFkC+B68X7O4ZTeCgabCs5FMs
+         8N/Pz0XISOfops40CHRO8kw4pJxmTrMMeKR9bRtBIm/bZAtVnAe3AJHP2WupjpmKev5B
+         QsX9H48FOzteC4BvvZnboWZ/OZvWAv0VE0wOyMIg7T3r8FNK1CYL+rwe+5+MDesZVgQZ
+         Tgl1NpfeUPMjZ+dZCwcsWb6IT2ib+9gdSQCyrFhT05Qn1Bh+nK9U1tfsAkv6KKBckf18
+         nlsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716799591; x=1717404391;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TCW+HFtoeaierrg0K+2TVOUHq8VHzqfUi+kUPqpq30g=;
+        b=h43O/1KcCspv5aBmhxU2aCvK6fD1u/j7U+hlGwmUJ+1g4IXT1b38OF6oWwlLcXJwN1
+         W05gTm3TRROpWrg0IpQZhC9Ly1s2uYCEP2DnMi21y59tj53MzmN2teLakBvnvghRgIyU
+         iWA3p8/QSTdVavhw/9ay+ZPQcIxwCtcae6c+cx+mymyt9HmjVzg+OCUe0lPDN4rI4KWx
+         tIsKQQ4+Tvqx0Ym6Ft77N/liBSSb6AdbXScqDS1wN9Nkw7YlUGG0ZcklpWQ7tHKB5iJJ
+         fMvciqBS4OgUxLWjYyvtPxrnMphb4chfEuWE/SpOmq1+nz8b6FYodHCZRgV0gdo/dgOi
+         zn8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXUVFMVQgi0oPT9+iAzqKoGy/tlc+itkSejDp/uAjefX0OftXgL02N3PE0bzvMWHC93s1baGiDZfC5HDGEIT6gyEf96AdPEU2mxxA==
+X-Gm-Message-State: AOJu0Yzc97hFUVtOLxvTam5lq5aFN3Psxscu3xI+vY1gJFmanQnyXdEJ
+	Y11ZpWam0ELJPkRQ8G9P0sC2lhE600+d1t8ww6L1O9HSGr3sqXX25ZTvuqXwyHM=
+X-Google-Smtp-Source: AGHT+IGoIHMv7LzRXg/j0eiiJ3Hf7gEQa4vkwrOCUAOl8CxlUeLhgksZ+dNSoUDerxoQwluUxl8chQ==
+X-Received: by 2002:a2e:2c19:0:b0:2e2:3761:2ef5 with SMTP id 38308e7fff4ca-2e951b82fdbmr37512241fa.14.1716799591109;
+        Mon, 27 May 2024 01:46:31 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e95be2126esm18474141fa.119.2024.05.27.01.46.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 May 2024 01:46:30 -0700 (PDT)
+Date: Mon, 27 May 2024 11:46:29 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/7] phy: qcom: qmp-combo: introduce QPHY_MODE
+Message-ID: <v36mrliwd7rarqofbitv5mtb6kd3n3hmuwp6bgg67krnvzejd6@luityjlkb7nn>
+References: <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org>
+ <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-3-a03e68d7b8fc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 0/2] pwm: Add GPIO PWM driver
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
- Angelo Compagnucci <angelo.compagnucci@gmail.com>,
- Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20240204220851.4783-1-wahrenst@gmx.net>
- <CACRpkdYmOECdug1g2gYxjHZ-+Y040SR70UtDAgKD8yCb58Ob6Q@mail.gmail.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <CACRpkdYmOECdug1g2gYxjHZ-+Y040SR70UtDAgKD8yCb58Ob6Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:ObUVH9ggdg+OxF4a7t862fLndJew2wtBfm8LG2edmsVR2Fttk5a
- oB4uUeAjU09LlxcWDaoAvfNmpyFTFRl1CUuTYUA9t0Geata4dBbJfZu3mpL3twDlI74fcKy
- NxLaIfgAWhw5xd2Zzb7JJTyMNJenWueAcmU/YrHU29cofdVjLcZCjceZBcUAtMQiWCHms83
- nYiwhZMKjZFN6Z6w81WJw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:SdY9CAf9CpU=;69R23i35i9bHC15KD2b9tyFvb8r
- /H/Mr3Cb8tA+2wzIZQIjBOs+CC1hPrknatORalm3abQNlUPpzCR+6FFe3qvqXKrnCqzOt3Jok
- 9giJFa+lIXS5oJrQecZbXIwuHAUEvf3Hf091ng6ishsLwQ95XX5cxcE2j3f3hRmyX90cjKX7y
- /H1i7mbBOgqFF1xvtALGzf7L36kNEo0MUrySSVUhOLd1GVe9jP6msyQND903SkC0TDTbXcStW
- J+j0mW5E1UYHBTOZBRZk91DjzxBXLiDNx8UuBrRcjGNlmyGtU6CSD8tQO45lKztXfAOfrEvi4
- JnzWn42R5Fjy/YrsSWnkg5x1VGLwvGi2mXO1hA5NeVENq4u9zb2lGRBDCXaxxX9fb3j9cE7zn
- AfNGs3FN4LGt1oJd07Vkgi30Guw3vkcibu1co3A38aZvdtEdpa8OmBa2bTQs2QmKhkiDo0Fla
- z1Vfl2bOZv7dBBgkxCOjGUdPseEpK2l1+mhj+lapLajwS4qc2N4tw6ADPUg1V4BEz7Mjg5YYf
- fkb7mobnZDdXb/igCPJ6dbXE2HBnE2ZSYqA166FuZNgHyMYcYCI1DNi/1+cCdB0giY7AyqH57
- foGgS/L+Fq92wH5kesXu7QLTak9m/KVIwt7zYAr7y74p+seryU/SpFYYFFUq6PB2eqFSOhcED
- spuqujxWLX40zsxuHFPtwyAra+p0KMeRjQ3VWrtedtE4dTCc5b5yo9Kcda5jLbDstC/ovhc3a
- qLvHWNm7UehfzHHRLnfvFkTTeYSGkU/W4Nxte6ez+zx33bBiaQq2CCBUaHMo4InBFK6XgMgCa
- Q6lamLn4wE4Bqd9+rpUQtIzVMey69FCRoUktIBpE+Ba3g=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-3-a03e68d7b8fc@linaro.org>
 
-Hi Linus,
+On Mon, May 27, 2024 at 10:42:35AM +0200, Neil Armstrong wrote:
+> Introduce an enum for the QMP Combo PHY modes, use it in the
+> QMP commmon phy init function and default to COMBO mode.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 41 +++++++++++++++++++++++++++----
+>  1 file changed, 36 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> index 183cd9cd1884..788e4c05eaf2 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+> @@ -61,6 +61,12 @@
+>  
+>  #define PHY_INIT_COMPLETE_TIMEOUT		10000
+>  
+> +enum qphy_mode {
+> +	QPHY_MODE_COMBO = 0,
+> +	QPHY_MODE_DP_ONLY,
+> +	QPHY_MODE_USB_ONLY,
+> +};
+> +
+>  /* set of registers with offsets different per-PHY */
+>  enum qphy_reg_layout {
+>  	/* PCS registers */
+> @@ -1503,6 +1509,7 @@ struct qmp_combo {
+>  
+>  	struct mutex phy_mutex;
+>  	int init_count;
+> +	enum qphy_mode init_mode;
+>  
+>  	struct phy *usb_phy;
+>  	enum phy_mode mode;
+> @@ -2589,12 +2596,33 @@ static int qmp_combo_com_init(struct qmp_combo *qmp, bool force)
+>  	if (qmp->orientation == TYPEC_ORIENTATION_REVERSE)
+>  		val |= SW_PORTSELECT_VAL;
+>  	writel(val, com + QPHY_V3_DP_COM_TYPEC_CTRL);
+> -	writel(USB3_MODE | DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
+>  
+> -	/* bring both QMP USB and QMP DP PHYs PCS block out of reset */
+> -	qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
+> -			SW_DPPHY_RESET_MUX | SW_DPPHY_RESET |
+> -			SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
+> +	switch (qmp->init_mode) {
+> +	case QPHY_MODE_COMBO:
+> +		writel(USB3_MODE | DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
+> +
+> +		/* bring both QMP USB and QMP DP PHYs PCS block out of reset */
+> +		qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
+> +				SW_DPPHY_RESET_MUX | SW_DPPHY_RESET |
+> +				SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
+> +		break;
+> +
+> +	case QPHY_MODE_DP_ONLY:
+> +		writel(DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
+> +
+> +		/* bring QMP DP PHY PCS block out of reset */
+> +		qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
+> +				SW_DPPHY_RESET_MUX | SW_DPPHY_RESET);
+> +		break;
+> +
+> +	case QPHY_MODE_USB_ONLY:
+> +		writel(USB3_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
+> +
+> +		/* bring QMP USB PHY PCS block out of reset */
+> +		qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
+> +				SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
+> +		break;
+> +	}
+>  
+>  	qphy_clrbits(com, QPHY_V3_DP_COM_SWI_CTRL, 0x03);
+>  	qphy_clrbits(com, QPHY_V3_DP_COM_SW_RESET, SW_RESET);
+> @@ -3603,6 +3631,9 @@ static int qmp_combo_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto err_node_put;
+>  
+> +	/* Set PHY_MODE as combo by default */
+> +	qmp->init_mode = QPHY_MODE_COMBO;
+> +
 
-Am 27.05.24 um 10:22 schrieb Linus Walleij:
-> On Sun, Feb 4, 2024 at 11:09=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net>=
- wrote:
->
->> Add a software PWM which toggles a GPIO from a high-resolution timer.
-> Is work still ongoing on this patch series?
-i addressed most of the comments of V4 except of the possible interrupt
-storm in case the period/duty cycle is set too short (comment by Sean
-Young). In the last time i prioritized other things and tbh it's
-unlikely i find enough time to finish this within 6.10 cycle.
-> I would use the patches and I like them a lot so I'm happy to help if ne=
-ed be.
-I could rebase my latest work on 6.10-rc1 and send it out as V5. I would
-be happy if you want to continue on that driver.
+I see that COMBO mode is backwards compatible with existing code. But
+shouldn't the USB-only be a default mode?
 
-Thanks
->
-> Yours,
-> Linus Walleij
+>  	qmp->usb_phy = devm_phy_create(dev, usb_np, &qmp_combo_usb_phy_ops);
+>  	if (IS_ERR(qmp->usb_phy)) {
+>  		ret = PTR_ERR(qmp->usb_phy);
+> 
+> -- 
+> 2.34.1
+> 
 
+-- 
+With best wishes
+Dmitry
 
