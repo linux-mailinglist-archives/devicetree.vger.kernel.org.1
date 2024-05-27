@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-69485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A68978CFF7A
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:00:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B62D8CFF7B
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:00:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 672B21F23424
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:00:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 363652810E1
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897D815DBB7;
-	Mon, 27 May 2024 12:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0178B152DEB;
+	Mon, 27 May 2024 12:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j6FZI09O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZbE78n4V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1121134B6
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C39D134B6
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:00:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716811211; cv=none; b=UhdqEGiuDaV3cQpxZqPEpz6K1C1Q30JZrEk3D7LS7N5AEhUoVanS8TVL/+tSb4A0svC/Uw+eOAy9poz6YYTKpc3jY+aUl5zMNhsxRBNwk944S3ByqCZkvT1wtzwWVTttxxbNAiO0NSsKJnotnaT9JnHRvBvu8+Iu7Kh3LnZL3oU=
+	t=1716811213; cv=none; b=WlyjRRLYxxRhIbEwccVaySpSEAQqdnsEBf9SGE/1zekFRAi3EW+f8maUEnB+NALAKKDnSFbXBFW2Ucr9RlUaMqseOsJ/HXCA40khXrgE9qF28ULwaK2iZz/wwxNxyUf9M9DXVjOCllTrKJVNFsd//EPBY0tB/pFWTtVPbfeSSdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716811211; c=relaxed/simple;
-	bh=2h8Rqwlkewq9HA034vFUvlZEf0kGCrJO98FkmLJmxA0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=nSYnhSFEBa8WqoJmmhywU7uUhgUPC1lzS5KL+QfvL6EJxcf8Eu8MbOdMHE3Q5clf731mzNuBclh4AaHfPpG2Q0vxh205MQeN5C3S+tugFHucyGIz51IEUXGIvsguiwBCGk9wICcjc5VBIQ4HmFIPM08xsMh7pIvfw1fjSv5jt6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j6FZI09O; arc=none smtp.client-ip=209.85.218.43
+	s=arc-20240116; t=1716811213; c=relaxed/simple;
+	bh=hCCFMqs+6z5VOeYftsE0W99hWXyjywd5/dFJKaW/7ZU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=R1XZoTnll4SxAMqGQ243BZDl//dL6UvLYuKqGh8wUF7tY0ENuEqZwuTN8WTTY1pLNJf+wF41TkjvjK+keSp7U3NbaaMloiOWFba61fGfx3OVQ8AsyyJ8YjkyxySQmQ+aL25lf0VOe5zF8Imb/I6z2uvKfDGUScQN8BonhxwZNRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZbE78n4V; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a6265d3ccf7so376734966b.0
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:00:09 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a61b70394c0so912227066b.1
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:00:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716811208; x=1717416008; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hhafMyYkrX6Ps79nQk/HQYlP4TSCjh5F53nTwJudH2M=;
-        b=j6FZI09O4+WZrX0aZEBDLlpHs3Pox6g+5lBch8fgOZ1PrxXZjlIPwN8wzrvTZWVo3V
-         S87i4affKwAlMpoDzXgDPTW9BwYR0YwR2eBWl2nFfe86u2tJgS6SU3d3bG0n2UQCIrPP
-         5Hm2cw+5bJShgIA+ayfSZ3PwoSHuxXBNpiw6kVcKwX/grfEhtqiTINZbxnm2twpwuPF3
-         GbpN1vl83Ar3VmRduc1W8V2IfGgedrbAgUglI8GLYuDp34KJM9qf4myDytAY2yE8WfHr
-         zaAT+55yE1Y6aokKN1kyCjAkh5Z6U71+Ke8WN8F0C1ahYmzCJ6NPxsDIKaLE/vfneCPw
-         Drng==
+        d=gmail.com; s=20230601; t=1716811211; x=1717416011; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D4b6kxHXn2wrQHXxVcVKCdXvHs0ACru8nrxrnyesn9I=;
+        b=ZbE78n4VoVtzRCPqHmpGpk8OoIF5JXGwl3IU+UConzlwub9odony84txWVnN4FiiQQ
+         nz49U68zpCdMKISbfuiO+h4k6G4jzUnJX0YRDiVfy6fuzmZSv5hngkVsYz5AT37ndq43
+         rPXl3r90t84auFxMt5TJmn5N1/vkSPI/oGBtutMQTbdrM7q0J4zxFPUZYYljm7WLkwjX
+         yukKIi/OrqgsJcY/33smUDQoH7cnHBXsdZSixxZONNw34BzTKL2uLxO60HLNpPV6IeFv
+         tIF8GTGzR7TuL3xrsKT17W2l1BLFzoMv5/BDV8YTKsZ6SnDB0Uju0y3qp3EYT7ZJHwQU
+         vJsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716811208; x=1717416008;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hhafMyYkrX6Ps79nQk/HQYlP4TSCjh5F53nTwJudH2M=;
-        b=b9CgL6KUx7SYG9mDgFAspuI+LH7PQGI1GPOJQmvGsVt7BCmwbSapK2SIKPw9u5+RA1
-         HzLTuazhefkzikM9Kqoy8R6MslIO9oASrUWh6fNTkcE28My2/2u/tqCL+KWypn+ZmqB2
-         LQ2OtzYqQS88aDiZ3uNs10KFhgUsNkA6ZQ4EYnzkDmOmeqKAz+NXWFGaglOo8WcxKcX4
-         /rtgIOJPF34tiDxSeS6aPrcSE2z3Ljp3/iT1srSCqZNDO2HR13cWfE0I+TIAGz4Wwga9
-         s+aAR9Xdh34fpY6lBYHGrGVXE/oUS6dyBN+BEOYrT8Bs/txCYgGLxpl+zcXGqboDlCy3
-         ICDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnnzTf/bFYut2SZ4aGtxDbHsUayZAGa1GtXwJrPyhri5TWjedjb+BecJQljZtH5mWn9TBLcrXo0vZMKAaYu309OHbC6uzw1oDckQ==
-X-Gm-Message-State: AOJu0YyTsE8vWeTvprsIVQJAcXnkhaOh0NOdeGJ6W1yDTHXKIAVGTb8Z
-	EzXZDphl9e8LYquopFlFZx/2DdXLNsqkFMrMJwdQ9sQ4CW1xJGjy
-X-Google-Smtp-Source: AGHT+IHXyqU91SZsF/SS8uKpX0+zjL62tJ/iZ7IZum1uxfDLP4xHlxHwVSiQEbMzdxUF/vH/7q7RvA==
-X-Received: by 2002:a17:907:512:b0:a59:29ea:ed1d with SMTP id a640c23a62f3a-a62641ce042mr508744466b.22.1716811208070;
-        Mon, 27 May 2024 05:00:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716811211; x=1717416011;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=D4b6kxHXn2wrQHXxVcVKCdXvHs0ACru8nrxrnyesn9I=;
+        b=tFmgV3RAhc79qF8Ga8KStdt27mvEBHrBxEMLfGL4kf2Ua+r3QK68NYVuHQOXkM4jGf
+         h+Up14kAJANvPN/uqq6AtO1McYSoDBlrn8o7aLEo0Ct7v+X3itbK9ahNKrp5ii7glzPV
+         e+hRi4SvXd9YBxdXX7DYE/1R4J8J60izWh3ytjgErdKiEYIBj2knIjTSr+Rcyn3/lnX0
+         0R0GBh+W9JXepn7jR/sM7A6sDq6JacThysaElyMqJscf7WwyhWsY8oyEr2Xpr4ykVnVP
+         oM0o+kTBTdOZnaYrkGxT02W9GtmB8Yzz+OXEGdIUppdu1upmJ6skRdzrAJtMTBuUhfvy
+         mycA==
+X-Forwarded-Encrypted: i=1; AJvYcCV/RwVVriSoyag7n7s7uy3OJiuHvF4PW15nPXxCObupHsQ7r/AXxwP19ZfF8WnyLpWuLj6Um2gmluAWSSPoTo4Qv2DmcuYlKs6jig==
+X-Gm-Message-State: AOJu0Yy7VnFFBfHkIa5pvNZVq8AjCfMsJ2fDEP93fGCQJULmbqF41w5P
+	QEEFjEiTTBfd2tbznAWIezpSsOidWNlaHg2Pv++CVuomEUqQ3uZV
+X-Google-Smtp-Source: AGHT+IHuImaftf9Wnm9N4conq8Nnfqpipw/+l9o3eMb1o8R7JwO+DBYQObs1z8e75S+0TjhobGg1vQ==
+X-Received: by 2002:a17:906:2484:b0:a59:cb09:41d6 with SMTP id a640c23a62f3a-a6264f120damr576511066b.49.1716811210521;
+        Mon, 27 May 2024 05:00:10 -0700 (PDT)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cc8da37sm484669766b.183.2024.05.27.05.00.06
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cc8da37sm484669766b.183.2024.05.27.05.00.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 May 2024 05:00:07 -0700 (PDT)
+        Mon, 27 May 2024 05:00:10 -0700 (PDT)
 From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -86,10 +88,12 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-mediatek@lists.infradead.org,
 	openwrt-devel@lists.openwrt.org,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 0/3] Add initial DT for OpenWrt One
-Date: Mon, 27 May 2024 13:59:30 +0200
-Message-Id: <20240527115933.7396-1-zajec5@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: add OpenWrt
+Date: Mon, 27 May 2024 13:59:31 +0200
+Message-Id: <20240527115933.7396-2-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20240527115933.7396-1-zajec5@gmail.com>
+References: <20240527115933.7396-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,30 +105,27 @@ Content-Transfer-Encoding: 8bit
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-OpenWrt project (https://openwrt.org/) celebrates its 20 years by
-releasing an OpenWrt One product. Early units have been produced and
-will be followed by DVT samples really soon. Then the mass production
-is about to start.
+OpenWrt project (with the help of MediaTek and Banana Pi) has produced
+its very first own hardware. It needs its own prefix.
 
-This patchset includes very initial DT for this product but with the
-pending work on MT7981 all gaps should be filled soon.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Announcement:
-OpenWrt One - celebrating 20 years of OpenWrt
-https://lists.openwrt.org/pipermail/openwrt-devel/2024-January/042018.html
-
-Rafał Miłecki (3):
-  dt-bindings: vendor-prefixes: add OpenWrt
-  dt-bindings: arm64: dts: mediatek: Add OpenWrt One
-  arm64: dts: mediatek: Add OpenWrt One
-
- .../devicetree/bindings/arm/mediatek.yaml         |  1 +
- .../devicetree/bindings/vendor-prefixes.yaml      |  2 ++
- arch/arm64/boot/dts/mediatek/Makefile             |  1 +
- .../boot/dts/mediatek/mt7981b-openwrt-one.dts     | 15 +++++++++++++++
- 4 files changed, 19 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index e474055359f1..eabc353b8512 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1084,6 +1084,8 @@ patternProperties:
+     description: OpenPandora GmbH
+   "^openrisc,.*":
+     description: OpenRISC.io
++  "^openwrt,.*":
++    description: OpenWrt
+   "^option,.*":
+     description: Option NV
+   "^oranth,.*":
 -- 
 2.35.3
 
