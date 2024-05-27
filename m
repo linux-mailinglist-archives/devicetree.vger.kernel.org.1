@@ -1,119 +1,106 @@
-Return-Path: <devicetree+bounces-69417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A278CFCEB
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:31:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 381F48CFCF2
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:32:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37BB51C21A9D
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:31:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6E721F24F41
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 09:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F16C13A3F1;
-	Mon, 27 May 2024 09:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FE013A40C;
+	Mon, 27 May 2024 09:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZatztFKV"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="lyUtwL1h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EAAE13A24D
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 09:31:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556D2433C8;
+	Mon, 27 May 2024 09:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716802290; cv=none; b=DgByv31ar/Ny99Chowty0AB+Q3CLZEjZ2nmlpztU+2tAY1YaDqBJSEKGFmiCbwRJVSQ7jZTk+trBQi1MjXNn8L1rz9giYHCHLcHBVVdaMupcdtD+WDkM8KXA/gcJ1ka9H8Nl67LmhuR69T9soGAz8AgqbzqgV0ta+9TOLnp5jfc=
+	t=1716802322; cv=none; b=aYImyEpBlyyroKvAafTboOPYfCuR7sOOZo4fYfghma7foOznwGPrV6ub38i6xoS1zsrBQoFdOvKJuSqne4SsaQ1e5BooGzE8mhe57EoPYNQSk6fKfYdBnNrpaWUPBqBfUuEa+FHHUTZ6xIMYErzgrLhgN+Kp4hWAIgjY6kgk8MU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716802290; c=relaxed/simple;
-	bh=7QuK+dRxWekrg4574FU6ZFuSg2KV//r1UAoPSO1UBcg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hkxgobet/567e5Hj6vZeoKCE20AAOMeE+rBAjvOzE0TCVdnmNg9k4pTyGSlozWyhG82ZkIaP17nKgMWm80D0aSjIVD/3cLmvPnqPCrNFCUmlsqY7lKFgfYYuXoOvx5JDULYTQhm+oianz45YtdHQ1N33VaD5kmpWiqm59eK0JR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZatztFKV; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5238b7d0494so11770798e87.3
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 02:31:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1716802287; x=1717407087; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Nsle90kquxqyGATVLGaUwfEqMygpQJmcBP3wYD4Xyos=;
-        b=ZatztFKVqWS4qJ8Oxy++xStcbzHAQgPQR2v71e9dokfKPy4I4lty/oZ9SwO4cjL2Yl
-         GiHNwaOx3cYy4+XCv3f9UDkxGG/rRZoovDijOFoXz1Hf+u+F/9F+UADhMC5nSnxz34in
-         UTIce5eoTpllOEJe5EeYhdUKNhZCW53lSfEDg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716802287; x=1717407087;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Nsle90kquxqyGATVLGaUwfEqMygpQJmcBP3wYD4Xyos=;
-        b=YPWkBxGzInT7xmAn/lI/CVfCuOKN9AX9Jr42oQd05zhTbLqGvUHtSi21/TWJoK2PQ1
-         mwmVGq0rKjeCiOoL70XQ6bcAoVfsl2abj8jornjOQlHO1RuMm46laRyQ5ah0v+89wPiK
-         +vOnjAg+A/yxdM8E3lry84yVGg9CwdnRwKsIpxZvu4RsSJ222W7bDoalWeNEukzO6DB7
-         EjX5R1Mj0kDkWQOKueqIJpStrHuOipP01O8kaW4osS9MZlEsC9aXZiEhWsT1HnjP/14T
-         /MgXZYnxPPSc+VdYyQhj3L7uz+V5kUOsO7tZiG+LZS5bVNannbcl0L5NRfqhPfx2ZefE
-         ST+g==
-X-Forwarded-Encrypted: i=1; AJvYcCW3LH2ln2RSa7YKm9osd069IFFF4idL6Vd5wgH69kPjVWTLuKnIDM7hKmdfaIUKeX9bfmTlj8fUu1rMgZfI3jwP63niPHoibzKCww==
-X-Gm-Message-State: AOJu0YyUiN24sCUYfrDhX7iD5jdV0TlnfHXBx0tEu+JY+1NPvj/nllZx
-	znTjQnaldCrh2V0h2K7XaRyoZuHt4OCVxa0xBlahcwKP8HMYGVM6y8OShjIPHMYAb3lfghQ351V
-	y+6mh+rgc6lbG877XDWek7qZIVqTmzzlSiPM0
-X-Google-Smtp-Source: AGHT+IEkCNM2qY1QxwWMjQ5Y6VGnSYpnCwe9tanGjyyeQWcnQ9MczhIoPwNeqRZhqbClYjaT+d8vnb65A/W5+FPMd1k=
-X-Received: by 2002:ac2:4d91:0:b0:51f:53e0:1bc8 with SMTP id
- 2adb3069b0e04-5296556f885mr7749628e87.25.1716802286862; Mon, 27 May 2024
- 02:31:26 -0700 (PDT)
+	s=arc-20240116; t=1716802322; c=relaxed/simple;
+	bh=ApRD/JV5DjBsmTo/BHbms3Pr4YCRltiPLcRFnKYLCcc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EoJbxiiCpWePOfVMfQguFDf6UFZbukdzAlzKaiEGL/CKFiEg8ReFumSlqRfGzYsDTnj7u5D3zXAtQJTxz7lCL2NitUe2tgywJLDD2f5K8cuXU31QHbfGfhaknitnXpnl7PP5VFG3nrxB3Pket8U8/134D1pzOpWb/KSrv8yDtDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=lyUtwL1h; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1716802312;
+	bh=zg/jzvmgQoPtADo1lTMA8ByShlp6aURw3wEJVEo/JCE=; l=1034;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=lyUtwL1h2ETU7az/7YvnraxroBTWkvIC2EYyLyWNBEuetxARlBF/51unkrYhR8iIe
+	 D1EU7Ru5C6smRWzqzf+3M2a5II69Z0qw92MLtSLdtHOAWLBDYBJss+CDmktvCOxgxH
+	 mSTMjiB6N+nGTOHHlPmamjh3Oqqd/fxP2AihEI/PjXApRI7Xfhuv17PASM5HajcIPa
+	 LiCcUqDEDHZxjX/3Lgfo+8taKd8XDWU+tSK/jeMaDqVy8NqiXRup/bqFaXdkaiMhs4
+	 XNoxiC+CCGgppqBdTwI9XFBSZO2X3RcSv+yT7yLRIYYefmdrEqYXxfcmNcvV4aWObs
+	 SIwPpOyUpSBOA==
+Received: from 192.168.10.47
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213191:0:AUTH_RELAY)
+	(envelope-from <alina_yu@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Mon, 27 May 2024 17:31:36 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 27 May
+ 2024 17:31:36 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Mon, 27 May 2024 17:31:36 +0800
+Date: Mon, 27 May 2024 17:31:36 +0800
+From: Alina Yu <alina_yu@richtek.com>
+To: Mark Brown <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<johnny_lai@richtek.com>, <cy_huang@richtek.com>
+Subject: Re: [PATCH v3 1/6] regulator: rtq2208: Fix invalid memory access
+ when devm_of_regulator_put_matches is called
+Message-ID: <20240527093136.GA18009@linuxcarl2.richtek.com>
+References: <cover.1715340537.git.alina_yu@richtek.com>
+ <636cbe817ad61a18f291b5ec8938e79043b8a646.1715340537.git.alina_yu@richtek.com>
+ <f86923b8-a8ab-480f-901a-f29b0dbb0df5@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240527092513.91385-1-angelogioacchino.delregno@collabora.com> <20240527092513.91385-2-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240527092513.91385-2-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 27 May 2024 17:31:15 +0800
-Message-ID: <CAGXv+5G_n1B0yaoOBx0k8syRPma=7NnuRcSL4M0N0BJONa5fCA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpu: mali-bifrost: Add compatible for
- MT8188 SoC
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: boris.brezillon@collabora.com, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	steven.price@arm.com, matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f86923b8-a8ab-480f-901a-f29b0dbb0df5@sirena.org.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-On Mon, May 27, 2024 at 5:25=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add a compatible for the MediaTek MT8188 SoC, with an integrated
-> ARM Mali G57 MC3 (Valhall-JM) GPU.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml =
-b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> index e796a1ff8c82..4cf676190ae8 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> @@ -34,6 +34,7 @@ properties:
->            - const: arm,mali-valhall-jm # Mali Valhall GPU model/revision=
- is fully discoverable
->        - items:
->            - enum:
-> +              - mediatek,mt8188-mali
->                - mediatek,mt8192-mali
->            - const: arm,mali-valhall-jm # Mali Valhall GPU model/revision=
- is fully discoverable
+On Wed, May 15, 2024 at 04:47:37PM +0100, Mark Brown wrote:
+> On Fri, May 10, 2024 at 08:06:20PM +0800, Alina Yu wrote:
+> > In this patch, a software bug has been fixed.
+> > rtq2208_ldo_match is no longer a local variable.
+> > It prevents invalid memory access when devm_of_regulator_put_matches
+> >  is called.
+> 
+> This doesn't apply against current code, please check and resend (on
+> Linus' tree rather than mine at this point given the merge window).
 
-I believe you also need to edit one of the conditionals below so that the
-number and names of the power domains are properly constrained?
+Hi,
+Mark
 
-ChenYu
+I apologize for the interruption.
+
+I've resubmitted the new series for review at the following link: 
+https://lore.kernel.org/all/7c28d2e61d2fc13066ba4814d1ecfab8f344aaad.1715846612.git.alina_yu@richtek.com/
+
+This series is based on the previous submission found at:
+https://lore.kernel.org/all/5d56b79c94de63fc86b5a70b7e374da4240fee8b.1714467553.git.alina_yu@richtek.com/
+
+I would greatly appreciate it if you could let me know if this will be merged in the future branch,
+or if there are any mistakes that I need to address.
+
+
+Thanks,
+Alina
+
 
