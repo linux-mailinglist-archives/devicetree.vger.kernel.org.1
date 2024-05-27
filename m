@@ -1,116 +1,109 @@
-Return-Path: <devicetree+bounces-69504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF18B8D0048
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:42:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A08488D0053
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 14:44:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F102D1C20A7E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:42:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41CAD1F22C1A
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61FD115E5B8;
-	Mon, 27 May 2024 12:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629AD15E5C0;
+	Mon, 27 May 2024 12:44:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mROal7UP"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="up2iwDuf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB32A15E5A2
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 12:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFF115E5A9;
+	Mon, 27 May 2024 12:44:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716813744; cv=none; b=oPIyo3EcqApKpbu0Yet6TfXROWX240TALrD71CDuCtqkbHX3QiTf6pK5+XUsmDOG124dMSHSTVaBB9PfAfNwjNdBc8Mq1aPhHNn+wDOTXZbADSwtqLZXNEWsEJ7m5d+hoUp85SQhfVIVOHWfT3xZqUWVXD96oYIE2PhMwyR13Qc=
+	t=1716813883; cv=none; b=S6lGetuN/W8os5nXRLltZ9fkE+vQv4vRAWVLZamOIYg+KA4kHLio/bPtns/GBkIPGZQggLyVyriz0hAo+u1oLowVekENKbxTr6Piq/bgkuGtFzOi/uwE+V5mINu51l8bG/2PpWJ09XABFq915YaxrxOf0NJvejOz5x//zumuOzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716813744; c=relaxed/simple;
-	bh=gvmIvei/evck27eAyXPfMfAUpIW//VOl8Dual8yqM7I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b3tj+wLJ1pldLxyBKf2U8RlHUQmCfslIQQZlRJJJuh3QLUpeJZL5QDszv54s7aETEWf4lRYbRFeuYr1wV3mNyVnJBULKWb42QfiKuVLH7mN8vaw9+XQUDI2e4VVAIAMlyPTnoDYOiaQtSZo8LUrxO3mjyeXF3k0jalmrQjONpPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mROal7UP; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-df79380ffceso1051145276.1
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 05:42:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716813742; x=1717418542; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RreWtAd7Wi7xpCgHNvoy0257vlpp2GBbsNvbWW0dsCg=;
-        b=mROal7UPeV2+tDOeg7vELm3fdnAOS2UtsxNIQR93+IGkKg2PeHQ4YyjhmoAj1aa3/r
-         A2yFsVPYqHOfW9WEXIA4MbOetgHi+ea1yB20ZLG1PmNmtQIDaQwDPsvbcPYe99ayKRIX
-         VJZmoV4mFCM4bOFV/bWoNX8qfELEM2p2r7jBu4tiITj0KXXrxcPSaiA1MV/G4vjTM0lB
-         mVlC9FSYngw4/VlTY5UqiDFXSESXuteL3bfKTpkB5dekpP7+G3DSPHGc6F0MBO3Jvn8d
-         JterMso9fM9vfabEGXWrp+WvMOLCpmhal/pNqcJ/vHju21Z3joHdTpUD/tmLzcUO+skT
-         sbDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716813742; x=1717418542;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RreWtAd7Wi7xpCgHNvoy0257vlpp2GBbsNvbWW0dsCg=;
-        b=wwzlKEE5cghPGnBL4XnqViXp9fafeJFtFThALkmjOQ2U0f4M3omQ9Cd39vBZE3bg6w
-         vdmXAfw7Bx7Inj7X9B2LWXUOFqMQZWOWLNy2ejlnR+46Lm+NjuMdNbZX9Oqh5iWCwL/3
-         t7YLx2UeGXD0uPV1D/iUy+CL4JW1gV8BJfUz/IQP0OL8CWLsgjttMG7plsqbRfv1RrWI
-         UbwvXJJuY/vfzVT8i0/KiJ9i46Z5akbXox2rl0a/aC7lMFHxRvGkgOmJqqXBKTGE2zUq
-         trLEt3yRRQ+nFDpYbX95yoO8VJg9aAvGajSltc6SpXdZt5JEcxF3eQovNSliCgVq1RLC
-         8FbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWkjmEj+D9Dt1q8QJgPdTsia/rE5YXAnpHGhZRUQqWLy4RpnG3OGa4jirbm20XxHIBflpz2Hic/RdpyUesfGaeNQH4yN9mrprp+Jw==
-X-Gm-Message-State: AOJu0Yxpo44fqf7FBo+svF52vQCrRakP00LXJuR2jeat/wmzCF2qdHfM
-	c2u8uxhWIkf3BCF7KzXahp4N8HGytiibJzdpBtSnXKUGIxjwOUJWCDFwzPZz1wsj1Q1Qw80Wud2
-	pubJoSyIt9ghHwpb3RguaD2ZYOmeawSPrOOKarQ==
-X-Google-Smtp-Source: AGHT+IGnKKyNaK0erydWgd+7egLyO1LEZVbwIGZL84HNMIAWKZun14kUnLhTrRDtqLO6jO06aGMtpPufyBXFe4UUfcs=
-X-Received: by 2002:a25:c302:0:b0:df4:d98d:3e4f with SMTP id
- 3f1490d57ef6-df5422399dfmr8673203276.12.1716813741865; Mon, 27 May 2024
- 05:42:21 -0700 (PDT)
+	s=arc-20240116; t=1716813883; c=relaxed/simple;
+	bh=XGq8EBx7YBbAZYv3a+yoVQGfuikgMWgloGnI4v0Cqqs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZByYja89vKqLXr0sZCVuFnhjxl9dB5VvoMFkqQCDZ2fDYqi+be/5qvphmVRA/VgUESXNGkQa89CjhJalviUvMatykrwIFEBbeDWd0RighH2bgVhNOXADnIqNWTrXsV7rPakmw7ymKdTVwpOUWuI8m6ijk0m1yqnNxRD0lnAKkOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=up2iwDuf; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44RCiRqs033804;
+	Mon, 27 May 2024 07:44:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716813867;
+	bh=znYaiwd1zQ81t8MWJthN/5rFgqs1K/Pm7b/YKSKLSfU=;
+	h=From:To:CC:Subject:Date;
+	b=up2iwDuf5qTQXIxYH1ZERrFL/clWn45vi+DXRy+cdiD1J1iZVb40YfFfdflVGrUIm
+	 p7ORKFodFQERvLHeqpYdQ+9NyAse4aRpdxIrQZ/1unAsVbDdI2y1pJYVVOQ9es9ZA8
+	 btY51EylO6fgdtw0CbvM4BMvVj/GKoZR0LSHPhII=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44RCiRsO015508
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 27 May 2024 07:44:27 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 27
+ May 2024 07:44:27 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 27 May 2024 07:44:27 -0500
+Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44RCiMbT035499;
+	Mon, 27 May 2024 07:44:23 -0500
+From: Neha Malcom Francis <n-francis@ti.com>
+To: <robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>,
+        <broonie@kernel.org>, <lgirdwood@gmail.com>
+CC: <marten.lindahl@axis.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>, <n-francis@ti.com>
+Subject: [PATCH v2 0/3] arm64: ti: Add TPS6287 nodes
+Date: Mon, 27 May 2024 18:14:19 +0530
+Message-ID: <20240527124422.3553828-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240513-imx91-pinctrl-v1-0-c99a23c6843a@nxp.com>
-In-Reply-To: <20240513-imx91-pinctrl-v1-0-c99a23c6843a@nxp.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 May 2024 14:42:10 +0200
-Message-ID: <CACRpkdYP1Tp6Cxn7xMNusZi=DP6LPUUTaKOPzW4FChu3oEbkFQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] pinctrl: freescale: support i.MX91 pinctrl
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, May 13, 2024 at 11:12=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
-om> wrote:
+Add nodes for TPS6287x present in AM68 SK, AM69 SK and J784S4 EVM. They
+are a family of synchronous step-down DC/DC converters. These converters
+are used to enable AVS (Adaptive Voltage Scaling) for these devices.
 
-> Add i.MX91 IOMUXC binding doc and driver.
-> i.MX91 IOMUXC has similar design as i.MX93 IOMUXC, so reuse the
-> i.MX93 binding.
+Also since AM68 SK lacks DT node of it's PMIC, LP8733; make use of this
+series to add that in as well.
 
-Patches applied for v6.11.
+Data sheet: https://www.ti.com/lit/ds/slvsgc5a/slvsgc5a.pdf
+Boot logs (v2): https://gist.github.com/nehamalcom/1a288f534d730e8af43c48a175919b19 
 
-I haven't heard much from the i.MX maintainers for a while I guess they
-are busy.
+Changes since v1:
+- remove changing the compatibility of the existing driver (Rob and
+  Mark)
+- remove unnecessary bootph-pre-ram, have them only for VDD_CPU_AVS
+  (Udit)
 
-Should Peng Fan be added to this list?
+Neha Malcom Francis (3):
+  arm64: boot: dts: ti: k3-am68-sk-base-board: Add LP8733 and TPS6287
+    nodes
+  arm64: boot: dts: ti: k3-am69-sk: Add TPS62873 node
+  arm64: boot: dts: ti: k3-j784s4-evm: Add TPS62873 node
 
-PIN CONTROLLER - FREESCALE
-M:      Dong Aisheng <aisheng.dong@nxp.com>
-M:      Fabio Estevam <festevam@gmail.com>
-M:      Shawn Guo <shawnguo@kernel.org>
-M:      Jacky Bai <ping.bai@nxp.com>
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     | 77 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts         | 21 +++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 21 +++++
+ 3 files changed, 119 insertions(+)
 
-Maybe someone should be subtracted?
+-- 
+2.34.1
 
-Yours,
-Linus Walleij
 
