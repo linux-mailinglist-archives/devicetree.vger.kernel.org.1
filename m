@@ -1,99 +1,176 @@
-Return-Path: <devicetree+bounces-69656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2361B8D0C1F
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 21:16:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 818F88D0E69
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 21:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B699C1F246A8
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 19:16:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 343CB1F21FDC
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 19:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79D215FCFC;
-	Mon, 27 May 2024 19:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB201DA5F;
+	Mon, 27 May 2024 19:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QoC/2dW9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hsDg2wqT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A725168C4;
-	Mon, 27 May 2024 19:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ADA91E888;
+	Mon, 27 May 2024 19:55:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716837387; cv=none; b=SlRSPvX/3tJPfSGCRYZwlsYZ+XIz12m/wtpVDm8cfBXjYQUwG5kGQwRvaMSF5LmPNbfwrA6S8dL0v1ZNuaA9rcbGwxcoxXd7bL+UtNT29A0kPqm/6+ipt3b62BIpauKG0cT+rtBCE1FaKb7udQzA7A+/PV0hpFZ6daWNVjt5nVw=
+	t=1716839717; cv=none; b=XlRj6+kWuMJqQVfYdgFkFa6XoxKdRvjtr8P7Gdg0uhMKmD+pYLOUAi00enjDQIOo8cUaxNd/C1FBhJGwMHksfjm9C7Nt11n9akURInR9mhxEl1IhbJYAIPz5WIloRxPizZkeQ1Dt4/Iz/2bM3aIZdvmJxXH74GfZ+003pV9YZSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716837387; c=relaxed/simple;
-	bh=T7bsWEAFDFG79ZwT7mEJmbzZEzwUAaoHKwN5MWckEE8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n7nv9zSuP33baT07lt+Oo292rwqu96eQ2zNOtmLHKaA8mUscHeXkQn9athJXMHcT0PKuJBcp3LkXFnxBy3REuqOFuVl/aUvLmxjDtZbG6j4i8oSZKISiwU6SEes3sptCfjWlHI3sucuHJD4bYakMvl090hEl7X2sKWbxYUi7050=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QoC/2dW9; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=QuRZryWLgnrkoch3MP/B+3bMHupoxjXHg28HOaZNQBo=; b=QoC/2dW9EkWcbtGCnKVEsAsmZI
-	/W561tukYSU9Mngng4He9P3mPZD199fE1EOph00W0ebZyzDOtZu9Pch3k2vXHrlyYB23xwb+UqYEc
-	VBFdT0dKhhS5rvfikTWwFFF82e4G0hdON2K96/szPNFU5b2TilNl/VhKnIy8RxYkcLbE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sBfpM-00G6Hn-Le; Mon, 27 May 2024 21:16:12 +0200
-Date: Mon, 27 May 2024 21:16:12 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Simon Horman <horms@kernel.org>,
-	Sai Krishna Gajula <saikrishnag@marvell.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 07/19] net: mdio: mscc-miim: Handle the switch reset
-Message-ID: <82172c11-d56f-4af1-90f5-b1283b52ea72@lunn.ch>
-References: <20240527161450.326615-1-herve.codina@bootlin.com>
- <20240527161450.326615-8-herve.codina@bootlin.com>
+	s=arc-20240116; t=1716839717; c=relaxed/simple;
+	bh=CBEYxiqpwGu0lFDgZVYcDx7jyV76ErM0r3EGkJnKlgU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BvaKQthoFyUk7LrIP5OS4IPLJKfQzwtUjNUaR3900hiI4NzWBhxOqwmd23cAmK1ui7l9XGtbS86KnlIwYZKxhcu2wWA2VXpBm7kxh7qhsH/HR75HT+V0gDAc9L3ba3f8vV0zxnX04NjolAF1wospKeyHYfCIQMFJzOqYDC2TGPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hsDg2wqT; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-66629f45359so120685a12.3;
+        Mon, 27 May 2024 12:55:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716839715; x=1717444515; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4ZG1HwOVbpyB8VcDuQJ+Et/cl6rWUv4pX2AyPqNrrH8=;
+        b=hsDg2wqTvhsGFPcgK1ufQKYSJGqjsihY9Orp4F7im6f5wYZ8UdBYbsr2Te9qOMM1fE
+         9Qoq4TO9Ep7wttryV43gRWGMWvxq42kQCqaFkVX4TsJ4FMFrEibUhEbDDwYaefIFzs0j
+         qScVi4SAZhzwE4hQcb0SXQ9uPoQAxC9u9XoLICpYkaKholPc4U1ScT598EPX1AhrUFEg
+         wmtH9JaMDo0CjpwXRah8P3G/puJL/2hZkOc6zHp+cazztjZklddbwH8wTUTannD35DTA
+         R+X7jMGjyDaYof0391+cjwDahPpT6MsMZx8jguOPV7gRxQXgGTi1L77o1Yb4AG1c1NWi
+         WBEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716839715; x=1717444515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4ZG1HwOVbpyB8VcDuQJ+Et/cl6rWUv4pX2AyPqNrrH8=;
+        b=sh5d0uGJMSILIpHRzEghjohdnRhCvsZYHWsEUH+Ec7MFa4DWm+WKBfTfZ2gn57zacz
+         t/6N0v4LLcdXkPc66x4BbGYTlr/IYLeHttvO3dnt4KxD4tKovF5vroWZGE6d2TjINOnF
+         fsok1sRNxCP5kWlp73h2QkYHDABBhMa4pg+ORoMpkqBUhLWfGy3Y+4rB2V9cxv0bRQBH
+         tGXmMkfCwLdCc7upb1O7iFVncxt4K6TC1j4jHNYYSZ9+szVqI7pbqFXVUs8qe0tdNbGE
+         aHb+1us35HLPQwvWtpgyeSevSRVvqcrbh2oL5H2rbZz1DxGC2kgqlzxNv9Uzi0Z+CnmE
+         5SWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4419+rnPbNlDxY7o7gE1p21nl6pdtugJmQj4Tb6vg6dTvPhvOYRBTjVWia3mymHz5jWLO/nK8oMYssea7aW1sPQrCF6U/kE6eCWbjSBzh0iFt7k3O9S2pacIrp/EONhbvKw7EyTyATFsYyrK4CQLdSbF5jE8DR/lp4LDSz3hPc4ZooBPEqbVT
+X-Gm-Message-State: AOJu0YwJ6TFp0m6N92zKt+YJQloFWX1lCJIfN5gjDmRk6J8oIzIXiwjf
+	sYk597soV9QKXahss6InsWwt16eojyvw2YrURU6h8EnrIg+NOEDL+F/DigITHVZfJRMr2apJSkL
+	NJQ7rc6D5m5R6T+b5zpWRz+qtc7o=
+X-Google-Smtp-Source: AGHT+IGs3GTgR1SK7v+836KzUgTjgC61L+TjLdHM4mK6KubTVhvj98VtFsqSoWZez08mML7cwFHLbQmOv7n5Dj+NCAY=
+X-Received: by 2002:a17:90b:201:b0:2bd:82c9:bd40 with SMTP id
+ 98e67ed59e1d1-2bf5f408a4amr8962904a91.48.1716839715179; Mon, 27 May 2024
+ 12:55:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240527161450.326615-8-herve.codina@bootlin.com>
+References: <20240527062102.3816-2-shresthprasad7@gmail.com> <771db1ec-115f-4b96-916f-3975ca302f55@kernel.org>
+In-Reply-To: <771db1ec-115f-4b96-916f-3975ca302f55@kernel.org>
+From: Shresth Prasad <shresthprasad7@gmail.com>
+Date: Tue, 28 May 2024 01:25:03 +0530
+Message-ID: <CAE8VWiLbxeKKtW051nPxagRq6xqZ+J1SHrG=AhOx+NALv7-GGA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: watchdog: img,pdc-wdt: Convert to dtschema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 27, 2024 at 06:14:34PM +0200, Herve Codina wrote:
-> The mscc-miim device can be impacted by the switch reset, at least when
-> this device is part of the LAN966x PCI device.
-> 
-> Handle this newly added (optional) resets property.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+On Tue, May 28, 2024 at 12:17=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 27/05/2024 08:21, Shresth Prasad wrote:
+> > Convert txt bindings of ImgTec's PDC watchdog timer to dtschema to allo=
+w
+> > for validation.
+> >
+> > Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+> > ---
+> > The binding has been checked and tested against `img/pistachio_marduk.d=
+ts`
+> > with no errors or warnings.
+> > ---
+>
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+>
+> > +
+> > +maintainers:
+> > +  - Shresth Prasad <shresthprasad7@gmail.com>
+> > +
+> > +
+>
+> Just one blank line.
+>
+> > +allOf:
+> > +  - $ref: watchdog.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - img,pdc-wdt
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 2
+>
+> Instead of maxItems please list items with description so the items will
+> be described.
+>
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: wdt
+> > +      - const: sys
+> > +
+> > +  interrupts:
+> > +    description:
+> > +      Should contain WDT interrupt
+>
+> Drop description, redundant.
+>
+> > +    maxItems: 1
+> > +
+> > +  assigned-clocks:
+> > +    maxItems: 2
+>
+> Drop property
+>
+> > +
+> > +  assigned-clock-rates:
+> > +    maxItems: 2
+>
+> Drop property
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - interrupts
+> > +
+> Best regards,
+> Krzysztof
+>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Hi,
 
-    Andrew
+Thank you for the feedback.
+I'll address these and resend the patch.
+
+Regards,
+Shresth
 
