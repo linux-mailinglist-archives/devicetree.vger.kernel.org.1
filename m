@@ -1,116 +1,304 @@
-Return-Path: <devicetree+bounces-69530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016608D00F3
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:05:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD1808D010D
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:16:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB6B01F2410B
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:05:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 631FA285518
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAAA15FD19;
-	Mon, 27 May 2024 13:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645AB15ECEE;
+	Mon, 27 May 2024 13:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LcqLreLS"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="PWUcrWnw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9EA15ECD9
-	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 13:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7542715ECE7;
+	Mon, 27 May 2024 13:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716814926; cv=none; b=hLnsyVvIdVQ0nEx7r/OVKUP4LNCjHA53Cwodi5B8gC/knSE2pq6jsxWIozsJNSyHxoN2Y5BIPjNJwBCjGDUvsnSGMNN2mPYX/WvhigFVS45yAj6mm6B9H9yn7pu2yogLKwJfKb3Gzj2/waiOlkow0UggZRByhKJyq4z7yghZds8=
+	t=1716815738; cv=none; b=gGNZ1GuV9JSiQluH6q4k8kEDr5LTdVhfg500UQRE0q1P05JQlw+rRG9HJ5bkRdp2CjFoKiH8kxrzP0pSd7Ior3BmMG6v6yOgcrGADyh3nbYe05zRVmHPpDXQF/QOYMcx0kKDgptzGRECIgJaew9NzflXuOGO4fQBO+Cdjn70aXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716814926; c=relaxed/simple;
-	bh=wgk7WXRbuBVOxXeNcCecE0I5Ssrmoyonz0n5453vRtw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c5QsEekZH6aeaTvqAa2ggDDreNdw3CGyBLJzDK5QdTZ4I5++PhnSADIgNyZpLPMeJt/IMlbcu3fECnFZOo597w8rSn5Wb0uK1dR+uw+5N3sdqKF8t9HXdILMbH0WeEE+8wDjmbrTuIrdFc92CVkSeJNvad1iKudtn3j5xfW1EWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LcqLreLS; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-62a088f80f6so22747157b3.0
-        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 06:02:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716814924; x=1717419724; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wgk7WXRbuBVOxXeNcCecE0I5Ssrmoyonz0n5453vRtw=;
-        b=LcqLreLSmAOol1+iWp/9g0SzC/1PUcBnGPP3KY5R6MZnZsCy6DA4f9yTcjS7x3A/NI
-         GtSBvZ+XvQZJeWqoz4IP+LWsClzO2UjuB496CdfIe+ezaDVmy2mr1T533k27TIudY3o4
-         LQwiZs9Ib+Iku1u5f6p748brGTcjmsEEOt8pbJan41KfKE7djDER8ZP74cL9cSm1aUtn
-         QSF1G6q4uQWRHPLpEJ/VZ1N/Pd9Oroi80VFaO2RI5FM5gQoLr8LfvqtuQt64uCrkvqe6
-         GZKz5zbMTSpXWZO0bayrz8NDVDvYbKXfT3OotW6XiK2WkxzH5owMJHxHHH29PxxTnrXF
-         +xzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716814924; x=1717419724;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wgk7WXRbuBVOxXeNcCecE0I5Ssrmoyonz0n5453vRtw=;
-        b=Th8fnpoH0sXe+Rxd594g8eZ/ovkOLmEeJQYn5QQLNbtYPWEN5p0S7AIAbLMvcz/wp+
-         H2X2b8VEY+Hyx2YjLKM3BnZhYODtR6QjhNN7vqrFJETvo9BqidZvhjSIefErCRIXcLZ7
-         VzObgSVHi//3WNiWGdrJlxCBH6GAKbtPasmlQpa4NOgILDRwpfbkW9tuDKFPWItI1srz
-         C8M1ecpe3OTsvptNSyWwDwKKMep9VOMEBA7xhKXYYDgZvmcP1qjgDC/zhz6QO93Ng1G2
-         0r8iInt/84A3koM0wzrH/XTLjjbmRkENaFgFL9qMMeRKnYaf/rZHzJinHfsBGZyJhg9w
-         8rUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVs/b0lsKc5oUGd+dBf3lkMzDDtLaZ/JVst/aB+N1AuV33Vo+M4GHt/8jpT1jUzVx31g0VA0AFFWwzuE2IgT5HicVBwtQMK1AS34Q==
-X-Gm-Message-State: AOJu0YxxRF1ak0SWYUjvhonpoCyyugKSjbOM1EN+HNLuUBEHJTLbF7Hi
-	xiKJ+zlAojoiF+ndpyAWscXVBNtA7dFshZvxBtM9XCF1zpqnn6NFYktXsSOUZrjriRNhe1PTV7Q
-	J0TWQG3GkP5fmg2k4oT9s6vrNWeUfnMdgElZOYQ==
-X-Google-Smtp-Source: AGHT+IE7lfH95P9CZ75FsUEqTbZ6lMKUg3CE06+7S2ZlNbsftLNAwXmGR02nDIY6dJYKm+SYL7/4iLQAHH1jddPM7CM=
-X-Received: by 2002:a25:838d:0:b0:df4:dbdb:40b with SMTP id
- 3f1490d57ef6-df77094a5fcmr7149710276.5.1716814923932; Mon, 27 May 2024
- 06:02:03 -0700 (PDT)
+	s=arc-20240116; t=1716815738; c=relaxed/simple;
+	bh=B8cYOtpeE0HUjZd9NR4Eg7T92wexYwy2k7m+8psPL18=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NSHT2VApfxO3F+OKQvhzbEyAKxGdOjxSSzY+nht5JyVk2FKP54bNAiNdeg3M0Flq4a/RV+tSrq+0Bbv7zvyY7DXaottuFy7xeMlif9H0yluEgcPAUuwJl+iAD/8gfLCH7Ipgjoev5R1JKEVvkA+SrnqMMoOoZN3Xp+q0VOvsFso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=PWUcrWnw; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44RCGrF3017304;
+	Mon, 27 May 2024 15:15:20 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	6U3S0nhV1fvnOXy1Abo104qBpad6fsNBZGWtsNvzJD0=; b=PWUcrWnwrzPB4SX6
+	I0yJEZrdYnIwZKHRTorsJQsiiUj34EB/DLx5GZzqH3WxpwDGGeO14cybCpBBljDs
+	Cbvvz0wizV4skWlvNuqDHxMVuRFeBNMv8veRiqO4z5h03/OdqUwx/kNRdIhzaXSF
+	RQJ9FZD66Q8EnqnnFtWApDiFwFefvDDWar1mILM0fY3PjRbQbCcUWIH22h9HzcfX
+	oJkILm9FWFVunvlrhwDti+D6LSsZU+ITe5Al79DgskokmQV/FhN3GxaubWoaIIlR
+	sRL/+Hh7tMZtPKWeQ6qu3WrlTXCc8MmDNDjZ4uDs/0pJMIXU1JM/LqiRVFZOr5Vh
+	6yJEYw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3yb9yj7e3r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 May 2024 15:15:20 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5B35C4002D;
+	Mon, 27 May 2024 15:15:15 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4710A215BD5;
+	Mon, 27 May 2024 15:14:37 +0200 (CEST)
+Received: from [10.131.140.24] (10.131.140.24) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 27 May
+ 2024 15:14:36 +0200
+Message-ID: <77fa3ed3-2341-4106-adf2-ec8bd9de91ff@foss.st.com>
+Date: Mon, 27 May 2024 15:14:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240507144821.12275-1-johan+linaro@kernel.org> <20240507144821.12275-4-johan+linaro@kernel.org>
-In-Reply-To: <20240507144821.12275-4-johan+linaro@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 27 May 2024 15:01:53 +0200
-Message-ID: <CACRpkdZjG4FrKsWARpMO_Gx0Eo21EQyofPx9KUdut2ENxdwROQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/7] dt-bindings: HID: i2c-hid: elan: add
- 'no-reset-on-power-off' property
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <benjamin.tissoires@redhat.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Douglas Anderson <dianders@chromium.org>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
+ binding
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <benjamin.mugnier@foss.st.com>, <mchehab@kernel.org>,
+        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, Sakari Ailus
+	<sakari.ailus@iki.fi>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240521162950.6987-1-sylvain.petinot@foss.st.com>
+ <20240521162950.6987-2-sylvain.petinot@foss.st.com>
+ <2110ba34-658e-4d60-b524-2f5ead6c8d3e@linaro.org>
+Content-Language: en-US
+From: Sylvain Petinot <sylvain.petinot@foss.st.com>
+In-Reply-To: <2110ba34-658e-4d60-b524-2f5ead6c8d3e@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-27_02,2024-05-24_01,2024-05-17_01
 
-On Tue, May 7, 2024 at 4:48=E2=80=AFPM Johan Hovold <johan+linaro@kernel.or=
-g> wrote:
+Hi Krzysztof,
 
-> When the power supply is shared with other peripherals the reset line
-> can be wired in such a way that it can remain deasserted regardless of
-> whether the supply is on or not.
->
-> This is important as it can be used to avoid holding the controller in
-> reset for extended periods of time when it remains powered, something
-> which can lead to increased power consumption. Leaving reset deasserted
-> also avoids leaking current through the reset circuitry pull-up
-> resistors.
->
-> Add a new 'no-reset-on-power-off' devicetree property which can be used
-> by the OS to determine when reset needs to be asserted on power down.
->
-> Note that this property can also be used when the supply cannot be
-> turned off by the OS at all.
->
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Thanks for the review.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+On 5/21/2024 7:37 PM, Krzysztof Kozlowski wrote:
+> On 21/05/2024 18:29, Sylvain Petinot wrote:
+>> Add devicetree bindings Documentation for ST VD56G3 & ST VD66GY camera
+>> sensors. Update MAINTAINERS file.
+>>
+> 
+> A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+> prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
 
-Yours,
-Linus Walleij
+Ok, fixed in V3.
+
+> 
+>> Signed-off-by: Sylvain Petinot <sylvain.petinot@foss.st.com>
+>> ---
+>>  .../bindings/media/i2c/st,st-vd56g3.yaml      | 132 ++++++++++++++++++
+>>  MAINTAINERS                                   |   9 ++
+>>  2 files changed, 141 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+>> new file mode 100644
+>> index 000000000000..22cb2557e311
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+> 
+> Why duplicated 'st'?
+
+Legacy : our first st-mipid02 driver was upstream this way few years back.
+
+We have 3 options :
+
+1- keep this unpleasant naming to keep consistency with st-mipid02 [1]
+and st-vgxy61 [2]
+2- rename this driver properly ('vd56g3') and keep the two others the
+old way (I personally don't like this option)
+3- rename this driver properly ('vd56g3') and in a second patch rename
+the two others drivers.
+
+I would be interested to get Sakari's opinion on this subject.
+
+[1]:
+https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-mipid02.c
+
+[2]:
+https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-vgxy61.c
+
+> 
+>> @@ -0,0 +1,132 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright (c) 2024 STMicroelectronics SA.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/i2c/st,st-vd56g3.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STMicroelectronics VD56G3 Global Shutter Image Sensor
+>> +
+>> +maintainers:
+>> +  - Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+>> +  - Sylvain Petinot <sylvain.petinot@foss.st.com>
+>> +
+>> +description: |-
+>> +  The STMicroelectronics VD56G3 is a 1.5 M pixel global shutter image sensor
+> 
+> This claims device is VD56G3, not ST-VD56G3.
+
+Sure, linked with previous point.
+
+> 
+>> +  with an active array size of 1124 x 1364 (portrait orientation). It is
+>> +  programmable through I2C, the address is fixed to 0x10. The sensor output is
+>> +  available via CSI-2, which is configured as either 1 or 2 data lanes. The
+>> +  sensor provides 8 GPIOS that can be used for external LED signal
+>> +  (synchronized with sensor integration periods)
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - st,st-vd56g3
+>> +      - st,st-vd66gy
+>> +    description:
+>> +      Two variants are availables; VD56G3 is a monochrome sensor while VD66GY
+>> +      is a colour variant.
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  vcore-supply:
+>> +    description: Digital core power supply (1.15V)
+>> +
+>> +  vddio-supply:
+>> +    description: Digital IO power supply (1.8V)
+>> +
+>> +  vana-supply:
+>> +    description: Analog power supply (2.8V)
+>> +
+>> +  reset-gpios:
+>> +    description: Sensor reset active low GPIO (XSHUTDOWN)
+>> +    maxItems: 1
+>> +
+>> +  st,leds:
+>> +    description:
+>> +      Sensor's GPIOs used for external LED control. Signal being the enveloppe
+>> +      of the integration time.
+> 
+> More information is needed. GPIOs coming from LED or SoC? What's the
+> meaning of values?
+
+The vd56g3 image sensor provides 8 GPIOS that can be used for different
+use cases (external led controls, synchronization between master/slave
+sensors, external sensor trigger, etc.). This submission supports only
+the first use case: the control of one(or multiple) external LED.
+
+The vd56g3 sensor family are optimized for visible and near infrared
+scenes. In NIR, external IR leds are generally used for illumination.
+
+With such use case, a led (or a led driver) can be connected directly to
+one of the 8 GPIOs of the sensor. On the driver side, when a led is
+configured in the dt, the driver will configure the sensor accordingly.
+It will also offer an optional "V4L2_FLASH_LED_MODE_FLASH" control to
+start/stop the external control.
+
+Different signal modes are supported by the HW, but the default
+(implemented) one is a "strobe" mode where signal is the envelope of the
+integration time (IR led is on while image sensor is integrating).
+
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 1
+>> +    maxItems: 8
+>> +    items:
+>> +      minimum: 0
+>> +      maximum: 7
+>> +
+>> +  port:
+>> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> 
+> missing additionalProperties: false
+
+Ok, fixed in V3.
+
+> 
+>> +
+>> +    properties:
+>> +      endpoint:
+>> +        $ref: /schemas/media/video-interfaces.yaml#
+>> +        unevaluatedProperties: false
+>> +
+>> +        properties:
+>> +          data-lanes:
+>> +            minItems: 1
+>> +            maxItems: 2
+>> +            items:
+>> +              enum: [1, 2]
+> 
+> 
+>> +
+>> +          link-frequencies:
+>> +            minItems: 1
+> 
+> maxItems is enough
+
+Ok, fixed in V3.
+
+> 
+>> +            maxItems: 1
+>> +            items:
+>> +              enum: [402000000, 750000000]
+>> +
+>> +          lane-polarities:
+>> +            minItems: 1
+>> +            maxItems: 3
+>> +            description: Any lane can be inverted or not.
+>> +
+>> +        required:
+>> +          - data-lanes
+>> +          - link-frequencies
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - vcore-supply
+>> +  - vddio-supply
+>> +  - vana-supply
+>> +  - reset-gpios
+>> +  - port
+>> +
+> 
+> 
+> Not a video-interface-device.yaml type of device?
+
+Good point, something I'll consider in V3
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+--
+Sylvain
 
