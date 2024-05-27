@@ -1,68 +1,63 @@
-Return-Path: <devicetree+bounces-69619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2138D08E4
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:41:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC808D08E9
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 18:43:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDE141C22813
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:41:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A77181F229F3
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 16:43:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C6A155C9A;
-	Mon, 27 May 2024 16:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0228573451;
+	Mon, 27 May 2024 16:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OnkOyx5A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXWfL9vn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD4F017E906;
-	Mon, 27 May 2024 16:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77C117E906;
+	Mon, 27 May 2024 16:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716828084; cv=none; b=VFuJfrRu6n9hBHIb6szkfRzG+Pp75RE+bDPluks7e5Elowge8prN8xqSsAp/7eK+/uKczIWml2UOxTXk6dDR5BLIMw/MglIbB2f2n+YnXxlmNu4J/TgbQ9jpOHy0I9AiczPzMG3iRW+HgiDCdwIQ23gPnyWXrzaWpTOxpZD4moY=
+	t=1716828231; cv=none; b=j+8erwnF/6k+bOE0twj04N/+DzCmEJdYEnJ61Sy3db7OOByadnRGPAxK/6eN0qIkg9+cEifW0v4F7ySFk++kFnh0XJdqgpWtgpqBqVCOypyJsyX5gVdEVpxBUaRgjquLlBiHTgY1SaDrOPlU/dN7C5uiqGaaiL7xQ0idc2hCT8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716828084; c=relaxed/simple;
-	bh=VP+qsmC54b19MmboZBNiJ4/Iw5W2tqYz1l0e+9i3aFU=;
+	s=arc-20240116; t=1716828231; c=relaxed/simple;
+	bh=4dvkOf1CENcyz9mYEJmPvOqP9GJwkrOwMz2AdlNtPgA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f890NI8okTNC5/GWnWlchgHUOn4DMvN/P5hnMi7WDGD/JFa20H3LEaBM7uBqMab9TxvkNam2X9r2tlqfb34SxGFSGp74XuwPUOHTQ8oSj3ZRFsf9r6N7i8vrvRlLVVvh95BYMzP1rfb10CA1r4hML73i440luRTtDflQHOH8SAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OnkOyx5A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E3AEC2BBFC;
-	Mon, 27 May 2024 16:41:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hvvHV380wytItXTG6g67OorE83GOeuaeppi31FIN4Xk5slpgXCKJOW33AwmMRBRlQ9lsKSsdWo1H7RTLOdLeCPp/E2pwb0RqPTto0cfE2Jp4WP9IhsSi5H4i5qFXNZ1uO6cBah0Gy5Tp+bLyuv1cUVzC/M7Non75oHPUEj65K3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXWfL9vn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E166DC2BBFC;
+	Mon, 27 May 2024 16:43:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716828084;
-	bh=VP+qsmC54b19MmboZBNiJ4/Iw5W2tqYz1l0e+9i3aFU=;
+	s=k20201202; t=1716828231;
+	bh=4dvkOf1CENcyz9mYEJmPvOqP9GJwkrOwMz2AdlNtPgA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OnkOyx5ALbSmHTXbPoXK+DoM0+zMLpr2uEBJ5j3VgIJhliFWJ8Pjd8SeVL2t0+VPX
-	 h4/1TrQH2qC7up8kjrBV04Mxcmww++vsthpYV9knAI6o4MBdSeEpUymCzzn0Xx+vK6
-	 q2fR2f/W3BbcV07a05oKKGXjURGn+XkB5Fyrm/5H7T5mVvmbisjUPDV1rUlMm4N7ST
-	 sFNwvzXpPAzUp3/BDe9LQi0xzNrfEERm4HK7cGejaRsod80C5AVVcNjZuMkicmnLCL
-	 lP82XuC03rUET7RlkWiTtGsmx52PuYhMjJAZhJqCTMSJzNp3nMvy0QsaRLxTkK8Fte
-	 jRM8MbmkbIcOg==
-Date: Mon, 27 May 2024 17:41:19 +0100
+	b=AXWfL9vn+y1y9ceVUMv3HdCyy/fYMV/mL51WccnbrUe1T/QpXcUk7xwP+2bGRCIDy
+	 AXR36x92MZHHicdhvyGuvydaOdhRQ6aNK88ICRr1jfwCVbVW8jtbIE1XLssSLOsFzS
+	 CixBRZhm23I6u9WoWepxzlIlKSB0q6aeJoAXmt9UNqsHAINLh87d0j635hnQw89N4O
+	 TZBOVy3PBtiDzuZsNxb1sQjwbR3yFxU7x2oeYTT2oahvG0wgsGnOBKPObQF3MW68KX
+	 2xLg0SmkN07xBF7r0ftOgLV3Il4hpdZJm9CcELcIaXLcF4PzPwZ0v3Q903weqjL+Pc
+	 0c4HF5DXzgRrA==
+Date: Mon, 27 May 2024 17:43:46 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chao Wei <chao.wei@sophgo.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 5/5] riscv: dts: sophgo: Add LicheeRV Nano board device
- tree
-Message-ID: <20240527-skedaddle-flavored-a869c7918088@spud>
-References: <20240527-sg2002-v1-0-1b6cb38ce8f4@bootlin.com>
- <20240527-sg2002-v1-5-1b6cb38ce8f4@bootlin.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Lucas Stach <l.stach@pengutronix.de>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: fsl,irqsteer:
+ Add imx8mp/imx8qxp support
+Message-ID: <20240527-baritone-rubbing-3adca364a249@spud>
+References: <20240527083402.30895-1-alexander.stein@ew.tq-group.com>
+ <20240527083402.30895-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,38 +65,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Yw+/J0Tv/ZDAD4WK"
+	protocol="application/pgp-signature"; boundary="mNr8ZlAANkA3yQp4"
 Content-Disposition: inline
-In-Reply-To: <20240527-sg2002-v1-5-1b6cb38ce8f4@bootlin.com>
+In-Reply-To: <20240527083402.30895-2-alexander.stein@ew.tq-group.com>
 
 
---Yw+/J0Tv/ZDAD4WK
+--mNr8ZlAANkA3yQp4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 27, 2024 at 12:28:21PM +0200, Thomas Bonnefille wrote:
-> LicheeRV Nano [1] is an embedded development platform base on the SOPHGO
-> SG2002 chip.
+On Mon, May 27, 2024 at 10:34:01AM +0200, Alexander Stein wrote:
+> Some SoC like i.MX8MP or i.MX8QXP use a power-domain for this IP. Add
+> SoC-specific compatibles, which also requires a power-domain.
 >=20
-> Add only support for UART.
->=20
-> Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html
-> [1]
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Just format this as:
-Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html [1]
+With the indentation fixed
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---Yw+/J0Tv/ZDAD4WK
+Cheers,
+Conor.
+
+--mNr8ZlAANkA3yQp4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlS3rwAKCRB4tDGHoIJi
-0rOkAP9bRQj9cpTdgLImE92TIFi+ah9V2qy65P0BMYXUljfdsgD9GSKX367tx7hF
-SgN63XgxVmLn9hrm7OQ1xLo883xL2g4=
-=Pqk7
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlS4QgAKCRB4tDGHoIJi
+0tmiAP48qu9QL4EFuYSq0hRRDGKbueI5B7QNRepOaJRjHSJVbgEAqb5MwT5Jj7Ph
+byZMrMDdpfWCPNYs5zjxARLjcDmC7wU=
+=gjJm
 -----END PGP SIGNATURE-----
 
---Yw+/J0Tv/ZDAD4WK--
+--mNr8ZlAANkA3yQp4--
 
