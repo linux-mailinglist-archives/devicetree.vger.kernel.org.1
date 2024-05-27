@@ -1,134 +1,108 @@
-Return-Path: <devicetree+bounces-69569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E15058D05D4
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:19:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F438D05DF
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:21:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EACB1C21399
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:19:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C80282FA5
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C16473452;
-	Mon, 27 May 2024 15:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9E115A87D;
+	Mon, 27 May 2024 15:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RbtSOJS5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6Ggu6jK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CFDC1E868;
-	Mon, 27 May 2024 15:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F49715A872;
+	Mon, 27 May 2024 15:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716822558; cv=none; b=c174cK6ovm4KQIhdXZKnQbldXRyUfMrBWrneLzgE3E7lgFgtSKiHWyp1GTUignG3WjAFlapxtKWCtFTTAUJWnhW48PILQ/OGB1ZHtP5t+1GlvCu+ECE/HhjBbzfgj0jARNdr5U905/S7ekUjvOSfnQvhQJJPi3moyR7KViyeDYM=
+	t=1716822730; cv=none; b=plchVXjwkn3Ye+yzNaUSV7njkzvoqUBSpRIQzSshrp200CbybvQPJi3dnkbCmmXf+8O1FCTU3fZklFuTsxxJiS7Zx25W5+8kwW7NyYtm4g3ZS0xIuW82k0sm1r5dDs6XORkoU7Q8NAOpTbfMdrXrmzoq6ytp+qy5icaxACL6gro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716822558; c=relaxed/simple;
-	bh=YuKxD3bWQ8aYWzULrWddjuARczonPYhNEB+CaCLpbT0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pYu4V9TaJD1K4HTenRYP9bpXnac4BQlBRyL/TOtmDQjO2b3/7O7TxmpJFnpDCAULxYWYhgAJG/PKLl4bCwdIZY+pcR2Yk5oXcLpMOI4IGKFTDC0OvvDyo8XSX5O0kOLNRLL93B2G0wruxYKNr2psd0Fh5u88F03cGzSZHRN73U4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RbtSOJS5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10D29C2BBFC;
-	Mon, 27 May 2024 15:09:14 +0000 (UTC)
+	s=arc-20240116; t=1716822730; c=relaxed/simple;
+	bh=3TIcAQi2/9dfC8qhlCEi0dXTPr4blkbXwfz9/iRnzJE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sYP7yOkVUZ6Vk34eW8KZwUkc22vmxDTbQbt+nu14b8s+PhJ+kkneqi/j2eYRx6XsPdkDsEw4adQi6TyVr9wpvHfRgiL7PBe83QQ2hFjU5NUeoJ0eh5osnPEcNA5tuUZLoYaer4eP+BRRmOrnCTrSLrS0hPjdWkJrb8WF1UH0n80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6Ggu6jK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 36954C2BBFC;
+	Mon, 27 May 2024 15:12:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716822558;
-	bh=YuKxD3bWQ8aYWzULrWddjuARczonPYhNEB+CaCLpbT0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RbtSOJS5A0pxbhhg/T2QRACi/3qELIIl8uDyGzpJ3dNKNbzcNWSr1VSk3Bq+S71KQ
-	 //wLknjrjCT3MPDI9Z0TuqVRrwd/nAllBflc5Cfs+g1CtRc2di7xgxJ8reDR+HBrNT
-	 h1z5IIKT5V919t72iKuNeAElyVwOr3G0ya5mWiRnl8GsZ49TLpZR8o7zHsMwVw2IRG
-	 zmEtR3AG5NgtNbxL9EQU1kBUYNLUk2qaHg8a9dn6GRJ0KNBfcetBxHw2nIkqmDCJuE
-	 04Ho9cLZezkdeoXMGmPJzXkX4ck/JWvbCk4UC4PIJg6NtfsdE9IWJm7EYiO68i5jLD
-	 nMsUxBi+WcFSA==
-Date: Mon, 27 May 2024 16:09:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
-	kvm@vger.kernel.org, greentime.hu@sifive.com,
-	vincent.chen@sifive.com, cleger@rivosinc.com, alex@ghiti.fr,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v4 2/5] dt-bindings: riscv: Add Svadu Entry
-Message-ID: <20240527-widely-goatskin-bb5575541aed@spud>
-References: <20240524103307.2684-1-yongxuan.wang@sifive.com>
- <20240524103307.2684-3-yongxuan.wang@sifive.com>
+	s=k20201202; t=1716822730;
+	bh=3TIcAQi2/9dfC8qhlCEi0dXTPr4blkbXwfz9/iRnzJE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=a6Ggu6jK3bCqSnwAxBUWX2TERM+853A3ZUyTtRTLhkvz6NZk8xhjOZs2fZp/hTtqT
+	 96FKr7G1LyYK7VdLQxPo5MmiX7MEIxxJpT1/314w8U5F6pt2dGpA/fHtCaC4Kzz94V
+	 WjICiVVhhOkZwHoZd5cXLjl64lGSNP3WD+1fSiFkuhuO7j6CrT8L8ausXuLRCzBFn8
+	 l0OrM6MqBiL5oiYgWqRnobnPkXagi9Ur48IvgdkhSykBeFdpciuzv4gNHUPaArQWJR
+	 gga8SO/06n2uvaT8czDJiTbTg/gcOqP+yWxcGCxBQZQP1gVCdv5SgiRohh+Uw/qDfF
+	 0eJ+JRs5noCNA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C9B6C25B74;
+	Mon, 27 May 2024 15:12:10 +0000 (UTC)
+From: Arthur Becker via B4 Relay <devnull+arthur.becker.sentec.com@kernel.org>
+Subject: [PATCH v3 0/2] Add driver for Vishay VEML6040
+Date: Mon, 27 May 2024 17:12:07 +0200
+Message-Id: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="39tUOd5aicq+YFEC"
-Content-Disposition: inline
-In-Reply-To: <20240524103307.2684-3-yongxuan.wang@sifive.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMiiVGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDUyNz3bLU3BwzAxMDXQNjQ5O0ZANTE2NjcyWg8oKi1LTMCrBR0bG1tQA
+ NU0qIWgAAAA==
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, Arthur Becker <arthur.becker@sentec.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716822728; l=935;
+ i=arthur.becker@sentec.com; s=20240521; h=from:subject:message-id;
+ bh=3TIcAQi2/9dfC8qhlCEi0dXTPr4blkbXwfz9/iRnzJE=;
+ b=f2u7rFyobvpBdch0ALMVecwwaYCyHKuTeMnZww3hvZMllZIRMVdwEBwhmzEEVqSJxSExX9Z1d
+ myA6vZXuI8oBEcQPnNb3R8Vx5cVh/so7HQc6BYQLIIJlnjIxl0DXQD8
+X-Developer-Key: i=arthur.becker@sentec.com; a=ed25519;
+ pk=1GLsDBF6GZKt9oNFsvdnAB6sHyKKrSISlwM3AyWbx/k=
+X-Endpoint-Received: by B4 Relay for arthur.becker@sentec.com/20240521 with
+ auth_id=163
+X-Original-From: Arthur Becker <arthur.becker@sentec.com>
+Reply-To: arthur.becker@sentec.com
+
+Thank you Jonathan, Krzysztof and Conor for your comments on my previous
+submission attempts. I hope that I addressed all points!
+
+Changes since v2:
+- formatting, renaming of variables
+- power supply added in dt-binding file and turned on in driver
+(- using b4!)
+
+Signed-off-by: Arthur Becker <arthur.becker@sentec.com>
+---
+Arthur Becker (2):
+      iio: light: driver for Vishay VEML6040
+      dt-bindings: iio: light: add VEML6040 RGBW-LS bindings
+
+ .../bindings/iio/light/vishay,veml6040.yaml        |  44 ++++
+ drivers/iio/light/Kconfig                          |  11 +
+ drivers/iio/light/Makefile                         |   1 +
+ drivers/iio/light/veml6040.c                       | 283 +++++++++++++++++++++
+ 4 files changed, 339 insertions(+)
+---
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+change-id: 20240527-veml6040-0314fc054337
+
+Best regards,
+-- 
+Arthur Becker <arthur.becker@sentec.com>
 
 
---39tUOd5aicq+YFEC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, May 24, 2024 at 06:33:02PM +0800, Yong-Xuan Wang wrote:
-> Add an entry for the Svadu extension to the riscv,isa-extensions property.
->=20
-> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-
-I'm going to un-ack this, not because you did something wrong per se,
-but because there's some discussion on the OpenSBI list about what is
-and what is not backwards compatible and how an OS should interpret
-svade and svadu:
-https://lists.infradead.org/pipermail/opensbi/2024-May/006949.html
-
-Thanks,
-Conor.
-
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 468c646247aa..598a5841920f 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -153,6 +153,12 @@ properties:
->              ratified at commit 3f9ed34 ("Add ability to manually trigger
->              workflow. (#2)") of riscv-time-compare.
-> =20
-> +        - const: svadu
-> +          description: |
-> +            The standard Svadu supervisor-level extension for hardware u=
-pdating
-> +            of PTE A/D bits as ratified at commit c1abccf ("Merge pull r=
-equest
-> +            #25 from ved-rivos/ratified") of riscv-svadu.
-> +
->          - const: svinval
->            description:
->              The standard Svinval supervisor-level extension for fine-gra=
-ined
-> --=20
-> 2.17.1
->=20
-
---39tUOd5aicq+YFEC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlSiGAAKCRB4tDGHoIJi
-0rsyAQDVctvH18CS7Wmm09E45EARmF5ZCi1dVq5wi3eKs6RM2gEA4XNa7WqLM3B8
-qQI+GhZGvFqrbLnnav9sXWDnIHogkQU=
-=AIHm
------END PGP SIGNATURE-----
-
---39tUOd5aicq+YFEC--
 
