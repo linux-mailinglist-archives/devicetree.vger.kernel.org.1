@@ -1,145 +1,177 @@
-Return-Path: <devicetree+bounces-69659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54238D0E85
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 22:11:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4708D0EC8
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 22:55:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ED7B1F21F55
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 20:11:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAB451C20B09
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 20:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F171607A0;
-	Mon, 27 May 2024 20:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="QsbTQAwA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F24381C7;
+	Mon, 27 May 2024 20:54:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F4E15EFDF;
-	Mon, 27 May 2024 20:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716840678; cv=pass; b=o2v6wNCoNrcU5scSAjkz0alAAqEAx8QC+GSKnwPb/B3CljEq/mcEhBO03Gh/m0W+BiIRwP5QSZRheuKzZo3mB6E/r5IISI277B8zX8W9idYBgSAgnDeO2KWq/Jw+P2ISB1WGMoTqcqIAqcmTnCeYyrnVPpilblhu2XYXkl9RlYU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716840678; c=relaxed/simple;
-	bh=GAna6CmtZWwigrmOfREHXsKA0rw/oX+CUaud9yi1C00=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nOoVgupO+/guMhHqQhiX2lbS77wyKoOdmL7YsP5O/EKqi9Yh2pOem+HXAggZmFCpQx6nsD6082jaQxhk3XTF6xZi73LMPjjkTwixSU65W5PR1MawsgAb5cgzAzXsT6EgFn0KyZWhvHFlozc7k+tSInseQfbaz6PUiBqcCmH6naU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=QsbTQAwA; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (80-248-247-191.cust.suomicom.net [80.248.247.191])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4Vp6Gm2HZ0z49Pym;
-	Mon, 27 May 2024 23:11:12 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1716840673;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1dOUbisstpfi5giuXiz9vGluX9yAy7I4sBmLBvo2Ydc=;
-	b=QsbTQAwAma3JX5ZGrUCLdSWQnWGRM/VwuK7OTY5B+WDfopMDOnR5/vwkLA/2rNk3O+Ov/4
-	yk3jd65h8potPC9lJZqtpdpgCfB1d8tW+mW4huz1Fm3RjtaVSkYyjaWul8fTtewRhbnJHe
-	NDkwNnx+IgGyr8o5EEv1G1qzxdYTdpLW3sACLfm4BddEAOiYTwO7+ppVaGPIBxssneAE5n
-	v/T0FtV4Ob65ZAvFvtT9loniss5l1Vx2WCkLJzR8DerIRHsgpzJio5P0QQknWi2apiDNNB
-	l7qdWzreVLRFIpQyfHxfQh002WUhHkh4bFOJG4EPidq7GqYoB0S4BwyEs1Qykw==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1716840673; a=rsa-sha256;
-	cv=none;
-	b=SC4sjRWTrFvXnVp8v21dLlzWxxQ+IyI84hwLvdadAcjsT6VBEzHDg60p4l4WHYeeuGorHq
-	9++UsgQXuQPi3PFRzChZzdu3cknxdjh+KDJDFjheLPhQZIUixFoTy+F7wbv/ZRMghpbIdq
-	dLsVP16GL4q2+69L5Qc1+cKl717nuPZSkf0N2gbAZBvSdZLe67XSFfUYQLx9MtK0HojEJV
-	dK3J0IrKi3gpY/c52th8JBc0XgQEO9jEr5sENXEBMcBQZXPocieY6YnNk9Hj/bmZUWElRU
-	WAtwNppfC5T2ZhXihD1hRL1VpfGp27vUahssQ5jbqL/59qytC8BQJ7pbJsNgvQ==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1716840673;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1dOUbisstpfi5giuXiz9vGluX9yAy7I4sBmLBvo2Ydc=;
-	b=AaC3JrXcUqWFTzZohNx4Ja74VBdcE8NXcyHSI9828U13xvpehMUerBjzCZFwqrwpAVaujz
-	5nvLxPHaFhwBZgLEwI2fBB5G6n5WFjuYrZnYDXbDV9Eyt/3Luflc/H0mIn/NVdt0cWS5wl
-	yfF6XeJ3jSEyXPjHanEqSq3fHL1YhyiGbR3bN4CchKL30lzqVKRsjlvnsmqychu7nF91Tr
-	RJceAlFvuwxDp+b4Cm0bJmbJEn/J2Ay2vuX3F693l8UdesloViQUhZ8A19VfCl5uWdp2da
-	SGuQmpsfLLckG+6YPDJ7Q8d+oja2ZRgjdOPQsuddLpvQDzNgIxWuCUWMHRPD9A==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 9F48C634C93;
-	Mon, 27 May 2024 23:08:14 +0300 (EEST)
-Date: Mon, 27 May 2024 20:08:14 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Sylvain Petinot <sylvain.petinot@foss.st.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	benjamin.mugnier@foss.st.com, mchehab@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add ST VD56G3 camera sensor
- binding
-Message-ID: <ZlToLtUkVqzrZf4p@valkosipuli.retiisi.eu>
-References: <20240521162950.6987-1-sylvain.petinot@foss.st.com>
- <20240521162950.6987-2-sylvain.petinot@foss.st.com>
- <2110ba34-658e-4d60-b524-2f5ead6c8d3e@linaro.org>
- <77fa3ed3-2341-4106-adf2-ec8bd9de91ff@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740FD1DA58;
+	Mon, 27 May 2024 20:54:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716843297; cv=none; b=Tl6hTogLmQIRcHduLnMceG2SJTz8lQVu0IrlzBUHhzAkW8ZimazujHBpxWno0YbPgVLMfr15RIVOshbBBvcGzAQSfXdZy3zhDxtKKVxGYR7u+aVDr7ZXZmYlE4DC4xiRvft4UdGOjB2REVPJZlFb7M8XcMtuGkHceHO4Z+B5Orw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716843297; c=relaxed/simple;
+	bh=qD4hGUyI+cMK31VDk1eSbNSrXXBbMKsY+o+vhgOE3qE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CXwdDp1ssGyNdSgyDTP+IP3iqX1eLZTRVyNzj18YgF/MLVhdimvwUoz/F7/mK9Q6gpEihSTcf1LMb1rlPDm45M3dRRls5W9P03vTG9Pi6PXXtVCiAtAQqJXFQLxS88TKJJXeN3FLougr3TBMW1vaHhziz9g/RQJy3GRkuFDmlMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e86193d.versanet.de ([94.134.25.61] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sBhMi-0004Xw-Qy; Mon, 27 May 2024 22:54:44 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Sebastian Kropatsch <seb-dev@web.de>, Jonas Karlman <jonas@kwiboo.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add CM3588 NAS board
+Date: Mon, 27 May 2024 22:54:43 +0200
+Message-ID: <3609340.LM0AJKV5NW@diego>
+In-Reply-To: <9f40c748-691b-4a03-bbd6-54870f46bf05@kwiboo.se>
+References:
+ <20240526214340.8459-1-seb-dev@web.de> <20240526214820.9381-1-seb-dev@web.de>
+ <9f40c748-691b-4a03-bbd6-54870f46bf05@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <77fa3ed3-2341-4106-adf2-ec8bd9de91ff@foss.st.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Sylvain,
-
-On Mon, May 27, 2024 at 03:14:35PM +0200, Sylvain Petinot wrote:
-> >> diff --git a/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
-> >> new file mode 100644
-> >> index 000000000000..22cb2557e311
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vd56g3.yaml
+Am Montag, 27. Mai 2024, 21:02:02 CEST schrieb Jonas Karlman:
+> Hi Sebastian,
+> 
+> On 2024-05-26 23:48, Sebastian Kropatsch wrote:
+> > The CM3588 NAS by FriendlyElec pairs the CM3588 compute module, based on
+> > the Rockchip RK3588 SoC, with the CM3588 NAS Kit carrier board.
 > > 
-> > Why duplicated 'st'?
+> > Hardware features:
+> >     - Rockchip RK3588 SoC
+> >     - 4GB/8GB/16GB LPDDR4x RAM
+> >     - 64GB eMMC
+> >     - MicroSD card slot
+> >     - 1x RTL8125B 2.5G Ethernet
+> >     - 4x M.2 M-Key with PCIe 3.0 x1 (via bifurcation) for NVMe SSDs
+> >     - 2x USB 3.0 (USB 3.1 Gen1) Type-A, 1x USB 2.0 Type-A
+> >     - 1x USB 3.0 Type-C with DP AltMode support
+> >     - 2x HDMI 2.1 out, 1x HDMI in
+> >     - MIPI-CSI Connector, MIPI-DSI Connector
+> >     - 40-pin GPIO header
+> >     - 4 buttons: power, reset, recovery, MASK, user button
+> >     - 3.5mm Headphone out, 2.0mm PH-2A Mic in
+> >     - 5V Fan connector, PWM buzzer, IR receiver, RTC battery connector
+> > 
+> > PCIe bifurcation is used to handle all four M.2 sockets at PCIe 3.0 x1
+> > speed. Data lane mapping in the DT is done like described in commit
+> > f8020dfb311d ("phy: rockchip-snps-pcie3: fix bifurcation on rk3588").
+> > 
+> > This device tree includes support for eMMC, SD card, ethernet, all USB2
+> > and USB3 ports, all four M.2 slots, GPU, RTC, buzzer, UART debugging as
+> > well as the buttons and LEDs.
+> > The GPIOs are labeled according to the schematics.
+> > 
+> > Signed-off-by: Sebastian Kropatsch <seb-dev@web.de>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+> >  .../boot/dts/rockchip/rk3588-cm3588-nas.dts   | 1269 +++++++++++++++++
+> >  2 files changed, 1270 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-cm3588-nas.dts
 > 
-> Legacy : our first st-mipid02 driver was upstream this way few years back.
-> 
-> We have 3 options :
-> 
-> 1- keep this unpleasant naming to keep consistency with st-mipid02 [1]
-> and st-vgxy61 [2]
-> 2- rename this driver properly ('vd56g3') and keep the two others the
-> old way (I personally don't like this option)
-> 3- rename this driver properly ('vd56g3') and in a second patch rename
-> the two others drivers.
-> 
-> I would be interested to get Sakari's opinion on this subject.
-> 
-> [1]:
-> https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-mipid02.c
-> 
-> [2]:
-> https://elixir.bootlin.com/linux/v6.9.1/source/drivers/media/i2c/st-vgxy61.c
+> Because the CM3588 is a SoM and the NAS is a carrier board this should
+> probably be split in two, cm3588.dtsi and cm3588-nas.dts.
 
-The driver could be renamed to align with a large majority that use the
-same name as the bindings without the vendor prefix. You could add
-MODULE_ALIAS() to help user space to cope with the change.
+also, because of that way too generic name "cm", please incorporate the
+company name in the filename as well. For the same reason we named
+the rk3568-wolfvision-pf5.dts that way ;-) [Wolfvision being the company]
 
-The DT compatible string indeed should reflect the name of the device, the
-driver is indeed another matter.
+So maybe:
+rk3588-friendlyelec-cm3588.dtsi and rk3588-friendlyelec-cm3588-nas.dts
 
--- 
-Kind regards,
+ 
+> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> > index c544ff507d20..f1ff58bdf2cd 100644
+> > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > @@ -114,6 +114,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
+> > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-cm3588-nas.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtbo
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-cm3588-nas.dts b/arch/arm64/boot/dts/rockchip/rk3588-cm3588-nas.dts
+> > new file mode 100644
+> > index 000000000000..6c45b376d001
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-cm3588-nas.dts
+> > @@ -0,0 +1,1269 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
+> > + * Copyright (c) 2023 FriendlyElec Computer Tech. Co., Ltd.
+> > + * Copyright (c) 2023 Thomas McKahan
+> > + * Copyright (c) 2024 Sebastian Kropatsch
+> > + *
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/pinctrl/rockchip.h>
+> > +#include <dt-bindings/soc/rockchip,vop2.h>
+> > +#include <dt-bindings/usb/pd.h>
+> > +#include "rk3588.dtsi"
+> > +
+> > +/ {
+> > +	model = "FriendlyElec CM3588 NAS";
+> > +	compatible = "friendlyarm,cm3588-nas", "rockchip,rk3588";
+> 
+> Maybe this should be something like:
+> 
+>   "friendlyarm,cm3588-nas", "friendlyarm,cm3588", "rockchip,rk3588";
 
-Sakari Ailus
+This also needs an update of the binding document. Please use a similar
+notion as the other som + baseboard entries
+(const for the som + enum with one entry with the baseboard)
+
+[...]
+
+
+> > +/* Connected to 5V Fan */
+> > +&pwm1 {
+> > +	pinctrl-0 = <&pwm1m1_pins>;
+> 
+> pinctrl-names is missing, should typically always be defined together
+> with pinctrl-X props, same for multiple nodes.
+
+A rationale being that you don't want the soc dtsi in a later stage adding
+a possible pinctrl-1 with the board only overriding the pinctrl-0.
+When you set the pinctrl-names as well, you get independent from that.
+
+
+Thanks
+Heiko
+
+
 
