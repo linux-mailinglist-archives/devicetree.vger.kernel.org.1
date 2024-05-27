@@ -1,131 +1,134 @@
-Return-Path: <devicetree+bounces-69568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5416D8D05A8
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:15:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E15058D05D4
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 17:19:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4B95281D21
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:15:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EACB1C21399
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91C016EBE3;
-	Mon, 27 May 2024 14:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C16473452;
+	Mon, 27 May 2024 15:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tutg1n3c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RbtSOJS5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 902A115F30F;
-	Mon, 27 May 2024 14:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CFDC1E868;
+	Mon, 27 May 2024 15:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716821851; cv=none; b=BffvnzxLRjsmMWG1lhzi+bYLo1WZZeEBQZGKv3uANukEbxG2cJPinzCxqnfSkHZ/ShTOl0bRWlf5BTXeQEwV1IM0nHoVFdmGSF5G6+CHTPgHluYzRzmgSJKK68tO4+s1E1dZ26147qrJVY5ORVF7AxQoUnGh1/ac9qCI/NyUBq4=
+	t=1716822558; cv=none; b=c174cK6ovm4KQIhdXZKnQbldXRyUfMrBWrneLzgE3E7lgFgtSKiHWyp1GTUignG3WjAFlapxtKWCtFTTAUJWnhW48PILQ/OGB1ZHtP5t+1GlvCu+ECE/HhjBbzfgj0jARNdr5U905/S7ekUjvOSfnQvhQJJPi3moyR7KViyeDYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716821851; c=relaxed/simple;
-	bh=TPj1Ua3MXLPcEqd+42ujWJSzWinRENwbYJnUHrLZ/64=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZpW6gEDKe9UM6mUNMmod1S4ykIURFtlPXx49JZ5j3XeofRWbF2t7nLNzby3rhzUZoRz8sGY19V0QRxM45VIG05MtJr5G6XFahZqAQgjLkjj3x7Fdya3dworZ4L6vPdL0AYhMLScql5asxBeGF/gm31s6D7p16NevkgoJhoXNx1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tutg1n3c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D2C1C2BBFC;
-	Mon, 27 May 2024 14:57:26 +0000 (UTC)
+	s=arc-20240116; t=1716822558; c=relaxed/simple;
+	bh=YuKxD3bWQ8aYWzULrWddjuARczonPYhNEB+CaCLpbT0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pYu4V9TaJD1K4HTenRYP9bpXnac4BQlBRyL/TOtmDQjO2b3/7O7TxmpJFnpDCAULxYWYhgAJG/PKLl4bCwdIZY+pcR2Yk5oXcLpMOI4IGKFTDC0OvvDyo8XSX5O0kOLNRLL93B2G0wruxYKNr2psd0Fh5u88F03cGzSZHRN73U4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RbtSOJS5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10D29C2BBFC;
+	Mon, 27 May 2024 15:09:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716821850;
-	bh=TPj1Ua3MXLPcEqd+42ujWJSzWinRENwbYJnUHrLZ/64=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Tutg1n3cW99Gf9udjFbpM6/iRV4wVDFisFeoqKaOCXPbaZ13Pi3oxi5ZeWdmPGHSf
-	 MVrKQiOqhVmxCg7nd4nIjojJAiCSKj0tKxqILXaFAPH7ZxNly3lDsZA/gFkzgxesAI
-	 1Vhuq/Zoua4NmUmCveOXlkBp8s5QWrrAoPlQl+FKUQIcre0W2N0kNq1rAuVEqd1XZZ
-	 mObSxfsldL1eBZAaMOeO3yg0uhv6aztch2dVVDTeHnHJzodsuA6g57zCFVgr1QeyVS
-	 G9a5NzKofDDpdoQVcb9RnXaHspVl9K0FMi/CsQ5hO62JGQpLFCWDMeNVgaiYWKHQlG
-	 QnTcRagqL9ENg==
-Date: Mon, 27 May 2024 15:57:17 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally
- <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Jean Delvare
- <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Antoniu Miclaus
- <antoniu.miclaus@analog.com>, linux-acpi@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, Rob Herring
- <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] hwmon: (ltc2992) Use
- fwnode_for_each_available_child_node_scoped()
-Message-ID: <20240527155717.58292509@jic23-huawei>
-In-Reply-To: <ZlSY8tjYm5g9bEJ_@surfacebook.localdomain>
-References: <20240523-fwnode_for_each_available_child_node_scoped-v2-0-701f3a03f2fb@gmail.com>
-	<20240523-fwnode_for_each_available_child_node_scoped-v2-3-701f3a03f2fb@gmail.com>
-	<20240526144851.493dd3f2@jic23-huawei>
-	<ZlSY8tjYm5g9bEJ_@surfacebook.localdomain>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.42; x86_64-pc-linux-gnu)
+	s=k20201202; t=1716822558;
+	bh=YuKxD3bWQ8aYWzULrWddjuARczonPYhNEB+CaCLpbT0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RbtSOJS5A0pxbhhg/T2QRACi/3qELIIl8uDyGzpJ3dNKNbzcNWSr1VSk3Bq+S71KQ
+	 //wLknjrjCT3MPDI9Z0TuqVRrwd/nAllBflc5Cfs+g1CtRc2di7xgxJ8reDR+HBrNT
+	 h1z5IIKT5V919t72iKuNeAElyVwOr3G0ya5mWiRnl8GsZ49TLpZR8o7zHsMwVw2IRG
+	 zmEtR3AG5NgtNbxL9EQU1kBUYNLUk2qaHg8a9dn6GRJ0KNBfcetBxHw2nIkqmDCJuE
+	 04Ho9cLZezkdeoXMGmPJzXkX4ck/JWvbCk4UC4PIJg6NtfsdE9IWJm7EYiO68i5jLD
+	 nMsUxBi+WcFSA==
+Date: Mon, 27 May 2024 16:09:12 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+Cc: linux-riscv@lists.infradead.org, kvm-riscv@lists.infradead.org,
+	kvm@vger.kernel.org, greentime.hu@sifive.com,
+	vincent.chen@sifive.com, cleger@rivosinc.com, alex@ghiti.fr,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v4 2/5] dt-bindings: riscv: Add Svadu Entry
+Message-ID: <20240527-widely-goatskin-bb5575541aed@spud>
+References: <20240524103307.2684-1-yongxuan.wang@sifive.com>
+ <20240524103307.2684-3-yongxuan.wang@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="39tUOd5aicq+YFEC"
+Content-Disposition: inline
+In-Reply-To: <20240524103307.2684-3-yongxuan.wang@sifive.com>
 
-On Mon, 27 May 2024 17:30:10 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-> Sun, May 26, 2024 at 02:48:51PM +0100, Jonathan Cameron kirjoitti:
-> > On Thu, 23 May 2024 17:47:16 +0200
-> > Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
-> >   
-> > > The scoped version of the fwnode_for_each_available_child_node() macro
-> > > automates object recfount decrement, avoiding possible memory leaks
-> > > in new error paths inside the loop like it happened when
-> > > commit '10b029020487 ("hwmon: (ltc2992) Avoid division by zero")'
-> > > was added.
-> > > 
-> > > The new macro removes the need to manually call fwnode_handle_put() in
-> > > the existing error paths and in any future addition. It also removes the
-> > > need for the current child node declaration as well, as it is internally
-> > > declared.
-> > > 
-> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>  
-> > 
-> > This looks like another instances of the lack of clarify about 
-> > what device_for_each_child_node[_scoped]() guarantees about node availability.
-> > On DT it guarantees the node is available as ultimately calls
-> > of_get_next_available_child()
-> > 
-> > On ACPI it doesn't (I think).
-> > For swnode, there isn't an obvious concept of available.
-> > 
-> > It would be much better if we reached some agreement on this and
-> > hence could avoid using the fwnode variants just to get the _available_ form
-> > as done here.  
-> 
-> > Or just add the device_for_each_available_child_node[_scoped]()
-> > and call that in almost all cases.  
-> 
-> device_for_each*() _implies_ availability. You need to talk to Rob about all
-> this. The design of the device_for_each*() was exactly done in accordance with
-> his suggestions...
-> 
+--39tUOd5aicq+YFEC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Does it imply that for ACPI? I can't find a query of _STA in the callbacks
-(which is there for the for fwnode_*available calls.
-Mind you it wouldn't be the first time I've missed something in the ACPI parsing
-code, so maybe it is there indirectly.
+On Fri, May 24, 2024 at 06:33:02PM +0800, Yong-Xuan Wang wrote:
+> Add an entry for the Svadu extension to the riscv,isa-extensions property.
+>=20
+> Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
-I know from previous discussions that the DT version was intentional, but
-I'm nervous that the same assumptions don't apply to ACPI.
+I'm going to un-ack this, not because you did something wrong per se,
+but because there's some discussion on the OpenSBI list about what is
+and what is not backwards compatible and how an OS should interpret
+svade and svadu:
+https://lists.infradead.org/pipermail/opensbi/2024-May/006949.html
 
-> > In generic code, do we ever want to walk unavailable child nodes?  
-> 
-> ...which are most likely like your question here, i.e. why we ever need to
-> traverse over unavailable nodes.
-> 
+Thanks,
+Conor.
 
-Jonathan
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index 468c646247aa..598a5841920f 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -153,6 +153,12 @@ properties:
+>              ratified at commit 3f9ed34 ("Add ability to manually trigger
+>              workflow. (#2)") of riscv-time-compare.
+> =20
+> +        - const: svadu
+> +          description: |
+> +            The standard Svadu supervisor-level extension for hardware u=
+pdating
+> +            of PTE A/D bits as ratified at commit c1abccf ("Merge pull r=
+equest
+> +            #25 from ved-rivos/ratified") of riscv-svadu.
+> +
+>          - const: svinval
+>            description:
+>              The standard Svinval supervisor-level extension for fine-gra=
+ined
+> --=20
+> 2.17.1
+>=20
 
+--39tUOd5aicq+YFEC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlSiGAAKCRB4tDGHoIJi
+0rsyAQDVctvH18CS7Wmm09E45EARmF5ZCi1dVq5wi3eKs6RM2gEA4XNa7WqLM3B8
+qQI+GhZGvFqrbLnnav9sXWDnIHogkQU=
+=AIHm
+-----END PGP SIGNATURE-----
+
+--39tUOd5aicq+YFEC--
 
