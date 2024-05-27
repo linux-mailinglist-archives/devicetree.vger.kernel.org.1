@@ -1,139 +1,213 @@
-Return-Path: <devicetree+bounces-69464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E96A28CFE1D
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 12:29:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5067B8CFE8C
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:04:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E853280C4C
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 10:29:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9C271F210E4
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 11:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802B913C815;
-	Mon, 27 May 2024 10:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C1013BC1F;
+	Mon, 27 May 2024 11:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="C8qDiWZ+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S/CGlSq2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6667813B794;
-	Mon, 27 May 2024 10:28:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F347213B7A3
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 11:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716805717; cv=none; b=U80/2w+RMFrkcn+oW54tDyXJhhX5HPtmMPfL/wpmJRfmGiRd2z9cPWVW1CSK1KKRYDNb7BVAJdnENdEYSszApGtrSCLxpzDIWUascP0GBbiz7VvgW7hhXKBQqcKwQsSPi0uyYhnuEh72PT6Xe4LoB0GNIsWKsOh4QYpscEMD9xI=
+	t=1716807853; cv=none; b=pbrSQpB66+kYRQqcyjICgaOvrUR7nXjP5O9tIeN7+ZAzi/Q4hdyVgzGrMbYvzHl1xWFSBFQGjIxGNjIR/iU2EVMPeQsTsUpbT0qqYEf0vvk8nUp63EgfBM6h6dPfXgTTEl7ueXfaERUsqD897qKnsBcddmqCFHhzUa/v5FOgZRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716805717; c=relaxed/simple;
-	bh=wBDoPpS3HC83CyDFJS3wlrqWFRvwsmCF5f0hTI6RD1I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XR0gL5b+wFgPfgww1sVT8AH+o9n6Wlb95NoQ0PdZEkroj+1ffJIc0EvpJUMDgIM4DsN6kqgNtRD2V7a6hy4av1DTupudFvbZ1IROHfsmYggIv4eHRMaDbdb7r3nHETjc8IrFAHvVWJUgnCrUt3o3hyq6zl+ExlQGZFg3gX1wobQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=C8qDiWZ+; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 111DE20003;
-	Mon, 27 May 2024 10:28:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1716805707;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VGTOM0pfiSCveUfaceYtAyHVg+Ep/GypPt5E5h7VYhY=;
-	b=C8qDiWZ+ZcP7lbEetHICu5+RHu/QzNHwaRfaMT5c9rHwTyWtpVwralRDGgb1U7+M3Wyuy4
-	5sbuZxFxQvSPTqC6csIygrHHkP7k4ecR9LXvAtYK0ROIQp6eGGoZfEL8NM5d4+xRZNtuSd
-	Qrt4Xm5XNwyjkIvPekmpmHgGahCO6ptOj9Oo686PV/U+8+4qvhbSVHtqJ2vYQ3JhAmtq3i
-	eE20RGfMufo2L2E73dVS95n3M7lvT4pvIdRZ26QjdvMwp22dP0IvW6ha5fAeKDkn6Ssihr
-	LF+9D6vOJ1Q+mC936oA9OB5E6uAmk2SpBMo0sQppKE3l33BrpOMCfgIpz63CuQ==
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Date: Mon, 27 May 2024 12:28:21 +0200
-Subject: [PATCH 5/5] riscv: dts: sophgo: Add LicheeRV Nano board device
- tree
+	s=arc-20240116; t=1716807853; c=relaxed/simple;
+	bh=yuX+wFP7fMTWfpbVBFssj2MGbALckEkCiS/YZH6S6Ns=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pOFeBM/J7bk4WcZIFdj0+MJ1ayGZqguK/Tb79EErpdqS3rxcW4eQVyx++KUu7bRGy1MSaocOFsRk7S1C6hNqkVhYHrrJi/KJJDeGXV1rJEhkyAMbDvSKM2jaSjVb1A5mKUc6mBzc+89VDTMslbfd0aPISBcdENKdkCNG68Kst28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S/CGlSq2; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2e9819a630fso4646461fa.1
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 04:04:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716807850; x=1717412650; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ikk0MTqK6vpn61sKB0R5HgfSO+QOYsjG/QHNlCN938c=;
+        b=S/CGlSq2Gu6GLkF+nsvyeOZcm9yVP7NU2T4WfSBq9q3aKcAoDbP2rwnBYr5DRq9jxY
+         BGRITp02iYr/u8Kc2nBjUCy7Dg8VcHKjamwfktw8Whu+/KsYOhZeZ5ourKfZ8Kbt6B/U
+         R17yhjtP6inoyfyu9KQkxYDuUp1ygvkNMpT5KKarvN9K3+lzf1EAEZWHGfFJIU1PbT0/
+         etHady4QiTKtBoxtiIcqTDzRrWiAkGHkCLkTKUFv+dQiozwz50Zc+EYGF7W7a9VN0DAN
+         mRdEFCe8Uzpjay2SwUx+hfq1V8yUf2L5BK5/i2ihehEWJB+YVJDCc9C2HlDwbJQZPKc1
+         qK3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716807850; x=1717412650;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ikk0MTqK6vpn61sKB0R5HgfSO+QOYsjG/QHNlCN938c=;
+        b=keP15HVbyKomoaflhFFmdS0NEMTnglruuLlk10nALMnow5prVY0a9+hY+UCnOAc0Pi
+         HcpdGg4NEFHhPHSHtgrxtNkjIZDv5Km5NPFM7rV7Nig0Qlhbu4Eztex4cKAIfq/BLAt0
+         BvXYc4OcX3sVYmvEhewCBpmhRsWfUODGMnzmyMgb//iR0HTOS7z/JEy/IoarVr4ClgRO
+         /LrZq2yTf5GCeU4wpa5Krt8HPLsS2a2LHkH0Xm/Vv/7gQJ9r1/33Q6oPzRn3I68gPnov
+         TrgEoEZzeacfvOXiS8oNBboyOTLRz6xtjoIx6FylU1rqa1ZGMHC1ZXn4GUoGCCdNu0Y7
+         BiqA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIiBi2plLF3RPsn2Vn72HHZv1TKmP0pSDM58NkEcdULTzZALojiyjbY7k1qj46FbCs2XtfRhtMGRvWaoSrEF6ks5D/3oLsi1sjeA==
+X-Gm-Message-State: AOJu0Yy+PvPqLXBlNCIaVh4THyKLdyGt1BLrcQt7Ja5DklngSWQh1gpg
+	z5XSlWWAdg0LxvVrhbAMEDYrlbey7tE/II/njPPsHue+XNmRyxkbShNnt0x3uW8=
+X-Google-Smtp-Source: AGHT+IGElvPB6h5Dsq7+RN2HrAz4iulgHd8bLdU9hxq/60HzPeIZmMqN72sL2LTUtDSF+/HXazY/+g==
+X-Received: by 2002:a2e:9899:0:b0:2e5:685a:85b5 with SMTP id 38308e7fff4ca-2e95b041622mr74590631fa.1.1716807849899;
+        Mon, 27 May 2024 04:04:09 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e95bcd7bbcsm19087591fa.32.2024.05.27.04.04.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 May 2024 04:04:09 -0700 (PDT)
+Date: Mon, 27 May 2024 14:04:07 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Nikita Travkin <nikita@trvn.ru>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: power: supply: Add Lenovo Yoga C630
+ EC
+Message-ID: <yy6llkseusmg2rzyt2iytb6pjelqycsfgawt2g24gccujqkxxb@yzdari2gq6rt>
+References: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
+ <20240527-yoga-ec-driver-v3-1-327a9851dad5@linaro.org>
+ <f05953c74f2bf58256306eb3d554ae0b@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240527-sg2002-v1-5-1b6cb38ce8f4@bootlin.com>
-References: <20240527-sg2002-v1-0-1b6cb38ce8f4@bootlin.com>
-In-Reply-To: <20240527-sg2002-v1-0-1b6cb38ce8f4@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
- Chao Wei <chao.wei@sophgo.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-X-Mailer: b4 0.13.0
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f05953c74f2bf58256306eb3d554ae0b@trvn.ru>
 
-LicheeRV Nano [1] is an embedded development platform base on the SOPHGO
-SG2002 chip.
+On Mon, May 27, 2024 at 03:21:27PM +0500, Nikita Travkin wrote:
+> Dmitry Baryshkov писал(а) 27.05.2024 15:03:
+> > From: Bjorn Andersson <andersson@kernel.org>
+> > 
+> > Add binding for the Embedded Controller found in the Qualcomm
+> > Snapdragon-based Lenovo Yoga C630.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../bindings/power/supply/lenovo,yoga-c630-ec.yaml | 83 ++++++++++++++++++++++
+> >  1 file changed, 83 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> > new file mode 100644
+> > index 000000000000..52a302850743
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> > @@ -0,0 +1,83 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/power/supply/lenovo,yoga-c630-ec.yaml#
+> 
+> Should this binding join aspire1 one in bindings/platform ?
 
-Add only support for UART.
+Good idea
 
-Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html
-[1]
-
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
----
- arch/riscv/boot/dts/sophgo/Makefile                |  1 +
- .../boot/dts/sophgo/sg2002-lichee-rv-nano.dts      | 25 ++++++++++++++++++++++
- 2 files changed, 26 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-index 57ad82a61ea6..5759b21805dc 100644
---- a/arch/riscv/boot/dts/sophgo/Makefile
-+++ b/arch/riscv/boot/dts/sophgo/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-diff --git a/arch/riscv/boot/dts/sophgo/sg2002-lichee-rv-nano.dts b/arch/riscv/boot/dts/sophgo/sg2002-lichee-rv-nano.dts
-new file mode 100644
-index 000000000000..aaad2733801b
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2002-lichee-rv-nano.dts
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sg2002.dtsi"
-+
-+/ {
-+	model = "LicheeRV Nano";
-+	compatible = "sipeed,licheerv-nano", "sophgo,sg2002";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
+> 
+> Nikita
+> 
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Lenovo Yoga C630 Embedded Controller.
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <andersson@kernel.org>
+> > +
+> > +description:
+> > +  The Qualcomm Snapdragon-based Lenovo Yoga C630 has an Embedded Controller
+> > +  (EC) which handles things such as battery and USB Type-C. This binding
+> > +  describes the interface, on an I2C bus, to this EC.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: lenovo,yoga-c630-ec
+> > +
+> > +  reg:
+> > +    const: 0x70
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +patternProperties:
+> > +  '^connector@[01]$':
+> > +    $ref: /schemas/connector/usb-connector.yaml#
+> > +
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +
+> > +    unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |+
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    i2c1 {
+> > +        clock-frequency = <400000>;
+> > +
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        embedded-controller@70 {
+> > +            compatible = "lenovo,yoga-c630-ec";
+> > +            reg = <0x70>;
+> > +
+> > +            interrupts-extended = <&tlmm 20 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            connector@0 {
+> > +                compatible = "usb-c-connector";
+> > +                reg = <0>;
+> > +                power-role = "source";
+> > +                data-role = "host";
+> > +            };
+> > +
+> > +            connector@1 {
+> > +                compatible = "usb-c-connector";
+> > +                reg = <1>;
+> > +                power-role = "source";
+> > +                data-role = "host";
+> > +            };
+> > +        };
+> > +    };
+> > +...
 
 -- 
-2.45.1
-
+With best wishes
+Dmitry
 
