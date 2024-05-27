@@ -1,321 +1,142 @@
-Return-Path: <devicetree+bounces-69546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F838D021E
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:49:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8EA38D0239
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 15:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95BC5B2C8D3
-	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:42:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 089E4B21674
+	for <lists+devicetree@lfdr.de>; Mon, 27 May 2024 13:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C0615EFAA;
-	Mon, 27 May 2024 13:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23E015ECFE;
+	Mon, 27 May 2024 13:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="VGZBxWfj";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="TGAy4jHM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e9lGSbVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from wfhigh1-smtp.messagingengine.com (wfhigh1-smtp.messagingengine.com [64.147.123.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CBC61E893;
-	Mon, 27 May 2024 13:41:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4964413C676
+	for <devicetree@vger.kernel.org>; Mon, 27 May 2024 13:44:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716817314; cv=none; b=G5sAXIDp1WUf8gcgzyXdAf9XX2Pk6QLeKt/LXwSuquvM62XoEOmWKXH98AappeuYi3+VD5gVcEZs7LJoR9jTpvkACzNmxp8VnSK/D8Kqhu1HtGEH3o8IfoGTElLp4abJzS4pGj/abEQhnHktpWYnVqCXt2VbOSrcAtpnr7P+IRg=
+	t=1716817499; cv=none; b=iDGOmWUyHhbKJLh1h8O2pQ5ZT6EU+0CVlQ/LWzM+jqlPF7gflm9iK84wsLAu3Wo9pCO0cuJy3mmAQn7sPEOt3z3XGPBq/Iwd9zQzm8JVnAQgZnQszOImhhkRANh60Lr65sjEiq1Fkgna6fLIhhUO07r7FgzHc6MuMYSqiPEyC8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716817314; c=relaxed/simple;
-	bh=umDXuss0viKzSxaUzowQbZCecGCZfXISyOzAp7yUsqU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MagmCt7liWueUGgWMdtskIvOLTO9B5XS+vJFiSStUQo7HzbMOVHTDNfNia/ot8fzfqNZi//fvwZvuUd1THZA8E6JTa7/DcYPF8xez6aV0UfTKSg8KZvfcytDT1S1FRM4Umd0LtEARqLzWzv6accJGej0ZK5dOMZZ/yo92opeMK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=VGZBxWfj; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=TGAy4jHM; arc=none smtp.client-ip=64.147.123.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailfhigh.west.internal (Postfix) with ESMTP id 019F318000C3;
-	Mon, 27 May 2024 09:41:51 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Mon, 27 May 2024 09:41:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1716817311;
-	 x=1716903711; bh=xkUY2Kp6Ka0gad/vLh+iQ8tX9s4EKs1yZxISjfJw0zM=; b=
-	VGZBxWfjIpML9HeFQcAlXidDuYpbw86tchtr9If/DDwehAc2aIqiRw3HlqSV3SM4
-	o96mRWmniBt8lAL34GqicihLt26MKEjvtDmNMerbCNSbiCm59foye2lo8Kot6UM9
-	qNpg9pVZ/nZFQUe28YtHN7ArhqoDQ7I4PZd0TehkM1h9fADRlRDrQxFhliyYnw8F
-	Cw4oJZiskV1ytiejw5IR1OYF4HYXos6sVy5CADtuRuVjH5ApyrAgIT3RTvn1YDbK
-	enawtOO3pGBAZmprqqjWnGvL8rZU7E+xDGT0iyz6quvJUG4kct1DqaQYo7FrGQrW
-	76Zq4KMRkuNa9pWPtshwnQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1716817311; x=
-	1716903711; bh=xkUY2Kp6Ka0gad/vLh+iQ8tX9s4EKs1yZxISjfJw0zM=; b=T
-	GAy4jHM+B2JMDirMxlWgfnrjP78JTS/xaNJdRcz4bJxkTVmUy5Ewq1l0A5TIlqUr
-	v8FBNrlxZE5FjoFfwSP6MitC67XTib25A5PQsh6ru66ckRby+mePVvKVu0erX+EN
-	ESK5PivTNsQdznalazNrW0iYyH2Sty5Frn4k9q2XSVSDDiCIvDa29pYoig0c71nT
-	ITeWKV45jwIihmKAqgg4QojZqZkt3uh6+y8qZYUMgxosvebp7laK01U2b8dju9rf
-	L3ZrekptOsTX1wJqm8vOb+QhU2VW95A4wOp/los2W9pHYbfVfgOzvNv+etzNwMXX
-	3tx79Ese7bpXEiz6uxM6g==
-X-ME-Sender: <xms:n41UZr9mO13DSvM5mKxlT0JEU6qI0HkTIc5MsfRmbqcJcarnjNjhwg>
-    <xme:n41UZnt1pLLdOIZmaHtSU6bxIoIEbVMqYG9hA0bKlf7ByorFflG_xawVfEw-Wt1FQ
-    GXow4DuTlQVTDSkg4A>
-X-ME-Received: <xmr:n41UZpDfVsAT8jmhKazV0kw7Ezfu57lH2pUbvQ4d1BzIg10GyIBRlTS_UjOcNyU_tUVW-d89AGUSgpvITZZ_NXObX7M59Fgg8q5k>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdejgedgieehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpefpihhk
-    lhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugdorhgvnh
-    gvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeehiefgueev
-    uedtfefhheegkeevtdelueeukeevfeduhefhhfejfffggeffleefgeenucevlhhushhtvg
-    hrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggv
-    rhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgv
-X-ME-Proxy: <xmx:n41UZnf8ey-zmklycEZOCxM1XaflZfS9_mJ-QH4WSbOKFyz2oCf7Ag>
-    <xmx:n41UZgMtlcjWY7fyYdaNSyS8_2_0HUnF2UQsanybbqW_JEPej65Avg>
-    <xmx:n41UZpl4nwd-K4ZY3si2LKXTo_iYIMo78LkIiBU36I1WwoIkTB9QmQ>
-    <xmx:n41UZqtg6dIeeCQfetGO_YtrgP5U8R0RVCwQQ27UteJiNh8i7uCQmw>
-    <xmx:n41UZndU0vJVmYxrs3953gAWllD_rX3m9KQ8Zee0t2_k7SaZxuXlhjym>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 27 May 2024 09:41:50 -0400 (EDT)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 3/3] arm64: dts: renesas: gray-hawk-csi-dsi: Add and connect MAX96724
-Date: Mon, 27 May 2024 15:41:29 +0200
-Message-ID: <20240527134129.1695450-4-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1716817499; c=relaxed/simple;
+	bh=fwXZJFB4nkMzHi+97DNTbv/zQhYOdEGJXF+z0FAofVA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=t9M3CMxwfCqxCL3poQXGcIPocyvf5362hPXLshcBXyeS/s97R0QSI2kwLo17CFUV/GmLIMfulWZ4pv4s8edyQBoecl6hAP1Oj5JF0lddZksUgmlecTgZI8U8TvEjb+nMti12Bdu0H4201gigWWXZBp/w04G7JB3qyTteOqWmPE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e9lGSbVd; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-35507e3a5deso1739352f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 06:44:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716817497; x=1717422297; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BOPePvII73dyzyHk15m4pOPTJxMdXeXMFiP5kpq9p44=;
+        b=e9lGSbVdDpdFXgNm35duyPuVOM/s1buSjbwUS0K5ZobzfaSjZuLM3Hw2899t4KI3MG
+         bq3HSGk/Ohwf12avPGDex6UGjcJIcgKb05oaesFmqiWy3EC3a4zPPayUfAGE7KV0ypJy
+         e1hPM+laFVLGmnj53y62u4rJCj1XixGIkwjmyOmpja6880dIQUWnpMCFah/YnFQOVgUg
+         fiHx7CS2dM8XjFWEGaFGuYGZp6PKfH0i5fUugxS8AhWDATtQCnKJKN3YXJAnGfp5kXAI
+         sbt2cBs88sZAdWNRwbLNHVcZjd1rGLPwJ8+z6c21vI0ic78NiN/Aw7VvrWXxMWZO/bGo
+         BP+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716817497; x=1717422297;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BOPePvII73dyzyHk15m4pOPTJxMdXeXMFiP5kpq9p44=;
+        b=Gff3bsK39B9XEG9k8TW9BnnGC3pLzd5AMaApiiof0j3rhziswybHt0/KTZUrm7WJXU
+         Xk/3QpLCAn3HwiJHoFj3sVdzkNo/xaIcGu8N7x1T62b7BBQycUHDPrnP8St5ZGizeWKm
+         0EwHtUHvyDhKnKCjGj0NPXhqGCipiQv5CzlFASm5zmBuivycnuwaFucG9YYZ2088B3yO
+         T1fIozfF60pQvNWL7EgmVkWYwNQ4CLUAbWp3ma0Jg7vKVp8TzLdBIYnrWxJ3mhqmfIfr
+         vDIcJjtfYgNyDQvCAMQQ+AoKfpixzt4pJF113/K5vYJNDf3SSKEaZlnzJzhO1VnSymya
+         HHmg==
+X-Forwarded-Encrypted: i=1; AJvYcCUgoUUVgQ4ELy2mDRlfyqxeNrVzwhVdNATxQSw8n9JmnU+MhGtYQQ3g51Vv2csXAIHUdkccd0Dcm1nnhuW0sZxH8V+GI8vX8MP5fA==
+X-Gm-Message-State: AOJu0YxfZ8L9AvxOV2rhVAB8+B8WaUj8/wPZ1E7jHNEUdKm2FS1YTKii
+	LbUvc9NZyWvGeSDU0ZLB2PeOBW4q/nlGPShQa3AuccDu0u2E1F4uwaQ825Y4FZc=
+X-Google-Smtp-Source: AGHT+IGwS0/nDa3ITAcmca/nsJyVuSykEMrLjJDamCmRirIOzO7crmASNfLCNT5BvQ9XhxFkMcLswA==
+X-Received: by 2002:a5d:598a:0:b0:356:4cd7:d3ac with SMTP id ffacd0b85a97d-3564cd7d4eemr7776462f8f.12.1716817496449;
+        Mon, 27 May 2024 06:44:56 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a091051sm9114549f8f.61.2024.05.27.06.44.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 May 2024 06:44:56 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: jbrunet@baylibre.com, mturquette@baylibre.com, khilman@baylibre.com, 
+ martin.blumenstingl@googlemail.com, glaroque@baylibre.com, 
+ rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
+ lukasz.luba@arm.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ conor+dt@kernel.org, Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: kernel@salutedevices.com, rockosov@gmail.com, 
+ linux-amlogic@lists.infradead.org, linux-pm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20240328192645.20914-1-ddrokosov@salutedevices.com>
+References: <20240328192645.20914-1-ddrokosov@salutedevices.com>
+Subject: Re: [PATCH v2 0/3] arm64: dts: amlogic: a1: introduce thermal
+ setup
+Message-Id: <171681749543.2905422.16742406814394221719.b4-ty@linaro.org>
+Date: Mon, 27 May 2024 15:44:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-The sub-board contains two MAX96724 connected to the main-board using
-I2C and CSI-2, record the connections. Also enable all nodes (VIN, CSI-2
-and ISP) that are part of the downstream video capture pipeline.
+Hi,
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- .../boot/dts/renesas/gray-hawk-csi-dsi.dtsi   | 185 ++++++++++++++++++
- 1 file changed, 185 insertions(+)
+On Thu, 28 Mar 2024 22:26:34 +0300, Dmitry Rokosov wrote:
+> This patch series introduces thermal sensor declaration to the Meson A1
+> common dtsi file. It also sets up thermal zones for the AD402 reference
+> board. It depends on the series with A1 thermal support at [1].
+> 
+> Changes v2 since v1 at [2]:
+>     - provide Neil RvB for cooling-cells dts patch
+>     - purge unnecessary 'amlogic,a1-thermal' fallback
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/renesas/gray-hawk-csi-dsi.dtsi b/arch/arm64/boot/dts/renesas/gray-hawk-csi-dsi.dtsi
-index 68a37e2077e1..61bea35aebdc 100644
---- a/arch/arm64/boot/dts/renesas/gray-hawk-csi-dsi.dtsi
-+++ b/arch/arm64/boot/dts/renesas/gray-hawk-csi-dsi.dtsi
-@@ -6,7 +6,63 @@
-  * Copyright (C) 2024 Niklas Söderlund <niklas.soderlund@ragnatech.se>
-  */
- 
-+#include <dt-bindings/media/video-interfaces.h>
-+
-+&csi40 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			csi40_in: endpoint {
-+				bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&max96724_out0>;
-+			};
-+		};
-+	};
-+};
-+
-+&csi41 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			csi41_in: endpoint {
-+				bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&max96724_out1>;
-+			};
-+		};
-+	};
-+};
-+
- &i2c0 {
-+	pca9654_a: gpio@21 {
-+		compatible = "onnn,pca9654";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	pca9654_b: gpio@22 {
-+		compatible = "onnn,pca9654";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
- 	eeprom@52 {
- 		compatible = "rohm,br24g01", "atmel,24c01";
- 		label = "csi-dsi-sub-board-id";
-@@ -14,3 +70,132 @@ eeprom@52 {
- 		pagesize = <8>;
- 	};
- };
-+
-+&i2c1 {
-+	pinctrl-0 = <&i2c1_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	gmsl0: gmsl-deserializer@4e {
-+		compatible = "maxim,max96724";
-+		reg = <0x4e>;
-+		enable-gpios = <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@4 {
-+				reg = <4>;
-+				max96724_out0: endpoint {
-+					bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+					clock-lanes = <0>;
-+					data-lanes = <1 2 3 4>;
-+					remote-endpoint = <&csi40_in>;
-+				};
-+			};
-+		};
-+	};
-+
-+	gmsl1: gmsl-deserializer@4f {
-+		compatible = "maxim,max96724";
-+		reg = <0x4f>;
-+		enable-gpios = <&pca9654_b 0 GPIO_ACTIVE_HIGH>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@4 {
-+				reg = <4>;
-+				max96724_out1: endpoint {
-+					bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+					clock-lanes = <0>;
-+					data-lanes = <1 2 3 4>;
-+					remote-endpoint = <&csi41_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&isp0 {
-+	status = "okay";
-+};
-+
-+&isp1 {
-+	status = "okay";
-+};
-+
-+&pfc {
-+	i2c1_pins: i2c1 {
-+		groups = "i2c1";
-+		function = "i2c1";
-+	};
-+};
-+
-+&vin00 {
-+	status = "okay";
-+};
-+
-+&vin01 {
-+	status = "okay";
-+};
-+
-+&vin02 {
-+	status = "okay";
-+};
-+
-+&vin03 {
-+	status = "okay";
-+};
-+
-+&vin04 {
-+	status = "okay";
-+};
-+
-+&vin05 {
-+	status = "okay";
-+};
-+
-+&vin06 {
-+	status = "okay";
-+};
-+
-+&vin07 {
-+	status = "okay";
-+};
-+
-+&vin08 {
-+	status = "okay";
-+};
-+
-+&vin09 {
-+	status = "okay";
-+};
-+
-+&vin10 {
-+	status = "okay";
-+};
-+
-+&vin11 {
-+	status = "okay";
-+};
-+
-+&vin12 {
-+	status = "okay";
-+};
-+
-+&vin13 {
-+	status = "okay";
-+};
-+
-+&vin14 {
-+	status = "okay";
-+};
-+
-+&vin15 {
-+	status = "okay";
-+};
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.11/arm64-dt)
+
+[1/3] arm64: dts: amlogic: a1: add cooling-cells for DVFS feature
+      https://git.kernel.org/amlogic/c/947bde9069c8241afe401433a6eff276595bb073
+[2/3] arm64: dts: amlogic: a1: introduce cpu temperature sensor
+      https://git.kernel.org/amlogic/c/049d141161903e656d9475950bb976240802c01c
+[3/3] arm64: dts: amlogic: ad402: setup thermal-zones
+      https://git.kernel.org/amlogic/c/593ab951232be4779e77f5b1bee0bef4e6fc1022
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.11/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
 -- 
-2.45.1
+Neil
 
 
