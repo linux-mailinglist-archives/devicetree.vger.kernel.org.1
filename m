@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-69688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F60A8D12A0
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 05:33:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D8A8D12A6
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 05:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90B971C224BA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 03:33:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A771D1C219DA
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 03:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C7F3715E;
-	Tue, 28 May 2024 03:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7EE45C07;
+	Tue, 28 May 2024 03:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUDc8FG3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFitBGUI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B4A2E64C;
-	Tue, 28 May 2024 03:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7043945978;
+	Tue, 28 May 2024 03:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716867164; cv=none; b=pxGZph+CsoGCcQRjdjLiT0g6kl4T6XeU4d5GJb8iDyuzIMdbGVBdL6OHXckgK8MNeD0RJgTmBWyA9SFLW+gbqd6pjb+Jk/C/W3FkV75Kq501U/oSyDJZUc560IBxuIkH22s0yaYfUn8cjXk8/aOBLQBkPG5ZlW8uWmtYbVXuinM=
+	t=1716867166; cv=none; b=B9Xnlowp/sb7orX+LbeOeVbZPEpJaaEUki3GRwUSA4L7do916bIPHdNoPho/Kd1xKFjbET1ldjrcK2F5JDqF7Rm+KaOdEhKngylssx3I/3IgMqvbk+6K4i96irQcnL3IcjHd1BnmnEnCrzoI2zXUXNBnMAkRCIB0kY6/zpbhy0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716867164; c=relaxed/simple;
-	bh=BNUfSENnQ3Xnu31LgNHC6atOJLd8mgwLZdHa7Nnqm+c=;
+	s=arc-20240116; t=1716867166; c=relaxed/simple;
+	bh=FEMqyikHlnfufx3BpNvl4Twes2fwF1iFzs/RrCB2nx8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IdhyFjcm4uoOFPyPcOcWqNrjKz9zo+ZqJgxyOEsjoMFMq6qW3HCKmgL6GOLVZCnO922esOwX5g6D96SSVuaohLNZIhwJ2IOibyEjAlHsy48Xbs3GYScAgVhVjIqMU04J8jA6eq0GkAianlokvAObDQhA2/2kf2ViRwY6YitCWp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUDc8FG3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC9E6C32782;
-	Tue, 28 May 2024 03:32:42 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Sz2XF+65viAJtnlqhKYYFN4HpPidFT1eN92+o6/xPlDoPWrJoKjnCrTZf9fimgIwhtXuk93JGng3h4YAymbV1MLbbo3izccYbPBUjJlNU6xAyXV8+ySSjxfH15Ecq5HybSqfPAFGfn3bYDAws9EZIq2UnV57Mccn+WfuZPzQoMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFitBGUI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C467C4AF0A;
+	Tue, 28 May 2024 03:32:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716867163;
-	bh=BNUfSENnQ3Xnu31LgNHC6atOJLd8mgwLZdHa7Nnqm+c=;
+	s=k20201202; t=1716867166;
+	bh=FEMqyikHlnfufx3BpNvl4Twes2fwF1iFzs/RrCB2nx8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CUDc8FG3Ys5ntlJxaUlHzTN0P01QD07feXHr6BfnuOz7n+sDDn1PLymcLoa5oKEH0
-	 fLLUZ5R/x3vh7aLrETM37RoX9Wbp54ZXbv6QymOxLbeDosZPjrcLPgkjfyVnUyYq6O
-	 956b86GTbXtEqqCWRgmSZOfyaPJ3oMsgDT8iSh59eD1YyNxkGsdlhJ343vYD3++3lB
-	 pI8Z7O6myx/qvNT7XNP6JyfGs1HtXMFpsXjvrJH6PnF7MEx6ONmO6iiDka4FKQdQqk
-	 3DZOgqXfJoYw/n+RQhrVicaE6scVoJ03UBPw64dM6CctOExIti1+/mR3QIm5VOJXBT
-	 pbh8rboP6ecpQ==
+	b=EFitBGUIr+QzdgHOKU9R3nyC6icSjerZy1f7XBSLOdKBpNH/rbjHfFvsA50y8PUpw
+	 2bh8FV1gZ+Jrezb3z79S7EEK7Gypt+37DPUtGjMLZJihmIk36L+J0M80mVV4QRP21X
+	 Ad/QqYFOb1X7UglY0j3AfdUViESQA+4F1aezfaU5OSyuLiCSKvpOre9/TKzQ4ez9oV
+	 3HTIhkIQpArbFZQ0YEanhW5EGADGOUFjAhz8dLK3T/18IglOlfGkPwcpEDo/lgvAh/
+	 BDoP95D+3bibWKMyH5fb3m0cuxX6pmpf0k7Xp5EwItM97ejLAsiEKYxRj4HDenFWgx
+	 6zAaNqkjsKPVw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
+To: konrad.dybcio@linaro.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	david@mainlining.org,
+	adrian@travitia.xyz,
+	Danila Tikhonov <danila@jiaxyga.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	luca@z3ntu.xyz,
-	Bryant Mairs <bryant@mai.rs>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/2] Add samsung-milletwifi
-Date: Mon, 27 May 2024 22:32:10 -0500
-Message-ID: <171686715163.523693.4500878990759287138.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] Add dispcc, videocc and camcc for SM7150.
+Date: Mon, 27 May 2024 22:32:12 -0500
+Message-ID: <171686715162.523693.3154527617909497285.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240219214643.197116-1-bryant@mai.rs>
-References: <20240219214643.197116-1-bryant@mai.rs>
+In-Reply-To: <20240505201038.276047-1-danila@jiaxyga.com>
+References: <20240505201038.276047-1-danila@jiaxyga.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,24 +71,42 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 19 Feb 2024 22:43:15 +0100, Bryant Mairs wrote:
-> This series adds support for samsung-milletwifi, the smaller cousin
-> to samsung-matisselte. I've used the manufacturer's naming convention
-> for consistency.
+On Sun, 05 May 2024 23:10:30 +0300, Danila Tikhonov wrote:
+> This series adds dispcc, videocc and camcc support for SM7150. This series
+> also introduces various fixes for sm7150-gcc.
 > 
-> Hardware currently supported:
-> - Display
-> - Cover detection
-> - Physical buttons
-> - Touchscreen and touchkeys
-> - Accelerometer
+> David Wronek and Jens Reidel were added as maintainers. These people will
+> be able to test new features at any time or make fixes if necessary.
+> 
+> Changes in v3:
+> - Split patch 1 into two patches (patch 1 and patch 2) (Konrad)
+> - Drop CLK_GET_RATE_NOCACHE from dispcc (Konrad)
+> - Fix DisplayPort clocks (based on a series of patches from Dmitry Baryshkov):
+> https://lore.kernel.org/all/20240424-dispcc-dp-clocks-v2-0-b44038f3fa96@linaro.org/
+> - Fix typo in cover-letter-v2
+> - Link to v2:
+> https://lore.kernel.org/all/20240321202814.59835-1-danila@jiaxyga.com/
 > 
 > [...]
 
 Applied, thanks!
 
-[2/2] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4 8.0 Wi-Fi
-      commit: 49b9981a0ecae2bbb298d8b0c2b8058220038691
+[1/8] clk: qcom: Fix SM_GCC_7150 dependencies
+      commit: 97cf92963aeff328829007dd1f5ba51e815438d0
+[2/8] clk: qcom: gcc-sm7150: constify clk_init_data structures
+      commit: 734b6e7a3b947c045ba9e5f853f6ea33bd78d097
+[3/8] dt-bindings: clock: qcom: Add SM7150 DISPCC clocks
+      commit: ca3a91063acc3abc0fb233591d8cda4b37dc39ac
+[4/8] clk: qcom: Add Display Clock Controller driver for SM7150
+      commit: 3829c412197e14b8cac445d0e3a76c7cd5fff064
+[5/8] dt-bindings: clock: qcom: Add SM7150 CAMCC clocks
+      commit: 0fd2a048368ea99feccd7dfd6a5f42f6d011f10f
+[6/8] clk: qcom: Add Camera Clock Controller driver for SM7150
+      commit: 9f0532da42261476561c0a683097f6de82e7c3ed
+[7/8] dt-bindings: clock: qcom: Add SM7150 VIDEOCC clocks
+      commit: a4be1860b9319e9e55eaa9e28e35e7b19128060c
+[8/8] clk: qcom: Add Video Clock Controller driver for SM7150
+      commit: aa9fc5c90814fcb9ecabbb505e097ff05abf962e
 
 Best regards,
 -- 
