@@ -1,63 +1,75 @@
-Return-Path: <devicetree+bounces-69765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20408D16DD
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:05:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB8908D16E6
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:08:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 741F81F2382B
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 09:05:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B24A1F22647
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 09:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9647113C906;
-	Tue, 28 May 2024 09:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018CD13D2B6;
+	Tue, 28 May 2024 09:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jQyHaL5Z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IUcK+Hhs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3E0A13CABD;
-	Tue, 28 May 2024 09:05:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6629F4EB2E
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 09:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716887142; cv=none; b=Ycoi4tgUsFKi0mNcTquEu9TnK0P4/892Wbl7FdMA9Ie7Jrx7rVKg6Z0kQmo2zfIF9NwNGO+ArZ4i43b/h6shTEtvta+NZRsGfsjfZNgKLhbmic1q7pJAWnN3so16zkGPrW8ZKPTPejvz4Bi5AXu71v1DgYhNiCweR5RrI76ry30=
+	t=1716887287; cv=none; b=DlODpmOmmtI54xG5Zpz6uIwFjh6tY5pz4QYRGIJYrsKZyqWsxk9AlcPAdlgfTjYq5nUg5Me9Wc112rRuFasNIGknRgwkx0WklNyfASp3gPHmRlRtY52eBQFeX/drwY3jO/BjJ5zIoVHboo09AEB8UYmZoOvvGmGMYgsWkf/uSEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716887142; c=relaxed/simple;
-	bh=8GQkbr4j0tRLacOWO5ZQmZjV2Vmf8J/pLK8dEFNmIBE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qlzFxNb3zEVmZMa65qiKi1UQAUxM0kzp59QmU+UigeMVLP+mV0/V19yiUg7OYS2DJ1Y6ltOwIykyFllMBhds+vr8WvlM10llchswK4S9XIJrp+Kxt94Vohh2GUDTDgUhsPfgpevHwkO6OBkqzGAXE3DIPhQfP89Zjb71zcutIrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jQyHaL5Z; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44S95X0M122830;
-	Tue, 28 May 2024 04:05:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1716887133;
-	bh=PQBf9VM1JhjW8t0EFmhFYqdOoaoFxuVJWJJ5M4/99UM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=jQyHaL5Z5IzT0ZSznpUtB+zIMC3Oid2QwmwAWMUvGvjMwpMyDTkEtqEcO8ufpo/Q4
-	 IfvAm3Eg0H1ukLtex5aFCEeaXtOPWvRqNmBNQo/E+HQlTcc3BgazNTMaYWtqYgpa+m
-	 8ADJErz1mE3hC8sDO9ZdQPZ7jIqOdkpW+j0agGSU=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44S95X64074304
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 28 May 2024 04:05:33 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
- May 2024 04:05:33 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 28 May 2024 04:05:33 -0500
-Received: from [172.24.27.209] (lt5cd112gt3k.dhcp.ti.com [172.24.27.209])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44S95RDu026167;
-	Tue, 28 May 2024 04:05:28 -0500
-Message-ID: <3e478ecc-33b8-4aa6-b984-67877864e900@ti.com>
-Date: Tue, 28 May 2024 14:35:27 +0530
+	s=arc-20240116; t=1716887287; c=relaxed/simple;
+	bh=9+CGOjqCFI8cBZqMQUSyJVRaj598mOEhBKpeMA2uMMY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Wz29aSc85Q4kZXizOZo4mDZBKrpyLCkdrHZKlSj3bs853A5g/E/azQL18dW/bC77tLg6RJn3TamrZrABZRtyWkgrcSGcamhLMksueUsf8yU9qQGBoVqnsYCV4yiPwYRs4977BpAbhtOQKSs4vNLF9o3cWq7bEDH12zfaJV3QfoQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IUcK+Hhs; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4211e42e362so3774395e9.1
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 02:08:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716887284; x=1717492084; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a3SQwXIIXHjRM5uNeBKtEGihfqD66qoKItzKJ4EdXAo=;
+        b=IUcK+Hhs1shSX/so/CSGKdfwUlBwf+/zKWTFhP4T44UQK2MCURsKkU56ec+C86Uof1
+         QfvkBtKXm9MK3gc9vakfiSAqp7BesOtlhMKAL1tOwriQMQdCMfbNC7L2zeROeZXJCLgG
+         v80QdUVfZhllyakBy2mgx2a7PBrEroKK3VZGgLmB1kFfnL83ax9cvQOSCtmbbzra/F/q
+         imEVG7xIhKjA9kAY0UoRmCXZ+UhfkjkIWiexXcBRn9syGI8xQBiCXu+jTOWgIZeqD8TR
+         NPgb5vh6gZa9HtnLwHlYGiKqtllc+aP2FKE66Y7x5ggzorKSAoIVrgGvbiK9qeC9CiRK
+         N2YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716887284; x=1717492084;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=a3SQwXIIXHjRM5uNeBKtEGihfqD66qoKItzKJ4EdXAo=;
+        b=xJGivU03J3H3Do2YTIpuOooKXFhyofuAZZbe/EYjJcnc+R+IyKR8GeUH6LVI4vCAD0
+         tTav133BVI2LdsBvTGBhGCHXGRW1FEkev9n0EqPSlm3HEsNvaeWsPUlBY5Q/flYetwFL
+         9nbiV9GzMMbSxIUFHxwCt6zQRKUoSsX7x7xFo/mZU5hJDD/LFbWLDTt62whvvGYpKj+N
+         oP+ske9AkLVXjYkHYEFG4o3sGeoS3UGBMmzakWyp5tSjF9jrybuupAHjdgiweRvkHW6O
+         HjUeSD+BwETnM2hDgs6DJwTXwI4xlRF29Q0dgp4ik/D6C6HLMOsO5QBnebSo1uOoRQEk
+         Hayw==
+X-Gm-Message-State: AOJu0Yy3owpXa5w8PtnkcmHCJNRgREcxfkM/94DKxxUKbr4ynia8RlAb
+	Uhpazq1QZZnCM8mheQ2kokCZxQClPfZ1lgOl7gBsGYpHUneWgjQ5rrmaUeBTud0=
+X-Google-Smtp-Source: AGHT+IEe5BlH9PQdZyM3Yr+PHsNxwDNOOPiWSviwZgKb7/NFJzJaatF7rZUzlXn8gDyUKiEed9NoCA==
+X-Received: by 2002:a05:600c:4f03:b0:41b:a8e8:3ff6 with SMTP id 5b1f17b1804b1-42108a59341mr95487685e9.11.1716887283658;
+        Tue, 28 May 2024 02:08:03 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8f19:f965:3f93:6385? ([2a01:e0a:982:cbb0:8f19:f965:3f93:6385])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421089ae96bsm135209155e9.35.2024.05.28.02.08.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 02:08:03 -0700 (PDT)
+Message-ID: <fbafc16d-d6fa-4c57-8fc8-a1db09d03e05@linaro.org>
+Date: Tue, 28 May 2024 11:08:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,207 +77,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: ti: k3-j7200*: Add bootph-* properties
-To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Udit
- Kumar <u-kumar1@ti.com>, Beleswar Padhi <b-padhi@ti.com>
-References: <20240507-b4-upstream-bootph-all-v1-0-c6d52651856f@ti.com>
- <20240507-b4-upstream-bootph-all-v1-5-c6d52651856f@ti.com>
-Content-Language: en-US
-From: "Limaye, Aniket" <a-limaye@ti.com>
-In-Reply-To: <20240507-b4-upstream-bootph-all-v1-5-c6d52651856f@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: a4: add power domain controller
+ node
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com>
+ <20240528-a4_secpowerdomain-v1-3-2a9d7df9b128@amlogic.com>
+ <c97b12bb-8b56-4129-a292-588226a0ec42@linaro.org>
+ <70083d10-483e-4daf-a408-020f0147c5cf@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <70083d10-483e-4daf-a408-020f0147c5cf@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Manorit,
-
-Had some comments below:
-(Re-sending coz I forgot to change to plain-text formatting and the 
-mailing-list rejected it)
-
-
-On 5/7/2024 3:14 PM, Manorit Chawdhry wrote:
-> Adds bootph-* properties to the leaf nodes to enable U-boot to
-> utilise them.
+On 28/05/2024 11:00, Xianwei Zhao wrote:
+> Hi Neil,
+>     Thanks for your quickly reply.
 > 
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> ---
->   .../boot/dts/ti/k3-j7200-common-proc-board.dts     | 23 ++++++++++++++++++++++
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi          |  2 ++
->   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi    | 10 ++++++++++
->   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi        |  8 ++++++++
->   4 files changed, 43 insertions(+)
+> On 2024/5/28 16:46, Neil Armstrong wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On 28/05/2024 10:39, Xianwei Zhao via B4 Relay wrote:
+>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>
+>>> Add power domain controller node for Amlogic A4 SoC
+>>>
+>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi | 4 ++++
+>>>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 5 +++++
+>>>   2 files changed, 9 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+>>> index b6106ad4a072..eebde77ae5b4 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+>>> @@ -27,6 +27,10 @@ xtal: xtal-clk {
+>>>               #clock-cells = <0>;
+>>>       };
+>>>
+>>> +     sm: secure-monitor {
+>>> +             compatible = "amlogic,meson-gxbb-sm";
+>>> +     };
+>>> +
+>>>       soc {
+>>>               compatible = "simple-bus";
+>>>               #address-cells = <2>;
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+>>> index 73ca1d7eed81..917c05219b9c 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+>>> @@ -37,4 +37,9 @@ cpu3: cpu@3 {
+>>>                       enable-method = "psci";
+>>>               };
+>>>       };
+>>> +
+>>> +     pwrc: power-controller {
+>>> +             compatible = "amlogic,a4-pwrc";
+>>> +             #power-domain-cells = <1>;
+>>> +     };
+>>
+>> pwrc is supposed to be a child of secure-monitor.
+>>
+> Considered writing it like this when I wrote this.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> index 6593c5da82c0..f7b96e8d6462 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> Here are two approaches: one is to include secure-monitor in the comm dtsi and fill power-controller by aliases in dtsi of each chip, while the other is to directly include secure-monitor in the dtsi of each chip. Which one do you suggest?
 
-[...]
+The bindings mandates it to be a child of the secure monitor.
 
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> index 657f9cc9f4ea..111eba71ed33 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -136,6 +136,7 @@ secure_proxy_main: mailbox@32c00000 {
->   			      <0x00 0x32800000 0x00 0x100000>;
->   			interrupt-names = "rx_011";
->   			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-> +			bootph-all;
->   		};
->   
->   		hwspinlock: spinlock@30e00000 {
-> @@ -1538,5 +1539,6 @@ main_esm: esm@700000 {
->   		compatible = "ti,j721e-esm";
->   		reg = <0x0 0x700000 0x0 0x1000>;
->   		ti,esm-pins = <656>, <657>;
-> +		bootph-all;
+Neil
 
-Should this be bootph-pre-ram?
-
->   	};
->   };
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> index 7cf21c99956e..1e346451ee35 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -21,16 +21,19 @@ dmsc: system-controller@44083000 {
-
-Do we need to add bootph-all property to the parent "dmsc" node too?
-
-For some reason, for me, boot is failing without the bootph-all property 
-in the parent "dmsc" node here, even though it;s added to the child 
-nodes below
-
-Failing logs with current patch (boot gets stuck) : [0]
-
-If I ONLY add the bootph-all property to the dmsc node as well, the 
-device boots up just fine.
-
-
-[0]: https://gist.github.com/aniket-l/a33a2e5d71432f6824310c8658929b40
-
->   		k3_pds: power-controller {
->   			compatible = "ti,sci-pm-domain";
->   			#power-domain-cells = <2>;
-> +			bootph-all;
->   		};
->   
->   		k3_clks: clock-controller {
->   			compatible = "ti,k2g-sci-clk";
->   			#clock-cells = <2>;
-> +			bootph-all;
->   		};
->   
->   		k3_reset: reset-controller {
->   			compatible = "ti,sci-reset";
->   			#reset-cells = <2>;
-> +			bootph-all;
->   		};
->   	};
->   
-> @@ -45,6 +48,7 @@ mcu_timer0: timer@40400000 {
->   		assigned-clock-parents = <&k3_clks 35 2>;
->   		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
->   		ti,timer-pwm;
-> +		bootph-pre-ram;
->   	};
->   
->   	mcu_timer1: timer@40410000 {
-> @@ -187,6 +191,7 @@ wkup_conf: bus@43000000 {
->   		chipid: chipid@14 {
->   			compatible = "ti,am654-chipid";
->   			reg = <0x14 0x4>;
-> +			bootph-all;
->   		};
->   	};
->   
-> @@ -347,6 +352,7 @@ mcu_ringacc: ringacc@2b800000 {
->   			ti,sci = <&dmsc>;
->   			ti,sci-dev-id = <235>;
->   			msi-parent = <&main_udmass_inta>;
-> +			bootph-all;
->   		};
->   
->   		mcu_udmap: dma-controller@285c0000 {
-> @@ -371,6 +377,7 @@ mcu_udmap: dma-controller@285c0000 {
->   			ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
->   						<0x0b>; /* RX_HCHAN */
->   			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
-> +			bootph-all;
->   		};
->   	};
->   
-> @@ -387,6 +394,7 @@ secure_proxy_mcu: mailbox@2a480000 {
->   		 * firmware on non-MPU processors
->   		 */
->   		status = "disabled";
-> +		bootph-pre-ram;
->   	};
->   
->   	mcu_cpsw: ethernet@46000000 {
-> @@ -530,6 +538,7 @@ hbmc_mux: mux-controller@47000004 {
->   			reg = <0x00 0x47000004 0x00 0x4>;
->   			#mux-control-cells = <1>;
->   			mux-reg-masks = <0x0 0x2>; /* HBMC select */
-> +			bootph-all;
->   		};
->   
->   		hbmc: hyperbus@47034000 {
-> @@ -648,6 +657,7 @@ wkup_vtm0: temperature-sensor@42040000 {
->   		      <0x00 0x42050000 0x00 0x350>;
->   		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
->   		#thermal-sensor-cells = <1>;
-> +		bootph-all;
-
-Should this be bootph-pre-ram?
-
->   	};
->   
->   	mcu_esm: esm@40800000 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> index 7e6a584ac6f0..a875a79e95c6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> @@ -15,6 +15,7 @@ memory@80000000 {
->   		/* 4G RAM */
->   		reg = <0x00 0x80000000 0x00 0x80000000>,
->   		      <0x08 0x80000000 0x00 0x80000000>;
-> +	  bootph-all;
-
-Can you add the right indentation here?
-
->   	};
->   
->   	reserved_memory: reserved-memory {
-> @@ -120,6 +121,7 @@ J721E_WKUP_IOPAD(0x20, PIN_INPUT, 1) /* (B8) MCU_OSPI0_D5.MCU_HYPERBUS0_DQ5 */
->   			J721E_WKUP_IOPAD(0x24, PIN_INPUT, 1) /* (A8) MCU_OSPI0_D6.MCU_HYPERBUS0_DQ6 */
->   			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
->   		>;
-> +		bootph-all;
->   	};
->   
->   	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
-> @@ -136,6 +138,7 @@ J721E_WKUP_IOPAD(0x0024, PIN_INPUT, 0)  /* MCU_OSPI0_D6 */
->   			J721E_WKUP_IOPAD(0x0028, PIN_INPUT, 0)  /* MCU_OSPI0_D7 */
->   			J721E_WKUP_IOPAD(0x0008, PIN_INPUT, 0)  /* MCU_OSPI0_DQS */
->   		>;
-> +		bootph-all;
->   	};
->   };
->   
-[...]
-
+> 
+>> Neil
+>>
+>>>   };
+>>>
+>>
 
 
