@@ -1,296 +1,326 @@
-Return-Path: <devicetree+bounces-70025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81DD38D22CD
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:52:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 624AD8D22D8
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:57:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F138C1F23823
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:52:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15BDA284A03
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A613FB87;
-	Tue, 28 May 2024 17:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948B545978;
+	Tue, 28 May 2024 17:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gkEx+AVA"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="DVYNoduC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2070.outbound.protection.outlook.com [40.107.247.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7E248781;
-	Tue, 28 May 2024 17:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716918773; cv=none; b=Nzwyj9TemaaU+SLRRV4+IQ33qLDDYXX1FAieq4LXGMCE/q5+XE+zt+dPUkTa8bcs/elzrnsFTedGHXP1r1ZWU5F/mUgA4st8ZxBW/LCbNp2pUXVDuaXo47zfdBWpkcXNu7UPv6epBTOdxoDlg9lWVRnINEa++JTEqrxGRcsxYNw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716918773; c=relaxed/simple;
-	bh=rE9mbY6TdKIdAtMJSTiw3Um7FAbv+WUhCGvVtLNRmJI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PaB00NJBTKsRcoRPxf4Cw/6bjq9x8vU/d7qzPJZxpM3xLothtdr6KRl9bxC6LpXn5zn/6LkjSMBbXGy7rhQmLs5p/zWbyOEm5liOmIWlW8cI4n7hlWhUXdX4xOOTMGlh2p5+Q+9nMT3VGFEzmDQhOOvOEdrEm0Vm1uFNoTwZyno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gkEx+AVA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6982C3277B;
-	Tue, 28 May 2024 17:52:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716918771;
-	bh=rE9mbY6TdKIdAtMJSTiw3Um7FAbv+WUhCGvVtLNRmJI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gkEx+AVA0tx6eU9KTJgsl1xM6x2eYw+pwOlI1dLfm+jZu1tqDGPrC7/UcnkIrULGM
-	 J1PM2vW6WbaSs1r9krqPJ6kZxVpYYBjp9T6OcXouGVItNBjvBMri5QXC1t1ITFX4aT
-	 d3bnkW2Oui2rHgeEeX7GciAx0M1CXBEUfHfZj1W8b4mTi+ysPVLTrX3FSJhuzzLXKb
-	 PT3fPcjyQE4g+zPZiLpskEyrgzvy5YWCSVnxEoRSYL00/dVdQF2B+Rsxa+0T8UKgGD
-	 abd6ZCxEbuEw2589qp5O+J1q1yaTxiqCxQCUsjxjXiqby23Uyb98022RnmcalhmT2Y
-	 MEuy/iv5X4CPA==
-Date: Tue, 28 May 2024 18:52:46 +0100
-From: Conor Dooley <conor@kernel.org>
-To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A2A4501E;
+	Tue, 28 May 2024 17:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716919029; cv=fail; b=BUvqhRkx1CiIYPgDz2xUs4fB32N4ITJ/9yeAnizCdq4g1kwELDt1t/KglNXxOAc7UGhtSzu0ptuHfnZ429S09WrBEyjMBm+aMIfYPW/Ehjsp5KeCDvptqS4IH1wXb8WVM4603wNrg+OKpdymdxRMngZOOEfq8dspVyi+w/KnMiM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716919029; c=relaxed/simple;
+	bh=Ll2Yeu5BnD/hizFP9o6YmEs9HDLeDFtfECIcuCDny8s=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=upyZhGUbHIIPLWUpOyXefsFSvcHO03d9bpGgCPYkdgdHjZHQsP5nH5sQnx/zvCqDil33l9dOnYo8CeVvaz/3POyxdYlL9qByEdzGUE6URhBS2Pe2GPSRFFfq7hR3uhVoVpM9Sysk/u78dMrmwFEdAWkI5D8OJ8ujoc8O6CEdCeU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=DVYNoduC; arc=fail smtp.client-ip=40.107.247.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gNvwbdjhSeMiXgMqdKgJu+bC+HyIWgmPO6AEIw07hXjB3OlB+zpicdgfOGCAwq0QQOjD4nMBEBb07xTMwoTBEIwGJftXZwZZlu9v8G+xyS8S40s7hPNK1/qaKv4D2V37L5aIuotn/KK+gQv4WtkPUNJucyGo89dBY3lWkmbWutMaS3BkaCxVtU2UiLTwRlsPYVmsIoBXccOZpViLyCNvwVQk56hFLlbqMgHvM38JeDiDvjcPoYJJaXPqf+LVKIag2VTNgD8klmr69R+wwzg3JgEQLHFRJwk9AG2qldmbhUWYVPCHCHYla/WfcMXolr4PrVEUfKXKddM2jRrp4FOjUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Eh8Csu3RezZhPxqV+WVuW3nAaOagyjglgMz4xf4jfvk=;
+ b=Gp/ZsRoI7619qA2CsENRHkX/9xh/2fXoUzxm9EKY+p4r/riQCpGHVt9S0BV+rJnYURiKWpBDpIJQ6XxrJFZvd+bEyTh8+Dnsn78Nk00APeDdODykMMVc4B6C9qh8dyNrlv8h7oRIjBh0lA5BofyHlLaBUHFKxAw/tfJfbGsR49SgRXJs9dXvMm1te+hPhamYVbf3spA93o3yeGolLNqCRvSWmy2VQY0UMYxr8g5KyQDlsTQtZBAFOwc8i6y1VQbhit69EOXb1aj+uMWxsfAOkYxj+bBSvoXFZ7CKpZGKKB4Vlwv41dON2Jw95UzTLbxh8meB92SvWP6vmvkpjenKGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Eh8Csu3RezZhPxqV+WVuW3nAaOagyjglgMz4xf4jfvk=;
+ b=DVYNoduCmfFLeM3TgdFnEL/pwwva+Wt/YxM2Lrno/u/WLEGc7wlk2uv1djVe4vBL22WbQqKH3b/qWIEidf9yyetzLlFquZAuq1KrwW2J6VsnP9hJ9PinNZDIG3Al/3OEnXMSZEkuAl0wcvd7mm0eXdZzpqckmcLpZIuExrcnHj8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA4PR04MB7710.eurprd04.prod.outlook.com (2603:10a6:102:e6::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Tue, 28 May
+ 2024 17:57:03 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7611.016; Tue, 28 May 2024
+ 17:57:03 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: adc: ad7173: add support for ad411x
-Message-ID: <20240528-filtrate-cloning-b9152322a3da@spud>
-References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
- <20240527-ad4111-v3-1-7e9eddbbd3eb@analog.com>
- <20240527-arguably-said-361184ad848e@spud>
- <d87ae6ef-090d-4e47-bde4-4d08fd445ac1@gmail.com>
+	linux-gpio@vger.kernel.org (open list:GPIO SUBSYSTEM),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: gpio: mpc8xxx: Convert to yaml format
+Date: Tue, 28 May 2024 13:56:46 -0400
+Message-Id: <20240528175647.2604295-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR20CA0006.namprd20.prod.outlook.com
+ (2603:10b6:a03:1f4::19) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JyMxpBvcw7wBYCtU"
-Content-Disposition: inline
-In-Reply-To: <d87ae6ef-090d-4e47-bde4-4d08fd445ac1@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB7710:EE_
+X-MS-Office365-Filtering-Correlation-Id: efc84c4c-66e7-4318-82b6-08dc7f3f9474
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230031|376005|1800799015|52116005|366007|38350700005;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?QXe04qnxUbUERGzYyNy0iSmgZ52APyUDLbUg4YJdGgKywj684Maq9UJkTfDh?=
+ =?us-ascii?Q?SciWV6nIVTgsiRkqQPn8+4HiH5+E7Ooankyd2Fwk9NP8GMEZCL8UHxoF3yLY?=
+ =?us-ascii?Q?H2FzKOeqHjBgF8WyzWJw7kl8Oo5Lk66zC+aH+BpDe2EsDx3+YUy0L/q/X1ar?=
+ =?us-ascii?Q?iY8c+MVwRSAt4BVh8CBUEBR/9sOBYL/SQVuTC6aYKlUl/RO9JQjzHEc/dLTz?=
+ =?us-ascii?Q?6m8I6uwt646zZ6pC5gDkMrzegbrUNcX9T92+9g3lfmqvG25EiBBNxVf7FafH?=
+ =?us-ascii?Q?L7C47Uc6uGaM9ebWOMVNXYIjr9KWsivALsrfb5QbQAVa9ov4AkgUxn+z90wJ?=
+ =?us-ascii?Q?NtOnF207lZ30k1i+JL3+8RPALV7cd6w/UbRpv+eUhzmc/nd5cptsC6IpmGR8?=
+ =?us-ascii?Q?fUZG9CYCQj7W1/VPtJrttEmxKluv1x0aGmMnlVva2a0iokMIdgoVqAvDljDr?=
+ =?us-ascii?Q?ZKejfaxipHN3b7pLNIKblvY7R2RztslF4EWciorZHs/JcP7O7+1UQe4jjcBD?=
+ =?us-ascii?Q?UGdx3j08laGyDXPI1yYL8yZkmxTJWz6TVJpMCZ6t/t+3T5jTPBDjdboDP3D8?=
+ =?us-ascii?Q?SaGODZcsH+8xmGw5Vu9YQpsyq+IHf87lBmaAFeuJSITvRXsycWYQM2NtCmL5?=
+ =?us-ascii?Q?HPtHmy48SeMfFYtsssaoy1+LqpxgIQb4vUoOv7D6cqd/utiBOz93zzwkkOWu?=
+ =?us-ascii?Q?JXnkdWigFd4hssg4nQ6QVg+qEaj/51HOvBtvk0wJPCJXV6uJ8DtZlHl3/Imc?=
+ =?us-ascii?Q?SqFza9nuPQ+4LjkTl6ZaF2Gm/KMB2TUOGV66IQKuhmqvdot7QihlXhI3junE?=
+ =?us-ascii?Q?8Z9zbmjBidqf8Do/PxOVNGIZO1MpC5Au0Xk+jhisk09N0zHBEYSgcHhZW3Se?=
+ =?us-ascii?Q?6D3QHSUZ3vBudxc0raEsUDwJV+2e1mCkV46rEQr6h0eAUqilij+Igs0kuZ51?=
+ =?us-ascii?Q?sGG1LBDrwP3V2DKqEdNM5g3x6i3aEym5DweUhSwD9HhdKJWsiPzAxwf2UgyH?=
+ =?us-ascii?Q?GHju3h9SG6rEn1yld636i0I+5ojpeldQckqOO1lLu+2zxGLTQSdFTWwpcz6e?=
+ =?us-ascii?Q?s1qeJzCW8HlX/dKMCae91h0OhOsBxNVm9SKWNmi+kYdV9hwdlTd+AiJup2Qa?=
+ =?us-ascii?Q?GY5hBX/IqkBfY0+dEGKkE5S0INDpVuvfBZp+n0CktrANpLqh/aulHlNQH47b?=
+ =?us-ascii?Q?F1yQmwOLcByMxXegW6vUpCiImNBM3vc5kO0M4mtOps3gF1oK3reawRuo8DYu?=
+ =?us-ascii?Q?6xCbfhwVzt8pdSToRldZ/70C8q7NWwpjTgH/o9SXbPhIyWfMtxKo3UudZ6T0?=
+ =?us-ascii?Q?aHE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(52116005)(366007)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?tloEe58VkcPe562OpL50hndMizif3tGmr0lM5+i1IB+lB149jOAdrcT+ZPpv?=
+ =?us-ascii?Q?18mhR1L6MXV/X3If0nL7vDfgIu+I0EW4h9wx8h2CRd0rzDJV/cRlV8MAOxEO?=
+ =?us-ascii?Q?d20Awm7MKjEuK//s4ddERtiu5Vmdl+Sm7uEYUsqCanYEji5tb2ccSJnkUl60?=
+ =?us-ascii?Q?UpE/Pw0pDjPugLXb86Y5Z/Jj2RIAt045VeNXNqd3fzWP2mtYuAvRDzD8WyBR?=
+ =?us-ascii?Q?olzUINEee4wY+7kVYFXzDSoGwlALqSdQZ2LpWsrtA5Xful+H8K1pbImv6e3l?=
+ =?us-ascii?Q?3NVC+KZcU+iaS9R9SZXtTIRqtJlX42rFoEUw9u6CEe1ecvXBkUk0m1XvANSz?=
+ =?us-ascii?Q?6KzEVgejuXu+9EsyLIfXW6D3+XuWX4reyL9DOo7gCdu2WgXfSTvyrxQUOTzP?=
+ =?us-ascii?Q?dj6DMOpDVcK2AIZmQaJPiKvJrDcawnZW2o1m/J/DOXUs+gbVLxgHXTurPhnp?=
+ =?us-ascii?Q?YtGTE+OoHv8w86iR0F2u3x+U3Ob+RkKqSXuM++7hoNoDUouK2E5EhmjdEnHc?=
+ =?us-ascii?Q?5Rlhu1PaSGq14Q3bNMzybeUvZkUZFMnr5A2dSclafnnEsRG8o7QJQ0wbq9Xm?=
+ =?us-ascii?Q?Uj/B06qgI53tql+gCP2hztIi6Mca3+V12KKfpQ45PvckDZMD37XUjVmylqJS?=
+ =?us-ascii?Q?JKSoIDiuB5BN3FJQ2+MS53IYrOohPUfJHhrAB9a25oWpGIgdKv+dxUr986ba?=
+ =?us-ascii?Q?FQE2skdX2mXLaZ00w6Hh6uqj78HaM3mnnWbPh3BiJxx+VN16+7fWql3IHK4G?=
+ =?us-ascii?Q?1VZ/FxTQKp9zm2LRFfXoCH15iTo6u/DqkxpXuhWJ3Tzcr9UNKPz46YpODs7p?=
+ =?us-ascii?Q?PoB3jHRwmvDZCqNhYNt2ok0N5piPGNpep+9/G7o7cjft/l353OypjdAvSeHn?=
+ =?us-ascii?Q?vloX95Z2g+pnsc2HQLCeo/CE0kNlt29WMSTkWgh5toA/iBPMMh9ByjPFpSMN?=
+ =?us-ascii?Q?/GQ1Ov9eSLLHr3n2srzIXPvA/yCqMi/7lq8jkGkNIWD0rbYAFOEb94MF24I2?=
+ =?us-ascii?Q?4QhkYhG8soRxgwvYaJda1PqmfPEVmFttvw7McSoaFTmsiGNKq4VosqP1tdkR?=
+ =?us-ascii?Q?8oX+m8Yi7CTs0wCotLtxnD+EaL/1xU+L7f32eNjQD+2ph/fG0FSoY5twdjmF?=
+ =?us-ascii?Q?JS+7XJ72RmM1AiwcalEsY8NRp7OtuNpDkugROPN/aNH4USgOIRB9nXZJFrxn?=
+ =?us-ascii?Q?9ctzCaZCMUXi0b2OhGtRtIwVVinD0UxabCSUYqBugpCqxttZWH8sqX0QJzlG?=
+ =?us-ascii?Q?HkZrODDCoVPJFov3n5dfSqgqww0hmwmzka35FaoF0bNIsEPeKMZUIWIwBwki?=
+ =?us-ascii?Q?+qaxc3KIvv1RdtsQiZxiCm2LyeNlECFbJ/WbvhFx6tWatrubGDYw8fruRzTr?=
+ =?us-ascii?Q?f1ty1FjYrxX9LlL82702r0X91GapwxReVEij7hCIDh2hTb0Ewc70NzwSfAhY?=
+ =?us-ascii?Q?xfZA/v5AP2cG8fUbTLK7qQteW46fEa3b9I/JeLvS3exAagWiIb7hIeFgbWGH?=
+ =?us-ascii?Q?Bby6hz7Wxt32phwRUC6TeCoUe3CswRVZ2nLXTQoUBJbeUYzEi1O+LYtb8ZDU?=
+ =?us-ascii?Q?ZTpMEFdk2BvWxa1JIzYqgugvRLEvIjtRq+kpxmbL?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: efc84c4c-66e7-4318-82b6-08dc7f3f9474
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 17:57:03.2485
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7pID+pVzdzMKVTIVfXzN/FF/tfaDSMf9ZyLxkG4MeqRAHz9MNYwOPFqemk23rP3LIiDMdk7YpRtBFJGc6A7PNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7710
 
+Convert binding doc from txt to yaml.
 
---JyMxpBvcw7wBYCtU
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Remove redundated "gpio1: gpio@2300000" example.
 
-On Tue, May 28, 2024 at 03:16:07PM +0300, Ceclan, Dumitru wrote:
-> On 27/05/2024 20:48, Conor Dooley wrote:
-> > On Mon, May 27, 2024 at 08:02:34PM +0300, Dumitru Ceclan via B4 Relay w=
-rote:
-> >> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> >>
-> >> Add support for: AD4111, AD4112, AD4114, AD4115, AD4116.
-> >>
-> >> AD411x family ADCs support a VCOM pin, dedicated for single-ended usag=
-e.
-> >> AD4111/AD4112 support current channels, usage is implemented by
-> >>  specifying channel reg values bigger than 15.
-> >>
-> >> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> >> ---
-> >>  .../devicetree/bindings/iio/adc/adi,ad7173.yaml    | 122 ++++++++++++=
-++++++++-
-> >>  1 file changed, 120 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml=
- b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> >> index ea6cfcd0aff4..5b1af382dad3 100644
-> >> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> >> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> >> @@ -19,7 +19,18 @@ description: |
-> >>    primarily for measurement of signals close to DC but also delivers
-> >>    outstanding performance with input bandwidths out to ~10kHz.
-> >> =20
-> >> +  Analog Devices AD411x ADC's:
-> >> +  The AD411X family encompasses a series of low power, low noise, 24-=
-bit,
-> >> +  sigma-delta analog-to-digital converters that offer a versatile ran=
-ge of
-> >> +  specifications. They integrate an analog front end suitable for pro=
-cessing
-> >> +  fully differential/single-ended and bipolar voltage inputs.
-> >> +
-> >>    Datasheets for supported chips:
-> >> +    https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD4111.pdf
-> >> +    https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD4112.pdf
-> >> +    https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD4114.pdf
-> >> +    https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD4115.pdf
-> >> +    https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD4116.pdf
-> >>      https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD7172-2.pdf
-> >>      https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD7172-4.pdf
-> >>      https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/AD7173-8.pdf
-> >> @@ -31,6 +42,11 @@ description: |
-> >>  properties:
-> >>    compatible:
-> >>      enum:
-> >> +      - adi,ad4111
-> >> +      - adi,ad4112
-> >> +      - adi,ad4114
-> >> +      - adi,ad4115
-> >> +      - adi,ad4116
-> >>        - adi,ad7172-2
-> >>        - adi,ad7172-4
-> >>        - adi,ad7173-8
-> >> @@ -129,10 +145,36 @@ patternProperties:
-> >>          maximum: 15
-> >> =20
-> >>        diff-channels:
-> >> +        description: |
-> >> +          For using current channels specify select the current inputs
-> >> +           and enable the adi,current-channel property.
-> >> +
-> >> +          Family AD411x supports a dedicated VINCOM voltage input.
-> >> +          To select it set the second channel to 16.
-> >> +            (VIN2, VINCOM) -> diff-channels =3D <2 16>
-> >> +
-> >> +          There are special values that can be selected besides the v=
-oltage
-> >> +          analog inputs:
-> >> +            21: REF+
-> >> +            22: REF=E2=88=92
-> >> +          Supported only by AD7172-2, AD7172-4, AD7175-2, AD7175-8, A=
-D7177-2:
-> >> +            19: ((AVDD1 =E2=88=92 AVSS)/5)+
-> >> +            20: ((AVDD1 =E2=88=92 AVSS)/5)=E2=88=92
-> >> +
-> >>          items:
-> >>            minimum: 0
-> >>            maximum: 31
-> >> =20
-> >> +      single-channel:
-> >> +        description: |
-> >> +          Models AD4111 and AD4112 support single-ended current chann=
-els.
-> >> +          To select the desired current input, specify the desired in=
-put pair:
-> >> +            (IIN2+, IIN2=E2=88=92) -> single-channel =3D <2>
-> >> +
-> >> +        items:
-> >> +          minimum: 1
-> >> +          maximum: 16
-> >> +
-> >>        adi,reference-select:
-> >>          description: |
-> >>            Select the reference source to use when converting on
-> >> @@ -154,9 +196,26 @@ patternProperties:
-> >>            - avdd
-> >>          default: refout-avss
-> >> =20
-> >> +      adi,current-channel:
-> >> +        description: |
-> >> +          Signal that the selected inputs are current channels.
-> >> +          Only available on AD4111 and AD4112.
-> >> +        type: boolean
-> >> +
-> >> +      adi,channel-type:
-> >> +        description:
-> >> +          Used to differentiate between different channel types as th=
-e device
-> >> +           register configurations are the same for all usage types.
-> >> +          Both pseudo-differential and single-ended channels will use=
- the
-> >> +           single-ended specifier.
-> >> +        $ref: /schemas/types.yaml#/definitions/string
-> >> +        enum:
-> >> +          - single-ended
-> >> +          - differential
-> >> +        default: differential
-> >=20
-> > I dunno if my brain just ain't workin' right today, or if this is not
-> > sufficiently explained, but why is this property needed? You've got
-> > diff-channels and single-channels already, why can you not infer the
-> > information you need from them? What should software do with this
-> > information?
-> > Additionally, "pseudo-differential" is not explained in this binding.
->=20
-> In previous thread we arrived to the conclusion single-ended and
-> pseudo-differential channels should be marked with the flag
-> "differential=3Dfalse" in the IIO channel struct. This cannot
-> really be inferred as any input pair could be used in that
-> manner and the only difference would be in external wiring.
->=20
-> Single-channels cannot be used to define such a channel as
-> two voltage inputs need to be selected. Also, we are already
-> using single-channel to define the current channels.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
 
-If I understand correctly, the property could be simplified to a flag
-then, since it's only the pseudo differential mode that you cannot be
-sure of?
-You know when you're single-ended based on single-channel, so the
-additional info you need is only in the pseudo-differential case.
+Notes:
+    Pass dt_binding_check
+    make dt_binding_check DT_SCHEMA_FILES=fsl,qoriq-gpio.yaml
+      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+      CHKDT   Documentation/devicetree/bindings
+      LINT    Documentation/devicetree/bindings
+      DTC_CHK Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.example.dtb
 
-> As for explaining the pseudo-differential, should it be explained?
-> A voltage channel within the context of these families is actually
-> differential(as there are always two inputs selected).
-> The single-ended and pseudo-diff use case is actually wiring up a
-> constant voltage to the selected negative input.
->=20
-> I did not consider that this should be described, as there is no
-> need for an attribute to describe it.
+ .../bindings/gpio/fsl,qoriq-gpio.yaml         | 80 +++++++++++++++++++
+ .../devicetree/bindings/gpio/gpio-mpc8xxx.txt | 53 ------------
+ 2 files changed, 80 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
 
-I dunno, adding an explanation of it in the text for the channel type
-seems trivial to do. "Both pseudo-differential mode (where the
-one of differential inputs is connected to a constant voltage) and
-single-ended channels will..."
+diff --git a/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+new file mode 100644
+index 0000000000000..532fbb631a89a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/fsl,qoriq-gpio.yaml
+@@ -0,0 +1,80 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/fsl,qoriq-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale MPC512x/MPC8xxx/QorIQ/Layerscape GPIO controller
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,mpc5121-gpio
++          - fsl,mpc5125-gpio
++          - fsl,mpc8349-gpio
++          - fsl,mpc8572-gpio
++          - fsl,mpc8610-gpio
++          - fsl,pq3-gpio
++      - items:
++          - enum:
++              - fsl,ls1021a-gpio
++              - fsl,ls1028a-gpio
++              - fsl,ls1043a-gpio
++              - fsl,ls1088a-gpio
++              - fsl,ls2080a-gpio
++          - const: fsl,qoriq-gpio
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#gpio-cells":
++    const: 2
++
++  gpio-controller: true
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  little-endian:
++    description:
++      GPIO registers are used as little endian. If not
++      present registers are used as big endian by default.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#gpio-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio@1100 {
++        compatible = "fsl,mpc5125-gpio";
++        #gpio-cells = <2>;
++        reg = <0x1100 0x080>;
++        interrupts = <78 0x8>;
++    };
++
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    gpio@2300000 {
++        compatible = "fsl,ls2080a-gpio", "fsl,qoriq-gpio";
++        reg = <0x2300000 0x10000>;
++        interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
++        gpio-controller;
++        little-endian;
++        #gpio-cells = <2>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++    };
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt b/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
+deleted file mode 100644
+index cd28e932bf50e..0000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Freescale MPC512x/MPC8xxx/QorIQ/Layerscape GPIO controller
+-
+-Required properties:
+-- compatible : Should be "fsl,<soc>-gpio"
+-  The following <soc>s are known to be supported:
+-	mpc5121, mpc5125, mpc8349, mpc8572, mpc8610, pq3, qoriq,
+-	ls1021a, ls1043a, ls2080a, ls1028a, ls1088a.
+-- reg : Address and length of the register set for the device
+-- interrupts : Should be the port interrupt shared by all 32 pins.
+-- #gpio-cells : Should be two.  The first cell is the pin number and
+-  the second cell is used to specify the gpio polarity:
+-      0 = active high
+-      1 = active low
+-
+-Optional properties:
+-- little-endian : GPIO registers are used as little endian. If not
+-                  present registers are used as big endian by default.
+-
+-Example of gpio-controller node for a mpc5125 SoC:
+-
+-gpio0: gpio@1100 {
+-	compatible = "fsl,mpc5125-gpio";
+-	#gpio-cells = <2>;
+-	reg = <0x1100 0x080>;
+-	interrupts = <78 0x8>;
+-};
+-
+-Example of gpio-controller node for a ls2080a SoC:
+-
+-gpio0: gpio@2300000 {
+-	compatible = "fsl,ls2080a-gpio", "fsl,qoriq-gpio";
+-	reg = <0x0 0x2300000 0x0 0x10000>;
+-	interrupts = <0 36 0x4>; /* Level high type */
+-	gpio-controller;
+-	little-endian;
+-	#gpio-cells = <2>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-};
+-
+-
+-Example of gpio-controller node for a ls1028a/ls1088a SoC:
+-
+-gpio1: gpio@2300000 {
+-	compatible = "fsl,ls1028a-gpio", "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
+-	reg = <0x0 0x2300000 0x0 0x10000>;
+-	interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+-	gpio-controller;
+-	#gpio-cells = <2>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-	little-endian;
+-};
+-- 
+2.34.1
 
-> > Also, what does "the device register configurations are the same for
-> > all uses types" mean? The description here implies that you'd be reading
-> > the registers to determine the configuration, but as far as I understand
-> > it's the job of drivers to actually configure devices.
-> > The only way I could interpret this that makes sense to me is that you'=
-re
-> > trying to say that the device doesn't have registers that allow you to
-> > do runtime configuration detection - but that's the norm and I would not
-> > call it out here.
->=20
-> No, I meant that the same register configuration will be set for
-> both fully differential and single-ended.=20
->=20
-> The user will set diff-channels =3D <0, 1>, bipolar(or not) and
-> then they can wire whatever to those pins:=20
-> - a differential signal
-> - AVSS to 1 and a single-ended signal to 0
-> - AVSS+offset to 1 and a single-ended signal to 0
-> 	(which is called pseudo-differential in some datasheets)
->=20
-> All these cases will look the same in terms of configuration
-
-In that case, I'd just remove this sentence from the description then.
-How you configure the registers to use the device doesn't really have
-anything to do with describing the configuration of the hardware.
-Given it isn't related to configuration detection at runtime, what
-you've got written here just makes it seem like the property is
-redundant because the register settings do not change.
-
-Instead, use the description to talk about when the property should be
-used and what software should use it to determine, e.g. "Software can
-use vendor,channel-type to determine whether or not the measured voltage
-is absolute or relative". I pulled that outta my ass, it might not
-be what you're actually doing, but I figure you just want to know if
-you're measuring from the origin or either side of it.
-
-Cheers,
-Conor.
-
---JyMxpBvcw7wBYCtU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlYZ7gAKCRB4tDGHoIJi
-0quAAP4oei1xG39MFKI4dDawI5n2Splt1d1pOAs3pqyqscvJaAEAvIsRtJ9fSVYT
-hRBvb//KQJPRwRKOuAHlQCKo6Iu8AQk=
-=p+d0
------END PGP SIGNATURE-----
-
---JyMxpBvcw7wBYCtU--
 
