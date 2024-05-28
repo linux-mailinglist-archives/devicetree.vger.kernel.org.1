@@ -1,215 +1,150 @@
-Return-Path: <devicetree+bounces-70057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9102D8D2475
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:18:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2BE88D247A
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3E1E1C269C5
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:18:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5398F1F279D4
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:18:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACAF175554;
-	Tue, 28 May 2024 19:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26C2D174EC0;
+	Tue, 28 May 2024 19:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RHi/n2Mx"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uewBtLHX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CECB17554C;
-	Tue, 28 May 2024 19:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80BB172777
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 19:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716923827; cv=none; b=G6/IeQj7zo1IL1g2IkPrd5RmOZILjwjVNgQSB8q0gA8EgK3QkhgoQeJ6ckYBrTYhBRnIY674WtKdRoW+M0Ht9E5PbljsRf4q0PI7BD/YSJTD7ODCAPU8kRXUZMUdxHu9Q6xghAGMzZfH5ZrDE/b+L2D6qq0RBqmqmViPxtKwC10=
+	t=1716923851; cv=none; b=MGFPsuzAgmIbZSqez7OXYwtbzH29NS2m4LATvvbZLeiSWopQK/g/+ze5RLiBN8rNSd4UGF3iNUVvjPciET//1a+f+64wmiaIsyJifZ3SmF4gQR6fzRRchf0Pt9f6SDS5JaKmJh4PXr9TYx/PGJyxM3ysnIv9MPZlYC++eaGHC9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716923827; c=relaxed/simple;
-	bh=M8CKwH032NebDTLhUTdgro4R1FJ4NQSIeAWpV/pl18I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ll/mlQknS0b7u/1PwG0CRFCl7lgvuN5zFZ506dtm9nIFMzkwACY3MCbjdeTWh7kAbwx0tcpTlxjvnTxLrx8y1UsvWHb6G35ImlJwxSWt+4WX2J55jUmD2sq2UfrF14IoKkdMz0qhEPQDpnXSHrWQmVzLFz1IJ76kxCpQuE+c89M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RHi/n2Mx; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-4e77620cf38so395182e0c.1;
-        Tue, 28 May 2024 12:17:06 -0700 (PDT)
+	s=arc-20240116; t=1716923851; c=relaxed/simple;
+	bh=8FwTXWjwMKYp0uX5gzAdX2HN/+Ud76IbFLUxgOn4Vlg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=prYyh/jE+HznN7lINGC5vamanpzZjcdVEHbxqiwJnUPs7VuZUG/T53vUTF8jbirzATRorbpPvEMdO1+aTqWPNMDhVB306EQ7l91VNvUGm534hyyhWMfEm0lb8Nke9g8C1EnKi3w4q6tUGbc8bgJ4D2gfILRb7sMwpWMH4FqdZwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uewBtLHX; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-355080e6ff9so1133719f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:17:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716923825; x=1717528625; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BZIOVysR1nqFTHmWlJtaGHbjCfkWSOvzdf8Ez2dJJ/k=;
-        b=RHi/n2Mx3Bw7DV0DvMBvPleD9KL9viuA74vq2r2QaCvCHVJFXsVIkfG8g6zPGPyKeh
-         yle+uQLg+gILqBy63Plw1IbNhduBI1Hd3soetyjcDi43z0XMUc+v5T2TTJeojPxkgSSz
-         6L6IxhTXFaF4waa5lXKt2kdMivzXLFXVeq+O/Jv/wtD+ow4oVa3wyq2ZHZTpy02/8zkP
-         abVmNxjpwbTrcXzuRVLPyeoaNhVwdEhqA3GNtyPiOQqOr419EUsY+9O05aTfhFcr9ga4
-         yW21siUrLOI7Qmwsc00bvloRyffMTXogwsEF/NDQAQGcssdy8AFZrmHGrxX1jqvrHqx2
-         S0jA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716923847; x=1717528647; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sZV0zcVH6suZcN3zb/p9F3ljLh6Gk5jU60erqTwhnLI=;
+        b=uewBtLHXGMsNo2KB8i+70+Mi6M7Oa+jQZWT6Lr6bqvX/75QqJMEQghcoB5fvkkqH3/
+         SQyK+TxzQwZnCfO74eRkSpU76MbnoXvNMKEVDaZV8a04HD1ePHk0vEQsQb6N7kO8TWxQ
+         GP3ilMOgD1tSZRQb4XGYHXDvaVl9mvBwpW4WzvpvY3y6lWpDIdqhkwKTLtFD/i44U1V0
+         mmzEYeI+9NvxCpelEj20en/hcmGxK8h6OvMgUxyorlFHnqhCu4cVee4Vmw5OxXrBJXVP
+         UuXfOeb4GUJ22QfciYRaiG+Qgp2x57j4wFhpnOqcbAofOCyih7caMk+jZStzw7Yuxu+F
+         jqEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716923825; x=1717528625;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BZIOVysR1nqFTHmWlJtaGHbjCfkWSOvzdf8Ez2dJJ/k=;
-        b=Qdo1jgJVfpMv/SjtQuhimZyAWtsGLamwFHO2J1J4OtvwQMJI0Dr3w9noz0/Ld4Awlt
-         m/APGU8t0geA4VIfSxcz3wMyDB9R52wBZGFCemKgc+LFFCd4mqtaQlKoMWWAy0902xP+
-         ZBp7pUMm/PFUmpiFV+rhecDrfLUqMcwj8zybMp2imveXDKHCexzH7uIq2e5xWUvdR/c1
-         shi569SvgbGUKkqa0ZYvgc6y7ejpQcNXtsYNHkogFXVjVyWeIgVFIl0Kzo/63QbqRts2
-         QgwQfMyYE1b8W/8fChbYLPmpDq3HoQTtMv4T5TdOjgMtHu+gNdt/aJzoUC/wdtSBoTQh
-         HKvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUU8zMybXs2HUp7UFSXkc5GzNCpQXlWyOyHH5H7FKlTV3Zhy88MdEwQDo1NR3JAqpBM3H5k7neb853d/SJrhOd49dulK1mLQ4/vDo9Kg8ri76QQrN/A9dKA3XZOEntnGxGeZ7THynaRUc/JnALHfWq+BAJE86+BQozvg/QKhrHUpy/M4o+RlpB2jgnuJvBb5BmVYSVIfrOcKUVqgtFO3mpfCTWiLyNlbQ==
-X-Gm-Message-State: AOJu0Yyi/VSo4N0g7q/Pa/IXoZPElRr6N40n5ee+3wlKoImYbeBrIQn0
-	hUICRJtWjTlAr4yAlnV6tQgMkk3jNAYx8bW4fBUEZ9LFVW1ve+i/uWqPBZ1+tCCcK7QyO4lGrZC
-	4FVbxoO4ObOiliihndkr2UQHCnjc=
-X-Google-Smtp-Source: AGHT+IGHFmTTksUadChKyhIDTfENInK2dhsn5L1iUbeGhk3BxlEFLMezzKz0sqTmLWbkgnLGcRxYsTACqXWxaBGvvLE=
-X-Received: by 2002:a05:6122:3196:b0:4df:19c0:86cd with SMTP id
- 71dfb90a1353d-4e4f0125efamr12030985e0c.0.1716923825019; Tue, 28 May 2024
- 12:17:05 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716923847; x=1717528647;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sZV0zcVH6suZcN3zb/p9F3ljLh6Gk5jU60erqTwhnLI=;
+        b=TMFqu9q4t6BTPu5IQhkvOcfsGOhkX/uvJB0AHEhzc0DTGRH0w2PnklMo5IrVdYCIqw
+         sG8QToZHrXJ0pz7AkvDRCwtLZci6PWG82xAo8WzhGMyOtdRkVTzDpyrdJzHwYmP68qlW
+         r3jxt75xsl/AVYdQENqkKhYH2a+JWlbGtxggtvSfVIJpS6RdgDK+geQcwcNY8W6Y9z8a
+         bfYol+4z7yloDg6FVvg/JrXkS8Jm+00KnptZySdIjumrLE4joljTtX+gIXpe5Lx8wQ7Y
+         cLa3rqJ0tqRXyFR3sMYvK8jIPUzYr+3GyrKtSqNXi0zTcoMrNpq0Lkw/LMx9c661I7VR
+         s/oA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSLE36ZzlNdIIuQk9n4qK/dVaMbLlE46v4gGEBUyOCI9djVJZJfT6A3Vdg9mSXGW/oxH8YMCeat6TxW7r0EHgBx0KqWKUCe07MvA==
+X-Gm-Message-State: AOJu0YylPAnBqEmPyl0hNENv7Xf3Im8lSwQr8C11uGlf0xo9Vcpq8jCq
+	7HrBuTPh+7IY3Bf+nwtpj/wt4QKy7u0QVxX40NogkxZDzOQughhj0dr9Ayc6z9s=
+X-Google-Smtp-Source: AGHT+IEQkE684hYTF7oD4uWMGV+/mx0mhYVZRPi2V51orz/vfPzzL2qPaRkBiMYX9Pvv3mDlAVbbnQ==
+X-Received: by 2002:a05:6000:ec2:b0:354:f724:6417 with SMTP id ffacd0b85a97d-35526d68f8amr8753328f8f.12.1716923847151;
+        Tue, 28 May 2024 12:17:27 -0700 (PDT)
+Received: from [192.168.0.2] (host-87-9-236-85.retail.telecomitalia.it. [87.9.236.85])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a0931c9sm12480054f8f.65.2024.05.28.12.17.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 12:17:26 -0700 (PDT)
+Message-ID: <826c3185-74ca-423c-96f2-4fd4cf2481cb@baylibre.com>
+Date: Tue, 28 May 2024 21:16:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240423175900.702640-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <TY3PR01MB113461F28EA97F494D831267C86112@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CAMuHMdUJXdEG-BQRYNbmhbGCtE+O1uWO0j-PkBaF7S_Qyp8M-Q@mail.gmail.com> <TY3PR01MB11346281D111DB4C411E3333786EB2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346281D111DB4C411E3333786EB2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 28 May 2024 20:15:54 +0100
-Message-ID: <CA+V-a8uG+xBmDAvXRSDH2Qr8k9Xs-g6_bs+54Erc7_qqP=xLrg@mail.gmail.com>
-Subject: Re: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add function
- pointers for locking/unlocking the PFC register
-To: Biju Das <biju.das.jz@bp.renesas.com>, Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/6] minor fixes and improvements
+To: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <noname.nuno@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, lars@metafoo.de, Michael.Hennerich@analog.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240522150141.1776196-1-adureghello@baylibre.org>
+ <751faef385f81f8a2dd0dcc2acd2d4519bebebe5.camel@gmail.com>
+ <20240525180631.13446abc@jic23-huawei>
+Content-Language: en-US
+From: Angelo Dureghello <adureghello@baylibre.com>
+In-Reply-To: <20240525180631.13446abc@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Biju, Geert,
+Hi Jonathan,
 
-Thank you for the review.
+On 25/05/24 7:06 PM, Jonathan Cameron wrote:
+> On Thu, 23 May 2024 14:45:01 +0200
+> Nuno Sá <noname.nuno@gmail.com> wrote:
+>
+>> On Wed, 2024-05-22 at 17:01 +0200, Angelo Dureghello wrote:
+>>> From: Angelo Dureghello <adureghello@baylibre.com>
+>>>
+>>> After testing this driver, add some minor fixes and improvements,
+>>> as adding single channel variants support (ad3541r, ad3551r), also as a
+>>> preparatory step to bigger future improvements related to fast-rate mode
+>>> for this DAC family.
+>>>
+>>> Previous patches (v1, 3/3)
+>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-1-adureghello@baylibre.org
+>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-2-adureghello@baylibre.org/
+>>> https://lore.kernel.org/linux-iio/20240510141836.1624009-3-adureghello@baylibre.org/
+>>>
+>>> Angelo Dureghello (6):
+>>>    dt-bindings: iio: dac: fix ad3552r gain parameter names
+>>>    dt-bindings: iio: dac: add ad35xxr single output variants
+>>>    iio: dac: ad3552r: add model data structure
+>>>    iio: dac: ad3552r: add support for ad3541r and ad3551r
+>>>    iio: dac: ad3552r: change AD3552R_NUM_CH define name
+>>>    iio: dac: ad3552r: uniform structure names
+>>>
+>>>   .../bindings/iio/dac/adi,ad3552r.yaml         |  43 ++++--
+>>>   drivers/iio/dac/ad3552r.c                     | 140 ++++++++++++------
+>>>   2 files changed, 128 insertions(+), 55 deletions(-)
+>>>    
+>> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+>>
+> This series crossed with a series using
+> device_for_each_child_node_scoped()
+>
+> I've rebased on top of that. Was moderately straightforwards but
+> given last week I messed a similar change up completely please
+> check the testing branch of iio.git!
+>
+> The mess was all it the patch adding model_data
 
-On Wed, May 22, 2024 at 1:40=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
->
-> Hi Geert,
->
-> > -----Original Message-----
-> > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > Sent: Wednesday, May 22, 2024 1:23 PM
-> > Subject: Re: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add func=
-tion pointers for
-> > locking/unlocking the PFC register
-> >
-> > Hi Biju,
-> >
-> > On Tue, Apr 23, 2024 at 8:12=E2=80=AFPM Biju Das <biju.das.jz@bp.renesa=
-s.com> wrote:
-> > > > -----Original Message-----
-> > > > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > > > Sent: Tuesday, April 23, 2024 6:59 PM
-> > > > Subject: [PATCH v2 06/13] pinctrl: renesas: pinctrl-rzg2l: Add
-> > > > function pointers for locking/unlocking the PFC register
-> > > >
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > On the RZ/G2L SoC, the PFCWE bit controls writing to PFC registers.
-> > > > However, on the RZ/V2H(P) SoC, the PFCWE (REGWE_A on RZ/V2H) bit
-> > > > controls writing to both PFC and PMC registers. Additionally, BIT(7=
-)
-> > > > B0WI is undocumented for the PWPR register on RZ/V2H(P) SoC. To
-> > > > accommodate these differences across SoC variants, introduce the
-> > > > set_pfc_mode() and
-> > > > pm_set_pfc() function pointers.
-> > > >
-> > > > Note, in rzg2l_pinctrl_set_pfc_mode() the pwpr_pfc_unlock() call is
-> > > > now called before PMC read/write and pwpr_pfc_lock() call is now
-> > > > called after PMC read/write this is to keep changes minimal for RZ/=
-V2H(P).
-> > > >
-> > > > Signed-off-by: Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > > RFC->v2
-> > > > - Introduced function pointer for (un)lock
-> >
-> > > > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > @@ -2688,6 +2699,8 @@ static struct rzg2l_pinctrl_data r9a07g043_da=
-ta =3D {
-> > > >       .variable_pin_cfg =3D r9a07g043f_variable_pin_cfg,
-> > > >       .n_variable_pin_cfg =3D ARRAY_SIZE(r9a07g043f_variable_pin_cf=
-g),
-> > > >  #endif
-> > > > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > > > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
-> > > >  };
-> > > >
-> > > >  static struct rzg2l_pinctrl_data r9a07g044_data =3D { @@ -2699,6
-> > > > +2712,8 @@ static struct rzg2l_pinctrl_data r9a07g044_data =3D {
-> > > >       .n_dedicated_pins =3D ARRAY_SIZE(rzg2l_dedicated_pins.common)=
- +
-> > > >               ARRAY_SIZE(rzg2l_dedicated_pins.rzg2l_pins),
-> > > >       .hwcfg =3D &rzg2l_hwcfg,
-> > > > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > > > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
-> > > >  };
-> > > >
-> > > >  static struct rzg2l_pinctrl_data r9a08g045_data =3D { @@ -2709,6
-> > > > +2724,8 @@ static struct rzg2l_pinctrl_data r9a08g045_data =3D {
-> > > >       .n_port_pins =3D ARRAY_SIZE(r9a08g045_gpio_configs) * RZG2L_P=
-INS_PER_PORT,
-> > > >       .n_dedicated_pins =3D ARRAY_SIZE(rzg3s_dedicated_pins),
-> > > >       .hwcfg =3D &rzg3s_hwcfg,
-> > > > +     .pwpr_pfc_unlock =3D &rzg2l_pwpr_pfc_unlock,
-> > > > +     .pwpr_pfc_lock =3D &rzg2l_pwpr_pfc_lock,
-> > >
-> > > Some memory can be saved by avoiding duplication of data by using a
-> > > single pointer for structure containing function pointers??
-> > >
-> > > struct rzg2l_pinctrl_fns {
-> > >         void (*pwpr_pfc_unlock)(struct rzg2l_pinctrl *pctrl);
-> > >         void (*pwpr_pfc_lock)(struct rzg2l_pinctrl *pctrl); }
-> >
-> > So that would replace 3 (4 after adding RZ/V2H support) x 2 pointers in=
- rzg2l_pinctrl_data
-> > structures by 3 (4) pointers in rzg2l_pinctrl_data structures + 1 (2) x=
- 2 pointers in
-> > rzg2l_pinctrl_fns structures, and code size would increase due to extra=
- pointer dereferences before
-> > each call.
-> > Am I missing something?
->
-> Current case
-> 3 * 2 pointers =3D 6 pointers
->
-> Suggestion
-> 3 * 1 pointer + 1 * 2 pointer =3D 5 pointers
->
-> As you said,  code size would increase due to extra pointer dereferences =
-before
-> each call.
->
->
-> >
-> > Merging rzg2l_pwpr_pfc_{,un}lock() into a single function (taking a "bo=
-ol lock" flag) might be a
-> > better solution to reduce rzg2l_pinctrl_data size.
->
-> I agree.
->
-OK, I will introduce a single function pointer (pwpr_pfc_lock_unlock)
-in this patch.
+i tested the driver from the iio testing beranch,
+it works as expected.
 
-Cheers,
-Prabhakar
+> Thanks,
+>
+> Jonathan
+
+Thanks,
+
+Regards,
+angelo
+
+
 
