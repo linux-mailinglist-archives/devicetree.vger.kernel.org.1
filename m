@@ -1,113 +1,166 @@
-Return-Path: <devicetree+bounces-69914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73B818D1EDE
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:31:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CED78D1EE9
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:34:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02B5FB22F3F
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:31:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0A121F22F38
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE9016F908;
-	Tue, 28 May 2024 14:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E89916D313;
+	Tue, 28 May 2024 14:34:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADDEE16FF29;
-	Tue, 28 May 2024 14:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763261DFDE;
+	Tue, 28 May 2024 14:34:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716906636; cv=none; b=hZG4idtZ7C1Lb+dTr0hRhOQZCjxMv1LMW+8jFkboiOaPWt2WaMFXsZk947lpIr7NecvkUiyDFSQzt/KKUl/WUEt8rZn8HrJYB0TG/G7j+DSnOg666MoCUtzM/RNPRgCzZxQKNoYk6KTUYDjKNncCFDlsE9JFZRMrRDZFi0aR+9Y=
+	t=1716906877; cv=none; b=Mn1ir0LQfrz43hA1Dqq+VfL7EvxV5SKsAK8VDD5A0U06m1Heg8vlwL6GaoCvZqi/VEDojAUp0Qbr9qViu8iSrpo8ntS/bmQnXNg7qHMUEJioxa62hENlyrvb6fsepkeILDFUgjpdnJ1HWSZiEKWA25iXJH8q2bTDNnRqDGtO7vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716906636; c=relaxed/simple;
-	bh=nUmlA3tNFi8AorheeUsBw4qMpRyWQa7L93IQZaiBjO8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=K8eoBaT/dgwCWLCkhlegbPs4W4ktOL9WavIo3GaThhgNosGaxsunbmCAFiK10PQB5ZrOQOyoYDxvG2WTx9sU3Rb47Qv4DMjsHF8wOTYQHG1oohfHdKVw9JkzGWkKhb4rnnLxY9o1dfLJJtOd+kKsM26UsEAEzoRjIV5/Y8ken1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c07:2740:1619:be25:bafb:489])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 6E3047E038D;
-	Tue, 28 May 2024 22:30:12 +0800 (CST)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
-	Johannes Berg <johannes@sipsolutions.net>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	netdev@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH v2 1/1] dt-bindings: net: rfkill-gpio: document reset-gpios
-Date: Tue, 28 May 2024 22:30:09 +0800
-Message-Id: <20240528143009.1033247-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1716906877; c=relaxed/simple;
+	bh=QbezeNKJyW6qf2V3kTpxOxe+UTcg7sBnxBqrvnatxGw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rdZLyI11+YDpWTAtvReBM/ceHHNiWV9A6nM9zn28HiHvTHikdSziFruSKSyEtbgoBMTGEYmNR8eUH7+pLEdPqKBCBFJ7PSTWgvA903P0F6QOkaTKYkUJVlB46PY2/uSL8l6OVClXWWlkDts50NWdd+z/1aeISy4L6WWAGHhOiyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from [213.70.33.226] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sBxuB-0004aE-9M; Tue, 28 May 2024 16:34:23 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Alexey Charkov <alchark@gmail.com>, Dragan Simic <dsimic@manjaro.org>,
+ Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal,
+ OPP and fan
+Date: Tue, 28 May 2024 16:34:21 +0200
+Message-ID: <5122636.irdbgypaU6@phil>
+In-Reply-To: <ea2311d7a41162a847d37ce05d0fc441@manjaro.org>
+References:
+ <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <CABjd4YyuDsWGbSfNyqcW3s=59p8adVf5Js79PYyKFqfyM71dxA@mail.gmail.com>
+ <ea2311d7a41162a847d37ce05d0fc441@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDQkJCVktCTxhJS0NCHhlIGlUTARMWGhIXJBQOD1
-	lXWRgSC1lBWUlPSx5BSBlIQUkYS0xBSUxPS0FKTUpCQRkeSU5BGRodGUFPQ0JZV1kWGg8SFR0UWU
-	FZT0tIVUpISkJIS1VKS0tVS1kG
-X-HM-Tid: 0a8fbf9bd7a003a2kunm6e3047e038d
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MDI6EAw*EzNRVg0CF0MjP1E8
-	FikaCRxVSlVKTEpNQktNTUpJQkxNVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS0xBSUxPS0FKTUpCQRkeSU5BGRodGUFPQ0JZV1kIAVlBSUxKSzcG
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-Some 5G WWAN modems have multiple gpio controls. When using rfkill command
-to manage it, we need to at least change the status of reset and shutdown
-gpios at the same time. Also, it might be incorrect to put the reset gpio
-at usb when the module is connected via USB M2 slot, there may be other
-devices connected under some USB node, but the reset gpio is only used for
-the WWAN module. So document the reset-gpios to rfkill-gpio as an optional
-property and add it to a new example.
+Hi Dragan,
 
-For example:
-  - reset: modem Reset#
-  - shutdown: modem WWAN_DISABLE# or FULL_CARD_POWER_OFF#
+Am Dienstag, 28. Mai 2024, 16:05:04 CEST schrieb Dragan Simic:
+> On 2024-05-28 11:49, Alexey Charkov wrote:
+> > On Mon, May 6, 2024 at 1:37=E2=80=AFPM Alexey Charkov <alchark@gmail.co=
+m>=20
+> > wrote:
+> >>=20
+> >> This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
+> >> active cooling on Radxa Rock 5B via the provided PWM fan.
+> >>=20
+> >> Some RK3588 boards use separate regulators to supply CPUs and their
+> >> respective memory interfaces, so this is handled by coupling those
+> >> regulators in affected boards' device trees to ensure that their
+> >> voltage is adjusted in step.
+> >>=20
+> >> This also enables the built-in thermal sensor (TSADC) for all boards
+> >> that don't currently have it enabled, using the default CRU based
+> >> emergency thermal reset. This default configuration only uses on-SoC
+> >> devices and doesn't rely on any external wiring, thus it should work
+> >> for all devices (tested only on Rock 5B though).
+> >>=20
+> >> The boards that have TSADC_SHUT signal wired to the PMIC reset line
+> >> can choose to override the default reset logic in favour of GPIO
+> >> driven (PMIC assisted) reset, but in my testing it didn't work on
+> >> Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
+> >> support PMIC assisted reset after all.
+> >>=20
+> >> Fan control on Rock 5B has been split into two intervals: let it spin
+> >> at the minimum cooling state between 55C and 65C, and then accelerate
+> >> if the system crosses the 65C mark - thanks to Dragan for suggesting.
+> >> This lets some cooling setups with beefier heatsinks and/or larger
+> >> fan fins to stay in the quietest non-zero fan state while still
+> >> gaining potential benefits from the airflow it generates, and
+> >> possibly avoiding noisy speeds altogether for some workloads.
+> >>=20
+> >> OPPs help actually scale CPU frequencies up and down for both cooling
+> >> and performance - tested on Rock 5B under varied loads. I've dropped
+> >> those OPPs that cause frequency reductions without accompanying=20
+> >> decrease
+> >> in CPU voltage, as they don't seem to be adding much benefit in day to
+> >> day use, while the kernel log gets a number of "OPP is inefficient"=20
+> >> lines.
+> >>=20
+> >> Note that this submission doesn't touch the SRAM read margin updates=20
+> >> or
+> >> the OPP calibration based on silicon quality which the downstream=20
+> >> driver
+> >> does and which were mentioned in [1]. It works as it is (also=20
+> >> confirmed by
+> >> Sebastian in his follow-up message [2]), and it is stable in my=20
+> >> testing on
+> >> Rock 5B, so it sounds better to merge a simple version first and then
+> >> extend when/if required.
+> >>=20
+> >> [1]=20
+> >> https://lore.kernel.org/linux-rockchip/CABjd4YzTL=3D5S7cS8ACNAYVa730WA=
+3iGd5L_wP1Vn9=3Df83RCORA@mail.gmail.com/
+> >> [2]=20
+> >> https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd2kw=
+kbguiolmozntjuiajrb@gvq4nupzna4o/
+> >>=20
+> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> >> ---
+> >=20
+> > Hi Heiko,
+> >=20
+> > Do you think this can be merged for 6.11? Looks like there hasn't been
+> > any new feedback in a while, and it would be good to have frequency
+> > scaling in place for RK3588.
+> >=20
+> > Please let me know if you have any reservations or if we need any
+> > broader discussion.
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- .../devicetree/bindings/net/rfkill-gpio.yaml       | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+not really reservations, more like there was still discussion going on
+around the OPPs. Meanwhile we had more discussions regarding the whole
+speed binning Rockchip seems to do for rk3588 variants.
 
-diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
-index 9630c8466fac..7f297efdc976 100644
---- a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
-+++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
-@@ -29,6 +29,9 @@ properties:
-       - wlan
-       - wwan
- 
-+  reset-gpios:
-+    maxItems: 1
-+
-   shutdown-gpios:
-     maxItems: 1
- 
-@@ -49,3 +52,14 @@ examples:
-         radio-type = "wlan";
-         shutdown-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
-     };
-+
-+  - | # 5G WWAN modem
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    rfkill {
-+        compatible = "rfkill-gpio";
-+        label = "rfkill-modem";
-+        radio-type = "wwan";
-+        reset-gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
-+        shutdown-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
-+    };
--- 
-2.25.1
+And waiting for the testing Dragan wanted to do ;-) .
+
+So this should definitly make it into 6.11 though, as there is still
+a lot of time.
+=20
+
+> As I promised earlier, I was going to test this patch series in detail.
+> Alas, I haven't managed to do that yet, :/ due to many reasons, but
+> I still remain firmly committed to doing that.
+>=20
+> Is -rc4 the cutoff for 6.11?  If so, there's still time and I'll do my
+> best to test and review these patches as soon as possible.
+
+As early as possible, the hard cutoff would be -rc6 though.
+I guess I'll just start picking the easy patches from the series.
+
+
+Heiko
+
+
+
 
 
