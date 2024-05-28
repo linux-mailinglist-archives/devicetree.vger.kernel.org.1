@@ -1,86 +1,75 @@
-Return-Path: <devicetree+bounces-70009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35F928D2224
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:03:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0948D222E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:10:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB5BF1F23C87
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:03:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6CC528437E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF4F173359;
-	Tue, 28 May 2024 17:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9DF17333F;
+	Tue, 28 May 2024 17:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BeBmgUCb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cZszT1Oq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781AB173350;
-	Tue, 28 May 2024 17:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F438173339;
+	Tue, 28 May 2024 17:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716915778; cv=none; b=Yn8PVpVeD0SIATuNGXkZwgZHhNo/0jIziUeHvKloPs77tLfBddUsVXPIDOm0yLOrni1ON3yawS/RSJTwaRA27jZj9T1cM5Ubk0CXp84ihBaW4DbB1Xv5rbwhWkCw7rlraVPW9q/de714JX5YEcQP79YSryLeBBTMaNV7OLvp3GQ=
+	t=1716916207; cv=none; b=ezN2E4EIo0OqxRj4BHDLBzxycbEzxH2EhrdvzIMtz4jNVlWnaTFf5TYA2kec1DogowDW4J5GcGO5aFoWGeCceEYvfTThPtJfWOYf24Wwxbky9WeontrWNbb4J6m09YzUTKM3ULupz9aXaZKrvRZ8SJWGGv6BiOEuelfGhto+BJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716915778; c=relaxed/simple;
-	bh=d7VPMGIdqNLF45j8kC0Fc7trVtC0v2eVektCXeN9Rb0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uTzmVKV/xSyqmJ9SQimxliUO9gad5ee4ZwKHY7OSgB2AdpZepZln8X80AsIlGZYM9QORQNHKJr0LH4ELaRVNBGZYMpuWjWKDE23GwPOgL102QG6Ghe1u1wY6zl88RrKzToxpfaZxQjvbO1A0ome8XoGYATyGPzagufoqCtIdyHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BeBmgUCb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15FF2C32786;
-	Tue, 28 May 2024 17:02:57 +0000 (UTC)
+	s=arc-20240116; t=1716916207; c=relaxed/simple;
+	bh=B3E/QGp7FngdO9p2TYdzPNibioEyg6tO73saBRqMObQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KmMtXD2fnEkn3bMQ3jROpr7ooWb6Hhp2dp0uqAPBwczCJiDYwf4hXavSNTgY3UGCOIXk+Imaah+d6Mn5ocm08dVj8XD2IOjhy/QbjJXzACNkbFLtLSiLSOiSx8+4fN4BvpU8XYjNWL8BxkT7RK5WOq2T3UJsAX4JXM3mKmgV1rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cZszT1Oq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA1F9C3277B;
+	Tue, 28 May 2024 17:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716915778;
-	bh=d7VPMGIdqNLF45j8kC0Fc7trVtC0v2eVektCXeN9Rb0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BeBmgUCb7WE5D4mdFdFd46CcKQtcuwFi5wCdofu3HfeLY2e5HwLGI/mA2qpG7NLkB
-	 nVY9E41e4GuS9oxEP2bknp8AjInRaGumYDy2eRwkcozmldoCnseT6VR3YLtq8Fhlfe
-	 pnaiidPFrxU24qBR1oRWyv0TF3tsPcqI/4tvQ/G17wkKPMdPmaMjiWDBtHiARUKLSp
-	 KaD8kH/jzdAlwOoN5ouuGBsgQw6E6uaz6Q+9yvfEuG+E3NIH6lluyESobG9Q/DDW1z
-	 KAjkHhWyA51n4s1Z+eOuJyTNoJ/TfMNN1HZZfQAdMFv+2BAZIR8a9kAPv1kNB2UeQV
-	 X7k+tzucWZ/og==
-From: Bjorn Andersson <andersson@kernel.org>
-To: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Luca Weiss <luca@z3ntu.xyz>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/2] Allow gpio-hog nodes in qcom,pmic-gpio bindings (& dt fixup)
-Date: Tue, 28 May 2024 12:02:53 -0500
-Message-ID: <171691576752.544020.9360876610718267733.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240409-qcom-pmic-gpio-hog-v2-0-5ff812d2baed@z3ntu.xyz>
-References: <20240409-qcom-pmic-gpio-hog-v2-0-5ff812d2baed@z3ntu.xyz>
+	s=k20201202; t=1716916207;
+	bh=B3E/QGp7FngdO9p2TYdzPNibioEyg6tO73saBRqMObQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cZszT1Oqv0rSz3TCQkigMNv88tsjNRt8vwCYNLz8Ze9Sqm1JP6bcGHs/eWE6yMbQF
+	 QE1IjMRfNOanoudkJx3mtsFT7tcsMZVgPhidmjWmMUIhNEiQilfD5M0twZqbMUzB9k
+	 E9Iim+56ZXUt3EyQwEGFVFw2VM4PTjWxQfcvRgI7c1uXXQ7uRxpBhcjpW5Jki/ejRo
+	 IfLeOyZp/7apcCEqOOzzMC5BXqn/Oyp30XEU6HQ1vAasgBs6FXqKkAd2I/7MLOQloL
+	 Y3G0xcU0HVKiCC/6xytApk5SsoMvwKWgER7T9esYCxM//vstN4voACukuTh7Ij8gMG
+	 3NMnFuU6ulMAQ==
+Date: Tue, 28 May 2024 12:10:05 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] of: of_test: add MODULE_DESCRIPTION()
+Message-ID: <171691620162.977890.15152918673691934863.robh@kernel.org>
+References: <20240524-md-of-of_test-v1-1-6ebd078d620f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240524-md-of-of_test-v1-1-6ebd078d620f@quicinc.com>
 
 
-On Tue, 09 Apr 2024 20:36:35 +0200, Luca Weiss wrote:
-> Resolve the dt validation failure on Nexus 5.
+On Fri, 24 May 2024 16:58:26 -0700, Jeff Johnson wrote:
+> Fix the 'make W=1' warning:
+> WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/of/of_test.o
 > 
+> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> ---
+>  drivers/of/of_test.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Applied, thanks!
 
-[2/2] ARM: dts: qcom: msm8974-hammerhead: Update gpio hog node name
-      commit: 92b9ce5b11d7ba281f5bf0029185d5c891b29344
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
 
