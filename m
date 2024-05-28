@@ -1,132 +1,149 @@
-Return-Path: <devicetree+bounces-69781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1867B8D182C
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCD1A8D1841
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:16:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D734B26DB1
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:11:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E3A5B22430
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0701581E0;
-	Tue, 28 May 2024 10:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88FE16B742;
+	Tue, 28 May 2024 10:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcNq45Mm"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b="S3aqDAwQ";
+	dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b="iulJh6a8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from e2i187.smtp2go.com (e2i187.smtp2go.com [103.2.140.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CA7F9DA;
-	Tue, 28 May 2024 10:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21B216ABFD
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 10:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.2.140.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716891076; cv=none; b=nxkKr2ft9uJSnKcngU7PGNUZPVUreEWiIXvWEtHTEhRavZwzoZMG6A2BZJkWUvX4cGE/VWykMsvL9EuMnZM2OdcE97taNd986PHLmG+H9lkia8RHOLySuIrsSu7XvXnFGlXxj24TVnc882yY39m2VyizQ0qbo3oO6TcdRR1SMh0=
+	t=1716891387; cv=none; b=hToCh125d9D+POm1uaZiC06BUcEqjO0JaPcmjtreRk9raDw9u/+jbPV3zhaU63dOQzu55QuUqN4w+kvW6pAC97viIcPZad8oN/vEX8Ju74tbsa/kmypHP2zzCxnN/ICt+pgSr6CQ9PhyvcOQ57YF+uvJw6YJr4ptJ0UgdlFD5fY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716891076; c=relaxed/simple;
-	bh=3ri47Jw8bG0xrz0cHD1t6SSVNIySHKS61lpPF53h+3s=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=iX/URjNCb+bvi/1QSAtRArNHauieVzybVd7fuJgW3Lq+9sAdO9/fmVXLaDN1vMJWfvPCNiWoNvfXt1UyH40jv//QBNs+LIVQbh3AQtqpwyJaZHjnjQbl5QsUf6rgS2+ePE2qbnLVWlSFhZXHylyiLLEzPXWmfjy0sgdRthd9GlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcNq45Mm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3848C3277B;
-	Tue, 28 May 2024 10:11:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716891076;
-	bh=3ri47Jw8bG0xrz0cHD1t6SSVNIySHKS61lpPF53h+3s=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=UcNq45MmR80f7cpnqo6wlB59u/UPMXeA2qZWe17HnnDwofjLwb/jyu2ucUmG7HrwR
-	 TVdIYyKpguUruLYx1B5gLFLhlivJLKRFJxq9x9BaX3I+nqDvSS6eePT3x6sdVpys2U
-	 61tAs6AUmhpT8QdvpUpyiZVk3DGgeF/MnqpsUHDEcnN6pIN2mvUGyNfPK9XN8+N/w0
-	 5SstgHQlBn6qvkiI037eeAf3eqgMtJY0bHE+7X8zlpYXIn/lQwkFHrqVnCbk8Vkqud
-	 TPhhPW0qrnj6esSfQRQzzfJlP+BN+uoyS7w++RpTtPK2QGto3g1mRAAmVABGNBtVnu
-	 7kzjDGhmLq8Fg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Bjorn Andersson <andersson@kernel.org>,  Jeff Johnson
- <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
-  wireless <linux-wireless@vger.kernel.org>,  DT
- <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
- Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
- <avrac@freebox.fr>,  Konrad Dybcio <konrad.dybcio@linaro.org>,  Jami
- Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo
- <quic_jhugo@quicinc.com>,  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-  Alexey Minnekhanov <alexeymin@postmarketos.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-References: <54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr>
-	<171560975908.1690511.498631481702370762.kvalo@kernel.org>
-	<3464a980-36a7-4ed2-b2dc-be8fd9091b06@freebox.fr>
-Date: Tue, 28 May 2024 13:11:10 +0300
-In-Reply-To: <3464a980-36a7-4ed2-b2dc-be8fd9091b06@freebox.fr> (Marc
-	Gonzalez's message of "Tue, 28 May 2024 11:54:37 +0200")
-Message-ID: <87zfsa6ybl.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1716891387; c=relaxed/simple;
+	bh=bK8clUyAHSzXZLRJypon/9/cndNSHirh31wv3eY35Ac=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sx98XbsRm9kFDFFems1qElwg6J/UgBm2FV5KZ0s3KSruy3gr51a8S9oJiYddwFXekU/wMazGMTtWQmOR0r8ifA0rxL5TMaOt4XhckGe76e+kkJb7BUA0fAcJ9mjY7Mk4lsdz4TyEJkCinP9hk/Zyv72p5+du0mDv4PcOtFaK+cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=asem.it; spf=pass smtp.mailfrom=em1174574.asem.it; dkim=pass (2048-bit key) header.d=smtpcorp.com header.i=@smtpcorp.com header.b=S3aqDAwQ; dkim=pass (2048-bit key) header.d=asem.it header.i=@asem.it header.b=iulJh6a8; arc=none smtp.client-ip=103.2.140.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=asem.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=em1174574.asem.it
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=smtpcorp.com; s=a1-4; h=Feedback-ID:X-Smtpcorp-Track:Message-Id:Date:
+	Subject:To:From:Reply-To:Sender:List-Unsubscribe:List-Unsubscribe-Post;
+	bh=w4ZAWZTNg1euJmLaEWbFNw2s9ni8efmSIaUdOd2VsbQ=; b=S3aqDAwQAKLuggaKPPNmSgiVgc
+	vLI1+EHzis5W1JX6Wsa2XdRmVpAWkiJAL4rn4TwuuvjqLRhG+igTIQ7TeJGr2i8mlCPg9PVBRVjtZ
+	i2IBJmpUlQCT6BvHNjZZdGuec3PhRqCrVUJEZB8yirboCjR6L/YSdYR/08CQkFJMSBXmbifHAuU82
+	tFxGLK2g4jwveDGV3ltEPppDTYNYmNnZ1tREuk+Eren1RTIjoHa9ijlDIUF9RZH0wBL2GaDaaM9Pl
+	jdcaVdz3BuPsCit8uSI+ZRaPvw+jwc80pZEICZUjXnqIyPaPwLqca0ztFZANGRDSeBUK8LfcNENLk
+	CSQd//Rg==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it;
+ i=@asem.it; q=dns/txt; s=s1174574; t=1716891386; h=from : subject : to
+ : message-id : date; bh=w4ZAWZTNg1euJmLaEWbFNw2s9ni8efmSIaUdOd2VsbQ=;
+ b=iulJh6a81gg7DWVA6vao33NwArcPOrxR3ETqMGnv9wSEy36AvVi++RC4PtRAZK/ch2c/v
+ 1RpNFDKlwS4Kax7pbXT8xkNj/nV16vkmpkKase9NKZBR/5iZlq4Z5ANoRe+eaBOtyF917Xx
+ AAelb0JIOkuWjRAin7OtESuMVKOv6GpJGJaIzwrXg33NZIc2xhfNWfc7/ZxJJ+hbt0y8plf
+ l7xlUP3w5HuBLT28mzChN6qLbQuggmWQ/muGU4o1yMnAWJZi5HidAS+Bs8MPe56yUrX9kTC
+ 9s4GCvNUOw9bMxC2auXFDezKoalE62dvoQh+eZ5TpaSuV011xCqtBE973hNA==
+Received: from [10.45.56.87] (helo=SmtpCorp) by smtpcorp.com with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.94.2-S2G) (envelope-from <f.suligoi@asem.it>)
+ id 1sBtsQ-Y8PCFe-L6; Tue, 28 May 2024 10:16:18 +0000
+Received: from [10.86.249.198] (helo=asas054.asem.intra)
+ by smtpcorp.com with esmtpa (Exim 4.97-S2G)
+ (envelope-from <f.suligoi@asem.it>) id 1sBtsO-FnQW0hPuHwL-dstN;
+ Tue, 28 May 2024 10:16:16 +0000
+Received: from flavio-x.asem.intra ([172.16.18.47]) by asas054.asem.intra with
+ Microsoft SMTPSVC(10.0.14393.4169); Tue, 28 May 2024 12:16:14 +0200
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>, Adam Ford <aford173@gmail.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Flavio Suligoi <f.suligoi@asem.it>
+Subject: [PATCH v4 0/5] arm64: dts: remove tx-sched-sp property in snps,dwmac
+Date: Tue, 28 May 2024 12:15:48 +0200
+Message-Id: <20240528101553.339214-1-f.suligoi@asem.it>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 28 May 2024 10:16:14.0231 (UTC)
+ FILETIME=[1208AA70:01DAB0E8]
+X-Smtpcorp-Track: SWU1750lJsuO.J7in5sxjdfSL.iU9zcwV16xT
+Feedback-ID: 1174574m:1174574aXfMg4B:1174574s6j27gZQMC
+X-Report-Abuse: Please forward a copy of this message, including all headers,
+ to <abuse-report@smtp2go.com>
 
-Marc Gonzalez <mgonzalez@freebox.fr> writes:
+In the ethernet stmmac device driver:
 
-> On 13/05/2024 16:16, Kalle Valo wrote:
->
->> Marc Gonzalez wrote:
->> 
->>> The ath10k driver waits for an "MSA_READY" indicator
->>> to complete initialization. If the indicator is not
->>> received, then the device remains unusable.
->>>
->>> cf. ath10k_qmi_driver_event_work()
->>>
->>> Several msm8998-based devices are affected by this issue.
->>> Oddly, it seems safe to NOT wait for the indicator, and
->>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
->>>
->>> Jeff Johnson wrote:
->>>
->>>   The feedback I received was "it might be ok to change all ath10k qmi
->>>   to skip waiting for msa_ready", and it was pointed out that ath11k
->>>   (and ath12k) do not wait for it.
->>>
->>>   However with so many deployed devices, "might be ok" isn't a strong
->>>   argument for changing the default behavior.
->>>
->>> Kalle Valo first suggested setting a bit in firmware-5.bin to trigger
->>> work-around in the driver. However, firmware-5.bin is parsed too late.
->>> So we are stuck with a DT property.
->>>
->>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->>> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->>> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
->>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
->>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->> 
->> 2 patches applied to ath-next branch of ath.git, thanks.
->> 
->> 71b6e321e302 dt-bindings: net: wireless: ath10k: add
->> qcom,no-msa-ready-indicator prop
->> 6d67d18014a8 wifi: ath10k: do not always wait for MSA_READY indicator
->
-> Hello Kalle,
-> What version of Linux will these be included in?
-> (I don't see them in v6.10-rc1. Are they considered
-> a new feature, rather than a fix, and thus 6.11?)
+- drivers/net/ethernet/stmicro/stmmac/
 
-Yeah, these commits will go to v6.11. Because of the multiple trees
-involved (ath-next -> wireless-next -> net-next -> linus) we need to
-have ath.git pull request ready well before the merge window opens and
-these commits missed the last pull request.
+The "Strict priority" for the tx scheduler is by default in Linux driver,
+so the tx-sched-sp property was removed in commit aed6864035b1 ("net:
+stmmac: platform: Delete a redundant condition branch").
 
-Yes, we are slow :)
+This patch series remove this property from the following device-tree
+files:
+
+- arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi
+- arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+- arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+- arch/arm64/boot/dts/qcom/sa8775p-ride.dts
+
+There is no problem if that property is still used in these DTS,
+since, as seen above, it is a default property of the driver.
+
+The property is also removed, in a separate patch, from the corresponding
+dt_bindings file:
+- Documentation/devicetree/bindings/net/snps,dwmac.yaml
+
+**************************************************************************
+NOTE about this v4 patch series: resending this v4 version of the patches,
+     I omitted the word "RESEND" in the subject line, since I added a new
+     tag in the patch num. 5/5.
+**************************************************************************
+
+v4 - Resend after some weeks and added the tag "Reviewed-by: Krzysztof
+     Kozlowski <krzysztof.kozlowski@linaro.org>" in patch num. 5/5.
+v3 - Removed the tag "Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>"
+     in patches num. 1/5, 2/5, 3/5 and 5/5 (it was added by mistake).
+     Added history in each of the patches, as well as in the cover-letter.
+v2 - This patch is the 2nd version of a previous patch, where both the DTS
+     and the yaml files were included toghether. Then I split this 1st
+     patch series in two, as suggested by Krzysztof.
+v1 - Original version of the patch where, in addition to these DTS patches,
+     there was also the one related to the correspondent snps,dwmac.yaml
+     dt_binding file.
+
+Flavio Suligoi (5):
+  arm64: dts: freescale: imx8mp-beacon: remove tx-sched-sp property
+  arm64: dts: freescale: imx8mp-evk: remove tx-sched-sp property
+  arm64: dts: freescale: imx8mp-verdin: remove tx-sched-sp property
+  arm64: dts: qcom: sa8540p-ride: remove tx-sched-sp property
+  arm64: dts: qcom: sa8775p-ride: remove tx-sched-sp property
+
+ arch/arm64/boot/dts/freescale/imx8mp-beacon-som.dtsi | 1 -
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts         | 1 -
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi     | 1 -
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts            | 2 --
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts            | 2 --
+ 5 files changed, 7 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.34.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
