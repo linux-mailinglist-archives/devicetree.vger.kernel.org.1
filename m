@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-69797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F8328D18F3
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:53:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C9A28D191F
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 13:08:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F19F286BEF
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:53:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE3881F2258B
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE36416B756;
-	Tue, 28 May 2024 10:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BDB5154BF8;
+	Tue, 28 May 2024 11:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EpJOEaCb"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uZByvk75"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47F44D59B;
-	Tue, 28 May 2024 10:53:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F2C13E3F6;
+	Tue, 28 May 2024 11:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716893603; cv=none; b=a2lxgGIvI1jw/y5f70kzq8IWI7F/rPZIHmV8fq2zvz04OCyR1maZs/MtdSv/ZOXc8IfujSSCWLDJJICV0vYB4ugv97B65qZO4xdPpSSAhsbkcWt3yBnkq+/x67WHsqRJKu3PQWsY73AnOPFNkSWAzPx5OOE7Zz9AagNbBN8WKRA=
+	t=1716894515; cv=none; b=VHOeX7h5nRAeguMteqldCYz685A8iEIxJnQeRFx2GMog83dKHSS/xU6r3kA4yNQ6HmDDi/yYj7p5WmjIcnnsajfEhkd86YCzPQ6N/e+6F59461JeGFDv8d2828ARrQ3pE4PCZdhnhEMSFqAM3mgeBh55A93P8ff32R51ev0w3DY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716893603; c=relaxed/simple;
-	bh=3oRkzDw3QYMQkC9OMt5LfAKZz4dLzJkrrBcaC+VqT7Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kgapXOnc4NL1O3j2R7k1icABPbiNSSEpcOS4hn2L4V54RKSIh46rYQgka0R58f8CrEAcsLD05HrfVaFfxFS3d7FY0yw3FibrOUXsYdqOHTRnn1b1bK1zfnSGIyW90ak3movV7ogHztHFDhnhS8htYbOZgLhwWtZOBDPFk0mRizA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EpJOEaCb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EDDAC3277B;
-	Tue, 28 May 2024 10:53:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716893603;
-	bh=3oRkzDw3QYMQkC9OMt5LfAKZz4dLzJkrrBcaC+VqT7Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EpJOEaCbFkRPKpH7T87co5vJZZZ0Wfg5jtWj6TV5F5QhiqHqqtOycSPAT/vSzDybi
-	 BjrbWJ5Vc+jhI9ptVLqF14lyyc1l8CNOqXQd90RpOHOAvxh+NZcc0XOQ7dMkNZap5o
-	 yIpaL0r2cc30Ucp6VwonBhlpVRr5jUAhViDx2C/H9FWLoQzf64xe+aLDw0zDa2kv+a
-	 x3gv37Nz/V+4tNPPk0sjjFyB+w/tUt5D8/a6kMB+gfTPg0tnWiqbgYc2a68hXFhtCD
-	 MXgqem0TFdbtLFNxvq27teY2v1Ww2U+nVnt9pTFQwH8gbhTjutiHelvMvMMWLY+0Vb
-	 6b/aGFNnxVuYw==
-Message-ID: <35400cd9-176b-4a87-94d5-f3400628f19b@kernel.org>
-Date: Tue, 28 May 2024 12:53:18 +0200
+	s=arc-20240116; t=1716894515; c=relaxed/simple;
+	bh=6pQ48s/ZXPuwRrmYhWeA5YildQBgCa5Lulh90LEteHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IzMEHaWnWnz9rwDg5hqeVyWLiAm22D/X45iCdbe1rg71qaOJaJjJCBL3c6abC8/lmIPiXoMqDfd1f+O9e6JVFx1QYC4zwHf2kzeerN+mMtkZFqT1kQmR0EB3ap9eSPF7uwbSnKbVDRyaMxffehU1/5KemXFtygG95u9G85E0tYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uZByvk75; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44SB8MLa042098;
+	Tue, 28 May 2024 06:08:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716894502;
+	bh=3I2KuQ/zJ4n3DrpkbGo1uDhZ7yKlLjDJekmhpjEg2kk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=uZByvk75iVVakkTNJgg65Ha5X3D5YdBeTd2OPaf0yPksX6a3ktrNL3LDkVQkrpn90
+	 5QzCOlH+yVWKZv1I/Ir4tRbwyF2cA1vbW9Sm04f48+EN1xkZU2AUwNNfDE/JCufanB
+	 GOySkwDmy8Xi0nftr67PbUycbZUWsqnHjQxF86sA=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44SB8MJQ009091
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 28 May 2024 06:08:22 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
+ May 2024 06:08:22 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 28 May 2024 06:08:22 -0500
+Received: from [10.24.68.216] (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44SB8IOP044466;
+	Tue, 28 May 2024 06:08:19 -0500
+Message-ID: <27a350e5-b3e0-427d-8897-89e1d34a4c00@ti.com>
+Date: Tue, 28 May 2024 16:38:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,75 +65,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: net: rfkill-gpio: document reset-gpios
-To: Chukun Pan <amadeus@jmu.edu.cn>, Philipp Zabel <p.zabel@pengutronix.de>,
- Johannes Berg <johannes@sipsolutions.net>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, netdev@vger.kernel.org
-References: <20240528102603.1016587-1-amadeus@jmu.edu.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-evm: Enable main_uart5
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240528102603.1016587-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
+        <vigneshr@ti.com>, <nm@ti.com>, Bhavya Kapoor <b-kapoor@ti.com>
+References: <20240528093911.47786-1-b-kapoor@ti.com>
+From: Bhavya Kapoor <b-kapoor@ti.com>
+In-Reply-To: <20240528093911.47786-1-b-kapoor@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 28/05/2024 12:26, Chukun Pan wrote:
-> The rfkill-gpio driver supports setting two optional gpio:
-> "reset-gpios" and "shutdown-gpios".
-> The "reset-gpios" property is missing, so document it.
-> 
 
-Please focus instead on why.
-
-https://lore.kernel.org/all/d096d9ea-39db-4a15-9c4d-ae228db970cb@linaro.org/
-
-NAK
-
-Best regards,
-Krzysztof
-
+On 28/05/24 3:09 pm, Bhavya Kapoor wrote:
+> main_uart5 node defined in the SoC dtsi file is incomplete
+> and will not be functional unless it is extended with pinmux
+> information at board integration level.
+>
+> Thus, add pinmux for main_uart5 in the board dts file and
+> enable it to make it functional.
+>
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> ---
+Test Logs: https://gist.github.com/a0498981/dc8b0cb670a5726eeb6c10f6de1f468e
+>   arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> index bf3c246d13d1..e3892a6f2fab 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+> @@ -18,6 +18,7 @@ / {
+>   	aliases {
+>   		serial0 = &wkup_uart0;
+>   		serial2 = &main_uart0;
+> +		serial3 = &main_uart5;
+>   		mmc0 = &sdhci0;
+>   		mmc1 = &sdhci1;
+>   	};
+> @@ -142,6 +143,14 @@ J722S_IOPAD(0x01cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
+>   		bootph-all;
+>   	};
+>   
+> +	main_uart5_pins_default: main-uart5-default-pins {
+> +		pinctrl-single,pins = <
+> +			J722S_IOPAD(0x0108, PIN_INPUT, 3)	/* (J27) UART5_RXD */
+> +			J722S_IOPAD(0x010c, PIN_OUTPUT, 3)	/* (H27) UART5_TXD */
+> +		>;
+> +		bootph-all;
+> +	};
+> +
+>   	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
+>   		pinctrl-single,pins = <
+>   			J722S_IOPAD(0x0120, PIN_INPUT, 7) /* (F27) MMC2_CMD.GPIO0_70 */
+> @@ -240,6 +249,13 @@ &main_uart0 {
+>   	bootph-all;
+>   };
+>   
+> +&main_uart5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_uart5_pins_default>;
+> +	status = "okay";
+> +	bootph-all;
+> +};
+> +
+>   &mcu_pmx0 {
+>   
+>   	wkup_uart0_pins_default: wkup-uart0-default-pins {
 
