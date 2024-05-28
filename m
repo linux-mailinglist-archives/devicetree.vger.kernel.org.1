@@ -1,332 +1,249 @@
-Return-Path: <devicetree+bounces-69976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFAE8D2105
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 18:02:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1EB8D210D
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 18:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B98721F25056
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:02:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE6D41C230AF
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6F8172760;
-	Tue, 28 May 2024 16:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9528174ECA;
+	Tue, 28 May 2024 16:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Vol0P5Cc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gnpKWxVg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2089.outbound.protection.outlook.com [40.107.6.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4ABF2561D;
-	Tue, 28 May 2024 16:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.89
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716912107; cv=fail; b=Dk4MggBfq+yxIj3y8nW2uJr+1IVy4pc0QFGzy68CVLsepnDZMtqJf25OKNx7KZ2Cl+cNp9ckf/Ot3vxpnEY7zt/hI9ixMc2GFNMhEv/sRBf+Xe/MW1l8V4bq3PD6lQeGRP7IQhKmYrlbPR5iRkqnU/z35bIPm0T2DPSmK+vgKzw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716912107; c=relaxed/simple;
-	bh=bxzsL22r3fPQLXcwWMDm5NZ4PuE7AcupE1uceo7R2kA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ksyN6++0VvvO4cGSqMyKp6CQ3FQKMjCTOk/EWismQraAQOs1+NQtWDeeuAYKv2x/9pJegmTkcvLvsf29tWMUquS7hi4nmlcI5qKRd+WbikBBzAx4+KdqBQB+z2CLwwKzczzm8V2u57xKJ3tqe0wM12qvZKfkYX4W+tRX3XhUJMc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Vol0P5Cc; arc=fail smtp.client-ip=40.107.6.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cyfbM7vSW6frlQRcdMXrfXrWjBTH6uHHN3wGSt7A/HyHqjmfZgHRXb6jSQvG0HmN+sg6rImbsNKVOZvj+HB7XT8AhUdepB7igjMsz8m+tLK3Kj1uY7JRsByLI27pCpJMJotAbcTzCvfkUitK78Il9uJVJKFeboEEFeQocs+/Dq2WXxMeWB5scb6U4L4Inu3tiEspVoMlK1BkLql733KOhnVXSXvbhJUmOXUAcHxkK4yzHjrWBU9sYRa3Q5idEluNQfVif8tYz/8l8kRYkGFwWR/+BvJ4aKJeT4fdET7uTJQWOyhfGoSlRQjtWE4yZHmPhUgbb0woujh+px5MoTxcbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aHyCX0PxWzhsInV2LWN1zWRgnNkSz0TQX4Aiet07JIM=;
- b=H5q6f2IQn6TLRXi9YaABI4rxZkDLAL7+Qdt54BZ+KXJjq+yGv5BcQ9o1S9DWBoCSbRDVvrCm6MKAQIyIFsiBAsccCUi1AQgui54USsDuQfxWZTidfgrSVTvWuKndgWnDMMWd8oNA0B/pvZroAQ9L49VTljQD0uI0rPB6fQb+xWiYOI0yUX0kFVmu6KjAiDtNZxZHRq83t3kE4cnQ4f9TlQCBuibFluE//Vg0Tacy40aVDyWhGT4qUuIn+XhIW70hP+scIbwCoX+Lz/BX82bRtP+txZxWyiMt+FXDWOFT6ivLeQz2h366uOw/2BxntKsNW5CkkrClpMmserzHEb1RfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aHyCX0PxWzhsInV2LWN1zWRgnNkSz0TQX4Aiet07JIM=;
- b=Vol0P5CcX0VpeNL13V/aPEPmOP/aaDUEQkO+ZwSsAYfuJpB51Gp41gfh7PHScHQ6Pai1jmqlKWePtOWiJ7lDJ+qtHR3ie0P0Qzbq/s9emUOqeDIdgiKE2wWgknAClOvvS8Yb5aHvxmAX7aRqyYgks6SGgFxxsjzuSYzf06ky+0M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB9255.eurprd04.prod.outlook.com (2603:10a6:102:2bb::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.29; Tue, 28 May
- 2024 16:01:42 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7611.016; Tue, 28 May 2024
- 16:01:42 +0000
-Date: Tue, 28 May 2024 12:01:34 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: rtc: Convert rtc-fsl-ftm-alarm.txt to
- yaml format
-Message-ID: <ZlX/3ubifkR/RTl8@lizhi-Precision-Tower-5810>
-References: <20240520214614.863539-1-Frank.Li@nxp.com>
- <a3c76bd2-f453-4320-8675-66ecb4bc6fc8@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a3c76bd2-f453-4320-8675-66ecb4bc6fc8@kernel.org>
-X-ClientProxiedBy: SJ0PR13CA0040.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A91173346;
+	Tue, 28 May 2024 16:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716912115; cv=none; b=i/DvQODccFVYl0gs5/f9Scg8aiOI3XynZAU0EjY6Y6TCSdW2FId+64aMyTbkXs2yjZK2QI46Kzs++rYQ21V+G7pfDjwIWzoD1VeFCcGioe83fCsZ8LpCof8+LXxVJVdpwwH2togKf0UtPFMQMbbAVARtbWkDjUq4JC58sc8hASA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716912115; c=relaxed/simple;
+	bh=93/ZAcDJU7tMCrl1u6rFqplJEb56C7KgT8AcIidewh0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kezLp8JjI05rfJagquDliXAjsGdtWKRhFfD7GUKHYOmRyPSO9M3jg8Xu3dZOI4pxeKlD+E56j4JEFbdbFaDqUgooR/TCJ+inubav5Etpumst41HXsFKYZlsh/tPh4OddJzy2rhSqavFvmZpONpy+JaF4sq+QiFUYtBwTk4CCUWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gnpKWxVg; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5786988ae9bso1319429a12.3;
+        Tue, 28 May 2024 09:01:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716912112; x=1717516912; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AsjOHizdrvfqmJxqxDMpN3lCIsfUt5pRyM4spPwkenU=;
+        b=gnpKWxVgLqlF2x5Rt0c9Y8L+HuPOttAkRxIdffJs+6puqgTCXd4APO2GK7e+RbmfdI
+         WBZNvk+d7/nL5XkerU/ClRM+Sappb20vePT6toHyJ7hgvT/nTih8A2svHpufvEvoceuU
+         pPngiFyEHKJWL8t5nw9pszgK1SJLb/8niTs3wiF5p3+5WEP/k/rfmNHLY0mnIGTVr4en
+         s68+2YXMCanz3fDU+l53/4F9b/hNceI543eh1KFoGMx8ehenxkSadlFPzCc8sEa+ka9L
+         9p1BHnixyXMZeHynnkZtJ+eFdFa9eslJG4NdIWn32BEe0+g0KGvKrcsNu/dsAE1DO+iB
+         CW+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716912112; x=1717516912;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AsjOHizdrvfqmJxqxDMpN3lCIsfUt5pRyM4spPwkenU=;
+        b=Hfy7HDUajLIc3KY2CVh9G6ZI+tNcdX5wPI3uT30agJOOcuAxK19YJbYmIXJSB9eYbQ
+         I6QiAZvpTjXcaaxHYmJdap/t8b+SjRKzAaJnW0W3F4aHhUw4rUJ78cEjI+xT80X2p8XB
+         sD9GI+5EErdaHufWSNFpDgMM02oVpZvNTt6zs54xPX/7hK2HR6jCVEH056Wnz06xRynM
+         nXU8QshKLIOF3FqJtNoBmrqUBJFQxCOk0ND8evmRMtTh2e9/9MN5hgIrAgo4zThTGbjy
+         RERij+UqKFZ2+Tmcl+xdDRG3DCItYjwckvwk7gyq9Rj/KOxnNy3yoMmxQj2HI7S6D4YE
+         KINw==
+X-Forwarded-Encrypted: i=1; AJvYcCXUvUB7E8RmjQOkmWdUg/bzdJL9jMrd1MzHiQTv4FcPNIroUN59kos0eYhNGkAVZXcOQMWtGgyDrD2IHNF+D7i7AQX7eX8u8qFBN2B2h6lxWeGeSbXcZXH7iZFVgnzMt6aNL8YVNzpXoQ==
+X-Gm-Message-State: AOJu0Yw6xQKgoeAKd3aI0zil4/0wQKrDyeT8j3zn6H2TI45jhV0zki8X
+	He8D8aAbpiFp8M32hgZME9+WMSURbZ/KKp5VPhBGxeSxycd1BtM5butPdOF+vCj7StKRl4WNhq2
+	ELRrnugAqoEQEyLUQcOBrqnRez40=
+X-Google-Smtp-Source: AGHT+IHNuE7nLtgH5tbabZBoP5F4JkJPXbp/M6maPBMqXy141pqHfqme/UZVDsjVlC/xrsMnW/wR2sqSs0md2gDnT0U=
+X-Received: by 2002:a17:906:cc4d:b0:a59:ba2b:590b with SMTP id
+ a640c23a62f3a-a62650118f2mr833227266b.71.1716912112089; Tue, 28 May 2024
+ 09:01:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB9255:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3dde4e5c-9d54-4811-b114-08dc7f2f777e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|1800799015|52116005|366007|376005|38350700005;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?LacgbphlDu2YTWmGZHTQJSmZqxTJlihaJsaksBRKUU6BLnar/cjjeAQECNqr?=
- =?us-ascii?Q?Txgoj2r4YKL1a5wk6+2LRVGDTLo4lcYKyRzNimJe46xZ3v6Rq/1qDtFLEAxE?=
- =?us-ascii?Q?ISqmUSDrfQ6CZRfcRex4OTmd/RlpzygTOP/4I2PgCZF8S2wb/ojYmGaVlWHq?=
- =?us-ascii?Q?RiupZA7jL0oPdk+G3C8+MtEm85RyTMvt6vpGOsT8gph6r4XxXVqnBU/6XA8A?=
- =?us-ascii?Q?jujS3y11wcZ021KxJ8P0xWoT3oSMX584JHORzCfbFoVvfHzeddBt+hqfqP8l?=
- =?us-ascii?Q?LwRu1xcZ1lq79E3F9mBYp1wpxY4XzIYXfg5E/qBKx+hZs0nSu/a5SExhtlRr?=
- =?us-ascii?Q?S47c6QmXgE9Bxmw4i/7HlI0mdz2JaacQt1V267hUxg7p6Cyzu985yp+ezfoK?=
- =?us-ascii?Q?uJ5DOVc7NHL4t1O2xViTlbs4nWxEEzqwP9uIwQUo7cSQGOEMLU7gPH+Ei76E?=
- =?us-ascii?Q?N/IfRO1FwFw80VLQj9KqqXqPxzFzbTpPxoHoNkymhMQiJEyTHhCB4zhjXl76?=
- =?us-ascii?Q?aOEkUQeqLALVSc7y5zP8uvY8N1zSKDflKKPOeGrQBqeFxdPFcvnTDUNJiNC2?=
- =?us-ascii?Q?iEABX+UEGiIlXt63H761GnzoyD9Z19eE5eGlqUu+OSeNtUa2lWxWGkYp/BJ9?=
- =?us-ascii?Q?lYXUJfLpXcn2Bg3StrMx+FN132pEhDk4LHinEm8gOkuVk4OYyl2g/ejLRCfo?=
- =?us-ascii?Q?JBsSHV9BhJUL76q/faaZWAH+fnAgmc3Ez3o25GBbT9vdHa1RwKO8ZXb5PFne?=
- =?us-ascii?Q?DqLyRHnSqdjszSy3YSrlI0/gWphRisW50REvFKxpX6aZcwaqv3dQNzDfRHGv?=
- =?us-ascii?Q?06HQLGcFZCUvXJshpd9H0NRaLMPwy+iCO8ga22jw99rj3rTSNQYg/HUh/5Zr?=
- =?us-ascii?Q?PmgHhMT+AjXISkWjByVWcQar0JQvHfkOoegER6Wval9gDdBf4yvf97Bx5bRc?=
- =?us-ascii?Q?YeRBTPpv3Q4xb2jFRiG14gvll3C5jHHakGYA9w8PnWjWXxuXdg4ITs5re9EO?=
- =?us-ascii?Q?c/Tzh0UuV/nFGBibA7JfCyhzkPSpAFmEtrHpzpV5vA9H/Cgi1JaimF90pP/O?=
- =?us-ascii?Q?+NPKvHVfpqTrSsOM25jxsKd1A3kGq4HJu7ed3ZpBgf5boIcR3IdCbYht+ZWV?=
- =?us-ascii?Q?o7xNXfbqYlq09q7Q+zKefCb0WXoUkxengHdLcqID7ENWwPrCZh2ZEhgnG3Ty?=
- =?us-ascii?Q?dBA6QOXBNxUGhpn5xuY7gjw6NC1cvna3QY3riGGbdVRracvnrpX49a+yw41U?=
- =?us-ascii?Q?ydJiEiVoVD7eXenDkWcBe2NOFKWDHW28S45Ysqplu8rIgmbdxGMFxxnzMsyM?=
- =?us-ascii?Q?Xgw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(366007)(376005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?/th4eRpPSNo4dr8WjzLm0/yrpAXPyxgoRCCmaiJjS79KjB4zIdHBLu966KY1?=
- =?us-ascii?Q?lFayBzk4x2Oq8XsWCYGoPgoGHNR1Y99fG3LTXWFrIN2i4YQIou4y8suQZ2ih?=
- =?us-ascii?Q?mMUd5UgVFrYu45lZkPClRf3+pr+AbcPsaGY9IcqO84RZnNgQVBZargswZRfm?=
- =?us-ascii?Q?2kY2eFVfdxfDhoHrDgBQYQwpP4hZ8ih+kap9HDyFgp6svF0PcGr4n8ap4Kpq?=
- =?us-ascii?Q?2VWaS0rCre02ykkO+1ZNZYAnJRv5hj06w1b3nzg0H+p9uMwKHxkchNerisUF?=
- =?us-ascii?Q?3fN66Kup6oP3GXcMXxUBdrY0ikaZSBAsARcoFap5+8qA1QGd//4C4cW+6SCA?=
- =?us-ascii?Q?wdl4gKnXJi2k7FmzbkTsTPNmT7/dgkCvBD+nl9Ihk94RmWE0vpcrw4PNQYYS?=
- =?us-ascii?Q?Ay5E7sG8GrDvwdYSLBBBHTaQZBUgW542+X1bW3IOvOlK3/79czEzaYO8pJ8P?=
- =?us-ascii?Q?wHPN9kcL/zSScuGKaD1exgtPDJ0h54uYDyBR8FsOsyjpJWSHkvhFOlW0fIp+?=
- =?us-ascii?Q?OyzIRlnr/5ZZD1xzW4walV0ip0mCCLyK2e1Njothhs/F2J04CBRqCcUxy0rS?=
- =?us-ascii?Q?3g7YY7NKHjxUxKn3CrG9SAvBsSkvgHVQT3J5Q9Mm56W71aHht6mfGeENbYJa?=
- =?us-ascii?Q?kC7qEqBjl6xphp2ApIhgoADYVhHNnp0PuMQydVQtJc+LWlJ7I5xyzY0Am88j?=
- =?us-ascii?Q?+Z8zvKQhL359JlZ+9lr65mO9K1qfaSnCxrjEUW4EBO3ZoMrmW9+QtzUULvKl?=
- =?us-ascii?Q?If88Cu8DVUm7ojKr0lgYt5qepvqIpovuo3kqKweBFChOfJmwzcl4oD15fTG0?=
- =?us-ascii?Q?RSVZ2qEipdixSWq/CthmE/yTXzuyRVFRTQdlm0HTIWEXlyg1ly+L1stbTTTo?=
- =?us-ascii?Q?QzNxrsYXoM49tnHRQ1wyiJ0/LqaDGsgpsewofId3RaYIpiM6K4qrGEqBoDgi?=
- =?us-ascii?Q?76geLZ1+SwFl43qqUbxGFiBETHdn/T/7e3ij/4yUuBV+MGmNBd75f2VITIZU?=
- =?us-ascii?Q?N7KNMxEuiskBblLGlK8zzwoVPmfddE6iHZj7aaQBVHexN+J18MW4r2CQv+eZ?=
- =?us-ascii?Q?afqZOjbhgdqz/ONicZgzdhZRMdHDzMKhmNz8rY2v9p/Ku+3YchVQYq5UClKJ?=
- =?us-ascii?Q?gz018VlBQWsKok7r0IbNnJtKah0sF3LMKyg+si1VenTi+nT2q7ztBQyOR0Y8?=
- =?us-ascii?Q?Ni8PJGbDUpV++VZSHEyw9ZCE/EIviFoy3VKUz28AI1VPsvIYNchBNXwEVL9s?=
- =?us-ascii?Q?vqIxudLQOGC+J9OYSo5BL+ELiwA6RSd1ZprkAfH28VLGYT4aaYggIeMUSXGq?=
- =?us-ascii?Q?59ZV/Eco+Qvlwne5QSQtvG1By0IcNlhLvSPruXbL/r35dzG22AR3nfLEVRHs?=
- =?us-ascii?Q?yKnLoyqunRB4Hfo98CRmhVKVcXTc/rQbUhHPJW7R+Jm8CWoRYc8mLfcx4/FV?=
- =?us-ascii?Q?ap3gp4CCOQbs3tpYh0uDNyvgotU/4WgxFrJg4ytVG/CNZaeLnwj7EIyoLJ5w?=
- =?us-ascii?Q?1YJiBGhBLXpUmfbIBbQY1rJ2z4UAfOOiYzuCumklhzekpvHLhx73LcYVq+do?=
- =?us-ascii?Q?t8NmT65tf4BUD1tYVB8xfI/sH8s6PUo+Ko0bNxKU?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dde4e5c-9d54-4811-b114-08dc7f2f777e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 16:01:42.8037
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9Ww68Evmz4TZFWPxfMKZ4M1a/RsyxIrPHT2TrgjgFeryELS4RCOGbQVKrj2Bdq8EWqITkhmf4dnNqj5lArjjBg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9255
+References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <5122636.irdbgypaU6@phil> <8727e1c29bd6f562a7fc3de0ddac62cf@manjaro.org> <6230150.aeNJFYEL58@phil>
+In-Reply-To: <6230150.aeNJFYEL58@phil>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 28 May 2024 20:01:39 +0400
+Message-ID: <CABjd4YysYZ5o17-nhRjyKqAw2sWi=GR1Q_OSHzAFOHLF5vh9GQ@mail.gmail.com>
+Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal, OPP and fan
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Dragan Simic <dsimic@manjaro.org>, Quentin Schulz <quentin.schulz@cherry.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Chen-Yu Tsai <wens@kernel.org>, Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 21, 2024 at 09:59:00AM +0200, Krzysztof Kozlowski wrote:
-> On 20/05/2024 23:46, Frank Li wrote:
-> > Convert dt-binding doc "rtc-fsl-ftm-alarm.txt" to yaml format.
-> > 
-> > Change example's reg to 32bit address and length.
-> > Remove unrelated rcpm@1e34040 in example.
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > 
-> > Notes:
-> >     make dt_binding_check DT_SCHEMA_FILES=rtc-fsl-ftm-alarm.yaml
-> >       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> >       CHKDT   Documentation/devicetree/bindings
-> >       LINT    Documentation/devicetree/bindings
-> >       DTEX    Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.example.dts
-> >       DTC_CHK Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.example.dtb
-> > 
-> >  .../bindings/rtc/rtc-fsl-ftm-alarm.txt        | 36 -----------
-> >  .../bindings/rtc/rtc-fsl-ftm-alarm.yaml       | 61 +++++++++++++++++++
-> >  2 files changed, 61 insertions(+), 36 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt b/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
-> > deleted file mode 100644
-> > index fffac74999da6..0000000000000
-> > --- a/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
-> > +++ /dev/null
-> > @@ -1,36 +0,0 @@
-> > -Freescale FlexTimer Module (FTM) Alarm
-> > -
-> > -Required properties:
-> > -- compatible : Should be "fsl,<chip>-ftm-alarm", the
-> > -	       supported chips include
-> > -	       "fsl,ls1012a-ftm-alarm"
-> > -	       "fsl,ls1021a-ftm-alarm"
-> > -	       "fsl,ls1028a-ftm-alarm"
-> > -	       "fsl,ls1043a-ftm-alarm"
-> > -	       "fsl,ls1046a-ftm-alarm"
-> > -	       "fsl,ls1088a-ftm-alarm"
-> > -	       "fsl,ls208xa-ftm-alarm"
-> > -	       "fsl,lx2160a-ftm-alarm"
-> > -- reg : Specifies base physical address and size of the register sets for the
-> > -  FlexTimer Module.
-> > -- interrupts : Should be the FlexTimer Module interrupt.
-> > -- fsl,rcpm-wakeup property and rcpm node : Please refer
-> > -	Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > -
-> > -Optional properties:
-> > -- big-endian: If the host controller is big-endian mode, specify this property.
-> > -  The default endian mode is little-endian.
-> > -
-> > -Example:
-> > -rcpm: rcpm@1e34040 {
-> > -	compatible = "fsl,ls1088a-rcpm", "fsl,qoriq-rcpm-2.1+";
-> > -	reg = <0x0 0x1e34040 0x0 0x18>;
-> > -	#fsl,rcpm-wakeup-cells = <6>;
-> > -};
-> > -
-> > -ftm_alarm0: timer@2800000 {
-> > -	compatible = "fsl,ls1088a-ftm-alarm";
-> > -	reg = <0x0 0x2800000 0x0 0x10000>;
-> > -	fsl,rcpm-wakeup = <&rcpm 0x0 0x0 0x0 0x0 0x4000 0x0>;
-> > -	interrupts = <0 44 4>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.yaml b/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.yaml
-> > new file mode 100644
-> > index 0000000000000..69b44e9920033
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.yaml
-> 
-> fsl,ls-ftm-alarm.yaml
-> 
-> or
-> 
-> fsl,ls1012a-ftm-alarm.yaml
-> 
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/rtc-fsl-ftm-alarm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Freescale FlexTimer Module (FTM) Alarm
-> > +
-> > +maintainers:
-> > +  - Frank Li <Frank.Li@nxp.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,ls1012a-ftm-alarm
-> > +      - fsl,ls1021a-ftm-alarm
-> > +      - fsl,ls1028a-ftm-alarm
-> > +      - fsl,ls1043a-ftm-alarm
-> > +      - fsl,ls1046a-ftm-alarm
-> > +      - fsl,ls1088a-ftm-alarm
-> > +      - fsl,ls208xa-ftm-alarm
-> > +      - fsl,lx2160a-ftm-alarm
-> > +
-> > +  reg:
-> > +    description:
-> > +      Specifies base physical address and size of the register sets for the
-> > +      FlexTimer Module.
-> 
-> Drop description, redundant.
-> 
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    description: Should be the FlexTimer Module interrupt.
-> 
-> Drop description, redundant.
-> 
-> 
-> > +    maxItems: 1
-> > +
-> > +  fsl,rcpm-wakeup:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> 
-> Please describe the items (see syscon-like phandles).
-> 
-> > +    description:
-> > +      phandle to rcpm node, Please refer
-> > +      documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > +
-> > +  big-endian:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      If the host controller is big-endian mode, specify this property.
-> > +      The default endian mode is little-endian.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - fsl,rcpm-wakeup
-> > +
-> 
-> Missing allOf with ref to rtc.yaml.
-> 
-> > +unevaluatedProperties: false
-> 
-> becauase otherwise above does not make much sense... unless this is not
-> a RTC?
+[sorry if you get this twice: I messed up and sent the previous one in
+HTML instead of plain text - resending now]
 
-Sorry! which one doesn't make sense? I suppose not "unevaluatedProperties".
+On Tue, May 28, 2024 at 7:16=E2=80=AFPM Heiko Stuebner <heiko@sntech.de> wr=
+ote:
+>
+> Am Dienstag, 28. Mai 2024, 17:01:48 CEST schrieb Dragan Simic:
+> > On 2024-05-28 16:34, Heiko Stuebner wrote:
+> > > Am Dienstag, 28. Mai 2024, 16:05:04 CEST schrieb Dragan Simic:
+> > >> On 2024-05-28 11:49, Alexey Charkov wrote:
+> > >> > On Mon, May 6, 2024 at 1:37=E2=80=AFPM Alexey Charkov <alchark@gma=
+il.com>
+> > >> > wrote:
+> > >> >>
+> > >> >> This enables thermal monitoring and CPU DVFS on RK3588(s), as wel=
+l as
+> > >> >> active cooling on Radxa Rock 5B via the provided PWM fan.
+> > >> >>
+> > >> >> Some RK3588 boards use separate regulators to supply CPUs and the=
+ir
+> > >> >> respective memory interfaces, so this is handled by coupling thos=
+e
+> > >> >> regulators in affected boards' device trees to ensure that their
+> > >> >> voltage is adjusted in step.
+> > >> >>
+> > >> >> This also enables the built-in thermal sensor (TSADC) for all boa=
+rds
+> > >> >> that don't currently have it enabled, using the default CRU based
+> > >> >> emergency thermal reset. This default configuration only uses on-=
+SoC
+> > >> >> devices and doesn't rely on any external wiring, thus it should w=
+ork
+> > >> >> for all devices (tested only on Rock 5B though).
+> > >> >>
+> > >> >> The boards that have TSADC_SHUT signal wired to the PMIC reset li=
+ne
+> > >> >> can choose to override the default reset logic in favour of GPIO
+> > >> >> driven (PMIC assisted) reset, but in my testing it didn't work on
+> > >> >> Radxa Rock 5B - maybe I'm reading the schematic wrong and it does=
+n't
+> > >> >> support PMIC assisted reset after all.
+> > >> >>
+> > >> >> Fan control on Rock 5B has been split into two intervals: let it =
+spin
+> > >> >> at the minimum cooling state between 55C and 65C, and then accele=
+rate
+> > >> >> if the system crosses the 65C mark - thanks to Dragan for suggest=
+ing.
+> > >> >> This lets some cooling setups with beefier heatsinks and/or large=
+r
+> > >> >> fan fins to stay in the quietest non-zero fan state while still
+> > >> >> gaining potential benefits from the airflow it generates, and
+> > >> >> possibly avoiding noisy speeds altogether for some workloads.
+> > >> >>
+> > >> >> OPPs help actually scale CPU frequencies up and down for both coo=
+ling
+> > >> >> and performance - tested on Rock 5B under varied loads. I've drop=
+ped
+> > >> >> those OPPs that cause frequency reductions without accompanying
+> > >> >> decrease
+> > >> >> in CPU voltage, as they don't seem to be adding much benefit in d=
+ay to
+> > >> >> day use, while the kernel log gets a number of "OPP is inefficien=
+t"
+> > >> >> lines.
+> > >> >>
+> > >> >> Note that this submission doesn't touch the SRAM read margin upda=
+tes
+> > >> >> or
+> > >> >> the OPP calibration based on silicon quality which the downstream
+> > >> >> driver
+> > >> >> does and which were mentioned in [1]. It works as it is (also
+> > >> >> confirmed by
+> > >> >> Sebastian in his follow-up message [2]), and it is stable in my
+> > >> >> testing on
+> > >> >> Rock 5B, so it sounds better to merge a simple version first and =
+then
+> > >> >> extend when/if required.
+> > >> >>
+> > >> >> [1]
+> > >> >> https://lore.kernel.org/linux-rockchip/CABjd4YzTL=3D5S7cS8ACNAYVa=
+730WA3iGd5L_wP1Vn9=3Df83RCORA@mail.gmail.com/
+> > >> >> [2]
+> > >> >> https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqp=
+md2kwkbguiolmozntjuiajrb@gvq4nupzna4o/
+> > >> >>
+> > >> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > >> >> ---
+> > >> >
+> > >> > Hi Heiko,
+> > >> >
+> > >> > Do you think this can be merged for 6.11? Looks like there hasn't =
+been
+> > >> > any new feedback in a while, and it would be good to have frequenc=
+y
+> > >> > scaling in place for RK3588.
+> > >> >
+> > >> > Please let me know if you have any reservations or if we need any
+> > >> > broader discussion.
+> > >
+> > > not really reservations, more like there was still discussion going o=
+n
+> > > around the OPPs. Meanwhile we had more discussions regarding the whol=
+e
+> > > speed binning Rockchip seems to do for rk3588 variants.
+> > >
+> > > And waiting for the testing Dragan wanted to do ;-) .
+> >
+> > I'm sorry for the delays.
+>
+> Was definitly _not_ meant as blame ;-) .
+>
+> The series has just too many discussions threads to unravel on half
+> an afternoon.
 
-Frank
+FWIW, I think the latest exchange we had with Quentin regarding the
+OPPs concluded in =E2=80=9Cfalse alarm=E2=80=9D, given that this version of=
+ the series
+only introduces a subset of them which should apply to all RK3588(s)
 
-> 
-> > +
-> > +examples:
-> > +  - |
-> > +    timer@2800000 {
-> 
-> timer or rtc?
-> 
-> > +        compatible = "fsl,ls1088a-ftm-alarm";
-> > +        reg = <0x2800000 0x10000>;
-> > +        fsl,rcpm-wakeup = <&rcpm 0x0 0x0 0x0 0x0 0x4000 0x0>;
-> > +        interrupts = <0 44 4>;
-> 
-> Include proper header and use defines for GIC and flags.
-> 
-> > +    };
-> 
-> Best regards,
-> Krzysztof
-> 
+Performance binning here is more geared towards how low the voltages
+can go for a given frequency, and right now we=E2=80=99re only introducing =
+the
+highest-voltage setting for each OPP. Thus the binning and/or
+intermediate frequencies should be possible to introduce at a later
+stage in a backwards compatible way (if deemed relevant).
+
+> > > So this should definitly make it into 6.11 though, as there is still
+> > > a lot of time.
+> > >
+> > >> As I promised earlier, I was going to test this patch series in
+> > >> detail.
+> > >> Alas, I haven't managed to do that yet, :/ due to many reasons, but
+> > >> I still remain firmly committed to doing that.
+> > >>
+> > >> Is -rc4 the cutoff for 6.11?  If so, there's still time and I'll do =
+my
+> > >> best to test and review these patches as soon as possible.
+> > >
+> > > As early as possible, the hard cutoff would be -rc6 though.
+> > > I guess I'll just start picking the easy patches from the series.
+> >
+> > I'll do my best to have the patches tested and reviewed in detail ASAP.
+> > As a suggestion, perhaps it would be better to take the series as a
+> > whole,
+> > so we don't bring partial merging into the mix.
+>
+> Patches need to work individually anyway (in correct order of course),
+> so like starting at the top with the general thermal stuff should not
+> create issues ;-)
+
+Indeed, those are self-contained and can be merged independently of
+the OPPs. Having OPPs without thermal is more risky though, but that
+doesn=E2=80=99t sound like what we=E2=80=99re after here :)
+
+Best regards,
+Alexey
 
