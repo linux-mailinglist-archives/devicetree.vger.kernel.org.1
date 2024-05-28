@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-69727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1CF38D14AC
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:49:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0F88D14C4
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:56:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48474B20DA4
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 06:49:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 194EA1F22683
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 06:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3603C6A33B;
-	Tue, 28 May 2024 06:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BD66EB7D;
+	Tue, 28 May 2024 06:56:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C78uI30S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IGaxTv8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E6B26AE7;
-	Tue, 28 May 2024 06:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9F21BDD3
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 06:56:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716878939; cv=none; b=BSlxmifbn029J/vT0gapzsGauI6CeVOpYXx2UnC72WT+k69mvizDqLCSh1nHF7EWGRzF4I7XyMKze5PeGe/SCXzxbt+/GVfEgQ3eRgdqn1rb7gMtk52X9ifXsUMDahL/H3D9JhPUnQqVeqrVoItMDeIYzq2vBH+QHfyNK/aA7ao=
+	t=1716879393; cv=none; b=aMK8pgnmXpkH7zYnJSGhNoePPMxeq3J+3x50B7Xi+uhUQoOisDEwLPPyhV9aYaYIwpkK8hLpovDJOkL3L+A0mS8jA3etCk3Lk/RXmrPo4fNf4akqZlhXa2KJf5JZskoUzi5iKYAR4RFZ/y9VMsU153E+GDRHBSyhH9QpjC68CLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716878939; c=relaxed/simple;
-	bh=QsQKMm4TlwU0Ot7v0Y8XQ40OXSoJkpMP9PMv6AxXKVI=;
+	s=arc-20240116; t=1716879393; c=relaxed/simple;
+	bh=xy04Y7Cl2ggATvVxFEFaLmatY5KPNXhFK1jAeCXe4uA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pSVWfP31zRORH9S/8v43SWZ7rs45AJo8au0nKycrcLLLLPD62pPnG0kn0x9ZlhTZThrvktbK7cbYuc1J2vxaD3E5owe8/iE2Z7Km/25WV4wMP+cJX6q8iqJYAaTioKuKMAiOWCp01jhXjjSsdBTKStzqGGVWpXES5Aze+C8Gb2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C78uI30S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 310F1C3277B;
-	Tue, 28 May 2024 06:48:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716878938;
-	bh=QsQKMm4TlwU0Ot7v0Y8XQ40OXSoJkpMP9PMv6AxXKVI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C78uI30SiySCJ0NRqzf5DRlhWtFV7wmKAZ2uzz6iOkLWpN3Wh2/xExytXu7Awc0G3
-	 hB80ZRqnOlhVnn8nn0ge9FJiFopn8uRy3bh/galRa+bJvPgvUKmjP6NErvUDUTaP1d
-	 8q8UxB8HL3Nqx+k9DsUgnQn/k2umB34w5VWDdpSCY4WTMoACznZwPc2iTHv/YqlgfP
-	 oBrtHK2jmCI54cR0P6AfKc9JtISPQu5YSq9E2l6sBnwhOZ5Sfet0HvqAFYk8QJzfUY
-	 oA1SfwVNScJK1LPvAAdFLVP1fVHIv1qeqqpY7ZPKwnfnOunR8nbe//qgwIqTEuCcG5
-	 Sx1tiKOCQhMHA==
-Message-ID: <819d7180-db8c-438c-afed-463fe495bfc5@kernel.org>
-Date: Tue, 28 May 2024 08:48:51 +0200
+	 In-Reply-To:Content-Type; b=IYh1o5gYcHyg1qcs848Q0uqlGgybLFl6aX3phk9OtNjl8fGYtLq5Dxwgeo9sEjW32/sZjlY+b+RW3MzCl2jcbA0sccqQ+CTKcZ+6YDH/yxd2BNgraVICEzramoq03MrXy0CMs6c0h1yIWYGPvAeC+d4dDKknA58jFBY6ukfdonU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IGaxTv8G; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a59cc765c29so52857666b.3
+        for <devicetree@vger.kernel.org>; Mon, 27 May 2024 23:56:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716879390; x=1717484190; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Rb4BnC8a2t0b1yzK8hj7Hksoqy02E3Bi5yA3QhBbns=;
+        b=IGaxTv8Gnn/jAe+eI5h3bTY0nUJ+hAPurnfFS3BpJx5iKOqS1zTz6aGV3ZA+v8Wgd1
+         HX9cijcPpB5W8XOEA5FBwRvD5LDnTI0TYeOfhWu1jbdwBYxrbgI61/oVmrB6P5dWhoj9
+         Jn6VaDujmEye0czfDyYoJtiydcwvbgbqGkG/NLnEmDcrtWV7fHYveEYwL6WA0LKKV8Kj
+         s1BRweOOug3SeNhchk004DFcqC+OlYIxTbtsX6BJahKTzoLvI4aLg8cT7N1on/OGaQdc
+         OFWSXAx2m5Ke1NynIlpd8d61kFKo0ZZDlTwZkRy167uBNSIjxSpzjUWkFONYrcvAuHQc
+         2EyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716879390; x=1717484190;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3Rb4BnC8a2t0b1yzK8hj7Hksoqy02E3Bi5yA3QhBbns=;
+        b=kF0gSI6YsrUDtFxchFVg6VEpnu9raAHGQJjO0OdlwkgnBqh+6XbVCM0bnL9xl1iYUf
+         i0E95rBc5JBxGLtOE2OWBu7kOol/o/Qq7hEHl66BfFk5k5Zp82rUwq/E+I54k8Tl3Y+P
+         QFQO09+gZjpOW5qoq0182KKc3SDXeO20ejPak/2FtHh6zMhEpg+JDGsFy7ZF0oC4IWNB
+         BMllAYm09TyX4Sb2xcNG9w4qUTLyJwoTEkTpNO2TLwIa6IQ6Fb6o68NtPTMf8oEziKs8
+         Rvulc8vbww35BBWaHLMY/q6qNRxk2lhi/WZlmQrZ3LXVixn8a4eCQ03db0KPqFuKGARE
+         0Qaw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWp0p1j84JPhWaMo2CgTSgBSaVrLM4IiFiJyxEfR7s4t1jrTh3YJ+YppZRganIUpl9ZeNoFmtpA9o0skz/uudDmWygdmSik4bvfQ==
+X-Gm-Message-State: AOJu0Yym1syS042jEPy8Z6hpUqn21bJLsSwfrX5OHhJhkdawCxThx/K4
+	sbq/UA6MBP0a2ijYbAaK6J9G0N1H8ZvPbuoxRW5VCiL9BKZb9nhrvFQ5q1LFqIY=
+X-Google-Smtp-Source: AGHT+IFTXIMK3MGqjw5JBxjVm/t5m+pO925hK73Q5dswKeLkmGeXWf8u2S5zEl60ithy+Er0aizdjg==
+X-Received: by 2002:a17:906:314e:b0:a59:c319:f1dc with SMTP id a640c23a62f3a-a62642daa92mr764191366b.4.1716879390492;
+        Mon, 27 May 2024 23:56:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.206.169])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cda48e6sm573976666b.203.2024.05.27.23.56.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 May 2024 23:56:29 -0700 (PDT)
+Message-ID: <a9902865-afcb-4d58-934d-05d62a9e995d@linaro.org>
+Date: Tue, 28 May 2024 08:56:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +77,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: dma: Add reg-names to
- nvidia,tegra210-adma
-To: Thierry Reding <thierry.reding@gmail.com>,
- Sameer Pujar <spujar@nvidia.com>, vkoul@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, jonathanh@nvidia.com,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-Cc: linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- ldewangan@nvidia.com, mkumard@nvidia.com
-References: <20240521110801.1692582-1-spujar@nvidia.com>
- <20240521110801.1692582-2-spujar@nvidia.com>
- <80b6e6e6-9805-4a85-97d5-38e1b2bf2dd0@kernel.org>
- <e6fab314-8d1e-4ed7-bb5a-025fd65e1494@nvidia.com>
- <56bf93ac-6c1e-48aa-89d0-7542ea707848@kernel.org>
- <f785f699-be50-4547-9411-d41a4e66a225@nvidia.com>
- <774df64c-56a1-461a-82fa-a0340732b779@kernel.org>
- <D1HPADDIQNIK.2F4AL70NLHQCY@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 2/5] spi: dt-bindings: cadence: Add Marvell overlay
+ bindings documentation for Cadence XSPI
+To: Witold Sadowski <wsadowski@marvell.com>, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+Cc: broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, pthombar@cadence.com
+References: <20240527084216.667380-1-wsadowski@marvell.com>
+ <20240527084216.667380-4-wsadowski@marvell.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -78,211 +97,102 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
  vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
  Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- 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 fv0=
-In-Reply-To: <D1HPADDIQNIK.2F4AL70NLHQCY@gmail.com>
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240527084216.667380-4-wsadowski@marvell.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/05/2024 09:36, Thierry Reding wrote:
-> On Wed May 22, 2024 at 1:29 PM CEST, Krzysztof Kozlowski wrote:
->> On 22/05/2024 09:43, Sameer Pujar wrote:
->>>
->>>
->>> On 22-05-2024 12:17, Krzysztof Kozlowski wrote:
->>>> On 22/05/2024 07:35, Sameer Pujar wrote:
->>>>> On 21-05-2024 17:23, Krzysztof Kozlowski wrote:
->>>>>> On 21/05/2024 13:08, Sameer Pujar wrote:
->>>>>>> From: Mohan Kumar <mkumard@nvidia.com>
->>>>>>>
->>>>>>> For Non-Hypervisor mode, Tegra ADMA driver requires the register
->>>>>>> resource range to include both global and channel page in the reg
->>>>>>> entry. For Hypervisor more, Tegra ADMA driver requires only the
->>>>>>> channel page and global page range is not allowed for access.
->>>>>>>
->>>>>>> Add reg-names DT binding for Hypervisor mode to help driver to
->>>>>>> differentiate the config between Hypervisor and Non-Hypervisor
->>>>>>> mode of execution.
->>>>>>>
->>>>>>> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
->>>>>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
->>>>>>> ---
->>>>>>>    .../devicetree/bindings/dma/nvidia,tegra210-adma.yaml  | 10 ++++++++++
->>>>>>>    1 file changed, 10 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
->>>>>>> index 877147e95ecc..ede47f4a3eec 100644
->>>>>>> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
->>>>>>> @@ -29,8 +29,18 @@ properties:
->>>>>>>              - const: nvidia,tegra186-adma
->>>>>>>
->>>>>>>      reg:
->>>>>>> +    description: |
->>>>>>> +      For hypervisor mode, the address range should include a
->>>>>>> +      ADMA channel page address range, for non-hypervisor mode
->>>>>>> +      it starts with ADMA base address covering Global and Channel
->>>>>>> +      page address range.
->>>>>>>        maxItems: 1
->>>>>>>
->>>>>>> +  reg-names:
->>>>>>> +    description: only required for Hypervisor mode.
->>>>>> This does not work like that. I provide vm entry for non-hypervisor mode
->>>>>> and what? You claim it is virtualized?
->>>>>>
->>>>>> Drop property.
->>>>> With 'vm' entry added for hypervisor mode, the 'reg' address range needs
->>>>> to be updated to use channel specific region only. This is used to
->>>>> inform driver to skip global regions which is taken care by hypervisor.
->>>>> This is expected to be used in the scenario where Linux acts as a
->>>>> virtual machine (VM). May be the hypervisor mode gives a different
->>>>> impression here? Sorry, I did not understand what dropping the property
->>>>> exactly means here.
->>>> It was imperative. Drop it. Remove it. I provided explanation why.
->>>
->>> The driver doesn't know if it is operated in a native config or in the 
->>> hypervisor config based on the 'reg' address range alone. So 'vm' entry 
->>> with restricted 'reg' range is used to differentiate here for the 
->>> hypervisor config. Just adding 'vm' entry won't be enough, the 'reg' 
->>> region must be updated as well to have expected behavior. Not sure how 
->>> this dependency can be enforced in the schema.
->>
->> That's not a unusual problem, so please come with a solution for your
->> entire subarch. We've been discussing similar topic in terms of SCMI
->> controlled resources (see talk on Linaro Connect a week ago:
->> https://www.kitefor.events/events/linaro-connect-24/submissions/161 I
->> don't know where is recording or slides, see also discussions on mailing
->> lists about it), which is not that far away from the problem here. Other
->> platforms and maybe nvidia had as well changes in IO space for
->> virtualized configuration.
->>
->> Come with unified approach FOR ALL your devices, not only this one
->> (that's kind of basic thing we keep repeating... don't solve only one
->> your problem), do not abuse the regular property, because as I said:
->> reg-names will be provided as well in non-vm case and then your entire
->> logic is wrong. The purpose of reg-names is not to tell whether you have
->> or have not virtualized environment.
+On 27/05/2024 10:42, Witold Sadowski wrote:
+> Add new bindings for the v2 Marvell xSPI overlay: marvell,cn10-xspi-nor
+> compatible string. This new compatible string distinguishes between the
+> original and modified xSPI block.
 > 
-> This isn't strictly about telling whether this is a virtualized
-> environment or not. Unfortunately the bindings don't make that very
-> clear, so let me try to give a bit more background.
+> Also add an optional base for the xfer register set with an additional
+> reg field to allocate the xSPI Marvell overlay XFER block.
 > 
-> On Tegra devices the register regions associated with a device are
-> usually split up into 64 KiB chunks.
+> Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
+> ---
+>  .../devicetree/bindings/spi/cdns,xspi.yaml    | 38 +++++++++++++++----
+>  1 file changed, 31 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
+> index eb0f92468185..d6b8b2a2ecf5 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,xspi.yaml
+> @@ -15,33 +15,57 @@ description: |
+>    single, dual, quad or octal wire transmission modes for
+>    read/write access to slaves such as SPI-NOR flash.
+>  
+> -allOf:
+> -  - $ref: spi-controller.yaml#
+> -
+>  properties:
+>    compatible:
+> -    const: cdns,xspi-nor
+> +    enum:
+> +      - cdns,xspi-nor
+> +      - marvell,cn10-xspi-nor
+> +
+> +  interrupts:
+> +    maxItems: 1
 
-So describing it as one IO region was incorrect from the start and you
-want to fix it by adding one more incorrect description: making first
-item meaning two different things. Sorry, that's not a correct way to
-fix things.
+Items got re-ordered. Keep previous order which matches expected style
+(see also DTS coding style).
 
-Items are defined, thus first item is always expected to be what the
-binding already said. Adding reg-names changes nothing, because (as
-repeated many times) xxx-names is just a helper. Items are already defined.
+>  
+>    reg:
+>      items:
+>        - description: address and length of the controller register set
+>        - description: address and length of the Slave DMA data port
+>        - description: address and length of the auxiliary registers
+> +      - description: address and length of the xfer registers
+> +    minItems: 3
+>  
+>    reg-names:
+>      items:
+>        - const: io
+>        - const: sdma
+>        - const: aux
+> -
+> -  interrupts:
+> -    maxItems: 1
+> +      - const: xferbase
+> +    minItems: 3
+>  
 
-> 
-> One of these chunks, usually the first one, is a global region that
-> contains registers that configure the device as a whole. This is usually
-> privileged and accessible only to the hypervisor.
-> 
-> Subsequent regions are meant to be assigned to individual VMs. Often the
-> regions take the form of "channels", so they are instances of the same
-> register block and control that separate slice of the hardware.
-> 
-> What makes this a bit confusing is that for the sake of simplicity (and,
-> I guess, lack of foresight) the original bindings were written in a way
-> to encompass all registers without making that distinction. This worked
-> fine because we've only ever run Linux as host OS where it has access to
-> all those registers.
-> 
-> However, when we move to virtualized environments that no longer works.
-> 
-> Given the above, we can't read any registers in order to probe whether
-> we run as a guest or not. Trying to access any of the global registers
-> from a VM simply won't work and may crash the system. None of the
-> "channel" registers contain information indicating host vs. guest
-> either.
-
-I don't understand how it differs from what I said - you want to
-indicate that you run in virtualized environment and not all resources
-are accessible.
-
-The device still has the first (global) address, just it is not
-available due to hypervisor.
-
-> 
-> In order to make this work we need to more fine-grainedly specify the
-> register layout. I think the binding changes here aren't sufficient to
-> do that, though.
-> 
-> Currently we have this for the ADMA controller:
-> 
-> 	dma-controller@2930000 {
-> 		reg = <0x0 0x02930000 0x0 0x20000>;
-> 	};
-> 
-> This contains the global registers (0x2930000-0x293ffff) and the first
-> page/channel registers (0x2940000-0x294ffff) in one "reg" entry. Instead
-> I think what we need is this:
-> 
-> 	dma-controller@2930000 {
-> 		reg = <0x0 0x02930000 0x0 0x10000>,
-> 		      <0x0 0x02940000 0x0 0x10000>,
-> 		      <0x0 0x02950000 0x0 0x10000>,
-> 		      <0x0 0x02960000 0x0 0x10000>,
-> 		      <0x0 0x02970000 0x0 0x10000>;
-> 		reg-names = "global", "page0", "page1", "page2",
-> 		            "page3";
-> 	};
-> 
-> That describes the device fully, but each of these entries is optional.
-> If "global" is present it means we are a hypervisor (or host OS). If an
-> additional "page" entry is present, we can also use those resources to
-> stream audio data.
-> 
-> If "global" is not present, we know we are not a hypervisor and those
-> registers cannot be accessed. This would be the typical case for a guest
-> OS which has access only to the listed "page" entries.
-> 
-> For backwards-compatibility with the existing bindings we should be able
-> to fallback to the singular register region and partition it up in the
-> driver as necessary.
-> 
-> This is an approach that we've already implemented for certain devices
-> such as host1x and Ethernet where a similar split exists. I suspect that
-> we'll need to do this kind of split in a number of other bindings as
-> well.
-> 
 
 Best regards,
 Krzysztof
