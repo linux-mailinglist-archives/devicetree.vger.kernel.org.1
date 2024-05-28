@@ -1,272 +1,263 @@
-Return-Path: <devicetree+bounces-69999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC6C98D21AD
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 18:33:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB9C8D21B5
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 18:36:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 405631F2479E
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:33:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 055CB285078
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B167172BC6;
-	Tue, 28 May 2024 16:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EA916F0E0;
+	Tue, 28 May 2024 16:36:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RYQ9aFg/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="to9eUQna"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8E916C86F
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 16:33:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49E3F9D6;
+	Tue, 28 May 2024 16:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716914021; cv=none; b=AiET/D6Nm3gBlGKj9Lhsn0UXBcGtB9fEj9TTp0HdaslKxv2tNB6jS81vM2fRrwMD4T/K9pPUvPNMRYJh2ff6uGHunnFAW30PEU+mZ0tbp07LuLhmCTF6MZxkjl6GgtlE6zgMLK6h45yeyvclEUsN0+H/rX9OO3G5Y6iBE67X2mM=
+	t=1716914177; cv=none; b=llyLSHZF3zG/lcmEOgrbf6HywGnJGrlCPyHS5+gOUdvA7t3HTsFcgxY79WEH4I9JXN60Uwn1MPQ7K768bDPp/883GUYA8kUknlLAFJUz4pSezdvHGV6LwWzqRSOprm6EA+7UbpgWsqIksXav8kgMDQ7+yFaF38EIU4rIsgORd7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716914021; c=relaxed/simple;
-	bh=Xf7BU101+vQcWaBkaOCw1QXITwXxOxJmGpIIXrMPebY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WfFJ893iwxODiedpkppUtXc/1714x6v9hnBG+yH7WJG6QIPXf07Gcr6r//Xxn5+iyurybfhuwi+AoPDtkCIUEaOZp6VWPoIRYn6bYfDN9L/QMx4RFA0vZS680ZmRoXyePqdEC6H/M15sewq4l1CONdFt3Ix2CAbSAX+Ju3hx3/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RYQ9aFg/; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2e73359b979so10844051fa.1
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 09:33:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716914017; x=1717518817; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ie9rmuEePwENP8TVKYR43Z2dUmRCc5LEf6MyVwtx1xM=;
-        b=RYQ9aFg/Y8djxrcDox0vLsAFpR0+CFR62wwpD86oKWaO9Hfv1BCnS9NsPxChHbKrBa
-         Sj1Sj/AbY8A8wfjRmsybz0tZoa46V3vz3V2r5LV1JDe2iRG2M5cjt/cY2DKp4tOceShv
-         oZ7/CYgSPNvB/HChtRhoiv7RT2B2OAujx+NUJ8V2SzppzlloVkXsvb+xlWu+hGe6Pn1R
-         9o5py4mxiUj3iz/Ty4e9z8BOtCMJqK47tgdXI2fWfwJFmAWbShFZaBlmp1UZTEwQSVO1
-         /tmIOa2qXV22txLVfyJi/q5zIkxQWiXvT1wkyRCcW5rUtjfQgE1k8bT4Ihqej4F9Xa3V
-         2W3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716914017; x=1717518817;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ie9rmuEePwENP8TVKYR43Z2dUmRCc5LEf6MyVwtx1xM=;
-        b=G6mn027PhyGwFZHhIZcz7V+yEs2/55HkYNxeqPfFQbNtqqxu5CLDQ74DySJSg7Dcah
-         17KKnm7nrGAG+DvBRjIcRad2HpcKQo5Qlvs7eLTvLRprk9iojnA7Sjjd0MSbdkWJYbMr
-         fC0/C0CRPM4kDPAv5Mhh5g59lD1sN8mdxboA+iMYByjBTNi+a7zfnNa4Na3kkcBfGxV9
-         eMedsVzwoXMYtIvPaSPCFLyj2msqTiiIrR2OkIrQQ29hGOXPB48a5MihCPXWdMWR+O99
-         IH/JQb/tCu+GHiwImA+Y7n9AvWCVPVw7epfD4QyiKm1WMBIapcYVKbhpuZBARayqM+U1
-         CYkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVQUB7Ubm4F4Njpp9SCUKzupUcGJKvx9A2llCjDhdtc1njzCvYTcesOJ4+If5aO6+D6ujji8BmgyeYlKYFreiPYh2PYpJFPm+yX9w==
-X-Gm-Message-State: AOJu0YywX/+n4YLnBgcPTKqYq43c/isMs358gCUXWCKCFx1kF7yMx2cJ
-	Wkabq59oKdmbvweU89zDxs0zAxoZr5ex6Qj9FaBlzLqcWo0/bDJUneJGOTlNPPM=
-X-Google-Smtp-Source: AGHT+IFB5LWZTFg2VkjLPo4NIFi9cmR6eiqVuJVc97Sj3CdxqZmrN8y9F1ulGwmOCDmU9sOY/McS2Q==
-X-Received: by 2002:a2e:99d4:0:b0:2d4:3d86:54e2 with SMTP id 38308e7fff4ca-2e95b0bd7dbmr66394971fa.27.1716914017119;
-        Tue, 28 May 2024 09:33:37 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e975432726sm12149811fa.118.2024.05.28.09.33.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 09:33:36 -0700 (PDT)
-Date: Tue, 28 May 2024 19:33:35 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Prahlad Valluru <quic_vvalluru@quicinc.com>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_abhinavk@quicinc.com, quic_nankam@quicinc.com, 
-	robh@kernel.org
-Subject: Re: [PATCH v4] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
-Message-ID: <qkfiemo6kcelzgcfgzjpeor6flqhupk3dci5puyf63gmdnogqb@5egugb3rmi3v>
-References: <CAA8EJpo=Q4_=JU83-9ooSqiSr=xUeHh2awDhzq9q3Xd56h83zw@mail.gmail.com>
- <20240528141954.7567-1-quic_vvalluru@quicinc.com>
- <rs7m73yzuvm5rf52tyax57r33iigalplr2z7rrxm7mktdqa3bf@ecapopn7ufho>
- <20240528162434.GA4578@hu-vvalluru-hyd.qualcomm.com>
+	s=arc-20240116; t=1716914177; c=relaxed/simple;
+	bh=NuefzrUj9FO/t6wc3pR2TCeJn0nDqx9DSuM502grMnQ=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rRAudfS+efjJ9IkVpT9/10vZneEXEFTgC5Jdjzxw45kf7VeOM4WNZDCkmAQ/m5dj9o/qDejxw6VVkYWF2/hyJUWAoU5lEkIkPoLjB1mFvsreFMYdRfM93N4ZDF5J+SGhHviof7hNLKS4yeKCN26rCaSGHaBa/+a2ZLR3yQtat6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=to9eUQna; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BBF4C3277B;
+	Tue, 28 May 2024 16:36:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716914177;
+	bh=NuefzrUj9FO/t6wc3pR2TCeJn0nDqx9DSuM502grMnQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=to9eUQnaJbyB7NCzJ2G4rbqeNYs95A7m70tx9yOFS+k39aec+WOxXgptyeEFQ9uIV
+	 PBt5BTLemlb5fAei1Sh+nhoO4t2l4X/AZnerO88r0qBjBI68FlKOWAoInpfg1nBivx
+	 dGKkV2d+D4Dwf+exD/Wn3qPLgzxjnLLZlFu3en8GHPagFjuW2tFsL+7u2GiA/3D/ZL
+	 FnXeRLtkz4FVYOH0kLVoOKKZuPkN2ZxX2bvLk87+LryQQxoiNuO9qc2ja4uRPYL2k7
+	 F/KsXvNzc4kX+h4zWwx4yx9ZN2zU6e9wH/nMACyNnKlWxWfhZS/lyk1aQF2olZQ983
+	 s3xGwztL+4Rrw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sBzo6-00GNJS-Sr;
+	Tue, 28 May 2024 17:36:15 +0100
+Date: Tue, 28 May 2024 17:36:14 +0100
+Message-ID: <86ed9lnbb5.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Anup Patel <anup@brainfault.org>,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4] of: property: Add fw_devlink support for interrupt-map property
+In-Reply-To: <20240509120820.1430587-1-apatel@ventanamicro.com>
+References: <20240509120820.1430587-1-apatel@ventanamicro.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240528162434.GA4578@hu-vvalluru-hyd.qualcomm.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: apatel@ventanamicro.com, robh@kernel.org, saravanak@google.com, palmer@dabbelt.com, paul.walmsley@sifive.com, atishp@atishpatra.org, ajones@ventanamicro.com, sunilvl@ventanamicro.com, anup@brainfault.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Tue, May 28, 2024 at 09:54:34PM +0530, Prahlad Valluru wrote:
-> On Tue, May 28, 2024 at 06:00:26PM +0300, Dmitry Baryshkov wrote:
-> > On Tue, May 28, 2024 at 07:49:54PM +0530, Venkata Prahlad Valluru wrote:
-> > > Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
-> > > reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
-> > > Bridge supplies are Vdd connected to input supply directly
-> > > and vcc to L11c. Enable HDMI output, bridge and corresponding
-> > > DSI output.
-> > > 
-> > > Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
-> > > ---
-> > > v4: added fixed regulator for vdd
-> > 
-> > Please don't send new iterations as replies to the previous iteration.
-> > It might be ignored or mishandled by the tools.
-> Was trying to have the context of discussion captured. Will add links
-> to the patchsets in the history, going forward.
+On Thu, 09 May 2024 13:08:20 +0100,
+Anup Patel <apatel@ventanamicro.com> wrote:
+> 
+> Some of the PCI host controllers (such as generic PCI host controller)
+> use "interrupt-map" DT property to describe the mapping between PCI
+> endpoints and PCI interrupt pins. This is the only case where the
+> interrupts are not described in DT.
+> 
+> Currently, there is no fw_devlink created based on "interrupt-map"
+> DT property so interrupt controller is not guaranteed to be probed
+> before the PCI host controller. This affects every platform where
+> both PCI host controller and interrupt controllers are probed as
+> regular platform devices.
+> 
+> This creates fw_devlink between consumers (PCI host controller) and
+> supplier (interrupt controller) based on "interrupt-map" DT property.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> Reviewed-by: Saravana Kannan <saravanak@google.com>
+> ---
+> Changes since v3:
+> - Added a comment about of_irq_parse_raw()
+> - Removed redundant NULL assignments to sup_args.np
+> Changes since v2:
+> - No need for a loop to find #interrupt-cells property value
+> - Fix node de-reference leak when index is greater than number
+>   of entries in interrupt-map property
+> Changes since v1:
+> - Updated commit description based on Rob's suggestion
+> - Use of_irq_parse_raw() for parsing interrupt-map DT property
 
-I'd suggest using b4 tool, which handles such issues in an automated
-way. It adds links to previous iterations, changelog, etc.
+This patch breaks badly on my M1 Mini, with a continuous stream of
+boot time warnings lasting about 100 seconds:
 
-> > 
-> > > 
-> > > v3: - Updated commit text
-> > >     - Arranged nodes in alphabetical order
-> > >     - Fixed signoff
-> > >     - Fixed drive strength for lt9611_irq_pin
-> > >     - Removed 'label' from hdmi-connector, which is optional
-> > > 
-> > > v2: Addressed dtschema errors
-> > > 	- Fixed lt9611-irq
-> > > 	- vdd-supply error to be ignored, as it is connected to
-> > > 	  input supply directly, on rb3gen2
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 94 ++++++++++++++++++++
-> > >  1 file changed, 94 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > > index a085ff5b5fb2..7f00fca131a2 100644
-> > > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > > @@ -52,6 +52,25 @@
-> > >  		};
-> > >  	};
-> > >  
-> > > +	hdmi-connector {
-> > > +		compatible = "hdmi-connector";
-> > > +		type = "a";
-> > > +
-> > > +		port {
-> > > +			hdmi_con: endpoint {
-> > > +				remote-endpoint = <&lt9611_out>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +
-> > > +	lt9611_1v2: lt9611-vdd12-regulator {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "LT9611_1V2";
-> > 
-> > Is it the regulator / net name in schematics? Or is it also used by any
-> > other consumers?
-> >
-> VREG_HDMI_OUT_1P2 is the naming in schematic, but i see this naming convention for rb5 based boards.
-> No other consumers for this.
+[   97.832335] ------------[ cut here ]------------
+[   97.836955] /soc/pcie@690000000/pci@2,0 interrupt-map failed, using interrupt-controller
+[   97.845072] WARNING: CPU: 0 PID: 1 at drivers/of/irq.c:277 of_irq_parse_raw+0x620/0x730
+[   97.853087] Modules linked in:
+[   97.856139] CPU: 0 PID: 1 Comm: swapper/0 Tainted: G        W          6.10.0-rc1 #2915
+[   97.864163] Hardware name: Apple Mac mini (M1, 2020) (DT)
+[   97.869570] pstate: 61400009 (nZCv daif +PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+[   97.876546] pc : of_irq_parse_raw+0x620/0x730
+[   97.880907] lr : of_irq_parse_raw+0x620/0x730
+[   97.885267] sp : ffffc000800538a0
+[   97.888581] x29: ffffc000800538a0 x28: 0000000000000000 x27: ffffffffff5ffc68
+[   97.895732] x26: ffffc000800539a4 x25: ffffffffff5ffbbc x24: ffffc00080053a48
+[   97.902883] x23: ffffe3ff73284e68 x22: ffffb7889aede6d0 x21: ffffe3ff735f9320
+[   97.910034] x20: ffffc00080053964 x19: ffffb7889aede6d0 x18: ffffffffffffffff
+[   97.917185] x17: 7075727265746e69 x16: 20676e697375202c x15: 64656c6961662070
+[   97.924336] x14: 616d2d7470757272 x13: 72656c6c6f72746e x12: 6f632d7470757272
+[   97.931487] x11: 65746e6920676e69 x10: ffffe3ff740bcb68 x9 : ffffe3ff72335b38
+[   97.938639] x8 : 00000001000028a4 x7 : ffffe3ff740afc08 x6 : 00000000000038a4
+[   97.945789] x5 : 00000000000067b0 x4 : c0000001000028a4 x3 : 0000000000000000
+[   97.952940] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffffb784c16ade00
+[   97.960092] Call trace:
+[   97.962534]  of_irq_parse_raw+0x620/0x730
+[   97.966545]  parse_interrupt_map+0xfc/0x188
+[   97.970731]  of_fwnode_add_links+0x170/0x1e0
+[   97.975004]  fw_devlink_parse_fwtree+0x44/0x98
+[   97.979452]  fw_devlink_parse_fwtree+0x6c/0x98
+[   97.983899]  fw_devlink_parse_fwtree+0x6c/0x98
+[   97.988347]  device_add+0x610/0x6a8
+[   97.991836]  of_device_add+0x4c/0x70
+[   97.995411]  of_platform_device_create_pdata+0xa0/0x160
+[   98.000644]  of_platform_bus_create+0x184/0x370
+[   98.005178]  of_platform_populate+0x68/0x160
+[   98.009451]  of_platform_default_populate_init+0xf4/0x118
+[   98.014859]  do_one_initcall+0x4c/0x320
+[   98.018695]  do_initcalls+0xf4/0x1d8
+[   98.022271]  kernel_init_freeable+0x12c/0x280
+[   98.026632]  kernel_init+0x2c/0x1f8
+[   98.030120]  ret_from_fork+0x10/0x20
+[   98.033696] ---[ end trace 0000000000000000 ]---
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+which comes from 10a20b34d735f ("of/irq: Don't ignore
+interrupt-controller when interrupt-map failed").
 
-> > > +
-> > > +		regulator-min-microvolt = <1200000>;
-> > > +		regulator-max-microvolt = <1200000>;
-> > > +	};
-> > > +
-> > >  	reserved-memory {
-> > >  		xbl_mem: xbl@80700000 {
-> > >  			reg = <0x0 0x80700000 0x0 0x100000>;
-> > > @@ -530,6 +549,46 @@
-> > >  			   <GCC_WPSS_RSCP_CLK>;
-> > >  };
-> > >  
-> > > +&i2c0 {
-> > > +	clock-frequency = <400000>;
-> > > +	status = "okay";
-> > > +
-> > > +	lt9611_codec: hdmi-bridge@2b {
-> > > +		compatible = "lontium,lt9611uxc";
-> > > +		reg = <0x2b>;
-> > > +
-> > > +		interrupts-extended = <&tlmm 24 IRQ_TYPE_EDGE_FALLING>;
-> > > +		reset-gpios = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
-> > > +
-> > > +		vdd-supply = <&lt9611_1v2>;
-> > > +		vcc-supply = <&vreg_l11c_2p8>;
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
-> > > +
-> > > +		ports {
-> > > +			#address-cells = <1>;
-> > > +			#size-cells = <0>;
-> > > +
-> > > +			port@0 {
-> > > +				reg = <0>;
-> > > +
-> > > +				lt9611_a: endpoint {
-> > > +					remote-endpoint = <&mdss_dsi0_out>;
-> > > +				};
-> > > +			};
-> > > +
-> > > +			port@2 {
-> > > +				reg = <2>;
-> > > +
-> > > +				lt9611_out: endpoint {
-> > > +					remote-endpoint = <&hdmi_con>;
-> > > +				};
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > >  &i2c1 {
-> > >  	status = "okay";
-> > >  
-> > > @@ -587,6 +646,21 @@
-> > >  	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
-> > >  };
-> > >  
-> > > +&mdss_dsi {
-> > > +	vdda-supply = <&vreg_l6b_1p2>;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&mdss_dsi0_out {
-> > > +	remote-endpoint = <&lt9611_a>;
-> > > +	data-lanes = <0 1 2 3>;
-> > > +};
-> > > +
-> > > +&mdss_dsi_phy {
-> > > +	vdds-supply = <&vreg_l10c_0p88>;
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > >  &mdss_edp {
-> > >  	status = "okay";
-> > >  };
-> > > @@ -711,3 +785,23 @@
-> > >  	function = "gpio";
-> > >  	bias-disable;
-> > >  };
-> > > +
-> > > +&pm7250b_gpios {
-> > > +	lt9611_rst_pin: lt9611-rst-state {
-> > > +		pins = "gpio2";
-> > > +		function = "normal";
-> > > +
-> > > +		output-high;
-> > > +		input-disable;
-> > > +		power-source = <0>;
-> > > +	};
-> > > +};
-> > > +
-> > > +&tlmm {
-> > > +	lt9611_irq_pin: lt9611-irq-state {
-> > > +		pins = "gpio24";
-> > > +		function = "gpio";
-> > > +		drive-strength = <2>;
-> > > +		bias-disable;
-> > > +	};
-> > > +};
-> > > -- 
-> > > 2.17.1
-> > > 
-> > 
-> > -- 
-> > With best wishes
-> > Dmitry
+Each of the 3 PCIe ports are described as such:
+
+	port02: pci@2,0 {
+		device_type = "pci";
+		reg = <0x1000 0x0 0x0 0x0 0x0>;
+		reset-gpios = <&pinctrl_ap 33 GPIO_ACTIVE_LOW>;
+
+		#address-cells = <3>;
+		#size-cells = <2>;
+		ranges;
+
+		interrupt-controller;
+		#interrupt-cells = <1>;
+
+		interrupt-map-mask = <0 0 0 7>;
+		interrupt-map = <0 0 0 1 &port02 0 0 0 0>,
+				<0 0 0 2 &port02 0 0 0 1>,
+				<0 0 0 3 &port02 0 0 0 2>,
+				<0 0 0 4 &port02 0 0 0 3>;
+		status = "disabled";
+	};
+
+and get probed *972 times*, which seem... excessive, given that there
+are only 4 entries per port.
+
+> ---
+>  drivers/of/property.c | 52 +++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index a6358ee99b74..2d749a18b037 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1311,6 +1311,57 @@ static struct device_node *parse_interrupts(struct device_node *np,
+>  	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
+>  }
+>  
+> +static struct device_node *parse_interrupt_map(struct device_node *np,
+> +					       const char *prop_name, int index)
+> +{
+> +	const __be32 *imap, *imap_end, *addr;
+> +	struct of_phandle_args sup_args;
+> +	u32 addrcells, intcells;
+> +	int i, imaplen;
+> +
+> +	if (!IS_ENABLED(CONFIG_OF_IRQ))
+> +		return NULL;
+> +
+> +	if (strcmp(prop_name, "interrupt-map"))
+> +		return NULL;
+> +
+> +	if (of_property_read_u32(np, "#interrupt-cells", &intcells))
+> +		return NULL;
+> +	addrcells = of_bus_n_addr_cells(np);
+> +
+> +	imap = of_get_property(np, "interrupt-map", &imaplen);
+> +	if (!imap || imaplen <= (addrcells + intcells))
+
+This is "interesting". You compare a number of *bytes* with a number
+of cells. Only off by a factor of 4...
+
+Also, you need a minimum of one extra cell to hold the phandle, and a
+yet unknown number of cells for whatever follows the phandle.
+
+> +		return NULL;
+> +	imap_end = imap + imaplen;
+
+Same problem, with pointer arithmetic this time.
+
+> +
+> +	while (imap < imap_end) {
+> +		addr = imap;
+> +		imap += addrcells;
+> +
+> +		sup_args.np = np;
+> +		sup_args.args_count = intcells;
+> +		for (i = 0; i < intcells; i++)
+> +			sup_args.args[i] = be32_to_cpu(imap[i]);
+> +		imap += intcells;
+> +
+> +		/*
+> +		 * Upon success, the function of_irq_parse_raw() returns
+> +		 * interrupt controller DT node pointer in sup_args.np.
+> +		 */
+> +		if (of_irq_parse_raw(addr, &sup_args))
+> +			return NULL;
+> +
+> +		if (!index)
+> +			return sup_args.np;
+> +
+> +		of_node_put(sup_args.np);
+> +		imap += sup_args.args_count + 1;
+
+This really doesn't map (pun intended) to the way the interrupt-map
+entries are built. You need to account for the parent address size as
+well.
+
+I'll post a patch fixing both issues.
+
+	M.
 
 -- 
-With best wishes
-Dmitry
+Without deviation from the norm, progress is not possible.
 
