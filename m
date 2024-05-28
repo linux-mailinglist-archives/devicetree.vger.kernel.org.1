@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-69758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD4C78D168E
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:43:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C9F8D1692
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:44:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4212FB23C35
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:43:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1856283849
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F28813D2B2;
-	Tue, 28 May 2024 08:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCCBB13C8F9;
+	Tue, 28 May 2024 08:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Sa/sbfRd"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="N8N7Yyz+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF73113D25E
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 08:43:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E49771B4C
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 08:43:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716885784; cv=none; b=mqkjA5cvtFbRFIl4mSjS6dDjubaDSYBe1x2JxFb0c5rkLUyU9qSF03UWFGX2h47H+frHgCZzv90sZeUXwoTHV3P43LKb/t2lK3UJxczeZE9HVViGlKPklyHV63pbmsPNlLXw8kFm64ZrdcKTGHuhdwJUEJsjnt9EaMzm5V9e3uk=
+	t=1716885840; cv=none; b=AlyzKGXBLufaJiGaLooNGnHP9eAR2TCjbTnjh6R1Z+3mOvTnbmX+EnodY8S4pKHeFwMJJi3H3w6792DflY29EUJFXlqRbIvodkXO5da2c3KPAZRT7CRjFTepSCphtwHaaKAgZ/yv/rkNRZ9qzGw62nfLir27Dyp9WbGmJf7ggKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716885784; c=relaxed/simple;
-	bh=Y6f9O1rB7bAdaik8Ya5stBAwGWAwYs7mHE+WNyPAEOo=;
+	s=arc-20240116; t=1716885840; c=relaxed/simple;
+	bh=8HvIGKRSxVSzXwS7Na7UKkF6X7VsSrmut2KntrLmI1Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F1vT0Thd3gd12TsoJqivb+L0rpRviSCOJ9oeF5vsBbwPe9nvrfVYI3YfiNj/L+GKWYw8sx+iaSyWfvIMeMbsg0eOx+per5BUJh2M1yo+9kFSY5HN27+TRwXJG/nY5jiCqZI45szlo+Aoo44753nuTdKx2AWfeug79oW3gSsoef4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Sa/sbfRd; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57857e0f45dso615136a12.1
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 01:43:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1716885780; x=1717490580; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BDOzOVJxnG+3KEM1LGz7y97uf9duOTHpiqETF8V1CyI=;
-        b=Sa/sbfRdKnz8/QMS+xeYM3nSHA4bJisg2W0l25IlBxTxty4NiXGvKntownbMHodJzp
-         tITa4FnuRTwj/iW57gW2YpY1FtzaZsh2cZBy3u7j9+1DoH0do0vzwd5zeh28ty/BYNd1
-         wq7I7CvDy/HpeR5LSdeCPZF1OIwueGV55tCuYXt76fGjPc5a3kVlIr7C48gVI67C3K+W
-         oVsUUdRPpTdKUw1u9NXqw5pPv3JoMavC98Sr0y8XLJpcaNUDcB5XhJeDBu0b1aCHl5Pc
-         7smTUTEtiJbRY9fdWSEjbWUT2ob75jgy8fKva8xkFqI7/zUnZ+S/SJV3q/jTt3CVKkuX
-         F+vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716885780; x=1717490580;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BDOzOVJxnG+3KEM1LGz7y97uf9duOTHpiqETF8V1CyI=;
-        b=qlveldnKUXiQKbQ3TqMwEcI+67jdK6Z9DFa0ZomvC/41mtzEyXHdy6eJyN2QZpRaAf
-         GqKfDI5BdhR7zRY6MQiW3XbnwZITcT8PPNFg+x2bGqAHu4pq2FuOvAEX0IE4/Vl4QU7C
-         jryM49MYcCSkCVjhKKxLX0DZ2SSaKe5cYVn7j7YFQJzQIBUB8+iOABjGvE0Y8nRVBtfA
-         ytMZYvpb5z8gnezx55YKMZ1Lgaq/FLFRbmyf9G4Xs3a38btddWcZq1/86J/YxTQToGae
-         NcCU+kfFHhTyzKldofCHyxNAKumRus+DdAmyPwe1Gi8LVekB4TKTuxcLZOF5oxYGfQJ7
-         C1kg==
-X-Forwarded-Encrypted: i=1; AJvYcCVW33Er/WwToDZTw2yCT1+/mbUZ1kv+du/yQHwCaVKRy+772zdjQt9dRGMLlo46WZzziwpdndDYu6Xt1BRKYnIZrzzsxHjz9YaHww==
-X-Gm-Message-State: AOJu0YzOW4EMi6JFBcICxfgT8wozRPpEfLhhxU/7W3E6caemp81r6YpI
-	MHWxcT3jH8rGEzjkdxy5ohsDzOYBTyZioxS6tdpCfAy81YMH7znq22TO3l5soV4=
-X-Google-Smtp-Source: AGHT+IFnwFpVgBPbSYYelUXVLbDbkXbUh2jkTNCogIsjRLaryTZNhcVpgseQGExAcVHtIzwZZr7icw==
-X-Received: by 2002:a17:906:69d0:b0:a59:9c4d:da3c with SMTP id a640c23a62f3a-a62643ec91cmr716821266b.40.1716885780045;
-        Tue, 28 May 2024 01:43:00 -0700 (PDT)
-Received: from ?IPV6:2001:a61:139b:bf01:e8eb:4d8f:8770:df82? ([2001:a61:139b:bf01:e8eb:4d8f:8770:df82])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626c8170cbsm585860666b.20.2024.05.28.01.42.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 May 2024 01:42:59 -0700 (PDT)
-Message-ID: <9a0073a0-d598-4c1a-bb32-328d0a279152@suse.com>
-Date: Tue, 28 May 2024 10:42:58 +0200
+	 In-Reply-To:Content-Type; b=bRf1bleiRqgvNyCdp8H8I++H4DEEDUj9EOJV4LtOe7jXnCaW7RsSnKAkFnVOrKkUcygQyOX6mgeOCUJao7ouaim3x0UPPKntP5hbBZPXvplwxvrugWh8ow81NtdW3q/gejjQ4gi/lo6zLyfzV7XBvXHDV6XhCfYtY1l4/Ihrpm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=N8N7Yyz+; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1716885834;
+ bh=GQr2PqTVIib2CwbHMvN8Y3i6rh0ebN+xNoUL7A1dzos=;
+ b=N8N7Yyz+XiVCGNY/9/+kwTe/Hs4dGQZnp9pqovP0A4/X0wvlSWCA3WXoXPq7hO9GbwjliZ4Wc
+ +ZAFkHevpm2adPN3/0NDo+2TNNiXhxQu79xqiaDmmdcVtXPcCwVcG0HCJzXzTV92mSt/eELqhl0
+ 09dYX/FGx46v84g+fzMSdJj5Nnkn2vhaPN3XIGbXQE1Fn6nKCw2jD4Ka90mrJ/WIT2DL/M1BBUI
+ PqAKbOFCrn7wyD5cxzi22HwZiHCks/HBwJv30mIk9Jg6wkPf0gRqz7rg9WRPl6XKyI4WEG/kc91
+ uTOMYKBRYsa2MRxTruUOl0/zjJm9/RSGfyy0lxhldv8w==
+Message-ID: <82435177-1a4a-46c0-9a12-c056647d587f@kwiboo.se>
+Date: Tue, 28 May 2024 10:43:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,68 +50,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/6] power: supply: lenovo_yoga_c630_battery: add
- Lenovo C630 driver
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Oliver Neukum <oneukum@suse.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
-References: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
- <20240527-yoga-ec-driver-v3-4-327a9851dad5@linaro.org>
- <ceb1f7b3-2787-4166-846f-2427b44b3e62@suse.com>
- <vc5nd5dl4czkuxzikazn7ndy6wghlchqsrcgxf7n5w53w3o3m2@spyfgp5pwy4y>
+Subject: Re: [PATCH 3/3] pinctrl: rockchip: add rk3308b SoC support
+To: "=?UTF-8?Q?Heiko_St=C3=BCbner?=" <heiko@sntech.de>, Dmitry Yashin
+ <dmt.yashin@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Rob Herring
+ <robh@kernel.org>, Jianqun Xu <jay.xu@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240515121634.23945-1-dmt.yashin@gmail.com>
+ <81aa0e4e-a3c7-41d1-8cd2-4d060730b37a@gmail.com>
+ <20240517085832.365ac878@booty> <4771649.rnE6jSC6OK@diego>
 Content-Language: en-US
-From: Oliver Neukum <oneukum@suse.com>
-In-Reply-To: <vc5nd5dl4czkuxzikazn7ndy6wghlchqsrcgxf7n5w53w3o3m2@spyfgp5pwy4y>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <4771649.rnE6jSC6OK@diego>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 665599456a993415841a589f
 
-On 28.05.24 01:15, Dmitry Baryshkov wrote:
-> On Mon, May 27, 2024 at 02:26:36PM +0200, Oliver Neukum wrote:
->> On 27.05.24 12:03, Dmitry Baryshkov wrote:
-
-Hi,
-
->>> +struct yoga_c630_psy {
->>> +	struct yoga_c630_ec *ec;
->>> +	struct device *dev;
->>> +	struct device_node *of_node;
->>> +	struct notifier_block nb;
->>> +	struct mutex lock;
->>> +
->>> +	struct power_supply *adp_psy;
->>> +	struct power_supply *bat_psy;
->>> +
->>> +	unsigned long last_status_update;
->>> +
->>> +	bool adapter_online;
->>> +
->>> +	bool unit_mA;
->>> +
->>> +	unsigned int scale;
+On 2024-05-28 10:17, Heiko Stübner wrote:
+> Am Freitag, 17. Mai 2024, 08:58:32 CEST schrieb Luca Ceresoli:
+>> Hello Dmitry,
 >>
->> why do you store unit_mA and scale? This looks redundant and like a source
->> of confusion to me.
+>> On Thu, 16 May 2024 17:06:46 +0500
+>> Dmitry Yashin <dmt.yashin@gmail.com> wrote:
+>>
+>>> Hi Luca,
+>>>
+>>> On 15.05.24 21:29, Luca Ceresoli wrote:
+>>>> I'm skeptical about this being bound to a new DT compatible. As far as I
+>>>> know the RK3308 and RK3308B are mostly equivalent, so it looks as the
+>>>> pinctrl implementation could be detected at runtime. This would let
+>>>> products to be built with either chip version and work on any without
+>>>> any DT change.  
+>>>
+>>>
+>>> Thanks for your feedback.
+>>>
+>>> Indeed, these SoC's have a lot in common, but as I can see the rk3308b
+>>> has more blocks, like extra PWM's (rk3308 datasheet 1.5 [0] shows only
+>>> 1x PWM 4ch, when rk3308b and rk3308b-s have 3x PWM 4ch), 1-wire and
+>>> CAN controller (mentioned in the TRM, but dropped from rk3308b
+>>> datasheet for some reason).
+>>>
+>>> So, in my view, it really makes sense to add rk3308b.dtsi, where extra
+>>> PWM's, pinctrl compatible and its pin functions can be moved. And if
+>>> its not worth it, then I will try to adapt the entire series to runtime
+>>> config based on cpuid like you suggested.
+>>
+>> Having a rk3308b.dtsi would probably make sense, yes, as there are
+>> several differences as you described. However for the pinctrl it seems
+>> probably not necessary.
+>>
+>> I've seen actual products being manufactured with two different RK3308
+>> variants in different lots of production, but with the same DT that has
+>> rockchip,rk3308-pinctrl in it. Those would need a _selective_ DT
+>> upgrade in order to benefit from your changes.
+>>
+>> And even if a product had always used the B variant, it would need DT
+>> upgrade when upgrading to a kernel with your changes. Otherwise with
+>> patch 1/3 of this series the pictrl driver would lose many routes after
+>> upgrading the kernel (but not the DT): can this lead to
+>> previously-working devices to stop working? I think this is a
+>> fundamental question to reply.
 > 
-> Here we just followed the AML code in ACPI tables. The unit_mA is a
-> returned from the_BIX method, the 'scale' is used internally in the DSDT.
-> If you think that it's better, I can change all '* scale * 1000' to
-> 'if unit_mA then foo = bar * 10000 else foo = bar * 1000'.
+> If things can be runtime-detectable, they should be detected at runtime.
+> So yes, while we need to know that it is a rk3308-something before
+> via the dt, if we can distinguish between the rk3308 variants at runtime
+> we should definitly do so.
 
-I think that would indeed be better. Implementation details of the DSDT
-should not dictate data structures in a kernel driver.
+The GRF_CHIP_ID reg (0xFF000800) can be used to identify what model is
+used at runtime:
 
-	Regards
-		Oliver
+RK3308: 0xCEA (errata: chip id value is 32'h0cea (32'd3306))
+RK3308B: 0x3308
+RK3308BS: 0x3308C
+
+Vendor U-Boot make use of this reg to identify what model is running:
+https://github.com/rockchip-linux/u-boot/blob/next-dev/arch/arm/include/asm/arch-rockchip/cpu.h#L68-L82
+
+I can only validate on real hw that the reg value is 0x3308 for RK3308B.
+
+Regards,
+Jonas
+
+> 
+> Heiko
+> 
 
 
