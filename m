@@ -1,230 +1,164 @@
-Return-Path: <devicetree+bounces-70133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21238D284C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 00:52:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A048D2871
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 00:57:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 982922838AB
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 22:52:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 759861C24DB7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 22:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B64F13FD94;
-	Tue, 28 May 2024 22:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F36113FD6B;
+	Tue, 28 May 2024 22:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="B3eC454D"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="iD2NbI+P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2131.outbound.protection.outlook.com [40.107.93.131])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCBCA13F437;
-	Tue, 28 May 2024 22:51:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.131
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716936718; cv=fail; b=bmadAu8aVz/XiZj5v90m04FW3aSy+5Z98EcQAeL2j++d2FNP3RuBI5EqJ8vRWS60PaQW/3mKtpTxpVWrloMosHOz9iDlk/n5PYBIrFVO8xPdxRXDGiL+yDaZzQZYQAAj7ELc0SnXEHxpu/JJHGSupcMHXsM09GibOd5mY3Mh9iA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716936718; c=relaxed/simple;
-	bh=l5o8zIEntCSGDeBLYmrVsY5MScN4P8uCDt0Lf87vWDM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=r9LcOMwbaGC0cxAe6KeUqT2ZvsOkxtq9J0wc5qjrgTuqnS7TjgEzmYPbdkAO5zlpz8jvO15s7mxti/hIXX0meBWOlM7X9t/EU287NrpQjj/HpN+jzNM67WelVslQykCwK30EFvzMkkieS50wuDLGG6Bpt9Xgzke8R189HEG7mas=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=B3eC454D; arc=fail smtp.client-ip=40.107.93.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=knkojL9Ie7VIWpDPiHF9jNJWC+jp5ocetbLZeCvS2fe9JPgCLKvr5q7nSbwRyC6eBLTDS70GQWLrXD9WzfyA22cjakLoUWZ92ioSBXrOamqIp6givoPGJv4SxHWDJViFsiQJdizkUxrxnumc1sAGG3hO4NpNJgnDYnxxjaUiTkUR9nEknRxbL6gUUIIxVvJ2MCqG7uYCeBhzQ5C+vZCo/ZsilEa0gJJP0a/TD9ETjHAasfPTWqOoqf/3RU7xCVAjwGud9MqlUqXPBUMs1zKl9p2aBeDOhXbUt9yIf2U7NqluhGChdfYlIVR76O3ar2u9nhKVMKsPbOJNsz+7o0vOQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A2DsaPv5lqwpCDJqvV8EC5dpqT4CBz9E3rLbei0+HL4=;
- b=Fp/OxfVubLfPPVY4bigOojRxAulFv0R9FP8G1lQmdZ2WJtPBZfZaJXuVGUPbJqJD5b4w0sZcS+mX5ZaTII/7XIxA7NbqvnZWAC6LhwfIKdi8XxowbG5vrOAfZhoXNkxrU11b5CcSjdZ6pcpfrZ3ZlV3nQLaF0MugoG+r7r34q1c+5JBpIMGnOxq3csua0t3eUWMJhQzTWtqLegPnxZixxosbWve9DMQY8lDVtwtOnE6n5cdpw5xW9ffLwW9zmS66lKWHUQ0FytU1mAxqEWhpaS3syzbZHVhx9lICa1I75LYePoyecA93agL0xV9BXT9l3o969S1vb4xSW7w6CbCaUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
- dkim=pass header.d=phytec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A2DsaPv5lqwpCDJqvV8EC5dpqT4CBz9E3rLbei0+HL4=;
- b=B3eC454DARiVj+rN7PMg5Ycy0OCGnFbb2qOliEZYizgOWs8Xnhw/PON45K2DowV48Cl8uF3H259R95Sobp/XVG2qQw7CmEhOOPhwS088AI6+bT98rHdKvipLiYtJ3VsOyzORPr470Qi8zoilDzQAFn9u2yk7C4jt76kjg4S4a9c=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.com;
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com (2603:10b6:806:3e2::15)
- by EA2PR22MB5065.namprd22.prod.outlook.com (2603:10b6:303:258::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Tue, 28 May
- 2024 22:51:54 +0000
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::aaeb:2d53:9f16:db45]) by SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::aaeb:2d53:9f16:db45%5]) with mapi id 15.20.7611.025; Tue, 28 May 2024
- 22:51:54 +0000
-From: Nathan Morrisson <nmorrisson@phytec.com>
-To: nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C87813EFE4
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 22:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1716937009; cv=none; b=uIkLFfW1lBgFh16uVIKU6rgF5cF+fSDoh/ARyrlgc+oCRGEBn1iSFzbsgfWBRjZi/o7iu2XJDadIIqJkd+uGQURqy1trwB/Vprdri2WbZTA9sL9QkjWaMpXs/qLIN+u+ug9+iFj2mx6hENf7MUiDdxQwbNL1s3q5UrLgjwLCOaY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1716937009; c=relaxed/simple;
+	bh=7229M79Y66nlOhdazLYoW34jJ11Id2JncfgjC23Qf/c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sEdhzkgQZ1y7LoV5S9kzA7PRths4e0I0Em/9v2iDcLaoSLx7WzberhvfjGVzHh9qI2kFy3urkQDgdKD11C4v+hMqnOKM/4HfElLNz+Ef/sWLCGD9bDxXHQXaQ8jTFEIVpUtYxECApuoCFddQNisfKPFIpEOdvbw9c/aMBtNHxBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=iD2NbI+P; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E81CB2C0345;
+	Wed, 29 May 2024 10:56:42 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1716937002;
+	bh=yaNex6nf4R3aaiKyz05XcDPBgeuOxBytmLnSvAxSUpc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=iD2NbI+Pj8Snh0ASZFOJ0tkAFfNHGp9d6UoeVkiK+bM3enq2HQEo6a5U+5/idMwF7
+	 V5AK4IpDTG3I1KsepztFdIXKaeRUTcPawEktf0OVPPvO3k8zty/jjfPLQ1j+1AI6Jg
+	 oZnkM9JA9+7lq/ruHG5iCjxrl0dbizBj6b6cNbe1+VIdG7vyWZPQRy838IPfvi8TTc
+	 6yQhbOoi38fnRS3UEf4xuTAcVPJfBH++3I1iLkUoMt/+9P0RTdLDsa+2g8uMe0qZ57
+	 B17hE/w/3Wkjw93nOWczimltUkfUHZ71QQ1u9HkgCjhIaGj+lJ0kdVRqBtac1zs1oi
+	 pNumpx2XrYObQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B6656612a0000>; Wed, 29 May 2024 10:56:42 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id A7AC113EC7E;
+	Wed, 29 May 2024 10:56:42 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id A036A280A37; Wed, 29 May 2024 10:56:42 +1200 (NZST)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: jdelvare@suse.com,
+	linux@roeck-us.net,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
+	conor+dt@kernel.org,
+	ukleinek@kernel.org
+Cc: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de,
-	w.egorov@phytec.de
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-am6xx-phycore-som: Add overlay to disabl spi nor
-Date: Tue, 28 May 2024 15:51:37 -0700
-Message-Id: <20240528225137.3629698-5-nmorrisson@phytec.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240528225137.3629698-1-nmorrisson@phytec.com>
-References: <20240528225137.3629698-1-nmorrisson@phytec.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH2PR07CA0049.namprd07.prod.outlook.com
- (2603:10b6:610:5b::23) To SA1PR22MB5636.namprd22.prod.outlook.com
- (2603:10b6:806:3e2::15)
+	linux-pwm@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v4 0/3] hwmon: (adt7475) duty cycle configuration
+Date: Wed, 29 May 2024 10:56:35 +1200
+Message-ID: <20240528225638.1211676-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR22MB5636:EE_|EA2PR22MB5065:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9ebd197-067c-4dd4-f824-08dc7f68c504
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|376005|7416005|366007|1800799015|52116005|38350700005;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?dZd7QurRtTcuS/9j25HelnSVsY32ZCpL7u5IHLUj0XAQFE1076B9qKT8ICQa?=
- =?us-ascii?Q?RzsbV157A3bdBHS4TzdUhlUhIF8eDwWS7eOUtr7ePUH9n2TDs9Bavm1Ql7uQ?=
- =?us-ascii?Q?w9nNfChNBTeOomfSEiCwiWLTIxXCOJkweJ4cXDbNU+dmZKpB9xV8zvnKBlUp?=
- =?us-ascii?Q?A6B7MMcduSEP3hi87HMu6QQbQeLJqm8ek7ZImx4edIjFz9PSeUZ8HfwcCdNH?=
- =?us-ascii?Q?QjZJFAK7fsn7OIMf8J3Wn1J9XEr/a0vdgVzZRk1daq6mBNbe7/+ijGoTRuNW?=
- =?us-ascii?Q?OrPiu5w88dyGrJPR8o86EuADcHvWL/mOvhlOO9hHdXGNt1IXB8ND4E6caExy?=
- =?us-ascii?Q?TfKmMY+vPleYWdoLwzY9zX+PPuCHTJZfmGVzQl2Kau79Segsh+VybxfXn6+H?=
- =?us-ascii?Q?iFmyFb1vja+efxkTibMfmICkzqJWcR/DT26bWMlTgL/sCzA7HcqL03f0Os9L?=
- =?us-ascii?Q?zdy04LKRLCoSJaNfUgqe2FKroLzW3n4uqq1Nr0GilIE+bnpvsbxSlSG+tAfV?=
- =?us-ascii?Q?2SIiuuIK5wvPr9redZPU3Yq9DPAGY4qAm4lckhreDm46tiXjHGQs4nZzZdLn?=
- =?us-ascii?Q?/hF/0Z1+rkmbm4bXsI7BCNXd5rub278bdX/NotGcEj4l4adMXi4VIXP2SCTd?=
- =?us-ascii?Q?2D3q8mhnX+sg2GXiIvFzKIPnmTwCs/ZBGq7uqL6mll4cECVikIbLARrhUi1J?=
- =?us-ascii?Q?48us0dmUt3utCvSPbbLMgpeCQ5BZsJnzAzcc4cx2+Xgn4f1t11jWm6CdEyji?=
- =?us-ascii?Q?88bi03BPysNd5ZNg2TuP+Kwlw4rrbW67EEeHazA7C1Yfewwr8wI9l4PZfP6Y?=
- =?us-ascii?Q?OfoGaC3INTYBToc6CDNEc6pxhDroQNVHXHxn9HwYO/jlQAJLACnbtNFQp0EX?=
- =?us-ascii?Q?8bGc/CIP+gpTJvosrAQN6eqlW8f0F3IfHjC2GXWbVE4NhB+x+HCAJFXVQ45s?=
- =?us-ascii?Q?bbd9lOngg+5wGvcXPO3qserObIBuBRDtCgabdi9Lygdcv3cp7yFRz7t0vSTb?=
- =?us-ascii?Q?fHxIYbETtpAio94O8McGQHrp7um5wf2rCBkdp3/eYQI+CJGGSxsZuIqu89Q9?=
- =?us-ascii?Q?4uTTj3i8BUlM7wc4kx/UeB+Ja5OIsqVrteHvMnF/ufxe37xvDoEJeZJwBxHc?=
- =?us-ascii?Q?g187YoTJYwU26+61qSZ3OMwdDWC5HB66K2E9VP6s/hwHi0Hl2E/73aDCkX1Q?=
- =?us-ascii?Q?8Bwyil86Z8xECDF1O4QREVv50yZEdr8+0F+v8Si1zO0nkygeybDAxuz84VzZ?=
- =?us-ascii?Q?++zzJS23DilZ8O16jh4hqDP1X6c0aClTiHYBYFwq6Q2thq5CJrMNuvo9/0Ko?=
- =?us-ascii?Q?zwDjKK0BeiHTV01/Dc4tS5wWVoId1Qh8PGFfUx1ZHnMGIw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR22MB5636.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(366007)(1800799015)(52116005)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?00aTXlZUKggVVleGpiJen1FgBR4m8kfd1e73KG9gl4yZj6J06fU6aNh0Oen3?=
- =?us-ascii?Q?V+vIgacfaWzkPBvVWBKd3p1efUtb2mVvW47qjNu32Tzncc1KDZIgVt/g6na/?=
- =?us-ascii?Q?QUjTLfmQlpDW/GJ8++qtRk26wZ0ziFy+lXjmVYWdkdX0vYh77H6894E2O8Cv?=
- =?us-ascii?Q?oSYx4QhBJ4TQ8EkJDOY0xB5D60mVaFNuOuaa7YFEUu7U/yQuK+z6yXks8fOc?=
- =?us-ascii?Q?0A2uv+YsxeglsC8eIYP1vt2n0IxQ+0UV9EElWncjq4cVmvFkt4d3eVYQQJ6V?=
- =?us-ascii?Q?UB+yYnm71j9a+wjS8vLmRRiprDVn2QL/DJA05XxySOZb/Ag5ke7y2zU9Sjse?=
- =?us-ascii?Q?H7xefu2dsoTZ7Tm3ObY/d398PNpDXO4Sjrb98zbyEQNRcNd1CYpOitbYZxhD?=
- =?us-ascii?Q?Ux3/ZWXdicJ5wdqAoBGPlF7m6KmwC5tKr6iaqV8Yf5EFm3QSsGis8AMf6Qu6?=
- =?us-ascii?Q?5EzBXOxy20gLr6O7dR5F6Q/3iprNNEn3WODPhp/F0jsOu22k0zss6eikNqGG?=
- =?us-ascii?Q?r5rZ0/3BqhaXaAnEPVHkJIc1EstknO48O2+x4LgYXLbwkh+LpkkOzNPuyWIc?=
- =?us-ascii?Q?7FViqcQaEedGWbSL/sJ+iTegUWYqvDPhnukt3+R1b3vk1JwVQ1YivxjTMEqW?=
- =?us-ascii?Q?URmSLPMda2IdQaduCn1T2Av/8Nn7Gsd9utdTxMBCT61n1LwAkkZlwJCf9jer?=
- =?us-ascii?Q?lwd5x+Qfcn35Bcvj4OSrtbEd1cPpg3QnuuSji4sE3SgZQjgoXZGajEkXL/gR?=
- =?us-ascii?Q?/F7Yu6ffyCe44Gi0KbfttX/EKrYf1nEszCWXcQFzi3sYZ9ih6le1M2h7NUwE?=
- =?us-ascii?Q?XmawqTC7QWQrJGqfJvhB2ErSMyn27EyW25SIyu2OdoRSZWaYi5qHYsikC795?=
- =?us-ascii?Q?lXspWXPOKyV+S7KE6DYKO+WlKA1sWz4ptC6gHJmnhWFQ5b8afrrVottrg1cF?=
- =?us-ascii?Q?b20Ry6WPbu3xSH8Krbhiq36my5XCEOmlZEGoEqbqjZiw1ijsELAIhQwUspQq?=
- =?us-ascii?Q?IkoWOPoeNVb+nZGaVKKhNeXEs5lbBwTnBxVoQqKNfhdLQhVVdnRATPkETedE?=
- =?us-ascii?Q?qo9VHxFcvEqTiH/OT/378lQyFLfuOehiSYRESESkwDfQdVhIMaigsH8CnTuQ?=
- =?us-ascii?Q?CZKZwWx2ZO4GWrg7LvYA573P1ntl/tmbME2CFvj2XjCRRuK4MQ+2Pvd2yb3w?=
- =?us-ascii?Q?zAE2Mmgo/0Ip97a1yBRP5R0tc0k4klH1SVCYlVbBqLSuJBhrvbFsK6zgvORI?=
- =?us-ascii?Q?43DuRfBfY9IhMPTLYBbHZyeIQJn7pjvZf+dqeNPvWHyb9bOKumUIBWlC8hYT?=
- =?us-ascii?Q?8Vj0Ytn3WwK4UMpk96XljJfsbWjOO9dORBSa/t29JyCOEy+tczP6JfIpIknf?=
- =?us-ascii?Q?2FH4ghqpJ5Bu78iCZHAqBlzeAltPa95rQ0rZhOfSeG87Evdo4My1LpbGhTmp?=
- =?us-ascii?Q?WZHiL7Hu2vVvmWtbYb5MVTsQd68kKwFjjy7oxyCJ1Rr+cChTamk1nZigGa4g?=
- =?us-ascii?Q?GlSBEAw+BrHzWAVoZ7FA5f+XG0wqo5CEjsSe8YkDGEuzAX53Gyz41uuScyMu?=
- =?us-ascii?Q?OOU3BX3mFXFWBgOXhb1PHCPJOfP9FQsSzQZ6qsxR?=
-X-OriginatorOrg: phytec.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9ebd197-067c-4dd4-f824-08dc7f68c504
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR22MB5636.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 22:51:53.9602
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7EBmoeF3HOzEyUmfi9e9LiLazVaeh5uYDddMNsP1o8e6rBlPExmYueY5nwDNd7/5GXinPnmRiOVsp71GslrCCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: EA2PR22MB5065
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=F9L0dbhN c=1 sm=1 tr=0 ts=6656612a a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=TpHVaj0NuXgA:10 a=1vY5SClPdTbzMX9iZtUA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-Add an overlay to disable the spi nor for all am6xx-phycore-som
-boards.
+I have a system that has very over spec'd fans so the amount of noise whe=
+n they
+run at 100% duty cycle is considerable. We have userspace monitoring tool=
+s that
+will configure appropriate fan control parameters but there is a bit of a=
+ delay
+between the kernel loading the driver and the userland tools catching up =
+to
+configure the fan control. This series adds device properties that allow =
+the
+PWM duty cycle to be specified via device properties so the PWM duty cycl=
+e can
+be reduced as soon as possible.
 
-Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
----
-v2:
-  - Add build time tests in makefile
+This series attempts to setup the adt7475 as a pwm provider so that we ca=
+n
+specify these properties. The devicetree support was reasonably straight
+forward (example usage is in the binding patch). I struggled to get the A=
+CPI
+version working well and in the end the code had to distinguish between t=
+he
+of_node and other case. The ASL I've ended up with is
 
- arch/arm64/boot/dts/ti/Makefile                   |  5 +++++
- .../dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso  | 15 +++++++++++++++
- 2 files changed, 20 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
+    Device (ADT0)
+    {
+        Name (_HID, "PRP0001")
+        Name (_CRS, ResourceTemplate () {
+            I2cSerialBusV2 (0x2E, ControllerInitiated,
+                            100000, AddressingMode7Bit,
+                            "^^CH00", 0x00,
+                            ResourceConsumer, , Exclusive, )
+        })
+        Name (_DSD, Package () {
+            ToUUID (UUID_DEVICE_PROPERTIES),
+            Package () {
+                Package () { "compatible", "adi,adt7476" },
+                Package () { "#pwm-cells", 4 },
+            },
+        })
+        Device (FAN0)
+        {
+            Name (_ADR, 0)
+            Name (_DSD, Package () {
+                ToUUID (UUID_DEVICE_PROPERTIES),
+                Package () {
+                    Package () { "pwms", Package () { 0, 22500, 1, 50 } }=
+,
+                }
+            })
+        }
+        Device (FAN1)
+        {
+            Name (_ADR, 0)
+            Name (_DSD, Package () {
+                ToUUID (UUID_DEVICE_PROPERTIES),
+                Package () {
+                    Package () { "pwms", Package () { 2, 22500, 1, 50 } }=
+,
+                }
+            })
+        }
+    }
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 3d0e87a78e09..8d8fc8bfaf7e 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
- # Common overlays for the phyCORE-AM6* family of boards
- dtb-$(CONFIG_ARCH_K3) += k3-am6xx-phycore-disable-eth-phy.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am6xx-phycore-disable-rtc.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am6xx-phycore-disable-spi-nor.dtbo
- 
- # Boards with AM65x SoC
- k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb \
-@@ -115,6 +116,8 @@ k3-am625-phyboard-lyra-disable-eth-phy-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am6xx-phycore-disable-eth-phy.dtbo
- k3-am625-phyboard-lyra-disable-rtc-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am6xx-phycore-disable-rtc.dtbo
-+k3-am625-phyboard-lyra-disable-spi-nor-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
-+	k3-am6xx-phycore-disable-spi-nor.dtbo
- k3-am625-phyboard-lyra-gpio-fan-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am62x-phyboard-lyra-gpio-fan.dtbo
- k3-am625-sk-csi2-imx219-dtbs := k3-am625-sk.dtb \
-@@ -144,6 +147,8 @@ k3-am642-phyboard-electra-disable-eth-phy-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-eth-phy.dtbo
- k3-am642-phyboard-electra-disable-rtc-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-rtc.dtbo
-+k3-am642-phyboard-electra-disable-spi-nor-dtbs := \
-+	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-spi-nor.dtbo
- k3-am642-phyboard-electra-gpio-fan-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am642-phyboard-electra-gpio-fan.dtbo
- k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
-diff --git a/arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso b/arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
-new file mode 100644
-index 000000000000..cc0cf269b6e4
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6xx-phycore-disable-spi-nor.dtso
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Copyright (C) 2023 PHYTEC America, LLC
-+ * Author: Garrett Giordano <ggiordano@phytec.com>
-+ *
-+ * Copyright (C) 2024 PHYTEC America, LLC
-+ * Author: Nathan Morrisson <nmorrisson@phytec.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&serial_flash {
-+	status = "disabled";
-+};
--- 
-2.25.1
+If had to introduce a code path that parses that because try as I might I=
+ could
+not convince fwnode_property_get_reference_args() to fetch the informatio=
+n out
+of the ACPI data. If I've missed something obvious please let me know.
+
+Chris Packham (3):
+  dt-bindings: hwmon: Add adt7475 fan/pwm properties
+  dt-bindings: hwmon: adt7475: Deprecate adi,pwm-active-state
+  hwmon: (adt7475) Add support for configuring initial PWM state
+
+ .../devicetree/bindings/hwmon/adt7475.yaml    |  27 ++++-
+ drivers/hwmon/adt7475.c                       | 112 ++++++++++++++++++
+ 2 files changed, 137 insertions(+), 2 deletions(-)
+
+--=20
+2.45.1
 
 
