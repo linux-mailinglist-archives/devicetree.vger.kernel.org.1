@@ -1,104 +1,122 @@
-Return-Path: <devicetree+bounces-69937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78C348D1FB4
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:08:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC978D1FBA
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5B151C22B4F
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:08:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79033285F7E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E9D17166F;
-	Tue, 28 May 2024 15:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6EF171069;
+	Tue, 28 May 2024 15:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dIRb0w2l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rJCFrejZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56106171668;
-	Tue, 28 May 2024 15:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE4741E880;
+	Tue, 28 May 2024 15:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716908730; cv=none; b=fFiRnIXjgoulC66NgJlLmnGgpX5R27qX9o+K0s5UcRxGkSST6maaqVJboSdFsXatKhfAW1267vUJO3c23apulxoXSfpdK/BLuMJiXnPLrPQqkgNXKTouehHKM4CK0S4FGa3COghN9R9tqu7cK0gWQ+QTdrlu31CXQKLBec3nPGQ=
+	t=1716908797; cv=none; b=MRkAhaOh2WBXc9WO5VBKA4t0o7dfik4Aq2xbjey+0owwdHPlEspfyhWqO/blciHp3uXqbxWEBOO5+wgW8+qTozxOIxeqgrUb7BnKQA2Io5Gj3b9Xj3WOaXQ0lwbbKJir2VcZaFcSFCH9lyQ6MpM5412DRrQH/VU5npjnuyLl5gY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716908730; c=relaxed/simple;
-	bh=JyPHNVFfMJ3/sD2IJSFnsp89QQ/y7TlvIIZG6NVwyy8=;
+	s=arc-20240116; t=1716908797; c=relaxed/simple;
+	bh=WW8C6Bc9G0Yfb3CfuxmEdX54sinQDMOYusd6wezRaW4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YNEgCsFtxgtHy9v2rg44vyEvxpw/3HWeK5uUs/2zcV+L7UGJhM37PzMD8HTLxtoB92msHlX0MrANPFfTbDovcr2+TtXhs/Qa3MDP4wLxsE74i/9nSm81fi1ZJePviwo4we2Tl6HtNE6Zp1ZXNz+YeX67X6dWLfzwVgFuLMHc8Oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dIRb0w2l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8ED1C3277B;
-	Tue, 28 May 2024 15:05:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZCLWAE1EFnrwEfUscDNHmcD6F2rmKSxpL8tvJj1PHC1fgtKW3448F9X233Kd25Ra0jgzU+PXmUVoY110/Rv/twtymj60Tn0wVTvfMdr3sL1G0br6/oIeXmwsa0OuljL9PyVuU880A716qSfyenSBEj8VewkwIYH47v6OvdcPCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rJCFrejZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0864BC32782;
+	Tue, 28 May 2024 15:06:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716908729;
-	bh=JyPHNVFfMJ3/sD2IJSFnsp89QQ/y7TlvIIZG6NVwyy8=;
+	s=k20201202; t=1716908796;
+	bh=WW8C6Bc9G0Yfb3CfuxmEdX54sinQDMOYusd6wezRaW4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dIRb0w2lz96WwnDPeSfTComNhIpo6QEFqPMa12leJDspZh8/sDKluPR1gber8HbuI
-	 0u87WLZ7hwoDsJKhmSpIMK4juAzAuuGs9/KtIsqg87CNax7SGbNp5X/g/iSGB5WQ1o
-	 zcj1cREQVDGywyVRkDPDJpsv8jbCnUsd3hpfM+PcYSvjXO0EXIcClj9oVMswp9GXQh
-	 SR3eQrS/c5k3J0kRJqAC1+0ggWco520tjze4SJ6AZty3+k3wmB+5l1TsTUPN5loFn/
-	 rnw65xsTkJQBeOT9nByYTSkDYpBAZLRQyVf0+vBGUX4DdWAl18iGb7UE6LLioxNjRm
-	 3uMQmex5bjtlg==
-Date: Tue, 28 May 2024 16:05:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
-Cc: linux-kernel@vger.kernel.org, jic23@kernel.org,
-	linux-iio@vger.kernel.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org, corbet@lwn.net, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-	Ramona Gradinariu <ramona.gradinariu@analog.com>
-Subject: Re: [PATCH v2 3/6] dt-bindings: iio: imu: Add ADIS16545/47
- compatibles
-Message-ID: <20240528-backlands-landmine-3eccb5b48c43@spud>
-References: <20240528142409.239187-1-ramona.gradinariu@analog.com>
- <20240528142409.239187-4-ramona.gradinariu@analog.com>
+	b=rJCFrejZ8h7jn7LQBqsHSkoosHWCqAdx9SAEEq26xBbw8w1j/qr8vwinxz/VhupPS
+	 aBLKEFm7aN/N47MatW0jKAJZhZDKT3Ah4dFSI+ZqIkDMPsej3xS6TRZgaflQ1C9u4g
+	 uE8HcoBYSSXI//rquJlBhTjBeF5UIrnIUnOv/Laai5LFY3DzKTpB46j5lsgljrErTl
+	 DsJOQlowXN7Z5yUHQ8TaLfthwG32J/zqo9beR4leCqRCC9LNWsN1/Om2+3rYh1/VFN
+	 1sF2YhxnnsFsnlzUm5XjEdfeQEmEqTbvFi5sXs/phTLfKR9vuOtGDQ3a3WvtDtK9jg
+	 KCzoZKJyez3AQ==
+Date: Tue, 28 May 2024 10:06:33 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Nikita Travkin <nikita@trvn.ru>
+Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: c630: Add Embedded Controller
+ node
+Message-ID: <bbsdvqjo2ikljnuvupolpdfstsaegfqyg2ct7bt24evcorcfjt@3fw5eicxxuik>
+References: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
+ <20240527-yoga-ec-driver-v3-6-327a9851dad5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="K8etPs/NXvyXmZTN"
-Content-Disposition: inline
-In-Reply-To: <20240528142409.239187-4-ramona.gradinariu@analog.com>
-
-
---K8etPs/NXvyXmZTN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240527-yoga-ec-driver-v3-6-327a9851dad5@linaro.org>
 
-On Tue, May 28, 2024 at 05:24:06PM +0300, Ramona Gradinariu wrote:
-> Add ADIS16545/47 compatibles. Each newly added device has a different
-> angular velocity/linear acceleration scale combination, as follows:
-> Accel dynamic range:
-> - 8g: ADIS16545
-> - 40g: ADIS16547
-> Gyro dynamic range:
-> - 125 deg/sec: ADIS1545-1, ADIS16547-1
-> - 450 deg/sec: ADIS1545-2, ADIS16547-2
-> - 2000 deg/sec: ADIS1545-3, ADIS16547-3
->=20
-> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+On Mon, May 27, 2024 at 01:03:51PM GMT, Dmitry Baryshkov wrote:
+> From: Bjorn Andersson <andersson@kernel.org>
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Please align this with the S-o-b - feel free to use either form.
 
-Thanks,
-Conor.
+> 
+> The Embedded Controller in the Lenovo Yoga C630 is accessible on &i2c1
+> and provides battery and adapter status, as well as altmode
+> notifications for the second USB Type-C port.
+> 
+> Add a definition for the EC.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      | 76 ++++++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index 47dc42f6e936..d975f78eb3ab 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -370,6 +370,66 @@ zap-shader {
+>  &i2c1 {
+>  	status = "okay";
+>  	clock-frequency = <400000>;
+> +
+> +	embedded-controller@70 {
+> +		compatible = "lenovo,yoga-c630-ec";
+> +		reg = <0x70>;
+> +
+> +		interrupts-extended = <&tlmm 20 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ec_int_state>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		connector@0 {
+> +			compatible = "usb-c-connector";
+> +			reg = <0>;
+> +			power-role = "dual";
+> +			data-role = "host";
 
---K8etPs/NXvyXmZTN
-Content-Type: application/pgp-signature; name="signature.asc"
+I was under the impression that this port is wired directly to the SoC
+and as such this would support data role switching as well.
 
------BEGIN PGP SIGNATURE-----
+No concern with that, but just out of curiosity, is this not the case?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlXytQAKCRB4tDGHoIJi
-0vdOAP4vdykq60JRPTiFmg++dtqwnYZyhuK6tgGNSxhukdO97wEAsnqqw6t3dkeg
-3V/N6e9PMEGxVRRUrgWKlka5edtLKAY=
-=1IPI
------END PGP SIGNATURE-----
-
---K8etPs/NXvyXmZTN--
+Regards,
+Bjorn
 
