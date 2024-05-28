@@ -1,128 +1,144 @@
-Return-Path: <devicetree+bounces-69763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7BBA8D16CA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:02:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7833E8D16D6
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:05:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92B68282CAF
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 09:01:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8DDD1C22A55
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 09:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44B913C81B;
-	Tue, 28 May 2024 09:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5FC13D2A2;
+	Tue, 28 May 2024 09:05:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dm4LVOT7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KMNAqXR6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55D871722;
-	Tue, 28 May 2024 09:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EB34F1F2
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 09:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716886914; cv=none; b=FT/NDUAPBhL9++FkP3Ke5xOf8/Zb22/u6ZHWRQIoV1QAgr0TvY2BfjvMqOgQSwtZ9kL35+5E6OMzXcZ5z8upV/Up9/NW+1TmUyjbjF4aGQZ5AFAf3zvMVdlte3fK3C21WFb061B2JauiXkb3xoJKAfYxhAuVdNNwhRSfggYMwIk=
+	t=1716887104; cv=none; b=GTWBMY11IWgXdY+PK1xrBRaOszPTC3OmecNJCL6sGkvVn8sSoLVHAbIxw5uzNwycKeevO7HylQ3f0oVXgOfcLZWTPLQ/baqmwqYuYB74jXbTgD0AkKQst/j4zA/clScgcWg7ypnSxxvvC5h0QfgaTe6d0U18gQTTiMytERvySWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716886914; c=relaxed/simple;
-	bh=b1dh0XqkWf5Pg7C0JU1lbtbRHtpmug9Lp6PogGuFhqo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YSjhAxcrPgqD+YujH7xGloOVpx3HOS/FAjV+khV/XjeLd8YyKOAvmxhOMDb2n91olB5x3u0cf5TWfdnqaMA87ovNp/t31UOoIOWThDieuNujqyN7ktgbkCy6I8tD4XM7ZqoEgBjm5XDv72qW0Rl6/NV019GEzE+L4pNBMH/ePxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dm4LVOT7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E4FFC3277B;
-	Tue, 28 May 2024 09:01:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716886914;
-	bh=b1dh0XqkWf5Pg7C0JU1lbtbRHtpmug9Lp6PogGuFhqo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dm4LVOT71tp+ic5VnhSVg2x7Fn3Steatcw/Ah6oD532v1iFcGessrCntnTXdpMpVQ
-	 OZpq5EXMq97ed6QZKqDvAVoBWwvrSHGwYu71JFSrHXFb1vvrYvNaXYRjJuKNWwFY6f
-	 jIz5PehkeUM711yidPC+uUdNmjSn0bX9J4i756P/uQGGOpiZ1TRUhGCd4UenZ24dtb
-	 UwSOrfqgOQOQcSntDHMZ9xxQ6Tp95fiwfuWI8F0vTkFFkNRmko62Y9+LiD7GkeMcqm
-	 PoZaZf5TVt/QCqTABhQpud7TcslmqfiGCZCN2ZSR9zZvaA75I/y37nrdg+csxWpK1H
-	 B9FU0NCU0mJsA==
-Message-ID: <33f46d92-f5f8-4b06-b5b0-8a7c2e37c194@kernel.org>
-Date: Tue, 28 May 2024 11:01:46 +0200
+	s=arc-20240116; t=1716887104; c=relaxed/simple;
+	bh=ou2nPJXswciglO/60bjGMxpgyoL9GXfxVJshaAaHVbs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Oes7P3OUV/VnLzHB3o2PkJLu6G/JYA9DZbSKoFUVg2VGBBcleRlty2CmBauzE+teAPw4s4sEBYrH8g7n6YkakMYfPE7pRq/occFJCcm3ORKtL+UqzUNf+cm/U+z22DQvih5W3boKmqjcJY4V/zLcCpMudMS2k00FfGNHkDV27S4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KMNAqXR6; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-df7713445d3so608739276.0
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 02:05:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716887102; x=1717491902; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qco2VkcgOsBroVWxxvK7SBMAfuOUTvOxLPV6N/M2lx4=;
+        b=KMNAqXR6zlVTmFJoyBc2DiD7ZWr95zJ8meUxC6z6g0c5X9lYW7uojWtt4T/Z+Z9VT4
+         oLKGNWtuBYNEzjkrxkts8emrWphYMwrDrsPCgTcau3kTyGTHShG5HDehDakBLYflV8CF
+         YIRjuCyCLWpeBym4IY7AHP6DjgdIJg7myhRdvjOBadtg0Hx5fonRRAxxrIdLztSIh1mG
+         uqtpnN3r4QCQmjMkJgZvAeVrhF8zk015ZjM3M94ipotGfAXymB5Nkcn7mr8cBykDmDqb
+         gJjkH4tl/B21r/sdKjBx02vNwuiBJiSqw6W1eVlQZBMx6TYVtVfBPlJ2igOy4TSNne5n
+         aQRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716887102; x=1717491902;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qco2VkcgOsBroVWxxvK7SBMAfuOUTvOxLPV6N/M2lx4=;
+        b=Q3kTzdmdYq6lT6/PLaBJNdl+klJ5xf0jJ+wgJoUjjh5UBORWEkFj3o6ai2ToU8OPuM
+         sYafil7XKcw3ZNFBUhDbH3ZWC4kgNMeOUC9o+oBUilb2HwiHp/8uq5iFJQJeXaN0D7nl
+         V2sLCuBLutVZwJHn/nem1IDXwl/DPwN7+gwMs2qqola9lS9NuxOH1AYYuX7KPH606eJU
+         5d+lrRuKymt3bfJmmRVLCUpKaWIKWk2918ZQ4Ib3sUcJteRUtruRIHKoEN1iy8Sf816q
+         qeZilJi/qAOYzlVf5IPWtmMvSTMXtUxPXkGsbbTH0e8F45dPRDNc/KgAn4Cxf8tJ+94X
+         kllw==
+X-Forwarded-Encrypted: i=1; AJvYcCXBm6sDVWT9HdUZJo/DYORl4NnP7cUZ3uoA3tc2repg0/QqJZQEXt7gxTnfmuenHecdp2Ikg/VZ4lpQVn17+4bzMMMvsyqt5SRbqg==
+X-Gm-Message-State: AOJu0YzH8g7m06G9Xt8wwuSgox5Nl8629R580oXo9/bs/DacSQ84kJsi
+	HYIFqudkvEPb7ygavSCzgP0yWhVgHtopUtijzhm0F1Lp7JjZsd2Wzl036KcRuMsD3bSpRZSpvn8
+	+ZqKVFuqv2BiuUXrbsdx2YYl0eeHV+V+IX7fPtg==
+X-Google-Smtp-Source: AGHT+IGNRUmYq16dA3M+ILETjfBKif7DHc9kvKF75lKaPWdpO1n294Imuj/CoPWaZS6n4gDEYE+TkgvaatUZy6PTcwQ=
+X-Received: by 2002:a25:908:0:b0:df7:8fdd:1ca9 with SMTP id
+ 3f1490d57ef6-df78fdd289amr7264958276.1.1716887101840; Tue, 28 May 2024
+ 02:05:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: power: add Amlogic A4 power domains
-To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com>
- <20240528-a4_secpowerdomain-v1-1-2a9d7df9b128@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240528-a4_secpowerdomain-v1-1-2a9d7df9b128@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
+ <20240527-yoga-ec-driver-v3-4-327a9851dad5@linaro.org> <ceb1f7b3-2787-4166-846f-2427b44b3e62@suse.com>
+ <vc5nd5dl4czkuxzikazn7ndy6wghlchqsrcgxf7n5w53w3o3m2@spyfgp5pwy4y> <9a0073a0-d598-4c1a-bb32-328d0a279152@suse.com>
+In-Reply-To: <9a0073a0-d598-4c1a-bb32-328d0a279152@suse.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 28 May 2024 12:04:50 +0300
+Message-ID: <CAA8EJpoYq-MKyMkWfWFSjJq6=3ZRC02k=4oQaqtcp73hQTZZEw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] power: supply: lenovo_yoga_c630_battery: add
+ Lenovo C630 driver
+To: Oliver Neukum <oneukum@suse.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
+	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Nikita Travkin <nikita@trvn.ru>
+Content-Type: text/plain; charset="UTF-8"
 
-On 28/05/2024 10:39, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Add devicetree binding document and related header file for
-> Amlogic A4 secure power domains.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Tue, 28 May 2024 at 11:43, Oliver Neukum <oneukum@suse.com> wrote:
+>
+> On 28.05.24 01:15, Dmitry Baryshkov wrote:
+> > On Mon, May 27, 2024 at 02:26:36PM +0200, Oliver Neukum wrote:
+> >> On 27.05.24 12:03, Dmitry Baryshkov wrote:
+>
+> Hi,
+>
+> >>> +struct yoga_c630_psy {
+> >>> +   struct yoga_c630_ec *ec;
+> >>> +   struct device *dev;
+> >>> +   struct device_node *of_node;
+> >>> +   struct notifier_block nb;
+> >>> +   struct mutex lock;
+> >>> +
+> >>> +   struct power_supply *adp_psy;
+> >>> +   struct power_supply *bat_psy;
+> >>> +
+> >>> +   unsigned long last_status_update;
+> >>> +
+> >>> +   bool adapter_online;
+> >>> +
+> >>> +   bool unit_mA;
+> >>> +
+> >>> +   unsigned int scale;
+> >>
+> >> why do you store unit_mA and scale? This looks redundant and like a source
+> >> of confusion to me.
+> >
+> > Here we just followed the AML code in ACPI tables. The unit_mA is a
+> > returned from the_BIX method, the 'scale' is used internally in the DSDT.
+> > If you think that it's better, I can change all '* scale * 1000' to
+> > 'if unit_mA then foo = bar * 10000 else foo = bar * 1000'.
+>
+> I think that would indeed be better. Implementation details of the DSDT
+> should not dictate data structures in a kernel driver.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Ack.
+
+>
+>         Regards
+>                 Oliver
+>
 
 
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
 
