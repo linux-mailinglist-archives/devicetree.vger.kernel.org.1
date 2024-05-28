@@ -1,195 +1,188 @@
-Return-Path: <devicetree+bounces-69950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 256BF8D201B
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:17:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 420718D2023
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:17:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCA1A1F24179
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:17:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ED301C2327B
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC81171672;
-	Tue, 28 May 2024 15:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUCcJuLj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C320C171085;
+	Tue, 28 May 2024 15:16:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4154B16F8E0;
-	Tue, 28 May 2024 15:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9942171080;
+	Tue, 28 May 2024 15:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716909338; cv=none; b=HXdCEzHXxhXa3CMmuSH79SlUqlO5DMaNlZ7YTNaM5sJ6o/hM08XSdmTFxm7L5MwHsnj72W1TglUs7K9xDLj2A3xxaIj7GaO/waEys+VMKuXmhr+4k/rnjkTvHJupgvcvZ0xMPEJveelmO1HaTkUVmnTOKJMUuko9AlCx/4kL10k=
+	t=1716909393; cv=none; b=QM/aE4IaU0MeYEcZZE04xMsKE2CIgfDn4QVSQPNYYVhtouzZuoD9/ScsH9BZAvOFhnwotYtDlpfn80XMTL4rHavYFZSkGJjsj1Hf55uHQPOaawK+8/Xg1TJh8XRX9iglgYthOvbei+Fim7AabbXG6jc1EqN7lOOZhoPj9mfgm5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716909338; c=relaxed/simple;
-	bh=xpk0Yqw/VN8ddEnECwmM/UpM6KoNoPvI14IHu2eBrJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OIyBRhm3TmB621C25NPIypzskWUl7To6lqIXaWZ/s87vG/A9MVxJbSJsO0lR1f4heFd8gmmy06uwmgifOwq7BTws7zX9znVQ0YvmXS7t3MhAlIeGwF2sXxE4wx/R44aM9Z3pNYg+FNlnfqQJgX1SlmLXyYQG6uetpuO+UELKpnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUCcJuLj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 942F9C3277B;
-	Tue, 28 May 2024 15:15:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716909337;
-	bh=xpk0Yqw/VN8ddEnECwmM/UpM6KoNoPvI14IHu2eBrJA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cUCcJuLjneqe7FsY8PDzBO8l6FMtnMWAfv87RASRNOn7ANCjpyTOCQZHUK1hT0ig2
-	 6B8fVVMjnGid5Z1MERtu5+/uuCMrqzvGKzWVgyuK7/U7zOtQH5qc+wywSAG3cokDKX
-	 yv20Iz5vrXsx1n19nf9LXAx1T/uoIJA9hWwBrHU19WulFHEsUnTLyUZ1CABB+XaZzC
-	 2d/GYyyoaPLkTIkHMFf6WVDQ5y0ScYlfjJbkGlTNXzAJ1+ZnT2F0F+lj2jZ+BYIV8E
-	 gBq03xNbxHelWp5K2URHJuTM6b/mG6uRgHfrEUhHnOlx2fS1p1a3sY/0AY5GiTNnjJ
-	 wlbxl/nHstHPg==
-Date: Tue, 28 May 2024 10:15:36 -0500
-From: Rob Herring <robh@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shengjiu.wang@gmail.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-	perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible
- string for i.MX95
-Message-ID: <20240528151536.GA275498-robh@kernel.org>
-References: <1716286416-17621-1-git-send-email-shengjiu.wang@nxp.com>
- <1716286416-17621-2-git-send-email-shengjiu.wang@nxp.com>
+	s=arc-20240116; t=1716909393; c=relaxed/simple;
+	bh=KQUl1FxTa7R52d6jouTH3YkHig0GUioUMVAcrGm63HM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fL7Gh+3DKdAp6E8odfYPWluU7y5Tz5u+8FZUaAMc6snkwbclhE3kGVVdENPTbiwjc3uK2QG0RMYeAJ21/O4VZUTBOhO4CKWAbon6tg2ZLP07R7hmIM1j/Djy6QVrqwpWDIJ/7fKMqletq7xflT7Alzwosq70vD/9Gs5Thk7FOxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from [213.70.33.226] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sByYn-0004ud-Ul; Tue, 28 May 2024 17:16:22 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Alexey Charkov <alchark@gmail.com>,
+ Quentin Schulz <quentin.schulz@cherry.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal,
+ OPP and fan
+Date: Tue, 28 May 2024 17:16:20 +0200
+Message-ID: <6230150.aeNJFYEL58@phil>
+In-Reply-To: <8727e1c29bd6f562a7fc3de0ddac62cf@manjaro.org>
+References:
+ <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <5122636.irdbgypaU6@phil> <8727e1c29bd6f562a7fc3de0ddac62cf@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1716286416-17621-2-git-send-email-shengjiu.wang@nxp.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, May 21, 2024 at 06:13:35PM +0800, Shengjiu Wang wrote:
-> Add compatible string "fsl,imx95-xcvr" for i.MX95 platform.
-> 
-> The difference between each platform is in below table.
-> 
-> +---------+--------+----------+--------+
-> |  SOC	  |  PHY   | eARC/ARC | SPDIF  |
-> +---------+--------+----------+--------+
-> | i.MX8MP |  V1    |  Yes     |  Yes   |
-> +---------+--------+----------+--------+
-> | i.MX93  |  N/A   |  N/A     |  Yes   |
-> +---------+--------+----------+--------+
-> | i.MX95  |  V2    |  N/A     |  Yes   |
-> +---------+--------+----------+--------+
-> 
-> On i.MX95, there are two PLL clock sources, they are the parent
-> clocks of the XCVR root clock. one is for 8kHz series rates, named
-> as 'pll8k', another one is for 11kHz series rates, named as 'pll11k'.
-> They are optional clocks, if there are such clocks, then the driver
-> can switch between them to support more accurate sample rates.
-> 
-> As 'pll8k' and 'pll11k' are optional, then add 'minItems: 4' for
-> clocks and clock-names properties.
-> 
-> On i.MX95, the 'interrupts' configuration has the same constraint
-> as i.MX93.
-> 
-> Only on i.MX8MP, the 'resets' is required, but for i.MX95 and i.MX93
-> there is no such hardware setting.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,xcvr.yaml   | 37 ++++++++++++++++++-
->  1 file changed, 36 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> index 0eb0c1ba8710..d1dcc27655eb 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-> @@ -22,6 +22,7 @@ properties:
->      enum:
->        - fsl,imx8mp-xcvr
->        - fsl,imx93-xcvr
-> +      - fsl,imx95-xcvr
->  
->    reg:
->      items:
-> @@ -49,6 +50,9 @@ properties:
->        - description: PHY clock
->        - description: SPBA clock
->        - description: PLL clock
-> +      - description: PLL clock source for 8kHz series
-> +      - description: PLL clock source for 11kHz series
-> +    minItems: 4
->  
->    clock-names:
->      items:
-> @@ -56,6 +60,9 @@ properties:
->        - const: phy
->        - const: spba
->        - const: pll_ipg
-> +      - const: pll8k
-> +      - const: pll11k
-> +    minItems: 4
->  
->    dmas:
->      items:
-> @@ -79,15 +86,24 @@ required:
->    - clock-names
->    - dmas
->    - dma-names
-> -  - resets
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8mp-xcvr
-> +    then:
-> +      required:
-> +        - resets
-> +
->    - if:
->        properties:
->          compatible:
->            contains:
->              enum:
->                - fsl,imx93-xcvr
-> +              - fsl,imx95-xcvr
->      then:
->        properties:
->          interrupts:
-> @@ -98,6 +114,25 @@ allOf:
->          interrupts:
->            maxItems: 1
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx95-xcvr
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          maxItems: 6
+Am Dienstag, 28. Mai 2024, 17:01:48 CEST schrieb Dragan Simic:
+> On 2024-05-28 16:34, Heiko Stuebner wrote:
+> > Am Dienstag, 28. Mai 2024, 16:05:04 CEST schrieb Dragan Simic:
+> >> On 2024-05-28 11:49, Alexey Charkov wrote:
+> >> > On Mon, May 6, 2024 at 1:37=E2=80=AFPM Alexey Charkov <alchark@gmail=
+=2Ecom>
+> >> > wrote:
+> >> >>
+> >> >> This enables thermal monitoring and CPU DVFS on RK3588(s), as well =
+as
+> >> >> active cooling on Radxa Rock 5B via the provided PWM fan.
+> >> >>
+> >> >> Some RK3588 boards use separate regulators to supply CPUs and their
+> >> >> respective memory interfaces, so this is handled by coupling those
+> >> >> regulators in affected boards' device trees to ensure that their
+> >> >> voltage is adjusted in step.
+> >> >>
+> >> >> This also enables the built-in thermal sensor (TSADC) for all boards
+> >> >> that don't currently have it enabled, using the default CRU based
+> >> >> emergency thermal reset. This default configuration only uses on-SoC
+> >> >> devices and doesn't rely on any external wiring, thus it should work
+> >> >> for all devices (tested only on Rock 5B though).
+> >> >>
+> >> >> The boards that have TSADC_SHUT signal wired to the PMIC reset line
+> >> >> can choose to override the default reset logic in favour of GPIO
+> >> >> driven (PMIC assisted) reset, but in my testing it didn't work on
+> >> >> Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
+> >> >> support PMIC assisted reset after all.
+> >> >>
+> >> >> Fan control on Rock 5B has been split into two intervals: let it sp=
+in
+> >> >> at the minimum cooling state between 55C and 65C, and then accelera=
+te
+> >> >> if the system crosses the 65C mark - thanks to Dragan for suggestin=
+g.
+> >> >> This lets some cooling setups with beefier heatsinks and/or larger
+> >> >> fan fins to stay in the quietest non-zero fan state while still
+> >> >> gaining potential benefits from the airflow it generates, and
+> >> >> possibly avoiding noisy speeds altogether for some workloads.
+> >> >>
+> >> >> OPPs help actually scale CPU frequencies up and down for both cooli=
+ng
+> >> >> and performance - tested on Rock 5B under varied loads. I've dropped
+> >> >> those OPPs that cause frequency reductions without accompanying
+> >> >> decrease
+> >> >> in CPU voltage, as they don't seem to be adding much benefit in day=
+ to
+> >> >> day use, while the kernel log gets a number of "OPP is inefficient"
+> >> >> lines.
+> >> >>
+> >> >> Note that this submission doesn't touch the SRAM read margin updates
+> >> >> or
+> >> >> the OPP calibration based on silicon quality which the downstream
+> >> >> driver
+> >> >> does and which were mentioned in [1]. It works as it is (also
+> >> >> confirmed by
+> >> >> Sebastian in his follow-up message [2]), and it is stable in my
+> >> >> testing on
+> >> >> Rock 5B, so it sounds better to merge a simple version first and th=
+en
+> >> >> extend when/if required.
+> >> >>
+> >> >> [1]
+> >> >> https://lore.kernel.org/linux-rockchip/CABjd4YzTL=3D5S7cS8ACNAYVa73=
+0WA3iGd5L_wP1Vn9=3Df83RCORA@mail.gmail.com/
+> >> >> [2]
+> >> >> https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd=
+2kwkbguiolmozntjuiajrb@gvq4nupzna4o/
+> >> >>
+> >> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> >> >> ---
+> >> >
+> >> > Hi Heiko,
+> >> >
+> >> > Do you think this can be merged for 6.11? Looks like there hasn't be=
+en
+> >> > any new feedback in a while, and it would be good to have frequency
+> >> > scaling in place for RK3588.
+> >> >
+> >> > Please let me know if you have any reservations or if we need any
+> >> > broader discussion.
+> >=20
+> > not really reservations, more like there was still discussion going on
+> > around the OPPs. Meanwhile we had more discussions regarding the whole
+> > speed binning Rockchip seems to do for rk3588 variants.
+> >=20
+> > And waiting for the testing Dragan wanted to do ;-) .
+>=20
+> I'm sorry for the delays.
 
-6 is already the max. Drop these and add a 'not' into the if schema (or 
-list out the other compatibles).
+Was definitly _not_ meant as blame ;-) .
 
-> +    else:
-> +      properties:
-> +        clocks:
-> +          maxItems: 4
-> +        clock-names:
-> +          maxItems: 4
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.34.1
-> 
+The series has just too many discussions threads to unravel on half
+an afternoon.
+
+
+> > So this should definitly make it into 6.11 though, as there is still
+> > a lot of time.
+> >=20
+> >> As I promised earlier, I was going to test this patch series in=20
+> >> detail.
+> >> Alas, I haven't managed to do that yet, :/ due to many reasons, but
+> >> I still remain firmly committed to doing that.
+> >>=20
+> >> Is -rc4 the cutoff for 6.11?  If so, there's still time and I'll do my
+> >> best to test and review these patches as soon as possible.
+> >=20
+> > As early as possible, the hard cutoff would be -rc6 though.
+> > I guess I'll just start picking the easy patches from the series.
+>=20
+> I'll do my best to have the patches tested and reviewed in detail ASAP.
+> As a suggestion, perhaps it would be better to take the series as a=20
+> whole,
+> so we don't bring partial merging into the mix.
+
+Patches need to work individually anyway (in correct order of course),
+so like starting at the top with the general thermal stuff should not
+create issues ;-)
+
+
+Heiko
+
+
 
