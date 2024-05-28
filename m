@@ -1,224 +1,113 @@
-Return-Path: <devicetree+bounces-69799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCCCE8D193D
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 13:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 566768D1954
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 13:22:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E2E51F21259
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:16:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08B301F230FD
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB74916133E;
-	Tue, 28 May 2024 11:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2A016C6A5;
+	Tue, 28 May 2024 11:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="VtSWMyWz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vROD0i24"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09E038F9C;
-	Tue, 28 May 2024 11:16:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B780E16C698
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 11:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716894989; cv=none; b=Mowim6EGLIDR7UHhmBjdnbJKQVfcHj14nfh0F9ikjBaFfd7euEeg1E+u5GNVg1UyoF8srWWLV1OECldxaMUzrt6rErLVxWKTRobu1jhAdieuTBMmbKryf6W9ahPxyarZ6EwA26sGnRcAY8R+0s/TDuBOXJtOJz8iGoZzr5jTlig=
+	t=1716895356; cv=none; b=nCYA4stJPh4BZ6wwmEJUZmJ32QXRTo/+NIbgPPdBpRN87jkZk/hTKQeIicz6B0AdNg/3noSHr1LxLbWqIsUyj4wmzDF/yXqOHU5R+zvj2TubkOQGoyiHIyyX6UUj0qnULaLto16JSjOgMcLsEmAb+m2JOb45mDF3MWuXKg9NdDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716894989; c=relaxed/simple;
-	bh=ddjKtq7RFYMNYFg22zslRU3jdlC10pSzFW4Bsm3Q9kc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ndjKeIT1NMtoJI+/2eBYSKJzXLHpydVMCUUOb7C2kvSO/Jl/RtOzjS/4AmoEkC8/msBnH5+jFU0io0jHwEfzRlBXV8hqmtWU+AA4N9TiMZk0K8oBpf7NeJbXdOYDE4ncXYTkN/0Jl2FKufrhWLrjsu2pxf+IR7bXlab/UtXd27c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=VtSWMyWz; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1sBuoa-00873f-0r;
-	Tue, 28 May 2024 13:16:25 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=JrfHFnuvkrvmQFg0pUCXychWxb4GoBRV6FZ978Cui2Y=; b=VtSWMyWzUVFTf8Bzaqej9wUJjV
-	ZA9BIHF1lJ8+8C/S6Np8/OO2UUvWdqHSd9QVbOlM55ralWqTlJjgkVxt8vOx5SW9P9w263DkGUGtS
-	CVo6kOzZiH8xVfoE6t7tmbBA/zYMBsCRxevy7V+FqHIusHt2M/ju7rVvdDg7PR8elGoB9vKiDk0Fi
-	pZuvRSHNFzb2Ux79UIdFnZW3DXBfxWdtLy/dGM1aamSZZnCZjGeEtkG98CJafdpKU2Iiyp+DZWc0Q
-	5CjqvaTPCBlwJxuL1e5d0VDn0Rpou97ERJswXyYws+06taKJyhigm+08m6Kp9SzW8UriiAkUPWKFb
-	W8G3+eGA==;
-Received: from p200300c20737c2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:c2:737:c200:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1sBuoZ-001tdQ-20;
-	Tue, 28 May 2024 13:16:24 +0200
-Date: Tue, 28 May 2024 13:16:22 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org
-Subject: Re: [RFC PATCH] dt-bindings: regulator: twl-regulator: convert to
- yaml
-Message-ID: <20240528131622.4b4f8d03@aktux>
-In-Reply-To: <e497498c-f3da-4ab9-b6d4-f9723c10471c@kernel.org>
-References: <20240528065756.1962482-1-andreas@kemnade.info>
-	<e497498c-f3da-4ab9-b6d4-f9723c10471c@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1716895356; c=relaxed/simple;
+	bh=vVnrDTGTD1jTPXsabavO9KRkROagr7tEQ9cYmmbnS2U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NrfLIuju+DhHK9upu7H8BwCuQNjLV4kOF8c+PXaSPpYeJKTyiQ55qkoL1ooK5OQd4sNFVuhLyOPrpLNSaiLyTbJLtSe20T+PZ9nO0O4VoRFyrc1sZfCmLPcpiDya3O785VIsvRapykiWDPoQ7x4YqEsrGOStCQI1muywnvqiQBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vROD0i24; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-df4d9b16348so691555276.3
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 04:22:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716895352; x=1717500152; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vVnrDTGTD1jTPXsabavO9KRkROagr7tEQ9cYmmbnS2U=;
+        b=vROD0i24IuiBHKIk81B6293YNhjIRxEWItJywsyFsTuinLoEdk248ujFLZpmsS1n0h
+         KQD6MqLg2FRSCHCW7Y9vl8bvb9WBVjwFfu1GXscpDW+aD+SBERlsE+FJrwFaCugrSZFl
+         5q5FTbx689v3GmyV+PgpW2wJKG5mzv/J6kW0dAt3M3MthPWxGdzTICsfh51m3Fgz3HQa
+         hapBKYqq0z2aFNKy9v5AF5XGhMvIxrAqbx67ofEDKaBb8jqSAqz3w11xl62NsEUeatok
+         242vxzeAEQXm3XhHp9/pNBNO7Dvh6OkzdMn4HDqf7vuDORAtQXDDfNWUZNpeoTrl0MT2
+         A72w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716895352; x=1717500152;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vVnrDTGTD1jTPXsabavO9KRkROagr7tEQ9cYmmbnS2U=;
+        b=G++1Y4Q/cECnJaxUyd3bDrlc6g8veM6mUgk5Y4Ye6NYi/9QE6vyaFNqufsAvIyYAHu
+         JN0XGFAwe9/1bO4AcrVPMO5hkG8uzcw075OyIW1TKT0jwxVOQKfDVWygLYxHN3A1ma5M
+         Vo29PuF8EDvHQBY3UMhwoAZM5/bpVl65aUgzXDey7qpy443MLZ6b5K6pCOhG6v2MT47d
+         tEz+It9jIEWaPxfIKn1V8VXwxrHQ4KwuYxhUNCH61iNJBoLYTlxAjHcMgUAlCNVZkNgc
+         YVfY2NqYrBHzs+y+rsdIcaOMrWLWOGKTYpeY+kEDlKN7Uktww5ODGKh3IOkHquuK7Ld9
+         INvw==
+X-Forwarded-Encrypted: i=1; AJvYcCW06MXEUCD3Vu+WsWOt5RgUuL0w90aqCNoPdDcXZrC6V/Oqx3FNg0mkPeEyDzoxpEwJnZ07SAjLwGfGJMoDEquIj6lGZdq0H0Bauw==
+X-Gm-Message-State: AOJu0YwKVFx1/pLPDdfFLkMyfsAApf2bh3Y/0ugP5znRvO0NbmHGulzG
+	QrKb39+HT2JqL0ENyq+oBz0V5y5JC97ljmfhxv8JVYHTuIt5mH+CsqqXTHy5fXucfSTKsPPnmw1
+	Dd1SVRcAKvSoSzr1FjSx/7Jprf4Q0y+OZwrC/991wWM2WKTaHxv9fCw==
+X-Google-Smtp-Source: AGHT+IHD5J3DLTxyYoMzPiDDOZC0S/UzhoN+Hfi8cgK3hs+6ZRNPHnTS5nc3W1mkS6q9XlpPWh1tPo0b8CZO3gohUX8=
+X-Received: by 2002:a25:d384:0:b0:df4:f200:4580 with SMTP id
+ 3f1490d57ef6-df7721e0180mr12372977276.29.1716895352516; Tue, 28 May 2024
+ 04:22:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20240515014643.2715010-1-yangcong5@huaqin.corp-partner.google.com>
+ <20240515014643.2715010-2-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20240515014643.2715010-2-yangcong5@huaqin.corp-partner.google.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 28 May 2024 13:22:21 +0200
+Message-ID: <CACRpkdZuX1gi8No1eOC2GjCZOA-1vh5iBokR75dXmc4SLy6ROA@mail.gmail.com>
+Subject: Re: [v7 1/7] dt-bindings: display: panel: Add himax hx83102 panel bindings
+To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	dianders@chromium.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
+	conor+dt@kernel.org, airlied@gmail.com, dmitry.baryshkov@linaro.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, xuxinxiong@huaqin.corp-partner.google.com, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 28 May 2024 12:04:22 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Wed, May 15, 2024 at 3:46=E2=80=AFAM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
 
-> On 28/05/2024 08:57, Andreas Kemnade wrote:
-> > Convert the regulator bindings to yaml files. To allow only the regulator
-> > compatible corresponding to the toplevel mfd compatible, split the file
-> > into one per device.
-> > 
-> > To not need to allow any subnode name, specify clearly node names
-> > for all the regulators.
-> > 
-> > Drop one twl5030 compatible due to no documentation on mfd side and no
-> > users of the twl5030.
-> > 
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > ---
-> > Reason for being RFC:
-> > the integration into ti,twl.yaml seems not to work as expected
-> > make dt_binding_check crashes without any clear error message
-> > if used on the ti,twl.yaml
-> > 
-> >  .../devicetree/bindings/mfd/ti,twl.yaml       |   4 +-
-> >  .../regulator/ti,twl4030-regulator.yaml       | 402 ++++++++++++++++++
-> >  .../regulator/ti,twl6030-regulator.yaml       | 292 +++++++++++++
-> >  .../regulator/ti,twl6032-regulator.yaml       | 238 +++++++++++
-> >  .../bindings/regulator/twl-regulator.txt      |  80 ----
-> >  5 files changed, 935 insertions(+), 81 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/ti,twl4030-regulator.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/ti,twl6030-regulator.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/ti,twl6032-regulator.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/regulator/twl-regulator.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> > index c2357fecb56cc..4ced6e471d338 100644
-> > --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> > @@ -50,7 +50,7 @@ allOf:
-> >            properties:
-> >              compatible:
-> >                const: ti,twl4030-wdt
-> > -
-> > +        $ref: /schemas/regulator/ti,twl4030-regulator.yaml  
-> 
-> That's not needed, just like othehr refs below.
-> 
-but how to prevent error messages like this:
+> In V1, discussed with Doug and Linus [1], we need break out as separate
+> driver for the himax83102-j02 controller. Beacuse "starry,himax83102-j02"
+> and in this series "BOE nv110wum-l60" "IVO t109nw41" panels use same
+> controller, they have some common CMDS. So add new documentation for
+> this panels.
+>
+> For himax83102-j02 controller, no need 3v3 supply, so remove it.
+>
+> [1]: https://lore.kernel.org/all/CACRpkdbzYZAS0=3DzBQJUC4CB2wj4s1h6n6aSAZ=
+QvdMV95r3zRUw@mail.gmail.com
+>
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-arch/arm/boot/dts/ti/omap/omap2430-sdp.dtb: twl@48: Unevaluated properties are not allowed ('gpio', 'keypad', 'pwm', 'pwmled', 'regulator-vaux1', 'regulator-vaux2', 'regulator-vaux3', 'regulator-vaux4', 'regulator-vdac', 'regulator-vdd1', 'regulator-vintana1', 'regulator-vintana2', 'regulator-vintdig', 'regulator-vio', 'regulator-vmmc1', 'regulator-vmmc2', 'regulator-vpll1', 'regulator-vpll2', 'regulator-vsim', 'regulator-vusb1v5', 'regulator-vusb1v8', 'regulator-vusb3v1
+Nice work,
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-esp. the regulator parts without adding stuff to ti,twl.yaml?
-
-> >    - if:
-> >        properties:
-> >          compatible:
-> > @@ -63,6 +63,7 @@ allOf:
-> >            properties:
-> >              compatible:
-> >                const: ti,twl6030-gpadc
-> > +        $ref: /schemas/regulator/ti,twl6030-regulator.yaml
-> >    - if:
-> >        properties:
-> >          compatible:
-> > @@ -75,6 +76,7 @@ allOf:
-> >            properties:
-> >              compatible:
-> >                const: ti,twl6032-gpadc
-> > +        $ref: /schemas/regulator/ti,twl6032-regulator.yaml
-> >    
-> 
-> >  properties:
-> >    compatible:
-> > diff --git a/Documentation/devicetree/bindings/regulator/ti,twl4030-regulator.yaml b/Documentation/devicetree/bindings/regulator/ti,twl4030-regulator.yaml
-> > new file mode 100644
-> > index 0000000000000..9623c110605ef
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/ti,twl4030-regulator.yaml
-> > @@ -0,0 +1,402 @@
-> > +# SPDX-License-Identifier: (GPL-2.0)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/regulator/ti,twl4030-regulator.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Regulators in the TWL4030 PMIC
-> > +
-> > +maintainers:
-> > +  - Andreas Kemnade <andreas@kemnade.info>
-> > +
-> > +properties:
-> > +  regulator-vaux1:
-> > +    type: object
-> > +    $ref: regulator.yaml#
-> > +    unevaluatedProperties: false
-> > +    properties:
-> > +      compatible:
-> > +        const: "ti,twl4030-vaux1"  
-> 
-> No quotes
-> 
-Ack.
-
-> > +
-> > +      regulator-initial-mode:
-> > +        items:
-> > +          - items:
-> > +              enum:
-> > +                - 0x08 # Sleep mode, the nominal output voltage is maintained
-> > +                       # with low power consumption with low load current capability
-> > +                - 0x0e # Active mode, the regulator can deliver its nominal output
-> > +                       # voltage with full-load current capability
-> > +
-> > +    required:
-> > +      - compatible
-> > +
-> > +  regulator-vaux2:
-> > +    type: object
-> > +    $ref: regulator.yaml#
-> > +    unevaluatedProperties: false
-> > +    properties:
-> > +      compatible:
-> > +        const: "ti,twl4030-vaux2"
-> > +
-> > +      regulator-initial-mode:
-> > +        items:
-> > +          - items:
-> > +              enum:
-> > +                - 0x08 # Sleep mode, the nominal output voltage is maintained
-> > +                       # with low power consumption with low load current capability
-> > +                - 0x0e # Active mode, the regulator can deliver its nominal output
-> > +                       # voltage with full-load current capability  
-> 
-> These entries are the same. Just use patternProperties and enum for
-> compatible.
-> 
-hmm, if I am using that, how do I prevent e.g. constructions like this to be
-valid?
-
-regulator-vaux2 {
-	compatible = "ti,twl4030-vaux1";
-};
-
-Regards,
-Andreas
+Yours,
+Linus Walleij
 
