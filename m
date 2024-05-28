@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-70017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025F38D2299
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:41:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 309F78D229F
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:41:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 916A71F24652
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:41:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 614B81C22CA1
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AABF22F19;
-	Tue, 28 May 2024 17:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57CD376E1;
+	Tue, 28 May 2024 17:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qrw1m/Mu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AVXGb2LU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E1C224D1;
-	Tue, 28 May 2024 17:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDAA328A0;
+	Tue, 28 May 2024 17:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716918100; cv=none; b=uNrm7s+EkP+mCISsXPIR2t83UEzjAyH/jP4Y9ogO0xk3j0BygjTLjH5vrGPQXaq8kjBL4xDQSlOzV04M2QjCVpkj+BRoY/V6FXx2s6ZNqWjucOvfe76Kmn89O7ftbSgPKHv8iMm67h+vu9pxdclWQa++Yv37XrU5dK6rAkoyXR8=
+	t=1716918101; cv=none; b=al9YZgv/+sAW4sQ3+ufbOnpT8Bg8sILseLj3iAY1OYAb06NsSYyFWQL17WRlYBDNUIf2sLDgsM1XmVsaWI1UCJYLE2loJ31Tgl52nlMD1rya6z1c0mG5w0asCS0I0oKe2CNd0gMhBDMiSi+i3P02sil2ijGShjqu0/5b3LSy4CI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716918100; c=relaxed/simple;
-	bh=/TVduV2ZbhY2J3w1XAChQvYpluvCRq1AayWS8C1G0NA=;
+	s=arc-20240116; t=1716918101; c=relaxed/simple;
+	bh=Y7NsUJEDenpBaq8JlXL3XeBFXZcbz3Zkrbq2F9QJ/B8=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=r5SdwB7FPxtQcXGbfZ/HglrXUNAZ6tPjzRyAUdbGpRUDkcHmJrtDZ1V4tO5i9Ayj7TdZR1LOQwstdy26ds/HwK0CcadBdLtPjlVJSTIDxBUhk18OJoWeM1RQDPFGBEpr5rfX03mLFIRgxafJN5JflI8/aHDh4HF5nke7kHtAh8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qrw1m/Mu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66164C3277B;
-	Tue, 28 May 2024 17:41:39 +0000 (UTC)
+	 Message-Id:Subject; b=disvQ3gpZ3UZwzzvsN7OMe6N1RnxvWzOkcIsLbRuizn24gXZL+Pd1q7+CiwXk2WIjJsZ/XMUY9Jd5MmCA7qyjHycUlrQHMde5wzvo1zLzUR+w2CJAIwURLeWlU39oixntXIWYDVZhafKQjk4Op+uu8APMh/TwPDzA+obbXzstTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AVXGb2LU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D85C7C4AF0D;
+	Tue, 28 May 2024 17:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716918099;
-	bh=/TVduV2ZbhY2J3w1XAChQvYpluvCRq1AayWS8C1G0NA=;
+	s=k20201202; t=1716918101;
+	bh=Y7NsUJEDenpBaq8JlXL3XeBFXZcbz3Zkrbq2F9QJ/B8=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=qrw1m/MuP3D+0ADSOQl2pR6tl/kLfl5zk/yTvtvHupE8yESkaXuqeVgwVCjU+C9bV
-	 QMIqbvEcGL9Y2RW15prtGxmGK3sDZTDoL9hERfT5ZIGw+o4T5QLQY8QIPUwMoDg7ye
-	 wX2fiMZvsOxqhm8ZltZbPwpBo/ixOWbTYWD4lHxFlxRB7a+82NIKPJ8wDxc40yy7MH
-	 8MKWP7ceB1eYUc6mtMnEViE4R9YNga0bIpkNhjhjvp6R9IhrC5OY8VmODayitW6yCS
-	 ZDFLV1haXsatv5BeLeAPvzdkKLbn6Qi9OizxvRoqOQO0crJAiz8rq6sdUCZnzy/jXD
-	 QiPNCZrAJhe+A==
-Date: Tue, 28 May 2024 12:41:38 -0500
+	b=AVXGb2LU1c8RUQJSYhiUpaYhV6hBexbThgNSLiR1ZZpLCtk1sV9CgdgnS0xqbRg3c
+	 T/ct7ps9BfpGd1jCixMGkNXItFbEBDtBxhl9bgF1TOHW0uH2P3mVCEE5feP7h1Yp5B
+	 2CKFcDLIttkioxVlCKEojffFCJc0nZxR8GUfStu4ZLEVwXz+tG+GM0L9mylIrtahok
+	 Y6nv/1x8T7dr9mbp2cs5FNmA8kepdQzQCY4o2acxP7Q5Obw6TTDZXiv2E0gj86fMlf
+	 aSA3fCa3/ezdPcES9msD2lmlnVGAONs8jRrySpy7aYaiRKK4I2BjU/3y9D7R1JyGTS
+	 pMdDVALvR/jOQ==
+Date: Tue, 28 May 2024 12:41:39 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,61 +51,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- Michael Turquette <mturquette@baylibre.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org, 
- Bjorn Andersson <quic_bjorande@quicinc.com>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Wesley Cheng <quic_wcheng@quicinc.com>, Conor Dooley <conor+dt@kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>
-In-Reply-To: <20240525-sc8180x-usb-mp-v1-0-60a904392438@quicinc.com>
-References: <20240525-sc8180x-usb-mp-v1-0-60a904392438@quicinc.com>
-Message-Id: <171691793133.1180499.940663320144175999.robh@kernel.org>
-Subject: Re: [PATCH 00/10] arm64: dts: qcom: sc8180x: Enable the USB
- multiport controller
+To: =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, devicetree@vger.kernel.org, 
+ linux-renesas-soc@vger.kernel.org
+In-Reply-To: <20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se>
+References: <20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se>
+Message-Id: <171691793216.1180592.3679496322433886659.robh@kernel.org>
+Subject: Re: [PATCH 0/3] arm64: dts: renesas: gray-hawk: Add video capture
+ pipeline
 
 
-On Sat, 25 May 2024 11:03:53 -0700, Bjorn Andersson wrote:
-> The USB multiport controller found in SC8180X is used to driver the
-> camera in the Lenovo Flex 5G, and a couple of additional USB ports on
-> the Primus AUX board.
+On Mon, 27 May 2024 15:41:26 +0200, Niklas Söderlund wrote:
+> Hello Geert,
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-> Bjorn Andersson (10):
->       dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add sc8180x USB3 compatible
->       phy: qcom-qmp-usb: Add sc8180x USB UNIPHY
->       dt-bindings: clock: qcom: Add missing USB MP resets
->       clk: qcom: gcc-sc8180x: Add missing USB MP resets
->       dt-bindings: usb: qcom,dwc3: Add SC8180X compatibles
->       arm64: dts: qcom: sc8180x-pmics: Add second PMC8180 GPIO
->       arm64: dts: qcom: sc8180x: Align USB nodes with binding
->       arm64: dts: qcom: sc8180x: Add USB MP controller and phys
->       arm64: dts: qcom: sc8180x-primus: Enable the two MP USB ports
->       arm64: dts: qcom: sc8180x-lenovo-flex-5g: Enable USB multiport controller
+> This series adds support for video capture on V4M.
 > 
->  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        |   3 +
->  .../devicetree/bindings/usb/qcom,dwc3.yaml         |  29 ++++
->  .../arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts |  32 ++++
->  arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi        |  16 +-
->  arch/arm64/boot/dts/qcom/sc8180x-primus.dts        |  60 +++++++
->  arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 175 +++++++++++++++++++--
->  drivers/clk/qcom/gcc-sc8180x.c                     |   4 +
->  drivers/phy/qualcomm/phy-qcom-qmp-usb.c            |   3 +
->  include/dt-bindings/clock/qcom,gcc-sc8180x.h       |   4 +
->  9 files changed, 312 insertions(+), 14 deletions(-)
-> ---
-> base-commit: 3689b0ef08b70e4e03b82ebd37730a03a672853a
-> change-id: 20240524-sc8180x-usb-mp-4eb278df7ef1
+> I only have schematics for the gray-hawk single board but I opted to
+> keep the structure from white-hawk and create a dedicated DTSI file for
+> the CSI-2 and DSI sub-board.
 > 
-> Best regards,
+> Patch 1 adds the IP nodes for VIN, ISPCS and CSI-2. While patch 2 and 3
+> creates and wires up the sub-board to the two MAX96724 CSI-2
+> transmitters.
+> 
+> Niklas Söderlund (3):
+>   arm64: dts: renesas: r8a779h0: Add video capture nodes
+>   arm64: dts: renesas: gray-hawk: Create separate CSI/DSI sub-board
+>   arm64: dts: renesas: gray-hawk-csi-dsi: Add and connect MAX96724
+> 
+>  .../boot/dts/renesas/gray-hawk-csi-dsi.dtsi   | 201 ++++++
+>  .../dts/renesas/r8a779h0-gray-hawk-single.dts |   8 +-
+>  arch/arm64/boot/dts/renesas/r8a779h0.dtsi     | 666 ++++++++++++++++++
+>  3 files changed, 868 insertions(+), 7 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/renesas/gray-hawk-csi-dsi.dtsi
+> 
 > --
-> Bjorn Andersson <quic_bjorande@quicinc.com>
-> 
+> 2.45.1
 > 
 > 
 
@@ -124,12 +107,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y qcom/sc8180x-lenovo-flex-5g.dtb qcom/sc8180x-primus.dtb' for 20240525-sc8180x-usb-mp-v1-0-60a904392438@quicinc.com:
+New warnings running 'make CHECK_DTBS=y renesas/r8a779h0-gray-hawk-single.dtb' for 20240527134129.1695450-1-niklas.soderlund+renesas@ragnatech.se:
 
-arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dtb: clock-controller@af00000: clocks: [[41, 0], [42], [120, 0], [120, 1], [124, 0], [124, 1], [127, 0], [127, 1]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
-arch/arm64/boot/dts/qcom/sc8180x-primus.dtb: clock-controller@af00000: clocks: [[41, 0], [42], [122, 0], [122, 1], [126, 0], [126, 1], [129, 0], [129, 1]] is too long
-	from schema $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
+arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dtb: /soc/i2c@e6508000/gmsl-deserializer@4e: failed to match any schema with compatible: ['maxim,max96724']
+arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dtb: /soc/i2c@e6508000/gmsl-deserializer@4f: failed to match any schema with compatible: ['maxim,max96724']
 
 
 
