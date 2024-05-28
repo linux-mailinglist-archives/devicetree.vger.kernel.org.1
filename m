@@ -1,196 +1,82 @@
-Return-Path: <devicetree+bounces-69964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 665208D209C
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:41:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C588D20A2
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:42:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88E541C234F3
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:41:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F8772868B4
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11909171640;
-	Tue, 28 May 2024 15:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="QeEqJxVj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2300171640;
+	Tue, 28 May 2024 15:42:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B7B16C456;
-	Tue, 28 May 2024 15:41:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A29E216C456;
+	Tue, 28 May 2024 15:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716910883; cv=none; b=m+LIk7FfsNf7BbvUW013nfNuy6YeQs69GkarA49NhghxUJqAIFb04aXB4IOI7BcKMn06aIPfi6rs5zfaVlPorqsn2PvUovCsccDhFr4Kv5qk4Ol5vifS3UG0Pr9/CEYq97N0YBGS7L4khy+BZKck43zz7YibtDKx0bbxEUd6z4E=
+	t=1716910932; cv=none; b=IMHSxStX6L4rSq0H94WFMsTWf1RywlsPc+DV5Fz39m75uOtF6DaNyGtFXyXu3ekU5Fns09YKwOP9NyHTkQ+ABzMR7OuRfQlLfkKsn1mVkSSxyQCw4JS2B5lFAttseM+acB5tAIRB2FBMlJD0iFl5hZX/nIODSsV97zC9x4Nui6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716910883; c=relaxed/simple;
-	bh=pqJKnCRBIjENJflCKkvhY+fveTWQh6vIao0ZlVHi+lw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=DaL/+aPoQzhZ1j1b7g8RNg4qPONE+udN49E8ZlSF5lot4ZilrQJKx5fCccapQKE7YpiJpIOpvwRRoVCdClwI45OwQRSLLvM56PGmztTRkgTDbau+78jMxvvnFyvkEHQ2U+PQ5zp4aNF6Zd7lptDx3rt9Z5/djdRusND2rLKv6Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=QeEqJxVj; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1716910932; c=relaxed/simple;
+	bh=bfpy5G4RtMHHpcTdRExNjKl9hXkG8+T/fn5rO7ns+Q8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=hXvTcN41/H4E3N+f9k0CXKgeLDz1Rh7N0GnKFwmMYKAl9d3UynebPre3bheDBdreVp+2w5xQDubHgujmW1/hZFIpQSBN4QgQxOOuWEHVSi4e4Uy8Ctl+sRiThS8tCZuk8EGyLUNHR99mBVy4PC9zBtvMCC8MJVc+CJMikPhN8Lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F38CC32786;
+	Tue, 28 May 2024 15:42:12 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id C77175FA0C;
+	Tue, 28 May 2024 23:42:09 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Hans de Goede <hdegoede@redhat.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Andre Przywara <andre.przywara@arm.com>, 
+ James McGregor <jamcgregor@protonmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+In-Reply-To: <20240426092924.15489-1-jamcgregor@protonmail.com>
+References: <20240426092924.15489-1-jamcgregor@protonmail.com>
+Subject: Re: [PATCH v2 0/2] arm64: dts: allwinner: H616: Add LRADC
+Message-Id: <171691092979.680152.13758975851829859883.b4-ty@csie.org>
+Date: Tue, 28 May 2024 23:42:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1716910877;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kCx4sci/j/ylDmcMcirdOkvH40gRMFOmC34x4Z8Beas=;
-	b=QeEqJxVjm2/QOiCLBaUc2sOWKWUxXKZNDOmWLeInuCCi4/oeFnQzeBxkcNSHpETwkoEnv2
-	TMv4WSP3ngi11r2vlmRL+uSs8gQBEm3Xjv9VMOd9BY+kuteaBay1CtWpvTJnA1sZx15gT6
-	pVH7xNO+80gJWPJ/0dOMEs3ytCatm/LimXQTXnINOWCV9RZ5P3QYrml8uuX7LVIvu8p/vC
-	FOIeBCCdYBG8nkLKbzzPY3h/rC02+NzmArb+kIRPc4btJKi7WsnQC62RQSKlEObiZi38Ax
-	jxBbJTNG6MorI7Vrk6xN0PaILzqBInDleUcsWU6Ht/7pSkqCFR5Qcul3mB5Crw==
-Date: Tue, 28 May 2024 17:41:17 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Alexey Charkov <alchark@gmail.com>, Quentin Schulz
- <quentin.schulz@cherry.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Viresh
- Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, Diederik de
- Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal, OPP and
- fan
-In-Reply-To: <6230150.aeNJFYEL58@phil>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <5122636.irdbgypaU6@phil> <8727e1c29bd6f562a7fc3de0ddac62cf@manjaro.org>
- <6230150.aeNJFYEL58@phil>
-Message-ID: <e67ee8b92ff657a3cf4a1046450639e7@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 
-On 2024-05-28 17:16, Heiko Stuebner wrote:
-> Am Dienstag, 28. Mai 2024, 17:01:48 CEST schrieb Dragan Simic:
->> On 2024-05-28 16:34, Heiko Stuebner wrote:
->> > Am Dienstag, 28. Mai 2024, 16:05:04 CEST schrieb Dragan Simic:
->> >> On 2024-05-28 11:49, Alexey Charkov wrote:
->> >> > On Mon, May 6, 2024 at 1:37 PM Alexey Charkov <alchark@gmail.com>
->> >> > wrote:
->> >> >>
->> >> >> This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
->> >> >> active cooling on Radxa Rock 5B via the provided PWM fan.
->> >> >>
->> >> >> Some RK3588 boards use separate regulators to supply CPUs and their
->> >> >> respective memory interfaces, so this is handled by coupling those
->> >> >> regulators in affected boards' device trees to ensure that their
->> >> >> voltage is adjusted in step.
->> >> >>
->> >> >> This also enables the built-in thermal sensor (TSADC) for all boards
->> >> >> that don't currently have it enabled, using the default CRU based
->> >> >> emergency thermal reset. This default configuration only uses on-SoC
->> >> >> devices and doesn't rely on any external wiring, thus it should work
->> >> >> for all devices (tested only on Rock 5B though).
->> >> >>
->> >> >> The boards that have TSADC_SHUT signal wired to the PMIC reset line
->> >> >> can choose to override the default reset logic in favour of GPIO
->> >> >> driven (PMIC assisted) reset, but in my testing it didn't work on
->> >> >> Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
->> >> >> support PMIC assisted reset after all.
->> >> >>
->> >> >> Fan control on Rock 5B has been split into two intervals: let it spin
->> >> >> at the minimum cooling state between 55C and 65C, and then accelerate
->> >> >> if the system crosses the 65C mark - thanks to Dragan for suggesting.
->> >> >> This lets some cooling setups with beefier heatsinks and/or larger
->> >> >> fan fins to stay in the quietest non-zero fan state while still
->> >> >> gaining potential benefits from the airflow it generates, and
->> >> >> possibly avoiding noisy speeds altogether for some workloads.
->> >> >>
->> >> >> OPPs help actually scale CPU frequencies up and down for both cooling
->> >> >> and performance - tested on Rock 5B under varied loads. I've dropped
->> >> >> those OPPs that cause frequency reductions without accompanying
->> >> >> decrease
->> >> >> in CPU voltage, as they don't seem to be adding much benefit in day to
->> >> >> day use, while the kernel log gets a number of "OPP is inefficient"
->> >> >> lines.
->> >> >>
->> >> >> Note that this submission doesn't touch the SRAM read margin updates
->> >> >> or
->> >> >> the OPP calibration based on silicon quality which the downstream
->> >> >> driver
->> >> >> does and which were mentioned in [1]. It works as it is (also
->> >> >> confirmed by
->> >> >> Sebastian in his follow-up message [2]), and it is stable in my
->> >> >> testing on
->> >> >> Rock 5B, so it sounds better to merge a simple version first and then
->> >> >> extend when/if required.
->> >> >>
->> >> >> [1]
->> >> >> https://lore.kernel.org/linux-rockchip/CABjd4YzTL=5S7cS8ACNAYVa730WA3iGd5L_wP1Vn9=f83RCORA@mail.gmail.com/
->> >> >> [2]
->> >> >> https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd2kwkbguiolmozntjuiajrb@gvq4nupzna4o/
->> >> >>
->> >> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> >> >> ---
->> >> >
->> >> > Hi Heiko,
->> >> >
->> >> > Do you think this can be merged for 6.11? Looks like there hasn't been
->> >> > any new feedback in a while, and it would be good to have frequency
->> >> > scaling in place for RK3588.
->> >> >
->> >> > Please let me know if you have any reservations or if we need any
->> >> > broader discussion.
->> >
->> > not really reservations, more like there was still discussion going on
->> > around the OPPs. Meanwhile we had more discussions regarding the whole
->> > speed binning Rockchip seems to do for rk3588 variants.
->> >
->> > And waiting for the testing Dragan wanted to do ;-) .
->> 
->> I'm sorry for the delays.
+On Fri, 26 Apr 2024 09:29:37 +0000, James McGregor wrote:
+> Version 2 moves the LRADC DT node to the right place. It was out of
+> order before.
 > 
-> Was definitly _not_ meant as blame ;-) .
-
-Thanks, but I do blame myself a bit for not doing it earlier. :)
-
-> The series has just too many discussions threads to unravel on half
-> an afternoon.
-
-Yes, we've touched quite a few areas, for some of which I've already
-started working on the associated patches.  That was one of the reasons
-for the delays.
-
->> > So this should definitly make it into 6.11 though, as there is still
->> > a lot of time.
->> >
->> >> As I promised earlier, I was going to test this patch series in
->> >> detail.
->> >> Alas, I haven't managed to do that yet, :/ due to many reasons, but
->> >> I still remain firmly committed to doing that.
->> >>
->> >> Is -rc4 the cutoff for 6.11?  If so, there's still time and I'll do my
->> >> best to test and review these patches as soon as possible.
->> >
->> > As early as possible, the hard cutoff would be -rc6 though.
->> > I guess I'll just start picking the easy patches from the series.
->> 
->> I'll do my best to have the patches tested and reviewed in detail 
->> ASAP.
->> As a suggestion, perhaps it would be better to take the series as a
->> whole,
->> so we don't bring partial merging into the mix.
+> The Allwinner H616 series of SoCs have a low-rate ADC (LRADC) with
+> 6-bit resolution and one input channel. They're compatible with the
+> existing drivers, so it only needs to be enabled in the DT.
 > 
-> Patches need to work individually anyway (in correct order of course),
-> so like starting at the top with the general thermal stuff should not
-> create issues ;-)
+> [...]
 
-Of course, but I might actually have some comments and suggestions
-for some of the patches, and addressing those suggestions, if we end up
-agreeing on them, would be a bit messy if some of the patches in the
-series become merged first.
+Applied to sunxi/dt-for-6.11 in sunxi/linux.git, thanks!
+
+[1/2] dt-bindings: input: sun4i-lradc-keys: Add H616 compatible
+      https://git.kernel.org/sunxi/linux/c/3086803a1f43
+[2/2] ARM: dts: sun50i: Add LRADC node
+      https://git.kernel.org/sunxi/linux/c/7adc2d68f4a6
+
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
+
 
