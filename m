@@ -1,86 +1,139 @@
-Return-Path: <devicetree+bounces-70109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF228D2674
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 22:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631F48D267F
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 22:50:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8BFF291D6A
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 20:49:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DBA8291EE5
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 20:50:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F38817966C;
-	Tue, 28 May 2024 20:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC7217A92E;
+	Tue, 28 May 2024 20:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tqk/JnQm"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="BV0Xz7UT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219EC4C627;
-	Tue, 28 May 2024 20:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF1E17A924;
+	Tue, 28 May 2024 20:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716929232; cv=none; b=OicbDwzO+LMVscqo644GgWyfl+P17ASIJrT9qpgJCPTVtuboT6Rx91yyAg4V2z1rNbfId8YBdJgd/jQuawQy5yA/qd8IEwLT7KvK8T/aMVQ0YaEl88Nz0VJM4Zab/gHiBEO9G5UsKBb/nx+CgJ0j3M2An4UnFfntjiCmObt2HCg=
+	t=1716929382; cv=none; b=fFw4xbFvlSu0aqXiiTtQdNEu47DplQRSYdBTAOS3nzfmRuFCmnkdwPabYIkUFglqMWriQ0XpVTcI4XghfIP+b520QsYIo5a7WvwntLC9NhDtBO2a/U3dNRoEH1m3mHjTO0rHiEuOWikMuPYSJJqyBk0bkLoP3//K8cZsOzFfAZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716929232; c=relaxed/simple;
-	bh=+FHTxvrxb/K2pN9sj74X9J/5rkzbc2QPqTsan5+1vp4=;
+	s=arc-20240116; t=1716929382; c=relaxed/simple;
+	bh=tVjLiezldTN3tlhT1SQyWBYDQNYD3QQvsYes9mrDLzw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XlaCB3aZ8SRNU9IRhidE1pzPg6osphiU06GXni7AoSghF7Znt1UzS8RlMAZlwSNISSor01X9P3bWT3SH/AhCTmMWbNC0RD9lx7puhq5K3yTZF/ujIn9opqqHF3DvpNiN2hLl5x5o3+YuDaHLxCAcRaWqHRjx1419JRkonkNF6S8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tqk/JnQm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 888D6C32781;
-	Tue, 28 May 2024 20:47:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716929231;
-	bh=+FHTxvrxb/K2pN9sj74X9J/5rkzbc2QPqTsan5+1vp4=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=rYUWJVJdVMrOceKiZHffDohp5p8XX5tuiduBIEgtYUh2BofPJXqGtQvPs4uE3CWy2HVBLgxJGS6vadWjTJ/Sn7HnT0mlvflwf9D+I39yLU5fpJ3lEujMdmJLiqDcQgQ2Ql06topjLUnyTE/fPRm5G6xETCEEmp/gy33lJOEXD+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=BV0Xz7UT; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A2F873A2;
+	Tue, 28 May 2024 22:49:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1716929375;
+	bh=tVjLiezldTN3tlhT1SQyWBYDQNYD3QQvsYes9mrDLzw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tqk/JnQm3S9KA6oETP4bgWp5MAdRKA/WS+Fk+PpGsZcsjifWyBp9m3m3dj/pXjPFd
-	 mVqSmhBD15HV+qLIzDv4YoXRutQqMArltwqc4ydqCY+UL2tsO9rjHW0gdBBD/PcUZD
-	 +VStgsLdCJSc5K3adbJOUkdT2d1kHn+3AIVtqG2dWaLJc2rMreDV6Pjz6VeTvVJi1l
-	 5rdp8+rJVNCpAOdgy3nShQ5WL2NODaqnCTJLUdZX+tL7phQDr/5ZtyQODgr2VXCv1+
-	 KuWZhhbu+RAvb31hz/nS1OeqHCnKKEgLtYnC0u1Y1pFcD1Q3VjIU6OkeyK7Yp9ir8c
-	 3as/DFKv7nPpg==
-Date: Tue, 28 May 2024 15:47:10 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
+	b=BV0Xz7UTHgn+G+XsdphzhCRA5e5V8ysDW8H3t1XTVkLtdXW+dhMPSRmHIrWUdCIG5
+	 NJcWmxV9c1E95+tarDE4+rusyCNRcJF5/hys+nPJI8keTceBNGVnodJsfVcTIIvKze
+	 D3jAdeN2nen3U47dsUpVbFiQYtI01bXPH8dqmn4o=
+Date: Tue, 28 May 2024 23:49:26 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Ryan Walklin <ryan@testtoast.com>,
+Cc: linux-pwm@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Alexandru Ardelean <alexandru.ardelean@analog.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-sunxi@lists.linux.dev,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: arm: sunxi: Fix incorrect '-' usage
-Message-ID: <171692919272.1968303.16565844333250152320.robh@kernel.org>
-References: <20240503154402.967632-1-robh@kernel.org>
+	Linus Walleij <linus.walleij@linaro.org>,
+	Lee Jones <lee@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: Add bindings for the Analog Devices
+ ADP5585
+Message-ID: <20240528204926.GE8500@pendragon.ideasonboard.com>
+References: <20240528190315.3865-1-laurent.pinchart@ideasonboard.com>
+ <20240528190315.3865-2-laurent.pinchart@ideasonboard.com>
+ <171692890886.1957549.3597242516268327909.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240503154402.967632-1-robh@kernel.org>
+In-Reply-To: <171692890886.1957549.3597242516268327909.robh@kernel.org>
 
-
-On Fri, 03 May 2024 10:44:02 -0500, Rob Herring (Arm) wrote:
-> Commit 6bc6bf8a940a ("dt-bindings: arm: sunxi: document Anbernic RG35XX
-> handheld gaming device variants") mistakenly added '-' on each line
-> which created empty (i.e. description only) schemas matching anything.
-> This causes validation to fail on all the root node compatibles as
-> there are multiple oneOf clauses passing.
+On Tue, May 28, 2024 at 03:41:48PM -0500, Rob Herring (Arm) wrote:
 > 
-> Fixes: 6bc6bf8a940a ("dt-bindings: arm: sunxi: document Anbernic RG35XX handheld gaming device variants")
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> On Tue, 28 May 2024 22:03:11 +0300, Laurent Pinchart wrote:
+> > The ADP5585 is a 10/11 input/output port expander with a built in keypad
+> > matrix decoder, programmable logic, reset generator, and PWM generator.
+> > These bindings model the device as an MFD, and support the GPIO expander
+> > and PWM functions.
+> > 
+> > These bindings support the GPIO and PWM functions.
+> > 
+> > Drop the existing adi,adp5585 and adi,adp5585-02 compatible strings from
+> > trivial-devices.yaml. They have been added there by mistake as the
+> > driver that was submitted at the same time used different compatible
+> > strings. We can take them over safely.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> > I've limited the bindings to GPIO and PWM as I lack hardware to design,
+> > implement and test the rest of the features the chip supports.
+> > 
+> > Changes since v1:
+> > 
+> > - Squash "dt-bindings: trivial-devices: Drop adi,adp5585 and
+> >   adi,adp5585-02" into this patch
+> > - Merge child nodes into parent node
+> > ---
+> >  .../devicetree/bindings/mfd/adi,adp5585.yaml  | 107 ++++++++++++++++++
+> >  .../devicetree/bindings/trivial-devices.yaml  |   4 -
+> >  MAINTAINERS                                   |   7 ++
+> >  3 files changed, 114 insertions(+), 4 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
+> > 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+
+My bad, I messed up. Will be fixed in v3.
+
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/adi,adp5585.example.dtb: mfd@34: 'gpio' is a required property
+> 	from schema $id: http://devicetree.org/schemas/mfd/adi,adp5585.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/adi,adp5585.example.dtb: mfd@34: 'gpio' is a required property
+> 	from schema $id: http://devicetree.org/schemas/mfd/adi,adp5585.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240528190315.3865-2-laurent.pinchart@ideasonboard.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 > 
 
-No one has picked this up yet, so I have. Applied, thanks!
+-- 
+Regards,
 
+Laurent Pinchart
 
