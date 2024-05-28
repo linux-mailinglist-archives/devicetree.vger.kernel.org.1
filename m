@@ -1,173 +1,214 @@
-Return-Path: <devicetree+bounces-69935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 159EF8D1F8D
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:04:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB5818D1FB0
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AEAF1F23A36
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:04:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A897228627E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCA016D4F5;
-	Tue, 28 May 2024 15:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F028D170859;
+	Tue, 28 May 2024 15:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="SrjPBIbO"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="GKTxlkHf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 404EF16FF30;
-	Tue, 28 May 2024 15:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D1779F6;
+	Tue, 28 May 2024 15:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716908513; cv=none; b=FUaOhkPKPLNwWfGsaE/3RG3FP6DWPpKoQCZqu3IHXJ6BWHhUXnYVyVOIeeLRje7qu77U+TiHbl5zNsuiE/AEd7V/dYW1X6ki3jeI66ohuMc2kXTibbXq+aXVlUGK/ybA5jfVju2FptZJLGbsgV1dO5T8pn1Ed48kBS8y0/lQPLw=
+	t=1716908692; cv=none; b=f/UXb6Obr7mkZvnfUJQqk/ZJNY/s/3/6Pxe6okazdOvIlpWizQuh2b5qXW3DXFBXcTbTFdCKEp8bL30086XyWiPLtrA76Xpeitw/c5rRS0a/9pvTHXsGfksfIjLKvZQ9+UziJQU0eV2hlzoVQRk30khEQjKQTCZ0MKPm4Z49tEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716908513; c=relaxed/simple;
-	bh=+c4A3JerB0xupH1a7XXNQREUxEJtN/+ZzWnCqhsCUPc=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=FrUI4Ord8sCQqb+Jb3buoehIaJqfgYsQ8/gf5oYDD3hwTfELz40tDFCavfCBwriNx2Ej/2f4XO9/pVK/rT4zFrF81498NL0X9PhA9DZ1kXmux5XDRu32KJsER+0LjH/JxWr9ur8fqSvavYkq7jBEhexhHSjPBAMV+yxbT9Duc9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=SrjPBIbO; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1716908692; c=relaxed/simple;
+	bh=BwvsFxWDlcOv3tQAGZN5M4cNSSA1vcWV3iHt2gZ5Rco=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aqjTSmj38UQ5HxEtg+NoEilLtIaX+8IKvMW3ttsNsHBmq+srU9tA21WdRAuWhJEccluUHRYGfXhaQBp6O738irD5j8KJGUahOeAQuddB1tLcsdRzasHC4Yz+V16NYjOD4cZdvO0qulWYfl3xP3GPxtX4/xkH4wLCQX3rjHJ3rTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=GKTxlkHf; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 2CF8820278;
+	Tue, 28 May 2024 17:04:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1716908684;
+	bh=Mw7dQ5Ws41dd40RAuJHYbCmnUUSNoqloqrnpXxX8AmE=; h=From:To:Subject;
+	b=GKTxlkHfChssQjm59qXgvH4xTT0SvaA9SVy9L7JTaDGOK7+o05hB/H+qbbWzd2u9P
+	 rEUyyula8tQ2UfeO61kVG/dIThRWVri1yIRoeQ0icF+JI5/BeoHIwwqAtQB/xIZDph
+	 P+u+0Nwu+R8aPT6kj/oyfQbOkWLdc+Rvukj/ig8YvSegkUkKK97ypht6zx71gusqAj
+	 qgrmB+u0pmDFP+V2Qfvz7dqWI+g3Y3cIzpI323e/yNC83LgeTGolgFE+rOBs/RiYbl
+	 YwMR6mmSoQqNWYhLT2WasY3IveqW+N+SSQ/z0kadq+cx0XYHcYa0Zj03dz/JCtaBR3
+	 4FJHvEfcP952w==
+Date: Tue, 28 May 2024 17:04:40 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Conor Dooley <conor@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <jpaulo.silvagoncalves@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: add ti,ads1119
+Message-ID: <20240528150440.GA15947@francesco-nb>
+References: <20240527154050.24975-1-francesco@dolcini.it>
+ <20240527154050.24975-2-francesco@dolcini.it>
+ <20240527-ecosystem-mountable-d9a6eebc7607@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1716908509;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pTliwcQUwlXfpyzNkH7+3TEPpHv8Li6OUQHn1YDk4Fc=;
-	b=SrjPBIbOw4eZdlN/lXyx4lnXvyGApnt42U//NCwDoha9Dj2K/3HO+djVQnT1dkkoouYQme
-	6ObDD7JR1vSs5lLmyM2GIoe4rZZQTSZA4XyTkCwlPcuEXTC0HsJQK7W0DYmIbGGipU+080
-	/33zX+GipGSCAnw3U6Rm0+6QDwVXyd+pUXrjYLXEpp6Xqa+bi/5NDwLoOTOAPP8xXGfpHW
-	RK8oX4E9Ei8SvzhHQ43fF0Y9fkeezFpU9soRoljKia3sNBtBYn47rlz3E6LDuwbEa9Xo13
-	XOgiq7xnQzwsyTMf8CyBLfUIbSqLL1IVyyjy6hdnL4W9pABMgOLBST3YzbEO7w==
-Date: Tue, 28 May 2024 17:01:48 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Alexey Charkov <alchark@gmail.com>, Quentin Schulz
- <quentin.schulz@cherry.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Viresh
- Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, Diederik de
- Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal, OPP and
- fan
-In-Reply-To: <5122636.irdbgypaU6@phil>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <CABjd4YyuDsWGbSfNyqcW3s=59p8adVf5Js79PYyKFqfyM71dxA@mail.gmail.com>
- <ea2311d7a41162a847d37ce05d0fc441@manjaro.org> <5122636.irdbgypaU6@phil>
-Message-ID: <8727e1c29bd6f562a7fc3de0ddac62cf@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+In-Reply-To: <20240527-ecosystem-mountable-d9a6eebc7607@spud>
 
-On 2024-05-28 16:34, Heiko Stuebner wrote:
-> Am Dienstag, 28. Mai 2024, 16:05:04 CEST schrieb Dragan Simic:
->> On 2024-05-28 11:49, Alexey Charkov wrote:
->> > On Mon, May 6, 2024 at 1:37â€¯PM Alexey Charkov <alchark@gmail.com>
->> > wrote:
->> >>
->> >> This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
->> >> active cooling on Radxa Rock 5B via the provided PWM fan.
->> >>
->> >> Some RK3588 boards use separate regulators to supply CPUs and their
->> >> respective memory interfaces, so this is handled by coupling those
->> >> regulators in affected boards' device trees to ensure that their
->> >> voltage is adjusted in step.
->> >>
->> >> This also enables the built-in thermal sensor (TSADC) for all boards
->> >> that don't currently have it enabled, using the default CRU based
->> >> emergency thermal reset. This default configuration only uses on-SoC
->> >> devices and doesn't rely on any external wiring, thus it should work
->> >> for all devices (tested only on Rock 5B though).
->> >>
->> >> The boards that have TSADC_SHUT signal wired to the PMIC reset line
->> >> can choose to override the default reset logic in favour of GPIO
->> >> driven (PMIC assisted) reset, but in my testing it didn't work on
->> >> Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
->> >> support PMIC assisted reset after all.
->> >>
->> >> Fan control on Rock 5B has been split into two intervals: let it spin
->> >> at the minimum cooling state between 55C and 65C, and then accelerate
->> >> if the system crosses the 65C mark - thanks to Dragan for suggesting.
->> >> This lets some cooling setups with beefier heatsinks and/or larger
->> >> fan fins to stay in the quietest non-zero fan state while still
->> >> gaining potential benefits from the airflow it generates, and
->> >> possibly avoiding noisy speeds altogether for some workloads.
->> >>
->> >> OPPs help actually scale CPU frequencies up and down for both cooling
->> >> and performance - tested on Rock 5B under varied loads. I've dropped
->> >> those OPPs that cause frequency reductions without accompanying
->> >> decrease
->> >> in CPU voltage, as they don't seem to be adding much benefit in day to
->> >> day use, while the kernel log gets a number of "OPP is inefficient"
->> >> lines.
->> >>
->> >> Note that this submission doesn't touch the SRAM read margin updates
->> >> or
->> >> the OPP calibration based on silicon quality which the downstream
->> >> driver
->> >> does and which were mentioned in [1]. It works as it is (also
->> >> confirmed by
->> >> Sebastian in his follow-up message [2]), and it is stable in my
->> >> testing on
->> >> Rock 5B, so it sounds better to merge a simple version first and then
->> >> extend when/if required.
->> >>
->> >> [1]
->> >> https://lore.kernel.org/linux-rockchip/CABjd4YzTL=5S7cS8ACNAYVa730WA3iGd5L_wP1Vn9=f83RCORA@mail.gmail.com/
->> >> [2]
->> >> https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd2kwkbguiolmozntjuiajrb@gvq4nupzna4o/
->> >>
->> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> >> ---
->> >
->> > Hi Heiko,
->> >
->> > Do you think this can be merged for 6.11? Looks like there hasn't been
->> > any new feedback in a while, and it would be good to have frequency
->> > scaling in place for RK3588.
->> >
->> > Please let me know if you have any reservations or if we need any
->> > broader discussion.
-> 
-> not really reservations, more like there was still discussion going on
-> around the OPPs. Meanwhile we had more discussions regarding the whole
-> speed binning Rockchip seems to do for rk3588 variants.
-> 
-> And waiting for the testing Dragan wanted to do ;-) .
+On Mon, May 27, 2024 at 05:29:37PM +0100, Conor Dooley wrote:
+> On Mon, May 27, 2024 at 05:40:49PM +0200, Francesco Dolcini wrote:
+> > From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> > 
+> > Add devicetree bindings for Texas Instruments ADS1119 16-bit ADC
+> > with I2C interface.
+> > 
+> > Datasheet: https://www.ti.com/lit/gpn/ads1119
+> > Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >  .../bindings/iio/adc/ti,ads1119.yaml          | 122 ++++++++++++++++++
+> >  MAINTAINERS                                   |   7 +
+> >  2 files changed, 129 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+> > new file mode 100644
+> > index 000000000000..ab4f01199dbe
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1119.yaml
+> > @@ -0,0 +1,122 @@
 
-I'm sorry for the delays.
+...
 
-> So this should definitly make it into 6.11 though, as there is still
-> a lot of time.
+> > +patternProperties:
+> > +  "^channel@([0-6])$":
+> > +    $ref: adc.yaml
+> > +    type: object
+> > +    description: |
+> > +      ADC channels.
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description: |
+> > +          0: Voltage over AIN0 and AIN1.
+> > +          1: Voltage over AIN2 and AIN3.
+> > +          2: Voltage over AIN1 and AIN2.
+> > +          3: Voltage over AIN0 and GND.
+> > +          4: Voltage over AIN1 and GND.
+> > +          5: Voltage over AIN2 and GND.
+> > +          6: Voltage over AIN3 and GND.
 > 
->> As I promised earlier, I was going to test this patch series in 
->> detail.
->> Alas, I haven't managed to do that yet, :/ due to many reasons, but
->> I still remain firmly committed to doing that.
->> 
->> Is -rc4 the cutoff for 6.11?  If so, there's still time and I'll do my
->> best to test and review these patches as soon as possible.
-> 
-> As early as possible, the hard cutoff would be -rc6 though.
-> I guess I'll just start picking the easy patches from the series.
+> Take a look at diff-channels.
 
-I'll do my best to have the patches tested and reviewed in detail ASAP.
-As a suggestion, perhaps it would be better to take the series as a 
-whole,
-so we don't bring partial merging into the mix.
+Yes, we looked at this and at the beginning we did not think this was a
+right idea. This is pretty much copying what is done in
+Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml.
+
+We could describe this using the diff-channels, however the MUX in the
+ADS1119 cannot do any combination, but only a subset (AIN0-AIN1,
+AIN2-AIN3 and AIN1-AIN2).
+
+Are you aware of a way to validate this in the DT?
+Would something like that work?
+
+adc@40 {
+    compatible = "ti,ads1119";
+    reg = <0x40>;
+    #address-cells = <1>;
+    #size-cells = <0>;
+    #io-channel-cells = <1>;
+    
+    channel@0 {
+        reg = <0>;
+        diff-channels = <3 4>;
+	label = "AIN0_AIN1"
+    };
+    
+    channel@1 {
+        reg = <1>;
+        diff-channels = <5 6>;
+	label = "AIN2_AIN3"
+    };
+    
+    channel@2 {
+        reg = <2>;
+        diff-channels = <4 5>;
+	label = "AIN1_AIN2"
+    };
+    
+    channel@3 {
+        reg = <3>;
+	label = "AIN0"
+    };
+    
+    channel@4 {
+        reg = <4>;
+	label = "AIN1"
+    };
+    
+    channel@5 {
+        reg = <5>;
+	label = "AIN2"
+    };
+    
+    channel@6 {
+        reg = <6>;
+	label = "AIN3"
+    };
+};
+
+
+> > +        items:
+> > +          - minimum: 0
+> > +            maximum: 6
+> > +
+> > +      ti,gain:
+> 
+> What makes this a property of the hardware?
+> Also, missing unit.
+
+This is a hardware gain from the ADC and it is dimensionless.
+
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        description:
+> > +          PGA gain value.
+> > +        enum: [1, 4]
+> > +        default: 1
+> > +
+> > +      ti,datarate:
+> 
+> Ditto here, why's this a property of the hardware? Usually this gets set
+> from sysfs..
+
+The sample rate is a hardware property, you can configure the ADC device
+to do the acquisition at a specific rate.
+
+Both these properties are inspired from
+Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml.
+
+We could do what you are suggesting here. I am just a concerned on how
+this interacts with the iio/afe/ bindings. Specifically, how could I
+configure the gain or the data rate when this ADC is used by a
+voltage-divider? Maybe iio-rescale driver needs to be extended for such
+use case?
+
+Francesco
+
 
