@@ -1,180 +1,227 @@
-Return-Path: <devicetree+bounces-69824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F088D1AB9
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:09:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 611388D1AD2
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:14:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07B0D1F231E3
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:09:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1643A284BF3
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A048416C87E;
-	Tue, 28 May 2024 12:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 103ED16D4EF;
+	Tue, 28 May 2024 12:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GPZENJsp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VxkZQ/mB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788DA71753;
-	Tue, 28 May 2024 12:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0207C16D9C2
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716898188; cv=none; b=WpGGRNY0Q1/YeokMwVFVJPoQ04tOud82yhL7OgN0wiDRGb2iMXjBIVuehGjUf7mdfV4tsuYMNBXM7q6qx0FVYlazFrzAptUjoYhA5UhlUYphwXvE/AG2x7Epm4XYd6vPLSAkSzI+dpsfacYgxuwyB8rIXab4AJXkYxHJDM7LyMI=
+	t=1716898398; cv=none; b=qKSNe2vvnXUnqdasobQkzAHm98WRlDlFfyc69y8mefE69UhHAr1X6F0TrZdXQfx2Yj0kMUb19r24DYZa+v/gNZ/PuUEiWM4Ws8tiksYA1R/H1gGKoCHMhmbGhokSDOX3REPowokXDhKw8hCdUVGMPknuDDXxwxy40zcluhQ5etk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716898188; c=relaxed/simple;
-	bh=fo/eQlCwe1cy2Moyf0G+7NTSc2277UXsnpEILM0Ot2Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Or0HPXvJuT6EM8WK5zx3JO38J2RwO8wHrZfO9r4Nl5Dqfko5ZnAFLIUkVy1Fkc7ZFvYqWDkiF/3/WWu0v15wS9lmTpEhG4IICmTWe4n/HBXdCOa+p9rXESeBUPUYQV88PwPdEveNHlRzdrAULqQZexKQwLnJSXUIUekiB2g+vnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPZENJsp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852DEC3277B;
-	Tue, 28 May 2024 12:09:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716898188;
-	bh=fo/eQlCwe1cy2Moyf0G+7NTSc2277UXsnpEILM0Ot2Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GPZENJspXF1cekh0/6zssWOaKbbXcox0NfLSFBCBcIxK/1wgrUNW6+B5TpPAQGX37
-	 WmbbnwrZFVxHBJh45ajSlXgGdU3MWsYso4WSjnpHInKPd6oslP4kpN9deRlVcT7I7D
-	 hbt3c6viLR8Q9E06XPBjB4I5j87pm9iMVEs1gyFL8iaMxqN2qtfAFkHQ8q45NFRDf9
-	 vF5i5RKCwx/e9UQ3J1WbZesEsJ6tKhUro9zDP2G+7TuUUfFn1XsivWGii5OJ3RT3AG
-	 j/g5fWfnxncasF1FCrGoeEIbGLyuFFPx6ZMblae/jA1hRTca0+EZ2iSauMu71ACdU5
-	 2Zm1hHNhcM5NA==
-Message-ID: <4774e4c9-55f5-4ce9-9433-86f9ae1bc610@kernel.org>
-Date: Tue, 28 May 2024 15:09:41 +0300
+	s=arc-20240116; t=1716898398; c=relaxed/simple;
+	bh=zahCqpNAo5PX4J5AmLvaaCc3FUPSG2YcyPhcrnlbkCY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JT/Tt/uCJ1GTRhenfGEKsTCE+T71ze6ZPNV5qEk4Roe5uE1M6GvXaykPP66Qr76SrJ07Pu/iBG9vqT9MPcLIeoif/a99RCL54Qp7pmEEYwr7OlNk5TAH0B57MwvA/g4VhDRjyqiCwMZir5EjwVcO4vCOUc2ALm4ZJe7x2Ifx3IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VxkZQ/mB; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-df7722171bcso819229276.3
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 05:13:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716898394; x=1717503194; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K+QAYTErS7U2iovpig+AATgQkbKxA71fHEB/B/5/5RI=;
+        b=VxkZQ/mBBMCEVa2JZ37DvDROv7D2taI9TfWvhwbPXqRZZGFAqpyFDDigExHqg9EQ0L
+         JPaQnGIo1QoNunMnsLC635RA46BpepC33NTj9Vx1EjCt/v1hqUTWBdv15tJPk/wneEJS
+         3TgDZ7NwXy/2rst9T/iZP0ScD7zEN27/b2ejaZlFRQ4QnsSG8EIrnWWM1iSe4RGMNByc
+         qwESJxOzlS7tme9wp2BqJEzRGCXmlnCIhDpmNBrAxYdalBdZndI3/DLXuJa/N07/ZiK8
+         48jyNJCGef2HdMS8EtUgC8pnxQQGR256xct0IEYDvLWvfxOXFosE8lEbIMQEp5UwrEPu
+         ctvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716898394; x=1717503194;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K+QAYTErS7U2iovpig+AATgQkbKxA71fHEB/B/5/5RI=;
+        b=nxV1TNlRUr7t+usiDuE1g8C0RS56PW7df4Iyc0IbHxCZWd0CMiocais/+HgHQWYLWO
+         n8uC6obPvE3SESO6vK7wK2flXVpnzmvzUQNlNU8GEiFyhiJ+pbBO6AxTfBOSF09hk+Xf
+         ijPBtyjpnau29mNGpkwzy+Ck6Uq69RvTcsFaVMEg+c+9JxswBhU1MsWIIwuNGKWu0EOi
+         ruyBDu1pprerw4MlE84ECD4NW8u9ecvuYf0o0XsGgwtj8wlYWoqXeChxxVcifbQrgaxS
+         W4jTeWqWcgCE5JoF3qWs1pZKzH7ZVKwhLYIrBdI3+EmxM7i0uplLL4loCL7e3OrelvdG
+         J83Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV3LJ/bCmUDYH/hQTZLBFMhCit1Gqmq575Nhp2U8im0gdE/ml7mI4hoJmoZxKZgSLJlV6UJgbGIJrOM2I7C3yd8+t53sB96jKRFDA==
+X-Gm-Message-State: AOJu0YwqNq4xvtndYA6RqMiZqik4/+u2IBSPK+BWryOuAKpTMgHZC5By
+	fClRarU/eRB1c4QHX6O0wsJI10aoA6H72weNuIwWtng/4OmG35Qcv2EFGqIoblH75gGZ/syR1+0
+	Tk8G4VcwYZOevutsEHZaCHXHwWZns0IXbPEwVng==
+X-Google-Smtp-Source: AGHT+IF3OL+F0UzaxHr0Sfnd3Ewd6kL8rw3K+W20Q6AByQLyFNPzPgdNIJJk6DqXFhbJtK6bpaM+mwCF04SLpF3w0RI=
+X-Received: by 2002:a25:558a:0:b0:de6:482:c7d5 with SMTP id
+ 3f1490d57ef6-df77222182dmr10262233276.43.1716898393830; Tue, 28 May 2024
+ 05:13:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] arm64: dts: ti: k3-j722s-main: Add support for
- SERDES0
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, nm@ti.com, vigneshr@ti.com,
- afd@ti.com, kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, u-kumar1@ti.com, danishanwar@ti.com,
- srk@ti.com
-References: <20240524090514.152727-1-s-vadapalli@ti.com>
- <20240524090514.152727-2-s-vadapalli@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240524090514.152727-2-s-vadapalli@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240517-a2b-v1-0-b8647554c67b@bang-olufsen.dk> <20240517-a2b-v1-6-b8647554c67b@bang-olufsen.dk>
+In-Reply-To: <20240517-a2b-v1-6-b8647554c67b@bang-olufsen.dk>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 28 May 2024 14:13:02 +0200
+Message-ID: <CACRpkdYKTD=97AfBN69X3BUf+4HjVrFwp-Ht2kf3HA62ud99QA@mail.gmail.com>
+Subject: Re: [PATCH 06/13] gpio: add AD24xx GPIO driver
+To: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
+Cc: Mark Brown <broonie@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+	Takashi Iwai <tiwai@suse.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Emil Svendsen <emas@bang-olufsen.dk>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	=?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Alvin,
 
+thanks for your patch!
 
-On 24/05/2024 12:05, Siddharth Vadapalli wrote:
-> From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> 
-> AM62P's DT source files are reused for J722S inorder to
+On Fri, May 17, 2024 at 2:58=E2=80=AFPM Alvin =C5=A0ipraga <alvin@pqrs.dk> =
+wrote:
 
-inorder/in order
+> From: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
+>
+> This driver adds GPIO function support for AD24xx A2B transceiver chips.
+> When a GPIO is requested, the relevant pin is automatically muxed to
+> GPIO mode. The device tree property gpio-reserved-ranges can be used to
+> protect certain pins which are reserved for other functionality such as
+> I2S/TDM data.
+>
+> Signed-off-by: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
+(...)
 
-> avoid duplication of nodes. But J722S has additional
-> peripherals that are not present in AM62P.
-> 
-> Introduce a -main.dtsi to define such additional main
-> domain peripherals and define the SERDES0 node.
-> 
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> v2:
-> https://lore.kernel.org/r/20240513114443.16350-2-r-gunasekaran@ti.com/
-> Changes since v2:
-> - Renamed serdes0_ln_ctrl to serdes_ln_ctrl to keep the format
->   consistent across SoCs where a single node is sufficient to
->   represent the Lane-Muxing for all instances of the Serdes.
-> 
-> v1:
-> https://lore.kernel.org/r/20240429120932.11456-2-r-gunasekaran@ti.com/
-> Changes since v1:
-> - Newly introduced k3-j722s-main.dtsi to add main domain peripherals
->   that are additionally present in J722S.
-> - Used generic node names - renamed "clock-cmnrefclk" to "clk-0",
->   "wiz@f000000" to "phy@f000000"
-> 
->  arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 64 +++++++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> new file mode 100644
-> index 000000000000..0dac8f1e1291
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> @@ -0,0 +1,64 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Device Tree file for the J722S main domain peripherals
-> + * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +#include <dt-bindings/phy/phy-ti.h>
-> +
-> +/ {
-> +	serdes_refclk: clk-0 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <0>;
-> +	};
-> +};
-> +
-> +&cbass_main {
-> +	serdes_wiz0: phy@f000000 {
-> +		compatible = "ti,am64-wiz-10g";
-> +		ranges = <0x0f000000 0x0 0x0f000000 0x00010000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		power-domains = <&k3_pds 279 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 279 0>, <&k3_clks 279 1>, <&serdes_refclk>;
-> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
-> +		num-lanes = <1>;
-> +		#reset-cells = <1>;
-> +		#clock-cells = <1>;
-> +
-> +		assigned-clocks = <&k3_clks 279 1>;
-> +		assigned-clock-parents = <&k3_clks 279 5>;
-> +
-> +		serdes0: serdes@f000000 {
-> +			compatible = "ti,j721e-serdes-10g";
-> +			reg = <0x0f000000 0x00010000>;
-> +			reg-names = "torrent_phy";
-> +			resets = <&serdes_wiz0 0>;
-> +			reset-names = "torrent_reset";
-> +			clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-> +				 <&serdes_wiz0 TI_WIZ_PHY_EN_REFCLK>;
-> +			clock-names = "refclk", "phy_en_refclk";
-> +			assigned-clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-> +					  <&serdes_wiz0 TI_WIZ_PLL1_REFCLK>,
-> +					  <&serdes_wiz0 TI_WIZ_REFCLK_DIG>;
-> +			assigned-clock-parents = <&k3_clks 279 1>,
-> +						 <&k3_clks 279 1>,
-> +						 <&k3_clks 279 1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#clock-cells = <1>;
-> +
-> +			status = "disabled"; /* Needs lane config */
-> +		};
-> +	};
-> +};
-> +
-> +&main_conf {
-> +	serdes_ln_ctrl: mux-controller@4080 {
-> +		compatible = "reg-mux";
-> +		reg = <0x4080 0x4>;
-> +		#mux-control-cells = <1>;
-> +		mux-reg-masks = <0x0 0x3>; /* SERDES0 lane0 select */
-> +	};
-> +};
+>  config A2B_AD24XX_NODE
+>         tristate "Analog Devices Inc. AD24xx node support"
+>         select REGMAP_A2B
+> +       imply GPIO_AD24XX
 
--- 
-cheers,
--roger
+Maybe it should even be select, if it's hard to think about a case
+where this is not desired?
+
+> +config GPIO_AD24XX
+> +       tristate "Analog Devies Inc. AD24xx GPIO support"
+> +       depends on A2B_AD24XX_NODE
+> +       help
+> +         Say Y here to enable GPIO support for AD24xx A2B transceivers.
+> +
+>  config GPIO_ARIZONA
+>         tristate "Wolfson Microelectronics Arizona class devices"
+>         depends on MFD_ARIZONA
+
+This is grouped with the MFD devices but as I understand it A2B is a
+completely new bus type? Is MFD even always selected when A2B is
+in use?
+
+To me it's fine to add a new submenu for A2B devices, if there will be
+more of them.
+
+> +static int ad24xx_gpio_get_direction(struct gpio_chip *gc, unsigned int =
+offset)
+> +{
+> +       struct ad24xx_gpio *adg =3D gpiochip_get_data(gc);
+> +       unsigned int val;
+> +       int ret;
+> +
+> +       ret =3D regmap_read(adg->regmap, A2B_GPIOOEN, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (val & BIT(offset))
+> +               return 0; /* output */
+> +
+> +       return 1; /* input */
+
+Please use GPIO_LINE_DIRECTION_OUT/GPIO_LINE_DIRECTION_IN
+instead of 0/1 here?
+
+Then you don't need the comments because it's evident.
+
+> +static int ad24xx_gpio_get(struct gpio_chip *gc, unsigned int offset)
+> +{
+> +       struct ad24xx_gpio *adg =3D gpiochip_get_data(gc);
+> +       unsigned int val;
+> +       int ret;
+> +
+> +       ret =3D regmap_read(adg->regmap, A2B_GPIOIN, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (val & BIT(offset))
+> +               return 1; /* high */
+> +
+> +       return 0; /* low */
+
+Just
+
+return !!(val & BIT(offset));
+
+> +static int ad24xx_gpio_child_to_parent_hwirq(struct gpio_chip *gc,
+> +                                            unsigned int child,
+> +                                            unsigned int child_type,
+> +                                            unsigned int *parent,
+> +                                            unsigned int *parent_type)
+> +{
+> +       *parent =3D child;
+> +       return 0;
+> +}
+
+This deserves a comment, is IRQ 0 the singular parent of
+everything? Then it doesn't seem very hierarchical but rather
+cascaded don't you think?
+
+> +static int ad24xx_gpio_irq_set_type(struct irq_data *d, unsigned int typ=
+e)
+> +{
+> +       struct gpio_chip *gpio_chip =3D irq_data_get_irq_chip_data(d);
+> +       struct ad24xx_gpio *adg =3D gpiochip_get_data(gpio_chip);
+> +       irq_hw_number_t hwirq =3D irqd_to_hwirq(d);
+> +
+> +       switch (type) {
+> +       case IRQ_TYPE_EDGE_RISING:
+> +               adg->irq_invert &=3D ~BIT(hwirq);
+> +               break;
+> +       case IRQ_TYPE_EDGE_FALLING:
+> +               adg->irq_invert |=3D BIT(hwirq);
+> +               break;
+> +       default:
+> +               return -EINVAL;
+> +       }
+
+No need for the "toggling trick" for supporting IRQ on both edges?
+Implementing that hack (which is in several drivers) will be nice to
+have for e.g. pushbuttons.
+
+> +static void ad24xx_gpio_irq_bus_lock(struct irq_data *d)
+> +{
+> +       struct gpio_chip *gpio_chip =3D irq_data_get_irq_chip_data(d);
+> +       struct ad24xx_gpio *adg =3D gpiochip_get_data(gpio_chip);
+> +
+> +       mutex_lock(&adg->mutex);
+> +}
+
+Is this mutex needed since there is already a mutex or spinlock
+in the regmap? Isn't this the case for A2B?
+
+Yours,
+Linus Walleij
 
