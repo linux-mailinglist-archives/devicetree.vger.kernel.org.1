@@ -1,303 +1,128 @@
-Return-Path: <devicetree+bounces-70037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB658D23CC
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:05:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D6688D23B0
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:03:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1A341C2361F
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:05:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 283CA28599F
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286B9172793;
-	Tue, 28 May 2024 19:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698C716FF4F;
+	Tue, 28 May 2024 19:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="zQy1R4s0"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sc5vGbNd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94178171E49
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 19:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C115744C8C;
+	Tue, 28 May 2024 19:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716923034; cv=none; b=j+VIxPv44jMeaSCA2IvriTWR3tUt8s9zcASfckNPrtt9mzKW2SFl5HjfQzh5EdFb+jonHMnvUFEaE6OxCm/FadIYLMebtX5hhN9mfxcbZhQxhw+nc8dK91JnP69Ouka5gvpjahKLslp7ttpG5pwhJnziWeG8Y2b6ZdIzYPH/WC8=
+	t=1716923010; cv=none; b=QHyBizVkCEjhjfNQREp3QaHWngW4OA/Sn9pJV+XJ8hFk0h58FsC+JNsqGmWKvqqfz7CupQRrMTIYqpGbgXyAjxWDdCyZZhde1fpjToMLA7N81BYLka+bCwOtaMlnkSen9zPgTw7aqeeCKQeEp+JWERUtHqX6k4KaftP8IEXQq6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716923034; c=relaxed/simple;
-	bh=jRRVWnUcsllv5xg42qCNsEqBnQxxCaBinC9xgoK7ExY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=T6BJ4g3/RwdQwQ80+/LMBJRwkyn6n8cXYJZuKPEglEci+Gt3Wuz+nTFGoTEFy2TfLDFO7U+uuy3iiFugsPhuciu4NCzXlDZdrridV1dGm/veOBx5pisQPlReyuLI+J4lomp/KzCBPkqjdpMkWy9zfdZdWA7rnz+1mJtNoLE2o8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=zQy1R4s0; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-420180b58c5so10131005e9.3
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:03:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923029; x=1717527829; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c/rfODploHDKXzqF5uZDj5HypMDi8GHx8C3gU75cfUM=;
-        b=zQy1R4s0Fw3Hb3fuCjUOVxn+UVgKo3/10nbUP4dD1urK75sfNVqKC0vSQYScQ3pn8R
-         NIqR5BYhZun1B5CjqnNfqBT8fYujxsEqGV1sbUoeZ0v+4M0AVZjUHkycD1Letngn6r3n
-         2Wex69J1vP3bVSuI2Va4EXxBtAfwEDRPCT5SM/r9QRDi4Cn/utikY5DENAtGAASqo/W6
-         jgtEhrKX/8XcgaFnPZxgMkeFFzKqs5k5QvYv/sVFRZEFcrHcGBbPq4TJr6koG7xXD9m9
-         sPeDFQcf0hCV3RhMa6ZpB7PgrNAWTerLZivO9RdBir+rESuyz4+uNFV396Cjq1gwYWq3
-         k+vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716923029; x=1717527829;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c/rfODploHDKXzqF5uZDj5HypMDi8GHx8C3gU75cfUM=;
-        b=EqKYS1/rZQhpHwfGNR725i+mcTaWqQ228DYPxXSllepPx/vK0w7m4a7nXX9dypC5rL
-         Cv1Kb5etMB5UaRvBPx3mUMQVPJ3NGV5KaC/WIKiMpAZ+ytTA4hJAKNd7TyRDWs6kkd/U
-         6+VKvuO8AZa9mbMd/ulRwwn549nJ/1YkDeZ4oGWziH5vX/rFc+Fmqin1IuhHWym9LQw/
-         jdVA6cn9LwiY3ziwXVoAdcxPAJKx7Qgb/Wn3JE+8Gv7jPH0grRJqBNvUed695w5xHe68
-         MvL4Ai7oSFHqWuSXUzU0FK2CaNPNujcYBeyxhrm0GHgFPbdTrgoushBou6a9Wn97JC7b
-         k5zw==
-X-Forwarded-Encrypted: i=1; AJvYcCVAsJW4SiyYc/0DryBnJEHM+pDeb1ssjSSIkynm5TvCMSw3wbl7jMyvvNDdcKAYcq44ACxYjf2pVioWMXStGgBHvgAyLS9GVXtp8g==
-X-Gm-Message-State: AOJu0YzzDS5W8EEntqAtvNDj7IpB9u/aCjYWXFrDoaIdPPOZhmk1uo3H
-	rUJydlWsQZvJ+T2tk7P8jBBTj/PPqUq1m+XVeNhLxzx3yGeTK1l3Oga1cRCtf7U=
-X-Google-Smtp-Source: AGHT+IEZz3DaP8vDUiO7UYMRhD5/zIn2+KNYNHhCT2WPx1urmnhscLCNQt/r21FNScSTSxiCZ5ikxw==
-X-Received: by 2002:a05:600c:224e:b0:420:fb99:ed02 with SMTP id 5b1f17b1804b1-421089b2283mr120556495e9.6.1716923028845;
-        Tue, 28 May 2024 12:03:48 -0700 (PDT)
-Received: from [127.0.1.1] ([2a01:cb1d:75a:e000:93eb:927a:e851:8a2f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.03.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 12:03:48 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 28 May 2024 21:03:09 +0200
-Subject: [PATCH v8 01/17] regulator: dt-bindings: describe the PMU module
- of the QCA6390 package
+	s=arc-20240116; t=1716923010; c=relaxed/simple;
+	bh=h+2v1Uu8sBVsE0sSUT/TQIKV/8xuYS/8QCvqmlBwVeE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jJJr197Ql+tH26cw9DwVBXwaWv+L8+LwZ91VV4jDEGhrz2ddHZZOQ5gL9XXadNWATsWs29mlxP0qU3HN9E6zHCGsmQaoLYWz+9oQJ01HAyEr0PsY+1Msj1YaIjR4l8jwr7oitTV7m2Bi8zOuRqyBuwZsp6QO6zjdv+oreQ7qu4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sc5vGbNd; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D583EA27;
+	Tue, 28 May 2024 21:03:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1716923004;
+	bh=h+2v1Uu8sBVsE0sSUT/TQIKV/8xuYS/8QCvqmlBwVeE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=sc5vGbNdoyU8CSQ7Hv2ZxhwQWJe7uSQc41rrkg3d5sPAj6qoEN80X2rCniDNUf07u
+	 as4qoC6VEuRmxjk95qDKDFX1XPuim06eUfOAljfBIaE2q3tZLD+wiuZFJjne0sVmJW
+	 OuEciPw/arJu2a/tQZVD0E4IS7I+vFFj0VKS18Tc=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Cc: Alexandru Ardelean <alexandru.ardelean@analog.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Subject: [PATCH v2 0/4] ADP5585 GPIO expander, PWM and keypad controller support
+Date: Tue, 28 May 2024 22:03:10 +0300
+Message-ID: <20240528190315.3865-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.44.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240528-pwrseq-v8-1-d354d52b763c@linaro.org>
-References: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
-In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>, 
- Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Helgaas <bhelgaas@google.com>, 
- Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
- Elliot Berman <quic_eberman@quicinc.com>, 
- Caleb Connolly <caleb.connolly@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Alex Elder <elder@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
- ath11k@lists.infradead.org, Jeff Johnson <quic_jjohnson@quicinc.com>, 
- ath12k@lists.infradead.org, linux-pm@vger.kernel.org, 
- linux-pci@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5018;
- i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=Qkeb9YORIDfkvwkp+GlKEgMos9lOvfcfa7/lVVyOAJo=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqMCQ/7vIZDzBIYID6EF7Nm5cHxYRr8KSj2h
- LnquCFgGt+JAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqjAAKCRARpy6gFHHX
- cihkD/0SSyWXBlx16ygZBVfA5mClNZjjlHCSb0a0oKurV28LhpE8Ywi7P/dafyU5VNjvLPsTGzW
- VzdDWjnAljTr21lVO2sU7RjDsL20cya9kwiFh9bWd8SKR3n9Wf9ZAkQQ2B3mEYrQB4HF8Jta66D
- orpfmCzzOusEyyX+NGHq+Bxwm0md4ba7VNzouizzBCZ1D9JIjQsXURxxKh99R/Mivhusckdlx9j
- sdsWzoHFCbb3rCRp2Jl9n9p5U0g5lN/cnoGZ0rVA8Jdz4/CY1Est956oKIYiIAV8Rp6Vv6a+UmT
- uw+oBs1iLjxTog/r4er2YKzTknHe/xlWf4/FCdAVac1Yno7ApdLLXtxP0YoCR89XeHC2VzErg2X
- ICz7ZGhPdo+47loMVwrA2XhI2GEmJkUjBmgCgXYHIc9KfrIl7bq5jGxD7f+q2eq14wQ52TLdaND
- +gf9RlbC7Y5f70cnBNG8JpWPPAVLIjgBCHRzAvenDd/TC8irL457L0WS1hGSo2tuY8u8XpbqO0n
- /QAJvHhTDNEDHUVs5vRIt1nugKXfzoay9uQ7jG4BpZODjQX46RbAfXtKpNYhw6XhojPhgfzVNeB
- 3cG9Is1qrCw00o788jXSrT/CU8jTcynrBXEUa5fwLPOx3rd68LzGtTLTVGVs9GNN5HTYxkGaolj
- cjFiCfxfmEZHUQw==
-X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
- fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+Content-Transfer-Encoding: 8bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hello,
 
-The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
-are powered by the Power Management Unit (PMU) that takes inputs from the
-host and provides LDO outputs. This document describes this module.
+This patch series introduces support for the Analog Devices ADP5585, a
+GPIO expander, PWM and keyboard controller. It models the chip as an MFD
+device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
+for the GPIO (3/4) and PWM (4/4) functions.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Acked-by: Mark Brown <broonie@kernel.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/regulator/qcom,qca6390-pmu.yaml       | 151 +++++++++++++++++++++
- 1 file changed, 151 insertions(+)
+Support for the keypad controller is left out, as I have no means to
+test it at the moment. The chip also includes a tiny reset controller,
+as well as a 3-bit input programmable logic block, which I haven't tried
+to support (and also have no means to test).
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-new file mode 100644
-index 000000000000..9d39ff9a75fd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-@@ -0,0 +1,151 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Technologies, Inc. QCA6390 PMU Regulators
-+
-+maintainers:
-+  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-+
-+description:
-+  The QCA6390 package contains discreet modules for WLAN and Bluetooth. They
-+  are powered by the Power Management Unit (PMU) that takes inputs from the
-+  host and provides LDO outputs. This document describes this module.
-+
-+properties:
-+  compatible:
-+    const: qcom,qca6390-pmu
-+
-+  vddaon-supply:
-+    description: VDD_AON supply regulator handle
-+
-+  vddpmu-supply:
-+    description: VDD_PMU supply regulator handle
-+
-+  vddrfa0p95-supply:
-+    description: VDD_RFA_0P95 supply regulator handle
-+
-+  vddrfa1p3-supply:
-+    description: VDD_RFA_1P3 supply regulator handle
-+
-+  vddrfa1p9-supply:
-+    description: VDD_RFA_1P9 supply regulator handle
-+
-+  vddpcie1p3-supply:
-+    description: VDD_PCIE_1P3 supply regulator handle<S-Del>
-+
-+  vddpcie1p9-supply:
-+    description: VDD_PCIE_1P9 supply regulator handle
-+
-+  vddio-supply:
-+    description: VDD_IO supply regulator handle
-+
-+  wlan-enable-gpios:
-+    maxItems: 1
-+    description: GPIO line enabling the ATH11K WLAN module supplied by the PMU
-+
-+  bt-enable-gpios:
-+    maxItems: 1
-+    description: GPIO line enabling the ATH11K Bluetooth module supplied by the PMU
-+
-+  regulators:
-+    type: object
-+    description:
-+      LDO outputs of the PMU
-+
-+    patternProperties:
-+      "^ldo[0-9]$":
-+        $ref: regulator.yaml#
-+        type: object
-+        unevaluatedProperties: false
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - regulators
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,qca6390-pmu
-+    then:
-+      required:
-+        - vddaon-supply
-+        - vddpmu-supply
-+        - vddrfa0p95-supply
-+        - vddrfa1p3-supply
-+        - vddrfa1p9-supply
-+        - vddpcie1p3-supply
-+        - vddpcie1p9-supply
-+        - vddio-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    pmu {
-+        compatible = "qcom,qca6390-pmu";
-+
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
-+
-+        vddaon-supply = <&vreg_s6a_0p95>;
-+        vddpmu-supply = <&vreg_s2f_0p95>;
-+        vddrfa0p95-supply = <&vreg_s2f_0p95>;
-+        vddrfa1p3-supply = <&vreg_s8c_1p3>;
-+        vddrfa1p9-supply = <&vreg_s5a_1p9>;
-+        vddpcie1p3-supply = <&vreg_s8c_1p3>;
-+        vddpcie1p9-supply = <&vreg_s5a_1p9>;
-+        vddio-supply = <&vreg_s4a_1p8>;
-+
-+        wlan-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-+        bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-+
-+        regulators {
-+            vreg_pmu_rfa_cmn: ldo0 {
-+                regulator-name = "vreg_pmu_rfa_cmn";
-+            };
-+
-+            vreg_pmu_aon_0p59: ldo1 {
-+                regulator-name = "vreg_pmu_aon_0p59";
-+            };
-+
-+            vreg_pmu_wlcx_0p8: ldo2 {
-+                regulator-name = "vreg_pmu_wlcx_0p8";
-+            };
-+
-+            vreg_pmu_wlmx_0p85: ldo3 {
-+                regulator-name = "vreg_pmu_wlmx_0p85";
-+            };
-+
-+            vreg_pmu_btcmx_0p85: ldo4 {
-+                regulator-name = "vreg_pmu_btcmx_0p85";
-+            };
-+
-+            vreg_pmu_rfa_0p8: ldo5 {
-+                regulator-name = "vreg_pmu_rfa_0p8";
-+            };
-+
-+            vreg_pmu_rfa_1p2: ldo6 {
-+                regulator-name = "vreg_pmu_rfa_1p2";
-+            };
-+
-+            vreg_pmu_rfa_1p7: ldo7 {
-+                regulator-name = "vreg_pmu_rfa_1p7";
-+            };
-+
-+            vreg_pmu_pcie_0p9: ldo8 {
-+                regulator-name = "vreg_pmu_pcie_0p9";
-+            };
-+
-+            vreg_pmu_pcie_1p8: ldo9 {
-+                regulator-name = "vreg_pmu_pcie_1p8";
-+            };
-+        };
-+    };
+The driver is based on an initial version from the NXP BSP kernel, then
+extensively and nearly completely rewritten, with added DT bindings. I
+have nonetheless retained original authorship. Clark, Haibo, if you
+would prefer not being credited and/or listed as authors, please let me
+know.
 
+All review comments from v1 have been taken into account as far as I can
+tell. The most notable changes are in the DT binding that now merge all
+functions in a single node, and the corresponding changes to the
+drivers.
+
+Clark Wang (1):
+  pwm: adp5585: Add Analog Devices ADP5585 support
+
+Haibo Chen (2):
+  mfd: adp5585: Add Analog Devices ADP5585 core support
+  gpio: adp5585: Add Analog Devices ADP5585 support
+
+Laurent Pinchart (1):
+  dt-bindings: Add bindings for the Analog Devices ADP5585
+
+ .../devicetree/bindings/mfd/adi,adp5585.yaml  | 107 ++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |   4 -
+ MAINTAINERS                                   |  11 +
+ drivers/gpio/Kconfig                          |   7 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-adp5585.c                   | 232 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/adp5585.c                         | 200 +++++++++++++++
+ drivers/pwm/Kconfig                           |   7 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-adp5585.c                     | 187 ++++++++++++++
+ include/linux/mfd/adp5585.h                   | 127 ++++++++++
+ 13 files changed, 892 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
+ create mode 100644 drivers/gpio/gpio-adp5585.c
+ create mode 100644 drivers/mfd/adp5585.c
+ create mode 100644 drivers/pwm/pwm-adp5585.c
+ create mode 100644 include/linux/mfd/adp5585.h
+
+
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
 -- 
-2.43.0
+Regards,
+
+Laurent Pinchart
 
 
