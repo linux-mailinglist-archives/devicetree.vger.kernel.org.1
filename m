@@ -1,229 +1,136 @@
-Return-Path: <devicetree+bounces-69958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EAB98D2080
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:35:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4B98D208A
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:37:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 310EF1C23561
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:35:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C22B1C23116
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:37:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD2217108E;
-	Tue, 28 May 2024 15:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E76617083D;
+	Tue, 28 May 2024 15:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z9z0Wcbr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NKsYmWky"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA5D16F831;
-	Tue, 28 May 2024 15:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BA51DFD1;
+	Tue, 28 May 2024 15:37:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716910517; cv=none; b=eIl+MD1GX5RwyIKb3x14ywR7h7Fmh/3lfhtkZ2cWMX+IIXzLxyv5gEjitZtFXVCUCCoT1wmTUEeCfhNcLMZkkzbgwH8vSvsYphsHO3GIa029dp6j9ARDuDKJfU75jrjzjHBR0D6+Pa1GJejoWTqfY4hRqhlQcuEuJ9cV8yL+8PA=
+	t=1716910638; cv=none; b=sUptvTwcoSx+qBlO9VO21mPFtFM3+oxjPoN3L0pMRMkFg1LfL5YXbhXi99OMs4vVXpDW+DXrlLtBebA0MH0qXdfAn3C7ptIOXzE20fILPkBM2wncsdEPYMmxBO+1k+gPxzoEkv+W8XnwzHE5EOftZdM5eo2LrGHm6needk6kmVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716910517; c=relaxed/simple;
-	bh=/d0SaieC4RckvDgzT1t79V4R1OBnT1xYzZ9Ijss7wKk=;
+	s=arc-20240116; t=1716910638; c=relaxed/simple;
+	bh=BiYxOQLp3SdeWRN8VT7No5J50/AGacW5/Vwkc78ZvTU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CHgH6sltp7grpzuIqtFWAlDTLcekoesaGRydiFE4cccmOK6UUfts/PE/ckubEcE1fL8sTr+w8gBYMWii6O0vPZYBhtF6Uash2sWix01qvUSsfbnfboCysT7p5Xpl3reOmwVCl3NoZL+alff7Oc4WNg8jOYaJQztSUO4xmHbsc+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z9z0Wcbr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7952C3277B;
-	Tue, 28 May 2024 15:35:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AeK/ecz/lwdd20fSIq2MVz+bN2+uDivD2lGOCRNIO/U9RH+K+xx0NLw7f/K14pDjE2UD23wKjRQnbDfGyMmzSW6R+bA6qZ8g3JJBxyeJZQNBNZT265pFYibNViHhUoDzBAU7OtjeCO4QoQ2fJBK0TjzPkSP395WPmevtqfULz94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NKsYmWky; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFFB0C3277B;
+	Tue, 28 May 2024 15:37:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716910516;
-	bh=/d0SaieC4RckvDgzT1t79V4R1OBnT1xYzZ9Ijss7wKk=;
+	s=k20201202; t=1716910638;
+	bh=BiYxOQLp3SdeWRN8VT7No5J50/AGacW5/Vwkc78ZvTU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z9z0Wcbr7NxX2RATqwueT+oj6HvO1aCMipnvkQGMfErkhX9rTxq0I79srBLCnOMzA
-	 NLJCGSpinYiTQjk3eTi4sPKV6cSg0ndYmrwMTs7h8WoivtfFV24oHMOHQ48SeqNfCC
-	 vfPs3cHx4IoXoEgQsD1nUcdwobgEF8PZlJvtSJeeZRfz6DJ0A/N+z1blsmxb7/FF8w
-	 4jSdWJxk4VX2gi/+AbvfZRurEyf3SAI2U3wzY5i5wS6ht3g0Qj/p2b+p86rMKrtOVt
-	 LimHLPP8DAujFrTZxQgqPsBik67lR2gbb0SV8XG46GoMKVKYr7m8uXi81/F0hwQO1P
-	 56FJPZd1vaCCA==
-Date: Tue, 28 May 2024 10:35:15 -0500
-From: Rob Herring <robh@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Sameer Pujar <spujar@nvidia.com>,
-	vkoul@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jonathanh@nvidia.com, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ldewangan@nvidia.com,
-	mkumard@nvidia.com
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: dma: Add reg-names to
- nvidia,tegra210-adma
-Message-ID: <20240528153515.GA494766-robh@kernel.org>
-References: <20240521110801.1692582-1-spujar@nvidia.com>
- <20240521110801.1692582-2-spujar@nvidia.com>
- <80b6e6e6-9805-4a85-97d5-38e1b2bf2dd0@kernel.org>
- <e6fab314-8d1e-4ed7-bb5a-025fd65e1494@nvidia.com>
- <56bf93ac-6c1e-48aa-89d0-7542ea707848@kernel.org>
- <f785f699-be50-4547-9411-d41a4e66a225@nvidia.com>
- <774df64c-56a1-461a-82fa-a0340732b779@kernel.org>
- <D1HPADDIQNIK.2F4AL70NLHQCY@gmail.com>
+	b=NKsYmWkyWNCYpaEfoixgqY9fv9boQp6pD3Knsl62cVH8tUDSuRySIQx/z8qu04MiI
+	 Dkpl8t+DfqI45BdVR0COL/N+E88i9eTYyaTxeeq+I7oHd8IBaY69oDmqroZAvhTETP
+	 EvmeMuqSxgErfMsmW6uYMgmgl19ZtnE7Ka+stCW+DTtK/5FKWGVyInrrBXm96vfner
+	 /Mr55Oo0lDLibPYYFTEocC0mJwAcOyoh8HMz+AoPge3nmSDud4/Q1TfIxTI9XD9/2P
+	 5+vIm0xTjTGtMHVbO+pOh3+kHTo1I4bSo+xCmrr31V+dixBH2DuQOF74tkhqWXufpU
+	 1L3BddJzXOcXQ==
+Date: Tue, 28 May 2024 10:37:15 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add qfprom node
+Message-ID: <4jopw7qv2jlq7b5ljkxfhjjjdlqclruouentrvbjt43yybxyf6@qzsk4imnmq5m>
+References: <1709727995-19821-1-git-send-email-quic_mojha@quicinc.com>
+ <1709727995-19821-2-git-send-email-quic_mojha@quicinc.com>
+ <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
+ <69a8c14c-109a-103a-b8dc-d8e303c0f0d5@quicinc.com>
+ <gxi4klvxzwwyrwb2b4h7kmii5dx5mxdypxowwz3kyllvq6grss@6lahaospwtsh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <D1HPADDIQNIK.2F4AL70NLHQCY@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <gxi4klvxzwwyrwb2b4h7kmii5dx5mxdypxowwz3kyllvq6grss@6lahaospwtsh>
 
-On Fri, May 24, 2024 at 09:36:08AM +0200, Thierry Reding wrote:
-> On Wed May 22, 2024 at 1:29 PM CEST, Krzysztof Kozlowski wrote:
-> > On 22/05/2024 09:43, Sameer Pujar wrote:
+On Sun, Mar 17, 2024 at 08:21:58PM GMT, Bjorn Andersson wrote:
+> On Thu, Mar 14, 2024 at 10:13:59PM +0530, Mukesh Ojha wrote:
+> > Sorry for the late reply, was on vacation.
+> > 
+> > On 3/6/2024 9:24 PM, Konrad Dybcio wrote:
 > > > 
 > > > 
-> > > On 22-05-2024 12:17, Krzysztof Kozlowski wrote:
-> > >> On 22/05/2024 07:35, Sameer Pujar wrote:
-> > >>> On 21-05-2024 17:23, Krzysztof Kozlowski wrote:
-> > >>>> On 21/05/2024 13:08, Sameer Pujar wrote:
-> > >>>>> From: Mohan Kumar <mkumard@nvidia.com>
-> > >>>>>
-> > >>>>> For Non-Hypervisor mode, Tegra ADMA driver requires the register
-> > >>>>> resource range to include both global and channel page in the reg
-> > >>>>> entry. For Hypervisor more, Tegra ADMA driver requires only the
-> > >>>>> channel page and global page range is not allowed for access.
-> > >>>>>
-> > >>>>> Add reg-names DT binding for Hypervisor mode to help driver to
-> > >>>>> differentiate the config between Hypervisor and Non-Hypervisor
-> > >>>>> mode of execution.
-> > >>>>>
-> > >>>>> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
-> > >>>>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> > >>>>> ---
-> > >>>>>    .../devicetree/bindings/dma/nvidia,tegra210-adma.yaml  | 10 ++++++++++
-> > >>>>>    1 file changed, 10 insertions(+)
-> > >>>>>
-> > >>>>> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
-> > >>>>> index 877147e95ecc..ede47f4a3eec 100644
-> > >>>>> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
-> > >>>>> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
-> > >>>>> @@ -29,8 +29,18 @@ properties:
-> > >>>>>              - const: nvidia,tegra186-adma
-> > >>>>>
-> > >>>>>      reg:
-> > >>>>> +    description: |
-> > >>>>> +      For hypervisor mode, the address range should include a
-> > >>>>> +      ADMA channel page address range, for non-hypervisor mode
-> > >>>>> +      it starts with ADMA base address covering Global and Channel
-> > >>>>> +      page address range.
-> > >>>>>        maxItems: 1
-> > >>>>>
-> > >>>>> +  reg-names:
-> > >>>>> +    description: only required for Hypervisor mode.
-> > >>>> This does not work like that. I provide vm entry for non-hypervisor mode
-> > >>>> and what? You claim it is virtualized?
-> > >>>>
-> > >>>> Drop property.
-> > >>> With 'vm' entry added for hypervisor mode, the 'reg' address range needs
-> > >>> to be updated to use channel specific region only. This is used to
-> > >>> inform driver to skip global regions which is taken care by hypervisor.
-> > >>> This is expected to be used in the scenario where Linux acts as a
-> > >>> virtual machine (VM). May be the hypervisor mode gives a different
-> > >>> impression here? Sorry, I did not understand what dropping the property
-> > >>> exactly means here.
-> > >> It was imperative. Drop it. Remove it. I provided explanation why.
+> > > On 3/6/24 13:26, Mukesh Ojha wrote:
+> > > > Add the qfprom node for sm8450 SoC.
+> > > > 
+> > > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/sm8450.dtsi | 7 +++++++
+> > > >   1 file changed, 7 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > > b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > > index b86be34a912b..02089a388d03 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > > @@ -4575,6 +4575,13 @@
+> > > >               };
+> > > >           };
+> > > > +        qfprom: efuse@221c8000 {
+> > > > +            compatible = "qcom,sm8450-qfprom", "qcom,qfprom";
+> > > > +            reg = <0 0x221c8000 0 0x1000>;
 > > > 
-> > > The driver doesn't know if it is operated in a native config or in the 
-> > > hypervisor config based on the 'reg' address range alone. So 'vm' entry 
-> > > with restricted 'reg' range is used to differentiate here for the 
-> > > hypervisor config. Just adding 'vm' entry won't be enough, the 'reg' 
-> > > region must be updated as well to have expected behavior. Not sure how 
-> > > this dependency can be enforced in the schema.
-> >
-> > That's not a unusual problem, so please come with a solution for your
-> > entire subarch. We've been discussing similar topic in terms of SCMI
-> > controlled resources (see talk on Linaro Connect a week ago:
-> > https://www.kitefor.events/events/linaro-connect-24/submissions/161 I
-> > don't know where is recording or slides, see also discussions on mailing
-> > lists about it), which is not that far away from the problem here. Other
-> > platforms and maybe nvidia had as well changes in IO space for
-> > virtualized configuration.
-> >
-> > Come with unified approach FOR ALL your devices, not only this one
-> > (that's kind of basic thing we keep repeating... don't solve only one
-> > your problem), do not abuse the regular property, because as I said:
-> > reg-names will be provided as well in non-vm case and then your entire
-> > logic is wrong. The purpose of reg-names is not to tell whether you have
-> > or have not virtualized environment.
+> > > Is is really only 0x1000-long? Also, is the base you put
+> > > here the ECC-corrected part (if that still exists)?
+> > 
+> > No, its not.
+> > 
+> > Entire fuse space is this.
+> > 0x221C0000-0x221Cbfff
+> > 
+> > ECC corrected range is this 0x221C2000-0x221C3fff and High level OS
 > 
-> This isn't strictly about telling whether this is a virtualized
-> environment or not. Unfortunately the bindings don't make that very
-> clear, so let me try to give a bit more background.
+> That's 0x2000. Does this then also imply that the ECC-corrected values
+> are no longer mapped 1:1 with non-corrected, or why do they differ in
+> size?
 > 
-> On Tegra devices the register regions associated with a device are
-> usually split up into 64 KiB chunks.
+> > does have a access to ECC range however, they are not recommended for
+> > SW usage.
+> > 
+> > Above mentioned SW range(4) in the patch is  one and only accessible range
+> > available out of 0-7 SW ranges(0x221C4000-0x221Cbfff with each
+> > size 0x1000) and does not have ECC fuses.
+> > 
 > 
-> One of these chunks, usually the first one, is a global region that
-> contains registers that configure the device as a whole. This is usually
-> privileged and accessible only to the hypervisor.
+> So you're saying that in contrast to other platforms, the 4th software
+> range, dedicated for HLOS, does not have a matching ECC-corrected
+> shadow? If that's the case, then "not recommended for SW usage" sounds
+> wrong.
 > 
-> Subsequent regions are meant to be assigned to individual VMs. Often the
-> regions take the form of "channels", so they are instances of the same
-> register block and control that separate slice of the hardware.
+> > All the downstream use cases are getting fulfilled with this.
+> > 
 > 
-> What makes this a bit confusing is that for the sake of simplicity (and,
-> I guess, lack of foresight) the original bindings were written in a way
-> to encompass all registers without making that distinction. This worked
-> fine because we've only ever run Linux as host OS where it has access to
-> all those registers.
+> You only need ECC if you're unlucky...
 > 
-> However, when we move to virtualized environments that no longer works.
-> 
-> Given the above, we can't read any registers in order to probe whether
-> we run as a guest or not. Trying to access any of the global registers
-> from a VM simply won't work and may crash the system. None of the
-> "channel" registers contain information indicating host vs. guest
-> either.
-> 
-> In order to make this work we need to more fine-grainedly specify the
-> register layout. I think the binding changes here aren't sufficient to
-> do that, though.
-> 
-> Currently we have this for the ADMA controller:
-> 
-> 	dma-controller@2930000 {
-> 		reg = <0x0 0x02930000 0x0 0x20000>;
-> 	};
-> 
-> This contains the global registers (0x2930000-0x293ffff) and the first
-> page/channel registers (0x2940000-0x294ffff) in one "reg" entry. Instead
-> I think what we need is this:
-> 
-> 	dma-controller@2930000 {
-> 		reg = <0x0 0x02930000 0x0 0x10000>,
-> 		      <0x0 0x02940000 0x0 0x10000>,
-> 		      <0x0 0x02950000 0x0 0x10000>,
-> 		      <0x0 0x02960000 0x0 0x10000>,
-> 		      <0x0 0x02970000 0x0 0x10000>;
-> 		reg-names = "global", "page0", "page1", "page2",
-> 		            "page3";
-> 	};
-> 
-> That describes the device fully, but each of these entries is optional.
-> If "global" is present it means we are a hypervisor (or host OS). If an
-> additional "page" entry is present, we can also use those resources to
-> stream audio data.
-> 
-> If "global" is not present, we know we are not a hypervisor and those
-> registers cannot be accessed. This would be the typical case for a guest
-> OS which has access only to the listed "page" entries.
-> 
-> For backwards-compatibility with the existing bindings we should be able
-> to fallback to the singular register region and partition it up in the
-> driver as necessary.
-> 
-> This is an approach that we've already implemented for certain devices
-> such as host1x and Ethernet where a similar split exists. I suspect that
-> we'll need to do this kind of split in a number of other bindings as
-> well.
 
-In a VM is a different (being a subset) programming model, so why not 
-just a new compatible for virtualized case. That's what we'd do if 
-actual h/w registers changed from one device to the next.
+The patch is either incorrect or the commit message is lacking answers
+to the questions from Konrad and myself.
 
-Rob
+Would have appreciated a reply here, but either way I'm marking this as
+"changes requested" and dropping it from the queue.
+
+Regards,
+Bjorn
 
