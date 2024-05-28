@@ -1,110 +1,246 @@
-Return-Path: <devicetree+bounces-69890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F15788D1E4E
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:17:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8378D1E5E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DBD9B21AC7
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:17:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 838672861F8
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFAE16F859;
-	Tue, 28 May 2024 14:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA0116F908;
+	Tue, 28 May 2024 14:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="riv68m70"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GFRrkoTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07DB6140E37;
-	Tue, 28 May 2024 14:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B189216F8F9;
+	Tue, 28 May 2024 14:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716905820; cv=none; b=RdPDWJkrnKLsHietHQsGeyWWl+4VOUGxhfHxeApCUUvmhDgJrGsmzR4/ec+gDSJeE1Jk2bxCSveYd92L6Ps1OgiNGiKtqEZUxaPHxg4u6G7sTqbq6ee4C+msguzhyqgvox0TGmXNOzuWljyWbj88S+gexBAXsW7fShiqQbVjzH4=
+	t=1716906011; cv=none; b=PkUKYs6P90GliI3/A2PKCfyqdO18RG4sg3fLVYXWW3XpeGYbvCnxF1YOO6mRyO7CUc2gBqeabUlvyz5ydltK6PepC0zC43qP3JOi1+K9pEV7eeQS1+jyneXgFxkM2sNj0johqk3gFiH1109/SN6WdEZ1eB0TYFtXAVdgcbFoKoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716905820; c=relaxed/simple;
-	bh=nnq1HNup0g0KUjYWTDaNiDizX9ovR2foxA+ZttZXqp8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Q65FJ02hqskJhXZHqRqZs8GFeMNfba9NkY3Tkqrzvv2dix+1ihrBjffPKI80teg1rjgUSUiwGWfR31AuzJQMtn0NF2rxF0C2Qzoxv0D5UihA1xwH9bztk6q5E2QwdlyeUmvWHeSvgmPiJRJ3e9AF9HSf70+WKcbh0DgCedX+hoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=riv68m70; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1716905801; x=1717510601; i=wahrenst@gmx.net;
-	bh=nnq1HNup0g0KUjYWTDaNiDizX9ovR2foxA+ZttZXqp8=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=riv68m70zSzcz5IxJgvPP3NgFTYWoEnZI5gJsU/lo57OMQ/TPoa4hF6SOrq6elWY
-	 aNOayLfsq44OSuWmquct3/iotf45XQ+lEXue9Y8WepUwuSag1MN2qm0mwH4KWHN2f
-	 sUKNubTmvdFJ3uiWlpEqm9R9Ur5MDx0+XbDaSMDE02J7oLVirajPaZOjhlMz+m0Mb
-	 Ys2K1S17PsQIpVDDgCsL4p6/fP6k2oHck8HVA7W4r6uF7TrOZJ7Sq6UvGlWY1A185
-	 dZj+aoWQA8ZGaxu6OcYpVN/LlJ/m6rKEDFMGj4+5jBQTZYdtqPGsSRF/q4E+HEGWT
-	 Uu7m6SSbw7PI75iJ+w==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1My32L-1sQLaQ2pLD-00zaby; Tue, 28
- May 2024 16:16:41 +0200
-Message-ID: <cad7b5c5-3a18-44ba-a377-f7aed1eba0e9@gmx.net>
-Date: Tue, 28 May 2024 16:16:40 +0200
+	s=arc-20240116; t=1716906011; c=relaxed/simple;
+	bh=1+rOQCPzQu4wnm8yOqRMSgFlDz1Ezy+l2FUt3lEFBhM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=JUc1DWo2ZxmT6lZczHVPulEnMkinHle1CabPZrNeQnfNxq269wpeEkaJfhWuLjMm4Bp1DDmgHLOLAJ43wGLy4E03NFJBknQg/HyOds/t218wVi6VbxY7rmSx21Ce5N5LboiPPzL2B0b+hGKGzPPvH0/Z+N+nIbRIrVuFLi+J9FA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GFRrkoTJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44SABn8I004417;
+	Tue, 28 May 2024 14:20:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:date:from:in-reply-to:message-id:references:subject:to; s=
+	qcppdkim1; bh=vKGPqik3ovC6mzbEe2S8aeqPg5Uz19n7KBUYuqPmDec=; b=GF
+	RrkoTJ4bh9Rl9vlkCwPXrPyfOafogozd1rUXWVNLA3f41kVGUgtq331NlewNxHfe
+	T3y9AYL4YjIxDzMb4LY99oIWG5pVNNhMzC/uYwfQ3Hpcg5fzNHbZ6wS8zi8xRlNi
+	b8DDDs83BN8QhgVvJa8fWF/AjjW3juJhDcaStuy8igrmS7wQeSo4qKROjPdWI4UL
+	/JicOIFxzQbJF8JEigOJ+pPaHf/cTKTurG+vQM93MeAPUVqkvtNLjZBO4JloNIZc
+	6ugb1h8/FiNEh+Dy/yCscTNztOG/VW5gzOJHCxK6Gz/muKJpWJHGWsPCD7tuUJMJ
+	oHkr7FiRuhEZ7mCBXqzw==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba2ppbdt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 May 2024 14:20:03 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 44SEK0oj012595;
+	Tue, 28 May 2024 14:20:00 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3yb92kpxd6-1;
+	Tue, 28 May 2024 14:20:00 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 44SEK0kJ012590;
+	Tue, 28 May 2024 14:20:00 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-vvalluru-hyd.qualcomm.com [10.213.106.176])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 44SEJxhd012587;
+	Tue, 28 May 2024 14:20:00 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 482827)
+	id 85FF152D383; Tue, 28 May 2024 19:49:58 +0530 (+0530)
+From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+To: dmitry.baryshkov@linaro.org
+Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_abhinavk@quicinc.com, quic_nankam@quicinc.com,
+        quic_vvalluru@quicinc.com, robh@kernel.org
+Subject: [PATCH v4] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+Date: Tue, 28 May 2024 19:49:54 +0530
+Message-Id: <20240528141954.7567-1-quic_vvalluru@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <CAA8EJpo=Q4_=JU83-9ooSqiSr=xUeHh2awDhzq9q3Xd56h83zw@mail.gmail.com>
+References: <CAA8EJpo=Q4_=JU83-9ooSqiSr=xUeHh2awDhzq9q3Xd56h83zw@mail.gmail.com>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: y2GYyrNt7T8FJHTpc8MuI1cFFEH0RmXn
+X-Proofpoint-ORIG-GUID: y2GYyrNt7T8FJHTpc8MuI1cFFEH0RmXn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-28_10,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 spamscore=0 adultscore=0 clxscore=1015 bulkscore=0
+ mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405280108
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] mmc: sdhci-brcmstb: Add BCM2712 support
-To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org
-References: <cover.1716899600.git.andrea.porta@suse.com>
- <4e8fc54e87447bae7db58636a1c87e5d8baeb012.1716899600.git.andrea.porta@suse.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <4e8fc54e87447bae7db58636a1c87e5d8baeb012.1716899600.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:etJIBGHhBTcuA5xOTz9exBNpjUjaiNcilgxin9SPEWrTzJKVZib
- aP6VLSOxVwQYtO7ErY3bEmP6KphaXtFmG15AFYTywpPChW8hSbQDKUMZ2Bx6n16nKCs28C+
- 5be5ftC3L40tZe6YT2WJzYswi2HYYjITFfJIrR/3eYiFPXh/I3kYetzE4GMXFMCos3Hm5sn
- Ymc0rB7gfSyA5f497lc9g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:npDpGTgrOeA=;weWOGvnzbKBV6LhR00Ym/FnVcbl
- TRGWIKc3h0f+AiCtdJ9VWUSR1xTT6pigWSX3m6FB4Olq5j+CVxBqC0g5fVJdt8b7wLMcJj66Q
- c389FR5qyn7tFgP/DEBTd0Tz2MN8TPMHGgxQs1Fs1hIFFs8yrhBx9zKnkTPa3VXQQ6qdv7xkY
- kyt5SapW7Sv0DSeLHHx/iWhiGfWwuvn5QLYO/ooT7rofhV4G1QbnerpjottriWl3GvbYfmJck
- 6GmwRhff/M4PwccIwFQsHu8ASsGicswNBjFri7aCDaJPcEhKYjp2332wLyu5ajDJY/qrgGt0u
- Fff+SSi3UEUhvrTAvG7QBkFs3klg2K1Hrj9xyBuqDvruwhnsLVLd7QRWdzBuFpKMTsFnKVuM7
- UwvDW3axP+SYYYGicoFgSekUa6qlZB5gsxIQGulS1tixt54wABIn2KvThqHmPc3CtbU/gS1rQ
- vPfJAW4g0HnrU8Pi/WuNB3uZGpULgabyZsIY+d4+4LUhtyri0pGi1ZG48OnF8DzPx1MzS5zXe
- AQuVBeB1pT3AGOmYTr0HpjlyjsV5mm/5MLjPdMGgnI0MbVebmYSWLdG5zJto6pHRfV27nvFnI
- dtQd10vUgIcXu2xRc5KpNLHhlB2pKnVvp7CVybeaIwIzgGhC0wLohP2BXOBpev3+Vcwj0HKuS
- D4XNYc5eknETnozZeKKsrDTbNNsAXdiVzfAY8n1ck8uSOkCUkbMVaZUVXPPFusyR1oCqFkJGW
- UMJ3Hb9YaMJWUt9vlovDsBEPss8IC58hXskalpkZPfdU3JcHfB1AjmRV/jkovIO6r8DIs3z9f
- ARf3oDhycAKKU+IsyvcPRSeK4ecHU26oNsrF+qZ5etP2A=
 
-Am 28.05.24 um 15:32 schrieb Andrea della Porta:
-> Broadcom BCM2712 SoC has an SDHCI card controller using the SDIO CFG
-> register block present on other STB chips. Add support for BCM2712
-> SD capabilities of this chipset.
-> The silicon is SD Express capable but this driver port does not currently
-> include that feature yet.
-> Based on downstream driver by raspberry foundation maintained kernel.
->
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+Rb3Gen2 has a lt9611uxc DSI-to-HDMI bridge on i2c0, with
+reset gpio from pm7250b gpio2 and irq gpio from tlmm gpio24.
+Bridge supplies are Vdd connected to input supply directly
+and vcc to L11c. Enable HDMI output, bridge and corresponding
+DSI output.
+
+Signed-off-by: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+---
+v4: added fixed regulator for vdd
+
+v3: - Updated commit text
+    - Arranged nodes in alphabetical order
+    - Fixed signoff
+    - Fixed drive strength for lt9611_irq_pin
+    - Removed 'label' from hdmi-connector, which is optional
+
+v2: Addressed dtschema errors
+	- Fixed lt9611-irq
+	- vdd-supply error to be ignored, as it is connected to
+	  input supply directly, on rb3gen2
+---
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 94 ++++++++++++++++++++
+ 1 file changed, 94 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+index a085ff5b5fb2..7f00fca131a2 100644
+--- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+@@ -52,6 +52,25 @@
+ 		};
+ 	};
+ 
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con: endpoint {
++				remote-endpoint = <&lt9611_out>;
++			};
++		};
++	};
++
++	lt9611_1v2: lt9611-vdd12-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "LT9611_1V2";
++
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++	};
++
+ 	reserved-memory {
+ 		xbl_mem: xbl@80700000 {
+ 			reg = <0x0 0x80700000 0x0 0x100000>;
+@@ -530,6 +549,46 @@
+ 			   <GCC_WPSS_RSCP_CLK>;
+ };
+ 
++&i2c0 {
++	clock-frequency = <400000>;
++	status = "okay";
++
++	lt9611_codec: hdmi-bridge@2b {
++		compatible = "lontium,lt9611uxc";
++		reg = <0x2b>;
++
++		interrupts-extended = <&tlmm 24 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
++
++		vdd-supply = <&lt9611_1v2>;
++		vcc-supply = <&vreg_l11c_2p8>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				lt9611_a: endpoint {
++					remote-endpoint = <&mdss_dsi0_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				lt9611_out: endpoint {
++					remote-endpoint = <&hdmi_con>;
++				};
++			};
++		};
++	};
++};
++
+ &i2c1 {
+ 	status = "okay";
+ 
+@@ -587,6 +646,21 @@
+ 	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
+ };
+ 
++&mdss_dsi {
++	vdda-supply = <&vreg_l6b_1p2>;
++	status = "okay";
++};
++
++&mdss_dsi0_out {
++	remote-endpoint = <&lt9611_a>;
++	data-lanes = <0 1 2 3>;
++};
++
++&mdss_dsi_phy {
++	vdds-supply = <&vreg_l10c_0p88>;
++	status = "okay";
++};
++
+ &mdss_edp {
+ 	status = "okay";
+ };
+@@ -711,3 +785,23 @@
+ 	function = "gpio";
+ 	bias-disable;
+ };
++
++&pm7250b_gpios {
++	lt9611_rst_pin: lt9611-rst-state {
++		pins = "gpio2";
++		function = "normal";
++
++		output-high;
++		input-disable;
++		power-source = <0>;
++	};
++};
++
++&tlmm {
++	lt9611_irq_pin: lt9611-irq-state {
++		pins = "gpio24";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++};
+-- 
+2.17.1
+
 
