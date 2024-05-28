@@ -1,174 +1,142 @@
-Return-Path: <devicetree+bounces-69841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E82E8D1B62
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:36:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B338D1B6B
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:38:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35D5A1C217D0
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:36:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6E7C1F2231E
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B1916727D;
-	Tue, 28 May 2024 12:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B755016D9D2;
+	Tue, 28 May 2024 12:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="DMtObHrW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xvT/UzH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF5316D4E9
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:36:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B537816D9B2;
+	Tue, 28 May 2024 12:37:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716899767; cv=none; b=KlKjyhvwucM4AKFELe/HGndvyk2b9vDNq8SLs7ZJ0JkoOtDKcOginzTKVtxMC9Iftkn7xh5KPP1GiszHJD8qk3zlJRgJHaHzGN/h8h/dFqmwA0wwyA5UiVp+FeHXtzJ9lE3JytZSR68J/RCX1aAP/3ymgGsQd5++7f9UyrOa/IY=
+	t=1716899874; cv=none; b=l31O/Fxp4jciGmuAKlOQAvbgZSOXaDLYPoz+mjalBw+VIsm0OZHsBUkVJaTITYhLHcKum89oukpfXCP0KQ6Mx3dSZGsJjcbYVUWqfDwFT/2E3zIZCQ/bPOBs+PDuyPjd/l890OlzIe0KhdgjTlzDcMfoN9UJc7/LfMt+H2o8V+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716899767; c=relaxed/simple;
-	bh=dxo+VD6etbgWoCyr/ttW9EQDmp7oGUltI2KkYjRfzQ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QcCOoouSYvoTy0pTCzBH7B/PWl8fxyDLOPBWQd9llfRdQmZlE5yWu8ekrfrTubr0FJh6IG5HiChYRLH/xN3J5+90pDTGvisri9/iatz0cycWoaWgHUSdXVesISIYye0mF5fsdPMV8rEkVOXTxlrkDrzNM1XTKC4lzAw5tV0aLqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=DMtObHrW; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4210aa012e5so6227325e9.0
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 05:36:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1716899763; x=1717504563; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cKjV4fgQjqu5wh6AYtxjbKfildzmBjMlCCtP3nDdjQo=;
-        b=DMtObHrWOcYrcPSrmZ5dzAXS0ov6++6jbbvZWyUOnTOdlFXIJx183q0QTJveCoH3/4
-         GiKdHFoc5Qn9n8/iSvudwgrU693pxRjmy2KYjkrvb7DyXbbCWF0A3FsHH4XfY5t1FGSD
-         pOM/56YpMO+m/CO3dTFOvvtH+UuGYMdvZOchRESfAv8TgD3Jbgh1bVj2mFgCNZi/aQN5
-         rpuQorCQJyVaPJlq4DyWPeEbffdnIsTtoV66rfrCtTjIr8YC86hWg0QDhMgnQRz+va2q
-         IbGKbhH3hwNL7sHAzuSzHrg1aDFAC+3UgwYVK9RLydDYg0ng6zUuKr9y4yh0SpzMbR1E
-         gNnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716899763; x=1717504563;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cKjV4fgQjqu5wh6AYtxjbKfildzmBjMlCCtP3nDdjQo=;
-        b=Fsu/N9Lx5ZuUpyiSvUxVWOOrhsXx0EhLhZ5b2T70Uofj6fTfZJIuLtmga5QGVrSpof
-         V2bwpQiv07bbVbEzPNVF8SN1FDeUrf27dcR8MLGYwBvoArS08j6BPV89yEDLZPSYLZdx
-         tEeuQGYPvhOisAzK1ZMhmxLA0k9M6PTCwDoF0okrz51/g8mtaqxwLc3JaS+NXRNxdPxm
-         zMGmiO+MCGQ1vaa5Qbqdwgu5gKoLqGfjE/Zpg8mQvGo570SlNJkj357tOFgIoshyhogG
-         1/SwBoJ06KRDdxbgMrPhIlOos9JzM8wK2i1z3G+xqYq3FYLXc19MUkV0cZRzsDAoGvMg
-         c5Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFpdMq2C2MKtwRv0Rdf9YK3QXYbMxkjlYK/js/9eIqYMTQGVNU2kG3DXZjvR1Z8XfEdTMO6Wr02WEQqiMS5Z2LtXZ3BciENtxwRg==
-X-Gm-Message-State: AOJu0YzVHHHNWGNPICOxAuYm+kg/DSOA1F5x/eC2m8pDE5KvfxjnATw8
-	9CXQghffDJsfIN5JXnF56dbU9p3eRW5LhLybdo5CnIhZEoBKi1wJIjKrc2cDByo6Sl3sqLK0FPo
-	pwU0=
-X-Google-Smtp-Source: AGHT+IH/nIHnbKuaQ02BEZC+tUBPKkKNzrItqWNXK99sKCPB3sE+lmgdRWRIDZRs8kvy1AAgHOeL9w==
-X-Received: by 2002:a05:6000:248:b0:355:21f:be1f with SMTP id ffacd0b85a97d-35526c155b3mr7235867f8f.4.1716899763394;
-        Tue, 28 May 2024 05:36:03 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35579d7d88esm11676251f8f.19.2024.05.28.05.36.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 May 2024 05:36:03 -0700 (PDT)
-Message-ID: <74ab64e2-9bb4-4e98-9f2f-f6402ba42c08@freebox.fr>
-Date: Tue, 28 May 2024 14:36:02 +0200
+	s=arc-20240116; t=1716899874; c=relaxed/simple;
+	bh=jjXOSZzea0dJ/w6k/SihOsVeOimaoaFLh2JwNccdFJo=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GbwCWsmcsxQT9QrcMjnh4YF5cBMIaTDcwIIQzWpxtN2vDQk93/mqhlVTnDI4w3N/mOeJ33qIOuBaCBRRCnRCNAsK2R8rEyBBB6w3wJ6KRlpQVTH+eIN6R5XjXUuCcx5UfiBl9f+0b/ESuNzhxJn5yS00NykQthm9oNoxRWaKVHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xvT/UzH7; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44SCbj75082033;
+	Tue, 28 May 2024 07:37:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716899865;
+	bh=xB4oHCBXlCixPnhQKwd1AgKNVCDeboxcnPDhFRE5cxg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=xvT/UzH7ybH1j4jrRLqvFF+Q3yi2ykOaiscLtPbqMAFYDmQyHS3rSFIHrp4d5Oj11
+	 6r7wBbF9OAxC36owvIkfOiewrvvwB9xMVwK1cykRZDyz7u8NEmoDaDC6BuC2IgD+GD
+	 1y0yefsUB716dTIip/qUwHl0g8JuNXqykyzP+jGY=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44SCbjxn073938
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 28 May 2024 07:37:45 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
+ May 2024 07:37:45 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 28 May 2024 07:37:45 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44SCbiHe076753;
+	Tue, 28 May 2024 07:37:45 -0500
+Date: Tue, 28 May 2024 18:07:43 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Roger Quadros <rogerq@kernel.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <afd@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <danishanwar@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH v3 2/7] arm64: dts: ti: k3-j722s-main: Redefine USB1 node
+ description
+Message-ID: <ae766f18-3b56-4667-837b-eb51694106a4@ti.com>
+References: <20240524090514.152727-1-s-vadapalli@ti.com>
+ <20240524090514.152727-3-s-vadapalli@ti.com>
+ <f52d9569-a399-422f-9cf0-b0bf69b64d18@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k
- <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>,
- DT <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Alexey Minnekhanov <alexeymin@postmarketos.org>
-References: <54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr>
- <171560975908.1690511.498631481702370762.kvalo@kernel.org>
- <3464a980-36a7-4ed2-b2dc-be8fd9091b06@freebox.fr> <87zfsa6ybl.fsf@kernel.org>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <87zfsa6ybl.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f52d9569-a399-422f-9cf0-b0bf69b64d18@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 28/05/2024 12:11, Kalle Valo wrote:
-
-> Marc Gonzalez writes:
+On Tue, May 28, 2024 at 03:15:53PM +0300, Roger Quadros wrote:
 > 
->> On 13/05/2024 16:16, Kalle Valo wrote:
->>
->>> Marc Gonzalez wrote:
->>>
->>>> The ath10k driver waits for an "MSA_READY" indicator
->>>> to complete initialization. If the indicator is not
->>>> received, then the device remains unusable.
->>>>
->>>> cf. ath10k_qmi_driver_event_work()
->>>>
->>>> Several msm8998-based devices are affected by this issue.
->>>> Oddly, it seems safe to NOT wait for the indicator, and
->>>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
->>>>
->>>> Jeff Johnson wrote:
->>>>
->>>>   The feedback I received was "it might be ok to change all ath10k qmi
->>>>   to skip waiting for msa_ready", and it was pointed out that ath11k
->>>>   (and ath12k) do not wait for it.
->>>>
->>>>   However with so many deployed devices, "might be ok" isn't a strong
->>>>   argument for changing the default behavior.
->>>>
->>>> Kalle Valo first suggested setting a bit in firmware-5.bin to trigger
->>>> work-around in the driver. However, firmware-5.bin is parsed too late.
->>>> So we are stuck with a DT property.
->>>>
->>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->>>> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->>>> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
->>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
->>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->>>
->>> 2 patches applied to ath-next branch of ath.git, thanks.
->>>
->>> 71b6e321e302 dt-bindings: net: wireless: ath10k: add
->>> qcom,no-msa-ready-indicator prop
->>> 6d67d18014a8 wifi: ath10k: do not always wait for MSA_READY indicator
->>
->> Hello Kalle,
->> What version of Linux will these be included in?
->> (I don't see them in v6.10-rc1. Are they considered
->> a new feature, rather than a fix, and thus 6.11?)
 > 
-> Yeah, these commits will go to v6.11. Because of the multiple trees
-> involved (ath-next -> wireless-next -> net-next -> linus) we need to
-> have ath.git pull request ready well before the merge window opens and
-> these commits missed the last pull request.
+> On 24/05/2024 12:05, Siddharth Vadapalli wrote:
+> > From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> > 
+> > USB1 controller on J722S and AM62P are from different vendors.
+> > Redefine the USB1 node description for J722S by deleting the
+> > node inherited from AM62P dtsi.
+> > 
+> > Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> > Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> > ---
+> > v2:
+> > https://lore.kernel.org/r/20240513114443.16350-3-r-gunasekaran@ti.com/
+> > No changes since v2.
+> > 
+> > v1:
+> > https://lore.kernel.org/r/20240429120932.11456-3-r-gunasekaran@ti.com/
+> > Changes since v1:
+> > - The entire node which was added in k3-j722s.dtsi in v1 in now moved to
+> >   k3-j722s-main.dtsi as USB is a main domain peripheral.
+> > - Used generic node names - renamed "cdns-usb@f920000" to "usb@f920000".
+> > 
+> >  arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 39 +++++++++++++++++++++++
+> >  1 file changed, 39 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> > index 0dac8f1e1291..b069cecebfd9 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> > @@ -6,6 +6,13 @@
+> >  
+> >  #include <dt-bindings/phy/phy-ti.h>
+> >  
+> > +/*
+> > + * USB1 controller on AM62P and J722S are of different IP.
+> > + * Delete AM62P's USBSS1 node definition and redefine it for J722S.
+> > + */
+> > +
+> > +/delete-node/ &usbss1;
+> > +
 > 
-> Yes, we are slow :)
+> This is odd and indicates issues with current DT file inclusion.
+> We need to split out the non common IPs (e.g. USB) out of the common k3-am62p-main.dtsi file Maybe call it k3-am62-main-common.dtsi.
+> Only keep am62p specific stuff in k3-am62p-main.dtsi.
+> 
+> Include k3-am62-main-common.dtsi and k3-am62p-main.dtsi for AM62P
+> Include k3-am62-main-common.dtsi and k3-j722s-main.dtsi for J722S
+> 
+> This way you don't need to call /delete-node/
 
-My understanding of the merging process was that
+Ok. I will move the common nodes between k3-am62p-main.dtsi and
+k3-j722s-main.dtsi to "k3-am62p-j722s-common.dtsi".
 
-- new features are queued for the next cycle,
-so vN+1-rc1, or vN+2-rc1 if the submission came too late (after ~rc6) in cycle N
-
-- fixes are queued for the fixes batch in the same cycle
-
-This patch series is handled like a feature rather than a fix?
-(To me, it fixed broken behavior in the FW, but I understand
-if the nature of the changes require a more prudent approach.
-Though they are disabled for everyone by default.)
-
-Regards
-
+Regards,
+Siddharth.
 
