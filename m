@@ -1,77 +1,67 @@
-Return-Path: <devicetree+bounces-69701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1C88D12D1
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 05:38:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D060E8D12D9
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 05:38:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A4B0B22656
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 03:37:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B0E5283CD7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 03:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B8613D8BE;
-	Tue, 28 May 2024 03:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC44713E028;
+	Tue, 28 May 2024 03:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rshabBSj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpcHrd3p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA4513D8B1;
-	Tue, 28 May 2024 03:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E07F13DDD1;
+	Tue, 28 May 2024 03:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716867186; cv=none; b=NF9+mCRdeZfem3cjOTtAcfQjUPdv7Vo40KLwGs+jOaZpEoc+8rsWxFSb6fm9vxxREwztOlv6FjAKCHvXhFVNUpxfowXWPEiP/MXNU0va0STTJNYve9AfCmnkinXqqePeIT+b2TSHShzparkX1iGShHjaklkKTG/AROHpF1YRMe8=
+	t=1716867188; cv=none; b=BIM0F9WifTbaAG38mV/Z6flj0Ys0W5J4wICQ2IOmjfwP41aUkNgnteehb9x+Z8NeTL324wvYIA5UlM884jMzhvLoNBBpplmbrnN8uoucpBm4UCa2dxhobEE2dvlRIpLE405vOuwR0LnMcOt+6esJhFcSro6DqZm9bBRrQAs580I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716867186; c=relaxed/simple;
-	bh=uwvq5Wedl1N9KReTFf0091UdUiKNqGpr5XM3LynNTQ8=;
+	s=arc-20240116; t=1716867188; c=relaxed/simple;
+	bh=dmkQhH726QV4tXqveyEfM0J2Tr7bkFkZbQJeAmuA30k=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZiIYbFzrQnyzwssbI5GMU7s55rWaY6hKy8PvHXKdf86tC7frEvYbpEQX19b9z699WcmfB2iplDoiXkUxaHTV9kzOtmQ33W5GvVs9fXcDHM90+XBSNexrGj4MurDWHhZXRJmpbDCP0fk+nzkD345m5G1pSIkrRbUtRNHGEsBMwPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rshabBSj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EC7CC32782;
-	Tue, 28 May 2024 03:33:04 +0000 (UTC)
+	 MIME-Version:Content-Type; b=OETJ8Akf0aX5C9uqT1S9irdkHUmIw2UjMLdRzxXOijhKf0tNut2g5kCJjHDNNjmjwFT0G2GyIyNgENUlTGgVfKqfMd/sYmDCiItdJp6+DokN1nucpsr0B4VFT1bdLL1HSd8no+IqTt8USdE07r/OBJYnGcm9sp8sVhVbuj479JI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpcHrd3p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F747C32786;
+	Tue, 28 May 2024 03:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716867186;
-	bh=uwvq5Wedl1N9KReTFf0091UdUiKNqGpr5XM3LynNTQ8=;
+	s=k20201202; t=1716867188;
+	bh=dmkQhH726QV4tXqveyEfM0J2Tr7bkFkZbQJeAmuA30k=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rshabBSjQ/nqlyxO3eB7wuQk8ErKBGkw3F+xkyHQohi5w8UuWpyAqkLjaJxxbzA4c
-	 1FtQVfYEtNhkiMwLoydR+Hf3k3HGFY5uA3y15tV19DSYh0Vc9ZhM5cq7PmfEHdq3pz
-	 gsb0eHF9mfXyEasue8r3M5vBKCVSEo3CE6i3BUq9uuQIJFSy6TbORam0L3EmLJbiE2
-	 BMY4WKaSwzmtYft9cF+jPKkd3GPk1Ek/uJZsaXm1EryI/nnHKUgJxArlJu6r9iPGAv
-	 WokFNojBWc62OljeOPvLzGuHjAqhcnWh0km9cvFQgD6aVgiQkAdUHm5hKMy1Rf3TZT
-	 w3125J8Tnk3ZQ==
+	b=LpcHrd3peNExvtrcA/QbYMeqt/gPihJJRkcbhvnJo5IAsKHwL7BitrnYh9N5ZMlcc
+	 C6LL4vC7xx0yyUnd6/DZFdO+j3HJwFRRBj85TpJDpngQ3ZBPq7mFdt568RZxHzV4q/
+	 7LzfR0vo2fkvJ49nII060HF/jXzTZqEQOyoeC8uSOWzaNieJ0ZEaNKlm8xhhSXW5Bm
+	 I92ljfyc+ydTqxWeztKsm+6QzUBvoAiL14ank/Hkt839kmTedx3Ms53F5jY+ordVKR
+	 tjfAdVwrREflyoEcakJi6RA8r6W4ulNyxkGFUsn8kEQyKcWSVKdZvdD87SyYZrmhi8
+	 oRvwtwbagss4Q==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Konrad Dybcio <konradybcio@gmail.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jie Gan <quic_jiegan@quicinc.com>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ilia Lin <ilia.lin@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Tingwei Zhang <quic_tingweiz@quicinc.com>,
-	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-	Tao Zhang <quic_taozha@quicinc.com>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	Song Chai <quic_songchai@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	quic_yijiyang@quicinc.com,
-	quic_yuanjiey@quicinc.com,
-	quic_liuxin@quicinc.com,
-	Leo Yan <leo.yan@linux.dev>
-Subject: Re: (subset) [PATCH v1 0/1] arm64: dts: qcom: Add coresight nodes for SA8775p
-Date: Mon, 27 May 2024 22:32:26 -0500
-Message-ID: <171686715150.523693.9600444026133556372.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: Re: [PATCH v2 0/3] Add support for the IPQ5321 SoC
+Date: Mon, 27 May 2024 22:32:28 -0500
+Message-ID: <171686715170.523693.6781951899387448559.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240521011946.3148712-1-quic_jiegan@quicinc.com>
-References: <20240521011946.3148712-1-quic_jiegan@quicinc.com>
+In-Reply-To: <20240325-ipq5321-sku-support-v2-0-f30ce244732f@quicinc.com>
+References: <20240325-ipq5321-sku-support-v2-0-f30ce244732f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,20 +72,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 21 May 2024 09:19:45 +0800, Jie Gan wrote:
-> Add coresight components for SA8775p.
-> The device tree change is checked by dtbs_check command and these components
-> all tested with SA8775p device.
+On Mon, 25 Mar 2024 21:19:47 +0530, Kathiravan Thirumoorthy wrote:
+> IPQ5321 SoC belong to IPQ5332 family. Add the SoC ID and the cpufreq
+> support. Maximum cpufreq for IPQ5321 is 1.1GHZ, which is determined
+> based on the eFuse.
 > 
-> Jie Gan (1):
->   arm64: dts: qcom: Add coresight nodes for SA8775p
+> Viresh is okay to merge the cpufreq change via qcom tree[1] and provided
+> his Ack.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: Add coresight nodes for SA8775p
-      commit: 6596118ccdcdb3ec5e417293e43bf6b122363a37
+[1/3] dt-bindings: arm: qcom,ids: Add SoC ID for IPQ5321
+      commit: 27c42e925323b975a64429e313b0cf5c0c02a411
+[2/3] soc: qcom: socinfo: Add SoC ID for IPQ5321
+      commit: 8ddfb4a8e093689859184abf52fe15cd2523c6b9
+[3/3] cpufreq: qcom-nvmem: add support for IPQ5321
+      commit: 14ef045bbd27430dc92c8b4613caaf41e82f47e0
 
 Best regards,
 -- 
