@@ -1,101 +1,135 @@
-Return-Path: <devicetree+bounces-69750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF048D161C
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E62F8D162D
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:24:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70D17B215AF
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:19:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0103FB22614
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE1613A3F3;
-	Tue, 28 May 2024 08:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096E413B5B9;
+	Tue, 28 May 2024 08:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="u+oFxHHp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC81F6F079;
-	Tue, 28 May 2024 08:19:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BA61DA22
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 08:24:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716884359; cv=none; b=CsUOl9pR6vrlmOzJ+Nexzn/pm7AzBFdmXRkNirxi+AsINOLmLKR9Ibb3qDJYjtUbsWHFDPX+M9PrLsFGgEBfxMVvbtv/NhS07DtXBm1d4cJu5bm96sb3iw8eaeOfZbuXMclH1BBO6V7s7whOkr8g47BpsrP/AyJ8A7t8WQOejqY=
+	t=1716884668; cv=none; b=rcoD9GDz2h0FhHtUtgbw1+HyP05uBeucz7eVorBiOtvzpQ0nIz3okoaBgBSNWelvjkAGg73px6Z24RGtZUF5Q8wE6sejpNtzPOYAbuvIJO5P3hKC32FU6Hogb1/tHYLZmSOv7vpZjWnT6oxfaa9rD8DOwDZERNOldBCsuqG5JtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716884359; c=relaxed/simple;
-	bh=gJZogRnYwW9QFjcyMClNf4KTStnwLtJOXf/ejk2ylZQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LGmUM9DgvL9DqgT1+OFQ/hNSle34zGslTVBNijSSHxqhJit9msEgVFVrxLaT6jBQ5CYjMsTtGTyMOqfA99DPcw86hu9gEAX2+S6oFP5aAeWrcnZwAEX6ISHnDg8fiqe8QzyEucpLKsgriHeTx0S0hrCw5UMj9BjgHbDi1tEwa6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e86193d.versanet.de ([94.134.25.61] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sBs33-0001fu-Iu; Tue, 28 May 2024 10:19:09 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Alex Bee <knaerzche@gmail.com>
-Subject:
- Re: [PATCH 1/3] dt-bindings: media: rockchip,vpu: Document RK3128 compatible
-Date: Tue, 28 May 2024 10:19:08 +0200
-Message-ID: <3639993.hdfAi7Kttb@diego>
-In-Reply-To: <20240523185633.71355-2-knaerzche@gmail.com>
-References:
- <20240523185633.71355-1-knaerzche@gmail.com>
- <20240523185633.71355-2-knaerzche@gmail.com>
+	s=arc-20240116; t=1716884668; c=relaxed/simple;
+	bh=GCQ1m9J8lKx87/HGO9hdjPvS6kXTUT6TzFBSOkaPGOY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iV5LlKcQJs7INbqsylH0OUWOMfwEKQPlj989LuZlI13+A/J70mLyutVA5aFAEzy/EcJmUGMQkHE95TOAXlBUuEUe6sIHITPhBRKQ6nVpb2GZJVmMlr+Cj6njUup0ynd6tnhujpeAVzjfdiGVkaqoOHXWbnW8KkDWJsJPz7z21+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=u+oFxHHp; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1716884661;
+ bh=qPh1TUYouNens2NOG5rWGJXtGraotD7+jWwwz6GP7ds=;
+ b=u+oFxHHpkVFzEXeLc7mOk22RSaekNUZUh0XXUoJqceI7t5Jep7dWMU3cZ7LG8Z2ybq1XOld4b
+ Z6RcbRlhgJOlEozpcRSs9P8tI3SGh/M0BodCjQ/OC9173nYseoX6iXheH0vqbAVNgm3XNhTlZG0
+ sfs8JKepIcqX83vlii8Qn9Hb5uxEqkyrdP4au3xLKGJ5fX11UnVVTTf/Oo3V3sA0TrEN7/6awXA
+ 4vkP4JjTTbEuGKmDiSg01QUmjqTG37cFednn3XBTZebhxhq/68ZhpVQuz4jSGPNrroZ26yQb5qE
+ +TUP5+TOlY4+FfkJ++yK7EY0iTyWHpL0uz2WzZlArnJA==
+Message-ID: <ecc0ddd7-531f-4d4b-8132-9851dae4af67@kwiboo.se>
+Date: Tue, 28 May 2024 10:24:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH 00/13] rockchip: Fixes and improvements for ROCK
+ Pi S
+To: "=?UTF-8?Q?Heiko_St=C3=BCbner?=" <heiko@sntech.de>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240521211029.1236094-1-jonas@kwiboo.se>
+ <171684956152.1783037.15483261423757153532.b4-ty@sntech.de>
+ <1750846.QkHrqEjB74@diego>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <1750846.QkHrqEjB74@diego>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 665594b3d1d2529ec2df17a9
 
-Am Donnerstag, 23. Mai 2024, 20:56:31 CEST schrieb Alex Bee:
-> The integration for this SoC is similar to RK3066/RK3188.
+Hi Heiko,
+
+On 2024-05-28 00:43, Heiko Stübner wrote:
+> Am Dienstag, 28. Mai 2024, 00:42:16 CEST schrieb Heiko Stuebner:
+>> On Tue, 21 May 2024 21:10:03 +0000, Jonas Karlman wrote:
+>>> This series include fixes for DT schema validation, fixes and improve
+>>> support for onboard features of the Radxa ROCK Pi S board.
+>>>
+>>> Patch 1-2 fixes DT schema validation of ethernet and audio codec.
+>>>
+>>> Patch 3 fixes use of onboard SD NAND and eMMC.
+>>>
+>>> [...]
+>>
+>> Applied, thanks!
+>>
+>> [02/13] arm64: dts: rockchip: rk3308: Fix codec@ff560000 reset-names
+>>         commit: cb1622df6a28e3eac34a8b95feba2dd2dc6cd887
+>> [03/13] arm64: dts: rockchip: rk3308-rock-pi-s: Fix SD NAND and eMMC init
+>>         commit: 1fb98c855ccd7bc7f50c7a9626fbb8440454760b
+>> [04/13] arm64: dts: rockchip: rk3308-rock-pi-s: Add sdmmc related properties
+>>         commit: fc0daeccc384233eadfa9d5ddbd00159653c6bdc
+>> [05/13] arm64: dts: rockchip: rk3308-rock-pi-s: Add pinctrl for UART0
+>>         commit: 7affb86ef62581e3475ce3e0a7640da1f2ee29f8
+>> [06/13] arm64: dts: rockchip: rk3308-rock-pi-s: Rename LED related pinctrl nodes
+>>         commit: d2a52f678883fe4bc00bca89366b1ba504750abf
+>> [07/13] arm64: dts: rockchip: rk3308-rock-pi-s: Add mdio and ethernet-phy nodes
+>>         commit: 4b64ed510ed946a4e4ca6d51d6512bf5361f6a04
+>> [08/13] arm64: dts: rockchip: Add OTP device node for RK3308
+>>         commit: 36d3bbc8cdbef2f83391f7708888265ac4c37a99
+>> [09/13] dt-bindings: power: rockchip: Document RK3308 IO voltage domains
+>>         commit: 579e5b476307797b3a1260bec544dbbabcce1de5
+>> [10/13] soc: rockchip: io-domain: Add RK3308 IO voltage domains
+>>         commit: 0536fa6e6fa3e48f4ca11855b586c277be524fbe
+>> [11/13] arm64: dts: rockchip: Add RK3308 IO voltage domains
+>>         commit: d1829ba469d5743734e37d59fece73e3668ab084
+>> [12/13] arm64: dts: rockchip: rk3308-rock-pi-s: Enable the io-domains node
+>>         commit: 100b3bdee6035192f6d4a1847970fe004bb505fb
+>> [13/13] arm64: dts: rockchip: rk3308-rock-pi-s: Update WIFi/BT related nodes
+>>         commit: 12c3ec878cbe3709782e85b88124abecc3bb8617
+>>
+>> I've split this up slightly.
+>> Some patches for 6.10 as fixes, and the rest for 6.11 .
+>> Edited patch7 (for 6.11) to apply without patch6 (6.10)
+>> That disappears during a merge of those branches.
 > 
-> Document it's compatible.
+> and as stated, please re-send patch1 separately.
+
+Thanks!, I will re-send first patch shortly :-)
+
+Regards,
+Jonas
+
 > 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-Media people, can you apply this patch alone from the series?
-
-Thanks
-Heiko
-
-> ---
->  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Thanks
+> Heiko
 > 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-> index c57e1f488895..d1b47b14ca57 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
-> @@ -26,7 +26,9 @@ properties:
->            - rockchip,rk3568-vpu
->            - rockchip,rk3588-av1-vpu
->        - items:
-> -          - const: rockchip,rk3188-vpu
-> +          - enum:
-> +              - rockchip,rk3128-vpu
-> +              - rockchip,rk3188-vpu
->            - const: rockchip,rk3066-vpu
->        - items:
->            - const: rockchip,rk3228-vpu
 > 
-
-
-
 
 
