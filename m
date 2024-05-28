@@ -1,102 +1,107 @@
-Return-Path: <devicetree+bounces-69888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF1CA8D1E38
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78B378D1E45
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:15:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A44C1F231BD
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:13:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21B851F2338D
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B6B16F8F0;
-	Tue, 28 May 2024 14:13:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F36B16E895;
+	Tue, 28 May 2024 14:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C/mLH8Uv"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="tFa4qhqM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5B616F8E7;
-	Tue, 28 May 2024 14:13:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA0C1DFDE;
+	Tue, 28 May 2024 14:15:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716905622; cv=none; b=r7R2IRE+rrvZFe9myZIUPMOijf3MokUyTS3jeIVxE2AyafcYBhN+pxTsJ4vyCfKJrEFyLvM9Yw+MdgCHdReXbCfYswbfYZwXAs4O5Qbn92m0zALbd4VHWdR3KnCRNhNlIitVCzXphT/WiVNGQk5pLMxRnTXDvVSlkY3LNeRkLnA=
+	t=1716905751; cv=none; b=K1NX1Z4cshI6SYtgwCC+0Pu/xSRMnLxROSV7PuOctRCgCWYU5u8ILi2W7b8B3KicjSr4vbcedL3c/3efkINCJOsCVkzLhvrLzCO079fIOsrPKCAnWJfD0HWNS5cifG/UTRKOpRsCAsrmbkZMfDGFZ+iSf5YXHiIpUg3wzRr2Tw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716905622; c=relaxed/simple;
-	bh=q3OS1zhUhFTVBXyzbvdGWgxbiiW070IglW+y4dWYsS8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b2jBQC5ijcPlQYIYxy8Bd8DWe1rZqwPOb/LF0AFaWxKY9+ZuOPx80wLobjkLoZeolWoftZHxaHte2jk6sl+s6Ue7AvLHopX26lS4qBToWDvwOgFI+HTbwRhG7+2Dag/4tYoOmeu8recw1B3m/v61HRKf+JgZtE6duwZYTDuNMY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C/mLH8Uv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61738C4AF0A;
-	Tue, 28 May 2024 14:13:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716905621;
-	bh=q3OS1zhUhFTVBXyzbvdGWgxbiiW070IglW+y4dWYsS8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=C/mLH8UvuI2UIM1KwptIPPbL0GtiDcHegij+Sua45dG/ZgRp7IVXURysBUxvdPxRZ
-	 QF6ixzUeBr5b7gLGi6Y02kT5MZ7KuawjENmoFDOLdb1ildBQqpswkDQH/V7Jkyet9k
-	 ohVw1jicor3dCTEMG8EpvDk6Em6opqmaX+OfVhUq9gB/rZEuyNhLfX0/PtM8SANM6Q
-	 AbwKJzmiBCCtgbZCtuiCg9y4wWEOpS5iSDUB25cKElDPQ6c7m9msfu4PMWv+jZ7YaM
-	 VUnF7ljFBKLvkEsPIJMSQ4R7CvQae3MRNfk6sLtf2+2n8Y38gPT+m5RJbNo/5djhWH
-	 bQ9lLmVn7C6Yg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: konrad.dybcio@linaro.org,
-	Sumit Garg <sumit.garg@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	stephan@gerhold.net,
-	caleb.connolly@linaro.org,
-	neil.armstrong@linaro.org,
-	dmitry.baryshkov@linaro.org,
-	laetitia.mariottini@se.com,
-	pascal.eberhard@se.com,
-	abdou.saker@se.com,
-	jimmy.lalande@se.com,
-	benjamin.missey@non.se.com,
-	daniel.thompson@linaro.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND2 v5 0/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC board DTS
-Date: Tue, 28 May 2024 09:13:36 -0500
-Message-ID: <171690561219.535711.5025638361687702520.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240527053826.294526-1-sumit.garg@linaro.org>
-References: <20240527053826.294526-1-sumit.garg@linaro.org>
+	s=arc-20240116; t=1716905751; c=relaxed/simple;
+	bh=ZpiZtSugjss1IH3bHnUrUBBvCJmQBU7qym1W53Fl558=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Q2vxcP0Cko7IS8GUz/t6gPHM/wi87sQ02DNrvWHDVBm4fIguKL6TWxRSgugOnUrPbyESO0OOj/7dgdnnCqlJJZKcUqGCYDfOod/H6IlexF9dRdwOQa8VM1krPeqp1itVZAQ/VxpNh8pyIQZCwfZE3fKEZZg0MDantyt91v2/F+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=tFa4qhqM; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1716905728; x=1717510528; i=wahrenst@gmx.net;
+	bh=ZpiZtSugjss1IH3bHnUrUBBvCJmQBU7qym1W53Fl558=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=tFa4qhqMy2dC8+csEejmBW6eRUibSI1973H/nMfE9r1vp28c5gwjMbOeBN55rv8n
+	 gjSpKMdY2Sq27+7ziQzTr9FnW4Pz6Dh8bjk/WTkz3IzzOU+e924tLtIU/NOqc+xHX
+	 ydpo7baZVEJ6G+sgM/vDDhzpVOrO64dx5IBTeNMPLMuiqD51NDOxSuFEHo3lTPktD
+	 mXAi0LOdphM6XpTSVB31tT/Vu7scvF9nHBrgdjQ9bw1Lz7wIUsKg/VAv8C3Cl/dpT
+	 zYN9JFGDENUscoKXR1n8d/BlADD99Y7y5/2DwsijDrI7u79YQEktFGZZSUc8EGUyI
+	 2/KHuqPN7EqN33rJIQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N8GQs-1sXjjU2jgW-014E1j; Tue, 28
+ May 2024 16:15:28 +0200
+Message-ID: <17b76f79-2e83-4957-b240-b7bd5997d508@gmx.net>
+Date: Tue, 28 May 2024 16:15:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] dt-bindings: mmc: Add support for BCM2712 SD host
+ controller
+To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org
+References: <cover.1716899600.git.andrea.porta@suse.com>
+ <0f263886c0622f43d3a2f4cccaebae0c39ba1bc5.1716899600.git.andrea.porta@suse.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <0f263886c0622f43d3a2f4cccaebae0c39ba1bc5.1716899600.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:oLe0wtPQqWitqt+Z78DgjMVIuWzRxkC8b/uPq2RlmctB2GmVo+m
+ fokurLJQK9muVnCajS8yd56oa/exYtzDrQDLLHONd/DMdjh7KHZQfX4ihRBw4We6ds9A5ov
+ SIXFeTTqi8mtlbvE+C1hf1GUffX5+8gC7vJfKM57UbYjRzaB49OuQJ7ErV2R9S132MMSRCB
+ wNHnlrzu6LKG2myLr9aqA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:u8vm6Rexr5o=;HMwPB9aKOPZ9rWvv8T3eN5y/yfb
+ lFF9q4+FhcH0wzpZuDVCTulLM65QXh6xik1UJYEnlO1rM51Nf6LpF/saN6faiHC1UIS1aA9wI
+ yHa8J7m4L6R9LldlqtHSiD+aDjRGGppPIPdpxhrHl7yl5oTbVd0MVACV9sL36bxPzUIviHkrc
+ fFPykiwMFnWmxCdlIZjs3XO0J2HRiSIRFQ1UD3kOE0UDSLceryeqacQ3pRF1b9hcq322iwOoI
+ XkulbRrsan1rKmoxpYoLgVFrqKUEQmdwfRXCvyIzj1QhcRQhwC0uUmMLFwfqZ+J7LChhAyYCL
+ ugJVGHGwWgWTVPmsFTzunOfAFtCIEVwnUwyxFfMz/beYj2TO3PuUJMiAxe2azJqj7qZroW6RB
+ Yn865s8lCxiesMUZd3aAeecpXR/xqPppODvn3KvFrgmBIn60JZoof543UUJdDDCgMSWv/n9Af
+ wPcLP8i+zMQtK0ivI0g5W5jTNWkioFxwuvezyWkDAGJgmkjS7QDsk8yFG798S8R47PAXP9mut
+ +iDonoK9wzRCDsydJ9UPQCfaeKtqiHk/AVYKUGPSTjKm/5plrz5lxCpppBEGvnTvmqJkfbX4W
+ txwNs+uroED/CEzFqTTtlv4lQ6RTVZD4WU5u+gpEjGr/N1r5wK84RB4xLylxANOsb4UgkEiFE
+ 80NkXzSbJJAsaR08EielTxaVY76FOwR/1gel7LYtDOE21w4elgiDi1/5PLM4LM3a+3YCAGBAy
+ t56x5Wr8C1v9v3oG1tnxgSz2M+DlXZyTpwRVhZL+WJkEXwsWBN5/2pOVimnRsKHoyROHQ1bJx
+ DrhTCt/+inuJvEZVZRSXudFcfrrW2MPl6x3xK3ByCzbZE=
 
-
-On Mon, 27 May 2024 11:08:23 +0530, Sumit Garg wrote:
-> Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-> Box Core board based on the Qualcomm APQ8016E SoC. For more information
-> refer to the product page [1].
-> 
-> One of the major difference from db410c is serial port where HMIBSC board
-> uses UART1 as the debug console with a default RS232 mode (UART1 mode mux
-> configured via gpio99 and gpio100).
-> 
-> [...]
-
-Applied, thanks!
-
-[1/3] dt-bindings: vendor-prefixes: Add Schneider Electric
-      commit: 1fabbb0888c3d74366133de848228a899477aa34
-[2/3] dt-bindings: arm: qcom: Add Schneider Electric HMIBSC board
-      commit: 6cf67a2b51edfcef998b545f8aec18b9e8cefc80
-[3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC board DTS
-      commit: cceb16d201bb129dc019bb7df6ec746bf12b398d
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Am 28.05.24 um 15:32 schrieb Andrea della Porta:
+> The BCM2712 has an SDHCI capable host interface similar to the one found
+> in other STB chipsets. Add the relevant compatible string.
+>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
