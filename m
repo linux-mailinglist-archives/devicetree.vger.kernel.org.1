@@ -1,160 +1,195 @@
-Return-Path: <devicetree+bounces-69949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600568D1FFA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:14:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256BF8D201B
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 17:17:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB6EC1F23967
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:14:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCA1A1F24179
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16FD17277F;
-	Tue, 28 May 2024 15:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC81171672;
+	Tue, 28 May 2024 15:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="guyhY8ja"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cUCcJuLj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C3717083F
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 15:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4154B16F8E0;
+	Tue, 28 May 2024 15:15:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716909192; cv=none; b=GMyltLvQIj5E35UEWaif/DAtnjoRoUFZZeXjrtcyg6wJIq8pRd/x9dwn9TxprNW1saRzDNz4svohdM3L69rXsr+wZPqMp+1SPL39EQd0y+KkjhD9R7Gs0Ipa2YPm/CYh9/lXrrxq7JwW0o7uZb0OXQwjnVHVRSdlS3wlNGwNM5Q=
+	t=1716909338; cv=none; b=HXdCEzHXxhXa3CMmuSH79SlUqlO5DMaNlZ7YTNaM5sJ6o/hM08XSdmTFxm7L5MwHsnj72W1TglUs7K9xDLj2A3xxaIj7GaO/waEys+VMKuXmhr+4k/rnjkTvHJupgvcvZ0xMPEJveelmO1HaTkUVmnTOKJMUuko9AlCx/4kL10k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716909192; c=relaxed/simple;
-	bh=bc1gaU0jimcHP4nmj8y1nOebfgtpG/F80UBv3S6uv88=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VUMfkAgtAyb335b8iPZI9F7u5brYK9yhUMByWQYV+DeFSwx8Qq9AxBV8q4XxVrBQVjJAEvxvZ/8OpzIfFu4j39uxfgFaLPsRxp6IwP1kPd9NHJ+AlsN38AW6OSHlVZrjCvuvF5TVdCYkb9mcglAKvnFkuhOiagRPJu16Khtxc3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=guyhY8ja; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-df78b1650easo960118276.1
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 08:13:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716909190; x=1717513990; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wEXZwKJdgLQqBqHcP2FuvqESxVIGZJvO/O2KfZWi54M=;
-        b=guyhY8jaDbhwKdFQWHj2SQ6J6OO1fdzKdJ8RwyFisqHbbSxAkSxxAqyeJQumLy9rVv
-         PKop0kO+XfU0l6ZHxeSBBBQKaBwzZwFJDJWMyucb/7aPWJYrhA54f6WxMBiJLjAgY0W8
-         7/kAyXLYBZgIsm47KELOW3HWHaRBUwWnM77sHZx9FmLArqeqWwMlrf39Wn3kRR6ys7/R
-         UWzvyV46nD78wqregA2qdAu3WNKODYeBtL9KiS+51DRWU9X2HHrIsUlXDfvUwRMRsMQF
-         iOZVyYshBAuD+EuxlDdBOkdGz5KcVfVA4WtzuaQ9XdeciYiGADoOtUNb9ZDrCy18hjZC
-         yFvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716909190; x=1717513990;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wEXZwKJdgLQqBqHcP2FuvqESxVIGZJvO/O2KfZWi54M=;
-        b=K+DRn9jDXgCNw07uOp+ErwZVw0SdMUguRDpa0RJ5XAP58tAF8UlN13CwlODKSOpqHi
-         ldSI7PNTDMOuH+gtjDFAPYVjdqFtaZXWUJALfvLhwiMYKXl3a3CuBDsYQLs+BeAmxYIw
-         6CTJ07ZXxBcrPoBa8dW3x42lzD/t/LhBe2ghOl4QuiurMhFsYHh0KyzPdIZlXRs5Pl6r
-         jKguuYWfxMVH0J3LiHOs2mN638qefSzDazqepj9elpV5EgK5r6vplK/SUC9CHswEyrBq
-         RcuNU7GZCTlrEWAqGuyk5NUI5ZO9Q9II8BlYPj3pSD0sCDpX98HOK+PPDhr/UdfWzcRD
-         HsSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUUXQNYyYwHdJ0ejulNu6hnizmywrDpnYb7qMGAvxS8HB2aXdMAZrKlQ+MMozTEw+N30mQy3cTTPCD2ELQVzLv1R8L2vQJzbpQzVA==
-X-Gm-Message-State: AOJu0YxlJQgZ1AOUiqVjt6FU7WDmDnVViSQkR7ywqu0kQAFR0b7Q0lHN
-	2QNWjzNbcH4ra+hJWlRkOl0NfsVo0ix4jiTAq5R959bV+WJI6p7FCnSkCNC0Jj+c+5P0a2VpCE7
-	qqOYWMPX2Yw9eM8KvE/vuP2WolR3MBc6FGSeHqQ==
-X-Google-Smtp-Source: AGHT+IELm1omO1wuTcw0Q2vGtaouTh8qJh+L8tegQHzARNG0l5mU2Cg7HCqEbHJH9QdriZCLJhqdzvjc38hiHJMqFkw=
-X-Received: by 2002:a25:800e:0:b0:df7:9242:281f with SMTP id
- 3f1490d57ef6-df79242931emr8456060276.49.1716909189568; Tue, 28 May 2024
- 08:13:09 -0700 (PDT)
+	s=arc-20240116; t=1716909338; c=relaxed/simple;
+	bh=xpk0Yqw/VN8ddEnECwmM/UpM6KoNoPvI14IHu2eBrJA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OIyBRhm3TmB621C25NPIypzskWUl7To6lqIXaWZ/s87vG/A9MVxJbSJsO0lR1f4heFd8gmmy06uwmgifOwq7BTws7zX9znVQ0YvmXS7t3MhAlIeGwF2sXxE4wx/R44aM9Z3pNYg+FNlnfqQJgX1SlmLXyYQG6uetpuO+UELKpnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cUCcJuLj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 942F9C3277B;
+	Tue, 28 May 2024 15:15:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716909337;
+	bh=xpk0Yqw/VN8ddEnECwmM/UpM6KoNoPvI14IHu2eBrJA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cUCcJuLjneqe7FsY8PDzBO8l6FMtnMWAfv87RASRNOn7ANCjpyTOCQZHUK1hT0ig2
+	 6B8fVVMjnGid5Z1MERtu5+/uuCMrqzvGKzWVgyuK7/U7zOtQH5qc+wywSAG3cokDKX
+	 yv20Iz5vrXsx1n19nf9LXAx1T/uoIJA9hWwBrHU19WulFHEsUnTLyUZ1CABB+XaZzC
+	 2d/GYyyoaPLkTIkHMFf6WVDQ5y0ScYlfjJbkGlTNXzAJ1+ZnT2F0F+lj2jZ+BYIV8E
+	 gBq03xNbxHelWp5K2URHJuTM6b/mG6uRgHfrEUhHnOlx2fS1p1a3sY/0AY5GiTNnjJ
+	 wlbxl/nHstHPg==
+Date: Tue, 28 May 2024 10:15:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shengjiu.wang@gmail.com, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
+	perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: fsl,xcvr: Add compatible
+ string for i.MX95
+Message-ID: <20240528151536.GA275498-robh@kernel.org>
+References: <1716286416-17621-1-git-send-email-shengjiu.wang@nxp.com>
+ <1716286416-17621-2-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240527-yoga-ec-driver-v3-0-327a9851dad5@linaro.org>
- <20240527-yoga-ec-driver-v3-6-327a9851dad5@linaro.org> <bbsdvqjo2ikljnuvupolpdfstsaegfqyg2ct7bt24evcorcfjt@3fw5eicxxuik>
-In-Reply-To: <bbsdvqjo2ikljnuvupolpdfstsaegfqyg2ct7bt24evcorcfjt@3fw5eicxxuik>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 28 May 2024 18:12:58 +0300
-Message-ID: <CAA8EJpr9i=+uJGqxeeVYKwJeMqzQFg6FvqnChKNQqXLLVcB66w@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: c630: Add Embedded Controller node
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hans de Goede <hdegoede@redhat.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Nikita Travkin <nikita@trvn.ru>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1716286416-17621-2-git-send-email-shengjiu.wang@nxp.com>
 
-On Tue, 28 May 2024 at 18:06, Bjorn Andersson <andersson@kernel.org> wrote:
->
-> On Mon, May 27, 2024 at 01:03:51PM GMT, Dmitry Baryshkov wrote:
-> > From: Bjorn Andersson <andersson@kernel.org>
->
-> Please align this with the S-o-b - feel free to use either form.
+On Tue, May 21, 2024 at 06:13:35PM +0800, Shengjiu Wang wrote:
+> Add compatible string "fsl,imx95-xcvr" for i.MX95 platform.
+> 
+> The difference between each platform is in below table.
+> 
+> +---------+--------+----------+--------+
+> |  SOC	  |  PHY   | eARC/ARC | SPDIF  |
+> +---------+--------+----------+--------+
+> | i.MX8MP |  V1    |  Yes     |  Yes   |
+> +---------+--------+----------+--------+
+> | i.MX93  |  N/A   |  N/A     |  Yes   |
+> +---------+--------+----------+--------+
+> | i.MX95  |  V2    |  N/A     |  Yes   |
+> +---------+--------+----------+--------+
+> 
+> On i.MX95, there are two PLL clock sources, they are the parent
+> clocks of the XCVR root clock. one is for 8kHz series rates, named
+> as 'pll8k', another one is for 11kHz series rates, named as 'pll11k'.
+> They are optional clocks, if there are such clocks, then the driver
+> can switch between them to support more accurate sample rates.
+> 
+> As 'pll8k' and 'pll11k' are optional, then add 'minItems: 4' for
+> clocks and clock-names properties.
+> 
+> On i.MX95, the 'interrupts' configuration has the same constraint
+> as i.MX93.
+> 
+> Only on i.MX8MP, the 'resets' is required, but for i.MX95 and i.MX93
+> there is no such hardware setting.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  .../devicetree/bindings/sound/fsl,xcvr.yaml   | 37 ++++++++++++++++++-
+>  1 file changed, 36 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
+> index 0eb0c1ba8710..d1dcc27655eb 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
+> @@ -22,6 +22,7 @@ properties:
+>      enum:
+>        - fsl,imx8mp-xcvr
+>        - fsl,imx93-xcvr
+> +      - fsl,imx95-xcvr
+>  
+>    reg:
+>      items:
+> @@ -49,6 +50,9 @@ properties:
+>        - description: PHY clock
+>        - description: SPBA clock
+>        - description: PLL clock
+> +      - description: PLL clock source for 8kHz series
+> +      - description: PLL clock source for 11kHz series
+> +    minItems: 4
+>  
+>    clock-names:
+>      items:
+> @@ -56,6 +60,9 @@ properties:
+>        - const: phy
+>        - const: spba
+>        - const: pll_ipg
+> +      - const: pll8k
+> +      - const: pll11k
+> +    minItems: 4
+>  
+>    dmas:
+>      items:
+> @@ -79,15 +86,24 @@ required:
+>    - clock-names
+>    - dmas
+>    - dma-names
+> -  - resets
+>  
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx8mp-xcvr
+> +    then:
+> +      required:
+> +        - resets
+> +
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              enum:
+>                - fsl,imx93-xcvr
+> +              - fsl,imx95-xcvr
+>      then:
+>        properties:
+>          interrupts:
+> @@ -98,6 +114,25 @@ allOf:
+>          interrupts:
+>            maxItems: 1
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx95-xcvr
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 6
+> +        clock-names:
+> +          maxItems: 6
 
-Ack. I'll check what went wrong.
+6 is already the max. Drop these and add a 'not' into the if schema (or 
+list out the other compatibles).
 
->
-> >
-> > The Embedded Controller in the Lenovo Yoga C630 is accessible on &i2c1
-> > and provides battery and adapter status, as well as altmode
-> > notifications for the second USB Type-C port.
-> >
-> > Add a definition for the EC.
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      | 76 ++++++++++++++++++++++
-> >  1 file changed, 76 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > index 47dc42f6e936..d975f78eb3ab 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > @@ -370,6 +370,66 @@ zap-shader {
-> >  &i2c1 {
-> >       status = "okay";
-> >       clock-frequency = <400000>;
-> > +
-> > +     embedded-controller@70 {
-> > +             compatible = "lenovo,yoga-c630-ec";
-> > +             reg = <0x70>;
-> > +
-> > +             interrupts-extended = <&tlmm 20 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +             pinctrl-names = "default";
-> > +             pinctrl-0 = <&ec_int_state>;
-> > +
-> > +             #address-cells = <1>;
-> > +             #size-cells = <0>;
-> > +
-> > +             connector@0 {
-> > +                     compatible = "usb-c-connector";
-> > +                     reg = <0>;
-> > +                     power-role = "dual";
-> > +                     data-role = "host";
->
-> I was under the impression that this port is wired directly to the SoC
-> and as such this would support data role switching as well.
->
-> No concern with that, but just out of curiosity, is this not the case?
-
-It is wired through the external Type-C port controller RTS5437, which
-also controls the vbus pins, etc. The UCSI firmware reports both ports
-as host-only and doesn't implement data role switching. So, having it
-as "host" is a safe bet.
-
-I must admit, I also hoped to be able to use this port in gadget mode,
-but it seems to be nearly impossible.
-
-
--- 
-With best wishes
-Dmitry
+> +    else:
+> +      properties:
+> +        clocks:
+> +          maxItems: 4
+> +        clock-names:
+> +          maxItems: 4
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> -- 
+> 2.34.1
+> 
 
