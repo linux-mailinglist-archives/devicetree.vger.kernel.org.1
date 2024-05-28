@@ -1,126 +1,125 @@
-Return-Path: <devicetree+bounces-70112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25C1B8D26BA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 23:06:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAEF78D26F7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 23:19:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 574341C26A84
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:06:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95D3E28289B
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B1317B413;
-	Tue, 28 May 2024 21:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 833416A33F;
+	Tue, 28 May 2024 21:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQlGt4Jo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cUslpZ9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEEEB224D1;
-	Tue, 28 May 2024 21:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A35224D1
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 21:18:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716930401; cv=none; b=R50fWftv0rdfnGRGylfJ+5fKt1IpNwZwBZ/8NZRmolnjKW6dCSg2fZZ0uX/vv25ElzN+AT7SKBTj1wjlCutO6QQD8ewxpORbL/Mc+YzN5Hv7uHgNqSuH8qAqrWxyechLihnHRHeswGp0XCL/GMWreM85rYyKsKf3BaJrp/qddEE=
+	t=1716931139; cv=none; b=LO7UcVdnM3lqMdR0UwiohHH3hzWdUfEDmjhP9hbfHsL2FVu7zjaqdOjm2yMA9nRqoXssR9Jq97EwXM0hredKGcksU++HWMKPoPaHB0kCSxvUG+jAo4BXaqrHCtBFoGnSM5vJ0XupZPO8MznnEoOiHP9X8c9ON1zHn/6rI6YVkdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716930401; c=relaxed/simple;
-	bh=ZSJQyl9M2teS5Qx+/nF2zTSPDI8GKe5B/XcPj6W/pxc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AwwOB1i62h8TA/Fmcg5UorwI7/unGP+XL1gaFhU6qOtLN5R9WXKrQeD2GHGflxdzroQz8N7lpQUP3als766AFt6sPtpqN0yknt+5YGb2koxFaNBmelvRtIixFWbh5RDbwITMA1PELAfEmV2XNdmfk0QXQi9McRZ+IY6kBhxtgMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQlGt4Jo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 620DEC32781;
-	Tue, 28 May 2024 21:06:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716930401;
-	bh=ZSJQyl9M2teS5Qx+/nF2zTSPDI8GKe5B/XcPj6W/pxc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bQlGt4JoOroymoDj15TKOYMq4CvoZ95q+35EHLFFNL+YjPWebxr8s94joLUHbNk4c
-	 8D9YTkiisAAoUEHc4u6X/ThU9e91TDphV3FwDirx+SeSajrtXdjDlFhIAs/8sd5wSE
-	 y0+miW1vGQ6vBvXX4cgnf3WeL/K4iOEzD0h2aB2AEsOEWL5qKn9jrfDbhxtsqfbS6/
-	 fJsjjc62b1N+Cq6sixjlEx52JuDxHG6vY0+j4ogPYHm6WojgLxBv1OODtL1tfUl/0M
-	 WLehtaA9506TQNPj5gQbNZTwYJWG3j6pQfrFsQpuffKtTeAbCf/od89ZBpwGUm67/w
-	 dq27GJKSPFj/g==
-Date: Tue, 28 May 2024 16:06:38 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/7] soc: qcom: smem: Add a feature code getter
-Message-ID: <q3ajxhbj5kyc7ljgy7vr3lbpixjhtbv3ud7sgdec4u3iog6das@rdeymasp3n6j>
-References: <20240404-topic-smem_speedbin-v2-0-c84f820b7e5b@linaro.org>
- <20240404-topic-smem_speedbin-v2-2-c84f820b7e5b@linaro.org>
+	s=arc-20240116; t=1716931139; c=relaxed/simple;
+	bh=1fRYHSi0mjmCvHoGzx4YHmpPxnjofRb8n/LP8z3Pafg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=agSJMNbdLL7OW2ms4i67DBZa+hWY4lWmzEYX59cFQmtlEcIG2TM+bszrHlvh9VaNF07jruovD4JQ8nPGvYe4JgBrAakHqM4GQ63fS7V9e6VbCGzsfnEos/9GDxk0L7RWJ+yK/FsHvmSEsC6WySmNI62g/iBPdktbPCr3S3EeQO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cUslpZ9a; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1f32696c112so765275ad.0
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 14:18:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716931137; x=1717535937; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zOLG/xiP19Du9416MvTHWN0x62JjOGZwmlDMwy+iLDQ=;
+        b=cUslpZ9aRuZsLRK6DzY53cIkCm2ofWpXEpcYr9wd1mmpUXFVN41nJWPdANBX6JgOFP
+         C2LgjISjmTmGrBgiE4pscRjWps9/0BxIPFtQlQ78xEGikHQNNijzuZQ1kk5VN19CXYXM
+         c3TkHDa31VeAwR+H9AkWFeSjoWJfP9OqgvtmXFGkDFhtz81fWd8+NyCe0/+uNi5qsOG9
+         JRC0LntaBbkt+kLwt3mVROj9Zxg09pWIimRymmWPBBstKx4RLbEnY7CCeo35k2U37USU
+         5kgzOQZ8XcG4uPMe16FTRvl2VjHQr2B+Z4xFjVGU2hQrYRuaG6ofzamwNdBvchUIgh4Z
+         gwxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716931137; x=1717535937;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zOLG/xiP19Du9416MvTHWN0x62JjOGZwmlDMwy+iLDQ=;
+        b=VriRkdl1v0VpWKqV1dWZU4CSF0qaZkNxXKb+70Oal8bABCxMgJYNGg+3cawcCyFB4Z
+         bCY26B9djC/eQxLWKCGmT+vqeiueLrzo11uGEECuhzRV/aLVdpJeTo64/Y1SPC1wCsOE
+         w35UXs1Vs+r1jN4NIbOhx/BpKpuCgwCaCE2iR3jEndoZS8TqSqWeOzVimzV/3j9CoRoC
+         Ag+bbEpRDIYs2deypSIO6FsqGfNuYJiPH/rjH8U1kkw0iZtFn71g+TygGV1cQnZ01YE+
+         ZkCGBno6oIjwuHfyt5Ipq75+n4JH0+4vlMf5YZjh6SElUrM9/9NnGG6380UzMSHEfl1L
+         0Vyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWztrUoa8zmPDm9sqo0TFCHNJRf0DIYk7YnBTp3m8eQaDm3S2qmtYJzuWq9UzvWjpuJk963cJS6CLC/l+Aj8Efr3YZjiwoUGeb6AA==
+X-Gm-Message-State: AOJu0YypNGC5YcYuLqGNOGe93k3EwS2L/0NEtbl9eRIBNjrnYCgjMf6U
+	od5dMPBJDBA1/KDVg6w6wNGlB5UYzLWZ7K3Fw/aTIBp2qPAfMVMiOxkqTuGx
+X-Google-Smtp-Source: AGHT+IGp2BBVzmx4plp8sk06/lBMeVlCsJwWJUFGaSY3rZ8VTvsqB+1mahzneVs7+BeOak65QC+tPQ==
+X-Received: by 2002:a17:902:f688:b0:1f3:358:cc30 with SMTP id d9443c01a7336-1f4486d1fbamr150047285ad.2.1716931137334;
+        Tue, 28 May 2024 14:18:57 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:dfd9:2d9b:ff9d:4f57])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f44c7d1b46sm85105975ad.110.2024.05.28.14.18.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 May 2024 14:18:56 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] dt-bindings: arm: fsl: Document Compulab IOT-GATE-iMX8
+Date: Tue, 28 May 2024 18:18:45 -0300
+Message-Id: <20240528211846.1403524-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240404-topic-smem_speedbin-v2-2-c84f820b7e5b@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Apr 17, 2024 at 10:02:54PM GMT, Konrad Dybcio wrote:
-[..]
-> diff --git a/include/linux/soc/qcom/socinfo.h b/include/linux/soc/qcom/socinfo.h
-> index 10e0a4c287f4..52439f48428f 100644
-> --- a/include/linux/soc/qcom/socinfo.h
-> +++ b/include/linux/soc/qcom/socinfo.h
-> @@ -3,6 +3,8 @@
->  #ifndef __QCOM_SOCINFO_H__
->  #define __QCOM_SOCINFO_H__
->  
-> +#include <linux/types.h>
-> +
->  /*
->   * SMEM item id, used to acquire handles to respective
->   * SMEM region.
-> @@ -82,4 +84,28 @@ struct socinfo {
->  	__le32 boot_core;
->  };
->  
-> +/* Internal feature codes */
-> +enum qcom_socinfo_feature_code {
-> +	/* External feature codes */
-> +	SOCINFO_FC_UNKNOWN = 0x0,
-> +	SOCINFO_FC_AA,
-> +	SOCINFO_FC_AB,
-> +	SOCINFO_FC_AC,
-> +	SOCINFO_FC_AD,
-> +	SOCINFO_FC_AE,
-> +	SOCINFO_FC_AF,
-> +	SOCINFO_FC_AG,
-> +	SOCINFO_FC_AH,
-> +};
-> +
-> +/* Internal feature codes */
-> +/* Valid values: 0 <= n <= 0xf */
-> +#define SOCINFO_FC_Yn(n)		(0xf1 + n)
+From: Fabio Estevam <festevam@denx.de>
 
-Please wrap that 'n' in some () here and below...
+Document Compulab's IOT-GATE-iMX8 board, which is based on Compulab's
+UCM-iMX8M-Mini SoM.
 
-> +#define SOCINFO_FC_INT_MAX		SOCINFO_FC_Yn(0x10)
+Board URL:
+https://www.compulab.com/products/iot-gateways/iot-gate-imx8-industrial-arm-iot-gateway/
 
-"MAX" sounds inclusive, but the value is exclusive.
+SoM URL:
+https://www.compulab.com/products/computer-on-modules/ucm-imx8m-mini-nxp-i-mx-8m-mini-som-system-on-module-computer/
 
-Regards,
-Bjorn
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-> +
-> +/* Product codes */
-> +#define SOCINFO_PC_UNKNOWN		0
-> +#define SOCINFO_PCn(n)			(n + 1)
-> +#define SOCINFO_PC_RESERVE		(BIT(31) - 1)
-> +
->  #endif
-> 
-> -- 
-> 2.44.0
-> 
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 6d185d09cb6a..49296e77101b 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -946,6 +946,13 @@ properties:
+               - prt,prt8mm                # i.MX8MM Protonic PRT8MM Board
+           - const: fsl,imx8mm
+ 
++      - description: Compulab i.MX8MM UCM SoM based boards
++        items:
++          - enum:
++              - compulab,imx8mm-iot-gateway 	# i.MX8MM Compulab IoT-Gateway
++          - const: compulab,imx8mm-ucm-som      # i.MX8MM Compulab UCM SoM
++          - const: fsl,imx8mm
++
+       - description: Emtop i.MX8MM based Boards
+         items:
+           - const: ees,imx8mm-emtop-baseboard      # i.MX8MM Emtop SoM on i.MX8M Mini Baseboard V1
+-- 
+2.34.1
+
 
