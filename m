@@ -1,48 +1,75 @@
-Return-Path: <devicetree+bounces-69759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C9F8D1692
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:44:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC418D169C
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:47:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1856283849
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:44:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E1E21C22B03
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCCBB13C8F9;
-	Tue, 28 May 2024 08:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446F613CAA2;
+	Tue, 28 May 2024 08:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="N8N7Yyz+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KlLyq18D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E49771B4C
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 08:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54D168821
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 08:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716885840; cv=none; b=AlyzKGXBLufaJiGaLooNGnHP9eAR2TCjbTnjh6R1Z+3mOvTnbmX+EnodY8S4pKHeFwMJJi3H3w6792DflY29EUJFXlqRbIvodkXO5da2c3KPAZRT7CRjFTepSCphtwHaaKAgZ/yv/rkNRZ9qzGw62nfLir27Dyp9WbGmJf7ggKQ=
+	t=1716886012; cv=none; b=qH0rb6dsMl7SnbVO66fHqzTbosgzMIMz2mcwMS29xrrZHeoxBZlTTjFWEqtN018FFowRBgS1FCtvB3MsLSY2iM1WILWxLxP9iF+bwJO/2c5CMEXoud9tIpoC1sEu73TYQqJVafcTIz1uNXmvV1nvF9Z7+tE4byZdeXDegiTIC0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716885840; c=relaxed/simple;
-	bh=8HvIGKRSxVSzXwS7Na7UKkF6X7VsSrmut2KntrLmI1Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bRf1bleiRqgvNyCdp8H8I++H4DEEDUj9EOJV4LtOe7jXnCaW7RsSnKAkFnVOrKkUcygQyOX6mgeOCUJao7ouaim3x0UPPKntP5hbBZPXvplwxvrugWh8ow81NtdW3q/gejjQ4gi/lo6zLyfzV7XBvXHDV6XhCfYtY1l4/Ihrpm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=N8N7Yyz+; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1716885834;
- bh=GQr2PqTVIib2CwbHMvN8Y3i6rh0ebN+xNoUL7A1dzos=;
- b=N8N7Yyz+XiVCGNY/9/+kwTe/Hs4dGQZnp9pqovP0A4/X0wvlSWCA3WXoXPq7hO9GbwjliZ4Wc
- +ZAFkHevpm2adPN3/0NDo+2TNNiXhxQu79xqiaDmmdcVtXPcCwVcG0HCJzXzTV92mSt/eELqhl0
- 09dYX/FGx46v84g+fzMSdJj5Nnkn2vhaPN3XIGbXQE1Fn6nKCw2jD4Ka90mrJ/WIT2DL/M1BBUI
- PqAKbOFCrn7wyD5cxzi22HwZiHCks/HBwJv30mIk9Jg6wkPf0gRqz7rg9WRPl6XKyI4WEG/kc91
- uTOMYKBRYsa2MRxTruUOl0/zjJm9/RSGfyy0lxhldv8w==
-Message-ID: <82435177-1a4a-46c0-9a12-c056647d587f@kwiboo.se>
-Date: Tue, 28 May 2024 10:43:43 +0200
+	s=arc-20240116; t=1716886012; c=relaxed/simple;
+	bh=n9JXDO9d89lLOoX/3AcBwiNztvp10tx+ANINuhLeIvA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=KDj1j++qy5n2PxO1SLmSAwzcoRS5f1TpQfAkwZNPztV56NNxcHmDuyvZXsTuBSdqLBu727EKS1qBzhdLxwpWE5/RUr04vgp8DbInRiW1FO9Q1htu9kygXDfYzQt84Lzg9tpsHID/B/bgp1gGFTB1tlwlDQ4/veWxmpsIPSOZVeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KlLyq18D; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4211e42e362so3600515e9.1
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 01:46:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716886008; x=1717490808; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uoPTkSstfWYikQCW+JvBw9OJ4aACkIS7xPQ45I1/spU=;
+        b=KlLyq18DPloVMghbfiA8n0g8MyCj9+FtcCu+h9+v+leaAPN9jBoqnGlETChQtVGHHE
+         PgLdkEYg4amSdcnZ5jP5tbkJgK8FW/xjVAUMGzz8kwZvcxMYkTYT0LEs2ThXwC1ZIa8g
+         K+0EJBQh8ITZBrpOgj7Z5ge3MmjPK+9DpHbGmH3yblqr2dzj1pjDbxi82kfctppdtrye
+         3hcqVzU5Fr4r/L84HG96E6Qly1GXqDU8JdmMnR3UK7H4JSi7M2GNM2RXSUMdHNVsW79e
+         ptEE1RXdDSTvCl7DfbbfZrFAtY0DuPxPC+tXNcAwlfHPIFDOW6y30qFc12fgb69Gjfoz
+         3/mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716886008; x=1717490808;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=uoPTkSstfWYikQCW+JvBw9OJ4aACkIS7xPQ45I1/spU=;
+        b=iqJb9O/06O1mgm1yLd/1JfGL5q/VyS00UObGUVZ4yNfxamVPWBw7WF/P73bQ4LmooQ
+         d7I/9YJGhYxqoaIAt89fU7CXdKn8fIh0qZCRA78Ze4weTuj2bqS8/j/aPFKTGzDLd/S8
+         jwMwdq9DU0zUv7rls+PGXyOOSwze9jWqH0yTacIrFC4zCRLaSEHP4gblLJF5eMk2K3YY
+         dttO0dQnVk7L/TLBW7EKw2gabQ5RIMjPWlLBmgNprH27wjVgR4YGrPLhfVCyte86JvL5
+         nSE7ItSWLAC/sMaYB175lZMQMu68o3yuX/KcHzn8iIQKMAvieQuIhocS50/X/3gqHDpn
+         YfFA==
+X-Gm-Message-State: AOJu0YwYc/smWioqxS1fbSk+GyH1S+oOhi46qYXBLcG5H8qZSFrt7uCy
+	Edmqs4SHW/g9kTjzUJ+h1ZWXZury3B6i9CqDOuUAdrhjKdnyNJeq4JichE/46iw=
+X-Google-Smtp-Source: AGHT+IHeh7vF7KnRorjGCeQhv0h5uhIs1a7fiuao8jvp6p4jUUN7Bs3ltOy//i/SKrOI4IqXAveejQ==
+X-Received: by 2002:adf:f909:0:b0:352:e4d5:5e12 with SMTP id ffacd0b85a97d-35526c2b7c6mr7551225f8f.20.1716886007402;
+        Tue, 28 May 2024 01:46:47 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:8f19:f965:3f93:6385? ([2a01:e0a:982:cbb0:8f19:f965:3f93:6385])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-35607bcdf26sm10980087f8f.99.2024.05.28.01.46.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 01:46:47 -0700 (PDT)
+Message-ID: <c97b12bb-8b56-4129-a292-588226a0ec42@linaro.org>
+Date: Tue, 28 May 2024 10:46:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,99 +77,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] pinctrl: rockchip: add rk3308b SoC support
-To: "=?UTF-8?Q?Heiko_St=C3=BCbner?=" <heiko@sntech.de>, Dmitry Yashin
- <dmt.yashin@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Rob Herring
- <robh@kernel.org>, Jianqun Xu <jay.xu@rock-chips.com>,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240515121634.23945-1-dmt.yashin@gmail.com>
- <81aa0e4e-a3c7-41d1-8cd2-4d060730b37a@gmail.com>
- <20240517085832.365ac878@booty> <4771649.rnE6jSC6OK@diego>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <4771649.rnE6jSC6OK@diego>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 665599456a993415841a589f
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: a4: add power domain controller
+ node
+To: xianwei.zhao@amlogic.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com>
+ <20240528-a4_secpowerdomain-v1-3-2a9d7df9b128@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240528-a4_secpowerdomain-v1-3-2a9d7df9b128@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2024-05-28 10:17, Heiko Stübner wrote:
-> Am Freitag, 17. Mai 2024, 08:58:32 CEST schrieb Luca Ceresoli:
->> Hello Dmitry,
->>
->> On Thu, 16 May 2024 17:06:46 +0500
->> Dmitry Yashin <dmt.yashin@gmail.com> wrote:
->>
->>> Hi Luca,
->>>
->>> On 15.05.24 21:29, Luca Ceresoli wrote:
->>>> I'm skeptical about this being bound to a new DT compatible. As far as I
->>>> know the RK3308 and RK3308B are mostly equivalent, so it looks as the
->>>> pinctrl implementation could be detected at runtime. This would let
->>>> products to be built with either chip version and work on any without
->>>> any DT change.  
->>>
->>>
->>> Thanks for your feedback.
->>>
->>> Indeed, these SoC's have a lot in common, but as I can see the rk3308b
->>> has more blocks, like extra PWM's (rk3308 datasheet 1.5 [0] shows only
->>> 1x PWM 4ch, when rk3308b and rk3308b-s have 3x PWM 4ch), 1-wire and
->>> CAN controller (mentioned in the TRM, but dropped from rk3308b
->>> datasheet for some reason).
->>>
->>> So, in my view, it really makes sense to add rk3308b.dtsi, where extra
->>> PWM's, pinctrl compatible and its pin functions can be moved. And if
->>> its not worth it, then I will try to adapt the entire series to runtime
->>> config based on cpuid like you suggested.
->>
->> Having a rk3308b.dtsi would probably make sense, yes, as there are
->> several differences as you described. However for the pinctrl it seems
->> probably not necessary.
->>
->> I've seen actual products being manufactured with two different RK3308
->> variants in different lots of production, but with the same DT that has
->> rockchip,rk3308-pinctrl in it. Those would need a _selective_ DT
->> upgrade in order to benefit from your changes.
->>
->> And even if a product had always used the B variant, it would need DT
->> upgrade when upgrading to a kernel with your changes. Otherwise with
->> patch 1/3 of this series the pictrl driver would lose many routes after
->> upgrading the kernel (but not the DT): can this lead to
->> previously-working devices to stop working? I think this is a
->> fundamental question to reply.
+On 28/05/2024 10:39, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> If things can be runtime-detectable, they should be detected at runtime.
-> So yes, while we need to know that it is a rk3308-something before
-> via the dt, if we can distinguish between the rk3308 variants at runtime
-> we should definitly do so.
-
-The GRF_CHIP_ID reg (0xFF000800) can be used to identify what model is
-used at runtime:
-
-RK3308: 0xCEA (errata: chip id value is 32'h0cea (32'd3306))
-RK3308B: 0x3308
-RK3308BS: 0x3308C
-
-Vendor U-Boot make use of this reg to identify what model is running:
-https://github.com/rockchip-linux/u-boot/blob/next-dev/arch/arm/include/asm/arch-rockchip/cpu.h#L68-L82
-
-I can only validate on real hw that the reg value is 0x3308 for RK3308B.
-
-Regards,
-Jonas
-
+> Add power domain controller node for Amlogic A4 SoC
 > 
-> Heiko
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi | 4 ++++
+>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 5 +++++
+>   2 files changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+> index b6106ad4a072..eebde77ae5b4 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi
+> @@ -27,6 +27,10 @@ xtal: xtal-clk {
+>   		#clock-cells = <0>;
+>   	};
+>   
+> +	sm: secure-monitor {
+> +		compatible = "amlogic,meson-gxbb-sm";
+> +	};
+> +
+>   	soc {
+>   		compatible = "simple-bus";
+>   		#address-cells = <2>;
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> index 73ca1d7eed81..917c05219b9c 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> @@ -37,4 +37,9 @@ cpu3: cpu@3 {
+>   			enable-method = "psci";
+>   		};
+>   	};
+> +
+> +	pwrc: power-controller {
+> +		compatible = "amlogic,a4-pwrc";
+> +		#power-domain-cells = <1>;
+> +	};
+
+pwrc is supposed to be a child of secure-monitor.
+
+Neil
+
+>   };
 > 
 
 
