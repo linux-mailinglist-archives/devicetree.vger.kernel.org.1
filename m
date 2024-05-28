@@ -1,123 +1,96 @@
-Return-Path: <devicetree+bounces-69716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077478D1420
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:01:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 285B48D142D
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:07:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A78D1F22D54
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 06:01:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BDD9C1F229CC
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 06:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5185C50A93;
-	Tue, 28 May 2024 06:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00AB74D11B;
+	Tue, 28 May 2024 06:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="3rppQj6c"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="LA4JevOo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EDD37165;
-	Tue, 28 May 2024 06:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4263DF6B;
+	Tue, 28 May 2024 06:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716876094; cv=none; b=T0UMKTEYDbqxmjDEBxiojsLlXnVlWLzwCf+YnrulKM06hCwdzkNCBaf2W1t54WWN5IyyfoyxMp4S7/4N/c98a12I99Nfy0PJMhhxeX3YR2BTkFn/gEboe+CoO7FzjccmDVf9DRVpR4DIWE9tF/KyND54DmNzdjmT8H7a/f3MOoc=
+	t=1716876464; cv=none; b=g9BfAIAcd+BTmI52es6fWoZmeykLHFGgvNAF0VkJTMYiMQO6OvNXvKc2dXQopuDxUbyy++NOvt78M4FUASO0UVgy176ehNfrAWOLS1FBGyWZWVOKWM82JmdWLJS0gzfxe0Tclri5pe3f/A16B7/VGqTDp9VZBPLOJljwucFY0zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716876094; c=relaxed/simple;
-	bh=vj5iTVNnr0LltL75dJySY0TkZeBZ96BYbyS8soMrNtU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iy/66M+PCEtlM5j08sduf9Cv/0GSlSMgnKTm5c/zqFO085f9VXVr2oa5wPJoH7O7kxUH3phawNyUCL2lgn+F6a91uyEOMGonevN07Y/ZpKOKxUaF8h75S/Ax/TeIq9C7WgP+gyZQAqmWV8c+0R0K473ASl3ty5PZrtdijc8toeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=3rppQj6c; arc=none smtp.client-ip=220.130.44.152
+	s=arc-20240116; t=1716876464; c=relaxed/simple;
+	bh=YgEFGeEPZxT8s1YqnsK/q7F3fNmn1mUVIATqD2QD4Zs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qMnfJDD4eTFsEIybg5aCEGLszhi8TnHZJ/bTsZ/aY3OSGj4qmCqXN7olGolNdK/Z+8J9nOPP7avzYIsDMSahwF8fL9omXlelIEZ4H383M6shyiRpgvICF4nzIRnk4tjVCxoFas6j8QbxCcXVKkeE+EfUIE+Pr0CH6+q1Hc5Pcfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=LA4JevOo; arc=none smtp.client-ip=220.130.44.152
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
 X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1716876090;
-	bh=4FZFc/ldoEBTquoVTySNzI9r+bg5+rvsd53z2bgulQA=; l=1600;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=3rppQj6c9DjXEqoUvcskLCiqUGHFsRdkaGyAGUmf/VV8oI38S3TTFFJSDRANkv8ks
-	 r36qcjnyVbdqQozWtOHLHbKc7BWNPlJ4rqlCc1r8mPrN9Dmqr2o04NZFPVMCP6ShJS
-	 0m5920C6qqkheAvzxhvkFs/m7BadSlj0U/kIX5ua3PBgZJJ+NeQeuKv4ZHJYHyRRjL
-	 KbowaEq7tcbUFIVNoGBHbAnEd1vJDyzmfsnEBdbGq7n2h0VJWDrQIcaFJ1M5VodEoe
-	 PYRA0/N9siRCcLFA4T8H4acZ132vfbzhjIIgepWEWMeIVsaFPhHcx24UBXVlnUNZWT
-	 o5KgeWhQA8MKg==
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213198:0:AUTH_RELAY)
+	s=richtek; t=1716876460;
+	bh=bmYKOtO6JYSDgXLf6T9Jhwa1FRSIr29gYNytPNeRSvk=; l=777;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=LA4JevOoc6pR1oBoS21xHhXky4ADt13fvE623gJ+o8plPn/QxxysbYe1ztfras7ry
+	 i5VroJ2cr9J7AVYKIB7H8YXkxaF+POr8ex9omf3tpbhNsDQ0lE6VqRx0bVEWw0ZY09
+	 rnR+c4xDd99UHeTPQYSAebvSdGogzu2p6a6dOcPGUq7ZTVN+DDJSy2/wv89ZZdqg6o
+	 WKp2yjYqyTasa5aRjbOj/mJsJGL3sVFTK7xxIfPPglWn8+URk/LYOR+YBxNxqDWCWr
+	 AUO4V3NhGzQv+xEaBR7Tu185jLHQnawkpimf6Rz28Xmr9N099C0EO0ahxUODfJyxdY
+	 nROc5fB0iwC0Q==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213223:0:AUTH_RELAY)
 	(envelope-from <alina_yu@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Tue, 28 May 2024 14:01:22 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Tue, 28 May 2024 14:07:32 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 28 May
- 2024 14:01:22 +0800
+ 2024 14:07:31 +0800
 Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
  (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Tue, 28 May 2024 14:01:22 +0800
+ Transport; Tue, 28 May 2024 14:07:31 +0800
+Date: Tue, 28 May 2024 14:07:31 +0800
 From: Alina Yu <alina_yu@richtek.com>
-To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<alina_yu@richtek.com>, <cy_huang@richtek.com>
-Subject: [RESEND 4/4] regulator: dt-bindings: rtq2208: Add specified fixed LDO VOUT property
-Date: Tue, 28 May 2024 14:01:16 +0800
-Message-ID: <c6cb218f6338291525a29ed89a88a42c175127ad.1716870419.git.alina_yu@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <cover.1716870419.git.alina_yu@richtek.com>
-References: <cover.1716870419.git.alina_yu@richtek.com>
+To: Mark Brown <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<cy_huang@richtek.com>
+Subject: Re: [PATCH 1/2] regulator: rtq2208: Add fixed LDO VOUT property and
+ check that matches the constraints
+Message-ID: <20240528060731.GA25526@linuxcarl2.richtek.com>
+References: <cover.1715846612.git.alina_yu@richtek.com>
+ <7c28d2e61d2fc13066ba4814d1ecfab8f344aaad.1715846612.git.alina_yu@richtek.com>
+ <c0c7a63d-e435-4778-ad4c-3d93f0215116@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c0c7a63d-e435-4778-ad4c-3d93f0215116@sirena.org.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-As the fixed voltage for the LDO is outside the range of the adjustable voltage mode,
-the constraints for this scenario are not suitable to represent both modes.
-Therefore, A property is added to specify the fixed LDO VOUT.
+On Mon, May 27, 2024 at 02:00:47PM +0100, Mark Brown wrote:
+> On Thu, May 16, 2024 at 05:20:33PM +0800, Alina Yu wrote:
+> > A fixed LDO VOUT property has been added to specify the fixed_uV of the regulator_desc.
+> > Additionally, a check has been included in this version
+> > to ensure that the fixed_uV matches the constraints.
+> 
+> This doesn't apply against current code, please check and resend.
 
-Examples of fixed LDO VOUT and adjustable LDO VOUT is also added to this version.
+Sorry, I didn't notice these links missed in linux-next tree:
 
-Signed-off-by: Alina Yu <alina_yu@richtek.com>
----
- .../devicetree/bindings/regulator/richtek,rtq2208.yaml        | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+https://lore.kernel.org/all/a1e19b4026d7fea27526ba94c398500a3826b282.1714467553.git.alina_yu@richtek.com/
 
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml b/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
-index 609c066..87accc6 100644
---- a/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rtq2208.yaml
-@@ -75,6 +75,12 @@ properties:
-         description:
-           regulator description for ldo[1-2].
- 
-+        properties:
-+          richtek,fixed-microvolt:
-+            description: |
-+              This property can be used to set a fixed operating voltage that lies outside
-+              the range of the regulator's adjustable mode.
-+
- required:
-   - compatible
-   - reg
-@@ -177,6 +183,8 @@ examples:
-             };
-           };
-           ldo1 {
-+            /* Fixed LDO VOUT */
-+            richtek,fixed-microvolt = <1200000>;
-             regulator-min-microvolt = <1200000>;
-             regulator-max-microvolt = <1200000>;
-             regulator-always-on;
-@@ -185,7 +193,8 @@ examples:
-             };
-           };
-           ldo2 {
--            regulator-min-microvolt = <3300000>;
-+            /* Adjustable LDO VOUT */
-+            regulator-min-microvolt = <1800000>;
-             regulator-max-microvolt = <3300000>;
-             regulator-always-on;
-             regulator-state-mem {
--- 
-2.7.4
+https://lore.kernel.org/all/ffeecd61c194df1f7f049bd50cb2bbbad3cf1025.1714467553.git.alina_yu@richtek.com/
 
+I have now integrated these missing parts into the resent patches.
+
+Thanks,
+Alina
 
