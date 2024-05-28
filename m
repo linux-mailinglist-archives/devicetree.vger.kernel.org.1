@@ -1,202 +1,243 @@
-Return-Path: <devicetree+bounces-69851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18CC8D1BA2
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:51:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA8A48D1BB2
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:53:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DD831F227C1
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:51:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72672285411
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:53:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACEBE16D335;
-	Tue, 28 May 2024 12:51:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F92516D335;
+	Tue, 28 May 2024 12:53:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="Jz125kbw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wfnDEyPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AFC16C458
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86BB216D9BA
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:53:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716900695; cv=none; b=qeqZWfnIxMUPPUUzuTY0UW9ADxl4vv0IJNnBkMiw7uii4e6QJyvDA8SzeCOiF8UPh5PoB9kTJXfo+lIFt0xttAr0SGxJ3Az5TbhP1veYGcmTmhloVUwil0TG83Nmhd+2OyOXWK/WvHfIxiQJiM+zvDtT+lzHlTXNqmn61QIU5H8=
+	t=1716900797; cv=none; b=E1FgabKyZoQwds5/tsUZl5V2oLEE85fDzTjv1p18zZ4tTJWK5PhDggvC7pZdwgAwXcP5cmzK/lcqo1aSuaJ38TdryZL5mgV9ZJYDkgtFTjjNl4I6dXzxgOXWFLJV2BewGOBHF1YjmF/yLxTdKB1FQmuxWJOWJ4qyBhjT/PS0JPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716900695; c=relaxed/simple;
-	bh=X1owGtWYRo+/l0DSm9qoof73k9VXXMI2Bemu9W1jHHg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hGOGec1iqbjKoy6/owqHmCawAKNfHkASKL/LUcsTGuFDZ59xk9Be4zyFqWwylAEODeFHEV7HBVzTsEliYuPISt1e923d7niv7IP1LCr0WaZzY7tUpz4MAvtTFys6inokg+Lxi/BOw95wUs5fKa7KFtJjO5gEBOQGRypb9v6BAy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=Jz125kbw; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3564a0bea19so743412f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 05:51:33 -0700 (PDT)
+	s=arc-20240116; t=1716900797; c=relaxed/simple;
+	bh=nmYSDivuU1fGiaHNtpmlfGXSTR8QMXOhtvK7Fro/hPU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IGNJlu1i7Xbe27r//GQX+BtZ/s21vPMLqPw7W6FstJWKje2bybcIA8guQRkwoGr7BcYzuq4MVMkvbMFrP79X5ad6DJyy/E7jJSWrydZG6kAK6dKLVjj7hpBTz/gfe9ppnj5U3D3ZXyrKGh1arC6ftN4EcWgYG/8RdqoPPA6yq0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wfnDEyPu; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5238b5c080cso920865e87.1
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 05:53:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1716900692; x=1717505492; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cs6twXGUnqAVWEMHCctBxuWI9JJWQsFtcp2eRMeUzcU=;
-        b=Jz125kbwQCiEM3WmY1z4kQj+jffBi324gUrk+bSSplnwz7pPJZtrr7OeMI7t7AUdRz
-         LroNrzuREva4Ov1S17tCYDgeTwTfmJOaYp5EUAFwpcNLSFK2C33RWNsPXdM1qJHALAH4
-         6Bswz9KyQd0vzNZK140lBdcze737av8aubFyKHmigyoZkf4/ApyQ6j5drDb8yrWn3zus
-         i0TT0mZTgZAmYu28ZyTT7rtx/oIhzsH1bft2go1f4CAL7RigdbngU9ncyK5HsM4tLcN6
-         132MyjYd1Kqk8dxfcGuOjAu9iSy5khVjcuilTwywoxqNVALFTkXHLBtPjO/ZGRk+y8wJ
-         n7mg==
+        d=linaro.org; s=google; t=1716900794; x=1717505594; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IhfLeEz31nnpbep1wtfE79deZVn4RTMnQcliKUfwmsk=;
+        b=wfnDEyPuX2cffwaxTSNsjQBE5A09Ff0g1vx+EfuWWMJzCNm86zQ5MjkZdrtVi9YisN
+         Y78RWXKmjraKp/baA5UCC/T2V4+hOGthPHeAwt/8Zk+EeV84LBR5TtNgeX9478VXtkmp
+         kJr15kbQZxVcD+JCE7GnyIJ0vLiI8IaNvkL8HXNTvLBBtlOeD8V8mu1Z3ZssBYcIwmyD
+         5tPQgASLDtG0y1BAA1oFA7H7+IotPsAG8/3sWCIqu03PJXwATSKkETCV36Ptl/9WYRF5
+         o8408ChVQiPpylARuPy+hg7smzJem7Nv7D+f/8nxOB7H5Ho4Fu8P0vOQDBiRkZ9lE+3t
+         x47w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716900692; x=1717505492;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cs6twXGUnqAVWEMHCctBxuWI9JJWQsFtcp2eRMeUzcU=;
-        b=hovKwfBg+M/RgiYflMg7N+/JX8mfAIEF0XQYptbKyIS9pVTf9uFOlaUuBIC2n3Yj1k
-         2G1Wq2J0c+WdfzF1wlOzhoPtGcHtk7A0R8yxKQ1GwNUYCToCN+VLs4SXz/NfVsKuyIy3
-         xbNN8KXR0AxVcv2xIJaFTRjhe2B21GyN5g0A9b8oKJmsFqwb+w1s0+Kvett2aUFSCAfe
-         TH0EcSC+BaHHxehQ9LJXKrk4ZrH34KSCfN+835JNrEUKjPON8Yz6cXwi6RcMd9H/ki3x
-         IXfmFwzJArmGgR2nJ5h2w24vVM40XQH9Wjnein2mtO4EwpxqYEfh+RlGsq32NKu+1pXz
-         QJMg==
-X-Forwarded-Encrypted: i=1; AJvYcCWIBqSTKZRpuJHTE9ZCwmiFg4YRMSGE6ZIJqqGCGJpzLa2VGX78BuZiMSXR8sbMWulv/Pq3zjg/hyhwCArdLIxPuy9SUzFxsgHthg==
-X-Gm-Message-State: AOJu0YxKojtvTwAIF9+miJ72/muy2n2uh/IrMciHfZ0tkte5N4Uak4Pe
-	xt6eUjIrqxdg7gB0Q/P/9hADRNm9L8QeAFzk7hhcJVu2fd32NurrJBgnAcjy4hU=
-X-Google-Smtp-Source: AGHT+IHpozxPHqfiGrD0jGWLVOCg6j4KeSpafj5rvrpse51q0RDwAAq/3wQLYkTzuvkogcwGrwjPdA==
-X-Received: by 2002:a5d:6342:0:b0:354:c329:90d1 with SMTP id ffacd0b85a97d-3552fdefa90mr10115575f8f.63.1716900691933;
-        Tue, 28 May 2024 05:51:31 -0700 (PDT)
-Received: from stroh80.lab.9e.network (ip-078-094-000-050.um19.pools.vodafone-ip.de. [78.94.0.50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a1c92e7sm11626300f8f.66.2024.05.28.05.51.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 05:51:31 -0700 (PDT)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Naresh Solanki <naresh.solanki@9elements.com>
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: hwmon: Add max6639
-Date: Tue, 28 May 2024 18:21:21 +0530
-Message-ID: <20240528125122.1129986-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+        d=1e100.net; s=20230601; t=1716900794; x=1717505594;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IhfLeEz31nnpbep1wtfE79deZVn4RTMnQcliKUfwmsk=;
+        b=FG26HnQJOrQkldZB/R1JqZ0K+Qrlmg7NKgCszpWjJim795FrA+stisE8jdo/IvRt7g
+         D+plIDv0xZtB0nBQum0Fla8NTVxc9sSJ4RwijorbO+x2E+U0lfMrccUCIZAaED6yBTBy
+         u/pDi81dr2VK4tJK+SZUZzSWeCcIWgDVj8J1sEa/moOKbW7h0965jD42G5Eu/pi++zQv
+         2WLSApnR3UVdiGNa/q/OiHfBDmYsfxoOhgCRGoSUKPL1KWyliaz93t7PZJcOW2ZW+8eo
+         xKiHZZ+VALNe8oZjglh6faDRiWo62if5i0tbyGu/DntHDbEd6Yr9JoU6VhS6rxPk0YZ5
+         wkug==
+X-Forwarded-Encrypted: i=1; AJvYcCX205DctPXmXJWX2gs9cRdEaOTCXEro1xR5oL/vKjpQqN6G0IXFAmAjzfXxxoL+W06CGJ3sP2kDUUphLHbjJlNWqDmDifbiQRhCXw==
+X-Gm-Message-State: AOJu0YykBSkt/G362lDjtUuYyZ0KCwf4hB51BP4n2YxWAs38rwnhUha9
+	AdHYqDLkup+cvvZNSBlnH9blEKrqVv1+p96zsAwru6blx6iQD3bqT6Bacap3M1o=
+X-Google-Smtp-Source: AGHT+IH1jsEV56zssrINk6gB/epPAKvvSKLlj9VGr4Avz+U+gixZrxxt6NkzNDHCNSWzzaaBtLHF6g==
+X-Received: by 2002:a19:380a:0:b0:516:d18b:eae8 with SMTP id 2adb3069b0e04-52964caa6damr6901115e87.41.1716900793703;
+        Tue, 28 May 2024 05:53:13 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:c97:23a9:35bc:df2e:d894:2c76? ([2a00:f41:c97:23a9:35bc:df2e:d894:2c76])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-529712f1c0fsm949009e87.279.2024.05.28.05.53.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 05:53:13 -0700 (PDT)
+Message-ID: <e8e714ac-610e-4507-82ed-27a38c7be8fb@linaro.org>
+Date: Tue, 28 May 2024 14:53:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/10] arm64: dts: qcom: sc8180x: Add USB MP controller
+ and phys
+To: Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-usb@vger.kernel.org,
+ Bjorn Andersson <quic_bjorande@quicinc.com>
+References: <20240525-sc8180x-usb-mp-v1-0-60a904392438@quicinc.com>
+ <20240525-sc8180x-usb-mp-v1-8-60a904392438@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240525-sc8180x-usb-mp-v1-8-60a904392438@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add Devicetree binding documentation for Maxim MAX6639 temperature
-monitor with PWM fan-speed controller.
 
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
- .../bindings/hwmon/maxim,max6639.yaml         | 92 +++++++++++++++++++
- 1 file changed, 92 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
 
-diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-new file mode 100644
-index 000000000000..a2e37f7329b8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim max6639
-+
-+maintainers:
-+  - Naresh Solanki <naresh.solanki@9elements.com>
-+
-+description: |
-+  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-+  fan-speed controller.  It monitors its own temperature and one external
-+  diode-connected transistor or the temperatures of two external diode-connected
-+  transistors, typically available in CPUs, FPGAs, or GPUs.
-+
-+  Datasheets:
-+    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max6639
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  '#pwm-cells':
-+    const: 3
-+
-+required:
-+  - compatible
-+  - reg
-+
-+patternProperties:
-+  "^fan@[0-1]$":
-+    type: object
-+    description: |
-+      Represents the two fans and their specific configuration.
-+
-+    $ref: fan-common.yaml#
-+
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        description: |
-+          The fan number.
-+
-+    required:
-+      - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        fan1: fan-controller@10 {
-+            compatible = "maxim,max6639";
-+            reg = <0x10>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            #pwm-cells = <3>;
-+
-+            fan@0 {
-+                reg = <0x0>;
-+                pulses-per-revolution = <2>;
-+                max-rpm = <4000>;
-+                target-rpm = <1000>;
-+                pwms = <&fan1 0 25000 0>;
-+            };
-+
-+            fan@1 {
-+                reg = <0x1>;
-+                pulses-per-revolution = <2>;
-+                max-rpm = <8000>;
-+                pwms = <&fan1 1 25000 0>;
-+            };
-+        };
-+    };
-+...
+On 5/25/24 20:04, Bjorn Andersson wrote:
+> From: Bjorn Andersson <quic_bjorande@quicinc.com>
+> 
+> The SC8180X platform comes with a multiport DWC3 controller with two
+> ports, each connected to a pair of HighSpeed and QMP SuperSpeed PHYs.
+> 
+> Describe these blocks.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sc8180x.dtsi | 146 ++++++++++++++++++++++++++++++++++
+>   1 file changed, 146 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> index 9ef3fa40e1d8..0950dc7adb20 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+> @@ -2511,6 +2511,34 @@ usb_sec_hsphy: phy@88e3000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		usb_mp0_hsphy: phy@88e4000 {
 
-base-commit: 5fbf8734fb36cf67339f599f0e51747a6aff690c
--- 
-2.42.0
+Even though the register names are MPn, I think this is a bit confusing..
 
+There's only one MP controller, so perhaps usb_mp_hsphy0?
+
+[...]
+
+> +			clocks = <&gcc GCC_USB3_MP_PHY_AUX_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> +				 <&gcc GCC_USB3_MP_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_MP_PHY_PIPE_0_CLK>;
+
+PIPE_1_CLK
+
+> +			clock-names = "aux", "ref", "com_aux", "pipe";
+
+This could be a vertical list
+
+> +
+> +			resets = <&gcc GCC_USB3_UNIPHY_MP1_BCR>,
+> +				 <&gcc GCC_USB3UNIPHY_PHY_MP1_BCR>;
+> +			reset-names = "phy", "phy_phy";
+> +
+> +			power-domains = <&gcc USB30_MP_GDSC>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "usb2_phy1_pipe_clk";
+> +
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+>   		usb_sec_qmpphy: phy@88ee000 {
+>   			compatible = "qcom,sc8180x-qmp-usb3-dp-phy";
+>   			reg = <0 0x088ee000 0 0x18c>,
+> @@ -2662,6 +2738,76 @@ gem_noc: interconnect@9680000 {
+>   			qcom,bcm-voters = <&apps_bcm_voter>;
+>   		};
+>   
+> +		usb_mp: usb@a4f8800 {
+> +			compatible = "qcom,sc8180x-dwc3-mp", "qcom,dwc3";
+> +			reg = <0 0x0a4f8800 0 0x400>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			dma-ranges;
+> +
+> +			clocks = <&gcc GCC_CFG_NOC_USB3_MP_AXI_CLK>,
+> +				 <&gcc GCC_USB30_MP_MASTER_CLK>,
+> +				 <&gcc GCC_AGGRE_USB3_MP_AXI_CLK>,
+> +				 <&gcc GCC_USB30_MP_SLEEP_CLK>,
+> +				 <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+> +				 <&gcc GCC_USB3_SEC_CLKREF_CLK>;
+
+This is used by the secondary DWC3 (non-MP). Are you sure?
+
+Actually, are we sure that these clocks are really supplying the DWC3s?
+
+> +			clock-names = "cfg_noc",
+> +				      "core",
+> +				      "iface",
+> +				      "sleep",
+> +				      "mock_utmi",
+> +				      "xo";
+> +
+> +			interconnects = <&aggre1_noc MASTER_USB3_2 0 &mc_virt SLAVE_EBI_CH0 0>,
+> +					<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3_2 0>;
+> +			interconnect-names = "usb-ddr", "apps-usb";
+> +
+> +			assigned-clocks = <&gcc GCC_USB30_MP_MOCK_UTMI_CLK>,
+> +					  <&gcc GCC_USB30_MP_MASTER_CLK>;
+> +			assigned-clock-rates = <19200000>, <200000000>;
+> +
+> +			interrupts-extended = <&intc GIC_SPI 656 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 655 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 658 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 657 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 59 IRQ_TYPE_EDGE_BOTH>,
+> +					      <&pdc 46 IRQ_TYPE_EDGE_BOTH>,
+> +					      <&pdc 71 IRQ_TYPE_EDGE_BOTH>,
+> +					      <&pdc 68 IRQ_TYPE_EDGE_BOTH>,
+> +					      <&pdc 7 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 30 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "pwr_event_1", "pwr_event_2",
+> +					  "hs_phy_1",	 "hs_phy_2",
+> +					  "dp_hs_phy_1", "dm_hs_phy_1",
+> +					  "dp_hs_phy_2", "dm_hs_phy_2",
+> +					  "ss_phy_1",	 "ss_phy_2";
+> +
+> +			power-domains = <&gcc USB30_MP_GDSC>;
+> +
+> +			resets = <&gcc GCC_USB30_MP_BCR>;
+> +
+> +			status = "disabled";
+> +
+> +			usb_mp_dwc3: usb@a400000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0 0x0a400000 0 0xcd00>;
+> +				interrupts = <GIC_SPI 654 IRQ_TYPE_LEVEL_HIGH>;
+> +				iommus = <&apps_smmu 0x60 0>;
+> +				snps,dis_u2_susphy_quirk;
+> +				snps,dis_enblslpm_quirk;
+
+sa8195-usb.dtsi lists a bunch more fluff:
+
+snps,has-lpm-erratum;
+snps,hird-threshold = /bits/ 8 <0x0>;
+snps,is-utmi-l1-suspend;
+snps,ssp-u3-u0-quirk;
+snps,dis-u1-entry-quirk;
+snps,dis-u2-entry-quirk;
+snps,dis_u3_susphy_quirk;
+snps,force-gen1;
+maximum-speed = "super-speed";
+
+the irq numbers look good
+
+Konrad
 
