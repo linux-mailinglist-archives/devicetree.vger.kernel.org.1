@@ -1,129 +1,107 @@
-Return-Path: <devicetree+bounces-69752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2EE98D1661
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:37:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8588D1668
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:39:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3C111C21D2A
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:37:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C08021F2155A
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35AF67D07D;
-	Tue, 28 May 2024 08:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8A113C83C;
+	Tue, 28 May 2024 08:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="SglXt0ew"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VEzPG9hm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B98428373;
-	Tue, 28 May 2024 08:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E436EB64;
+	Tue, 28 May 2024 08:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716885472; cv=none; b=VAYUPCqvi7IeNfQP3GN9QfYGqDGBVeYon71yC0B8LcEhE6OP3SXyjZKKP3u+/9GnmpQ4KyXgcymHexoHfkzoFpj2ZIL3/lj3MN1GUPTdCvVnjUYTb6DZ+/lJ4pTctPbEv2xXGcumyoTkiR4VnhdY/T6PtittstW7fw9kW4IyNZA=
+	t=1716885572; cv=none; b=tuRjwl9GOPYA3JFCR1Uxt4pWo46ltOc37XLBm+fYwPIwYrb1dHn6fFDQ2SK0H9GskF+/ApM5ly6+887mcG/SRSqJGWT5qJdkvEUvdaqxm4hb6akRu3Ffn5PQM5ga1E0+c1TbFvaF6iiXTooCzfg6kK4vX/yHxdE44edMq9ed1qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716885472; c=relaxed/simple;
-	bh=TW1jNG1PIoyG2+so13309xJlYyhVgbq9D68UAfsajzA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F+CXEdOnQV94TibemSC8ACROXppZBVxnslsC8Itk4Chk/40lPX/JUQsMdK8k59bMgQpuq5Nr4Y7aH4EwpHVTb075jUMF+wXWVeX+qmDduIOnDjtcWWDdOc2Yo0MxO034mQjG4mnuO9/zMHtU7ziehNQCgJvM9+hrJ508hDGH9cY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=SglXt0ew; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716885468;
-	bh=TW1jNG1PIoyG2+so13309xJlYyhVgbq9D68UAfsajzA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SglXt0ewsfNVjfgOblte5DXxYe8Odk5aHidxhfv8ZQblVTG7GI9Yc/cFxq62NVZ7X
-	 5DZcv5LCwqa1F6GRv/DV1AwNsaoEZ5rDEWEEepby4GPPxZ3wcUEyNQzKr1Z3cuCU6L
-	 S4+/xEECPAvyyx+UAARquesFnxxjqRtKt1FpNoAPJ5Gr4vj44frFNffkL+EyOYaqGK
-	 NgCuhF8j+H9Xb4RH+6q8YUiXKwO0ZyBs0N3B9ja+Xm8j+6CS4YhqluGnOsyuNBW8Mj
-	 xjbHL5U6lUueOIcVNsA1BXMacHvIMgYXFRVKf3Q/gLlDL1PahnVG5/cwRlnPMfumCI
-	 Bv+WWc54qsaVg==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5C2603782157;
-	Tue, 28 May 2024 08:37:48 +0000 (UTC)
-Date: Tue, 28 May 2024 10:37:47 +0200
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>,
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: media: rockchip,vpu: Document RK3128
- compatible
-Message-ID: <20240528083747.z55laxnmioorzaru@basti-XPS-13-9310>
-References: <20240523185633.71355-1-knaerzche@gmail.com>
- <20240523185633.71355-2-knaerzche@gmail.com>
- <3639993.hdfAi7Kttb@diego>
+	s=arc-20240116; t=1716885572; c=relaxed/simple;
+	bh=bfGDc5/xHmz//Yt7VOOfRU/PyB095+4Sl6kUXfSweuI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YxCvj1goVoZ+RElRPrgKu6o8v6LSJYFGmoAvvBtbkIfbueg52X9NlYmwoZQd1FoQuQJyJlsCPA11jTIHefmbIgmS1lsRj9Z/zhE+9Fcj+NNM8i9I3uJK/36yUsTjmwrSWG2edlrRlaxZRh0MhMRnMTHREkcyf/HECpQv9j6RPxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VEzPG9hm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 37E53C32781;
+	Tue, 28 May 2024 08:39:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716885572;
+	bh=bfGDc5/xHmz//Yt7VOOfRU/PyB095+4Sl6kUXfSweuI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=VEzPG9hm9TDJBx/sr/BqWeQaq8j0nJ6tfgTwk8q9BOFX42wZeunWRD5D/PyFTbzuR
+	 5a9QCa7bJ0E2hX60hjdrFVKUFvKPtXOUtVFckIRGUQ6S2xgwH3rzjf6L9N4rWyAuU6
+	 nBZ/iJ7E97lhhjJiov1RWbQy2PafWME3tfw/wL21cAspM6rWLLM2edcfrvSg1gp5/o
+	 7/tVOyKikA0gSBwV94Ro3S0xoDgbo0gK9IPxIuCJdXoTmCdWMfmxOTWBgIqVM96ejd
+	 1lWCLrHj5SUIdxl1x0PzTvUvIcb/W7lLqxR9EIZ5bN/xmMt0RYxPt4dg6k0ZmrjX6B
+	 QETqQoMWxt+JQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22624C25B78;
+	Tue, 28 May 2024 08:39:32 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/3] Power: A4: add power domain driver
+Date: Tue, 28 May 2024 16:39:27 +0800
+Message-Id: <20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3639993.hdfAi7Kttb@diego>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAECYVWYC/x3MQQqAIBBA0avErBMm06iuEhFmU80iDYUKwrsnL
+ d/i/xciBaYIffFCoIsje5dRlQXY3biNBC/ZIFEq1LIVRk2R7OlvCos/DDuhaUbUjWq7GiF3Z6C
+ Vn/85jCl9vNEVQmMAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716885570; l=885;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=bfGDc5/xHmz//Yt7VOOfRU/PyB095+4Sl6kUXfSweuI=;
+ b=zXzrrh7KUaH5eZOcybvVChgnCMLz6xll9cNsTL81pYUzbiwrYghjd8a/+Z1vCUYKHlv6pZ50p
+ kY6IenT6z00DVwq3DTG04hEuWYeuz6PWUcz8Sfdvaw16xH2bdz1h3SS
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hey Heiko,
+Add power controller driver support for Amlogic A4 SoC.
 
-On 28.05.2024 10:19, Heiko Stübner wrote:
->Am Donnerstag, 23. Mai 2024, 20:56:31 CEST schrieb Alex Bee:
->> The integration for this SoC is similar to RK3066/RK3188.
->>
->> Document it's compatible.
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->
->Reviewed-by: Heiko Stuebner <heiko@sntech.de>
->
->Media people, can you apply this patch alone from the series?
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (3):
+      dt-bindings: power: add Amlogic A4 power domains
+      pmdomain: amlogic: Add support for A4 power domains controller
+      arm64: dts: amlogic: a4: add power domain controller node
 
-Yes, will do got this on my list already :).
+ .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  1 +
+ arch/arm64/boot/dts/amlogic/amlogic-a4-common.dtsi |  4 ++++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  5 ++++
+ drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 28 ++++++++++++++++++++++
+ include/dt-bindings/power/amlogic,a4-pwrc.h        | 21 ++++++++++++++++
+ 5 files changed, 59 insertions(+)
+---
+base-commit: 456f4f5e6e6d3a2228501068a37ce13fe0b333d4
+change-id: 20240528-a4_secpowerdomain-5eb005648930
 
->
->Thanks
->Heiko
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Regards,
-Sebastian
 
->
->> ---
->>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
->> index c57e1f488895..d1b47b14ca57 100644
->> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
->> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
->> @@ -26,7 +26,9 @@ properties:
->>            - rockchip,rk3568-vpu
->>            - rockchip,rk3588-av1-vpu
->>        - items:
->> -          - const: rockchip,rk3188-vpu
->> +          - enum:
->> +              - rockchip,rk3128-vpu
->> +              - rockchip,rk3188-vpu
->>            - const: rockchip,rk3066-vpu
->>        - items:
->>            - const: rockchip,rk3228-vpu
->>
->
->
->
->
->
 
