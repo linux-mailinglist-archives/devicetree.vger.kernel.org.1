@@ -1,90 +1,118 @@
-Return-Path: <devicetree+bounces-69901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3085E8D1E84
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:23:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE24E8D1E8C
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D0901C233EA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:23:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF3131C22C72
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A54116F8E9;
-	Tue, 28 May 2024 14:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6024816F859;
+	Tue, 28 May 2024 14:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iMKx7CVe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F77C16F84D
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 14:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4D916F847;
+	Tue, 28 May 2024 14:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716906192; cv=none; b=iV1Ax7sN10j8qcG61OWwI6dYrwyJBg7rMkAoXQ4xT+E/da+ziucyHeXkG2qwqW/3XL+S/l9x/RcnYHUDnqL5tSFmu+jkx41KXqY2ykqh4EwQg32g6O/Ujf9NzqAk/8rzp4Bp0Z5Y6btoBdrwBqigTvkv11q/K/I6gotScFqWaKc=
+	t=1716906281; cv=none; b=tUWqCDad4oQZjPX+lnbBEj6zD9DIp2yDrFi0s7h5YbW90F4j9gv9rKa6dBeyUfh/N7anv0O5XmAX0SvrKOBCzOjDj8aCpf/76CdLSfYPaC/1Vu2Dswxmon2eW4VWw/UAUtu5zWmnghrMyBTrzOISRb08zk8FQHpScKRL9a45RNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716906192; c=relaxed/simple;
-	bh=Q+HUSFIaQCnoAh3HuUCVl9eO8oXc+vQzx/ITPABQ/3U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NgriCWVhZTCxhsdMuHj11qKBMvyh4oQQE6ClapgB8DZv+zZpmNK/pSxniNvDHzsaJBzfJXFuwSh/IcrXA9Z76Cx+xtNnTl0O0CLyrt5kg4xmO9eSMRQ/UQqgJQm3R/Qs9RnaPs6rkMLxDsmkgrfiMHnVqfFBJbY4LkuJlxsBSIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <m.tretter@pengutronix.de>)
-	id 1sBxjB-0008WT-2M; Tue, 28 May 2024 16:23:01 +0200
-From: Michael Tretter <m.tretter@pengutronix.de>
-Date: Tue, 28 May 2024 16:22:54 +0200
-Subject: [PATCH 2/2] arm64: zynqmp: Rename fpga-full to fpga-region
+	s=arc-20240116; t=1716906281; c=relaxed/simple;
+	bh=CpNig8i04u7yArz56+Pq3EY0WGXOcEaavla8yaV6nNs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=RPIefTxD3cuu5hgyariMNG21c4TTBjinfoQPnb6+Z33A8X64/WBPjoU5bFrcHs2hSPo2Me0K0QO1PfIpLxyYn9/Jo7BnpfO5wWwmA8YMv0a8dgA+UHrglMB8/H3zwxPnGHbINH+puwW2PtfRzDjpExaoDpI2PC9uAIdStKzaHV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iMKx7CVe; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-578676a1b57so455935a12.3;
+        Tue, 28 May 2024 07:24:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716906278; x=1717511078; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HxA4xy7Sm7SYGJwpfTgxEx7SddTuAL9NNNge2TQxq9g=;
+        b=iMKx7CVeHFPSo8UXn9Edvdk3bDwF869lAsnVjwFpxbxsmTdQzp2ug+ZYDgemqjyfjz
+         E90a7sI41uFNQLmLaNU/3DDSKuzz9KcknOVIaoSHhhZFYjHG4Chjm/9gWrm5bH+uy/uD
+         skeAMayzh1aNfCd6I5XSpFg8piz8JpPiWUerN/XR/JMtOvPxYWt6CAgCG6pLYLoBKWuf
+         cn2NMkzlTmrNA1iNsjyAGOWM7ykdcfuNlpwGmuzXBP6zlUCCJ4UJ+zz5ZEwiVUhsBblt
+         jZJjTYCvf4DzbhnO+KmkdmPSojSo8L2i0iqDhUZwxlfBB/toNvuQpzJryZ0CI2e+rl9r
+         38aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716906278; x=1717511078;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HxA4xy7Sm7SYGJwpfTgxEx7SddTuAL9NNNge2TQxq9g=;
+        b=CWCvvHj3picXW14g6rtK2AHcXBtHVMBjsA5k/Nis42Z5I4PJQ9/vxOsAKpvIKIbbvu
+         YL328stXbMBoHVxv+3a5y8PghiCqt4WVt1h9c3/lOzixwbcdj7KmrpzUwESg6Q3au96D
+         qKTEtJdZPQbB9IJD5wTWWJZdS/+Z3UPe5lGiaQQVT81J2n0wmpjh08PYj0qXXswIfdfL
+         bUbjkVVQT0O4pZSgQjoNOVCM/elY+COfeCyz3tg7yJYD0ZwO1J0z/TrZjpOTv2ctr6M3
+         c9++kKEF4XEVoFj52FTb89i2vd/5PsoWTwneERLYv7Z7Jx8CGA1u3s4y4+UpDdZUIvfG
+         TxmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWx5nT5As/ETnC0MhvvrUUfphkrF/zsdOlrcO0VW/nYITGYpXAoeEyOJAAIcD4NFStINifYa2O0tsawAefX24cJmCuxTwk1WwcOFd2+Vr3K0UZKj/gwsTysBoPwIm6d36pDu1lugZ487Td+Nh6q2WJTw95pLdJ8mzPuEWV9aki48g==
+X-Gm-Message-State: AOJu0YyWcByMtokgH1Sj3f1H99FORUzkOqDHcGQnTjv9X9hsBKnKnNYq
+	n5Vqcl0+jjY3M5W7A0xoCQZES4jss3i5qfmqLsPC9JJGkjul6tg9TmLtWEbgMuI=
+X-Google-Smtp-Source: AGHT+IE8Lz5RyyighE7GKU2QlcjM001GtbOPd3AVNTQ1ZIurq+Ru0m+k3HReTwDzi/nkvE6Egp1GNw==
+X-Received: by 2002:a50:9f47:0:b0:578:ac24:7f7c with SMTP id 4fb4d7f45d1cf-578ac33c79bmr7822680a12.19.1716906277498;
+        Tue, 28 May 2024 07:24:37 -0700 (PDT)
+Received: from rbolboac.. ([2a02:2f0e:350b:4500:3736:ef2a:a857:c911])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579d7dc9efesm2495580a12.48.2024.05.28.07.24.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 May 2024 07:24:37 -0700 (PDT)
+From: Ramona Gradinariu <ramona.bolboaca13@gmail.com>
+X-Google-Original-From: Ramona Gradinariu <ramona.gradinariu@analog.com>
+To: linux-kernel@vger.kernel.org,
+	jic23@kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	corbet@lwn.net,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh@kernel.org
+Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>
+Subject: [PATCH v2 0/6] Add support for adis16545/47
+Date: Tue, 28 May 2024 17:24:03 +0300
+Message-Id: <20240528142409.239187-1-ramona.gradinariu@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240528-zynqmp-dt-v1-2-a5db9054885a@pengutronix.de>
-References: <20240528-zynqmp-dt-v1-0-a5db9054885a@pengutronix.de>
-In-Reply-To: <20240528-zynqmp-dt-v1-0-a5db9054885a@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-Cc: Michael Tretter <m.tretter@pengutronix.de>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-X-Mailer: b4 0.12.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::54
-X-SA-Exim-Mail-From: m.tretter@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-The "fpga-region" compatible expects a node name "fpga-region".
+Add support for delta angle and delta velocity channels in adis16480 driver.
+Add support for ADIS16545/47 devices in already existing adis16480 driver.
+Add documentation for adis16480 driver.
 
-Checking the ZynqMP device trees prints the following warning:
+Ramona Gradinariu (6):
+  iio: adis16480: make the burst_max_speed configurable
+  iio: imu: adis16480.c: Add delta angle and delta velocity channels
+  dt-bindings: iio: imu: Add ADIS16545/47 compatibles
+  iio: adis16480: add support for adis16545/7 families
+  docs: iio: add documentation for interfacing tools
+  docs: iio: add documentation for adis16480 driver
 
-	fpga-full: $nodename:0: 'fpga-full' does not match '^fpga-region(@.*|-([0-9]|[1-9][0-9]+))?$'
+ .../bindings/iio/imu/adi,adis16480.yaml       |   6 +
+ Documentation/iio/adis16475.rst               |  23 +-
+ Documentation/iio/adis16480.rst               | 445 ++++++++++++++++++
+ Documentation/iio/iio_tools.rst               |  27 ++
+ Documentation/iio/index.rst                   |   2 +
+ drivers/iio/imu/adis16480.c                   | 393 ++++++++++++++--
+ 6 files changed, 825 insertions(+), 71 deletions(-)
+ create mode 100644 Documentation/iio/adis16480.rst
+ create mode 100644 Documentation/iio/iio_tools.rst
 
-Rename the node accordingly.
-
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 511a786c4b8b..51235e6b6b4f 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -255,7 +255,7 @@ timer {
- 			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
- 
--	fpga_full: fpga-full {
-+	fpga_full: fpga-region {
- 		compatible = "fpga-region";
- 		fpga-mgr = <&zynqmp_pcap>;
- 		#address-cells = <2>;
-
--- 
-2.39.2
+--
+2.34.1
 
 
