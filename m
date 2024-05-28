@@ -1,60 +1,68 @@
-Return-Path: <devicetree+bounces-69698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7287A8D12C5
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 05:36:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9102C8D12C7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 05:37:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2984C1F22846
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 03:36:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2AB31C21ADF
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 03:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E599D13C3D5;
-	Tue, 28 May 2024 03:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CA513C822;
+	Tue, 28 May 2024 03:33:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESkmF3jP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="koGs4K7j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE22E18EB8;
-	Tue, 28 May 2024 03:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7865418EA2;
+	Tue, 28 May 2024 03:33:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716867179; cv=none; b=fhb2CQ4gQSnS79zEMXqlKuIPFTreyR5xDXNoSTFzlmM0hER684M9AjM9JeRPshjuABjrWHg+1AxP6snWuje4m4MjI/SLxmuOpjXOcTp8dTUNPLpxdHvDb7G62AeTdo5Vqao+JsmmAMdEKjOJIA5jHv/9Iimx3ldprneLYum10b4=
+	t=1716867182; cv=none; b=RVg2I1TNDh139yYLhDmRoZ4jrsrCBhUyCFgq9EZfhmvdQ8y0D9i74rk2jwX9Jyw7CLsH4oB9aXLk2nKKe1UhzGSA2ZIdlzm0B6F7MA7XKHW/QA4sLZclJ0IXGI/JIFWTsA1LOhz5xpRvqrAFzldGpvtpAwPL7SPVt2W1hdYQ+5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716867179; c=relaxed/simple;
-	bh=K/dKkVUCW1Ko2qX++OZ/wrP6GisymfeJxvVh1lCuZSA=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MwgLbEyncj9tixcYi8UYtV5K4sD1Yp8bga/mTfpyo3w9FhNDaC2rl+KAAenKGKTQC7cmuyB0lZIZp+AOy79uDVedNuhgzhVf96rathN0K+iyM9nxdvz7K7LJQ/zc1YgmkZm7YSViX1YMtroM/faR7uud6AbgrOSvV4hx2ukkPDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ESkmF3jP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F799C4AF07;
-	Tue, 28 May 2024 03:32:58 +0000 (UTC)
+	s=arc-20240116; t=1716867182; c=relaxed/simple;
+	bh=emVDmQ4EAbSrFQopqibHQQUxBsN4LtoH+WusU4KtwJU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ai1sbFKmYA/mREm0ZZpBQ4gdHw4YuA1n3WJol93kCh6dJQ3HtC6ItYD2YIvUgSd92D+n13f7BEaq+n5fTgFjTBJfb3XtAsHXSCCwV9IPevHns37tJAxtOOjBpUX5sgZLJT/u5zHUiC2MaVOiCnKEdvpJG+J+pkVP6XInnzVJqsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=koGs4K7j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B789C32782;
+	Tue, 28 May 2024 03:33:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716867179;
-	bh=K/dKkVUCW1Ko2qX++OZ/wrP6GisymfeJxvVh1lCuZSA=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=ESkmF3jPCF3GnUwJZUHzC60RKIcfNsoGa9tHWxglROixfeSaZCIgrigL9fNBIdgdq
-	 QFauLNlmIGUp17XpN8c0O4crGgJdxkKE6WWYmd9CqV3q4JiykT43BuojHUkSmtbvpV
-	 LZU0CIG3pDMTjkR3MkSQelcjizDSBPKhQUaUobBgBivupvga3Mml8VMvhdIixv8SlG
-	 HolRrw8jRJNlw0NxeC9H0JXZsew/H8RdzB9HimiJDiomDIEmZo0iIaqHFzLxKLtRxK
-	 ZOxNqD6fVLwpYDqZmoJdr2eTZ5j8D5GE7bMY3IdBJeckQzX3ErXab8YlDG8dcKNZri
-	 rp+mu2PDxjzfg==
+	s=k20201202; t=1716867182;
+	bh=emVDmQ4EAbSrFQopqibHQQUxBsN4LtoH+WusU4KtwJU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=koGs4K7joTMxG9f6k5bqB9RjKdEEpxHTvMzcuRE6y7D6L5EfT59hJg4rvCyWPjZ0x
+	 tlqmlhbbiq8ovviZe+WC/SeZJGB2Qx9Htj05/vyRNkanGZy7eSeBYxoqx2p2Bfe7DC
+	 612iLFN/ASeWxrsaiyOohF431AqsZV4t275At6FB/h07sWmUsoj/WuXva81GgHtKRZ
+	 StTutd7OA0pAIxFDYs20OObIQsU0mYbtUZukL5p9gRClkc00jf7M8xCxmr4ZNrVrhx
+	 +7zo7Yo0aiAcZi8df3NXN6Qc8UnopYtpHaxoHAZmT1hqXofuFRBJ9qxovwgRuC1QQI
+	 0se+LWhjPmiiQ==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Robert Marko <robert.marko@sartura.hr>,
 	linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: Re: (subset) [PATCH 0/3] SDM670 shared memory and socinfo
-Date: Mon, 27 May 2024 22:32:21 -0500
-Message-ID: <171686715143.523693.6811535821413799635.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: net: ipq4019-mdio: add IPQ9574 compatible
+Date: Mon, 27 May 2024 22:32:23 -0500
+Message-ID: <171686715161.523693.13551499551993284.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240524012023.318965-5-mailingradian@gmail.com>
-References: <20240524012023.318965-5-mailingradian@gmail.com>
+In-Reply-To: <20240507024758.2810514-1-mr.nuke.me@gmail.com>
+References: <20240507024758.2810514-1-mr.nuke.me@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,23 +73,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 23 May 2024 21:20:24 -0400, Richard Acayan wrote:
-> This adds the smem region to the SDM670 device tree and adds the SDM670
-> SoC ID to the socinfo driver. In addition to socinfo, the shared memory
-> region is also used for SMP2P and the remote processors, but they are
-> not added yet.
+On Mon, 06 May 2024 21:47:57 -0500, Alexandru Gagniuc wrote:
+> Add a compatible property specific to IPQ9574. This should be used
+> along with the IPQ4019 compatible. This second compatible serves the
+> same purpose as the ipq{5,6,8} compatibles. This is to indicate that
+> the clocks properties are required.
 > 
-> Richard Acayan (3):
->   dt-bindings: arm: qcom,ids: Add SoC ID for SDM670
->   soc: qcom: socinfo: Add SDM670 SoC ID table entry
->   arm64: dts: qcom: sdm670: add smem region
 > 
-> [...]
 
 Applied, thanks!
 
-[3/3] arm64: dts: qcom: sdm670: add smem region
-      commit: 265d9989df5012adc5bec8e894dff0572c195a0c
+[2/2] arm64: dts: qcom: ipq9574: add MDIO bus
+      commit: e60ac570137b42ef61a01a6b26133a8e2d7e8d4b
 
 Best regards,
 -- 
