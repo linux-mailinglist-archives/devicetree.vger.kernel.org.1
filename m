@@ -1,283 +1,127 @@
-Return-Path: <devicetree+bounces-70052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F5168D244A
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:12:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8EBA8D2462
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 21:16:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED8A21F28441
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:12:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 490C5B23FE0
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 19:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C02B187338;
-	Tue, 28 May 2024 19:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAAF3175545;
+	Tue, 28 May 2024 19:15:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="IHeNNx2v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qcReLsyv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 077F0181CEF
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 19:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809BA6DD0D;
+	Tue, 28 May 2024 19:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716923056; cv=none; b=NJjXVObgxP6Qp1zzOY+RWSJZRfyEsLOV92OLl0G3tAEwe/irQHPuQzcUplsxTpGjVSLlLzkwHO4F044eUDHTLQ5w9wJ8WeSm2kMuGDgJi4+kpHJ27MwUHJKM5QqCkoW3PA+I0hnCd3lL+gg1dvO3XZBRXrKYS7b7HKx9okmiRG8=
+	t=1716923716; cv=none; b=S9N1hb+Q3bIDNGS9J3yLZk3KQP21OdQQh6sM1/IJx/n9LTF1wUVk5Nml2/+R/hF3ap09mlGF2aqOjzrchGt9V5VaytldShN3jTZOUPMysNE+FCIsc9NSe2TARb1FX4kpMXc8ERxf3/yG7JbHXVWN7m3hWhWmARUo82kEbrK5PBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716923056; c=relaxed/simple;
-	bh=Skor7xEGEh3YcJ5UBApdq5xrdz4KCiu9TqBrmMget58=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=G+qsA7FJdYozQJ8kHII+6P0E8zcV6lu2mTudUHUzIJ0KIHGXTZboH9P/hc1FxOfCm14t1Apu30euE5Z0IgcHNv52hn9KOTfcEQgXjT9YdCuL//pbdRIS43DG4UewkfNPj0C9utwEzV/yCCAqd9YdPO29OJ+0JCxHYTiH94ePauQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=IHeNNx2v; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42121d27861so2548775e9.0
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1716923051; x=1717527851; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+ytTEWiXKbIuQ8DpZG6ZoIYYrAybeCYmHd6/M4lW1Rs=;
-        b=IHeNNx2vEwBEPGywqD6Ug6c/wA20A1aq8R04/NvX9bxRoEyIOLKATK+qb2x5PJBZQW
-         y7j6CLtNF3vbdc/+CJL7LXzvwddoWuAliHngpiQ2KhwnPe3jKLTRxPYmVBXBuagzLO3y
-         vDjg0EHEfUlk6b/RhPbSEz8DCNvJUaAqaNQOaLiNWGogyS9a/LM0jr9dz1RH61M6/Wm3
-         Dxs9dYZA18l9SG9c9I99B3RrMWB/9ML1u3jcQGx31i77rb2prRQCf8Lko5qL53ABJ+KP
-         m5FSVX1RmFL3qrSU7zAmhZd6RDqyZmii9wCNRszB4H/sZpvKf2PfReRYys3OLQNJ/ahG
-         3OMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716923051; x=1717527851;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+ytTEWiXKbIuQ8DpZG6ZoIYYrAybeCYmHd6/M4lW1Rs=;
-        b=aBv1GUIrNsosqwwbAxn0NXNT+9SKHi+CEZaXDM7pk5kqlsJFHJNB/XxTjP1NRU3liC
-         eqoAYb5avPbkreC7NuW2vcAiyzjRYu92OGRk+tK6IzMal0R2Bn7ny0FcY4o4W874N7EP
-         ZbIxHLbaT7cKTRCfgLA6crlM6Th/GGQTBSFSzY+oHfjSt+9pOBo/81irTKvw3o2PiTpQ
-         zXMScvF99nyT8bKuFFrM4Anp0O51yaAf0DLfEFgMKdeHRBDfY/FljfXjPb/2AFHKefrp
-         Zx9GzjAcDTmEKGwThWuLNS9fJ54xI7LVZVW+Nytgsthx/QMdW6Ygo4sot7y/i7DHlaiF
-         pZNg==
-X-Forwarded-Encrypted: i=1; AJvYcCWFPvDdtf4zkDuRkDZ3TmENo3pMaFF545xSYUl6NfCjsWmVgmB6ri1OTdNYmxptzYnOoK7mDvPcvtjoA2BujzMIP0H3Bl0Zy3sn4w==
-X-Gm-Message-State: AOJu0YzWZYfdDP2EUKKXAMCeE6d36II4XkG9JNWdHm0CMjxBs9UzMBTG
-	k87CNm5tIOggib63TmiDhcHEO/ZzfJX5GEv7f/FTosDvlElKnuXbUSpi2OIZzKs=
-X-Google-Smtp-Source: AGHT+IGr9Ojgwytm4iX9gfeC7HKGDwhCWclljkq1atIIKWkwjLAAGni1lUy44ltShGgL2ph8z+vsKQ==
-X-Received: by 2002:a05:600c:3646:b0:418:f991:713f with SMTP id 5b1f17b1804b1-421089ffb20mr103408325e9.23.1716923050945;
-        Tue, 28 May 2024 12:04:10 -0700 (PDT)
-Received: from [127.0.1.1] ([2a01:cb1d:75a:e000:93eb:927a:e851:8a2f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42100ee954bsm183895415e9.4.2024.05.28.12.04.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 12:04:10 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 28 May 2024 21:03:25 +0200
-Subject: [PATCH v8 17/17] Bluetooth: qca: use the power sequencer for
- QCA6390
+	s=arc-20240116; t=1716923716; c=relaxed/simple;
+	bh=Hra9Q0rL1LWCN7mVFcRCPWW4IW99U8F2m0XsTT0WuUc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=W/sjX9B9VRDsHg/pEc1FdroliUzGQ/61IiXucj10BH4h/pxlPGoUUx9mtJ+5KVON2GEHa59JF1uo/xw/pQ0Tq8s+os93SsnoVsd31j5FKJR5Du1zj7GQH15/t/YHcsms9arCqNGmvPc8gdz3Nrg+macT76cUJabMzRjbFi1jBAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qcReLsyv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5BADC3277B;
+	Tue, 28 May 2024 19:15:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716923716;
+	bh=Hra9Q0rL1LWCN7mVFcRCPWW4IW99U8F2m0XsTT0WuUc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qcReLsyvvCHeHXiHouO6mecFQSx/fyCVOsYTHQ/f3ItdRk1iuypJaXiBV4aMQBkU6
+	 3ugRZTZkyZmMDCYrbNzSsvkFP8gkig4vkYNiZLbYj4DUw0qsDpmpnuZ/bXuOZDmrwD
+	 V8vaxeCAVOi/b/wNa5DM9LNETUGbeoiethCdYogVN4xVLwOuGnPKZjYTDSloJhYNN8
+	 srNk5mWWrbNK7iTyhCqz5PcdioMKTXYt09TWUPiwojnThC5VJ5RdPxTvE6ixShwFNQ
+	 Bis6dSapQFQeWIKhTz//2ViYMzwKmtMCMjK7EpKmmWvMrH9WRsvZHU+NAECtzULhi1
+	 SJeatq+i7IZhg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm: dts: realview: Add/drop missing/spurious unit-addreses
+Date: Tue, 28 May 2024 14:15:09 -0500
+Message-ID: <20240528191510.1444068-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240528-pwrseq-v8-17-d354d52b763c@linaro.org>
-References: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
-In-Reply-To: <20240528-pwrseq-v8-0-d354d52b763c@linaro.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Rocky Liao <quic_rjliao@quicinc.com>, Kalle Valo <kvalo@kernel.org>, 
- Jeff Johnson <jjohnson@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Helgaas <bhelgaas@google.com>, 
- Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
- Elliot Berman <quic_eberman@quicinc.com>, 
- Caleb Connolly <caleb.connolly@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Alex Elder <elder@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
- ath11k@lists.infradead.org, Jeff Johnson <quic_jjohnson@quicinc.com>, 
- ath12k@lists.infradead.org, linux-pm@vger.kernel.org, 
- linux-pci@vger.kernel.org, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, kernel@quicinc.com, 
- Amit Pundir <amit.pundir@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4086;
- i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
- bh=Avu9/iVEa5ctX7rSEGjhhAJegGiSsgTxVFrmV4sVK2k=;
- b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBmViqRYDzteYvAvkaLJmNfsrKlAel2gGnpKi/5k
- H2AxTd99D2JAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZlYqkQAKCRARpy6gFHHX
- ckx9D/sF6bFK+4+MkxmVs/T0n/IO5FL1tM3ik55oKT13+sSCJ4etW/LbZ5eF91APL859kZG3Y6W
- aFAaNVzjgQTfd/2Q+bdlYL+X9emJuU0T7CXKFlN/N2HrbLlQT9AXmeC4FOi3biUJQK4LOyyDetH
- ojSyoma/VJrnHuurJaQOl80ddoFm5gfzDPJvGzvqwbLTPLLtj1jiwOBhDtMIcPhnFrwueBx9UO3
- 0mCe4phl3MBCwVXmAfnsptIIOSJfilhDsFBdQrHCjqwoBcx+anp9JSJZqfjgEr5ahSNdF4R2bTN
- UBOPXXy9xT0LF+knaYZmBYhqglZ+3VRgdLhCsZm9ffXWTB1Q870+0/dbQCo/ny+7lserGXAXNw3
- z9TJDLJTlOiBiFGdpckN/3ewdubjN8H5JUcDLp/YdaFA3mFZzlDtMzlsmHulkqwPScyE8TTm4VD
- SNcmx60s52eJ43l2F5+keL0lTvd9gDdsDA/RZOspWAcBiibzNVTl24eV24FslRKfGV2Sw0rPuKy
- 3U1FMSrCoUNY1Hv6Tolz1jvLmUxbHQJhGngh0qcq1QPhqF95guvxrjzM8CxlguFHCq9Da+tbOyv
- hxD4fuyfxGNL8/BKI4Tnpm5PbytBKdCT8UyZMGhabSscZmYqkeInoWiGFptllVdWGU4qH/HMDTh
- QySNU7YTsh9KDsw==
-X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
- fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
+Content-Transfer-Encoding: 8bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Various nodes on the Arm Realview boards have missing or spurious
+unit-addresses.
 
-Use the pwrseq subsystem's consumer API to run the power-up sequence for
-the Bluetooth module of the QCA6390 package.
-
-Tested-by: Amit Pundir <amit.pundir@linaro.org>
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- drivers/bluetooth/hci_qca.c | 74 ++++++++++++++++++++++++++++++++++++---------
- 1 file changed, 59 insertions(+), 15 deletions(-)
+ arch/arm/boot/dts/arm/arm-realview-eb-mp.dtsi | 2 +-
+ arch/arm/boot/dts/arm/arm-realview-pb11mp.dts | 2 +-
+ arch/arm/boot/dts/arm/arm-realview-pba8.dts   | 2 +-
+ arch/arm/boot/dts/arm/arm-realview-pbx-a9.dts | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-index 384a2bbbf303..de4f88d835cb 100644
---- a/drivers/bluetooth/hci_qca.c
-+++ b/drivers/bluetooth/hci_qca.c
-@@ -28,6 +28,7 @@
- #include <linux/of.h>
- #include <linux/acpi.h>
- #include <linux/platform_device.h>
-+#include <linux/pwrseq/consumer.h>
- #include <linux/regulator/consumer.h>
- #include <linux/serdev.h>
- #include <linux/mutex.h>
-@@ -214,6 +215,7 @@ struct qca_power {
- 	struct regulator_bulk_data *vreg_bulk;
- 	int num_vregs;
- 	bool vregs_on;
-+	struct pwrseq_desc *pwrseq;
- };
+diff --git a/arch/arm/boot/dts/arm/arm-realview-eb-mp.dtsi b/arch/arm/boot/dts/arm/arm-realview-eb-mp.dtsi
+index 26783d053ac7..40f7515aa068 100644
+--- a/arch/arm/boot/dts/arm/arm-realview-eb-mp.dtsi
++++ b/arch/arm/boot/dts/arm/arm-realview-eb-mp.dtsi
+@@ -103,7 +103,7 @@ twd_wdog: watchdog@1f000620 {
+ 		};
  
- struct qca_serdev {
-@@ -1684,6 +1686,27 @@ static bool qca_wakeup(struct hci_dev *hdev)
- 	return wakeup;
- }
+ 		/* PMU with one IRQ line per core */
+-		pmu: pmu@0 {
++		pmu: pmu {
+ 			compatible = "arm,arm11mpcore-pmu";
+ 			interrupt-parent = <&intc>;
+ 			interrupts = <0 17 IRQ_TYPE_LEVEL_HIGH>,
+diff --git a/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts b/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts
+index 14ce47d42e3d..29afc5c05759 100644
+--- a/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts
++++ b/arch/arm/boot/dts/arm/arm-realview-pb11mp.dts
+@@ -92,7 +92,7 @@ intc_tc11mp: interrupt-controller@1f000100 {
+ 		      <0x1f000100 0x100>;
+ 	};
  
-+static int qca_port_reopen(struct hci_uart *hu)
-+{
-+	int ret;
-+
-+	/* Now the device is in ready state to communicate with host.
-+	 * To sync host with device we need to reopen port.
-+	 * Without this, we will have RTS and CTS synchronization
-+	 * issues.
-+	 */
-+	serdev_device_close(hu->serdev);
-+	ret = serdev_device_open(hu->serdev);
-+	if (ret) {
-+		bt_dev_err(hu->hdev, "failed to open port");
-+		return ret;
-+	}
-+
-+	hci_uart_set_flow_control(hu, false);
-+
-+	return 0;
-+}
-+
- static int qca_regulator_init(struct hci_uart *hu)
- {
- 	enum qca_btsoc_type soc_type = qca_soc_type(hu);
-@@ -1752,21 +1775,7 @@ static int qca_regulator_init(struct hci_uart *hu)
- 		break;
- 	}
+-	L2: cache-controller {
++	L2: cache-controller@1f002000 {
+ 		compatible = "arm,l220-cache";
+ 		reg = <0x1f002000 0x1000>;
+ 		interrupt-parent = <&intc_tc11mp>;
+diff --git a/arch/arm/boot/dts/arm/arm-realview-pba8.dts b/arch/arm/boot/dts/arm/arm-realview-pba8.dts
+index d3238c252b59..d2e0082245f9 100644
+--- a/arch/arm/boot/dts/arm/arm-realview-pba8.dts
++++ b/arch/arm/boot/dts/arm/arm-realview-pba8.dts
+@@ -40,7 +40,7 @@ cpu0: cpu@0 {
+ 		};
+ 	};
  
--	/* Now the device is in ready state to communicate with host.
--	 * To sync host with device we need to reopen port.
--	 * Without this, we will have RTS and CTS synchronization
--	 * issues.
--	 */
--	serdev_device_close(hu->serdev);
--	ret = serdev_device_open(hu->serdev);
--	if (ret) {
--		bt_dev_err(hu->hdev, "failed to open port");
--		return ret;
--	}
--
--	hci_uart_set_flow_control(hu, false);
--
--	return 0;
-+	return qca_port_reopen(hu);
- }
+-	pmu: pmu@0 {
++	pmu: pmu {
+ 		compatible = "arm,cortex-a8-pmu";
+ 		interrupt-parent = <&intc>;
+ 		interrupts = <0 47 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm/boot/dts/arm/arm-realview-pbx-a9.dts b/arch/arm/boot/dts/arm/arm-realview-pbx-a9.dts
+index 85d3968fbb91..507ad7ac4974 100644
+--- a/arch/arm/boot/dts/arm/arm-realview-pbx-a9.dts
++++ b/arch/arm/boot/dts/arm/arm-realview-pbx-a9.dts
+@@ -97,7 +97,7 @@ twd_wdog: watchdog@1f000620 {
+ 		interrupts = <1 14 0xf04>;
+ 	};
  
- static int qca_power_on(struct hci_dev *hdev)
-@@ -1794,6 +1803,17 @@ static int qca_power_on(struct hci_dev *hdev)
- 		ret = qca_regulator_init(hu);
- 		break;
- 
-+	case QCA_QCA6390:
-+		qcadev = serdev_device_get_drvdata(hu->serdev);
-+		ret = pwrseq_power_on(qcadev->bt_power->pwrseq);
-+		if (ret)
-+			return ret;
-+
-+		ret = qca_port_reopen(hu);
-+		if (ret)
-+			return ret;
-+		break;
-+
- 	default:
- 		qcadev = serdev_device_get_drvdata(hu->serdev);
- 		if (qcadev->bt_en) {
-@@ -2168,6 +2188,10 @@ static void qca_power_shutdown(struct hci_uart *hu)
- 		}
- 		break;
- 
-+	case QCA_QCA6390:
-+		pwrseq_power_off(qcadev->bt_power->pwrseq);
-+		break;
-+
- 	default:
- 		gpiod_set_value_cansleep(qcadev->bt_en, 0);
- 	}
-@@ -2309,12 +2333,25 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 	case QCA_WCN6750:
- 	case QCA_WCN6855:
- 	case QCA_WCN7850:
-+	case QCA_QCA6390:
- 		qcadev->bt_power = devm_kzalloc(&serdev->dev,
- 						sizeof(struct qca_power),
- 						GFP_KERNEL);
- 		if (!qcadev->bt_power)
- 			return -ENOMEM;
-+		break;
-+	default:
-+		break;
-+	}
- 
-+	switch (qcadev->btsoc_type) {
-+	case QCA_WCN3988:
-+	case QCA_WCN3990:
-+	case QCA_WCN3991:
-+	case QCA_WCN3998:
-+	case QCA_WCN6750:
-+	case QCA_WCN6855:
-+	case QCA_WCN7850:
- 		qcadev->bt_power->dev = &serdev->dev;
- 		err = qca_init_regulators(qcadev->bt_power, data->vregs,
- 					  data->num_vregs);
-@@ -2360,6 +2397,13 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 		}
- 		break;
- 
-+	case QCA_QCA6390:
-+		qcadev->bt_power->pwrseq = devm_pwrseq_get(&serdev->dev,
-+							   "bluetooth");
-+		if (IS_ERR(qcadev->bt_power->pwrseq))
-+			return PTR_ERR(qcadev->bt_power->pwrseq);
-+		fallthrough;
-+
- 	default:
- 		qcadev->bt_en = devm_gpiod_get_optional(&serdev->dev, "enable",
- 					       GPIOD_OUT_LOW);
-
+-	pmu: pmu@0 {
++	pmu: pmu {
+ 		compatible = "arm,cortex-a9-pmu";
+ 		interrupt-parent = <&intc>;
+ 		interrupts = <0 44 IRQ_TYPE_LEVEL_HIGH>,
 -- 
 2.43.0
 
