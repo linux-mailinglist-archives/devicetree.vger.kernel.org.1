@@ -1,122 +1,181 @@
-Return-Path: <devicetree+bounces-69918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EC228D1EF5
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:36:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2288D1EF7
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:36:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF9D82832F6
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:36:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 959C3283EF3
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D0AA16F8FA;
-	Tue, 28 May 2024 14:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C504716F8FA;
+	Tue, 28 May 2024 14:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MxGE/I9q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J3xNdJbv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A4A73475;
-	Tue, 28 May 2024 14:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9814216DEC6;
+	Tue, 28 May 2024 14:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716906989; cv=none; b=Mlhry5+fe5MtCpRhFJLl7bYi/f6YragNS7hQvMHt9F2kThwVy+Rjp+gTZqwePWE8Z9qGVxTtk7u5Ub28VwdcPNICSwLgDFKUyRIdX2lC0wJ4roihAyKvpA89JrnOhsh8WXI8uu6yPhbrmkQUWTYAvODSgpO47jTqNkDr5VFBKTw=
+	t=1716907005; cv=none; b=VSE85lmsxlGUtYUlch1nUQSxFeCMFSI00Wo9geCN5RTF84R4cl/3pqYLA3wH+b8tIIQTWxv9DozTUAg8V/9U8YCByFeXnXx4UTFu1rOsn+c3nnDOS+1Ryukf44yFqh34aM/aJvkfXYc92yeVNX/sxaP7J/1V2VOtr+CRIpa1X3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716906989; c=relaxed/simple;
-	bh=mOByn1i4Bf+ftqDIy4D+VH/lNSiVIlwYcT5TfV6l6tg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qyMDd0Une2YgGC1G/V/hSNVkDEze4c98PZUIpLJn+hqp2S23masdVImKZkQBR6EL+wiFKX2QN/iTo3/gDjcwLhu56pOYM2NmcWTvYApYuq7QUPGIu9FtsBimstEdLo1RAVwe6ipecDls2tc0kELREAA6hEL56nkxxYUj1dKb8t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MxGE/I9q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9045CC3277B;
-	Tue, 28 May 2024 14:36:26 +0000 (UTC)
+	s=arc-20240116; t=1716907005; c=relaxed/simple;
+	bh=BSUmfVdSlgpymoA4HoMBGd+tj1luXASp3mrYAsdGrnE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CyJdHEkl0p4pffwAQjACer+ymCEWHN9cRlhKbTii0N58TT5E7fscsK6X+mKbj582RCIU6wCa2fmPmVwAk01yxCrEdJ6071PUEQkPJQ/ytKUDPLp2IFjThXEumVC2KwUH/5w6KaKL1A5cePAPyEXROxKbBCphBCmUdrJXJ/m/I78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J3xNdJbv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3014C3277B;
+	Tue, 28 May 2024 14:36:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716906989;
-	bh=mOByn1i4Bf+ftqDIy4D+VH/lNSiVIlwYcT5TfV6l6tg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MxGE/I9qv5AnA9DmlgCZ0mNMrBxYx9ciBZl2wR5MLPJm0nzjoNl+q0NT/uXxwswW/
-	 FroiiMRQM4q19NO8wJD38m6ApgJ0ySk0NK1bEbdNhAtJ43RA1xO6lpK88a6v+ACcoC
-	 xAaMSj/RIcVxFv06zFn9Qv1Na2pZMcu/haNsC/VbymK5Nx+vZlyemJkjcwEw+uzHnT
-	 Eeyc3dyfF472vHtDj/6Bv21br/MBVdZm87o9QNssx0oimtlAsQEbUITMW3tzVVdn2Z
-	 NZyH4kWKEgDKpu8hjhAgkxpKODYFlz4S6kUyH5G6j0LXJ+muJgkdJsGX/4wsnu/mol
-	 EbjHp9OKZBZxQ==
-Message-ID: <e4a337be-7ebd-43b2-b2ca-a8577afb4bf7@kernel.org>
-Date: Tue, 28 May 2024 16:36:24 +0200
+	s=k20201202; t=1716907005;
+	bh=BSUmfVdSlgpymoA4HoMBGd+tj1luXASp3mrYAsdGrnE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J3xNdJbv6rn57nzTaPgvOWM8OPbYYmqDJcpJPRVgElmo1w6L0Nx3R59DAEIzhgSmz
+	 ODXYs65o6j0U0sY3e6mR/ThLjK85OM06jF23DPz+k0Rgv/wJIp81qDT804X7IOg/ku
+	 7H5Xg1r3q1v4nqFFIL+uQBZCuq5WeMSUyR0ATZTm69Ze/Q9xPU1tO+rPSSqnK4E0hr
+	 6HWnjV887O24nYk4xKHeHwUIpl52rzuXaXAZgfdJihi2LdK2+38uKPadRsF4Og8QUd
+	 kWBPidxILOZFEdcSS3vFmgiUXff7QC4oVxtk3GBXe0twlk4w6WR03RF/FkqRuKl+4X
+	 BySOFyDuyxaIQ==
+Date: Tue, 28 May 2024 15:36:40 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andreas Kemnade <andreas@kemnade.info>, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, lgirdwood@gmail.com,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [RFC PATCH] dt-bindings: regulator: twl-regulator: convert to
+ yaml
+Message-ID: <20240528-unimpeded-dealing-0128abb54272@spud>
+References: <20240528065756.1962482-1-andreas@kemnade.info>
+ <e497498c-f3da-4ab9-b6d4-f9723c10471c@kernel.org>
+ <20240528131622.4b4f8d03@aktux>
+ <f288a1c9-762c-4c66-8611-9a08d6c09bac@kernel.org>
+ <20240528150647.40385d08@aktux>
+ <3a29c775-4131-4047-9777-4146e6c8eed0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/1] dt-bindings: net: rfkill-gpio: document
- reset-gpios
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- johannes@sipsolutions.net, krzk+dt@kernel.org, netdev@vger.kernel.org,
- p.zabel@pengutronix.de, robh@kernel.org
-References: <20240528143009.1033247-1-amadeus@jmu.edu.cn>
- <20240528143505.1033662-1-amadeus@jmu.edu.cn>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240528143505.1033662-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 28/05/2024 16:35, Chukun Pan wrote:
-> Changes in v2:
->   Update commit message.
->   Add new example for WWAN modem.
-> 
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="yUj0T/sqf3gA9NuE"
+Content-Disposition: inline
+In-Reply-To: <3a29c775-4131-4047-9777-4146e6c8eed0@kernel.org>
 
 
-??? Changelog goes to --- section.
+--yUj0T/sqf3gA9NuE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Tue, May 28, 2024 at 03:54:05PM +0200, Krzysztof Kozlowski wrote:
+> On 28/05/2024 15:06, Andreas Kemnade wrote:
+> > On Tue, 28 May 2024 13:25:29 +0200
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >=20
+> >> On 28/05/2024 13:16, Andreas Kemnade wrote:
+> >>> On Tue, 28 May 2024 12:04:22 +0200
+> >>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >>>  =20
+> >>>> On 28/05/2024 08:57, Andreas Kemnade wrote: =20
+> >>>>> Convert the regulator bindings to yaml files. To allow only the reg=
+ulator
+> >>>>> compatible corresponding to the toplevel mfd compatible, split the =
+file
+> >>>>> into one per device.
+> >>>>>
+> >>>>> To not need to allow any subnode name, specify clearly node names
+> >>>>> for all the regulators.
+> >>>>>
+> >>>>> Drop one twl5030 compatible due to no documentation on mfd side and=
+ no
+> >>>>> users of the twl5030.
+> >>>>>
+> >>>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> >>>>> ---
+> >>>>> Reason for being RFC:
+> >>>>> the integration into ti,twl.yaml seems not to work as expected
+> >>>>> make dt_binding_check crashes without any clear error message
+> >>>>> if used on the ti,twl.yaml
+> >>>>>
+> >>>>>  .../devicetree/bindings/mfd/ti,twl.yaml       |   4 +-
+> >>>>>  .../regulator/ti,twl4030-regulator.yaml       | 402 ++++++++++++++=
+++++
+> >>>>>  .../regulator/ti,twl6030-regulator.yaml       | 292 +++++++++++++
+> >>>>>  .../regulator/ti,twl6032-regulator.yaml       | 238 +++++++++++
+> >>>>>  .../bindings/regulator/twl-regulator.txt      |  80 ----
+> >>>>>  5 files changed, 935 insertions(+), 81 deletions(-)
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/regulator/ti,=
+twl4030-regulator.yaml
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/regulator/ti,=
+twl6030-regulator.yaml
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/regulator/ti,=
+twl6032-regulator.yaml
+> >>>>>  delete mode 100644 Documentation/devicetree/bindings/regulator/twl=
+-regulator.txt
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Do=
+cumentation/devicetree/bindings/mfd/ti,twl.yaml
+> >>>>> index c2357fecb56cc..4ced6e471d338 100644
+> >>>>> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> >>>>> @@ -50,7 +50,7 @@ allOf:
+> >>>>>            properties:
+> >>>>>              compatible:
+> >>>>>                const: ti,twl4030-wdt
+> >>>>> -
+> >>>>> +        $ref: /schemas/regulator/ti,twl4030-regulator.yaml   =20
+> >>>>
+> >>>> That's not needed, just like othehr refs below.
+> >>>> =20
+> >>> but how to prevent error messages like this:
+> >>>
+> >>> arch/arm/boot/dts/ti/omap/omap2430-sdp.dtb: twl@48: Unevaluated prope=
+rties are not allowed ('gpio', 'keypad', 'pwm', 'pwmled', 'regulator-vaux1'=
+, 'regulator-vaux2', 'regulator-vaux3', 'regulator-vaux4', 'regulator-vdac'=
+, 'regulator-vdd1', 'regulator-vintana1', 'regulator-vintana2', 'regulator-=
+vintdig', 'regulator-vio', 'regulator-vmmc1', 'regulator-vmmc2', 'regulator=
+-vpll1', 'regulator-vpll2', 'regulator-vsim', 'regulator-vusb1v5', 'regulat=
+or-vusb1v8', 'regulator-vusb3v1
+> >>>
+> >>> esp. the regulator parts without adding stuff to ti,twl.yaml? =20
+> >>
+> >> Eh? That's a watchdog, not regulator. Why do you add ref to regulator?
+> >>
+> > hmm, wrongly indented? At what level doet it belong? But as the regualo=
+r.yaml stuff can
+> > be shortened, maybe just add it directly to ti,twl.yaml to avoid that t=
+rouble.
+>=20
+> I don't follow. The diff here and in other two places suggest you add
+> twl-regulator reference to wdt/gpio/whatnot nodes, not to regulators.
 
+The diff may look like that, but I think they're just trying to add it
+as a subnode of the pmic. There are other nodes, like the madc that do
+this in the same file:
+        madc:
+          type: object
+          $ref: /schemas/iio/adc/ti,twl4030-madc.yaml
+          unevaluatedProperties: false
+
+I guess this is what was being attempted, albeit incorrectly.
+
+--yUj0T/sqf3gA9NuE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlXr+AAKCRB4tDGHoIJi
+0j9uAQC3pwdHQucNm0SqQ0bnTS8kgNAy9mN+8gAmir3pxWrQhwD+PUYyBa08fTN7
+WpInMAQB537+Ja8D4ucMVXAXbvr7VgY=
+=V9s5
+-----END PGP SIGNATURE-----
+
+--yUj0T/sqf3gA9NuE--
 
