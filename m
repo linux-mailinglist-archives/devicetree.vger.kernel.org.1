@@ -1,151 +1,141 @@
-Return-Path: <devicetree+bounces-69884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9FF8D1DD6
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:05:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C4578D1E17
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:11:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D5561F21CF9
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:05:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBC6CB21379
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:11:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F57316D9CB;
-	Tue, 28 May 2024 14:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7508316F825;
+	Tue, 28 May 2024 14:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Qpa544JQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GgmwOqsT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3F913A868;
-	Tue, 28 May 2024 14:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE3A316F277;
+	Tue, 28 May 2024 14:11:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716905116; cv=none; b=tyy8qObQGW501xMxHVwH50NwRIzF1hk6JsIXQhyVaB1Go3igkTNB1OFvfAwXPxuNxJyv6eC97/y7XfNuM9NRjAv/9gntQgPtJC7wK+CcGdcDjYonNovPXVWnbEq25yC+PKWmxhnYlrDw1djWpZzZd0KWlYqOo+iTn3men0MnRh0=
+	t=1716905490; cv=none; b=RYIIH7Ox+IPOqtmZiInOcwh6tbTOLA/gfn3T/s+Df73YaVYnefrxPKh/XcGUX9n9OiGJT6D6OdDqoBdgvgEGmLWMe9wnOkmyMoAmOPG4Eor8YqY6KfdWcz+X3kzPIezuFD5iG7U5OnktHxo4f5oR2ZMgxwqtVSQIFtBigpmnCf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716905116; c=relaxed/simple;
-	bh=ai1bdbgFELvr6pDqfI7dJqTlHep0caFvUJ3T3nYdQ0o=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=BY5lmSJbCXcVyQ916YzjeeipryKHAGkOEK4lC5/gfTF1MghrDaCdjB5lGH+rsBAY2ucukoCBHAqnVsMCZ80XE5F5WbP23J+4jf8cXQuNakEqZ2eC9FTAN98fsfql1wjqz4c3leDGtoS6bIsK92lkC0bIoYKSqaZludss4NY7vss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Qpa544JQ; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1716905490; c=relaxed/simple;
+	bh=Wh4U9HaJpeOcnxWvaHFBS0Mk9WgABPGCjn/FVN+gqy8=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mU8YD/kTm8DozVqt4rKkERPeEZLad6i4FfhtpjompJFyHB8tZZJWIgiPyChOQOIvQg73ZAHqShifxHfMjH4aHz4jZol5SNF/cK3NR4oUrv2ZAIvE8P7CDHa8wYz//IRmti9jXjHOvssCPGedWlBliMx/CncJnlj+tGhmYazuD6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GgmwOqsT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44SBG8ub006307;
+	Tue, 28 May 2024 14:11:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=xt8AOuLuReTHWwWuia3CRpLS
+	kbzClAGe5UmAniUT+PY=; b=GgmwOqsT++6fSlvaARvQKpNblyp+80muxPNq2WnJ
+	4jhxJm0N8yVA7w2vXQXKE7mUXgLzsPjm3P7Pbi/W2WdbWTevFLK3D1Fc6zhtjOd3
+	4BaWNQPQx64DTuWRgjehm8WmkV7f7Gm8gF8AWWabl7e2VsTunq9854HBL6t6OFHM
+	0pqeHe8qxPJvwB5pZhvKy8Km63AVZjxLYaooK4g43fwNf/8ZWK0AUbgXzi35YMVp
+	x4WAxHs6INZZbiBRGYC055eCqPA6uS6y4//u2y21tg31TWZPHaWz0SIh4V0zk2GS
+	tl8ufHPPN6dqDqakgyTVccY4wC1s6mW383l6WIrL7yi5pA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0pp76h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 May 2024 14:11:22 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44SEBLmx009088
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 May 2024 14:11:21 GMT
+Received: from hu-vvalluru-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 28 May 2024 07:11:17 -0700
+Date: Tue, 28 May 2024 19:41:13 +0530
+From: Prahlad Valluru <quic_vvalluru@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: "Rob Herring (Arm)" <robh@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_nankam@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <quic_abhinavk@quicinc.com>,
+        <konrad.dybcio@linaro.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2: enable hdmi bridge
+Message-ID: <20240528141113.GA6631@hu-vvalluru-hyd.qualcomm.com>
+References: <171405653305.2527744.3813895380659072690.robh@kernel.org>
+ <20240426142442.7769-1-quic_vvalluru@quicinc.com>
+ <jr3ble6sxr5mr6cvm6ldvpyk5j4rucj3xy6vbha6ttoecte3d7@llu6qf6oasuc>
+ <171517823376.1753082.4070659246393696781.robh@kernel.org>
+ <20240515150459.GA32547@hu-vvalluru-hyd.qualcomm.com>
+ <CAA8EJpo=Q4_=JU83-9ooSqiSr=xUeHh2awDhzq9q3Xd56h83zw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1716905104;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nR6PGtpqWBgYYKVijGtKvPaDw/ijTAXs71XPwiba6AE=;
-	b=Qpa544JQMDRkOoJe07nQK4xF57CXLvIAu1zNfexR5ACS74dObK/J6x0QvxowEYvSoHexfG
-	njg4A9zygVo2Bi5T9/8djj1eKPiTFEXsDChECQBHjrc/YksEDoncs6ijzENIdJ952Ya1nM
-	jxv2xfXH1y0PBlg4rGHT82kTA7qMUKgUlmFcnnM+yiiZ/WUMUtyIUzjc9+hbfD9l0ilKqZ
-	Figaw1QH6Bt52xZx2R4VY+lhNS32Q9RIxGaenr8Fnq9DbF3dN4RiSKYGcEN1eII19wU5Z0
-	hTcflr4ivNsNUph387Ff4L4ZEa3f+ZcQJqgDXNSthuL6uMS3jjhtVc4bTcg+9A==
-Date: Tue, 28 May 2024 16:05:04 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, Diederik de Haas <didi.debian@cknow.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal, OPP and
- fan
-In-Reply-To: <CABjd4YyuDsWGbSfNyqcW3s=59p8adVf5Js79PYyKFqfyM71dxA@mail.gmail.com>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <CABjd4YyuDsWGbSfNyqcW3s=59p8adVf5Js79PYyKFqfyM71dxA@mail.gmail.com>
-Message-ID: <ea2311d7a41162a847d37ce05d0fc441@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpo=Q4_=JU83-9ooSqiSr=xUeHh2awDhzq9q3Xd56h83zw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tHUTAAmDNPkyw3QWt4vZhox7tg88BLeY
+X-Proofpoint-GUID: tHUTAAmDNPkyw3QWt4vZhox7tg88BLeY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-28_10,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
+ suspectscore=0 clxscore=1011 lowpriorityscore=0 priorityscore=1501
+ mlxscore=0 spamscore=0 adultscore=0 phishscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405280107
 
-Hello Alexey and Heiko,
-
-On 2024-05-28 11:49, Alexey Charkov wrote:
-> On Mon, May 6, 2024 at 1:37 PM Alexey Charkov <alchark@gmail.com> 
-> wrote:
->> 
->> This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
->> active cooling on Radxa Rock 5B via the provided PWM fan.
->> 
->> Some RK3588 boards use separate regulators to supply CPUs and their
->> respective memory interfaces, so this is handled by coupling those
->> regulators in affected boards' device trees to ensure that their
->> voltage is adjusted in step.
->> 
->> This also enables the built-in thermal sensor (TSADC) for all boards
->> that don't currently have it enabled, using the default CRU based
->> emergency thermal reset. This default configuration only uses on-SoC
->> devices and doesn't rely on any external wiring, thus it should work
->> for all devices (tested only on Rock 5B though).
->> 
->> The boards that have TSADC_SHUT signal wired to the PMIC reset line
->> can choose to override the default reset logic in favour of GPIO
->> driven (PMIC assisted) reset, but in my testing it didn't work on
->> Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
->> support PMIC assisted reset after all.
->> 
->> Fan control on Rock 5B has been split into two intervals: let it spin
->> at the minimum cooling state between 55C and 65C, and then accelerate
->> if the system crosses the 65C mark - thanks to Dragan for suggesting.
->> This lets some cooling setups with beefier heatsinks and/or larger
->> fan fins to stay in the quietest non-zero fan state while still
->> gaining potential benefits from the airflow it generates, and
->> possibly avoiding noisy speeds altogether for some workloads.
->> 
->> OPPs help actually scale CPU frequencies up and down for both cooling
->> and performance - tested on Rock 5B under varied loads. I've dropped
->> those OPPs that cause frequency reductions without accompanying 
->> decrease
->> in CPU voltage, as they don't seem to be adding much benefit in day to
->> day use, while the kernel log gets a number of "OPP is inefficient" 
->> lines.
->> 
->> Note that this submission doesn't touch the SRAM read margin updates 
->> or
->> the OPP calibration based on silicon quality which the downstream 
->> driver
->> does and which were mentioned in [1]. It works as it is (also 
->> confirmed by
->> Sebastian in his follow-up message [2]), and it is stable in my 
->> testing on
->> Rock 5B, so it sounds better to merge a simple version first and then
->> extend when/if required.
->> 
->> [1] 
->> https://lore.kernel.org/linux-rockchip/CABjd4YzTL=5S7cS8ACNAYVa730WA3iGd5L_wP1Vn9=f83RCORA@mail.gmail.com/
->> [2] 
->> https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd2kwkbguiolmozntjuiajrb@gvq4nupzna4o/
->> 
->> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> ---
+On Wed, May 15, 2024 at 05:28:24PM +0200, Dmitry Baryshkov wrote:
+> On Wed, 15 May 2024 at 17:05, Prahlad Valluru <quic_vvalluru@quicinc.com> wrote:
+> >
+> > On Wed, May 08, 2024 at 09:31:24AM -0500, Rob Herring (Arm) wrote:
+> > >
+> > > On Mon, 06 May 2024 18:14:10 -0500, Bjorn Andersson wrote:
+> > > > On Fri, Apr 26, 2024 at 07:54:42PM GMT, Prahlad Valluru wrote:
+> > > > > From: Venkata Prahlad Valluru <quic_vvalluru@quicinc.com>
+> > > > >
+> > > >
+> > > > Please don't thread new versions off existing version. b4 helps you with
+> > > > getting these things right, please check go/upstream for more details.
+> > > >
+> > > > > Enable lt9611uxc bridge for qcs6490 rb3 gen2 platform.
+> > > > >
+> > > >
+> > > > Even if it's clear what this is, I would prefer if you described the
+> > > > hardware a little bit in your commit message.
+> > > > "Rb3Gen2 has a HDMI connector, connected to DSI via a LT on i2cX.... reset and
+> > > > irq pins comes from x and y. Describe this."
+> > > >
+> > > > > Signed-off-by: Prahlad Valluru <quic_vvalluru@quicinc.com>
+> > > > > ---
+> > > > > v2: Addressed dtschema errors
+> > > > >   - Fixed lt9611-irq
+> > > > >   - vdd-supply error to be ignored, as it is connected to
+> > > > >     input supply directly, on rb3gen2
+> > >
+> > > The choice is either fix the dts or fix the binding.
+> >
+> > vdd-supply is mandatory for lt9611. Only in case of rb3gen2, we are seeing this
+> > error, since it is connected to supply directly. Will add dummy vreg to address this.
 > 
-> Hi Heiko,
+> s/add dummy vreg/describe fixed hardware register/
+True, will define a fixed regulator for vdd.
 > 
-> Do you think this can be merged for 6.11? Looks like there hasn't been
-> any new feedback in a while, and it would be good to have frequency
-> scaling in place for RK3588.
 > 
-> Please let me know if you have any reservations or if we need any
-> broader discussion.
-
-As I promised earlier, I was going to test this patch series in detail.
-Alas, I haven't managed to do that yet, :/ due to many reasons, but
-I still remain firmly committed to doing that.
-
-Is -rc4 the cutoff for 6.11?  If so, there's still time and I'll do my
-best to test and review these patches as soon as possible.
+> -- 
+> With best wishes
+> Dmitry
 
