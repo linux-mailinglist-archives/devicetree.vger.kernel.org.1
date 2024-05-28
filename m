@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-69749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C168D1614
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:18:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF048D161C
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:19:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BC931F22B7D
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:18:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70D17B215AF
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 08:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22FEB7D07D;
-	Tue, 28 May 2024 08:17:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE1613A3F3;
+	Tue, 28 May 2024 08:19:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BA636F079;
-	Tue, 28 May 2024 08:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC81F6F079;
+	Tue, 28 May 2024 08:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716884277; cv=none; b=QwrKxi+v27jZGSrA/IM3iKi/XoulTSnUPA1uFQYffiVZunvZ2Gd1wZp8GPWJ3CTFeszj97S7kxdDS9mDZkZDx8oSX22nitLtzos9FpHHU5FfOHuXvnrcTTYMyoYCFTDk0veu0cvyuc23YEf0gKj/07tTLY4WhY6Pv1ky4i/WdKw=
+	t=1716884359; cv=none; b=CsUOl9pR6vrlmOzJ+Nexzn/pm7AzBFdmXRkNirxi+AsINOLmLKR9Ibb3qDJYjtUbsWHFDPX+M9PrLsFGgEBfxMVvbtv/NhS07DtXBm1d4cJu5bm96sb3iw8eaeOfZbuXMclH1BBO6V7s7whOkr8g47BpsrP/AyJ8A7t8WQOejqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716884277; c=relaxed/simple;
-	bh=+gQk63qRjDxLOJj5cghiTQ8aHzfz80iixzwGh84NgYM=;
+	s=arc-20240116; t=1716884359; c=relaxed/simple;
+	bh=gJZogRnYwW9QFjcyMClNf4KTStnwLtJOXf/ejk2ylZQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Bf1aQ7gkd79Ciyzn4UPsjmyWgoKnW+Fpd5/UJwHfOGA/AAVHzU0qUdFjkl1LlYeHigs++XgKzRcppp9f/fkR9dOUzyIx5OBDTCJifu8usdJjdQR/9t6f/k5r+2pOhFR1+XY80dlqFnAvzelE926DEL/aibQin8CNMdZ2QwS1NVA=
+	 MIME-Version:Content-Type; b=LGmUM9DgvL9DqgT1+OFQ/hNSle34zGslTVBNijSSHxqhJit9msEgVFVrxLaT6jBQ5CYjMsTtGTyMOqfA99DPcw86hu9gEAX2+S6oFP5aAeWrcnZwAEX6ISHnDg8fiqe8QzyEucpLKsgriHeTx0S0hrCw5UMj9BjgHbDi1tEwa6A=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
@@ -33,24 +33,24 @@ Received: from i5e86193d.versanet.de ([94.134.25.61] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1sBs1d-0001f3-Il; Tue, 28 May 2024 10:17:41 +0200
+	id 1sBs33-0001fu-Iu; Tue, 28 May 2024 10:19:09 +0200
 From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Dmitry Yashin <dmt.yashin@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Jianqun Xu <jay.xu@rock-chips.com>,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] pinctrl: rockchip: add rk3308b SoC support
-Date: Tue, 28 May 2024 10:17:40 +0200
-Message-ID: <4771649.rnE6jSC6OK@diego>
-In-Reply-To: <20240517085832.365ac878@booty>
+To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Alex Bee <knaerzche@gmail.com>
+Subject:
+ Re: [PATCH 1/3] dt-bindings: media: rockchip,vpu: Document RK3128 compatible
+Date: Tue, 28 May 2024 10:19:08 +0200
+Message-ID: <3639993.hdfAi7Kttb@diego>
+In-Reply-To: <20240523185633.71355-2-knaerzche@gmail.com>
 References:
- <20240515121634.23945-1-dmt.yashin@gmail.com>
- <81aa0e4e-a3c7-41d1-8cd2-4d060730b37a@gmail.com>
- <20240517085832.365ac878@booty>
+ <20240523185633.71355-1-knaerzche@gmail.com>
+ <20240523185633.71355-2-knaerzche@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,57 +60,42 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Am Freitag, 17. Mai 2024, 08:58:32 CEST schrieb Luca Ceresoli:
-> Hello Dmitry,
+Am Donnerstag, 23. Mai 2024, 20:56:31 CEST schrieb Alex Bee:
+> The integration for this SoC is similar to RK3066/RK3188.
 > 
-> On Thu, 16 May 2024 17:06:46 +0500
-> Dmitry Yashin <dmt.yashin@gmail.com> wrote:
+> Document it's compatible.
 > 
-> > Hi Luca,
-> > 
-> > On 15.05.24 21:29, Luca Ceresoli wrote:
-> > > I'm skeptical about this being bound to a new DT compatible. As far as I
-> > > know the RK3308 and RK3308B are mostly equivalent, so it looks as the
-> > > pinctrl implementation could be detected at runtime. This would let
-> > > products to be built with either chip version and work on any without
-> > > any DT change.  
-> > 
-> > 
-> > Thanks for your feedback.
-> > 
-> > Indeed, these SoC's have a lot in common, but as I can see the rk3308b
-> > has more blocks, like extra PWM's (rk3308 datasheet 1.5 [0] shows only
-> > 1x PWM 4ch, when rk3308b and rk3308b-s have 3x PWM 4ch), 1-wire and
-> > CAN controller (mentioned in the TRM, but dropped from rk3308b
-> > datasheet for some reason).
-> > 
-> > So, in my view, it really makes sense to add rk3308b.dtsi, where extra
-> > PWM's, pinctrl compatible and its pin functions can be moved. And if
-> > its not worth it, then I will try to adapt the entire series to runtime
-> > config based on cpuid like you suggested.
-> 
-> Having a rk3308b.dtsi would probably make sense, yes, as there are
-> several differences as you described. However for the pinctrl it seems
-> probably not necessary.
-> 
-> I've seen actual products being manufactured with two different RK3308
-> variants in different lots of production, but with the same DT that has
-> rockchip,rk3308-pinctrl in it. Those would need a _selective_ DT
-> upgrade in order to benefit from your changes.
-> 
-> And even if a product had always used the B variant, it would need DT
-> upgrade when upgrading to a kernel with your changes. Otherwise with
-> patch 1/3 of this series the pictrl driver would lose many routes after
-> upgrading the kernel (but not the DT): can this lead to
-> previously-working devices to stop working? I think this is a
-> fundamental question to reply.
+> Signed-off-by: Alex Bee <knaerzche@gmail.com>
 
-If things can be runtime-detectable, they should be detected at runtime.
-So yes, while we need to know that it is a rk3308-something before
-via the dt, if we can distinguish between the rk3308 variants at runtime
-we should definitly do so.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
+Media people, can you apply this patch alone from the series?
+
+Thanks
 Heiko
+
+> ---
+>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> index c57e1f488895..d1b47b14ca57 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> @@ -26,7 +26,9 @@ properties:
+>            - rockchip,rk3568-vpu
+>            - rockchip,rk3588-av1-vpu
+>        - items:
+> -          - const: rockchip,rk3188-vpu
+> +          - enum:
+> +              - rockchip,rk3128-vpu
+> +              - rockchip,rk3188-vpu
+>            - const: rockchip,rk3066-vpu
+>        - items:
+>            - const: rockchip,rk3228-vpu
+> 
+
+
 
 
 
