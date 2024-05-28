@@ -1,115 +1,115 @@
-Return-Path: <devicetree+bounces-69843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592D48D1B76
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:39:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DEEA8D1B7D
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:40:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFB231F223D7
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:39:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F7C71C21DE4
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:40:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40E716D9A8;
-	Tue, 28 May 2024 12:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED39D16D4E9;
+	Tue, 28 May 2024 12:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s1r17Z99"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WxOEBSRX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24FE116D4F0
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:39:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1CE1EB3F;
+	Tue, 28 May 2024 12:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716899977; cv=none; b=Cu/g+1Xy+xNLRSzYrQHAojlkIxs/hXtA1c4k/RGfRMdeJFHqqsKeTVggNJiWOIYw8W7XBE/Y3z2SwJv+vo3lJPqxKj4VbU7hWJSos1ZdJwdsJXcVFSmUxD++5Wsh5H8vq9AOXLpTx5nL5T1nrJhsk8vhOuWwTid0QxeoJ+tKoF8=
+	t=1716900014; cv=none; b=aFhKw8aEcdy/C4GxLQn6zY42sfqnvf+sjV+HbcF71V2VNh4E1GswBfWqUAFAAnPLOkImYguNK45SV3QCclfsD6m5r7YnI4qm3E99iCLYzQGgCXClFEtk7OUleX7Yc6w9DBmtUED63amK5zcpnvHoa0u2IgQOBmLzSPgHIq1D4FQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716899977; c=relaxed/simple;
-	bh=3QD4cHZEvBkjeUTn2VP7Mro8lis+DUXvuC0yPXY2hVA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GqDCgU1rTeOAsmZz1fCC0bn59wH/pHa7D+NBGkvz+c1aI7LyTnR0PGXyEyXbsAuJWfRdwcjPJdPmRnwRu0yqr6NIskLff7zcudBq+Lzy/hQuAZ5DGk2vRHZ2Hwqx9f2wAZRmZNSKWVvOXmnJUoYNsjmbN1R8XFSzUQLVUjA+tXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s1r17Z99; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2e968e77515so9494641fa.0
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 05:39:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716899974; x=1717504774; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MyyZ1avD99OZmFrk135FGzfKRiqqWoc5X9qTav7HvZ0=;
-        b=s1r17Z99h2ngAtEyxx7p7I4dcguGQ4x4HEUC2U2mTFqgfZWoXI5T6+Fh9B/zk0UviU
-         iNrRGGzBcs/2MfFiuurQ9fsNIUlVCq9Huw9j/rB/OCGQx7kE2hTjN+cMK48ZVX7k4gQ7
-         EgaRLj0ACU9cCjJexiKZgTXeyE9uRa3A0Knnza3ngfNS72ZYgsyvvxvrhhUqxMb2rRw2
-         obLN1bXliyeLOPgI36+b9cx+6ngSPxnh9GVHe3MmsnloV1e8RheIRVob8JoAEdaTgPwc
-         asqWsh5h6/eRNOqVyeKoBzXhpIWP/SMoshAfrP5/ZZxxeDqlxvYpa9ejgHGOveQ/mS8s
-         tRKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716899974; x=1717504774;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MyyZ1avD99OZmFrk135FGzfKRiqqWoc5X9qTav7HvZ0=;
-        b=mxQlzayySFW/R/R3HRgcCM/v0pa+rDSH1Hz3grodVZDlqBtR9E2xFPa7xNuxlslxdi
-         1UFZWTty6swUXsnb/ZhCCP8DlchdPhjopUKkJ7rov77B9ZciJ0WuFj5lcGsammeTwXZL
-         RdThtxKVJTzZnzub6lTPbZPhAk4B302wAeIF987mSbYdN9877vSnHuAwZSOJIjwOYuw8
-         t91If3bULYYpNa1TgN8vFvmsvi7HiGeNJuDT0q0PBifZBihalXncWaee43YTkQG+LH/R
-         OZxR2MbngszCdam6F6WBk7CMYy+OnMQKkHRlXqzs2j6bgtPpz/KXg3plmPVDlGK25ayL
-         2N/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXHeQIcokakmArih6D9ANLdjB70MQLwsxbAfI/yLk1uEAfBzukJgjgTjaHIm4OsXAF92ow3myqCVL4nSG5pKbm6ubjLxP2QOU+yqQ==
-X-Gm-Message-State: AOJu0YzUC4/biO7SBqpxuDw/G/iZEaaFiEr6fUUPDAD1FEfEDrMwJhwi
-	EIE94gLTwtci2UizfSfjfYNd5ZdSp96a2MzALRIEfYT51Lr4/PO874HhGao1Mew=
-X-Google-Smtp-Source: AGHT+IEuLhZJv7qeXezlx8kfsTgFOdfKulgrE/pHZmC8bjKegp4bpVB1CU8ydw/L2kKkl+X6jB3iKQ==
-X-Received: by 2002:a2e:2c16:0:b0:2e5:8720:50d2 with SMTP id 38308e7fff4ca-2e95af3493dmr78535451fa.0.1716899974195;
-        Tue, 28 May 2024 05:39:34 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:c97:23a9:35bc:df2e:d894:2c76? ([2a00:f41:c97:23a9:35bc:df2e:d894:2c76])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2e98817eab1sm1386381fa.55.2024.05.28.05.39.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 May 2024 05:39:33 -0700 (PDT)
-Message-ID: <a205c018-2181-405a-a4f4-4211b1113c7a@linaro.org>
-Date: Tue, 28 May 2024 14:39:29 +0200
+	s=arc-20240116; t=1716900014; c=relaxed/simple;
+	bh=4SZb5316HoMm9LNOOZ3NjsmNjeuq0xc25cnVq+4jA4U=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ym93MMwmjGQ2ETGmIeZD1hfz8HzBDN5P3XkFpTzHLrSvIkRTKrQqdqRUEG1s0aW6qSKzCQ/NxNJut0bw3UWLC7h8T+vEDi/xdAfW4yFGW/qoa5UJJh3UgONPY6GQJ5ftxaC0EVpba/M593fRzqSUvv3Ntotyym71ayeG2cpyh0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WxOEBSRX; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44SCe6xM070292;
+	Tue, 28 May 2024 07:40:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716900006;
+	bh=jTsHTaofRi+cGKXVUS/i5zj6YDkm9QSUpwme8f7QUag=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=WxOEBSRXU79o/dP1pm+GaCR+mYfXR53bhePfBk9EXpHzvorekjxTIm9wXZ31jDvNu
+	 gmT4DAjNrVNUeRxy4zPDOfGMJV3a5oW1cyRy5ds4DqK9opRbExy50psWvYsp274rLC
+	 cPTheQnxXm5Tc42SsJMYBeRzVnsvQXvV0L6q7RgQ=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44SCe68O024318
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 28 May 2024 07:40:06 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
+ May 2024 07:40:05 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 28 May 2024 07:40:05 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44SCe4oi080379;
+	Tue, 28 May 2024 07:40:05 -0500
+Date: Tue, 28 May 2024 18:10:04 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Roger Quadros <rogerq@kernel.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <afd@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <danishanwar@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH v3 3/7] arm64: dts: ti: k3-j722s-evm: Update USB0 and USB1
+Message-ID: <17d2bcb8-084d-4b44-871a-28e5750f2636@ti.com>
+References: <20240524090514.152727-1-s-vadapalli@ti.com>
+ <20240524090514.152727-4-s-vadapalli@ti.com>
+ <db1a0b2d-1bf9-4bd4-98f5-8a38f46d6749@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/10] clk: qcom: gcc-sc8180x: Add missing USB MP resets
-To: Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-usb@vger.kernel.org,
- Bjorn Andersson <quic_bjorande@quicinc.com>
-References: <20240525-sc8180x-usb-mp-v1-0-60a904392438@quicinc.com>
- <20240525-sc8180x-usb-mp-v1-4-60a904392438@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240525-sc8180x-usb-mp-v1-4-60a904392438@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <db1a0b2d-1bf9-4bd4-98f5-8a38f46d6749@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On Tue, May 28, 2024 at 03:18:25PM +0300, Roger Quadros wrote:
 
+[...]
 
-On 5/25/24 20:03, Bjorn Andersson wrote:
-> From: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > +	dr_mode = "host";
+> > +	maximum-speed = "super-speed";
+> > +	phys = <&serdes0_usb_link>;
+> > +	phy-names = "cdns3,usb3-phy";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> > index c75744edb143..61b64fae1bf4 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+> > @@ -87,3 +87,8 @@ &oc_sram {
+> >  	reg = <0x00 0x70000000 0x00 0x40000>;
+> >  	ranges = <0x00 0x00 0x70000000 0x40000>;
+> >  };
+> > +
+> > +/* Include bus peripherals that are additionally
+> > + * present in J722S
+> > + */
+> > + #include "k3-j722s-main.dtsi"
+> > diff --git a/arch/arm64/boot/dts/ti/k3-serdes.h b/arch/arm64/boot/dts/ti/k3-serdes.h
 > 
-> The USB multiport controller needs a few additional resets, add these to
-> the driver.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
+> The k3-serdes.h changes should be in a separate independent patch.
 
-The numbers look good
+Ok. Will create a new patch in v4 addressing your comments on patch 5 of
+this series to combine Serdes1 changes as well into the same patch.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+Regards,
+Siddharth.
 
