@@ -1,141 +1,140 @@
-Return-Path: <devicetree+bounces-69837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185EA8D1B42
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:28:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 031C18D1B48
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:28:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C82EE285ED2
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:28:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2C872861DA
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E8016D4E9;
-	Tue, 28 May 2024 12:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E94D16D4F6;
+	Tue, 28 May 2024 12:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kDdVQQAG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MhLPtL2d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC6716B722;
-	Tue, 28 May 2024 12:27:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 958A216D4FF
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 12:28:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716899270; cv=none; b=LWZQNFU1yLMsuMbh48gVHuC/fEtM3Pt1FRsE635QHdeTjrAgMGYt1loYYlYbcp5Kvr10TGRBOyg32fdtz7quteT3rJ9PTa5xaPJesztYJxDtSTbohXO/sviKqmj9h72D2T2SBJsa1NDWtNFTQNhVBBRKMJfBQTzpMDyyLV4f9LY=
+	t=1716899297; cv=none; b=cGJ4q2pI3K0hF7nWhRX1d0wu5B9IiPsT5pOBpkWIMApg4SIgaMt76Jd20ZWkGDEmp2evgk0xbuei4hpXeIYXtL8f5PsSUwcmKdFbA39CCoEEGs4viUodfWMNiZRs+PLGEHcicoacZO9N8Nj3tVGk4qJ5vwlL6ISFpdxyl/tj5qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716899270; c=relaxed/simple;
-	bh=I8xyTDSo2DdUfwiGqFmJGZhy5ikIjBhPpjVahgmEH2k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dFjtME/UzMqLIWHj350d2pfRxkMr220bemSSMu1p/UV3JnXiXf92GjU2hRXDFSGt2v+AOEvgTAFa9nSlophK0pflGI9rXcDuSjlvyfDWWZf/dJ88BUUm1CSRLP6N9HRAhtecdSV4i0XpUwgVuehevzMx0Cbl2qgJbvV+de0/2SU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kDdVQQAG; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 601208D0;
-	Tue, 28 May 2024 14:27:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1716899263;
-	bh=I8xyTDSo2DdUfwiGqFmJGZhy5ikIjBhPpjVahgmEH2k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kDdVQQAGaDRMwpDxn+N+kHyvAbTb3NMVBSx1ViZ2jWmu7ZOqZ9f40Yare7Sa1PKn/
-	 FLia8QxHpNUngQuB05RXVCkUKKd0gNFCumWF9F2WeLpez3uNuZHEGjeAArYBxQaJcd
-	 pCitUJFW/MXne08UYXX9iudRsw0LEBRUOUymRwZ0=
-Date: Tue, 28 May 2024 15:27:34 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Alexandru Ardelean <alexandru.ardelean@analog.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Haibo Chen <haibo.chen@nxp.com>
-Subject: Re: [PATCH 4/5] gpio: adp5585: Add Analog Devices ADP5585 support
-Message-ID: <20240528122734.GA29970@pendragon.ideasonboard.com>
-References: <20240520195942.11582-1-laurent.pinchart@ideasonboard.com>
- <20240520195942.11582-5-laurent.pinchart@ideasonboard.com>
- <CACRpkdbAq1Cqr4X8fjEjOTxw7ky9b6V0ye1NYKfDy5E1BmAX6g@mail.gmail.com>
+	s=arc-20240116; t=1716899297; c=relaxed/simple;
+	bh=gfouMYV/06+BHL/0bAd6EAcNAZoOTw8W+qLqYPqa1OU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jA7JG1Y/SUz8MBc2uZSBK3iihYveigyIrGgqsmQxq3mBP8VMt2vLQuMhIamFBCWCHuPIjpmedY1eJQhg6IMPanAuwFWCKYIbCXrIDYmwhlSVBg3H9z6rT/1eFwDAxDhM0UWg2CV4jpyNGbn/JUkROhMl/3viIB1f6UpvKAkxiIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MhLPtL2d; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5295f012748so1001756e87.1
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 05:28:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716899294; x=1717504094; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AOuf1rNiHEqjRIxx7oHLdZte2vsAcehwFkh3KgmNv+k=;
+        b=MhLPtL2dHrGJ2o3L5dUIld5meLRgD7oMCyLwhgAYT5AX77s3t3JDOH3lkITuJVaavF
+         7/mCKUXm2Zv8wcJWFU+LJKuLPPmqJ8cPXBB7hHTqFdg+E2+BxBUxSrRZ9SK4e2aM3kFR
+         qaWJMghUX+n2NB3quooDBWDnAKTwRhB0WNbz87OVyvNe5UYm4i6XaT7H26AUJSNBdVGZ
+         twgwiWDY5UfxKqVJhiiPyzCMW0eKADE0ay412YPDCC9ZT/WaXwRUsL8GrOVozt772hi2
+         ilgdOO5iW0UZlXM2flQUk5oLURDMQ6t0m139bWQzgiQOjylBn9SkajKfL787jIRQoBIn
+         GMLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716899294; x=1717504094;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AOuf1rNiHEqjRIxx7oHLdZte2vsAcehwFkh3KgmNv+k=;
+        b=Ma/CjMfAh401o14OxgoEidvkKQqF68jETvn1ImMFZfDTwNHCZdavkodIeB1ssdX5zP
+         T1Ng2ALDMTOMhipNd7EbB90b8oMNJyz7mnlhVi4ogE7IhEQl+uHVV1iPCpp1pr7U/fcr
+         wqMOC7HvuYwuqP0g+wAbg8E3J836Bsj1ezcgStpGiQi8nZqbPDdUtSJZl1QoVEyhF5KK
+         AoPJVuT0P0MYT0AS7BlU8tLqlV1AkPQ4OiPmVeIVgSqkIBNGQd8I8SRlnnCnWgm4l+ig
+         PcX2RGus0sYjKCQDZ/5NmPR8OilnpjXjA+hzeDdzbyhCinuSjPu+THAWsE9/JBeBZ6Fm
+         M9yA==
+X-Forwarded-Encrypted: i=1; AJvYcCUX2yMjhimGwkQ2mux/nMIFHtgBe48ht0e41ySvvwvwLSXOXscNm3dBziEpbnvVh2WOX7ldAe10ANw5cIcTruNeCCtL9P+hs1sLCw==
+X-Gm-Message-State: AOJu0Yy6xK/woRgv1kNSb5vxBFODeVFqIh/1yU/Hz+TN3wPONabwu14y
+	uveaaQnA/ecvlPMkVB7Adcl0YCXrf9aXPPVsfUWynlNldBaWV1kzlFGsENzf5jqPtcxhtk+Zwox
+	w
+X-Google-Smtp-Source: AGHT+IGfLl/jpqILtIojTGh4cDkPEbEGQQOhY0bVSNspFg/dKAiACdONA9Zkl13ynZ7NG50BdEBj3w==
+X-Received: by 2002:a19:435d:0:b0:523:6a08:1c91 with SMTP id 2adb3069b0e04-52964ea97a2mr7518620e87.26.1716899293468;
+        Tue, 28 May 2024 05:28:13 -0700 (PDT)
+Received: from ?IPV6:2a00:f41:c97:23a9:35bc:df2e:d894:2c76? ([2a00:f41:c97:23a9:35bc:df2e:d894:2c76])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5297066b067sm956720e87.168.2024.05.28.05.28.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 05:28:13 -0700 (PDT)
+Message-ID: <68e51df8-5553-4df7-91f8-65bef924a407@linaro.org>
+Date: Tue, 28 May 2024 14:28:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdbAq1Cqr4X8fjEjOTxw7ky9b6V0ye1NYKfDy5E1BmAX6g@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: x1e80100-crd: Add pmic-glink node
+ with all 3 connectors
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240527-x1e80100-dts-pmic-glink-v1-0-7ea5c8eb4d2b@linaro.org>
+ <20240527-x1e80100-dts-pmic-glink-v1-2-7ea5c8eb4d2b@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240527-x1e80100-dts-pmic-glink-v1-2-7ea5c8eb4d2b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Linus,
 
-On Tue, May 28, 2024 at 01:54:29PM +0200, Linus Walleij wrote:
-> On Mon, May 20, 2024 at 9:59 PM Laurent Pinchart wrote:
+
+On 5/27/24 10:07, Abel Vesa wrote:
+> Add the pmic-glink node and describe all 3 USB Type-C connectors. Do this
+> for USB only, for now. The DP port will come at a later stage since it
+> uses a retimer.
 > 
-> > From: Haibo Chen <haibo.chen@nxp.com>
-> >
-> > The ADP5585 is a 10/11 input/output port expander with a built in keypad
-> > matrix decoder, programmable logic, reset generator, and PWM generator.
-> > This driver supports the GPIO function using the platform device
-> > registered by the core MFD driver.
-> >
-> > The driver is derived from an initial implementation from NXP, available
-> > in commit 451f61b46b76 ("MLK-25917-2 gpio: adp5585-gpio: add
-> > adp5585-gpio support") in their BSP kernel tree. It has been extensively
-> > rewritten.
-> >
-> > Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 143 ++++++++++++++++++++++++++++++
+>   1 file changed, 143 insertions(+)
 > 
-> (...)
-> 
-> > +static int adp5585_gpio_direction_input(struct gpio_chip *chip, unsigned int off)
-> > +{
-> > +       struct adp5585_gpio_dev *adp5585_gpio = gpiochip_get_data(chip);
-> > +       unsigned int bank = ADP5585_BANK(off);
-> > +       unsigned int bit = ADP5585_BIT(off);
-> > +
-> > +       guard(mutex)(&adp5585_gpio->lock);
-> > +
-> > +       return regmap_update_bits(adp5585_gpio->regmap,
-> > +                                 ADP5585_GPIO_DIRECTION_A + bank,
-> > +                                 bit, 0);
-> 
-> First, I love the guarded mutex!
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index c5c2895b37c7..2fcc994cbb89 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -49,6 +49,101 @@ chosen {
+>   		stdout-path = "serial0:115200n8";
+>   	};
+>   
+> +	pmic-glink {
+> +		compatible = "qcom,x1e80100-pmic-glink",
+> +			     "qcom,sm8550-pmic-glink",
+> +			     "qcom,pmic-glink";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> +				    <&tlmm 123 GPIO_ACTIVE_HIGH>,
+> +				    <&tlmm 125 GPIO_ACTIVE_HIGH>;
+> +
+> +		connector@0 {
 
-Yes, it's neat :-)
+Could you describe them somehow? e.g.
 
-> But doesn't regmap already contain a mutex? Or is this one of those
-> cases where regmap has been instantiated without a lock?
 
-regmap indeed includes a lock, but it will lock each register access
-independently. In adp5585_gpio_get_value() we need to read two
-registers atomically, so we need to cover them by a single lock.
+/* Left rear port */
+connector @0 {
 
-I could drop the lock from regmap, but I would then likely need to
-introduce a lock in the parent mfd device that both the PWM and GPIO
-children would use to protect bus access. That may make sense in the
-future, but is a bit overkill for now I think.
 
-> > +       gc = &adp5585_gpio->gpio_chip;
-> > +       gc->parent = dev;
-> > +       gc->direction_input  = adp5585_gpio_direction_input;
-> > +       gc->direction_output = adp5585_gpio_direction_output;
-> 
-> And chance to implemen ->get_direction()?
+There is probably some better terminology to describe the one closer and
+farther away from the user, do as you will..
 
-Sure, I'll add that to v2.
+For the QCP, they're numbered on the chassis
 
-> Other than this I think the driver is ready for merge, so with the
-> comments fixed or addressed:
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Thank you.
-
--- 
-Regards,
-
-Laurent Pinchart
+Konrad
 
