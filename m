@@ -1,120 +1,132 @@
-Return-Path: <devicetree+bounces-69780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C154D8D1816
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:05:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1867B8D182C
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 12:11:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AE722894C9
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:05:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D734B26DB1
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 10:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC55155C95;
-	Tue, 28 May 2024 10:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0701581E0;
+	Tue, 28 May 2024 10:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcNq45Mm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E97351021;
-	Tue, 28 May 2024 10:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CA7F9DA;
+	Tue, 28 May 2024 10:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716890718; cv=none; b=V6ycOkaLECMCWN271GL4R1xiIZ1tZXceMLUk4tC8WMQ5V4YE2Knq/abSa+7M6j2dznfGoAXSEc6rbd2IxfHCqpdPjl7adPdHUr0ypIQ8iE9wnWvce+VKE9G2F1Xx/rgPd1ZhW9qHvvptlnfUz2DdcErDi7JDDxI1MHfvDn9iFZs=
+	t=1716891076; cv=none; b=nxkKr2ft9uJSnKcngU7PGNUZPVUreEWiIXvWEtHTEhRavZwzoZMG6A2BZJkWUvX4cGE/VWykMsvL9EuMnZM2OdcE97taNd986PHLmG+H9lkia8RHOLySuIrsSu7XvXnFGlXxj24TVnc882yY39m2VyizQ0qbo3oO6TcdRR1SMh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716890718; c=relaxed/simple;
-	bh=SRcYTZBLE8y2e1/1r9ygLjdIMLPRef74Z1w77qnd6aw=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tpBiS3vq9Dd6+xfPVbUejZy20bsZ0MP7zRlUCgE8AuEnxO4ydkx6ezGUh23roXJ/t+2Ww918wXTKhOVyj4m6SoevJtoGul7MHFHEP8ukqTnn0r4jazUvL5c+8KbK6meBIa3G5etJAQyiLGx3i8aAPERFs1OJKiaQuSUxgoVqafM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4VpSly22V1z6K9F5;
-	Tue, 28 May 2024 18:04:14 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 5022D140B63;
-	Tue, 28 May 2024 18:05:13 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 28 May
- 2024 11:05:12 +0100
-Date: Tue, 28 May 2024 11:05:11 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Arthur Becker <arthur.becker@sentec.com>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Cameron
-	<jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
-	<linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: Re: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add
- VEML6040 RGBW-LS bindings
-Message-ID: <20240528110511.00006fe5@Huawei.com>
-In-Reply-To: <ZR1P278MB111779FE0C84DB465C54EEFF81F12@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
-References: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
-	<20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
-	<e47de936-8cb4-4cef-a346-74835767e203@kernel.org>
-	<ZR1P278MB111779FE0C84DB465C54EEFF81F12@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1716891076; c=relaxed/simple;
+	bh=3ri47Jw8bG0xrz0cHD1t6SSVNIySHKS61lpPF53h+3s=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=iX/URjNCb+bvi/1QSAtRArNHauieVzybVd7fuJgW3Lq+9sAdO9/fmVXLaDN1vMJWfvPCNiWoNvfXt1UyH40jv//QBNs+LIVQbh3AQtqpwyJaZHjnjQbl5QsUf6rgS2+ePE2qbnLVWlSFhZXHylyiLLEzPXWmfjy0sgdRthd9GlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcNq45Mm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3848C3277B;
+	Tue, 28 May 2024 10:11:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716891076;
+	bh=3ri47Jw8bG0xrz0cHD1t6SSVNIySHKS61lpPF53h+3s=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=UcNq45MmR80f7cpnqo6wlB59u/UPMXeA2qZWe17HnnDwofjLwb/jyu2ucUmG7HrwR
+	 TVdIYyKpguUruLYx1B5gLFLhlivJLKRFJxq9x9BaX3I+nqDvSS6eePT3x6sdVpys2U
+	 61tAs6AUmhpT8QdvpUpyiZVk3DGgeF/MnqpsUHDEcnN6pIN2mvUGyNfPK9XN8+N/w0
+	 5SstgHQlBn6qvkiI037eeAf3eqgMtJY0bHE+7X8zlpYXIn/lQwkFHrqVnCbk8Vkqud
+	 TPhhPW0qrnj6esSfQRQzzfJlP+BN+uoyS7w++RpTtPK2QGto3g1mRAAmVABGNBtVnu
+	 7kzjDGhmLq8Fg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Bjorn Andersson <andersson@kernel.org>,  Jeff Johnson
+ <quic_jjohnson@quicinc.com>,  ath10k <ath10k@lists.infradead.org>,
+  wireless <linux-wireless@vger.kernel.org>,  DT
+ <devicetree@vger.kernel.org>,  MSM <linux-arm-msm@vger.kernel.org>,  Rob
+ Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Pierre-Hugues Husson <phhusson@freebox.fr>,  Arnaud Vrac
+ <avrac@freebox.fr>,  Konrad Dybcio <konrad.dybcio@linaro.org>,  Jami
+ Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo
+ <quic_jhugo@quicinc.com>,  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+  Alexey Minnekhanov <alexeymin@postmarketos.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+References: <54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr>
+	<171560975908.1690511.498631481702370762.kvalo@kernel.org>
+	<3464a980-36a7-4ed2-b2dc-be8fd9091b06@freebox.fr>
+Date: Tue, 28 May 2024 13:11:10 +0300
+In-Reply-To: <3464a980-36a7-4ed2-b2dc-be8fd9091b06@freebox.fr> (Marc
+	Gonzalez's message of "Tue, 28 May 2024 11:54:37 +0200")
+Message-ID: <87zfsa6ybl.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain
 
-On Tue, 28 May 2024 07:23:03 +0000
-Arthur Becker <arthur.becker@sentec.com> wrote:
+Marc Gonzalez <mgonzalez@freebox.fr> writes:
 
-> Thanks for the Review!
-> Right, I wasn't sure if and how to add the veml6040 to the veml6075 dt-binding file.
-> I'll modify that the next time I make adjustments to the driver.
+> On 13/05/2024 16:16, Kalle Valo wrote:
+>
+>> Marc Gonzalez wrote:
+>> 
+>>> The ath10k driver waits for an "MSA_READY" indicator
+>>> to complete initialization. If the indicator is not
+>>> received, then the device remains unusable.
+>>>
+>>> cf. ath10k_qmi_driver_event_work()
+>>>
+>>> Several msm8998-based devices are affected by this issue.
+>>> Oddly, it seems safe to NOT wait for the indicator, and
+>>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
+>>>
+>>> Jeff Johnson wrote:
+>>>
+>>>   The feedback I received was "it might be ok to change all ath10k qmi
+>>>   to skip waiting for msa_ready", and it was pointed out that ath11k
+>>>   (and ath12k) do not wait for it.
+>>>
+>>>   However with so many deployed devices, "might be ok" isn't a strong
+>>>   argument for changing the default behavior.
+>>>
+>>> Kalle Valo first suggested setting a bit in firmware-5.bin to trigger
+>>> work-around in the driver. However, firmware-5.bin is parsed too late.
+>>> So we are stuck with a DT property.
+>>>
+>>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>>> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>>> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+>> 
+>> 2 patches applied to ath-next branch of ath.git, thanks.
+>> 
+>> 71b6e321e302 dt-bindings: net: wireless: ath10k: add
+>> qcom,no-msa-ready-indicator prop
+>> 6d67d18014a8 wifi: ath10k: do not always wait for MSA_READY indicator
+>
+> Hello Kalle,
+> What version of Linux will these be included in?
+> (I don't see them in v6.10-rc1. Are they considered
+> a new feature, rather than a fix, and thus 6.11?)
 
-It's absolutely fine to have shared bindings even if the
-drivers (because of different register interface etc) are completely
-separate.  It's a good way to keep bindings aligned between
-similar devices.
+Yeah, these commits will go to v6.11. Because of the multiple trees
+involved (ath-next -> wireless-next -> net-next -> linus) we need to
+have ath.git pull request ready well before the merge window opens and
+these commits missed the last pull request.
 
-Jonathan
+Yes, we are slow :)
 
-> 
-> Kind regards,
-> Arthur
-> 
-> ________________________________________
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 27 May 2024 18:31
-> To: Arthur Becker; Jonathan Cameron; Lars-Peter Clausen; Rob Herring; Krzysztof Kozlowski; Conor Dooley
-> Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org; devicetree@vger.kernel.org
-> Subject: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add VEML6040 RGBW-LS bindings
-> 
-> On 27/05/2024 17:12, Arthur Becker via B4 Relay wrote:
-> > From: Arthur Becker <arthur.becker@sentec.com>
-> >
-> > Device tree bindings for the vishay VEML6040 RGBW light sensor iio
-> > driver
-> >
-> > Signed-off-by: Arthur Becker <arthur.becker@sentec.com>
-> > ---
-> > V1 -> V3: Addressed review comments (v1 of the dt-bindings was sent
-> > along with v2 of the driver but not in a set)  
-> 
-> It's basically the same as veml6075, so should be put there...
-> 
-> Eh,
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
