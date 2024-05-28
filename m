@@ -1,157 +1,150 @@
-Return-Path: <devicetree+bounces-69775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7568D1784
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9728D1794
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF54A1C21894
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 09:49:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD0F91C21EEA
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 09:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276B9135A49;
-	Tue, 28 May 2024 09:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABE5157A42;
+	Tue, 28 May 2024 09:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ilWsZKND"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="ruypxRws"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613DF17E8F4;
-	Tue, 28 May 2024 09:49:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49C9155A4F
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 09:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716889770; cv=none; b=Xj/QTW0RS/0wxH0N0Tuo2FHVV2QR9wqC9p1hxThZYooyKknU5zWyAWMn7M3wUTfzjFNM+G+/BbDaspsXpT5+CjD5Nx4ftlc9Oy1AHQ+ThbFoRZ3RLUKc3R156i5XJG63kj5KcFBnnoib1673uLldwGf0wp/0V6mJy9fpxr2VUd4=
+	t=1716890082; cv=none; b=oqinQuHApBFuc15fPzVBmv1VczeFJBpNp6bzjhBYny7bgzmsyBdaATaCoyScMUBJk+z8liNbx/PeIdiYeLqGImwsiAhWx/k4MLCcyKTlG9OH7LoNIyvcNivsRs+bCkKFKfuUNcVeOXi/fmc3Sj9hFGRo9qupiSbXTBe4rVK6F7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716889770; c=relaxed/simple;
-	bh=Rlym6Q0gKtJUNT3qD8ad70TIJk9A9o9+AqBoVN1qd/U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AxH7mz87bdm88VT+qKjaBBe6/hwVM3+l72DhQyPqOBE1BYDebHBZeK7pDEoVyqsEGuxKMPI4AKPaBhagmDWas+CL22X23qyp04MXlYNs7V0o604dBEhFOXPPcqHcTNawxnvFJNSOQU10IGrLghYlQ59ojSDwwYo2G2HhOchlwBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ilWsZKND; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5785eab8d5dso682886a12.3;
-        Tue, 28 May 2024 02:49:28 -0700 (PDT)
+	s=arc-20240116; t=1716890082; c=relaxed/simple;
+	bh=SybdU/r39hJTOGi3oDXSj45HlcUBafnMrek6K0mJ7l4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j76/RZDHUGQ5UqemRad5QXvK4PehKu1mYcQ7/nY0x+u46DSyFyObjv0c76ImLSR+qpCeATTeeSv3Nsm3Q6nEdr1ChjJADG6KfWEmZFuLAMV6Cj62Ti+td2bgULzypdGeHWnFSdFI9CAD646+YgWlI/9Pp5ibsjDCW5DcygLv7tI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=ruypxRws; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-420180b58c5so4473795e9.3
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 02:54:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716889767; x=1717494567; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rlym6Q0gKtJUNT3qD8ad70TIJk9A9o9+AqBoVN1qd/U=;
-        b=ilWsZKNDsRwvadbIpLAEdi3G/c56tAAGE9FuGYDBkbqsQTR1amTA5G7eipaNbto175
-         YQkJsFNC+ybFJOSR9IM8yhwi8WUoT+NxYCIYH0TgtSmd1IRSpnN31DLHJc71DBAxGrOX
-         Oybb/qE/hRLZ+RuLfj8mIV6+cXIFmR6IQK6L7RBuvFnTpMsWJKa98AF+UthcnsF+95sA
-         Wux/O6YIeiAE13YcqEZMKotM2rK21YHbplMXfQd2XnQ7pMuK8zMAN96IL2jCRSYVM2ww
-         jLhMmnE7EQvRy0A29PDcd2qUo5AUanhCfQPFA0fERYrTaKbMJvgiBbPJWENuMzK07tOf
-         PFRg==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1716890079; x=1717494879; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oWYisXjJ7RIo5lhbJSv21znch1qUWj7f8daCXXniaDs=;
+        b=ruypxRwsLSWpZ3UIDqPfO+p4bXYgqLXvpJx26Mp/84+fyfOWYOprFVPrhpmt2s9qHD
+         ieDfG9AU/gaUF7ds/dcSQI/U/oCHlbsI3+DHYmXcG1pqqaX2NfMOglkO3+eWPH9RO8q0
+         WRM/t74J9IlDy4W1xXziA/RXDXMbKOmeI8/y08uIL0jcmzf9Naol/BqBTABTCF7FNfk+
+         4H9RFvLUHJB74G81plBjjaF0+zLtFxSu2wWjBFxs3DHst447r70zYbJMBlOuWv5muq3/
+         SmrpqjtvlVRzzlmp0BcZu+qVVOTVOIiwTSF9vHuzlrs4jFpmjvBQ2L0p96x6Rw13lQRy
+         jADA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716889767; x=1717494567;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rlym6Q0gKtJUNT3qD8ad70TIJk9A9o9+AqBoVN1qd/U=;
-        b=tzM7bJZu5BYiXOPtuNho1mNXbuQiodJYNMrAMZdu+k/oJkyLHX6AIZ0b6VS+Wg73W3
-         aEu9/8R5OXoIXipMNtQQBjPGta84uU63dd71ktYaGg6o9n3th1jsaEJvLvUb8AUBnbJd
-         C5etflDzxOfhcPQLlQLehbAZF7AAji3R82whfvEmwH8GC/jPvWPiChnnm4CtfDfNTGsh
-         wBEOcQCVI8JBGrxcM7edLYUPG0u8qeLs0VPJ9CB63lb8uyD8mva8a6rEZxN1ujFWkxxn
-         cSL5dyMl285Xy9CUq5wO6W+Jem9Dr6Wbies+zDxnwBjkT335Je4AQMgUyo+VZ7/8m9yz
-         bocw==
-X-Forwarded-Encrypted: i=1; AJvYcCWiudpATn0t/zaYEBuBYZ6s32fyu3ZGYQ5eKCV41r+/b4KFwYn3F6yYz7+TUUY8nOsq9+6XL2j5cRH8ljLSPCFYh/42X8Ubr3PTVMyaFv6aRhfkavxZLU0KwJKPeV14Ew7m9u2Zbk8JHw==
-X-Gm-Message-State: AOJu0YxSy1BZOWr03tcuPlR5SU1801mQwMzgoGADUmy9BlcSMSNng4kU
-	2htYAOtG++ohirKbrRbDdcxCrmNDqxB5vAWrOZklBVrNGdm8p6t2a6QUcR2FhlLV5O9eDUN7O+8
-	awqvJff2wn+XquGqVqk6ANBbZbMI=
-X-Google-Smtp-Source: AGHT+IF7pAr69yU9svC5bxzRerXV6L0MMij/GAhNmLknMPb4ry9esEuNqtCjPCeo8caW65iqoT4OE/AkoA2A6fWPgb4=
-X-Received: by 2002:a17:906:1c0b:b0:a63:3488:c973 with SMTP id
- a640c23a62f3a-a63348902c7mr120702266b.73.1716889766525; Tue, 28 May 2024
- 02:49:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716890079; x=1717494879;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oWYisXjJ7RIo5lhbJSv21znch1qUWj7f8daCXXniaDs=;
+        b=T3y69ilu8St+eKWiYKtiWoNpuKxOl4I4R9l9nBchhxLJxK06Nwi4G85y2JnaEi8vFS
+         6QKyiBTbgCTdjScOSiusIDONZ/628t46VpGCYWYzqGvoRAXQAAakLAKCduEhA/M9LrIh
+         x9eJV+tZ9fqLHu9RvD458OLFkfu4bAmCeDSM/XLKjxPCQFlw9mX9HljM0nD9Yh+VVdRG
+         dFV9ARfu3X8pAJgMcQtBz1MIJ99KdixRbt99oGTQCVUebkh8Vn0/dJf68LroUUfplIxC
+         pMUpdnPPx6RCcnbCf0DbdRNnl2JcpEZwlk7G/LBD4gfDRN4jft2+GZRzeecc3jmsCWRK
+         4Anw==
+X-Forwarded-Encrypted: i=1; AJvYcCWlb201TWaD2Hi6LXVUxplKk9RurtLJJsf2sh/7YXFKOkyBnTIeMtLnCKCFgEKIOjBEYnSOBg4C3hG7ylS9ROyycepXEOwheJFU0A==
+X-Gm-Message-State: AOJu0Yx6H6hvCAXmQYoqkUsZCv67Snn00+0+9BaFVYFtauwXj4ajmizS
+	KGu4pEAwRdSNBaiOnE/KXnv/0AU+z+f1ofcnpNUq/+4vkfGv6K5igsg022FavoE=
+X-Google-Smtp-Source: AGHT+IGtbEJvc0pZFif8+rjy+/1MtcLrU3cLsbt9CAfpx8NrU6rjdJ01tQfYMRj5877jciysw2vZww==
+X-Received: by 2002:a05:600c:54cc:b0:419:f630:57c2 with SMTP id 5b1f17b1804b1-421089f98d1mr89925095e9.37.1716890078820;
+        Tue, 28 May 2024 02:54:38 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42108989fdesm136479995e9.25.2024.05.28.02.54.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 May 2024 02:54:37 -0700 (PDT)
+Message-ID: <3464a980-36a7-4ed2-b2dc-be8fd9091b06@freebox.fr>
+Date: Tue, 28 May 2024 11:54:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
-In-Reply-To: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 28 May 2024 13:49:14 +0400
-Message-ID: <CABjd4YyuDsWGbSfNyqcW3s=59p8adVf5Js79PYyKFqfyM71dxA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal, OPP and fan
-To: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Dragan Simic <dsimic@manjaro.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, 
-	Diederik de Haas <didi.debian@cknow.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+To: Kalle Valo <kvalo@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>,
+ wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ MSM <linux-arm-msm@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Alexey Minnekhanov <alexeymin@postmarketos.org>
+References: <54ac2295-36b4-49fc-9583-a10db8d9d5d6@freebox.fr>
+ <171560975908.1690511.498631481702370762.kvalo@kernel.org>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <171560975908.1690511.498631481702370762.kvalo@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, May 6, 2024 at 1:37=E2=80=AFPM Alexey Charkov <alchark@gmail.com> w=
-rote:
->
-> This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
-> active cooling on Radxa Rock 5B via the provided PWM fan.
->
-> Some RK3588 boards use separate regulators to supply CPUs and their
-> respective memory interfaces, so this is handled by coupling those
-> regulators in affected boards' device trees to ensure that their
-> voltage is adjusted in step.
->
-> This also enables the built-in thermal sensor (TSADC) for all boards
-> that don't currently have it enabled, using the default CRU based
-> emergency thermal reset. This default configuration only uses on-SoC
-> devices and doesn't rely on any external wiring, thus it should work
-> for all devices (tested only on Rock 5B though).
->
-> The boards that have TSADC_SHUT signal wired to the PMIC reset line
-> can choose to override the default reset logic in favour of GPIO
-> driven (PMIC assisted) reset, but in my testing it didn't work on
-> Radxa Rock 5B - maybe I'm reading the schematic wrong and it doesn't
-> support PMIC assisted reset after all.
->
-> Fan control on Rock 5B has been split into two intervals: let it spin
-> at the minimum cooling state between 55C and 65C, and then accelerate
-> if the system crosses the 65C mark - thanks to Dragan for suggesting.
-> This lets some cooling setups with beefier heatsinks and/or larger
-> fan fins to stay in the quietest non-zero fan state while still
-> gaining potential benefits from the airflow it generates, and
-> possibly avoiding noisy speeds altogether for some workloads.
->
-> OPPs help actually scale CPU frequencies up and down for both cooling
-> and performance - tested on Rock 5B under varied loads. I've dropped
-> those OPPs that cause frequency reductions without accompanying decrease
-> in CPU voltage, as they don't seem to be adding much benefit in day to
-> day use, while the kernel log gets a number of "OPP is inefficient" lines=
-.
->
-> Note that this submission doesn't touch the SRAM read margin updates or
-> the OPP calibration based on silicon quality which the downstream driver
-> does and which were mentioned in [1]. It works as it is (also confirmed b=
-y
-> Sebastian in his follow-up message [2]), and it is stable in my testing o=
-n
-> Rock 5B, so it sounds better to merge a simple version first and then
-> extend when/if required.
->
-> [1] https://lore.kernel.org/linux-rockchip/CABjd4YzTL=3D5S7cS8ACNAYVa730W=
-A3iGd5L_wP1Vn9=3Df83RCORA@mail.gmail.com/
-> [2] https://lore.kernel.org/linux-rockchip/pkyne4g2cln27dcdu3jm7bqdqpmd2k=
-wkbguiolmozntjuiajrb@gvq4nupzna4o/
->
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
+On 13/05/2024 16:16, Kalle Valo wrote:
 
-Hi Heiko,
+> Marc Gonzalez wrote:
+> 
+>> The ath10k driver waits for an "MSA_READY" indicator
+>> to complete initialization. If the indicator is not
+>> received, then the device remains unusable.
+>>
+>> cf. ath10k_qmi_driver_event_work()
+>>
+>> Several msm8998-based devices are affected by this issue.
+>> Oddly, it seems safe to NOT wait for the indicator, and
+>> proceed immediately when QMI_EVENT_SERVER_ARRIVE.
+>>
+>> Jeff Johnson wrote:
+>>
+>>   The feedback I received was "it might be ok to change all ath10k qmi
+>>   to skip waiting for msa_ready", and it was pointed out that ath11k
+>>   (and ath12k) do not wait for it.
+>>
+>>   However with so many deployed devices, "might be ok" isn't a strong
+>>   argument for changing the default behavior.
+>>
+>> Kalle Valo first suggested setting a bit in firmware-5.bin to trigger
+>> work-around in the driver. However, firmware-5.bin is parsed too late.
+>> So we are stuck with a DT property.
+>>
+>> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+>> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>> Acked-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> 
+> 2 patches applied to ath-next branch of ath.git, thanks.
+> 
+> 71b6e321e302 dt-bindings: net: wireless: ath10k: add qcom,no-msa-ready-indicator prop
+> 6d67d18014a8 wifi: ath10k: do not always wait for MSA_READY indicator
 
-Do you think this can be merged for 6.11? Looks like there hasn't been
-any new feedback in a while, and it would be good to have frequency
-scaling in place for RK3588.
+Hello Kalle,
+What version of Linux will these be included in?
+(I don't see them in v6.10-rc1. Are they considered
+a new feature, rather than a fix, and thus 6.11?)
 
-Please let me know if you have any reservations or if we need any
-broader discussion.
+Hello Bjorn,
+Will you pick up patch 3 ?
 
-Thanks a lot,
-Alexey
+Regards
+
 
