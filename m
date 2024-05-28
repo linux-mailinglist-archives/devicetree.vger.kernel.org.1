@@ -1,81 +1,123 @@
-Return-Path: <devicetree+bounces-69927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBAD18D1F46
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:52:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308678D1F53
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 16:55:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 720BD284BAA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:52:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DC90B21822
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 14:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1C316FF47;
-	Tue, 28 May 2024 14:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22361E891;
+	Tue, 28 May 2024 14:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="AdHfiqMV"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Qn2eqjRD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2086.outbound.protection.outlook.com [40.107.7.86])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2080.outbound.protection.outlook.com [40.107.223.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD6E79F6;
-	Tue, 28 May 2024 14:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06AD379F6
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 14:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.80
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716907960; cv=fail; b=u2/8UU1k7TNMPMlwyCgQGWW6VsrHSu42iPfF6wa6pbbIkV1bFCshQ49H0vfITMbx5WT7DIMgkxI53RPnGcibb9CSyconjbWznv3jR2Zf0uQiC1rsZma2ln4XxC9BUXGv0RMxJ+YSqMqfqC/132p/JccBg39yKEyWO2Z2Mcmrckk=
+	t=1716908128; cv=fail; b=YMbQsu/NF1tFEIYFnnAotIQXyV4L9wcEsV5d56M5JuG6QagKFLoUcaWgVOHLeaQUdegjbMDelEJyNB5Igr91CdTE6snpKiUjc5HfrfHfu87RGJ4GyT6xQPE+YrYy88OZSRv3MlcS7NbAih4mEqeBEa+wQqnafB/k9+5UvaZ1XUg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716907960; c=relaxed/simple;
-	bh=pqyWkp5Tq0EB4a49pgKsrmTj5280aEQftCX2TCB2MXg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=X+6XLlobZ06RECAnfmOMoT2YuUwUOnTkZvRgRfOuJzwW75xSNdu3S14v/Ph4ZHdfr5ZerpCl7t4tziXAWwngwovWE/7JOLBmmKTDt3Dp2jbDKjzICZOE7TRBK2OhiQ3iZTPxewNU2zKhLa5cb/vruPpke2GvZmg1u8vtMBqjVXQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=AdHfiqMV; arc=fail smtp.client-ip=40.107.7.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1716908128; c=relaxed/simple;
+	bh=W7PGNpTteahcCkPJyBJi4a7qlAimrlAyg38sYvH91HY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=DQ2AtXvkXhJQA7TkObxwBJteCs3dH7C3lVAYJXWKe8WQhUjYfVbFYQFLPT25YxJ59Imr74zwWrG1lM9BMffadCfUS3kqVT0pW1QBzsi4x6TKmxWMvb5MNqllXizpyfY5rAMSPyI4CFKcGelZsJLiBBu27AKxwzhjD5uKPtUwn10=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Qn2eqjRD; arc=fail smtp.client-ip=40.107.223.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gqgErbEqY+ZMgn71ar4BPAi24Q+DikkQkx34+Y20f+SZmW+7GO87odbGl2WSqFUrpYQK+U9XHIsKind5oicequ+jlTofqAP0ThYeqN4bLH/NA0yBiB4yomQLk83E5Y2c9+bl1I5XAcNiqy3mP5i6C0sWbhfU3dwvDVlO9/H9oFU2JX11PbVKnSXh/k2cGrXKP10Pf/K0zNbPHtbgn5XLmhZRZlHDjJ43PLarskusyqWV7Ji1tKIglkfkJGzWt2ZM7PQkAyTQ6GlQGI3Aqw0h5h0KgQvedW7O7kz5YBvfNNJArSAqF+ANalgEOmyHpWAQUggGsS0YxzTPK8Ejy1rG1Q==
+ b=ODfe1SUX//9C7/0c5QdcO8dPgg+te2FurJyxVPT4OCzngUzSX3pI6tvAahyOBLTJ+flvhG4MiwC2Gu7lDQC8ceqFWLH2rXKQmBcjrA1ZHuymmzdr1TpyOuUUKPYaHXHmtHnYjK27hPC7HWYHOOpaDZyx9nzzPR3djvuc2Xag7kBWIW+rHACBgKVvV9sN/MP1/JPBtFRgJZZv/RPvjhsNSiUSuGeRsUJ0t8C/movkTPR2ujf2PJvIEd7SDDDkqfa7ffi8ODBE6NvAftqlywf3DFtGiVcai2Gd+HIk943fcayDmA+jAGmtBJxHwHzQuKxYlJOpdjo98GPdZ7b/bfuqBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d/6ABDYpiS+nNvX6AIcMJZm+AArxjgKYlT1CWaTm0+k=;
- b=awd+d2qrGJljH0hOTYy9TMDNMIyL7mKuwnLL6OG9P0pbiRnefVOtne5V4KbmwpKfq7FL4aJa91PVBRiG25xcIwMd10iYjn9xO6He9QQdG0pGR4/xR748fw7sjTfCP45NSfmgIVccqyiVRoMjOmxB/pjoWb1YLny+uThqkl/ly5AwC+hktSQ1pU9/iw/DAX63Cr2Yd0bFlt+o5HKOPB4adxWdEW9f5xXMwvVqB718bYfqPhu4rDbKzOVgVK3QP/S0PKUCJMI/XQ5XTsc/7qIOYfEIEmxmdd/BqAyGjRjI/4jA/yp/vreWdgvrzrbBypB361w5gRrmeNIWANuJnM3UeQ==
+ bh=hpCqECqrjW2YpzUO9BzCIWNnpnTi9fbt8zft54TkfeA=;
+ b=j5xhK3jkaseiEHrtBiP7SCbEzv12ciDYhuHK3GAzLIg4mQ/rObowX9GAfKuvaIBOBxTE8j/a6x/YMdv++vUHZSFBnHRJxI/hvwXEcbslHT74gkGQO2zi/+1CYC+02XCrGDOkOCngArL33RSiRoKfvfOmvoi4MIQ4Yip7OlWjON2NxLq9Gz/glMnJXQCLUcYVR+OS5hMpCtwGiPLaiq8aaV1pvpqz5dIP2eeTfBUag6QqpSjZRcDhtINs/b6l5dh/pIEXnmeV8oV5afD1t8Wtp1mOLPHrBypUDghbmoXjyMMclT8i74eSbRdwVIzsdtnv63M3uC7jo8cXVOnlhXunSQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d/6ABDYpiS+nNvX6AIcMJZm+AArxjgKYlT1CWaTm0+k=;
- b=AdHfiqMVno5hnoDBEp6A8l1QGtvAF/mpHe4YxXL8XLytkGWKQqEoHfMllTJvPHOY4OYc34clvtIzHBjxi95UzApU1vc0kQRj3In8VegAyv5CkJm2ZHQFzXpLCL8CYrSCa0MyKKbxOZgVVoQMDkaPY9jW1hlKxU8zuadykNwG8fM=
+ bh=hpCqECqrjW2YpzUO9BzCIWNnpnTi9fbt8zft54TkfeA=;
+ b=Qn2eqjRDpPzMj9lCFj/LX+MIQm2PMeq+NueWADgorXuyohlHb0F7CZjzWpoIIQCxQ8iewtC03NyvwZKvaGVWRzC0CN0TSEoxYTL+os5P2Rja8Ovk+iXQJpqUOo6aGaL/WbmhE08k2hQ7ewWvPxCB4jsaNG41BpJhzENowTkkOrs=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB8PR04MB6860.eurprd04.prod.outlook.com (2603:10a6:10:112::22) with
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
+ by SJ2PR12MB7943.namprd12.prod.outlook.com (2603:10b6:a03:4c8::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Tue, 28 May
- 2024 14:52:34 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.7611.016; Tue, 28 May 2024
- 14:52:34 +0000
-Date: Tue, 28 May 2024 10:52:26 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: conor@kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v6 2/2] phy: freescale: imx8qm-hsio: Add i.MX8QM HSIO PHY
- driver support
-Message-ID: <ZlXvqhlMgUZeYoPk@lizhi-Precision-Tower-5810>
-References: <1716865154-25044-1-git-send-email-hongxing.zhu@nxp.com>
- <1716865154-25044-3-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1716865154-25044-3-git-send-email-hongxing.zhu@nxp.com>
-X-ClientProxiedBy: SJ2PR07CA0010.namprd07.prod.outlook.com
- (2603:10b6:a03:505::27) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.29; Tue, 28 May
+ 2024 14:55:22 +0000
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30%6]) with mapi id 15.20.7611.016; Tue, 28 May 2024
+ 14:55:22 +0000
+Message-ID: <966af5a2-3960-4000-960a-e15a19f1cf76@amd.com>
+Date: Tue, 28 May 2024 16:55:10 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] arm64: zynqmp: fix CHECK_DTBS warnings
+To: Michael Tretter <m.tretter@pengutronix.de>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@pengutronix.de
+References: <20240528-zynqmp-dt-v1-0-a5db9054885a@pengutronix.de>
+Content-Language: en-US
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ 3i3l5DA=
+In-Reply-To: <20240528-zynqmp-dt-v1-0-a5db9054885a@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR08CA0220.eurprd08.prod.outlook.com
+ (2603:10a6:802:15::29) To SJ2PR12MB8109.namprd12.prod.outlook.com
+ (2603:10b6:a03:4f5::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,767 +125,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB8PR04MB6860:EE_
-X-MS-Office365-Filtering-Correlation-Id: 835c836d-6242-4a31-f70c-08dc7f25cebf
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|SJ2PR12MB7943:EE_
+X-MS-Office365-Filtering-Correlation-Id: 34d6af59-5f19-4292-0ecc-08dc7f2632e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|1800799015|52116005|7416005|376005|366007|38350700005;
+X-Microsoft-Antispam: BCL:0;ARA:13230031|366007|1800799015|376005;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?sOmO66lF5jd+oAFq1NQY1iGjGUc8OE9o4qQRkTjtA6n5ftWDGTP+ef9aMuWb?=
- =?us-ascii?Q?SMrmAvGm9E9qoE7oYHYSbKbrHk/jVYsTabcoMf0zrEkcHu1RlTETqwWVNYdS?=
- =?us-ascii?Q?ATK/bk7D3UsKEEPb3Quf/MZB+C3vepXP9rv3Aa/saJk5xLNVI3YLnSATbrOn?=
- =?us-ascii?Q?7yR1vOWHMf8v8ogOukbUqlOgZitT7PRo/6KpDKBHJ048BDAJbMgAP7of+UEQ?=
- =?us-ascii?Q?2i22+GTmlt+50SS6gUm9uDDFnXJn5rFV+K8PtNqDtlre0EsAvLZ0ErdECsX3?=
- =?us-ascii?Q?O+OzdXJUpXmCQmW45lCTeP3dV+KrbzU21gU58Rbw5VeiSy206FnhOrkGAX7Y?=
- =?us-ascii?Q?DgI9oVxG4fvQRymi5pMvy7vQ5CpBFY7BFd84qIGkeXHd+N49rajr4387j325?=
- =?us-ascii?Q?fsuvIyfJSrc9FTG0AovQv+Xjhz2Lnx4diQdvMjU10WqpHvjfgY5jJbEVPKur?=
- =?us-ascii?Q?6yZKQa+Qzq2YBwg2DtpO1AkYwomkbi+ZhfXh4U866g44GL0dVgnDqkVx+ZMy?=
- =?us-ascii?Q?vLiYrVJdR5wTt+fkU1id+TArEKufrpi7aXIKa9uusaUsLficd+f7R5cL79Hm?=
- =?us-ascii?Q?k9uY/gOJB4cez/dwwUkLfaN29KLSje5BCzUw0rBeoGyhqgkOQuTZW1G+Y+J6?=
- =?us-ascii?Q?msXoudl1D9zEF/GX0koxZfeXYWDfzU7HzvJzR6cGF+GNBKoLgEIA8fY45D79?=
- =?us-ascii?Q?Us+gt2SvE5mFkL+fQ82oukR7zo7JZz9yjoarWWwn2v1HSgPfD+rvdGus6w7P?=
- =?us-ascii?Q?t96ABpfwhCWfZPB/NXtsD600op+Zgfe9tEdr38nvImihe6TQReAWOwNZF7kz?=
- =?us-ascii?Q?smyDSkvt13Arq3QkltY20rTLvEPBnVD54AI/ZF+ohytiZLq3cFL3BXuwdJ2w?=
- =?us-ascii?Q?QgnxWqBuR5I2DRCJj8b6dbel2NNiU8KieLOQzPrknYZCg8jEwllXuL5frz4a?=
- =?us-ascii?Q?XaP3N7NAsTjuzo/6qwfClWEZ6QZ1VWEPKhY2D9mq4YSde8V3Z0s+daqciM/I?=
- =?us-ascii?Q?3/1akuyQW0Xp8KhGPztJy+7+eR+jSiyJ2HKNfq1eQdPhF+Rx1htwJvLZ4GJW?=
- =?us-ascii?Q?6aCPP7ZikF0UV1n4YmxCSSKBX13WA+bz7IKVZCvTiKW6TvCPm5j7kVegCWZZ?=
- =?us-ascii?Q?MVJwL0uOsvTqXI5I0PHfRAqihM36dxgSvOgqfOq7h8vKxIgOJGW3vEZne7ox?=
- =?us-ascii?Q?F+XZpBawuapbMzTs0c9ztLn/zg0XacZYLKtXNeWDBvvS7qZS3r1BT//yPn3J?=
- =?us-ascii?Q?OUqFJzkJUHnIDz0WELi4ambXqp9trarvPYs7Q48olIVfG1+BcCX7AIhRXyPv?=
- =?us-ascii?Q?EN3ZoBSk9/0Cpdf6zphnmxpA1i9P8UNi8ibrejhf0oVJuw=3D=3D?=
+	=?utf-8?B?SytibmtCc0hKV2VqOUNyZUpuazJiSVlLZnBVUmdHL2pCOXNabFc3aVpLRGJ3?=
+ =?utf-8?B?clM3RmZ6VXJQMEFDazdsWU0zaWsvMkRiTFRtdVhuNVkwZFFrc09jWDNxVWJ6?=
+ =?utf-8?B?VmFXVUUyOGYzblRsTC9SN1RPQlFtNVB3ekIyaEdnUElOb0RhRVZMS0ZkNCsr?=
+ =?utf-8?B?c1BVUnFFbHlML1Z1c2VZdExmZTNvZFhxS1hNL0M0dE5sZ2Ercko0NE5SZXRV?=
+ =?utf-8?B?S0pJcDFlTVRyRDk2TXRBY3kvSEo2NHdMTTBEUGJ5M0pKMkZWYkNDblpXa2hX?=
+ =?utf-8?B?QmNzQ2plUGRJZXM1T2pqNmdBbmNlR0lna29FZDFJS21YdEQ1ekdXdTZkSTRH?=
+ =?utf-8?B?cjd5VC9MdEZ4Wm5oYmZ1WXpqN2UxVjJhZDFTb3NocWJNaEhWZkpCWXEwRTdP?=
+ =?utf-8?B?bGFLaXZlcmkvN0RYZVVkQnpjakRrdWdsTEo0emhhRFhyTU9ITGRVUEYzVVJj?=
+ =?utf-8?B?QWh4MEYyRGUwbS8yamR2c3ExR214RnlhUzBEVzd0c1dUQ2IyWmY2V0t5dUFK?=
+ =?utf-8?B?R2x1bzRDMFJBandBTjc3ZmY0aHo3dDRFODdaTndnZlBRSmE0SzUvMDJiOFhC?=
+ =?utf-8?B?Tk45a0lLWWxocTFMc2VPcWtLUC9xTXk0eDNELytpQmQ1SFdqVFJYZFlscXZE?=
+ =?utf-8?B?b3RhUXRKWHRzVDI5cEsvT2VGQW5nUWFJUDY2TjA3NGw4MnZsdU92ZHdqSzFL?=
+ =?utf-8?B?ckFsUGcyTjRCNEs2QVhHdWVWZkJWVHlLWTFjbkJSZEt5NVY3cExqR1lmdkVP?=
+ =?utf-8?B?TGZQRVJYOFFKcmxsblIvWU8vYmN4RWVVQ1NkVktmN2UyR2FHTkZzRHozd2Ji?=
+ =?utf-8?B?MWFEbGxNMVRZdFRjM3FGcGU3VmUweDJpSWdwUWVKbWV2Sk81OWcyT2pyTHlk?=
+ =?utf-8?B?cFBKQ0tKMHpNMlUzc3pIdTBjRDNQalkwTlluZE9jWDRXd1o0M1o0M0FpMERI?=
+ =?utf-8?B?UFV1SWVqYUdUdnZlenhZKzJPbk1mclZuN0srVTVRL0s0b0RoTXdGMmpyc1Bo?=
+ =?utf-8?B?YWlIWC9LQ0lCdkxSYjZkZElsTjJMNERKMDNxdkpDbmxDRDROS2FDUGNlL1V1?=
+ =?utf-8?B?RUovSnpvR1JIc2dBMFRpNmNMb1lqaWlCaVFrMEpvSHBXWkhWWEl1SGpabDBt?=
+ =?utf-8?B?MkMwTzlta3crZzRwRjF4TktERXRiQWJxZnRRTHhxNFlVWmppdDZPUSs0cjlX?=
+ =?utf-8?B?RndVUE5vUlhySEtEQ1ZSVVJNb0ZZcEE1dUNkR3E0bGJrTXU1bDBIUVIvamh6?=
+ =?utf-8?B?OXd4Umh6anJyTVZXVERJbXZrOUFJWDFsN05kNmNnZ3E0c1VIdEtwaGdUN1Er?=
+ =?utf-8?B?UjZ4WG94MENHU0FMS0tDZjV2cmpkSVFMQVVGMklJMGlaMVBiY2JwVHo5SDI1?=
+ =?utf-8?B?TDBFcm8zSit3Q1hWejd2cDdhbGpieFZpNnh1ZEY0YWRKSVZyS2tNRllYdDhY?=
+ =?utf-8?B?ZTQraU5SSnJwQlRTOEE2aTJTM2c4QzFld0RZOUNNVWwzNUZpcUxkVzB3SVIv?=
+ =?utf-8?B?REtsRkR4a0Y1cElCUUlaMG1RTDYxTldZQTBXcVZ0Q1F6U1hRUmdyRzFiQ0Q0?=
+ =?utf-8?B?QXNGWGloZXY5UEx3VThKQnRyMzN5WWErQW5vK0g0azlJek5yMmdIbUZlZk1B?=
+ =?utf-8?Q?ZU/BDyYaDJZs4FTwfTfOA+0NaucssYo96rzmGCht/wBc=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(7416005)(376005)(366007)(38350700005);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?TYPR83SV+xGzyA1PHd2LbGEg6FdDGUVt7VlosPLDJ2ftbQncC+xWe00b+Z+D?=
- =?us-ascii?Q?czd3D9ZUXSsjEh4D7mLG4icCvu1+XQvywnvdYnX5WWey4gmigXPHCsLWSZU/?=
- =?us-ascii?Q?sTP58LF5b3lKXHs9RlJCUolDPQQS0eMELb6Ax9Cje6Js8U89uPtNzGOpC+Du?=
- =?us-ascii?Q?sd9VPaqVp5VakinrYfjOE8SYu/vfMR4rolxenbyGZxOLx1HpL27YUnw3F66H?=
- =?us-ascii?Q?4TYVt+x5vQuhe4UIjrHBuixkb4reD7CziSpxRlgtgkC5+2R4Uy15DvZVGOMy?=
- =?us-ascii?Q?DWZvBI31AE99IvihY97wypBD19bRceGxJV6ukpvvfF8CYnZV/E1S1PM4XPiG?=
- =?us-ascii?Q?JM2QT1BiyGBy6dMACakGfSNs4eBsi+q2PpeRkKIa10OcGq1uA5VEImH44S4J?=
- =?us-ascii?Q?9T2efH8PXtd1KqUN91O3qlryQ7NxFLzYgQu6dy+S1jVtdlNRiLeotBp8fIfb?=
- =?us-ascii?Q?z7Eojpz4E8yTa+0pVc4dRm4v6v+XuIHgDfhpyXsg8VdhOd+aeLgg0qULxd1K?=
- =?us-ascii?Q?Hk5Y5p4+r4SiHWqm7+DQZip2UCn630Xo2yJzcb4oQQWfC8CiDvux0oGjJHLg?=
- =?us-ascii?Q?rNdRTkN+aLspjOc9ez5ZB+Ypmcbl3OcYOXk8Ch50pQGPvE8DIUAW9hFXdwJW?=
- =?us-ascii?Q?A0RvitfEno0bEC1AtTkC4hjfzyneQbEr9+B4KRzJHQuPNzNlmCREjeN4BBJ3?=
- =?us-ascii?Q?Jj0mhsmHulezAfsIY5RYKLEKzjCVYtSpk4ZseiJ2BPUZwMQWF3f/560Yi4x9?=
- =?us-ascii?Q?ldm/E0JoVaiEdeIHb8DN3R5XfHKk656xjEbPb7mtuKbxis90PvbRbbXTRobE?=
- =?us-ascii?Q?K3Y/ZEk+qmMXtx5aeBWhmM9sRxg/JlJqO7azMpNGj/ygBbInrO1uCd8RZ8+2?=
- =?us-ascii?Q?asCiWwy0a+XqY3ur2dEPFjh74NBwbNaNhWy3Toqu9inOL1g2JzEy7X1cQuD+?=
- =?us-ascii?Q?Fp3w+TjCe/aHuSYBrEQO+3t0mvmi1C4dnLIw5SiiQF2E4Ea5+q6Dyw3w9Q/o?=
- =?us-ascii?Q?+MlB9RDcHKTzVr5/Vd2t4RX/OoJRpR+j877D47Q+mflp8Js9O7bauaf72qzc?=
- =?us-ascii?Q?jlQpzJLOOiF5n+FRPeC5PZ+z/jQ5H4DPRG42Kc9MCJg1XFMSErF/5Qnt4Rtu?=
- =?us-ascii?Q?1/hU5Bu+Gr0UrXA6z9bYGCPyp2detHa6jTEpwhDrsh6PJ/wKqin0yXAbKOD9?=
- =?us-ascii?Q?yGKi9CIFaJQBNvBGR8zCNlytJTUTltCJcfGbZjusoDcvXd+sDkGkRmUr8mC7?=
- =?us-ascii?Q?udUnqpR6yCtTTbL8zr3WHYQc6m0vIy38vSbizePQTeu08JnNUgq+//FUVBjC?=
- =?us-ascii?Q?GCf20GhRYRNd06p8lW8IWcBizy1zcyBhUcNS7VtgbSGM7M3Dk3OR93Ouzrb6?=
- =?us-ascii?Q?Sx0gAavzGO+5tcLXas/ScNXJq1B9Z71TtQ1UDqK5l5YRl9qe2SsCzjFyQiyP?=
- =?us-ascii?Q?b5PcfttuglYsf/ut5XHs+v/REagnzF6VsopcBLLZtPU3x6hvD1ScZIBYiZHw?=
- =?us-ascii?Q?yzzbQYbPVisRvowJUGBYB0bFBCBKDMoP6skEZGDxN5fozhF6JseBw7qqWF97?=
- =?us-ascii?Q?FLRfbw/tiz87mcHLDQYB0IF1CW2SPm5Q5ElfIoD3?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 835c836d-6242-4a31-f70c-08dc7f25cebf
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+	=?utf-8?B?UW5ZelBXRmplTzNCRUZ2SnZDeGdXL1pYanNLazVnOFVGMUY3bU9oOHI4dXNv?=
+ =?utf-8?B?R3Jia0pHeDFVeDBhYTV2RnpjMTZWTElQeFhScnNTSDZNemNkNFlpYnYvUTlD?=
+ =?utf-8?B?N1FiUi9oa0VSRWNvWmdGem5GRmtSSDJBNzhOVW85RWJlTUxmWHZWZkExNkU2?=
+ =?utf-8?B?YTJUNmNVa0pjRXRvWTRMQmRSTlFPekVtMHcvSFVRTGZrQ1B2YUt2RnVTT1Ur?=
+ =?utf-8?B?eW1DdmVJd3ZWSHFZRytuZmJaZk5TNUlyUmpRZUZLbDhGeVAzT25rVlFJN0xv?=
+ =?utf-8?B?UlJMeHVrbm54enVONnMycU1DaExXM3JsdjJZRlBDTXB2dFpXNnFodVVlMkk5?=
+ =?utf-8?B?NHQzd0czaXhhd1EvaGJieHhYZXh5ZE14NCtOYjRzc0xERU1ZeFRYS2Q2SUNT?=
+ =?utf-8?B?UTJaWEZXQXI4eEwxYVpBenloV2hWcjBvdHdSd2NLczN6V0NLak5JQldjZEZQ?=
+ =?utf-8?B?Y2pIdmN6cTBLcjlBTjEwbFdWSDN1cHE0WktGZTR4TnlUNzFOdnhpQ0NMcEJa?=
+ =?utf-8?B?VVZmaUZGRUh3V0ZOZVdWaFMrTFVaWXk4c0FYSWdUT2FHSU5ORUg4dDRZUzVp?=
+ =?utf-8?B?RVNNSzNiV21HbXBIL0wvQWFGSHgvSHVHRFE5TkNMdmN0Ny84cU5Ic1ZydUxs?=
+ =?utf-8?B?blZpV3dZdzFzTlhhNi8wVDdtTU01UFBDeDFnSWd1QzlVNlozQWtRVk1ZY1VV?=
+ =?utf-8?B?WWVnVzJnbmJiN291L1ZQOEtZV3EzeWFWRlVDWmlKRGJLanQxcC94RVBPcW1Y?=
+ =?utf-8?B?ckNyendaUGUyVUN4d3dUN2tEa20xMUQzOFBYa2pncVBTUWdWcTFKNlhVby95?=
+ =?utf-8?B?OXdvc2NwUFZ6YXZoTElUSUNyaWR0cGdwSGR0Njg1aStZQ1JDbEFhVnJwaUVr?=
+ =?utf-8?B?ejFBakpHc1NnZEx5bzd5bnJnYVF2bE1CUFVGa1J2Z21JdG9FUExPa05QYWg5?=
+ =?utf-8?B?S2xUM3pJOGRjZW9wM2p5Q0VSSG50L0VyZDF4eWNsejVsZkpHNGpRVTBienNK?=
+ =?utf-8?B?ckRkRGJrR09aYlpYL2tyNTJEU2tIa1c2QjdJVFpBODJJQmNITzJHSGlLREhS?=
+ =?utf-8?B?UHEwa3h1aHhWVVlITS9iVDlmTFBMd3ZUYWZRZkdJZ01qSHFvdHMwUCszNnFW?=
+ =?utf-8?B?amxUUW54U04wb1MrRWFsTXNxVFR4TTFvUkVmTnBsaGpscjFkdm5CSERlYzgr?=
+ =?utf-8?B?OVZETWdOSWM5REhhNS9OTGo1UWtJVTAvM2dUYkdRUmVQcFNURllzYUxHeWdh?=
+ =?utf-8?B?R1JTZHJBRjdNU0dOL1BHZVk5RUVUNGxHNG1udzc3K1Y1L25Wa0FJMmhrMHdV?=
+ =?utf-8?B?ZHczZ0srNWZtbU1tcUxSN2hmVzJDTDEvMFpYT292Rm9jM0xadTA4am90TGRO?=
+ =?utf-8?B?b1pvN3BjZmxqRHV6eDRYT1l2TFFMaTdFUUhGblpvc1ZQQmFNRzk0OFJkWDJN?=
+ =?utf-8?B?RXo1NkV3citRYTZjZkVwYWY3d1EwNDNaa3RWNDJWOFdrNFdVZ0ZmM0lER0dl?=
+ =?utf-8?B?UmxlRXdlTGlMWmZZM080aDEvUmthVVhJZ2ljam5PY0orL3p1b0l5Ukh0ckFV?=
+ =?utf-8?B?dGF1eERJb05kUWgxTEVqMEpqcCtrNFZkN2cvdjdxNzYrWXJRZTVoZG9uM0pa?=
+ =?utf-8?B?OE1ScjlINHBiMVlYSHh4YTZJS0gxN1ZRMWk1TzEwdDdiLzc0U1NzTTJwQ2Z4?=
+ =?utf-8?B?QlduSXlIdEk0TnFFZnE3bDlEMDlPSFdqUkVyY1pha0J4R25PU2h6b0pXUmxR?=
+ =?utf-8?B?ckY3Unp4WU14ekhmd1pjaFVjUkF6MldTcWZpRDMwb09NVFBiNWhtVEluVVVk?=
+ =?utf-8?B?RUc0Z04ybXYzdVMwM2pqVW41bFk1YklYQ1pHblEvTXJkWnRzSDNjQlZjNkMz?=
+ =?utf-8?B?Zy9qL0tTclRTZHlXQzVRQTh6cGhlOU1IRHVZWjRpRXpMNWNnRHhoU0hOZDFR?=
+ =?utf-8?B?VjhheXgxWDY2UXJuYTV0SEsrZ2tvZWpWQVZ6Si9SQk0xWlhqNU9wR25YUFBV?=
+ =?utf-8?B?Z2x2ZjBJYzdFdk1IWGVGNGszVzkzaWREVzBOWm5LQlkxQUJkN2I5NjZYYWlp?=
+ =?utf-8?B?Q1FTZXU1NmlUeXNTQ1o2c0pPNEdHbldnYlRhbzVxR2N2V0Y5S1hSb1I4ckow?=
+ =?utf-8?Q?6AAwBmfJyRAvBr4JcBHCIfJgM?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34d6af59-5f19-4292-0ecc-08dc7f2632e4
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 14:52:34.1442
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 14:55:22.1402
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5jJ4KynCewsHZ/nTX9Z2+U/1gzPv8m3GlDBfR7yVENkA4wTjEjpGTxvRxaedyalXk6Vw1QYva/TWoZBuDjcCOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6860
+X-MS-Exchange-CrossTenant-UserPrincipalName: t2o5YjAq+Pkwo+0f1RIEETZHnzdrYnIyVv4Jh+rsmARWasJYrjYsolxtiNlK+ehG
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7943
 
-On Tue, May 28, 2024 at 10:59:14AM +0800, Richard Zhu wrote:
-> Add i.MX8QM HSIO PHY driver support.
+
+
+On 5/28/24 16:22, Michael Tretter wrote:
+> Running make CHECK_DTBS=1 for any ZynqMP device trees prints warnings a
+> few warnings that are caused by the zynqmp.dtsi file.
 > 
-> i.MX8QM HSIO has three lane PHY instances, and can be bound to the
-> following controllers in the different use cases listed in below table.
-> - two lanes capable PCIEA controller.
-> - one lane PCIEB controller.
-> - AHCI SATA controller.
+> Fix the zynqmp.dtsi to fix these warnings.
 > 
-> i.MX8QM HSIO PHYs support the following use cases.
-> +----------------------------------------------------+
-> |                               | Lane0| Lane1| Lane2|
-> |-------------------------------|------|------|------|
-> | use case 1: PCIEAX2SATA       | PCIEA| PCIEA| SATA |
-> |-------------------------------|------|------|------|
-> | use case 2: PCIEAX2PCIEB      | PCIEA| PCIEA| PCIEB|
-> |-------------------------------|------|------|------|
-> | use case 3: PCIEAPCIEBSATA    | PCIEA| PCIEB| SATA |
-> +----------------------------------------------------+
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-
-after fix below two nit.
-
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
 > ---
->  drivers/phy/freescale/Kconfig               |   8 +
->  drivers/phy/freescale/Makefile              |   1 +
->  drivers/phy/freescale/phy-fsl-imx8qm-hsio.c | 612 ++++++++++++++++++++
->  3 files changed, 621 insertions(+)
->  create mode 100644 drivers/phy/freescale/phy-fsl-imx8qm-hsio.c
+> Michael Tretter (2):
+>        arm64: zynqmp: Align nvmem-firmware with dt-binding
+>        arm64: zynqmp: Rename fpga-full to fpga-region
 > 
-> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
-> index 853958fb2c06..c9ee48aeea9e 100644
-> --- a/drivers/phy/freescale/Kconfig
-> +++ b/drivers/phy/freescale/Kconfig
-> @@ -35,6 +35,14 @@ config PHY_FSL_IMX8M_PCIE
->  	  Enable this to add support for the PCIE PHY as found on
->  	  i.MX8M family of SOCs.
->  
-> +config PHY_FSL_IMX8QM_HSIO
-> +	tristate "Freescale i.MX8QM HSIO PHY"
-> +	depends on OF && HAS_IOMEM
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to add support for the HSIO PHY as found on
-> +	  i.MX8QM family of SOCs.
-> +
->  endif
->  
->  config PHY_FSL_LYNX_28G
-> diff --git a/drivers/phy/freescale/Makefile b/drivers/phy/freescale/Makefile
-> index cedb328bc4d2..b56b4d5c18ea 100644
-> --- a/drivers/phy/freescale/Makefile
-> +++ b/drivers/phy/freescale/Makefile
-> @@ -3,4 +3,5 @@ obj-$(CONFIG_PHY_FSL_IMX8MQ_USB)	+= phy-fsl-imx8mq-usb.o
->  obj-$(CONFIG_PHY_MIXEL_LVDS_PHY)	+= phy-fsl-imx8qm-lvds-phy.o
->  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)	+= phy-fsl-imx8-mipi-dphy.o
->  obj-$(CONFIG_PHY_FSL_IMX8M_PCIE)	+= phy-fsl-imx8m-pcie.o
-> +obj-$(CONFIG_PHY_FSL_IMX8QM_HSIO)	+= phy-fsl-imx8qm-hsio.o
->  obj-$(CONFIG_PHY_FSL_LYNX_28G)		+= phy-fsl-lynx-28g.o
-> diff --git a/drivers/phy/freescale/phy-fsl-imx8qm-hsio.c b/drivers/phy/freescale/phy-fsl-imx8qm-hsio.c
-> new file mode 100644
-> index 000000000000..73e0c50fcdae
-> --- /dev/null
-> +++ b/drivers/phy/freescale/phy-fsl-imx8qm-hsio.c
-> @@ -0,0 +1,612 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/pci_regs.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/phy/pcie.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/phy/phy-imx8-pcie.h>
-> +
-> +#define MAX_NUM_LANE	3
-> +#define LANE_NUM_CLKS	5
-> +
-> +/* Parameters for the waiting for PCIe PHY PLL to lock */
-> +#define PHY_INIT_WAIT_USLEEP_MAX	10
-> +#define PHY_INIT_WAIT_TIMEOUT		(1000 * PHY_INIT_WAIT_USLEEP_MAX)
-> +
-> +/* i.MX8Q HSIO registers */
-> +#define HSIO_CTRL0			0x0
-> +#define HSIO_APB_RSTN_0			BIT(0)
-> +#define HSIO_APB_RSTN_1			BIT(1)
-> +#define HSIO_PIPE_RSTN_0_MASK		GENMASK(25, 24)
-> +#define HSIO_PIPE_RSTN_1_MASK		GENMASK(27, 26)
-> +#define HSIO_MODE_MASK			GENMASK(20, 17)
-> +#define HSIO_MODE_PCIE			0x0
-> +#define HSIO_MODE_SATA			0x4
-> +#define HSIO_DEVICE_TYPE_MASK		GENMASK(27, 24)
-> +#define HSIO_EPCS_TXDEEMP		BIT(5)
-> +#define HSIO_EPCS_TXDEEMP_SEL		BIT(6)
-> +#define HSIO_EPCS_PHYRESET_N		BIT(7)
-> +#define HSIO_RESET_N			BIT(12)
-> +
-> +#define HSIO_IOB_RXENA			BIT(0)
-> +#define HSIO_IOB_TXENA			BIT(1)
-> +#define HSIO_IOB_A_0_TXOE		BIT(2)
-> +#define HSIO_IOB_A_0_M1M0_2		BIT(4)
-> +#define HSIO_IOB_A_0_M1M0_MASK		GENMASK(4, 3)
-> +#define HSIO_PHYX1_EPCS_SEL		BIT(12)
-> +#define HSIO_PCIE_AB_SELECT		BIT(13)
-> +
-> +#define HSIO_PHY_STS0			0x4
-> +#define HSIO_LANE0_TX_PLL_LOCK		BIT(4)
-> +#define HSIO_LANE1_TX_PLL_LOCK		BIT(12)
-> +
-> +#define HSIO_CTRL2			0x8
-> +#define HSIO_LTSSM_ENABLE		BIT(4)
-> +#define HSIO_BUTTON_RST_N		BIT(21)
-> +#define HSIO_PERST_N			BIT(22)
-> +#define HSIO_POWER_UP_RST_N		BIT(23)
-> +
-> +#define HSIO_PCIE_STS0			0xc
-> +#define HSIO_PM_REQ_CORE_RST		BIT(19)
-> +
-> +#define HSIO_REG48_PMA_STATUS		0x30
-> +#define HSIO_REG48_PMA_RDY		BIT(7)
-> +
-> +struct imx_hsio_drvdata {
-> +	int lane_num;
-> +};
-> +
-> +struct imx_hsio_lane {
-> +	u32 ctrl_index;
-> +	u32 ctrl_off;
-> +	u32 idx;
-> +	u32 phy_off;
-> +	u32 phy_type;
-> +	const char * const *clk_names;
-> +	struct clk_bulk_data clks[LANE_NUM_CLKS];
-> +	struct imx_hsio_priv *priv;
-> +	struct phy *phy;
-> +	enum phy_mode phy_mode;
-> +};
-> +
-> +struct imx_hsio_priv {
-> +	void __iomem *base;
-> +	struct device *dev;
-> +	struct mutex lock;
-> +	const char *hsio_cfg;
-> +	const char *refclk_pad;
-> +	u32 open_cnt;
-> +	struct regmap *phy;
-> +	struct regmap *ctrl;
-> +	struct regmap *misc;
-> +	const struct imx_hsio_drvdata *drvdata;
-> +	struct imx_hsio_lane lane[MAX_NUM_LANE];
-> +};
-> +
-> +static const char * const lan0_pcie_clks[] = {"apb_pclk0", "pclk0", "ctl0_crr",
-> +					      "phy0_crr", "misc_crr"};
-> +static const char * const lan1_pciea_clks[] = {"apb_pclk1", "pclk1", "ctl0_crr",
-> +					       "phy0_crr", "misc_crr"};
-> +static const char * const lan1_pcieb_clks[] = {"apb_pclk1", "pclk1", "ctl1_crr",
-> +					       "phy0_crr", "misc_crr"};
-> +static const char * const lan2_pcieb_clks[] = {"apb_pclk2", "pclk2", "ctl1_crr",
-> +					       "phy1_crr", "misc_crr"};
-> +static const char * const lan2_sata_clks[] = {"pclk2", "epcs_tx", "epcs_rx",
-> +					      "phy1_crr", "misc_crr"};
-> +
-> +static const struct regmap_config regmap_config = {
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +};
-> +
-> +static int imx_hsio_init(struct phy *phy)
-> +{
-> +	int ret, i;
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +	struct device *dev = priv->dev;
-> +
-> +	/* Assign clocks refer to different modes */
-> +	switch (lane->phy_type) {
-> +	case PHY_TYPE_PCIE:
-> +		lane->phy_mode = PHY_MODE_PCIE;
-> +		if (lane->ctrl_index == 0) { /* PCIEA */
-> +			lane->ctrl_off = 0;
-> +			lane->phy_off = 0;
-> +
-> +			for (i = 0; i < LANE_NUM_CLKS; i++) {
-> +				if (lane->idx == 0)
-> +					lane->clks[i].id = lan0_pcie_clks[i];
-> +				else
-> +					lane->clks[i].id = lan1_pciea_clks[i];
-> +			}
-> +		} else { /* PCIEB */
-> +			if (lane->idx == 0) { /* i.MX8QXP */
-> +				lane->ctrl_off = 0;
-> +				lane->phy_off = 0;
-> +			} else {
-> +				/*
-> +				 * On i.MX8QM, only second or third lane can be
-> +				 * bound to PCIEB.
-> +				 */
-> +				lane->ctrl_off = SZ_64K;
-> +				if (lane->idx == 1)
-> +					lane->phy_off = 0;
-> +				else /* the third lane is bound to PCIEB */
-> +					lane->phy_off = SZ_64K;
-> +			}
-> +
-> +			for (i = 0; i < LANE_NUM_CLKS; i++) {
-> +				if (lane->idx == 1)
-> +					lane->clks[i].id = lan1_pcieb_clks[i];
-> +				else if (lane->idx == 2)
-> +					lane->clks[i].id = lan2_pcieb_clks[i];
-> +				else /* i.MX8QXP only has PCIEB, idx is 0 */
-> +					lane->clks[i].id = lan0_pcie_clks[i];
-> +			}
-> +		}
-> +		break;
-> +	case PHY_TYPE_SATA:
-> +		/* On i.MX8QM, only the third lane can be bound to SATA */
-> +		lane->phy_mode = PHY_MODE_SATA;
-> +		lane->ctrl_off = SZ_128K;
-> +		lane->phy_off = SZ_64K;
-> +
-> +		for (i = 0; i < LANE_NUM_CLKS; i++)
-> +			lane->clks[i].id = lan2_sata_clks[i];
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Fetch clocks and enable them */
-> +	ret = devm_clk_bulk_get(dev, LANE_NUM_CLKS, lane->clks);
-> +	if (ret)
-> +		return ret;
-> +	ret = clk_bulk_prepare_enable(LANE_NUM_CLKS, lane->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* allow the clocks to stabilize */
-> +	usleep_range(200, 500);
-> +	return 0;
-> +}
-> +
-> +static int imx_hsio_exit(struct phy *phy)
-> +{
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +
-> +	clk_bulk_disable_unprepare(LANE_NUM_CLKS, lane->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static void imx_hsio_pcie_phy_resets(struct phy *phy)
-> +{
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	regmap_clear_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL2,
-> +			  HSIO_BUTTON_RST_N);
-> +	regmap_clear_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL2,
-> +			  HSIO_PERST_N);
-> +	regmap_clear_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL2,
-> +			  HSIO_POWER_UP_RST_N);
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL2,
-> +			HSIO_BUTTON_RST_N);
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL2,
-> +			HSIO_PERST_N);
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL2,
-> +			HSIO_POWER_UP_RST_N);
-> +
-> +	if (lane->idx == 1) {
-> +		regmap_set_bits(priv->phy, lane->phy_off + HSIO_CTRL0,
-> +				HSIO_APB_RSTN_1);
-> +		regmap_set_bits(priv->phy, lane->phy_off + HSIO_CTRL0,
-> +				HSIO_PIPE_RSTN_1_MASK);
-> +	} else {
-> +		regmap_set_bits(priv->phy, lane->phy_off + HSIO_CTRL0,
-> +				HSIO_APB_RSTN_0);
-> +		regmap_set_bits(priv->phy, lane->phy_off + HSIO_CTRL0,
-> +				HSIO_PIPE_RSTN_0_MASK);
-> +	}
-> +}
-> +
-> +static void imx_hsio_sata_phy_resets(struct phy *phy)
-> +{
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	/* clear PHY RST, then set it */
-> +	regmap_clear_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0,
-> +			  HSIO_EPCS_PHYRESET_N);
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0,
-> +			HSIO_EPCS_PHYRESET_N);
-> +
-> +	/* CTRL RST: SET -> delay 1 us -> CLEAR -> SET */
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0, HSIO_RESET_N);
-> +	udelay(1);
-> +	regmap_clear_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0,
-> +			  HSIO_RESET_N);
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0, HSIO_RESET_N);
-> +}
-> +
-> +static void imx_hsio_configure_clk_pad(struct phy *phy)
-> +{
-> +	bool pll = false;
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	if (strncmp(priv->refclk_pad, "output", 6) == 0) {
-> +		pll = true;
-> +		regmap_update_bits(priv->misc, HSIO_CTRL0,
-> +				   HSIO_IOB_A_0_TXOE | HSIO_IOB_A_0_M1M0_MASK,
-> +				   HSIO_IOB_A_0_TXOE | HSIO_IOB_A_0_M1M0_2);
-> +	} else {
-> +		regmap_update_bits(priv->misc, HSIO_CTRL0,
-> +				   HSIO_IOB_A_0_TXOE | HSIO_IOB_A_0_M1M0_MASK,
-> +				   0);
-> +	}
-> +
-> +	regmap_update_bits(priv->misc, HSIO_CTRL0, HSIO_IOB_RXENA,
-> +			   pll ? 0 : HSIO_IOB_RXENA);
-> +	regmap_update_bits(priv->misc, HSIO_CTRL0, HSIO_IOB_TXENA,
-> +			   pll ? HSIO_IOB_TXENA : 0);
-> +}
-> +
-> +static void imx_hsio_pre_set(struct phy *phy)
-> +{
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	if (strncmp(priv->hsio_cfg, "pcieax2pcieb", 10) == 0) {
-> +		regmap_set_bits(priv->misc, HSIO_CTRL0, HSIO_PCIE_AB_SELECT);
-> +	} else if (strncmp(priv->hsio_cfg, "pcieax2sata", 9) == 0) {
-> +		regmap_set_bits(priv->misc, HSIO_CTRL0, HSIO_PHYX1_EPCS_SEL);
-> +	} else if (strncmp(priv->hsio_cfg, "pcieapciebsata", 12) == 0) {
-> +		regmap_set_bits(priv->misc, HSIO_CTRL0, HSIO_PCIE_AB_SELECT);
-> +		regmap_set_bits(priv->misc, HSIO_CTRL0, HSIO_PHYX1_EPCS_SEL);
-> +	}
-> +
-> +	imx_hsio_configure_clk_pad(phy);
-> +}
-> +
-> +static int imx_hsio_pcie_power_on(struct phy *phy)
-> +{
-> +	int ret;
-> +	u32 val, addr, cond;
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	imx_hsio_pcie_phy_resets(phy);
-> +
-> +	/* Toggle apb_pclk to make sure PM_REQ_CORE_RST is cleared. */
-> +	clk_disable_unprepare(lane->clks[0].clk);
-> +	mdelay(1);
-> +	ret = clk_prepare_enable(lane->clks[0].clk);
-> +	if (ret) {
-> +		dev_err(priv->dev, "unable to enable phy apb_pclk\n");
-> +		return ret;
-> +	}
-> +
-> +	addr = lane->ctrl_off + HSIO_PCIE_STS0;
-> +	cond = HSIO_PM_REQ_CORE_RST;
-> +	ret = regmap_read_poll_timeout(priv->ctrl, addr, val,
-> +				       (val & cond) == 0,
-> +				       PHY_INIT_WAIT_USLEEP_MAX,
-> +				       PHY_INIT_WAIT_TIMEOUT);
-> +	if (ret)
-> +		dev_err(priv->dev, "HSIO_PM_REQ_CORE_RST is set\n");
-> +	return ret;
-> +}
-> +
-> +static int imx_hsio_sata_power_on(struct phy *phy)
-> +{
-> +	int ret;
-> +	u32 val, cond;
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	regmap_set_bits(priv->phy, lane->phy_off + HSIO_CTRL0, HSIO_APB_RSTN_0);
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0,
-> +			HSIO_EPCS_TXDEEMP);
-> +	regmap_set_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0,
-> +			HSIO_EPCS_TXDEEMP_SEL);
-> +
-> +	imx_hsio_sata_phy_resets(phy);
-> +
-> +	cond = HSIO_REG48_PMA_RDY;
-> +	ret = read_poll_timeout(readb, val, ((val & cond) == cond),
-> +				PHY_INIT_WAIT_USLEEP_MAX,
-> +				PHY_INIT_WAIT_TIMEOUT, false,
-> +				priv->base + HSIO_REG48_PMA_STATUS);
-> +	if (ret)
-> +		dev_err(priv->dev, "PHY calibration is timeout\n");
-> +	else
-> +		dev_dbg(priv->dev, "PHY calibration is done\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx_hsio_power_on(struct phy *phy)
-> +{
-> +	int ret;
-> +	u32 val, cond;
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	scoped_guard(mutex, &priv->lock) {
-> +		if (!priv->open_cnt)
-> +			imx_hsio_pre_set(phy);
-> +		priv->open_cnt++;
-> +	}
-> +
-> +	if (lane->phy_mode == PHY_MODE_PCIE)
-> +		ret = imx_hsio_pcie_power_on(phy);
-> +	else /* SATA */
-> +		ret = imx_hsio_sata_power_on(phy);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Polling to check the PHY is ready or not. */
-> +	if (lane->idx == 1)
-> +		cond = HSIO_LANE1_TX_PLL_LOCK;
-> +	else
-> +		/*
-> +		 * Except the phy_off, the bit-offset of lane2 is same to lane0.
-> +		 * Merge the lane0 and lane2 bit-operations together.
-> +		 */
-> +		cond = HSIO_LANE0_TX_PLL_LOCK;
-> +
-> +	ret = regmap_read_poll_timeout(priv->phy, lane->phy_off + HSIO_PHY_STS0,
-> +				       val, ((val & cond) == cond),
-> +				       PHY_INIT_WAIT_USLEEP_MAX,
-> +				       PHY_INIT_WAIT_TIMEOUT);
-> +	if (ret) {
-> +		dev_err(priv->dev, "IMX8Q PHY%d PLL lock timeout\n", lane->idx);
-> +		return ret;
-> +	}
-> +	dev_dbg(priv->dev, "IMX8Q PHY%d PLL is locked\n", lane->idx);
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx_hsio_power_off(struct phy *phy)
-> +{
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	scoped_guard(mutex, &priv->lock) {
-> +		priv->open_cnt--;
-> +		if (priv->open_cnt == 0) {
-> +			regmap_clear_bits(priv->misc, HSIO_CTRL0,
-> +					  HSIO_PCIE_AB_SELECT);
-> +			regmap_clear_bits(priv->misc, HSIO_CTRL0,
-> +					  HSIO_PHYX1_EPCS_SEL);
-> +
-> +			if (lane->phy_mode == PHY_MODE_PCIE) {
-> +				regmap_clear_bits(priv->ctrl,
-> +						  lane->ctrl_off + HSIO_CTRL2,
-> +						  HSIO_BUTTON_RST_N);
-> +				regmap_clear_bits(priv->ctrl,
-> +						  lane->ctrl_off + HSIO_CTRL2,
-> +						  HSIO_PERST_N);
-> +				regmap_clear_bits(priv->ctrl,
-> +						  lane->ctrl_off + HSIO_CTRL2,
-> +						  HSIO_POWER_UP_RST_N);
-> +			} else {
-> +				regmap_clear_bits(priv->ctrl,
-> +						  lane->ctrl_off + HSIO_CTRL0,
-> +						  HSIO_EPCS_TXDEEMP);
-> +				regmap_clear_bits(priv->ctrl,
-> +						  lane->ctrl_off + HSIO_CTRL0,
-> +						  HSIO_EPCS_TXDEEMP_SEL);
-> +				regmap_clear_bits(priv->ctrl,
-> +						  lane->ctrl_off + HSIO_CTRL0,
-> +						  HSIO_RESET_N);
-> +			}
-> +
-> +			if (lane->idx == 1) {
-> +				regmap_clear_bits(priv->phy,
-> +						  lane->phy_off + HSIO_CTRL0,
-> +						  HSIO_APB_RSTN_1);
-> +				regmap_clear_bits(priv->phy,
-> +						  lane->phy_off + HSIO_CTRL0,
-> +						  HSIO_PIPE_RSTN_1_MASK);
-> +			} else {
-> +				/*
-> +				 * Except the phy_off, the bit-offset of lane2 is same
-> +				 * to lane0. Merge the lane0 and lane2 bit-operations
-> +				 * together.
-> +				 */
-> +				regmap_clear_bits(priv->phy,
-> +						  lane->phy_off + HSIO_CTRL0,
-> +						  HSIO_APB_RSTN_0);
-> +				regmap_clear_bits(priv->phy,
-> +						  lane->phy_off + HSIO_CTRL0,
-> +						  HSIO_PIPE_RSTN_0_MASK);
-> +			}
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_hsio_set_mode(struct phy *phy, enum phy_mode mode,
-> +			     int submode)
-> +{
-> +	u32 val;
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	if (lane->phy_mode != mode)
-> +		return -EINVAL;
-> +
-> +	val = (mode == PHY_MODE_PCIE) ? HSIO_MODE_PCIE : HSIO_MODE_SATA;
-> +	val = FIELD_PREP(HSIO_MODE_MASK, val);
-> +	regmap_update_bits(priv->phy, lane->phy_off + HSIO_CTRL0,
-> +			   HSIO_MODE_MASK, val);
-> +
-> +	switch (submode) {
-> +	case PHY_MODE_PCIE_RC:
-> +		val = FIELD_PREP(HSIO_DEVICE_TYPE_MASK, PCI_EXP_TYPE_ROOT_PORT);
-> +		break;
-> +	case PHY_MODE_PCIE_EP:
-> +		val = FIELD_PREP(HSIO_DEVICE_TYPE_MASK, PCI_EXP_TYPE_ENDPOINT);
-> +		break;
-> +	default: /* Support only PCIe EP and RC now. */
-> +		return 0;
-> +	}
-> +	if (submode)
-> +		regmap_update_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL0,
-> +				   HSIO_DEVICE_TYPE_MASK, val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_hsio_set_speed(struct phy *phy, int speed)
-> +{
-> +	struct imx_hsio_lane *lane = phy_get_drvdata(phy);
-> +	struct imx_hsio_priv *priv = lane->priv;
-> +
-> +	regmap_update_bits(priv->ctrl, lane->ctrl_off + HSIO_CTRL2,
-> +			   HSIO_LTSSM_ENABLE,
-> +			   speed ? HSIO_LTSSM_ENABLE : 0);
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops imx_hsio_ops = {
-> +	.init = imx_hsio_init,
-> +	.exit = imx_hsio_exit,
-> +	.power_on = imx_hsio_power_on,
-> +	.power_off = imx_hsio_power_off,
-> +	.set_mode = imx_hsio_set_mode,
-> +	.set_speed = imx_hsio_set_speed,
-> +	.owner = THIS_MODULE,
-> +};
-> +
-> +static const struct imx_hsio_drvdata imx8qxp_hsio_drvdata = {
-> +	.lane_num = 0x1,
-> +};
-> +
-> +static const struct imx_hsio_drvdata imx_hsio_drvdata = {
-
-nit: imx8qm_hsio_drvdata looks better name.
-
-> +	.lane_num = 0x3,
-> +};
-> +
-> +static const struct of_device_id imx_hsio_of_match[] = {
-> +	{.compatible = "fsl,imx8qm-hsio", .data = &imx_hsio_drvdata},
-> +	{.compatible = "fsl,imx8qxp-hsio", .data = &imx8qxp_hsio_drvdata},
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, imx_hsio_of_match);
-> +
-> +static struct phy *imx_hsio_xlate(struct device *dev,
-> +				  const struct of_phandle_args *args)
-> +{
-> +	struct imx_hsio_priv *priv = dev_get_drvdata(dev);
-> +	int idx = args->args[0];
-> +	int phy_type = args->args[1];
-> +	int ctrl_index = args->args[2];
-> +
-> +	if (idx < 0 || idx >= priv->drvdata->lane_num)
-> +		return ERR_PTR(-EINVAL);
-> +	priv->lane[idx].idx = idx;
-> +	priv->lane[idx].phy_type = phy_type;
-> +	priv->lane[idx].ctrl_index = ctrl_index;
-> +
-> +	return priv->lane[idx].phy;
-> +}
-> +
-> +static int imx_hsio_probe(struct platform_device *pdev)
-> +{
-> +	int i;
-> +	void __iomem *off;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct imx_hsio_priv *priv;
-> +	struct phy_provider *provider;
-> +
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +	priv->dev = &pdev->dev;
-> +	priv->drvdata = of_device_get_match_data(dev);
-> +
-> +	/* Get HSIO configuration mode */
-> +	if (of_property_read_string(np, "fsl,hsio-cfg", &priv->hsio_cfg))
-> +		priv->hsio_cfg = "pcieapciebsata";
-> +	/* Get PHY refclk pad mode */
-> +	if (of_property_read_string(np, "fsl,refclk-pad-mode",
-> +				    &priv->refclk_pad))
-> +		priv->refclk_pad = NULL;
-> +
-> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(priv->base))
-> +		return PTR_ERR(priv->base);
-> +
-> +	off = devm_platform_ioremap_resource_byname(pdev, "phy");
-> +	priv->phy = devm_regmap_init_mmio(dev, off, &regmap_config);
-> +	if (IS_ERR(priv->phy))
-> +		return dev_err_probe(dev, PTR_ERR(priv->phy),
-> +				     "unable to find phy csr registers\n");
-> +
-> +	off = devm_platform_ioremap_resource_byname(pdev, "ctrl");
-> +	priv->ctrl = devm_regmap_init_mmio(dev, off, &regmap_config);
-> +	if (IS_ERR(priv->ctrl))
-> +		return dev_err_probe(dev, PTR_ERR(priv->ctrl),
-> +				     "unable to find ctrl csr registers\n");
-> +
-> +	off = devm_platform_ioremap_resource_byname(pdev, "misc");
-> +	priv->misc = devm_regmap_init_mmio(dev, off, &regmap_config);
-> +	if (IS_ERR(priv->misc))
-> +		return dev_err_probe(dev, PTR_ERR(priv->misc),
-> +				     "unable to find misc csr registers\n");
-> +
-> +	for (i = 0; i < priv->drvdata->lane_num; i++) {
-> +		struct imx_hsio_lane *lane = &priv->lane[i];
-> +		struct phy *phy;
-> +
-> +		memset(lane, 0, sizeof(*lane));
-
-nit: not neccessary to call memset, because devm_kzalloc() already init
-everything to 0
-
-> +
-> +		phy = devm_phy_create(&pdev->dev, NULL, &imx_hsio_ops);
-> +		if (IS_ERR(phy))
-> +			return PTR_ERR(phy);
-> +
-> +		lane->priv = priv;
-> +		lane->phy = phy;
-> +		lane->idx = i;
-> +		phy_set_drvdata(phy, lane);
-> +	}
-> +
-> +	dev_set_drvdata(dev, priv);
-> +	dev_set_drvdata(&pdev->dev, priv);
-> +
-> +	provider = devm_of_phy_provider_register(&pdev->dev, imx_hsio_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(provider);
-> +}
-> +
-> +static struct platform_driver imx_hsio_driver = {
-> +	.probe	= imx_hsio_probe,
-> +	.driver = {
-> +		.name	= "imx8qm-hsio-phy",
-> +		.of_match_table	= imx_hsio_of_match,
-> +	}
-> +};
-> +module_platform_driver(imx_hsio_driver);
-> +
-> +MODULE_DESCRIPTION("FSL IMX8QM HSIO SERDES PHY driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.37.1
+>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 17 ++++++++++-------
+>   1 file changed, 10 insertions(+), 7 deletions(-)
+> ---
+> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+> change-id: 20240528-zynqmp-dt-a47093b45beb
 > 
+> Best regards,
+
+Already the part of
+
+https://lore.kernel.org/r/cover.1716802450.git.michal.simek@amd.com
+
+Thanks,
+Michal
 
