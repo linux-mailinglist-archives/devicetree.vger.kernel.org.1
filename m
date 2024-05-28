@@ -1,99 +1,155 @@
-Return-Path: <devicetree+bounces-69806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EECE8D19B1
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 13:36:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BF08D19ED
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 13:44:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 094B32837FB
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:36:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4962C1C21D53
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 11:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF9816C6AE;
-	Tue, 28 May 2024 11:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B880C16C868;
+	Tue, 28 May 2024 11:43:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nAY2RnMq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KfyW62/P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D0A16B726
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 11:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3369916C849;
+	Tue, 28 May 2024 11:43:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716896156; cv=none; b=QCwAwi1aJHgnwYkhuogcHJn443HYiQVrFZO3UckmF6IlgLDQf0nDcKJT/uSIVCkizK7RQazwI9n/4tZPzs9jDs8vVe5pa757kpNuYEtDxPmvEO1eSlnxdQVd7bzD5Y2E9SWtwq7ul+4w7DYTP88+zz4bCkcgWbEzP0DjQFUYTes=
+	t=1716896635; cv=none; b=hUlC3nWk77zpTOiEEWkC5q9q/tTkw7s0glp4xX4GVpKtep/wce2CqTcvum8hXOE9+r2OovYAii608O+4YKdLVmTftqXFwZ4n7JvUhcuxcFqpKx0NO3WieeUgBo28hg/bLWSBsaYfR6SkMZiujcjjBOhrjTK1tn6aRSMuX9AHdqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716896156; c=relaxed/simple;
-	bh=Xfp2r9ij1P5CTBREktxWD4UygAf6m4hovDM0hqYiyiQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Du/N3GyoLaM5ksCkCp9qiT6W3Okw+KtEzR94stsBlwaUtMrglgpVm1whMDpKndbOkG3Ad/WWm48vAdENmR3utZfW4BZk6s9U9t0Ddy0yvavelTz1ONs2m2sFAIojXDk85proq5dlMqRIU7e1IClFu2woIdyUP/EU7vbzibwpr/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nAY2RnMq; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-df4e6ece05aso707413276.0
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 04:35:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716896153; x=1717500953; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xfp2r9ij1P5CTBREktxWD4UygAf6m4hovDM0hqYiyiQ=;
-        b=nAY2RnMqefPp9GsQ5HwjB8VBIIC52JvwHZEG1fLjBqTgZ1lyPzoGp+8EhReVFmL5AN
-         77gbMnJ0xhVEzF9SU1Yu3ARhEHwcHV4rIIBwHYmPSfphIF094BiQVoJ8VgFU4cwRtopt
-         HxeHUrjm8ige+OPbW/wyRbJxH3LteAP+rBHCIUCE2Dj0zWgQEpidBc1xEp0Z3ouFtkOc
-         ipW+XwqHj04f0rPPavJSOqgSzxrS6V2y9brG32qbeL/ExYHrrHUxCB7bs7oHE3W/RT1V
-         xpM0uTWrigYcDOaHdjg5JSTSKuj79NyYh0vNMCTEwme2ilu9wSuvJ2QruKJ1D1X6M7KL
-         wcFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716896153; x=1717500953;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Xfp2r9ij1P5CTBREktxWD4UygAf6m4hovDM0hqYiyiQ=;
-        b=Z82Zo/OkEyPSz17Z68qH+j+VoeFx0yrlM59dkMQo6BL93Q72MboQHOL7I8ctIJDa5N
-         E15z8AvfL7GwrYcI8gY6pUiSb8bOeNdvevmpI+b5XNlhKTl3VlZPqNdDEY/uIchC+cV9
-         TCjLCkP2bwl+DLSe80NW1ZKJQwY07LxjL/SQ9tXrKvwbdaQVtKN78fKenPwrwnSIXaF7
-         B/CFAkxm6X/lhnb2vzlWTPZdnpexm6TDoeIRUDeQVazxrCVIPLkURPUpdLeG4dFUFNr8
-         9EBclh/qAtiB1YyNT+oc3IghkYmyNYU5Fp5O6iEiMDLQ9BLwzGw2u8Hz1mO4mG8wtzUf
-         jKKw==
-X-Forwarded-Encrypted: i=1; AJvYcCVmntyA+8xiUjizKOFi13qu6pvjLJRk0CmRDjQl9UzNW4PuwIykfoT/2ycsm+aecflHBbFg+7eM2q1EhpJU0Oa6CCQJbIRI2/cWKw==
-X-Gm-Message-State: AOJu0YxSyVIB6fslNR+3uvVKERwCPqF0ACLm0t8UFAnneOF6Uy+J4OBl
-	TX8EJDsLp+7t9l9Q4qUuAtg9NT44BU0zw4j1wacDZtBefEoxosPlA62osFOquJ3mSR5IQ5KXmE4
-	eIPaQkbsMQ1XZHNP20r/dHUf5N/q8KoMyR2O4NA==
-X-Google-Smtp-Source: AGHT+IHSwsTlGSMEArMj/xYL1c6lzKrxuJrq44fZGDxcHYJAGPi+BVhhdCd/jcFDvVhiG/t2ufjdh49VsD3tEdeK98I=
-X-Received: by 2002:a05:6902:10c3:b0:df7:93d4:61ef with SMTP id
- 3f1490d57ef6-df793d46655mr7431246276.26.1716896153602; Tue, 28 May 2024
- 04:35:53 -0700 (PDT)
+	s=arc-20240116; t=1716896635; c=relaxed/simple;
+	bh=HT8UoLvuzaAWSnPcgEviqzEwUvabn2/pzZgk55vt0io=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hoEZAlZ1I/7+2Y8nijzcd4hkeMQJfMkCVVv0lgFLzcrRZ6YSH7nlnV3ZcOKhMyzG+gYUQ9v7PkUzhZgHjajShoStn2UNHla4G0o8cNZvjSNndE8Vbkm8IHV7umzxSUfL9Ijk+6Z3awKTT97BDVcrudDjIhC6wbmclwCfyViJwsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KfyW62/P; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44SArqId030893;
+	Tue, 28 May 2024 11:43:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=0FAGocEjcBEmncpoJtA9QF
+	vm1wrW5g5AZndFgjfE1Bo=; b=KfyW62/P3/ff+E2HWt+YQmgMt7BNB8IaCMyQbA
+	S8/gOQP/3rd34hArZuxp/zvSm61rd3P/nDMHbuv8ThXWybtpHdXsL+JngOf6QZBZ
+	AoIFjBFDKVSSi9Dhkph/QfuPEbxDy13Hs6Eq6TadBiXRhAEdSYEs8O+lBwH0YJx4
+	zaIdQCCpFaOR0Khpqab0/x9LfzRAPAxsN0bfvLWGpuwb2qzZlS/CZFcvb7ks2/+j
+	QxJoXBQikZwJpL20RTRMHmNgVLDZ38xbIJhzzywZmVPlL7aln3rwghSiCApSB0ua
+	rXcEHkQ6/9EDgsSXBMFnRc2sytcZZ0jL5bY7z9FcLgCOSLng==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0qdvcr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 May 2024 11:43:43 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44SBhfBb024744
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 May 2024 11:43:42 GMT
+Received: from hu-ajipan-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 28 May 2024 04:43:36 -0700
+From: Ajit Pandey <quic_ajipan@quicinc.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Vladimir Zapolskiy
+	<vladimir.zapolskiy@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+Subject: [PATCH V3 0/8] clk: qcom: Add support for DISPCC, CAMCC and GPUCC on SM4450
+Date: Tue, 28 May 2024 17:12:46 +0530
+Message-ID: <20240528114254.3147988-1-quic_ajipan@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240525-topic-pmc8380_gpio-v2-0-2de50cb28ac1@linaro.org>
-In-Reply-To: <20240525-topic-pmc8380_gpio-v2-0-2de50cb28ac1@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 28 May 2024 13:35:42 +0200
-Message-ID: <CACRpkdbTo=oJoKmF5SPbSyzpnfrVtMcAL8ZxAXUz59jWm6JkEA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] PMC8380 PMIC pinctrl
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EXb4yiK3u9kYrUGqZ8ivuKDZ_CKxBLZx
+X-Proofpoint-ORIG-GUID: EXb4yiK3u9kYrUGqZ8ivuKDZ_CKxBLZx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-28_07,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1011 mlxscore=0
+ mlxlogscore=999 malwarescore=0 spamscore=0 adultscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405280087
 
-On Sat, May 25, 2024 at 1:37=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
+This patch series add dt-bindings, driver and device tree support for DISPCC, CAMCC
+and GPUCC on QCOM SM4450 platform and also includes a fix related to LUCID EVO PLL
+config issue in clk-alpha-pll driver which is required for correct scaling of few
+supported frequencies in graphics clock controllers on SM4450.
 
-> nothing special, just some boilerplate
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Changes in V3:
+- [PATCH 1/8]: Updated commit tags order and added Reviewed-by: tags
+- [PATCH 3/8]: Fixed reusing of pll0_config and added Reviewed-by: tags 
+- [PATCH 6/8]: Updated commit text and added Reviewed-by tags
+- [PATCH 8/8]: Updated node order for gpucc.
+- Link to v2: https://lore.kernel.org/all/20240416182005.75422-1-quic_ajipan@quicinc.com/ 
 
-Patches applied!
+Ajit Pandey (8):
+  clk: qcom: clk-alpha-pll: Fix CAL_L_VAL override for LUCID EVO PLL
+  dt-bindings: clock: qcom: add DISPCC clocks on SM4450
+  clk: qcom: Add DISPCC driver support for SM4450
+  dt-bindings: clock: qcom: add CAMCC clocks on SM4450
+  clk: qcom: Add CAMCC driver support for SM4450
+  dt-bindings: clock: qcom: add GPUCC clocks on SM4450
+  clk: qcom: Add GPUCC driver support for SM4450
+  arm64: dts: qcom: sm4450: add camera, display and gpu clock controller
 
-Yours,
-Linus Walleij
+ .../bindings/clock/qcom,sm4450-camcc.yaml     |   63 +
+ .../bindings/clock/qcom,sm4450-dispcc.yaml    |   71 +
+ .../bindings/clock/qcom,sm8450-gpucc.yaml     |    2 +
+ arch/arm64/boot/dts/qcom/sm4450.dtsi          |   38 +
+ drivers/clk/qcom/Kconfig                      |   27 +
+ drivers/clk/qcom/Makefile                     |    3 +
+ drivers/clk/qcom/camcc-sm4450.c               | 1688 +++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm4450.c              |  770 ++++++++
+ drivers/clk/qcom/gpucc-sm4450.c               |  805 ++++++++
+ include/dt-bindings/clock/qcom,sm4450-camcc.h |  106 ++
+ .../dt-bindings/clock/qcom,sm4450-dispcc.h    |   51 +
+ include/dt-bindings/clock/qcom,sm4450-gpucc.h |   62 +
+ 13 files changed, 3687 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm4450-camcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm4450-dispcc.yaml
+ create mode 100644 drivers/clk/qcom/camcc-sm4450.c
+ create mode 100644 drivers/clk/qcom/dispcc-sm4450.c
+ create mode 100644 drivers/clk/qcom/gpucc-sm4450.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm4450-camcc.h
+ create mode 100644 include/dt-bindings/clock/qcom,sm4450-dispcc.h
+ create mode 100644 include/dt-bindings/clock/qcom,sm4450-gpucc.h
+
+-- 
+2.25.1
+
 
