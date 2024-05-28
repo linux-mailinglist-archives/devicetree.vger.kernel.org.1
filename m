@@ -1,185 +1,145 @@
-Return-Path: <devicetree+bounces-69856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-69857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90B58D1C2A
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:07:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B840A8D1C30
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 15:10:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55A991F24ACA
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 13:07:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA0631C21B60
+	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 13:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A329416E88E;
-	Tue, 28 May 2024 13:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5D416DEAA;
+	Tue, 28 May 2024 13:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="kI8L7zdH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XmQsayfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.andi.de1.cc (vmd64148.contaboserver.net [161.97.139.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB28416E861;
-	Tue, 28 May 2024 13:06:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.97.139.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E9916415
+	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 13:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716901617; cv=none; b=o2HikkPn+3db2bcdtu1KT9I3vS4O0R2GZMVMgDXDyDDqfT8lX2swUNXmodQcEcLrlP4IsafPRx/IVdx7XytFN7npZdMAQ9NR4/LbDlirNvjJL+Ea5lixx4HevF2YYK6WiGA34Mm09/z3dMu4YjEdHJZJ49aSDo/F3FVt5sCv6gA=
+	t=1716901802; cv=none; b=kB7wlBpvK15hpuQoDv6FmkkwU0L96Wwn+kN+APRQyd71NXLDEDutLfFao7w/jJuI3BWUtTM7FJWij8s/ET0aTY1FP8JeV2GVCOmAAlFUvaO7oyKGjm3nkvI3Wz375jE2QX0x6fzqGLNmFmzKpL+/aEbzO7WFNvF2fJdvjsTRwbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716901617; c=relaxed/simple;
-	bh=utVSBe8HGeV5of2U6uKa8+aOgpU3USN+ZyB6uToUwx4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o8CEqdICMzLmIrXiVDVp2TotiYi3Tp/8ydOhtHB3mw0UIknT07MDdGI94OMNS5RY+F+hAxZ7RaU4KYeOTLyAtSMyC71zwnRjgtSMtx64mRUPzP78PFnpf8YIYIe7Es0dBayf0KUs21+xQM/DcwuKNQQXdmHDmF5da5fajp+TpMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=kI8L7zdH; arc=none smtp.client-ip=161.97.139.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
-	by mail2.andi.de1.cc with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1sBwXR-0088Ad-2t;
-	Tue, 28 May 2024 15:06:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ve5lf4ulbVDDjP82LWC3kCqjV08DISidZHyWfq6hIJo=; b=kI8L7zdH/0k2HZBYjU0i6QJVG4
-	V4ojLUPQjcPChZDtM354J+HKFBfcjCrEdi4t7gzi/JlvvY9o1z1QNdwPImwyA8k20XcO3cyYev1IZ
-	gScN0fvDWua3pGgisnl1sqR8tgA0h7g6Oiar/WXKs4jb88AjnEb+Lssgq/hXql71kF6RSFQh/59rd
-	a9+V5iOd/1O3No6LKSUYAe6nVjIz/Y1EJjACN8Ivy6TgglkYdXQ1isxyV9EafPDFaZJ3SS/D0vU3x
-	rDdB7wOvCxmJF4Wx1Z6we5+OyiaGw8cFIbMZc1triZjAz6A6skqdUSUg0p/zjp2MX5DLOB6dVU6Mg
-	HgCDHRkw==;
-Received: from p200300c20737c2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:c2:737:c200:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1sBwXR-001tnD-0a;
-	Tue, 28 May 2024 15:06:50 +0200
-Date: Tue, 28 May 2024 15:06:47 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org
-Subject: Re: [RFC PATCH] dt-bindings: regulator: twl-regulator: convert to
- yaml
-Message-ID: <20240528150647.40385d08@aktux>
-In-Reply-To: <f288a1c9-762c-4c66-8611-9a08d6c09bac@kernel.org>
-References: <20240528065756.1962482-1-andreas@kemnade.info>
-	<e497498c-f3da-4ab9-b6d4-f9723c10471c@kernel.org>
-	<20240528131622.4b4f8d03@aktux>
-	<f288a1c9-762c-4c66-8611-9a08d6c09bac@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1716901802; c=relaxed/simple;
+	bh=oJRSdItw2anLfw/4zZaFRaP3Dn6ne/abmv6YdE3q5AM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M7vb4b1Fg/xNpk35Hk0paRGCkcU5yJ2Mj71Vr86twjUDB9cIH2kOlH2NhVzPT6pCzqgSGuviv5pdNkjSU0rEoWShjlbY1G7sn21ZsYuRwDHSlg1pT1CEb4249gZb4RRio/hKyNQn3wnzXWOu1q7GhsUsd1f9hG8gChuaglQGgeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XmQsayfL; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-529aa4e988aso1038156e87.0
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 06:10:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716901799; x=1717506599; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PPwsTBTSG17+Fbzi2z4l/C98UM+jSBGnmgHkuUq/dfg=;
+        b=XmQsayfLeDSkPS/1f9j2ZNaCnETid3Xyhe1IMqSQyOiKDQpa/7JaxQq0iwfxJvnZQI
+         j6oJIntPosG6E2pfczc1oyYhIIOTRdqfhqZu09WtS9yPf7XATBFLc1RvW4kZC5dRn2iA
+         /covHL5hkq7+gXezHJ4XBAxhtduW27rkjtD/6vDDcxl6i5emuHl4qavL2beY1sCtiqa9
+         Z7lXx0mbFelsDTyRVMMbZ8+krH2GuuymbZSVddvT1PsQqd4HsbCf41HtVOOLO69E1YUE
+         iELBkg6E3+/a/d+Kf/dcN0PIWKJsz+SCkIIEf9vzc0u5ViY/WiN9+2UCF1Dc/Usch8WF
+         Dl9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716901799; x=1717506599;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PPwsTBTSG17+Fbzi2z4l/C98UM+jSBGnmgHkuUq/dfg=;
+        b=uDDCvR/I2tZuNPvnrEcUA8rK5cxkDipMc1PQ6xRsC6yHsi6JZsfziq+ksKM7FeOF6R
+         tH7iV5rqUuQYmyYn7P9Ji4FYI45i3h+dDw0bd9boBY5thtEfqRyamU89HuPH+TiJnUBP
+         6AZNUAL6QpRTdrCNltc0NduoVvtMdq0f8yPLSIx87TPRN/8eOzKb0/zKPOXSbEbkX7GP
+         NF6lzslUpCTvlVgYjE2NbXFPV2xPa/XG45lrwlOFBMIRoxI4sPt4EJ4BNFK0j7uMAUyK
+         D4FN51F8ZSR4er0xw9TCcbCiee+yelCLi7sOBKViym2KyEElf9P7DLtsoy5wEJa/faBz
+         t/cA==
+X-Forwarded-Encrypted: i=1; AJvYcCW3bQ7BNMj6XdXVc7D1L8UIuaeeqfZ946M5lDvd5XXSjvc/CZKss3YwIHXdWWiogdEaHhzC+2yfGbgFHBJgTJnwaf5sdd4vtvBu1w==
+X-Gm-Message-State: AOJu0YyEnlB5S8Z/QMhI/pZqjf2WFmbnzqzkSwI1QjpdfpRUj92SSBt6
+	2eq98GGIXgIJ7SsDXkgyFEQ+uv4X9xq9DCP5tGk9CKPKyJEm7sfJ1mlCArfZ7Ew=
+X-Google-Smtp-Source: AGHT+IG5b3vXE8/MoabYI/9hNRRALdcl2EYh3i90PULGycLtPuvRCTBGfdkvBEQL5r2PPaFh0SwboQ==
+X-Received: by 2002:a05:6512:acc:b0:529:593f:3f39 with SMTP id 2adb3069b0e04-52964caab87mr9168415e87.35.1716901799454;
+        Tue, 28 May 2024 06:09:59 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52970e1e75dsm944316e87.230.2024.05.28.06.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 May 2024 06:09:58 -0700 (PDT)
+Date: Tue, 28 May 2024 16:09:56 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: x1e80100-crd: Add pmic-glink node
+ with all 3 connectors
+Message-ID: <wnja3vrlc7nnusdsi7zrb4yeej4oxslah4yac6xopojfe7hh2m@laexn6b5sxwr>
+References: <20240527-x1e80100-dts-pmic-glink-v1-0-7ea5c8eb4d2b@linaro.org>
+ <20240527-x1e80100-dts-pmic-glink-v1-2-7ea5c8eb4d2b@linaro.org>
+ <68e51df8-5553-4df7-91f8-65bef924a407@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68e51df8-5553-4df7-91f8-65bef924a407@linaro.org>
 
-On Tue, 28 May 2024 13:25:29 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On 28/05/2024 13:16, Andreas Kemnade wrote:
-> > On Tue, 28 May 2024 12:04:22 +0200
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >   
-> >> On 28/05/2024 08:57, Andreas Kemnade wrote:  
-> >>> Convert the regulator bindings to yaml files. To allow only the regulator
-> >>> compatible corresponding to the toplevel mfd compatible, split the file
-> >>> into one per device.
-> >>>
-> >>> To not need to allow any subnode name, specify clearly node names
-> >>> for all the regulators.
-> >>>
-> >>> Drop one twl5030 compatible due to no documentation on mfd side and no
-> >>> users of the twl5030.
-> >>>
-> >>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> >>> ---
-> >>> Reason for being RFC:
-> >>> the integration into ti,twl.yaml seems not to work as expected
-> >>> make dt_binding_check crashes without any clear error message
-> >>> if used on the ti,twl.yaml
-> >>>
-> >>>  .../devicetree/bindings/mfd/ti,twl.yaml       |   4 +-
-> >>>  .../regulator/ti,twl4030-regulator.yaml       | 402 ++++++++++++++++++
-> >>>  .../regulator/ti,twl6030-regulator.yaml       | 292 +++++++++++++
-> >>>  .../regulator/ti,twl6032-regulator.yaml       | 238 +++++++++++
-> >>>  .../bindings/regulator/twl-regulator.txt      |  80 ----
-> >>>  5 files changed, 935 insertions(+), 81 deletions(-)
-> >>>  create mode 100644 Documentation/devicetree/bindings/regulator/ti,twl4030-regulator.yaml
-> >>>  create mode 100644 Documentation/devicetree/bindings/regulator/ti,twl6030-regulator.yaml
-> >>>  create mode 100644 Documentation/devicetree/bindings/regulator/ti,twl6032-regulator.yaml
-> >>>  delete mode 100644 Documentation/devicetree/bindings/regulator/twl-regulator.txt
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> >>> index c2357fecb56cc..4ced6e471d338 100644
-> >>> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> >>> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> >>> @@ -50,7 +50,7 @@ allOf:
-> >>>            properties:
-> >>>              compatible:
-> >>>                const: ti,twl4030-wdt
-> >>> -
-> >>> +        $ref: /schemas/regulator/ti,twl4030-regulator.yaml    
-> >>
-> >> That's not needed, just like othehr refs below.
-> >>  
-> > but how to prevent error messages like this:
+On Tue, May 28, 2024 at 02:28:08PM +0200, Konrad Dybcio wrote:
+> 
+> 
+> On 5/27/24 10:07, Abel Vesa wrote:
+> > Add the pmic-glink node and describe all 3 USB Type-C connectors. Do this
+> > for USB only, for now. The DP port will come at a later stage since it
+> > uses a retimer.
 > > 
-> > arch/arm/boot/dts/ti/omap/omap2430-sdp.dtb: twl@48: Unevaluated properties are not allowed ('gpio', 'keypad', 'pwm', 'pwmled', 'regulator-vaux1', 'regulator-vaux2', 'regulator-vaux3', 'regulator-vaux4', 'regulator-vdac', 'regulator-vdd1', 'regulator-vintana1', 'regulator-vintana2', 'regulator-vintdig', 'regulator-vio', 'regulator-vmmc1', 'regulator-vmmc2', 'regulator-vpll1', 'regulator-vpll2', 'regulator-vsim', 'regulator-vusb1v5', 'regulator-vusb1v8', 'regulator-vusb3v1
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 143 ++++++++++++++++++++++++++++++
+> >   1 file changed, 143 insertions(+)
 > > 
-> > esp. the regulator parts without adding stuff to ti,twl.yaml?  
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> > index c5c2895b37c7..2fcc994cbb89 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> > @@ -49,6 +49,101 @@ chosen {
+> >   		stdout-path = "serial0:115200n8";
+> >   	};
+> > +	pmic-glink {
+> > +		compatible = "qcom,x1e80100-pmic-glink",
+> > +			     "qcom,sm8550-pmic-glink",
+> > +			     "qcom,pmic-glink";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +		orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> > +				    <&tlmm 123 GPIO_ACTIVE_HIGH>,
+> > +				    <&tlmm 125 GPIO_ACTIVE_HIGH>;
+> > +
+> > +		connector@0 {
 > 
-> Eh? That's a watchdog, not regulator. Why do you add ref to regulator?
-> 
-hmm, wrongly indented? At what level doet it belong? But as the regualor.yaml stuff can
-be shortened, maybe just add it directly to ti,twl.yaml to avoid that trouble.
+> Could you describe them somehow? e.g.
 
-> ...
-> 
-> >>> +
-> >>> +  regulator-vaux2:
-> >>> +    type: object
-> >>> +    $ref: regulator.yaml#
-> >>> +    unevaluatedProperties: false
-> >>> +    properties:
-> >>> +      compatible:
-> >>> +        const: "ti,twl4030-vaux2"
-> >>> +
-> >>> +      regulator-initial-mode:
-> >>> +        items:
-> >>> +          - items:
-> >>> +              enum:
-> >>> +                - 0x08 # Sleep mode, the nominal output voltage is maintained
-> >>> +                       # with low power consumption with low load current capability
-> >>> +                - 0x0e # Active mode, the regulator can deliver its nominal output
-> >>> +                       # voltage with full-load current capability    
-> >>
-> >> These entries are the same. Just use patternProperties and enum for
-> >> compatible.
-> >>  
-> > hmm, if I am using that, how do I prevent e.g. constructions like this to be
-> > valid?
-> > 
-> > regulator-vaux2 {
-> > 	compatible = "ti,twl4030-vaux1";
-> > };
-> >   
-> 
-> Why would node name matter if you have compatible? The entire point of
-> compatibles is to not to rely on node names.
-> 
-Hmm, even if we rely on them, it should somehow match what is inside that node
-usually. We have @xx and reg=<xx>; e.g. So relax the stuff to allowing
-any regulator-.* as node name independently of the contents?
+Which reminds me that we should add OF bindings for physical_location
+driver.
 
-And since that all is then shorter, maybe add stuff just directly to ti,twl.yaml?
+> 
+> 
+> /* Left rear port */
+> connector @0 {
+> 
+> 
+> There is probably some better terminology to describe the one closer and
+> farther away from the user, do as you will..
+> 
+> For the QCP, they're numbered on the chassis
+> 
+> Konrad
 
-Regards,
-Andreas
+-- 
+With best wishes
+Dmitry
 
