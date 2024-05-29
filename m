@@ -1,209 +1,194 @@
-Return-Path: <devicetree+bounces-70187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84BF8D2CB2
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:45:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E91038D2CBD
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:58:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FAE028CDD7
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 05:45:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 538EF1F22E1C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 05:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D9D15B984;
-	Wed, 29 May 2024 05:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A280F15CD68;
+	Wed, 29 May 2024 05:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DxJgCyS8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VMewratf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F02715B98B;
-	Wed, 29 May 2024 05:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C1D15B98A
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 05:58:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716961506; cv=none; b=hd5VDG/iPOm22McxYCWcrY4fNktP9E1CwfagxqysLc+bkm2ZowKRjlG+RJ5j5IsnZoR2z8hoDsUq4m3qemu57bNWcHfTRNlfb5cUnwF6qzoAXvhftw9/dx5Hck7djmmd+vWAsg+1CQy8HtIddkY55X2Ppjs1ofIZGDDJglP0ydI=
+	t=1716962286; cv=none; b=CN75gGKAlLDJvnVgc7NtpQHPNxKTkxMCEagbP41V2YJIzoJ9ednJe5ANTjmeFGcJt3kl8HnX7sUfMdfiPvjvk5jNhI7ndoxGmw3D1yM1wyh3SmgrClgybqlLi88vYiGEJyfudilFg7r2r8rFudcD7DX7wDp956/khMwoXZU0NJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716961506; c=relaxed/simple;
-	bh=cNGxdNuzdI5pKIB6QCt+zvjbCDD1qiXHOix5B2DCynU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=unyFU+ZpPXMLmzB5zyUvNjH6MkkMaDJK4qalrP74o7e/qPxjDA0X1cbal4U+1AT0Mhnj/M4g1Q5/ABSh9DO+9kCaKhkbvyiD6HJKCnB6hBMV5oDuhHPiz0hfadum6vJW261i77f3CUkXnyCLE7LAnYsfcAcIgrhEftaqk7LBKKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DxJgCyS8; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-354faf5f1b4so1552142f8f.1;
-        Tue, 28 May 2024 22:45:04 -0700 (PDT)
+	s=arc-20240116; t=1716962286; c=relaxed/simple;
+	bh=gD/PJ6MuVDFwyaeynPCnoxOi6c4HUNfJeNMrEukphYE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Vzqnzs4Fg14l8RQmODXlymb1PVggUhw+LZvvhHaomJWYSDX/3xFXnvZvAO9tTCyo97tbS/7nw8yOUz9GAs+E41YVZ7tRo/QQZE4lfJu3oftzJE8ZW0rJvFvoes4eY1PF1OK7fANmuQrmyqrEkqXAlDW7HIVOK+mXDKUZkWz+Ekw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VMewratf; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42120e3911eso11199405e9.0
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 22:58:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716961503; x=1717566303; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GZ4JX//TKbZ+BzdC73sUZxj+uGqXuXB1LCY+TXma+K0=;
-        b=DxJgCyS8GrUzP++GE37DN5jzzC4SM/j7q48/BWnmn4SP/+LXsTCnZzSGSCuKkVOx7D
-         nR+Aic5eOldIPNfvRdVxnDkgt/8TfERl9yVpq2joRq/18jhmgYqZYnT0VHySW0HQOanv
-         a6joFTwZbQL7jiyJ5T1MCEx5AtMi1YPeT6r3ww7CLBrCpuzEm3x2pQYphR9+ak79htba
-         Jq5Kn5N1aIzzo+d5gMHhBevonH4Al36/UB8N04ozWs3N33bIgLO6HUrm4NL5kde7fh0r
-         rfRVPC+zBNGPrreb5+dHRXuK34MfEnUjePBbktHxIE/z7inxEHfJzl96h4F983H0wSVf
-         q2Rw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716962282; x=1717567082; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hppWw3qKG50anKzk4FPv6N0n8i7i4RwwGHwsQsP3nDM=;
+        b=VMewratfRq6JS2iYhkQjeHu8LHFoQA6xS+dIBzn2SLMNbeNEjP/vQDqcK79fkx54f7
+         4k+JiduoJxFD55ylpHBfauQLFnAHEV2nfTY/dcB6g8CLFuTJEoaJE/cUKNUkrtmP4mFi
+         4NYM8FY1XKfyR0BCMYgielC4ojJiMFHM+qpJBxFO1Ha9H7ysGOXRIXjS8vmVp+o72QxN
+         Rkx2qQmobPop8hRDJLp7eo48XY2wpgoQsC6mBMYCB/OUUu21Lq6rhn33drJIDBsLkSPg
+         JF5HWb54jUrxEzycTow5PXhMG2nMuDsGU6SMJXbbIJL7c1lRIcQzAtzQWszDK+nRKoE8
+         AA4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716961503; x=1717566303;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GZ4JX//TKbZ+BzdC73sUZxj+uGqXuXB1LCY+TXma+K0=;
-        b=qB7aupZu5iqgRe4NSIliPAl5PZXtUHnIHGtc/jUee5iiwHDx0UOV2ta2SIw+IWGYmB
-         C8eEKueBqpURPXfQWnVHRHi2hsdhMoUOVYVjub56O738F25bxSOKZdo2wFdz9/n4qDuR
-         ykYTmYJ9Br2+C/wUJO6oJ3yrJDdj06j0BSabNzoJ56eAvj05hlN6gqL3Kj940zZGJljK
-         Ton5VDsanPvGI92T3HAjISmd+0ZWeoX3b4JpV6L4p38q01Kg0Bo5Kj/0vEd1wywzxL5w
-         Cm1tGey6FA9gNUYT6N+qgfsQwy5SlZxlqhzLAV1WzOgeBAi/eJ/tsjb97TZo3NkoxvwF
-         WXqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVdgkIQx7ri29juaeQmbXmX47x6OwwrRIAuvXwl1mFvDWKmTZ6mtYOXRuWVT2/FHMZt6BApM+77HlhPtxJcimCCEdR0t6sHQ1DwKTdF0lpaHmrnafnLRTagOSXXzxLWmwUKR5SC+mqPJcpgED/806D8oEhjvDk4yD1i9R7KHsxUcec=
-X-Gm-Message-State: AOJu0YwrK77MsQizE61grd+k6tBTCoGHwnVn299p4yjldU+8Xr4usyUY
-	sGZWLUarqLyRHp2c6/Ka5HvdNZbhcRvJjanqZGUR2xoa2ymXd88YKJW3afVyw1DDrRrvNDut6uk
-	iAS2OA4ALd6pid/E2mAPOM/f2OAg=
-X-Google-Smtp-Source: AGHT+IEmXk1ClteOR0CXKb9UTg4kb3FWdCF1Ad1K0lkWzsKgMLOcTXlTYdT2PrlfOVMArx9qthbIYIGvqvAjdH792vw=
-X-Received: by 2002:a5d:408d:0:b0:355:4cb:5048 with SMTP id
- ffacd0b85a97d-3552fe02949mr12133703f8f.43.1716961503182; Tue, 28 May 2024
- 22:45:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716962282; x=1717567082;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hppWw3qKG50anKzk4FPv6N0n8i7i4RwwGHwsQsP3nDM=;
+        b=vRrFFea+LAGu/kgwf/SzhvF7uhdaMuh4Z1bUJAn584TPBn0BDiESEZRyaqpTM9sbX6
+         c/lWVWG7WsTZNkA9ymbhk+gogkclYTtPzZY75anKNWkQoE6tE0AzS1GeOHgMi6zlCSLu
+         f7UcTGJyYqJtFwjt0iuyuR3NoshgKifiNT/0wz98kdXCJc2DIocJlriNkfhaWeHPitHe
+         Y1tWzNF1msoaHpU+8j4osUKdUHhpTR7EbOgkNyAA4y9VQ34WR7cJiLRgP7uoXPf1URCo
+         o0L4HLiWK8uSiTQsKLhkTpGVBVDbiLywFihybQIgpOh2iJhrJRikLpCwopq6Itduj82+
+         3GXA==
+X-Gm-Message-State: AOJu0YxoQ42jdFEmRhfmbPszwn3xD28kDEnQXmWly+eglL2wr60QSED5
+	hXhN6p3Xq9TH8SQef402i6UhdC+5o/X5DiyvZXYi2ctthdVRaYSDZ43XX2Lad4Y=
+X-Google-Smtp-Source: AGHT+IHVRqh3fwdmfS9SnJtxUCheN0eF6Bwow3iBM+UuBhpaZuRXURaYXNel/mNlFRK2OrKtThAnvw==
+X-Received: by 2002:a7b:cbd0:0:b0:420:1284:475 with SMTP id 5b1f17b1804b1-421089cd413mr115076715e9.12.1716962281574;
+        Tue, 28 May 2024 22:58:01 -0700 (PDT)
+Received: from [127.0.1.1] ([84.102.31.110])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4210896676bsm169075435e9.4.2024.05.28.22.57.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 May 2024 22:58:00 -0700 (PDT)
+From: Julien Panis <jpanis@baylibre.com>
+Subject: [PATCH v6 0/6] Mediatek thermal sensor driver support for MT8186
+ and MT8188
+Date: Wed, 29 May 2024 07:57:55 +0200
+Message-Id: <20240529-mtk-thermal-mt818x-dtsi-v6-0-0c71478a9c37@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240528190315.3865-1-laurent.pinchart@ideasonboard.com>
- <20240528190315.3865-3-laurent.pinchart@ideasonboard.com> <ZlYwJryxeZ2LAKYG@surfacebook.localdomain>
- <20240528201326.GA8500@pendragon.ideasonboard.com>
-In-Reply-To: <20240528201326.GA8500@pendragon.ideasonboard.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 29 May 2024 08:44:26 +0300
-Message-ID: <CAHp75VeHA8qH_S=KJjAMv24vGP=hmeN9wSt1_NPsRhBZfEYXXw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mfd: adp5585: Add Analog Devices ADP5585 core support
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Haibo Chen <haibo.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOPDVmYC/3XNSwrDIBCA4asE17WoVWO66j1KF2omjTSPoiIJI
+ XevCRRKIbv5B+abBQXwDgK6FgvykFxw45BDngpkWz08Abs6N2KEcSIYwX184diC73WXZ0XVhOs
+ YHAarL6VqKiM1Qfn67aFx0y7fH7lbF+Lo5/1R4tv2a9JDM3FMsKkogCwVp9TejJ47Zzyc7dijj
+ U3il+LHlMiUkI0SZaUYgfKPWtf1A0PIaroMAQAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Nicolas Pitre <npitre@baylibre.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Julien Panis <jpanis@baylibre.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716962279; l=3802;
+ i=jpanis@baylibre.com; s=20230526; h=from:subject:message-id;
+ bh=gD/PJ6MuVDFwyaeynPCnoxOi6c4HUNfJeNMrEukphYE=;
+ b=nDzYAwEDpx0c9hRfOAq5XwkrlJuGVpfcUvab8uKv4mHH58zFeLfseR8VqQZo5+m+Ka74jj+1U
+ EYdwrnFQnIVC+aFnqGH7Z8WQzMSEdG8wIApOliIJ+TgtQK3LeEjUtYF
+X-Developer-Key: i=jpanis@baylibre.com; a=ed25519;
+ pk=8eSM4/xkiHWz2M1Cw1U3m2/YfPbsUdEJPCWY3Mh9ekQ=
 
-On Tue, May 28, 2024 at 11:13=E2=80=AFPM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Tue, May 28, 2024 at 10:27:34PM +0300, Andy Shevchenko wrote:
-> > Tue, May 28, 2024 at 10:03:12PM +0300, Laurent Pinchart kirjoitti:
+This is a bunch of patches to support the MT8186 and MT8188 thermal
+sensor configurations.
 
-...
+Since the patches of v3 were applied except those related to the SoC
+device trees, this series includes mainly patches for 'mt8186.dtsi'
+and 'mt8188.dtsi'. Due to some thermal zone renaming in these 2 device
+trees, the related definitions were also renamed in the dt-bindings and
+in the driver.
 
-> > > +   depends on I2C && OF
-> >
-> > Why OF?
->
-> Because the driver works on OF systems only.
->
-> > No COMPILE_TEST?
->
-> The driver won't compile without CONFIG_I2C, so I can use
->
->         depends on I2C
->         depends on OF || COMPILE_TEST
->
-> Do you think that's better ?
+Because of the GPU thermal zone, this series must be applied on top of [1].
 
-I think that dropping OF completely is the best.
-OF || COMPILE_TEST would work as well, but I still don't know why we need t=
-his.
+[1] https://lore.kernel.org/all/20240527093908.97574-1-angelogioacchino.delregno@collabora.com/
 
-...
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Nicolas Pitre <npitre@baylibre.com>
+To: Rafael J. Wysocki <rafael@kernel.org>
+To: Zhang Rui <rui.zhang@intel.com>
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-pm@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Julien Panis <jpanis@baylibre.com>
 
-> > + array_size.h
-> > + device.h // e.g., devm_kzalloc()
-> >
-> > > +#include <linux/module.h>
-> > > +#include <linux/moduleparam.h>
-> > > +#include <linux/init.h>
-> > > +#include <linux/slab.h>
->
-> I'll drop those 3 headers, there's not needed anymore.
->
-> > > +#include <linux/i2c.h>
-> >
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_device.h>
-> >
-> > You don't need them, instead of proxying...
->
-> of.h for of_device_get_match_data() and of_match_ptr(). I'll drop the
-> former, but I need the latter, so I'll keep of.h
+Changes in v6:
+- Reorganize patches related to thermal zone renaming (dt-bindings + driver).
+- Add cooling-cells property to GPU node in 'mt8188.dtsi'
+- Link to v5: https://lore.kernel.org/r/20240524-mtk-thermal-mt818x-dtsi-v5-0-56f8579820e7@baylibre.com
 
-Why do you need of_match_ptr()? What for?
+Changes in v5:
+- Rename some thermal zones
+  (mfg -> gpu / soc1 -> adsp / soc2 -> vdo / soc3 -> infra).
+- Add cooling-device for GPUs.
+- Link to v4: https://lore.kernel.org/r/20240521-mtk-thermal-mt818x-dtsi-v4-0-b91ee678411c@baylibre.com
 
-> of_device.h for historical reasons probably, I'll drop it.
->
-> > > +#include <linux/mfd/core.h>
-> > > +#include <linux/mfd/adp5585.h>
-> >
-> > m is earlier than 'o', but with above drop no more issue :-)
-> >
-> > ...just include mod_devicetable.h.
-> >
-> > > +#include <linux/regmap.h>
-> >
-> > + types.h // e.g., u8
+Changes in v4:
+- Fix wrong thermal zone names.
+- Lower 'polling-delay-passive' values.
+- Set 'hysteresis' value to 0 for 'critical' trips.
+- Add a 'hot' trip point in between 'passive' and 'critical' trips.
+- Link to v3: https://lore.kernel.org/all/20240402032729.2736685-1-nico@fluxnic.net/
 
-I assume that all marked with + in my previous reply you agree on?
+Changes in v3:
+- use meaningful name for binding index definitions
+- reuse LVTS_COEFF_*_MT7988 on MT8186 per reviewer request
+- do similarly for MT8188 that now reuses LVTS_COEFF_*_MT8195
+- use thermal zone names the svs driver wants
+- adjust some DT node names and iospace length
+- remove variable .hw_tshut_temp as it is constant across all SOCs
+- Link to v2: https://lore.kernel.org/all/20240318212428.3843952-1-nico@fluxnic.net/
 
-...
+Changes in v2:
+- renamed CPU cluster thermal zones in DT
+- fixed logic to cope with empty controller slots at the beginning
+- isolated bindings to their own patches
+- added MT8188 default thermal zones
+- Link to v1: https://lore.kernel.org/all/20240111223020.3593558-1-nico@fluxnic.net/T/
 
-> > > +#define            ADP5585_MAN_ID(v)               (((v) & 0xf0) >> =
-4)
-> >
-> > GENMASK()
->
-> This is not a mask. Or do you mean
->
->         (((v) & GENMASK(7, 4)) >> 4)
->
-> ?
+---
+Julien Panis (2):
+      dt-bindings: thermal: mediatek: Fix thermal zone definition for MT8186
+      dt-bindings: thermal: mediatek: Fix thermal zone definitions for MT8188
 
-Yes.
+Nicolas Pitre (4):
+      arm64: dts: mediatek: mt8186: add lvts definitions
+      arm64: dts: mediatek: mt8186: add default thermal zones
+      arm64: dts: mediatek: mt8188: add lvts definitions
+      arm64: dts: mediatek: mt8188: add default thermal zones
 
-> I think that's overkill.
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi           | 316 ++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi           | 482 +++++++++++++++++++++
+ drivers/thermal/mediatek/lvts_thermal.c            |  12 +-
+ .../dt-bindings/thermal/mediatek,lvts-thermal.h    |  12 +-
+ 4 files changed, 810 insertions(+), 12 deletions(-)
+---
+base-commit: b321abd919e22b240d53329cd726ea7afa8aca98
+change-id: 20240520-mtk-thermal-mt818x-dtsi-eca378f9b6a0
 
-Why? You have a mask, use it for less error prone code.
+Best regards,
+-- 
+Julien Panis <jpanis@baylibre.com>
 
-...
-
-> > > +#define            ADP5585_Rx_PULL_CFG_MASK        (3)
-> >
-> > GENMASK()
->
-> Not here, as this value is meant to be passed to ADP5585_Rx_PULL_CFG().
-
-Why is it marked as a mask? Rename it to _ALL or alike.
-
-...
-
-> > > +#define            ADP5585_C4_EXTEND_CFG_MASK      (1U << 6)
-> >
-> > > +#define            ADP5585_R4_EXTEND_CFG_MASK      (1U << 5)
-> >
-> > > +#define            ADP5585_R3_EXTEND_CFG_MASK      (3U << 2)
-> >
-> > > +#define            ADP5585_R0_EXTEND_CFG_MASK      (1U << 0)
-> >
-> > > +#define            ADP5585_OSC_FREQ_MASK           (3U << 5)
-> >
-> > BIT() / GENMASK()
->
-> I'll use GENMASK for the masks.
-
-For a single bit the BIT() is okay, and TBH I don't remember if
-GENMASK() supports h =3D=3D l cases.
-
---=20
-With Best Regards,
-Andy Shevchenko
 
