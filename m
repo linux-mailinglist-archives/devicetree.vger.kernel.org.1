@@ -1,130 +1,119 @@
-Return-Path: <devicetree+bounces-70211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC24D8D2D9A
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:51:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2F08D2D8E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:46:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A8CF1F24F7D
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:51:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DF531C25730
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B1FC15EFC9;
-	Wed, 29 May 2024 06:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD276169AFE;
+	Wed, 29 May 2024 06:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="g/1OA8Rr";
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="QQ9BedQy"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KS5OOY2b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA27273DC;
-	Wed, 29 May 2024 06:51:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5DC816728D;
+	Wed, 29 May 2024 06:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716965494; cv=none; b=E4oxDBSuAbw+o/3QhNgGGiTtq27Weu8El08BMHBDGBPz3IrZTOj6D59d6yPYZvuJ7ESrLCUcxEPuljtNiiQi6EG8CGjDyxO4fTLxLxrx6elE2+flyO6On41aAp4do9syArNQwZrhjc9K9amMoM+6PKTL0nWWndefFltIJ4JuAWI=
+	t=1716965084; cv=none; b=Dq8+y/oPjZsjWZxGNRRVCqhyzc2rQW+oZShdSSpg9gySSQrNj8H6Dfh8vl6zm3hWHpQyA+CMdpRMWOYAlBMyd6GXAH2wz4bVCFp8iNCDSLy2gBf2+rsxWiYo1vrF5e5A6q9M7QMlk7cC8upZrXsyYrli+iAqZj6TA2gyF+mw3TQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716965494; c=relaxed/simple;
-	bh=jFTfeTtYWGbpeFmV+28NZwKVWAB7YPdr4ftKZZB4ahI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S5ZQBMd9RIyjxMv3cq7cOQhlZnyXeBu7SZFQbaNEaQz1uXa+mUDLCTQbUBU2qgQepVj5m6PXyPRpH8UaHZ3ndJ4E27m1vJlh6Aau77sMyoduho4G+BoIazWFXHWTjYnmnYXMq71wnt91oDazM3MkZzjdnFPoYzqRryw2hZAEIrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=g/1OA8Rr; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=QQ9BedQy; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1716965489;
-	bh=FM07nAP+48bSOuTtekpfEzG6O9VwkpGppNHrIxFz+7A=; l=1313;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=g/1OA8RrD2hD/Y3IXDklsGD0MS/eQnGbHTVlk1+iRzcMXSkwj1oq5UPU07xfL5FYf
-	 qMFCThbGtzI71H8o6xzfKPa/EzEF5c/zHec4oCXrvIA9pBP5SR7SSbVzGF19uyTz9Y
-	 VhYNGDZK1NaNXvA9indp3y0wcu7HUeEchpkCdUfDIcChLYvTArAGFQaIiVadJaYj5W
-	 LKcqzCNwqPl/oWTiG+HH65FQIdZ08DOa5J/eiQh5CXHaUzMLBkJYcS+jPW2HnIUNSM
-	 gR21PeGQnuxL8tCap0inNzvU3bkE6RoiJH4k6Ya0E7oAObiP5GrUJhgw9deNSoqyzw
-	 rezj0l3cT3d1w==
-Received: from 192.168.8.21
-	by mg.richtek.com with MailGates ESMTP Server V3.0(3828186:0:AUTH_RELAY)
-	(envelope-from <prvs=1876C162DF=alina_yu@richtek.com>); Wed, 29 May 2024 14:51:28 +0800 (CST)
-X-MailGates: (compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1716965488;
-	bh=FM07nAP+48bSOuTtekpfEzG6O9VwkpGppNHrIxFz+7A=; l=1313;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=QQ9BedQy6mBg+QqPLNU19qOS5+hbcKoeNFU8HAU/Dv3DovLWN1skAEGvJj2WOav3g
-	 mgkdWTPZZo9w+PsjPOWaj9c0F3PLvEu6/1lChzqDsdJGGIptlX3sSbdiYvBJ2xNINN
-	 FSZ2+edOfF6eVDJvMHX8QcuEF3USdaONJeiPUF8Vbl/Mnx4V772j8YUBzOtOCooQCo
-	 vKdOf7Ph1cYJw8G/cpn32ILUJmi3oiTGnCH4XModKJxXN4j/KUOB/E8Fh4bv1dsFD9
-	 adfb2KazguNn8VO+VjHiv+x+xZvuk65WuFbcvSQPz4DMClcNM1aeLYsiQws8VH9Iq/
-	 ZgyR/dqqpt5Xg==
-Received: from 192.168.10.46
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213210:0:AUTH_RELAY)
-	(envelope-from <alina_yu@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 29 May 2024 14:41:23 +0800 (CST)
-Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 29 May
- 2024 14:41:23 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 29 May 2024 14:41:23 +0800
-Date: Wed, 29 May 2024 14:41:23 +0800
-From: Alina Yu <alina_yu@richtek.com>
-To: Mark Brown <broonie@kernel.org>
-CC: <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<cy_huang@richtek.com>
-Subject: Re: [PATCH 1/2] regulator: rtq2208: Add fixed LDO VOUT property and
- check that matches the constraints
-Message-ID: <20240529064123.GA13317@linuxcarl2.richtek.com>
-References: <cover.1715846612.git.alina_yu@richtek.com>
- <7c28d2e61d2fc13066ba4814d1ecfab8f344aaad.1715846612.git.alina_yu@richtek.com>
- <c0c7a63d-e435-4778-ad4c-3d93f0215116@sirena.org.uk>
+	s=arc-20240116; t=1716965084; c=relaxed/simple;
+	bh=4zrI1rf96008V1DKuR9GTP2JdgIFtWZq5Ig3JKvzHMw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cujBnUu6ayrKbbryFBknRDlWc+hdbp0dbVtF2zIa89+VZyKq4sonksLGxx6usIxmppvAyofywedbggWsjeVUDjclgfVsfnbBL9oS0S6mQg0V+MTTFl8t0EgaPS2uS5+FFuKyyfX1W0lBfZnM2xDjw0IRkB5Nr9NPPazsO6tTGQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KS5OOY2b; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44T6iMTr018720;
+	Wed, 29 May 2024 01:44:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716965062;
+	bh=HO2HfuxjQKssJUkJizZ3YKh6FvlnbbPK8XB/o0Bnpeg=;
+	h=From:To:CC:Subject:Date;
+	b=KS5OOY2btsjnObxJSeW0MLL/PGg721ts2BZppk8kw68ZpkQgnd7aCD8BiEiCjSyvw
+	 Blk3mrZOpsdjwC+wDi0XMx6RtB/q3UxoLRLS/wvMmhKUU8sZq6C+E9b3H2ldB8Zj3n
+	 aVeU9UbAPjyDjeNb+/vBGFfIDHh/cmhdG02y46u4=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44T6iM9A011480
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 29 May 2024 01:44:22 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 29
+ May 2024 01:44:22 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 29 May 2024 01:44:22 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44T6iMbJ053994;
+	Wed, 29 May 2024 01:44:22 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 44T6iLkR015791;
+	Wed, 29 May 2024 01:44:21 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, <srk@ti.com>,
+        Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v2 0/3] Add PRU system events for virtio and MII mode support
+Date: Wed, 29 May 2024 12:14:17 +0530
+Message-ID: <20240529064420.571615-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <c0c7a63d-e435-4778-ad4c-3d93f0215116@sirena.org.uk>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, May 27, 2024 at 02:00:47PM +0100, Mark Brown wrote:
-> On Thu, May 16, 2024 at 05:20:33PM +0800, Alina Yu wrote:
-> > A fixed LDO VOUT property has been added to specify the fixed_uV of the regulator_desc.
-> > Additionally, a check has been included in this version
-> > to ensure that the fixed_uV matches the constraints.
-> 
-> This doesn't apply against current code, please check and resend.
+Hi All, this series adds PRU system events for virtio for AM64x and AM65x
+and MII mode support for ICSSG on AM64x.
+
+These patches were previously posted as individual patches, clubbed them
+into one series. No functional changes from previous revisions of all
+patches. Rebased all patches on latest linux-next tagged next-20240529.
+
+Patch [1/3]
+v1 https://lore.kernel.org/all/20240423100608.1421652-1-danishanwar@ti.com/
+
+Patch [2/3]
+v1 https://lore.kernel.org/all/20240423100838.1421845-1-danishanwar@ti.com/
+
+Patch [3/3]
+v2 https://lore.kernel.org/all/20240429092919.657629-1-danishanwar@ti.com/
+
+MD Danish Anwar (1):
+  arm64: dts: ti: k3-am642-evm-icssg1-dualemac: add overlay for mii mode
+
+Suman Anna (2):
+  arm64: dts: ti: k3-am64-main: Add PRU system events for virtio
+  arm64: dts: ti: k3-am65-main: Add PRU system events for virtio
+
+ arch/arm64/boot/dts/ti/Makefile               |   4 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  24 +++++
+ .../ti/k3-am642-evm-icssg1-dualemac-mii.dtso  | 101 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  36 +++++++
+ 4 files changed, 165 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac-mii.dtso
 
 
-Regarding the previous discussion in
+base-commit: 9d99040b1bc8dbf385a8aa535e9efcdf94466e19
+-- 
+2.34.1
 
-https://lore.kernel.org/all/20240528060731.GA25526@linuxcarl2.richtek.com/
-
-I found some patches missing in the linux-next tree.
-
-So I merged the missing part in my latest resent sereies.
-
-The issue has been addressed in
-
-In '[RESEND 2/4] regulator: rtq2208: Fix LDO to be compatible with both fixed and adjustable vout'
-https://lore.kernel.org/all/5ad4c7728c7fa7f6286db36b99d31c9d0f5d16c7.1716870419.git.alina_yu@richtek.com/
-
-
-@@ -219,7 +219,7 @@ static const struct regulator_ops rtq2208_regulator_buck_ops = {
- 	.set_suspend_mode = rtq2208_set_suspend_mode,
-};
-	  
--static const struct regulator_ops rtq2208_regulator_ldo_ops = {
-+static const struct regulator_ops rtq2208_regulator_ldo_fix_ops = {
-	.enable = regulator_enable_regmap,
-	.disable = regulator_disable_regmap,
-	.is_enabled = regulator_is_enabled_regmap,
-
-...
-
-Thanks,
-Alina
 
