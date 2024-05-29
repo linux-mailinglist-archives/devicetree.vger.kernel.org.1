@@ -1,192 +1,209 @@
-Return-Path: <devicetree+bounces-70186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA3698D2C30
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:16:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C84BF8D2CB2
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:45:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 647B91F24674
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 05:16:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FAE028CDD7
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 05:45:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E03C15B972;
-	Wed, 29 May 2024 05:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7D9D15B984;
+	Wed, 29 May 2024 05:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="lz9+/A++"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DxJgCyS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFEBE13A412
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 05:16:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F02715B98B;
+	Wed, 29 May 2024 05:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716959768; cv=none; b=JDmGv8+E1kik5juGu44mDz3SwcbOI9CraiKAabRVE/VkQ1+jxwljFsUAM6LVmxcx7zbEgiUaxBW+zthwz/TuWbauB9ChxjiIyJH6yT9nTagkeQnZc4MZFMEGmt/NstumyMTbLDcX0Cbo+zTInpu8JBDrP6l0WmRZXg6dr3HaZ9Y=
+	t=1716961506; cv=none; b=hd5VDG/iPOm22McxYCWcrY4fNktP9E1CwfagxqysLc+bkm2ZowKRjlG+RJ5j5IsnZoR2z8hoDsUq4m3qemu57bNWcHfTRNlfb5cUnwF6qzoAXvhftw9/dx5Hck7djmmd+vWAsg+1CQy8HtIddkY55X2Ppjs1ofIZGDDJglP0ydI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716959768; c=relaxed/simple;
-	bh=3LtkZySiE3rur8I6zJ2+RVDVKpyyTjsohRTr8GJ2R+0=;
+	s=arc-20240116; t=1716961506; c=relaxed/simple;
+	bh=cNGxdNuzdI5pKIB6QCt+zvjbCDD1qiXHOix5B2DCynU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QBLu1/wYvnld9r+iCjvOkrHzcaUlwGelFsOnaAOGByXN1Ssdm6YGI8LEtzKnT734mZVF6hzFBADjhDmXGjZua8GVzMVsxgIh9GQMFYESNxYz/C7GSCBOn73JQVrhp0l5qzViRYbGYNQbe62lUNM9e+0/NL8W2viH4ozWSonBig8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=lz9+/A++; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2e95a75a90eso15298621fa.2
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 22:16:05 -0700 (PDT)
+	 To:Cc:Content-Type; b=unyFU+ZpPXMLmzB5zyUvNjH6MkkMaDJK4qalrP74o7e/qPxjDA0X1cbal4U+1AT0Mhnj/M4g1Q5/ABSh9DO+9kCaKhkbvyiD6HJKCnB6hBMV5oDuhHPiz0hfadum6vJW261i77f3CUkXnyCLE7LAnYsfcAcIgrhEftaqk7LBKKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DxJgCyS8; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-354faf5f1b4so1552142f8f.1;
+        Tue, 28 May 2024 22:45:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1716959764; x=1717564564; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1716961503; x=1717566303; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=y9ZQ9DZWQvzLjVwLl3ADCun2JEpKNxcZ7yv0Pu1NHRw=;
-        b=lz9+/A++r1AWBot8KZb4kG+Ok4ylTvQ3CqGqgPmK8uGliYeAguDRplhD/YbLgt5DLA
-         mfkl8py3g2ReA5uAlFdBVrYxz7hHx7uEnZOnqx8eTNvayeBKTpPKIrf4IxQIb4eo1A88
-         LxhYGkIqPBe30uNaSyc+nGBgoCj7EGU0VK0GgBMceyThRLRIsYrMcONwzKxnniN4jqz+
-         RoH2A/E1G1XoxKMjv1N/RVVJ/M6k9zJsRzqon9Oq44glkXlw8ubBcD3gjOszRjzJ3G3N
-         QSgylDZYfd2EoOMyDTGv40hOzuAY+EnPGO6W4ejm9StXzZHYM3yzr1Bac4A1KHB8goOZ
-         E8UQ==
+        bh=GZ4JX//TKbZ+BzdC73sUZxj+uGqXuXB1LCY+TXma+K0=;
+        b=DxJgCyS8GrUzP++GE37DN5jzzC4SM/j7q48/BWnmn4SP/+LXsTCnZzSGSCuKkVOx7D
+         nR+Aic5eOldIPNfvRdVxnDkgt/8TfERl9yVpq2joRq/18jhmgYqZYnT0VHySW0HQOanv
+         a6joFTwZbQL7jiyJ5T1MCEx5AtMi1YPeT6r3ww7CLBrCpuzEm3x2pQYphR9+ak79htba
+         Jq5Kn5N1aIzzo+d5gMHhBevonH4Al36/UB8N04ozWs3N33bIgLO6HUrm4NL5kde7fh0r
+         rfRVPC+zBNGPrreb5+dHRXuK34MfEnUjePBbktHxIE/z7inxEHfJzl96h4F983H0wSVf
+         q2Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716959764; x=1717564564;
+        d=1e100.net; s=20230601; t=1716961503; x=1717566303;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y9ZQ9DZWQvzLjVwLl3ADCun2JEpKNxcZ7yv0Pu1NHRw=;
-        b=g6T9GmnZgX5gH+EBm8ZOv+gzSyDdRMUI0lgB0mIAUYem2GF8tcS75Nj8W6JqHW/+89
-         UDbdZzx+0h4VAO5eHoP9qKlYY6IdTcLidDZUWu9ZI1rLA3ftKVLI2S3LVgmUbiocuILi
-         BXJIAnMRq0xk78/bjvJZQb0L/huNbQYGezx9oRxdaR7uXDf7aNah/2cV7mUdO+WdU/0x
-         8eDLvoSGm4W66OE4fPLTt7QoIn7JUE9pHGj4HMh3vKGDBpqkHfGlix1S8fNXqTar6pG0
-         KvPP1/P0X+tbrorpPyVlBhHpFwXvkOjUijujjg8hj4anK021vdRCv0qpbcvOCAAeTCyR
-         /Nwg==
-X-Gm-Message-State: AOJu0YxzsJ32+I6iC1Q9iHhru6MaUrw4+HE3nMHkGxNhE3QFPSm+brGY
-	RtaF4F7Osim73Bq4/islX1c5gz2CHJK7saaRyaQqq209FCtoFtKfhapeThZc+EvoeFilejCkp1W
-	OrBFPMZsX11v6DaEZOaAgmvlzj1DnMRWQqjSUtw==
-X-Google-Smtp-Source: AGHT+IE4Ixyyb9dBIC7b/LMvEyISULydyhrMO3jCXkTNja3SosYDAO4Cj0e7ftfvuomR4+6kRgh5fxUQRNLL0+8ak0I=
-X-Received: by 2002:a2e:87c7:0:b0:2e9:794c:19ae with SMTP id
- 38308e7fff4ca-2e9794c1b09mr40977011fa.23.1716959763885; Tue, 28 May 2024
- 22:16:03 -0700 (PDT)
+        bh=GZ4JX//TKbZ+BzdC73sUZxj+uGqXuXB1LCY+TXma+K0=;
+        b=qB7aupZu5iqgRe4NSIliPAl5PZXtUHnIHGtc/jUee5iiwHDx0UOV2ta2SIw+IWGYmB
+         C8eEKueBqpURPXfQWnVHRHi2hsdhMoUOVYVjub56O738F25bxSOKZdo2wFdz9/n4qDuR
+         ykYTmYJ9Br2+C/wUJO6oJ3yrJDdj06j0BSabNzoJ56eAvj05hlN6gqL3Kj940zZGJljK
+         Ton5VDsanPvGI92T3HAjISmd+0ZWeoX3b4JpV6L4p38q01Kg0Bo5Kj/0vEd1wywzxL5w
+         Cm1tGey6FA9gNUYT6N+qgfsQwy5SlZxlqhzLAV1WzOgeBAi/eJ/tsjb97TZo3NkoxvwF
+         WXqA==
+X-Forwarded-Encrypted: i=1; AJvYcCVdgkIQx7ri29juaeQmbXmX47x6OwwrRIAuvXwl1mFvDWKmTZ6mtYOXRuWVT2/FHMZt6BApM+77HlhPtxJcimCCEdR0t6sHQ1DwKTdF0lpaHmrnafnLRTagOSXXzxLWmwUKR5SC+mqPJcpgED/806D8oEhjvDk4yD1i9R7KHsxUcec=
+X-Gm-Message-State: AOJu0YwrK77MsQizE61grd+k6tBTCoGHwnVn299p4yjldU+8Xr4usyUY
+	sGZWLUarqLyRHp2c6/Ka5HvdNZbhcRvJjanqZGUR2xoa2ymXd88YKJW3afVyw1DDrRrvNDut6uk
+	iAS2OA4ALd6pid/E2mAPOM/f2OAg=
+X-Google-Smtp-Source: AGHT+IEmXk1ClteOR0CXKb9UTg4kb3FWdCF1Ad1K0lkWzsKgMLOcTXlTYdT2PrlfOVMArx9qthbIYIGvqvAjdH792vw=
+X-Received: by 2002:a5d:408d:0:b0:355:4cb:5048 with SMTP id
+ ffacd0b85a97d-3552fe02949mr12133703f8f.43.1716961503182; Tue, 28 May 2024
+ 22:45:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240528164132.2451685-1-maz@kernel.org>
-In-Reply-To: <20240528164132.2451685-1-maz@kernel.org>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 29 May 2024 10:45:52 +0530
-Message-ID: <CAK9=C2XNPJP0X=pg5TSrQbsuouDD3jP-gy2Sm4BXNJp0ZiWp+A@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Fix fw_devlink handling of interrupt-map
-To: Marc Zyngier <maz@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
-	Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>
+References: <20240528190315.3865-1-laurent.pinchart@ideasonboard.com>
+ <20240528190315.3865-3-laurent.pinchart@ideasonboard.com> <ZlYwJryxeZ2LAKYG@surfacebook.localdomain>
+ <20240528201326.GA8500@pendragon.ideasonboard.com>
+In-Reply-To: <20240528201326.GA8500@pendragon.ideasonboard.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 29 May 2024 08:44:26 +0300
+Message-ID: <CAHp75VeHA8qH_S=KJjAMv24vGP=hmeN9wSt1_NPsRhBZfEYXXw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] mfd: adp5585: Add Analog Devices ADP5585 core support
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Haibo Chen <haibo.chen@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 28, 2024 at 10:11=E2=80=AFPM Marc Zyngier <maz@kernel.org> wrot=
-e:
->
-> Commit d976c6f4b32c ("of: property: Add fw_devlink support for
-> interrupt-map property") tried to do what it says on the tin,
-> but failed on a couple of points:
->
-> - it confuses bytes and cells. Not a huge deal, except when it
->   comes to pointer arithmetic
->
-> - it doesn't really handle anything but interrupt-maps that have
->   their parent #address-cells set to 0
->
-> The combinations of the two leads to some serious fun on my M1
-> box, with plenty of WARN-ON() firing all over the shop, and
-> amusing values being generated for interrupt specifiers.
->
-> Address both issues so that I can boot my machines again.
->
-> Fixes: d976c6f4b32c ("of: property: Add fw_devlink support for interrupt-=
-map property")
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> Cc: Anup Patel <apatel@ventanamicro.com>
-> Cc: Saravana Kannan <saravanak@google.com>
-> Cc: Rob Herring (Arm) <robh@kernel.org>
+On Tue, May 28, 2024 at 11:13=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Tue, May 28, 2024 at 10:27:34PM +0300, Andy Shevchenko wrote:
+> > Tue, May 28, 2024 at 10:03:12PM +0300, Laurent Pinchart kirjoitti:
 
-Thanks for the fix patch but unfortunately it breaks for RISC-V.
+...
 
-> ---
->  drivers/of/property.c | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
+> > > +   depends on I2C && OF
+> >
+> > Why OF?
 >
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 1c83e68f805b..9adebc63bea9 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1322,7 +1322,13 @@ static struct device_node *parse_interrupt_map(str=
-uct device_node *np,
->         addrcells =3D of_bus_n_addr_cells(np);
+> Because the driver works on OF systems only.
 >
->         imap =3D of_get_property(np, "interrupt-map", &imaplen);
-> -       if (!imap || imaplen <=3D (addrcells + intcells))
-> +       imaplen /=3D sizeof(*imap);
-> +
-> +       /*
-> +        * Check that we have enough runway for the child unit interrupt
-> +        * specifier and a phandle. That's the bare minimum we can expect=
-.
-> +        */
-> +       if (!imap || imaplen <=3D (addrcells + intcells + 1))
->                 return NULL;
->         imap_end =3D imap + imaplen;
+> > No COMPILE_TEST?
 >
-> @@ -1346,8 +1352,14 @@ static struct device_node *parse_interrupt_map(str=
-uct device_node *np,
->                 if (!index)
->                         return sup_args.np;
+> The driver won't compile without CONFIG_I2C, so I can use
 >
-> -               of_node_put(sup_args.np);
-> +               /*
-> +                * Account for the full parent unit interrupt specifier
-> +                * (address cells, interrupt cells, and phandle).
-> +                */
-> +               imap +=3D of_bus_n_addr_cells(sup_args.np);
+>         depends on I2C
+>         depends on OF || COMPILE_TEST
+>
+> Do you think that's better ?
 
-This breaks for RISC-V because we don't have "#address-cells"
-property in interrupt controller DT node and of_bus_n_addr_cells()
-retrieves "#address-cells" from the parent of interrupt controller.
+I think that dropping OF completely is the best.
+OF || COMPILE_TEST would work as well, but I still don't know why we need t=
+his.
 
-The of_irq_parse_raw() looks for "#address-cells" property
-in the interrupt controller DT node only so we should do a
-similar thing here as well.
+...
 
-The below change on top of this patch worked for me.
+> > + array_size.h
+> > + device.h // e.g., devm_kzalloc()
+> >
+> > > +#include <linux/module.h>
+> > > +#include <linux/moduleparam.h>
+> > > +#include <linux/init.h>
+> > > +#include <linux/slab.h>
+>
+> I'll drop those 3 headers, there's not needed anymore.
+>
+> > > +#include <linux/i2c.h>
+> >
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_device.h>
+> >
+> > You don't need them, instead of proxying...
+>
+> of.h for of_device_get_match_data() and of_match_ptr(). I'll drop the
+> former, but I need the latter, so I'll keep of.h
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 9adebc63bea9..f54da2989ea9 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1308,7 +1308,7 @@ static struct device_node
-*parse_interrupt_map(struct device_node *np,
- {
-     const __be32 *imap, *imap_end, *addr;
-     struct of_phandle_args sup_args;
--    u32 addrcells, intcells;
-+    u32 addrcells, intcells, paddrcells;
-     int i, imaplen;
+Why do you need of_match_ptr()? What for?
 
-     if (!IS_ENABLED(CONFIG_OF_IRQ))
-@@ -1356,7 +1356,8 @@ static struct device_node
-*parse_interrupt_map(struct device_node *np,
-          * Account for the full parent unit interrupt specifier
-          * (address cells, interrupt cells, and phandle).
-          */
--        imap +=3D of_bus_n_addr_cells(sup_args.np);
-+        if (!of_property_read_u32(sup_args.np, "#address-cells", &paddrcel=
-ls))
-+            imap +=3D paddrcells;
-         imap +=3D sup_args.args_count + 1;
+> of_device.h for historical reasons probably, I'll drop it.
+>
+> > > +#include <linux/mfd/core.h>
+> > > +#include <linux/mfd/adp5585.h>
+> >
+> > m is earlier than 'o', but with above drop no more issue :-)
+> >
+> > ...just include mod_devicetable.h.
+> >
+> > > +#include <linux/regmap.h>
+> >
+> > + types.h // e.g., u8
 
-         of_node_put(sup_args.np);
+I assume that all marked with + in my previous reply you agree on?
 
-<snip>
+...
 
-Regards,
-Anup
+> > > +#define            ADP5585_MAN_ID(v)               (((v) & 0xf0) >> =
+4)
+> >
+> > GENMASK()
+>
+> This is not a mask. Or do you mean
+>
+>         (((v) & GENMASK(7, 4)) >> 4)
+>
+> ?
+
+Yes.
+
+> I think that's overkill.
+
+Why? You have a mask, use it for less error prone code.
+
+...
+
+> > > +#define            ADP5585_Rx_PULL_CFG_MASK        (3)
+> >
+> > GENMASK()
+>
+> Not here, as this value is meant to be passed to ADP5585_Rx_PULL_CFG().
+
+Why is it marked as a mask? Rename it to _ALL or alike.
+
+...
+
+> > > +#define            ADP5585_C4_EXTEND_CFG_MASK      (1U << 6)
+> >
+> > > +#define            ADP5585_R4_EXTEND_CFG_MASK      (1U << 5)
+> >
+> > > +#define            ADP5585_R3_EXTEND_CFG_MASK      (3U << 2)
+> >
+> > > +#define            ADP5585_R0_EXTEND_CFG_MASK      (1U << 0)
+> >
+> > > +#define            ADP5585_OSC_FREQ_MASK           (3U << 5)
+> >
+> > BIT() / GENMASK()
+>
+> I'll use GENMASK for the masks.
+
+For a single bit the BIT() is okay, and TBH I don't remember if
+GENMASK() supports h =3D=3D l cases.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
