@@ -1,204 +1,323 @@
-Return-Path: <devicetree+bounces-70430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D81C8D34DB
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A106E8D34E4
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:50:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F9191C2251B
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:46:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3D6C1C21A6A
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3D616A361;
-	Wed, 29 May 2024 10:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9967E17B4E2;
+	Wed, 29 May 2024 10:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="hSU+aTn5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ct3sZf7c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648B315B97D;
-	Wed, 29 May 2024 10:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC42A167DB9;
+	Wed, 29 May 2024 10:50:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716979567; cv=none; b=JtMuUldAu2aBfXo22jeEhEHfqQB2uH2iNQS4eZE3LzGo1LK7hkqyCLT6FjNp3+ImW+Hn+oBGKXTAGBt4VNZBxSnhp4A+mOJ6/K8CRo7WKf+/643XNi9YD3/Jg0J3T7bnzZHMyyrzdUtemvkt9vHk9xEK1XOFnqvs+oT3R1bQFmw=
+	t=1716979850; cv=none; b=lYIceaYpygKDC0rdEiND/UXCuUEGq4l9J6v20J+SXnxfA0d7xT4XCXFtQsylGW+jyM49ZmnncLr6WPUBb4xYQC8YBF3xQ9Hy+2hAMMNmMDiLrSgsmgQkQCK8rPaLSY/qgT8qMMOBI+6uNCxGqMbNl2wzjTf74XF7kwV0kzZR1YI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716979567; c=relaxed/simple;
-	bh=HOoSo4pjtbV3Ghqme+A3tnlPor4EsiKnQdDkwiDHfjo=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=HyaVgde2rJUaV3S0O3O7FhZ6ziDlO5HRwFqFLfKdR5+LzfIS3HLGluGKdRsijAdgQ+lJHgRwWNt4ZYeqNnOvfQBrrdq/2+o3rWtqzjsgNdz8JRBJohMGbLV/Tvm0S8Uf5nVHF9gxO/Cq9XdyRtgsZTwpSrxAfYc5BBb/Y8KOk5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=hSU+aTn5; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1716979850; c=relaxed/simple;
+	bh=ON8VbFksVmbIPG/lyhHTYgnpBNOyPvXdvZ1EVrZ290Y=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=GxlPw9jdHr+6VOnLFwpSuaYecEpXQcY7IwvY3bkHS34B/Ruha4L+xqAO0NTStAuQ/ALWueWKFbu/rKNfi/QsXC2CuHaTZMsuCbm4vdNAiEu2W9BSKPZSoDBty6pGks12LcCT6opDJTX3EE91ZcaRvzwqwCWGM9NUCvTJkzs8ctc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ct3sZf7c; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-24fda23b9f2so950453fac.0;
+        Wed, 29 May 2024 03:50:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716979848; x=1717584648; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ON8VbFksVmbIPG/lyhHTYgnpBNOyPvXdvZ1EVrZ290Y=;
+        b=ct3sZf7c07HfXTpd5JFiBSSqq1HC3TJcJTQDrtdcCl086Ers9G74FTHEvClyC3FpJv
+         PDxwHLZ+shrG4M63umT5JSHYo3Ii06tSnCR1Tc9vbOPPW2lOxigyxd31WnGlSXl0RnYT
+         UljaqlQIMoHCWyAKebcWCI75dfYZ+LQyjPlym0d74cA9bWeE9+ZWi9D2e1ChmnsznTcO
+         kafHoTVCQAoVh8LpkiAOSApbWJIbestFc02sPbC61Qloiyt/2raD3rFV0aAqF9R5/45U
+         T8lA9Wx/kJMuWUhf3dqGuLUAvq2aMeDT8Fs7rjW/EFkkPEbUbdmi7LwANVkezehjBO5G
+         ogPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716979848; x=1717584648;
+        h=content-transfer-encoding:mime-version:subject:references
+         :in-reply-to:message-id:cc:to:from:date:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ON8VbFksVmbIPG/lyhHTYgnpBNOyPvXdvZ1EVrZ290Y=;
+        b=ZFqiJlLlgtwDY16KKsFINMU79xXAd2NpHsT8jpE++/r4P6ffQp2sqAXX3s5xdNbfju
+         Dn8NULHGt7O1OvW6YPl4pFtYru5RbzsdaXKjBPUCvail/hK8Y7Wlj9HlwCaSPDi9JIPF
+         uE0Irv5ta2LjLKUgTk3ruZ+V2f/OgbYtzOXUXSv6B6bPcTefNVk5kzNe05u+5cjiHPGa
+         GhiVuJ0D+ioMoS+87oj9z4cRRjaYr0q1KrVsbQK6mwCgjtwmW7jX9HfAhIGGVHKGv7Y6
+         eEWAzSNOCb0/kOckJ6YYB8mZh/XlsP8xUE2UN+zxpldWxa6PjfrAueVrjr3yGYSl8IZw
+         JX0w==
+X-Forwarded-Encrypted: i=1; AJvYcCVBVaW2hPxFsfxHDjMuoGc5HrAQe8UPVVvfwMDIX+XxmAfjB0ErmdArgsGBrXI6V1dM16OjI0Wb536xAGj4g8KwRGgV13GcUS7sxrJKdttV23O/OZUyXZShEXM/QMIJrgdVmMf6wK6O+g==
+X-Gm-Message-State: AOJu0Yz4A2mOEt2msADztSZ70Hh34+yGxGiaqjg6QIYOn4sp52KE3s7K
+	NXDR8SgdspRh9LgCpWi7+akW/7zaCN3zm6LDmRC+K3WzRh18za9I
+X-Google-Smtp-Source: AGHT+IEDsGCiyN149iX9lU2bvkB1z7h9rA7d3r9gRWABUoCAZd/4EOHcw9C0uBV4EXJZJiYtYzmp4A==
+X-Received: by 2002:a05:6870:55c9:b0:24f:e1be:39b4 with SMTP id 586e51a60fabf-24fe1be4a39mr14171911fac.46.1716979847520;
+        Wed, 29 May 2024 03:50:47 -0700 (PDT)
+Received: from [127.0.0.1] ([106.194.121.206])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f8fd4dcde6sm7780536b3a.211.2024.05.29.03.50.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 May 2024 03:50:47 -0700 (PDT)
+Date: Wed, 29 May 2024 16:20:41 +0530 (GMT+05:30)
+From: Shresth Prasad <shresthprasad7@gmail.com>
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: robh@kernel.org, saravanak@google.com,
+	DRI mailing list <dri-devel@lists.freedesktop.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com,
+	julia.lawall@inria.fr
+Message-ID: <06a5901b-a2f1-4e3f-9744-bbcb3a34f666@gmail.com>
+In-Reply-To: <8d95757c-fd05-4a48-ae9d-24d78d04d663@samsung.com>
+References: <20240515202915.16214-3-shresthprasad7@gmail.com> <CGME20240529101246eucas1p1266853c07f5178c7e3e4b8a264eb436e@eucas1p1.samsung.com> <8d95757c-fd05-4a48-ae9d-24d78d04d663@samsung.com>
+Subject: Re: [PATCH][next] of: property: Remove calls to of_node_put
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1716979558;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Im5u80iUUUUe5XP9ygdhbOcswtgjuo6Kj8ktu/o5Yl0=;
-	b=hSU+aTn5RwXlGNSAyaP2tG53Qb6mBmC1Vq/EoedF0Ql0LshpsBgmuuWToSvR/6VWE4f4lC
-	4TvUyRvdxIvBD44HcjttDavxiv+04zShXuN9z7NdWzSJUAdpTkdgS2VG7OpOKpbDhD6k8j
-	vsI3Y/F2+zdqqFr+cFNYg3Ut0NVTqGUs7JqezsM/af+NcaIzupekL684mX3/VXDNt+i+px
-	2B++7PUHXYeSJ0TA0Vumrdujwu5dtBBW4O2jMaQ/qmNBHst47shFzeNI9LTUuSgAT5DkRK
-	GxYBkZbZAyqM/Z9Of52F6kA1jHiXfq8dPE5GD8SwPN2Qn0P332DP4H0EUJ9piQ==
-Date: Wed, 29 May 2024 12:45:57 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, quentin.schulz@cherry.de, wens@kernel.org,
- daniel.lezcano@linaro.org, didi.debian@cknow.org,
- krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-In-Reply-To: <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
-Message-ID: <8f8623e29a479c4108141302e708dc3b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Correlation-ID: <06a5901b-a2f1-4e3f-9744-bbcb3a34f666@gmail.com>
 
-Hello Alexey.
+29 May 2024 3:42:48=E2=80=AFpm Marek Szyprowski <m.szyprowski@samsung.com>:
 
-On 2024-05-29 11:57, Alexey Charkov wrote:
-> On Wed, May 29, 2024 at 6:14 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> 
->> Rename and modify the RK3588 dtsi files a bit, to make preparations 
->> for
->> the ability to specify different CPU and GPU OPPs for each of the 
->> supported
->> RK3588 SoC variants, including the RK3588J.
->> 
->> As already discussed, [1][2][3] some of the different RK3588 SoC 
->> variants
->> require different OPPs, and it makes more sense to have the OPPs 
->> already
->> defined when a board dts includes one of the SoC dtsi files 
->> (rk3588.dtsi,
->> rk3588j.dtsi or rk3588s.dtsi), rather than requiring the board dts 
->> file to
->> also include a separate rk3588*-opp.dtsi file.  The choice of the SoC 
->> variant
->> is already made by the inclusion of the SoC dtsi file, and it doesn't 
->> make
->> much sense to, effectively, allow the board dts file to include and 
->> use an
->> incompatible set of OPPs for the already selected SoC variant.
-> 
-> Indeed, including just one .dtsi for the correct SoC variant and not
-> having to bother about what other bits and pieces are required to use
-> the full SoC functionality sounds great! Thanks for putting this
-> together so promptly!
-
-You're welcome. :)
-
-> Some considerations below.
-> 
->> No intended functional changes are introduced.  (Still to be 
->> additionally
->> verified if the patch moves forward from the RFC state.)
->> 
->> [1] 
->> https://lore.kernel.org/linux-rockchip/646a33e0-5c1b-471c-8183-2c0df40ea51a@cherry.de/
->> [2] 
->> https://lore.kernel.org/linux-rockchip/CABjd4Yxi=+3gkNnH3BysUzzYsji-=-yROtzEc8jM_g0roKB0-w@mail.gmail.com/
->> [3] 
->> https://lore.kernel.org/linux-rockchip/035a274be262528012173d463e25b55f@manjaro.org/
->> 
->> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> On 15.05.2024 22:29, Shresth Prasad wrote:
+>> Add __free cleanup handler to some variable initialisations, which
+>> ensures that the resource is freed as soon as the variable goes out of
+>> scope. Thus removing the need to manually free up the resource using
+>> of_node_put.
+>>=20
+>> Suggested-by: Julia Lawall <julia.lawall@inria.fr>
+>> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
 >> ---
->>  ...inctrl.dtsi => rk3588-common-pinctrl.dtsi} |    0
-> 
-> Renaming the pinctrl includes seems superfluous - maybe keep them as
-> they were to minimize churn?
+>=20
+> This patch landed in today's linux-next as commit b94d24c08ee1 ("of:
+> property: Remove calls to of_node_put"). I found that it triggers the
+> following warning while booting of the Samsung Exynos5800 based Pi
+> Chromebook (arch/arm/boot/dts/samsung/exynos5800-peach-pi.dts):
+>=20
+> OF: ERROR: of_node_release() detected bad of_node_put() on /panel
+> CPU: 2 PID: 68 Comm: kworker/u36:1 Not tainted
+> 6.10.0-rc1-00001-gb94d24c08ee1 #8619
+> Hardware name: Samsung Exynos (Flattened Device Tree)
+> Workqueue: events_unbound deferred_probe_work_func
+> tps65090 20-0048: No cache defaults, reading back from HW
+> Call trace:
+> =C2=A0unwind_backtrace from show_stack+0x10/0x14
+> =C2=A0show_stack from dump_stack_lvl+0x50/0x64
+> =C2=A0dump_stack_lvl from of_node_release+0x110/0x138
+> =C2=A0of_node_release from kobject_put+0x98/0x108
+> =C2=A0kobject_put from drm_of_find_panel_or_bridge+0x94/0xd8
+> =C2=A0drm_of_find_panel_or_bridge from exynos_dp_probe+0xf0/0x158 [exynos=
+drm]
+> =C2=A0exynos_dp_probe [exynosdrm] from platform_probe+0x80/0xc0
+> =C2=A0platform_probe from really_probe+0xc8/0x288
+> =C2=A0really_probe from __driver_probe_device+0x8c/0x190
+> =C2=A0__driver_probe_device from driver_probe_device+0x30/0xd0
+> =C2=A0driver_probe_device from __device_attach_driver+0x8c/0xbc
+> =C2=A0__device_attach_driver from bus_for_each_drv+0x74/0xc0
+> =C2=A0bus_for_each_drv from __device_attach+0xe8/0x184
+> =C2=A0__device_attach from bus_probe_device+0x88/0x8c
+> =C2=A0bus_probe_device from deferred_probe_work_func+0x7c/0xa8
+> =C2=A0deferred_probe_work_func from process_scheduled_works+0xe8/0x41c
+> =C2=A0process_scheduled_works from worker_thread+0x14c/0x35c
+> =C2=A0worker_thread from kthread+0xd0/0x104
+> =C2=A0kthread from ret_from_fork+0x14/0x28
+> Exception stack(0xf0a81fb0 to 0xf0a81ff8)
+>=20
+> OF: ERROR: next of_node_put() on this node will result in a kobject
+> warning 'refcount_t: underflow; use-after-free.'
+> ------------[ cut here ]------------
+> WARNING: CPU: 3 PID: 68 at lib/refcount.c:25 kobject_get+0xa0/0xa4
+> refcount_t: addition on 0; use-after-free.
+> Modules linked in: i2c_cros_ec_tunnel(+) cros_ec_keyb cros_ec_dev
+> cros_ec_spi cros_ec snd_soc_i2s snd_soc_idma snd_soc_max98090
+> snd_soc_snow snd_soc_s3c_dma snd_soc_core tpm_i2c_infineon ac97_bus
+> snd_pcm_dmaengine tpm exynosdrm libsha256 libaescfb snd_pcm analogix_dp
+> ecdh_generic samsung_dsim ecc snd_timer atmel_mxt_ts snd libaes
+> soundcore exynos_gsc s5p_jpeg s5p_mfc v4l2_mem2mem spi_s3c64xx
+> videobuf2_dma_contig exynos_adc pwm_samsung videobuf2_memops
+> videobuf2_v4l2 videodev phy_exynos_usb2 videobuf2_common ohci_exynos
+> ehci_exynos mc exynos_ppmu rtc_s3c exynos_rng s3c2410_wdt s5p_sss
+> phy_exynos_mipi_video phy_exynos_dp_video
+> CPU: 3 PID: 68 Comm: kworker/u36:1 Not tainted
+> 6.10.0-rc1-00001-gb94d24c08ee1 #8619
+> Hardware name: Samsung Exynos (Flattened Device Tree)
+> Workqueue: events_unbound deferred_probe_work_func
+> Call trace:
+> =C2=A0unwind_backtrace from show_stack+0x10/0x14
+> =C2=A0show_stack from dump_stack_lvl+0x50/0x64
+> =C2=A0dump_stack_lvl from __warn+0x108/0x12c
+> =C2=A0__warn from warn_slowpath_fmt+0x118/0x17c
+> =C2=A0warn_slowpath_fmt from kobject_get+0xa0/0xa4
+> =C2=A0kobject_get from of_node_get+0x14/0x1c
+> =C2=A0of_node_get from of_get_next_parent+0x24/0x50
+> =C2=A0of_get_next_parent from of_graph_get_port_parent.part.1+0x58/0xa4
+> =C2=A0of_graph_get_port_parent.part.1 from
+> of_graph_get_remote_port_parent+0x1c/0x38
+> =C2=A0of_graph_get_remote_port_parent from of_graph_get_remote_node+0x10/=
+0x6c
+> =C2=A0of_graph_get_remote_node from drm_of_find_panel_or_bridge+0x50/0xd8
+> =C2=A0drm_of_find_panel_or_bridge from exynos_dp_probe+0xf0/0x158 [exynos=
+drm]
+> =C2=A0exynos_dp_probe [exynosdrm] from platform_probe+0x80/0xc0
+> =C2=A0platform_probe from really_probe+0xc8/0x288
+> =C2=A0really_probe from __driver_probe_device+0x8c/0x190
+> =C2=A0__driver_probe_device from driver_probe_device+0x30/0xd0
+> =C2=A0driver_probe_device from __device_attach_driver+0x8c/0xbc
+> =C2=A0__device_attach_driver from bus_for_each_drv+0x74/0xc0
+> =C2=A0bus_for_each_drv from __device_attach+0xe8/0x184
+> =C2=A0__device_attach from bus_probe_device+0x88/0x8c
+> =C2=A0bus_probe_device from deferred_probe_work_func+0x7c/0xa8
+> =C2=A0deferred_probe_work_func from process_scheduled_works+0xe8/0x41c
+> =C2=A0process_scheduled_works from worker_thread+0x14c/0x35c
+> =C2=A0worker_thread from kthread+0xd0/0x104
+> =C2=A0kthread from ret_from_fork+0x14/0x28
+> Exception stack(0xf0a81fb0 to 0xf0a81ff8)
+>=20
+> ---[ end trace 0000000000000000 ]---
+> ------------[ cut here ]------------
+>=20
+> If I got this right, this points to the drm_of_find_panel_or_bridge()
+> function. I briefly scanned it, but I don't see any obvious
+> of_node_put() related issue there.
+>=20
+>=20
+>> I had submitted a similar patch a couple weeks ago addressing the same
+>> issue, but as it turns out I wasn't thorough enough and had left a coupl=
+e
+>> instances.
+>>=20
+>> I hope this isn't too big an issue.
+>> ---
+>> =C2=A0 drivers/of/property.c | 27 +++++++++++----------------
+>> =C2=A0 1 file changed, 11 insertions(+), 16 deletions(-)
+>>=20
+>> diff --git a/drivers/of/property.c b/drivers/of/property.c
+>> index 17b294e16c56..96a74f6a8d64 100644
+>> --- a/drivers/of/property.c
+>> +++ b/drivers/of/property.c
+>> @@ -773,15 +773,14 @@ EXPORT_SYMBOL(of_graph_get_port_parent);
+>> =C2=A0 struct device_node *of_graph_get_remote_port_parent(
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct device_node *node)
+>> =C2=A0 {
+>> -=C2=A0=C2=A0 struct device_node *np, *pp;
+>> +=C2=A0=C2=A0 struct device_node *pp;
+>> =C2=A0
+>> =C2=A0=C2=A0=C2=A0 /* Get remote endpoint node. */
+>> -=C2=A0=C2=A0 np =3D of_graph_get_remote_endpoint(node);
+>> +=C2=A0=C2=A0 struct device_node *np __free(device_node) =3D
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 of_graph_get_remote_endpoint(node);
+>> =C2=A0
+>> =C2=A0=C2=A0=C2=A0 pp =3D of_graph_get_port_parent(np);
+>> =C2=A0
+>> -=C2=A0=C2=A0 of_node_put(np);
+>> -
+>> =C2=A0=C2=A0=C2=A0 return pp;
+>> =C2=A0 }
+>> =C2=A0 EXPORT_SYMBOL(of_graph_get_remote_port_parent);
+>> @@ -835,17 +834,18 @@ EXPORT_SYMBOL(of_graph_get_endpoint_count);
+>> =C2=A0 struct device_node *of_graph_get_remote_node(const struct device_=
+node *node,
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u3=
+2 port, u32 endpoint)
+>> =C2=A0 {
+>> -=C2=A0=C2=A0 struct device_node *endpoint_node, *remote;
+>> +=C2=A0=C2=A0 struct device_node *endpoint_node __free(device_node) =3D
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 of_graph_get_endpoint_by_regs(node, port, endpoint);
+>> +
+>> +=C2=A0=C2=A0 struct device_node *remote __free(device_node) =3D
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 of_graph_get_remote_port_parent(endpoint_node);
+>> =C2=A0
+>> -=C2=A0=C2=A0 endpoint_node =3D of_graph_get_endpoint_by_regs(node, port=
+, endpoint);
+>> =C2=A0=C2=A0=C2=A0 if (!endpoint_node) {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_debug("no valid endpoint (=
+%d, %d) for node %pOF\n",
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ port, endpoint, node);
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return NULL;
+>> =C2=A0=C2=A0=C2=A0 }
+>> =C2=A0
+>> -=C2=A0=C2=A0 remote =3D of_graph_get_remote_port_parent(endpoint_node);
+>> -=C2=A0=C2=A0 of_node_put(endpoint_node);
+>> =C2=A0=C2=A0=C2=A0 if (!remote) {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_debug("no valid remote nod=
+e\n");
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return NULL;
+>> @@ -853,7 +853,6 @@ struct device_node *of_graph_get_remote_node(const s=
+truct device_node *node,
+>> =C2=A0
+>> =C2=A0=C2=A0=C2=A0 if (!of_device_is_available(remote)) {
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_debug("not available for r=
+emote node\n");
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of_node_put(remote);
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return NULL;
+>> =C2=A0=C2=A0=C2=A0 }
+>> =C2=A0
+>> @@ -1064,19 +1063,15 @@ static void of_link_to_phandle(struct device_nod=
+e *con_np,
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device_node *sup_np,
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u8 flags)
+>> =C2=A0 {
+>> -=C2=A0=C2=A0 struct device_node *tmp_np =3D of_node_get(sup_np);
+>> +=C2=A0=C2=A0 struct device_node *tmp_np __free(device_node) =3D of_node=
+_get(sup_np);
+>> =C2=A0
+>> =C2=A0=C2=A0=C2=A0 /* Check that sup_np and its ancestors are available.=
+ */
+>> =C2=A0=C2=A0=C2=A0 while (tmp_np) {
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (of_fwnode_handle(tmp_np)->dev)=
+ {
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of_node_pu=
+t(tmp_np);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (of_fwnode_handle(tmp_np)->dev)
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break=
+;
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>> =C2=A0
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!of_device_is_available(tmp_np=
+)) {
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of_node_pu=
+t(tmp_np);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!of_device_is_available(tmp_np=
+))
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 retur=
+n;
+>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>> =C2=A0
+>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmp_np =3D of_get_next_parent=
+(tmp_np);
+>> =C2=A0=C2=A0=C2=A0 }
+>=20
+> Best regards
+> --=20
+> Marek Szyprowski, PhD
+> Samsung R&D Institute Poland
 
-Believe it or not, the same thoughts crossed my mind.  However,
-after thinking a bit about it, I concluded that renaming the pinctrl
-.dtsi files as well makes the overall naming of the reworked RK3588
-.dtsi files more consistent.
+Thanks for letting me know.
 
-It's also rather neat to have the "common" and "fullfat" file pairs
-together in the arch/arm64/boot/dts/rockchip directory listing, when
-it's sorted by the file name, which is the default in most (if not
-all) environments.
+It seems this has already been fixed by Alexander Stein here:
+https://lore.kernel.org/all/20240529073246.537459-1-alexander.stein@ew.tq-g=
+roup.com/
 
->>  .../{rk3588s.dtsi => rk3588-common.dtsi}      |    2 +-
->>  ...nctrl.dtsi => rk3588-fullfat-pinctrl.dtsi} |    0
->>  .../{rk3588.dtsi => rk3588-fullfat.dtsi}      |    4 +-
-> 
-> To me, "fullfat" doesn't look super descriptive, albeit fun :)
-
-Yeah, I resorted to "fullfat" as some kind of a funny option. :)
-That's for the "beefy" SoC variants, so it kind of fits well. :)
-
-> How about we rename the existing rk3588.dtsi and rk3588s.dtsi to
-> something like rk3588-devices.dtsi and rk3588s-devices.dtsi
-> (preserving the inheritance between them), and then I add
-> rk3588s-opp.dtsi and rk3588j-opp.dtsi in a follow-up patch?
-
-The trouble with including "devices" into the filenames is, well,
-the fact that those files isn't about any devices, but about the
-SoC variants.  Thus, "devices" simply wouldn't fit there.
-
-Moreover, in the envisioned scheme there should be no separate
-OPP .dtsi files;  the OPP data should go directly into the new
-rk3588.dtsi, rk3588s.dtsi and rk3588j.dtsi files, where it actually
-belongs.  That's why those .dtsi files exist and are mostly empty,
-at least the way I see it.  I'll get back to this below.
-
-> Then we keep "thin" versions of rk3588.dtsi, rk3588s.dtsi and
-> rk3588j.dtsi for board files to include. The mix-and-match of
-> different on-chip devices and different OPPs then gets transparently
-> represented within those "thin" .dtsi, something like this:
-> 
-> rk3588.dtsi:
-> #include "rk3588-devices.dtsi"
-> #include "rk3588s-opp.dtsi"
-> 
-> rk3588s.dtsi:
-> #include "rk3588s-devices.dtsi"
-> #include "rk3588s-opp.dtsi"
-> 
-> rk3588j.dtsi:
-> #include "rk3588-devices.dtsi"
-> #include "rk3588j-opp.dtsi"
-
-Such a layout, in general, has also crossed my mind, but my conclusion
-was that having the per-SoC-variant OPP data specified directly in the
-reworked rk3588.dtsi, rk3588s.dtsi and rk3588j.dtsi files is a better
-option in the long term, even if we end up that way with rk3588.dtsi and
-rk3588s.dtsi repeating most (if not all) of the same OPP data.
-
-That way we'll have no roadblocks if, at some point, we end up with 
-having
-different OPPs defined for the RK3588 and the RK3588S variants.  Or 
-maybe
-even for the RK3582, which we don't know much about yet.
-
->>  arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  414 +--
->>  arch/arm64/boot/dts/rockchip/rk3588j.dtsi     |    6 +-
->>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 2671 
->> +----------------
-> 
-> Rename detection didn't do a particularly great job here - wonder if
-> we can do anything about it to minimize the patch size and ensure that
-> the change history is preserved for git blame...
-
-Yeah, that bothered me as well. :/  Unfortunately, I don't think that
-much can be done there, but I'll try fiddling with the values for the
---find-renames parameter for git-diff(1).
+Regards,
+Shresth
 
