@@ -1,142 +1,151 @@
-Return-Path: <devicetree+bounces-70678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFD18D3FF0
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F248D4018
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19AC2284B48
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 21:00:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B37A4288600
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 21:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0FB1C8FC2;
-	Wed, 29 May 2024 20:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F5CB1C8FC3;
+	Wed, 29 May 2024 21:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ajLQpywN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QWSteaDg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D151C68AE
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 20:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A7F1C8FA3;
+	Wed, 29 May 2024 21:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717016398; cv=none; b=Pa0od4F65OH2iR7vwM7wZbih6AVG2dc1inQVhvsaZ+jQziuiQr2kDsHEw514fytye7cJ/hSYTwGZIatoRXjK+fJIYqYBxixuZVBMno731dICXzasr0uKUFFHJKZTpO6E6jjGG6OsoxbFii5W/hlPv+lScTaOKyuPd6BYUgAQSrI=
+	t=1717017036; cv=none; b=urSPS9qMNfQXsC4A8kEDoDw9gVxyXqln9oVTPvWY4SYo9H/mcBuDegojDOM5L+pyDvBVQPiWOGOcqq4oF5PuTWY08FneT9wRnc8+FgSn38VyMolWklI6F6iCLuHD6rMKX/fxml1zb7c77wSfZIbo88u7US1GiqNPh+YLUmR5dvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717016398; c=relaxed/simple;
-	bh=0JIEoFJ3JrSuAxA+52iofxCdH9Ed8ss6mxR9tqmYJzI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZwkYQVUaHyrnWdZcEkpd2bwtfxvn8jk7U+wCf3Ug0hbSltcR5i2vuMZWhCnKrAvCy3kt6Uw81qb45FQm8cWyN9X+7cQez7hOy92i1+D8awkSqCLwLqX/EWIfB9FsbAbQZwELEdoD9K7xkGodDs3j1R/iIAChJtfVssfXm+cx+7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ajLQpywN; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6f8e7b50e18so153260a34.3
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 13:59:56 -0700 (PDT)
+	s=arc-20240116; t=1717017036; c=relaxed/simple;
+	bh=TExKMv+4EbRU2xpWl+6GrHNg8ZxwE5ZYEj2H6DGcaR8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jDvEu1ORy93dcq+IDWzyRztDjX+TMoOq8ZleBNu+6+uf5tnEhYe8VgTH86InREFO6CS00nLMpUCiXqLO4GjZDX+hxncs0oFC8o/Hz9/BMv0BQXQk1mK9aG6iaNhdpUE8Iywzbdy2oTrszDwl39jlfmbyP1VBtDr6oyejlVYOt8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QWSteaDg; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-4eaef863a08so65167e0c.1;
+        Wed, 29 May 2024 14:10:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1717016396; x=1717621196; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xcrwlkn4PrmA7KBIZPAmKm202+tU7DhEeT3No0NEPIQ=;
-        b=ajLQpywNx4mBdSL/A2qg8MNLiT2shdinHllQOOjGtOJqmhnfgrfMO2ypF8Ux7HklyU
-         9kVUyp5tSCYssmT2JWSl0GxXMfZT5T6c1jHFIM1ucyhydbbalnnA+/NWSOtN9bkK7pEu
-         Qd7Z3dgVMbm2SURteI1Oxm7U03kGOB5hZxSqV1MAu0G+QFcvWyFVmCJ7ZzoRX9totJwu
-         07AhoYSGV15yG7D+kHvdhOuF5vAXhvKjZtmw/lnv22qIUHWJSRbhpJ0LcP1GTnFzhVFs
-         ZUaYb5FiNyErwL1buBbetavGZ1e0RywVxlJZJ8+6WHxFFOI1EUQL0Fs9tDq6ysg/kmDV
-         8cfA==
+        d=gmail.com; s=20230601; t=1717017033; x=1717621833; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TeBhPfv3doSS7LHW7mFEHvT4SBZTyVzMD92UNoRgcAQ=;
+        b=QWSteaDge+gQWr85WPnZw+lNF+JMkGp2Xrcna3hgpxMpew8UHwirLj+AH+jNsW3P6g
+         A0KY+wDV9UihhCknFduXtF4ACo67Sga4zS3GfnQLVvsV2b/SaBjuCv5YcUxJsuUalI6s
+         EXKEr8FJKnr/SWzvXsZPlk/GvIcp40+895F4HOfR9StJg9lJ+SOV4ZBUllaPP7gnOQi/
+         70WWFAaiHr8hD8JkT67/atSaec+jdTSQmqcOPK1fK9ozUVJKAEg1ZmKepLP8m6NBMyGW
+         sQP8To7sVJwJmupQFlMG3h4jgSjQHOERssovu9jZENY9VNIEE1qKwJ3dtiU7VfqIhne+
+         TqPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717016396; x=1717621196;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xcrwlkn4PrmA7KBIZPAmKm202+tU7DhEeT3No0NEPIQ=;
-        b=enhfo3r3OQRpvlqybKz8F47gY6/9Gtjv7nuTUjpy2HQvdkHmbuUbIYKj11avylkAjZ
-         PQG4lKEAa4BqA3ST2wAMu/Lcedk7JvNDcdfHFPYv+1LJjb50Qu13red2G7rpCfc4xzGt
-         hlGLnCjhifIyWNbepIuiHEY+jIHm34pN/iAE30U5I94QtmUYzsITXhLJpGq4IpAbVBg1
-         LeHJrRcquwzOIVbcu+gZXr0gRRdL8js/HH4Tqx0OV60f20L3Dp9gbYbIY8M4nviw4ePL
-         ZOlstYH3/MXkLN3epZnUxEszfzYx5eex4sK1DG6OxAPOqxl6gPgJWqR5BM7bbbDqjIer
-         mQuA==
-X-Forwarded-Encrypted: i=1; AJvYcCVTd8vl0k1zUk04UskwVk/6ZQg2vrr6Xs4LwvzDGvUCpCRb/7YYo8lASW0SG+piDIyHTcuoac+HtsJxDYKiri3KMj+ZitzcryOLCw==
-X-Gm-Message-State: AOJu0YxfOoNlZSUAwoLO9CGsjuLENDC6W7XuDPrISTo2JewKSp/4MW1P
-	ESNr4ijGzzaV5oLMpLTHhTQ/NJ4v/CAZrxAlU5iYSxUFJc3hw2tED5cOlZKlrtw=
-X-Google-Smtp-Source: AGHT+IFBe7dCkzsKuMo5AAfMZUrEPkQh+gWfbh9oGlUyCfIVM90LaPstgFxX6kYR1L/UseeB6AGkLg==
-X-Received: by 2002:a05:6830:4490:b0:6f0:47a2:c1ab with SMTP id 46e09a7af769-6f90aeaf329mr354404a34.16.1717016395753;
-        Wed, 29 May 2024 13:59:55 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-6f8d11ea076sm2413525a34.58.2024.05.29.13.59.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 May 2024 13:59:55 -0700 (PDT)
-Message-ID: <30192c2a-5275-41ac-bc20-aa5f436846a3@baylibre.com>
-Date: Wed, 29 May 2024 15:59:54 -0500
+        d=1e100.net; s=20230601; t=1717017033; x=1717621833;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TeBhPfv3doSS7LHW7mFEHvT4SBZTyVzMD92UNoRgcAQ=;
+        b=T7RmyzB0WgCijf2OCl3SPKH3ndwr7g9WzwrdW3LKGbWg3ubwHjFPIlhRrTnIRWkGax
+         sfuNT99EdVKiwZiIZvI+C3yCTF+zBRLqbp6KCVbWwpjaavYW4/QxKYkDgYCe/Q8rFqq+
+         dn/U5AOxHZ0MkNPvFu2MxwEWBsYj+8jYUAKBJQwhdo1FlW6ats/5WhnOsUm+HrC+69nU
+         Tf/BOWfLmQukcQffYqzDt2Y4NuFwHwWl6+w4v86q5Zc42L0UVUcrqF/fztk3iQblocMr
+         6Ikd3RKSs8eNiKowrMgOFpeWH2Q+DhQGKtIjTByS3FV/aYp/c/NkKIrg9n6httO51fvN
+         6avg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqhbwyy9cAu9B4OFibVoKDpYG5239kSlAPxgwipI4xOyOV6ScNQov8G7ZOTKZauZ/m1zrRAmdBTJKB4wd8XhLCWH2TE9qPcaf2z3cS0l/YVFU08Weta9vTuoTYKjnGH1SH3k2Nn/rch/jMstnYwwGSwD7fat4xc6CFjv7YwF4HlEKyXTbL0rpVihkFfqRfP4zgIhqO5e24m6EkCQA2BbAOFwmbsm2M
+X-Gm-Message-State: AOJu0YzWHBdWSoPcZFc9mTtwhTIY7cgW06jbsAwx+4u4fpk3Pg1DDlfu
+	zwjwazZ4I2hBTO4MpmWHLlCjHhFLqG6sLVxcERBtGuOg4Q5VjTrn/hSVsYoEUNWoXieB+SZUKjY
+	v/hnYg64KY7tCbymJlwU/I9GhxRqJ+LzYOiY=
+X-Google-Smtp-Source: AGHT+IG3W0S3Z2Qe9a0+buJwHRoZAUEH7EgzRGQidkKafkzDX/o4tZaGyxUyz+m2abkLCU1Mb4Kwbf8Ewf5XjrfBUVY=
+X-Received: by 2002:a05:6122:91a:b0:4e4:e98a:7b02 with SMTP id
+ 71dfb90a1353d-4eaf2186157mr318895e0c.4.1717017033385; Wed, 29 May 2024
+ 14:10:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] iio: adc: ad7173: Add support for AD411x devices
-To: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
- <20240527-ad4111-v3-5-7e9eddbbd3eb@analog.com>
- <6f18184de4a37993baedc15b44ecf0a6834a24d1.camel@gmail.com>
- <917bc1d9-fbdc-4ca2-a156-813b57c8201e@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <917bc1d9-fbdc-4ca2-a156-813b57c8201e@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240524082800.333991-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240524082800.333991-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWzZP2d6kRw1oTkMYgzS46J68gR_bg14==HCvVpkp0sJA@mail.gmail.com>
+In-Reply-To: <CAMuHMdWzZP2d6kRw1oTkMYgzS46J68gR_bg14==HCvVpkp0sJA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 29 May 2024 22:09:14 +0100
+Message-ID: <CA+V-a8uxwiof-hLPRpYCnDkVs8tj+-+v8GQLSSkMFUP13cuoXQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: clock: Add R9A09G057 CPG Clock and Reset Definitions
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/29/24 9:03 AM, Ceclan, Dumitru wrote:
-> On 29/05/2024 15:46, Nuno Sá wrote:
->> On Mon, 2024-05-27 at 20:02 +0300, Dumitru Ceclan via B4 Relay wrote:
->>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> 
-> ...
-> 
->>>  static const struct ad7173_device_info ad7173_device_info[] = {
->>> +	[ID_AD4111] = {
->>> +		.name = "ad4111",
->>> +		.id = AD7173_AD4111_AD4112_AD4114_ID,
->>> +		.num_voltage_inputs_with_divider = 8,
->>> +		.num_channels = 16,
->>> +		.num_configs = 8,
->>> +		.num_voltage_inputs = 8,
->>> +		.num_gpios = 2,
->>> +		.higher_gpio_bits = true,
->>> +		.has_temp = true,
->>> +		.has_vcom_input = true,
->>> +		.has_input_buf = true,
->>> +		.has_current_inputs = true,
->>> +		.has_int_ref = true,
->>> +		.clock = 2 * HZ_PER_MHZ,
->>> +		.sinc5_data_rates = ad7173_sinc5_data_rates,
->>> +		.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
->>> +	},
->>
->> At some point it would be nice to drop the ad7173_device_info array...
->>
-> What are good alternatives to this?
+Hi Geert,
 
-Drivers like ad7091r8 have individual static struct ad7091r_init_info
-instead of putting them all in an array. I like doing it that
-way because it makes less code to read compared to having the
-array.
+Thank you for the review.
 
-It would let us get rid of enum ad7173_ids, have one level less
-indent on each static const struct ad7173_device_info and 
+On Mon, May 27, 2024 at 10:18=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, May 24, 2024 at 10:29=E2=80=AFAM Prabhakar <prabhakar.csengg@gmai=
+l.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Define RZ/V2H(P) (R9A09G057) Clock Pulse Generator module clock outputs
+> > (CPG_CLK_ON* registers), and reset definitions (CPG_RST_* registers)
+> > in Section 4.4.2 and 4.4.3 ("List of Clock/Reset Signals") of the RZ/V2=
+H(P)
+> > Hardware User's Manual (Rev.1.01, Feb. 2024).
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/r9a09g057-cpg.h
+> > @@ -0,0 +1,644 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > + *
+> > + * Copyright (C) 2024 Renesas Electronics Corp.
+> > + */
+> > +#ifndef __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
+> > +#define __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
+> > +
+> > +#include <dt-bindings/clock/renesas-cpg-mssr.h>
+> > +
+> > +/* Clock list */
+>
+> No distinction between Core and Module clocks?
+>
+I was in two minds here. Would you prefer clocks with no CGC support
+to be listed as core clocks?
 
-{ .compatible = "adi,ad7172-2", .data = &ad7173_device_info },
+> > +#define R9A09G057_SYS_0_PCLK                           0
+> > +#define R9A09G057_DMAC_0_ACLK                          1
+> > +#define R9A09G057_DMAC_1_ACLK                          2
+> > +#define R9A09G057_DMAC_2_ACLK                          3
+>
+> [...]
+>
+> > +/* Resets list */
+>
+> [...]
+>
+> No power domain specifiers, as mentioned in PATCH 1/4?
+>
+OK, I'll add the power domains in this patch.
 
-would now fit on one line since we no longer need the array
-index.
-
+Cheers,
+Prabhakar
 
