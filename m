@@ -1,125 +1,112 @@
-Return-Path: <devicetree+bounces-70703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2A9B8D41A1
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:02:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D34C8D41EB
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:16:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE364285A4E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:02:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE6241C21E26
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B835D16E870;
-	Wed, 29 May 2024 23:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67FA15ADBC;
+	Wed, 29 May 2024 23:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gfuCF+/4"
+	dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b="dA3Qf+Bx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.kaechele.ca (mail.kaechele.ca [54.39.219.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A1D15D5A0;
-	Wed, 29 May 2024 23:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B3928F3;
+	Wed, 29 May 2024 23:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.39.219.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717023727; cv=none; b=rNMvH960ms+nsyX+lSzcKbov6unxk5NRja+DFUAT8SPYMgvKbH9F5RhfGzDDlPNn61HbdqRg67AKO3cVhMFvAacgkVL4t8MOrnN4JcLfH6ONdXXA51hQOTWkpkcc/A9Yiyvu/pap8+pjeZW8NIfPluuRzihQ+frpZZfsqi3yP4M=
+	t=1717024577; cv=none; b=qAvNgY6AJQ4mtRUfFQnCRzYrAf2d6h4ZTjYoIpf/bPkvG8/d+jKXFWMrAWxP72vfO+3f2ZlNFeT7dJ0TfORTk0fBgfDP7SctehonbvYbtoiutdKY7AIS7PrFodqs8+iAI1LWvvbRN9sqEaWW4P+I0AcE1y5WvPSoiPWEXsafvz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717023727; c=relaxed/simple;
-	bh=VrICSpY4lWFVsBkw4z6wwKr+wa6iDMtPMEtpvDxbAIs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EQRi4tZ7ALr46rmeUxWeLQ9Z8djqkArWmGKaqqIUJC19LEyGp1SIUlUJ5XPFvblmmPZZHaAr232uhcjK7636F8vtuTjGLUeLgG6GUluy4uBV4RRSkdf0SMVuNYbth5PLZeVXSb0bukmSrfBTbzngDgVm7Qh9MOXk1BUOo36XXBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gfuCF+/4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TMfcRK018820;
-	Wed, 29 May 2024 23:01:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xXEZyY3bmGldVNf9aSPLwMytmTFcqI3zMsrgbKK61/8=; b=gfuCF+/4aXjF4mYQ
-	GTl/a8Sg8dvuFv5lAcycXHmEd5TLENSe//uw+q/E1C0RFu0E/SRNmhWU/8biwPmL
-	bQNjnbNmiLgxBTFPOZ7zxPdQFMQKvJRhpxNY4+B/6Ot3s06q8Wuc8O5yu7nSj0DK
-	b2+UffMLlJyL+J0aTHfKr/FS/EAX8NV/sm5TbzIgaWd+sGYkF77wSps/nk+GR+JU
-	vSHzqrHaFR/8YpaVEIzzWR8I9Qvtuvk/kZb8UMZK7RNpDvYa2KkhVjNwTc1SeFka
-	WKVnFszOAuVQ2ueWDNTTxx/uzZElz0ryfVxwgSfDm0+rrEZg4bWTxnwl+8vbpNtd
-	SRBUmg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0xahqp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 23:01:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TN1mp2029099
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 23:01:48 GMT
-Received: from [10.71.110.249] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
- 2024 16:01:39 -0700
-Message-ID: <abcb89b5-a29f-944e-6d1f-92a434e6f4b7@quicinc.com>
-Date: Wed, 29 May 2024 16:01:37 -0700
+	s=arc-20240116; t=1717024577; c=relaxed/simple;
+	bh=0mxyy6nmrKWMs62jGYfJK+jI1mtrNo02vUVORzUuSmM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=NF4N7R3+c5UT1/2kBDsq5oYU0g/1Ztrpri+1VnbjKdhy5bOjSrzY60VGa59btLs4OMZUlilw4HUlVD4l3jUIGRnPnoutJfbTrp4H14bjZFxvBY5L0lNvtNeuPrM3+23LzZB0s9kXdKOsuZ1OvkCfZ5xC4/s41+5upVTQo0EocgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca; spf=pass smtp.mailfrom=kaechele.ca; dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b=dA3Qf+Bx; arc=none smtp.client-ip=54.39.219.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaechele.ca
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 89CD9C005F;
+	Wed, 29 May 2024 19:08:26 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaechele.ca; s=201907;
+	t=1717024109; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=PDLpjtD8+3OyvFRYxZd0ZhadxMjnIfuZmLlbltpqaZ4=;
+	b=dA3Qf+BxPAIQ7NCoICy7S3OpYAGFkO3PKWXmv7LQ/YiG5E4Uim1T12jk0pqy3ACnzqhXUL
+	gpjQl8704UWBpWOD3J19fZeuEHSUSEapfZwLi2HVq3Mtbq2uwEK7RuVekibABdryz6MLGL
+	oOLl+hux41Zz5Vc3h5rFyZi+N7mntDc=
+Message-ID: <b065e243-58dc-4ebe-8dbc-8b23c0b46cd1@kaechele.ca>
+Date: Wed, 29 May 2024 19:07:23 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 6/7] drm/msm/dsi: parse vsync source from device tree
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] input: himax_hx83112b: implement MCU register
+ reading
+From: Felix Kaechele <felix@kaechele.ca>
+To: Mark Brown <broonie@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Job Noorman <job@noorman.info>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240511121245.109644-1-felix@kaechele.ca>
+ <20240511121245.109644-4-felix@kaechele.ca> <ZkKb5_SRNwG1pRou@google.com>
+ <44570cd2-9540-47f8-a409-26220b0812fb@sirena.org.uk>
+ <afab9026-e843-4cc4-8733-f45e9ab34276@kaechele.ca>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Daniel
- Vetter" <daniel@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <20240520-dpu-handle-te-signal-v1-6-f273b42a089c@linaro.org>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20240520-dpu-handle-te-signal-v1-6-f273b42a089c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pZkZfGPbZ98B4mP6lkVPqHySk3P7N8kC
-X-Proofpoint-ORIG-GUID: pZkZfGPbZ98B4mP6lkVPqHySk3P7N8kC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-29_16,2024-05-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- mlxlogscore=914 priorityscore=1501 clxscore=1015 bulkscore=0 phishscore=0
- malwarescore=0 mlxscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2405170001
- definitions=main-2405290165
+In-Reply-To: <afab9026-e843-4cc4-8733-f45e9ab34276@kaechele.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-
-
-On 5/20/2024 5:12 AM, Dmitry Baryshkov wrote:
-> Allow board's device tree to specify the vsync source (aka TE source).
-> If the property is omitted, the display controller driver will use the
-> default setting.
+On 2024-05-14 10:01, Felix Kaechele wrote:
+> On 2024-05-14 05:46, Mark Brown wrote:
+>> On Mon, May 13, 2024 at 04:01:59PM -0700, Dmitry Torokhov wrote:
+>>> On Sat, May 11, 2024 at 08:12:24AM -0400, Felix Kaechele wrote:
+>>>> Implement reading from the MCU in a more universal fashion. This allows
+>>>> properly handling reads of more than 4 bytes using the AHB FIFO
+>>>> implemented in the chip.
+>>
+>>> Mark, do we have anything in regmap to support this better or having a
+>>> wrapper is the best solution here?
+>>
+>> No, I've not seen something that explicitly requires toggling a burst
+>> mode on and off to do a bulk operation.  Off the top of my head I'd
+>> suggest just always leaving the burst mode enabled but I assume there's
+>> some downside to doing that.  We could add something but I'm not sure if
+>> it's worth it without having seen any other devices with the same need.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/gpu/drm/msm/dsi/dsi.h         |  1 +
->   drivers/gpu/drm/msm/dsi/dsi_host.c    | 11 +++++++++++
->   drivers/gpu/drm/msm/dsi/dsi_manager.c |  5 +++++
->   drivers/gpu/drm/msm/msm_drv.h         |  6 ++++++
->   4 files changed, 23 insertions(+)
-> 
+> I can experiment some more with just leaving burst mode enabled.
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+I've done some testing now and can confirm that, unfortunately, not 
+enabling burst mode for every read of the FIFO register results in 
+unreliable touchscreen operation.
+
+For testing purposes I only enabled burst mode once at both probe and 
+resume.
+The touchscreen will stop working both randomly in normal operation and 
+reproducibly after returning from screen blanking.
+My wild guess is that DSI commands (e.g. for re-initializing the panel) 
+alter the state of the IC such that the burst mode on the I2C interface 
+ends up disabled again.
+
+That means the bus read function from this current v2 series could be 
+used as-is.
+I have a v3 in the pipeline to address the comments Conor made on 
+another patch in the series.
+So far those are the only changes compared to this v2. If you have any 
+other ideas for what I could test in regards to this, please let me 
+know. Otherwise I'll be sending v3 in the next few days.
+
+Regards,
+Felix
 
