@@ -1,167 +1,114 @@
-Return-Path: <devicetree+bounces-70175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5479B8D2ACC
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 04:29:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93ECC8D2B48
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 05:10:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7B12B22E81
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:29:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0128E285F87
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 03:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED95B15ADBC;
-	Wed, 29 May 2024 02:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442CE15B124;
+	Wed, 29 May 2024 03:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KoOiWnAR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iEjtP2qp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D842AEFD;
-	Wed, 29 May 2024 02:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 089A826AD3;
+	Wed, 29 May 2024 03:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716949737; cv=none; b=WSoFdYdCfAnIKN+SuXgwJ6yaUVNZblEr9xBnKRGbg0uT5W7qWQkISRxXcsVUMyyEG2pRCnCttWtr6Bfq4BbcTswqY5lEibTYWcC+Kgdsz7roejCSjymjmmYreduzgd14nanU6ZLiyHXKRjwt7nAcdkDcp7tezZYpxmzKo1nx/0g=
+	t=1716952237; cv=none; b=lfl2r63hoO+IGsrWtDmu4yesHmcH5BNxLOo96JDIIwIBjTUqe9aKGkpvT56KVeLlFmi77lO/mpqr7nDHm/wehIPGL6SdmCbQqqO8E+u2QLcidZymNTq4AGVVcVra2xAhplUJeINKWPK3Wm3NLPzABhE/7qEQ0771hWy8CvSgrJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716949737; c=relaxed/simple;
-	bh=ZwvUORaxzc0vrGFqCdwHpqmj4IP8E9GxhkTzYLGO4/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EKFcxhP+LKrwcowqqH3mdQiF6MqOmVm7swi/3UKGrWQYm+j7AoCAi5QN/qG0KQFuDPYl9/VRW6WDoSGFjmQKjG6dIKu2CvLwkHpRF+cKYfO0YPZJe8K41uX6Vca4S0iNM0wosk/VH7Qro5xY2HhvZ6LGTYn5ucZlziilP/2SAiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KoOiWnAR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD459C3277B;
-	Wed, 29 May 2024 02:28:55 +0000 (UTC)
+	s=arc-20240116; t=1716952237; c=relaxed/simple;
+	bh=IgTEkVYd46Ru6As3hGpXvTy9hURuoQjJ4M75ryPeIBQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BisOGRmFy9/EaTHmnR78fUotZhoQlk3VadEBGosdgknopQBu6BUT4YnjseaQ0e0eeI8qEZB+a0icTILy0SDBcVsxMlREikjDF39F4vdkPWhBVk9pADJuMwaobERI009D6udPdGoCJRr+NaqFUGgaS7AsggYCB+Eu0gLqpC3q1vM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iEjtP2qp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 75CD8C2BD10;
+	Wed, 29 May 2024 03:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716949737;
-	bh=ZwvUORaxzc0vrGFqCdwHpqmj4IP8E9GxhkTzYLGO4/w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KoOiWnARhGc9ZaTdHga34C//fejSGA1/f5faW0EmsorMft6hRkhydRTmN/aHLoMb+
-	 igEjT3Zo5OXCK8ab8I41PJXqG2UGKzdQXOrHSV/hDEmuSzey92Nfu2dQnGpk9hw2Ox
-	 eHLiVveiY8oS4XULy8Q2gH0gby1KpqtcDsD+dzJol2jeBuHv4gH7dQQ9MniEmxY49E
-	 KxCL/HSqe3xbuU/B1wgi/7BtrQYL3or3DwxZw5g5AYtyXavyz8NSt7VcoMRy4NPhCG
-	 yJ31hRi0SYVuR/ZKhYhyuJ58vc3Cg2yvse7wUcU3mOtkrcBleCdu86PNrMl4Clizrj
-	 MSag0j0ZzHLLA==
-Date: Tue, 28 May 2024 21:28:54 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, 
-	Kalle Valo <kvalo@kernel.org>, neil.armstrong@linaro.org, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Loic Poulain <loic.poulain@linaro.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, wcn36xx@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH 01/12] soc: qcom: add firmware name helper
-Message-ID: <pd3jgsd2ps73qd2h4rdxavd4zmyeqrqmslkbuwtgwlotm4tzgb@bb5japc6opcq>
-References: <20240521-qcom-firmware-name-v1-0-99a6d32b1e5e@linaro.org>
- <20240521-qcom-firmware-name-v1-1-99a6d32b1e5e@linaro.org>
- <a45b53f3-b2a5-4094-af5a-1281e0f94d2f@linaro.org>
- <CAA8EJprxYsoug0ipRHTmX45vaFLzJCUF0dQWOc=QLs4y6uZ1rA@mail.gmail.com>
- <878r03csxn.fsf@kernel.org>
- <CAA8EJpqkgpCb57DGka0ckbPz=2YiaHzxmiNzG39ad5y6smgO5A@mail.gmail.com>
- <Zk52IHqAfOnVDm50@hu-bjorande-lv.qualcomm.com>
- <CAA8EJpogG5wW2mUUkYFtnnZLMVuneU4Wie6GBfYytSYe0zQ77Q@mail.gmail.com>
+	s=k20201202; t=1716952236;
+	bh=IgTEkVYd46Ru6As3hGpXvTy9hURuoQjJ4M75ryPeIBQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=iEjtP2qpfamyS3nvDrUSSup1aUJp1DCxrxKAQnLjRU3bipLyP9uPtTgQ2BlSXOH7X
+	 VhELVBibjy1+hdD6T2B6q502EG5X+U8nF6lUMHio2aGTnHvBLekQVyBmFKL4AMElKf
+	 7bYsgkaTp8+qy1qVYBltii6CwZE2g3hwWhAmlSDMOPv2rrWTVTw4/o9jILPQqpDPCr
+	 f2ILY7/ObIeJWeud+xb0LfEXuL1/USd6bKLfl9pTCwn7ymAwFSpFzcdTXB3pvIcTUM
+	 cpR74z4XNBRn8fCwii+38+u5pQOV4/GXjssJznC2nexlxT+uy9/KhvlVKGKwFxXi+e
+	 Tl9tO14kBAZYA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F6CBC25B78;
+	Wed, 29 May 2024 03:10:36 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/3] Power: A4: add power domain driver
+Date: Wed, 29 May 2024 11:10:32 +0800
+Message-Id: <20240529-a4_secpowerdomain-v2-0-47502fc0eaf3@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpogG5wW2mUUkYFtnnZLMVuneU4Wie6GBfYytSYe0zQ77Q@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKicVmYC/32NQQ7CIBBFr9LMWgwg1bYr72EaQ2HaTiLQgKmah
+ ruLPYDL95L//gYJI2GCrtog4kqJgi8gDxWYWfsJGdnCILlUvJYN0+qe0CzhhdEGp8mzGgfO67N
+ q2hOHslsijvTem7e+8EzpGeJnv1jFz/6rrYJxJnVrL3ZsByGbq3aPMJE5muCgzzl/AZKJC2S0A
+ AAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716952234; l=1048;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=IgTEkVYd46Ru6As3hGpXvTy9hURuoQjJ4M75ryPeIBQ=;
+ b=NG8/Fqi40DTnl0o5BZrocIxFVchLkBPLoaxBqkwU1c+QmRw1GofHLrZpide+starD0xgZ4tj8
+ Zw/S3CC56lyAm7+MtKdIyrDDYx5Z2i6Gxtjne3EEM8NHZ1PdjdFaSsW
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On Mon, May 27, 2024 at 02:42:44PM GMT, Dmitry Baryshkov wrote:
-> On Thu, 23 May 2024 at 01:48, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
-> >
-> > On Tue, May 21, 2024 at 03:08:31PM +0200, Dmitry Baryshkov wrote:
-> > > On Tue, 21 May 2024 at 13:20, Kalle Valo <kvalo@kernel.org> wrote:
-> > > >
-> > > > Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
-> > > >
-> > > > > On Tue, 21 May 2024 at 12:52, <neil.armstrong@linaro.org> wrote:
-> > > > >>
-> > > > >> On 21/05/2024 11:45, Dmitry Baryshkov wrote:
-> > > > >> > Qualcomm platforms have different sets of the firmware files, which
-> > > > >> > differ from platform to platform (and from board to board, due to the
-> > > > >> > embedded signatures). Rather than listing all the firmware files,
-> > > > >> > including full paths, in the DT, provide a way to determine firmware
-> > > > >> > path based on the root DT node compatible.
-> > > > >>
-> > > > >> Ok this looks quite over-engineered but necessary to handle the legacy,
-> > > > >> but I really think we should add a way to look for a board-specific path
-> > > > >> first and fallback to those SoC specific paths.
-> > > > >
-> > > > > Again, CONFIG_FW_LOADER_USER_HELPER => delays.
-> > > >
-> > > > To me this also looks like very over-engineered, can you elaborate more
-> > > > why this is needed? Concrete examples would help to understand better.
-> > >
-> > > Sure. During the meeting last week Arnd suggested evaluating if we can
-> > > drop firmware-name from the board DT files. Several reasons for that:
-> > > - DT should describe the hardware, not the Linux-firmware locations
-> > > - having firmware name in DT complicates updating the tree to use
-> > > different firmware API (think of mbn vs mdt vs any other format)
-> > > - If the DT gets supplied by the vendor (e.g. for
-> > > SystemReady-certified devices), there should be a sync between the
-> > > vendor's DT, linux kernel and the rootfs. Dropping firmware names from
-> > > DT solves that by removing one piece of the equation
-> > >
-> > > Now for the complexity of the solution. Each SoC family has their own
-> > > firmware set. This includes firmware for the DSPs, for modem, WiFi
-> > > bits, GPU shader, etc.
-> > > For the development boards these devices are signed by the testing key
-> > > and the actual signature is not validated against the root of trust
-> > > certificate.
-> > > For the end-user devices the signature is actually validated against
-> > > the bits fused to the SoC during manufacturing process. CA certificate
-> > > (and thus the fuses) differ from vendor to vendor (and from the device
-> > > to device)
-> > >
-> > > Not all of the firmware files are a part of the public linux-firmware
-> > > tree. However we need to support the rootfs bundled with the firmware
-> > > for different platforms (both public and vendor). The non-signed files
-> > > come from the Adreno GPU and can be shared between platforms. All
-> > > other files are SoC-specific and in some cases device-specific.
-> > >
-> > > So for example the SDM845 db845c (open device) loads following firmware files:
-> > > Not signed:
-> > > - qcom/a630_sqe.fw
-> > > - qcom/a630_gmu.bin
-> > >
-> > > Signed, will work for any non-secured sdm845 device:
-> > > - qcom/sdm845/a630_zap.mbn
-> > > - qcom/sdm845/adsp.mbn
-> > > - qcom/sdm845/cdsp.mbn
-> > > - qcom/sdm485/mba.mbn
-> > > - qcom/sdm845/modem.mbn
-> > > - qcom/sdm845/wlanmdsp.mbn (loaded via TQFTP)
-> > > - qcom/venus-5.2/venus.mbn
-> > >
-> > > Signed, works only for DB845c.
-> > > - qcom/sdm845/Thundercomm/db845c/slpi.mbn
-> > >
-> > > In comparison, the SDM845 Pixel-3 phone (aka blueline) should load the
-> > > following firmware files:
-> > > - qcom/a630_sqe.fw (the same, non-signed file)
-> > > - qcom/a630_gmu.bin (the same, non-signed file)
-> > > - qcom/sdm845/Google/blueline/a630_zap.mbn
-> >
-> > How do you get from "a630_zap.mbn" to this? By extending the lookup
-> > table for every target, or what am I missing?
-> 
-> More or less so. Matching the root OF node gives us the firmware
-> location, then it gets prepended to all firmware targets. Not an ideal
-> solution, as there is no fallback support, but at least it gives us
-> some points to discuss (and to decide whether to move to some
-> particular direction or to abandon the idea completely, making Arnd
-> unhappy again).
-> 
+Add power controller driver support for Amlogic A4 SoC.
 
-I understand the desire to not put linux-firmware-specific paths in the
-DeviceTree, but I think I'm less keen on having a big lookup table in
-the kernel...
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v2:
+- dts: Move power-controller node to be a child of secure-monitor.
+- dts: Include power head file.
+- Link to v1: https://lore.kernel.org/r/20240528-a4_secpowerdomain-v1-0-2a9d7df9b128@amlogic.com
 
-Regards,
-Bjorn
+---
+Xianwei Zhao (3):
+      dt-bindings: power: add Amlogic A4 power domains
+      pmdomain: amlogic: Add support for A4 power domains controller
+      arm64: dts: amlogic: a4: add power domain controller node
+
+ .../bindings/power/amlogic,meson-sec-pwrc.yaml     |  1 +
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 10 ++++++++
+ drivers/pmdomain/amlogic/meson-secure-pwrc.c       | 28 ++++++++++++++++++++++
+ include/dt-bindings/power/amlogic,a4-pwrc.h        | 21 ++++++++++++++++
+ 4 files changed, 60 insertions(+)
+---
+base-commit: 456f4f5e6e6d3a2228501068a37ce13fe0b333d4
+change-id: 20240528-a4_secpowerdomain-5eb005648930
+
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
