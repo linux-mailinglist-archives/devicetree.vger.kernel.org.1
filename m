@@ -1,330 +1,170 @@
-Return-Path: <devicetree+bounces-70141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF068D2926
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 01:57:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0793D8D293F
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C174DB25844
-	for <lists+devicetree@lfdr.de>; Tue, 28 May 2024 23:57:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B155F2868AE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 00:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F9A14374F;
-	Tue, 28 May 2024 23:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7B2D2EE;
+	Wed, 29 May 2024 00:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xKbW0B7x"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="aopIU6H9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD261142E90
-	for <devicetree@vger.kernel.org>; Tue, 28 May 2024 23:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9D6D27A;
+	Wed, 29 May 2024 00:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716940574; cv=none; b=UdV4QJWo7vA2+vR6lK1zJ9Sm52RDR9SOG0OsB5n4s5GcjFcxOEloA2MSyJAX3l9AaZQfm2WJhBMJCUhsiL5S+tUVphkeO2AqfqzI1JpxsZNHaidGE/ZLrx4U68Hf/qcVEmwlSvOm8vqKE3J/uIu2Lpvp4cjXYaEbpJ9I+3h1//I=
+	t=1716941059; cv=none; b=Ts3QmpXP/qCSsA24MF9EnfEPjPxInByvM0jHQnaJHAJ2q78lz9exmbAZR65GrlK8/oVmcF4Ji/7bh0QpcZvA2W3M5Dm2h1ustsP7iAd3PoX2nnlHppajtrV7+COPqKrZb9PAZXJpHUlpmpILDWnfa6voQt0ICsFf+qF2buY1hIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716940574; c=relaxed/simple;
-	bh=UFnUo5et2nu4ZTLwron8KcsxSOqZm4uccIMJ4BvQ3XM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d+jTBOwWNE8HZrbSe+nSVgTWND/kUNmLA4hpJaQqsmAFoZfb0dCouTYQouU7pQDP+YG7cMB+LhMns5i4WaNlZ8RSHlzXnKpSeHPPmCqKV1Eoj0i0Ve7FTurZHo4M2TDbSzGOD3ZRpjQH7RqOoDAgOos246CAT/LWN8EkgZgHVp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xKbW0B7x; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52ad8230bb9so111559e87.3
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 16:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716940571; x=1717545371; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M4MYPVYNdfA6ot8nLghsVUlr6HtvllgPwAgd9kwmapI=;
-        b=xKbW0B7xa5y17J4mBWrTWCGlZhTKY4tR2rihFm72ghs+tsf2wWEg5VqM624kh4kgw3
-         06T2Jyzn4iahn/7r8zM3wzZ0B8iirM/sPfjSekaXANmChmFRTQvYF2myfM0jsoDyDSrS
-         lGADs0ZZMSLyJDwUrANS2LVrKxFQ34WgPyAC1b8xDqUpboFdLoBjWNSg+RwCY//hc1XI
-         7Z6Wx4/YkRiXccK6gpJq7TYHHOvbI7nNyvGdgImON6Y2ruSo/dfd3py4j4P+y3Je6AM7
-         E6DdVnMnJQ+9oIjNrfwoHQm/1cseV+fL4w7lgTppBDWgZNDB+0KHOEf/ldpbQ4HQSr7B
-         Donw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716940571; x=1717545371;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M4MYPVYNdfA6ot8nLghsVUlr6HtvllgPwAgd9kwmapI=;
-        b=Img9hxJsLQO7b5I32P2nV/RmCQJeSFA2Ts8GrnPaQeBgf0jwvykTy13D5DvqPbAIVW
-         lJU4eMAGLMmpHng+SWzNkTYql8O6SI6PTHlhfe+5KvOMiB9UETxSMCHxM/HjhnKwEXHK
-         4MSzRs4sW/j4GcG83DO5cKosm5luZHG3q7BovKWe7opmR/O9EMNIlpkLHz1Fs/Tci/n+
-         NqTLmANuUIGovP4lNr7SwHGL8IIQfVZ7bwW0c6XjZ48roWJnifC7q2chvj9J77Vka2WC
-         808SX0YO7fYDw9bIPZGnZYacE2uDxLfSFkF0cJ5nzaTRjr8NjfjbXgUKf5JPkFeAyyJl
-         SrJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV0OJZsQKpqRKGKjI+ykNnCm06XMm9WWWhrjtzcUAsZ1vHr6yPdGPvu4pADqWc6XuJIn02Rwp8SO4zTyH6pWebjPFZne2rT1c8RBA==
-X-Gm-Message-State: AOJu0YxyV1nTvsqi+ADs7/wTyfVlgMmMAC6He8sOl7ddv4YNpPLS0eZr
-	VMwMbGa64Uf00tDy0pI4ngiu7dNrK7NZ9fkWkuturMEbhHk5hflKK2jFARRjiHo=
-X-Google-Smtp-Source: AGHT+IGTsD1dM3WwZD2UJs8zbC72VrfPx0lRpZvezsImS9eOLf7B6kz3Z1AJOBQKD9VVsfodx+D6aA==
-X-Received: by 2002:ac2:494e:0:b0:524:3177:8e45 with SMTP id 2adb3069b0e04-52966f8f6bcmr8360832e87.68.1716940571039;
-        Tue, 28 May 2024 16:56:11 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (dzdbxzyyyyyyyyyyyykxt-3.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::227])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-529a7fb982esm815183e87.265.2024.05.28.16.56.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 16:56:10 -0700 (PDT)
-Date: Wed, 29 May 2024 02:56:09 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
-	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH v4 2/6] platform: arm64: add Lenovo Yoga C630 WOS EC
- driver
-Message-ID: <3gbjbuav5l2td5xrfj46krhgdew42medhfrnkd47iahdv4fm3x@qv6jadf6tkol>
-References: <20240528-yoga-ec-driver-v4-0-4fa8dfaae7b6@linaro.org>
- <20240528-yoga-ec-driver-v4-2-4fa8dfaae7b6@linaro.org>
- <2b76f27e-f223-4ff9-880e-9e232ce9ddc6@linaro.org>
+	s=arc-20240116; t=1716941059; c=relaxed/simple;
+	bh=iCwacVP+fcBaS3qxBrWlpvGpWPI6CSiUHt/DGTElfzc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=HbGkNlqI+va8d75SIm7Bl2dOiFvqu0bN8fVBiBo61zLD+sxwbsTbk4uwA8risqgAehbtNXbjXLPyMIpTFkdPTERF2AR/d89eKtCRSj2fqcnB5UzEHcF6vL5V48qb0LwWr4o7QAp5dB3I8Gmn//q+Dp/H+SEtKOAoa5RMUR92On0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=aopIU6H9; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2b76f27e-f223-4ff9-880e-9e232ce9ddc6@linaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1716941053;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Z3UyPJg9jT2CCb8WYackyvrQqiNArMyehuNffpOyzV0=;
+	b=aopIU6H9EgsMSPt5ksrdKvzYWVMSYnAv2ZZsRbRs6kY6ufPI1al1Ybb7H0E4bvwLghJgxE
+	2wcZlU+nRH0GPEf7mREx0QwcFM/MCf1lNDzNXytcVFnQlLe6pDiGMak36dMuYLb1y47bE4
+	XA63nI2swkNGCCv7RCZDjwK5RuwoQPHgsGWPDpqDB005aYyMIfrQF6la0I6DU1gxrZ49JT
+	Nhp6NcZ4iqFxFZzy1eea8Du0PXwgGJYgQxpsvBgb86IYs/rW8eAwOVMKNnDx9lysxk7C56
+	ZhZJfxwtP3gLgTRXWXfSytwbEc9aLVrHUlyMrgqWze0/vcqoR8mzwN2UuLoBOg==
+Date: Wed, 29 May 2024 02:04:12 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Alexey Charkov <alchark@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Chen-Yu Tsai <wens@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Daniel
+ Lezcano <daniel.lezcano@linaro.org>, Diederik de Haas
+ <didi.debian@cknow.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal, OPP and
+ fan
+In-Reply-To: <646a33e0-5c1b-471c-8183-2c0df40ea51a@cherry.de>
+References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
+ <5122636.irdbgypaU6@phil> <8727e1c29bd6f562a7fc3de0ddac62cf@manjaro.org>
+ <6230150.aeNJFYEL58@phil>
+ <CABjd4YyRJS0AGehuBTDn8ys9uRRkGc0Usme3GX1POq3AQiWTBA@mail.gmail.com>
+ <646a33e0-5c1b-471c-8183-2c0df40ea51a@cherry.de>
+Message-ID: <7b09e18e850ff0832bd7236810b83e64@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Wed, May 29, 2024 at 12:51:04AM +0100, Bryan O'Donoghue wrote:
-> On 28/05/2024 21:44, Dmitry Baryshkov wrote:
-> > Lenovo Yoga C630 WOS is a laptop using Snapdragon 850 SoC. Like many
-> > laptops it uses embedded controller (EC) to perform various platform
-> 
-> an embedded controller
-> 
-> > operations, including, but not limited, to Type-C port control or power
-> > supply handlng.
-> > 
-> > Add the driver for the EC, that creates devices for UCSI and power
-> > supply devices.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >   drivers/platform/arm64/Kconfig                 |  14 ++
-> >   drivers/platform/arm64/Makefile                |   1 +
-> >   drivers/platform/arm64/lenovo-yoga-c630.c      | 279 +++++++++++++++++++++++++
-> >   include/linux/platform_data/lenovo-yoga-c630.h |  42 ++++
-> >   4 files changed, 336 insertions(+)
-> > 
-> > diff --git a/drivers/platform/arm64/Kconfig b/drivers/platform/arm64/Kconfig
-> > index 8fdca0f8e909..8c103b3150d1 100644
-> > --- a/drivers/platform/arm64/Kconfig
-> > +++ b/drivers/platform/arm64/Kconfig
-> > @@ -32,4 +32,18 @@ config EC_ACER_ASPIRE1
-> >   	  laptop where this information is not properly exposed via the
-> >   	  standard ACPI devices.
-> > +config EC_LENOVO_YOGA_C630
-> > +	tristate "Lenovo Yoga C630 Embedded Controller driver"
-> > +	depends on I2C
-> > +	help
-> > +	  Driver for the Embedded Controller in the Qualcomm Snapdragon-based
-> > +	  Lenovo Yoga C630, which provides battery and power adapter
-> > +	  information.
-> > +
-> > +	  This driver provides battery and AC status support for the mentioned
-> > +	  laptop where this information is not properly exposed via the
-> > +	  standard ACPI devices.
-> > +
-> > +	  Say M or Y here to include this support.
-> > +
-> >   endif # ARM64_PLATFORM_DEVICES
-> > diff --git a/drivers/platform/arm64/Makefile b/drivers/platform/arm64/Makefile
-> > index 4fcc9855579b..b2ae9114fdd8 100644
-> > --- a/drivers/platform/arm64/Makefile
-> > +++ b/drivers/platform/arm64/Makefile
-> > @@ -6,3 +6,4 @@
-> >   #
-> >   obj-$(CONFIG_EC_ACER_ASPIRE1)	+= acer-aspire1-ec.o
-> > +obj-$(CONFIG_EC_LENOVO_YOGA_C630) += lenovo-yoga-c630.o
-> > diff --git a/drivers/platform/arm64/lenovo-yoga-c630.c b/drivers/platform/arm64/lenovo-yoga-c630.c
-> > new file mode 100644
-> > index 000000000000..3d1d5acde807
-> > --- /dev/null
-> > +++ b/drivers/platform/arm64/lenovo-yoga-c630.c
-> > @@ -0,0 +1,279 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (c) 2022-2024, Linaro Ltd
-> > + * Authors:
-> > + *    Bjorn Andersson
-> > + *    Dmitry Baryshkov
-> > + */
-> > +#include <linux/auxiliary_bus.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/module.h>
-> > +#include <linux/notifier.h>
-> > +#include <linux/platform_data/lenovo-yoga-c630.h>
-> > +
-> > +#define LENOVO_EC_RESPONSE_REG		0x01
-> > +#define LENOVO_EC_REQUEST_REG		0x02
-> > +
-> > +#define LENOVO_EC_UCSI_WRITE		0x20
-> > +#define LENOVO_EC_UCSI_READ		0x21
-> > +
-> > +#define LENOVO_EC_READ_REG		0xb0
-> > +#define LENOVO_EC_REQUEST_NEXT_EVENT	0x84
-> > +
-> > +struct yoga_c630_ec {
-> > +	struct i2c_client *client;
-> > +	struct mutex lock;
-> > +	struct blocking_notifier_head notifier_list;
-> > +};
-> > +
-> > +static int yoga_c630_ec_request(struct yoga_c630_ec *ec, u8 *req, size_t req_len,
-> > +				u8 *resp, size_t resp_len)
-> > +{
-> > +	int ret;
-> > +
-> > +	WARN_ON(!mutex_is_locked(&ec->lock));
-> > +
-> > +	ret = i2c_smbus_write_i2c_block_data(ec->client, LENOVO_EC_REQUEST_REG,
-> > +					     req_len, req);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	return i2c_smbus_read_i2c_block_data(ec->client, LENOVO_EC_RESPONSE_REG,
-> > +					     resp_len, resp);
-> > +}
-> > +
-> > +int yoga_c630_ec_read8(struct yoga_c630_ec *ec, u8 addr)
-> > +{
-> > +	u8 req[2] = { LENOVO_EC_READ_REG, };
-> > +	int ret;
-> > +	u8 val;
-> > +
-> > +	mutex_lock(&ec->lock);
-> > +	req[1] = addr;
-> > +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &val, 1);
-> > +	mutex_unlock(&ec->lock);
-> > +
-> > +	return ret < 0 ? ret : val;
-> > +}
-> > +EXPORT_SYMBOL_GPL(yoga_c630_ec_read8);
-> > +
-> > +int yoga_c630_ec_read16(struct yoga_c630_ec *ec, u8 addr)
-> > +{
-> > +	u8 req[2] = { LENOVO_EC_READ_REG, };
-> > +	int ret;
-> > +	u8 msb;
-> > +	u8 lsb;
-> > +
-> > +	mutex_lock(&ec->lock);
-> > +
-> > +	req[1] = addr;
-> > +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &lsb, 1);
-> > +	if (ret < 0)
-> > +		goto out;
-> > +
-> > +	req[1] = addr + 1;
-> > +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &msb, 1);
-> > +
-> > +out:
-> > +	mutex_unlock(&ec->lock);
-> > +
-> > +	return ret < 0 ? ret : msb << 8 | lsb;
-> > +}
-> > +EXPORT_SYMBOL_GPL(yoga_c630_ec_read16);
-> > +
-> > +u16 yoga_c630_ec_ucsi_get_version(struct yoga_c630_ec *ec)
-> > +{
-> > +	u8 req[3] = { 0xb3, 0xf2, 0x20};
-> 
-> You have a define above for the read_reg and write_reg commands, could you
-> not define 0xb3 as LENOVO_EC_GET_VERSION ?
-> 
-> All of the other commands here seem to have a named define.
+Hello Quentin,
 
-Because unlike other registers it is not clear what other use cases does
-0xb3 support
-
+On 2024-05-28 18:08, Quentin Schulz wrote:
+> On 5/28/24 5:42 PM, Alexey Charkov wrote:
+>> On Tue, 28 May 2024 at 19:16, Heiko Stuebner <heiko@sntech.de> wrote:
+>>> Am Dienstag, 28. Mai 2024, 17:01:48 CEST schrieb Dragan Simic:
+>>>> On 2024-05-28 16:34, Heiko Stuebner wrote:
+>>>>> Am Dienstag, 28. Mai 2024, 16:05:04 CEST schrieb Dragan Simic:
+>>>>>> On 2024-05-28 11:49, Alexey Charkov wrote:
+>>>>>>> Do you think this can be merged for 6.11? Looks like there hasn't
+>>> been
+>>>>>>> any new feedback in a while, and it would be good to have 
+>>>>>>> frequency
+>>>>>>> scaling in place for RK3588.
+>>>>>>> 
+>>>>>>> Please let me know if you have any reservations or if we need any
+>>>>>>> broader discussion.
+>>>>> 
+>>>>> not really reservations, more like there was still discussion going 
+>>>>> on
+>>>>> around the OPPs. Meanwhile we had more discussions regarding the 
+>>>>> whole
+>>>>> speed binning Rockchip seems to do for rk3588 variants.
+>>>>> 
+>>>>> And waiting for the testing Dragan wanted to do ;-) .
+>>>> 
+>>>> I'm sorry for the delays.
+>>> 
+>>> Was definitly _not_ meant as blame ;-) .
+>>> 
+>>> The series has just too many discussions threads to unravel on half
+>>> an afternoon.
+>> 
+>> FWIW, I think the latest exchange we had with Quentin regarding the 
+>> OPPs
+>> concluded in “false alarm”, given that this version of the series only
+>> introduces a subset of them which should apply to all RK3588(s)
 > 
-> > +	int ret;
-> > +	u8 msb;
-> > +	u8 lsb;
-> > +
-> > +	mutex_lock(&ec->lock);
-> > +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &lsb, 1);
-> > +	if (ret < 0)
-> > +		goto out;
-> > +
-> > +	req[2]++;
+> Correct.
 > 
-> why not set reg[2] = 0x21;
+> However... I'm wondering if we shouldn't somehow follow the same
+> pattern we have used for the rk3399 OPPs? We have a file for the
+> "true" RK3399 OPPs, then the OP1 variant and the RK3399T.
 
-ack
+If I'm not mistaken, the separate rk3399-*opp*.dtsi files were
+added when the need arose.
 
+> We already know there are a few variants of RK3588 with different
+> OPPs: RK3588(S/S2?), RK3588J and RK3588M. I wouldn't be surprised if
+> the RK3582 (though this one has already one big cluster (or two big
+> cores) fewer than RK3588) has different OPPs as well?
+
+Do we already have supported boards that use the RK3588J and
+RK3588M variants of the RK3588 SoC?  If yes, we should separate
+the relevant OPPs into the separate .dtsi files, but if not, we
+should wait until the need arises.
+
+> So. We have already discussed that the OPPs in that patch are valid
+> for RK3588(S) but they aren't for the other variants.
+
+... which applies currently if there are already other RK3588
+variants in use on the supported boards.
+
+> In the downstream kernel, any OPP whose opp-supported-hw has a first
+> value masked by BIT(1) return non-0 is supported by RK3588M. In the
+> downstream kernel, any OPP whose opp-supported-hw has a first value
+> masked by BIT(2) return non-0 is supported by RK3588J.
 > 
-> also is req[2] some kind of address ?
-
-Unfortunately no idea. This is totally based on the AML code in DSDT. I
-have no documentation on the EC or its programming interface.
-
+> This means that, for LITTLE clusters:
+> - opp-1608000000 not supported on RK3588J
+> - opp-1704000000 only supported on RK3588M (but already absent in this
+> patch series)
+> - opp-1800000000 only supported on RK3588(S), not RK3588J nor RK3588M
 > 
-> > +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &msb, 1);
-> > +
-> > +out:
-> > +	mutex_unlock(&ec->lock);
-> > +
-> > +	return ret < 0 ? ret : msb << 8 | lsb;
-> > +}
-> > +EXPORT_SYMBOL_GPL(yoga_c630_ec_ucsi_get_version);
-> > +
-> > +int yoga_c630_ec_ucsi_write(struct yoga_c630_ec *ec,
-> > +			    const u8 req[YOGA_C630_UCSI_WRITE_SIZE])
-> > +{
-> > +	int ret;
-> > +
-> > +	mutex_lock(&ec->lock);
-> > +	ret = i2c_smbus_write_i2c_block_data(ec->client, LENOVO_EC_UCSI_WRITE,
-> > +					     YOGA_C630_UCSI_WRITE_SIZE, req);
-> > +	mutex_unlock(&ec->lock);
-> > +
-> > +	return ret < 0 ? ret : 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(yoga_c630_ec_ucsi_write);
-> > +
-> > +int yoga_c630_ec_ucsi_read(struct yoga_c630_ec *ec,
-> > +			   u8 resp[YOGA_C630_UCSI_READ_SIZE])
-> > +{
-> > +	int ret;
-> > +
-> > +	mutex_lock(&ec->lock);
-> > +	ret = i2c_smbus_read_i2c_block_data(ec->client, LENOVO_EC_UCSI_READ,
-> > +					    YOGA_C630_UCSI_READ_SIZE, resp);
-> > +	mutex_unlock(&ec->lock);
-> > +
-> > +	return ret < 0 ? ret : 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(yoga_c630_ec_ucsi_read);
-> > +
-> > +static irqreturn_t yoga_c630_ec_intr(int irq, void *data)
-> > +{
-> > +	u8 req[] = { LENOVO_EC_REQUEST_NEXT_EVENT };
-> > +	struct yoga_c630_ec *ec = data;
-> > +	u8 event;
-> > +	int ret;
-> > +
-> > +	mutex_lock(&ec->lock);
-> > +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &event, 1);
-> > +	mutex_unlock(&ec->lock);
-> > +	if (ret < 0)
-> > +		return IRQ_HANDLED;
-> > +
-> > +	pr_info("NOTIFY %x\n", event);
+> For big clusters:
+> - opp-1800000000 not supported on RK3588J
+> - opp-2016000000 not supported on RK3588J
+> - opp-2208000000 only supported on RK3588(S), not RK3588J nor RK3588M
+> - opp-2256000000 only supported on RK3588(S), not RK3588J nor RK3588M
+> - opp-2304000000 only supported on RK3588(S), not RK3588J nor RK3588M
+> - opp-2352000000 only supported on RK3588(S), not RK3588J nor RK3588M
+> - opp-2400000000 only supported on RK3588(S), not RK3588J nor RK3588M
 > 
-> why not dev_info() ?
-
-Argh, debugging code. I should drop it.
-
--- 
-With best wishes
-Dmitry
+> This is somehow also enforced in downstream kernel by removing the OPP
+> nodes directly (hence, not even requiring the check of
+> opp-supported-hw value), c.f.:
+> https://git.theobroma-systems.com/tiger-linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+> https://git.theobroma-systems.com/tiger-linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588m.dtsi
+> 
+> You'll not that the RK3588J also has less OPPs for the GPU and NPU
+> (but those should also be masked by the opp-supported-hw value).
 
