@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-70213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73DE8D2DD0
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50DA58D2E28
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C83671C234D7
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:09:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81DB11C22BBD
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2B91667CA;
-	Wed, 29 May 2024 07:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B203C167285;
+	Wed, 29 May 2024 07:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zwtn5GH4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="je673Etj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 728042F32;
-	Wed, 29 May 2024 07:09:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83257167275;
+	Wed, 29 May 2024 07:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716966562; cv=none; b=Rc0LlweO9/H1XVJhVrdTMEJwmOxxgaveJ3JqspcFU5RdY/djzCTHeZ4kXeVOqVuxbi2Tm7CXvmUe0+iktxD4tV3IHQ9BrV2IihhsPqQuvKs7NIkeO7U9hO8aFhBpC62f2vjYFFbEcPhLZnUIwKf4l0tKG1s9XnE7JvL46IJFxzc=
+	t=1716967618; cv=none; b=p66cBGYZQq+U3qi6RGMBRtuqwRwjjeHftIyfzmnB9EzxRsxlEE8jbQWnlYO2MJxA7LBtEIqkAk4vVqrLDr3lzbQNQTe7UJWpIieqjGX+4hY1tHAyTFpAsZJVWQ2eJpGGIfRI4xPyEnfTtBsp7LsKCxvTIX9zUZvGI7TGveiNhXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716966562; c=relaxed/simple;
-	bh=f5hieK2dVR8m72dQIfBgiq+09hpzZd5FvWTa+h7XuwE=;
+	s=arc-20240116; t=1716967618; c=relaxed/simple;
+	bh=7rrG1rJKUVNczGau5dyk9TuLGcfgsrCcrXb8cFo1LMQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qFy7ACFv25O3oEU/81fJclTZeCrJPzq+YQHdjEmJmGcj/OT46SksrMB3ga04AMjYMLf0klrDY2PtiGbIs3w0h2BAWugHt6e5OeGft7sXVDPNg5iBDG5tWyMOWOf6ZxKyJeXOhgliEwD3eHYEVX9skHsS2QJw2hfkomiKhihb2Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zwtn5GH4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1946EC32781;
-	Wed, 29 May 2024 07:09:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LIpSGjY8R7wLGJ8irDH5K6w18XyvqlXWIb2Jgv5LFjgwtLs7LSXaADiinUjVX38ZwFFLeosSnCCbHYGWA2bEliVpL4POdlgV7y1J240jPBth+0o+0SdLdEqA+2OLHOcBYvANMsSMrHihNLDwboyEm8m2fkupckySU3OTHWisnpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=je673Etj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88078C2BD10;
+	Wed, 29 May 2024 07:26:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716966562;
-	bh=f5hieK2dVR8m72dQIfBgiq+09hpzZd5FvWTa+h7XuwE=;
+	s=k20201202; t=1716967618;
+	bh=7rrG1rJKUVNczGau5dyk9TuLGcfgsrCcrXb8cFo1LMQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zwtn5GH46/BmFtgUJT0+jA7hR7JDwcnFzmA0BATIWfjv5BXGGAg/M97xp413hLwKT
-	 ukOAy06EaXNN3N8OkhoYg3jVYB1t4jLpdXiq6UuDHY5V3n44TjahRAU2qrarbPo082
-	 8TZ9B06t1rska/zP7jrW4i+Ualycb5ckwb4r+pyvwdcfQChqaPrxNQ7UCldpUiL8Hl
-	 pXrPuEEHhuXx4y2vNqhrkABsjI15C1rmKMshWdiLHONwpBiXhHtKTVA8VZU2aKWH05
-	 E55qfSlprcDD5Z74HWagCqu7WwqfgoTF4ddF5xUxNnb/5JLV7l7wd854JrjXoE57vv
-	 fMpKi1M340ybg==
-Message-ID: <3531ac76-bcee-4c4d-8396-65b5dfbd8df9@kernel.org>
-Date: Wed, 29 May 2024 09:09:17 +0200
+	b=je673Etj8yHcqijlAvaeRB3ePWC7uvP0tlrCApZ2shO0+StOhoS8ROJFHPtQ4f1x3
+	 KR7R34NXamjUDvD/6/PqxYw6oSv2iOO3XJrX1aRYX2x9gJimfAp5G0trzQifZ9TemA
+	 0uPkoejD9u/2C+lsw1vHlkKdYCtZ2mAHdec3M8QWUuRXaPbtxjYuw5imB0WyZkiONb
+	 aiaVu18Weh0mgkYfnYpYqb3n7IVlp4lyW4B68+L2+nj4bL68moH8Yr8zo0J2xF9sgT
+	 PI/TuPjnKAAp4d+P/x9DVV55f1yACnsBDOzzH4AW4ZgFQCepwWQxf99ktgbaykDhKa
+	 bKCwTOGY3fDNg==
+Message-ID: <080c4c05-e795-49d8-a547-d39d10ed8333@kernel.org>
+Date: Wed, 29 May 2024 09:26:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: (ina2xx) Add device tree support to pass alert
- polarity
-To: Amna Waseem <Amna.Waseem@axis.com>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20240529-apol-ina2xx-fix-v1-0-77b4b382190f@axis.com>
- <20240529-apol-ina2xx-fix-v1-2-77b4b382190f@axis.com>
+Subject: Re: [PATCH 1/4] dt-bindings: gpio: aspeed,sgpio: Order properties by
+ DTS style
+To: Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-0-91c42976833b@codeconstruct.com.au>
+ <20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-1-91c42976833b@codeconstruct.com.au>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,48 +107,60 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240529-apol-ina2xx-fix-v1-2-77b4b382190f@axis.com>
+In-Reply-To: <20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-1-91c42976833b@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/05/2024 08:07, Amna Waseem wrote:
+On 29/05/2024 07:13, Andrew Jeffery wrote:
+> Tidy up the list of required properties and the example node by ordering
+> the properties in terms of the DTS coding style.
+> 
+> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> ---
+>  Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> index 46bb121360dc..6b15a3a3fb66 100644
+> --- a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> @@ -51,12 +51,12 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - gpio-controller
+> -  - '#gpio-cells'
+> +  - clocks
+>    - interrupts
+>    - interrupt-controller
+> +  - gpio-controller
+> +  - '#gpio-cells'
+>    - ngpios
+> -  - clocks
+>    - bus-frequency
+
+No, this should have the same order as properties are listed.
+
+Don't change it.
+
 >  
-> +static int ina2xx_set_alert_polarity(struct ina2xx_data *data,
-> +				     unsigned long val)
-> +{
-> +	int ret;
-> +
-> +	if (val > INT_MAX || !(val == 0 || val == 1))
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&data->config_lock);
+>  additionalProperties: false
+> @@ -65,13 +65,13 @@ examples:
+>    - |
+>      #include <dt-bindings/clock/aspeed-clock.h>
+>      sgpio: sgpio@1e780200 {
+> -        #gpio-cells = <2>;
+>          compatible = "aspeed,ast2500-sgpio";
+> -        gpio-controller;
+> -        interrupts = <40>;
+>          reg = <0x1e780200 0x0100>;
+>          clocks = <&syscon ASPEED_CLK_APB>;
+> +        interrupts = <40>;
+>          interrupt-controller;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
 
-Aren't you calling it before registering sysfs interface? Why do you
-need mutex?
-
-> +	ret = regmap_update_bits(data->regmap, INA226_MASK_ENABLE,
-> +				 INA226_ALERT_POLARITY_MASK,
-> +				 INA226_SHIFT_ALERT_POLARITY(val));
-> +
-> +	mutex_unlock(&data->config_lock);
-> +	return ret;
-> +}
-> +
->  /*
->   * Calibration register is set to the best value, which eliminates
->   * truncation errors on calculating current register in hardware.
-> @@ -659,6 +679,14 @@ static int ina2xx_probe(struct i2c_client *client)
->  	if (ret)
->  		return dev_err_probe(dev, ret, "failed to enable vs regulator\n");
->  
-> +	if (!of_property_read_u32(dev->of_node, "alert-polarity", &val)) {
-> +		ret = ina2xx_set_alert_polarity(data, val);
-> +		if (ret < 0)
-> +			return dev_err_probe(
-> +				dev, ret,
-> +				"failed to set APOL bit of Enable/Mask register\n");
-
-That's odd wrapping. Please follow Linux coding style and align these.
+That's just example. I don't find this change useful but churn.
 
 Best regards,
 Krzysztof
