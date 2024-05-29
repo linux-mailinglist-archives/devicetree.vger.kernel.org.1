@@ -1,255 +1,130 @@
-Return-Path: <devicetree+bounces-70206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F358D2D60
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC24D8D2D9A
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 160011F24D9E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:35:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A8CF1F24F7D
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D58D15D5B4;
-	Wed, 29 May 2024 06:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B1FC15EFC9;
+	Wed, 29 May 2024 06:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BSh40Qo8"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="g/1OA8Rr";
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="QQ9BedQy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7309315CD71
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 06:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA27273DC;
+	Wed, 29 May 2024 06:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716964510; cv=none; b=KszpRrscLi7vztBsxR5rSlJB6+89NkUoYPzfTn6GP0g99NRmjWxDY41xNcwysq9mc0HK+Umi/CFDjauVMAwlYD6k7uNZRRjpK9zQHqdFEbMrNIKBchvnDlIvab0nEmySmQ5M2h2Z4wCLEESEbDtj4FLtlliEedlnyWvO6nwRMTI=
+	t=1716965494; cv=none; b=E4oxDBSuAbw+o/3QhNgGGiTtq27Weu8El08BMHBDGBPz3IrZTOj6D59d6yPYZvuJ7ESrLCUcxEPuljtNiiQi6EG8CGjDyxO4fTLxLxrx6elE2+flyO6On41aAp4do9syArNQwZrhjc9K9amMoM+6PKTL0nWWndefFltIJ4JuAWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716964510; c=relaxed/simple;
-	bh=eMBPJ6AiyAGmZ0BILLGGNqaoWBJwnBhYtnVO50Esw08=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VHfj7Pl3pPcEH2Uw+LZLkAknn4unuT1zJ5h5uLzzCSPTx7y0UJNAb0inlTeaaFP4kRXzwUS6uJCn/nFCuKrBsaEj/eYiaP4wfNUJZKN1NAlT8C0eNhO0IxOeahfGU7I5jsAcIoaKCQpmK9p/yEuGuDZuS4RVZwtsXFw9L0SoviY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BSh40Qo8; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2e95a1d5ee2so31194321fa.0
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 23:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1716964506; x=1717569306; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=REcXFj1jvmxST3/eKnOjNwhd4vCy4lJvRfHqJd6aeOY=;
-        b=BSh40Qo8MowxfZDEv2udrszIIc57GaXMNV/tx13uvFuceoBG+jX205EhYwuqmYNKbc
-         iDN+7OPmQOrmN0VNhOnIjjCxy6iK7qxZBUwAnwXdV2Fuc/qoAVf+SHBZMIz/e3JpVCOD
-         n1U222PVH1XPNwgLVG9Y/1I9VlbP9Hvt1H0/8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716964506; x=1717569306;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=REcXFj1jvmxST3/eKnOjNwhd4vCy4lJvRfHqJd6aeOY=;
-        b=nju7go4PQGhu8D7KB5UXwI/McU2g/RVLjHAqDmwbCytz1XueEgBd6WxWxrq6FSwqVr
-         Ult/rDnq2gfR0GD+Cf5JOoTA7lRFrcmJKCoCNtI7zL2OM3UagxYWJoWqR6CCciSQLHpl
-         BNwr16bhQlgG68Z7pC6qMcJU/3btmFdrtVieukTwpPaSeFTfZNLzEX+N/j7Wx0WJWhNj
-         NvaVy3qakBqXxH2BRs93SrYt/ysYYZ/s4t/25qm0vseBRAPWXl/UsKEGrL2Dva1jMCtj
-         sHRHCszwY4s09tBs1BYHbLYC7aQ5c2Y5Jd5ME44hEzdi837D52J2iiljgh+YZmttr6vB
-         r6dg==
-X-Forwarded-Encrypted: i=1; AJvYcCXQUxdgrSB+7ZMu2rOBlwZ5aOwMelUrrOvEzTaQuJVgGOqEpGPP6KuYVMbPG7yxtd6wD5c1qsmayYUj8uRmcLe/FEDfilFIb/9V/w==
-X-Gm-Message-State: AOJu0Yzo0tc+FyXusvRqtAeKJ5boPIWcsnzDkFhnGEf62ws7ESIP6040
-	2FyJ+vm9KpXuBKG/d4KhamHRCF4GkTBmSAgltCDCULNUgBVoejIXkgqBPbPOxTgHH1Ad1E7MwiB
-	Hl7urjF3S/iKKUQgshygpX/WsxPnj1JTUWHR2
-X-Google-Smtp-Source: AGHT+IHTNNEamwsxVCesbMDxuW/9Vtif5wDyv5vCIh2MQ47+8CNAg2+CXaNaCRrYs3jzJWGhnBhJJu0Kts+lF9cxTRc=
-X-Received: by 2002:ac2:454e:0:b0:521:92f6:3d34 with SMTP id
- 2adb3069b0e04-5296594cf46mr10050393e87.22.1716964506432; Tue, 28 May 2024
- 23:35:06 -0700 (PDT)
+	s=arc-20240116; t=1716965494; c=relaxed/simple;
+	bh=jFTfeTtYWGbpeFmV+28NZwKVWAB7YPdr4ftKZZB4ahI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S5ZQBMd9RIyjxMv3cq7cOQhlZnyXeBu7SZFQbaNEaQz1uXa+mUDLCTQbUBU2qgQepVj5m6PXyPRpH8UaHZ3ndJ4E27m1vJlh6Aau77sMyoduho4G+BoIazWFXHWTjYnmnYXMq71wnt91oDazM3MkZzjdnFPoYzqRryw2hZAEIrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=g/1OA8Rr; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=QQ9BedQy; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1716965489;
+	bh=FM07nAP+48bSOuTtekpfEzG6O9VwkpGppNHrIxFz+7A=; l=1313;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=g/1OA8RrD2hD/Y3IXDklsGD0MS/eQnGbHTVlk1+iRzcMXSkwj1oq5UPU07xfL5FYf
+	 qMFCThbGtzI71H8o6xzfKPa/EzEF5c/zHec4oCXrvIA9pBP5SR7SSbVzGF19uyTz9Y
+	 VhYNGDZK1NaNXvA9indp3y0wcu7HUeEchpkCdUfDIcChLYvTArAGFQaIiVadJaYj5W
+	 LKcqzCNwqPl/oWTiG+HH65FQIdZ08DOa5J/eiQh5CXHaUzMLBkJYcS+jPW2HnIUNSM
+	 gR21PeGQnuxL8tCap0inNzvU3bkE6RoiJH4k6Ya0E7oAObiP5GrUJhgw9deNSoqyzw
+	 rezj0l3cT3d1w==
+Received: from 192.168.8.21
+	by mg.richtek.com with MailGates ESMTP Server V3.0(3828186:0:AUTH_RELAY)
+	(envelope-from <prvs=1876C162DF=alina_yu@richtek.com>); Wed, 29 May 2024 14:51:28 +0800 (CST)
+X-MailGates: (compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1716965488;
+	bh=FM07nAP+48bSOuTtekpfEzG6O9VwkpGppNHrIxFz+7A=; l=1313;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=QQ9BedQy6mBg+QqPLNU19qOS5+hbcKoeNFU8HAU/Dv3DovLWN1skAEGvJj2WOav3g
+	 mgkdWTPZZo9w+PsjPOWaj9c0F3PLvEu6/1lChzqDsdJGGIptlX3sSbdiYvBJ2xNINN
+	 FSZ2+edOfF6eVDJvMHX8QcuEF3USdaONJeiPUF8Vbl/Mnx4V772j8YUBzOtOCooQCo
+	 vKdOf7Ph1cYJw8G/cpn32ILUJmi3oiTGnCH4XModKJxXN4j/KUOB/E8Fh4bv1dsFD9
+	 adfb2KazguNn8VO+VjHiv+x+xZvuk65WuFbcvSQPz4DMClcNM1aeLYsiQws8VH9Iq/
+	 ZgyR/dqqpt5Xg==
+Received: from 192.168.10.46
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(3213210:0:AUTH_RELAY)
+	(envelope-from <alina_yu@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 29 May 2024 14:41:23 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex3.rt.l (192.168.10.46) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Wed, 29 May
+ 2024 14:41:23 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Wed, 29 May 2024 14:41:23 +0800
+Date: Wed, 29 May 2024 14:41:23 +0800
+From: Alina Yu <alina_yu@richtek.com>
+To: Mark Brown <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<cy_huang@richtek.com>
+Subject: Re: [PATCH 1/2] regulator: rtq2208: Add fixed LDO VOUT property and
+ check that matches the constraints
+Message-ID: <20240529064123.GA13317@linuxcarl2.richtek.com>
+References: <cover.1715846612.git.alina_yu@richtek.com>
+ <7c28d2e61d2fc13066ba4814d1ecfab8f344aaad.1715846612.git.alina_yu@richtek.com>
+ <c0c7a63d-e435-4778-ad4c-3d93f0215116@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240527093908.97574-1-angelogioacchino.delregno@collabora.com> <20240527093908.97574-6-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240527093908.97574-6-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 29 May 2024 14:34:54 +0800
-Message-ID: <CAGXv+5EbYBLt84Gx0mhTt9SqH8iMW87Y=_q=R2sHmJ4fygUQnQ@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: mediatek: mt8188: Add support for Mali
- GPU on Panfrost
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	mandyjh.liu@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kernel@collabora.com, jpanis@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c0c7a63d-e435-4778-ad4c-3d93f0215116@sirena.org.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
-On Mon, May 27, 2024 at 5:40=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Add the necessary OPP table for the GPU and also add a GPU node
-> to enable support for the Valhall-JM G57 MC3 found on this SoC,
-> using the Panfrost driver.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 123 +++++++++++++++++++++++
->  1 file changed, 123 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt8188.dtsi
-> index 0bca6c9f15fe..29d012d28edb 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> @@ -294,6 +294,112 @@ clk32k: oscillator-32k {
->                 clock-output-names =3D "clk32k";
->         };
->
-> +       gpu_opp_table: opp-table-gpu {
-> +               compatible =3D "operating-points-v2";
-> +               opp-shared;
-> +
-> +               opp-390000000 {
-> +                       opp-hz =3D /bits/ 64 <390000000>;
-> +                       opp-microvolt =3D <575000>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-431000000 {
-> +                       opp-hz =3D /bits/ 64 <431000000>;
-> +                       opp-microvolt =3D <587500>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-473000000 {
-> +                       opp-hz =3D /bits/ 64 <473000000>;
-> +                       opp-microvolt =3D <600000>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-515000000 {
-> +                       opp-hz =3D /bits/ 64 <515000000>;
-> +                       opp-microvolt =3D <612500>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-556000000 {
-> +                       opp-hz =3D /bits/ 64 <556000000>;
-> +                       opp-microvolt =3D <625000>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-598000000 {
-> +                       opp-hz =3D /bits/ 64 <598000000>;
-> +                       opp-microvolt =3D <637500>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-640000000 {
-> +                       opp-hz =3D /bits/ 64 <640000000>;
-> +                       opp-microvolt =3D <650000>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-670000000 {
-> +                       opp-hz =3D /bits/ 64 <670000000>;
-> +                       opp-microvolt =3D <662500>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-700000000 {
-> +                       opp-hz =3D /bits/ 64 <700000000>;
-> +                       opp-microvolt =3D <675000>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-730000000 {
-> +                       opp-hz =3D /bits/ 64 <730000000>;
-> +                       opp-microvolt =3D <687500>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-760000000 {
-> +                       opp-hz =3D /bits/ 64 <760000000>;
-> +                       opp-microvolt =3D <700000>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-790000000 {
-> +                       opp-hz =3D /bits/ 64 <790000000>;
-> +                       opp-microvolt =3D <712500>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-835000000 {
-> +                       opp-hz =3D /bits/ 64 <835000000>;
-> +                       opp-microvolt =3D <731250>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-880000000 {
-> +                       opp-hz =3D /bits/ 64 <880000000>;
-> +                       opp-microvolt =3D <750000>;
-> +                       opp-supported-hw =3D <0xff>;
-> +               };
-> +               opp-915000000 {
-> +                       opp-hz =3D /bits/ 64 <915000000>;
-> +                       opp-microvolt =3D <775000>;
-> +                       opp-supported-hw =3D <0x8f>;
-> +               };
-> +               opp-915000000-5 {
-> +                       opp-hz =3D /bits/ 64 <915000000>;
-> +                       opp-microvolt =3D <762500>;
-> +                       opp-supported-hw =3D <0x30>;
-> +               };
-> +               opp-915000000-6 {
-> +                       opp-hz =3D /bits/ 64 <915000000>;
-> +                       opp-microvolt =3D <750000>;
-> +                       opp-supported-hw =3D <0x70>;
-> +               };
-> +               opp-950000000 {
-> +                       opp-hz =3D /bits/ 64 <950000000>;
-> +                       opp-microvolt =3D <800000>;
-> +                       opp-supported-hw =3D <0x8f>;
-> +               };
-> +               opp-950000000-5 {
-> +                       opp-hz =3D /bits/ 64 <950000000>;
-> +                       opp-microvolt =3D <775000>;
-> +                       opp-supported-hw =3D <0x30>;
-> +               };
-> +               opp-950000000-6 {
-> +                       opp-hz =3D /bits/ 64 <950000000>;
-> +                       opp-microvolt =3D <750000>;
-> +                       opp-supported-hw =3D <0x70>;
-> +               };
-> +       };
-> +
->         pmu-a55 {
->                 compatible =3D "arm,cortex-a55-pmu";
->                 interrupt-parent =3D <&gic>;
-> @@ -1167,6 +1273,23 @@ imp_iic_wrap_en: clock-controller@11ec2000 {
->                         #clock-cells =3D <1>;
->                 };
->
-> +               gpu: gpu@13000000 {
-> +                       compatible =3D "mediatek,mt8188-mali", "arm,mali-=
-valhall-jm";
-> +                       reg =3D <0 0x13000000 0 0x4000>;
-> +
-> +                       clocks =3D <&mfgcfg CLK_MFGCFG_BG3D>;
-> +                       interrupts =3D <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH 0=
->,
-> +                                    <GIC_SPI 382 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                                    <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH 0>;
-> +                       interrupt-names =3D "job", "mmu", "gpu";
-> +                       operating-points-v2 =3D <&gpu_opp_table>;
-> +                       power-domains =3D <&spm MT8188_POWER_DOMAIN_MFG2>=
-,
-> +                                       <&spm MT8188_POWER_DOMAIN_MFG3>,
-> +                                       <&spm MT8188_POWER_DOMAIN_MFG4>;
-> +                       power-domain-names =3D "core0", "core1", "core2";
-> +                       status =3D "disabled";
-> +               };
-> +
+On Mon, May 27, 2024 at 02:00:47PM +0100, Mark Brown wrote:
+> On Thu, May 16, 2024 at 05:20:33PM +0800, Alina Yu wrote:
+> > A fixed LDO VOUT property has been added to specify the fixed_uV of the regulator_desc.
+> > Additionally, a check has been included in this version
+> > to ensure that the fixed_uV matches the constraints.
+> 
+> This doesn't apply against current code, please check and resend.
 
-This block no longer applies cleanly on the MTK tree because of
-"arm64: dts: mediatek: mt8188: add lvts definitions" being applied.
 
-ChenYu
+Regarding the previous discussion in
 
->                 mfgcfg: clock-controller@13fbf000 {
->                         compatible =3D "mediatek,mt8188-mfgcfg";
->                         reg =3D <0 0x13fbf000 0 0x1000>;
-> --
-> 2.45.1
->
->
+https://lore.kernel.org/all/20240528060731.GA25526@linuxcarl2.richtek.com/
+
+I found some patches missing in the linux-next tree.
+
+So I merged the missing part in my latest resent sereies.
+
+The issue has been addressed in
+
+In '[RESEND 2/4] regulator: rtq2208: Fix LDO to be compatible with both fixed and adjustable vout'
+https://lore.kernel.org/all/5ad4c7728c7fa7f6286db36b99d31c9d0f5d16c7.1716870419.git.alina_yu@richtek.com/
+
+
+@@ -219,7 +219,7 @@ static const struct regulator_ops rtq2208_regulator_buck_ops = {
+ 	.set_suspend_mode = rtq2208_set_suspend_mode,
+};
+	  
+-static const struct regulator_ops rtq2208_regulator_ldo_ops = {
++static const struct regulator_ops rtq2208_regulator_ldo_fix_ops = {
+	.enable = regulator_enable_regmap,
+	.disable = regulator_disable_regmap,
+	.is_enabled = regulator_is_enabled_regmap,
+
+...
+
+Thanks,
+Alina
 
