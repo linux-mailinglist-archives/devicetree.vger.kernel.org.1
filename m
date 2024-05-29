@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-70710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD978D4204
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:39:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 753808D4203
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:39:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABE62285E33
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32088285D76
 	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A3E200101;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72D11CB33D;
 	Wed, 29 May 2024 23:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jblloJuA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w0vHcW8j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39DB017B4F2
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 23:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426161A0B0A
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 23:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717025974; cv=none; b=N0fDilU9Wn8eOisl7fBBE2T2hbdgzJeVO0B+v4GKeiBXUh6zPSNfHseZm+LYUk+eyxJL6UcLPU8A7nVx/EJGGxZGbbzzRAS5X+i+PrNX5uF+0WLPG7AWwhmljBFtxp/7wbru8/C9ipADjVvHkj7rPQp6P0Lba/6GVhhgTIjm3fg=
+	t=1717025974; cv=none; b=geVLhHB7Nq2wbXz4Ck2HUGv08Wspu/xgRUhqJhcWwtYbmge7kTSiT3U/XAJubG6/14zEWF2qUDsiGiXpBXsVhO8FxEL9veHRxQauP0DHilUKKhyw46/yzUAyGR6FgXUOf9F7Ctxs3XKgxX42IQnvus8Lu6MAIZwTlaVfH6VKYeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1717025974; c=relaxed/simple;
-	bh=8awMhfh+EooDyyG77D0x2IEYHXjNwY2rq0QQPZ/UDew=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KuSj1LFuTVH8KDQKiwC506vUe8fpD8d+rOPf7f2KAfsdck3ahNaiBIqyFeH5IcFnCdIr4j0HKpkcXt7c4S3VQFvoot/wi7u/rPVGJKtDruapnJeVqfKFi7bsqNiKmAfYoU2ZpyVAwSlG++8CkKE17Ytbi3bk/2/r9FdfPEM6kpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jblloJuA; arc=none smtp.client-ip=209.85.208.67
+	bh=s0pZVz/MI0VgDl0EUybJ0FTf0DKfSLrTSrzAld/N+mA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=b9nVEl7lgW3baDUJI2nx4qhANXqiYAEwlySzgtqw0j1E50vePjtR1FzHMwUOPJkQnmtwVrFcszLKRr734YbF0PlCygdcZLJUTSc33CtCbYUYGl3eTdhN7LG1wL8Q6SI36R/mUMSADL0sgKgkVfV3OD4fmW58T2VAaFXfidR1Qg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w0vHcW8j; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-5785f861868so253720a12.2
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 16:39:32 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-578626375ffso255153a12.3
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 16:39:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717025970; x=1717630770; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5I0b3/ox7MmhZc36+ZmYiuYZWHtorfeiNRM4b5O0zwA=;
-        b=jblloJuAxELM7MD1y/mXaQ8x5rnP+1HG35PqgIc+FIBF2OB00+HRDPgOTROBQPGGRa
-         u8wtDgj7MV8pR74MAnE13w/HNdULXZkEv2DUmx3MSndJZHptHTs2o8oRFcHYNWk6LASy
-         1/No2CXN/D2d5VIp7jpYfw/eAsuVIrQmH1CiRRzjf6E/56oZAWXcK0KvymRsID2n3lpq
-         JpHW2i7SkRi0Nf+HRI5gDcCs1LG8sWvtLQvkxi8aLD3gOWYT0F5KtZyinUEzl2UEPGoR
-         KdfjW5XpH+QP1FZYzNWKG2wHH4m4ZIpbMdldvVZyIM3cZVs9NAksnENzlMLeLBoAYG2m
-         nxLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717025970; x=1717630770;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1717025972; x=1717630772; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5I0b3/ox7MmhZc36+ZmYiuYZWHtorfeiNRM4b5O0zwA=;
-        b=sLeaJ+Z/gyjAZox5sPHxjtRLYyRZza9gqhOebxE94AZweg/YVplAnwA0fTCQ1M+XAY
-         Mmk+gQkv8KFN7k/WuEJxZS/N5YGq3YbK6058IXa7ehYgANo7v4qTtkxQWbdGoIFZDGjX
-         9Nl2Ih2WumqBkgYHOCoYjePenkpEOD+Ov6V8TZD46q+ClzAmLSzjwvpWyY0gYhlpmZXj
-         dbjNnqBSz9dnKmbXL1vu+HGkwi4voMA7yucZTqMTNmn0mAUV1C6pkops0rRmIXt8QbJD
-         YV4stktmmdCrGLz1voHSbcvxP6GAP/qTWczen/kv+Qsoq1AAngdbejmoo92iLcUs/6qK
-         n1NA==
-X-Forwarded-Encrypted: i=1; AJvYcCVX6jEa1FpsPCASAls2I3YZ0hEBG9FSxi/PXyV0FepBDAA9jzCJtLCV/Ln4Bp8ZLS4wPpN1MEdidb/KwdQDFY9oOVzHfaNvRkHRpw==
-X-Gm-Message-State: AOJu0YwUIyr3jzGp1YuUNBGez3cuftwaJeOFlcXhWt4P/ixZJmzF5+7j
-	gD2IoXvk6qiOJ4avj1BKEJr8d/Q+e7fivwLfjCtm43qQVByoSm+GWFCoPYUf7To=
-X-Google-Smtp-Source: AGHT+IHGn7D6DYGbQOrty2IQmBKv3oZoLicLkP9rmxs+PJhoevUo88yE8VS11QNFsXTmdkO5zhXYFg==
-X-Received: by 2002:a50:99d9:0:b0:56c:5990:813e with SMTP id 4fb4d7f45d1cf-57a17810a3fmr295520a12.13.1717025970576;
-        Wed, 29 May 2024 16:39:30 -0700 (PDT)
+        bh=Ba6QNdc3OKHiKLVsBpfuhmd2T3t28nTqhS529Obod14=;
+        b=w0vHcW8j9FgL6oGX+iAopoDdHrBn4t/Sop3hbdkqm7G5OZCF+h75tAq60ah4xbQus0
+         Px60oLgptn7rCOjdVgtFLboxiBqb4WZGpnKet9S4vUQ4ZiXmqt6B05HxPYn+q/0E9aHI
+         P52Z75Gthdk4xmj3KGActaGJhPvFeBkGLpWxPQmiXarjJms/JpYfK5/7RaBkwZ19UcHQ
+         O4y3TTANb7F8P95x5KO48pkHA8guzptKkWz1plveqfpP9PHbS1xH0Pl2Ls5HnKynXKU0
+         taze55Wm/vkqm+9eLOLr4K/Q93NlPAJ3AvxNkdkjREgiljbPiO39TkyrMlWBWY07nPCd
+         R26A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717025972; x=1717630772;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ba6QNdc3OKHiKLVsBpfuhmd2T3t28nTqhS529Obod14=;
+        b=aX2OCfEcogWkqaiJ8nCK/54gAA2sUJK7YXDHzAf8yu/GtWMn/YGGlcWGZoiJBKsRDZ
+         HDVuWDB1OZ0X2LqYQ8TWGn5s1gT553qK6dOrFyi4iX+ZTaNATa4nYlKH87xBSsDwbw3q
+         bZHWClSKKtj0CemstKoukYwMrVu7cpACFCxjq9tP56cwJqtVL9TSIZYMhpqZ27d+qjtc
+         TFG2dM/bkfyZqDc6zYkpIXUUYu291eSqGPOZ8wsSqg+cqNL9W7+OHI9Vz85ceJQ2uB+i
+         76R9HcPYV3EjGnMyF8nwp5U2s1Xl9faLfRW4rL+z+xYCmgETRi/mIKqic4/3S3UehXgO
+         QK6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUh4whTy1CDMLlWI3PeK9AgvXeMNjLXXzfx2/0xHxTeQGsrdX0NimPr0Z3jo569duaizuOV6x1pVOAZ9in/nYN4gNjOEpgCIwb01w==
+X-Gm-Message-State: AOJu0YxFGiweW/3irgUkDep01WYaHP0fGJTdkz4ldGsF5Wr4FASPJb6t
+	sJPgNuKXO9VZLvlmk4/ztt6Jt55sPanE0mUDBLRx+40mJaJeeja6lvMaIf08osU=
+X-Google-Smtp-Source: AGHT+IF908oD8asAtnvvDBaB49pU2X2gVl6QEEFDLj0ciJojX0DSxBhW09ELa98upXriHs22HBLE0w==
+X-Received: by 2002:a50:9316:0:b0:579:c2fe:886 with SMTP id 4fb4d7f45d1cf-57a177b15b9mr264105a12.14.1717025971708;
+        Wed, 29 May 2024 16:39:31 -0700 (PDT)
 Received: from [192.168.0.113] ([2a02:8109:aa0d:be00::8bb3])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579cec28c0dsm5129759a12.66.2024.05.29.16.39.29
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579cec28c0dsm5129759a12.66.2024.05.29.16.39.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 May 2024 16:39:30 -0700 (PDT)
+        Wed, 29 May 2024 16:39:31 -0700 (PDT)
 From: Caleb Connolly <caleb.connolly@linaro.org>
-Subject: [PATCH v3 0/2] qcom: initial support for the SHIFTphone 8
-Date: Thu, 30 May 2024 01:39:15 +0200
-Message-Id: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
+Date: Thu, 30 May 2024 01:39:16 +0200
+Subject: [PATCH v3 1/2] dt-bindings: arm: qcom: Add QCM6490 SHIFTphone 8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,10 +78,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKO8V2YC/13MSwrCMBSF4a2UjI3kYZvoyH2IgzRJ2wuSlJsal
- NK9mxYE7fAc+L+ZJI/gE7lUM0GfIUEMZchDRexgQu8puLKJYOLEaqZonCaPtEUI/XOkUmvbSWO
- UNTUpzYi+g9fm3e5lD5CmiO+Nz3x9v5LeSZlTRq1mykl3lrxrrg8IBuMxYk9WKoufXLB9LkruF
- FeOO9M2rf7Ll2X5AHOkgljqAAAA
+Message-Id: <20240530-otter-bringup-v3-1-79e7a28c1b08@linaro.org>
+References: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
+In-Reply-To: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -92,73 +92,51 @@ Cc: Alexander Martinz <amartinz@shiftphones.com>,
  Caleb Connolly <caleb@postmarketos.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1621;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=899;
  i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=8awMhfh+EooDyyG77D0x2IEYHXjNwY2rq0QQPZ/UDew=;
- b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBmV7yxWiRQhSsrmJ0BAw0120AomnwdJOuQKxX/1
- zxBIFpz2POJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZle8sQAKCRAFgzErGV9k
- tp87D/9VMtaFrW/ML/Yj0lsX+PpDo1F2FhW9EDV5+fQUbA5BXlPXFAi/xAaRdB9ZMucC9/iWdut
- TkRYMN3JjXq4qCG9xqPPDJya8DnMO0R+NLwhxPQz5MdEmJnbQgO3toqSiatjbKxum/Az/JD25dt
- johWicLWRlBnzja/B8oDrFrN2WflV/eSZbOpkiAWVLCELOZFNq2Lq4RBbg9a9aNjDwheaA9P5ZH
- u3JV++irmz+UvpXpKeTSNkqrzCeYd4lSn4v7DPbXMByb/ushbc+3M/CPcwwijYJgFwfWXu82zz6
- 5zG469CWq4sVlRtF4R9coOoSIY44bEDmqCtkKQTJrOMjB8nTRFATGVZoqtHFHwz4jxDzKbOPemw
- 22qz1bEcvz5EZ/Fb1pXRIPtvHV5+14wl8cfhFFBFniTeuDexFhfiBUA4pOcJgBJ+W2qhVTOyNLR
- lOSyKCRh6oVdWb2eJBwHg2FZDQOTSdvwiPIpc63L1DGXiXvlBhPAAxceUmdcum+J44GNyIz/pJT
- HKNUikUmtFe04uOcLb39zFS7dd2SEA8Vn0vyjeMXCwC5zQqQqWX3jwMgv613DIepBBb9hZRpBGY
- 2LiuRUoNGOVuGpokX76S4ngUW1lOB76eiWxmiFdb/DdffnJieECoKO4kbLWgd/5C6fZXpaj+IiV
- +LA5nBMR1K8qFZw==
+ bh=vuwvUX5YFXpssceXQQo0PcZUpaD2LShOgI/MlmUUkwQ=;
+ b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBmV7yx2EqXq8zNv7KFd0t65T4xyI7tgXEwVJX+4
+ PhjZEaTf7KJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZle8sQAKCRAFgzErGV9k
+ to00EACBUD6oC6SANHdSxaNLshZfl1suAeyyeZr/SM0WAtZUJuC1sJttyHx3bNcgjaDev/rP2Tq
+ ukMHxaJjhiGmw1NQEFO6nMrvghmx6ynDLD5KGH2gpkfOIJDeRPR/Fn7Cw3+z8DiAfMgKibPtVz9
+ lh6IX12QoSzVZtSnqoKEMDaP/bn6SXZ58Lnfv1LOyBV4BlwdrGZwCdYasf4qCfPyfJ2sRinR+ny
+ nqJeRpCZYl/K5iKBOFmS2zKAZJCUxvmWehnzxALYGtqwzHjXxJ01JFLPc5gMFrW7K25GpEfQaa3
+ hENNj4B8ODy8Plbvud+PWcNi2L/Uq5RESv0cytVHNrCjAPfvlH5oz2YFGmXdnFu3LjWRZcQoPUL
+ kwsxTLZ0OF+qs/Hf78XgxiTpyV1kHDdXbe4BURJ5+4GX/G4VKgz3MnVTpa8yuo4v0/9qu7gLAZ5
+ kvIuRfCE4KSOPPISv8h21dIYBVea6YFfCBCJZiUZHi9GSeqFOs7YhTHXhQLa8C/h3ZT5x25v9zK
+ AGn3dud22sROJrCVVh9pgxTyvxwIwL9r6pFDwBnRITy9LzUd7WohMfZZqxEXt6cS08VOCpBcjol
+ eyUHwq/VKIPGE70pUBpwhGV6iOepyvuQh/TDzTW8NpzwjL0Z12cTGBQwIQyjFoglVWKREh5Vty5
+ RbQGIZyofNnL6+g==
 X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
  fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 
-The SHIFTphone 8 is an upcoming QCM6490 smartphone, it has the following
-features:
+From: Caleb Connolly <caleb@postmarketos.org>
 
-* 12GB of RAM, 512GB UFS storage
-* 1080p display.
-* Hardware kill switches for cameras and microphones
-* UART access via type-c SBU pins (enabled by an internal switch)
+The SHIFTphone 8 (codename otter) is a smartphone based on the QCM6490
+SoC.
 
-Initial support includes:
-
-* Framebuffer display
-* UFS and sdcard storage
-* Battery monitoring and USB role switching via pmic glink
-* Bluetooth
-* Thermals
-
-Wifi works but requires some commits to be reverted to prevent a
-firmware crash.
-
-The serial port on the device can be accessed via the usb-cereal
-adapter, it must first be enabled by flipping the switch under the
-display. Additional info can be found on the postmarketOS wiki page.
-
-https://wiki.postmarketos.org/wiki/SHIFT_SHIFTphone_8_(shift-otter)
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Caleb Connolly <caleb@postmarketos.org>
 ---
-Changes in v3:
-- Enable wifi
-- Fix protected-clocks indentation in gcc
-- Link to v2: https://lore.kernel.org/r/20240520-otter-bringup-v2-0-d717d1dab6b8@linaro.org
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v2:
-- Fix authorship
-- Address Luca's feedback
-- Link to v1: https://lore.kernel.org/r/20240508-otter-bringup-v1-0-c807d3d931f6@linaro.org
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index ae885414b181..5f84b38ca5d5 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -365,8 +365,9 @@ properties:
+           - enum:
+               - fairphone,fp5
+               - qcom,qcm6490-idp
+               - qcom,qcs6490-rb3gen2
++              - shift,otter
+           - const: qcom,qcm6490
+ 
+       - description: Qualcomm Technologies, Inc. Distributed Unit 1000 platform
+         items:
 
----
-Caleb Connolly (2):
-      dt-bindings: arm: qcom: Add QCM6490 SHIFTphone 8
-      arm64: dts: qcom: add QCM6490 SHIFTphone 8
-
- Documentation/devicetree/bindings/arm/qcom.yaml  |   1 +
- arch/arm64/boot/dts/qcom/Makefile                |   1 +
- arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 926 +++++++++++++++++++++++
- 3 files changed, 928 insertions(+)
----
-change-id: 20240507-otter-bringup-388cf3aa7ca5
-base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-
-// Caleb (they/them)
+-- 
+2.45.0
 
 
