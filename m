@@ -1,88 +1,97 @@
-Return-Path: <devicetree+bounces-70657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059B88D3F06
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 21:48:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA02F8D3F1A
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 21:50:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 319621C21B02
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 19:48:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 964B3286355
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 19:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4D71C2333;
-	Wed, 29 May 2024 19:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLIfSfyz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F41D1C2329;
+	Wed, 29 May 2024 19:50:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D14AA1C2329;
-	Wed, 29 May 2024 19:48:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B591C0DCC;
+	Wed, 29 May 2024 19:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.18.0.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717012096; cv=none; b=LsTTSLmxEuGnDZ4SwiHn0BkYZ6wfLIGAxc5Dn2TQg14IXUDlx+8UDijISPSnfJ9wN+t+oILWxTNl9QqbWU8s7rwtIduaNov2XpPekcdp7uZpozFT+nYRYJW1XIo3p+J5qiqLzz/DV9NC1Vcp909WU5TMiquk3R6YvIi9bNp8u8g=
+	t=1717012201; cv=none; b=THmd9TUP/KHR9Ku6TsXQS+nUVJPFC9lNkHfzRP3I5cHJOL8y2cIrI74ffS3cQrsYXgGLPY97hGP1TBxM2bYrU3Ij/Br2I2R/XfL/phLDuc7fELaO4AR80effL1AhN0MIB4YWuEtfF+aBZmH7svjjpR63nPoMY/Fw02BHYusrETg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717012096; c=relaxed/simple;
-	bh=qWhEwAr6AYrSEXs8Gky9nRQSfZTamh+Ys9gijsMJcIk=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=ar3waaQHaUx+uIGPk9XtGNK4SbrrDhPG4nml+b/Qiosrk8nTTSOmaBLrKYjB8Qb/NywBG0+8+6z31nMVw6Crqax1CERl+GArDWLAvOwE7ITCJmL2ADe9Cz6VpkKzlWbhuxVWZWRumJ0T8UmqX93bmAGoP8Gg5uReh+iZrWrWlLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLIfSfyz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CD0BC32781;
-	Wed, 29 May 2024 19:48:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717012096;
-	bh=qWhEwAr6AYrSEXs8Gky9nRQSfZTamh+Ys9gijsMJcIk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=TLIfSfyzl/LE6/dXyGaWYNyxHPf99UPq9vGHjqcf4Xz+vTTQgX7DnBaKkN4hF7pb0
-	 VXrW8fvC6x5GHZGpAkeyktSF2Zyxpdi5GTrwFIFFucAj8Ay1uOnMKVRoJgzi0S7bNL
-	 1gQYp+E4Ee5ggdsvZcRzle1QikxlECZ+OZW/eXhZOQk1L91uSZhvYFeLpHz9Q21jYE
-	 wPa5ms2oLOz2eEF9e5diQhElr3D8ll0tEU22hCZvH+RcmU4cP6WW8eb95zLZ47XVWj
-	 /0BSsvItSDZ4Bbtm3Uc/d4YL0QIi8Hx/k0yZx7aIqNJmqxxIph0E5Qb6i3qZEeoshL
-	 AeJET7CYsl9Xw==
-Message-ID: <63d35ddacc113598f1822486b882552a.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1717012201; c=relaxed/simple;
+	bh=R4kk8vdF172JQsu+zba+/XWB4MT4EEDQ6ks+oOGk/Tc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ZycwOmIoZrepROrCSEIXxaKRLOmfsjSMpgSgM+SmjcachCX+hcPF0EKxFkxtp1rYi9YlV7TI6MyChE6d5vWAHtpDiYEkkAZjSkxm4LooIopf/VtXK97HQmLTfAmUc6FjgrCjmfg3/O4VF7pGr0ULUxAgjU6DxiiYyJXko/wjbHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=nefkom.net; arc=none smtp.client-ip=212.18.0.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nefkom.net
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 4VqKjB6NXJz1qsPY;
+	Wed, 29 May 2024 21:49:50 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 4VqKjB5Cjhz1qqlS;
+	Wed, 29 May 2024 21:49:50 +0200 (CEST)
+X-Virus-Scanned: amavis at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+ by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavis, port 10024)
+ with ESMTP id Uh27It5nQX2G; Wed, 29 May 2024 21:49:49 +0200 (CEST)
+X-Auth-Info: 0SwjUwDtw+nxunYaVMuVVnCmM5xNvnuk9yBSTzOmX3K5ggql+6ueXVIRbmsnRiUW
+Received: from igel.home (aftr-82-135-83-252.dynamic.mnet-online.de [82.135.83.252])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA;
+	Wed, 29 May 2024 21:49:49 +0200 (CEST)
+Received: by igel.home (Postfix, from userid 1000)
+	id 917B12C121E; Wed, 29 May 2024 21:49:49 +0200 (CEST)
+From: Andreas Schwab <schwab@linux-m68k.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+  devicetree@vger.kernel.org,  linux-riscv@lists.infradead.org,
+  linux-kernel@vger.kernel.org,  Emil Renner Berthing <kernel@esmil.dk>,
+  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,  Paul Walmsley
+ <paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>,  Albert
+ Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v1 0/2] riscv: dts: starfive: Enable Bluetooth on JH7100
+ boards
+In-Reply-To: <f18a74a5-330e-402a-93ca-5552faf00e7e@sifive.com> (Samuel
+	Holland's message of "Wed, 29 May 2024 14:30:31 -0500")
+References: <20240508111604.887466-1-emil.renner.berthing@canonical.com>
+	<87wmo2nmee.fsf@linux-m68k.org>
+	<CAJM55Z-F6N6ua5LoqyMFogDtLp=FaRPoDv4osXFDMjR1b8r9nw@mail.gmail.com>
+	<87zfsy102h.fsf@igel.home>
+	<CAJM55Z8Ce1i==pSUj0z4T2y71g713-675mAYQP5qSN5Euz=rLQ@mail.gmail.com>
+	<878qzsbona.fsf@igel.home>
+	<f18a74a5-330e-402a-93ca-5552faf00e7e@sifive.com>
+X-Yow: On SECOND thought, maybe I'll heat up some BAKED BEANS and
+ watch REGIS PHILBIN..  It's GREAT to be ALIVE!!
+Date: Wed, 29 May 2024 21:49:49 +0200
+Message-ID: <87zfs89z4y.fsf@igel.home>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ssnyujhgz64mbxawb43okjkdidd3tbxwjob36ikgbogy64xuqv@ckvir5vfqo63>
-References: <20240528114254.3147988-1-quic_ajipan@quicinc.com> <20240528114254.3147988-8-quic_ajipan@quicinc.com> <ssnyujhgz64mbxawb43okjkdidd3tbxwjob36ikgbogy64xuqv@ckvir5vfqo63>
-Subject: Re: [PATCH V3 7/8] clk: qcom: Add GPUCC driver support for SM4450
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-To: Ajit Pandey <quic_ajipan@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 29 May 2024 12:48:14 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain
 
-Quoting Dmitry Baryshkov (2024-05-28 06:23:27)
-> On Tue, May 28, 2024 at 05:12:53PM +0530, Ajit Pandey wrote:
-> > Add Graphics Clock Controller (GPUCC) support for SM4450 platform.
-> >=20
-> > Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> > ---
-> >  drivers/clk/qcom/Kconfig        |   9 +
-> >  drivers/clk/qcom/Makefile       |   1 +
-> >  drivers/clk/qcom/gpucc-sm4450.c | 805 ++++++++++++++++++++++++++++++++
-> >  3 files changed, 815 insertions(+)
-> >  create mode 100644 drivers/clk/qcom/gpucc-sm4450.c
->=20
-> [trimmed]
->=20
-> > +
-> > +     /* Keep some clocks always enabled */
-> > +     qcom_branch_set_clk_en(regmap, 0x93a4); /* GPU_CC_CB_CLK */
-> > +     qcom_branch_set_clk_en(regmap, 0x9004); /* GPU_CC_CXO_AON_CLK */
-> > +     qcom_branch_set_clk_en(regmap, 0x900c); /* GPU_CC_DEMET_CLK */
->=20
-> I pinged Stephen regarding these clocks. LGTM otherwise.
->=20
+On Mai 29 2024, Samuel Holland wrote:
 
-Looks OK to me. I assume that these clks don't get turned off when the
-GPU power domain is turned off. If that's the case then presumably we
-would need to turn these on and off during power transitions.
+> If the Bluetooth part has some dependency (pinconf, reset pin, clock, regulator,
+> etc.), then such dependency must be declared specifically for the Bluetooth in
+> the DT. Those seem to be correct, so maybe the issue is the maximum UART
+> frequency, if the signal integrity is marginal. Have you tried reducing that?
+
+How to do that?
+
+-- 
+Andreas Schwab, schwab@linux-m68k.org
+GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
+"And now for something completely different."
 
