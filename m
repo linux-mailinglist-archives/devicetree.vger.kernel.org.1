@@ -1,143 +1,114 @@
-Return-Path: <devicetree+bounces-70550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91DB58D3A63
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 17:11:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34DB68D3A5B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 17:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CF1E2864FB
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:11:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF6702862CD
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:10:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3C316C451;
-	Wed, 29 May 2024 15:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4178117F36A;
+	Wed, 29 May 2024 15:10:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lHOcXiUI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fAy1XNia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9507BD2F0;
-	Wed, 29 May 2024 15:11:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188A217DE30;
+	Wed, 29 May 2024 15:09:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716995478; cv=none; b=iG6yg8iztnvpQIGl5Lte+2nVDilO5i2lmp1/Mi9o63aChLteQU1juFZVhVzcRYY1WNC+HzdVUSn9nt7o3c1+5QR8WPNqYXC+CRLR4t7X85gCQLcONkpqmXHk7RYIv7llr+66uXJcnlh2r8Enf8ntvbKK8tYzYfMtVRVULoA02mE=
+	t=1716995400; cv=none; b=fDNgzM6yj1NUAzZ+FE8AdgRiDYQoAUs/IbJAHxvsVfBv1c3RP6ICX8O/ALwDdIsbGxQQzA/wCQpZmILiVyu0t+T81tG141hoX3m9UV7jqDixWNrbFc74wSkZQum55E9yi2OgtTy9iEH2vKGtZYPRia5yDXG7YHBWaklP6QuG29w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716995478; c=relaxed/simple;
-	bh=LfsyLBuOEebZXf0FmvHKrivubLb0L6gjBUDj9eH0Mvk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ik92q0e8bQD5YfUE4mPmexsWfXf5wx3+UDgQCR9+zyfzwCtVL5LewAOy75P4IStSPdzWlmcxgTPIkcEWpUS70gOG1yJKi+Ie+DUBJXHPhOAdOZ1kuP8BIgSCkYpSpod1yVOYWxajbTUTC9W1YBsdZvXlh5+n9Iy0iSrYSq2yNyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lHOcXiUI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TBtabU021170;
-	Wed, 29 May 2024 15:09:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=owCWHyok5RQxLdu/CPu4P8FF
-	4Lb1VB7+ZRXHc1JgNB8=; b=lHOcXiUIFYq+7o7LX7m8c9WsSCx1mx48TDUcVZWf
-	TPhARGnopuoQXUrj28nmdv45O7lRalQKej6nULa3/RICoeu9hEajjXaJHbUhTaYk
-	zaXcM/VaepLISawmzfP64yXe6pgSnhyfJnjqh6AwkjPtJKSd2UkD2I5ePrNXFW7c
-	Xzax3Ye9FTj3lDRt6EfXKfiuxnh5C5v8IGCvGXk34ys62F66rEEFMZzs/q5iwg5F
-	xwA7v7966TP4RJTtk4IXISMFw2YCNbnLjwBmH1t20pDQbR5/ZmcxQNxnrJuFSsCI
-	JrcIgkUcx6vSlTMmvpbwv0xP4wVHRNHS7Gu0cZWytIL7nA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0ps682-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 15:09:03 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TF92ca026153
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 15:09:02 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 29 May 2024 08:09:01 -0700
-Date: Wed, 29 May 2024 08:09:01 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Amrit Anand <quic_amrianan@quicinc.com>,
-        "Peter
- Griffin" <peter.griffin@linaro.org>,
-        Caleb Connolly
-	<caleb.connolly@linaro.org>,
-        Andy Gross <agross@kernel.org>, Doug Anderson
-	<dianders@chromium.org>,
-        Simon Glass <sjg@chromium.org>, Chen-Yu Tsai
-	<wenst@chromium.org>,
-        Julius Werner <jwerner@chromium.org>,
-        "Humphreys,
- Jonathan" <j-humphreys@ti.com>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        "Jon
- Hunter" <jonathanh@nvidia.org>,
-        Michal Simek <michal.simek@amd.com>,
-        <boot-architecture@lists.linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH RFC v3 5/9] dt-bindings: board: Document board-ids for
- Qualcomm devices
-Message-ID: <20240526115810183-0700.eberman@hu-eberman-lv.qualcomm.com>
-References: <20240521-board-ids-v3-0-e6c71d05f4d2@quicinc.com>
- <20240521-board-ids-v3-5-e6c71d05f4d2@quicinc.com>
- <20240525-parachute-plutonium-ef8d1472ff50@spud>
+	s=arc-20240116; t=1716995400; c=relaxed/simple;
+	bh=Xhb3zJFmFfGlU8AJi68kSsih9jBID7aB32p8Q47N+Oo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=WBpbSHHWK+o948ZQl+JWcBK9NT/YDrMcwv7MDl/t89cPaYfR4UifORWEdpGMoXRXFRbEsU7ifJD+AdB9RuN5zbxXE7QRdF1Wmr8XdqGrakGrHmxUEvFq8DqzH+b1B2BJCb4ISDyy4yDohKVgyyxiiHMwjmQ/zo+dGC5DzKOb4hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fAy1XNia; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B379C113CC;
+	Wed, 29 May 2024 15:09:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716995399;
+	bh=Xhb3zJFmFfGlU8AJi68kSsih9jBID7aB32p8Q47N+Oo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=fAy1XNiaqdFHRcQjhbDjF29KzwVn7lKBIldDFYUzYuNAIXqqpkxIyXMEdmdjXnD92
+	 1oQgLo4yTsEVa0Qas3rHTAzCd0NBxyc7aE6dv9O8COmPRIg4fKmxfPdMgHDRLtcXA9
+	 aYOk3retWoghQ6VGbESChBFNjqK3KkeBOnY2CsbeHKZFxJoPbk8VQQ1vrOOBB5CWcD
+	 PqB69C2xALgXFcSoMex3114vwzsUZB0BfUxIw460Q6ao5IW9itfCSBFJ+kbyY/Dnk3
+	 rQVTE7WMij3VndgU8lqJ7KFdMaQIL7Jxrfiqk8ij4K1+PzQSEYwpnvWgqgSYV9Au8+
+	 R+Llv088MhBfA==
+From: Mark Brown <broonie@kernel.org>
+To: lgirdwood@gmail.com, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ Alina Yu <alina_yu@richtek.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ cy_huang@richtek.com
+In-Reply-To: <cover.1716870419.git.alina_yu@richtek.com>
+References: <cover.1716870419.git.alina_yu@richtek.com>
+Subject: Re: [RESEND 0/4] Fix issue when using
+ devm_of_regulator_put_matches and add compatiblity for both fixed and
+ adjustable LDO VOUT
+Message-Id: <171699539775.117971.10350524168531143563.b4-ty@kernel.org>
+Date: Wed, 29 May 2024 16:09:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240525-parachute-plutonium-ef8d1472ff50@spud>
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0kYVmVeWY6R4bZ8uKCBfVzN1tngFO0WX
-X-Proofpoint-GUID: 0kYVmVeWY6R4bZ8uKCBfVzN1tngFO0WX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-29_11,2024-05-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
- suspectscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501
- mlxscore=0 spamscore=0 adultscore=0 phishscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405290104
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14-dev-2ee9f
 
-On Sat, May 25, 2024 at 06:08:46PM +0100, Conor Dooley wrote:
-> On Tue, May 21, 2024 at 11:38:02AM -0700, Elliot Berman wrote:
-> > +
-> > +allOf:
-> > +  # either describe soc or soc-version; it's confusing to have both
+On Tue, 28 May 2024 14:01:12 +0800, Alina Yu wrote:
+> There are two types of LDO VOUT: fixed voltage mode and adjustable voltage mode.
 > 
-> Why not just use the one that has the most information and discard the
-> others? If your dtb picker for this platform doesn't care about the soc
-> version, then just don't look at that cell?
-
-The dtb picker for the platform doesn't know whether to care about the
-SoC version/platform version/whatever. That's a property of the DTB
-itself and I don't think it makes much sense to bake that into the DTB
-picker which would otherwise be unaware of this.
-
+> As the fixed voltage for the LDO is outside the range of the adjustable voltage mode,
+> the constraints for this scenario are not suitable to represent both modes.
+> Therefore, A property is added to specify the fixed LDO VOUT.
 > 
-> Likewise for platform and PMIC, why can't you ignore the cells you don't
-> care about, rather than having a new property for each variant? Nothing
-> in this patch explains why multiple variants are required rather than
-> just dealing with the most informational.
->
+> In this version, a software bug has been fixed.
+> rtq2208_ldo_match is no longer a local variable.
+> It prevents invalid memory access when devm_of_regulator_put_matches is called.
+> 
+> [...]
 
-Sure, I will explain in future revision.
+Applied to
 
-- Elliot
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/4] regulator: rtq2208: Fix invalid memory access when devm_of_regulator_put_matches is called
+      commit: 72b6a2d6506843375c7b91197f49ef38ca0c6d0f
+[2/4] regulator: rtq2208: Fix LDO to be compatible with both fixed and adjustable vout
+      (no commit info)
+[3/4] regulator: rtq2208: Add fixed LDO VOUT property and check that matches the constraints
+      (no commit info)
+[4/4] regulator: dt-bindings: rtq2208: Add specified fixed LDO VOUT property
+      (no commit info)
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
