@@ -1,171 +1,117 @@
-Return-Path: <devicetree+bounces-70486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A9278D3747
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:14:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C57B8D3756
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35652286DC0
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:14:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D51891F259F1
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:15:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 546CAE554;
-	Wed, 29 May 2024 13:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46151101DB;
+	Wed, 29 May 2024 13:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cw6Jd7fH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r+sSY9x2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEE2DDAD;
-	Wed, 29 May 2024 13:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7F82572;
+	Wed, 29 May 2024 13:15:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716988466; cv=none; b=sKV0wnsNrF4OtCID6mRj+mCzeyRucbRnLrc114s0gtUSDPeuu85vOV4GKGVE9b8uWs/S7ucpwS/0A6eMvaSLhccThMCmuAmVGuDNiYPfQsVuXrjcTXwLu/Emd9t6x4aueksVcFaEAO+onTHcEdCm4hqfvMvP/NSz/E+f7pFvZp8=
+	t=1716988524; cv=none; b=oO4ekYH6aOfyn8LUwnpO2YGNkzfAmnq1Cyh/r1Cc7IQC5WxgXXxEcrbyCZDGi2c7d5E+5b+mlr7v3pmNWDxkwlVIYEAEfOET3kw8BRmRbfD4aJtzTXzvozfKmVeXvBbO3YtfASIHUy9PR+XnUMlnGwzRj+yfsUAlkLnQjEMQgHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716988466; c=relaxed/simple;
-	bh=DHUO90PUPhlMJ3B+9LiJkV1K2D77bjBIutGq+bUUtz4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PAzSIsiACoyFAbgZfbWGYny9kJUQvWBwyuoSLzHNBrPVAS9eQb19b7uXq5Awa6EXRndcvlaZluO6XuqvyMIo9q/xdnM8Jv4bpBKjcBhkYsukPuKS0+7xB73+/W3Z8V6QcODziEQqEaOEDQNpMhLZ59a5hBPaWWC/oBo39XVRR64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cw6Jd7fH; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716988462;
-	bh=DHUO90PUPhlMJ3B+9LiJkV1K2D77bjBIutGq+bUUtz4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cw6Jd7fHS8GjpN9WNQ9abAufl1Zgwyndm8aJDcc0mYCCJHPbcDPU78u+hCucvxDSY
-	 UuUcvR7Z/XnpiviS9esGpR2ppZhmT1GuURxOm0JxsV6CyfxnN0fTQ295HbpFApHVMn
-	 /fFWBIWezuhTpAzL6uR9/j78oaPfGzcUMyX7At1AOi1iHRKf7KOXz51SBxqO7FTt/5
-	 Zx7qZ+LqRGbNhmzRXYcpSyOe3VHiyCQaHY6lm8KmpORNlYeD9eN1DRmabvaiZcnGKo
-	 9Thv4w6N9xiKisfM1Zu5Ax/HlyWJmGr5VKohI2m+4Gn34obcVbqH9eu7BxcPMxD54e
-	 LrjCUgo6LK6HQ==
-Received: from [100.95.196.182] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: andrzej.p)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CE9033782087;
-	Wed, 29 May 2024 13:14:21 +0000 (UTC)
-Message-ID: <8a007787-c648-4ae3-829f-7a0b17dd9a89@collabora.com>
-Date: Wed, 29 May 2024 15:14:21 +0200
+	s=arc-20240116; t=1716988524; c=relaxed/simple;
+	bh=ujzhhXCydAwZXc7rS5LhBrMDvamEvdGbdaBp/U8b0oM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JUnIkfyKWDDxnqoh5q/PzCgpMKKPDiCjZBZsU4wSZm6Mt35vnc8t7nGeB/lWG147e3uMC8cFpJcg6ft7e9OY7liDhMhTmRfEdk/rslRKcjzT68rZGOLNUsoAlafFEMvTw5wEA+bWHOHhuE9TR6uZh94yXFGvH3/xtguAS0qqNhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r+sSY9x2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F58AC2BD10;
+	Wed, 29 May 2024 13:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716988523;
+	bh=ujzhhXCydAwZXc7rS5LhBrMDvamEvdGbdaBp/U8b0oM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r+sSY9x2Yr9SOckTZ0mrTp0XctmZIan7I1jgy+rBnVb5Y5LKO6/8i5FTX7h1XGmQW
+	 5SCmmxjYTmk5S1d47S946+DXlDncD8ytFzgK9f/MXx/IswC8zZjqrzfY+j8G5wP+fk
+	 e+aNg6gR91SaPXD4YuqMskL5j3iuYXwNmDU/BqZL3hLSZLzWK6hYlzKUBO/0FZUEAZ
+	 cC5tDEhR2efhjkE6CwlXIV3CLpAT3WWTUb3QDEZklkBmcmJCgoYXY6PhjcNr+GsyTo
+	 Y5nrN8wZjcxZSZBVJNNwtatUfwKJTUWf37s5ru8ZVVDDKaQjVi6C2bpEsOhMxcPz8N
+	 P/zxR/ZW0I7mw==
+Date: Wed, 29 May 2024 14:15:18 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] regulator: gpio: Correct default GPIO state to LOW
+Message-ID: <ee5798e5-bcc4-4715-9c93-913094160b97@sirena.org.uk>
+References: <b80d65600641e6dcf00da53ae797f4a40a80e2d0.1716976062.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] media: mediatek: vcodec: fix h264 multi statless
- decoder smatch warning
-To: =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>,
- "nhebert@chromium.org" <nhebert@chromium.org>,
- "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>,
- "nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "frkoenig@chromium.org" <frkoenig@chromium.org>,
- "stevecho@chromium.org" <stevecho@chromium.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "hsinyi@chromium.org" <hsinyi@chromium.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240229095611.6698-1-yunfei.dong@mediatek.com>
- <20240229095611.6698-2-yunfei.dong@mediatek.com>
- <4949bd54-8c32-4490-ab19-d38796d29ac1@collabora.com>
- <9ba79ccf849054974a937d1d605910cf4c8552d6.camel@mediatek.com>
-Content-Language: en-US
-From: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-In-Reply-To: <9ba79ccf849054974a937d1d605910cf4c8552d6.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="U4bdCLzVLSiyC7ix"
+Content-Disposition: inline
+In-Reply-To: <b80d65600641e6dcf00da53ae797f4a40a80e2d0.1716976062.git.geert+renesas@glider.be>
+X-Cookie: Everybody gets free BORSCHT!
 
-Hi,
 
-W dniu 3.04.2024 o 05:45, Yunfei Dong (董云飞) pisze:
-> Hi AngeloGioacchino,
-> 
-> Thanks for your reviewing.
-> On Tue, 2024-04-02 at 11:50 +0200, AngeloGioacchino Del Regno wrote:
->> Il 29/02/24 10:56, Yunfei Dong ha scritto:
->>> Fix smatch static checker warning for vdec_h264_req_multi_if.c.
->>> Leading to kernel crash when fb is NULL.
->>>
->>> Fixes: 397edc703a10 ("media: mediatek: vcodec: add h264 decoder")
->>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
->>> ---
->>>    .../vcodec/decoder/vdec/vdec_h264_req_multi_if.c         | 9
->>> +++++++--
->>>    1 file changed, 7 insertions(+), 2 deletions(-)
->>>
->>> diff --git
->>> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req
->>> _multi_if.c
->>> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req
->>> _multi_if.c
->>> index 0e741e0dc8ba..ab8e708e0df1 100644
->>> ---
->>> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req
->>> _multi_if.c
->>> +++
->>> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req
->>> _multi_if.c
->>> @@ -724,11 +724,16 @@ static int vdec_h264_slice_single_decode(void
->>> *h_vdec, struct mtk_vcodec_mem *bs
->>>    		return vpu_dec_reset(vpu);
->>>    
->>>    	fb = inst->ctx->dev->vdec_pdata->get_cap_buffer(inst->ctx);
->>> +	if (!fb) {
->>> +		mtk_vdec_err(inst->ctx, "fb buffer is NULL");
->>> +		return -EBUSY;
->>> +	}
->>> +
->>>    	src_buf_info = container_of(bs, struct mtk_video_dec_buf,
->>> bs_buffer);
->>>    	dst_buf_info = container_of(fb, struct mtk_video_dec_buf,
->>> frame_buffer);
->>>    
->>> -	y_fb_dma = fb ? (u64)fb->base_y.dma_addr : 0;
->>> -	c_fb_dma = fb ? (u64)fb->base_c.dma_addr : 0;
->>
->> You're changing the behavior here, can you please explain why this
->> change is valid
->> into the commit description?
->>
-> The driver already add the condition to check whether fb is NULL at the
-> front, no need these two lines again.
-> 
+--U4bdCLzVLSiyC7ix
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Maybe Angelo refers to the function never returning -EBUSY before?
-While at it, if fb is a kind of a buffer, why not -ENOMEM
-when get_cap_buffer() fails?
+On Wed, May 29, 2024 at 11:49:51AM +0200, Geert Uytterhoeven wrote:
+> According to the GPIO regulator DT bindings[1], the default GPIO state
+> is LOW.  However, the driver defaults to HIGH.
 
-Regards,
+> Before the conversion to descriptors in commit d6cd33ad71029a3f
+> ("regulator: gpio: Convert to use descriptors"), the default state used
+> by the driver was rather ill-defined, too:
 
-Andrzej
+That was 4 years ago...
 
->> Thanks,
->> Angelo
->>
-> Best Regards,
-> Yunfei Dong
->>> +	y_fb_dma = (u64)fb->base_y.dma_addr;
->>> +	c_fb_dma = (u64)fb->base_c.dma_addr;
->>>    	mtk_vdec_debug(inst->ctx, "[h264-dec] [%d] y_dma=%llx
->>> c_dma=%llx",
->>>    		       inst->ctx->decoded_frame_cnt, y_fb_dma,
->>> c_fb_dma);
->>>    
->>
->>
->>
+> I have no idea if this has any impact.
+> I guess most/all DTS files have proper gpios-states properties?
 
+That seems optimistic, and a grep in mainline shows some users but not
+really as many as I'd intuitively expect.
+
+> -			/* Default to high per specification */
+> +			/* Default to low per specification */
+>  			if (ret)
+> -				config->gflags[i] = GPIOD_OUT_HIGH;
+> +				config->gflags[i] = GPIOD_OUT_LOW;
+>  			else
+
+The risk here is that we start glitching the power where previously we
+didn't.  This does make me nervous.
+
+--U4bdCLzVLSiyC7ix
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmZXKmUACgkQJNaLcl1U
+h9B9Gwf/R2iAIKgEctcw6myFMUeu271otHOu/guyQ+Ko2nLT21+UkH3EiiU5p4b3
+cY20iuEK4tmSJPUueJDiwdXAlPOZhQ8JFxIZvXPm0ZIMWDNdMECgb/LkRjJFTN46
+WAjtna5x94CON+5t0Bx+OMpM/obwIYqvYWhAZPR8boURfOULjQed3Qs4UzB5O7A2
+c9QLLGmeAcCjknN1Xc9OJgVe7sfHp86mwyivy5/5QAvmYPCDJYbt8dPFqg34Rjec
+Xk2lJxw1LE6kD0xYg/60lxTEWeiuBJAsX7aVXdxHf8+dP5Y1qgTWwoYY8f9ww81W
+X/EozJGbyVxrkmP6w29IaAXV1Ol0Kg==
+=DNcl
+-----END PGP SIGNATURE-----
+
+--U4bdCLzVLSiyC7ix--
 
