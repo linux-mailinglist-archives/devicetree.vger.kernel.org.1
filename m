@@ -1,64 +1,67 @@
-Return-Path: <devicetree+bounces-70156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4308D2A53
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 04:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4938D2A5C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 04:03:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 834E328A825
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:02:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC4F628B26B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F63915B141;
-	Wed, 29 May 2024 02:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 106E015B57D;
+	Wed, 29 May 2024 02:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TD0Tlbhk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHKYa9xW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FC4415ADB4;
-	Wed, 29 May 2024 02:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D501A15B0EE;
+	Wed, 29 May 2024 02:02:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716948131; cv=none; b=aPDotEmrXF4DpT0zlXkFeQJW5Y36+E5pAmxP9UlxfBB799Ssxq+tPoSsWvwFnalhIcVlkX7r39hOhcMBhmY9Qtao1FF2bbq2DnJkD3mIw3nL4pP1iabagoSYc0y9G/zlk5maYb2FaxBc5769oxM6sijBRAd+ihmd5JqpEq6pZ1s=
+	t=1716948134; cv=none; b=LTpd07NaK+C53qkG/2zlql6tvGB7CnzE0BPJ7eAsmfhEAgrfQ7iHHXR9XqhIE6ukuH0NU5cucrP8wSNYiPfO2PFQ/57wCItZWzj+AbGlP3dPOH/77rYUZTKo08hLBCPSnPw8sSCSFm3Gy4YH69KnZRYs4sml7OOK/alDAcK787k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716948131; c=relaxed/simple;
-	bh=EqdTgYkceBoIQL8Pb8DuDRmlex5LCvLWvePTWZP5/DM=;
+	s=arc-20240116; t=1716948134; c=relaxed/simple;
+	bh=6wEr4j3nqrV3Xer+zYHvj/gdXXgSgZ5QOcoBvjj+iDs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YD22yRniTsRzqlT9/I7FUwiAp7gDuy9/7fcTCl95wZ6rmQqQyEXuT72S4CRPsg27Cx6ul/hNzzml8TYeF3EY47kCctwcRfcgh0rLBA4+Bhn76/sB78SxiwpZxnpU4ed/4RM+bkAzK45pBeQzPofPICsBRTbd/iwsliNARyXSMaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TD0Tlbhk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9A82C4AF07;
-	Wed, 29 May 2024 02:02:09 +0000 (UTC)
+	 MIME-Version:Content-Type; b=YscX9iVRFGwpro/JK0qM/vif1ucQ75JWllWvW5scFVQge7UROFmpXC6/lC3fM4dSd8i/9Tts7y0U0sXXbZULhHUxl8Yh16N4cT9vjKewQccT76YhHTKuaQ+uqjmvHsiinDB2UrEmmQNRVDr5KKJOGUQ9uh/V0ENLS9uUDH9oNMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHKYa9xW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35E97C4AF08;
+	Wed, 29 May 2024 02:02:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716948130;
-	bh=EqdTgYkceBoIQL8Pb8DuDRmlex5LCvLWvePTWZP5/DM=;
+	s=k20201202; t=1716948133;
+	bh=6wEr4j3nqrV3Xer+zYHvj/gdXXgSgZ5QOcoBvjj+iDs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=TD0Tlbhk5FytrvtuSlWWohyS/fHrlhr1FwdMSCT0mZ66Fhj6xNOHnefUMNqmQ4yDd
-	 DdKEZ/tzDgJqt+3PauhBV3TcRcLK+Hr3RHmxoY6XjHuI2fdtjuZitcFpzkrBmvleYS
-	 c1ZFE2ZlpPkJoLvc7D/wGlV7sQIhkznZff6GN7ugC40D1O5nXUxcp5NJC4ghBXmwaw
-	 90lKveNDDR1+2pGkZuWwuN3Lynw5M0GGEpcPdgcitE4ISfZng550n53GoGXdQa5VpD
-	 NOwEWkE1BZ8vdcVNuG5ZiKuEDiVemhGKpvJfR7qIPDJ8EfzEybnN5xqxCp0bwgFWUa
-	 LVzd8LaTFAkyQ==
+	b=FHKYa9xW9fJs5D8XSB6pFDfJBcokOLNWhgM5hyb2xd03pAnHH3XVcNe1rT2+2o/AL
+	 uafM9N1A5gSsUfF/oSVuh5gqnS3v8ZlcBUjKSBB8CMSGzDMtp14E1EfwV/ioBXbZ5P
+	 3pCdwbQXeyrcCMn2G61Xz06ThlQV7ZrEwlO/QIzNt/lVaQvzE1OXmSEvewbQI8S1j2
+	 L514I8rkl9i9WrWlMNynpcm5a51gTQp+rm8P3cDOv3BWJtUkQ/0W+slY7JZeHhD8Kf
+	 /ICdyDCoMYw6Y7QtvQAViLWHpvzgboM4FMR3CCWlnfTVkkKfFXVRjRtI205h2mPEZG
+	 7s6RbLbLFxilw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+To: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Fenglin Wu <quic_fenglinw@quicinc.com>,
-	Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Luca Weiss <luca@z3ntu.xyz>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Enable vibrator on PMI632 + Fairphone 3
-Date: Tue, 28 May 2024 21:01:50 -0500
-Message-ID: <171694812073.574781.12341406388416596795.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 0/2] Mark qcom,ipc as deprecated in two schemas
+Date: Tue, 28 May 2024 21:01:52 -0500
+Message-ID: <171694812075.574781.12396513809519748834.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240418-fp3-vibra-v1-0-b636b8b3ff32@fairphone.com>
-References: <20240418-fp3-vibra-v1-0-b636b8b3ff32@fairphone.com>
+In-Reply-To: <20240425-qcom-ipc-deprecate-v1-0-a8d8034253ea@z3ntu.xyz>
+References: <20240425-qcom-ipc-deprecate-v1-0-a8d8034253ea@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,23 +72,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 18 Apr 2024 08:36:53 +0200, Luca Weiss wrote:
-> With the patches to add vibration support for PMI632 finally applied,
-> let's enable this for the PMI632 PMIC and Fairphone 3 smartphone.
+On Thu, 25 Apr 2024 21:14:29 +0200, Luca Weiss wrote:
+> The mboxes property has been supported in those bindings since a while
+> and was always meant to the replace qcom,ipc properties, so let's mark
+> qcom,ipc as deprecated - and update the examples to use mboxes.
 > 
-> https://lore.kernel.org/linux-arm-msm/20240416-pm8xxx-vibrator-new-design-v11-0-7b1c951e1515@quicinc.com/
-> 
-> Patches have landed in the input tree:
-> https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git/
+> Related:
+> https://lore.kernel.org/linux-arm-msm/20240424-apcs-mboxes-v1-0-6556c47cb501@z3ntu.xyz/
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: pmi632: Add vibrator
-      commit: bbb1dd6402f9c67ea00bc6bf0e2a01d71db4c7fd
-[2/2] arm64: dts: qcom: sdm632-fairphone-fp3: Enable vibrator
-      commit: ffaa4b5d5d07aed600d82929d8862263ce341a71
+[2/2] dt-bindings: soc: qcom,smp2p: Mark qcom,ipc as deprecated
+      commit: 7ce966eb6f1288eb92bc2eb5df8933acee1ae6ed
 
 Best regards,
 -- 
