@@ -1,352 +1,339 @@
-Return-Path: <devicetree+bounces-70293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D878D30BD
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:17:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5EED8D30C9
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:18:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70F621F2B724
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:17:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AE481F287FE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B9016936C;
-	Wed, 29 May 2024 08:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D811D181B82;
+	Wed, 29 May 2024 08:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bPZ01eCK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UEqCNGs+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EF281C230C;
-	Wed, 29 May 2024 08:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 685E9169380
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 08:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716970063; cv=none; b=VMEO29SaF0KLhQD8xSmekrOzvN0xcHxjN3O9+2lOpktEfB3G4C+nqgAM2hy+BpUXa10KcFKMi/uweyS0+FIwUgDT4fzj/B5uSeP+Q8f/PMNsxAAEu50rTdFKx2clqyaosp4tuUAH7hYAfd/nHfPOWhjFxnKuVs/st7UPVH+jcoM=
+	t=1716970124; cv=none; b=oQxpExABYI+CWmpd8H/3XsHclmNyEnn4o2i/5SOSpSo7rAJvmx5krB/bdR5cOibnfGts0rIEQIV5EMZ6A7yhzierA9/m/MED8NZz5ayXPHFJJFNq+RJcjHk71KZFel8fRrDURP8XcOXvzW6RPPK1ECmBl+54bd5aEEQmxE9YNvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716970063; c=relaxed/simple;
-	bh=DbJRWGPwaHoF/f0oYgnmbX2wUVOjF64ReE/qreCyuIU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=aiOBjp+7zE76ofq1FkBBBYwuPdi8ICVLOhcDRLelnuvOEGkXE9oIDCUgPF7VBJ7Hg8PETwk2mZqu2sAowybEt0xLkxoRs+/HFdQ7tcV/4M8uTr+c/v7L01lJjC69GJt2Uzsf/v4OIgonOUV7iMzz1bpWGLr+/SZnnTklvtFODqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bPZ01eCK; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a621cb07d8fso198611266b.2;
-        Wed, 29 May 2024 01:07:40 -0700 (PDT)
+	s=arc-20240116; t=1716970124; c=relaxed/simple;
+	bh=T3LsNDsQjui6zBSWsbGtzYkzQN8h8gfwvEMkMXJ//Qw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ovJuhBXIKKtP1smQhKj/MdX4aphQ7qx8IXAuKXDZ9EZUDLKqnOhiO57AWYlPU9vlY7XoHjNChjNpiDt1d+h19xz5flSq+Nne7sZ5if/vb0DGJi8Nwf2XdcN58wb64XpCLmOLr4Z60v0iA5+f6KoVDpYtyQPAzsWCd6gCFU9VGAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UEqCNGs+; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42108739ed8so21231895e9.0
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 01:08:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716970059; x=1717574859; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HbmeazO7vBjxMc5Hy7I+L4x41EIeSvLatAytZpScfhg=;
-        b=bPZ01eCKH15ajaTmR/JTkekuP+X5ZdNjtVs8Q9Go/d10/Pj6DsobpOjhoaxrAm2Dp3
-         XHD/gKOCkszW+cOK+MlUp7IigyAVKIGMmFUQCIpMBzkrVEx5bkqP/H1Rsmmhz32eEOTr
-         c5f9ym5yjAx4/T/cS+TzV0zAAj/s27EE/prmQU2Rw9Bu0c1z52wPU4gBajgoJjW/Ts3p
-         dbqOHOvxnL7r58xuMjMaMJM8xRz8em8SiXYXnOOfDRbzOuJhO1oCaCPPY1STo2GGlNso
-         TxhQMeeWhfraQK2v00gu7tY7INJRL8MNC9Vpd5LWTlcZGPoXRYtlyErghnpUilJUbOuB
-         vTyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716970059; x=1717574859;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=linaro.org; s=google; t=1716970121; x=1717574921; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HbmeazO7vBjxMc5Hy7I+L4x41EIeSvLatAytZpScfhg=;
-        b=W61DHUKUDb6b51Eq2R1wSom/94rjWVPC/gcZTDcuPa+yfaS90VBActjTWd6dsfB9xo
-         yveRfHFjIjsiG1gy1X6S0Rye86dWeJNMNX6KZawe2XaiT5+cqXpL8sX9Pk/g4k2u9sOC
-         Oh99Asu5VIADYVZww5AangCzSSrDuMiN9g9uXXvoPtINCANIXO6Ru7FAy7ZQPteq0D8W
-         GHmjRaMxhXQfvngoJnsDYE8cXgwcEukR3kFskTGf3C+mI0laMO3xHC1S0lK2r8sCnzkS
-         HUpaIzxMGy/39QA4PUbxFfGRYn85M1v+UGQwmB3zH1bTaEEgs230jOo/prWzTiaRkGtj
-         T2ww==
-X-Forwarded-Encrypted: i=1; AJvYcCVpMtNrf8Md4P00t+ojUpvjTck0RPSnWCChzYcLQ8nBovfjXKN06NP728ffKeZcARzmBbQCBYWXQx2FEx5K19PTsVAHtghxcuix/UgC1pUuIBu/204rcPcjxq/k8GwfcJ+9sSW9G3OWxHj3U7nqpSJItV9e48SC309fxOLGLuJ+PF9ACpQOK7UEI2sn6y3xo8BNlivz6O0VQgQ6P09USQ==
-X-Gm-Message-State: AOJu0YzV5fhv/csKLql4/UnrfFWSpsRpjJjHGHleyh++vSSOLl9K+jSS
-	dSdUVbTkLBwXrvM/GIdnfToP67arzRaPQknq1zGD8CiKeEQGGjzP
-X-Google-Smtp-Source: AGHT+IFqLe66tCV8uvRY+ijnQhAQ1SPt9jaw31+gWnFWDuxF2+A75aWbBMXHZGoyyrJJ5W1q23KhdA==
-X-Received: by 2002:a17:906:fa17:b0:a63:d926:7f34 with SMTP id a640c23a62f3a-a63d9268961mr112902166b.26.1716970059221;
-        Wed, 29 May 2024 01:07:39 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6418ee2286sm53672966b.17.2024.05.29.01.07.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 May 2024 01:07:38 -0700 (PDT)
-Message-ID: <10991373cb9603803df63d8236c475807f6dde68.camel@gmail.com>
-Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
- spi-offloads property
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
- Jonathan Cameron
-	 <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno
- =?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Michael Hennerich <Michael.Hennerich@analog.com>, 
- Lars-Peter Clausen
-	 <lars@metafoo.de>, David Jander <david@protonic.nl>, Martin Sperl
-	 <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org
-Date: Wed, 29 May 2024 10:07:37 +0200
-In-Reply-To: <20240526-peculiar-panama-badda4f02336@spud>
-References: <20240513-headsman-hacking-d51fcc811695@spud>
-	 <CAMknhBE5XJzhdJ=PQUXiubw_CiCLcn1jihiscnQZUzDWMASPKw@mail.gmail.com>
-	 <20240514-aspire-ascension-449556da3615@spud>
-	 <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
-	 <20240516-rudder-reburial-dcf300504c0a@spud>
-	 <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
-	 <20240519-abreast-haziness-096a57ef57d3@spud>
-	 <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
-	 <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
-	 <5ad0b5782434eaf4cf565cffb0e4c14b7414ae38.camel@gmail.com>
-	 <20240526-peculiar-panama-badda4f02336@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
+        bh=a/JqdadxOtCgPk5Z92J6Iz23Jf3+Y16joj23RLu5HX0=;
+        b=UEqCNGs+fNHoYv50zpSrTx/PiSv4obl+HDUKrrSNy4QdgzTjjO2e7nGSFuzJfkxQni
+         sQtcbBmcwYQvL2Kd0uwlR3YggHK/S1eouMJ6a/vkgJdjc2QQVxVhaMcpxuR2keWz5gkM
+         4VuqMiXAmfO/hsvoA0Tk3rTSV+DA/O6pSzypolQT/wi99XnRs/xjYcS9cVFIw56oOG0Q
+         WvxsKzby+xQKRyD8C5oQWzoFMk9vbcvWpRH0YEEEkVezx9U/ldTn5Pi8r8xuGZDeiR2v
+         +161X7nuHqgGEy5L3vlLqQUsfuo42cxHzVI6w7TKe9unRrIaRm8vnLgyFnVuRNi9/2x8
+         iCRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716970121; x=1717574921;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a/JqdadxOtCgPk5Z92J6Iz23Jf3+Y16joj23RLu5HX0=;
+        b=GtSyEW4hGC1mjd+cMUu/W6HxuOCT6+aQiMR68KOKj094fcqpzhkvu4gh1LawIW3r0P
+         Di20ROZFufLfA//RKTnZpI0Q4xrd9LLY4P4hNEzW5qPtHzy9lvgtvmiPax/V8FooCC4E
+         vnQ1VZ1tPRTQ/p5LmSOAfbxHbfNVP8zuvvUjJJIwKWhMoCwUhcNMwC0Lf0tPrqT+Sq8Q
+         qD8HF7buro9x4TEeFRFyS+sVK0hsaYeTe+SGuBaH5YbOCTyDpToGSor7+T6Yb3Mod0Gy
+         dXWrTb/RcsgSOtutbC0ZnOu0H6g90DOit1stzZH2o/j7wz34ulTlZTEodzpiS209Xr0u
+         Z/xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU8hKf2eyjKGE8GRDRngBQ8nbIzYYXg3sryK5w0B75opQgxl9e+l1y3KedHFBU/aEleQLlvV3U6A6Nx0puXDatkCYVVYOmudfGIQw==
+X-Gm-Message-State: AOJu0YwNS8e3GmbvdL/sEu24ifcbvyNSed80Ga14j42MnlOTNr16C+qL
+	eytygZYej4l38GZM7YAOQ0pIP021ddAoB3yfc143Yc7NLCxNSRf23Uh/JvOng5k=
+X-Google-Smtp-Source: AGHT+IG37BWRZMEjsIkkPqzKrnfVQeOHaDJWHEmylLb4ayfm/w5tbXgAnW+F/WgUw+Xxl6kVsnytaw==
+X-Received: by 2002:a05:600c:5354:b0:420:f8:23d6 with SMTP id 5b1f17b1804b1-42108aa7589mr151469755e9.36.1716970120703;
+        Wed, 29 May 2024 01:08:40 -0700 (PDT)
+Received: from [192.168.0.3] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a090366sm13891799f8f.56.2024.05.29.01.08.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 May 2024 01:08:40 -0700 (PDT)
+Message-ID: <0f337380-4e43-4ed4-aa05-0c7072ecd112@linaro.org>
+Date: Wed, 29 May 2024 09:08:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/6] platform: arm64: add Lenovo Yoga C630 WOS EC
+ driver
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
+References: <20240528-yoga-ec-driver-v4-0-4fa8dfaae7b6@linaro.org>
+ <20240528-yoga-ec-driver-v4-2-4fa8dfaae7b6@linaro.org>
+ <2b76f27e-f223-4ff9-880e-9e232ce9ddc6@linaro.org>
+ <3gbjbuav5l2td5xrfj46krhgdew42medhfrnkd47iahdv4fm3x@qv6jadf6tkol>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <3gbjbuav5l2td5xrfj46krhgdew42medhfrnkd47iahdv4fm3x@qv6jadf6tkol>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, 2024-05-26 at 18:35 +0100, Conor Dooley wrote:
-> On Thu, May 23, 2024 at 02:15:35PM +0200, Nuno S=C3=A1 wrote:
-> > On Wed, 2024-05-22 at 19:24 +0100, Conor Dooley wrote:
->=20
-> > >=20
-> > > To remind myself, "Application 2" featured an offload engine designed
-> > > specifically to work with a particular data format that would strip a
-> > > CRC byte and check the validity of the data stream.
-> > >=20
-> >=20
-> > I think the data manipulation is not really a property of the engine. T=
-ypically
-> > data
-> > going out of the offload engine goes into another "data reorder" block =
-that is
-> > pure
-> > HW.
-> >=20
-> > > I think you're right something like that is a stretch to say that tha=
-t
-> > > is a feature of the SPI controller - but I still don't believe that
-> > > modelling it as part of the ADC is correct. I don't fully understand =
-the
-> > > io-backends and how they work yet, but the features you describe ther=
-e
-> > > seem like something that should/could be modelled as one, with its ow=
-n
-> > > node and compatible etc. Describing custom RTL stuff ain't always
-> > > strightforward, but the stuff from Analog is versioned and documented
-> > > etc so it shouldn't be quite that hard.
-> > >=20
-> >=20
-> > Putting this in io-backends is likely a stretch but one thing to add is=
- that the
-> > peripheral is always (I think) kind of the consumer of the resources.
->=20
-> Could you explain you think why making some additional processing done to
-> the data an io-backend is a stretch? Where else can this RTL be
-> represented? hint: it's not part of the ADC, just like how if you have
-> some custom RTL that does video processing that is not part of the
-> camera!
+On 29/05/2024 00:56, Dmitry Baryshkov wrote:
+> On Wed, May 29, 2024 at 12:51:04AM +0100, Bryan O'Donoghue wrote:
+>> On 28/05/2024 21:44, Dmitry Baryshkov wrote:
+>>> Lenovo Yoga C630 WOS is a laptop using Snapdragon 850 SoC. Like many
+>>> laptops it uses embedded controller (EC) to perform various platform
+>>
+>> an embedded controller
+>>
+>>> operations, including, but not limited, to Type-C port control or power
+>>> supply handlng.
+>>>
+>>> Add the driver for the EC, that creates devices for UCSI and power
+>>> supply devices.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>    drivers/platform/arm64/Kconfig                 |  14 ++
+>>>    drivers/platform/arm64/Makefile                |   1 +
+>>>    drivers/platform/arm64/lenovo-yoga-c630.c      | 279 +++++++++++++++++++++++++
+>>>    include/linux/platform_data/lenovo-yoga-c630.h |  42 ++++
+>>>    4 files changed, 336 insertions(+)
+>>>
+>>> diff --git a/drivers/platform/arm64/Kconfig b/drivers/platform/arm64/Kconfig
+>>> index 8fdca0f8e909..8c103b3150d1 100644
+>>> --- a/drivers/platform/arm64/Kconfig
+>>> +++ b/drivers/platform/arm64/Kconfig
+>>> @@ -32,4 +32,18 @@ config EC_ACER_ASPIRE1
+>>>    	  laptop where this information is not properly exposed via the
+>>>    	  standard ACPI devices.
+>>> +config EC_LENOVO_YOGA_C630
+>>> +	tristate "Lenovo Yoga C630 Embedded Controller driver"
+>>> +	depends on I2C
+>>> +	help
+>>> +	  Driver for the Embedded Controller in the Qualcomm Snapdragon-based
+>>> +	  Lenovo Yoga C630, which provides battery and power adapter
+>>> +	  information.
+>>> +
+>>> +	  This driver provides battery and AC status support for the mentioned
+>>> +	  laptop where this information is not properly exposed via the
+>>> +	  standard ACPI devices.
+>>> +
+>>> +	  Say M or Y here to include this support.
+>>> +
+>>>    endif # ARM64_PLATFORM_DEVICES
+>>> diff --git a/drivers/platform/arm64/Makefile b/drivers/platform/arm64/Makefile
+>>> index 4fcc9855579b..b2ae9114fdd8 100644
+>>> --- a/drivers/platform/arm64/Makefile
+>>> +++ b/drivers/platform/arm64/Makefile
+>>> @@ -6,3 +6,4 @@
+>>>    #
+>>>    obj-$(CONFIG_EC_ACER_ASPIRE1)	+= acer-aspire1-ec.o
+>>> +obj-$(CONFIG_EC_LENOVO_YOGA_C630) += lenovo-yoga-c630.o
+>>> diff --git a/drivers/platform/arm64/lenovo-yoga-c630.c b/drivers/platform/arm64/lenovo-yoga-c630.c
+>>> new file mode 100644
+>>> index 000000000000..3d1d5acde807
+>>> --- /dev/null
+>>> +++ b/drivers/platform/arm64/lenovo-yoga-c630.c
+>>> @@ -0,0 +1,279 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Copyright (c) 2022-2024, Linaro Ltd
+>>> + * Authors:
+>>> + *    Bjorn Andersson
+>>> + *    Dmitry Baryshkov
+>>> + */
+>>> +#include <linux/auxiliary_bus.h>
+>>> +#include <linux/i2c.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/notifier.h>
+>>> +#include <linux/platform_data/lenovo-yoga-c630.h>
+>>> +
+>>> +#define LENOVO_EC_RESPONSE_REG		0x01
+>>> +#define LENOVO_EC_REQUEST_REG		0x02
+>>> +
+>>> +#define LENOVO_EC_UCSI_WRITE		0x20
+>>> +#define LENOVO_EC_UCSI_READ		0x21
+>>> +
+>>> +#define LENOVO_EC_READ_REG		0xb0
+>>> +#define LENOVO_EC_REQUEST_NEXT_EVENT	0x84
+>>> +
+>>> +struct yoga_c630_ec {
+>>> +	struct i2c_client *client;
+>>> +	struct mutex lock;
+>>> +	struct blocking_notifier_head notifier_list;
+>>> +};
+>>> +
+>>> +static int yoga_c630_ec_request(struct yoga_c630_ec *ec, u8 *req, size_t req_len,
+>>> +				u8 *resp, size_t resp_len)
+>>> +{
+>>> +	int ret;
+>>> +
+>>> +	WARN_ON(!mutex_is_locked(&ec->lock));
+>>> +
+>>> +	ret = i2c_smbus_write_i2c_block_data(ec->client, LENOVO_EC_REQUEST_REG,
+>>> +					     req_len, req);
+>>> +	if (ret < 0)
+>>> +		return ret;
+>>> +
+>>> +	return i2c_smbus_read_i2c_block_data(ec->client, LENOVO_EC_RESPONSE_REG,
+>>> +					     resp_len, resp);
+>>> +}
+>>> +
+>>> +int yoga_c630_ec_read8(struct yoga_c630_ec *ec, u8 addr)
+>>> +{
+>>> +	u8 req[2] = { LENOVO_EC_READ_REG, };
+>>> +	int ret;
+>>> +	u8 val;
+>>> +
+>>> +	mutex_lock(&ec->lock);
+>>> +	req[1] = addr;
+>>> +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &val, 1);
+>>> +	mutex_unlock(&ec->lock);
+>>> +
+>>> +	return ret < 0 ? ret : val;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(yoga_c630_ec_read8);
+>>> +
+>>> +int yoga_c630_ec_read16(struct yoga_c630_ec *ec, u8 addr)
+>>> +{
+>>> +	u8 req[2] = { LENOVO_EC_READ_REG, };
+>>> +	int ret;
+>>> +	u8 msb;
+>>> +	u8 lsb;
+>>> +
+>>> +	mutex_lock(&ec->lock);
+>>> +
+>>> +	req[1] = addr;
+>>> +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &lsb, 1);
+>>> +	if (ret < 0)
+>>> +		goto out;
+>>> +
+>>> +	req[1] = addr + 1;
+>>> +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &msb, 1);
+>>> +
+>>> +out:
+>>> +	mutex_unlock(&ec->lock);
+>>> +
+>>> +	return ret < 0 ? ret : msb << 8 | lsb;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(yoga_c630_ec_read16);
+>>> +
+>>> +u16 yoga_c630_ec_ucsi_get_version(struct yoga_c630_ec *ec)
+>>> +{
+>>> +	u8 req[3] = { 0xb3, 0xf2, 0x20};
+>>
+>> You have a define above for the read_reg and write_reg commands, could you
+>> not define 0xb3 as LENOVO_EC_GET_VERSION ?
+>>
+>> All of the other commands here seem to have a named define.
+> 
+> Because unlike other registers it is not clear what other use cases does
+> 0xb3 support
+> 
+>>
+>>> +	int ret;
+>>> +	u8 msb;
+>>> +	u8 lsb;
+>>> +
+>>> +	mutex_lock(&ec->lock);
+>>> +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &lsb, 1);
+>>> +	if (ret < 0)
+>>> +		goto out;
+>>> +
+>>> +	req[2]++;
+>>
+>> why not set reg[2] = 0x21;
+> 
+> ack
+> 
+>>
+>> also is req[2] some kind of address ?
+> 
+> Unfortunately no idea. This is totally based on the AML code in DSDT. I
+> have no documentation on the EC or its programming interface.
+> 
+>>
+>>> +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &msb, 1);
+>>> +
+>>> +out:
+>>> +	mutex_unlock(&ec->lock);
+>>> +
+>>> +	return ret < 0 ? ret : msb << 8 | lsb;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(yoga_c630_ec_ucsi_get_version);
+>>> +
+>>> +int yoga_c630_ec_ucsi_write(struct yoga_c630_ec *ec,
+>>> +			    const u8 req[YOGA_C630_UCSI_WRITE_SIZE])
+>>> +{
+>>> +	int ret;
+>>> +
+>>> +	mutex_lock(&ec->lock);
+>>> +	ret = i2c_smbus_write_i2c_block_data(ec->client, LENOVO_EC_UCSI_WRITE,
+>>> +					     YOGA_C630_UCSI_WRITE_SIZE, req);
+>>> +	mutex_unlock(&ec->lock);
+>>> +
+>>> +	return ret < 0 ? ret : 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(yoga_c630_ec_ucsi_write);
+>>> +
+>>> +int yoga_c630_ec_ucsi_read(struct yoga_c630_ec *ec,
+>>> +			   u8 resp[YOGA_C630_UCSI_READ_SIZE])
+>>> +{
+>>> +	int ret;
+>>> +
+>>> +	mutex_lock(&ec->lock);
+>>> +	ret = i2c_smbus_read_i2c_block_data(ec->client, LENOVO_EC_UCSI_READ,
+>>> +					    YOGA_C630_UCSI_READ_SIZE, resp);
+>>> +	mutex_unlock(&ec->lock);
+>>> +
+>>> +	return ret < 0 ? ret : 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(yoga_c630_ec_ucsi_read);
+>>> +
+>>> +static irqreturn_t yoga_c630_ec_intr(int irq, void *data)
+>>> +{
+>>> +	u8 req[] = { LENOVO_EC_REQUEST_NEXT_EVENT };
+>>> +	struct yoga_c630_ec *ec = data;
+>>> +	u8 event;
+>>> +	int ret;
+>>> +
+>>> +	mutex_lock(&ec->lock);
+>>> +	ret = yoga_c630_ec_request(ec, req, sizeof(req), &event, 1);
+>>> +	mutex_unlock(&ec->lock);
+>>> +	if (ret < 0)
+>>> +		return IRQ_HANDLED;
+>>> +
+>>> +	pr_info("NOTIFY %x\n", event);
+>>
+>> why not dev_info() ?
+> 
+> Argh, debugging code. I should drop it.
+> 
 
-Maybe we are speaking about two different things... I do agree with the vid=
-eo
-processing example you gave but for this case I'm not sure there#s any data
-manipulation involved. i mean, there is but nothing controlled by SW at thi=
-s point.
-Or maybe there's already a future usecase that I'm not aware about (maybe t=
-he CRC
-stuff David mentioned).
+Assuming you do all of that in v5
 
-I'm more focusing on where the trigger (PWMS in this particular case but co=
-uld be
-something else) and the DMA properties belong. I do agree that, Hardware wi=
-se, the
-trigger is a property of the offload engine even though intrinsically conne=
-cted with
-the peripheral.
-
-The DMA is also directly connected to the offload but I'm not sure if in th=
-is case we
-should say it's a property of it? It's an external block that we do not con=
-trol at
-all and the data is to be consumed by users of the peripheral.
-
->=20
-> > Taking the
-> > trigger (PWM) as an example and even when it is directly connected with=
- the
-> > offload
-> > block, the peripheral still needs to know about it. Think of sampling
-> > frequency...
-> > The period of the trigger signal is strictly connected with the samplin=
-g
-> > frequency of
-> > the peripheral for example. So I see 2 things:
-> >=20
-> > 1) Enabling/Disabling the trigger could be easily done from the periphe=
-ral even
-> > with
-> > the resource in the spi engine. I think David already has some code in =
-the series
-> > that would make this trivial and so having the property in the spi cont=
-roller
-> > brings
-> > no added complexity.
-> >=20
-> > 2) Controlling things like the trigger period/sample_rate. This could b=
-e harder
-> > to do
-> > over SPI (or making it generic enough) so we would still need to have t=
-he same
-> > property on the peripheral (even if not directly connected to it). I ki=
-nd of
-> > agree
-> > with David that having the property both in the peripheral and controll=
-er is a
-> > bit
-> > weird.
->=20
-> Can you explain what you mean by "same property on the peripheral"? I
-> would expect a peripheral to state its trigger period (just like how it
-> states the max frequency) and for the trigger period not to appear in
-> the controller.
->=20
-
-Just have the same 'pwms' property on both the controller and peripheral...
-
-> I think a way that this could be modelled to reduce some software
-> complexity is considering that the periodic trigger is a clock, not
-> a PWM, provided you are only interested in the period. That'd give you
-> an interface that was less concerned about what the provider of the
-> periodic trigger is. After all, I doubt the ADC cares how you decide to
-> generate the trigger, as long as the periodicity is correct.
-> With the examples provided, you'd get something like:
->=20
-
-Unfortunately that's not the case. For instance, in the design on the link =
-I gave you
-on the last reply we do have an averaging mode where we actually need an of=
-fset
-(effort for supporting that in PWM is already ongoing) between the offload =
-trigger
-and the peripheral conversion signal (so assuming we only care about period=
- will fail
-pretty soon :)).
-
-> pwm {
-> }
->=20
-> pclk {
-> 	compatible =3D pwm-clock
-> 	pwms =3D <&pwm 0 x>
-> }
->=20
-> spi {
-> 	compatible =3D spi-engine
-> 	clocks =3D <&clks SPI>, <&pwm>
-> 	clock-names =3D "bus", "offload"
-> }
->=20
-> The pwm-clock driver (clk-pwm.c) doesn't implement .set_rate though, but
-> maybe you don't need that or maybe it could be added if needed.
->=20
-> > And the DMA block is a complete different story. Sharing that data back=
- with the
-> > peripheral driver (in this case, the IIO subsystem) would be very inter=
-esting at
-> > the
-> > very least. Note that the DMA block is not really something that is par=
-t of the
-> > controller nor the offload block. It is an external block that gets the=
- data
-> > coming
-> > out of the offload engine (or the data reorder block). In IIO, we alrea=
-dy have a
-> > DMA
-> > buffer interface so users of the peripheral can get the data without an=
-y
-> > intervention
-> > of the driver (on the data). We "just" enable buffering and then everyt=
-hing
-> > happens
-> > on HW and userspace can start requesting data. If we are going to attac=
-h the DMA
-> > in
-> > the controller, I have no idea how we can handle it. Moreover, the offl=
-oad it's
-> > really just a way of replaying the same spi transfer over and over and =
-that
-> > happens
-> > in HW so I'm not sure how we could "integrate" that with dmaengine.
-> >=20
-> > But maybe I'm overlooking things... And thinking more in how this can b=
-e done in
-> > SW
-> > rather than what makes sense from an HW perspective.
->=20
-> I don't think you're overlooking things at all, I'm intentionally being
-> a bit difficult and ignoring what may be convenient for the adc driver.
-> This is being presented as a solution to a generic problem (and I think
-> you're right to do that), but it feels as if the one implementation is
-> all that's being considered here and I'm trying to ensure that what we
-> end up with doesn't make limiting assumptions.
-
-Yeah, I know and I do agree we need something generic enough and not someth=
-ing that
-only fits a couple usecases.
-
->=20
-> Part of me says "sure, hook the DMAs up to the devices, as that's what
-> happens for other IIO devices" but at the same time I recognise that the
-> DMA isn't actually hooked up like that and the other IIO devices I see
-> like that are all actually on the SoC, rather than connected over SPI.
-
-Yeah, I know... But note (but again, only for ADI designs) that the DMA rol=
-e is
-solely for carrying the peripheral data. It is done like this so everything=
- works in
-HW and there's no need for SW to deal with the samples at all. I mean, only=
- the
-userspace app touches the samples.
-
-TBH, the DMA is the bit that worries me the most as it may be overly comple=
-x to share
-buffers (using dma-buf or something else) from the spi controller back to c=
-onsumers
-of it (IIO in this case). And I mean sharing in a way that there's no need =
-to touch
-the buffers.
-
-> It might be easy to do it this way right now, but be problematic for a
-> future device or if someone wants to chuck away the ADI provided RTL and
-> do their own thing for this device. Really it just makes me wonder if
-> what's needed to describe more complex data pipelines uses an of_graph,
-> just like how video pipelines are handled, rather than the implementation
-> of io-backends that don't really seem to model the flow of data.
->=20
-
-Yeah, backends is more for devices/soft-cores that extend the functionality=
- of the
-device they are connected too. Like having DACs/ADCs hdl cores for connecti=
-ng to high
-speed controllers. Note that in some cases they also manipulate or even cre=
-ate data
-but since they fit in IIO, having things like the DMA property in the hdl b=
-inding was
-fairly straight.
-
-Maybe having an offload dedicated API (through spi) to get/share a DMA hand=
-le would
-be acceptable. Then we could add support to "import" it in the IIO core. Th=
-en it
-would be up to the controller to accept or not to share the handle (in some=
- cases the
-controller could really want to have the control of the DMA transfers).
-
-Not familiar enough with of_graph so can't argue about it but likely is som=
-ething
-worth looking at.
-
-- Nuno S=C3=A1
-> >=20
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
