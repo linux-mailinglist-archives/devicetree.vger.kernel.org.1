@@ -1,124 +1,116 @@
-Return-Path: <devicetree+bounces-70477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABE98D36E3
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:57:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E51D8D3735
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:11:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CCCE1C228CF
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:57:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D7BB1F23D62
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A6B522A;
-	Wed, 29 May 2024 12:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qNZ87PUJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA58DDAD;
+	Wed, 29 May 2024 13:11:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out28-196.mail.aliyun.com (out28-196.mail.aliyun.com [115.124.28.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E9779D3;
-	Wed, 29 May 2024 12:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B8BDDA3;
+	Wed, 29 May 2024 13:11:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716987470; cv=none; b=IROBqZBmDWa+mvx+zAdmdtDTWIW48F08t5WJHCQkXUUDeGcKEg3MOPrxrFnObzC8VeGn1Ti/pJgPlJbnEzS+b0TUiKaW7Mkh+39WWA44uhHtpBLHL7nU0C518HLmuttK9iHMB68wtyqQJf5jdsn0hCs0JpRhG4oZzIbMzFjJtsA=
+	t=1716988312; cv=none; b=qidxgBeq8IlXiZlMHGW0WehmtStUsbAHMgq59zmnQ2BGsG2pB716GTu2tOU/Mz9oADLjpEtl3nQBfz5Q208WJoty/Bd0zxpGLuEJPMjDiQLlNp9lqa6wToxXm8XyGXVP1HndXrI5SvCBztAiscLweY86K/sbjuPsD13AuN1nvO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716987470; c=relaxed/simple;
-	bh=Kf2XD0U6dqkRaiIXSiX5t61ZvzMR1rEAHQmrTquShYc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uG/J2/gE1BKSUuD/6KkPj21dxOcqJI7goc0YRuUC2hI+n0s8e6nJKH7HGfS+ChLnJHPLvUU/JD0SmpK8kPqYjWia63VsOgb0aOA+KFGnXE6sZwGXfivcA0UMGpS/fLJu4B25TFQB825nlJRABmx9PZh86knWKbjBZBJTaJKtrHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qNZ87PUJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E50DAC2BD10;
-	Wed, 29 May 2024 12:57:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716987469;
-	bh=Kf2XD0U6dqkRaiIXSiX5t61ZvzMR1rEAHQmrTquShYc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qNZ87PUJnddl+YKpyYkoqkIOY7lxogibjj0LcSsel5rTqUAJHzV9cS0cXF6UA9i6W
-	 n8YKQVHmqxrzAuin6o/k3NANI7Vb5tJu8EYnkGHzvVH4jku1PdLqZRi9BrLCb7pJgG
-	 ionX4DNbdk+zSyIO0SV1Un0NBoUL6CKhSFrsKOnAk1SPeJhuVY+tP56SvC38dR+u3Q
-	 wrlh9v056yQf6UUoJK0MJiU75I46ZFXw4rYpVGDEfw21TfVuAxtfu36D27WXAX6yml
-	 gAWiwoUYRfwi3vMagQywszbDODHLln3y45LaTBg76RKxyhB58un7qoiHRf60yjXTPS
-	 PmyDiJ3bLvCaQ==
-Message-ID: <c8e2d859-ff7c-4ea1-a731-b0f0500ba8c6@kernel.org>
-Date: Wed, 29 May 2024 14:57:44 +0200
+	s=arc-20240116; t=1716988312; c=relaxed/simple;
+	bh=SZ2UsCR0BIw/CVBpqgPhckSL2iOs5cG6bpO/ZDrURco=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q/zsDbHHKwfS9SrlY8DWLPJEzEXFLghlYdBajk9dKs9Hk4KGXB17o81XzuyAaHbI5YkEWiUfqjQeS+d0xDo1n7XiN9T70xRmWmFxMT3Cbe8+RqrOlXDYOsxHMaUh45BqygQU2nB6slr88vZnIB0yuIQpcls9zd64Rmhz4w5yVaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=115.124.28.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07483431|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0290941-4.95304e-05-0.970856;FP=0|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033070021165;MF=wangshuaijie@awinic.com;NM=1;PH=DS;RN=11;RT=11;SR=0;TI=SMTPD_---.XqPptyM_1716987970;
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.XqPptyM_1716987970)
+          by smtp.aliyun-inc.com;
+          Wed, 29 May 2024 21:06:24 +0800
+From: wangshuaijie@awinic.com
+To: dmitry.torokhov@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jeff@labundy.com,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: wangshuaijie@awinic.com,
+	liweilei@awinic.com,
+	kangjiajun@awinic.com
+Subject: [PATCH V1 0/5] Add support for Awinic SAR sensor.
+Date: Wed, 29 May 2024 13:06:03 +0000
+Message-ID: <20240529130608.783624-1-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: cache: qcom,llcc: Add SA8775p
- description
-To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240529101534.3166507-1-quic_tengfan@quicinc.com>
- <20240529101534.3166507-2-quic_tengfan@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240529101534.3166507-2-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/05/2024 12:15, Tengfei Fan wrote:
-> Add the cache controller compatible and register region descriptions for
-> SA8775p platform.
-> 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
+From: shuaijie wang <wangshuaijie@awinic.com>
+
+Add drivers that support Awinic SAR (Specific Absorption Rate)
+sensors to the Linux kernel.
+
+The AW9610X series and AW963XX series are high-sensitivity
+capacitive proximity detection sensors.
+
+This device detects human proximity and assists electronic devices
+in reducing SAR to pass SAR related certifications.
+
+The device reduces RF power and reduces harm when detecting human proximity.
+Increase power and improve signal quality when the human body is far away.
+
+This patch implements device initialization, registration,
+I/O operation handling and interrupt handling, and passed basic testing.
+
+shuaijie wang (5):
+  dt-bindings: input: Add YAML to Awinic sar sensor.
+  Add universal interface for the aw_sar driver.
+  Add aw9610x series related interfaces to the aw_sar driver.
+  Add aw963xx series related interfaces to the aw_sar driver.
+  Add support for Awinic sar sensor.
+
+ .../bindings/input/awinic,aw_sar.yaml         |  110 +
+ drivers/input/misc/Kconfig                    |    9 +
+ drivers/input/misc/Makefile                   |    1 +
+ drivers/input/misc/aw_sar/Makefile            |    2 +
+ drivers/input/misc/aw_sar/aw9610x/aw9610x.c   |  884 +++++++
+ drivers/input/misc/aw_sar/aw9610x/aw9610x.h   |  324 +++
+ drivers/input/misc/aw_sar/aw963xx/aw963xx.c   |  986 ++++++++
+ drivers/input/misc/aw_sar/aw963xx/aw963xx.h   |  749 ++++++
+ drivers/input/misc/aw_sar/aw_sar.c            | 2039 +++++++++++++++++
+ drivers/input/misc/aw_sar/aw_sar.h            |   15 +
+ .../misc/aw_sar/comm/aw_sar_chip_interface.h  |   27 +
+ .../misc/aw_sar/comm/aw_sar_comm_interface.c  |  656 ++++++
+ .../misc/aw_sar/comm/aw_sar_comm_interface.h  |  172 ++
+ drivers/input/misc/aw_sar/comm/aw_sar_type.h  |  396 ++++
+ 14 files changed, 6370 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/awinic,aw_sar.yaml
+ create mode 100644 drivers/input/misc/aw_sar/Makefile
+ create mode 100644 drivers/input/misc/aw_sar/aw9610x/aw9610x.c
+ create mode 100644 drivers/input/misc/aw_sar/aw9610x/aw9610x.h
+ create mode 100644 drivers/input/misc/aw_sar/aw963xx/aw963xx.c
+ create mode 100644 drivers/input/misc/aw_sar/aw963xx/aw963xx.h
+ create mode 100644 drivers/input/misc/aw_sar/aw_sar.c
+ create mode 100644 drivers/input/misc/aw_sar/aw_sar.h
+ create mode 100644 drivers/input/misc/aw_sar/comm/aw_sar_chip_interface.h
+ create mode 100644 drivers/input/misc/aw_sar/comm/aw_sar_comm_interface.c
+ create mode 100644 drivers/input/misc/aw_sar/comm/aw_sar_comm_interface.h
+ create mode 100644 drivers/input/misc/aw_sar/comm/aw_sar_type.h
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+base-commit: e0cce98fe279b64f4a7d81b7f5c3a23d80b92fbc
+-- 
+2.45.1
 
 
