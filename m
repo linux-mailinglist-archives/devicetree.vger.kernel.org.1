@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-70188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91038D2CBD
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:58:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA588D2CC2
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:58:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 538EF1F22E1C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 05:58:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAE51B27101
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 05:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A280F15CD68;
-	Wed, 29 May 2024 05:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866F315D5B9;
+	Wed, 29 May 2024 05:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VMewratf"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YrsXVuY0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C1D15B98A
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 05:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A4915B96D
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 05:58:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716962286; cv=none; b=CN75gGKAlLDJvnVgc7NtpQHPNxKTkxMCEagbP41V2YJIzoJ9ednJe5ANTjmeFGcJt3kl8HnX7sUfMdfiPvjvk5jNhI7ndoxGmw3D1yM1wyh3SmgrClgybqlLi88vYiGEJyfudilFg7r2r8rFudcD7DX7wDp956/khMwoXZU0NJ0=
+	t=1716962288; cv=none; b=efJescv1Q6doNCQH9hjSODNXIyDMxHoRGpQEgUIfJl6+eqIYQsxPmUwm+tFLAUpS88bgR7Rln+W3Eu6pm4K4fm6gNKQlZr6HLx+/hIhZR+uzj6zNV/CEmY0rNBm1cD4zCjeexEGtPZ6f/Isjox5cBqozRGUSIvYZcC18aJfX/K4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716962286; c=relaxed/simple;
-	bh=gD/PJ6MuVDFwyaeynPCnoxOi6c4HUNfJeNMrEukphYE=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Vzqnzs4Fg14l8RQmODXlymb1PVggUhw+LZvvhHaomJWYSDX/3xFXnvZvAO9tTCyo97tbS/7nw8yOUz9GAs+E41YVZ7tRo/QQZE4lfJu3oftzJE8ZW0rJvFvoes4eY1PF1OK7fANmuQrmyqrEkqXAlDW7HIVOK+mXDKUZkWz+Ekw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VMewratf; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1716962288; c=relaxed/simple;
+	bh=7TWp6ZYqTnWbqyJ5Cw7vRGWMMiL4bndT4gl1LDFj+mw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=QrrT4yXY1a612M9a/+C4Jpv3M+qYqdwt4+xBgjDPHW9hGJeyi+iQH/ZuwMHXV7SKiM+0851iHNnc/RLUO62/hlAFoMP/b8DdDcCxAwknphJnztSz5o7M2bDCuoAkGtXv3o8EMtn/d87siIlfKsEhPbFKmMMHNhIZkP1j3rBKbNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YrsXVuY0; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42120e3911eso11199405e9.0
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 22:58:03 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42108856c33so2476095e9.1
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 22:58:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716962282; x=1717567082; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hppWw3qKG50anKzk4FPv6N0n8i7i4RwwGHwsQsP3nDM=;
-        b=VMewratfRq6JS2iYhkQjeHu8LHFoQA6xS+dIBzn2SLMNbeNEjP/vQDqcK79fkx54f7
-         4k+JiduoJxFD55ylpHBfauQLFnAHEV2nfTY/dcB6g8CLFuTJEoaJE/cUKNUkrtmP4mFi
-         4NYM8FY1XKfyR0BCMYgielC4ojJiMFHM+qpJBxFO1Ha9H7ysGOXRIXjS8vmVp+o72QxN
-         Rkx2qQmobPop8hRDJLp7eo48XY2wpgoQsC6mBMYCB/OUUu21Lq6rhn33drJIDBsLkSPg
-         JF5HWb54jUrxEzycTow5PXhMG2nMuDsGU6SMJXbbIJL7c1lRIcQzAtzQWszDK+nRKoE8
-         AA4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716962282; x=1717567082;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716962284; x=1717567084; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hppWw3qKG50anKzk4FPv6N0n8i7i4RwwGHwsQsP3nDM=;
-        b=vRrFFea+LAGu/kgwf/SzhvF7uhdaMuh4Z1bUJAn584TPBn0BDiESEZRyaqpTM9sbX6
-         c/lWVWG7WsTZNkA9ymbhk+gogkclYTtPzZY75anKNWkQoE6tE0AzS1GeOHgMi6zlCSLu
-         f7UcTGJyYqJtFwjt0iuyuR3NoshgKifiNT/0wz98kdXCJc2DIocJlriNkfhaWeHPitHe
-         Y1tWzNF1msoaHpU+8j4osUKdUHhpTR7EbOgkNyAA4y9VQ34WR7cJiLRgP7uoXPf1URCo
-         o0L4HLiWK8uSiTQsKLhkTpGVBVDbiLywFihybQIgpOh2iJhrJRikLpCwopq6Itduj82+
-         3GXA==
-X-Gm-Message-State: AOJu0YxoQ42jdFEmRhfmbPszwn3xD28kDEnQXmWly+eglL2wr60QSED5
-	hXhN6p3Xq9TH8SQef402i6UhdC+5o/X5DiyvZXYi2ctthdVRaYSDZ43XX2Lad4Y=
-X-Google-Smtp-Source: AGHT+IHVRqh3fwdmfS9SnJtxUCheN0eF6Bwow3iBM+UuBhpaZuRXURaYXNel/mNlFRK2OrKtThAnvw==
-X-Received: by 2002:a7b:cbd0:0:b0:420:1284:475 with SMTP id 5b1f17b1804b1-421089cd413mr115076715e9.12.1716962281574;
-        Tue, 28 May 2024 22:58:01 -0700 (PDT)
+        bh=py0GeonwgnNaknxyxyM/bPk5f/ta2UYkhS/HU0w7EWw=;
+        b=YrsXVuY0Zx7BFxRbNvnM5FSdWileK5EEkh0l6UZIOJHH4TlR5G2sTeQDaaULYs+f3W
+         Awb+X2+MedshRhyEoDl1BFp7M3UwUl8731ozo9HV7/q8GUjdfELydCsMFMCV8XtHeDtU
+         LBEHVCei1MWtwQblCPvptPikxcemUAxwuOaMwXFhGWulTp3kjCmeyK2W/oTpfAgib+KN
+         72RzuTgkz0vgUm3MPqt1kdnjT3H06QQQM8lxSumU95eLZlUjOECf80Sm3q+vIaX4P9q1
+         iYRDNqiyt8TWTYWiRFoL7hAwTpiUbTiWfX1WWvuDEb3qtAYKbA1KP7ncLvVYH9lwJzmY
+         3HhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716962284; x=1717567084;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=py0GeonwgnNaknxyxyM/bPk5f/ta2UYkhS/HU0w7EWw=;
+        b=t3B9zAUxxMDtMo4Dih5K+jF+keAqX/YbdYkaZliskv4snQ3/exEud8aDFLUKqAkJiK
+         Ac+ovYUxhP1A+cUj8kiNR/YuZpLBc7U6ZdHvFaieEjrzCQDEqjTLCeb+WBrmIgWeHrt6
+         4erd1mVlnc+iR0PyfZGXjAQluvMp38G9egXmHKhjT4n3576IPqGa+tWNemjtcyVi4a8h
+         BQ5775xCFvs31QMo23rH1QAKrAmuunPR8pvzuWe3/Sv8s/8Iy5SqFzWT//YEGqgX8VUl
+         ZcBn7Ta/UJ1XPEGh05iAREvI3QGjXpObrUxjCarHy33T+Zxc1phM8+MS1z7oytT0j9as
+         3E0A==
+X-Gm-Message-State: AOJu0Yy7KFinPgPzA25iqeYkpmgKNg666fbEak+mgaMCpGcl12BXXC//
+	c62k607KSS5EJ09oexqqEtVynhkwa4iZJKDp3f7Vvj2p8ESFvtfLXZHHHMD2y/8=
+X-Google-Smtp-Source: AGHT+IFBgBr868w8QAU+3YcZoh4tBW+ET1fjETfVihg6NGnEmbzACXvx/JGf3dJqRJTP60EWqb8pZg==
+X-Received: by 2002:adf:feca:0:b0:357:bedc:b555 with SMTP id ffacd0b85a97d-35c7b80e05dmr778871f8f.26.1716962283532;
+        Tue, 28 May 2024 22:58:03 -0700 (PDT)
 Received: from [127.0.1.1] ([84.102.31.110])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4210896676bsm169075435e9.4.2024.05.28.22.57.59
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4210896676bsm169075435e9.4.2024.05.28.22.58.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 May 2024 22:58:00 -0700 (PDT)
+        Tue, 28 May 2024 22:58:03 -0700 (PDT)
 From: Julien Panis <jpanis@baylibre.com>
-Subject: [PATCH v6 0/6] Mediatek thermal sensor driver support for MT8186
- and MT8188
-Date: Wed, 29 May 2024 07:57:55 +0200
-Message-Id: <20240529-mtk-thermal-mt818x-dtsi-v6-0-0c71478a9c37@baylibre.com>
+Date: Wed, 29 May 2024 07:57:56 +0200
+Subject: [PATCH v6 1/6] dt-bindings: thermal: mediatek: Fix thermal zone
+ definition for MT8186
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,10 +78,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOPDVmYC/3XNSwrDIBCA4asE17WoVWO66j1KF2omjTSPoiIJI
- XevCRRKIbv5B+abBQXwDgK6FgvykFxw45BDngpkWz08Abs6N2KEcSIYwX184diC73WXZ0XVhOs
- YHAarL6VqKiM1Qfn67aFx0y7fH7lbF+Lo5/1R4tv2a9JDM3FMsKkogCwVp9TejJ47Zzyc7dijj
- U3il+LHlMiUkI0SZaUYgfKPWtf1A0PIaroMAQAA
+Message-Id: <20240529-mtk-thermal-mt818x-dtsi-v6-1-0c71478a9c37@baylibre.com>
+References: <20240529-mtk-thermal-mt818x-dtsi-v6-0-0c71478a9c37@baylibre.com>
+In-Reply-To: <20240529-mtk-thermal-mt818x-dtsi-v6-0-0c71478a9c37@baylibre.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -94,101 +94,59 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>, 
  Julien Panis <jpanis@baylibre.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1716962279; l=3802;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716962279; l=1871;
  i=jpanis@baylibre.com; s=20230526; h=from:subject:message-id;
- bh=gD/PJ6MuVDFwyaeynPCnoxOi6c4HUNfJeNMrEukphYE=;
- b=nDzYAwEDpx0c9hRfOAq5XwkrlJuGVpfcUvab8uKv4mHH58zFeLfseR8VqQZo5+m+Ka74jj+1U
- EYdwrnFQnIVC+aFnqGH7Z8WQzMSEdG8wIApOliIJ+TgtQK3LeEjUtYF
+ bh=7TWp6ZYqTnWbqyJ5Cw7vRGWMMiL4bndT4gl1LDFj+mw=;
+ b=fNpJGdF1e6oIhg16Qw3yuccxDifJLORx4N3h7feO2qRv4t5zX5kGrg92RNMGZjYaq0FJMoxzr
+ kn93J44LFi/ClblQAuQP6CjaErOlZbnOjF2/u1vbrtp9LVgiaEPecsf
 X-Developer-Key: i=jpanis@baylibre.com; a=ed25519;
  pk=8eSM4/xkiHWz2M1Cw1U3m2/YfPbsUdEJPCWY3Mh9ekQ=
 
-This is a bunch of patches to support the MT8186 and MT8188 thermal
-sensor configurations.
+Fix a thermal zone name for consistency with the other SoCs:
+MFG contains GPU, the latter is more specific and must be used here.
 
-Since the patches of v3 were applied except those related to the SoC
-device trees, this series includes mainly patches for 'mt8186.dtsi'
-and 'mt8188.dtsi'. Due to some thermal zone renaming in these 2 device
-trees, the related definitions were also renamed in the dt-bindings and
-in the driver.
+The naming must be fixed "atomically" so compilation does not break.
+As a result, the change is made in the dt-bindings and in the LVTS
+driver within a single commit, despite the checkpatch warning.
 
-Because of the GPU thermal zone, this series must be applied on top of [1].
+The definition can be modified safely here because it is used only
+in the LVTS driver, which is modified accordingly.
 
-[1] https://lore.kernel.org/all/20240527093908.97574-1-angelogioacchino.delregno@collabora.com/
-
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: Nicolas Pitre <npitre@baylibre.com>
-To: Rafael J. Wysocki <rafael@kernel.org>
-To: Zhang Rui <rui.zhang@intel.com>
-To: Lukasz Luba <lukasz.luba@arm.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-mediatek@lists.infradead.org
-Cc: linux-pm@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Fixes: a2ca202350f9 ("dt-bindings: thermal: mediatek: Add LVTS thermal controller definition for MT8186")
 Signed-off-by: Julien Panis <jpanis@baylibre.com>
-
-Changes in v6:
-- Reorganize patches related to thermal zone renaming (dt-bindings + driver).
-- Add cooling-cells property to GPU node in 'mt8188.dtsi'
-- Link to v5: https://lore.kernel.org/r/20240524-mtk-thermal-mt818x-dtsi-v5-0-56f8579820e7@baylibre.com
-
-Changes in v5:
-- Rename some thermal zones
-  (mfg -> gpu / soc1 -> adsp / soc2 -> vdo / soc3 -> infra).
-- Add cooling-device for GPUs.
-- Link to v4: https://lore.kernel.org/r/20240521-mtk-thermal-mt818x-dtsi-v4-0-b91ee678411c@baylibre.com
-
-Changes in v4:
-- Fix wrong thermal zone names.
-- Lower 'polling-delay-passive' values.
-- Set 'hysteresis' value to 0 for 'critical' trips.
-- Add a 'hot' trip point in between 'passive' and 'critical' trips.
-- Link to v3: https://lore.kernel.org/all/20240402032729.2736685-1-nico@fluxnic.net/
-
-Changes in v3:
-- use meaningful name for binding index definitions
-- reuse LVTS_COEFF_*_MT7988 on MT8186 per reviewer request
-- do similarly for MT8188 that now reuses LVTS_COEFF_*_MT8195
-- use thermal zone names the svs driver wants
-- adjust some DT node names and iospace length
-- remove variable .hw_tshut_temp as it is constant across all SOCs
-- Link to v2: https://lore.kernel.org/all/20240318212428.3843952-1-nico@fluxnic.net/
-
-Changes in v2:
-- renamed CPU cluster thermal zones in DT
-- fixed logic to cope with empty controller slots at the beginning
-- isolated bindings to their own patches
-- added MT8188 default thermal zones
-- Link to v1: https://lore.kernel.org/all/20240111223020.3593558-1-nico@fluxnic.net/T/
-
 ---
-Julien Panis (2):
-      dt-bindings: thermal: mediatek: Fix thermal zone definition for MT8186
-      dt-bindings: thermal: mediatek: Fix thermal zone definitions for MT8188
+ drivers/thermal/mediatek/lvts_thermal.c             | 2 +-
+ include/dt-bindings/thermal/mediatek,lvts-thermal.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Nicolas Pitre (4):
-      arm64: dts: mediatek: mt8186: add lvts definitions
-      arm64: dts: mediatek: mt8186: add default thermal zones
-      arm64: dts: mediatek: mt8188: add lvts definitions
-      arm64: dts: mediatek: mt8188: add default thermal zones
+diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
+index 0bb3a495b56e..506eed52db1e 100644
+--- a/drivers/thermal/mediatek/lvts_thermal.c
++++ b/drivers/thermal/mediatek/lvts_thermal.c
+@@ -1436,7 +1436,7 @@ static const struct lvts_ctrl_data mt8186_lvts_data_ctrl[] = {
+ 			  .cal_offsets = { 29, 30, 31 } },
+ 			{ .dt_id = MT8186_ADSP,
+ 			  .cal_offsets = { 34, 35, 28 } },
+-			{ .dt_id = MT8186_MFG,
++			{ .dt_id = MT8186_GPU,
+ 			  .cal_offsets = { 39, 32, 33 } }
+ 		},
+ 		VALID_SENSOR_MAP(1, 1, 1, 0),
+diff --git a/include/dt-bindings/thermal/mediatek,lvts-thermal.h b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+index bf95309d2525..85d25b4d726d 100644
+--- a/include/dt-bindings/thermal/mediatek,lvts-thermal.h
++++ b/include/dt-bindings/thermal/mediatek,lvts-thermal.h
+@@ -24,7 +24,7 @@
+ #define MT8186_BIG_CPU1	5
+ #define MT8186_NNA		6
+ #define MT8186_ADSP		7
+-#define MT8186_MFG		8
++#define MT8186_GPU		8
+ 
+ #define MT8188_MCU_LITTLE_CPU0	0
+ #define MT8188_MCU_LITTLE_CPU1	1
 
- arch/arm64/boot/dts/mediatek/mt8186.dtsi           | 316 ++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8188.dtsi           | 482 +++++++++++++++++++++
- drivers/thermal/mediatek/lvts_thermal.c            |  12 +-
- .../dt-bindings/thermal/mediatek,lvts-thermal.h    |  12 +-
- 4 files changed, 810 insertions(+), 12 deletions(-)
----
-base-commit: b321abd919e22b240d53329cd726ea7afa8aca98
-change-id: 20240520-mtk-thermal-mt818x-dtsi-eca378f9b6a0
-
-Best regards,
 -- 
-Julien Panis <jpanis@baylibre.com>
+2.37.3
 
 
