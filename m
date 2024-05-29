@@ -1,321 +1,218 @@
-Return-Path: <devicetree+bounces-70502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B52E08D38AD
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:06:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB158D38B2
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:07:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60504282001
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:06:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D83A1B20C61
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1EB1CD2C;
-	Wed, 29 May 2024 14:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7731CA9E;
+	Wed, 29 May 2024 14:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D3G6vjwL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vst+Qvzu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCEC61CF9C;
-	Wed, 29 May 2024 14:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497124C83;
+	Wed, 29 May 2024 14:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716991573; cv=none; b=cqhJ31I/kjU8vJPlS+PdQX48vHph9w7Z9/2JJ74JnH9piPe4EH9YtWtkT+1fqCEx3zF6gYimigkTNo9cv92dHo1ff9p5miP1Ec/7yvJRcpTfZQS/RcfQ08/uhr9COlcZXdnMtWFzmG4OPvdstw16SJMjn8OsuU7R2kjI5K5bc+4=
+	t=1716991641; cv=none; b=NCPvTVNhZRQ33gcSCf8cuK8GVAnetIgjBmVB3nzYp2vlzmmpz71hu1xmWkMyAH+nlkfu5sD0y7FRNuo+dKrsfnkISRZQj496X915zcPPatM734oE79d/fxAb5DaijCjH4uyGRAoVtg7VDnS21XqADLHTbaTrvhiW4eeLD1c/W2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716991573; c=relaxed/simple;
-	bh=D0lKbhKuVUmH0yMXwfFVZdRazFxdRecCFFs+6t9BndI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NssXhHS7QkmnbGPadvUrV+QZIpBy6nsHQJ1tH+hdM7tZiSGnssSnarRgVGa3AT11uxZzys5NR+g47b5q2N6G9KgRb+JkRhqFwr4Zh6uNf0+52iJ87pLVurhBGyg2imc7v6ajBl8a5+TN4wSl0oFkUJVsMiBRTe7XI2E/kDk7ODM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=D3G6vjwL; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1716991641; c=relaxed/simple;
+	bh=8aAQl6vo/460yrxhxt6zDyqiOWfsxNKRVIOR41neUFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tKFbqQyBudaAsZbCj8tiwpf+OQKjgqZ2THryT1I7TFVXPWbFVWMBXcpwdXeEFV9xzSb0mMAekQ18M4jagn6mAj20oiHSlIN6oOGqgpmvSyDYg2rCaPJQr7uq9HvstCnUDuE/2nQ+e39mMbU7H1hhzufSImBkbagFBzm2/Z5UwEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vst+Qvzu; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a59a609dd3fso1020566b.0;
-        Wed, 29 May 2024 07:06:11 -0700 (PDT)
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2c034b016e6so478997a91.2;
+        Wed, 29 May 2024 07:07:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716991570; x=1717596370; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o+M/1yUI1paNZie6p8I3ru5M/VcdpO9GSdVmTNBzjRw=;
-        b=D3G6vjwLuSuI55dKtPqpas40KJCJ0ITS6OhiQBJdYeXe/7STQD8rDvu9E4NBv5nchB
-         beGPVYiHLLuKkhKQ75BeJ4hCZvh9tJkZBL1bbrGqglYy22inN4WYc8hI4MHXpNtLQeo5
-         Auw1GRO2TmuzH3AOj3Hogo3SdkZHdkgftFDdBo91GOj3Oqq9QqgKwLbgPL69pfcff5rc
-         6Ue7oEucOidOJQs+Jw7s3t62hOQWik4GDO+puSjvHkpW6L5b/UvKbWBbDSmi8zeQqAcq
-         e8f/RkTh8N/7EynJeTbIjyj6Ecvz5t44QdKUx8+JxpgSMeqd+YUcDoSIGDyhozFwbYRs
-         2QTg==
+        d=gmail.com; s=20230601; t=1716991639; x=1717596439; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=2ZzzbwW0Sya6qTFwpCKnB6KXP4SAHrttnB1q+QFBqeU=;
+        b=Vst+QvzuJ7WQHRViSfomiloDSyU+15VUhfGtrjTHjOl2uU8prok9I7tcTLES0uAqsC
+         ktoA43Pn0rBwIdgUkz11H/DfBFc+bz/hH9u03kWUi8jwfvwM9yfUBQHrT19CB9KQTjhg
+         dHcNhNbukJRTzKKAmAUxiI10xGyGq7YgDdYSiHhQRlJBqSjWVwrg7jDpjB6SBg+HA+QT
+         17X4h3ymmQ6Q1AHMt4vnqH6Oan7lZm1Zr+QhsxMmdahKcjiZtNtZrsiibhXhxyxgPyr6
+         0FeegoMAtniray3az5cv3+SgAqalBPFOsHi0LaZxoJZFMbo4oCVGtXAl5xkUwxo9WxY4
+         tLtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716991570; x=1717596370;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o+M/1yUI1paNZie6p8I3ru5M/VcdpO9GSdVmTNBzjRw=;
-        b=dbtxvmNCcTFJUNl5PfMdnkGfe4V5dQco/sUpFMXL1MeNylyy/bTyCphM/8CmdOGBF5
-         VnPl+LRJ0T9isOyqEKzuQQHveZ6ignp3eQIbEA7ycS2CNPn2GE4xAoG7dQPShT0ezcoL
-         x4+Qyiq7iKBmdLP1Y7v7NQL/qRFh27CZ0jaSekl9uoI71XR9yNszFg97Zr1QlYqwDxmb
-         Gm1ylYGCwUkIArdLR5EnfiRzmqjwfUXLvg1awBVbJy0DApfVHH8fbeTXOWkOjjHEVG7Z
-         pMasoLNW/JZky/cn9dDaGIFnw+K/2WmhRphTF+ukSoUZg+crDh5mdnbEDC1AFS6dKyOr
-         ho4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW6SOVwIUslmUeZv17QbhKayn6dqrtwHkZf6ikG0FbLrNIRwf9cdJqkrn36axuqzrYeotiCYN0hkGvYZ2Tvp+C6+DFU/hSp7B4zhkbHLHIKTZpZm/KoAuAuwnEHBjBXFEWieUgQUUPBmA==
-X-Gm-Message-State: AOJu0YwA4C6FfIC2qD63lBAqM4vS8QEEo+NTDwUDvi/Gm5dw/whB6IQ/
-	ZopVTD7nAJsSnT9oGK5sWBK+M6hxq+inlAVv21YQRD29g2wx1T54NWrHiEHbREBD4sGJ1oheNSt
-	pg5ELbK4EFr5ZNBfQvePkFavvN6Dp349vgBPbKXw0
-X-Google-Smtp-Source: AGHT+IHvn89sjSDXO4+mGl5RdI7DhHSLiXo+PsaMWuDAxskAA27o7d2dZXgUKXuozUH+wj6e4fC5jE08LKCrtkf7DPc=
-X-Received: by 2002:a17:906:578a:b0:a61:7f85:e31c with SMTP id
- a640c23a62f3a-a642d5806f8mr180319166b.12.1716991569898; Wed, 29 May 2024
- 07:06:09 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716991639; x=1717596439;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2ZzzbwW0Sya6qTFwpCKnB6KXP4SAHrttnB1q+QFBqeU=;
+        b=HYV+qCFvhotRsR5BOQVJ5a7IzrwR8ZVrLIH9T2hFwp2yPfBhk1iMgl0KLkkHGKw7EH
+         XTqN+tft3x+ExLpOilNQAZVhhMVr15WKynrnGELx3K/HAc7LkakhkDxaxfbJ/hczKeyC
+         F/l4qFKKfzVolW2LhYMUnf+DhcBCF+RPJi2GkGKnt+gtq41dsRgMvg9iOa6i2wHI/cA/
+         AG4yoz8UfCdaL8hnukOVFbaZ6A74DJRkpjh16AtXLEoqoy7eCclqhSBJuL+U7bt+ce8B
+         GEft+UFV+dEGLFtHTk0Up798EEH/3ucn5uOk14llP0ocqzhRXfRLwPNK/GMDjN2WBeuy
+         svAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUFUXoZfIK0RljAzWfSAjBPv1IDIjptXKVySqo8dMOmteXa0mahpLSTT03Zo5gikkFd64fFbHOZcsIqj6qUMQrlwvK0+lRAkqysJihuFZSPEFxsr9QamKW9yHu/U203KwGRytEX94HCYTAQg3ocrf/JpttiLeDidD59rUY06TY5V4vq1wo1
+X-Gm-Message-State: AOJu0YwNqT0XhBEJ4XhtNb7xcPT0Qbygurs2MJP+5jiYh3bg8mfpMRZK
+	/VlOiPDrvkhcreG5+rILy3aNRtQptnW0HsUpjPLxKZQ9zQpqayg+lIvTxQ==
+X-Google-Smtp-Source: AGHT+IGdlyoKbfUN7gGq/OTsQ0IM0CGrJEi+RALVM7zGBlBuxtEmE/7AkVUqfNTQ/H7mFc/ntdjQLA==
+X-Received: by 2002:a17:90b:1046:b0:2bd:d6c3:2430 with SMTP id 98e67ed59e1d1-2bf5f1081b1mr14089429a91.40.1716991639252;
+        Wed, 29 May 2024 07:07:19 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2bf57720f19sm9852521a91.56.2024.05.29.07.07.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 May 2024 07:07:18 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <6f2d2e7e-99b4-4f5d-a2c5-523b5534917b@roeck-us.net>
+Date: Wed, 29 May 2024 07:07:17 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <8f8623e29a479c4108141302e708dc3b@manjaro.org> <CABjd4Yy4RMg+6-4ygV0MSwJj5LReY-ymbctq4PPfVZ6L+c1tsw@mail.gmail.com>
- <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
-In-Reply-To: <166cc4e46f31644a50306625b2ab18a6@manjaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 29 May 2024 18:05:58 +0400
-Message-ID: <CABjd4YzDNQa45=KC_t0xnTDrH+g-oUrcpgP55oOj7JcAuu7uFw@mail.gmail.com>
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, quentin.schulz@cherry.de, wens@kernel.org, 
-	daniel.lezcano@linaro.org, didi.debian@cknow.org, 
-	krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] hwmon: (ina2xx) Add device tree support to pass alert
+ polarity
+To: Amna Waseem <Amna.Waseem@axis.com>, Jean Delvare <jdelvare@suse.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@axis.com
+References: <20240529-apol-ina2xx-fix-v1-0-77b4b382190f@axis.com>
+ <20240529-apol-ina2xx-fix-v1-2-77b4b382190f@axis.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240529-apol-ina2xx-fix-v1-2-77b4b382190f@axis.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, May 29, 2024 at 4:22=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
-> On 2024-05-29 14:04, Alexey Charkov wrote:
-> > On Wed, May 29, 2024 at 2:45=E2=80=AFPM Dragan Simic <dsimic@manjaro.or=
-g>
-> > wrote:
-> >> On 2024-05-29 11:57, Alexey Charkov wrote:
-> >> > On Wed, May 29, 2024 at 6:14=E2=80=AFAM Dragan Simic <dsimic@manjaro=
-.org>
-> >> > wrote:
-> >> >>
-> >> >> Rename and modify the RK3588 dtsi files a bit, to make preparations
-> >> >> for
-> >> >> the ability to specify different CPU and GPU OPPs for each of the
-> >> >> supported
-> >> >> RK3588 SoC variants, including the RK3588J.
-> >> >>
-> >> >> As already discussed, [1][2][3] some of the different RK3588 SoC
-> >> >> variants
-> >> >> require different OPPs, and it makes more sense to have the OPPs
-> >> >> already
-> >> >> defined when a board dts includes one of the SoC dtsi files
-> >> >> (rk3588.dtsi,
-> >> >> rk3588j.dtsi or rk3588s.dtsi), rather than requiring the board dts
-> >> >> file to
-> >> >> also include a separate rk3588*-opp.dtsi file.  The choice of the S=
-oC
-> >> >> variant
-> >> >> is already made by the inclusion of the SoC dtsi file, and it doesn=
-'t
-> >> >> make
-> >> >> much sense to, effectively, allow the board dts file to include and
-> >> >> use an
-> >> >> incompatible set of OPPs for the already selected SoC variant.
-> >> >
-> >> > Indeed, including just one .dtsi for the correct SoC variant and not
-> >> > having to bother about what other bits and pieces are required to us=
-e
-> >> > the full SoC functionality sounds great! Thanks for putting this
-> >> > together so promptly!
-> >>
-> >> You're welcome. :)
-> >>
-> >> > Some considerations below.
-> >> >
-> >> >> No intended functional changes are introduced.  (Still to be
-> >> >> additionally
-> >> >> verified if the patch moves forward from the RFC state.)
-> >> >>
-> >> >> [1]
-> >> >> https://lore.kernel.org/linux-rockchip/646a33e0-5c1b-471c-8183-2c0d=
-f40ea51a@cherry.de/
-> >> >> [2]
-> >> >> https://lore.kernel.org/linux-rockchip/CABjd4Yxi=3D+3gkNnH3BysUzzYs=
-ji-=3D-yROtzEc8jM_g0roKB0-w@mail.gmail.com/
-> >> >> [3]
-> >> >> https://lore.kernel.org/linux-rockchip/035a274be262528012173d463e25=
-b55f@manjaro.org/
-> >> >>
-> >> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> >> >> ---
-> >> >>  ...inctrl.dtsi =3D> rk3588-common-pinctrl.dtsi} |    0
-> >> >
-> >> > Renaming the pinctrl includes seems superfluous - maybe keep them as
-> >> > they were to minimize churn?
-> >>
-> >> Believe it or not, the same thoughts crossed my mind.  However,
-> >> after thinking a bit about it, I concluded that renaming the pinctrl
-> >> .dtsi files as well makes the overall naming of the reworked RK3588
-> >> .dtsi files more consistent.
-> >>
-> >> It's also rather neat to have the "common" and "fullfat" file pairs
-> >> together in the arch/arm64/boot/dts/rockchip directory listing, when
-> >> it's sorted by the file name, which is the default in most (if not
-> >> all) environments.
-> >>
-> >> >>  .../{rk3588s.dtsi =3D> rk3588-common.dtsi}      |    2 +-
-> >> >>  ...nctrl.dtsi =3D> rk3588-fullfat-pinctrl.dtsi} |    0
-> >> >>  .../{rk3588.dtsi =3D> rk3588-fullfat.dtsi}      |    4 +-
-> >> >
-> >> > To me, "fullfat" doesn't look super descriptive, albeit fun :)
-> >>
-> >> Yeah, I resorted to "fullfat" as some kind of a funny option. :)
-> >> That's for the "beefy" SoC variants, so it kind of fits well. :)
-> >>
-> >> > How about we rename the existing rk3588.dtsi and rk3588s.dtsi to
-> >> > something like rk3588-devices.dtsi and rk3588s-devices.dtsi
-> >> > (preserving the inheritance between them), and then I add
-> >> > rk3588s-opp.dtsi and rk3588j-opp.dtsi in a follow-up patch?
-> >>
-> >> The trouble with including "devices" into the filenames is, well,
-> >> the fact that those files isn't about any devices, but about the
-> >> SoC variants.  Thus, "devices" simply wouldn't fit there.
-> >
-> > My thinking was along the lines of "here is the file that contains all
-> > DT nodes for built-in _devices_ (as in on-chip IP blocks) on RK3588 -
-> > thus it's called rk3588-devices.dtsi", and "here's the file that
-> > contains operating parameters that distinguish RK3588 and RK3588s from
-> > RK3588j - it's called rk3588s-opp.dtsi"
->
-> Hmm...  I see, but a device is usually though of as some standalone
-> computer, at least in this context.  Surely, an SoC is also some kind
-> of a device, for example, but I'm pretty sure we'll very rarely call
-> an SoC a device.  It's always good to adhere to the usual meaning of
-> the words in a particular lingo.
+On 5/28/24 23:07, Amna Waseem wrote:
+> The INA230 has an Alert pin which is asserted when the alert
+> function selected in the Mask/Enable register exceeds the
+> value programmed into the Alert Limit register. Assertion is based
+> on the Alert Polarity Bit (APOL, bit 1 of the Mask/Enable register).
+> It is default set to value 0 i.e Normal (active-low open collector).
+> However, hardware can be designed in such a way that expects Alert pin
+> to become active high if a user-defined threshold in Alert limit
+> register has been exceeded. This patch adds a way to pass alert polarity
+> value to the driver via device tree.
+> 
+> Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
+> ---
+>   drivers/hwmon/ina2xx.c | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+> 
+> diff --git a/drivers/hwmon/ina2xx.c b/drivers/hwmon/ina2xx.c
+> index d8415d1f21fc..b58e795bdc8f 100644
+> --- a/drivers/hwmon/ina2xx.c
+> +++ b/drivers/hwmon/ina2xx.c
+> @@ -73,6 +73,9 @@
+>   #define INA226_READ_AVG(reg)		(((reg) & INA226_AVG_RD_MASK) >> 9)
+>   #define INA226_SHIFT_AVG(val)		((val) << 9)
+>   
+> +#define INA226_ALERT_POLARITY_MASK		0x0002
+> +#define INA226_SHIFT_ALERT_POLARITY(val)	((val) << 1)
+> +
+>   /* bit number of alert functions in Mask/Enable Register */
+>   #define INA226_SHUNT_OVER_VOLTAGE_BIT	15
+>   #define INA226_SHUNT_UNDER_VOLTAGE_BIT	14
+> @@ -178,6 +181,23 @@ static u16 ina226_interval_to_reg(int interval)
+>   	return INA226_SHIFT_AVG(avg_bits);
+>   }
+>   
+> +static int ina2xx_set_alert_polarity(struct ina2xx_data *data,
+> +				     unsigned long val)
+> +{
+> +	int ret;
+> +
+> +	if (val > INT_MAX || !(val == 0 || val == 1))
 
-Agreed, and calling the SoC itself a device is not what I implied by
-the suggested naming.
+	if (val != 0 && val !=1)
 
-> When it comes to rk3588s-opp.dtsi, it would be more of a file that
-> completes the rk3588s.dtsi by adding the OPPs, but we can in fact
-> add the OPPs directly into rk3588s.dtsi, because in the new layout
-> rk3588s.dtsi isn't a parent to any other file.
->
-> >> Moreover, in the envisioned scheme there should be no separate
-> >> OPP .dtsi files;  the OPP data should go directly into the new
-> >> rk3588.dtsi, rk3588s.dtsi and rk3588j.dtsi files, where it actually
-> >> belongs.  That's why those .dtsi files exist and are mostly empty,
-> >> at least the way I see it.  I'll get back to this below.
-> >>
-> >> > Then we keep "thin" versions of rk3588.dtsi, rk3588s.dtsi and
-> >> > rk3588j.dtsi for board files to include. The mix-and-match of
-> >> > different on-chip devices and different OPPs then gets transparently
-> >> > represented within those "thin" .dtsi, something like this:
-> >> >
-> >> > rk3588.dtsi:
-> >> > #include "rk3588-devices.dtsi"
-> >> > #include "rk3588s-opp.dtsi"
-> >> >
-> >> > rk3588s.dtsi:
-> >> > #include "rk3588s-devices.dtsi"
-> >> > #include "rk3588s-opp.dtsi"
-> >> >
-> >> > rk3588j.dtsi:
-> >> > #include "rk3588-devices.dtsi"
-> >> > #include "rk3588j-opp.dtsi"
-> >>
-> >> Such a layout, in general, has also crossed my mind, but my conclusion
-> >> was that having the per-SoC-variant OPP data specified directly in the
-> >> reworked rk3588.dtsi, rk3588s.dtsi and rk3588j.dtsi files is a better
-> >> option in the long term, even if we end up that way with rk3588.dtsi
-> >> and
-> >> rk3588s.dtsi repeating most (if not all) of the same OPP data.
-> >
-> > From all the info we have available so far, RK3588 and RK3588s share
-> > identical OPPs, so having one file with OPPs that both variants refer
-> > to should be more maintainable (and fewer lines of DT code).
->
-> Hmm.  Perhaps we can have rk3588-opp.dtsi as a separate file with the
-> OPPs shared between the RK3588 and the RK3588S, which would be included
-> from rk3588.dtsi and rk3588s.dtsi.
->
-> Though, the OPPs for the RK3588J should go directly into rk3588j.dtsi;
-> if we ever split the OPPs for the RK3588 and the RK3588S, the new OPPs
-> should also go directly into rk3588.dtsi and rk3588s.dtsi.
+would be sufficient and much easier to understand.
 
-Sounds good to me!
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&data->config_lock);
 
-> > All in all, it appears that RK3588 and RK3588j have an identical set
-> > of built-in devices, but different OPPs due to RK3588j being spec'd
-> > for industrial use which apparently has different requirements. At the
-> > same time, RK3588s uses an identical set of OPPs as RK3588 but a
-> > reduced set of built-in devices. The combination of includes I
-> > proposed above makes this explicit.
->
-> Again, calling IP blocks devices is, AFAIK, very uncommon.
+Pointless lock.
 
-Perhaps. Shall we settle on something like "-devicenodes.dtsi" or
-"-hwblocks.dtsi"? :) This will delineate what goes to which .dtsi:
-things that describe the hardware composition go to "-hwblocks.dtsi",
-things that describe performance parameters for that hardware go to
-"-opp.dtsi" (or directly to the SoC .dtsi if there is only one SoC
-variant that uses a particular OPP table).
+> +	ret = regmap_update_bits(data->regmap, INA226_MASK_ENABLE,
+> +				 INA226_ALERT_POLARITY_MASK,
+> +				 INA226_SHIFT_ALERT_POLARITY(val));
+> +
+> +	mutex_unlock(&data->config_lock);
+> +	return ret;
+> +}
+> +
+>   /*
+>    * Calibration register is set to the best value, which eliminates
+>    * truncation errors on calculating current register in hardware.
+> @@ -659,6 +679,14 @@ static int ina2xx_probe(struct i2c_client *client)
+>   	if (ret)
+>   		return dev_err_probe(dev, ret, "failed to enable vs regulator\n");
+>   
+> +	if (!of_property_read_u32(dev->of_node, "alert-polarity", &val)) {
+> +		ret = ina2xx_set_alert_polarity(data, val);
+> +		if (ret < 0)
+> +			return dev_err_probe(
+> +				dev, ret,
+> +				"failed to set APOL bit of Enable/Mask register\n");
+> +	}
 
-The problem I have with -common is that there are several layers of
-"common" even among just the three of these chip revisions, and a
-clear inheritance hierarchy between them (i.e. RK3588j and RK3588 also
-have a sizeable chunk of their IP blocks that is "common" between
-these two variants, in addition to those shared among all three
-variants)
+INA219 and INA220 do not support alert pin configuration (or, naturally,
+the mask register in the first place). This will need to be validated.
 
-> > As for RK3588m, it seems to include all the same devices as RK3588 and
-> > RK3588j, but a slightly modified set of OPPs compared to RK3588j. We
-> > don't have any boards using that variant in the mainline tree right
-> > now, but it would be easy, when the need arises, to add something
-> > along the lines of:
-> >
-> > rk3588m.dtsi:
-> > #include "rk3588-devices.dtsi"
-> > #include "rk3588m-opp.dtsi"
-> >
-> > rk3588m-opp.dtsi:
-> > #include "rk3588j-opp.dtsi"
-> > &cluster0_opp_table {
-> >         /delete-node/ opp-1296000000;
-> > };
->
-> I don't think that deleting nodes that way is a good option.  It's
-> rather error-prone and hard to track, so it would be better to have
-> the OPPs for RK3588M specified directly (and fully) in the future
-> rk3588m.dtsi file, just like in rk3588j.dtsi.
+Guenter
 
-You're right, that does indeed look fishy upon further thought.
-
-> >> That way we'll have no roadblocks if, at some point, we end up with
-> >> having
-> >> different OPPs defined for the RK3588 and the RK3588S variants.  Or
-> >> maybe
-> >> even for the RK3582, which we don't know much about yet.
-> >
-> > Guess we'll deal with that one once we stumble upon an actual RK3582
-> > board out in the wild and heading to the mainline kernel tree :)
->
-> Of course, that was just an example for the future use.
-
-In fact, I've just discovered that Radxa has recently released Rock 5C
-Lite which is based on RK3582, and starts at just $29 for the 1GB
-version, making it interesting for tinkering. Especially given that
-its GPU, one of the big-core clusters and one of the VPU cores seem to
-be disabled in software (u-boot) rather than in hardware, which means
-there is some chance that a particular SoC specimen would actually
-have them in a working condition and possible to re-enable at no cost.
-Ordered myself one to investigate :)
-
-Best regards,
-Alexey
 
