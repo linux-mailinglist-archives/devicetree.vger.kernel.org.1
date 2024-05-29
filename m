@@ -1,133 +1,112 @@
-Return-Path: <devicetree+bounces-70417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C818D3469
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:20:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4A18D3486
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:28:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 329C81F256DC
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:20:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BBB21C2323C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFD8017F36F;
-	Wed, 29 May 2024 10:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D34917A939;
+	Wed, 29 May 2024 10:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IKn8G9fl"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="CmWYY7kT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7657015B138;
-	Wed, 29 May 2024 10:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751C216D9DD
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 10:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716977999; cv=none; b=a72+L6S7Mtc3mWdluBkyxUPIBvshMXASBSGL/e25eXQarL6KMKAqieV1KZSUsxNWySxOW3Neol3AEqKUtTkFVzl63UBmaKcWm10nEae/eQx48fRCPtrV/46fEgfiM45hEHE5Im10+d6o8zIS20OjASaRiWoFxUficXkZg4pwMtI=
+	t=1716978491; cv=none; b=S6trpQNK7gQEVeVvvXLG46KYx04Lf2RyxpuvRbakTb+KS9N23bW1sHQmd6umzl71ntKNV1HeDebaxEsLZylZ+kF13S0aSOZXOF9qhwiXca1HH9q0XMP5BbWXVFdiSnVdjF7CXOGq7Qzo6jQkebgpMLaViaC+RDah/9aDh3KRDI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716977999; c=relaxed/simple;
-	bh=yepmIr1KeJZ1adm9HItj40bp1twhYeU/zTob2IsWvtk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gZc8LZ8DFP/qnxkS+455Ch1vwVqf9s+yA1E1syaRLUzbkIAJxmaoExQjiNK5u2ziZlQ7lP3Um3IABrl6KMOmL7GR715M10mX4U27zGjOGnOePtxyjf/q5Z/GnzsfVTUMrkzgzY8tkJP1OxolaxCphEXKUhGIdF5LL2L+LYb+EC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IKn8G9fl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44T0iCA7008944;
-	Wed, 29 May 2024 10:19:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PJkv3N09Tygq4Nwf/+PGLGxoxsLkHYz3NVsF/c3ezhM=; b=IKn8G9flOEr2vVat
-	SHfajcTGHZevi65BqEVkA0b5akSa3SCPdB/H5avnRfJE/D9h4z6ATV1iSEWZYVZH
-	ZiRw0vs9uf3anyp+OzJRYEISXnxOGjaboXaiqybJ+TsilVPIDXyWgQ5LRevLyXSb
-	3znbyrJsC2g4rYgVUSY9R59h40nx4KjOebYpHbkqO1g4EaRTk0Z1lNvTFPqPaUWj
-	i3TZUnxtBcla2pQ0A0xLBTHALjW+VNf11nfOG2RW6DeeiBRH2Rt6QPBZcwCNurkN
-	rmBuYgsiTXfBmbGuMoo+FKjKwzTb+dyD9OXM3feuQZORKx97iVgXu6/1/0o1rNRI
-	lDos2Q==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0g8sht-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 10:19:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TAJrhF031636
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 10:19:53 GMT
-Received: from tengfan-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 29 May 2024 03:19:49 -0700
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Tengfei Fan
-	<quic_tengfan@quicinc.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: sa8775p: Add IMEM and PIL info region
-Date: Wed, 29 May 2024 18:19:29 +0800
-Message-ID: <20240529101929.3167610-3-quic_tengfan@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240529101929.3167610-1-quic_tengfan@quicinc.com>
-References: <20240529101929.3167610-1-quic_tengfan@quicinc.com>
+	s=arc-20240116; t=1716978491; c=relaxed/simple;
+	bh=y7p3l0oglWACzgxbaMPo7wp3eRe7SuiZC//urcH+c2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DYF36+ThNCUvPcM3Vy9uB73csAgju2/vgSbqhNx6y/witLrSnzxnX+YzadK1D6QVgdtsfNCAkzczFxwPvqzO2GC8QhY/cc3+KgZOsc4gKmk0U11VOd4JlR/mzIqWEenuwJyUT8lcM+83RM0Ld26m2bml9xBHz5tDDIwWVps7yLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=CmWYY7kT; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=y7p3
+	l0oglWACzgxbaMPo7wp3eRe7SuiZC//urcH+c2c=; b=CmWYY7kTC2Es21bZ+ioW
+	ahGY/I29AG5zamKjk2waZoZ+WBHMkHOdazG0wMXWKCdWJxlYpsffH8Zx6+ISbutQ
+	+ebCYp2XelrRSarYPImNiyTyyn1FhneH7wYKRQykQYhdi3vVd0Fs+zHUTfyA11fC
+	zp2xj8qaWYBEf9+yihl0cnvdOpBIYOkUXCrD8zVxI7KN0JAtrcqN24dOV4F1R1Un
+	bbIuH55DYqux8cqTqir3E/izIK6gJkeyoWu91fj9oZpOTGzkZeUaTynZZijUeesl
+	gseEjJgNBB9opIBB4/8gL+q1IlDtXm3rstZ/TPbCBY5zge2P8e1zgah0J+9uo+kn
+	Eg==
+Received: (qmail 536340 invoked from network); 29 May 2024 12:28:04 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 29 May 2024 12:28:04 +0200
+X-UD-Smtp-Session: l3s3148p1@VOCjNJUZ4McgAwDPXwS5AFh1mWvQq9Po
+Date: Wed, 29 May 2024 12:28:03 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: egyszeregy@freemail.hu, devicetree@vger.kernel.org
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] i2c-dev: Introduce "linux,i2c-dev-name" property for
+ device tree of I2C controller.
+Message-ID: <mnzj5bqbiuwt4dqnenwctejdnqccqzk2x4tkz2ukqssrmdmsxc@7srnfnfjym26>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	egyszeregy@freemail.hu, devicetree@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+References: <20240519165504.19627-1-egyszeregy@freemail.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rEYVgXhmJloULow4tfkAon55r5imnQQ0
-X-Proofpoint-ORIG-GUID: rEYVgXhmJloULow4tfkAon55r5imnQQ0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-29_06,2024-05-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- priorityscore=1501 bulkscore=0 phishscore=0 adultscore=0 spamscore=0
- mlxlogscore=598 malwarescore=0 lowpriorityscore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405290068
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="adz2efxtjrrak72e"
+Content-Disposition: inline
+In-Reply-To: <20240519165504.19627-1-egyszeregy@freemail.hu>
 
-Add a simple-mfd representing IMEM on SA8775p and define the PIL
-relocation info region, so that post mortem tools will be able
-to locate the loaded remoteprocs.
 
-Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+--adz2efxtjrrak72e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 5632fa896b93..eb33b1587802 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -3025,6 +3025,21 @@ tlmm: pinctrl@f000000 {
- 			wakeup-parent = <&pdc>;
- 		};
- 
-+		sram: sram@146d8000 {
-+			compatible = "qcom,sa8775p-imem", "syscon", "simple-mfd";
-+			reg = <0x0 0x146d8000 0x0 0x1000>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			ranges = <0x0 0x0 0x146d8000 0x1000>;
-+
-+			pil-reloc@94c {
-+				compatible = "qcom,pil-reloc-info";
-+				reg = <0x94c 0xc8>;
-+			};
-+		};
-+
- 		apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sa8775p-smmu-500", "qcom,smmu-500", "arm,mmu-500";
- 			reg = <0x0 0x15000000 0x0 0x100000>;
--- 
-2.25.1
 
+> Optionally, an I2C controller may have a "linux,i2c-dev-name" property.
+> This is a string which is defining a custom suffix name for I2C device
+> in /dev/i2c-<name> format. It helps to improve software portability betwe=
+en
+> various SoCs and reduce complexities of hardware related codes in SWs.
+
+(I thought I already replied to this?)
+
+Highly similar to [1] from 2021. I don't have a super clear opinion
+about this, so I'd need help from the DT maintainers. But the discussion
+=66rom back then stalled.
+
+[1] http://patchwork.ozlabs.org/project/linux-i2c/list/?series=3D237908
+
+
+--adz2efxtjrrak72e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZXAy0ACgkQFA3kzBSg
+KbakWBAAm1IkX0tO/4Y5kwTdx3ODo6eOVGSZO6RkRmuFikw9lq17+6pWLiiOMEKN
+U9WQzznDplV1jl1yqsPeL8XjZqJL1K9QqOkJdYiZtWxIpdl6jkrOOFKmPwTbRspZ
+dTQ8hYXyJRrpMAVbaBgak+EtTYJSI3e3cAR+1oTNlR0M+PEwQ+Oz2hBhflFgGwox
+Z2znGpDjZuWKsDdXX64bMOhjlYUltHq6hgaShm1LpX3QCA6EJttcOlgD+mN1/zKZ
+wOMcFHtzmz3TShUfkFyOhqE6Lg72Ir9iNk5+HqC81h/VqUT0ohisMbI/MGAjsNNB
+uQTHO92DmELJJRii6u1zRPy4Cfk6Unc/sRrlv0YNZJTCKk8EH1HdJqIw0xhdl/jj
+BSRslNmsv/Ae+wkFM205AeDgtcwMS/+HqKIgM5Zs5lmydhOPUa1UxtEqCvqkSrRi
+cdaOVPyNzYfZC9TBpzhzb7vBvRbS3IEqkyWwCknlTQtO5D+02+mysYifFhvpSUMW
+csaBEVFXWguDCX3F2G/2q+hZsjw2TRzYTT46CEyiImytvzIrl4o90X7RkV09evQX
+1Yzn2rZ3G9rbI4Of5/CshmPUIlJJJJ/OqznaKr9+kFMxB0/bNytjLE91YsGfXef3
+gG9XG33MrXnJPgQl8if/kk2Rf1bLTvLM+JPP9ZNvHRQACUWi0yo=
+=3BAA
+-----END PGP SIGNATURE-----
+
+--adz2efxtjrrak72e--
 
