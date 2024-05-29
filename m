@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-70474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 921368D36B8
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:49:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E888D36C4
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:52:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CBAF286519
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:49:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D46B01C22641
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:52:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB2CDDAB;
-	Wed, 29 May 2024 12:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B81A4431;
+	Wed, 29 May 2024 12:52:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOmHaU+m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JthuC61T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0332D53E;
-	Wed, 29 May 2024 12:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503A6E542;
+	Wed, 29 May 2024 12:52:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716986977; cv=none; b=IilxQ+yuW4YVQdjkDvQtMo/5D41MYeW3aWEFK85tpdhygfOSovqCSG/cUa8PR4lWGc0urHk1ToEEryvdg0eB0wydxT5BdJK+8pPZnMwv46dsPMNFOO2grWNmY2T/Jc6VpdUbjopDJzGp2GlswY8wSOd+BrwbHMqJ4owk8NBji24=
+	t=1716987122; cv=none; b=T/ACaFutilRVbWDwYFXnjOT3WoH9uBwgZ1MyZgzw79G2t308uSYwGFKejEw1gVsVBHFYqJ8J/X2OYC2QAcq4bF80yGiInwOJH8BKoaleRNXLGD668FQpgOxXyEkprgx3soBMHbXeUCqpVx2m2O8t17/ydNVYJe1s55g3cTFo5fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716986977; c=relaxed/simple;
-	bh=vzAvCW4q6qzlrTdD4KXojsK4gde4/L8R6f76OUdDKLU=;
+	s=arc-20240116; t=1716987122; c=relaxed/simple;
+	bh=2xN2nhjcoBqArfdjwGUrZhd/afLWNNDtQEwRRsZVQfk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X83FDbfYAVLfO317yZ4fqljyv01DtqwsszBZFr5TSy51r2KvfXQwYkYwgoC7QTqrgCAix6ZwNTJWqDbK09a8/fepXsSKqJYMc/A2tmQKbbiXSMbV563HmUCLLMNNKE3vajBs9Wgu+JNz9/tKKK910SGihhlllcweYjxSKMFKrbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pOmHaU+m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FE45C2BD10;
-	Wed, 29 May 2024 12:49:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=V0BJmSashqyxvHhY5D1GUFrdu1eYxZtf3E+lIzAL9wOZF5YuDDLGojKMzYTPz64fnS42EpcIBZHbVlGSJo8tYW/ZxuixDrIwKf+qpRLThvb89aARgyZtzmxn9J0HrOzswaHmbEkVQZ/vEfGkW6ErtHwTbEcFXJu8kv+CWORB8x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JthuC61T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BAF0C2BD10;
+	Wed, 29 May 2024 12:51:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716986976;
-	bh=vzAvCW4q6qzlrTdD4KXojsK4gde4/L8R6f76OUdDKLU=;
+	s=k20201202; t=1716987122;
+	bh=2xN2nhjcoBqArfdjwGUrZhd/afLWNNDtQEwRRsZVQfk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pOmHaU+mWhuoVFMFs814QEui/mzHzpodKA4OwcOoKBImVLt8HUw+kbYKm3vO1mHL+
-	 wmEME1CW1aqifFjeqr7srvQem8amZ2JjD5ClPfjha7r43jz+dgu25adVopDf45/eK9
-	 VVSr2R0YafIe+hPN+WOBsYpTq3KuSt0N5w0iWZgCaZsye3ri2VSTNWwgSz7K935HYT
-	 Jdjrocki/oOlu5OHbD7TiBOl7LdP01lqniA1CIZyNBUHoEE3M0ss06e+6IE1mOdJ+I
-	 FerwmxVqiNON5IfCH00qjLNmSo799F4vVkuawIQVi6i9TvHKk/pl9GkYZBAlDW43P9
-	 E5i/eljKjrG9w==
-Message-ID: <b0804461-aab0-423d-a61d-7c5be6bd446d@kernel.org>
-Date: Wed, 29 May 2024 14:49:28 +0200
+	b=JthuC61TEUUWj63P6Mpt3U/0rrHciiYlix/Cbvv3zyTVEsFRs8MXgzuEF5TfR958S
+	 egeOSX7+Vs3bem9LUuiUPlwWEy1AQ3sZ4iFJVzIWVJPmwXBv3kM+MvkemfWnFzkbT8
+	 uSxOK1UspVSN3Y9TIi/+eQFR2R/Isttj5rFedtPUaYkBBLe+XVEQv9VUOJf63IT5So
+	 FSIl2H+vJxPn/iqljiZrppvRz3YKJz7iAoAt4b0LHILllZ33P1LlKX70SILzhi2KJI
+	 hmwN8El4pXPIuxTPXo5f7gz0TQCs3YKYlV6WXpNLiEPVwwRmT59PivBCgXx0tkThyL
+	 ekH/dIHCizpHw==
+Message-ID: <5eea73ae-9bb4-4fd2-ac22-eb8c39a2aab7@kernel.org>
+Date: Wed, 29 May 2024 14:51:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: net: ti: icssg_prueth: Add documentation
- for PA_STATS support
-To: MD Danish Anwar <danishanwar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Eric Dumazet <edumazet@google.com>, "David S. Miller" <davem@davemloft.net>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, srk@ti.com,
- Vignesh Raghavendra <vigneshr@ti.com>, r-gunasekaran@ti.com,
- Roger Quadros <rogerq@kernel.org>
-References: <20240529115225.630535-1-danishanwar@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom,spmi-pmic: Document PMC8380
+ and SMB2360
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240529-topic-x1e_pmic-v1-0-9de0506179eb@linaro.org>
+ <20240529-topic-x1e_pmic-v1-1-9de0506179eb@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,16 +106,14 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240529115225.630535-1-danishanwar@ti.com>
+In-Reply-To: <20240529-topic-x1e_pmic-v1-1-9de0506179eb@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/05/2024 13:52, MD Danish Anwar wrote:
-> Add documentation for ti,pa-stats property which is syscon regmap for
-> PA_STATS registers. This will be used to dump statistics maintained by
-> ICSSG firmware.
+On 29/05/2024 13:17, Konrad Dybcio wrote:
+> These are just some more PMICs adjacent to X1 SoCs. Document them.
 > 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
