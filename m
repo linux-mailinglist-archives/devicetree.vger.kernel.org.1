@@ -1,170 +1,128 @@
-Return-Path: <devicetree+bounces-70142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0793D8D293F
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 900F48D2941
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B155F2868AE
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 00:04:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 453F32829B5
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 00:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7B2D2EE;
-	Wed, 29 May 2024 00:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3133F363;
+	Wed, 29 May 2024 00:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="aopIU6H9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mjXl8Qdw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9D6D27A;
-	Wed, 29 May 2024 00:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E7F632
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 00:05:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716941059; cv=none; b=Ts3QmpXP/qCSsA24MF9EnfEPjPxInByvM0jHQnaJHAJ2q78lz9exmbAZR65GrlK8/oVmcF4Ji/7bh0QpcZvA2W3M5Dm2h1ustsP7iAd3PoX2nnlHppajtrV7+COPqKrZb9PAZXJpHUlpmpILDWnfa6voQt0ICsFf+qF2buY1hIo=
+	t=1716941150; cv=none; b=Id76R9tKEjGYTZWjFWdYLX6ogYuULfRHW3I/vjI5KGIlTRSXxeLhbOsAddOUvaFpTBxxMMSO34xNRTKyBqkz1EF6v/VQJe/1mR9K8q4Ij2q7+7ALqBgNwrlvUUTbD9dlf7UTssOPxAi/oAtJsDyCCQ6IgNYw3REjofpjOJrCE2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716941059; c=relaxed/simple;
-	bh=iCwacVP+fcBaS3qxBrWlpvGpWPI6CSiUHt/DGTElfzc=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=HbGkNlqI+va8d75SIm7Bl2dOiFvqu0bN8fVBiBo61zLD+sxwbsTbk4uwA8risqgAehbtNXbjXLPyMIpTFkdPTERF2AR/d89eKtCRSj2fqcnB5UzEHcF6vL5V48qb0LwWr4o7QAp5dB3I8Gmn//q+Dp/H+SEtKOAoa5RMUR92On0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=aopIU6H9; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1716941150; c=relaxed/simple;
+	bh=7ol4garLMsDzRKxwki4fWgqkSt9RLCXcjj5rZyk/m1w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HrdujoiTeEK9mu1Jh1QVQNisPQbBx+t9ey/klldGvRr15fbn+zr4j91qUmEa+X8GfN9PwHkFDW8ztFKTRy2o7eN8ZBkK0GURBUDSGsy2ftQq06E18dwBG7jt/mQgYbRgCt/cRt01+uMxRt7bApiOSCZ9zVvckh/xD4nyfRDZfIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mjXl8Qdw; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6f8b36f10d7so22467b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 17:05:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1716941148; x=1717545948; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vjTBiv/iWOE80tHDjG/tHhcP238L01dLxxKXKr+oXB8=;
+        b=mjXl8QdwTqQUKMpNn3WosJxFnfI5ZkTTGf304YTFHxDeF0iQI8A5GiF+MBclh0HAxt
+         gGTRUn2QwO+l0s4ISuwDZdE68hMaxia6wJp1lp945iXvP4z/dFaU9lIqbWoFsMDc0zJ5
+         Q02llraRegxX5bWOKl5LnpERAAyJ36siGLuJ0JQmaBqUrDYJjUC7qK4WcfYL742cPFTJ
+         4CETka97IvLntnoRORhBFTGeCyhuVi65vRK/gUBqz2o9k5vU5yxIs3WWtLLbNsiWMI1E
+         IeD+unsbUTURjyOfsRorGpvyYvSUwrqYVwJ9hThRh8K9ru2GVEJ6ngPOblZ5gRu2jaUI
+         U9Zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716941148; x=1717545948;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vjTBiv/iWOE80tHDjG/tHhcP238L01dLxxKXKr+oXB8=;
+        b=DGku0H5HJuwtrgbQml/Uv5Z3kyZ1I6EuKbieBdyajbdZ3abyYdszn+G0AbPdlHkXPA
+         RpwJj5pHJWHJADrimEKBYWG6JPSRpxpbvVdQ6OVh7dC1AxcHhArPb7BvevWVjjvnvl8y
+         agOwy+PrLZmvmrTkSAO72oNCknqn/hwMht8SvDpwaP3ATwf+WBeE2KDTEysHXseeYrBs
+         TYQyotf1MN0M/CCxSqvaicBu2eRr3iafkGAnYNHbYvHa7TwKiAEOP03vlPAS/pAS45oX
+         qaunZt4GaPa7KcHU8N/+WG5+wkdV/r0TXQWGZ33c7Ierg6mJ4L5Zc7y+gxxxfoDL7wWR
+         7pVg==
+X-Forwarded-Encrypted: i=1; AJvYcCVezv3UWhoGZLO5tasGTnjXP71tkQbJOziXLmxOatpsL6gQ3rWtxHFrF6uOzLCgIKQJ1LdMndRAbj5pdjzLXq5NWUSmuvS5acexHA==
+X-Gm-Message-State: AOJu0YxZO/RK6ORKsVswpddGiGZEhogk3V5ot9UJ8i3gu+fepHtdo+LZ
+	XZHdNMm+QHs0frkQ9V4dCxwqRk7/TryixHGUQX+bdUlbbX25aSty
+X-Google-Smtp-Source: AGHT+IGrmT7qS0wdENayeJXE2drKhY1T3NsFaOpzHLs0izq9gml6hAY+jfWrhiKunNJnSY1A6C4OQg==
+X-Received: by 2002:a05:6a00:4a10:b0:6f3:e9c0:a197 with SMTP id d2e1a72fcca58-6f8f184be18mr14458279b3a.0.1716941148022;
+        Tue, 28 May 2024 17:05:48 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:dfd9:2d9b:ff9d:4f57])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-701d44144adsm1518455b3a.58.2024.05.28.17.05.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 May 2024 17:05:47 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2 1/2] dt-bindings: arm: fsl: Document Compulab IOT-GATE-iMX8
+Date: Tue, 28 May 2024 21:05:34 -0300
+Message-Id: <20240529000535.1426662-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1716941053;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Z3UyPJg9jT2CCb8WYackyvrQqiNArMyehuNffpOyzV0=;
-	b=aopIU6H9EgsMSPt5ksrdKvzYWVMSYnAv2ZZsRbRs6kY6ufPI1al1Ybb7H0E4bvwLghJgxE
-	2wcZlU+nRH0GPEf7mREx0QwcFM/MCf1lNDzNXytcVFnQlLe6pDiGMak36dMuYLb1y47bE4
-	XA63nI2swkNGCCv7RCZDjwK5RuwoQPHgsGWPDpqDB005aYyMIfrQF6la0I6DU1gxrZ49JT
-	Nhp6NcZ4iqFxFZzy1eea8Du0PXwgGJYgQxpsvBgb86IYs/rW8eAwOVMKNnDx9lysxk7C56
-	ZhZJfxwtP3gLgTRXWXfSytwbEc9aLVrHUlyMrgqWze0/vcqoR8mzwN2UuLoBOg==
-Date: Wed, 29 May 2024 02:04:12 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Alexey Charkov <alchark@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
- Chen-Yu Tsai <wens@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Daniel
- Lezcano <daniel.lezcano@linaro.org>, Diederik de Haas
- <didi.debian@cknow.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 0/6] RK3588 and Rock 5B dts additions: thermal, OPP and
- fan
-In-Reply-To: <646a33e0-5c1b-471c-8183-2c0df40ea51a@cherry.de>
-References: <20240506-rk-dts-additions-v4-0-271023ddfd40@gmail.com>
- <5122636.irdbgypaU6@phil> <8727e1c29bd6f562a7fc3de0ddac62cf@manjaro.org>
- <6230150.aeNJFYEL58@phil>
- <CABjd4YyRJS0AGehuBTDn8ys9uRRkGc0Usme3GX1POq3AQiWTBA@mail.gmail.com>
- <646a33e0-5c1b-471c-8183-2c0df40ea51a@cherry.de>
-Message-ID: <7b09e18e850ff0832bd7236810b83e64@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Quentin,
+From: Fabio Estevam <festevam@denx.de>
 
-On 2024-05-28 18:08, Quentin Schulz wrote:
-> On 5/28/24 5:42 PM, Alexey Charkov wrote:
->> On Tue, 28 May 2024 at 19:16, Heiko Stuebner <heiko@sntech.de> wrote:
->>> Am Dienstag, 28. Mai 2024, 17:01:48 CEST schrieb Dragan Simic:
->>>> On 2024-05-28 16:34, Heiko Stuebner wrote:
->>>>> Am Dienstag, 28. Mai 2024, 16:05:04 CEST schrieb Dragan Simic:
->>>>>> On 2024-05-28 11:49, Alexey Charkov wrote:
->>>>>>> Do you think this can be merged for 6.11? Looks like there hasn't
->>> been
->>>>>>> any new feedback in a while, and it would be good to have 
->>>>>>> frequency
->>>>>>> scaling in place for RK3588.
->>>>>>> 
->>>>>>> Please let me know if you have any reservations or if we need any
->>>>>>> broader discussion.
->>>>> 
->>>>> not really reservations, more like there was still discussion going 
->>>>> on
->>>>> around the OPPs. Meanwhile we had more discussions regarding the 
->>>>> whole
->>>>> speed binning Rockchip seems to do for rk3588 variants.
->>>>> 
->>>>> And waiting for the testing Dragan wanted to do ;-) .
->>>> 
->>>> I'm sorry for the delays.
->>> 
->>> Was definitly _not_ meant as blame ;-) .
->>> 
->>> The series has just too many discussions threads to unravel on half
->>> an afternoon.
->> 
->> FWIW, I think the latest exchange we had with Quentin regarding the 
->> OPPs
->> concluded in “false alarm”, given that this version of the series only
->> introduces a subset of them which should apply to all RK3588(s)
-> 
-> Correct.
-> 
-> However... I'm wondering if we shouldn't somehow follow the same
-> pattern we have used for the rk3399 OPPs? We have a file for the
-> "true" RK3399 OPPs, then the OP1 variant and the RK3399T.
+Document Compulab's IOT-GATE-iMX8 board, which is based on Compulab's
+UCM-iMX8M-Mini SoM.
 
-If I'm not mistaken, the separate rk3399-*opp*.dtsi files were
-added when the need arose.
+Board URL:
+https://www.compulab.com/products/iot-gateways/iot-gate-imx8-industrial-arm-iot-gateway/
 
-> We already know there are a few variants of RK3588 with different
-> OPPs: RK3588(S/S2?), RK3588J and RK3588M. I wouldn't be surprised if
-> the RK3582 (though this one has already one big cluster (or two big
-> cores) fewer than RK3588) has different OPPs as well?
+SoM URL:
+https://www.compulab.com/products/computer-on-modules/ucm-imx8m-mini-nxp-i-mx-8m-mini-som-system-on-module-computer/
 
-Do we already have supported boards that use the RK3588J and
-RK3588M variants of the RK3588 SoC?  If yes, we should separate
-the relevant OPPs into the separate .dtsi files, but if not, we
-should wait until the need arises.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v1:
+- Removed tabs.
 
-> So. We have already discussed that the OPPs in that patch are valid
-> for RK3588(S) but they aren't for the other variants.
+ Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-... which applies currently if there are already other RK3588
-variants in use on the supported boards.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 6d185d09cb6a..5a2ddb88d0b3 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -946,6 +946,13 @@ properties:
+               - prt,prt8mm                # i.MX8MM Protonic PRT8MM Board
+           - const: fsl,imx8mm
+ 
++      - description: Compulab i.MX8MM UCM SoM based boards
++        items:
++          - enum:
++              - compulab,imx8mm-iot-gateway     # i.MX8MM Compulab IoT-Gateway
++          - const: compulab,imx8mm-ucm-som      # i.MX8MM Compulab UCM SoM
++          - const: fsl,imx8mm
++
+       - description: Emtop i.MX8MM based Boards
+         items:
+           - const: ees,imx8mm-emtop-baseboard      # i.MX8MM Emtop SoM on i.MX8M Mini Baseboard V1
+-- 
+2.34.1
 
-> In the downstream kernel, any OPP whose opp-supported-hw has a first
-> value masked by BIT(1) return non-0 is supported by RK3588M. In the
-> downstream kernel, any OPP whose opp-supported-hw has a first value
-> masked by BIT(2) return non-0 is supported by RK3588J.
-> 
-> This means that, for LITTLE clusters:
-> - opp-1608000000 not supported on RK3588J
-> - opp-1704000000 only supported on RK3588M (but already absent in this
-> patch series)
-> - opp-1800000000 only supported on RK3588(S), not RK3588J nor RK3588M
-> 
-> For big clusters:
-> - opp-1800000000 not supported on RK3588J
-> - opp-2016000000 not supported on RK3588J
-> - opp-2208000000 only supported on RK3588(S), not RK3588J nor RK3588M
-> - opp-2256000000 only supported on RK3588(S), not RK3588J nor RK3588M
-> - opp-2304000000 only supported on RK3588(S), not RK3588J nor RK3588M
-> - opp-2352000000 only supported on RK3588(S), not RK3588J nor RK3588M
-> - opp-2400000000 only supported on RK3588(S), not RK3588J nor RK3588M
-> 
-> This is somehow also enforced in downstream kernel by removing the OPP
-> nodes directly (hence, not even requiring the check of
-> opp-supported-hw value), c.f.:
-> https://git.theobroma-systems.com/tiger-linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
-> https://git.theobroma-systems.com/tiger-linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588m.dtsi
-> 
-> You'll not that the RK3588J also has less OPPs for the GPU and NPU
-> (but those should also be masked by the opp-supported-hw value).
 
