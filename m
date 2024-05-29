@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-70671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714E58D3FB1
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 22:35:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F3E8D3FB9
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 22:39:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FD392825B1
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 20:35:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 290ED1F25C0E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 20:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF4F1C8FC1;
-	Wed, 29 May 2024 20:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B614E1667DC;
+	Wed, 29 May 2024 20:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bA0Wc7Eu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PnXppy7H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309711C68AB;
-	Wed, 29 May 2024 20:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA771B960
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 20:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717014917; cv=none; b=fVMVinqBU8ShPgwD4MXaad2j0PxR2CY124bHz/jJfQxdX9xScCSSI7WXHn69pwLo7XhFKq9UfTMXBT4YG3CeH/5+dEOpQj+PO6IrvTlJyK196C6lg3+LfRhJ6vZKlfWMNnO2Am4ERlkpXSWpXbd+U58KoyBgFqWrloKOEB3ngeo=
+	t=1717015150; cv=none; b=Zo0jbKThsIMnpgBOl/OGi5qXx+NbpniFPtyC/wCaQFQlFDb5EuLwGoE040r4/NSNAdjgDJp6ZlTPPrFoTmecw8c+B+tOx71HwL5fpv++UhqQ+6NMJmbQuuFe+NrhJxUzIhJhYsy4R6Y3WtgFnjrK568h7+wyFQyZSilZOmKd8PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717014917; c=relaxed/simple;
-	bh=TuG0C0uyqMxGOoI7HGMZ49F75inEvoKPpSPdj+eXq9k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VS/5E1TlEqNCDPAyfP8lwuhcC65MVwjSYSBfDeHkznSEm1zlm2mTuPRgdWFO+xNvNprJjbnRVxUyBlx+7WkZZZluArtxqwKH0XrfjwHcAXA1JU7hO2PGUSBYcrU54tb989GccUKEv8f50fijrwf51jbDifeyOHP1koP2Jg4D4v8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bA0Wc7Eu; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F295E2D31;
-	Wed, 29 May 2024 22:35:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1717014909;
-	bh=TuG0C0uyqMxGOoI7HGMZ49F75inEvoKPpSPdj+eXq9k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bA0Wc7Eu2pgdbZlmaUYS9Iis54h1VPeU/tI7LrK406xRhw0dLCGs1hsm+yhewSqNG
-	 al17D+evkvnNC5AOWWNHDqAZME2Thn1oICzwmkfyFrnTiuHZgWTHITaCeOeEW1NLuH
-	 ggIiRPU8gghSQwVKQKKX96jPDpSDNbB9dV9xqKC4=
-Message-ID: <96ba9a63-4927-45b3-8329-6368b89deb48@ideasonboard.com>
-Date: Wed, 29 May 2024 21:35:08 +0100
+	s=arc-20240116; t=1717015150; c=relaxed/simple;
+	bh=HfD+Wz5HgNWbukispE2lF2CT4Sk6Ld5DjQPCkaIj1SU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WfzfuXoYDxPPRfQqPejDDnfhUii+ZjnQzNY2mAVHyKySr+sXDrkOHOWH2b/icZlm49PQkG9q9ePUGujxB3ZzDjUdnmaR57cEphJJix4w1kXGfqmGUyIcXPTU+rCF9HqrMCKmflCMrDJRrDGhzbHA1/0AJrcZyUdZ6yzIixtMjK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PnXppy7H; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TKS5ZG031925;
+	Wed, 29 May 2024 20:38:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4ZR/o6rc6Y1qw+YrzwwN1vp1uwxpvaYiDRevcus82aY=; b=PnXppy7H43laSxHi
+	uVQ+5YRhJFIiFmThDlBjjrxiRVtzOnU7Dud9FTtIih+9B+QiFK/hy0fQXuC8J2Zv
+	6JxV0pAx+FAu0VH0WhdjQnUO5XazNL6a9Hf5HPnXeJrd2ZBMH0CJJbQAdH5nfZda
+	w8puJ5DFEAvEcZxucnkPjsMFEj5KqIBK3td+qV7YBzUH1v1+gKK9orWQGvV5kfB9
+	uo/ai3CuEiAz6mfLhOXaXCRDclopVstIuZE3FlH5dzdKgsIwHLfQa92ETBNkk17z
+	8bRw4cmq7EC1KRVnQ3IM5IApp5/4+iYRGptvUhOClomI6m2eMSl7GDPB2HpuVA+U
+	6lTSjA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0qjank-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 20:38:49 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TKclYv018145
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 20:38:48 GMT
+Received: from [10.71.108.229] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
+ 2024 13:38:47 -0700
+Message-ID: <7b0664ac-5954-46d5-9422-c552a2ba1af4@quicinc.com>
+Date: Wed, 29 May 2024 13:38:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,540 +65,351 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/16] media: Documentation: Add Mali-C55 ISP
- Documentation
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- sakari.ailus@iki.fi
-References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
- <20240529152858.183799-7-dan.scally@ideasonboard.com>
- <20240529202237.GF10586@pendragon.ideasonboard.com>
+Subject: Re: [PATCH 2/2] drm: panel: nv3052c: Add WL-355608-A8 panel
 Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- xsFNBGLydlEBEADa5O2s0AbUguprfvXOQun/0a8y2Vk6BqkQALgeD6KnXSWwaoCULp18etYW
- B31bfgrdphXQ5kUQibB0ADK8DERB4wrzrUb5CMxLBFE7mQty+v5NsP0OFNK9XTaAOcmD+Ove
- eIjYvqurAaro91jrRVrS1gBRxIFqyPgNvwwL+alMZhn3/2jU2uvBmuRrgnc/e9cHKiuT3Dtq
- MHGPKL2m+plk+7tjMoQFfexoQ1JKugHAjxAhJfrkXh6uS6rc01bYCyo7ybzg53m1HLFJdNGX
- sUKR+dQpBs3SY4s66tc1sREJqdYyTsSZf80HjIeJjU/hRunRo4NjRIJwhvnK1GyjOvvuCKVU
- RWpY8dNjNu5OeAfdrlvFJOxIE9M8JuYCQTMULqd1NuzbpFMjc9524U3Cngs589T7qUMPb1H1
- NTA81LmtJ6Y+IV5/kiTUANflpzBwhu18Ok7kGyCq2a2jsOcVmk8gZNs04gyjuj8JziYwwLbf
- vzABwpFVcS8aR+nHIZV1HtOzyw8CsL8OySc3K9y+Y0NRpziMRvutrppzgyMb9V+N31mK9Mxl
- 1YkgaTl4ciNWpdfUe0yxH03OCuHi3922qhPLF4XX5LN+NaVw5Xz2o3eeWklXdouxwV7QlN33
- u4+u2FWzKxDqO6WLQGjxPE0mVB4Gh5Pa1Vb0ct9Ctg0qElvtGQARAQABzShEYW4gU2NhbGx5
- IDxkYW4uc2NhbGx5QGlkZWFzb25ib2FyZC5jb20+wsGNBBMBCAA3FiEEsdtt8OWP7+8SNfQe
- kiQuh/L+GMQFAmLydlIFCQWjmoACGwMECwkIBwUVCAkKCwUWAgMBAAAKCRCSJC6H8v4YxDI2
- EAC2Gz0iyaXJkPInyshrREEWbo0CA6v5KKf3I/HlMPqkZ48bmGoYm4mEQGFWZJAT3K4ir8bg
- cEfs9V54gpbrZvdwS4abXbUK4WjKwEs8HK3XJv1WXUN2bsz5oEJWZUImh9gD3naiLLI9QMMm
- w/aZkT+NbN5/2KvChRWhdcha7+2Te4foOY66nIM+pw2FZM6zIkInLLUik2zXOhaZtqdeJZQi
- HSPU9xu7TRYN4cvdZAnSpG7gQqmLm5/uGZN1/sB3kHTustQtSXKMaIcD/DMNI3JN/t+RJVS7
- c0Jh/ThzTmhHyhxx3DRnDIy7kwMI4CFvmhkVC2uNs9kWsj1DuX5kt8513mvfw2OcX9UnNKmZ
- nhNCuF6DxVrL8wjOPuIpiEj3V+K7DFF1Cxw1/yrLs8dYdYh8T8vCY2CHBMsqpESROnTazboh
- AiQ2xMN1cyXtX11Qwqm5U3sykpLbx2BcmUUUEAKNsM//Zn81QXKG8vOx0ZdMfnzsCaCzt8f6
- 9dcDBBI3tJ0BI9ByiocqUoL6759LM8qm18x3FYlxvuOs4wSGPfRVaA4yh0pgI+ModVC2Pu3y
- ejE/IxeatGqJHh6Y+iJzskdi27uFkRixl7YJZvPJAbEn7kzSi98u/5ReEA8Qhc8KO/B7wprj
- xjNMZNYd0Eth8+WkixHYj752NT5qshKJXcyUU87BTQRi8nZSARAAx0BJayh1Fhwbf4zoY56x
- xHEpT6DwdTAYAetd3yiKClLVJadYxOpuqyWa1bdfQWPb+h4MeXbWw/53PBgn7gI2EA7ebIRC
- PJJhAIkeym7hHZoxqDQTGDJjxFEL11qF+U3rhWiL2Zt0Pl+zFq0eWYYVNiXjsIS4FI2+4m16
- tPbDWZFJnSZ828VGtRDQdhXfx3zyVX21lVx1bX4/OZvIET7sVUufkE4hrbqrrufre7wsjD1t
- 8MQKSapVrr1RltpzPpScdoxknOSBRwOvpp57pJJe5A0L7+WxJ+vQoQXj0j+5tmIWOAV1qBQp
- hyoyUk9JpPfntk2EKnZHWaApFp5TcL6c5LhUvV7F6XwOjGPuGlZQCWXee9dr7zym8iR3irWT
- +49bIh5PMlqSLXJDYbuyFQHFxoiNdVvvf7etvGfqFYVMPVjipqfEQ38ST2nkzx+KBICz7uwj
- JwLBdTXzGFKHQNckGMl7F5QdO/35An/QcxBnHVMXqaSd12tkJmoRVWduwuuoFfkTY5mUV3uX
- xGj3iVCK4V+ezOYA7c2YolfRCNMTza6vcK/P4tDjjsyBBZrCCzhBvd4VVsnnlZhVaIxoky4K
- aL+AP+zcQrUZmXmgZjXOLryGnsaeoVrIFyrU6ly90s1y3KLoPsDaTBMtnOdwxPmo1xisH8oL
- a/VRgpFBfojLPxMAEQEAAcLBfAQYAQgAJhYhBLHbbfDlj+/vEjX0HpIkLofy/hjEBQJi8nZT
- BQkFo5qAAhsMAAoJEJIkLofy/hjEXPcQAMIPNqiWiz/HKu9W4QIf1OMUpKn3YkVIj3p3gvfM
- Res4fGX94Ji599uLNrPoxKyaytC4R6BTxVriTJjWK8mbo9jZIRM4vkwkZZ2bu98EweSucxbp
- vjESsvMXGgxniqV/RQ/3T7LABYRoIUutARYq58p5HwSP0frF0fdFHYdTa2g7MYZl1ur2JzOC
- FHRpGadlNzKDE3fEdoMobxHB3Lm6FDml5GyBAA8+dQYVI0oDwJ3gpZPZ0J5Vx9RbqXe8RDuR
- du90hvCJkq7/tzSQ0GeD3BwXb9/R/A4dVXhaDd91Q1qQXidI+2jwhx8iqiYxbT+DoAUkQRQy
- xBtoCM1CxH7u45URUgD//fxYr3D4B1SlonA6vdaEdHZOGwECnDpTxecENMbz/Bx7qfrmd901
- D+N9SjIwrbVhhSyUXYnSUb8F+9g2RDY42Sk7GcYxIeON4VzKqWM7hpkXZ47pkK0YodO+dRKM
- yMcoUWrTK0Uz6UzUGKoJVbxmSW/EJLEGoI5p3NWxWtScEVv8mO49gqQdrRIOheZycDmHnItt
- 9Qjv00uFhEwv2YfiyGk6iGF2W40s2pH2t6oeuGgmiZ7g6d0MEK8Ql/4zPItvr1c1rpwpXUC1
- u1kQWgtnNjFHX3KiYdqjcZeRBiry1X0zY+4Y24wUU0KsEewJwjhmCKAsju1RpdlPg2kC
-In-Reply-To: <20240529202237.GF10586@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Ryan Walklin <ryan@testtoast.com>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>
+CC: Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg
+	<sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter
+	<daniel@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Hironori KIKUCHI <kikuchan98@gmail.com>,
+        Chris Morgan <macroalpha82@gmail.com>
+References: <20240524103506.187277-1-ryan@testtoast.com>
+ <20240524103506.187277-3-ryan@testtoast.com>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240524103506.187277-3-ryan@testtoast.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-
-Hi Laurent
-
-On 29/05/2024 21:22, Laurent Pinchart wrote:
-> Hi Dan,
->
-> Thank you for the patch.
->
-> On Wed, May 29, 2024 at 04:28:48PM +0100, Daniel Scally wrote:
->> Add a documentation page for the mali-c55 driver, which gives a brief
->> overview of the hardware and explains how to use the driver's capture
->> devices and the crop/scaler functions.
->>
->> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
->> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->> Changes in v5:
->>
->> 	- None
->>
->> Changes in v4:
->> 	- None
->>
->> Changes in v3:
->> 	- Documented the synchronised buffer sequence numbers (Sakari)
->> 	- Clarified that the downscale pipe cannot output raw data, the ISP'S
->> 	  resolution limits and choice of media bus format code (Kieran)
->>
->> Changes in v2:
->>
->> 	- none
->>
->>   .../admin-guide/media/mali-c55-graph.dot      |  19 +
->>   Documentation/admin-guide/media/mali-c55.rst  | 333 ++++++++++++++++++
->>   .../admin-guide/media/v4l-drivers.rst         |   1 +
->>   3 files changed, 353 insertions(+)
->>   create mode 100644 Documentation/admin-guide/media/mali-c55-graph.dot
->>   create mode 100644 Documentation/admin-guide/media/mali-c55.rst
->>
->> diff --git a/Documentation/admin-guide/media/mali-c55-graph.dot b/Documentation/admin-guide/media/mali-c55-graph.dot
->> new file mode 100644
->> index 000000000000..0775ba42bf4c
->> --- /dev/null
->> +++ b/Documentation/admin-guide/media/mali-c55-graph.dot
->> @@ -0,0 +1,19 @@
->> +digraph board {
->> +        rankdir=TB
->> +        n00000001 [label="{{} | mali-c55 tpg\n/dev/v4l-subdev0 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
->> +        n00000001:port0 -> n00000003:port0 [style=dashed]
->> +        n00000003 [label="{{<port0> 0} | mali-c55 isp\n/dev/v4l-subdev1 | {<port1> 1 | <port2> 2}}", shape=Mrecord, style=filled, fillcolor=green]
->> +        n00000003:port1 -> n00000007:port0 [style=bold]
->> +        n00000003:port2 -> n00000007:port2 [style=bold]
->> +        n00000003:port1 -> n0000000b:port0 [style=bold]
->> +        n00000007 [label="{{<port0> 0 | <port2> 2} | mali-c55 resizer fr\n/dev/v4l-subdev2 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
->> +        n00000007:port1 -> n0000000e [style=bold]
->> +        n0000000b [label="{{<port0> 0} | mali-c55 resizer ds\n/dev/v4l-subdev3 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
->> +        n0000000b:port1 -> n00000012 [style=bold]
->> +        n0000000e [label="mali-c55 fr\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
->> +        n00000012 [label="mali-c55 ds\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
->> +        n00000022 [label="{{<port0> 0} | csi2-rx\n/dev/v4l-subdev4 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
->> +        n00000022:port1 -> n00000003:port0
->> +        n00000027 [label="{{} | imx415 1-001a\n/dev/v4l-subdev5 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
->> +        n00000027:port0 -> n00000022:port0 [style=bold]
->> +}
->> \ No newline at end of file
->> diff --git a/Documentation/admin-guide/media/mali-c55.rst b/Documentation/admin-guide/media/mali-c55.rst
->> new file mode 100644
->> index 000000000000..cf4176cb1e44
->> --- /dev/null
->> +++ b/Documentation/admin-guide/media/mali-c55.rst
->> @@ -0,0 +1,333 @@
->> +.. SPDX-License-Identifier: GPL-2.0
->> +
->> +==========================================
->> +ARM Mali-C55 Image Signal Processor driver
->> +==========================================
->> +
->> +Introduction
->> +============
->> +
->> +This file documents the driver for ARM's Mali-C55 Image Signal Processor. The
->> +driver is located under drivers/media/platform/arm/mali-c55.
->> +
->> +The Mali-C55 ISP receives data in either raw Bayer format or RGB/YUV format from
->> +sensors through either a parallel interface or a memory bus before processing it
->> +and outputting it through an internal DMA engine. Two output pipelines are
->> +possible (though one may not be fitted, depending on the implementation). These
->> +are referred to as "Full resolution" and "Downscale", but the naming is historic
->> +and both pipes are capable of cropping/scaling operations. The full resolution
->> +pipe is also capable of outputting RAW data, bypassing much of the ISP's
->> +processing. The downscale pipe cannot output RAW data. An integrated test
->> +pattern generator can be used to drive the ISP and produce image data in the
->> +absence of a connected camera sensor. The driver module is named mali_c55, and
->> +is enabled through the CONFIG_VIDEO_MALI_C55 config option.
->> +
->> +The driver implements V4L2, Media Controller and V4L2 Subdevice interfaces and
->> +expects camera sensors connected to the ISP to have V4L2 subdevice interfaces.
->> +
->> +Mali-C55 ISP hardware
->> +=====================
->> +
->> +A high level functional view of the Mali-C55 ISP is presented below. The ISP
->> +takes input from either a live source or through a DMA engine for memory input,
->> +depending on the SoC integration.::
->> +
->> +  +---------+    +----------+                                     +--------+
->> +  | Sensor  |--->| CSI-2 Rx |                "Full Resolution"    |  DMA   |
->> +  +---------+    +----------+   |\                 Output    +--->| Writer |
->> +                       |        | \                          |    +--------+
->> +                       |        |  \    +----------+  +------+---> Streaming I/O
->> +  +------------+       +------->|   |   |          |  |
->> +  |            |                |   |-->| Mali-C55 |--+
->> +  | DMA Reader |--------------->|   |   |    ISP   |  |
->> +  |            |                |  /    |          |  |      +---> Streaming I/O
->> +  +------------+                | /     +----------+  |      |
->> +                                |/                    +------+
->> +				                             |    +--------+
->> +                                                             +--->|  DMA   |
->> +                                               "Downscaled"       | Writer |
->> +					          Output          +--------+
-> You have a mix of tabs and spaces here.
->
->> +
->> +Media Controller Topology
->> +=========================
->> +
->> +An example of the ISP's topology (as implemented in a system with an IMX415
->> +camera sensor and generic CSI-2 receiver) is below:
->> +
->> +
->> +.. kernel-figure:: mali-c55-graph.dot
->> +    :alt:   mali-c55-graph.dot
->> +    :align: center
->> +
->> +The driver has 4 V4L2 subdevices:
->> +
->> +- `mali_c55 isp`: Responsible for configuring input crop and color space
->> +                  conversion
->> +- `mali_c55 tpg`: The test pattern generator, emulating a camera sensor.
->> +- `mali_c55 resizer fr`: The Full-Resolution pipe resizer
->> +- `mali_c55 resizer ds`: The Downscale pipe resizer
->> +
->> +The driver has 2 V4L2 video devices:
->> +
->> +- `mali-c55 fr`: The full-resolution pipe's capture device
->> +- `mali-c55 ds`: The downscale pipe's capture device
->> +
->> +Frame sequences are synchronised across to two capture devices, meaning if one
->> +pipe is started later than the other the sequence numbers returned in its
->> +buffers will match those of the other pipe rather than starting from zero.
->> +
->> +Frame sequences are synchronised across to two capture devices, meaning if one
->> +pipe is started later than the other the sequence numbers returned in its
->> +buffers will match those of the other pipe rather than starting from zero.
-> I think you can explain this once only.
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NJE_K5yQFTHb6hJc2G2NPIUwQdKsdiCM
+X-Proofpoint-ORIG-GUID: NJE_K5yQFTHb6hJc2G2NPIUwQdKsdiCM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-29_16,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1011 mlxscore=0
+ mlxlogscore=999 malwarescore=0 spamscore=0 adultscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405290145
 
 
-Oops...
 
->
->> +
->> +Idiosyncrasies
->> +--------------
->> +
->> +**mali-c55 isp**
->> +The `mali-c55 isp` subdevice has a single sink pad to which all sources of data
->> +should be connected. The active source is selected by enabling the appropriate
->> +media link and disabling all others.
-> Modelling this with links prevents switching between sources at runtime.
-> It also makes it possible to misconfigure the pipeline by disconnecting
-> the two sources. This would be caught at pipeline validation time, but
-> it still adds complexity.
->
-> I was considering using the subdev routing API instead, which would
-> allow runtime reconfiguration, and prevent invalid configuration in the
-> first place. The downside is that we would need a mux subdev in front of
-> the ISP. In terms of additional complexity, that's clearly not great.
->
-> Given that switching between the sensor and TPG at runtime is likely not
-> an important use case, and that the harware may not even support it at
-> all, we can probably keep the existing graph and driver implementation.
+On 5/24/2024 3:33 AM, Ryan Walklin wrote:
+> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display from an unknown
+> OEM, used in a number of handheld gaming devices made by Anbernic.
+> 
+> Limited information is available online however the panel timing values
+> (below) have been obtained from the vendor BSP. The panel appears to
+> integrate a NV3052C LCD driver (or clone). Available devices address it
+> in SPI/RGB mode, with the timing signals generated from the device
+> SoC (in testing hardware an Allwinner H700) and passed through.
+> 
+> Add a panel definition and display mode to the existing NV3502C driver.
+> 
+> It was assumed during bringup that the initialisation sequence was the
+> same as the existing Fascontek FS035VG158 panel, proved working during
+> experimentation. However subsequent dumping of the init sequence with a
+> logic analyser confirms one small change to VCOM_ADJ3 from 0x4a to 0x44,
+> therefore a separate set of registers is also added.
+> 
+> Timings:
+>             | Active |  FP  | Sync |  BP  | Total
+> -----------|--------|------|------|------|-------
+> Horizontal |   640  |  64  |  20  |  46  |  770
+>    Vertical |   480  |  21  |   4  |  15  |  520
+> 
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> Co-developed-by: Hironori KIKUCHI <kikuchan98@gmail.com>
 
+Hi Ryan,
 
-I suppose in the long term we need to think about how this should be modeled in a multi-context 
-system...when we have a media graph with 8 cameras connected (somehow) to the ISP's single sink pad 
-how should we select the right input device for a context? Whatever the answer is there, probably we 
-should do it here...if we can't do it at runtime with links then probably it has to be a mux...or 
-some novel thing.
+Thanks for the patch. It LGTM -- will give it another look when you 
+release the v2 with updated compatible string.
 
->
->> The ISP has two source pads, reflecting the
->> +different paths through which it can internally route data. Tap points within
->> +the ISP allow users to divert data to avoid processing by some or all of the
->> +hardware's processing steps. The diagram below is intended only to highlight how
->> +the bypassing works and is not a true reflection of those processing steps; for
->> +a high-level functional block diagram see ARM's developer page for the
->> +ISP [3]_::
->> +
->> +  +--------------------------------------------------------------+
->> +  |                Possible Internal ISP Data Routes             |
->> +  |          +------------+  +----------+  +------------+        |
->> +  +---+      |            |  |          |  |  Colour    |    +---+
->> +  | 0 |--+-->| Processing |->| Demosaic |->|   Space    |--->| 1 |
->> +  +---+  |   |            |  |          |  | Conversion |    +---+
->> +  |      |   +------------+  +----------+  +------------+        |
->> +  |      |                                                   +---+
->> +  |      +---------------------------------------------------| 2 |
->> +  |                                                          +---+
->> +  |                                                              |
->> +  +--------------------------------------------------------------+
->> +
->> +
->> +.. flat-table::
->> +    :header-rows: 1
->> +
->> +    * - Pad
->> +      - Direction
->> +      - Purpose
->> +
->> +    * - 0
->> +      - sink
->> +      - Data input, connected to the TPG and camera sensors
->> +
->> +    * - 1
->> +      - source
->> +      - RGB/YUV data, connected to the FR and DS V4L2 subdevices
->> +
->> +    * - 2
->> +      - source
->> +      - RAW bayer data, connected to the FR V4L2 subdevices
->> +
->> +The ISP is limited to both input and output resolutions between 640x480 and
->> +8192x8192, and this is reflected in the ISP and resizer subdevice's .set_fmt()
->> +operations.
->> +
->> +**mali-c55 resizer fr**
->> +The `mali-c55 resizer fr` subdevice has two _sink_ pads to reflect the different
->> +insertion points in the hardware (either RAW or demosaiced data):
->> +
->> +.. flat-table::
->> +    :header-rows: 1
->> +
->> +    * - Pad
->> +      - Direction
->> +      - Purpose
->> +
->> +    * - 0
->> +      - sink
->> +      - Data input connected to the ISP's demosaiced stream.
->> +
->> +    * - 1
->> +      - source
->> +      - Data output connected to the capture video device
->> +
->> +    * - 2
->> +      - sink
->> +      - Data input connected to the ISP's raw data stream
->> +
->> +The data source in use is selected through the routing API; two routes each of a
->> +single stream are available:
->> +
->> +.. flat-table::
->> +    :header-rows: 1
->> +
->> +    * - Sink Pad
->> +      - Source Pad
->> +      - Purpose
->> +
->> +    * - 0
->> +      - 1
->> +      - Demosaiced data route
->> +
->> +    * - 2
->> +      - 1
->> +      - Raw data route
->> +
->> +
->> +If the demosaiced route is active then the FR pipe is only capable of output
->> +in RGB/YUV formats. If the raw route is active then the output reflects the
->> +input (which may be either Bayer or RGB/YUV data).
->> +
->> +Using the driver to capture video
->> +=================================
->> +
->> +Using the media controller APIs we can configure the input source and ISP to
->> +capture images in a variety of formats. In the examples below, configuring the
->> +media graph is done with the v4l-utils [1]_ package's media-ctl utility.
->> +Capturing the images is done with yavta [2]_.
->> +
->> +Configuring the input source
->> +----------------------------
->> +
->> +The first step is to set the input source that we wish by enabling the correct
->> +media link. Using the example topology above, we can select the TPG as follows:
->> +
->> +.. code-block:: none
->> +
->> +    media-ctl -l "'lte-csi2-rx':1->'mali-c55 isp':0[0]"
->> +    media-ctl -l "'mali-c55 tpg':0->'mali-c55 isp':0[1]"
->> +
->> +Capturing bayer data from the source and processing to RGB/YUV
->> +--------------------------------------------------------------
-> Missing blank line.
->
->> +To capture 1920x1080 bayer data from the source and push it through the ISP's
->> +full processing pipeline, we configure the data formats appropriately on the
->> +source, ISP and resizer subdevices and set the FR resizer's routing to select
->> +processed data. The media bus format on the resizer's source pad will be either
->> +RGB121212_1X36 or YUV10_1X30, depending on whether you want to capture RGB or
->> +YUV. The ISP's debayering block outputs RGB data natively, setting the source
->> +pad format to YUV10_1X30 enables the colour space conversion block.
->> +
->> +In this example we target RGB565 output, so select RGB121212_1X36 as the resizer
->> +source pad's format:
->> +
->> +.. code-block:: none
->> +
->> +    # Set formats on the TPG and ISP
->> +    media-ctl -V "'mali-c55 tpg':0[fmt:SRGGB16_1X16/1920x1080]"
->> +    media-ctl -V "'mali-c55 isp':0[fmt:SRGGB16_1X16/1920x1080]"
->> +    media-ctl -V "'mali-c55 isp':1[fmt:SRGGB16_1X16/1920x1080]"
->> +
->> +    # Set routing on the FR resizer
->> +    media-ctl -R "'mali-c55 resizer fr'[0/0->1/0[1],2/0->1/0[0]]"
->> +
->> +    # Set format on the resizer, must be done AFTER the routing.
->> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:RGB121212_1X36/1920x1080]"
->> +
->> +The downscale output can also be used to stream data at the same time. In this
->> +case since only processed data can be captured through the downscale output no
->> +routing need be set:
->> +
->> +.. code-block:: none
->> +
->> +    # Set format on the resizer
->> +    media-ctl -V "'mali-c55 resizer ds':1[fmt:RGB121212_1X36/1920x1080]"
->> +
->> +Following which images can be captured from both the FR and DS output's video
->> +devices (simultaneously, if desired):
->> +
->> +.. code-block:: none
->> +
->> +    yavta -f RGB565 -s 1920x1080 -c10 /dev/video0
->> +    yavta -f RGB565 -s 1920x1080 -c10 /dev/video1
->> +
->> +Cropping the image
->> +~~~~~~~~~~~~~~~~~~
->> +
->> +Both the full resolution and downscale pipes can crop to a minimum resolution of
->> +640x480. To crop the image simply configure the resizer's sink pad's crop and
->> +compose rectangles and set the format on the video device:
->> +
->> +.. code-block:: none
->> +
->> +    media-ctl -V "'mali-c55 resizer fr':0[fmt:RGB121212_1X36/1920x1080 crop:(480,270)/640x480 compose:(0,0)/640x480]"
->> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:RGB121212_1X36/640x480]"
->> +    yavta -f RGB565 -s 640x480 -c10 /dev/video0
->> +
->> +Downscaling the image
->> +~~~~~~~~~~~~~~~~~~~~~
->> +
->> +Both the full resolution and downscale pipes can downscale the image by up to 8x
->> +provided the minimum 640x480 resolution is adhered to. For the best image result
-> Maybe "minimum 640x480 output resolution".
->
->> +the scaling ratio for each dimension should be the same. To configure scaling we
-> s/dimension/direction/
->
->> +use the compose rectangle on the resizer's sink pad:
->> +
->> +.. code-block:: none
->> +
->> +    media-ctl -V "'mali-c55 resizer fr':0[fmt:RGB121212_1X36/1920x1080 crop:(0,0)/1920x1080 compose:(0,0)/640x480]"
->> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:RGB121212_1X36/640x480]"
->> +    yavta -f RGB565 -s 640x480 -c10 /dev/video0
->> +
->> +Capturing images in YUV formats
->> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> +
->> +If we need to output YUV data rather than RGB the color space conversion block
->> +needs to be active, which is achieved by setting MEDIA_BUS_FMT_YUV10_1X30 on the
->> +resizer's source pad. We can then configure a capture format like NV12 (here in
->> +its multi-planar variant)
->> +
->> +.. code-block:: none
->> +
->> +    media-ctl -V "'mali-c55 resizer fr':1[fmt:YUV10_1X30/1920x1080]"
->> +    yavta -f NV12M -s 1920x1080 -c10 /dev/video0
->> +
->> +Capturing RGB data from the source and processing it with the resizers
->> +----------------------------------------------------------------------
->> +
->> +The Mali-C55 ISP can work with sensors capable of outputting RGB data. In this
->> +case although none of the image quality blocks would be used it can still
->> +crop/scale the data in the usual way.
->> +
->> +To achieve this, the ISP's sink pad's format is set to
->> +MEDIA_BUS_FMT_RGB202020_1X60 - this reflects the format that data must be in to
->> +work with the ISP. Converting the camera sensor's output to that format is the
->> +responsibility of external hardware.
->> +
->> +In this example we ask the test pattern generator to give us RGB data instead of
->> +bayer.
->> +
->> +.. code-block:: none
->> +
->> +    media-ctl -V "'mali-c55 tpg':0[fmt:RGB202020_1X60/1920x1080]"
->> +    media-ctl -V "'mali-c55 isp':0[fmt:RGB202020_1X60/1920x1080]"
->> +
->> +Cropping or scaling the data can be done in exactly the same way as outlined
->> +earlier.
-> Do we use the ISP's output on pad 1 or pad 2 in this case ? The text
-> seems to imply that the ISP is bypassed, but the example doesn't mention
-> any routing change. You may want to clarify this.
+Thanks,
 
+Jessica Zhang
 
-Pad 1 for bypassed RGB data. I'll make it more clear.
-
->
->> +
->> +Capturing raw data from the source and outputting it unmodified
->> +-----------------------------------------------------------------
->> +
->> +The ISP can additionally capture raw data from the source and output it on the
->> +full resolution pipe only, completely unmodified. In this case the downscale
->> +pipe can still process the data normally and be used at the same time.
->> +
->> +To configure raw bypass the FR resizer's subdevice's routing table needs to be
->> +configured, followed by formats in the appropriate places:
->> +
->> +.. code-block:: none
->> +
->> +    # We need to configure the routing table for the resizer to use the bypass
->> +    # path along with set formats on the resizer's bypass sink pad. Doing this
->> +    # necessitates a single media-ctl command, as multiple calls to the program
->> +    # reset the routing table.
-> Really ?
-
-
-Yeah
-
-> Does -V reset the routing table ? That surprises me.
-
-
-It's not -V, it's the fact of opening a subdev which calls .init_state(), which resets the routing 
-table...in a single process the fds are held open throughout so all is well, but if you run the 
-program twice they're opened each time and the routing is reset.
-
->
->> +    media-ctl -R "'mali-c55 resizer fr'[0/0->1/0[0],2/0->1/0[1]]"\
->> +    -V "'mali-c55 isp':0[fmt:RGB202020_1X60/1920x1080],"\
->> +       "'mali-c55 resizer fr':2[fmt:RGB202020_1X60/1920x1080],"\
->> +       "'mali-c55 resizer fr':1[fmt:RGB202020_1X60/1920x1080]"
->> +
->> +    # Set format on the video device and stream
->> +    yavta -f RGB565 -s 1920x1080 -c10 /dev/video0
->> +
->> +References
->> +==========
->> +.. [1] https://git.linuxtv.org/v4l-utils.git/
->> +.. [2] https://git.ideasonboard.org/yavta.git
->> +.. [3] https://developer.arm.com/Processors/Mali-C55
->> diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
->> index 4120eded9a13..1d9485860d93 100644
->> --- a/Documentation/admin-guide/media/v4l-drivers.rst
->> +++ b/Documentation/admin-guide/media/v4l-drivers.rst
->> @@ -18,6 +18,7 @@ Video4Linux (V4L) driver-specific documentation
->>   	ipu3
->>   	ipu6-isys
->>   	ivtv
->> +	mali-c55
->>   	mgb4
->>   	omap3isp
->>   	omap4_camera
+> ---
+>   .../gpu/drm/panel/panel-newvision-nv3052c.c   | 225 ++++++++++++++++++
+>   1 file changed, 225 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
+> index 1aab0c9ae..5de36ecec 100644
+> --- a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
+> +++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
+> @@ -433,6 +433,202 @@ static const struct nv3052c_reg fs035vg158_panel_regs[] = {
+>   	{ 0x36, 0x0a }, // bgr = 1, ss = 1, gs = 0
+>   };
+>   
+> +
+> +static const struct nv3052c_reg wl_355608_a8_panel_regs[] = {
+> +	// EXTC Command set enable, select page 1
+> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x01 },
+> +	// Mostly unknown registers
+> +	{ 0xe3, 0x00 },
+> +	{ 0x40, 0x00 },
+> +	{ 0x03, 0x40 },
+> +	{ 0x04, 0x00 },
+> +	{ 0x05, 0x03 },
+> +	{ 0x08, 0x00 },
+> +	{ 0x09, 0x07 },
+> +	{ 0x0a, 0x01 },
+> +	{ 0x0b, 0x32 },
+> +	{ 0x0c, 0x32 },
+> +	{ 0x0d, 0x0b },
+> +	{ 0x0e, 0x00 },
+> +	{ 0x23, 0xa0 },
+> +	{ 0x24, 0x0c },
+> +	{ 0x25, 0x06 },
+> +	{ 0x26, 0x14 },
+> +	{ 0x27, 0x14 },
+> +	{ 0x38, 0xcc }, // VCOM_ADJ1
+> +	{ 0x39, 0xd7 }, // VCOM_ADJ2
+> +	{ 0x3a, 0x44 }, // VCOM_ADJ3
+> +	{ 0x28, 0x40 },
+> +	{ 0x29, 0x01 },
+> +	{ 0x2a, 0xdf },
+> +	{ 0x49, 0x3c },
+> +	{ 0x91, 0x77 }, // EXTPW_CTRL2
+> +	{ 0x92, 0x77 }, // EXTPW_CTRL3
+> +	{ 0xa0, 0x55 },
+> +	{ 0xa1, 0x50 },
+> +	{ 0xa4, 0x9c },
+> +	{ 0xa7, 0x02 },
+> +	{ 0xa8, 0x01 },
+> +	{ 0xa9, 0x01 },
+> +	{ 0xaa, 0xfc },
+> +	{ 0xab, 0x28 },
+> +	{ 0xac, 0x06 },
+> +	{ 0xad, 0x06 },
+> +	{ 0xae, 0x06 },
+> +	{ 0xaf, 0x03 },
+> +	{ 0xb0, 0x08 },
+> +	{ 0xb1, 0x26 },
+> +	{ 0xb2, 0x28 },
+> +	{ 0xb3, 0x28 },
+> +	{ 0xb4, 0x33 },
+> +	{ 0xb5, 0x08 },
+> +	{ 0xb6, 0x26 },
+> +	{ 0xb7, 0x08 },
+> +	{ 0xb8, 0x26 },
+> +	{ 0xf0, 0x00 },
+> +	{ 0xf6, 0xc0 },
+> +	// EXTC Command set enable, select page 2
+> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x02 },
+> +	// Set gray scale voltage to adjust gamma
+> +	{ 0xb0, 0x0b }, // PGAMVR0
+> +	{ 0xb1, 0x16 }, // PGAMVR1
+> +	{ 0xb2, 0x17 }, // PGAMVR2
+> +	{ 0xb3, 0x2c }, // PGAMVR3
+> +	{ 0xb4, 0x32 }, // PGAMVR4
+> +	{ 0xb5, 0x3b }, // PGAMVR5
+> +	{ 0xb6, 0x29 }, // PGAMPR0
+> +	{ 0xb7, 0x40 }, // PGAMPR1
+> +	{ 0xb8, 0x0d }, // PGAMPK0
+> +	{ 0xb9, 0x05 }, // PGAMPK1
+> +	{ 0xba, 0x12 }, // PGAMPK2
+> +	{ 0xbb, 0x10 }, // PGAMPK3
+> +	{ 0xbc, 0x12 }, // PGAMPK4
+> +	{ 0xbd, 0x15 }, // PGAMPK5
+> +	{ 0xbe, 0x19 }, // PGAMPK6
+> +	{ 0xbf, 0x0e }, // PGAMPK7
+> +	{ 0xc0, 0x16 }, // PGAMPK8
+> +	{ 0xc1, 0x0a }, // PGAMPK9
+> +	// Set gray scale voltage to adjust gamma
+> +	{ 0xd0, 0x0c }, // NGAMVR0
+> +	{ 0xd1, 0x17 }, // NGAMVR0
+> +	{ 0xd2, 0x14 }, // NGAMVR1
+> +	{ 0xd3, 0x2e }, // NGAMVR2
+> +	{ 0xd4, 0x32 }, // NGAMVR3
+> +	{ 0xd5, 0x3c }, // NGAMVR4
+> +	{ 0xd6, 0x22 }, // NGAMPR0
+> +	{ 0xd7, 0x3d }, // NGAMPR1
+> +	{ 0xd8, 0x0d }, // NGAMPK0
+> +	{ 0xd9, 0x07 }, // NGAMPK1
+> +	{ 0xda, 0x13 }, // NGAMPK2
+> +	{ 0xdb, 0x13 }, // NGAMPK3
+> +	{ 0xdc, 0x11 }, // NGAMPK4
+> +	{ 0xdd, 0x15 }, // NGAMPK5
+> +	{ 0xde, 0x19 }, // NGAMPK6
+> +	{ 0xdf, 0x10 }, // NGAMPK7
+> +	{ 0xe0, 0x17 }, // NGAMPK8
+> +	{ 0xe1, 0x0a }, // NGAMPK9
+> +	// EXTC Command set enable, select page 3
+> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x03 },
+> +	// Set various timing settings
+> +	{ 0x00, 0x2a }, // GIP_VST_1
+> +	{ 0x01, 0x2a }, // GIP_VST_2
+> +	{ 0x02, 0x2a }, // GIP_VST_3
+> +	{ 0x03, 0x2a }, // GIP_VST_4
+> +	{ 0x04, 0x61 }, // GIP_VST_5
+> +	{ 0x05, 0x80 }, // GIP_VST_6
+> +	{ 0x06, 0xc7 }, // GIP_VST_7
+> +	{ 0x07, 0x01 }, // GIP_VST_8
+> +	{ 0x08, 0x03 }, // GIP_VST_9
+> +	{ 0x09, 0x04 }, // GIP_VST_10
+> +	{ 0x70, 0x22 }, // GIP_ECLK1
+> +	{ 0x71, 0x80 }, // GIP_ECLK2
+> +	{ 0x30, 0x2a }, // GIP_CLK_1
+> +	{ 0x31, 0x2a }, // GIP_CLK_2
+> +	{ 0x32, 0x2a }, // GIP_CLK_3
+> +	{ 0x33, 0x2a }, // GIP_CLK_4
+> +	{ 0x34, 0x61 }, // GIP_CLK_5
+> +	{ 0x35, 0xc5 }, // GIP_CLK_6
+> +	{ 0x36, 0x80 }, // GIP_CLK_7
+> +	{ 0x37, 0x23 }, // GIP_CLK_8
+> +	{ 0x40, 0x03 }, // GIP_CLKA_1
+> +	{ 0x41, 0x04 }, // GIP_CLKA_2
+> +	{ 0x42, 0x05 }, // GIP_CLKA_3
+> +	{ 0x43, 0x06 }, // GIP_CLKA_4
+> +	{ 0x44, 0x11 }, // GIP_CLKA_5
+> +	{ 0x45, 0xe8 }, // GIP_CLKA_6
+> +	{ 0x46, 0xe9 }, // GIP_CLKA_7
+> +	{ 0x47, 0x11 }, // GIP_CLKA_8
+> +	{ 0x48, 0xea }, // GIP_CLKA_9
+> +	{ 0x49, 0xeb }, // GIP_CLKA_10
+> +	{ 0x50, 0x07 }, // GIP_CLKB_1
+> +	{ 0x51, 0x08 }, // GIP_CLKB_2
+> +	{ 0x52, 0x09 }, // GIP_CLKB_3
+> +	{ 0x53, 0x0a }, // GIP_CLKB_4
+> +	{ 0x54, 0x11 }, // GIP_CLKB_5
+> +	{ 0x55, 0xec }, // GIP_CLKB_6
+> +	{ 0x56, 0xed }, // GIP_CLKB_7
+> +	{ 0x57, 0x11 }, // GIP_CLKB_8
+> +	{ 0x58, 0xef }, // GIP_CLKB_9
+> +	{ 0x59, 0xf0 }, // GIP_CLKB_10
+> +	// Map internal GOA signals to GOA output pad
+> +	{ 0xb1, 0x01 }, // PANELD2U2
+> +	{ 0xb4, 0x15 }, // PANELD2U5
+> +	{ 0xb5, 0x16 }, // PANELD2U6
+> +	{ 0xb6, 0x09 }, // PANELD2U7
+> +	{ 0xb7, 0x0f }, // PANELD2U8
+> +	{ 0xb8, 0x0d }, // PANELD2U9
+> +	{ 0xb9, 0x0b }, // PANELD2U10
+> +	{ 0xba, 0x00 }, // PANELD2U11
+> +	{ 0xc7, 0x02 }, // PANELD2U24
+> +	{ 0xca, 0x17 }, // PANELD2U27
+> +	{ 0xcb, 0x18 }, // PANELD2U28
+> +	{ 0xcc, 0x0a }, // PANELD2U29
+> +	{ 0xcd, 0x10 }, // PANELD2U30
+> +	{ 0xce, 0x0e }, // PANELD2U31
+> +	{ 0xcf, 0x0c }, // PANELD2U32
+> +	{ 0xd0, 0x00 }, // PANELD2U33
+> +	// Map internal GOA signals to GOA output pad
+> +	{ 0x81, 0x00 }, // PANELU2D2
+> +	{ 0x84, 0x15 }, // PANELU2D5
+> +	{ 0x85, 0x16 }, // PANELU2D6
+> +	{ 0x86, 0x10 }, // PANELU2D7
+> +	{ 0x87, 0x0a }, // PANELU2D8
+> +	{ 0x88, 0x0c }, // PANELU2D9
+> +	{ 0x89, 0x0e }, // PANELU2D10
+> +	{ 0x8a, 0x02 }, // PANELU2D11
+> +	{ 0x97, 0x00 }, // PANELU2D24
+> +	{ 0x9a, 0x17 }, // PANELU2D27
+> +	{ 0x9b, 0x18 }, // PANELU2D28
+> +	{ 0x9c, 0x0f }, // PANELU2D29
+> +	{ 0x9d, 0x09 }, // PANELU2D30
+> +	{ 0x9e, 0x0b }, // PANELU2D31
+> +	{ 0x9f, 0x0d }, // PANELU2D32
+> +	{ 0xa0, 0x01 }, // PANELU2D33
+> +	// EXTC Command set enable, select page 2
+> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x02 },
+> +	// Unknown registers
+> +	{ 0x01, 0x01 },
+> +	{ 0x02, 0xda },
+> +	{ 0x03, 0xba },
+> +	{ 0x04, 0xa8 },
+> +	{ 0x05, 0x9a },
+> +	{ 0x06, 0x70 },
+> +	{ 0x07, 0xff },
+> +	{ 0x08, 0x91 },
+> +	{ 0x09, 0x90 },
+> +	{ 0x0a, 0xff },
+> +	{ 0x0b, 0x8f },
+> +	{ 0x0c, 0x60 },
+> +	{ 0x0d, 0x58 },
+> +	{ 0x0e, 0x48 },
+> +	{ 0x0f, 0x38 },
+> +	{ 0x10, 0x2b },
+> +	// EXTC Command set enable, select page 0
+> +	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x00 },
+> +	// Display Access Control
+> +	{ 0x36, 0x0a }, // bgr = 1, ss = 1, gs = 0
+> +};
+> +
+>   static inline struct nv3052c *to_nv3052c(struct drm_panel *panel)
+>   {
+>   	return container_of(panel, struct nv3052c, panel);
+> @@ -670,6 +866,21 @@ static const struct drm_display_mode fs035vg158_modes[] = {
+>   	},
+>   };
+>   
+> +static const struct drm_display_mode wl_355608_a8_mode[] = {
+> +	{
+> +		.clock = 24000,
+> +		.hdisplay = 640,
+> +		.hsync_start = 640 + 64,
+> +		.hsync_end = 640 + 64 + 20,
+> +		.htotal = 640 + 64 + 20 + 46,
+> +		.vdisplay = 480,
+> +		.vsync_start = 480 + 21,
+> +		.vsync_end = 480 + 21 + 4,
+> +		.vtotal = 480 + 21 + 4 + 15,
+> +		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
+> +	},
+> +};
+> +
+>   static const struct nv3052c_panel_info ltk035c5444t_panel_info = {
+>   	.display_modes = ltk035c5444t_modes,
+>   	.num_modes = ARRAY_SIZE(ltk035c5444t_modes),
+> @@ -692,9 +903,21 @@ static const struct nv3052c_panel_info fs035vg158_panel_info = {
+>   	.panel_regs_len = ARRAY_SIZE(fs035vg158_panel_regs),
+>   };
+>   
+> +static const struct nv3052c_panel_info wl_355608_a8_panel_info = {
+> +	.display_modes = wl_355608_a8_mode,
+> +	.num_modes = ARRAY_SIZE(wl_355608_a8_mode),
+> +	.width_mm = 150,
+> +	.height_mm = 94,
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
+> +	.panel_regs = wl_355608_a8_panel_regs,
+> +	.panel_regs_len = ARRAY_SIZE(wl_355608_a8_panel_regs),
+> +};
+> +
+>   static const struct spi_device_id nv3052c_ids[] = {
+>   	{ "ltk035c5444t", },
+>   	{ "fs035vg158", },
+> +	{ "wl_355608_a8", },
+>   	{ /* sentinel */ }
+>   };
+>   MODULE_DEVICE_TABLE(spi, nv3052c_ids);
+> @@ -702,6 +925,7 @@ MODULE_DEVICE_TABLE(spi, nv3052c_ids);
+>   static const struct of_device_id nv3052c_of_match[] = {
+>   	{ .compatible = "leadtek,ltk035c5444t", .data = &ltk035c5444t_panel_info },
+>   	{ .compatible = "fascontek,fs035vg158", .data = &fs035vg158_panel_info },
+> +	{ .compatible = "wl_355608_a8", .data = &wl_355608_a8_panel_info },
+>   	{ /* sentinel */ }
+>   };
+>   MODULE_DEVICE_TABLE(of, nv3052c_of_match);
+> @@ -719,4 +943,5 @@ module_spi_driver(nv3052c_driver);
+>   
+>   MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
+>   MODULE_AUTHOR("Christophe Branchereau <cbranchereau@gmail.com>");
+> +MODULE_AUTHOR("Ryan Walklin <ryan@testtoast.com");
+>   MODULE_LICENSE("GPL v2");
+> -- 
+> 2.45.1
+> 
 
