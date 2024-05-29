@@ -1,225 +1,314 @@
-Return-Path: <devicetree+bounces-70638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC288D3E18
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 20:10:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5208D3E2A
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 20:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95646B23CC4
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:10:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C948B1C21B27
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441D91C2303;
-	Wed, 29 May 2024 18:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CB7A15B98B;
+	Wed, 29 May 2024 18:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QicqMx7Q"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kHJYfeqT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F4B1836DE;
-	Wed, 29 May 2024 18:10:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DADBADDA1;
+	Wed, 29 May 2024 18:15:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717006221; cv=none; b=sSClYK/HuyKWNum7phfVt7RM3Vj02MqPUo54Tq3e16rP74yyD4gwTDDHYvl7hELRFkr9N2s0ltvun6F20BgE+cdlx3RdK7doTvl0NRv3F2l3ipU+EeL5wkYpXMplFhfDWB4fx1xyk896JR1uzxqXY7eerYvwFQBBk9mTRXG6go0=
+	t=1717006514; cv=none; b=X25Veue2AetNQFTTUTpXLoOza4UKN3i91pVJKMvlLMsQ05NGeCa8e6a8ipTIHSnmLd9XAAen9HBkHdG4NZGGuS1EW83ZK2kyy3uyAOBRY4DGQZQ21d7j6MooaqBDy6BXYGkpjtwVyFQfQmXyDyIcawg5fGMUcp5+T3h1jqM0lRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717006221; c=relaxed/simple;
-	bh=0kcDD/5ugp1alfrK4+zeqPWHZ6Ox9wD0gGIKPMAxpIg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=NiOKgqlRl+f8HSqXo+vFSLLpWrxrShSGF4e0OHb1HHa1fV9CUa8GrviKMSc1kM5pkYbc4nCr6xVpbIXX8Eo3RfcXhRFQlH+Hy3imio8lN/udB6+mKnNn/w5dHBQcqOe4vS6h7245xjz3g7rKtM/gt8zzSIRsec99Uznt4PeOLc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QicqMx7Q; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TBHdm9012837;
-	Wed, 29 May 2024 18:10:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4CscIOPSIzNF/B8vuaT4PurRNfIAAhpAp22/FUwa6ww=; b=QicqMx7QD6mdsxIL
-	opZ57MCOeAvyP046IyzXUsMcPjr86HcDI/m21Q8A+Yxb5PERR7euQm0Q6WR/phw8
-	24HumrXwCLHTmtxkPwtSCczMjB+BT5gk9db5jChcaCo+gKjk/QOk03KnrRLsij80
-	LHhgChrbCXQOWgWxfpVspLjqp+7lsnYm6u1nq7wxHSUuf3gPqXPUeW5G1O9LILqK
-	4UVUCegxKtZWT7nbNlKzcRaUf7fS6reH3Co64zxajRDQRofU9/LbiLjKb3mAz3jJ
-	SmhVI5YSKIqqUZ6y1AbjxS7F1E+QMEcaDugbpGbAfL6WOV/tj6GsQLGkDNjlGavv
-	YNdPPg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0qhurr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 18:10:02 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TIA0V5023051
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 18:10:01 GMT
-Received: from hu-clew-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 29 May 2024 11:10:00 -0700
-From: Chris Lew <quic_clew@quicinc.com>
-Date: Wed, 29 May 2024 11:09:58 -0700
-Subject: [PATCH v3 4/4] remoteproc: qcom_q6v5_pas: Add hwspinlock bust on
- stop
+	s=arc-20240116; t=1717006514; c=relaxed/simple;
+	bh=KW3tC/eVtpr9y5DkPXDrxg4ZHjgcWjKUM64ZfGeQpfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b2oMgLZh2HdLRQZUGpNjkMVt92uIh8ydtJbEONxSuB4X1sv7yP6FMtvAvDwxab/mKgrpI3JjHtNn2HYJWRixSRbTtryEctl2IfHh4egyp49AvtdTJmJBdnSeywxseLzOQILqZDsp8az4VbYG2nH+7ddRC2+wqNiFtVmgkqlhESA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kHJYfeqT; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 708722D54;
+	Wed, 29 May 2024 20:15:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1717006505;
+	bh=KW3tC/eVtpr9y5DkPXDrxg4ZHjgcWjKUM64ZfGeQpfo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kHJYfeqTYzNlDS4lqw8IrnvK5zom2gF+2APMIdZex6RLSS1T5vgrgPQk+qoaK4L7f
+	 X1esPk77ZvdfewZOI3gQJycIbBOw0CwLmAl3jQBau37hNLTd/SDoaO6R2GWfgPOYcI
+	 T4MZ/fkw995nlYLU46Fme8OMZ/w3cp0dBG054+Jw=
+Date: Wed, 29 May 2024 21:14:56 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v5 01/16] media: uapi: Add MEDIA_BUS_FMT_RGB202020_1X60
+ format code
+Message-ID: <20240529181456.GA10586@pendragon.ideasonboard.com>
+References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+ <20240529152858.183799-2-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240529-hwspinlock-bust-v3-4-c8b924ffa5a2@quicinc.com>
-References: <20240529-hwspinlock-bust-v3-0-c8b924ffa5a2@quicinc.com>
-In-Reply-To: <20240529-hwspinlock-bust-v3-0-c8b924ffa5a2@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Baolin Wang
-	<baolin.wang@linux.alibaba.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        "Ingo
- Molnar" <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-        Waiman Long
-	<longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-        Jonathan Corbet
-	<corbet@lwn.net>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Chris Lew <quic_clew@quicinc.com>,
-        "Richard
- Maina" <quic_rmaina@quicinc.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717006199; l=3424;
- i=quic_clew@quicinc.com; s=20240508; h=from:subject:message-id;
- bh=Fh1qjcjJVfLujRu9lV+ilZpdx4nr3R2fYPbCuSucud0=;
- b=rSI4BNpbFLSlMfe4BSfPwSXFFERdnA9hNZRn5X7NWLgT5aXlj/qia48D3MpjOhCfOULFqWbdr
- cZpOhCtr0lkAotxvR3KzsH3e4Cbd3+qWy8YU+UZjgN/faI9K+LF15cf
-X-Developer-Key: i=quic_clew@quicinc.com; a=ed25519;
- pk=lEYKFaL1H5dMC33BEeOULLcHAwjKyHkTLdLZQRDTKV4=
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yKndioMBwa7xc8se-FGAO4lSJwVPx5JN
-X-Proofpoint-ORIG-GUID: yKndioMBwa7xc8se-FGAO4lSJwVPx5JN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-29_14,2024-05-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015 mlxscore=0
- mlxlogscore=999 malwarescore=0 spamscore=0 adultscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405290127
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240529152858.183799-2-dan.scally@ideasonboard.com>
 
-From: Richard Maina <quic_rmaina@quicinc.com>
+Hi Dan,
 
-When remoteproc goes down unexpectedly this results in a state where any
-acquired hwspinlocks will remain locked possibly resulting in deadlock.
-In order to ensure all locks are freed we include a call to
-qcom_smem_bust_hwspin_lock_by_host() during remoteproc shutdown.
+Thank you for the patch.
 
-For qcom_q6v5_pas remoteprocs, each remoteproc has an assigned smem
-host_id. Remoteproc can pass this id to smem to try and bust the lock on
-remoteproc stop.
+On Wed, May 29, 2024 at 04:28:43PM +0100, Daniel Scally wrote:
+> The Mali-C55 ISP by ARM requires 20-bits per colour channel input on
+> the bus. Add a new media bus format code to represent it.
+> 
+> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v5:
+> 
+> 	- none
+> 
+> Changes in v4:
+> 
+> 	- None
+> 
+> Changes in v3:
+> 
+> 	- None
+> 
+> Changes in v2:
+> 
+> 	- none
+>  .../media/v4l/subdev-formats.rst              | 168 ++++++++++++++++++
+>  include/uapi/linux/media-bus-format.h         |   3 +-
+>  2 files changed, 170 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/userspace-api/media/v4l/subdev-formats.rst b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> index d2a6cd2e1eb2..8d164a9a9e15 100644
+> --- a/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> +++ b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> @@ -2224,6 +2224,174 @@ The following table list existing packed 48bit wide RGB formats.
+>  
+>      \endgroup
+>  
+> +The following table list existing packed 60bit wide RGB formats.
+> +
+> +.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
 
-This edge case only occurs with q6v5_pas watchdog crashes. The error
-fatal case has handling to clear the hwspinlock before the error fatal
-interrupt is triggered.
+Maybe one day we should try to make those tables more compact.
 
-Signed-off-by: Richard Maina <quic_rmaina@quicinc.com>
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-Signed-off-by: Chris Lew <quic_clew@quicinc.com>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> +
+> +.. _v4l2-mbus-pixelcode-rgb-60:
+> +
+> +.. raw:: latex
+> +
+> +    \begingroup
+> +    \tiny
+> +    \setlength{\tabcolsep}{2pt}
+> +
+> +.. flat-table:: 60bit RGB formats
+> +    :header-rows:  3
+> +    :stub-columns: 0
+> +    :widths: 36 7 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+> +
+> +    * - Identifier
+> +      - Code
+> +      -
+> +      - :cspan:`31` Data organization
+> +    * -
+> +      -
+> +      - Bit
+> +      -
+> +      -
+> +      -
+> +      -
+> +      - 59
+> +      - 58
+> +      - 57
+> +      - 56
+> +      - 55
+> +      - 54
+> +      - 53
+> +      - 52
+> +      - 51
+> +      - 50
+> +      - 49
+> +      - 48
+> +      - 47
+> +      - 46
+> +      - 45
+> +      - 44
+> +      - 43
+> +      - 42
+> +      - 41
+> +      - 40
+> +      - 39
+> +      - 38
+> +      - 37
+> +      - 36
+> +      - 35
+> +      - 34
+> +      - 33
+> +      - 32
+> +    * -
+> +      -
+> +      -
+> +      - 31
+> +      - 30
+> +      - 29
+> +      - 28
+> +      - 27
+> +      - 26
+> +      - 25
+> +      - 24
+> +      - 23
+> +      - 22
+> +      - 21
+> +      - 20
+> +      - 19
+> +      - 18
+> +      - 17
+> +      - 16
+> +      - 15
+> +      - 14
+> +      - 13
+> +      - 12
+> +      - 11
+> +      - 10
+> +      - 9
+> +      - 8
+> +      - 7
+> +      - 6
+> +      - 5
+> +      - 4
+> +      - 3
+> +      - 2
+> +      - 1
+> +      - 0
+> +    * .. _MEDIA-BUS-FMT-RGB202020-1X60:
+> +
+> +      - MEDIA_BUS_FMT_RGB202020_1X60
+> +      - 0x1026
+> +      -
+> +      -
+> +      -
+> +      -
+> +      -
+> +      - r\ :sub:`19`
+> +      - r\ :sub:`18`
+> +      - r\ :sub:`17`
+> +      - r\ :sub:`16`
+> +      - r\ :sub:`15`
+> +      - r\ :sub:`14`
+> +      - r\ :sub:`13`
+> +      - r\ :sub:`12`
+> +      - r\ :sub:`11`
+> +      - r\ :sub:`10`
+> +      - r\ :sub:`8`
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index 54d8005d40a3..8458bcfe9e19 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -52,6 +52,7 @@ struct adsp_data {
- 	const char *ssr_name;
- 	const char *sysmon_name;
- 	int ssctl_id;
-+	unsigned int smem_host_id;
- 
- 	int region_assign_idx;
- 	int region_assign_count;
-@@ -81,6 +82,7 @@ struct qcom_adsp {
- 	int lite_pas_id;
- 	unsigned int minidump_id;
- 	int crash_reason_smem;
-+	unsigned int smem_host_id;
- 	bool decrypt_shutdown;
- 	const char *info_name;
- 
-@@ -399,6 +401,9 @@ static int adsp_stop(struct rproc *rproc)
- 	if (handover)
- 		qcom_pas_handover(&adsp->q6v5);
- 
-+	if (adsp->smem_host_id)
-+		ret = qcom_smem_bust_hwspin_lock_by_host(adsp->smem_host_id);
-+
- 	return ret;
- }
- 
-@@ -727,6 +732,7 @@ static int adsp_probe(struct platform_device *pdev)
- 	adsp->pas_id = desc->pas_id;
- 	adsp->lite_pas_id = desc->lite_pas_id;
- 	adsp->info_name = desc->sysmon_name;
-+	adsp->smem_host_id = desc->smem_host_id;
- 	adsp->decrypt_shutdown = desc->decrypt_shutdown;
- 	adsp->region_assign_idx = desc->region_assign_idx;
- 	adsp->region_assign_count = min_t(int, MAX_ASSIGN_COUNT, desc->region_assign_count);
-@@ -1196,6 +1202,7 @@ static const struct adsp_data sm8550_adsp_resource = {
- 	.ssr_name = "lpass",
- 	.sysmon_name = "adsp",
- 	.ssctl_id = 0x14,
-+	.smem_host_id = 2,
- };
- 
- static const struct adsp_data sm8550_cdsp_resource = {
-@@ -1216,6 +1223,7 @@ static const struct adsp_data sm8550_cdsp_resource = {
- 	.ssr_name = "cdsp",
- 	.sysmon_name = "cdsp",
- 	.ssctl_id = 0x17,
-+	.smem_host_id = 5,
- };
- 
- static const struct adsp_data sm8550_mpss_resource = {
-@@ -1236,6 +1244,7 @@ static const struct adsp_data sm8550_mpss_resource = {
- 	.ssr_name = "mpss",
- 	.sysmon_name = "modem",
- 	.ssctl_id = 0x12,
-+	.smem_host_id = 1,
- 	.region_assign_idx = 2,
- 	.region_assign_count = 1,
- 	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
-@@ -1275,6 +1284,7 @@ static const struct adsp_data sm8650_cdsp_resource = {
- 	.ssr_name = "cdsp",
- 	.sysmon_name = "cdsp",
- 	.ssctl_id = 0x17,
-+	.smem_host_id = 5,
- 	.region_assign_idx = 2,
- 	.region_assign_count = 1,
- 	.region_assign_shared = true,
-@@ -1299,6 +1309,7 @@ static const struct adsp_data sm8650_mpss_resource = {
- 	.ssr_name = "mpss",
- 	.sysmon_name = "modem",
- 	.ssctl_id = 0x12,
-+	.smem_host_id = 1,
- 	.region_assign_idx = 2,
- 	.region_assign_count = 3,
- 	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
+I was thinking that reviews of this kind of patches were tedious and not
+very useful, and then I found this mistake :-D With that fixed,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +      - r\ :sub:`8`
+> +      - r\ :sub:`7`
+> +      - r\ :sub:`6`
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +      - g\ :sub:`19`
+> +      - g\ :sub:`18`
+> +      - g\ :sub:`17`
+> +      - g\ :sub:`16`
+> +      - g\ :sub:`15`
+> +      - g\ :sub:`14`
+> +      - g\ :sub:`13`
+> +      - g\ :sub:`12`
+> +    * -
+> +      -
+> +      -
+> +      - g\ :sub:`11`
+> +      - g\ :sub:`10`
+> +      - g\ :sub:`9`
+> +      - g\ :sub:`8`
+> +      - g\ :sub:`7`
+> +      - g\ :sub:`6`
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +      - b\ :sub:`19`
+> +      - b\ :sub:`18`
+> +      - b\ :sub:`17`
+> +      - b\ :sub:`16`
+> +      - b\ :sub:`15`
+> +      - b\ :sub:`14`
+> +      - b\ :sub:`13`
+> +      - b\ :sub:`12`
+> +      - b\ :sub:`11`
+> +      - b\ :sub:`10`
+> +      - b\ :sub:`9`
+> +      - b\ :sub:`8`
+> +      - b\ :sub:`7`
+> +      - b\ :sub:`6`
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +
+> +.. raw:: latex
+> +
+> +    \endgroup
+> +
+>  On LVDS buses, usually each sample is transferred serialized in seven
+>  time slots per pixel clock, on three (18-bit) or four (24-bit)
+>  differential data pairs at the same time. The remaining bits are used
+> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
+> index d4c1d991014b..49be328d9a3b 100644
+> --- a/include/uapi/linux/media-bus-format.h
+> +++ b/include/uapi/linux/media-bus-format.h
+> @@ -34,7 +34,7 @@
+>  
+>  #define MEDIA_BUS_FMT_FIXED			0x0001
+>  
+> -/* RGB - next is	0x1026 */
+> +/* RGB - next is	0x1027 */
+>  #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
+> @@ -72,6 +72,7 @@
+>  #define MEDIA_BUS_FMT_RGB888_1X36_CPADLO	0x1021
+>  #define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
+>  #define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
+> +#define MEDIA_BUS_FMT_RGB202020_1X60		0x1026
+>  
+>  /* YUV (including grey) - next is	0x202f */
+>  #define MEDIA_BUS_FMT_Y8_1X8			0x2001
 
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
 
