@@ -1,216 +1,142 @@
-Return-Path: <devicetree+bounces-70462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F0B8D3666
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:29:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3128D366D
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:30:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6E631C240A6
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:29:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AEE1284510
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C2118132F;
-	Wed, 29 May 2024 12:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F00A13E037;
+	Wed, 29 May 2024 12:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dPaETowN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqOHqJG6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D3B180A9F;
-	Wed, 29 May 2024 12:29:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA36363;
+	Wed, 29 May 2024 12:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716985762; cv=none; b=jL/HEl1EcI+Xh0DX9ht32a0l3g9+BM0TSBaF2YvsOH/ZTxHbwcQ+pCXTHLvDZH3TvcGLIJOYl1ntoHhH+oqwQuqu5j5Im7MAiBCJ5/ORK024VGXfy1HokBG6ViwZacJhue9L0/q7tSiP7BgeBWf578v05bmAFMjiqNht1FYNvp8=
+	t=1716985844; cv=none; b=gDQ5dg2rWsMkn4rEsXTV60E9wacVUOU0jdglnpQdX6pYV8PxfcX9jkleZXrPO6voyK4YPn/pZrwkszitWn2+6aDT5WH00oINBDTEB9CxoKHpf+zLuMVKYXcDP8T7gMxkr97G8IR8B13tolKId03YEJ5b7bJnyH43puD6O69Druw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716985762; c=relaxed/simple;
-	bh=HRqavWZ3zR2Tc6Bkv7cWD2VuSHXu9dJmhx0/DgQVzyg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KCaubsIJSas+X0y1+VKqR8q6xNks3HuWhTVqk7RDw5avarvMNs/SL0yNUPnz2EXtxj2tBFUU/EvPqEyCe5YlFOc1WT9OJCQ0fm6Fz4VET/aBNmboY+zsOIG1MUJS635SdB4/sVTpR7FFIuPu+UmPvMlOxXGvrxIPfaKNPNvh62Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dPaETowN; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a59a609dd3fso159407966b.0;
-        Wed, 29 May 2024 05:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716985759; x=1717590559; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=axvBrTvxidCklr547uTso4Zf62YA6/gKt7fukdGTu0w=;
-        b=dPaETowNenmnmXPK8ZrhVlpxY7Mx6L5ViM0XrcZG6nWMy6qOYCEsLd5T+E78hqVQJ3
-         VEvOQ0LnB6aHrpTiNTeRvNTTjPoXnZxOkkgAn06djJcx83oYTvvLllACpagS53AiW8lQ
-         0Beh3rXRQLJ0LuHrC7N2OmLX1iLbCo3FqaeiY7MmnOWHUlnieTjWpkcVMIDHWHIrIqkb
-         vBIN8i6g1Q8juKlWKF0Gh1pNnmnB/8CLRjsYrREBHKs3xP/KwCCJTGxnfdAe2jsudBXa
-         zA/4RZA37+tVDRaEKQHkHzBpmyI1Ymx9ZHqtxTJ2KEdXNUPkCVlQyU7liQZ5y80WT23y
-         c8tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716985759; x=1717590559;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=axvBrTvxidCklr547uTso4Zf62YA6/gKt7fukdGTu0w=;
-        b=vhPDgOlHr9Ndry+mwjOSxey5WALTP3/ZNYJ/Etz70DuQRjcT2Ib1ci5C1Zj4rqIiHE
-         Qrno2362DNN7WHJfXZ5TDMCZWViZhMB74E6jHIOaOTMcqZ/nxhB+a2/rJ1BkFMHqfYLK
-         +xmxfKEA+5/1tYM1DjV2AZNApL/jMjVrBVB0WC01Har6z2g5K8B0OY3y/qaGxh/eq6Dr
-         MbUoHVSJ5iLKbxbF3xVtUX3oBb/d5o6FcF/xctAqOlLEU5I0/8s605jK4HlKLekw3dXT
-         Hqd7o13fJR6Yjj69y550Q07Q4gX6FFkji9xXE2Z72bluHfqFDG7NrmAIg11URFf+LkH1
-         Eruw==
-X-Forwarded-Encrypted: i=1; AJvYcCWM2Dr21h8Ehv5UOIQz1uQlgqJLciPGn7qrXVBvO2RaBh3+A3HDeo4zGY+PuWzJbSVmAAwMd78LV1DZyI2I7FldJKwREC0unZOVxlstHzIS5bNZ4HqjPWTfFRR4TvrdU+AQBCju86z2xvE56FUcv6wBTSpSwt/CwBDZ64/7KfM7VRB0lQ==
-X-Gm-Message-State: AOJu0YyllcgoJfXYPvbBbBWOFYS5MDIOslWoM+Xbk7EKsX+wX7kpHjqi
-	s/ktDG2fuBQjikiNH5sYubBimLHeqyqqYlgBDn47MNlb6x6TsT5SgEHbFSLIlFc=
-X-Google-Smtp-Source: AGHT+IEK3ELEy563spSH/XtJFJXgn/U+wUokN3QmoQc7/u2j4B2B4og7zug0R53Ga0bAk+PyiptfLw==
-X-Received: by 2002:a17:907:39c:b0:a65:b36d:d6bb with SMTP id a640c23a62f3a-a65b36ddae2mr50888966b.32.1716985759259;
-        Wed, 29 May 2024 05:29:19 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a62bee266a1sm492778766b.159.2024.05.29.05.29.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 May 2024 05:29:19 -0700 (PDT)
-Message-ID: <3b2a1ce579251726a56bdad25bfdfe75bae91c2e.camel@gmail.com>
-Subject: Re: [PATCH v3 4/6] iio: adc: ad7173: add support for special inputs
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: dumitru.ceclan@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- David Lechner <dlechner@baylibre.com>,  linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org, Dumitru Ceclan
- <mitrutzceclan@gmail.com>
-Date: Wed, 29 May 2024 14:29:18 +0200
-In-Reply-To: <20240527-ad4111-v3-4-7e9eddbbd3eb@analog.com>
-References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
-	 <20240527-ad4111-v3-4-7e9eddbbd3eb@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
+	s=arc-20240116; t=1716985844; c=relaxed/simple;
+	bh=qysojHCt34lVFTw5o2Qb7u5ZiOetrK6Y8yCv6llDkDk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=POtsATQp7g8ClZd6wHQ8716Jrca9s1TCmDpoWxXM/7SDRalJhQVcZ8L7uKt3psV7xZhG60jDTNEMHlqyoU5VeOV2BPR+FPj9OVygt8WTBkT1ShSqMCmovX5tJHsQSxid3uX3f7nbxn5Ixn1h8K/OGfDyTBKRvCY3ZJOlkPv6jVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqOHqJG6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28720C2BD10;
+	Wed, 29 May 2024 12:30:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716985843;
+	bh=qysojHCt34lVFTw5o2Qb7u5ZiOetrK6Y8yCv6llDkDk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rqOHqJG6pDRXPs0fuBXdRkc3NnC+xVkBeSDqxkWl3KxABGtlBElwcfkQW85zquJ7G
+	 jTvcRI+M+3cR3tZHyuhtl6cBwc2rl2NMc1O2bTYQizleqFkbVGkGqI0lZ+vP7iuc06
+	 d5gP5u7BBYEVDFuMjwP/ieHfNp634csCdEoBIxl/hQXok0Me8lFYnn9esa2UTwMYm4
+	 M2xejWyhHH5jJuTXKHFmvu+pi9B7onfIzIhDZSuRdErqLaTOJMH1z8M/72Hi3Oneuj
+	 zIf/1Lz1fspjD8A2vPqvjlCKiCVk1ijHbhgsDVweRU1KCVeAABl1eYRdFH3zE2Sgvp
+	 kUKHOc7ui6X9w==
+Message-ID: <e32117a4-9616-401f-bf50-23312ce15199@kernel.org>
+Date: Wed, 29 May 2024 14:30:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/10] dt-bindings: clock: qcom: split the non-PD schema
+ for GCC
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+ Robert Marko <robimarko@gmail.com>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240528-qcom-gdscs-v1-0-03cf1b102a4f@linaro.org>
+ <20240528-qcom-gdscs-v1-1-03cf1b102a4f@linaro.org>
+ <9a1bbcbd-7f46-4266-8f08-5650a42234d4@kernel.org>
+ <CAA8EJppu8kKC_zXRBAK9XAaPZ7SYShiZwpfQGYpC10Aj28Lxjw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAA8EJppu8kKC_zXRBAK9XAaPZ7SYShiZwpfQGYpC10Aj28Lxjw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2024-05-27 at 20:02 +0300, Dumitru Ceclan via B4 Relay wrote:
-> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
->=20
-> =C2=A0Add support for selecting REF+ and REF- inputs on all models.
-> =C2=A0Add support for selecting ((AVDD1 =E2=88=92 AVSS)/5) inputs
-> =C2=A0 on supported models.
->=20
-> Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> ---
+On 29/05/2024 09:58, Dmitry Baryshkov wrote:
+>>> -    const: 1
+>>> -
+>>> -  '#reset-cells':
+>>> -    const: 1
+>>> +allOf:
+>>> +  - $ref: qcom,gcc-nopd.yaml
+>>>
+>>> +properties:
+>>>    '#power-domain-cells':
+>>>      const: 1
+>>
+>> So what's left here? One property? Not much benefit. Triple-schema
+>> (include something to include something) does not make it readable. Just
+>> do not require power-domain-cells in qcom,gcc.yaml.
+> 
+> And add it to the required list on all relevant platforms? Ack, sounds
+> fine to me.
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+Yes.
 
-> =C2=A0drivers/iio/adc/ad7173.c | 21 +++++++++++++++++++++
-> =C2=A01 file changed, 21 insertions(+)
->=20
-> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-> index 8a53821c8e58..106a50dbabd4 100644
-> --- a/drivers/iio/adc/ad7173.c
-> +++ b/drivers/iio/adc/ad7173.c
-> @@ -65,6 +65,10 @@
-> =C2=A0	 FIELD_PREP(AD7173_CH_SETUP_AINNEG_MASK, neg))
-> =C2=A0#define AD7173_AIN_TEMP_POS	17
-> =C2=A0#define AD7173_AIN_TEMP_NEG	18
-> +#define AD7173_AIN_COM_IN_POS	19
-> +#define AD7173_AIN_COM_IN_NEG	20
-> +#define AD7173_AIN_REF_POS	21
-> +#define AD7173_AIN_REF_NEG	22
-> =C2=A0
-> =C2=A0#define AD7172_2_ID			0x00d0
-> =C2=A0#define AD7175_ID			0x0cd0
-> @@ -145,6 +149,8 @@ struct ad7173_device_info {
-> =C2=A0	unsigned int id;
-> =C2=A0	char *name;
-> =C2=A0	bool has_temp;
-> +	/* ((AVDD1 =E2=88=92 AVSS)/5) */
-> +	bool has_common_input;
-> =C2=A0	bool has_input_buf;
-> =C2=A0	bool has_int_ref;
-> =C2=A0	bool has_ref2;
-> @@ -215,6 +221,7 @@ static const struct ad7173_device_info ad7173_device_=
-info[] =3D {
-> =C2=A0		.has_temp =3D true,
-> =C2=A0		.has_input_buf =3D true,
-> =C2=A0		.has_int_ref =3D true,
-> +		.has_common_input =3D true,
-> =C2=A0		.clock =3D 2 * HZ_PER_MHZ,
-> =C2=A0		.sinc5_data_rates =3D ad7173_sinc5_data_rates,
-> =C2=A0		.num_sinc5_data_rates =3D ARRAY_SIZE(ad7173_sinc5_data_rates),
-> @@ -229,6 +236,7 @@ static const struct ad7173_device_info ad7173_device_=
-info[] =3D {
-> =C2=A0		.has_temp =3D false,
-> =C2=A0		.has_input_buf =3D true,
-> =C2=A0		.has_ref2 =3D true,
-> +		.has_common_input =3D true,
-> =C2=A0		.clock =3D 2 * HZ_PER_MHZ,
-> =C2=A0		.sinc5_data_rates =3D ad7173_sinc5_data_rates,
-> =C2=A0		.num_sinc5_data_rates =3D ARRAY_SIZE(ad7173_sinc5_data_rates),
-> @@ -244,6 +252,7 @@ static const struct ad7173_device_info ad7173_device_=
-info[] =3D {
-> =C2=A0		.has_input_buf =3D true,
-> =C2=A0		.has_int_ref =3D true,
-> =C2=A0		.has_ref2 =3D true,
-> +		.has_common_input =3D false,
-> =C2=A0		.clock =3D 2 * HZ_PER_MHZ,
-> =C2=A0		.sinc5_data_rates =3D ad7173_sinc5_data_rates,
-> =C2=A0		.num_sinc5_data_rates =3D ARRAY_SIZE(ad7173_sinc5_data_rates),
-> @@ -258,6 +267,7 @@ static const struct ad7173_device_info ad7173_device_=
-info[] =3D {
-> =C2=A0		.has_temp =3D true,
-> =C2=A0		.has_input_buf =3D true,
-> =C2=A0		.has_int_ref =3D true,
-> +		.has_common_input =3D true,
-> =C2=A0		.clock =3D 16 * HZ_PER_MHZ,
-> =C2=A0		.sinc5_data_rates =3D ad7175_sinc5_data_rates,
-> =C2=A0		.num_sinc5_data_rates =3D ARRAY_SIZE(ad7175_sinc5_data_rates),
-> @@ -273,6 +283,7 @@ static const struct ad7173_device_info ad7173_device_=
-info[] =3D {
-> =C2=A0		.has_input_buf =3D true,
-> =C2=A0		.has_int_ref =3D true,
-> =C2=A0		.has_ref2 =3D true,
-> +		.has_common_input =3D true,
-> =C2=A0		.clock =3D 16 * HZ_PER_MHZ,
-> =C2=A0		.sinc5_data_rates =3D ad7175_sinc5_data_rates,
-> =C2=A0		.num_sinc5_data_rates =3D ARRAY_SIZE(ad7175_sinc5_data_rates),
-> @@ -287,6 +298,7 @@ static const struct ad7173_device_info ad7173_device_=
-info[] =3D {
-> =C2=A0		.has_temp =3D false,
-> =C2=A0		.has_input_buf =3D false,
-> =C2=A0		.has_int_ref =3D true,
-> +		.has_common_input =3D false,
-> =C2=A0		.clock =3D 16 * HZ_PER_MHZ,
-> =C2=A0		.sinc5_data_rates =3D ad7175_sinc5_data_rates,
-> =C2=A0		.num_sinc5_data_rates =3D ARRAY_SIZE(ad7175_sinc5_data_rates),
-> @@ -301,6 +313,7 @@ static const struct ad7173_device_info ad7173_device_=
-info[] =3D {
-> =C2=A0		.has_temp =3D true,
-> =C2=A0		.has_input_buf =3D true,
-> =C2=A0		.has_int_ref =3D true,
-> +		.has_common_input =3D true,
-> =C2=A0		.clock =3D 16 * HZ_PER_MHZ,
-> =C2=A0		.odr_start_value =3D AD7177_ODR_START_VALUE,
-> =C2=A0		.sinc5_data_rates =3D ad7175_sinc5_data_rates,
-> @@ -915,6 +928,14 @@ static int ad7173_validate_voltage_ain_inputs(struct
-> ad7173_state *st,
-> =C2=A0		if (ain[i] < st->info->num_inputs)
-> =C2=A0			continue;
-> =C2=A0
-> +		if (ain[i] =3D=3D AD7173_AIN_REF_POS || ain[i] =3D=3D AD7173_AIN_REF_N=
-EG)
-> +			continue;
-> +
-> +		if ((ain[i] =3D=3D AD7173_AIN_COM_IN_POS ||
-> +		=C2=A0=C2=A0=C2=A0=C2=A0 ain[i] =3D=3D AD7173_AIN_COM_IN_NEG) &&
-> +		=C2=A0=C2=A0=C2=A0 st->info->has_common_input)
-> +			continue;
-> +
-> =C2=A0		return dev_err_probe(dev, -EINVAL,
-> =C2=A0			"Input pin number out of range for pair (%d %d).\n",
-> =C2=A0			ain[0], ain[1]);
->=20
+Best regards,
+Krzysztof
 
 
