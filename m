@@ -1,192 +1,183 @@
-Return-Path: <devicetree+bounces-70201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9372F8D2D13
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:18:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C1A8D2D20
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:23:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A7811F27AC4
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:18:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14A312857D0
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:23:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102A815FD11;
-	Wed, 29 May 2024 06:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C223115EFB9;
+	Wed, 29 May 2024 06:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="wvgLXS7p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L54PR1DW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2625F15EFC7
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 06:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154022F2A;
+	Wed, 29 May 2024 06:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716963526; cv=none; b=SWDFEj9IEtB8KgmB3jZuY5h04mM0n4dctqIQrecUa2yXvC2/Ov68kSeelfXvdi8rCQwJSDgfP2WYPnLWxaiXeZY/HKm5dlKoDGgLPljJ7dvTL7Gvc5dIjy5pBhBaDz5+HzmLD+6Fn31y2824ocCtu1wc6Wwh7IRQdfwP7uLgXuo=
+	t=1716963813; cv=none; b=dotISFpVBsU5B521/vont6GqOdvmQEWbdo32YiSSUPxuHue3kqT2/wSnyZH4F82AqE6YaSa1gVV8929hl2ZpUuBVi9TV8CGZMN/Z8XFh+wIwdQXLvx8rHaSUW4cONCkb7h4muur40dOFje5Sn8763+yrVv4Pts9AnCVymPOLtEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716963526; c=relaxed/simple;
-	bh=td+A5mMkrhdvg9ElSzQdaHWmnHQqfG3xEYFSntb3ivs=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=php6A9X+//RDHp6MKpmZYEONFyzxShgZqxD5fzULN2xTnAFEog3mUTRWHlI2xpiq5v1Bawft6thdzB6ByAL1NU4cisRcgKmhQStNvvrmiNLk68VFQCtDHlMEOjLnENA+MPJ92/WQidyrmsqG4RwI6ZC3SMXqevOvMcZc7T3zS1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=wvgLXS7p; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a59cc765c29so84238866b.3
-        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 23:18:43 -0700 (PDT)
+	s=arc-20240116; t=1716963813; c=relaxed/simple;
+	bh=GR+LKrFe+UUZWbY8bdBH7a434nQd0Kv7qhsQXr9RVgU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Djj9qPuzO4CTzED+FhPKH628JBayJ9f5UTY8vKR8LBS8h+9crulfJ4Vw65rRydfDbZaMzG3Gm46C34hQiEnUItv23xvlrJzFsvXL2f3lD5taqqPF165SMSaLLpIZfeMqvwXY0dXZ1J58SGwzl136axibKFq2JGxK/WUxfr+W8dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L54PR1DW; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a6302bdb54aso229798266b.0;
+        Tue, 28 May 2024 23:23:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1716963522; x=1717568322; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1716963810; x=1717568610; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=b5o98irvL1PvcmMP2g/CoSXINiWvruSSImbYO4qwby8=;
-        b=wvgLXS7pAUfty21u7wWUO6QH5bSCBphX1OAVLcg+LHw3oEYmkTRWUcvpTOKvv/6Ha5
-         /Wdko+S9m3RL8dNKlZZdZc06Q6gaCoUr4YgRzvaNvMNQNUaXM6CxRqHJGKZe4H3Si9QK
-         LZvoSYoMhFMXAWxS4p8N+rpzhkLJqTHwG98ZQ21YFlnkehyYrgl2uXbtahhtULWrDz8J
-         msByiEUcM/14L1BN1zTyHvgNiPZgAvUY+TJfevs5rBLXPqIO/w8tyaGqNf5CK96kqfdH
-         lZpVn7tcDIcCTLampjsiahaw+ctxVdKotrcCjKki5Qt6OiRjGAXlzxM7rmYgY5NG+S8C
-         NayQ==
+        bh=1tLcHWmtFvs9Ytz0eoynxFRfwFldga+uWrm7x0FZZsE=;
+        b=L54PR1DWEo8QAXFGRrliNpj8xE2ViPZcDlG5K4og2LBaFrSceetUovJ+ewBJOZ8bs0
+         +Gg5lfElbYfixVkCsP3FOd4xR5K/89F4pe5HcRi1Jn+osGoIQiJNg3nm5WjvS0DukMog
+         8cpIwNYv27kvQl+knWkR7cWFYYMjlZGwKuehVu4/slK1E66JGcxbMbC3irkydagw+i5H
+         MWEjy/rRr+a0AakWdgNOIYjDtnLmvTwBmVopNkCtswp1I7XR22I35BEZ0jVrx1LhHPpp
+         vZKYzKd6qnPBXp+aEqbhZjXjV5H7zB4dclxXjwVlcofmzhNwzoYTG5jYzCOpgBKajUGz
+         XQ/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716963522; x=1717568322;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=b5o98irvL1PvcmMP2g/CoSXINiWvruSSImbYO4qwby8=;
-        b=EUZ/efdwXYqWHBv66Y/cttSR4gAzLFFc7P0WPrHA/b8IjciNJ8k2wKMQkyiJrSJMgf
-         cHnPxK5gCh6ZKycq3X06Nxuqah9I/GfxolO/RzaYbSfjlekSDQ3wLxpyVTBh7l0Z7omT
-         TAVa9UdP11hS1hDkZmZJ6hsGmnAJb8zy6WLaWd/IgrkHxu3qZH8UABjWRo+LWUcWSy//
-         tUiNcEK/VvxYXHIq3A8FZ2qzGeW2ggt2stWnwR3kpoelH3Ueq2BN9CoIf2qLbbsZsgq2
-         9IWC2xKB9VHjesM0fWUAMDlLhQpmg+IS87I9vyzh+k3ZIk4tXjkCHBods8WOFKP4urmb
-         RHeA==
-X-Forwarded-Encrypted: i=1; AJvYcCWO685L6cXPGi/s+9GhNvj9t6wxj6XLgPQTOOasGKJe2l5Q4/xgdlBV7Zhi3jnvm0SD6nLaNfDd2lQN15V92hhn5n2gQdRdrYiUtg==
-X-Gm-Message-State: AOJu0YwS78Ob+SGfBEywgXo+To7Pv8MIkcF3Dhu832InepG5b/6RfS1R
-	TRHu1/xvSXtN2BXEJ9XfcbqtAJ7wWYOz9YYqJ+cvbuTsxmiLFpiFBCcLlrYd+OM=
-X-Google-Smtp-Source: AGHT+IG1oXccLJqlT99AbIl0tXdj+h1O8dL6G8y8/9eKbxzPQr8rGYbOgwG7VHPYBxA5kpGfbl/kHg==
-X-Received: by 2002:a17:906:314e:b0:a59:c319:f1dc with SMTP id a640c23a62f3a-a62642daa92mr969475866b.4.1716963522482;
-        Tue, 28 May 2024 23:18:42 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a6555bc091asm7799266b.138.2024.05.28.23.18.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 May 2024 23:18:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1716963810; x=1717568610;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1tLcHWmtFvs9Ytz0eoynxFRfwFldga+uWrm7x0FZZsE=;
+        b=b/gFVqILkGPxKHK4AMX9Z6jnjWX4MwosbSAqOtXEaXZ9aeUZxEeEi+VmGntmaeiWXK
+         IqDax3CqWr4y7CETIudTHH0iXGKGkRSVjQiqUbUhXxGjerpNtLpENwpXnsjQ/gCze7I8
+         5PNsVtCoiJRBQtmhi1hhV3wgYo9MWz7w5zSlHHqYlalRujiYFzj+OqQmZ4HHdEUJJISA
+         AbXL4czWHY9MhIV3P6oYCbuhf7ehA2jxRBp9ovqRN/51uAPCCoB7++TwH05wa8/hytIX
+         o1aLFRGOmqA6DR29bKpO3GsgpviSlmJPGweW2GLYfRNzYlBj0l0k4+/cIUanicZeJccW
+         JGzg==
+X-Forwarded-Encrypted: i=1; AJvYcCV8E4YWEhQojFXyH1XTXJnhOmrbkDp82lTWwwHejYAXThtwNf5ozlRBOp6P63sqk5IXLSjrkDoXgwXWe/mVNjyCqdyyglRGrPhDU/mEE/SxDqNeAw3tz230OiCsAC8MWmC9U0+1T619wDkp8jN7/eAk1Ur5RkUpiIgHJ7svsxfzWKs=
+X-Gm-Message-State: AOJu0YxJ/vUWlQ06nxIBkeyaS8Xm6PqZ7gB1DizWoRHcfyBrqxqq0qCE
+	nMgWRc8owTZ2SXLRvQWdvhjxeg0bWPDrPZyksw3aXkiM2/yhIxcVxyfQ1COai63DxQge+Vj18Df
+	gr1MJMcMgg1RJNo/qd63mckaSjE/trWeL
+X-Google-Smtp-Source: AGHT+IG9tZBZb32D7wJefFAQaqxEoTWHfC+q+AoH9WPW4aE941T1sGRfv0CXz76hM9Lhi/j3kfATv7dOpdHufQucW2E=
+X-Received: by 2002:a17:906:314e:b0:a59:c319:f1dc with SMTP id
+ a640c23a62f3a-a62642daa92mr970246166b.4.1716963810113; Tue, 28 May 2024
+ 23:23:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20240528190315.3865-1-laurent.pinchart@ideasonboard.com>
+ <20240528190315.3865-5-laurent.pinchart@ideasonboard.com> <ZlYzf6mW8RF9w_R7@surfacebook.localdomain>
+ <20240528202705.GD8500@pendragon.ideasonboard.com>
+In-Reply-To: <20240528202705.GD8500@pendragon.ideasonboard.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 29 May 2024 09:22:54 +0300
+Message-ID: <CAHp75VfpNsSnyXBb6Oy2-qCYXPR9ROimWhC7yTosrKf4YXHciQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] pwm: adp5585: Add Analog Devices ADP5585 support
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	Alexandru Ardelean <alexandru.ardelean@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Clark Wang <xiaoning.wang@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 29 May 2024 08:18:41 +0200
-Message-Id: <D1LWRSO8RFAI.1PQ450TISFN2D@fairphone.com>
-To: "Bjorn Andersson" <andersson@kernel.org>
-Cc: <cros-qcom-dts-watchers@chromium.org>, "Konrad Dybcio"
- <konrad.dybcio@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Srinivasa Rao Mandadapu" <quic_srivasam@quicinc.com>, "Mohammad Rafi
- Shaik" <quic_mohs@quicinc.com>, <~postmarketos/upstreaming@lists.sr.ht>,
- <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH DNM 2/2] arm64: dts: qcom: qcm6490-fairphone-fp5: Add
- DisplayPort sound support
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.17.0
-References: <20240510-sc7280-apr-v1-0-e9eabda05f85@fairphone.com>
- <20240510-sc7280-apr-v1-2-e9eabda05f85@fairphone.com>
- <hqwrfe2tcb6vlxybmn52k3j2xrxbt3vw5rqwudindbhj3s3nez@obkr3ayos6gm>
-In-Reply-To: <hqwrfe2tcb6vlxybmn52k3j2xrxbt3vw5rqwudindbhj3s3nez@obkr3ayos6gm>
 
-On Tue May 28, 2024 at 11:35 PM CEST, Bjorn Andersson wrote:
-> On Fri, May 10, 2024 at 02:27:09PM GMT, Luca Weiss wrote:
-> > Add the required nodes for sound playback via a connected external
-> > display (DisplayPort over USB-C).
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> > Depends on a bunch of patches upstream doing bringup of Display (DSI),
-> > DisplayPort, GPU, and then finally audio could land. But we're blocked
-> > on DPU 1:1:1 topology for all of that unfortunately.
-> >=20
-> > And also machine driver for sound just exists a bit hackily.
+On Tue, May 28, 2024 at 11:27=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Tue, May 28, 2024 at 10:41:51PM +0300, Andy Shevchenko wrote:
+> > Tue, May 28, 2024 at 10:03:14PM +0300, Laurent Pinchart kirjoitti:
+
+...
+
+> > > +#define ADP5585_PWM_OSC_FREQ_HZ            1000000U
+> >
+> > (1 * HZ_PER_MHZ) ?
 >
-> Thanks for sharing this, Luca. Can you please resubmit this once it's
-> ready to be merged, so that I don't need to keep track of it?
+> If we had an MHZ macro I would use 1 * MHZ, but I don't think HZ_PER_MHZ
+> improves readability here.
 
-Definitely, though I don't expect it to be soon unfortunately, maybe you
-can ask your colleagues though to fix that DPU 1:1:1 topology ;)
+We have MEGA. HZ is already the suffix in this definition.
 
+> > > +#define ADP5585_PWM_MIN_PERIOD_NS  (2ULL * NSEC_PER_SEC / ADP5585_PW=
+M_OSC_FREQ_HZ)
+> > > +#define ADP5585_PWM_MAX_PERIOD_NS  (2ULL * 0xffff * NSEC_PER_SEC / A=
+DP5585_PWM_OSC_FREQ_HZ)
+> >
+> > Wouldn't be better to use GENMASK() or (BIT(x) - 1) notation to show th=
+at
+> > the limit is due to HW register bits in use?
 >
-> Regards,
-> Bjorn
->
-> > ---
-> >  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 36 ++++++++++++++=
-++++++++
-> >  1 file changed, 36 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/=
-arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> > index 05bbf1da5cb8..2bbbcaeff95e 100644
-> > --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> > @@ -14,6 +14,8 @@
-> >  #include <dt-bindings/leds/common.h>
-> >  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> >  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> > +#include <dt-bindings/sound/qcom,q6afe.h>
-> > +#include <dt-bindings/sound/qcom,q6asm.h>
-> >  #include "sc7280.dtsi"
-> >  #include "pm7250b.dtsi"
-> >  #include "pm7325.dtsi"
-> > @@ -774,6 +776,12 @@ &pon_resin {
-> >  	status =3D "okay";
-> >  };
-> > =20
-> > +&q6afedai {
-> > +	dai@104 {
-> > +		reg =3D <DISPLAY_PORT_RX>;
-> > +	};
-> > +};
-> > +
-> >  &qup_spi13_cs {
-> >  	drive-strength =3D <6>;
-> >  	bias-disable;
-> > @@ -847,6 +855,34 @@ &sdhc_2 {
-> >  	status =3D "okay";
-> >  };
-> > =20
-> > +&sound {
-> > +	compatible =3D "fairphone,fp5-sndcard";
-> > +	model =3D "Fairphone 5";
-> > +
-> > +	mm1-dai-link {
-> > +		link-name =3D "MultiMedia1";
-> > +		cpu {
-> > +			sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
-> > +		};
-> > +	};
-> > +
-> > +	displayport-rx-dai-link {
-> > +		link-name =3D "DisplayPort Playback";
-> > +
-> > +		cpu {
-> > +			sound-dai =3D <&q6afedai DISPLAY_PORT_RX>;
-> > +		};
-> > +
-> > +		platform {
-> > +			sound-dai =3D <&q6routing>;
-> > +		};
-> > +
-> > +		codec {
-> > +			sound-dai =3D <&mdss_dp>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> >  &spi13 {
-> >  	status =3D "okay";
-> > =20
-> >=20
-> > --=20
-> > 2.45.0
-> >=20
+> I think that would decrease readability to be honest.
 
+I think it improves the robustness of the code. I always fail to count
+3,4,5,6 f:s in those masks, using BIT()/GENMASK() notation makes it
+better.
+
+...
+
+> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_OFFT_LOW,
+> > > +                      off & 0xff);
+> > > +   if (ret)
+> > > +           return ret;
+> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_OFFT_HIGH,
+> > > +                      (off >> 8) & 0xff);
+> > > +   if (ret)
+> > > +           return ret;
+> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_ONT_LOW,
+> > > +                      on & 0xff);
+> > > +   if (ret)
+> > > +           return ret;
+> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_ONT_HIGH,
+> > > +                      (on >> 8) & 0xff);
+> > > +   if (ret)
+> > > +           return ret;
+> >
+> > Can be proper __le16/__be16 be used in conjunction with regmap bulk API=
+?
+>
+> What I would really like is regmap growing an API similar to
+> include/media/v4l2-cci.h. Any volunteer ? :-)
+
+So, the answer here is yes?
+
+...
+
+> > > +   regmap_read(regmap, ADP5585_PWM_OFFT_LOW, &off);
+> > > +   regmap_read(regmap, ADP5585_PWM_OFFT_HIGH, &val);
+> > > +   off |=3D val << 8;
+> > > +
+> > > +   regmap_read(regmap, ADP5585_PWM_ONT_LOW, &on);
+> > > +   regmap_read(regmap, ADP5585_PWM_ONT_HIGH, &val);
+> > > +   on |=3D val << 8;
+> >
+> > As per above, can it be converted to use proper __le16/__be16 type and
+> > regmap bulk API?
+>
+> As there are only 2 registers, I think that's a bit overkill really.
+
+I do not think so. It increases readability (less LoCs) and improves a
+lot of understanding of the hardware layout from reading the code.
+Please, consider using it.
+
+...
+
+> > > +   device_set_of_node_from_dev(dev, dev->parent);
+> >
+> > Why this one? What's wrong with device_set_node()?
+>
+> See my reply to 3/4.
+
+See additional questions there as well.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
