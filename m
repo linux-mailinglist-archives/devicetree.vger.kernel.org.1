@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-70218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 549348D2E3B
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:30:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 914538D2E46
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:32:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F6252868EF
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:30:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B45141C22430
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CEA167289;
-	Wed, 29 May 2024 07:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9AC715B0F8;
+	Wed, 29 May 2024 07:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PW5bATMa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6CaYa+L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC35167264;
-	Wed, 29 May 2024 07:29:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56D11E86E
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 07:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716967799; cv=none; b=MU8ms8rJM7alRzzGm1Qc8kFUbnZom/yS529DvsHC4piIATrruW88RC7vAxY9rjZQaCotC9DSV8VYyFv2IxmN9OZhNbexX3N/ixS+u1TmE1OLY4eJhVjU0iSStCWLLV/whoOzAnrWejyRdHzhaoPZZTL3DxjHmex61h6rvlBogtI=
+	t=1716967930; cv=none; b=jB3vvOF0cbdSx29tWvnyunrvOaKe557tyblXq5LDY8fLp1P9CscZtB3HlVWKXnq/dnJoWHihlzv3Zi/kxb7NifvrwrUrXgc3k4o8HL0tBQVkn3rSPwMTeodf2CrDOvDZrL87M0SoAM2v0epBhhbTD8L67klvNBMQtKwCUc4vKu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716967799; c=relaxed/simple;
-	bh=CplIVoFx4HHmnWx+apjTEl9q7VdG/g4VH4E3n+XU4ek=;
+	s=arc-20240116; t=1716967930; c=relaxed/simple;
+	bh=x2x9462nX7+t1lAqgy6kDSVP83VlDIpgNYZeXEZGkxI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SFvxza8Hf4htnTp7ntxzR5vPCeQP0laWQoHKEa7PTeDwwUoEun9cZAkaOPu5k8OpGixnoc7nFvz3iM3Cn1+BNMQdtRngX6DcrYzp2Q84Rx12cyvuwa4RrUZxZS4a9ZLXFCDr21Lru/TTHEgABNgVq2/+i8raEeBUjiBIMw9AkzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PW5bATMa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C73DC2BD10;
-	Wed, 29 May 2024 07:29:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pQ5jnaQpB8tu6zvlJrPV4D7MO2jvJLth4OdEXb+FyaL+Vq7Quum6yxb7qnIHCksjqz09aAHhncJ9Aml7LHU7inVPJcj2YIRI4Gyw9zSFrs1IFmY2j2S4rvjax4TpQST65GOxOifli22yMJ9rtRY8D6EBm7Av/3ik71fTS38wRA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6CaYa+L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43F9CC2BD10;
+	Wed, 29 May 2024 07:32:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716967798;
-	bh=CplIVoFx4HHmnWx+apjTEl9q7VdG/g4VH4E3n+XU4ek=;
+	s=k20201202; t=1716967930;
+	bh=x2x9462nX7+t1lAqgy6kDSVP83VlDIpgNYZeXEZGkxI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PW5bATMajdYAPy3OkkMnj+ynE2yOFlDDaiOUF3PpkH7okeCp3Rk9e5jWJ5rO9IjrG
-	 dSlZ0gpznAFCg3Oc94QF7npAME0J02SYwAYPiuj/olpgbP8qG8XRLriIHLyhMeTzXt
-	 veEl0H61hsU1Bh7AessZAHrIO/JAlOWop96l7peHVLIvqrtp3Cp12rj5hszpTnfZTy
-	 T7AdzwLnVEpHx79iW+yiFZpA9mh72FNZYFBPpPI8VcFZ1/Z3w7P0sJu6u9gikhma73
-	 Y82C/2E2l79pnTqepj9CuOg8ZYPeEBnr6Kuph5NY+RZnJImfi8vgXNNz0l7ty4IjcK
-	 UK/Ef9vCsIT7Q==
-Message-ID: <8e27c8da-d856-4fab-bb12-3af07e13838e@kernel.org>
-Date: Wed, 29 May 2024 09:29:54 +0200
+	b=U6CaYa+LJr2V88uuShf4t6vplrvcfLNNdxw9QQ4Jyim2anvgqUPUFZYef9M7oBWgB
+	 rShzS4VQALNk4ngJNNsu1Yv74xqPp28HzsLnnQ+Q6CqlvQnA8DeuiUnCVucJR8qI9w
+	 +NGgziTcpif/MjKcxddnYdG6MG+sb5+iaDSTYff+G73XCjgufZoe6k1joK+Nz4gg26
+	 O9Wf69mkbf393jYICxR6H7pQGuPajb5c8AoXNMpeah6fOCH71dj/pm4JkBRT2mmp9p
+	 ZdjsjskXE2SDezgWmuW2M+UVKaW4IZsaszHOVQkHvw7xwganddHAJgZz3usmDMu7yt
+	 JMtAk0ZTYv5Nw==
+Message-ID: <3437de59-44af-48e2-ab72-d9ea138c3001@kernel.org>
+Date: Wed, 29 May 2024 09:32:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: vendor-prefixes: add ScioSense
-To: Gustavo Silva <gustavograzs@gmail.com>, jic23@kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mm-iot-gateway: Add initial
+ support
+To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- lars@metafoo.de, christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240529001504.33648-1-gustavograzs@gmail.com>
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Fabio Estevam <festevam@denx.de>
+References: <20240529000535.1426662-1-festevam@gmail.com>
+ <20240529000535.1426662-2-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,32 +103,146 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240529001504.33648-1-gustavograzs@gmail.com>
+In-Reply-To: <20240529000535.1426662-2-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/05/2024 02:14, Gustavo Silva wrote:
-> Add vendor prefix for ScioSense B.V.
-> https://www.sciosense.com/
+On 29/05/2024 02:05, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Gustavo Silva <gustavograzs@gmail.com>
-> ---
+> Add the initial support for the CompuLab i.MX8MM IoT Gateway board,
+> which is based on the Compulab's UCM-iMX8M-Mini SoM.
+> 
+> Board URL:
+> https://www.compulab.com/products/iot-gateways/iot-gate-imx8-industrial-arm-iot-gateway/
+> 
 
-This is a friendly reminder during the review process.
+> +	regulator-usdhc2_v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usdhc2_v";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> +		regulator-always-on;
+> +		enable-active-high;
+> +	};
+> +
+> +	regulator-mpcie2_rst {
 
-It looks like you received a tag and forgot to add it.
+No underscores in node names.
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "mpcie2_rst";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
+> +		regulator-always-on;
+> +		enable-active-high;
+> +	};
+> +
+> +	regulator-mpcie2lora_dis {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "mpcie2lora_dis";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+> +		regulator-always-on;
+> +		enable-active-high;
+> +	};
+> +
+> +	pcie0_refclk: pcie0-refclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	status = "okay";
+> +
+> +	eeprom@54 {
+> +		compatible = "atmel,24c08";
+> +		reg = <0x54>;
+> +		pagesize = <16>;
+> +	};
+> +};
+> +
+> +&ecspi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_ecspi1 &pinctrl_ecspi1_cs>;
+> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +};
+> +
+> +&pcie_phy {
+> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> +	fsl,tx-deemph-gen1 = <0x2d>;
+> +	fsl,tx-deemph-gen2 = <0xf>;
+> +	fsl,clkreq-unsupported;
+> +	clocks = <&pcie0_refclk>;
+> +	clock-names = "ref";
+> +	status = "okay";
+> +};
+> +
+> +&pcie0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pcie0>;
+> +	reset-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg1 {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&usbotg2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	dr_mode = "host";
+> +	usb-role-switch;
+> +	status = "okay";
+> +
+> +	usbhub@1 {
+> +		compatible = "usb424,9514";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_usb9514>;
+> +		reg = <1>;
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+reg is always the second property.
 
-If a tag was not added on purpose, please state why and what changed.
+
+...
+
+> +
+> +	backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm2 0 3000000 0>;
+> +		brightness-levels = <0 255>;
+> +		num-interpolated-steps = <255>;
+> +		default-brightness-level = <222>;
+> +		status = "okay";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_led>;
+> +
+> +		heartbeat-led {
+> +			label = "Heartbeat";
+
+Use function and color instead
+
+> +			gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+
 
 Best regards,
 Krzysztof
