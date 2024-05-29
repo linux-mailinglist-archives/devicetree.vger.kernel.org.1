@@ -1,77 +1,71 @@
-Return-Path: <devicetree+bounces-70163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344DA8D2A71
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 04:04:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB478D2A78
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 04:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64EDA1C24F76
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:04:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6701F28B37A
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 02:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0101D161309;
-	Wed, 29 May 2024 02:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98451667DB;
+	Wed, 29 May 2024 02:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QyCVRHXo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M0Z1xAV9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DD715FD1A;
-	Wed, 29 May 2024 02:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B22C1667CA;
+	Wed, 29 May 2024 02:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716948145; cv=none; b=q07Rg/UyJ/yLJEGWnbN2Y+2jLRaifoMxfjcuho0gM9jIr4hHgIosAKbAXS+OU5zPgkBASpYLeQR8WneInUZns4eZCnxZHj1embsodjh4jnRRDg0bLWHxUViqzp18AGJzqLG70ioN3MTswDne7rGj8mmu9gZiTVXLwAup0ChnV58=
+	t=1716948148; cv=none; b=bpUZrlnbS2dbfHUvNnF5jhHtvaQ7cXYeIXVR7uy6WwNE8DNPhblSFmgqTCtnQw3jc/VH8bo/IBqGJSJ12L89AW/W8OqHbOEq+VoZ8AMl7308klGYonFiPh5ML7nG3AzbjBhgslJ+7+DeM96LsOpwmbUjnIv6w9lPaGHcSb1n1bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716948145; c=relaxed/simple;
-	bh=8ZfvQgO3/QzprRBXweHb5KB1W9EIv7sdnc6kqUIcHKo=;
+	s=arc-20240116; t=1716948148; c=relaxed/simple;
+	bh=iYGLZOma106qnbZvlmMVlpIjBuciGFoal0QOxAV2eEU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ETQ7wOGpKI+PU9TWaHGnwWDKeqkuk6ZXqahOTWN1j6bv/N9OXHP4YMj5W6e9KkQLSsXu6uI+mz4H3mWdo6rCMhcQkY+llTvtv/9k4hpGc0R+0a//Dw6lwumXHKc4RY5A46QbGhUPWzS8HsloNo2Cyiqw3JbFGNtso8f+E9FsV7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QyCVRHXo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 428E4C4AF07;
-	Wed, 29 May 2024 02:02:23 +0000 (UTC)
+	 MIME-Version:Content-Type; b=hNJpOuNYF5zGhpaJWcyZITzfEcx/jQ7cVSQpkQRkKgufuS6JIibUmKH2sMv8Y4EkBeOQEXkIeRmMTiEEZyxYS7I7bXnokWjoZLbUvoVwqJbbFer35xRvIaUW00/iLVtHQLqNukSYdx1FYEgPqAdNy9WZPpfoOx8gIpHlL7pUEUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M0Z1xAV9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4B15C32789;
+	Wed, 29 May 2024 02:02:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716948145;
-	bh=8ZfvQgO3/QzprRBXweHb5KB1W9EIv7sdnc6kqUIcHKo=;
+	s=k20201202; t=1716948148;
+	bh=iYGLZOma106qnbZvlmMVlpIjBuciGFoal0QOxAV2eEU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=QyCVRHXob0Yzd928wqA+n3n19zyhyTPO8N3wtkoefn9Lebo9rR+UCm55izY+Fn+Hc
-	 +qumB4byelFzWsQSsZXSbGlCR+YMqDr7MRZ0o6kAjG5cTFkJheyT1RZ0UezXxJt2cI
-	 483ExWXjLNdSowfUFKsR3q7A7D3Ikz9XZGcge9AtecyXjW8HX6wVzML+E4XD/xSpXV
-	 gAkbFmuCgYr2ZIIsq8I1XXRqVUD7dJzWUE28xj5aBB7oEC2V61HkifWd3/oucfC/Y5
-	 vuIES/tVH09I9uTYA4dY3SBlY/XzN8NZ8hhugEhMqdQZO1jbUShvcKav6OMsEt+KcM
-	 6OV4bdeLQsxHg==
+	b=M0Z1xAV9laRcra1wkkGOiY/ciCzZSo5I0lp1BYJgLbxz7t34qJphhHjf6vJy1x4fG
+	 K81CqGOcLFZQQ2WOc3n4g8ylEM1Vj0m3by8LE8DrFRqK8zOoW201TNOmyMGPoNmI0g
+	 aomOKxFYDYC8DmqweXb18KPAKw9L0nmJmtI9CDrs+VWBkMz+HS+9dxJFBMXP3QOdxT
+	 PvLreKuks2dn6+fFuyvapzeqnevVBuxTmHWaDmeZIJPxGAiJzAvwLnlO603gx1FqJp
+	 L6ar8rZOSRjY+EBGqEdJD0mnaN95TJpk7V+JO2VqGvpLrpCVWK7Tv4EUwB+tkWLlrh
+	 WW8tv8sgen6gg==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	johan+linaro@kernel.org,
-	bmasney@redhat.com,
-	djakov@kernel.org,
-	Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+Cc: kernel@quicinc.com,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	vireshk@kernel.org,
-	quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com,
-	quic_nitegupt@quicinc.com,
-	quic_parass@quicinc.com,
-	krzysztof.kozlowski@linaro.org,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: (subset) [PATCH v13 0/6] PCI: qcom: Add support for OPP
-Date: Tue, 28 May 2024 21:01:59 -0500
-Message-ID: <171694812089.574781.16754676047820223092.b4-ty@kernel.org>
+	netdev@vger.kernel.org
+Subject: Re: (subset) [PATCH v4 0/2] Mark Ethernet devices on sa8775p as DMA-coherent
+Date: Tue, 28 May 2024 21:02:01 -0500
+Message-ID: <171694812085.574781.5963530669426205185.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240518-opp_support-v13-0-78c73edf50de@quicinc.com>
-References: <20240518-opp_support-v13-0-78c73edf50de@quicinc.com>
+In-Reply-To: <20240514-mark_ethernet_devices_dma_coherent-v4-0-04e1198858c5@quicinc.com>
+References: <20240514-mark_ethernet_devices_dma_coherent-v4-0-04e1198858c5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,22 +76,32 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sat, 18 May 2024 19:01:41 +0530, Krishna chaitanya chundru wrote:
-> This patch adds support for OPP to vote for the performance state of RPMH
-> power domain based upon PCIe speed it got enumerated.
-> 
-> QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-> maintains hardware state of a regulator by performing max aggregation of
-> the requests made by all of the processors.
+On Tue, 14 May 2024 17:06:50 -0700, Sagar Cheluvegowda wrote:
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> To: Andrew Halaney <ahalaney@redhat.com>
+> To: Vinod Koul <vkoul@kernel.org>
+> To: David S. Miller <davem@davemloft.net>
+> To: Eric Dumazet <edumazet@google.com>
+> To: Jakub Kicinski <kuba@kernel.org>
+> To: Paolo Abeni <pabeni@redhat.com>
+> To: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Cc: kernel@quicinc.com
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: netdev@vger.kernel.org
 > 
 > [...]
 
 Applied, thanks!
 
-[1/6] arm64: dts: qcom: sm8450: Add interconnect path to PCIe node
-      commit: 42870599f9441fc96f99050637d2dce6f8b52597
-[4/6] arm64: dts: qcom: sm8450: Add OPP table support to PCIe
-      commit: 628388982c1303283b220a47e69906f0924e4031
+[1/2] arm64: dts: qcom: sa8775p: mark ethernet devices as DMA-coherent
+      commit: 49cc31f8ab44e60d8109da7e18c0983a917d4d74
 
 Best regards,
 -- 
