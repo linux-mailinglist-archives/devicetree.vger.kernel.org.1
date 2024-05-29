@@ -1,160 +1,199 @@
-Return-Path: <devicetree+bounces-70605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3BE48D3C5B
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:27:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 263DE8D3CB2
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:34:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6ADB328527F
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:27:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8CC01F21691
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156B71836FD;
-	Wed, 29 May 2024 16:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F89F1C8FD1;
+	Wed, 29 May 2024 16:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LZUiuJ77"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3U+Fwyv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBA31836FB;
-	Wed, 29 May 2024 16:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50696187345;
+	Wed, 29 May 2024 16:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717000045; cv=none; b=tsnOtn6vYwdxzf3mdRL+ARM2+V1zlFqSXnOHyOK4oFX8YTEEAyDKIoqcs+AwEXpzh5u1E8Ohe9WVm8mSAjvM0fxtVI6gAlD/Okdw0ZCPn1zEPZA6GfypkjMsv+QvZ9F3LV4srPDO1Y0eYWv3tkvAQSCIow5+9cUmUlfYrjX+FvY=
+	t=1717000236; cv=none; b=ahaOdVl0CCl2gq3cOKWNhtLWJ37zL95pUEw2mOVAIeNDUQHH3WilTy3x/jRkFp3zMw8N/VBmgDzit9OmmcGhhQ2WsslkcuySE6mI4vmLEoEnO8Qrsgmf+R3iCgYkznQarI4EFuDFB4y3SGyzrHquoY/qsGq2TopPFzWaFx8WEfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717000045; c=relaxed/simple;
-	bh=6pJy8GSeOsoQfIf1fWQ8Q5hijGi2n3wCqP9jsUD7W+Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qN8kygvCSf7bkX1wuSCVUnZlvdjptFw1/StTOG/MPsWJEZ/zOqxh/McC9VRerRIVP98ZBulNybGyjAwjbe8pVQMddVV1FqZi35hMjzTvWmjv0PXBaBut801lxaDhNzutpNYa/9K2Ns8atbXB57bvA05+XMyQYcC1rjxFkjt4kmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LZUiuJ77; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D6CEC4AF08;
-	Wed, 29 May 2024 16:27:24 +0000 (UTC)
+	s=arc-20240116; t=1717000236; c=relaxed/simple;
+	bh=WLkRq0XdqFbptdq4GI1zmUzWSeRZ/kiprUVNCzcmZjs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H1p7vyxvVnb18ZE962U/uCbkSXP2+6VRQtWCOunUCPeC4tptYsYAM/eOHW9PQGGaTG4mpgJSaWD9tDabph/b/8Q3B3FDYDwqzgmZXNwxKNZvx+eqHx4JlQuh71sdRC657xrBjTmRzhTqiW3hI1T5Z0K8X1c/RB5XR1OwH3NZMR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3U+Fwyv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0786C4AF09;
+	Wed, 29 May 2024 16:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717000044;
-	bh=6pJy8GSeOsoQfIf1fWQ8Q5hijGi2n3wCqP9jsUD7W+Y=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=LZUiuJ77zrGPdcr7609yv9hPBsSd+NGCfWRuEkGeG3WCdH5Ncd4VpsgkA2R/EXbhn
-	 cabvYkzRFq2feRjmpFBdEDc5VVhIfTFyCZDZuHVPlrRwnuKFUswVPwvbEaj2UMx0Pc
-	 ZKaUYn/m/P4e7nuCBm6woINUuRNNKkt6y6nzM8nSni3OyeMQ/ne/1RejJas+xu1xoX
-	 FNCFr0xl7DuaXiTQNUgTD84vW46e7qqNawNEkj3/jYr/tLNqeHDbbKZgFgEkTOd+aA
-	 3+jwfxeh40AnJQva0e16sch+Qpj+va1xZLszQ7PyXImuIp69Z1+b2iZdsB0/h9P50K
-	 o9U0eYcIpx+xw==
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2e716e302bdso25139681fa.1;
-        Wed, 29 May 2024 09:27:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXL/9EuI51soBeCYq7iHi5fBPds0fqFil0qDw+zW80tE0uKmPbMpiCW3eY9yWzm1Oj/Qiq/5BdauNT2HwHpiYVjHe6GhsSv04zP5MrqIbyJqartUvfGUq9W4ByhvNmsfeGTm+bSv4GhWxqS+lzBeI0iIpvxxA3LMuVSnJDUaE3f5A==
-X-Gm-Message-State: AOJu0Ywkdpa7DEG5M7bse8vBtuTT36EPiKyUMWnNB6Ysm3iGH6do9zcS
-	K7JDiKpRj3/Og0VBKxRN3WVQse9VjbtI1JZaqZswXueEUWmJIW25SnFBfFV041hRGqzqeKXIbWR
-	Ij3ZuqClJukU+5VLfMcSn5F+kfhw=
-X-Google-Smtp-Source: AGHT+IHrj3c2UqSisziC7+QIH9F4CAvMm95FPN4uKjeYMhxBFdWT7Y6xzMv02ZF8u55DDKqqW8M6ZQJBMCYW9FyIySs=
-X-Received: by 2002:a2e:b385:0:b0:2e1:cb22:a4d with SMTP id
- 38308e7fff4ca-2e95b25679dmr98428051fa.36.1717000042779; Wed, 29 May 2024
- 09:27:22 -0700 (PDT)
+	s=k20201202; t=1717000235;
+	bh=WLkRq0XdqFbptdq4GI1zmUzWSeRZ/kiprUVNCzcmZjs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=a3U+Fwyvlbzzz2zHjSo8i6Vs7NV/hxb5B6eXC6QD/9P1mhZe+Vo0PX3e7Hvlw4imP
+	 uxmmwQz+ZB0kqFirPr6cGzetmYpwOV7JZvkW3suNsjL09lAJObbFqypIeLGJ9fWtzX
+	 xpqYoNw6YsorYpOtMBdNmoCWZkEBa+iW7RZFKPK4pR0jE+hWUoCqO+yCO6ojpeW9lq
+	 hwdY13da9LH8H6kaxqo1eMH+eOTleBjr8zBqQUCORku36FERwEvYexacJO6nVjiFb0
+	 O6dBzTwzmkqEtBp2zIrTc04UEJy5PXeQ3AldKIHZA2brW8htUzCVojbgMYdHN7RUoT
+	 pA+nF+3G0M/qg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1sCMCA-000000004ia-2HPc;
+	Wed, 29 May 2024 18:30:35 +0200
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH v2 00/14] arm64: dts: qcom: sc8280xp-x13s: enable pm8008 camera pmic
+Date: Wed, 29 May 2024 18:29:44 +0200
+Message-ID: <20240529162958.18081-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.44.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
-In-Reply-To: <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 30 May 2024 00:27:10 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66DPvvRcq+98vF2mCF8URW_qys1+B_FM9kcm6ppuPvyeg@mail.gmail.com>
-Message-ID: <CAGb2v66DPvvRcq+98vF2mCF8URW_qys1+B_FM9kcm6ppuPvyeg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix the DCDC_REG2 minimum voltage
- on Quartz64 Model B
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
-	Diederik de Haas <didi.debian@cknow.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, May 21, 2024 at 1:20=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
-> Correct the specified regulator-min-microvolt value for the buck DCDC_REG=
-2
-> regulator, which is part of the Rockchip RK809 PMIC, in the Pine64 Quartz=
-64
-> Model B board dts.  According to the RK809 datasheet, version 1.01, this
-> regulator is capable of producing voltages as low as 0.5 V on its output,
-> instead of going down to 0.9 V only, which is additionally confirmed by t=
-he
-> regulator-min-microvolt values found in the board dts files for the other
-> supported boards that use the same RK809 PMIC.
->
-> This allows the DVFS to clock the GPU on the Quartz64 Model B below 700 M=
-Hz,
-> all the way down to 200 MHz, which saves some power and reduces the amoun=
-t of
-> generated heat a bit, improving the thermal headroom and possibly improvi=
-ng
-> the bursty CPU and GPU performance on this board.
->
-> This also eliminates the following warnings in the kernel log:
->
->   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, no=
-t supported by regulator
->   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (20000=
-0000)
->   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, no=
-t supported by regulator
->   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (30000=
-0000)
->   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, no=
-t supported by regulator
->   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (40000=
-0000)
->   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, no=
-t supported by regulator
->   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators (60000=
-0000)
->
-> Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B device =
-tree")
-> Cc: stable@vger.kernel.org
-> Reported-By: Diederik de Haas <didi.debian@cknow.org>
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> index 26322a358d91..b908ce006c26 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-> @@ -289,7 +289,7 @@ vdd_gpu: DCDC_REG2 {
->                                 regulator-name =3D "vdd_gpu";
->                                 regulator-always-on;
->                                 regulator-boot-on;
-> -                               regulator-min-microvolt =3D <900000>;
-> +                               regulator-min-microvolt =3D <500000>;
+The Qualcomm PM8008 PMIC is a so called QPNP PMIC with seven LDO
+regulators, a temperature alarm block and two GPIO pins (which are also
+used for interrupt signalling and reset).
 
-The constraints here are supposed to be the constraints of the consumer,
-not the provider. The latter is already known by the implementation.
+Unlike previous QPNP PMICs it uses an I2C rather than SPMI interface,
+which has implications for how interrupts are handled.
 
-So if the GPU can go down to 0.825V or 0.81V even (based on the datasheet),
-this should say the corresponding value. Surely the GPU can't go down to
-0.5V?
+A previous attempt by Qualcomm to upstream support for PM8008 stalled
+two years ago at version 15 after a lot of back and forth discussion on
+how best to describe this device in the devicetree. [1]
 
-Can you send another fix for it?
+After reviewing the backstory on this and surveying the current SPMI
+PMIC bindings and implementation, I opted for a new approach that does
+not describe internal details like register offsets and interrupts in
+the devicetree.
+
+The original decision to include registers offsets and internal
+interrupts for SPMI PMICs has led to a number of PMIC dtsi being created
+to avoid copying lots of boiler plate declarations. This in turn causes
+trouble when the PMIC USID address is configurable as the address is
+included in every interrupt specifier.
+
+The current SPMI bindings still do not describe the devices fully and
+additional data is therefore already provided by drivers (e.g.
+additional register blocks, supplies, additional interrupt specifiers).
+
+The fact that PMICs which use two USIDs (addresses) are modelled as two
+separate devices causes trouble, for example, when there are
+dependencies between subfunctions. [2]
+
+Subfunctions also do not necessarily map neatly onto the 256-register
+block partitioning of the SPMI register space, something which has lead
+to unresolved inconsistencies in how functions like PWM are described.
+[3]
+
+In short, it's a bit of a mess.
+
+With the new style of bindings, by contrast, only essential information
+that actually differs between machines would be included in the
+devicetree. The bindings would also be mostly decoupled from the
+implementation, which has started to leak out into the binding (e.g. how
+the QPNP interrupts are handled). This also allows for extending the
+implementation without having to update the binding, which is especially
+important as Qualcomm does not publish any documentation (e.g. to later
+enable regulator over-current protection).
+
+Some PMICs support both I2C and SPMI interfaces (e.g. PM8010) and we
+want to be able to reuse the same bindings regardless of the interface.
+
+As a proof concept I have written a new pmc8280 driver for one of the
+SPMI PMICs in the Lenovo ThinkPad X13s that uses the new style of
+bindings and I've been using that one to control backlight and
+peripheral regulators for a while now. Specifically, the gpio and
+temperature-alarm blocks can be used with some minor updates to the
+current drivers.
+
+That work still needs a bit of polish before posting, but my working PoC
+means that I'm confident enough that the new model will work and that we
+can go ahead and merge regulator support for the PM8008.
+
+This series is specifically needed for the camera sensors in the X13s,
+for which camera subsystem (camss) support has now been merged for 6.10.
+
+The first seven patches are preparatory and can possibly be merged
+separately from the rest of the series. The next two patches drop the
+broken GPIO support for PM8008 which had already been upstreamed. The
+last five patches rework the binding and MFD driver, add support for the
+regulators and enable the camera PMIC on the X13s.
+
+Johan
+
+[1] https://lore.kernel.org/all/1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com
+[2] https://lore.kernel.org/lkml/20231003152927.15000-3-johan+linaro@kernel.org
+[3] https://lore.kernel.org/r/20220828132648.3624126-3-bryan.odonoghue@linaro.org
 
 
-ChenYu
+Changes in v2
+ - use IRQ_TYPE_SENSE_MASK in regmap_irq table
+ - add post-reset delay
+ - reorder pinctrl binding and driver update
+ - split out binding cleanups
+ - use platform_device_id matching
+ - replace underscore in supply names with dash
+ - use more fine-grained includes in regulator driver
+ - rework regulator driver and update authorship
 
->                                 regulator-max-microvolt =3D <1350000>;
->                                 regulator-ramp-delay =3D <6001>;
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+Johan Hovold (14):
+  dt-bindings: mfd: pm8008: add reset gpio
+  mfd: pm8008: fix regmap irq chip initialisation
+  mfd: pm8008: deassert reset on probe
+  mfd: pm8008: mark regmap structures as const
+  mfd: pm8008: use lower case hex notation
+  mfd: pm8008: rename irq chip
+  mfd: pm8008: drop unused driver data
+  pinctrl: qcom: spmi-gpio: drop broken pm8008 support
+  dt-bindings: pinctrl: qcom,pmic-gpio: drop pm8008
+  dt-bindings: mfd: pm8008: drop redundant descriptions
+  dt-bindings: mfd: pm8008: rework binding
+  mfd: pm8008: rework driver
+  regulator: add pm8008 pmic regulator driver
+  arm64: dts: qcom: sc8280xp-x13s: enable pm8008 camera pmic
+
+ .../devicetree/bindings/mfd/qcom,pm8008.yaml  | 158 ++++++++------
+ .../bindings/pinctrl/qcom,pmic-gpio.yaml      |   3 -
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 123 +++++++++++
+ drivers/mfd/Kconfig                           |   1 +
+ drivers/mfd/qcom-pm8008.c                     | 169 ++++++++++-----
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   1 -
+ drivers/regulator/Kconfig                     |   7 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/qcom-pm8008-regulator.c     | 198 ++++++++++++++++++
+ include/dt-bindings/mfd/qcom-pm8008.h         |  19 --
+ 10 files changed, 542 insertions(+), 138 deletions(-)
+ create mode 100644 drivers/regulator/qcom-pm8008-regulator.c
+ delete mode 100644 include/dt-bindings/mfd/qcom-pm8008.h
+
+-- 
+2.44.1
+
 
