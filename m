@@ -1,182 +1,165 @@
-Return-Path: <devicetree+bounces-70707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 152FD8D41F3
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:27:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 572FD8D41FE
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:39:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34A601C20CE9
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:27:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B75E5B22C7E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42DD16F0C4;
-	Wed, 29 May 2024 23:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB9A1CB31C;
+	Wed, 29 May 2024 23:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hqyr1b1x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hh0ZkaYH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com [209.85.167.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4F016133B;
-	Wed, 29 May 2024 23:27:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD7617B4F2
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 23:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717025264; cv=none; b=MchbBjp1sqBswAY4WyXYtUIcjILiB4C5YUeU8oovrUp8R5soUuOTv7Y6Q5sGoujgopFmloQzvNsZgj/kHeCzSbusDpHOzeU6ibukT3et9U4MNgnnv+DikiuCah2isTl6samwU+IW2g8qjS5zHJOZU3pcCotdXyJS2R92wVTp7QE=
+	t=1717025933; cv=none; b=D16UZMqWIkqtkQoDFnlgvDU4SmNyT0gijvEyI9ihwmcJimJC9/4Mehw3/CDpHnYXVMRcA5U46jVTnPSJdbm7wv2x59HWYGgjQlQhN2QAgOo7JpAOqi5QrUl9zweBlfXQabN1zCBKBWoeTMdZbZB425FjZuADuQWtpPGbloECqqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717025264; c=relaxed/simple;
-	bh=csN+NgG1133VRPaQJb1YaEGLKzjWolj5vnYKOHL+xtw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KsmiRHLCfNBg+hci8YYOXs4ALz3tIWGvLqgXVaiWb6rpM7kSXs7hNWf6F0X2AX07JUu3sD/yM08MhMm3QseeMunx0MEj1HqMyGhc5llbsigrJMBLv+5o/bUWyzPOmqc5c5zkZlhAVH2QKuXypEw86cJ4P8lHUJ3A9ZlwTajoyPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hqyr1b1x; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7CA454AB;
-	Thu, 30 May 2024 01:27:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1717025256;
-	bh=csN+NgG1133VRPaQJb1YaEGLKzjWolj5vnYKOHL+xtw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hqyr1b1xX1WYUSuy5c7idHHEv7bSEZScaXtbErJkLkoO5seJQHrlY+r+9S6FzTEix
-	 2JNROcEhdj5zYPPAX39mqD3pCFW8UgOnHiZvqbbs4TqnizsltiW/Dj1CnTZCDVT/Ge
-	 NPWQR5m4XFHLPJDToXmTxj1LhLklB9jfZ2D+0IXM=
-Date: Thu, 30 May 2024 02:27:28 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	sakari.ailus@iki.fi
-Subject: Re: [PATCH v5 00/16] Add Arm Mali-C55 Image Signal Processor Driver
-Message-ID: <20240529232728.GA31738@pendragon.ideasonboard.com>
-References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1717025933; c=relaxed/simple;
+	bh=8awMhfh+EooDyyG77D0x2IEYHXjNwY2rq0QQPZ/UDew=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=p2uY62rBKgjh6sZXd4vUM99D8L+f27yycdUAueKnhtDHmWni7VJMBKeyg4yH3mUnilMgFUYll4H8YyqCbLjRc/UQF9g3yhls4ADmSpGhQM7TAYvb5rRQzwlzcNkAJnsQRuBL0+vSQ51w/DCYCguVR8Ajuukh/tcv50lqgEZ+RSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hh0ZkaYH; arc=none smtp.client-ip=209.85.167.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f65.google.com with SMTP id 2adb3069b0e04-52b59f77670so352465e87.2
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 16:38:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717025930; x=1717630730; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5I0b3/ox7MmhZc36+ZmYiuYZWHtorfeiNRM4b5O0zwA=;
+        b=hh0ZkaYHFArasu91APiZmh3WDkmRNRUBEyzEPuxHFG6CXuAt0/41d9LUGYUOP53bXN
+         mneE3CP8FycdGPwdODUfdmqTufhJrlj19VtjnqkJAvgKXmM3DUY/CX1rU8wIhlJdj7Dz
+         ATFN0Om9IqyVy6peqVbqyYftkiJlQif/eEq90ihKKSAnAZa6t4ZsH+p7XeZzItJkpnVB
+         tDCjm6R53xuxC3KMFjPkA0wB0JMEUq8opgt5UEr8ADxqxOvdfm1qdn3MShVEEQISUAAL
+         mEDgIWCLY1utliZ9lyZ3o8x7I3SGodCohmCNbw//QWMi/8Td4teW1JAzvLm5P8faq+Qa
+         Pzfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717025930; x=1717630730;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5I0b3/ox7MmhZc36+ZmYiuYZWHtorfeiNRM4b5O0zwA=;
+        b=atgMOGxMATeGmwsSsU/l5gKdgzAg+I91rFZzgb/uLOcTeAMutPwzR8YmrI5vPFSC2b
+         R2vyIDUm32Ki5as9wCfmSPRfd4jU55pXuzPLAO+nVEM9yyHlxh7HVrC6iVE5/1RwvIXi
+         BH35j8iPUehFfxxnzitH9T6VclhIhYflZgO4GUEgXRi4rOoLEdWb7HIORx75jGEdUNoh
+         bv46KoWXJraIrbY2JxpmoO+iq4LUn5gt1xpnv72zB34HymxYvr8uS+IdqBwJ6zX2WbLg
+         ztQlgW1b0Yq4o0lQqUphawCwjRTrWB+5WN/ECPAYau1QROrpzeA1gHPxGs/ElzwQvQCZ
+         Uy2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWcVHoJZCnxCLlH7H+zdO5AL2z1sECZAoy/sUn3baAiVWjQ0B3YTCGwOk/EGOfnNfZ73nvLD/y3Puf88h9BDSn5Yhr/wroCn7633w==
+X-Gm-Message-State: AOJu0YyqpX0Zd1a0HeiKnqPb6gtWmYFZrL417AXSP/UHtx6zg3gNJwOW
+	W67jbp6lqgwWca1lw2cwfDpDKal6R6kbhd0t6bPkE4vDyVF4WFvMRTrZYJyQM/+rv/C3fmLS8UY
+	zPf0bYR2X
+X-Google-Smtp-Source: AGHT+IG/aGdeRrqwFu9J/BRmvb/AuvLWHGvrfxszJ8D5r4j/xoh7p2OfNm/14ILIBgfofmLFprw/mg==
+X-Received: by 2002:a19:6a10:0:b0:523:919d:302e with SMTP id 2adb3069b0e04-52b7d418f97mr527341e87.7.1717025929824;
+        Wed, 29 May 2024 16:38:49 -0700 (PDT)
+Received: from [192.168.0.113] ([2a02:8109:aa0d:be00::8bb3])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579d5e3f995sm4389262a12.64.2024.05.29.16.38.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 May 2024 16:38:49 -0700 (PDT)
+From: Caleb Connolly <caleb.connolly@linaro.org>
+Subject: [PATCH v3 0/2] qcom: initial support for the SHIFTphone 8
+Date: Thu, 30 May 2024 01:38:46 +0200
+Message-Id: <20240530-otter-bringup-v3-0-9847d3ddb2d9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240529152858.183799-1-dan.scally@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIa8V2YC/13MSwrCMBSF4a2UjI3kYZvoyH2IgzRJ2wuSlJsal
+ NK9mxYE7fAc+L+ZJI/gE7lUM0GfIUEMZchDRexgQu8puLKJYOLEaqZonCaPtEUI/XOkUmvbSWO
+ UNTUpzYi+g9fm3e5lD5CmiO+Nz3x9v5LeSZlTRq1mykl3lrxrrg8IBuMxYk9WKoufXLB9LkruF
+ FeOO9M2rf7Ll2X5AHOkgljqAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Alexander Martinz <amartinz@shiftphones.com>, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Caleb Connolly <caleb@postmarketos.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1621;
+ i=caleb.connolly@linaro.org; h=from:subject:message-id;
+ bh=8awMhfh+EooDyyG77D0x2IEYHXjNwY2rq0QQPZ/UDew=;
+ b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBmV7yIpYEad0Z2kxpBicJZt8Z1dZqvqyL/0oqZo
+ 4QM5MEY6umJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZle8iAAKCRAFgzErGV9k
+ tvhhD/90F0f4KDuMIycJOwj3Jadn5jhFHDm0p8w7LmwFSfS8vH1oShWWXvlTD0ZP9Evrus/mxj+
+ 9Abt6QdbFEbfIiCOQZ0RxSMr4gt7Q3lm5FJ8kG9pElp7kvZINTTCgcj4HYoidSTq5XmMxaCQE+b
+ uqV+pA2MJG9KXsffYnwojSngkKFFneeRk/KQ3ZiSKkgxmdKLlwnyfGmn+gEUnZbGNci900rreRw
+ pKnOP6iTLsYzTO3y7AwlbvGWTJS8oAtwRiNajGE/0DQltztiqxubAYAROttdndk7JACgM07bIJU
+ 3AJR7GmogwJgHMTYioc3OEJImBIYEV0l0O9IONMh9T2eVP+L3wJ0OXsb2O5nNyFWPJFaJ5Bi+0p
+ KQSP5x6Hwpid8BYhpxe+agny4semnHQ0Zwjdns1BSbjiWWtrobslGsC01zWXSxGDVJLpePrXN+Q
+ XoKoiH2Og/lS7tIYHAz6VHvzn9ODmCD1qPSu8hQh6VoCnH8yIEGrImfwbQwjWfdgl9RuFtnGh53
+ 8i1+SlL+clbhnpkdbYkBIVB4Ll/PtZvxDAfjpzxAMfMRJmA1R1oYh1jjO1G3A8x193V4zycrn1L
+ jCBamVloTMn1IR1PABvbqoYeCQNCpuPNZu1CxSewwCmi9kxDZ3P2DMPvfjCyRuJkQAqF2cQQS6U
+ wcTuYdtk7eY6YXg==
+X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
+ fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 
-Hi Dan,
+The SHIFTphone 8 is an upcoming QCM6490 smartphone, it has the following
+features:
 
-Thank you for the patches.
+* 12GB of RAM, 512GB UFS storage
+* 1080p display.
+* Hardware kill switches for cameras and microphones
+* UART access via type-c SBU pins (enabled by an internal switch)
 
-On Wed, May 29, 2024 at 04:28:42PM +0100, Daniel Scally wrote:
-> Hello all
-> 
-> This patchset introduces a driver for Arm's Mali-C55 Image Signal Processor.
-> The driver uses the V4L2 / media controller API and implements both of the ISP's
-> capture pipelines allowing a range of output formats plus downscaling and
-> cropping. The capture pipelines are named "Full resolution" and "Downscale" and
-> so abbreviated FR and DS throughout the driver.
-> 
-> The driver exposes 4 V4L2 subdevices:
-> 
-> - mali-c55 isp: input data formatting
-> - mali-c55 tpg: test pattern generator (modeled as a camera sensor entity)
-> - mali-c55 resizer fr: downscale / crop and format setting for the FR pipe
-> - mali-c55 resizer ds: downscale / crop and format setting for the DS pipe
-> 
-> Along with 4 V4L2 Video devices:
-> 
-> - mali-c55 fr: Capture device for the full resolution pipe
-> - mali-c55 ds: Capture device for the downscale pipe
-> - mali-c55 3a stats: Capture device for statistics to support 3A algorithms
-> - mali-c55 3a params: Output device for parameter buffers to configure the ISP
-> 
-> Support is implemented in the parameters video device code for many of the ISP'S
-> hardware blocks, but not yet all of them. The buffer format is (as far as I am
-> aware anyway) a novel design that we intend to be extensible so that support for
-> the C55's remaining hardware blocks can be added later.
-> 
-> Patches 1, 4, 5, 6 and 7 have already had 4 versions on the mailing list...I
-> decided to post the additional work on the driver as extra patches rather than
-> merge them all into the existing series as it's already a lot of code to review
-> and I hoped that that might make it a little easier...if I'm wrong and that's
-> not liked I can just squash them into a much smaller series.
+Initial support includes:
 
-Could you please include the v4l2-compliance report in v6 ? Make sure to
-use the very latest version of v4l-utils, compiled from the master
-branch.
+* Framebuffer display
+* UFS and sdcard storage
+* Battery monitoring and USB role switching via pmic glink
+* Bluetooth
+* Thermals
 
-> Daniel Scally (15):
->   media: uapi: Add MEDIA_BUS_FMT_RGB202020_1X60 format code
->   media: uapi: Add 20-bit bayer formats
->   media: v4l2-common: Add RAW16 format info
->   dt-bindings: media: Add bindings for ARM mali-c55
->   media: mali-c55: Add Mali-C55 ISP driver
->   media: Documentation: Add Mali-C55 ISP Documentation
->   MAINTAINERS: Add entry for mali-c55 driver
->   media: Add MALI_C55_3A_STATS meta format
->   media: uapi: Add 3a stats buffer for mali-c55
->   media: platform: Add mali-c55 3a stats devnode
->   media: platform: Fill stats buffer on ISP_START
->   Documentation: mali-c55: Add Statistics documentation
->   media: uapi: Add parameters structs to mali-c55-config.h
->   media: platform: Add mali-c55 parameters video node
->   Documentation: mali-c55: Document the mali-c55 parameter setting
-> 
-> Jacopo Mondi (1):
->   media: mali-c55: Add image formats for Mali-C55 parameters buffer
-> 
->  .../admin-guide/media/mali-c55-graph.dot      |  19 +
->  Documentation/admin-guide/media/mali-c55.rst  | 406 ++++++++
->  .../admin-guide/media/v4l-drivers.rst         |   1 +
->  .../bindings/media/arm,mali-c55.yaml          |  66 ++
->  .../userspace-api/media/v4l/meta-formats.rst  |   1 +
->  .../media/v4l/metafmt-arm-mali-c55.rst        |  87 ++
->  .../media/v4l/subdev-formats.rst              | 268 +++++
->  MAINTAINERS                                   |  10 +
->  drivers/media/platform/Kconfig                |   1 +
->  drivers/media/platform/Makefile               |   1 +
->  drivers/media/platform/arm/Kconfig            |   5 +
->  drivers/media/platform/arm/Makefile           |   2 +
->  drivers/media/platform/arm/mali-c55/Kconfig   |  18 +
->  drivers/media/platform/arm/mali-c55/Makefile  |  11 +
->  .../platform/arm/mali-c55/mali-c55-capture.c  | 951 ++++++++++++++++++
->  .../platform/arm/mali-c55/mali-c55-common.h   | 312 ++++++
->  .../platform/arm/mali-c55/mali-c55-core.c     | 825 +++++++++++++++
->  .../platform/arm/mali-c55/mali-c55-isp.c      | 626 ++++++++++++
->  .../platform/arm/mali-c55/mali-c55-params.c   | 615 +++++++++++
->  .../arm/mali-c55/mali-c55-registers.h         | 365 +++++++
->  .../arm/mali-c55/mali-c55-resizer-coefs.h     | 382 +++++++
->  .../platform/arm/mali-c55/mali-c55-resizer.c  | 779 ++++++++++++++
->  .../platform/arm/mali-c55/mali-c55-stats.c    | 350 +++++++
->  .../platform/arm/mali-c55/mali-c55-tpg.c      | 402 ++++++++
->  drivers/media/v4l2-core/v4l2-common.c         |   4 +
->  drivers/media/v4l2-core/v4l2-ioctl.c          |   2 +
->  include/uapi/linux/media-bus-format.h         |   9 +-
->  .../uapi/linux/media/arm/mali-c55-config.h    | 851 ++++++++++++++++
->  include/uapi/linux/videodev2.h                |   3 +
->  29 files changed, 7370 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/admin-guide/media/mali-c55-graph.dot
->  create mode 100644 Documentation/admin-guide/media/mali-c55.rst
->  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
->  create mode 100644 Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
->  create mode 100644 drivers/media/platform/arm/Kconfig
->  create mode 100644 drivers/media/platform/arm/Makefile
->  create mode 100644 drivers/media/platform/arm/mali-c55/Kconfig
->  create mode 100644 drivers/media/platform/arm/mali-c55/Makefile
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-capture.c
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-common.h
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-core.c
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-isp.c
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-params.c
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-registers.h
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer-coefs.h
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-stats.c
->  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-tpg.c
->  create mode 100644 include/uapi/linux/media/arm/mali-c55-config.h
+Wifi works but requires some commits to be reverted to prevent a
+firmware crash.
 
--- 
-Regards,
+The serial port on the device can be accessed via the usb-cereal
+adapter, it must first be enabled by flipping the switch under the
+display. Additional info can be found on the postmarketOS wiki page.
 
-Laurent Pinchart
+https://wiki.postmarketos.org/wiki/SHIFT_SHIFTphone_8_(shift-otter)
+
+---
+Changes in v3:
+- Enable wifi
+- Fix protected-clocks indentation in gcc
+- Link to v2: https://lore.kernel.org/r/20240520-otter-bringup-v2-0-d717d1dab6b8@linaro.org
+
+Changes in v2:
+- Fix authorship
+- Address Luca's feedback
+- Link to v1: https://lore.kernel.org/r/20240508-otter-bringup-v1-0-c807d3d931f6@linaro.org
+
+---
+Caleb Connolly (2):
+      dt-bindings: arm: qcom: Add QCM6490 SHIFTphone 8
+      arm64: dts: qcom: add QCM6490 SHIFTphone 8
+
+ Documentation/devicetree/bindings/arm/qcom.yaml  |   1 +
+ arch/arm64/boot/dts/qcom/Makefile                |   1 +
+ arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 926 +++++++++++++++++++++++
+ 3 files changed, 928 insertions(+)
+---
+change-id: 20240507-otter-bringup-388cf3aa7ca5
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+
+// Caleb (they/them)
+
 
