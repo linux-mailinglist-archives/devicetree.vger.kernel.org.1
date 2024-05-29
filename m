@@ -1,183 +1,197 @@
-Return-Path: <devicetree+bounces-70204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65C1A8D2D20
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:23:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BAF8D2D52
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14A312857D0
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:23:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F9A628551E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:34:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C223115EFB9;
-	Wed, 29 May 2024 06:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E82615A878;
+	Wed, 29 May 2024 06:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L54PR1DW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tVpSvj/O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154022F2A;
-	Wed, 29 May 2024 06:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530FE46453;
+	Wed, 29 May 2024 06:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716963813; cv=none; b=dotISFpVBsU5B521/vont6GqOdvmQEWbdo32YiSSUPxuHue3kqT2/wSnyZH4F82AqE6YaSa1gVV8929hl2ZpUuBVi9TV8CGZMN/Z8XFh+wIwdQXLvx8rHaSUW4cONCkb7h4muur40dOFje5Sn8763+yrVv4Pts9AnCVymPOLtEE=
+	t=1716964437; cv=none; b=VLQorfdTKSOl2M2MWeaEFHqiERRYoEb9YkrmcCopfcZevSgbtwxsjfQYm+bmXlDUHWjpWZiMDqcwml3Z72L5jhsDkex/v3LPsli6fIP/2rVwG7HPW1VvIQJbtTCwSXxa4NfTSBtYMNsSFVfWp4YaIm9zlMavtB/OoZ/CaeTAptM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716963813; c=relaxed/simple;
-	bh=GR+LKrFe+UUZWbY8bdBH7a434nQd0Kv7qhsQXr9RVgU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Djj9qPuzO4CTzED+FhPKH628JBayJ9f5UTY8vKR8LBS8h+9crulfJ4Vw65rRydfDbZaMzG3Gm46C34hQiEnUItv23xvlrJzFsvXL2f3lD5taqqPF165SMSaLLpIZfeMqvwXY0dXZ1J58SGwzl136axibKFq2JGxK/WUxfr+W8dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L54PR1DW; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a6302bdb54aso229798266b.0;
-        Tue, 28 May 2024 23:23:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716963810; x=1717568610; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1tLcHWmtFvs9Ytz0eoynxFRfwFldga+uWrm7x0FZZsE=;
-        b=L54PR1DWEo8QAXFGRrliNpj8xE2ViPZcDlG5K4og2LBaFrSceetUovJ+ewBJOZ8bs0
-         +Gg5lfElbYfixVkCsP3FOd4xR5K/89F4pe5HcRi1Jn+osGoIQiJNg3nm5WjvS0DukMog
-         8cpIwNYv27kvQl+knWkR7cWFYYMjlZGwKuehVu4/slK1E66JGcxbMbC3irkydagw+i5H
-         MWEjy/rRr+a0AakWdgNOIYjDtnLmvTwBmVopNkCtswp1I7XR22I35BEZ0jVrx1LhHPpp
-         vZKYzKd6qnPBXp+aEqbhZjXjV5H7zB4dclxXjwVlcofmzhNwzoYTG5jYzCOpgBKajUGz
-         XQ/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716963810; x=1717568610;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1tLcHWmtFvs9Ytz0eoynxFRfwFldga+uWrm7x0FZZsE=;
-        b=b/gFVqILkGPxKHK4AMX9Z6jnjWX4MwosbSAqOtXEaXZ9aeUZxEeEi+VmGntmaeiWXK
-         IqDax3CqWr4y7CETIudTHH0iXGKGkRSVjQiqUbUhXxGjerpNtLpENwpXnsjQ/gCze7I8
-         5PNsVtCoiJRBQtmhi1hhV3wgYo9MWz7w5zSlHHqYlalRujiYFzj+OqQmZ4HHdEUJJISA
-         AbXL4czWHY9MhIV3P6oYCbuhf7ehA2jxRBp9ovqRN/51uAPCCoB7++TwH05wa8/hytIX
-         o1aLFRGOmqA6DR29bKpO3GsgpviSlmJPGweW2GLYfRNzYlBj0l0k4+/cIUanicZeJccW
-         JGzg==
-X-Forwarded-Encrypted: i=1; AJvYcCV8E4YWEhQojFXyH1XTXJnhOmrbkDp82lTWwwHejYAXThtwNf5ozlRBOp6P63sqk5IXLSjrkDoXgwXWe/mVNjyCqdyyglRGrPhDU/mEE/SxDqNeAw3tz230OiCsAC8MWmC9U0+1T619wDkp8jN7/eAk1Ur5RkUpiIgHJ7svsxfzWKs=
-X-Gm-Message-State: AOJu0YxJ/vUWlQ06nxIBkeyaS8Xm6PqZ7gB1DizWoRHcfyBrqxqq0qCE
-	nMgWRc8owTZ2SXLRvQWdvhjxeg0bWPDrPZyksw3aXkiM2/yhIxcVxyfQ1COai63DxQge+Vj18Df
-	gr1MJMcMgg1RJNo/qd63mckaSjE/trWeL
-X-Google-Smtp-Source: AGHT+IG9tZBZb32D7wJefFAQaqxEoTWHfC+q+AoH9WPW4aE941T1sGRfv0CXz76hM9Lhi/j3kfATv7dOpdHufQucW2E=
-X-Received: by 2002:a17:906:314e:b0:a59:c319:f1dc with SMTP id
- a640c23a62f3a-a62642daa92mr970246166b.4.1716963810113; Tue, 28 May 2024
- 23:23:30 -0700 (PDT)
+	s=arc-20240116; t=1716964437; c=relaxed/simple;
+	bh=fxXSALfm/c/HrxXm8QMdN0iSEYCmwD7QCKfdmRnr0XQ=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=faWqiJMtfVSTMoMFzjcMOWP/UMqNatacGRWEPGx7/S4sHu+TVgBwtgxuD4FlA9jptE9wVvY5eCHugmQplHXGUEUJbxTmwb/tVYkFluAFV1JykWxKEirkvL/KhAO4cO9fusSaZz+eUedzYFotSYZdvUrL4ToFfrQRREN6zMzCx7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tVpSvj/O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C598EC2BD10;
+	Wed, 29 May 2024 06:33:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716964436;
+	bh=fxXSALfm/c/HrxXm8QMdN0iSEYCmwD7QCKfdmRnr0XQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tVpSvj/OVQ62qQPEyMQsW3zn89J5ul/51rrXGCGOJHaEr/csM+IwYCN5+qhCh+ThC
+	 DvtCSVC03Xz1TK4K8ExhZ3hXQQ5G2I13SeNE8ZYDBzQV/W+EL/zfsISpOIVk77bDqo
+	 Ak/WIGBHNqxLxkah0IDOtbVUVV9uR/vmnR4RbcKWWlwXGbHXOWMUhwqlbKigHNAfVd
+	 U5jMbbmQeKA5z0a2uIvD6IGD+upkjilFHUWGxyvIdKRw1hpmnouhmZlwh1vYhBLXH8
+	 BpczrsRIz2rFv1Kj8W0iqu8p0RPjNkY0USjjIG9PJHzwzwc1vE+ahJCQ4bcn2Frjjt
+	 CF8bgdn/dHGTg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sCCsk-00GVxc-Hn;
+	Wed, 29 May 2024 07:33:54 +0100
+Date: Wed, 29 May 2024 07:33:54 +0100
+Message-ID: <86bk4pm8j1.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	Saravana Kannan <saravanak@google.com>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] of: property: Fix fw_devlink handling of interrupt-map
+In-Reply-To: <CAK9=C2XNPJP0X=pg5TSrQbsuouDD3jP-gy2Sm4BXNJp0ZiWp+A@mail.gmail.com>
+References: <20240528164132.2451685-1-maz@kernel.org>
+	<CAK9=C2XNPJP0X=pg5TSrQbsuouDD3jP-gy2Sm4BXNJp0ZiWp+A@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240528190315.3865-1-laurent.pinchart@ideasonboard.com>
- <20240528190315.3865-5-laurent.pinchart@ideasonboard.com> <ZlYzf6mW8RF9w_R7@surfacebook.localdomain>
- <20240528202705.GD8500@pendragon.ideasonboard.com>
-In-Reply-To: <20240528202705.GD8500@pendragon.ideasonboard.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 29 May 2024 09:22:54 +0300
-Message-ID: <CAHp75VfpNsSnyXBb6Oy2-qCYXPR9ROimWhC7yTosrKf4YXHciQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] pwm: adp5585: Add Analog Devices ADP5585 support
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	Alexandru Ardelean <alexandru.ardelean@analog.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Clark Wang <xiaoning.wang@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, saravanak@google.com, robh@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Tue, May 28, 2024 at 11:27=E2=80=AFPM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Tue, May 28, 2024 at 10:41:51PM +0300, Andy Shevchenko wrote:
-> > Tue, May 28, 2024 at 10:03:14PM +0300, Laurent Pinchart kirjoitti:
-
-...
-
-> > > +#define ADP5585_PWM_OSC_FREQ_HZ            1000000U
+On Wed, 29 May 2024 06:15:52 +0100,
+Anup Patel <apatel@ventanamicro.com> wrote:
+>=20
+> On Tue, May 28, 2024 at 10:11=E2=80=AFPM Marc Zyngier <maz@kernel.org> wr=
+ote:
 > >
-> > (1 * HZ_PER_MHZ) ?
->
-> If we had an MHZ macro I would use 1 * MHZ, but I don't think HZ_PER_MHZ
-> improves readability here.
-
-We have MEGA. HZ is already the suffix in this definition.
-
-> > > +#define ADP5585_PWM_MIN_PERIOD_NS  (2ULL * NSEC_PER_SEC / ADP5585_PW=
-M_OSC_FREQ_HZ)
-> > > +#define ADP5585_PWM_MAX_PERIOD_NS  (2ULL * 0xffff * NSEC_PER_SEC / A=
-DP5585_PWM_OSC_FREQ_HZ)
+> > Commit d976c6f4b32c ("of: property: Add fw_devlink support for
+> > interrupt-map property") tried to do what it says on the tin,
+> > but failed on a couple of points:
 > >
-> > Wouldn't be better to use GENMASK() or (BIT(x) - 1) notation to show th=
-at
-> > the limit is due to HW register bits in use?
->
-> I think that would decrease readability to be honest.
-
-I think it improves the robustness of the code. I always fail to count
-3,4,5,6 f:s in those masks, using BIT()/GENMASK() notation makes it
-better.
-
-...
-
-> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_OFFT_LOW,
-> > > +                      off & 0xff);
-> > > +   if (ret)
-> > > +           return ret;
-> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_OFFT_HIGH,
-> > > +                      (off >> 8) & 0xff);
-> > > +   if (ret)
-> > > +           return ret;
-> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_ONT_LOW,
-> > > +                      on & 0xff);
-> > > +   if (ret)
-> > > +           return ret;
-> > > +   ret =3D regmap_write(regmap, ADP5585_PWM_ONT_HIGH,
-> > > +                      (on >> 8) & 0xff);
-> > > +   if (ret)
-> > > +           return ret;
+> > - it confuses bytes and cells. Not a huge deal, except when it
+> >   comes to pointer arithmetic
 > >
-> > Can be proper __le16/__be16 be used in conjunction with regmap bulk API=
-?
->
-> What I would really like is regmap growing an API similar to
-> include/media/v4l2-cci.h. Any volunteer ? :-)
-
-So, the answer here is yes?
-
-...
-
-> > > +   regmap_read(regmap, ADP5585_PWM_OFFT_LOW, &off);
-> > > +   regmap_read(regmap, ADP5585_PWM_OFFT_HIGH, &val);
-> > > +   off |=3D val << 8;
-> > > +
-> > > +   regmap_read(regmap, ADP5585_PWM_ONT_LOW, &on);
-> > > +   regmap_read(regmap, ADP5585_PWM_ONT_HIGH, &val);
-> > > +   on |=3D val << 8;
+> > - it doesn't really handle anything but interrupt-maps that have
+> >   their parent #address-cells set to 0
 > >
-> > As per above, can it be converted to use proper __le16/__be16 type and
-> > regmap bulk API?
->
-> As there are only 2 registers, I think that's a bit overkill really.
-
-I do not think so. It increases readability (less LoCs) and improves a
-lot of understanding of the hardware layout from reading the code.
-Please, consider using it.
-
-...
-
-> > > +   device_set_of_node_from_dev(dev, dev->parent);
+> > The combinations of the two leads to some serious fun on my M1
+> > box, with plenty of WARN-ON() firing all over the shop, and
+> > amusing values being generated for interrupt specifiers.
 > >
-> > Why this one? What's wrong with device_set_node()?
->
-> See my reply to 3/4.
+> > Address both issues so that I can boot my machines again.
+> >
+> > Fixes: d976c6f4b32c ("of: property: Add fw_devlink support for interrup=
+t-map property")
+> > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > Cc: Anup Patel <apatel@ventanamicro.com>
+> > Cc: Saravana Kannan <saravanak@google.com>
+> > Cc: Rob Herring (Arm) <robh@kernel.org>
+>=20
+> Thanks for the fix patch but unfortunately it breaks for RISC-V.
+>=20
+> > ---
+> >  drivers/of/property.c | 16 ++++++++++++++--
+> >  1 file changed, 14 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 1c83e68f805b..9adebc63bea9 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1322,7 +1322,13 @@ static struct device_node *parse_interrupt_map(s=
+truct device_node *np,
+> >         addrcells =3D of_bus_n_addr_cells(np);
+> >
+> >         imap =3D of_get_property(np, "interrupt-map", &imaplen);
+> > -       if (!imap || imaplen <=3D (addrcells + intcells))
+> > +       imaplen /=3D sizeof(*imap);
+> > +
+> > +       /*
+> > +        * Check that we have enough runway for the child unit interrupt
+> > +        * specifier and a phandle. That's the bare minimum we can expe=
+ct.
+> > +        */
+> > +       if (!imap || imaplen <=3D (addrcells + intcells + 1))
+> >                 return NULL;
+> >         imap_end =3D imap + imaplen;
+> >
+> > @@ -1346,8 +1352,14 @@ static struct device_node *parse_interrupt_map(s=
+truct device_node *np,
+> >                 if (!index)
+> >                         return sup_args.np;
+> >
+> > -               of_node_put(sup_args.np);
+> > +               /*
+> > +                * Account for the full parent unit interrupt specifier
+> > +                * (address cells, interrupt cells, and phandle).
+> > +                */
+> > +               imap +=3D of_bus_n_addr_cells(sup_args.np);
+>=20
+> This breaks for RISC-V because we don't have "#address-cells"
+> property in interrupt controller DT node and of_bus_n_addr_cells()
+> retrieves "#address-cells" from the parent of interrupt controller.
 
-See additional questions there as well.
+That's a feature, not a bug. #address-cells, AFAICT, applies to all
+child nodes until you set it otherwise.
+
+>=20
+> The of_irq_parse_raw() looks for "#address-cells" property
+> in the interrupt controller DT node only so we should do a
+> similar thing here as well.
+
+This looks more like a of_irq_parse_raw() bug than anything else.
+
+>=20
+> The below change on top of this patch worked for me.
+>=20
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 9adebc63bea9..f54da2989ea9 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1308,7 +1308,7 @@ static struct device_node
+> *parse_interrupt_map(struct device_node *np,
+>  {
+>      const __be32 *imap, *imap_end, *addr;
+>      struct of_phandle_args sup_args;
+> -    u32 addrcells, intcells;
+> +    u32 addrcells, intcells, paddrcells;
+>      int i, imaplen;
+>=20
+>      if (!IS_ENABLED(CONFIG_OF_IRQ))
+> @@ -1356,7 +1356,8 @@ static struct device_node
+> *parse_interrupt_map(struct device_node *np,
+>           * Account for the full parent unit interrupt specifier
+>           * (address cells, interrupt cells, and phandle).
+>           */
+> -        imap +=3D of_bus_n_addr_cells(sup_args.np);
+> +        if (!of_property_read_u32(sup_args.np, "#address-cells", &paddrc=
+ells))
+> +            imap +=3D paddrcells;
+
+This looks wrong to me for the reason I outlined above: you need to
+look for a valid #address-cells all along the parent chain, not just
+in the interrupt-controller node.
+
+	M.
 
 --=20
-With Best Regards,
-Andy Shevchenko
+Without deviation from the norm, progress is not possible.
 
