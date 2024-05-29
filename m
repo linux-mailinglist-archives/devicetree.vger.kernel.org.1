@@ -1,125 +1,237 @@
-Return-Path: <devicetree+bounces-70588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37EA48D3B7E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 17:55:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504A58D3BA5
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:02:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA7781F27548
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:55:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1AC0288BAA
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B12D181CFC;
-	Wed, 29 May 2024 15:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99A118412E;
+	Wed, 29 May 2024 16:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WmXp/s9v"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="yS3TiWC8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6650181BB3;
-	Wed, 29 May 2024 15:55:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33331836EF;
+	Wed, 29 May 2024 16:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716998116; cv=none; b=ij5u8Q4Wgtoze/z0M1p1LDZ7aeXVT9U7tTiEdpDPnT0fGfApBg1/0tfQZBilI8lt5j6H0Avx766RH90XPeDmF97v1Aar/pXElnnAw1pUc9jW8QhA+J0gyTg04jUoN8mJ2eKEbiEEo17GIIG1cXAFwChK5NQoSBBaPheIEuUgLWE=
+	t=1716998496; cv=none; b=TVO0UwhFeh4juFniLZTUi6+MPKFLDQUHdlI3j4RFiapXB2waFsqys25HIyS0koCPVMYFv7Kyhk3h1gmUdgLgoFodrkddtSfOT0FK9DLCyogkzWZiofVf2FLk/7swsEkrncEavguWaKigbw7WyUV4VrxUGv2X8aqK9OfYfl1plVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716998116; c=relaxed/simple;
-	bh=cvCI74XULFLsUOYSrpSQ5aAd1HGoaFATJaZrDy1RBK8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UBOavMln/ZRfgK9DmWPjVcvS5YZeWcy52UoQZitKviT2i++HU3NflKidbK/na3yI5vVUrL+cWtRuxEYal6MZE3WYe7Q7tOxiTyZoo7u8L9/VZPXvcz1znHG48B8o5FhvkmAv/LR1pjCTSgiJ8a0/WmS1zQI8JBFmWkjXSTIJoW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WmXp/s9v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B30FC113CC;
-	Wed, 29 May 2024 15:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716998116;
-	bh=cvCI74XULFLsUOYSrpSQ5aAd1HGoaFATJaZrDy1RBK8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WmXp/s9vHFC0BXI3VHUObfGwuQj1zxrYLOB2NH1CaxvAcKrnnmPbBpHqtmBaUIvmO
-	 7OrKLE0HbBrxG9SObqzJVZTEUPG/49lSTHcWRAx6eQMz/CWbsqWhjE0DyfIqS9e1Z2
-	 gKhlZzo3158eL4rQlpNGpBVvfOeL+DRbOCbaCcs3hiRNd8jpj8MIJdeAwj/T+dja+8
-	 M0sHpT3wWbHEhzVpJzyvzpKPbWrzN5C3J+pA56Dew8ffLEk9zjHJLEqsVeBZWspcol
-	 rpW0Q5iOxnzsbvj6xFLHkjQ4h0e3px1WIoyVOf6b1ntkimc+DWUImO5SMuZXkkFxKI
-	 jnc9o0VQW92WA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sCLdz-000000004DT-1fTP;
-	Wed, 29 May 2024 17:55:15 +0200
-Date: Wed, 29 May 2024 17:55:15 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Das Srinagesh <quic_gurus@quicinc.com>,
-	Satya Priya <quic_c_skakit@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
-Message-ID: <ZldP4zODYZzCoHW3@hovoldconsulting.com>
-References: <20240506150830.23709-1-johan+linaro@kernel.org>
- <20240506150830.23709-13-johan+linaro@kernel.org>
- <CAE-0n52KTZ8G2VuvrDgJ9kAE61YULXY4u6nPP3CYWpg1CBjbXA@mail.gmail.com>
- <ZjyTEVLp8VAhQfT5@hovoldconsulting.com>
+	s=arc-20240116; t=1716998496; c=relaxed/simple;
+	bh=eZ5GVaGIQa005WoB8AKmDURWmwScw3watWUx4myIdZA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qZVlh5gIsNH/+Pft0q0zEalb7/LL73z7tqKjnKKow86xaIG+/PC7uMGBuU2gIFQH4o0DV9mgwEHGVMeUnctSLHOcS6pMTOFlaSjlURvuEKqUvPCH/0qmk9C9gW9D2y4Hm5CnyfIAkUYx4IvkL6bbhGIAcewsRxN41RerpXUy8Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=yS3TiWC8; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TEUbn1029547;
+	Wed, 29 May 2024 12:01:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=DlQ54r1DZlxmCkjgOJYKS3DxLfX
+	8GXbbjNWGFcTHLTQ=; b=yS3TiWC8Jvk5aTSySeyBgvbJzYtj1r8hBOAJp5O28yo
+	LWBoCTo1CQ1OK2X9yTQ53GppPVoIUdR5t668WKs3wVSghBGJJRRGSei9wRxkuFtm
+	k1B2ud94Qg69DbhPVllrdw5xzIOuHyLQAEu7PLqFU6acmbvze45FDhlppfs7Qp5d
+	15KxL9KXJb25ijCsjfrGkQcZPbiQxAYyO/V/844uKTgyG6HPBlCnaL5LIGR5DScL
+	ehuEr9G9zp8seO4RX8Id0X2+zzv6JzTLcBS/83IFypW1Xbaq+nmwfxOErqzZENWB
+	foeSXZZnhf4cPKQ0DNWJ2yaTNpdSNLH5XegQow7K+hw==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3ye66jgc2c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 12:01:19 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 44TG1ILV028467
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 29 May 2024 12:01:18 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 29 May
+ 2024 12:01:17 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 29 May 2024 12:01:17 -0400
+Received: from HYB-hYN1yfF7zRm.ad.analog.com ([10.32.223.167])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 44TG14tY011783;
+	Wed, 29 May 2024 12:01:06 -0400
+From: ranechita <ramona.nechita@analog.com>
+To: <linux-iio@vger.kernel.org>
+CC: ranechita <ramona.nechita@analog.com>,
+        Jonathan Cameron
+	<jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2] dt-bindings: iio: adc: add a7779 doc
+Date: Wed, 29 May 2024 19:00:52 +0300
+Message-ID: <20240529160057.6327-1-ramona.nechita@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZjyTEVLp8VAhQfT5@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: SWpqXr40D1YI1E6Xyg87ToKtnuyz5EVL
+X-Proofpoint-ORIG-GUID: SWpqXr40D1YI1E6Xyg87ToKtnuyz5EVL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-29_12,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 mlxlogscore=999 mlxscore=0 clxscore=1015
+ bulkscore=0 adultscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405290110
 
-On Thu, May 09, 2024 at 11:10:41AM +0200, Johan Hovold wrote:
-> On Wed, May 08, 2024 at 10:37:50PM +0000, Stephen Boyd wrote:
-> > Quoting Johan Hovold (2024-05-06 08:08:29)
+Add dt bindings for adc ad7779.
 
-> > > +struct pm8008_regulator {
-> > > +       struct regmap           *regmap;
-> > > +       struct regulator_desc   rdesc;
-> > > +       u16                     base;
-> > > +       int                     step_rate;
-> > 
-> > Is struct regulator_desc::vsel_step usable for this? If not, can it be
-> > unsigned?
-> 
-> Not sure, I'll take a look when respinning.
+Signed-off-by: ranechita <ramona.nechita@analog.com>
+---
+ .../ABI/testing/sysfs-bus-iio-adc-ad777x      | 23 +++++
+ .../bindings/iio/adc/adi,ad7779.yaml          | 89 +++++++++++++++++++
+ 2 files changed, 112 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad777x
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
 
-No, vsel_step is unrelated to this, which is really a slew rate.
+diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad777x b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad777x
+new file mode 100644
+index 000000000000..0a57fda598e6
+--- /dev/null
++++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad777x
+@@ -0,0 +1,23 @@
++What:		/sys/bus/iio/devices/iio:deviceX/filter_type_available
++KernelVersion:  6.1
++Contact:	linux-iio@vger.kernel.org
++Description:
++		Reading returns a list with the possible filter modes. Only supported by
++		AD7771.
++
++		  * "sinc3"	- The digital sinc3 filter implements three main notches, one at
++				the maximum ODR (128 kHz or 32 kHz, depending on the
++				power mode) and another two at the ODR frequency selected to
++				stop noise aliasing into the pass band.
++
++		  * "sinc5"	- The sinc5 filter implements five notches, one at
++				the maximum ODR (128 kHz or 32 kHz, depending on the
++				power mode) and another four at the ODR frequency
++				selected to stop noise aliasing into the pass band.
++
++What:		/sys/bus/iio/devices/iio:deviceX/filter_type
++KernelVersion:  6.1
++Contact:	linux-iio@vger.kernel.org
++Description:
++		Set the filter mode of the differential channel. The current sampling_frequency
++		is set according to the filter range. Only supported by AD7771.
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
+new file mode 100644
+index 000000000000..190070ed80b5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7779.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7779.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD777X family 8-Channel, 24-Bit, Simultaneous Sampling ADCs
++
++maintainers:
++  - Ramona Nechita <ramona.nechita@analog.com>
++
++description: |
++  The AD777X family consist of 8-channel, simultaneous sampling analog-to-
++  digital converter (ADC). Eight full Σ-Δ ADCs are on-chip. The
++  AD7771 provides an ultralow input current to allow direct sensor
++  connection. Each input channel has a programmable gain stage
++  allowing gains of 1, 2, 4, and 8 to map lower amplitude sensor
++  outputs into the full-scale ADC input range, maximizing the
++  dynamic range of the signal chain.
++
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7770.pdf
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7771.pdf
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7779.pdf
++
++$ref: /schemas/spi/spi-peripheral-props.yaml#
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7770
++      - adi,ad7771
++      - adi,ad7779
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  spi-max-frequency: true
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  vref-supply:
++    description:
++      ADC reference voltage supply
++
++  start-gpios:
++    description:
++      Pin that controls start synchronization pulse.
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++          compatible = "adi,ad7779";
++          reg = <0>;
++          spi-max-frequency = <20000000>;
++          vref-supply = <&vref>;
++          start-gpios = <&gpio0 87 GPIO_ACTIVE_LOW>;
++          reset-gpios = <&gpio0 93 GPIO_ACTIVE_LOW>;
++          clocks = <&adc_clk>;
++          clock-names = "adc-clk";
++        };
++    };
++...
+-- 
+2.43.0
 
-I've reworked the driver and dropped this field in favour of
-regulator_desc::ramp_delay.
-
-> > > +};
- 
-> > > +static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
-> > > +{
-> > > +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
-> > > +       __le16 mV;
-> > > +       int uV;
-
-> > > +
-> > > +       regmap_bulk_read(pm8008_reg->regmap,
-> > > +                       LDO_VSET_LB_REG(pm8008_reg->base), (void *)&mV, 2);
-> > 
-> > Is struct regulator_desc::vsel_reg usable for this?
-> 
-> Will look into that.
-
-I don't think vsel_reg can be used here as the voltage is set using two
-registers (LSB and MSB).
-  
-> > > +
-> > > +       uV = le16_to_cpu(mV) * 1000;
-> > > +       return (uV - pm8008_reg->rdesc.min_uV) / pm8008_reg->rdesc.uV_step;
-> > > +}
-
-Johan
 
