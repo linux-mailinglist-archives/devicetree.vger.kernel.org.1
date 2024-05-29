@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-70217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE1D8D2E35
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:29:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 549348D2E3B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:30:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81F8DB26AD5
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:29:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F6252868EF
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11EC167283;
-	Wed, 29 May 2024 07:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CEA167289;
+	Wed, 29 May 2024 07:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZKbZikdO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PW5bATMa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48B5167275;
-	Wed, 29 May 2024 07:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCC35167264;
+	Wed, 29 May 2024 07:29:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716967739; cv=none; b=QkjWrSRmcjjgFl9HIy/6Rq3DZ0uh9gaETln9d3GJSm8DWRhiU9AAz/z3ZkYAeZUobcVItRIZSMB/SCP/H1/QYlO57EdszAx8S2TdFIGJZPZ/KvrBVL+PF4KGGwPfhIflrN3lnJatjU0QuBgms1ZLQJo3CoYYi3+kT9ppoumTwbo=
+	t=1716967799; cv=none; b=MU8ms8rJM7alRzzGm1Qc8kFUbnZom/yS529DvsHC4piIATrruW88RC7vAxY9rjZQaCotC9DSV8VYyFv2IxmN9OZhNbexX3N/ixS+u1TmE1OLY4eJhVjU0iSStCWLLV/whoOzAnrWejyRdHzhaoPZZTL3DxjHmex61h6rvlBogtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716967739; c=relaxed/simple;
-	bh=EoXu23rHRqFy4FBXCw2C4NbFeyQXb8OE3dkXMkUZuXY=;
+	s=arc-20240116; t=1716967799; c=relaxed/simple;
+	bh=CplIVoFx4HHmnWx+apjTEl9q7VdG/g4VH4E3n+XU4ek=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c3nzg89QeX9xEd5hMpADZKFGe4FFBLg0MIpArii083JKsSLpSMaT+65NEmuvsontGRNBszI8EtiqNpGbL+D3N35OSV9jgpJsbGmcggEdsNhyGUvAn85gYvnCwmVnpxN67XCD/0AuB5g1nqvk5q/NZzZ0XenM0akLujNfljuQYAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZKbZikdO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1AD5C2BD10;
-	Wed, 29 May 2024 07:28:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SFvxza8Hf4htnTp7ntxzR5vPCeQP0laWQoHKEa7PTeDwwUoEun9cZAkaOPu5k8OpGixnoc7nFvz3iM3Cn1+BNMQdtRngX6DcrYzp2Q84Rx12cyvuwa4RrUZxZS4a9ZLXFCDr21Lru/TTHEgABNgVq2/+i8raEeBUjiBIMw9AkzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PW5bATMa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C73DC2BD10;
+	Wed, 29 May 2024 07:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716967739;
-	bh=EoXu23rHRqFy4FBXCw2C4NbFeyQXb8OE3dkXMkUZuXY=;
+	s=k20201202; t=1716967798;
+	bh=CplIVoFx4HHmnWx+apjTEl9q7VdG/g4VH4E3n+XU4ek=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZKbZikdOAr4ICVAim/CBqcc/7xMPE7Fl8PVA18BUZpAeqk26yAtJMGngcUIg7qXQb
-	 faFerXVYyvBE4OCc603hxPgLccOCp9/PvTUe/m9c5DHzlgQRvna8dcNGn686ucCfz+
-	 4umCZ3YK1+mXEVL5t9Enxv7HDF21q++i4xDHG/i/LCM2JN4MAmTVDNJxsV4EAg2OPx
-	 /CpikfEvuRhtYX+8eJXmawGB60k6zyi+gJin0fNR5DABL8snU9vatuV/UVVCMSM5SC
-	 /G2x1ZqjonJcJMJF8Uh0IyPxpIH3PWr3Okb585RkNyTR/8FBqOZq5Vkd5bO6ztsrFY
-	 v8rmxh2OoBG6A==
-Message-ID: <35b39da8-4efd-44ae-bcc1-7f4d501e0873@kernel.org>
-Date: Wed, 29 May 2024 09:28:55 +0200
+	b=PW5bATMajdYAPy3OkkMnj+ynE2yOFlDDaiOUF3PpkH7okeCp3Rk9e5jWJ5rO9IjrG
+	 dSlZ0gpznAFCg3Oc94QF7npAME0J02SYwAYPiuj/olpgbP8qG8XRLriIHLyhMeTzXt
+	 veEl0H61hsU1Bh7AessZAHrIO/JAlOWop96l7peHVLIvqrtp3Cp12rj5hszpTnfZTy
+	 T7AdzwLnVEpHx79iW+yiFZpA9mh72FNZYFBPpPI8VcFZ1/Z3w7P0sJu6u9gikhma73
+	 Y82C/2E2l79pnTqepj9CuOg8ZYPeEBnr6Kuph5NY+RZnJImfi8vgXNNz0l7ty4IjcK
+	 UK/Ef9vCsIT7Q==
+Message-ID: <8e27c8da-d856-4fab-bb12-3af07e13838e@kernel.org>
+Date: Wed, 29 May 2024 09:29:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dt-bindings: gpio: aspeed,sgpio: Require
- #interrupt-cells
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-0-91c42976833b@codeconstruct.com.au>
- <20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-4-91c42976833b@codeconstruct.com.au>
+Subject: Re: [PATCH v2 1/6] dt-bindings: vendor-prefixes: add ScioSense
+To: Gustavo Silva <gustavograzs@gmail.com>, jic23@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ lars@metafoo.de, christophe.jaillet@wanadoo.fr, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240529001504.33648-1-gustavograzs@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,18 +101,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-4-91c42976833b@codeconstruct.com.au>
+In-Reply-To: <20240529001504.33648-1-gustavograzs@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/05/2024 07:13, Andrew Jeffery wrote:
-> It shouldn't have been the case that it wasn't required. The kernel
-> devicetrees already specified it where compatible nodes were defined,
-> and u-boot pulls in the kernel devicetrees, so this should have minimal
-> practical impact.
+On 29/05/2024 02:14, Gustavo Silva wrote:
+> Add vendor prefix for ScioSense B.V.
+> https://www.sciosense.com/
 > 
+> Signed-off-by: Gustavo Silva <gustavograzs@gmail.com>
+> ---
 
-This should be squashed with previous patch.
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
