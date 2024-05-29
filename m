@@ -1,71 +1,62 @@
-Return-Path: <devicetree+bounces-70367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 136E78D32C6
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9DF8D32F6
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:30:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAFCD28478F
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:18:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 265D5286478
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17DF16E866;
-	Wed, 29 May 2024 09:17:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="H0r7cZOl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3F816C87F;
+	Wed, 29 May 2024 09:29:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDFD16A375;
-	Wed, 29 May 2024 09:17:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C164D169AE5
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 09:29:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716974275; cv=none; b=jzDvHMKmJwQDatC+GOCUmzYzlcCr3P0IbcdugnXv4Vm2bT9RYetYz2YCoIqzeEB/4N9n7BSyA0aiD6h9IT5fPmz3IfjQ74k9Ft7oDgwNbKcVXJdAegXnar4/Y5YLQC0J2kTzfC/dWVGUTEP/vzKYAyWv6yK6ZC+FrPoLB2+ybdg=
+	t=1716974987; cv=none; b=t9gt65Inb3gOgpYFIj5i9sqzaduLIXPJsRsDjn44Oh8uXwvnpLL2TGZDxEmuduNn1Yt5ClAs159fvHIBNpYidWlWmiYqvyFgQJE66xw3t8gem2pe41Fsg4OxJBtv/YoF/HsPkB7TRQuyvF2SfW41bLoB+Juvj40iCaqN09QVwgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716974275; c=relaxed/simple;
-	bh=rAquyJjGl8AvRSJGDILkpKhh6ptv3dUO3G5M0U8rfq4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Z5+maAOZGZl46JWZclXq75OTkL10LVPByac2XVAMsSatWBDxKGdxdoGIzthf2p8S2O1gZldLTVyyoNezoDXB4Ey6rjFeipXLfj1/N4g/drqM2OuAJakRVz/hdL+KHqYQ0GYA6L8rQvVbJtjQlpN5C0MKrPUlDd1EPlrVkky3rtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=H0r7cZOl; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id C6BE740009;
-	Wed, 29 May 2024 09:17:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1716974266;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=avFH+TZR+wV/3lFdLJG11Lahbf9QsDr/KQUzB649vpc=;
-	b=H0r7cZOlg4xUHgNF6KRBu97q0RWPV3zMDpjmjiulr6EXDEx6COUcc3lg9xIFuVgh2VSavM
-	gmc8kRdvwLGhIuv2r3BIjci74MoiNRvmyaHCT4Vb3thdGVp8ZxfjJMJaAFEPMmAVa87/3q
-	e2icDhz1jZ/B+C1kUeJZk+C1SMksPhIIs5ZcRJvLoCs2jJsNqX9eSLZi77E1ZhBNfNekhR
-	G9wmNVj5Onn+u6wxN/yx+mdNd64sPFiAKkwmkE9gsFBhZ/nAJzOCfGcMkTJ7vHqZgAjYz0
-	ucQHGCC1flZTO6ft8JxV3hgffAu4ruTLIIy0uwLJ47b2crTb6QfquWIywBlyfw==
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-To: Peter Rosin <peda@axentia.se>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1716974987; c=relaxed/simple;
+	bh=QyuN3vISd+DA2AWJ6hBlRZkAmE02Tdzp480T8yTS3Jc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DL3wXSn9s9PNwPiho28iOeSMmicvgeRG18VShs1VW3EOdsbkx0Ngb0365aXDhhMV+GWwZdxf+XxhTzaS+4Euhw59E2nDoKu1V5cUTwutZbMvRiErW64kLO6+m8UXZuuYkdtg8Ud/qUkgW9XCvK1/72U/M3vT4U7sKk7horCoGBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:1b01:1838:131c:4de4])
+	by andre.telenet-ops.be with bizsmtp
+	id UxVg2C00T3VPV9V01xVgq9; Wed, 29 May 2024 11:29:43 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCFbt-00GHKa-Vo;
+	Wed, 29 May 2024 11:29:40 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCFcq-008wRr-Bz;
+	Wed, 29 May 2024 11:29:40 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Peter Korsgaard <peter.korsgaard@barco.com>,
-	Wolfram Sang <wsa@kernel.org>
-Cc: linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Christopher Cordahi <christophercordahi@nanometrics.ca>,
-	Bastien Curutchet <bastien.curutchet@bootlin.com>
-Subject: [PATCH v2 3/3] i2c: mux: gpio: Add support for the 'transition-delay-us' property
-Date: Wed, 29 May 2024 11:17:39 +0200
-Message-ID: <20240529091739.10808-4-bastien.curutchet@bootlin.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240529091739.10808-1-bastien.curutchet@bootlin.com>
-References: <20240529091739.10808-1-bastien.curutchet@bootlin.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 0/8] Add R-Car fuse support
+Date: Wed, 29 May 2024 11:29:29 +0200
+Message-Id: <cover.1716974502.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,74 +64,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: bastien.curutchet@bootlin.com
 
-Some hardware need some time to switch from a bus to another. This can
-cause the first transfers following the selection of a bus to fail.
-There is no way to configure this kind of waiting time in the driver.
+	Hi all,
 
-Add support for the 'transition-delay-us' device-tree property. When set,
-the i2c_mux_gpio_select() applies a delay before returning, leaving
-enough time to the hardware to switch to the new bus.
+R-Car Gen3/Gen4 SoCs contain fuses indicating hardware support or
+hardware parameters.  Unfortunately the various SoCs require different
+mechanisms to read the state of the fuses:
+  - On R-Car Gen3, the fuse monitor registers are in the middle of the
+    Pin Function Controller (PFC) register block,
+  - On R-Car V3U and S4-8, the E-FUSE non-volatile memory is accessible
+    through a separate register block in the PFC,
+  - On R-Car V4H and V4M, the E-FUSE non-volatile memory is accessible
+    through the second register block of OTP_MEM.
 
-Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
----
- drivers/i2c/muxes/i2c-mux-gpio.c           | 6 ++++++
- include/linux/platform_data/i2c-mux-gpio.h | 2 ++
- 2 files changed, 8 insertions(+)
+This patch series adds support for all 3 variants.  It provides an
+in-kernel API to read the fuses' states, as well as userspace access
+through the nvmem subsystem and sysfs:
+  - R-Car Gen3:    /sys/bus/platform/devices/rcar_fuse/fuse/nvmem
+  - R-Car V3U/S4:  /sys/bus/platform/devices/e6078800.fuse/fuse/nvmem 
+  - R-Car V4H/V4M: /sys/bus/platform/devices/e61be000.otp/fuse/nvmem 
 
-diff --git a/drivers/i2c/muxes/i2c-mux-gpio.c b/drivers/i2c/muxes/i2c-mux-gpio.c
-index c61e9d9ea695..b9cfc80660e2 100644
---- a/drivers/i2c/muxes/i2c-mux-gpio.c
-+++ b/drivers/i2c/muxes/i2c-mux-gpio.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <linux/bits.h>
-+#include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/gpio/driver.h>
- #include <linux/i2c.h>
-@@ -37,6 +38,9 @@ static int i2c_mux_gpio_select(struct i2c_mux_core *muxc, u32 chan)
- 
- 	i2c_mux_gpio_set(mux, chan);
- 
-+	if (mux->data.transition_delay)
-+		udelay(mux->data.transition_delay);
-+
- 	return 0;
- }
- 
-@@ -116,6 +120,8 @@ static int i2c_mux_gpio_probe_fw(struct gpiomux *mux,
- 	if (device_property_read_u32(dev, "idle-state", &mux->data.idle))
- 		mux->data.idle = I2C_MUX_GPIO_NO_IDLE;
- 
-+	device_property_read_u32(dev, "transition-delay-us", &mux->data.transition_delay);
-+
- 	return 0;
- }
- 
-diff --git a/include/linux/platform_data/i2c-mux-gpio.h b/include/linux/platform_data/i2c-mux-gpio.h
-index 816a4cd3ccb5..c449f714d32b 100644
---- a/include/linux/platform_data/i2c-mux-gpio.h
-+++ b/include/linux/platform_data/i2c-mux-gpio.h
-@@ -19,6 +19,7 @@
-  *	position
-  * @n_values: Number of multiplexer positions (busses to instantiate)
-  * @idle: Bitmask to write to MUX when idle or GPIO_I2CMUX_NO_IDLE if not used
-+ * @transition_delay: Delay to wait when a new bus is selected
-  */
- struct i2c_mux_gpio_platform_data {
- 	int parent;
-@@ -26,6 +27,7 @@ struct i2c_mux_gpio_platform_data {
- 	const unsigned *values;
- 	int n_values;
- 	unsigned idle;
-+	int transition_delay;
- };
- 
- #endif /* _LINUX_I2C_MUX_GPIO_H */
+This has been tested on R-Car H3 ES2.0, M3-W and M3-W+, M3-N, V3M, V3H
+and V3H2, D3, E3, V3U, S4-8 ES1.0 and ES1.2, V4H, and V4M.
+
+For SoCs where E-FUSE is accessed through the PFC, it is not clear from
+the documentation if any PFC module clock needs to be enabled for fuse
+access.  According to experiments on R-Car S4-8, the module clock and
+reset only impact the GPIO functionality of the PFC, not the pinmux or
+fuse monitor functionalities.  So perhaps the clock/power-domains/resets
+properties should be dropped from the DT bindings and DTS, as well as
+the Runtime PM handling from the driver?
+
+Changes compared to v1[1]:
+  - Drop RFC state and broaden audience,
+  - Fix typo in one-line summary,
+  - Add Reviewed-by.
+
+Thanks for your comments!
+
+[1] https://lore.kernel.org/r/cover.1714642390.git.geert+renesas@glider.be
+
+Geert Uytterhoeven (8):
+  dt-bindings: fuse: Document R-Car E-FUSE / PFC
+  dt-bindings: fuse: Document R-Car E-FUSE / OTP_MEM
+  soc: renesas: Add R-Car fuse driver
+  pinctrl: renesas: Add R-Car Gen3 fuse support
+  arm64: dts: renesas: r8a779a0: Add E-FUSE node
+  arm64: dts: renesas: r8a779f0: Add E-FUSE node
+  arm64: dts: renesas: r8a779g0: Add OTP_MEM node
+  arm64: dts: renesas: r8a779h0: Add OTP_MEM node
+
+ .../bindings/fuse/renesas,rcar-efuse.yaml     |  55 +++++
+ .../bindings/fuse/renesas,rcar-otp.yaml       |  38 ++++
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi     |   8 +
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     |   8 +
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi     |   5 +
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi     |   5 +
+ drivers/pinctrl/renesas/core.c                |  18 ++
+ drivers/pinctrl/renesas/pfc-r8a77951.c        |   2 +
+ drivers/pinctrl/renesas/pfc-r8a7796.c         |   4 +
+ drivers/pinctrl/renesas/pfc-r8a77965.c        |   2 +
+ drivers/pinctrl/renesas/pfc-r8a77970.c        |   2 +
+ drivers/pinctrl/renesas/pfc-r8a77980.c        |  14 +-
+ drivers/pinctrl/renesas/pfc-r8a77990.c        |   2 +
+ drivers/pinctrl/renesas/pfc-r8a77995.c        |   2 +
+ drivers/pinctrl/renesas/sh_pfc.h              |   4 +-
+ drivers/soc/renesas/Kconfig                   |   8 +
+ drivers/soc/renesas/Makefile                  |   1 +
+ drivers/soc/renesas/rcar-fuse.c               | 201 ++++++++++++++++++
+ include/linux/platform_data/rcar_fuse.h       |  11 +
+ include/linux/soc/renesas/rcar-fuse.h         |  41 ++++
+ 20 files changed, 429 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fuse/renesas,rcar-efuse.yaml
+ create mode 100644 Documentation/devicetree/bindings/fuse/renesas,rcar-otp.yaml
+ create mode 100644 drivers/soc/renesas/rcar-fuse.c
+ create mode 100644 include/linux/platform_data/rcar_fuse.h
+ create mode 100644 include/linux/soc/renesas/rcar-fuse.h
+
 -- 
-2.44.0
+2.34.1
 
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
