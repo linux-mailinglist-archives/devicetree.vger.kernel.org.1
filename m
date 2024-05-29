@@ -1,197 +1,255 @@
-Return-Path: <devicetree+bounces-70205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9BAF8D2D52
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:34:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F358D2D60
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:35:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F9A628551E
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:34:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 160011F24D9E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E82615A878;
-	Wed, 29 May 2024 06:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D58D15D5B4;
+	Wed, 29 May 2024 06:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tVpSvj/O"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BSh40Qo8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530FE46453;
-	Wed, 29 May 2024 06:33:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7309315CD71
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 06:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716964437; cv=none; b=VLQorfdTKSOl2M2MWeaEFHqiERRYoEb9YkrmcCopfcZevSgbtwxsjfQYm+bmXlDUHWjpWZiMDqcwml3Z72L5jhsDkex/v3LPsli6fIP/2rVwG7HPW1VvIQJbtTCwSXxa4NfTSBtYMNsSFVfWp4YaIm9zlMavtB/OoZ/CaeTAptM=
+	t=1716964510; cv=none; b=KszpRrscLi7vztBsxR5rSlJB6+89NkUoYPzfTn6GP0g99NRmjWxDY41xNcwysq9mc0HK+Umi/CFDjauVMAwlYD6k7uNZRRjpK9zQHqdFEbMrNIKBchvnDlIvab0nEmySmQ5M2h2Z4wCLEESEbDtj4FLtlliEedlnyWvO6nwRMTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716964437; c=relaxed/simple;
-	bh=fxXSALfm/c/HrxXm8QMdN0iSEYCmwD7QCKfdmRnr0XQ=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=faWqiJMtfVSTMoMFzjcMOWP/UMqNatacGRWEPGx7/S4sHu+TVgBwtgxuD4FlA9jptE9wVvY5eCHugmQplHXGUEUJbxTmwb/tVYkFluAFV1JykWxKEirkvL/KhAO4cO9fusSaZz+eUedzYFotSYZdvUrL4ToFfrQRREN6zMzCx7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tVpSvj/O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C598EC2BD10;
-	Wed, 29 May 2024 06:33:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716964436;
-	bh=fxXSALfm/c/HrxXm8QMdN0iSEYCmwD7QCKfdmRnr0XQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tVpSvj/OVQ62qQPEyMQsW3zn89J5ul/51rrXGCGOJHaEr/csM+IwYCN5+qhCh+ThC
-	 DvtCSVC03Xz1TK4K8ExhZ3hXQQ5G2I13SeNE8ZYDBzQV/W+EL/zfsISpOIVk77bDqo
-	 Ak/WIGBHNqxLxkah0IDOtbVUVV9uR/vmnR4RbcKWWlwXGbHXOWMUhwqlbKigHNAfVd
-	 U5jMbbmQeKA5z0a2uIvD6IGD+upkjilFHUWGxyvIdKRw1hpmnouhmZlwh1vYhBLXH8
-	 BpczrsRIz2rFv1Kj8W0iqu8p0RPjNkY0USjjIG9PJHzwzwc1vE+ahJCQ4bcn2Frjjt
-	 CF8bgdn/dHGTg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1sCCsk-00GVxc-Hn;
-	Wed, 29 May 2024 07:33:54 +0100
-Date: Wed, 29 May 2024 07:33:54 +0100
-Message-ID: <86bk4pm8j1.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	Saravana Kannan <saravanak@google.com>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] of: property: Fix fw_devlink handling of interrupt-map
-In-Reply-To: <CAK9=C2XNPJP0X=pg5TSrQbsuouDD3jP-gy2Sm4BXNJp0ZiWp+A@mail.gmail.com>
-References: <20240528164132.2451685-1-maz@kernel.org>
-	<CAK9=C2XNPJP0X=pg5TSrQbsuouDD3jP-gy2Sm4BXNJp0ZiWp+A@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1716964510; c=relaxed/simple;
+	bh=eMBPJ6AiyAGmZ0BILLGGNqaoWBJwnBhYtnVO50Esw08=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VHfj7Pl3pPcEH2Uw+LZLkAknn4unuT1zJ5h5uLzzCSPTx7y0UJNAb0inlTeaaFP4kRXzwUS6uJCn/nFCuKrBsaEj/eYiaP4wfNUJZKN1NAlT8C0eNhO0IxOeahfGU7I5jsAcIoaKCQpmK9p/yEuGuDZuS4RVZwtsXFw9L0SoviY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BSh40Qo8; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2e95a1d5ee2so31194321fa.0
+        for <devicetree@vger.kernel.org>; Tue, 28 May 2024 23:35:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1716964506; x=1717569306; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=REcXFj1jvmxST3/eKnOjNwhd4vCy4lJvRfHqJd6aeOY=;
+        b=BSh40Qo8MowxfZDEv2udrszIIc57GaXMNV/tx13uvFuceoBG+jX205EhYwuqmYNKbc
+         iDN+7OPmQOrmN0VNhOnIjjCxy6iK7qxZBUwAnwXdV2Fuc/qoAVf+SHBZMIz/e3JpVCOD
+         n1U222PVH1XPNwgLVG9Y/1I9VlbP9Hvt1H0/8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716964506; x=1717569306;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=REcXFj1jvmxST3/eKnOjNwhd4vCy4lJvRfHqJd6aeOY=;
+        b=nju7go4PQGhu8D7KB5UXwI/McU2g/RVLjHAqDmwbCytz1XueEgBd6WxWxrq6FSwqVr
+         Ult/rDnq2gfR0GD+Cf5JOoTA7lRFrcmJKCoCNtI7zL2OM3UagxYWJoWqR6CCciSQLHpl
+         BNwr16bhQlgG68Z7pC6qMcJU/3btmFdrtVieukTwpPaSeFTfZNLzEX+N/j7Wx0WJWhNj
+         NvaVy3qakBqXxH2BRs93SrYt/ysYYZ/s4t/25qm0vseBRAPWXl/UsKEGrL2Dva1jMCtj
+         sHRHCszwY4s09tBs1BYHbLYC7aQ5c2Y5Jd5ME44hEzdi837D52J2iiljgh+YZmttr6vB
+         r6dg==
+X-Forwarded-Encrypted: i=1; AJvYcCXQUxdgrSB+7ZMu2rOBlwZ5aOwMelUrrOvEzTaQuJVgGOqEpGPP6KuYVMbPG7yxtd6wD5c1qsmayYUj8uRmcLe/FEDfilFIb/9V/w==
+X-Gm-Message-State: AOJu0Yzo0tc+FyXusvRqtAeKJ5boPIWcsnzDkFhnGEf62ws7ESIP6040
+	2FyJ+vm9KpXuBKG/d4KhamHRCF4GkTBmSAgltCDCULNUgBVoejIXkgqBPbPOxTgHH1Ad1E7MwiB
+	Hl7urjF3S/iKKUQgshygpX/WsxPnj1JTUWHR2
+X-Google-Smtp-Source: AGHT+IHTNNEamwsxVCesbMDxuW/9Vtif5wDyv5vCIh2MQ47+8CNAg2+CXaNaCRrYs3jzJWGhnBhJJu0Kts+lF9cxTRc=
+X-Received: by 2002:ac2:454e:0:b0:521:92f6:3d34 with SMTP id
+ 2adb3069b0e04-5296594cf46mr10050393e87.22.1716964506432; Tue, 28 May 2024
+ 23:35:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
+MIME-Version: 1.0
+References: <20240527093908.97574-1-angelogioacchino.delregno@collabora.com> <20240527093908.97574-6-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240527093908.97574-6-angelogioacchino.delregno@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 29 May 2024 14:34:54 +0800
+Message-ID: <CAGXv+5EbYBLt84Gx0mhTt9SqH8iMW87Y=_q=R2sHmJ4fygUQnQ@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: mediatek: mt8188: Add support for Mali
+ GPU on Panfrost
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	mandyjh.liu@mediatek.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kernel@collabora.com, jpanis@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, saravanak@google.com, robh@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Wed, 29 May 2024 06:15:52 +0100,
-Anup Patel <apatel@ventanamicro.com> wrote:
->=20
-> On Tue, May 28, 2024 at 10:11=E2=80=AFPM Marc Zyngier <maz@kernel.org> wr=
-ote:
-> >
-> > Commit d976c6f4b32c ("of: property: Add fw_devlink support for
-> > interrupt-map property") tried to do what it says on the tin,
-> > but failed on a couple of points:
-> >
-> > - it confuses bytes and cells. Not a huge deal, except when it
-> >   comes to pointer arithmetic
-> >
-> > - it doesn't really handle anything but interrupt-maps that have
-> >   their parent #address-cells set to 0
-> >
-> > The combinations of the two leads to some serious fun on my M1
-> > box, with plenty of WARN-ON() firing all over the shop, and
-> > amusing values being generated for interrupt specifiers.
-> >
-> > Address both issues so that I can boot my machines again.
-> >
-> > Fixes: d976c6f4b32c ("of: property: Add fw_devlink support for interrup=
-t-map property")
-> > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > Cc: Anup Patel <apatel@ventanamicro.com>
-> > Cc: Saravana Kannan <saravanak@google.com>
-> > Cc: Rob Herring (Arm) <robh@kernel.org>
->=20
-> Thanks for the fix patch but unfortunately it breaks for RISC-V.
->=20
-> > ---
-> >  drivers/of/property.c | 16 ++++++++++++++--
-> >  1 file changed, 14 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 1c83e68f805b..9adebc63bea9 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1322,7 +1322,13 @@ static struct device_node *parse_interrupt_map(s=
-truct device_node *np,
-> >         addrcells =3D of_bus_n_addr_cells(np);
-> >
-> >         imap =3D of_get_property(np, "interrupt-map", &imaplen);
-> > -       if (!imap || imaplen <=3D (addrcells + intcells))
-> > +       imaplen /=3D sizeof(*imap);
-> > +
-> > +       /*
-> > +        * Check that we have enough runway for the child unit interrupt
-> > +        * specifier and a phandle. That's the bare minimum we can expe=
-ct.
-> > +        */
-> > +       if (!imap || imaplen <=3D (addrcells + intcells + 1))
-> >                 return NULL;
-> >         imap_end =3D imap + imaplen;
-> >
-> > @@ -1346,8 +1352,14 @@ static struct device_node *parse_interrupt_map(s=
-truct device_node *np,
-> >                 if (!index)
-> >                         return sup_args.np;
-> >
-> > -               of_node_put(sup_args.np);
-> > +               /*
-> > +                * Account for the full parent unit interrupt specifier
-> > +                * (address cells, interrupt cells, and phandle).
-> > +                */
-> > +               imap +=3D of_bus_n_addr_cells(sup_args.np);
->=20
-> This breaks for RISC-V because we don't have "#address-cells"
-> property in interrupt controller DT node and of_bus_n_addr_cells()
-> retrieves "#address-cells" from the parent of interrupt controller.
+On Mon, May 27, 2024 at 5:40=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Add the necessary OPP table for the GPU and also add a GPU node
+> to enable support for the Valhall-JM G57 MC3 found on this SoC,
+> using the Panfrost driver.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 123 +++++++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8188.dtsi
+> index 0bca6c9f15fe..29d012d28edb 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -294,6 +294,112 @@ clk32k: oscillator-32k {
+>                 clock-output-names =3D "clk32k";
+>         };
+>
+> +       gpu_opp_table: opp-table-gpu {
+> +               compatible =3D "operating-points-v2";
+> +               opp-shared;
+> +
+> +               opp-390000000 {
+> +                       opp-hz =3D /bits/ 64 <390000000>;
+> +                       opp-microvolt =3D <575000>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-431000000 {
+> +                       opp-hz =3D /bits/ 64 <431000000>;
+> +                       opp-microvolt =3D <587500>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-473000000 {
+> +                       opp-hz =3D /bits/ 64 <473000000>;
+> +                       opp-microvolt =3D <600000>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-515000000 {
+> +                       opp-hz =3D /bits/ 64 <515000000>;
+> +                       opp-microvolt =3D <612500>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-556000000 {
+> +                       opp-hz =3D /bits/ 64 <556000000>;
+> +                       opp-microvolt =3D <625000>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-598000000 {
+> +                       opp-hz =3D /bits/ 64 <598000000>;
+> +                       opp-microvolt =3D <637500>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-640000000 {
+> +                       opp-hz =3D /bits/ 64 <640000000>;
+> +                       opp-microvolt =3D <650000>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-670000000 {
+> +                       opp-hz =3D /bits/ 64 <670000000>;
+> +                       opp-microvolt =3D <662500>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-700000000 {
+> +                       opp-hz =3D /bits/ 64 <700000000>;
+> +                       opp-microvolt =3D <675000>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-730000000 {
+> +                       opp-hz =3D /bits/ 64 <730000000>;
+> +                       opp-microvolt =3D <687500>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-760000000 {
+> +                       opp-hz =3D /bits/ 64 <760000000>;
+> +                       opp-microvolt =3D <700000>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-790000000 {
+> +                       opp-hz =3D /bits/ 64 <790000000>;
+> +                       opp-microvolt =3D <712500>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-835000000 {
+> +                       opp-hz =3D /bits/ 64 <835000000>;
+> +                       opp-microvolt =3D <731250>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-880000000 {
+> +                       opp-hz =3D /bits/ 64 <880000000>;
+> +                       opp-microvolt =3D <750000>;
+> +                       opp-supported-hw =3D <0xff>;
+> +               };
+> +               opp-915000000 {
+> +                       opp-hz =3D /bits/ 64 <915000000>;
+> +                       opp-microvolt =3D <775000>;
+> +                       opp-supported-hw =3D <0x8f>;
+> +               };
+> +               opp-915000000-5 {
+> +                       opp-hz =3D /bits/ 64 <915000000>;
+> +                       opp-microvolt =3D <762500>;
+> +                       opp-supported-hw =3D <0x30>;
+> +               };
+> +               opp-915000000-6 {
+> +                       opp-hz =3D /bits/ 64 <915000000>;
+> +                       opp-microvolt =3D <750000>;
+> +                       opp-supported-hw =3D <0x70>;
+> +               };
+> +               opp-950000000 {
+> +                       opp-hz =3D /bits/ 64 <950000000>;
+> +                       opp-microvolt =3D <800000>;
+> +                       opp-supported-hw =3D <0x8f>;
+> +               };
+> +               opp-950000000-5 {
+> +                       opp-hz =3D /bits/ 64 <950000000>;
+> +                       opp-microvolt =3D <775000>;
+> +                       opp-supported-hw =3D <0x30>;
+> +               };
+> +               opp-950000000-6 {
+> +                       opp-hz =3D /bits/ 64 <950000000>;
+> +                       opp-microvolt =3D <750000>;
+> +                       opp-supported-hw =3D <0x70>;
+> +               };
+> +       };
+> +
+>         pmu-a55 {
+>                 compatible =3D "arm,cortex-a55-pmu";
+>                 interrupt-parent =3D <&gic>;
+> @@ -1167,6 +1273,23 @@ imp_iic_wrap_en: clock-controller@11ec2000 {
+>                         #clock-cells =3D <1>;
+>                 };
+>
+> +               gpu: gpu@13000000 {
+> +                       compatible =3D "mediatek,mt8188-mali", "arm,mali-=
+valhall-jm";
+> +                       reg =3D <0 0x13000000 0 0x4000>;
+> +
+> +                       clocks =3D <&mfgcfg CLK_MFGCFG_BG3D>;
+> +                       interrupts =3D <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH 0=
+>,
+> +                                    <GIC_SPI 382 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                                    <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH 0>;
+> +                       interrupt-names =3D "job", "mmu", "gpu";
+> +                       operating-points-v2 =3D <&gpu_opp_table>;
+> +                       power-domains =3D <&spm MT8188_POWER_DOMAIN_MFG2>=
+,
+> +                                       <&spm MT8188_POWER_DOMAIN_MFG3>,
+> +                                       <&spm MT8188_POWER_DOMAIN_MFG4>;
+> +                       power-domain-names =3D "core0", "core1", "core2";
+> +                       status =3D "disabled";
+> +               };
+> +
 
-That's a feature, not a bug. #address-cells, AFAICT, applies to all
-child nodes until you set it otherwise.
+This block no longer applies cleanly on the MTK tree because of
+"arm64: dts: mediatek: mt8188: add lvts definitions" being applied.
 
->=20
-> The of_irq_parse_raw() looks for "#address-cells" property
-> in the interrupt controller DT node only so we should do a
-> similar thing here as well.
+ChenYu
 
-This looks more like a of_irq_parse_raw() bug than anything else.
-
->=20
-> The below change on top of this patch worked for me.
->=20
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 9adebc63bea9..f54da2989ea9 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1308,7 +1308,7 @@ static struct device_node
-> *parse_interrupt_map(struct device_node *np,
->  {
->      const __be32 *imap, *imap_end, *addr;
->      struct of_phandle_args sup_args;
-> -    u32 addrcells, intcells;
-> +    u32 addrcells, intcells, paddrcells;
->      int i, imaplen;
->=20
->      if (!IS_ENABLED(CONFIG_OF_IRQ))
-> @@ -1356,7 +1356,8 @@ static struct device_node
-> *parse_interrupt_map(struct device_node *np,
->           * Account for the full parent unit interrupt specifier
->           * (address cells, interrupt cells, and phandle).
->           */
-> -        imap +=3D of_bus_n_addr_cells(sup_args.np);
-> +        if (!of_property_read_u32(sup_args.np, "#address-cells", &paddrc=
-ells))
-> +            imap +=3D paddrcells;
-
-This looks wrong to me for the reason I outlined above: you need to
-look for a valid #address-cells all along the parent chain, not just
-in the interrupt-controller node.
-
-	M.
-
---=20
-Without deviation from the norm, progress is not possible.
+>                 mfgcfg: clock-controller@13fbf000 {
+>                         compatible =3D "mediatek,mt8188-mfgcfg";
+>                         reg =3D <0 0x13fbf000 0 0x1000>;
+> --
+> 2.45.1
+>
+>
 
