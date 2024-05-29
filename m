@@ -1,170 +1,229 @@
-Return-Path: <devicetree+bounces-70704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA588D41BA
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:11:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D47C38D41E1
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 01:15:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E93C286ED0
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:11:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A2682871F6
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 23:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C461A177983;
-	Wed, 29 May 2024 23:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADD114E2FD;
+	Wed, 29 May 2024 23:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mFWxfb22"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OabscRPI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5199015D5A0;
-	Wed, 29 May 2024 23:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845C729A0;
+	Wed, 29 May 2024 23:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717024291; cv=none; b=HnMAdAnrBM1WX8GT5nbmQEqJEczfIXh6rr+WPS+rrZnwBqZda5sgqbMi7N1iZms635S0WWdtHAflPe1zj4vBJhpx2l2w2TyKX1fXWVisEBu9IJ3880mmZX5zPO9zMTfIAhqT0v5NB/5fTYjZdTzUDZWOLdFryYui4Gu5JzH0+QI=
+	t=1717024522; cv=none; b=gX6zQ596nUTRegTyPf8uIagGEszOJ3sY3Djjbflw+4ayjGhS9Wf2PbRln9OQlaGjRZLvI+L0MoyUvvyI2xwsNQCWlTq9Gr9D48ydRL4gKTZ6a+QwKShL6t6syM4w9gHNxVL/UL4ISm3s9gcDh77DSYKT6ATBy0l2OOWJAcpms20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717024291; c=relaxed/simple;
-	bh=Sa4tep4udZHR2VoYTX1M3cH5iuFnoFwhypYFnpK4hhE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ayCO3wXOnCutFf+WYCpyIL7T07y2rwHRM7IzxypcXc0MhlkvFn6ibLY3RUfKwBRZx9W1Jy1rpVAvgApQoELMsonCusVURFoxiyI9ZsA0uE3aOK/Fazt+gylBQefMF7U8yNYsrDH9fw8jWG+J0/eWXh7n9ALs4JwQaOveT8wKh4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mFWxfb22; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TIQPCt000950;
-	Wed, 29 May 2024 23:11:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZiLhE5otYIYHjTTbaI+mSK/3VS5gCBB71OrNrUp4HJg=; b=mFWxfb22vahoytaa
-	osDQUQ9wnDv1FCZP1sa6gpKHFcKIpSiX0ga4hIeN+vmozXVqbEwotXDlgxlrBhJY
-	FaEiB3q5EyBmQsnYoGzip4vZZfDdfrHMXwXI6GDI8E+srYolBF94HpU5GEzYFcDu
-	wiXrfmHlLzC8qnbDeH2oUERJalTR9mFFvV4Q8nBrFm9gfKWZuhUDVZSGWx0CbjUZ
-	QQGMKGaMie/l/t3IqwwXpe1jDq8TuRPbZUa3WbRpY9qxHvE/JTE34e2Xdj4x3ngi
-	i1471I8teXfxAlnFAtQS1Z9a7+UkZ2+ODhF+LpMuU7l0LUXbZEzvNQUowj2IckLr
-	H2u9ww==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba2ptkx2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 23:11:15 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TNBEqi004689
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 23:11:14 GMT
-Received: from [10.71.110.249] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
- 2024 16:11:08 -0700
-Message-ID: <1ac17233-61ee-6eff-1e28-bd2d74bbc5cc@quicinc.com>
-Date: Wed, 29 May 2024 16:11:05 -0700
+	s=arc-20240116; t=1717024522; c=relaxed/simple;
+	bh=7HtHIBMnOSfXwlIN2FN4JThv0qqYOxoaXPTbFn/okcY=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=MFro4ks6n/KhLMlthy+Dh4FXMl2dtxt1qYkJa+RnrjEMR9S/cJl/UY5/1JCew3nJd9hCSEdL5vIfBOjad8KigGKBhNLxi5rMxtHww19v/aiohLdNNxyyBReU9L9AWLf8Q0Tdp3AtsufrktPoFjZAhFayg8tBE45zhZhDIctX9uM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OabscRPI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF6DC32781;
+	Wed, 29 May 2024 23:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717024522;
+	bh=7HtHIBMnOSfXwlIN2FN4JThv0qqYOxoaXPTbFn/okcY=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=OabscRPIEp57y8+0XlGk2MoMOeUdg3DFch7rE9IX08FLlS4oK8rykJtvab3sIEtiA
+	 bRKPiWK35XtvcazFBhiVQFUOddAQgdYj+QVCvdrPBzcU9X3d/30Gviua7TUav5HcVH
+	 ifDThHZQalm9753WBOnV8YV5lSp4qJgxmXRDfyTMrk2+eTjTsr1Tx0gsrPMLu8yfMp
+	 f4K/Uum4draifjed4IA71oYuDtsQwdkKU4U3aojjuTNeYziub9jTJi54QezxYVXe7/
+	 K4QJdoFY4b00+gH/sYrGVsHbk4NdQ+Hv/vn/al2ck+PIe7Q0n1ndrOSIs8/MUlVFzB
+	 UmKhhc3IAcIoA==
+Message-ID: <3280d9e3c7ba19f86b85a7fa89f5be25.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/7] drm/msm/dpu: handle non-default TE source pins
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Marijn
- Suijten" <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <9fc7e388-d9c7-12d1-bee5-803dd6f1ca60@quicinc.com>
- <CAA8EJpoWUEGX8fq5qxXUebA-E25ONycm4NXscFhXAhFwcJGf0w@mail.gmail.com>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <CAA8EJpoWUEGX8fq5qxXUebA-E25ONycm4NXscFhXAhFwcJGf0w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IYhx-57DSdUUVwgrjt2A23p1p9xnQ-CA
-X-Proofpoint-ORIG-GUID: IYhx-57DSdUUVwgrjt2A23p1p9xnQ-CA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-29_16,2024-05-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 spamscore=0 adultscore=0 clxscore=1015 bulkscore=0
- mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405290166
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <a3bed3c2940edc238afbc191d595a727944892f3.1716965617.git.ysato@users.sourceforge.jp>
+References: <cover.1716965617.git.ysato@users.sourceforge.jp> <a3bed3c2940edc238afbc191d595a727944892f3.1716965617.git.ysato@users.sourceforge.jp>
+Subject: Re: [DO NOT MERGE v8 14/36] clk: Compatible with narrow registers
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>, Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?q?Wilczy=C5=84ski?= <kw@linux.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx
+ .de>, Heiko Stuebner <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>, Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, Masahiro Yamada <masahiroy@kernel.org>, Baoquan He <bhe@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, Guo Ren <guoren@kernel.org>, Max Filippov <jcmvbkbc@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, Herve Codina <herve.codina@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Anup Patel <apatel@ventanamicro.com>, Jacky Huang <ychuang3@nuvoton.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Jonathan Corbet <corbet@lwn.net>, Wolfram Sang <wsa+renesas@sang-engineering.com>, Uwe =?utf-8?q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, Christophe JAI
+ LLET <christophe.jaillet@wanadoo.fr>, Sam Ravnborg <sam@ravnborg.org>, Javier Martinez Canillas <javierm@redhat.com>, Sergey Shtylyov <s.shtylyov@omp.ru>, Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
+To: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
+Date: Wed, 29 May 2024 16:15:19 -0700
+User-Agent: alot/0.10
 
+Quoting Yoshinori Sato (2024-05-29 01:01:00)
+> divider and gate only support 32-bit registers.
+> Older hardware uses narrower registers, so I want to be able to handle
+> 8-bit and 16-bit wide registers.
+>=20
+> Seven clk_divider flags are used, and if I add flags for 8bit access and
+> 16bit access, 8bit will not be enough, so I expanded it to u16.
+>=20
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> ---
+>  drivers/clk/clk-divider.c    | 41 +++++++++++++++++++++---------
+>  drivers/clk/clk-gate.c       | 49 ++++++++++++++++++++++++++++++++----
+>  include/linux/clk-provider.h | 20 ++++++++++++---
+>  3 files changed, 89 insertions(+), 21 deletions(-)
+>=20
+> diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
+> index a2c2b5203b0a..abafcbbb6578 100644
+> --- a/drivers/clk/clk-divider.c
+> +++ b/drivers/clk/clk-divider.c
+> @@ -26,17 +26,34 @@
+>   * parent - fixed parent.  No clk_set_parent support
+>   */
+> =20
+> -static inline u32 clk_div_readl(struct clk_divider *divider)
+> -{
+> +static inline u32 clk_div_read(struct clk_divider *divider)
 
+Please don't change the name. The 'l' is for the return type, u32, which
+is not changed.
 
-On 5/22/2024 12:59 PM, Dmitry Baryshkov wrote:
-> On Wed, 22 May 2024 at 21:39, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
->>
->>
->>
->> On 5/20/2024 5:12 AM, Dmitry Baryshkov wrote:
->>> Command-mode DSI panels need to signal the display controlller when
->>> vsync happens, so that the device can start sending the next frame. Some
->>> devices (Google Pixel 3) use a non-default pin, so additional
->>> configuration is required. Add a way to specify this information in DT
->>> and handle it in the DSI and DPU drivers.
->>>
->>
->> Which pin is the pixel 3 using? Just wanted to know .. is it gpio0 or gpio1?
-> 
-> gpio2. If it was gpio0 then there were no issues at all.
-> 
+> +{
+> +       if (divider->flags & CLK_DIVIDER_REG_8BIT)
+> +               return readb(divider->reg);
+> +       if (divider->flags & CLK_DIVIDER_REG_16BIT) {
+> +               if (divider->flags & CLK_DIVIDER_BIG_ENDIAN) {
+> +                       return ioread16be(divider->reg);
+> +               } else {
+> +                       return readw(divider->reg);
+> +               }
+> +       }
+>         if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+>                 return ioread32be(divider->reg);
+> =20
+>         return readl(divider->reg);
+>  }
+> =20
+> -static inline void clk_div_writel(struct clk_divider *divider, u32 val)
+> +static inline void clk_div_write(struct clk_divider *divider, u32 val)
 
-Got it. Instead of asking gpio1 or gpio2, I mistyped and asked gpio0 or 
-gpio1.
+Same comment.
 
-While reviewing the code , I think the function 
-dpu_hw_setup_vsync_source is poorly named . It really doesnt configured 
-vsync_source. It actually configured watchdog timer.
+>  {
+> -       if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+> +       if (divider->flags & CLK_DIVIDER_REG_8BIT)
+> +               writeb(val, divider->reg);
+> +       else if (divider->flags & CLK_DIVIDER_REG_16BIT) {
+> +               if (divider->flags & CLK_DIVIDER_BIG_ENDIAN) {
+> +                       iowrite16be(val, divider->reg);
+> +               } else {
+> +                       writew(val, divider->reg);
+> +               }
+> +       } else if (divider->flags & CLK_DIVIDER_BIG_ENDIAN)
+>                 iowrite32be(val, divider->reg);
+>         else
+>                 writel(val, divider->reg);
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 4a537260f655..25f61bd5b952 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -508,6 +508,10 @@ void of_fixed_clk_setup(struct device_node *np);
+>   * CLK_GATE_BIG_ENDIAN - by default little endian register accesses are =
+used for
+>   *     the gate register.  Setting this flag makes the register accesses=
+ big
+>   *     endian.
+> + * CLK_GATE_REG_8BIT - by default 32bit register accesses are used for
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 8bit.
+> + * CLK_GATE_REG_16BIT - by default 32bit register accesses are used for
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 16bit.
+>   */
+>  struct clk_gate {
+>         struct clk_hw hw;
+> @@ -522,6 +526,8 @@ struct clk_gate {
+>  #define CLK_GATE_SET_TO_DISABLE                BIT(0)
+>  #define CLK_GATE_HIWORD_MASK           BIT(1)
+>  #define CLK_GATE_BIG_ENDIAN            BIT(2)
+> +#define CLK_GATE_REG_8BIT              BIT(3)
+> +#define CLK_GATE_REG_16BIT             BIT(4)
 
-Can you pls include one more patch in this series to rename 
-dpu_hw_setup_vsync_source ---> dpu_hw_setup_wd_timer()
+Please add kunit tests for the gate at least.
 
->>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>> Dmitry Baryshkov (7):
->>>         dt-bindings: display/msm/dsi: allow specifying TE source
->>>         drm/msm/dpu: convert vsync source defines to the enum
->>>         drm/msm/dsi: drop unused GPIOs handling
->>>         drm/msm/dpu: pull the is_cmd_mode out of _dpu_encoder_update_vsync_source()
->>>         drm/msm/dpu: rework vsync_source handling
->>>         drm/msm/dsi: parse vsync source from device tree
->>>         drm/msm/dpu: support setting the TE source
->>>
->>>    .../bindings/display/msm/dsi-controller-main.yaml  | 16 ++++++++
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        | 11 ++---
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h        |  5 +--
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c        |  2 +-
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.h        |  2 +-
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h        | 26 ++++++------
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.h         |  2 +-
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            | 44 ++++++++++++++++++++
->>>    drivers/gpu/drm/msm/dsi/dsi.h                      |  1 +
->>>    drivers/gpu/drm/msm/dsi/dsi_host.c                 | 48 +++++-----------------
->>>    drivers/gpu/drm/msm/dsi/dsi_manager.c              |  5 +++
->>>    drivers/gpu/drm/msm/msm_drv.h                      |  6 +++
->>>    12 files changed, 106 insertions(+), 62 deletions(-)
->>> ---
->>> base-commit: 75fa778d74b786a1608d55d655d42b480a6fa8bd
->>> change-id: 20240514-dpu-handle-te-signal-82663c0211bd
->>>
->>> Best regards,
-> 
-> 
-> 
+> =20
+>  extern const struct clk_ops clk_gate_ops;
+>  struct clk_hw *__clk_hw_register_gate(struct device *dev,
+> @@ -675,13 +681,17 @@ struct clk_div_table {
+>   * CLK_DIVIDER_BIG_ENDIAN - By default little endian register accesses a=
+re used
+>   *     for the divider register.  Setting this flag makes the register a=
+ccesses
+>   *     big endian.
+> + * CLK_DIVIDER_REG_8BIT - by default 32bit register accesses are used for
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 8bit.
+> + * CLK_DIVIDER_REG_16BIT - by default 32bit register accesses are used f=
+or
+> + *     the gate register.  Setting this flag makes the register accesses=
+ 16bit.
+>   */
+>  struct clk_divider {
+>         struct clk_hw   hw;
+>         void __iomem    *reg;
+>         u8              shift;
+>         u8              width;
+> -       u8              flags;
+> +       u16             flags;
+>         const struct clk_div_table      *table;
+>         spinlock_t      *lock;
+>  };
+> @@ -697,6 +707,8 @@ struct clk_divider {
+>  #define CLK_DIVIDER_READ_ONLY          BIT(5)
+>  #define CLK_DIVIDER_MAX_AT_ZERO                BIT(6)
+>  #define CLK_DIVIDER_BIG_ENDIAN         BIT(7)
+> +#define CLK_DIVIDER_REG_8BIT           BIT(8)
+> +#define CLK_DIVIDER_REG_16BIT          BIT(9)
+> =20
+>  extern const struct clk_ops clk_divider_ops;
+>  extern const struct clk_ops clk_divider_ro_ops;
+> @@ -726,18 +738,18 @@ struct clk_hw *__clk_hw_register_divider(struct dev=
+ice *dev,
+>                 struct device_node *np, const char *name,
+>                 const char *parent_name, const struct clk_hw *parent_hw,
+>                 const struct clk_parent_data *parent_data, unsigned long =
+flags,
+> -               void __iomem *reg, u8 shift, u8 width, u8 clk_divider_fla=
+gs,
+> +               void __iomem *reg, u8 shift, u8 width, u16 clk_divider_fl=
+ags,
+
+Let's just make this unsigned long for the flags. We don't need to
+specify a strict size like this for the callers.
+
+>                 const struct clk_div_table *table, spinlock_t *lock);
+>  struct clk_hw *__devm_clk_hw_register_divider(struct device *dev,
+>                 struct device_node *np, const char *name,
+>                 const char *parent_name, const struct clk_hw *parent_hw,
+>                 const struct clk_parent_data *parent_data, unsigned long =
+flags,
+> -               void __iomem *reg, u8 shift, u8 width, u8 clk_divider_fla=
+gs,
+> +               void __iomem *reg, u8 shift, u8 width, u16 clk_divider_fl=
+ags,
+
+Same here.
+
+>                 const struct clk_div_table *table, spinlock_t *lock);
+>  struct clk *clk_register_divider_table(struct device *dev, const char *n=
+ame,
+>                 const char *parent_name, unsigned long flags,
+>                 void __iomem *reg, u8 shift, u8 width,
+> -               u8 clk_divider_flags, const struct clk_div_table *table,
+> +               u16 clk_divider_flags, const struct clk_div_table *table,
+
+Same here. Preferably do that in another patch too.
 
