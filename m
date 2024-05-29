@@ -1,176 +1,182 @@
-Return-Path: <devicetree+bounces-70388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D1A08D33D0
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:58:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBE58D33DE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:00:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF8AC1F24F01
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:58:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7C691C2306C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:00:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E05EF16EBFC;
-	Wed, 29 May 2024 09:58:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KLB6bkGs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9D9178CFD;
+	Wed, 29 May 2024 10:00:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [195.130.137.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8C116E89C;
-	Wed, 29 May 2024 09:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6ABD1779B8
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 10:00:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716976680; cv=none; b=qtBL4GjpLxR8mOY1s7UI/1J5/r62FIcpM1uJwni2AmmIhyyzTtDZ83MroIP5S8g3mMZrX09Iv2q5KkJ3puCDmeM72R0o8+GKJv7yA+ACwgYa7HUWMIeGb7qm66FPx0zruWXAVrlNFaycoauZ3UMKMtPkk34rs9P4N1y4L4iY18M=
+	t=1716976842; cv=none; b=N3A6DeYyPZSjk4aBFR4GIwP4c3Mkm8bmNeAdVnioYMj3LU5rWVM+ejygCYAvapJMFRJhSn6udRLy5FLPYcbJ1FDuLzeXGCPyXThcuhqLt70mLP1mCaCkRfKVNdtIqJpu7qhdyXTF7gH2U/91TSRtnP6iEMTbSk20N7zsF0JaOCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716976680; c=relaxed/simple;
-	bh=UA64iSZ7F7eTVM3NOd+SF5bb7u0BiT607ti9X6Vn6UM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D72+4IfdthPt0DqnPUGhvvnQ/3P3w4pzuEE17p1W1k1/UVhP90rO0BLSAbn1XT7xBIZXicqe37P76H28p3U4X5RpnLag2wASIKx0QF1BZ48+xW0kjZYsfQrmZnDp79jYWU3pIigOOrigsXuI2beXvUMsPkwEusOhqoWdF4QbFog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KLB6bkGs; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a63036f2daaso226895666b.1;
-        Wed, 29 May 2024 02:57:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716976677; x=1717581477; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tM9NVJO5ERbRVncEwJVxXR7CMcdJybzoYCJKI2cSjJY=;
-        b=KLB6bkGs1tpiCY83oiXg1JVML881kETgdz+6enIXqOntkRqVTQfsJ+IxEFpwpCqKin
-         3WVDbrISSJS78jqHYkC+iwHmJ+BcaPZ7BVxlR+7gIEHVw0VuqpadZeZp/p/KlMpdziCl
-         /8944/gm2g8mySncHatmMk52jOe10jWlkMWp+zRd7++gxe43zjM941S+uuyVPL+wjjnm
-         f1V6GAe7EUUa0ktfASt6qYnhlPeY0VhoRxg0QrVAvJWsZhxv/TLE1IzhPRJz397H/HgV
-         yIayaULOpy3uC5M6OIYw4oN3DhMA3sVsM6icQPuP5jgGa9q7amc6RONleTD2oq/WAWhQ
-         aQ3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716976677; x=1717581477;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tM9NVJO5ERbRVncEwJVxXR7CMcdJybzoYCJKI2cSjJY=;
-        b=Vl9Z2RDnJFOR7/y71qsWwMHWu6aB/xgBTFweyhOvtWJ++CXRtNkansw0YS7rhvhml4
-         vYJ+4ImK706IB+1oMctj9nSfJ4de+9/e4uCSFuROUjIAezj7HPsVxiXW7mdjMRWUZ3ur
-         yt/GSKrPx3FZfIA1igfd/kF7ZHgk+hNpiFHxm9vlFDI1UDxUJUEb+1HAGCjtLKjDEql2
-         uqXie+ahbzwX+BoqtyiYvY2TW2oEKpLWEU2cRTn6zlfM8sihxEknIa1+D/dcL+KofnSf
-         sdZkjh50UV5pcWgqSq6uprAJ/0TZINt6hftyBVXkhsBoqFpYdXy/W0YbDPLjtprYpsP8
-         cTog==
-X-Forwarded-Encrypted: i=1; AJvYcCUtTkkWii8bLPZK1fHsmUosvDXpUZrRcueD5v4EPnah4NCXMbh6wVcs8PI8fWk+pr97Osa4c7VR4Z0s5S8HxFszKYpbthooJh8u20OgEVhLxFJf+MJoZL7x2v0m6kOstpY6aB17vEZdog==
-X-Gm-Message-State: AOJu0Yy+3G/L2r41KaYp0G5soRaRnZEM4z7cESklX+uuRPFdgJaZ8CHS
-	aHD0v+oY4sGbMdrJ82bcWI0JcanHDlDnBiDiJRpvxCWLAXN9Hk0lLcQsbe6VQRaMjwj8Od5hdVe
-	ijSqPqyqvi9RaOqXChnyWbb/ntxY=
-X-Google-Smtp-Source: AGHT+IGOp5wkK1bnw+0O7gHeuICSWfLY1jISrchSQva5fYlR915OtoYk8ONFoQWe1BvmVTeQqJ5xRZ614/Cf9Ora6bo=
-X-Received: by 2002:a17:906:8920:b0:a5a:8ca4:6781 with SMTP id
- a640c23a62f3a-a6265148b7emr800169966b.51.1716976677229; Wed, 29 May 2024
- 02:57:57 -0700 (PDT)
+	s=arc-20240116; t=1716976842; c=relaxed/simple;
+	bh=j15g7+Zs11MXgNdFt9xjPzQq0JE/TjMvjYfFKO5EiIg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=GxS6wGbg0twzPlwWCWI/jOHgBkjHHFEw5UydgKgAvcD9mO48in4gTSaHHtORQy58O/ogfu2q+VCTKmb3zHMKyLNr6OXXnd0YSsxuLbb4c77RTA0CHBKcurbIPqaspG45SVowLnDTm5jxSoJGtuYBM1fD3SXEbBz9+ZJPCu7clwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:1b01:1838:131c:4de4])
+	by albert.telenet-ops.be with bizsmtp
+	id Uy0Y2C00C3VPV9V06y0Ynv; Wed, 29 May 2024 12:00:38 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCG5l-00GLHw-T9;
+	Wed, 29 May 2024 12:00:32 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCG6i-0090jY-88;
+	Wed, 29 May 2024 12:00:32 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alex Shi <alexs@kernel.org>,
+	Yanteng Si <siyanteng@loongson.cn>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andrew Davis <afd@ti.com>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2] docs: dt: Update overlay file extension
+Date: Wed, 29 May 2024 12:00:31 +0200
+Message-Id: <977f66b9882b6150a8da5787bf94a418aa9affec.1716976241.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
-In-Reply-To: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 29 May 2024 13:57:45 +0400
-Message-ID: <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, quentin.schulz@cherry.de, wens@kernel.org, 
-	daniel.lezcano@linaro.org, didi.debian@cknow.org, 
-	krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Dragan,
+Building DTB overlays from .dts files is no longer supported.
+Update the documentation to reflect this.
 
-On Wed, May 29, 2024 at 6:14=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
-> Rename and modify the RK3588 dtsi files a bit, to make preparations for
-> the ability to specify different CPU and GPU OPPs for each of the support=
-ed
-> RK3588 SoC variants, including the RK3588J.
->
-> As already discussed, [1][2][3] some of the different RK3588 SoC variants
-> require different OPPs, and it makes more sense to have the OPPs already
-> defined when a board dts includes one of the SoC dtsi files (rk3588.dtsi,
-> rk3588j.dtsi or rk3588s.dtsi), rather than requiring the board dts file t=
-o
-> also include a separate rk3588*-opp.dtsi file.  The choice of the SoC var=
-iant
-> is already made by the inclusion of the SoC dtsi file, and it doesn't mak=
-e
-> much sense to, effectively, allow the board dts file to include and use a=
-n
-> incompatible set of OPPs for the already selected SoC variant.
+Fixes: 81d362732bac05f6 ("kbuild: Disallow DTB overlays to built from .dts named source files")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Andrew Davis <afd@ti.com>
+Reviewed-by: Yanteng Si <siyanteng@loongson.cn>
+---
+v2:
+  - Add Acked-by, Reviewed-by.
+---
+ Documentation/devicetree/overlay-notes.rst           | 12 ++++++------
+ .../translations/zh_CN/devicetree/overlay-notes.rst  | 12 ++++++------
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-Indeed, including just one .dtsi for the correct SoC variant and not
-having to bother about what other bits and pieces are required to use
-the full SoC functionality sounds great! Thanks for putting this
-together so promptly!
+diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
+index e139f22b363e9f36..35e79242af9a928d 100644
+--- a/Documentation/devicetree/overlay-notes.rst
++++ b/Documentation/devicetree/overlay-notes.rst
+@@ -38,10 +38,10 @@ Lets take an example where we have a foo board with the following base tree::
+ 	};
+     ---- foo.dts ---------------------------------------------------------------
+ 
+-The overlay bar.dts,
++The overlay bar.dtso,
+ ::
+ 
+-    ---- bar.dts - overlay target location by label ----------------------------
++    ---- bar.dtso - overlay target location by label ---------------------------
+ 	/dts-v1/;
+ 	/plugin/;
+ 	&ocp {
+@@ -51,7 +51,7 @@ The overlay bar.dts,
+ 			... /* various properties and child nodes */
+ 		};
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ when loaded (and resolved as described in [1]) should result in foo+bar.dts::
+ 
+@@ -88,9 +88,9 @@ in the base DT. In this case, the target path can be provided. The target
+ location by label syntax is preferred because the overlay can be applied to
+ any base DT containing the label, no matter where the label occurs in the DT.
+ 
+-The above bar.dts example modified to use target path syntax is::
++The above bar.dtso example modified to use target path syntax is::
+ 
+-    ---- bar.dts - overlay target location by explicit path --------------------
++    ---- bar.dtso - overlay target location by explicit path -------------------
+ 	/dts-v1/;
+ 	/plugin/;
+ 	&{/ocp} {
+@@ -100,7 +100,7 @@ The above bar.dts example modified to use target path syntax is::
+ 			... /* various properties and child nodes */
+ 		}
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 
+ Overlay in-kernel API
+diff --git a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
+index 43e3c0bc5a9f8235..ba5edd05dc1e7fd2 100644
+--- a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
++++ b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
+@@ -43,10 +43,10 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ 	};
+     ---- foo.dts ---------------------------------------------------------------
+ 
+-覆盖bar.dts,
++覆盖bar.dtso,
+ ::
+ 
+-    ---- bar.dts - 按标签覆盖目标位置 ----------------------------
++    ---- bar.dtso - 按标签覆盖目标位置 ---------------------------
+ 	/dts-v1/;
+ 	/插件/;
+ 	&ocp {
+@@ -56,7 +56,7 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ 			... /* 各种属性和子节点 */
+ 		};
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 当加载（并按照[1]中描述的方式解决）时，应该产生foo+bar.dts::
+ 
+@@ -90,9 +90,9 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ DT中的适当位置。在这种情况下，可以提供目标路径。通过标签的目标位置的语法是比
+ 较好的，因为不管标签在DT中出现在哪里，覆盖都可以被应用到任何包含标签的基础DT上。
+ 
+-上面的bar.dts例子被修改为使用目标路径语法，即为::
++上面的bar.dtso例子被修改为使用目标路径语法，即为::
+ 
+-    ---- bar.dts - 通过明确的路径覆盖目标位置 --------------------
++    ---- bar.dtso - 通过明确的路径覆盖目标位置 -------------------
+ 	/dts-v1/;
+ 	/插件/;
+ 	&{/ocp} {
+@@ -102,7 +102,7 @@ DT中的适当位置。在这种情况下，可以提供目标路径。通过标
+ 			... /* 各种外围设备和子节点 */
+ 		}
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 
+ 内核中关于覆盖的API
+-- 
+2.34.1
 
-Some considerations below.
-
-> No intended functional changes are introduced.  (Still to be additionally
-> verified if the patch moves forward from the RFC state.)
->
-> [1] https://lore.kernel.org/linux-rockchip/646a33e0-5c1b-471c-8183-2c0df4=
-0ea51a@cherry.de/
-> [2] https://lore.kernel.org/linux-rockchip/CABjd4Yxi=3D+3gkNnH3BysUzzYsji=
--=3D-yROtzEc8jM_g0roKB0-w@mail.gmail.com/
-> [3] https://lore.kernel.org/linux-rockchip/035a274be262528012173d463e25b5=
-5f@manjaro.org/
->
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  ...inctrl.dtsi =3D> rk3588-common-pinctrl.dtsi} |    0
-
-Renaming the pinctrl includes seems superfluous - maybe keep them as
-they were to minimize churn?
-
->  .../{rk3588s.dtsi =3D> rk3588-common.dtsi}      |    2 +-
->  ...nctrl.dtsi =3D> rk3588-fullfat-pinctrl.dtsi} |    0
->  .../{rk3588.dtsi =3D> rk3588-fullfat.dtsi}      |    4 +-
-
-To me, "fullfat" doesn't look super descriptive, albeit fun :)
-
-How about we rename the existing rk3588.dtsi and rk3588s.dtsi to
-something like rk3588-devices.dtsi and rk3588s-devices.dtsi
-(preserving the inheritance between them), and then I add
-rk3588s-opp.dtsi and rk3588j-opp.dtsi in a follow-up patch?
-
-Then we keep "thin" versions of rk3588.dtsi, rk3588s.dtsi and
-rk3588j.dtsi for board files to include. The mix-and-match of
-different on-chip devices and different OPPs then gets transparently
-represented within those "thin" .dtsi, something like this:
-
-rk3588.dtsi:
-#include "rk3588-devices.dtsi"
-#include "rk3588s-opp.dtsi"
-
-rk3588s.dtsi:
-#include "rk3588s-devices.dtsi"
-#include "rk3588s-opp.dtsi"
-
-rk3588j.dtsi:
-#include "rk3588-devices.dtsi"
-#include "rk3588j-opp.dtsi"
-
->  arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  414 +--
->  arch/arm64/boot/dts/rockchip/rk3588j.dtsi     |    6 +-
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 2671 +----------------
-
-Rename detection didn't do a particularly great job here - wonder if
-we can do anything about it to minimize the patch size and ensure that
-the change history is preserved for git blame...
-
-Best regards,
-Alexey
 
