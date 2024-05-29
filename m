@@ -1,94 +1,111 @@
-Return-Path: <devicetree+bounces-70242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F78C8D2EEC
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:50:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7548A8D2EF0
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60B321C20B03
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:50:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FA91285C9B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478E2168C18;
-	Wed, 29 May 2024 07:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAC53167D9E;
+	Wed, 29 May 2024 07:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="zHwV7YqK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WYWIY9BK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC20167DBB
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 07:50:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE801D68F
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 07:51:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716969014; cv=none; b=OGYwoBMF0Xog5YRSBodu+0zd3lWpWgY04kRhSeedcyIhHzJrK0YLiZvgkkQZUhHLHKIjlKxC190DcMYlUYAnzQZHF2ZeSNo/5rP9eG4wCy1wvkBA39J/8dU2zhvMwPu7uQcGSiaCYtslMfXcDGFmu9glYN9/CanbIQyPfjhoogE=
+	t=1716969113; cv=none; b=kwmXWndeUSuVdaMWkSShHQsm4LTuN0BfAmX4Gq3oE+ISFY0VP1r/HIz4LYNIKW6Gp7v4UZGqhF1okmDiRS4HrhxdF0CmjYjwF6lXSZkRKGLUpzcs4I2NFB9RNCqOAfj9rWKgVxLs+Tv4ElwukHnYXFgvMjNXFk3RZXXSh4VntCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716969014; c=relaxed/simple;
-	bh=YwrBrQBcvTpTydqwx/3BrbATRqTX/3arrlFSkJJkj0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K33vG8/xqgW3yNS0f+obmU2vLD7rU9SDt2ACjk+hYUdQwVMw5oTEttYCEp8ccWaRiAR9IUKPbwTQ+owoUW0Y1Y1dY8JDOXa/139MePCf15b0qXCv1YG2Fky8HJEeqkqLsm8ZLHi6EaXb5Bpf7O++JyCLclKgES5Mv69v6Q0Xpi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=zHwV7YqK; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716969011;
-	bh=YwrBrQBcvTpTydqwx/3BrbATRqTX/3arrlFSkJJkj0o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=zHwV7YqKboVksBk1H/fFOxMLCR+eFI/6fhziE9xOl0mozz48T7pYwqUGEcBESQ4/o
-	 neiz3WWCjnDLmTWvFpill/DYwOsn2yxJCpkAVNH2ZdqoeWRl/qhJiwN4WlJS43qypP
-	 X8Gy5Jz/uQ+3MEoAj4BEUcziLDPKuiOwLfU6rqqD/uQ+2/aefsSjg5D9yr7udpEBcz
-	 6IaKIvtPTgoma+80FqvUjzGIVzHjkmzrQWkqBhGA4NIOsP5tjf+ikNjnUJFhCwLjHc
-	 X+nOQn7pgduCsJj+Ok0T9TrXh+2SHWaesUxMYNfptflfFkaGsl0vOsLGSYzbC+XyBr
-	 1ItasfsljEMiA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C0C36378216B;
-	Wed, 29 May 2024 07:50:09 +0000 (UTC)
-Message-ID: <a621f422-d5b9-44ef-9001-ce6afe25eade@collabora.com>
-Date: Wed, 29 May 2024 09:50:08 +0200
+	s=arc-20240116; t=1716969113; c=relaxed/simple;
+	bh=bBwx0BaHSsVNEUnMsd9n1ay0u8zPb5a85x6U4JpebKU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YDqSUzQbarOhILf+2RIkNdLtORd3Fd4GAKx/z+VFkslxuf2tTzPUtYsuYNNl06+LXG6HmcBl8+llYf5dnOExRmni54e0VD7tkFhdacibCrvt1aQR7chYxYCH8DO7ISDFRwxCtEwdj2f49h624yEzW81Ryhkow7JEbZpglzdvadw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WYWIY9BK; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-df7c1a7d745so519820276.1
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 00:51:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716969111; x=1717573911; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bBwx0BaHSsVNEUnMsd9n1ay0u8zPb5a85x6U4JpebKU=;
+        b=WYWIY9BKYcIwwFCqC3SGcqwfnrEJ5fj9kvW9Xl522qPGaJSp3rtnxVkBcABG0ta3wq
+         kh4lYZu7qTZa6xFr8LTx4k1iFx+jWODim/5SZvP21d6+j8IQ55GgG26RSKZL3JVY0EG8
+         GUWBiabA7+nEuNgVPJZcNNsq2PIyJyW0UR9UrCvixOExs+jeJi4vk5q4IUpK+DQq/QQQ
+         R7OzpnZNK52v9Mh08MeBEec+hnk+4lSdbR8irAML2u6xDmoOBrU+U6g7Qp8GIfib93iq
+         qhDNtFGA7k/bkKU3WBNvEqtYKVJG10e7hJRndgosXTxdx2g2AR74L1PGwyxAN0w4MZAL
+         Ox3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716969111; x=1717573911;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bBwx0BaHSsVNEUnMsd9n1ay0u8zPb5a85x6U4JpebKU=;
+        b=SFjCZCdjAVEDaSBKiY8xwCbFjDwIzeRsdZEWmzQvED5/0Q3PAfrjpWMmXTX72GzOwF
+         4a4ctFDOpSY0AJRmZjFG4OvRRWfKAevfMSIDPjA1xcMoy9LVRuj6oHKEcvKl80KFnALT
+         OqCBaxzeP/1UINgg8NSrNER5IKXMVSDXS2LmqkVnFlVYsauN/yvt+KEemq0UOvWJbxmF
+         l5kcG2quaiP46seIMkilYJPc/cWWTEscvMgpZts+gXjFfI592DgksWZz28Mz6fsKEiyD
+         2L4CcysYNSzssIjCZO0gLx32kp9fv+hrOAFVTsF4c1zahq2zqj84eGMzCJwljs/8nDCw
+         6h4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUVhiQseHwUAbQMyUW08Qjj4v8dCcZGo/tyPEqz7ZjvQN0sR1kdrGcA/YtnNL9nSxv39hp0He2afgXr7/rVBQ59z5FCu+HcMFxeVQ==
+X-Gm-Message-State: AOJu0Yy985MESnDJuKlvkdXgeUAMKqXjD29IfgGUl/3Y4Lc3307u0KC2
+	0Farn2jkM9YeV2Cneb0eWlntCb3tnA9Lpk1m+3B4Wd+KuMuTd2EZCa1OQ2sKAVaDu5R/e1KpSRG
+	0y9+1oLR6kFd3pshC+JVZsWxrv1CRkRxRmrWMfg==
+X-Google-Smtp-Source: AGHT+IEdZVMS/LUVMN/7x2vVzkEALKqMfrjPKeS0kPwmIxnN+yi7ZZ35SOE+hRMN2bsbin3xxgQTYy3/oasEFiDvJ0M=
+X-Received: by 2002:a25:900f:0:b0:df4:e089:d182 with SMTP id
+ 3f1490d57ef6-dfa464946c8mr913477276.19.1716969111210; Wed, 29 May 2024
+ 00:51:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add OpenWrt
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- openwrt-devel@lists.openwrt.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240527115933.7396-1-zajec5@gmail.com>
- <20240527115933.7396-2-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240527115933.7396-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240527115933.7396-1-zajec5@gmail.com> <20240527115933.7396-3-zajec5@gmail.com>
+ <f3930034-0cc1-4bb5-894a-72c809211233@collabora.com>
+In-Reply-To: <f3930034-0cc1-4bb5-894a-72c809211233@collabora.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 29 May 2024 09:51:40 +0200
+Message-ID: <CACRpkdbh+5CMAD6_gxrMspJ+uFCs7R0HPe_SAWNvfvyxyA=U2A@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: arm64: dts: mediatek: Add OpenWrt One
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Macpaul Lin <macpaul.lin@mediatek.com>, Heiko Stuebner <heiko.stuebner@cherry.de>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Chris Morgan <macromorgan@hotmail.com>, 
+	Sebastian Reichel <sre@kernel.org>, Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	openwrt-devel@lists.openwrt.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 27/05/24 13:59, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> OpenWrt project (with the help of MediaTek and Banana Pi) has produced
-> its very first own hardware. It needs its own prefix.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+On Tue, May 28, 2024 at 12:32=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Isn't the OpenWRT One made by BananaPi?
+> In that case this would be bananapi,openwrt-one I guess?
+>
+> Is there any OpenWRT contact that can please help clarifying this?
 
+Both Rafal and me are members of the OpenWrt project.
 
+The legal responsibility and trademark of this product is handled
+by OpenWrt, so they are legally the entity producing this board,
+I think that is what matters for vendor strings.
+
+Yours,
+Linus Walleij
 
