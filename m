@@ -1,161 +1,95 @@
-Return-Path: <devicetree+bounces-70659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B569F8D3F1C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 21:53:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32A08D3F3B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 21:59:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCAF61C21468
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 19:53:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F550287FC5
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 19:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB52E1C232B;
-	Wed, 29 May 2024 19:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D10E1C233F;
+	Wed, 29 May 2024 19:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hkGYnJV2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r3QGKidW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237E2522A;
-	Wed, 29 May 2024 19:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57679D27E;
+	Wed, 29 May 2024 19:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717012429; cv=none; b=olnJIi1aStju59FkSYGwt+9GTEHtfuMB6dYnbayQ2Gfx6fE4vSEaDYzqbr0gtumiyc1yEFT0kcoQ4lC/z4rkpsAJEOC+akC8bEFCreXXbJFuNBvtwVSE815FXXbz5Anha+O6AeiPKH4+NKm6XCdfF7b1k5FEOYJW/unyGVh8YcQ=
+	t=1717012775; cv=none; b=accu0qIVFNlAOPm94d7e7h1H6GWZ9wT5BYlcQtjmcB+doECkycsLYdzmEQ1jEvKoqmhQD0hE5/Oy1U9zFyv5NtoWTjAk4c5QNhIv37hEU7s4sjYj08esuFigkDkGmBcgrS6LenbFSMUR6evfHbHm58H3PJlGG9X20gfZnPDV/Ss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717012429; c=relaxed/simple;
-	bh=TgIN2Vko2QSfeAhaQWA7wstejia7wbLXf1FK1ROIXk0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JRfYZXFa8wKAXozxybQSonExIS8SBLcTcxCRde5fLBZQ4VuyxdC6Osn3iGCbpO2Izbpn8CYgAhbJFyuzy+SQ5wDWYTqj4APpzvxmsPpS+hOhoyT/zb2f2gz7Frxky8T4+wlbEGfYROImsUOGP9GRS7Vt22fZD8CyVuc5Zr6YrPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hkGYnJV2; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a63359aaaa6so2949066b.2;
-        Wed, 29 May 2024 12:53:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717012426; x=1717617226; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1m+eJ0+HTX5hevlSV4OPbUaaD5T4sWeJ+vrIGfi1+BU=;
-        b=hkGYnJV2SpsshZiT2LkD5opUJCFkC+gdGYq3PSJIxownC4hdckWUofZJ+1hmAO3+He
-         4mFTbf/Yobv1WCZug5NeiWtvKU6ads8sbAKGydvRXHWZCJ+tmLfNZQK7lboHZT1jVcup
-         fKShumFHCNwOQfKxgTjfBiAmDQnJg3XY/Eb+MtQ+mSOzZ09H+5DV7DLpR9jz0JTBD/8S
-         6bw3vGrNlRgNgfvcCYvW3byNlV4WCY0xA6zcVEVxdHXY9Pw7YSqHBPxkHdD1zJrUNcec
-         ooFwkdy0OE0yRrQxV8mNgS7w5ZtFRhs4iSHZpCF9lMW8+kXs4q9MNyAHQ9nterimdGNn
-         eXdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717012426; x=1717617226;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1m+eJ0+HTX5hevlSV4OPbUaaD5T4sWeJ+vrIGfi1+BU=;
-        b=iBlQcyAEj9m6ZrVp+jla9Ry3FD2lZFSxGhePt+VAnRZPm6UYXIrj5vKoINeJ1xrTZO
-         Vjs381UL4ERDQuXzDj3iRCeGJzS4MwGaPuIAipEsuoLBe+EKh4JGSEoJSZUiEkX2avsc
-         iWU5U4opZhyyEbmHSE7ozJ1Xr8Dtywb2afogbjkUO4OM9C6IEr0qfyfWV8YJxezC3KO4
-         a1cU+LcSV9MJXOgUziAM0flplS30tRzBwZ4+1zAAnT763qwDiZuYaIlhZ+xS1wYZfiC4
-         RyikTpl0PX6LW5yCbQ1XvpZ3lwttI/v39F2AAWXA2MYDkChwFXhAHuWD+fDUFkKnmVBt
-         BRYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUO/O8Pa01AgYY7Tr1F9YLK19GgiiImWJMFaGxPIWxKCqI55m8PTd59dzGnKj7+uxwoMQgC7niZCPnqX+M5gTEu0XEM0cLg/vIh/SAVPdo+e0vU0eVj4Ezl/ZpHe+dBX3BI1ZOY1hyTNA3j1XL+8GKPlZD3XdQHKQ8TVkeAheCLX59KEY5TR1eJKTDwTjYCtiqgXNS23Qzr3ZCUri7bLE+3Qt4V
-X-Gm-Message-State: AOJu0Yyw998Gm6ply0ftDV4AGAFexSL2o9ZCX3H73ZG2BMJYIOA6bSLF
-	JafUNTNsTy7exBEsTAcIR1Vc115cc3YoUGvUdQ94tlqxlZHTiqXuGgGPBFxPeWr44/YhMarq3+6
-	aUlmWXsvVjtGFkUeWQtFZTkJVoes=
-X-Google-Smtp-Source: AGHT+IHdLo2Dle0xvU6wdDZvW+5ygpMdmBCnbICN8kcAYk7je6Y+Ci1/SHIdh8p+ng8bmsjWJmc5zj2MS6lW66x6EsY=
-X-Received: by 2002:a17:906:4087:b0:a5a:896e:d0b4 with SMTP id
- a640c23a62f3a-a65e8e5d2e3mr11830466b.26.1717012426261; Wed, 29 May 2024
- 12:53:46 -0700 (PDT)
+	s=arc-20240116; t=1717012775; c=relaxed/simple;
+	bh=qh84C1aPyUvP46Gu8Dv17j5i6PpcG0j1xKFVooUqkcE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g1G5QNMYpxIS3JE2X6L15/ax++TC0wYynouQGE90+7V8hskL7CwEOZ9Mq/sOxvB+Up9azbyDnlf9UYWxI01/jjTEuSMf+aP/QnvU4req2i+3nx78bEGd/Rco5nV98hRAmN3AVRmm59ftRbxxxA+F3rjkaWNzOKLOIyOBAqGbduE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r3QGKidW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 970E2C32781;
+	Wed, 29 May 2024 19:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717012774;
+	bh=qh84C1aPyUvP46Gu8Dv17j5i6PpcG0j1xKFVooUqkcE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=r3QGKidWT4gN19Wv9KIVZLNIHhVjnObmNEvgLKX/521M45DWEkZSeYXtNaEUYAdIs
+	 3OUgmfdVvbNYWqQqTLAOg8Jc8xvi+GaJdRdauRp+A5ecDvNbz8EkFaMqAnuaIXiTBq
+	 p/nJAK2QoFbFM84yY1sPGNEAnOXWQj4ZuH8ZRCgKaJo6rwk7nMuyCKApuqbPTMfHG5
+	 K5M9tqknIXkfcJVJLEVe+Rpz5QLJkYJmYSKmdEStO4YtgNOk2uujdE+28frpES1WI9
+	 UOwB+Ypqt42Odt5wa4NrEoEkuwd/BCjj/Kl7R0gUxtUQq1Yw75ZRoNevC89LwdwD+w
+	 EgbkF+EfZ9JYQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH v2 0/2] of: Fix interrupt-map for fw_devlink
+Date: Wed, 29 May 2024 14:59:19 -0500
+Message-Id: <20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240529162958.18081-1-johan+linaro@kernel.org> <20240529162958.18081-13-johan+linaro@kernel.org>
-In-Reply-To: <20240529162958.18081-13-johan+linaro@kernel.org>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 29 May 2024 22:53:09 +0300
-Message-ID: <CAHp75Vcww07EkUDVSMSd+RviQ9_uku=w4pkCWUt8iGTW580eXg@mail.gmail.com>
-Subject: Re: [PATCH v2 12/14] mfd: pm8008: rework driver
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, Stephen Boyd <swboyd@chromium.org>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABeJV2YC/x2MQQqAMAzAviI9WxhTEf2KeKjaaQ/O0U0RxL87P
+ CaQPBBZhSP0xQPKl0Q5fAZbFjBv5FdGWTKDNbY2je1wSSg+seoZEu4U0MmNVLVTR841MxnIaVD
+ O+t8O4/t+vykBzGYAAAA=
+To: Saravana Kannan <saravanak@google.com>, 
+ Anup Patel <apatel@ventanamicro.com>, Marc Zyngier <maz@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org
+X-Mailer: b4 0.14-dev
 
-On Wed, May 29, 2024 at 7:30=E2=80=AFPM Johan Hovold <johan+linaro@kernel.o=
-rg> wrote:
->
-> Rework the pm8008 driver to match the new binding which no longer
-> describes internal details like interrupts and register offsets
-> (including which of the two consecutive I2C addresses the registers
-> belong to).
->
-> Instead make the interrupt controller implementation internal and pass
-> interrupts to the subdrivers using MFD cell resources.
->
-> Note that subdrivers may either get their resources, like register block
-> offsets, from the parent MFD or this can be included in the subdrivers
-> directly.
->
-> In the current implementation, the temperature alarm driver is generic
-> enough to just get its base address and alarm interrupt from the parent
-> driver, which already uses this information to implement the interrupt
-> controller.
->
-> The regulator driver, however, needs additional information like parent
-> supplies and regulator characteristics so in that case it is easier to
-> just augment its table with the regulator register base addresses.
->
-> Similarly, the current GPIO driver already holds the number of pins and
-> that lookup table can therefore also be extended with register offsets.
->
-> Note that subdrivers can now access the two regmaps by name, even if the
-> primary regmap is registered last so that it is returned by default when
-> no name is provided in lookups.
->
-> Finally, note that the temperature alarm and GPIO subdrivers need some
-> minor rework before they can be used with non-SPMI devices like the
-> PM8008. The temperature alarm MFD cell name specifically uses a "qpnp"
-> rather than "spmi" prefix to prevent binding until the driver has been
-> updated.
+The duplicated parsing continued to bother me, so I've refactored things 
+to avoid that for parsing the interrupt parent and args in the 
+interrupt-map.
 
-...
+It passes testing with unittests on QEMU virt platform, but I don't 
+think that catches the problematic cases. So please test.
 
-> +       dummy =3D devm_i2c_new_dummy_device(dev, client->adapter, client-=
->addr + 1);
-> +       if (IS_ERR(dummy)) {
-> +               ret =3D PTR_ERR(dummy);
-> +               dev_err(dev, "failed to claim second address: %d\n", ret)=
-;
-> +               return ret;
-> +       }
+v1: https://lore.kernel.org/all/20240528164132.2451685-1-maz@kernel.org/
+ - Refactor existing interrupt-map parsing code and use it for 
+   fw_devlink
 
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Marc Zyngier (1):
+      of: property: Fix fw_devlink handling of interrupt-map
 
-> +       ret =3D devm_regmap_add_irq_chip_fwnode(dev, fwnode, regmap, clie=
-nt->irq,
->                                 IRQF_SHARED, 0, &pm8008_irq_chip, &irq_da=
-ta);
-> +       if (ret) {
-> +               dev_err(dev, "failed to add IRQ chip: %d\n", ret);
-> +               return ret;
->         }
+Rob Herring (Arm) (1):
+      of/irq: Factor out parsing of interrupt-map parent phandle+args from of_irq_parse_raw()
 
-I believe there is no harm to use
+ drivers/of/irq.c        | 127 +++++++++++++++++++++++++++++-------------------
+ drivers/of/of_private.h |   3 ++
+ drivers/of/property.c   |  30 ++++--------
+ 3 files changed, 89 insertions(+), 71 deletions(-)
+---
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+change-id: 20240529-dt-interrupt-map-fix-a37b9aff5ca0
 
-  return dev_err_probe(...);
+Best regards,
+-- 
+Rob Herring (Arm) <robh@kernel.org>
 
-for these. But it seems you don't like that API. Whatever, no-one will
-die, just additional work for the future :-)
-
---=20
-With Best Regards,
-Andy Shevchenko
 
