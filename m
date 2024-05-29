@@ -1,159 +1,122 @@
-Return-Path: <devicetree+bounces-70481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9326C8D3716
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:07:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 727F18D3734
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6A921C21C47
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:07:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11EA11F23A9C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F03ADDAB;
-	Wed, 29 May 2024 13:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18E4D52F;
+	Wed, 29 May 2024 13:11:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WvMn1tF1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0C014AA9;
-	Wed, 29 May 2024 13:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0B011CBD
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 13:11:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716988014; cv=none; b=lt9WJjYIPNF8ZNu4S5I3VpsDLL0ho7oO473IkLAsF/N9LBJbTK0u77lkKQ8WIe2HNbKg/1Z16Rp2TF7v4LdTvhyh/VTiH3Lqb6+ugSuSeyqe8GrLAf3VUqyKJMB/a9LTMUOmN2VfIEltWQ7A2ZgerN+M879H6zAMncKtdBbUAUQ=
+	t=1716988297; cv=none; b=kXCA0hOjoweBYIuJujKmtUmG4Y1GX+a+57L2CSmuOAU8MHxr/pjF9GwIi9KyHxrHr/B0o2pXiDRK4mCuNRzYp1cu5s5jKhPkd0SriIsgL7MBI76iapFE2LRpp9kVY/epiChdCoeBQhoZw5ICNz9+7YvP3dZF+dXNw5OOzsZJRAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716988014; c=relaxed/simple;
-	bh=Gydwrm8d+mV9pgzpyR75u2RXMfJN81LViSApnAgE098=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QjGxEjre8HAncQY/BwRI0kKXb2uujyQbrQItyA2UFw9l7w3zNRgAvlURB22L9opvbwL+Llj5Zx4b76xt4kaxNclX+VnghEITybnCjixU6yL1bG/apLAcf7mqqWijVT40Uxiiz97/LNclHpZF3DJyirU3BVt5pJLvslo8aKYNo1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-62a2424ecdaso21226727b3.1;
-        Wed, 29 May 2024 06:06:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716988011; x=1717592811;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xVFbPQ9StvkoNrq/0lKZWIQ4ZOA4XJTj64cZbKmwivY=;
-        b=JGGSK+QdZF1tXfN7HWaizV9lCegpQN2zxXCF1VmtX/yvXJnhDhAWWlwVsXnZlokmji
-         SSNp1XJQuV0+2JGyU2yoV5HswGN33ydHIdYb6sLGGdql3wSQDunxUHaLIrz/ZPqtFsaA
-         KNuRRh0gzXaxlBIVUiUwFMJ5lzoYvRZTXFZHCh0H1zSX4M3STo07gydHB3jwWxSsCpID
-         Z9VCrEwAz2oaTdUo6wZQJGH0tAHWorvoqksik8aO/KUgmhCByWi5375pcfA38IsWESLX
-         P3RKSoDOI4o8ibqk8lyu05pZEUzoy4F//w3c7NUsKZa/SzR7VhrEFfZoEP8KNULFi3ld
-         JIkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVuOsYbYY50fLN+9TGuZlsLc2uiXKJTJMl0rg2saFwkp+94Xvt/Mw9+pUVmU5CbDXfEbWRe0+qjPbqZDHak0qmZE+rldpFKDw2CKQ1lqLedKFGdGkA3drftjqHD77qfQH+CrKYGWIRR+ovzMtzDrSQXR9+59utqs1HPafJvOE+i/stTrGGuGo+SacM0FvwblIWuQsHpcW0cfUPjLaN0rQj9DwS/C2eZnZi9Mgv+duBmQLx2Czctupy4SrbDzu8gh+hB83yNIZ0FfYqclUwiXVLDjECq0PQ/tfu4ccRBl8EY0z7KM+CLOczAg2m/Vwj/TOsEgLy+UlCJUQAmWSQ8eUpzRjzRHzHtPdOVHvQVl7ywwP9D5iRSxEI=
-X-Gm-Message-State: AOJu0YyxSbWgAjFpzVnuqi8DYbxfz6Lap6OhBhZ1e9KfYqVyw+sG2Wm1
-	KmVeOq2kdWbB+HgpJGDC7vUUjtFvJVNLarQbGHCWO6CJkUddaclVT9T+0PshNRE=
-X-Google-Smtp-Source: AGHT+IFZbNxrq1Y2GcpogkFIJxEEueLh2Pk3k4cqJqns+GErJM+NsuI+yxGgvad9/NZwUzuAxwqHqg==
-X-Received: by 2002:a81:6d01:0:b0:61b:1e81:4eb8 with SMTP id 00721157ae682-62a08d74106mr138719307b3.9.1716988010153;
-        Wed, 29 May 2024 06:06:50 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-62a0a56c166sm23852597b3.142.2024.05.29.06.06.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 May 2024 06:06:49 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dfa4ad7f6dfso587358276.1;
-        Wed, 29 May 2024 06:06:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV3pDuDzRbDY+9yUA5NOXzVQwOp/xs7J2mlpVeZogS4DlAaO2iiIpdUmTxE1NVcHGdjY2rDo/eAmjNhn7Op1n/HTwJJc/xVBQkmofGgkMGQZWYbzA61vikHK5vopMzpJcJtYJsQNIgHvfzB/tIjWQeWGjI35ZW4fOFdNs0LzQfyJtzz++aolL7Tn4Ot+L96du9DQ1iKzxkU9pU40MjMg13tcbrakZBCKqZWVpAN3c3gafErgRWyHt0REkoYPEMoB1uukMkZgm4zkJaZx6ZK4ZO4xG+P4wD+/eZOKqeqyKYnt6OT2BgIx4Y8t/5TQ+ILeAU4+gNAeHdETDL1xzvzZPq6RP+yH8tyOUcv/u9noPa8EmE4B24/U/U=
-X-Received: by 2002:a25:a565:0:b0:dfa:48ec:c4b2 with SMTP id
- 3f1490d57ef6-dfa48ecc64cmr1707039276.22.1716988008813; Wed, 29 May 2024
- 06:06:48 -0700 (PDT)
+	s=arc-20240116; t=1716988297; c=relaxed/simple;
+	bh=YAwgspI6uJSO5MsfLoO0b8m4gEmbr554Yx5sphN4ODQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eUuUxYTXIEgzVFqkOQ5x6sqaGSPItdHbEHHvq5j7RdYApzBqZOK84joF0HiTpe+UT/gGks+xCikzI0m0QdfeoU58xBrsN6axXs6+01skJLsWY4baGNrWoCwy5hLdmYCQYduvXfbf5uV4foosLP3471oOzq84xvzKJjmDYkvJCqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WvMn1tF1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E98CC2BD10;
+	Wed, 29 May 2024 13:11:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716988297;
+	bh=YAwgspI6uJSO5MsfLoO0b8m4gEmbr554Yx5sphN4ODQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WvMn1tF1Odnua8fjsgqQlaZSPskulLR2K5YLNNFlgC7w8zjW5dWEG3rw/abayMN2O
+	 uvx73EIRf3BmCYDREW3nHScsX+61Kjy06hV1U6w2pRC1F8X7scCKvxgTzN4g1R4Q2e
+	 8wsg1Nhw/bl2Ss2Qp94Yh8mJOTogXkZTBcYvJSH13H3WX8g8BxUzVKMIO0vVXzbnMK
+	 7a+EXinzVeoasPEM3MWxOGlBR3BRLvx5Hu9cxaDUENi1ONrI8our4YBqoAonXikbv/
+	 xSD/gEI/rib8DD+NrWTc53ehAgHqi/wJhKxWWSFMCHIKBzv9pgB4P97pzT51lEhKby
+	 Zz6LKgBPxDFCQ==
+Date: Wed, 29 May 2024 15:11:33 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-phy@lists.infradead.org, vkoul@kernel.org, kishon@kernel.org,
+	lorenzo.bianconi83@gmail.com, conor@kernel.org,
+	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
+	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
+	amitsinght@marvell.com
+Subject: Re: [PATCH v3 1/4] dt-bindings: phy: airoha: Add binding doc for
+ PCIe PHY driver
+Message-ID: <Zlcphf1jWYnQQlIZ@lore-desk>
+References: <cover.1716031610.git.lorenzo@kernel.org>
+ <82688bbe03ae2d68af838c2bc7fd20491a7d42b1.1716031610.git.lorenzo@kernel.org>
+ <6f5b26d6-c452-4490-9d34-d0a4207139ba@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1716965617.git.ysato@users.sourceforge.jp> <b1fc49269919c7d6c2e5c607ae29d1a6f2ab40d2.1716965617.git.ysato@users.sourceforge.jp>
-In-Reply-To: <b1fc49269919c7d6c2e5c607ae29d1a6f2ab40d2.1716965617.git.ysato@users.sourceforge.jp>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 29 May 2024 15:06:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWdR=SfNBFdABXRqdng8b=68mP_BnnXfpQcUvjCmvOmVA@mail.gmail.com>
-Message-ID: <CAMuHMdWdR=SfNBFdABXRqdng8b=68mP_BnnXfpQcUvjCmvOmVA@mail.gmail.com>
-Subject: Re: [DO NOT MERGE v8 13/36] dt-bindings: clock: sh7750-cpg: Add
- renesas,sh7750-cpg header.
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>, 
-	Heiko Stuebner <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Chris Morgan <macromorgan@hotmail.com>, Sebastian Reichel <sre@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Masahiro Yamada <masahiroy@kernel.org>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Kefeng Wang <wangkefeng.wang@huawei.com>, Stephen Rothwell <sfr@canb.auug.org.au>, 
-	Azeem Shaikh <azeemshaikh38@gmail.com>, Guo Ren <guoren@kernel.org>, 
-	Max Filippov <jcmvbkbc@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Herve Codina <herve.codina@bootlin.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Anup Patel <apatel@ventanamicro.com>, 
-	Jacky Huang <ychuang3@nuvoton.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Sam Ravnborg <sam@ravnborg.org>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="JxJXa4LNeVTBTMXr"
+Content-Disposition: inline
+In-Reply-To: <6f5b26d6-c452-4490-9d34-d0a4207139ba@linaro.org>
+
+
+--JxJXa4LNeVTBTMXr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Sato-san,
+> On 18/05/2024 13:31, Lorenzo Bianconi wrote:
+> > Introduce device-tree binding documentation for Airoha EN7581 PCIe PHY
+> > driver.
+> >=20
+> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
+>=20
+> How the binding was tested?
+>=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>=20
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree=
+/bindings/submitting-patches.rst#L18
+>=20
+> Subject: drop driver. This is for hardware, not drivers.
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks for the update!
+Do I need to repost it or is it ok to address it applying the patches?
 
-On Wed, May 29, 2024 at 10:01=E2=80=AFAM Yoshinori Sato
-<ysato@users.sourceforge.jp> wrote:
-> SH7750 CPG Clock output define.
+Regards,
+Lorenzo
 
-(from my comments on v6 and v7) Please improve the patch description.
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+--JxJXa4LNeVTBTMXr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.yaml
-> @@ -0,0 +1,107 @@
+-----BEGIN PGP SIGNATURE-----
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sh7750-cpg.h>
-> +    cpg: clock-controller@ffc00000 {
-> +        compatible =3D "renesas,sh7751r-cpg";
-> +        reg =3D <0xffc00000 20>, <0xfe0a0000 16>;
-> +        reg-names =3D "FRQCR", "CLKSTP00";
-> +        clocks =3D <&extal>;
-> +        clock-names =3D "extal";
-> +        renesas,mode =3D <0>;
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZlcphQAKCRA6cBh0uS2t
+rF9qAP4mHzSsNoMb9lJrwmPUqU8S5foUosTfEMG7OBpkpxDIAAD+KHfA+dhV1vPL
+3ABd8g6Aj3wmVJ8WUVRXVJulV5IidQs=
+=I83v
+-----END PGP SIGNATURE-----
 
-Nit: please move "renesas,mode" last.
-
-> +        #clock-cells =3D <1>;
-> +        #power-domain-cells =3D <0>;
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--JxJXa4LNeVTBTMXr--
 
