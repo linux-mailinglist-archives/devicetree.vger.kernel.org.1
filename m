@@ -1,224 +1,205 @@
-Return-Path: <devicetree+bounces-70630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAF78D3D11
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:47:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CDA78D3D35
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 19:10:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BDEC1C21401
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:47:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20B411F2434E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 17:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83CFB1836FE;
-	Wed, 29 May 2024 16:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F97717DE18;
+	Wed, 29 May 2024 17:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aCkNXUfP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dUJZ52DZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A5A11836DB;
-	Wed, 29 May 2024 16:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F4511B810;
+	Wed, 29 May 2024 17:10:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717001230; cv=none; b=MJzTBufvlzhIWJdmvgHdy+g1yC5yEB3ohOhmC02oieo/EGtvIkKZUaxgVGqYKQkrM04EI612Qfqnh+KPZCbdggM8RTxoexN5fwMwt6RtHvP3vdUZWI76ACA432SMXNGq5AM2V29HmgGal3M//o0uJtkyliwkfs4VjK5wnKMcaRk=
+	t=1717002613; cv=none; b=WM5G1vT1LdRL7PnkZkVjI4D6Ckejnu4w4YGDmuE/O6b/u78cft/s3ppNqxhYtC5DS0lXSGh0U3Ul3nUEpd+Ib8Imm9hEETC+wbiJ7XQxlsaxl2fBfrH8MCUWDBmJgwfSSdRTz/O0IbSwxQOmMEw6gO3Dcm15OEoKoJMqk0b9jYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717001230; c=relaxed/simple;
-	bh=n7ShnOOdeIWlPrL1n4Qs6VgIfCSCN6l/akX1/ZK9iYo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RWONw/aPYv53ktZdz0KOhV/Abib4IwBhimTgT+lWwJheh7QkiBeP9QpZhCBcaPy+SHklsH5AeuqJhNbcOW6VC/U4FUh41cCnsmN7h+Bv3DXBXfX6KABOKBGBBCs4VnoDL/mdmKSFrBWHRXijA0pXokXNF2z08jG5TybhA+AGqns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aCkNXUfP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3B9CC2BD10;
-	Wed, 29 May 2024 16:47:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717001229;
-	bh=n7ShnOOdeIWlPrL1n4Qs6VgIfCSCN6l/akX1/ZK9iYo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=aCkNXUfPlo3EhRbLwsDwFyRATwLVLUxUtj5wd3U/saK9gL5LhRqc4OABpaV61v8zT
-	 ubUpa9SCgvaGflDHtcC8oDphpTExJvrdJ+lTHVVkOBGjvb5RCZRBTEAnMVwE2kM7ky
-	 DL1TWkTid2Dw77FzPEK/ULvttmd3G6bb8U0Msa1QzIR43ZEhnhfPlO7fYqttmVEd1X
-	 m0kx6PFCQ9hiWY6dGLVwi+TVW0JGQ7hNUH2kXCA1V7vf7fIbrl1+r+ZGIFsLdtL5Hp
-	 TM1sj/29jL/UZBxiuz4r8M6mtqA0FkvfVZTUdoUobAUeaoBZMayRftrVGZolSbCs1v
-	 Lq91EPR1iUUOA==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52b78ef397bso191000e87.0;
-        Wed, 29 May 2024 09:47:09 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWKjWdIYunNS7nq+gyVDdD3nNA0iBHzuF1LjW8twFBt5nBmD8jUYptFgw5PQdlFENT/OdiiO2+YtfQTINqnuZgkUgU6Sj2my+vJSbh/xWfZEw2Imx2Rz04NwMVArbLlZM4lXQ/JWgAriQ==
-X-Gm-Message-State: AOJu0YyDBjgHbfDbw8FWTZmQYAwTcI194Q8zQmNgEQxp84MiTIT1K/9s
-	GQOaXVJUBDuMbZDTLVTXvOvoZlKPOSCr/2t0bz3R+oLVIzC8SVseGyJX+Qn9nwBJahtJU2qvb9i
-	xszD6KDrpFmUS+8jTFMLGb4tPyg==
-X-Google-Smtp-Source: AGHT+IFE6/+pP8QOr7VDz95upfl9e+YZ3sfN4RgI1zbUAJDDzRKCICanPYQR7UH0Oun/B9qoZvrxOicJ6ZYmtkymUpk=
-X-Received: by 2002:ac2:5a08:0:b0:52a:7742:4593 with SMTP id
- 2adb3069b0e04-52a78c36684mr864211e87.25.1717001228317; Wed, 29 May 2024
- 09:47:08 -0700 (PDT)
+	s=arc-20240116; t=1717002613; c=relaxed/simple;
+	bh=kPElXjTyALelD2PjbmCrxdvQKXiKQUMyw8XpUw8IG0o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZTAQKC9+Usz7IJGTQV8f+84Lta3r4AIYbUprA0xpklN0hNzgE5s6+ML/QtsOe+hyiZFmA0q1duZEXcKNMp4pUoALqzOKnnxWSy5R1H32010CvDJNKTdpuAVx5ske6TN0G6vEECYCvZ+j5qMF/yr7H7Xd1yfanfrDyzDRCf2pBwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dUJZ52DZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44T9quR7012513;
+	Wed, 29 May 2024 17:10:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	klUASvIa6B0YT5WNKDJ/OP5jG1HK4jt/YQPai7lt6FQ=; b=dUJZ52DZfdw4ua8G
+	pKFvu09aJwbSrtUxY5ptdTalfb/evYeREUDOfhbOOytMurQaLADNVKV029oKRkZr
+	MvgfoRngeOJXeavrDR2RLdBTCg+cFyanuhrr0Q0Jvx0nWNAsOzzQ/YLkNwwML4Bn
+	HD9gUPdLVNgkQhdF9d7MlyGljdxRQsQ/qVJD040dbbfwtxTjEgbe9LmdMmvE5DEK
+	MJ3l7WEpSAtK0opQAeUrBs++KBnk0T5enkyQFei/zetbJ7W5ENxfj13dD4wy/7du
+	jZwbvC2GPk7JP1gKk741Azvxs3kruz2c6tYDd6XA3FB5IjKJsg01iIVeCX9Fpwzl
+	hvWjNA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0qhkaa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 17:10:06 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44THA5gG023095
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 17:10:05 GMT
+Received: from [10.110.40.14] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
+ 2024 10:10:01 -0700
+Message-ID: <e68a08a5-3b9e-4522-8f7c-1e3def5e0791@quicinc.com>
+Date: Wed, 29 May 2024 10:09:56 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240528164132.2451685-1-maz@kernel.org> <CAK9=C2XNPJP0X=pg5TSrQbsuouDD3jP-gy2Sm4BXNJp0ZiWp+A@mail.gmail.com>
- <86bk4pm8j1.wl-maz@kernel.org> <CAK9=C2XRx==OTPoGW_AHmjq4Th0bv4okwcq6-3L5JYwHwQp97A@mail.gmail.com>
- <86a5k8nbh1.wl-maz@kernel.org> <CAK9=C2Ugq=0y8M86CD75mQccBo=TBLBomb4rqC4i1naKy2LyWQ@mail.gmail.com>
- <CAL_JsqJE15D-xXxmELsmuD+JQHZzxGzdXvikChn6KFWqk6NzPw@mail.gmail.com>
-In-Reply-To: <CAL_JsqJE15D-xXxmELsmuD+JQHZzxGzdXvikChn6KFWqk6NzPw@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 29 May 2024 11:46:55 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL5BwSCZDZPNW2-0kBOw0j9KZZ8WOdnqEmGKhSgquY6Pw@mail.gmail.com>
-Message-ID: <CAL_JsqL5BwSCZDZPNW2-0kBOw0j9KZZ8WOdnqEmGKhSgquY6Pw@mail.gmail.com>
-Subject: Re: [PATCH] of: property: Fix fw_devlink handling of interrupt-map
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-riscv@lists.infradead.org, Saravana Kannan <saravanak@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/5] soc: qcom: llcc: Add regmap for Broadcast_AND
+ region
+To: Bjorn Andersson <andersson@kernel.org>
+CC: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, Bjorn Andersson <quic_bjorande@quicinc.com>
+References: <cover.1716228054.git.quic_uchalich@quicinc.com>
+ <2c7654492ee436b41acddf2edc65d6722c3ad6aa.1716228054.git.quic_uchalich@quicinc.com>
+ <xykcsrfq7mpu7fkjvvhfcew2x2522xmq6poua5utcn2uu5h5ub@j45xpqkedgwa>
+Content-Language: en-US
+From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+In-Reply-To: <xykcsrfq7mpu7fkjvvhfcew2x2522xmq6poua5utcn2uu5h5ub@j45xpqkedgwa>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Dg809O33S7eyAzir7H8zn34w6jRNIDfI
+X-Proofpoint-ORIG-GUID: Dg809O33S7eyAzir7H8zn34w6jRNIDfI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-29_13,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015 mlxscore=0
+ mlxlogscore=999 malwarescore=0 spamscore=0 adultscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405290119
 
-On Wed, May 29, 2024 at 8:51=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
+On 5/26/2024 8:11 PM, Bjorn Andersson wrote:
+> On Mon, May 20, 2024 at 02:00:14PM GMT, Unnathi Chalicheemala wrote:
+>> Define new regmap structure for Broadcast_AND region and initialize
+>> this regmap when HW block version is greater than 4.1, otherwise
+>> initialize as a NULL pointer for backwards compatibility.
+>>
+>> Switch from broadcast_OR to broadcast_AND region (when defined in DT)
+>> for checking status bit 1 as Broadcast_OR region checks only for bit 0.
+>>
+> 
+> This is a good technical description of the change you're making. But
+> it's been long enough since we discussed this that I've forgotten which
+> problem it solves, and the commit message doesn't tell me.
+> 
+> Please add a paragraph on the top describing the actual problem this
+> solves?
 >
-> On Wed, May 29, 2024 at 6:28=E2=80=AFAM Anup Patel <apatel@ventanamicro.c=
-om> wrote:
-> >
-> > On Wed, May 29, 2024 at 4:15=E2=80=AFPM Marc Zyngier <maz@kernel.org> w=
-rote:
-> > >
-> > > On Wed, 29 May 2024 11:16:30 +0100,
-> > > Anup Patel <apatel@ventanamicro.com> wrote:
-> > > >
-> > > > On Wed, May 29, 2024 at 12:03=E2=80=AFPM Marc Zyngier <maz@kernel.o=
-rg> wrote:
-> > > > >
-> > > > > On Wed, 29 May 2024 06:15:52 +0100,
-> > > > > Anup Patel <apatel@ventanamicro.com> wrote:
-> > > > > >
-> > > > > > On Tue, May 28, 2024 at 10:11=E2=80=AFPM Marc Zyngier <maz@kern=
-el.org> wrote:
-> > > > > > >
-> > > > > > > Commit d976c6f4b32c ("of: property: Add fw_devlink support fo=
-r
-> > > > > > > interrupt-map property") tried to do what it says on the tin,
-> > > > > > > but failed on a couple of points:
-> > > > > > >
-> > > > > > > - it confuses bytes and cells. Not a huge deal, except when i=
-t
-> > > > > > >   comes to pointer arithmetic
-> > > > > > >
-> > > > > > > - it doesn't really handle anything but interrupt-maps that h=
-ave
-> > > > > > >   their parent #address-cells set to 0
-> > > > > > >
-> > > > > > > The combinations of the two leads to some serious fun on my M=
-1
-> > > > > > > box, with plenty of WARN-ON() firing all over the shop, and
-> > > > > > > amusing values being generated for interrupt specifiers.
-> > > > > > >
-> > > > > > > Address both issues so that I can boot my machines again.
-> > > > > > >
-> > > > > > > Fixes: d976c6f4b32c ("of: property: Add fw_devlink support fo=
-r interrupt-map property")
-> > > > > > > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > > > > > > Cc: Anup Patel <apatel@ventanamicro.com>
-> > > > > > > Cc: Saravana Kannan <saravanak@google.com>
-> > > > > > > Cc: Rob Herring (Arm) <robh@kernel.org>
-> > > > > >
-> > > > > > Thanks for the fix patch but unfortunately it breaks for RISC-V=
-.
-> > > > > >
-> > > > > > > ---
-> > > > > > >  drivers/of/property.c | 16 ++++++++++++++--
-> > > > > > >  1 file changed, 14 insertions(+), 2 deletions(-)
-> > > > > > >
-> > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > > > index 1c83e68f805b..9adebc63bea9 100644
-> > > > > > > --- a/drivers/of/property.c
-> > > > > > > +++ b/drivers/of/property.c
-> > > > > > > @@ -1322,7 +1322,13 @@ static struct device_node *parse_inter=
-rupt_map(struct device_node *np,
-> > > > > > >         addrcells =3D of_bus_n_addr_cells(np);
-> > > > > > >
-> > > > > > >         imap =3D of_get_property(np, "interrupt-map", &imaple=
-n);
-> > > > > > > -       if (!imap || imaplen <=3D (addrcells + intcells))
-> > > > > > > +       imaplen /=3D sizeof(*imap);
-> > > > > > > +
-> > > > > > > +       /*
-> > > > > > > +        * Check that we have enough runway for the child uni=
-t interrupt
-> > > > > > > +        * specifier and a phandle. That's the bare minimum w=
-e can expect.
-> > > > > > > +        */
-> > > > > > > +       if (!imap || imaplen <=3D (addrcells + intcells + 1))
-> > > > > > >                 return NULL;
-> > > > > > >         imap_end =3D imap + imaplen;
-> > > > > > >
-> > > > > > > @@ -1346,8 +1352,14 @@ static struct device_node *parse_inter=
-rupt_map(struct device_node *np,
-> > > > > > >                 if (!index)
-> > > > > > >                         return sup_args.np;
-> > > > > > >
-> > > > > > > -               of_node_put(sup_args.np);
-> > > > > > > +               /*
-> > > > > > > +                * Account for the full parent unit interrupt=
- specifier
-> > > > > > > +                * (address cells, interrupt cells, and phand=
-le).
-> > > > > > > +                */
-> > > > > > > +               imap +=3D of_bus_n_addr_cells(sup_args.np);
-> > > > > >
-> > > > > > This breaks for RISC-V because we don't have "#address-cells"
-> > > > > > property in interrupt controller DT node and of_bus_n_addr_cell=
-s()
-> > > > > > retrieves "#address-cells" from the parent of interrupt control=
-ler.
-> > > > >
-> > > > > That's a feature, not a bug. #address-cells, AFAICT, applies to a=
-ll
-> > > > > child nodes until you set it otherwise.
-> > > > >
-> > > > > >
-> > > > > > The of_irq_parse_raw() looks for "#address-cells" property
-> > > > > > in the interrupt controller DT node only so we should do a
-> > > > > > similar thing here as well.
-> > > > >
-> > > > > This looks more like a of_irq_parse_raw() bug than anything else.
-> > > >
-> > > > If we change of_irq_parse_raw() to use of_bus_n_addr_cells()
-> > > > then it would still break for RISC-V.
-> > >
-> > > I'm not trying to "fix" riscv. I'm merely outlining that you are
-> > > relying on both broken DTs and a buggy OS.
-> > >
-> > > >
-> > > > Using of_bus_n_addr_cells() over here forces interrupt controller
-> > > > DT nodes to have a "#address-cells" DT property. There are many
-> > > > interrupt controller (e.g. RISC-V PLIC or RISC-V APLIC) where the
-> > > > DT bindings don't require "#address-cells" DT property and existing
-> > > > DTS files with such interrupt controllers don't have it either.
-> > >
-> > > It forces you to set #address-cells *if you rely on a different
-> > > value in a child node*. It's not like the semantics are new.
-> >
-> > We don't have child nodes under the interrupt controller DT node
-> > (for both RISC-V PLIC and APLIC) so we certainly don't require the
-> > "#address-cells" property in the interrupt controller DT node.
->
-> interrupt controller nodes which are referred to by interrupt-map
-> require #address-cells. Period. Child nodes or not.
+Yes understood, I'll append this to the commit message:
 
-Now that I've re-read the code, the kernel will treat missing
-#address-cells in the interrupt parent as 0. Looking in the parent
-nodes for #address-cells only happens for the input address (i.e. the
-address before the phandle). IOW, the first use of_bus_n_addr_cells()
-was correct, but the 2nd use is not correct. That's not great, but
-that's how this code passed down on stone tablets works...
+To support CSR programming, a broadcast interface is used to program all
+channels in a single command. Until SM8450 there was only one broadcast
+region (Broadcast_OR) used to broadcast write and check for status bit
+0.
+From SM8450 onwards another broadcast region (Broadcast_AND) has been
+added which checks for status bit 1. This hasn't been updated and
+Broadcast_OR region was wrongly being used to check for status bit 1 all
+along.
 
-As I commented on v1 of the original patch. I don't like parsing
-interrupt-map in 2 places. It leads to problems exactly as this thread
-has shown. The duplication was reduced some, but is still more than
-I'd like. So I'm looking at how to refactor of_irq_parse_raw() to make
-it work for what's needed here. Maybe I'll have a fix quickly. If not,
-I'm going to revert the original commit.
-
-Rob
+Thank you Bjorn.
+> Regards,
+> Bjorn
+> 
+>> Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+>> Reviewed-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>> ---
+>>  drivers/soc/qcom/llcc-qcom.c       | 16 +++++++++++++++-
+>>  include/linux/soc/qcom/llcc-qcom.h |  4 +++-
+>>  2 files changed, 18 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+>> index cbef0dea1d5d..5eac6aa567e7 100644
+>> --- a/drivers/soc/qcom/llcc-qcom.c
+>> +++ b/drivers/soc/qcom/llcc-qcom.c
+>> @@ -821,6 +821,7 @@ EXPORT_SYMBOL_GPL(llcc_slice_putd);
+>>  static int llcc_update_act_ctrl(u32 sid,
+>>  				u32 act_ctrl_reg_val, u32 status)
+>>  {
+>> +	struct regmap *regmap;
+>>  	u32 act_ctrl_reg;
+>>  	u32 act_clear_reg;
+>>  	u32 status_reg;
+>> @@ -849,7 +850,8 @@ static int llcc_update_act_ctrl(u32 sid,
+>>  		return ret;
+>>  
+>>  	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+>> -		ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+>> +		regmap = drv_data->bcast_and_regmap ?: drv_data->bcast_regmap;
+>> +		ret = regmap_read_poll_timeout(regmap, status_reg,
+>>  				      slice_status, (slice_status & ACT_COMPLETE),
+>>  				      0, LLCC_STATUS_READ_DELAY);
+>>  		if (ret)
+>> @@ -1284,6 +1286,18 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>  
+>>  	drv_data->version = version;
+>>  
+>> +	/* Applicable only when drv_data->version >= 4.1 */
+>> +	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+>> +		drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
+>> +		if (IS_ERR(drv_data->bcast_and_regmap)) {
+>> +			ret = PTR_ERR(drv_data->bcast_and_regmap);
+>> +			if (ret == -EINVAL)
+>> +				drv_data->bcast_and_regmap = NULL;
+>> +			else
+>> +				goto err;
+>> +		}
+>> +	}
+>> +
+>>  	llcc_cfg = cfg->sct_data;
+>>  	sz = cfg->size;
+>>  
+>> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+>> index 1a886666bbb6..9e9f528b1370 100644
+>> --- a/include/linux/soc/qcom/llcc-qcom.h
+>> +++ b/include/linux/soc/qcom/llcc-qcom.h
+>> @@ -115,7 +115,8 @@ struct llcc_edac_reg_offset {
+>>  /**
+>>   * struct llcc_drv_data - Data associated with the llcc driver
+>>   * @regmaps: regmaps associated with the llcc device
+>> - * @bcast_regmap: regmap associated with llcc broadcast offset
+>> + * @bcast_regmap: regmap associated with llcc broadcast OR offset
+>> + * @bcast_and_regmap: regmap associated with llcc broadcast AND offset
+>>   * @cfg: pointer to the data structure for slice configuration
+>>   * @edac_reg_offset: Offset of the LLCC EDAC registers
+>>   * @lock: mutex associated with each slice
+>> @@ -129,6 +130,7 @@ struct llcc_edac_reg_offset {
+>>  struct llcc_drv_data {
+>>  	struct regmap **regmaps;
+>>  	struct regmap *bcast_regmap;
+>> +	struct regmap *bcast_and_regmap;
+>>  	const struct llcc_slice_config *cfg;
+>>  	const struct llcc_edac_reg_offset *edac_reg_offset;
+>>  	struct mutex lock;
+>> -- 
+>> 2.34.1
+>>
 
