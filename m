@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-70500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FDA8D388D
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:02:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C5B8D3894
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:03:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C56FF1C20FD9
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:02:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75D1A1F229A9
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5E41BDCF;
-	Wed, 29 May 2024 14:02:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B871C2AF;
+	Wed, 29 May 2024 14:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MOcvWy8d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VxNOqsOR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F4088D53E;
-	Wed, 29 May 2024 14:02:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B2012B95;
+	Wed, 29 May 2024 14:03:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716991323; cv=none; b=N4EPTfGtJAYJJXFpp/CdWeTvZ37NXHSCiWygz+hqN/lFJDAF8Hg+/knfHgVk+rxdgvaIFrFDTVj6l/QOEhpgpKoUkkRFGU9F7JOwlYZwIv0jmVHgXfyiWPFyJ1WH1Nz31R9UpEm8IWcYBaJbfFaO7nS1bl2WTbRrsPgUPk8NegU=
+	t=1716991414; cv=none; b=C2bdksmd61A7hSbiMIfOm8KLNngSzg5qsOknt8qq4WnzRSRXidXcx4L5DurvyV41cL6KqXfG02B6vV1rnYC49k7DZr5/QSOBEm8vp5zf4+mnQ2qf+J74iZBj9bYA0LxgCvUuZSsbQjlcYcsKDBhXc8a5bRdwgVrgx3+nvJ8lj08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716991323; c=relaxed/simple;
-	bh=7BvQIjtqhgsfSju2Sv+LCPz/pJQOYXEFYDdtXUzbbxU=;
+	s=arc-20240116; t=1716991414; c=relaxed/simple;
+	bh=WjdW1FP762sEgNbUJdyYCjRIv0VEhWJXADENEQ+EJdM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DIzE9lexYhx/DvnghUbm0gv2mSqUDGGZMhmhY2nnIFWXp/iBNJZq4Ij4xt4FGdLtCebUc2wZTu/RBz1swglsGekgl4LdQBjr9TlTogvzWz+mnUDtLRiyMV3SMjS1yrayFqRcLVHEM855qPnVwUrXSJbSiCzdYl+fLCNE+flkklw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MOcvWy8d; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	 In-Reply-To:Content-Type; b=FnCbXCveLNRTvbSDgOcysVjhIoY8zMgIknlk2JdIGxlQVxYPmiKm+CbLZz24CR8vHoIq42ufg0nCkHbAWTCXylzvaXG29B2cWRUujXm/H0C0j5Gv/P8TTonObp04oBuk/QQUPv/0EsX5Yt2NMIHVlb31hImBO2LYqcPyBzFcras=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VxNOqsOR; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7021ab0d0f5so422235b3a.2;
-        Wed, 29 May 2024 07:02:01 -0700 (PDT)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5785c1e7448so2121717a12.2;
+        Wed, 29 May 2024 07:03:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716991321; x=1717596121; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=LVXZeVnLsg0ViktlE8rjdZXCIRUH3zGk7VHAnoHlLq0=;
-        b=MOcvWy8dGk6L9ypIKibvbU47w8GV6f2QvPJ4/XSQIdg1Bvl/bWWih3xDvFY9QDB+rk
-         7BPNtU+2yoid7j2C6m/jRcbTsz6w22aaWeLqOJXQyV0sxieE7GPJSIzsYSE0o9zQU1uv
-         ZoRvFB5++SzRisKpZs+Pi3TpWmpQfi4NP4P0w1jCk3IPAIkFTYFtS1iKm2aRN2pGrHFV
-         4t8CWbUzyuafQVjetmlY2L2Qht51p96978Oj/CWZLV8oSLebgTkbBE3zIJdDPe0XhvhA
-         vXF75NnxF926VcU51fvJP5+ttN1eA0yE6Bl20kNrsNx473eHU+kaSRvyEErrkqt2G3Zl
-         djRQ==
+        d=gmail.com; s=20230601; t=1716991410; x=1717596210; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F1ujdDEYUIIkAJTFHWvU9CFPTnOkFnbvdnN/RkQMKsY=;
+        b=VxNOqsOR2+Wv2aPaUyuqALu/rEiZG0u8IlrrZMZGJ3DouUVUE0AKugwiMNhtRwLq3d
+         1EbB6CP4riSiOZ7Ynvd/t/IAHEQYHrOiCO3cHnd3BpjfprgeziDHZVLvQTzhPskfCjPY
+         ZItaqq5OIPkSYvoAqp6/R303W1C7i3TzW0VGWivH+TiK96pJbHAahfV4+u5mjAsAfs7E
+         NRKhxthsQGkaz3CLkCQjWhe0IgE00ktWg2Qrb6MhhRSU4CntP9X9MvdZEm0EXvBoEyK5
+         4LUoAE6fLVDxPVdu4nWJawuBjo6n/o9m2rAruguLWukP15TCNOP8Zq0/FOoaW91gYba8
+         lfow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716991321; x=1717596121;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LVXZeVnLsg0ViktlE8rjdZXCIRUH3zGk7VHAnoHlLq0=;
-        b=Q5MP/D/Gd3Ib44hDn9kb+f8dPqos2nHV7Y6KRxTrQB/s29aem4Xcq0wXgqmJNh0Cr7
-         eRXQPA51YhrV36Eoh74prSunJ+sHTM4K78J/KOZ3RjdXyH3UKYxMnKSm+ClihPRkKkf6
-         I9m0luTT3oE4TheJsv16//5IG5Mwop9AN+whANka81vuGOFfCJIcCmt0pixJ8E6TTWSd
-         WJTz5SYjqI0ASfvSifKcUkA6JqXYiSeoIVEGxY7/Dms5OD91aG7uevTtdiSxxUs5jE3P
-         A3tl4pne5YO41ODEUrSYVSYWW+gHgWTtkcN4f+aHj+K8AQ7mqJNBh/8ujFMhC7KWUOn0
-         /xrA==
-X-Forwarded-Encrypted: i=1; AJvYcCUWSVHiqpFY9R/mbsoHIlgUciG6EplHWCCy05y9B8C7q3kurnBnmy5enXzWwzDTNNX/02H4kE36nbQl16jMreSocoQULda29/ehA0fyYrYr7DLGbhKOCVsxH9u9MYiRz36UGhIX/OvVfA==
-X-Gm-Message-State: AOJu0Yyt9F0dF1EsZVsIV00fWQHfnapgRoGnbhmXnzQaw5hknF+bhCn2
-	somPPtDCMsAAJwNorNNFXWTfUS2ASzHBei2LoqJP9wU90Ox3gnpH
-X-Google-Smtp-Source: AGHT+IH/qkoVVkCaMiE9B+4sdDu1fi4o9p4+g7nWxv1Kdcx0Gb/sL2KYxXBASZUegVJfHIWH9jbWjQ==
-X-Received: by 2002:a05:6a20:7f8d:b0:1af:e649:6f4 with SMTP id adf61e73a8af0-1b212f874d9mr16544409637.57.1716991320875;
-        Wed, 29 May 2024 07:02:00 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-6f8fcfdf510sm8296052b3a.143.2024.05.29.07.01.58
+        d=1e100.net; s=20230601; t=1716991410; x=1717596210;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F1ujdDEYUIIkAJTFHWvU9CFPTnOkFnbvdnN/RkQMKsY=;
+        b=kFzeu3R3Vyjtd8xFovHRS7i+IVHxVX3To0VmO7PWVVpgDsD9q89XC0LegMOrQYlytg
+         JlzxjWrBnmOHYRGucJcGexyz7pKKZurWv/NefwNM9o5dYc41tIz4RUh80UK+fGX+fQIm
+         ljluXI1s7s4g6Xgv3Rks2FYSKU354q3p6+1N83IZQGEh/Cn1NyHOYwKb+WXDEM2txHhZ
+         P4Ucu+EWMdrZc5Gpfc2JXBnRpLn673MQ2TedTubT4FGHIMouE1ZggS+v8TAGnziCPi+1
+         WykS2HfNJzu3SdmEdI75KcsMmw60YgEwkJsIz/vE5adyQrcf6/aE43F5jd4V9Gr0K4aS
+         HlQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVwxyzngXBcajkaJaCixg/IM+9FKTgvyKZ9ftvJvRgUoPyeLQRW6Njh2M/072KMiT5NfhxMBfk979q9tv2JxZhxV+qYy6SUnS6ZPQ7er1FgF3HW9po9hQt9nWew957j8NA9VWkX+zdl8K+Hy2hLkw5VdOqlq4yCPy9UiXczvPb2wdywQ==
+X-Gm-Message-State: AOJu0YyVpofDRxmj4Gq2wgwlsDKCiuOKZrwK4R7q0cgS1n46m7U0O7Xo
+	iL6JCK+TAS2bNsMbvLHr2Cxi6I5xt/oOToH3qapPqJAD6Op6IZO8
+X-Google-Smtp-Source: AGHT+IECePkYinauu8AtBL+pjHmC4fTu+y/z0FujBAwpBmBYBYATXLR/JUybGKJN+92ubFWQWLGFjw==
+X-Received: by 2002:a50:c359:0:b0:578:5ee4:921f with SMTP id 4fb4d7f45d1cf-5785ee495f6mr9808278a12.13.1716991409673;
+        Wed, 29 May 2024 07:03:29 -0700 (PDT)
+Received: from [192.168.0.137] ([188.24.75.156])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5785234a7efsm8555915a12.4.2024.05.29.07.03.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 May 2024 07:01:59 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <76dd5c0e-cc67-4ad1-8733-d8efdb8a172b@roeck-us.net>
-Date: Wed, 29 May 2024 07:01:57 -0700
+        Wed, 29 May 2024 07:03:29 -0700 (PDT)
+Message-ID: <917bc1d9-fbdc-4ca2-a156-813b57c8201e@gmail.com>
+Date: Wed, 29 May 2024 17:03:27 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,124 +76,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ti,ina2xx: Add alert-polarity
- property
-To: Krzysztof Kozlowski <krzk@kernel.org>, Amna Waseem
- <Amna.Waseem@axis.com>, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20240529-apol-ina2xx-fix-v1-0-77b4b382190f@axis.com>
- <20240529-apol-ina2xx-fix-v1-1-77b4b382190f@axis.com>
- <1ae97b90-ff20-4238-abe2-f2e5d87fc344@kernel.org>
+Subject: Re: [PATCH v3 5/6] iio: adc: ad7173: Add support for AD411x devices
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
+ <20240527-ad4111-v3-5-7e9eddbbd3eb@analog.com>
+ <6f18184de4a37993baedc15b44ecf0a6834a24d1.camel@gmail.com>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <1ae97b90-ff20-4238-abe2-f2e5d87fc344@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <6f18184de4a37993baedc15b44ecf0a6834a24d1.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 5/29/24 00:07, Krzysztof Kozlowski wrote:
-> On 29/05/2024 08:07, Amna Waseem wrote:
->> Add a property to the binding to configure the Alert Polarity.
->> Alert pin is asserted based on the value of Alert Polarity bit of
->> Mask/Enable register. It is by default 0 which means Alert pin is
->> configured to be active low. To configure it to active high, set
->> alert-polarity property value to 1.
->>
->> Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
->> ---
->>   Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->> index df86c2c92037..a3f0fd71fcc6 100644
->> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->> @@ -66,6 +66,14 @@ properties:
->>       description: phandle to the regulator that provides the VS supply typically
->>         in range from 2.7 V to 5.5 V.
->>   
->> +  alert-polarity:
-> 
-> Missing vendor prefix.
-> 
+On 29/05/2024 15:46, Nuno Sá wrote:
+> On Mon, 2024-05-27 at 20:02 +0300, Dumitru Ceclan via B4 Relay wrote:
+>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
 
-Are you sure you want a vendor prefix here ? Reason for asking is that
-many hardware monitoring chips have configurable alert or interrupt polarity,
-only the name is different. Some examples are the JC42.4 standard ("event
-polarity"), adt7410/adt7420 "interrupt polarity", MAX31827 ("alarm polarity"),
-or DS1621 ("output polarity"). We even have a vendor property, "adi,alarm-pol",
-used for MAX31827.
+...
 
-Secondary problem is that not all chips of the series support this
-configuration. INA209 has a configurable "warning polarity", but the
-warning pin and the smbus alert pin are two different pins.
-INA219 and INA220 do not have alert or interrupt output pins.
-Only INA226, INA230, INA231, INA238, and INA260 support configurable
-alert polarity.
+>>  static const struct ad7173_device_info ad7173_device_info[] = {
+>> +	[ID_AD4111] = {
+>> +		.name = "ad4111",
+>> +		.id = AD7173_AD4111_AD4112_AD4114_ID,
+>> +		.num_voltage_inputs_with_divider = 8,
+>> +		.num_channels = 16,
+>> +		.num_configs = 8,
+>> +		.num_voltage_inputs = 8,
+>> +		.num_gpios = 2,
+>> +		.higher_gpio_bits = true,
+>> +		.has_temp = true,
+>> +		.has_vcom_input = true,
+>> +		.has_input_buf = true,
+>> +		.has_current_inputs = true,
+>> +		.has_int_ref = true,
+>> +		.clock = 2 * HZ_PER_MHZ,
+>> +		.sinc5_data_rates = ad7173_sinc5_data_rates,
+>> +		.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
+>> +	},
+> 
+> At some point it would be nice to drop the ad7173_device_info array...
+> 
+What are good alternatives to this?
+...
 
-Thanks,
-Guenter
+>> +		ret = fwnode_property_match_property_string(child,
+>> +							    "adi,channel-type",
+>> +							    ad7173_channel_types,
+>> +							   
+>> ARRAY_SIZE(ad7173_channel_types));
+>> +		chan->differential = (ret < 0 || ret == AD7173_CHAN_DIFFERENTIAL)
+>> +					? 1 : 0;
+> 
+> I don't think we should treat 'ret < 0' has a differential channel. Any reason for
+> it? For me, it's just an invalid property value given by the user...
+> 
+Yes, as that would be the default value if it's missing or invalid
 
->> +    description: |
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
->> +      Alert polarity bit value of Mask/Enable register. Alert pin is asserted
->> +      based on the value of Alert polarity Bit. Default value is active low.
->> +      0 selects active low, 1 selects active high.
-> 
-> Just use string, easier to read. But for sure do not introduce different
-> values than we already have - GPIO HIGH is 0, not 1.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+> - Nuno Sá
 > 
 
 
