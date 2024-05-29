@@ -1,122 +1,122 @@
-Return-Path: <devicetree+bounces-70483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727F18D3734
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:11:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C8808D3753
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:15:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11EA11F23A9C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:11:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4447128731D
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18E4D52F;
-	Wed, 29 May 2024 13:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB991AAC4;
+	Wed, 29 May 2024 13:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WvMn1tF1"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="J6iWH5xC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0B011CBD
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 13:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29BAD12E5B;
+	Wed, 29 May 2024 13:14:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716988297; cv=none; b=kXCA0hOjoweBYIuJujKmtUmG4Y1GX+a+57L2CSmuOAU8MHxr/pjF9GwIi9KyHxrHr/B0o2pXiDRK4mCuNRzYp1cu5s5jKhPkd0SriIsgL7MBI76iapFE2LRpp9kVY/epiChdCoeBQhoZw5ICNz9+7YvP3dZF+dXNw5OOzsZJRAo=
+	t=1716988475; cv=none; b=Em6lDi0pX/wCJGuUQz/faG2LQmX8ZRdlstr5L9JagjiKlMP+ae0tKUfBFwx1UIgMxrkhCRrflvtbgdE4OdDL89My/l6i9kbFl3tc/5Ll+urj6ZZIA+9E6TAmq7085wcHeKmM4PFkQx5cY4rB25260zOjs2+4j2JEDqM+O3IKEHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716988297; c=relaxed/simple;
-	bh=YAwgspI6uJSO5MsfLoO0b8m4gEmbr554Yx5sphN4ODQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eUuUxYTXIEgzVFqkOQ5x6sqaGSPItdHbEHHvq5j7RdYApzBqZOK84joF0HiTpe+UT/gGks+xCikzI0m0QdfeoU58xBrsN6axXs6+01skJLsWY4baGNrWoCwy5hLdmYCQYduvXfbf5uV4foosLP3471oOzq84xvzKJjmDYkvJCqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WvMn1tF1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E98CC2BD10;
-	Wed, 29 May 2024 13:11:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716988297;
-	bh=YAwgspI6uJSO5MsfLoO0b8m4gEmbr554Yx5sphN4ODQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WvMn1tF1Odnua8fjsgqQlaZSPskulLR2K5YLNNFlgC7w8zjW5dWEG3rw/abayMN2O
-	 uvx73EIRf3BmCYDREW3nHScsX+61Kjy06hV1U6w2pRC1F8X7scCKvxgTzN4g1R4Q2e
-	 8wsg1Nhw/bl2Ss2Qp94Yh8mJOTogXkZTBcYvJSH13H3WX8g8BxUzVKMIO0vVXzbnMK
-	 7a+EXinzVeoasPEM3MWxOGlBR3BRLvx5Hu9cxaDUENi1ONrI8our4YBqoAonXikbv/
-	 xSD/gEI/rib8DD+NrWTc53ehAgHqi/wJhKxWWSFMCHIKBzv9pgB4P97pzT51lEhKby
-	 Zz6LKgBPxDFCQ==
-Date: Wed, 29 May 2024 15:11:33 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-phy@lists.infradead.org, vkoul@kernel.org, kishon@kernel.org,
-	lorenzo.bianconi83@gmail.com, conor@kernel.org,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
-	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
-	amitsinght@marvell.com
-Subject: Re: [PATCH v3 1/4] dt-bindings: phy: airoha: Add binding doc for
- PCIe PHY driver
-Message-ID: <Zlcphf1jWYnQQlIZ@lore-desk>
-References: <cover.1716031610.git.lorenzo@kernel.org>
- <82688bbe03ae2d68af838c2bc7fd20491a7d42b1.1716031610.git.lorenzo@kernel.org>
- <6f5b26d6-c452-4490-9d34-d0a4207139ba@linaro.org>
+	s=arc-20240116; t=1716988475; c=relaxed/simple;
+	bh=s+kzo1mIt5kdmhmpjxm0dPVNjA4/CEZktTwadgjJf3k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ul7JFv/rTlTk2xSTVbmhe7ZdD8D+wMEf8tJ/eMZZ9x/kEM6c2q6RD+/zdZ2sKEeQOW6oOkd7FH/u96srOsQgawz5+cCa+/vpPUjcZP7ZSuIclRXsEyDH4KiE/KEb1abOpeKnDgPXq/1zr3F0e4M51JAGYl7j359usL5fyYxQbBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=J6iWH5xC; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TBGXDt027029;
+	Wed, 29 May 2024 15:14:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=PIIcNcmlMr49S8y8EsAlKj
+	uoQdNzfUVhtTNhE4eVCM4=; b=J6iWH5xC+fFF6IhEQpp3Zv+RR1UT4Uqdv57pXh
+	wzFQT+F6yQAre5fmOQtnwBID71E4z7lkxeKnv78RQ5sxgwRDCXZKdtQufQYeRtNd
+	99iRt6rvXgkRUwAT87V3ok7rF8P1NqsZGSpcG2Si8MHeX1bbXHDZ56BbC8ZVzmUY
+	uv0BwrY5Z3nRFToBE6o8O4kpk2ehZiTTPNtFj9hEsGs+6BdrU8yWx9SCClk0nBGo
+	q2sGZxjWmxUY6A6Prf6nIvhId7R02QqiSp5rqHTNtrNlFYNZ55vAoZcJyvY0F6B2
+	oZ53gwqTBtxiIqf+73RbtbjzLcVZjBap0UgL9t7pu1sJUVxg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ybtxhewrb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 15:14:06 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 952BA4002D;
+	Wed, 29 May 2024 15:14:02 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8354B216606;
+	Wed, 29 May 2024 15:13:12 +0200 (CEST)
+Received: from localhost (10.48.87.209) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 29 May
+ 2024 15:13:12 +0200
+From: <gabriel.fernandez@foss.st.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+        Gabriel Fernandez
+	<gabriel.fernandez@foss.st.com>,
+        Dan Carpenter <dan.carpenter@linaro.or6g>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+Subject: [RESEND PATCH v2 0/3] Use STM32 access controller for STM32MP25 clocks
+Date: Wed, 29 May 2024 15:13:07 +0200
+Message-ID: <20240529131310.260954-1-gabriel.fernandez@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JxJXa4LNeVTBTMXr"
-Content-Disposition: inline
-In-Reply-To: <6f5b26d6-c452-4490-9d34-d0a4207139ba@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-29_10,2024-05-28_01,2024-05-17_01
 
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
---JxJXa4LNeVTBTMXr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Use an STM32 access controller to filter the registration of clocks.
+Don't register a clock if this clock is secured or declared as shared (this
+clock is generally managed by the security world).
 
-> On 18/05/2024 13:31, Lorenzo Bianconi wrote:
-> > Introduce device-tree binding documentation for Airoha EN7581 PCIe PHY
-> > driver.
-> >=20
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> > Tested-by: Zhengping Zhang <zhengping.zhang@airoha.com>
->=20
-> How the binding was tested?
->=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree=
-/bindings/submitting-patches.rst#L18
->=20
-> Subject: drop driver. This is for hardware, not drivers.
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series depends on the stm32_firewall framework (merged since
+next-20240419) notably for the include file 'linux/bus/stm32_firewall_device.h'.
 
-Do I need to repost it or is it ok to address it applying the patches?
+Changes in v2:
+  - rebased on next-20240514
+  - YAML patch was apllied on next
+  - use appropriate include
+  - manage the case if 'access-contoller' property is not present in the DT
+  - rename DT patch (RCC support part was merged)
 
-Regards,
-Lorenzo
+Gabriel Fernandez (3):
+  clk: stm32mp2: use of STM32 access controller
+  clk: stm32mp25: add security clocks
+  arm64: dts: st: enable STM32 access controller for RCC
 
->=20
-> Best regards,
-> Krzysztof
->=20
+ arch/arm64/boot/dts/st/stm32mp251.dtsi |   1 +
+ drivers/clk/stm32/clk-stm32-core.c     |   2 +-
+ drivers/clk/stm32/clk-stm32-core.h     |   2 +-
+ drivers/clk/stm32/clk-stm32mp13.c      |   2 +-
+ drivers/clk/stm32/clk-stm32mp25.c      | 516 +++++++++++++++----------
+ 5 files changed, 325 insertions(+), 198 deletions(-)
 
---JxJXa4LNeVTBTMXr
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZlcphQAKCRA6cBh0uS2t
-rF9qAP4mHzSsNoMb9lJrwmPUqU8S5foUosTfEMG7OBpkpxDIAAD+KHfA+dhV1vPL
-3ABd8g6Aj3wmVJ8WUVRXVJulV5IidQs=
-=I83v
------END PGP SIGNATURE-----
-
---JxJXa4LNeVTBTMXr--
 
