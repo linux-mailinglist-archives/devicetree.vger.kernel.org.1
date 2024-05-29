@@ -1,178 +1,343 @@
-Return-Path: <devicetree+bounces-70448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7FC28D35FA
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:06:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7488D35FD
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DC97287F5D
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:06:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B1721F26290
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D226B180A7E;
-	Wed, 29 May 2024 12:06:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YZhTN61t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24116180A7E;
+	Wed, 29 May 2024 12:06:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DB97317C;
-	Wed, 29 May 2024 12:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A727317C
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 12:06:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716984377; cv=none; b=RP9E/14aCt3EjpRD8wyK+4aEZmdHcWt/ffhRJboHLlGdBiw4Ft+1MWY7jazKXc8TKgzFMC6CkbkjhukYygmydbLBAbuvQlyfjA7BiT3APFgxz/M4cSPOjLhP9/YmXKwEOViiE75x8Gj/GoyCqODwlTbXy5QNvqyT+NM6ppVY9sE=
+	t=1716984385; cv=none; b=mzAW45g/BY2TPAzsmVLgi/aocnYMmIQoYs7WPbr+JOHkmakCMwXkt9y7BcxWNvB2d426ViFyTHF6aHxiKutKAFNqy4oe3OEsv4tAoGllJQP36kcxmTpef2HTseN3RtUoYEYdRZdbUzPOKNl2/bKSgDsM2dVriNNgdeZCWcilYY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716984377; c=relaxed/simple;
-	bh=Kam7GlrgaXVFK23XrEQCDs7nyWMWsFNSiXp7twV37rk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wlt3prJ1YVURHP8zKMfmOlJnhwOC7YXciWSDsf03bJWYpiXlCPeAxpRogs0iTwq8DIwhhldqSZVuFz69uoqT6wLwZKyIiC79sS6+Gj0qPpxmJuw4n6luklc+p0PKv53sFNPbYJ6WV0x2kjRCdPfL7TVljltI5nR9+siH50Wt2lM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=YZhTN61t; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1716984373;
-	bh=Kam7GlrgaXVFK23XrEQCDs7nyWMWsFNSiXp7twV37rk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YZhTN61tKJzQX2QRKsKJdg0qMXjNOgIKplP84ePEYUqM/Vzyo+YLquJ3+JKPqGczB
-	 HoulKRjZSwvmt5Rz3qazylvOEk+kXQns6p/icwwKZuURhfchSdXTFW/PcayaDFCI17
-	 EBj0vvpfOFsZz/g6VIB9d4otAOk1mJ3396Q+lpP+IIA8Mf4XawXWH08ozY9fT1VJRI
-	 jGiPhijsyo0ij+lC9ZnVS886LAYZz5XScl1pVAYGZYjt7tl5FXycHU0S/DXlJ3OIhe
-	 GmFCVOShbR4r5lIwoiRrV1wKkYRWmKVEebiTtNsGaXTGt9Uj0HFuf4dugAZGkEGYa2
-	 a8ReS6O0g27Bw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E2C45378216D;
-	Wed, 29 May 2024 12:06:12 +0000 (UTC)
-Message-ID: <ad047631-16b8-42ce-8a8d-1429e6af4517@collabora.com>
-Date: Wed, 29 May 2024 14:06:12 +0200
+	s=arc-20240116; t=1716984385; c=relaxed/simple;
+	bh=wSQmob3RXwfc1a97biSpzAglk8OKCx9yZbe8Wz2zf5Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=tEA4HJKsEUX2bk2/LEe2MhV86+OkpFCszWx4GnIYHpXCXTfWSEz46dxdyIE0/A9cBGG0h6f5EtDPsfV3ts9lbu5qHPjAKkq5Pd0U4m+rqiFak4Ynjc1KiyNhk67WSyDkVCZKFfFhSnA98IuLJkiCIcU/Eqa+kpKAOhiuXI/63Yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:1b01:1838:131c:4de4])
+	by michel.telenet-ops.be with bizsmtp
+	id V06J2C00H3VPV9V0606JRr; Wed, 29 May 2024 14:06:18 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCI3T-00GbKO-SF;
+	Wed, 29 May 2024 14:06:18 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCI4Q-009XF6-73;
+	Wed, 29 May 2024 14:06:18 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: soc@kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH resend v3] arm64: dts: mediatek: mt7986a: bpi-r3: Convert to sugar syntax
+Date: Wed, 29 May 2024 14:06:14 +0200
+Message-Id: <2fd900a30b5a0f7de4ea68f60bac250794b8cdb4.1716984213.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] arm64: dts: mediatek: mt8186: add default thermal
- zones
-To: Julien Panis <jpanis@baylibre.com>, Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Nicolas Pitre <npitre@baylibre.com>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240529-mtk-thermal-mt818x-dtsi-v6-0-0c71478a9c37@baylibre.com>
- <20240529-mtk-thermal-mt818x-dtsi-v6-4-0c71478a9c37@baylibre.com>
- <75826085-fd59-466a-b1de-b4c323c801c1@collabora.com>
- <CAGXv+5FPG4ob3mTU0Utm8Wgk0_ZLw=NLPbfFerWh4OUeAz7UHw@mail.gmail.com>
- <808db317-4cee-426b-a840-013a5e03098d@baylibre.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <808db317-4cee-426b-a840-013a5e03098d@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 29/05/24 11:12, Julien Panis ha scritto:
-> On 5/29/24 10:33, Chen-Yu Tsai wrote:
->> On Wed, May 29, 2024 at 4:17 PM AngeloGioacchino Del Regno
->> <angelogioacchino.delregno@collabora.com> wrote:
->>> Il 29/05/24 07:57, Julien Panis ha scritto:
->>>> From: Nicolas Pitre <npitre@baylibre.com>
->>>>
->>>> Inspired by the vendor kernel but adapted to the upstream thermal
->>>> driver version.
->>>>
->>>> Signed-off-by: Nicolas Pitre <npitre@baylibre.com>
->>>> Signed-off-by: Julien Panis <jpanis@baylibre.com>
->>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> I'm getting some crazy readings which would cause the machine to
->> immediately shutdown during boot. Anyone else see this? Or maybe
->> my device has bad calibration data?
->>
->> gpu_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:       +229.7 C
->>
->> nna_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:       +229.7 C
->>
->> cpu_big0_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:         -7.2 C
->>
->> cpu_little2_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:       +157.2 C
->>
->> cpu_little0_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:       -277.1 C
->>
->> adsp_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:       +229.7 C
->>
->> cpu_big1_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:       +229.7 C
->>
->> cam_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:        +45.4 C
->>
->> cpu_little1_thermal-virtual-0
->> Adapter: Virtual device
->> temp1:       -241.8 C
-> 
-> It's likely that your device has bad calibration data indeed. We observed the same
-> behavior on the mt8186 device we used (a Corsola) and finally realized that the
-> golden temperature was 0 (device not properly calibrated).
-> 
-> To make a comparison, we run chromiumos v5.15 and dmesg output was:
-> 'This sample is not calibrated, fake !!'
-> Additional debugging revealed that the golden temp was actually 0. As a result,
-> chromiumos v5.15 does not use the calibration data. It uses some default values
-> instead. That's why you can observe good temperatures with chromiumos v5.15
-> even with a device that is not calibrated.
-> 
-> This feature is not implemented in the driver upstream, so you need a device
-> properly calibrated to get good temperatures with it. When we forced this
-> driver using the default values used by chromiumos v5.15 instead of real calib
-> data (temporarily, just for testing), the temperatures were good.
-> 
-> Please make sure your device is properly calibrated: 0 < golden temp < 62.
-> 
+Overlay syntactic sugar for generating target-path fragments is
+supported by the version of dtc supplied with the kernel since commit
+50aafd60898a8b3e ("scripts/dtc: Update to upstream version
+v1.4.6-21-g84e414b0b5bc").  Hence convert the Bananapi R3 overlay
+devicetree source files to sugar syntax, improving readability.
 
-Wait wait wait wait.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+No changes in generated dtbo.
 
-What's up with that calibration data stuff?
+v3:
+  - Fix SoC part number,
 
-If there's any device that cannot use the calibration data, we need a way to
-recognize whether the provided data (read from efuse, of course) is valid,
-otherwise we're creating an important regression here.
+v2:
+  - Rebase on top of commit e630c7b0b6a69f66 ("arm64: dts: mediatek:
+    replace underscores in node names") in next-20240215 and later.
+---
+ .../mt7986a-bananapi-bpi-r3-emmc.dtso         | 28 +++---
+ .../mt7986a-bananapi-bpi-r3-nand.dtso         | 74 ++++++++-------
+ .../mediatek/mt7986a-bananapi-bpi-r3-nor.dtso | 90 +++++++++----------
+ .../mediatek/mt7986a-bananapi-bpi-r3-sd.dtso  | 16 ++--
+ 4 files changed, 98 insertions(+), 110 deletions(-)
 
-"This device is unlucky" is not a good reason to have this kind of regression.
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
+index 779dc6782bb1986f..047a8388811eb9c0 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
+@@ -9,21 +9,17 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+-
+-	fragment@0 {
+-		target-path = "/soc/mmc@11230000";
+-		__overlay__ {
+-			bus-width = <8>;
+-			max-frequency = <200000000>;
+-			cap-mmc-highspeed;
+-			mmc-hs200-1_8v;
+-			mmc-hs400-1_8v;
+-			hs400-ds-delay = <0x14014>;
+-			non-removable;
+-			no-sd;
+-			no-sdio;
+-			status = "okay";
+-		};
+-	};
+ };
+ 
++&{/soc/mmc@11230000} {
++	bus-width = <8>;
++	max-frequency = <200000000>;
++	cap-mmc-highspeed;
++	mmc-hs200-1_8v;
++	mmc-hs400-1_8v;
++	hs400-ds-delay = <0x14014>;
++	non-removable;
++	no-sd;
++	no-sdio;
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
+index 7b97c5c91bd0264d..24398f8a7da4345c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
+@@ -9,46 +9,44 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
++};
++
++&{/soc/spi@1100a000} {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	spi_nand: flash@0 {
++		compatible = "spi-nand";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++		spi-tx-buswidth = <4>;
++		spi-rx-buswidth = <4>;
+ 
+-	fragment@0 {
+-		target-path = "/soc/spi@1100a000";
+-		__overlay__ {
++		partitions {
++			compatible = "fixed-partitions";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
+-			spi_nand: flash@0 {
+-				compatible = "spi-nand";
+-				reg = <0>;
+-				spi-max-frequency = <10000000>;
+-				spi-tx-buswidth = <4>;
+-				spi-rx-buswidth = <4>;
+-
+-				partitions {
+-					compatible = "fixed-partitions";
+-					#address-cells = <1>;
+-					#size-cells = <1>;
+-
+-					partition@0 {
+-						label = "bl2";
+-						reg = <0x0 0x100000>;
+-						read-only;
+-					};
+-
+-					partition@100000 {
+-						label = "reserved";
+-						reg = <0x100000 0x280000>;
+-					};
+-
+-					partition@380000 {
+-						label = "fip";
+-						reg = <0x380000 0x200000>;
+-						read-only;
+-					};
+-
+-					partition@580000 {
+-						label = "ubi";
+-						reg = <0x580000 0x7a80000>;
+-					};
+-				};
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "bl2";
++				reg = <0x0 0x100000>;
++				read-only;
++			};
++
++			partition@100000 {
++				label = "reserved";
++				reg = <0x100000 0x280000>;
++			};
++
++			partition@380000 {
++				label = "fip";
++				reg = <0x380000 0x200000>;
++				read-only;
++			};
++
++			partition@580000 {
++				label = "ubi";
++				reg = <0x580000 0x7a80000>;
+ 			};
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
+index e48881be4ed60c98..6a0d529b54aca5bd 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
+@@ -9,54 +9,52 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
++};
++
++&{/soc/spi@1100a000} {
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 
+-	fragment@0 {
+-		target-path = "/soc/spi@1100a000";
+-		__overlay__ {
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <10000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
+-			flash@0 {
+-				compatible = "jedec,spi-nor";
+-				reg = <0>;
+-				spi-max-frequency = <10000000>;
+-
+-				partitions {
+-					compatible = "fixed-partitions";
+-					#address-cells = <1>;
+-					#size-cells = <1>;
+-
+-					partition@0 {
+-						label = "bl2";
+-						reg = <0x0 0x40000>;
+-						read-only;
+-					};
+-
+-					partition@40000 {
+-						label = "u-boot-env";
+-						reg = <0x40000 0x40000>;
+-					};
+-
+-					partition@80000 {
+-						label = "reserved2";
+-						reg = <0x80000 0x80000>;
+-					};
+-
+-					partition@100000 {
+-						label = "fip";
+-						reg = <0x100000 0x80000>;
+-						read-only;
+-					};
+-
+-					partition@180000 {
+-						label = "recovery";
+-						reg = <0x180000 0xa80000>;
+-					};
+-
+-					partition@c00000 {
+-						label = "fit";
+-						reg = <0xc00000 0x1400000>;
+-					};
+-				};
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "bl2";
++				reg = <0x0 0x40000>;
++				read-only;
++			};
++
++			partition@40000 {
++				label = "u-boot-env";
++				reg = <0x40000 0x40000>;
++			};
++
++			partition@80000 {
++				label = "reserved2";
++				reg = <0x80000 0x80000>;
++			};
++
++			partition@100000 {
++				label = "fip";
++				reg = <0x100000 0x80000>;
++				read-only;
++			};
++
++			partition@180000 {
++				label = "recovery";
++				reg = <0x180000 0xa80000>;
++			};
++
++			partition@c00000 {
++				label = "fit";
++				reg = <0xc00000 0x1400000>;
+ 			};
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
+index f623bce075ce6ea4..d9e01967acc471b8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
+@@ -9,15 +9,11 @@
+ 
+ / {
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+-
+-	fragment@0 {
+-		target-path = "/soc/mmc@11230000";
+-		__overlay__ {
+-			bus-width = <4>;
+-			max-frequency = <52000000>;
+-			cap-sd-highspeed;
+-			status = "okay";
+-		};
+-	};
+ };
+ 
++&{/soc/mmc@11230000} {
++	bus-width = <4>;
++	max-frequency = <52000000>;
++	cap-sd-highspeed;
++	status = "okay";
++};
+-- 
+2.34.1
 
-Since - as far as I understand - downstream can recognize that, upstream should
-do the same.
-I'd be okay with refusing to even probe this driver on such devices for the
-moment being, as those are things that could be eventually handled on a second
-part series, even though I would prefer a kind of on-the-fly calibration or
-anyway something that would still make the unlucky ones to actually have good
-readings *right now*.
-
-Though, the fact that you assert that you observed this behavior on one of your
-devices and *still decided to send that upstream* is, in my opinion, unacceptable.
-
-Regards,
-Angelo
 
