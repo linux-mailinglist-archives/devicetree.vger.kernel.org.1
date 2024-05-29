@@ -1,170 +1,168 @@
-Return-Path: <devicetree+bounces-70667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C8AE8D3F93
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 22:28:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 932768D3F9C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 22:30:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4B33283A03
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 20:28:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DEFD1C23FB9
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 20:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3824C1C689D;
-	Wed, 29 May 2024 20:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B62E71C68BF;
+	Wed, 29 May 2024 20:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="r+Tl+ymE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tPUM00Fk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26FB14534D;
-	Wed, 29 May 2024 20:28:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 884071C68AD;
+	Wed, 29 May 2024 20:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717014501; cv=none; b=r5NRAIBiP5YkEEfldYKdJQHjkqz1gXBF0FtRjJN/i66sYLh/JDqDVYBUFMdmYa11+k4Y4RoVf+1PATKKxdnM2NKdm9q+sMbMfX5pOEdpOKFGr2BnEKoAbR65l80Nl8BUVPXTF6pD/Tvhpb8KjzHpRV3pbAz/5Skzpc0MioFJL0k=
+	t=1717014555; cv=none; b=opfgirDdFqmzwE5Y3IVvpMdaolMIEpx2gsBJKipXTibbD9IlN+sZxM5sgZMXakof8cn+V7wlDCuOpPbKLfo2e1uOCO4rbI8mPy9o+QFYpzo35gAKnQ8bL/OgLX6VLKHaYcBC3xzI91upLSeYQopPD/kxS/+/0rI6Gp367wACZ0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717014501; c=relaxed/simple;
-	bh=3QziVyeQJ5+bmOBqAbI9ShrOSA0+myPUejTCp+CgK60=;
+	s=arc-20240116; t=1717014555; c=relaxed/simple;
+	bh=bdvVeEVPK461LvQoL0Gl/m+YSw/+CssWr9H4KgsuvA8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hlCh0CC+ymkmg0ZBHQ3E1mIZF0KHTiyV3VlSGWEFjI6cU3NvzqWX6Q1/O7vhS969XioT/PV2GmUIm+da36HPwbtkHUiRQpWGhD4fTHQ7s4dmgPPcKdVQXjeEz9PSaS+/QYTDmuDeHgIMVeKXTLj/AuhWrJpns87DgePIYKYc1yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=r+Tl+ymE; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9A29C2D31;
-	Wed, 29 May 2024 22:28:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1717014493;
-	bh=3QziVyeQJ5+bmOBqAbI9ShrOSA0+myPUejTCp+CgK60=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=aidZ6ALnITlhNHuO5tipmD9T8PfyPVW2Xn3XFoy7rNs+23NqwHJpjbHJx3lLzsf3mkj7q1t+orf1TjW+1caiM5OcF1f9z1iufEz/cCiHy6JrJl6pVkDmcT03evtwzb/twICTMjVwNKgTNSLrTD2gfiNn5O72Hh8nPeXv8O0mmPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tPUM00Fk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA7BAC113CC;
+	Wed, 29 May 2024 20:29:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717014555;
+	bh=bdvVeEVPK461LvQoL0Gl/m+YSw/+CssWr9H4KgsuvA8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r+Tl+ymERk6Urf1SKofdPY4MiaGWLVpueKcz9X02vDbJIagLxXuS02wxk8vwHPp5y
-	 0ZhcEBjCNHtDNzqIeB75IW6wBt4xxTB1keUQdeNQz+Num4wq6qTUHmSfaqKnpyQYJT
-	 11/5nrrUr/CVjuwDeyko7EIYtWwNWxwTPV2rDjY4=
-Date: Wed, 29 May 2024 23:28:04 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: Dan Scally <dan.scally@ideasonboard.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nayden.kanchev@arm.com,
-	robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
-Subject: Re: [PATCH v4 3/5] media: mali-c55: Add Mali-C55 ISP driver
-Message-ID: <20240529202804.GA10133@pendragon.ideasonboard.com>
-References: <20240418090825.624747-1-dan.scally@ideasonboard.com>
- <20240418090825.624747-4-dan.scally@ideasonboard.com>
- <Zk74ZZqn568-Wa3M@valkosipuli.retiisi.eu>
- <npqgtwqhpixoixikgrhzq3soqywfla3gmrx44t76idfiryycs7@qkfd4yphgv4q>
- <20240523094926.GA10295@pendragon.ideasonboard.com>
- <417b2d78-6233-4fd7-9b32-aa176938f682@ideasonboard.com>
- <Zk-ukx7rh3kNMIRx@valkosipuli.retiisi.eu>
- <3d8679ca-28a4-4b7b-99da-7f1ccedb415c@ideasonboard.com>
- <ZlNYfu4EOObLomVk@valkosipuli.retiisi.eu>
+	b=tPUM00FkJ/TULR+mHP0tt0IcRNr1PORWmuB8IKtM5LIM7DG7EKVHswRCTVPKDUEr+
+	 I2/9KA/RQ9urjHX6JN6j38/tBCDnIRCG6UFif19KdP9C5Dm0uXlVL5R8lit/bNXoOr
+	 EO6kougyilSocurHUzl8oN14MnNR+TGX0+L6d2uzAq1izImF0m325N5OcNVqGsJkbL
+	 2WAcn1Mk+wjvayWclot3LN6kBTVA5ToE5k4loXguMeZC5j4q2s51KISNOPFI+AcoXL
+	 C05mRenSVSRKR9n+54Y6sYg33EIYqNMmQPuJYBt2k+yH1v17/chfCAf36fK8vSiJXb
+	 DeZbhrnrH5T6w==
+Date: Wed, 29 May 2024 21:29:10 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Farouk Bouabid <farouk.bouabid@cherry.de>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/6] dt-bindings: pwm: add dt-bindings for mule
+ pwm-over-i2c controller
+Message-ID: <20240529-capably-overgrown-755bb11ece69@spud>
+References: <20240529-buzzer_support-v1-0-fd3eb0a24442@cherry.de>
+ <20240529-buzzer_support-v1-1-fd3eb0a24442@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="UNdcncQsPyjcgVaG"
 Content-Disposition: inline
-In-Reply-To: <ZlNYfu4EOObLomVk@valkosipuli.retiisi.eu>
+In-Reply-To: <20240529-buzzer_support-v1-1-fd3eb0a24442@cherry.de>
 
-On Sun, May 26, 2024 at 03:42:54PM +0000, Sakari Ailus wrote:
-> On Fri, May 24, 2024 at 09:37:04AM +0100, Dan Scally wrote:
-> > On 23/05/2024 22:01, Sakari Ailus wrote:
-> > > On Thu, May 23, 2024 at 12:22:45PM +0100, Dan Scally wrote:
-> > > > On 23/05/2024 10:49, Laurent Pinchart wrote:
-> > > > > On Thu, May 23, 2024 at 11:48:02AM +0200, Jacopo Mondi wrote:
-> > > > > > On Thu, May 23, 2024 at 08:03:49AM GMT, Sakari Ailus wrote:
-> > > > > > > Hi Daniel,
-> > > > > > [snip]
-> > > > > > 
-> > > > > > > > +
-> > > > > > > > +static int mali_c55_vb2_start_streaming(struct vb2_queue *q, unsigned int count)
-> > > > > > > > +{
-> > > > > > > > +	struct mali_c55_cap_dev *cap_dev = q->drv_priv;
-> > > > > > > > +	struct mali_c55 *mali_c55 = cap_dev->mali_c55;
-> > > > > > > > +	struct mali_c55_resizer *rzr = cap_dev->rzr;
-> > > > > > > > +	struct mali_c55_isp *isp = &mali_c55->isp;
-> > > > > > > > +	int ret;
-> > > > > > > > +
-> > > > > > > > +	guard(mutex)(&isp->lock);
-> > > > > > > > +
-> > > > > > > > +	ret = pm_runtime_resume_and_get(mali_c55->dev);
-> > > > > > > > +	if (ret)
-> > > > > > > > +		return ret;
-> > > > > > > > +
-> > > > > > > > +	ret = video_device_pipeline_start(&cap_dev->vdev,
-> > > > > > > > +					  &cap_dev->mali_c55->pipe);
-> > > > > > > > +	if (ret) {
-> > > > > > > > +		dev_err(mali_c55->dev, "%s failed to start media pipeline\n",
-> > > > > > > > +			mali_c55_cap_dev_to_name(cap_dev));
-> > > > > > > > +		goto err_pm_put;
-> > > > > > > > +	}
-> > > > > > > > +
-> > > > > > > > +	mali_c55_cap_dev_stream_enable(cap_dev);
-> > > > > > > > +	mali_c55_rzr_start_stream(rzr);
-> > > > > > > > +
-> > > > > > > > +	/*
-> > > > > > > > +	 * We only start the ISP if we're the only capture device that's
-> > > > > > > > +	 * streaming. Otherwise, it'll already be active.
-> > > > > > > > +	 */
-> > > > > > > > +	if (mali_c55->pipe.start_count == 1) {
-> > > > > > >
-> > > > > > > Do you start streaming on the sensor when the first video node does?
-> > > > > > > 
-> > > > > > > This means that frames may be lost. E.g. the IPU6 ISYS driver only starts
-> > > > > > > streaming on the sensor once all video nodes of the pipeline have been
-> > > > > > > started.
-> > > > > >
-> > > > > > How would you ever know which nodes will be started ?
-> > > > >
-> > > > > That can be done with link setup. Any video device that has an active
-> > > > > link to the ISP would need to be started.
-> > > > 
-> > > > So if you don't want to stream data from one of the two capture nodes, you'd
-> > > > need to disable the link between it and the resizer? That seems quite
-> > > > clunky.
 
-Why so ? I think it's a neat solution to communicate userspace's
-expected behaviour to the driver.
+--UNdcncQsPyjcgVaG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > > > Does it matter if one of them starts a frame or two later? As
-> > > > opposed to both of them starting in sync a frame or two later?
-> > >
-> > > Video frames on a given queue are lost due to the driver implementation.
-> > > I might consider that to be a driver bug.
-> > 
-> > This seems a bit odd to me; I think that the implication is when you
-> > **queue** a buffer to the driver you're targeting a specific frame from the
-> > sensor...is that right? What about if you want to start streaming on the
-> 
-> The behaviour there without the request API is somewhat driver specific.
-> Most driver's don't use it.
+On Wed, May 29, 2024 at 12:10:30PM +0200, Farouk Bouabid wrote:
+> Mule is a device that controls a PWM output signal based on I2C commands.
+>=20
+> Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
+> ---
+>  .../devicetree/bindings/pwm/tsd,pwm-mule.yaml      | 46 ++++++++++++++++=
+++++++
+>  1 file changed, 46 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/tsd,pwm-mule.yaml b/Do=
+cumentation/devicetree/bindings/pwm/tsd,pwm-mule.yaml
+> new file mode 100644
+> index 000000000000..71a940a2a644
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/tsd,pwm-mule.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/tsd,pwm-mule.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mule PWM-over-I2C controller
+> +
+> +description: |
 
-I agree. If we want some of the outputs to be optional, we need the
-request API. Without it, all video devices that are started (or I'd like
-to say included in the pipeline) will need buffers, and I think they
-should start at the same time.
+This | is not needed.
 
-> > second capture node at some later point, after the first had already been
-> > started? I think we'd be in the same situation there, with the already
-> > started capture node getting buffers filled after the second had had buffers
-> > queued, but before you could start it.
-> 
-> In that case you'd  start both queues but of course you can queue buffers
-> just to the first node before you need anything from the second one
-> (assuming this is supported by the driver).
-> 
-> > > It's also true that some use cases could also benefit from the behaviour
-> > > but on regular CSI-2 receivers that's probably quite rare. We'd need
-> > > additional APIs to be able to convey the desired behaviour to the drivers.
+> +  A device that outputs a PWM signal based on I2C commands.
+> +
+> +maintainers:
+> +  - Farouk Bouabid <farouk.bouabid@cherry.de>
+> +  - Quentin Schulz <quentin.schulz@cherry.de>
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: tsd,pwm-mule
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 2
 
--- 
-Regards,
+No clocks or supplies?
+I tried to google for some documentation for this device, but only found
+archives of this mail thread..
 
-Laurent Pinchart
+Thanks,
+Conor.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      pwm@18 {
+> +        compatible =3D "tsd,pwm-mule";
+> +        reg =3D <0x18>;
+> +        #pwm-cells =3D <2>;
+> +      };
+> +    };
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--UNdcncQsPyjcgVaG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZleQFgAKCRB4tDGHoIJi
+0mjxAQD/8WDiJ1amjUFRXI/qQT0XYuHXTu9diC7XmiTGBdToeQEAhqs7zm1GIVey
+J5MvAcYGiVtOazmNblHpUk4zB4lF+w0=
+=Km/B
+-----END PGP SIGNATURE-----
+
+--UNdcncQsPyjcgVaG--
 
