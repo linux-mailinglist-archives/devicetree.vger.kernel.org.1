@@ -1,124 +1,209 @@
-Return-Path: <devicetree+bounces-70475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E888D36C4
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:52:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395878D36DE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:56:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D46B01C22641
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:52:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8505EB21A0D
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B81A4431;
-	Wed, 29 May 2024 12:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88882522A;
+	Wed, 29 May 2024 12:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JthuC61T"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KVTQ3Yk8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503A6E542;
-	Wed, 29 May 2024 12:52:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3EA610A03;
+	Wed, 29 May 2024 12:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716987122; cv=none; b=T/ACaFutilRVbWDwYFXnjOT3WoH9uBwgZ1MyZgzw79G2t308uSYwGFKejEw1gVsVBHFYqJ8J/X2OYC2QAcq4bF80yGiInwOJH8BKoaleRNXLGD668FQpgOxXyEkprgx3soBMHbXeUCqpVx2m2O8t17/ydNVYJe1s55g3cTFo5fo=
+	t=1716987376; cv=none; b=q+8YcJ+cPGttXCf5trwTid44wvv3en2q3uxT1l1tR/iwsaH7assjczmQA+S5nTSF30X/G4lkTL8CEQ+63oOx+/YPVtKGENv9ZDZoNVMmffhplct1mpaNvzzoZ5RhX7IOZvwjbWwFsSX1XkkGHQOOQzK6vVt2hJenYO6euBROuJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716987122; c=relaxed/simple;
-	bh=2xN2nhjcoBqArfdjwGUrZhd/afLWNNDtQEwRRsZVQfk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V0BJmSashqyxvHhY5D1GUFrdu1eYxZtf3E+lIzAL9wOZF5YuDDLGojKMzYTPz64fnS42EpcIBZHbVlGSJo8tYW/ZxuixDrIwKf+qpRLThvb89aARgyZtzmxn9J0HrOzswaHmbEkVQZ/vEfGkW6ErtHwTbEcFXJu8kv+CWORB8x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JthuC61T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BAF0C2BD10;
-	Wed, 29 May 2024 12:51:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716987122;
-	bh=2xN2nhjcoBqArfdjwGUrZhd/afLWNNDtQEwRRsZVQfk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JthuC61TEUUWj63P6Mpt3U/0rrHciiYlix/Cbvv3zyTVEsFRs8MXgzuEF5TfR958S
-	 egeOSX7+Vs3bem9LUuiUPlwWEy1AQ3sZ4iFJVzIWVJPmwXBv3kM+MvkemfWnFzkbT8
-	 uSxOK1UspVSN3Y9TIi/+eQFR2R/Isttj5rFedtPUaYkBBLe+XVEQv9VUOJf63IT5So
-	 FSIl2H+vJxPn/iqljiZrppvRz3YKJz7iAoAt4b0LHILllZ33P1LlKX70SILzhi2KJI
-	 hmwN8El4pXPIuxTPXo5f7gz0TQCs3YKYlV6WXpNLiEPVwwRmT59PivBCgXx0tkThyL
-	 ekH/dIHCizpHw==
-Message-ID: <5eea73ae-9bb4-4fd2-ac22-eb8c39a2aab7@kernel.org>
-Date: Wed, 29 May 2024 14:51:56 +0200
+	s=arc-20240116; t=1716987376; c=relaxed/simple;
+	bh=gz8z8N5bHTtjf1WXKP3VLR7zy+2ou75tSdQdUmX2Vx4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DUb0B9xOXxoMuH01AVMLxEZlGBXuUrooLiiQuc3cCnPj37fNkeTH+RZ8w3JBtwsyy4aMfLmnvoqbQcEwAVREWF/YUiEcDl+QfZQTute1igQWYb9dfvT504BD/qHemH7O4xpcQ6EjybLqcAuA+FwHIX8kH7tFEZcRmxtOC9Kun5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KVTQ3Yk8; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1716987375; x=1748523375;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gz8z8N5bHTtjf1WXKP3VLR7zy+2ou75tSdQdUmX2Vx4=;
+  b=KVTQ3Yk8L6lLF0SlKKAnpEMyUVPKkDcnDzC9DQYWKx+Ee0D/j5wS8jWj
+   aFE+70oEJD0vC9u1uUJTx/ampL9Tphh3THlJyyPS8Ukn4kn18vvVUsK8c
+   4s9mGPkKa1XoMOK/7X+qmVpTAseosXptqqlj7jbPtCoyc8I4jDU5KSXBV
+   ZHmZgTGM5Q+ATf42JFns4GxYgQrNbEb9+5wFl2g4Q6y/E4ErrTyoJrPj7
+   8E8hN6wW4BQGj/jW3HIXeINSUo4GBUqncw1erGowPuuHp5DyryA0S1unS
+   xhT7kAM7DoFzyHUDZK4LhEkHaj0jz1lqSUiNcammTvzyVDIKVtG8yVu1P
+   g==;
+X-CSE-ConnectionGUID: BSG6Xos3Sp+uL1jtf0ROkw==
+X-CSE-MsgGUID: M3losH2pRy2/1+utwYVpyw==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13618479"
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; 
+   d="scan'208";a="13618479"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2024 05:56:13 -0700
+X-CSE-ConnectionGUID: H5QcdFF9TbONM172UGdoGg==
+X-CSE-MsgGUID: zqE6bIAkQpSvlFOcfBHkJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,198,1712646000"; 
+   d="scan'208";a="35963852"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2024 05:56:00 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sCIqP-0000000BnVT-2SiK;
+	Wed, 29 May 2024 15:55:53 +0300
+Date: Wed, 29 May 2024 15:55:53 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Rich Felker <dalias@libc.org>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Masahiro Yamada <masahiroy@kernel.org>, Baoquan He <bhe@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Kefeng Wang <wangkefeng.wang@huawei.com>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	Azeem Shaikh <azeemshaikh38@gmail.com>, Guo Ren <guoren@kernel.org>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [DO NOT MERGE v8 08/36] clocksource: sh_tmu: CLOCKSOURCE support.
+Message-ID: <Zlcl2QxRDDrGh7Ru@smile.fi.intel.com>
+References: <cover.1716965617.git.ysato@users.sourceforge.jp>
+ <f40e91e3f010880b0cf7a1c3a18d0c57bb55d93a.1716965617.git.ysato@users.sourceforge.jp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom,spmi-pmic: Document PMC8380
- and SMB2360
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240529-topic-x1e_pmic-v1-0-9de0506179eb@linaro.org>
- <20240529-topic-x1e_pmic-v1-1-9de0506179eb@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240529-topic-x1e_pmic-v1-1-9de0506179eb@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f40e91e3f010880b0cf7a1c3a18d0c57bb55d93a.1716965617.git.ysato@users.sourceforge.jp>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 29/05/2024 13:17, Konrad Dybcio wrote:
-> These are just some more PMICs adjacent to X1 SoCs. Document them.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+On Wed, May 29, 2024 at 05:00:54PM +0900, Yoshinori Sato wrote:
+> Allows initialization as CLOCKSOURCE.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
 
-Best regards,
-Krzysztof
+> -	dev_info(&ch->tmu->pdev->dev, "ch%u: used for %s clock events\n",
+> -		 ch->index, periodic ? "periodic" : "oneshot");
+> +	pr_info("%s ch%u: used for %s clock events\n",
+> +		ch->tmu->name, ch->index, periodic ? "periodic" : "oneshot");
+
+This is a step back change. We should use dev_*() if we have a device
+available. And I believe this is the case (at least for the previous boards),
+no?
+
+...
+
+> -	ch->irq = platform_get_irq(tmu->pdev, index);
+> +	if (tmu->np)
+> +		ch->irq = of_irq_get(tmu->np, index);
+> +	else if (tmu->pdev)
+> +		ch->irq = platform_get_irq(tmu->pdev, index);
+
+I found these changes counterproductive. Instead better to have up to three
+files to cover:
+- the common code (library)
+- the platform device support
+- the pure OF support.
+
+...
+
+> -	res = platform_get_resource(tmu->pdev, IORESOURCE_MEM, 0);
+> -	if (!res) {
+> -		dev_err(&tmu->pdev->dev, "failed to get I/O memory\n");
+> -		return -ENXIO;
+> +	if (tmu->pdev) {
+> +		res = platform_get_resource(tmu->pdev, IORESOURCE_MEM, 0);
+> +		if (!res) {
+> +			pr_err("sh_tmu failed to get I/O memory\n");
+> +			return -ENXIO;
+> +		}
+> +
+> +		tmu->mapbase = ioremap(res->start, resource_size(res));
+
+devm_platform_ioremap_resource() should be good to have.
+Again, consider proper splitting.
+
+>  	}
+> +	if (tmu->np)
+> +		tmu->mapbase = of_iomap(tmu->np, 0);
+
+So, how many boards are non-OF compatible? Maybe makes sense to move them to OF
+and drop these platform code entirely from everywhere?
+
+...
+
+> +	tmu->name = dev_name(&pdev->dev);
+> +	tmu->clk = clk_get(&tmu->pdev->dev, "fck");
+
+devm_ approach can help a lot in case of platform device code.
+
+> +	if (IS_ERR(tmu->clk)) {
+> +		dev_err(&tmu->pdev->dev, "cannot get clock\n");
+> +		return PTR_ERR(tmu->clk);
+
+		return dev_err_probe() ?
+
+> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
