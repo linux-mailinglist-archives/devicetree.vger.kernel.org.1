@@ -1,118 +1,107 @@
-Return-Path: <devicetree+bounces-70592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E638D3BC6
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:05:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B248D3BEC
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:10:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E57B9282809
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:05:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCA2E1F21E3E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A501836D1;
-	Wed, 29 May 2024 16:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7546D181CF8;
+	Wed, 29 May 2024 16:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zz3xb9b+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rdGnTttw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB0717DE14
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 16:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487DE139588;
+	Wed, 29 May 2024 16:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716998735; cv=none; b=FGg2CVdYsYAtyMYlOZAyS47qjbnCGRCBhyxmKAZ+zxOeRIHU8ao6zZUuMc9Hcof7KSKpP+vNfgVNyxdUPjBnyUgAKtfedkmFFNImEKvQBu59T1fLlUdS1Uct9mCYI/SGroiAgkp12XjcvN2pmc+D8KcbTCAd8rqDM1G+nLB86WU=
+	t=1716999050; cv=none; b=MAX9NRLQCC3f6a6tlNPUsB9IztP/bUfWSVlj6Q4QFnEuq/AAYXkpucLrslf9iQW+J/Rgt1e5UFvK8pRg9bob8L3pROAPBLE3TRqIRTYVKOkUAaeSN8pLWSqbHstUDzBUbYlkLQf4Acxh12XpuXNyr3cqxo1ZSCulpva3s00Nex4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716998735; c=relaxed/simple;
-	bh=5EqQiL0r6nrlB8yB3smf+mNsb51Fy6uJGMh8nFFXn3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XEwK3zRzN2su3kqH1DZ9yx1+pivy/Y6QNR7PoHB6vq2Jvq9VoM24oln+EsGz9L4cmfI59ofRcpTp/JqDeiw6ofir2IkXIwFBOZta/0vgX8J6m59ANpwVY9c9ncjaw20oi5KWstvBatMVeWwhnDdEWykKuolOn7ISmRuPoCDHhsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zz3xb9b+; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42121d28664so11240505e9.2
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 09:05:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1716998733; x=1717603533; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qzg/EUp61JlYQ5Fn3RoqiX5YzTeWEt7sibQ+Ig9ys7c=;
-        b=zz3xb9b+8hH7dFFsUJuhdXgxwesTvJgzyqx6yn84U6iWHcaJtdB3WDxuPMZojS5UZO
-         upI6/oQMfBEi7R/K/c1eCmsQ29GYcswvzB164F6tTOjbtcCCFSNIkPgOrwciuWn7Ays1
-         qRThpvEo6KnTrAlt5Jsz9fm8R94VPwkJNfBr97EypnL6nvKZ63s+wFO2NVsElrZ4qFW6
-         Mp+K9Ef28LkRJz1lFoNuWvOvY+7i+TMpfCnIMzQFND0obzGVmpdkKckBRWKgPkcLcfG5
-         rAubOIc5FIMv9x6DEVf3AfwE0CptqkAmt2VZmQX32LzPcOxehxko/2srlVTR9iVuXviS
-         VDBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716998733; x=1717603533;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qzg/EUp61JlYQ5Fn3RoqiX5YzTeWEt7sibQ+Ig9ys7c=;
-        b=gkGcD5vK1DOB2ryLS5gdUwGvIyrIY3XF/kzLnFGHS/QITarMPmADbpwec/lS+373w/
-         YsDaoTjpmePxbobQAEU6vX7erT0zQC/E/LWkpfLAj1XE4pn0bRGbTT+rtY/M30DSg7JB
-         ZQJD10jhjxLv/d/sINgsCJMYF+0MwMp2rBT3BMPLVi9cKrrtrcbZj59KaiNCj1jruO2r
-         pOA8xaUxdBryI5G6xIkJbgOegmDJY25R17+vZ1aBeNrrv5fwXJmlWSKeae1hKtu2eBoH
-         MDCrZ+ve5sobSBvwEr2BgZe6sVW4owCsJuUvkVhLWAOWLriB4Q3jDZXHWFP3KCRPNY8a
-         Dh/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWfhd8vt+lrTGSl5iKRvlRt2T1105GZwWhVMc14T6lbndFyHz6NQwq2XxKOWOPaYEJez1shF4CWwKW2FL5PRZ/L/qpMMCrDcYjWUg==
-X-Gm-Message-State: AOJu0YxWO6GK2hrg7jmVCi3pUiw8+VBlgSgewJIU8kW8rG+USTAJdXX3
-	UGRnHcwUlRSYf5YlP19li5/lQ6S/HUvs4hADSTr+8UBEHN4u2zpkFUWkcjSUtvw=
-X-Google-Smtp-Source: AGHT+IFn5yfhHaTTN+Su9cNWOuzz33Y8aCh2kF8VjN3dvPJFe21uC4x828bSQeCJe0tkWLUWOBFKRA==
-X-Received: by 2002:a05:600c:3145:b0:419:f9ae:e50 with SMTP id 5b1f17b1804b1-42108a2145bmr119611935e9.37.1716998732678;
-        Wed, 29 May 2024 09:05:32 -0700 (PDT)
-Received: from [192.168.0.3] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421089ccfacsm181684255e9.45.2024.05.29.09.05.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 May 2024 09:05:31 -0700 (PDT)
-Message-ID: <6326960a-ba5a-430c-a423-571a0a4a8502@linaro.org>
-Date: Wed, 29 May 2024 17:05:30 +0100
+	s=arc-20240116; t=1716999050; c=relaxed/simple;
+	bh=4VLYCefvsT9d8ond7H7XyGpq0yneSfHbgNsZAxOxGX4=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p3svTsyG0U+Qhcw2jkCNtg5zDoelfL6jeRqWPjltqoA4mmetl/+7CmPQZ3kLQy9lhN6wmjDkZalJ4+w0ZGUr3dl+5VZ4Z1VzSDL3+hYu6AOjenif0w0BrxCxWV54KRhaZcPFUuaKijVoXZzMiblb6jtEGEisv/pFYUK7bUwjXIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rdGnTttw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEC1BC116B1;
+	Wed, 29 May 2024 16:10:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716999049;
+	bh=4VLYCefvsT9d8ond7H7XyGpq0yneSfHbgNsZAxOxGX4=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=rdGnTttwzGsZtPL/V5yGQwFVkGALc888z57SvYKgv/h63BU2ygtubn3GDRgx1AHSz
+	 xGkJvpAGs6P2BtusTcAX/1bDgd2z6k0Pf+hoa3LqEi9/g7GSVUGbP8j9HKOycL+06H
+	 lrINskvYzpPwYZkDm4sPKDF0DJALsJwCiNmf50T6VjigCM+A3L7ZFYXxTUV0LQvS6t
+	 02LvkOozuL7TXQx+z3A8ku7OpDfzAm5t+0kwlUKpbN1qzDLs0VHsj5cmoky49Zmp8X
+	 aDNNFkaIuOTI5+enbdaNwCknT3D7VT+qavIA6PCm+Eoqa9Ab0WMHk4vV0+h+uLPSgi
+	 a+r7qbVSlDq+g==
+Date: Wed, 29 May 2024 17:10:46 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>, egyszeregy@freemail.hu,
+	devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] i2c-dev: Introduce "linux,i2c-dev-name" property for
+ device tree of I2C controller.
+Message-ID: <20240529-espresso-founding-54a36bb34e8e@spud>
+References: <20240519165504.19627-1-egyszeregy@freemail.hu>
+ <mnzj5bqbiuwt4dqnenwctejdnqccqzk2x4tkz2ukqssrmdmsxc@7srnfnfjym26>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: sdm845: describe connections of
- USB/DP port
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- Nikita Travkin <nikita@trvn.ru>
-References: <20240528-yoga-ec-driver-v4-0-4fa8dfaae7b6@linaro.org>
- <20240528-yoga-ec-driver-v4-5-4fa8dfaae7b6@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240528-yoga-ec-driver-v4-5-4fa8dfaae7b6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="iKz0L6DxNIzz7++T"
+Content-Disposition: inline
+In-Reply-To: <mnzj5bqbiuwt4dqnenwctejdnqccqzk2x4tkz2ukqssrmdmsxc@7srnfnfjym26>
 
-On 28/05/2024 21:44, Dmitry Baryshkov wrote:
-> Describe links between the first USB3 host and the DisplayPort that is
-> routed to the same pins.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sdm845.dtsi | 53 +++++++++++++++++++++++++++++++++++-
->   1 file changed, 52 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 26b1638c76f9..5276ab0433b6 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+--iKz0L6DxNIzz7++T
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, May 29, 2024 at 12:28:03PM +0200, Wolfram Sang wrote:
+>=20
+> > Optionally, an I2C controller may have a "linux,i2c-dev-name" property.
+> > This is a string which is defining a custom suffix name for I2C device
+> > in /dev/i2c-<name> format. It helps to improve software portability bet=
+ween
+> > various SoCs and reduce complexities of hardware related codes in SWs.
+>=20
+> (I thought I already replied to this?)
+>=20
+> Highly similar to [1] from 2021. I don't have a super clear opinion
+> about this, so I'd need help from the DT maintainers. But the discussion
+> from back then stalled.
+>=20
+> [1] http://patchwork.ozlabs.org/project/linux-i2c/list/?series=3D237908
+
+This patch (or one very similar) got sent to the SPI and GPIO subsystems
+too. The response was effectively "use udev":
+https://lore.kernel.org/all/20240519144920.14804-1-egyszeregy@freemail.hu/
+https://lore.kernel.org/all/20240519211346.30323-1-egyszeregy@freemail.hu/
+
+This definitely is in "devicetree properties are not for software-policy"
+territory to me, maybe Rob's changed his mind since 2021.
+
+--iKz0L6DxNIzz7++T
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZldThgAKCRB4tDGHoIJi
+0qZkAQCM+GMm8GvD5T4HKNdwij22a+vQCLueZ5s/QX8us5FaUwEAmr2n7g5m+C4V
+qQsS4fLZv1sNspTOA1YmGzGEOcc/JQM=
+=TSAn
+-----END PGP SIGNATURE-----
+
+--iKz0L6DxNIzz7++T--
 
