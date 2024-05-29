@@ -1,112 +1,139 @@
-Return-Path: <devicetree+bounces-70419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4A18D3486
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:28:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61E658D34C8
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:44:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BBB21C2323C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:28:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF97F1F24E03
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D34917A939;
-	Wed, 29 May 2024 10:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE57E17BB3A;
+	Wed, 29 May 2024 10:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="CmWYY7kT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="np0pjepo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751C216D9DD
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 10:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A720117B4FD;
+	Wed, 29 May 2024 10:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716978491; cv=none; b=S6trpQNK7gQEVeVvvXLG46KYx04Lf2RyxpuvRbakTb+KS9N23bW1sHQmd6umzl71ntKNV1HeDebaxEsLZylZ+kF13S0aSOZXOF9qhwiXca1HH9q0XMP5BbWXVFdiSnVdjF7CXOGq7Qzo6jQkebgpMLaViaC+RDah/9aDh3KRDI8=
+	t=1716979475; cv=none; b=dg/etXkMioJ1G2wvihSQX2DiDk2nSqPrJxJI+VoSZvg8/KvkFig50ODURGgXrzmLvjp/U3ZsmS8Jx7IOd9ZgXZkyQm8rnfSUKomdGi43FAg/PK7+yv8Ae1aoT/UnKaC++sLW1diSQDiPpkDJ7k7X0UaAVC3cPT1IbIPF+41qsE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716978491; c=relaxed/simple;
-	bh=y7p3l0oglWACzgxbaMPo7wp3eRe7SuiZC//urcH+c2c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DYF36+ThNCUvPcM3Vy9uB73csAgju2/vgSbqhNx6y/witLrSnzxnX+YzadK1D6QVgdtsfNCAkzczFxwPvqzO2GC8QhY/cc3+KgZOsc4gKmk0U11VOd4JlR/mzIqWEenuwJyUT8lcM+83RM0Ld26m2bml9xBHz5tDDIwWVps7yLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=CmWYY7kT; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=y7p3
-	l0oglWACzgxbaMPo7wp3eRe7SuiZC//urcH+c2c=; b=CmWYY7kTC2Es21bZ+ioW
-	ahGY/I29AG5zamKjk2waZoZ+WBHMkHOdazG0wMXWKCdWJxlYpsffH8Zx6+ISbutQ
-	+ebCYp2XelrRSarYPImNiyTyyn1FhneH7wYKRQykQYhdi3vVd0Fs+zHUTfyA11fC
-	zp2xj8qaWYBEf9+yihl0cnvdOpBIYOkUXCrD8zVxI7KN0JAtrcqN24dOV4F1R1Un
-	bbIuH55DYqux8cqTqir3E/izIK6gJkeyoWu91fj9oZpOTGzkZeUaTynZZijUeesl
-	gseEjJgNBB9opIBB4/8gL+q1IlDtXm3rstZ/TPbCBY5zge2P8e1zgah0J+9uo+kn
-	Eg==
-Received: (qmail 536340 invoked from network); 29 May 2024 12:28:04 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 29 May 2024 12:28:04 +0200
-X-UD-Smtp-Session: l3s3148p1@VOCjNJUZ4McgAwDPXwS5AFh1mWvQq9Po
-Date: Wed, 29 May 2024 12:28:03 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: egyszeregy@freemail.hu, devicetree@vger.kernel.org
-Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] i2c-dev: Introduce "linux,i2c-dev-name" property for
- device tree of I2C controller.
-Message-ID: <mnzj5bqbiuwt4dqnenwctejdnqccqzk2x4tkz2ukqssrmdmsxc@7srnfnfjym26>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	egyszeregy@freemail.hu, devicetree@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-References: <20240519165504.19627-1-egyszeregy@freemail.hu>
+	s=arc-20240116; t=1716979475; c=relaxed/simple;
+	bh=w2NUtcqQzhKZrCNj5AHZJLY6Ii4aW3hyDn3AwcSEkNk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=QpXft65zK9FVAyRXvZsnMSi0BgygIxz2T1KGpbEnAd7qaW0No0ykDDeOA6ic6PCRRXCimwQmY+Ro3vXTke6X5QFNTCiY80edWdYu1NnTbajBynSm64hLeQiwUhyounAfSZCfF9n2Sl86vjjwViN8R9ygvoBEnM7em7wsN3lysnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=np0pjepo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07607C32781;
+	Wed, 29 May 2024 10:44:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716979475;
+	bh=w2NUtcqQzhKZrCNj5AHZJLY6Ii4aW3hyDn3AwcSEkNk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=np0pjepoSGg+tfmnkzQQQpy493Qf1VV2AL6xy/dHgphxXVYYYXe0eAHbGZmRs0wN+
+	 R1pG03TKfT13mCgnEfGR0W9D+abVpRhZNwJ/ebD3x6wMuoW4xNDqXVVVOgv04v4Ly8
+	 g6Gm7sxj+ao6znk0JoniHcRG9K6XWfNe8N6ri85nFajDUxVb1Y30g9c6M6tJlCPm5n
+	 bvLn2Dol8agheHA5c/GhNvm+F7X73Rwh5BXpHONBEWMzM4HZ2Qm8xa0Iz9AfAlOady
+	 y/vvIn/OGYic0xYR3CpV/3e0ZCgkKK+oxOoqxGtjD4Q7WsKdTrBkuEhg2TZHzLiR/z
+	 OAqoUUfGI46gA==
+Date: Wed, 29 May 2024 05:44:34 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="adz2efxtjrrak72e"
-Content-Disposition: inline
-In-Reply-To: <20240519165504.19627-1-egyszeregy@freemail.hu>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: Andrew Morton <akpm@linux-foundation.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
+ Anup Patel <apatel@ventanamicro.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Guo Ren <guoren@kernel.org>, 
+ Kefeng Wang <wangkefeng.wang@huawei.com>, 
+ Maxime Ripard <mripard@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Max Filippov <jcmvbkbc@gmail.com>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Daniel Vetter <daniel@ffwll.ch>, linux-renesas-soc@vger.kernel.org, 
+ Herve Codina <herve.codina@bootlin.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Rich Felker <dalias@libc.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonathan Corbet <corbet@lwn.net>, 
+ linux-clk@vger.kernel.org, Jacky Huang <ychuang3@nuvoton.com>, 
+ devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Masahiro Yamada <masahiroy@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ linux-fbdev@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
+ Stephen Boyd <sboyd@kernel.org>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
+ Jiri Slaby <jirislaby@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Arnd Bergmann <arnd@arndb.de>, 
+ Javier Martinez Canillas <javierm@redhat.com>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Heiko Stuebner <heiko.stuebner@cherry.de>, linux-serial@vger.kernel.org, 
+ Guenter Roeck <linux@roeck-us.net>, linux-ide@vger.kernel.org, 
+ Thomas Gleixner <tglx@linutronix.de>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-sh@vger.kernel.org, 
+ Stephen Rothwell <sfr@canb.auug.org.au>, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+ Chris Morgan <macromorgan@hotmail.com>, linux-pci@vger.kernel.org, 
+ David Airlie <airlied@gmail.com>, Damien Le Moal <dlemoal@kernel.org>, 
+ Niklas Cassel <cassel@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+ Baoquan He <bhe@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Helge Deller <deller@gmx.de>
+In-Reply-To: <2fb214e148e74fb0acc202543dca8dd8a170a6e6.1716965617.git.ysato@users.sourceforge.jp>
+References: <cover.1716965617.git.ysato@users.sourceforge.jp>
+ <2fb214e148e74fb0acc202543dca8dd8a170a6e6.1716965617.git.ysato@users.sourceforge.jp>
+Message-Id: <171697947326.1106773.218175911484134371.robh@kernel.org>
+Subject: Re: [DO NOT MERGE v8 22/36] dt-bindings: display: smi,sm501: SMI
+ SM501 binding json-schema
 
 
---adz2efxtjrrak72e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 29 May 2024 17:01:08 +0900, Yoshinori Sato wrote:
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> ---
+>  .../bindings/display/smi,sm501.yaml           | 443 ++++++++++++++++++
+>  1 file changed, 443 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/smi,sm501.yaml
+> 
 
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> Optionally, an I2C controller may have a "linux,i2c-dev-name" property.
-> This is a string which is defining a custom suffix name for I2C device
-> in /dev/i2c-<name> format. It helps to improve software portability betwe=
-en
-> various SoCs and reduce complexities of hardware related codes in SWs.
+yamllint warnings/errors:
 
-(I thought I already replied to this?)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/smi,sm501.yaml: crt: Missing additionalProperties/unevaluatedProperties constraint
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/smi,sm501.yaml: panel: Missing additionalProperties/unevaluatedProperties constraint
 
-Highly similar to [1] from 2021. I don't have a super clear opinion
-about this, so I'd need help from the DT maintainers. But the discussion
-=66rom back then stalled.
+doc reference errors (make refcheckdocs):
 
-[1] http://patchwork.ozlabs.org/project/linux-i2c/list/?series=3D237908
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2fb214e148e74fb0acc202543dca8dd8a170a6e6.1716965617.git.ysato@users.sourceforge.jp
 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---adz2efxtjrrak72e
-Content-Type: application/pgp-signature; name="signature.asc"
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
------BEGIN PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmZXAy0ACgkQFA3kzBSg
-KbakWBAAm1IkX0tO/4Y5kwTdx3ODo6eOVGSZO6RkRmuFikw9lq17+6pWLiiOMEKN
-U9WQzznDplV1jl1yqsPeL8XjZqJL1K9QqOkJdYiZtWxIpdl6jkrOOFKmPwTbRspZ
-dTQ8hYXyJRrpMAVbaBgak+EtTYJSI3e3cAR+1oTNlR0M+PEwQ+Oz2hBhflFgGwox
-Z2znGpDjZuWKsDdXX64bMOhjlYUltHq6hgaShm1LpX3QCA6EJttcOlgD+mN1/zKZ
-wOMcFHtzmz3TShUfkFyOhqE6Lg72Ir9iNk5+HqC81h/VqUT0ohisMbI/MGAjsNNB
-uQTHO92DmELJJRii6u1zRPy4Cfk6Unc/sRrlv0YNZJTCKk8EH1HdJqIw0xhdl/jj
-BSRslNmsv/Ae+wkFM205AeDgtcwMS/+HqKIgM5Zs5lmydhOPUa1UxtEqCvqkSrRi
-cdaOVPyNzYfZC9TBpzhzb7vBvRbS3IEqkyWwCknlTQtO5D+02+mysYifFhvpSUMW
-csaBEVFXWguDCX3F2G/2q+hZsjw2TRzYTT46CEyiImytvzIrl4o90X7RkV09evQX
-1Yzn2rZ3G9rbI4Of5/CshmPUIlJJJJ/OqznaKr9+kFMxB0/bNytjLE91YsGfXef3
-gG9XG33MrXnJPgQl8if/kk2Rf1bLTvLM+JPP9ZNvHRQACUWi0yo=
-=3BAA
------END PGP SIGNATURE-----
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
---adz2efxtjrrak72e--
 
