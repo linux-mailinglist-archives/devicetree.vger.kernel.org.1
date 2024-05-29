@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-70543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3098D3A23
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 17:00:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82E58D3A26
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 17:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C6BCB243A2
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:00:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB1A028921E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 15:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E01215ADAA;
-	Wed, 29 May 2024 15:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB6B1C290;
+	Wed, 29 May 2024 15:00:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9EED27E
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 14:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6417BD2F0
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 15:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716994800; cv=none; b=lkpthvsy1h+0c1aK9VyY4OB+q/xXS7W+bp1Ha/h+d+7FJlljWDIWaHwgCe+k/PBzzY9sQOmf0vwiJO2OM37+hB4OzgzNAHiu2HllDoQvaYRBiiEdWT4BJ4a6FiScdEwHaAM80nVjM8c34omwFq+lKTi7CxYmnkdE9kjaPDXzkvQ=
+	t=1716994827; cv=none; b=ErHlIZeTaIdxZrtpGFdijolkSru1G0BMaC1N1/1mJ+Qfhtm3Mf3fFo5hh8DwSXKrn3fsJH+KjqMc7R6OeR6ZyPEW8/W0tjk/OMgoNpOYfzHZIqrZ2bvcKQJPKL3j6Q1kr4plHq3+aK2wrcUmhsWzHEfHGSo008DxUmlhSeu4Xkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716994800; c=relaxed/simple;
-	bh=xrvV/cTt7FDwth4BsgVseinJOia3uRzgyGzmCj+zF98=;
+	s=arc-20240116; t=1716994827; c=relaxed/simple;
+	bh=SxvwdkQmeMWN0k4Fjbo41GQehOnLvwt2cHgW/QE/OF8=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ctCu+TM2jMM3mnGWeCXHxoYTNMvZNVAdvOJ4AtnzB4bzwrv7nfz77D19l09pQmvU5p1mo/346pH/ABY7+twY2cP6ldYg0eDUjQEUvAYPi8X5U6nmPMIV1efMGfXsfqAQucON3gC/XnNSCVucFiV7bmEnX7zRM4bsG30SMl+McI8=
+	 Content-Type:MIME-Version; b=OYPYY9RXKa1lb/2AWYAj5Cz/jj+juPexeO/qZlArDdZjotVoQfsb/rJetydzrw7AbFQMKPsVLan65KgMPpxLtWmdmjPXI9Q/Bc2n9uiER0MOcYzBatjvP+vM0CRCkH2B/SBtY42IizJIWXjmq/88hRuhYwAir52ky/jYljoBR6g=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,18 +33,18 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sCKmL-0003hh-JG; Wed, 29 May 2024 16:59:49 +0200
+	id 1sCKmm-0003s0-GG; Wed, 29 May 2024 17:00:16 +0200
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sCKmK-003TeI-Qd; Wed, 29 May 2024 16:59:48 +0200
+	id 1sCKml-003TeM-Nb; Wed, 29 May 2024 17:00:15 +0200
 Received: from pza by lupine with local (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1sCKmK-000Dg2-2P;
-	Wed, 29 May 2024 16:59:48 +0200
-Message-ID: <604e3e34ca98484e938d775379441f2a82a73fbb.camel@pengutronix.de>
-Subject: Re: [PATCH v2 05/12] drm/imx: ldb: drop custom EDID support
+	id 1sCKml-000Dhq-21;
+	Wed, 29 May 2024 17:00:15 +0200
+Message-ID: <1f6475267bcd16db21080c90a77592ba0f7db9b9.camel@pengutronix.de>
+Subject: Re: [PATCH v2 06/12] drm/imx: ldb: drop custom DDC bus support
 From: Philipp Zabel <p.zabel@pengutronix.de>
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
  <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst
@@ -57,10 +57,10 @@ To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, David Airlie
 Cc: Chris Healy <cphealy@gmail.com>, dri-devel@lists.freedesktop.org, 
 	devicetree@vger.kernel.org, imx@lists.linux.dev, 
 	linux-arm-kernel@lists.infradead.org
-Date: Wed, 29 May 2024 16:59:48 +0200
-In-Reply-To: <20240331-drm-imx-cleanup-v2-5-d81c1d1c1026@linaro.org>
+Date: Wed, 29 May 2024 17:00:15 +0200
+In-Reply-To: <20240331-drm-imx-cleanup-v2-6-d81c1d1c1026@linaro.org>
 References: <20240331-drm-imx-cleanup-v2-0-d81c1d1c1026@linaro.org>
-	 <20240331-drm-imx-cleanup-v2-5-d81c1d1c1026@linaro.org>
+	 <20240331-drm-imx-cleanup-v2-6-d81c1d1c1026@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -76,9 +76,10 @@ X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expand
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 On So, 2024-03-31 at 23:29 +0300, Dmitry Baryshkov wrote:
-> Bindings for the imx-ldb never allowed specifying the EDID in DT. None
-> of the existing DT files use it. Drop it now in favour of using debugfs
-> overrides or the drm.edid_firmware support.
+> None of the boards ever supported by the upstream kernel used the custom
+> DDC bus support with the LDB connector. If a need arises to do so, one
+> should use panel-simple and its DDC bus code. Drop ddc-i2c-bus support
+> from the imx-ldb driver.
 >=20
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
@@ -86,5 +87,4 @@ Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
 regards
 Philipp
-
 
