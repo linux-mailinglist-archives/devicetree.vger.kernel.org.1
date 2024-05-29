@@ -1,219 +1,138 @@
-Return-Path: <devicetree+bounces-70443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64DBA8D359A
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9954E8D35CC
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 13:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAC95B212FC
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:33:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0894EB2185E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA78716DECF;
-	Wed, 29 May 2024 11:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB8817F39A;
+	Wed, 29 May 2024 11:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="jX0GXW6x"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pnDzIFap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6A717DE23;
-	Wed, 29 May 2024 11:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B5A1802DE;
+	Wed, 29 May 2024 11:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716982384; cv=none; b=Xt3Cbm6r8EiCwWFDVYhQyaMNhhXpmXtZ2h8/8P8QZqhWnU8h/LmEaag2HWZVguOFxg7Mjojt9RV1y2HhvHgleiVXSMgBUxssy5x1VLZY/RwBRJw7KOa2BE/4p5YgB3bknui9fTsg8aKNJaBef6E4lBe7yrWfJ1D45gTRrbdoPAk=
+	t=1716983518; cv=none; b=YhTJiPCuR6qvK+3hz/AJsQW7GT0WMsKrgGXGilNOZbvSFUbeB0eeXC03e5D+m4ClnDzYa2zDIMQkg7g784ao2lsjjnNqk3iw9D2oWV0h5cGIuZEfG9Qio7zOZ2MKSiKYX1pMhtUMYkKz/ixBbhG7l60KLg/IGYyM1ceDTp2X7iE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716982384; c=relaxed/simple;
-	bh=ruQRWCCZf8B8ww4BsJjOV7mk4YxiLsCQNQSSS+0ddos=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=CjgEF2g7y/O8uuWI6eomb8AQf10VDvw9Y8G6HFrKuc2gxj3nR+m4rT85eOhPPubwTNwKZ/pieWqOcNTdDaCA28vt1UlUARU0W+fGs/QOKha3ZYlmMGgyqbgPfhEoIljFnie1pV0bvOQ8F8mx1p3kLkZdQyPggOJNN/GoQGqALHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=jX0GXW6x; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1716983518; c=relaxed/simple;
+	bh=xIwg1qqzs0kY43s0qXigUIBlgh3WObwY03gKkYlKbio=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J08CYAEJYVI9Sczeo9kL6KUl7QFpRTfOfzP389iV77OttGYsYjyyy66/6LxbLIXj3I78OhtWDuEVWphvVg0JKb/iYuaYMvbVMGc+Gu80pN0axyhvF65VUV8LA0RH11TrPJ+VX12RiQvB0WNQBv1SyqbPDUTbgMznRle3vpeXpVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pnDzIFap; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44TBprZT078778;
+	Wed, 29 May 2024 06:51:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716983513;
+	bh=Mg/AWyHtv9LVUEi96xCOIi4DqSntbZDmVYBl7E9icqE=;
+	h=From:To:CC:Subject:Date;
+	b=pnDzIFapdXxLVDbd3AOmgCAkW8S0qNwCT3WHUvDMyq8VHJY6TpoUIrEE8iD8PJYJC
+	 vC0U1EjbLsWqIpPIGVvrs6VknC08FPdvEKPyEjguHxF/7xLd3MNq30BlzW5ZliBCB5
+	 HfRL699hli4UN48UqoVsVjRMAezYDzOwQsoJ/zsg=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44TBprKw007683
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 29 May 2024 06:51:53 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 29
+ May 2024 06:51:52 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 29 May 2024 06:51:52 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44TBpqLo009965;
+	Wed, 29 May 2024 06:51:52 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 44TBppJf008838;
+	Wed, 29 May 2024 06:51:52 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Suman Anna <s-anna@ti.com>, MD Danish Anwar <danishanwar@ti.com>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, <srk@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, <r-gunasekaran@ti.com>,
+        Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v2] dt-bindings: soc: ti: pruss: Add documentation for PA_STATS support
+Date: Wed, 29 May 2024 17:21:49 +0530
+Message-ID: <20240529115149.630273-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1716982380;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XD6qFBUR2LMAzuud7DLI1RG/etW0Y6sDMxEesleKjgM=;
-	b=jX0GXW6xG4OGQpfXVaa2sVekk2pzKX9V22lDNuH2xkO1eEhPzR+XCEwcjbqDnRQJoBmhgH
-	gDxGB6fMJCDAJIGqeUlhzf8nN0IjDv37RkhOsD3lAcW4DN6nieWj3KU2ZM+MCZeRzvSXI+
-	iHtTKvtT6xta9SjbVxY+Kmm2enP2DEQBqQXDo9gCuWgS6VnskSNBFRa35qkMLiOlINYNzp
-	fIy+yCV3KAGaoscZeZ3W5mbl3b6KhnI4H2TaeOhsdIbWi325MkOOXACXYo0am9TZYPqXI0
-	nOg5MZRRI6FV8wiGAUOL3cZZUnYpkX0arGlObQex2DenoNH/tDHdOz5RdtOWGQ==
-Date: Wed, 29 May 2024 13:33:00 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org,
- heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, quentin.schulz@cherry.de,
- wens@kernel.org, daniel.lezcano@linaro.org,
- krzysztof.kozlowski+dt@linaro.org, viresh.kumar@linaro.org
-Subject: Re: [RFC PATCH] arm64: dts: rockchip: Make preparations for
- per-RK3588-variant OPPs
-In-Reply-To: <9996796.SDjBYy7pSV@bagend>
-References: <673dcf47596e7bc8ba065034e339bb1bbf9cdcb0.1716948159.git.dsimic@manjaro.org>
- <CABjd4YxD41DEkBCZfkznLboEY9ZVOfTCLcj4S_kkcsVswbANyQ@mail.gmail.com>
- <9996796.SDjBYy7pSV@bagend>
-Message-ID: <511137f077495007f467d5927f42f85d@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hello Diederik,
+Add documentation for pa-stats node which is syscon regmap for
+PA_STATS registers. This will be used to dump statistics maintained by
+ICSSG firmware.
 
-On 2024-05-29 13:09, Diederik de Haas wrote:
-> Hi Dragan,
-> 
-> I think the idea is very good.
-> I do have some remarks about its implementation though.
+Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+---
+Changes from v1 to v2:
+*) Added ^ in pa-stats as suggested by Krzysztof Kozlowski
+   <krzk@kernel.org>
+*) Moved additionalProperties: false to right after after type:object as
+   suggested by Krzysztof Kozlowski <krzk@kernel.org>
+*) Updated description of pa-stats to explain the purpose of PA_STATS
+   module in context of ICSSG.
 
-Thanks for your feedback!
+v1 https://lore.kernel.org/all/20240430121915.1561359-1-danishanwar@ti.com/
 
-> title: s/Make preparations/Prepare/
+ .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Or even better: "Prepare RK3588 SoC dtsi files for per-variant OPPs"
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+index c402cb2928e8..3cb1471cc6b6 100644
+--- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+@@ -278,6 +278,26 @@ patternProperties:
+ 
+     additionalProperties: false
+ 
++  ^pa-stats@[a-f0-9]+$:
++    description: |
++      PA-STATS sub-module represented as a SysCon. PA_STATS is a set of
++      registers where different statistics related to ICSSG, are dumped by
++      ICSSG firmware. This syscon sub-module will help the device to
++      access/read/write those statistics.
++
++    type: object
++
++    additionalProperties: false
++
++    properties:
++      compatible:
++        items:
++          - const: ti,pruss-pa-st
++          - const: syscon
++
++      reg:
++        maxItems: 1
++
+   interrupt-controller@[a-f0-9]+$:
+     description: |
+       PRUSS INTC Node. Each PRUSS has a single interrupt controller instance
+-- 
+2.34.1
 
-> On Wednesday, 29 May 2024 11:57:45 CEST Alexey Charkov wrote:
->> On Wed, May 29, 2024 at 6:14 AM Dragan Simic <dsimic@manjaro.org> 
->> wrote:
->> > Rename and modify the RK3588 dtsi files a bit, to make preparations for
->> > the ability to specify different CPU and GPU OPPs for each of the
->> > supported RK3588 SoC variants, including the RK3588J.
-> 
-> "Rename the RK3588 dtsi files in preparation of the ability to specify
-> different
-> CPU and GPU OPPs combinations for all the supported RK3588 SoC 
-> variants."?
-> 
-> There's no partial renaming of things. That you then also change the 
-> include
-> files to match, is implied.
-> The "modify ... a bit" implies you'll do something else (too), which 
-> should be
-> in its own separate patch (if that were actually the case).
-
-Oh, the entire description of the patch was cobbled together in a rather
-"relaxed" way, because it was past 2 AM over here, :) and because it's 
-just
-an RFC patch.  For the final version of the patch, if we agree upon 
-moving
-it forward from the RFC status, I'll prepare a more "formal" description
-that will be much more detailed and more accurate.
-
-> If you mention one variant but not (any) others, makes people like me 
-> wonder:
-> why is RK3588J treated differently then f.e. RK3588M?
-> In this case I don't see a reason to single out one variant.
-
-Good remark.  Will be described in the final patch description.
-
->> > As already discussed, [1][2][3] some of the different RK3588 SoC variants
->> > require different OPPs, and it makes more sense to have the OPPs already
->> > defined when a board dts includes one of the SoC dtsi files (rk3588.dtsi,
->> > rk3588j.dtsi or rk3588s.dtsi), rather than requiring the board dts file to
->> > also include a separate rk3588*-opp.dtsi file.
->> 
->> Indeed, including just one .dtsi for the correct SoC variant and not
->> having to bother about what other bits and pieces are required to use
->> the full SoC functionality sounds great! Thanks for putting this
->> together so promptly!
-> 
-> Indeed :)
-
-Thanks. :)
-
->> > No intended functional changes are introduced.
-> 
-> ...
-> 
->> >  ...inctrl.dtsi => rk3588-common-pinctrl.dtsi} |    0
->> 
->> Renaming the pinctrl includes seems superfluous - maybe keep them as
->> they were to minimize churn?
-> 
-> The reason for that wasn't clear to me either. If there is a good 
-> reason for
-> it, then a (git commit) message specify *why* is appreciated.
-
-Another good remark.  Will be addressed in the final patch description.
-
->> >  .../{rk3588s.dtsi => rk3588-common.dtsi}      |    2 +-
->> >  ...nctrl.dtsi => rk3588-fullfat-pinctrl.dtsi} |    0
->> >  .../{rk3588.dtsi => rk3588-fullfat.dtsi}      |    4 +-
->> 
->> To me, "fullfat" doesn't look super descriptive, albeit fun :)
-> 
-> Agreed with the non-descriptive part. Please choose a different name.
-
-I'll think about it.  I'm not crazy about "fullfat" either.
-
-> And document in the git commit message why it was renamed and what is 
-> expected
-> to be in the new dtsi file, but would be incorrect for the old dtsi 
-> file.
-> 
-> That you went from rk3588s.dtsi to rk3588-common.dtsi (I miss the 's') 
-> should
-> be described (assuming that was intentional and not a typo).
-
-Omitting the "s" wasn't a typo.  It's just that rk3588s.dtsi served as
-the base for other .dtsi files before, but it's now called 
-rk3588-common.dtsi,
-which makes its purpose a bit more self-descriptive, and separates it
-from the actual SoC variants (S, J, M), which should also help a bit
-with its self-descriptiveness.
-
-Note that "common" is already used in the .dtsi filenames for some other
-SoC families, which I actually took inspiration from.
-
-> IOW: let this commit (message) describe what should and should not go 
-> in the
-> respective dtsi files, which can then be used as reference for future 
-> rk3588
-> board additions.
-
-Of course.  Again, more material for the final patch description.
-
->> How about we rename the existing rk3588.dtsi and rk3588s.dtsi to
->> something like rk3588-devices.dtsi and rk3588s-devices.dtsi
-> 
-> Whether it's '-devices' or '-common', I think it's impossible for a 
-> (short)
-> name to be fully self-descriptive.
-> Thus document what you mean by it in the commit message.
-
-Agreed.  Once again, more material for the final patch description.
-
-> Then we can use those 'rules' to consistently apply them.
-> 
->> >  arch/arm64/boot/dts/rockchip/rk3588.dtsi      |  414 +--
->> >  arch/arm64/boot/dts/rockchip/rk3588j.dtsi     |    6 +-
->> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 2671 +----------------
->> 
->> Rename detection didn't do a particularly great job here - wonder if
->> we can do anything about it to minimize the patch size and ensure that
->> the change history is preserved for git blame...
-> 
-> +1
-> The diff does look awfully big for a rename operation, which was 
-> supposed to
-> (also only) "modify ... a bit".
-
-I also don't like the size of the patch.  I just tried playing with
-specifying different values for the --find-renames and --find-copies
-options, but with no good results.  I'll have a look into the Git
-source later, to see what's actually going on with those options.
 
