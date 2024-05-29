@@ -1,216 +1,176 @@
-Return-Path: <devicetree+bounces-70504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D3EB8D38DB
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:13:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B3528D38E0
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:13:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFCD1B222B3
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:13:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0330128B8DD
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89BA114533F;
-	Wed, 29 May 2024 14:11:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D40F14B978;
+	Wed, 29 May 2024 14:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="alXnCIxL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YzVSqhMM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6BE144D34;
-	Wed, 29 May 2024 14:11:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB34914B97D;
+	Wed, 29 May 2024 14:12:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716991888; cv=none; b=PUc0vDmCjqdanm39oxMI7MyKK9jaTH+TmaPVHtknf2S77YFFyRbLscld4MYiY9bznFfpTkb8xY6ibhf/mWgggVwTcvexuTIh6gGTMNy7Ve+Y4KyXPS9iB/aXSaeO0hSL6cLNgRtxItP9kGdJOFcXqQ8V6Kf9EDcP6PW3LE1VGys=
+	t=1716991958; cv=none; b=BHHlxSMr0x0f0EFkx39TC8kYGNkTAKtVEoMjMhciSZjRF5HzOa+DjGid449gt8lMZ6584RZxautTRYXAu4wllj2Btl/kjZV2fuP2DyYUSxRE0i3CYqs5Gq3aFz6uQlFkVWl6teXC95hQMtaN7q6QK1CoK5bEThGwHFDbQpaNrf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716991888; c=relaxed/simple;
-	bh=nvya7ZlgACfFyatqNIXscH2VuvYtZOyEAo4x90jdgfI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7nLEmvqR9+iA+iT0/clLZuxTBXPfGxBwvgAWW8871fHrYk7qG6ugdJQNtjmTJX6rjboe+tj9upUjJT3Ga/nwfFKQ47kQV7+c8O4+rHBNLagrQvoD53LIJ1oEXAOJJHbnRUK8TEZunf4ldONLArVFfAZtyKLLaWZfT8Dv5aKR1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=alXnCIxL; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1f60a502bb2so1683245ad.3;
-        Wed, 29 May 2024 07:11:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716991886; x=1717596686; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=EoBQc0kl6LB1qi1fWgBiA7CgfTFpaSH0Gsxy+hQaR7Q=;
-        b=alXnCIxLQpzGzmG5G8tihUjC+OyArhAtte8eIWfQ6U6nRbvdI1RRXrjF4FdURf+i6e
-         HeDBvVowCxhpkREQYdr+ijuOQhTQ+MWWWKXiLJIA9Iac+ujt14JYEGGUIuCkv/0kGq6n
-         CLEcyNU08KzKnX+3ibm8vHwtB2Ytcu3AIw1G+j42ayW7yTdwfJzCATFyha3qlSYGJqqE
-         ixEEUx2+AZhd8LGHBFNl3RyjRu1ncfUayRoXnHrnHGfIAQDm4L6vnCRbGKgmCkaQ6HB3
-         lcN7mENe6O9ksbmhPBTTSzU2aRsOJTxfXCXjSsSldM1IdUu+Fuoqj3Ohx5V7Q8IYjv8U
-         PwOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716991886; x=1717596686;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EoBQc0kl6LB1qi1fWgBiA7CgfTFpaSH0Gsxy+hQaR7Q=;
-        b=Jn2uGPJ/fKRXvn0JY2lsCVN8LtTsi5oTzfAT1HfWwLApzpc8JEUxHG84A8eiqzsGsN
-         VHLjUozNGTYRzaN7yLZ3S3/IphvtGENjU+Ot3FN/wtML4mQ1ksdLzagJrYn664wP1fmE
-         XOC2rhwaZTfu/VKdxGqRSZhNvCLHybArrkOnZsY/t55/dw5ZKNfpump0uK6LbBPYhNCg
-         gG05SdHg8Eo+IF8bqJV92X7PNhXat7Z7JbUTvZfaH50v9TimHhAqJykfb0ZnBDo7uKGJ
-         whuunY+NhRJP/rQCUkpoUhwWKNXSaEL25gFrFU/CR3oDdC7O9qCHfgE6PlW8ORYwolt2
-         XG+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUmnHVI/qNga0atDM6z75dyeZzRFy5t2qgyTVz6EHZZGFSzgoNntJ5rAFKmgDKG+m+U6pDJO/NK85nEx/sApkgkyiSOr/CaZxEDcPR+UiiaCpmfEuK2pBOvEdkD/Hvo8ASB44/x1f9EGDij6C4qgQbdkrWpSSb9NPkHlHLFiMsvjBuitd9g
-X-Gm-Message-State: AOJu0YztkPCCCwpQ2EYcKlRQmAL416nROiub9AmG7JHUP+QAPUokrS8O
-	tj/rSNfPjsLcs+7GzKuiSmDoKLMpX180bO6m+erFO+W8fBbXQFa0
-X-Google-Smtp-Source: AGHT+IEyG65qZfUUyugq93mgzzLOsIPM+gy0sf3JZ8+G1Pig5602piIwBHJrHow3OJ6kfXdRQBugGg==
-X-Received: by 2002:a17:902:e846:b0:1f4:9e85:9d5f with SMTP id d9443c01a7336-1f49e85a1damr90112945ad.19.1716991885357;
-        Wed, 29 May 2024 07:11:25 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f44c997d0dsm99891065ad.199.2024.05.29.07.11.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 May 2024 07:11:24 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <6b87136a-01e7-4b4b-b36f-632cf59b4760@roeck-us.net>
-Date: Wed, 29 May 2024 07:11:23 -0700
+	s=arc-20240116; t=1716991958; c=relaxed/simple;
+	bh=7NWEr5StuLmVJzguniP2zwAbQK9RarAUtHZ7MlPcfRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iDS3PigHnqhnKp6VDFgvItCeKo6f8MSx0ReYxCRhVWRA6H0ab3syzT7D9I1E/RK5iEGswhVnBh59E0v2CrRjFZxCQTZxGgKco5QS9Udrdk07/73sQ7hJRh2eP4uEHMlDvlw5dL5SIpT8M2L+IGuliQTQKAJyWpXlBud8TnLLhqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YzVSqhMM; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TB3von022257;
+	Wed, 29 May 2024 14:12:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sPvIvJ2IIY00uJkZe6YmwHumkZ4S2a0l8w41fyVrgOo=; b=YzVSqhMMQ53xi4bQ
+	u+oJUcItr1I6YcJ5EjeFoyX5a+7/VrXzy26M0I4Gws3/3iLPg/QnTxQfP+atfsYG
+	WN0zfFre/vIby8h0XBV4Z9yd/4PQYLuDXraoKby86MGJYCX90ymaka8qir98X6b+
+	mJVNjIPo/fC+EUpYym36jRJPLTykPe0l5vASDhx7mEEOpbMuw2wGzJULeUWkjhbq
+	XK54octCXJni229tVuAwnTuw9LaYklGHu9XlFPO3uHdr8weKOKtOlRtvopztJvAP
+	xlemZfjWJjxsro6yfqhYTu7P5vyqnYsZP2MP/vY0f+NWQIpx0SnrYaxK+imvbmqE
+	TqxJSQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba1k9553-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 14:12:32 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TECVfB004147
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 29 May 2024 14:12:31 GMT
+Received: from [10.216.41.231] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
+ 2024 07:12:23 -0700
+Message-ID: <43068207-ed07-f616-9ecc-77372d9d4704@quicinc.com>
+Date: Wed, 29 May 2024 19:42:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwmon: (ina2xx) Add device tree support to pass
- alert polarity
-To: Amna Waseem <Amna.Waseem@axis.com>, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20240529-apol-ina2xx-fix-v2-0-ee2d76142de2@axis.com>
- <20240529-apol-ina2xx-fix-v2-2-ee2d76142de2@axis.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add qfprom node
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240529-apol-ina2xx-fix-v2-2-ee2d76142de2@axis.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Bjorn Andersson <andersson@kernel.org>
+CC: Konrad Dybcio <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1709727995-19821-1-git-send-email-quic_mojha@quicinc.com>
+ <1709727995-19821-2-git-send-email-quic_mojha@quicinc.com>
+ <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
+ <69a8c14c-109a-103a-b8dc-d8e303c0f0d5@quicinc.com>
+ <gxi4klvxzwwyrwb2b4h7kmii5dx5mxdypxowwz3kyllvq6grss@6lahaospwtsh>
+ <4jopw7qv2jlq7b5ljkxfhjjjdlqclruouentrvbjt43yybxyf6@qzsk4imnmq5m>
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <4jopw7qv2jlq7b5ljkxfhjjjdlqclruouentrvbjt43yybxyf6@qzsk4imnmq5m>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: mGKwbwYvWS1ArAylhw4vIuIJcXnOKCgc
+X-Proofpoint-GUID: mGKwbwYvWS1ArAylhw4vIuIJcXnOKCgc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
+ definitions=2024-05-29_11,2024-05-28_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ suspectscore=0 phishscore=0 clxscore=1011 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 spamscore=0 adultscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2405170001 definitions=main-2405290097
 
-On 5/29/24 02:47, Amna Waseem wrote:
-> The INA230 has an Alert pin which is asserted when the alert
-> function selected in the Mask/Enable register exceeds the
-> value programmed into the Alert Limit register. Assertion is based
-> on the Alert Polarity Bit (APOL, bit 1 of the Mask/Enable register).
-> It is default set to value 0 i.e Normal (active-low open collector).
-> However, hardware can be designed in such a way that expects Alert pin
-> to become active high if a user-defined threshold in Alert limit
-> register has been exceeded. This patch adds a way to pass alert polarity
-> value to the driver via device tree.
+
+
+On 5/28/2024 9:07 PM, Bjorn Andersson wrote:
+> On Sun, Mar 17, 2024 at 08:21:58PM GMT, Bjorn Andersson wrote:
+>> On Thu, Mar 14, 2024 at 10:13:59PM +0530, Mukesh Ojha wrote:
+>>> Sorry for the late reply, was on vacation.
+>>>
+>>> On 3/6/2024 9:24 PM, Konrad Dybcio wrote:
+>>>>
+>>>>
+>>>> On 3/6/24 13:26, Mukesh Ojha wrote:
+>>>>> Add the qfprom node for sm8450 SoC.
+>>>>>
+>>>>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 7 +++++++
+>>>>>    1 file changed, 7 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> index b86be34a912b..02089a388d03 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>>>> @@ -4575,6 +4575,13 @@
+>>>>>                };
+>>>>>            };
+>>>>> +        qfprom: efuse@221c8000 {
+>>>>> +            compatible = "qcom,sm8450-qfprom", "qcom,qfprom";
+>>>>> +            reg = <0 0x221c8000 0 0x1000>;
+>>>>
+>>>> Is is really only 0x1000-long? Also, is the base you put
+>>>> here the ECC-corrected part (if that still exists)?
+>>>
+>>> No, its not.
+>>>
+>>> Entire fuse space is this.
+>>> 0x221C0000-0x221Cbfff
+>>>
+>>> ECC corrected range is this 0x221C2000-0x221C3fff and High level OS
+>>
+>> That's 0x2000. Does this then also imply that the ECC-corrected values
+>> are no longer mapped 1:1 with non-corrected, or why do they differ in
+>> size?
+>>
+>>> does have a access to ECC range however, they are not recommended for
+>>> SW usage.
+>>>
+>>> Above mentioned SW range(4) in the patch is  one and only accessible range
+>>> available out of 0-7 SW ranges(0x221C4000-0x221Cbfff with each
+>>> size 0x1000) and does not have ECC fuses.
+>>>
+>>
+>> So you're saying that in contrast to other platforms, the 4th software
+>> range, dedicated for HLOS, does not have a matching ECC-corrected
+>> shadow? If that's the case, then "not recommended for SW usage" sounds
+>> wrong.
+>>
+>>> All the downstream use cases are getting fulfilled with this.
+>>>
+>>
+>> You only need ECC if you're unlucky...
+>>
 > 
-> Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
-
-Please address my earlier comments, and in the future please wait a few minutes
-before sending another version to give people time to provide feedback
-on the earlier version(s).
-
-> ---
->   drivers/hwmon/ina2xx.c | 27 +++++++++++++++++++++++++++
->   1 file changed, 27 insertions(+)
+> The patch is either incorrect or the commit message is lacking answers
+> to the questions from Konrad and myself.
 > 
-> diff --git a/drivers/hwmon/ina2xx.c b/drivers/hwmon/ina2xx.c
-> index d8415d1f21fc..9afaabdc367d 100644
-> --- a/drivers/hwmon/ina2xx.c
-> +++ b/drivers/hwmon/ina2xx.c
-> @@ -73,6 +73,9 @@
->   #define INA226_READ_AVG(reg)		(((reg) & INA226_AVG_RD_MASK) >> 9)
->   #define INA226_SHIFT_AVG(val)		((val) << 9)
->   
-> +#define INA226_ALERT_POLARITY_MASK		0x0002
-> +#define INA226_SHIFT_ALERT_POLARITY(val)	((val) << 1)
-> +
->   /* bit number of alert functions in Mask/Enable Register */
->   #define INA226_SHUNT_OVER_VOLTAGE_BIT	15
->   #define INA226_SHUNT_UNDER_VOLTAGE_BIT	14
-> @@ -178,6 +181,21 @@ static u16 ina226_interval_to_reg(int interval)
->   	return INA226_SHIFT_AVG(avg_bits);
->   }
->   
-> +static int ina2xx_set_alert_polarity(struct ina2xx_data *data,
-> +				     unsigned long val)
-> +{
-> +	int ret;
-> +
-> +	if (val > INT_MAX || !(val == 0 || val == 1))
-> +		return -EINVAL;
-> +
-> +	ret = regmap_update_bits(data->regmap, INA226_MASK_ENABLE,
-> +				 INA226_ALERT_POLARITY_MASK,
-> +				 INA226_SHIFT_ALERT_POLARITY(val));
-> +
-> +	return ret;
+> Would have appreciated a reply here, but either way I'm marking this as
+> "changes requested" and dropping it from the queue.
 
-ret is an unnecessary variable.
-	return regmap_update_bits(...);
+Apology for coming late on this., it just skipped from my tracking.. 
+Frankly, I don't have convincing answer apart from what reason are 
+exposed to kernel to read for SoCs like sm8[456]0 , will try to get
+the answer soon.
 
-
-> +}
-> +
->   /*
->    * Calibration register is set to the best value, which eliminates
->    * truncation errors on calculating current register in hardware.
-> @@ -659,6 +677,15 @@ static int ina2xx_probe(struct i2c_client *client)
->   	if (ret)
->   		return dev_err_probe(dev, ret, "failed to enable vs regulator\n");
->   
-> +	if (!of_property_read_u32(dev->of_node, "ti,alert-polarity", &val)) {
-> +		ret = ina2xx_set_alert_polarity(data, val);
-> +		if (ret < 0) {
-> +			return dev_err_probe(
-> +			   dev, ret,
-> +			   "failed to set APOL bit of Enable/Mask register\n");
-
-Line split is still as bad as before.
-
-Guenter
-
+-Mukesh
 
