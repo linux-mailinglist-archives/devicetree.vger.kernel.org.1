@@ -1,147 +1,96 @@
-Return-Path: <devicetree+bounces-70386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6FD8D33C7
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:56:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8298D33CE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A75B1F22583
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:56:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2529A1F24296
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175BE179658;
-	Wed, 29 May 2024 09:56:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E86916E89B;
+	Wed, 29 May 2024 09:57:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSoCy/90"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C2F16D9D9;
-	Wed, 29 May 2024 09:56:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129F416D9D9;
+	Wed, 29 May 2024 09:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716976569; cv=none; b=D392FFLnOOp1iBK5kn5pwFS8c1jQQA3gluzHdVCmK3+mNRf23gukKrrvvIzsvnMr27Y65VHdhGQ7aRE8jSWFNVuU6Wme/U1s9wjZCXKfBFJD09LkXx9dIgtS9mlGTzcVvPIi8jfxbdczeTzAaTBa3BOXHBa6h7OjPS9tcqX/M1k=
+	t=1716976672; cv=none; b=bClnMjLGpo74y6YUVcCV5z9ucwo67mqD3bxXe+taJMKg+jHbR3FxP7a7xeyvvdkYPrHYjoK0vpXMyFHZcqn/2BrKfcXW3lpkYBEX4BwTXqoAC/VlQ0jucWTJ/jtErPSlRm7plEhw48z8fNti1kjtL02jcD1794iiydL2hOBcIKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716976569; c=relaxed/simple;
-	bh=dHqEPBaw5nSQKZiDPjBfxGzkUWeHJx2AEu+zXPtpOlg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kaX0S/i4y97kdC7XGEvKhhcQrDe0VUT8/9Dj+TJAG7Qfy/Xal+f5iIji7mCmKK0Rtn0EGpTEqCCCwv5Pwj0p4gYbSepGt5Bi8MH2N8xhlX8H3pUl3NdlDMBOg2iLMBfWeBtpIzPROoxuLTulBZiLjAauNRAQXaFqexN7nQKQewU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6F8B81A178D;
-	Wed, 29 May 2024 11:56:05 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 21D031A13BE;
-	Wed, 29 May 2024 11:56:05 +0200 (CEST)
-Received: from pe-lt8779.in-pnq01.nxp.com (pe-lt8779.in-pnq01.nxp.com [10.17.104.141])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id DA2AA183AC0C;
-	Wed, 29 May 2024 17:56:02 +0800 (+08)
-From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
-To: marcel@holtmann.org,
-	luiz.dentz@gmail.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-bluetooth@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	amitkumar.karwar@nxp.com,
-	rohit.fule@nxp.com,
-	neeraj.sanjaykale@nxp.com,
-	sherry.sun@nxp.com,
-	ziniu.wang_1@nxp.com,
-	haibo.chen@nxp.com,
-	LnxRevLi@nxp.com
-Subject: [PATCH v3 2/2] Bluetooth: btnxpuart: Update firmware names
-Date: Wed, 29 May 2024 15:23:47 +0530
-Message-Id: <20240529095347.22186-3-neeraj.sanjaykale@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240529095347.22186-1-neeraj.sanjaykale@nxp.com>
-References: <20240529095347.22186-1-neeraj.sanjaykale@nxp.com>
+	s=arc-20240116; t=1716976672; c=relaxed/simple;
+	bh=iaCGJaINHa9zEehzbalTOlcgppostrNzh1B+dJnNFSo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iwDTHuyMFkQaVfeOkjZO0tayY7lNj/vXMDJN5lCQDeuMfM8bYHpNYJw2O6stwHJ9Il1uvEYGuBoY7XRLaMpDQt7c0tfMLPqJqEb4s6PkD+XgonfvzSgOtd9xZxu31khXAJc/ZSKht197Gyi1dmhH/PUq78YjXlejG6oNwuTpNGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSoCy/90; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A866FC4AF08;
+	Wed, 29 May 2024 09:57:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1716976671;
+	bh=iaCGJaINHa9zEehzbalTOlcgppostrNzh1B+dJnNFSo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=lSoCy/90LFLRqYdbMOcXVCaF+LKST3QRDHgr5A/2iTjevruyK+yCmlDa0U+a3ggj2
+	 h5A9I4sa+cCYq7dozVIAhSpq8sQFsc1SzS4OaLoShPb2Fl4Ui+V+yCvAt/tt7odsH/
+	 S7EHwiheerR6iDSillcvYZpth8K5t2g9IRVEx+KEGWztMm0BVEx/zVtLT4XW7YdXDW
+	 ToUXjdWb4qlU0voK+VSb2YaLAOI+A+qjGu2d9Bpsm8qOq4lmSQcUE0+Gar/z6g9b6E
+	 2jg/blk80+UpIG5v9Dr6R5R5lat2gOghB53K10ktg6POw7xv8kTJ/lzCkMYXSii93z
+	 zfRkTDrtYiW1A==
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2e964acff1aso18582881fa.0;
+        Wed, 29 May 2024 02:57:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVHXM3/SNglWi1CZE71q18VxP1hxyVw/N/VykWZPjjOVhK4sNcgF/H2aIIdOYwoWcbA/Oqk57lqK3CvxMOhD+Dl3oV1ue76nmyP1JbDMkxvPhBkKU1Eb/9+n/7m8G9bDfnTdJUPuR47MA==
+X-Gm-Message-State: AOJu0YxXJ35ecSqy7TRUELYSP31onNuNpF/rsEdUom4dcK4bJcytr59k
+	pWNrftLfwrpUJyJc95gTFqm6SL4OwdKsInQgffifPclTNOJ0L+pCD/nBWY8/LESCusEdOCXsYlA
+	VUxn2oD/qB7F6DEWNp7EIqodEuM8=
+X-Google-Smtp-Source: AGHT+IEFxX21+ii93lHAmnFMh4GvRSBnEthgLzBQShOVljveuWlSe0A2gLvKBfq69VYRJHG/hZCnYa7az9LimwE/rvM=
+X-Received: by 2002:a05:651c:1992:b0:2e5:61f8:db58 with SMTP id
+ 38308e7fff4ca-2e95b0bce5emr113360491fa.11.1716976670269; Wed, 29 May 2024
+ 02:57:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+References: <20240528200231.1548800-2-robh@kernel.org>
+In-Reply-To: <20240528200231.1548800-2-robh@kernel.org>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Wed, 29 May 2024 18:57:14 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARtqQrMb3U6x=ppkrh6vNJn9tSgTQMCEtoU4DK0rHqFSQ@mail.gmail.com>
+Message-ID: <CAK7LNARtqQrMb3U6x=ppkrh6vNJn9tSgTQMCEtoU4DK0rHqFSQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: kbuild: Fix dt_binding_check on unconfigured build
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This updates the firmware names of 3 chipsets: w8987, w8997, w9098.
-These changes are been done to standardize chip specific firmware
-file names.
-To allow user to use older firmware file names, a new device tree
-property has been introduced called firmware-name, which will override
-the hardcoded firmware names in the driver.
+On Wed, May 29, 2024 at 5:03=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+> The 'dt_binding_check' target shouldn't depend on the kernel
+> configuration, but it has since commit 604a57ba9781 ("dt-bindings:
+> kbuild: Add separate target/dependency for processed-schema.json").
+> That is because CHECK_DT_BINDING make variable was dropped, but
+> scripts/dtc/Makefile was missed. The CHECK_DTBS variable can be used
+> instead.
+>
+> Reported-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Fixes: 604a57ba9781 ("dt-bindings: kbuild: Add separate target/dependency=
+ for processed-schema.json")
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
----
-v2: Remove "nxp/" from all firmware name definitions to be inline with
-firware file name read from device tree file. (Krzysztof)
----
- drivers/bluetooth/btnxpuart.c | 28 +++++++++++++++++-----------
- 1 file changed, 17 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
-index 0b93c2ff29e4..4442d911eba8 100644
---- a/drivers/bluetooth/btnxpuart.c
-+++ b/drivers/bluetooth/btnxpuart.c
-@@ -33,16 +33,16 @@
- /* NXP HW err codes */
- #define BTNXPUART_IR_HW_ERR		0xb0
- 
--#define FIRMWARE_W8987		"nxp/uartuart8987_bt.bin"
--#define FIRMWARE_W8997		"nxp/uartuart8997_bt_v4.bin"
--#define FIRMWARE_W9098		"nxp/uartuart9098_bt_v1.bin"
--#define FIRMWARE_IW416		"nxp/uartiw416_bt_v0.bin"
--#define FIRMWARE_IW612		"nxp/uartspi_n61x_v1.bin.se"
--#define FIRMWARE_IW624		"nxp/uartiw624_bt.bin"
--#define FIRMWARE_SECURE_IW624	"nxp/uartiw624_bt.bin.se"
--#define FIRMWARE_AW693		"nxp/uartaw693_bt.bin"
--#define FIRMWARE_SECURE_AW693	"nxp/uartaw693_bt.bin.se"
--#define FIRMWARE_HELPER		"nxp/helper_uart_3000000.bin"
-+#define FIRMWARE_W8987		"uart8987_bt_v0.bin"
-+#define FIRMWARE_W8997		"uart8997_bt_v4.bin"
-+#define FIRMWARE_W9098		"uart9098_bt_v1.bin"
-+#define FIRMWARE_IW416		"uartiw416_bt_v0.bin"
-+#define FIRMWARE_IW612		"uartspi_n61x_v1.bin.se"
-+#define FIRMWARE_IW624		"uartiw624_bt.bin"
-+#define FIRMWARE_SECURE_IW624	"uartiw624_bt.bin.se"
-+#define FIRMWARE_AW693		"uartaw693_bt.bin"
-+#define FIRMWARE_SECURE_AW693	"uartaw693_bt.bin.se"
-+#define FIRMWARE_HELPER		"helper_uart_3000000.bin"
- 
- #define CHIP_ID_W9098		0x5c03
- #define CHIP_ID_IW416		0x7201
-@@ -685,13 +685,19 @@ static bool process_boot_signature(struct btnxpuart_dev *nxpdev)
- static int nxp_request_firmware(struct hci_dev *hdev, const char *fw_name)
- {
- 	struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-+	const char *fw_name_dt;
- 	int err = 0;
- 
- 	if (!fw_name)
- 		return -ENOENT;
- 
- 	if (!strlen(nxpdev->fw_name)) {
--		snprintf(nxpdev->fw_name, MAX_FW_FILE_NAME_LEN, "%s", fw_name);
-+		if (strcmp(fw_name, FIRMWARE_HELPER) &&
-+		    !device_property_read_string(&nxpdev->serdev->dev,
-+						 "firmware-name",
-+						 &fw_name_dt))
-+			fw_name = fw_name_dt;
-+		snprintf(nxpdev->fw_name, MAX_FW_FILE_NAME_LEN, "nxp/%s", fw_name);
- 
- 		bt_dev_dbg(hdev, "Request Firmware: %s", nxpdev->fw_name);
- 		err = request_firmware(&nxpdev->fw, nxpdev->fw_name, &hdev->dev);
--- 
-2.34.1
+Applied to linux-kbuild.
+Thanks!
 
+
+--=20
+Best Regards
+Masahiro Yamada
 
