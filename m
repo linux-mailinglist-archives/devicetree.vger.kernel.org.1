@@ -1,133 +1,152 @@
-Return-Path: <devicetree+bounces-70302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544EC8D3114
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:24:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B49338D3161
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:31:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2A9C1F28AB2
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:24:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AA34B2BCEC
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:26:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2266F16939F;
-	Wed, 29 May 2024 08:19:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C73416E870;
+	Wed, 29 May 2024 08:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ORKOniri"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wf5DmHRW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079A4169394
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 08:19:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900A7168C3D;
+	Wed, 29 May 2024 08:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716970786; cv=none; b=pHH0MolM4p9rCekj0nXEjoyZ9qkgXzyewIdXkZSjTSilwLm2ajKWYxZH8RQ/FdNWutPvV9nyOziHEL9jO0JYUDG37kE3ppYoW6Ni5wcN/f7+N1rkWKhDsBBbWC4ND+MZpIm5lz+D7GFAcRTnT2hZ1Pc3A4mhN5kSBF7+f2rK6k8=
+	t=1716971006; cv=none; b=qdgm2IgEe6wFyq7Oz4QcdxSyAcuZXXrMK6MTtf00UPIoyOOphY4jypgebDSL3+xUpegOyspCtPIx13V9axqDSUI23NVCtm5fkd7KCKgymdSkJ/qha/b5MqNecARCwjrh1n5SlC7YF77yKfwxWShU4IuvSeY84dPjeI1QPHa+7/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716970786; c=relaxed/simple;
-	bh=Ae90CS/pD9BkisUZjgTcWgpjDwmgKX7NJpeOtvmu0Cg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R3QmytwWaUfePFT4lnH6pCznBI2cCS1LcCz4mlwDAIlkAQHWOUlL6sKy8b8a0RUdRIwCfBFR/fTs7AdE1svJ8lwDn208hEArCCnf4AfIqZJaRknpbkEPXub+zoIzdJb5Xqrx0Wk2DiGYz/wj2j6PJ0Ic0FOzB2XX611CRXn6MF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ORKOniri; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-354de3c5d00so320990f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 01:19:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1716970782; x=1717575582; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fOE0A0l7NfKBSljfnqniwrdePepuGPXfC4qSeThvThQ=;
-        b=ORKOniriRTgvLumwzUPoO36Jr1rJqkdRndtrWdXm1o5TBJNsUzt6+Cd8E0g05EzmLH
-         dEwtdniCgDE4k0Fx3liyZXKqdZpZcGtDCb3hG1amgpMP+TzCOgQ8XuVsT+nUJbcy51nD
-         W1x04Yx2NaZofPOERJnv3Jq+UVMgg07mpFmeluGkepf7BDzWPw7o/Zy+TG4Jw//7axjF
-         /nxPUZ6oLjTodPReTR1JUCaiO05hxFvLptGu3AyeZgcfaaGJxU2vMOw7/SxUuPGYxM9D
-         tMazW3WBe2AdkF12frt8dLi2m59j6dwjhlyjetkyUQIuibFZE+3hamLg8FyTpKH9edi8
-         DEjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716970782; x=1717575582;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fOE0A0l7NfKBSljfnqniwrdePepuGPXfC4qSeThvThQ=;
-        b=keMxCtTHvr2VmmIVbwD7Al9TNAdkN7NmlcQ8T6mfSMfa2Odsff5rDTiqQsXxH3R2tR
-         dvSb5oaWl1Hl3tSjON0d/yhh9qO5oAHGhW3xdRgsn3PXGW4lG2zhIvuLHHtXTe9KI2a6
-         Fr4MfMzxq0ILODym04w4m5eomKRFXZ3PQlc13p6D1T+ePYFdaDdyIDQpZ4vP1ailAxSn
-         cGuzpFDcTUTeqv2unTFtXArL5GC7hvklAOKxXg41DE1ner1K9mJA1grlVXthrBLE2nLd
-         ysGScxVRI7XjDrtdFo+kvkSTkJ8R0TxHfjXlacqonKxikfkJE6eFgOg0fjzP/QZ0QwMR
-         KTSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUSDWY1O1hYN0vhSaS09muMYOrnjBQ0efr79g+7wONWjBFgKPeyFLrtBLgTABvPnKAdsknUPG+asuu/5DKhaBLZ5mxeQJvGetWaw==
-X-Gm-Message-State: AOJu0YyMw//cSYG5Y4k2SKtymBJpGhQuRFzwooIux+HRroR4szsBbZQP
-	MbpWolF0sbNU51hnccrYwX/Vh9wd2LLvkyqDBJVB1qoEYyQ62PF8OZ/CwzCTOcE=
-X-Google-Smtp-Source: AGHT+IHpw1t1jfuB8Lm6EEhhiKMl5JYdCi2dxzOWePLyDrJX6Q08/jdxLnIq3dUJbEMEHNAi+oDsAQ==
-X-Received: by 2002:adf:cb92:0:b0:34c:77bd:2508 with SMTP id ffacd0b85a97d-35c79d6fecbmr990696f8f.11.1716970782209;
-        Wed, 29 May 2024 01:19:42 -0700 (PDT)
-Received: from [10.1.5.19] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a08a8dfsm13980128f8f.30.2024.05.29.01.19.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 May 2024 01:19:41 -0700 (PDT)
-Message-ID: <6d01d555-9af8-4ec8-8630-0d9a7b48f423@baylibre.com>
-Date: Wed, 29 May 2024 10:19:40 +0200
+	s=arc-20240116; t=1716971006; c=relaxed/simple;
+	bh=mawRK5aA/EMwju15c9CJjjLslMegigQKs81Kuy+CIzg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uv+i2gUQ6GmWpRMnhR7d7PmOgxHyJnrNp8WHVt3a0P2ExX4ZH4gTIwxvLZp4YFR7qrqwJIphlKzjKO8Fj9j/CEsxKHkEqIl7PqVPDtceLbFRyQJxZeHBd5plPa+ZfjJqcSkUkcqEQzD0THWF1PwqkOEXS53A9jmYm/SD6NAdaHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wf5DmHRW; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44T8N5jP028176;
+	Wed, 29 May 2024 03:23:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1716970985;
+	bh=GA84cJ8nNnm/xjeHKTyGRus4Kr3hXRBkbAwrEXa69NI=;
+	h=From:To:CC:Subject:Date;
+	b=wf5DmHRWdAUIVyzyR3VzxbjbUXqYbnyu5p5it8WEZaNoZjbhR/txYWd4abn8aD6OF
+	 /DJb6ncZpbD2OR1OQt/+qOCH0Q+Fban0n4+LE3ba0qNLCXPIlLwqBLC5+BEa1Fie/7
+	 ha6ZHxGXzmMKqS6MbJrRvVOPc/jblFuJyyLeDFoQ=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44T8N5r9048695
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 29 May 2024 03:23:05 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 29
+ May 2024 03:23:04 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 29 May 2024 03:23:04 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44T8N0d6084708;
+	Wed, 29 May 2024 03:23:00 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <francesco@dolcini.it>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sabiya.d@ti.com>,
+        <u-kumar1@ti.com>, <danishanwar@ti.com>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v4 0/4] Add PCIe DT support for TI's J784S4-EVM and AM69-SK
+Date: Wed, 29 May 2024 13:52:55 +0530
+Message-ID: <20240529082259.1619695-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] ARM64: mt8195: Use thermal aggregation for big and
- little cpu
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, rafael@kernel.org,
- daniel.lezcano@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: rui.zhang@intel.com, lukasz.luba@arm.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240524143150.610949-1-abailon@baylibre.com>
- <20240524143150.610949-7-abailon@baylibre.com>
- <1b691b03-1d2c-48ee-9907-dc043ea1ed5d@linaro.org>
-Content-Language: en-US
-From: Alexandre Bailon <abailon@baylibre.com>
-In-Reply-To: <1b691b03-1d2c-48ee-9907-dc043ea1ed5d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+TI's J784S4 SoC has two x4 Lane and two x2 Lane Gen3 PCIe Controllers.
+This series adds the device-tree nodes for all 4 PCIe instances in the
+SoC file (k3-j784s4-main.dtsi). The J784S4-EVM board has only PCIe0 and
+PCIe1 instances of PCIe brought out while the AM69-SK board has PCIe0,
+PCIe1 and PCIe3 instances of PCIe brought out. The device-tree overlay
+to enable PCIe0 and PCIe1 in Endpoint mode of operation on J784S4-EVM is
+also included in this series.
 
+v3:
+https://lore.kernel.org/r/20240523111008.4057988-1-s-vadapalli@ti.com/
+Changes since v3:
+- Rebased on linux-next tagged next-20240528.
+- Added ranges for PCIe2 and PCIe3 in k3-j784s4.dtsi which was missed in
+  v3 series.
+- Added new patch in this series for enabling PCIe on AM69-SK board.
 
-On 5/27/24 08:56, Krzysztof Kozlowski wrote:
-> On 24/05/2024 16:31, Alexandre Bailon wrote:
->> This uses the thermal aggregation for the mt8195 to get the maximal
->> temperature of big and little cpu clusters.
->>
->> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 212 +++--------------------
->>   1 file changed, 27 insertions(+), 185 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> index 5d8b68f86ce4..8aa2bf142622 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> @@ -3600,50 +3600,31 @@ dp_tx: dp-tx@1c600000 {
->>   	};
->>   
->>   	thermal_zones: thermal-zones {
->> -		cpu0-thermal {
->> +		cpu-little {
-> 
-> How is it related to the commit?
-To aggregate all thermal sensors which are in same performance domain, 
-we removes each individual nodes to create only two: cpu-little and cpu-big.
-We need to remove the other nodes because their trips points and cooling 
-devices would conflict with those we define for the multi sensor thermal 
-zone.
+v2:
+https://lore.kernel.org/r/20240520101149.3243151-1-s-vadapalli@ti.com/
+Changes since v2:
+- Rebased on linux-next tagged next-20240523.
+- Based on feedback from Francesco Dolcini <francesco@dolcini.it> at:
+  https://lore.kernel.org/r/20240521200909.GA3707@francesco-nb/
+  the device-tree nodes for PCIe2 and PCIe3 instances of PCIe have been
+  added.
 
-Best Regards,
-Alexandre
-> 
-> Does not look tested. You just introduced warnings.
-> 
-> Best regards,
-> Krzysztof
-> 
+v1:
+https://lore.kernel.org/r/20240129114749.1197579-1-s-vadapalli@ti.com
+Changes since v1:
+- Rebased series on linux-next tagged next-20240520.
+- All dependencies mentioned in v1 series have been met. This series has
+  no further dependencies for functionality.
+- Added "pcie0_ctrl" and "pcie1_ctrl" nodes within the System Controller
+  node (scm_conf). This enables reusing the existing
+  "ti,syscon-pcie-ctrl" property without having to map the entire System
+  Controller region for configuring the PCIe specific registers within
+  "scm_conf". This change is also done in the "overlay" file in patch
+  3/3 w.r.t. providing the phandle to the pcie0_ctrl and pcie1_ctrl
+  nodes to the "ti,syscon-pcie-ctrl" property in the overlay.
+
+Test Logs:
+1. J784S4-EVM PCIe0 and PCIe1 in RC Mode with NVMe SSD connected to PCIe0:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/af94b2da5dd0613de8a238e37f70eb7e
+2. J784S4-EVM PCIe0 as Endpoint and AM69-SK PCIe0 acting as RC:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/1d305c5145bdc34975615e15fe0f433c
+3. J784S4-EVM PCIe1 as Endpoint and AM69-SK PCIe0 acting as RC:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/3129da32c9984f4f02351ca03105e49e
+4. AM69-SK PCIe0, PCIe1 and PCIe3 in RC Mode with NVMe SSD connected to
+PCIe0:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/5571eb0a0273501fcc214519beab6713
+
+Regards,
+Siddharth.
+
+Dasnavis Sabiya (1):
+  arm64: dts: ti: k3-am69-sk: Add PCIe support
+
+Siddharth Vadapalli (3):
+  arm64: dts: ti: k3-j784s4-main: Add PCIe nodes
+  arm64: dts: ti: k3-j784s4-evm: Enable PCIe0 and PCIe1 in RC Mode
+  arm64: dts: ti: k3-j784s4-evm: Add overlay for PCIe0 and PCIe1 EP Mode
+
+ arch/arm64/boot/dts/ti/Makefile               |   7 +-
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts         |  60 ++++++++
+ .../dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso  |  79 ++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  46 ++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 136 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4.dtsi         |  10 +-
+ 6 files changed, 336 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso
+
+-- 
+2.40.1
+
 
