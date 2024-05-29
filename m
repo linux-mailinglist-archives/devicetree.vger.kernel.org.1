@@ -1,154 +1,151 @@
-Return-Path: <devicetree+bounces-70356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86F28D3269
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:58:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79AB98D3275
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 11:01:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07B26B23920
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:57:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D7901C2361B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5C7167DB3;
-	Wed, 29 May 2024 08:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="RYPmipFT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E7C167DB3;
+	Wed, 29 May 2024 09:01:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D869167D87
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 08:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9424D1E888;
+	Wed, 29 May 2024 09:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716973075; cv=none; b=Ivu/gyqMI3g7ONsUKjyYsKH8QNllXKGNHqHze9hPHKtZn/IWsTBo4kwGDmziRJBnTABMcGkwu+xHa04k6WcVQQhvt0d4ljhBCyNnFY9xQ56iHlknT/NgrKpNG9cPSovxL9AJPlGzEFric2GM5hwJUq79Y4QbvNDlczI+VCve1L8=
+	t=1716973306; cv=none; b=L+bIaX74EHXMfDEUygE5TJ3qpbwhXIm2ns6//TxhKdrmK7edXpOUBc4qxVQ/xGD/InjLRWCAnhCYTKtbqOVVnscMKYuq9qXIMOZirvQmbLCqkIImOlbpuIZ8I9NamWCUFQJ/Mxix00wUpsk+axw7inpp2PeAlof76gF2ABqFNqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716973075; c=relaxed/simple;
-	bh=S+X9GXGhHwTcRuSiC9i/SHon03qhfv/kK9Vaiu+hrio=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aoZxQUFWl8rmqRDfqOhbXhXoWLr6GnOVArX1EO2ozdEoOMC2PAJ71jUm1rJC8kHj+HZUd/JU9hKBmzMrqueGzGY9c8/0f263GI+oDhbZSrfbdLr4R/Q4VNeXzTstYIDZQL3PaH26CAVbtC7g6sJgGrNgOi8cn/AiRZnu8nybuVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=RYPmipFT; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1BFA13FE59
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 08:57:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1716973066;
-	bh=7E/ixyFBMdyfw3d95h9lXIVPkbHsrCtTkTVK1phqYPQ=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=RYPmipFThOvRZamXv7dKsE9jv16hu36nElWWZR0hmdeNqjpEcU4PPVIqo2WqS07Md
-	 a5olWPRMVUZ9lRWKy/KoM7sueb/E/sYZ1q73ysDX6r7g9GtrmUCzaBGQ2qZMexXV3J
-	 2XKDKrPX6Tez5RL2Z7vcZLzUPsadEK+Pg6TsShTxrpLIGMpEtDfqKFdZf0AWm3TMWx
-	 DSIlt51COg5wCDbOtLMW39LrpvR2A9VewLABU8m1MvlL+QGHqk60vjEqAGj4Fd4d7R
-	 bVvKafUCi2/b+2cJb37EbTEb0qoBrR4FmoUfHCJ0LESbW75qLsP1YDqpvJFSAlMc7k
-	 iPufM8nr9fKYA==
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-43fc79f9250so17515031cf.3
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 01:57:46 -0700 (PDT)
+	s=arc-20240116; t=1716973306; c=relaxed/simple;
+	bh=wq6Q5U9qIc0wVfPUvIazA+e9F1mn1D2Z4oXYmue4Ipo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KM6B451ZKUZH12aLtfj0s6gDwSbWe5nKMXy75lNgvj9E9ezK1TGsLJ4Tm/9WlZwcY5/xEXRo3ZTSBlnQquT9C707dtNY4sxv0iNn8tFBjNtSfKWH1u5GJjIq46x0IlgcEbMB87YBjcumIwayMW+bA0nzRXcydgcWx+lYBfpI8Ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-df771db8b24so1737163276.3;
+        Wed, 29 May 2024 02:01:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716973065; x=1717577865;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7E/ixyFBMdyfw3d95h9lXIVPkbHsrCtTkTVK1phqYPQ=;
-        b=Qg9BgT8ZZoaVI/IDCsyBwxSd+OhRGlOaaegeW3VJNC6T39GRL96y3dWUZdiLwaXLrn
-         8dw1QsHc3K98Hk0Y69SO0H6iRVc1FjnYsmwxuBI3XMsXN7vlhimFKswDXECVMVUSv0ih
-         3V9uOMdIBGgZCTIWN2N9XDXr9Ig3lB8OiEXbQ/YRJCbiUDFPI+I8TGXcgBs7LZdy2IJP
-         QpY1pLR0FBNJQvxq8wqNb+ABP0nkGYMGxVTmUaHhUbSf+oElJDp0KRSrqOGxVAImDn/J
-         rvMOdyDmsk2X0MHaLGNKMuglwP624xCzCFBiGAcVhiAR8YeeWD6ESL+UuskFs9REQolZ
-         zANw==
-X-Gm-Message-State: AOJu0Yx079iB3szedy1o1/04x/a+ASkidhZnHIkktfIK7FXiXUA5620R
-	A1iiYm0w4vecfhqrD7SOae5q/ORLUxhT8TkexwvTvjYpQN+7SETJxmJIJYpLw5Jw+cKWqrYHVQE
-	Q2XRgB/neE3IeCeZ0n/9ef7PqHk25+xzilXVIWVkrpb7VIrdFwsXd+zfIKWI2Bnm2G7jYomj18U
-	Rgk8yk85yNx65ApMLK044ISrP+SkDRyS9hdChNa4dnAHMjh5JJRw==
-X-Received: by 2002:a05:622a:50a:b0:43a:9cd3:7fed with SMTP id d75a77b69052e-43fb0e6de43mr160149101cf.17.1716973065079;
-        Wed, 29 May 2024 01:57:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE1j+AFmFPVCTE536njafbvZ4XRvDNgWG8gWthUfQYV0su8dbTfEujaBQjWaVYrBYJsDICRI63w3lUZ8Q15BP8=
-X-Received: by 2002:a05:622a:50a:b0:43a:9cd3:7fed with SMTP id
- d75a77b69052e-43fb0e6de43mr160148901cf.17.1716973064666; Wed, 29 May 2024
- 01:57:44 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 29 May 2024 04:57:44 -0400
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <CAJM55Z8Ce1i==pSUj0z4T2y71g713-675mAYQP5qSN5Euz=rLQ@mail.gmail.com>
-References: <20240508111604.887466-1-emil.renner.berthing@canonical.com>
- <87wmo2nmee.fsf@linux-m68k.org> <CAJM55Z-F6N6ua5LoqyMFogDtLp=FaRPoDv4osXFDMjR1b8r9nw@mail.gmail.com>
- <87zfsy102h.fsf@igel.home> <CAJM55Z8Ce1i==pSUj0z4T2y71g713-675mAYQP5qSN5Euz=rLQ@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1716973302; x=1717578102;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KnYuIo1n1oD5QX7J07WFDaga5vIEVHxJRsHJ8yWO98A=;
+        b=srzF4XauBhGx3v9W7ihZ874tqY6/cY4tnfPyu6DPkjlLREC+oH1zgGhXZ8H72kbGqE
+         JYujLxLlQUjcNDcHRVXe0A9a4lDWolEdf9ZDKBdQy+l6RZam0yK6yaBbBzeI0T6PexqY
+         ECUfQVMqhwrgAU5hv0SqQlOFau+23lHyY9DtykMopNCEbLKzS0+XfMtyB/diY9mkMaO+
+         kJFkYxWro1klBxmJ+888Qkm20FdvQFMMnjbi/3duVgiWEgnANy0AABcJlurBFq7KOiLJ
+         KRBNtnLUfTQpCKlIECbSd2Yx+kKN38U0QF1RWWXQvrSwEoN4ZStRM2d0OAKuyzRJiUYo
+         GsaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXleI+4HMS3egI2rz/THTxvP56VqQjeM16D2VvTLD/gNxhg7VCbOgeQaLk1S87toZgPjlgWzxj1ZqBpDue5f6DDqtp0beDRJdBUHYqD0R4QL4Hl5Af+In/iHwv2Va7sxW/esqZoerfe5OCml8mhiMhLUeZ8JlaP/+cLD3Nnmwmca14t8cYemXGnWxb4ZGrlowtF5Vr8V1sdqZ3oCgASIqPveeXxtueqUiUDvOiKLEnYDe68EAvbNd3reu2mF2Yj/C26nrQ=
+X-Gm-Message-State: AOJu0YyfGRAOX6+bnwMDu/JUZOurEgUCOiWHI2Ppvl3MxsmShq2r+9PT
+	hjFZKHuX6T33Eo2y7l+Ei//lWAJ31sAdvd8gkxoAY64CCNdQIe8RpBwLBlm2n/8=
+X-Google-Smtp-Source: AGHT+IG1N3AmKZnNB7pxmFQEEWkmIBZaiEFCGdmbClIb8hwogzic7RLgZvMcDvl83mbqJR2oUGmFoQ==
+X-Received: by 2002:a25:8c03:0:b0:de6:1494:f144 with SMTP id 3f1490d57ef6-df7721a7766mr13396377276.28.1716973297477;
+        Wed, 29 May 2024 02:01:37 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-dfa482bd39fsm173285276.37.2024.05.29.02.01.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 May 2024 02:01:37 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-62a2424ecb8so16712377b3.1;
+        Wed, 29 May 2024 02:01:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUit2zCbakmG6A0AbA5CeRTuIYODupvJG1rU96PoCvZ5fukmm28XZzsQxcpl2etweQZrkOv7k8vO+GSZJhc1oYh/5+NPLloj+dRlbYkOZA4oX2rmLUFXmqkqAfVnsLEO4JFYhhWMU1cfZsByICDLHiaMzCuHE0vQOu59MGvGJbJ3+GLqqTnIXnRnD01xxtA50btf8fwXs2GyBD/P8ca7vkCYQWJVxLiNI7gKHqnZEtR6fbaMXCfRCL+iNqYzDHsSOsNdRc=
+X-Received: by 2002:a25:b202:0:b0:dfa:4ce2:3315 with SMTP id
+ 3f1490d57ef6-dfa4ce234f0mr828856276.38.1716973296714; Wed, 29 May 2024
+ 02:01:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 29 May 2024 04:57:44 -0400
-Message-ID: <CAJM55Z8Bhv-CSR5PKhFfN7dG-rBcEeH+rmL=i2Ass_QuYtBi+Q@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] riscv: dts: starfive: Enable Bluetooth on JH7100 boards
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
-	Andreas Schwab <schwab@linux-m68k.org>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>
+MIME-Version: 1.0
+References: <cover.1716811405.git.geert+renesas@glider.be> <efd9397662ff743f95298ca6aad4efdfa0ba1962.1716811405.git.geert+renesas@glider.be>
+In-Reply-To: <efd9397662ff743f95298ca6aad4efdfa0ba1962.1716811405.git.geert+renesas@glider.be>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 29 May 2024 11:01:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUxXQca5MzP9fGjVoUWbOvSekwRp_+HMTT618yD8wc=tw@mail.gmail.com>
+Message-ID: <CAMuHMdUxXQca5MzP9fGjVoUWbOvSekwRp_+HMTT618yD8wc=tw@mail.gmail.com>
+Subject: Re: [PATCH/RFC 1/3] earlycon: Export clock and PM Domain info from FDT
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Peng Fan <peng.fan@nxp.com>, linux-pm@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Emil Renner Berthing wrote:
-> Andreas Schwab wrote:
-> > On Mai 10 2024, Emil Renner Berthing wrote:
-> >
-> > > You don't include any information useful for debugging this, but if it get's
-> > > far enough to load the firmware could you at least make sure you run the
-> > > version below, so that's at least the same.
-> > >
-> > > https://github.com/esmil/linux/blob/visionfive/firmware/brcm/BCM43430A1.hcd
-> >
-> > That didn't change anything (and there are no messages related to
-> > firmware loading from hci_uart).
-> >
-> > [  +0.879623] Bluetooth: Core ver 2.22
-> > [  +0.004843] NET: Registered PF_BLUETOOTH protocol family
-> > [  +0.008787] Bluetooth: HCI device and connection manager initialized
-> > [  +0.021944] Bluetooth: HCI socket layer initialized
-> > [  +0.008488] Bluetooth: L2CAP socket layer initialized
-> > [  +0.006333] Bluetooth: SCO socket layer initialized
-> > [  +0.097478] Bluetooth: HCI UART driver ver 2.3
-> > [  +0.007943] Bluetooth: HCI UART protocol H4 registered
-> > [  +0.006066] Bluetooth: HCI UART protocol BCSP registered
-> > [  +0.006962] Bluetooth: HCI UART protocol LL registered
-> > [  +0.000015] Bluetooth: HCI UART protocol ATH3K registered
-> > [  +0.000084] Bluetooth: HCI UART protocol Three-wire (H5) registered
-> > [  +0.000247] Bluetooth: HCI UART protocol Intel registered
-> > [  +0.000455] Bluetooth: HCI UART protocol Broadcom registered
-> > [  +0.000084] Bluetooth: HCI UART protocol QCA registered
-> > [  +0.000008] Bluetooth: HCI UART protocol AG6XX registered
-> > [  +0.000057] Bluetooth: HCI UART protocol Marvell registered
-> > [  +0.051854] hci_uart_bcm serial0-0: supply vbat not found, using dummy regulator
-> > [  +0.000387] hci_uart_bcm serial0-0: supply vddio not found, using dummy regulator
-> > [  +0.094658] hci_uart_bcm serial0-0: No reset resource, using default baud rate
-> > [  +0.990297] Bluetooth: hci0: command 0x1001 tx timeout
-> > [  +0.022893] Bluetooth: hci0: BCM: Reading local version info failed (-110)
-> > [  +3.306159] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
-> > [  +0.013336] Bluetooth: BNEP filters: protocol multicast
-> > [  +0.124262] Bluetooth: BNEP socket layer initialized
+On Mon, May 27, 2024 at 2:41=E2=80=AFPM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> Earlycon relies on the serial port to be initialized by the firmware
+> and/or bootloader.  Linux is not aware of any hardware dependencies that
+> must be met to keep the port working, and thus cannot guarantee they
+> stay met, until the full serial driver takes over.
 >
-> Oddly it doesn't work on my Starlight board either. I was thinking the firmware
-> might set up pinconf differently, but comparing
+> E.g. all unused clocks and unused PM Domains are disabled in a late
+> initcall.  As this happens after the full serial driver has taken over,
+> the serial port's clock and/or PM Domain are no longer deemed unused,
+> and this is typically not a problem.
 >
->   /sys/kernel/debug/pinctrl/11910000.pinctrl-pinctrl-starfive/pinconf-pins
+> However, if the serial port's clock or PM Domain is shared with another
+> device, and that other device is runtime-suspended before the full
+> serial driver has probed, the serial port's clock and/or PM Domain will
+> be disabled inadvertently.  Any subsequent serial console output will
+> cause a crash or system lock-up.
 >
-> on the two boards shows no differences. I've also not been able to spot any
-> differences in how the AP6236 module is connected in the schematics for the two
-> boards, so not really sure how to proceed.
+> Provide a mechanism to let the clock and/or PM Domain subsystem or
+> drivers handle this, by exporting the clock and PM Domain dependencies
+> for the serial port, as available in the system's device tree.
+> Note that as this is done during early boot-up, the device_node
+> structure pointing to the earlycon console is not yet created, so this
+> has to resort to raw property data.
 >
-> If you're also testing on the Starlight board then I can update the patch to just
-> enable Bluetooth on that I guess.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-* I meant update the patch to only enable bluetooth on the VisionFive V1 of
-  course.
+> --- a/include/linux/serial_core.h
+> +++ b/include/linux/serial_core.h
+> @@ -954,6 +954,16 @@ static const bool earlycon_acpi_spcr_enable EARLYCON=
+_USED_OR_UNUSED;
+>  static inline int setup_earlycon(char *buf) { return 0; }
+>  #endif
+>
+> +#ifdef CONFIG_OF_EARLY_FLATTREE
 
-/Emil
+This should include a check  for CONFIG_SERIAL_EARLYCON.
+
+> +extern const __be32 *earlycon_clocks, *earlycon_power_domains;
+> +extern int earlycon_clocks_ncells, earlycon_power_domains_ncells;
+> +#else
+> +#define earlycon_clocks                        NULL
+> +#define earlycon_clocks_ncells         0
+> +#define earlycon_power_domains         NULL
+> +#define earlycon_power_domains_ncells  0
+> +#endif
+> +
+>  /* Variant of uart_console_registered() when the console_list_lock is he=
+ld. */
+>  static inline bool uart_console_registered_locked(struct uart_port *port=
+)
+>  {
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
