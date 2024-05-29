@@ -1,100 +1,99 @@
-Return-Path: <devicetree+bounces-70453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0D98D3633
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:20:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E978D363E
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 14:22:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7162B24552
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:20:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB650285640
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553F116DEB0;
-	Wed, 29 May 2024 12:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="arF9ebZd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50B5E17F371;
+	Wed, 29 May 2024 12:22:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275CA13699A;
-	Wed, 29 May 2024 12:20:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD56413DDAE
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 12:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716985231; cv=none; b=Rv3CED12J0AS7mQoU8ceZQxjjT3tN5zB2a7Ae/iVlD7RjP1uYDmoxi8Xs6+MZHF62ypkhsLYq4UIpTbw32zlmz4wJUn2Xulx4hEd/CGrvR103i9q9lXmOOzSoesen0Yw8tR42kRvqrGV54zGT9syRsPfGZKHclDRSWl6jMTxU58=
+	t=1716985332; cv=none; b=CyqKrmJWBdpL5mfx/ilepXvxm5cHA1r97JCgt/q03zSergjrveWBSNiGzF+Vd5S1uryIJmS2328SfRD6cXAnfz1dIIq0AJcWs0Nik07Rv0tzqWFXhDM0psnN1NnUG2R9xGTA3P1tITI7SZYe77Jfb/1W9b0aai+gjv2sWtXFx5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716985231; c=relaxed/simple;
-	bh=zjr/Vpc8ZTFCMrq5QTgDG0SNTzCLyB69RToX1iQy6pI=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=RPxLLhBFN8bDWiN2JoH68kag+kUWDYAwotdSFQJySrQWkDar5JsDEXLWZz+8BmMejtDuf0aWfUK6r6ZWTjWXBGw/UzucShThpkWx5oIPyDOImNKtWoxRM5VsXyVeXv0Q6uUja0MWYe1hGjG0sMhu4YbebcB04cDJEuWVzked/74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=arF9ebZd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A0BC6C32789;
-	Wed, 29 May 2024 12:20:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716985230;
-	bh=zjr/Vpc8ZTFCMrq5QTgDG0SNTzCLyB69RToX1iQy6pI=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=arF9ebZdTVp5LM2K8ZRf22mDTCKyhPoQ++0dmHnGOzjRvDFSClVkx705QFLFK/+9t
-	 VlJK0w1aMwE8MOHhC9vOn+cR1T/JacYA7j8EJ/mrDqGVQWVDAaqnFD8u+x5dz9mjdC
-	 5/R8dVfHpKewpqd7ea5KCBz/UL16vnZUt754Pc+aofUcWcVOCF7Md+tHXiz9y06M1M
-	 +PAzZfm+n089A/DfSe1ck6Wq1hq9YO0K7S+8yorG7UYBNYh+iy4SDgVuIr8d+8uxno
-	 //HfExEXUMIu82YUwfOU/PZsOq4TnQxWOj2Urn8VtJPS6X0EysmXPLfF/NpPr9KpAR
-	 9XlAkKhKl4OKg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8FBB1CF21E0;
-	Wed, 29 May 2024 12:20:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1716985332; c=relaxed/simple;
+	bh=R1+FB44QIiomll33cCQtYhYVOAOQBtZwWoKkLynon/0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=ZUQFn7TIOv7cxyAsuc5QJ8VvmiQ5zjhLQVtEFXoTwxjTA+zESJvV9WhwgUxfNyY/Xp/nnDj6v3BO11T4gCKwwvXGfUcmGhQdnXdYYF3wsjP7Ai6zhhUFbqNyK687KgX7bGmgblZ2Asj3yQFACHQlbRVHR/UvJ+tk4YanE27UrQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:1b01:1838:131c:4de4])
+	by michel.telenet-ops.be with bizsmtp
+	id V0N82C00W3VPV9V060N8uo; Wed, 29 May 2024 14:22:09 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCIIo-00GdJs-89;
+	Wed, 29 May 2024 14:22:08 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sCIJk-009XTz-JW;
+	Wed, 29 May 2024 14:22:08 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 0/3] dt-bindings: timer: renesas,tmu: Add more SoC families
+Date: Wed, 29 May 2024 14:22:03 +0200
+Message-Id: <cover.1716985096.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/2] net: xilinx_gmii2rgmii: Add clock support 
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <171698523058.1887.13954040665462825862.git-patchwork-notify@kernel.org>
-Date: Wed, 29 May 2024 12:20:30 +0000
-References: <20240528062008.1594657-1-vineeth.karumanchi@amd.com>
-In-Reply-To: <20240528062008.1594657-1-vineeth.karumanchi@amd.com>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: git@amd.com, davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- harini.katakam@amd.com, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, michal.simek@amd.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
 
-Hello:
+	Hi all,
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+This patch series documents support for the Timer Unit (TMU) on the
+R-Mobile APE6 SoC, and on various SoCs from the RZ/G1 and R-Car Gen2
+families.
 
-On Tue, 28 May 2024 11:50:06 +0530 you wrote:
-> Add input clock support to gmii_to_rgmii IP.
-> Add "clocks" bindings for the input clock.
-> 
-> Changes in v3:
-> - Added items constraints.
-> 
-> Changes in v2:
-> - removed "clkin" clock name property.
-> v2 link : https://lore.kernel.org/netdev/20240517054745.4111922-1-vineeth.karumanchi@amd.com/
-> 
-> [...]
+Changes compared to v1:
+  - Add Acked-by, Reviewed-by.
 
-Here is the summary with links:
-  - [net-next,v3,1/2] dt-bindings: net: xilinx_gmii2rgmii: Add clock support
-    https://git.kernel.org/netdev/net-next/c/c1d96671088f
-  - [net-next,v3,2/2] net: phy: xilinx-gmii2rgmii: Adopt clock support
-    https://git.kernel.org/netdev/net-next/c/daab0ac53e77
+Thanks for your comments!
 
-You are awesome, thank you!
+Geert Uytterhoeven (3):
+  dt-bindings: timer: renesas,tmu: Add R-Mobile APE6 support
+  dt-bindings: timer: renesas,tmu: Add RZ/G1 support
+  dt-bindings: timer: renesas,tmu: Add R-Car Gen2 support
+
+ .../devicetree/bindings/timer/renesas,tmu.yaml       | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+2.34.1
 
+Gr{oetje,eeting}s,
 
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
