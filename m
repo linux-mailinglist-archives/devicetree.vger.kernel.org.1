@@ -1,133 +1,129 @@
-Return-Path: <devicetree+bounces-70591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 316DC8D3BBF
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:04:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 625BE8D3BCC
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 18:06:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4884A1C216EE
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:04:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D2DF2852FF
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 16:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701D4184107;
-	Wed, 29 May 2024 16:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D74184138;
+	Wed, 29 May 2024 16:05:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KeTsBLNJ"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="ASnKYqZX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C07C8DE;
-	Wed, 29 May 2024 16:04:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FB3181D14
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 16:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716998674; cv=none; b=PwiUqykJEYzLb7l3URoInBV4eJ/YsLBoI8WZ6RkUzXE0Fc2EPVtrCqqtyuKt5vYnVQztM9SEsjqlqFQqPxF2ByvEoesCTnhq0AKfKZ2RiN78l2d3yj9BI5WJ+uRnxdKYw+e2fXY6VRr99uNsrCFKWeiv5/6bzWbx7GDCcZhRFLs=
+	t=1716998744; cv=none; b=oC3pDnv/wfCpBza5rHKsSqjnLrfwlWD3gvt/ZTpMvVK8c4Ky/7LV2/uBzKIlkO1TzoUhF7fb9kHIf5QTsDIoeXLIr4dFdu1IhKGWVWYKcOTgqnomSmQEpSdb+dFZ/s/jZiLUK6LABMRFF9Gpmv5g+CL2SXYCO6oAN19JmAhZhKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716998674; c=relaxed/simple;
-	bh=/EwIIXcKHGDW2AxegyIxUaFBTLYn3SLVszyabwPuc7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s0PsEV7DMUJdev7pKZUvIAquD+Yhw6QfSzs0d48yEwdvHNesktCWkGGvqf7xBR68QpKGYtNF5jTD+cEPWczOqGmoeWZghVHkFm2QsLAx2mCLkIoITfU8Sm2uOeBRZDIvnArwQXp91Q67AgyLm7YEWpn2HkSD0pEMwIiSu9DTMMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KeTsBLNJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC97FC113CC;
-	Wed, 29 May 2024 16:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1716998673;
-	bh=/EwIIXcKHGDW2AxegyIxUaFBTLYn3SLVszyabwPuc7k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KeTsBLNJlZ6RfKwKub6VxjJVm24VDMg0I+DAF8xec7yGSA6HeXUBvEwKNwkRrtBo3
-	 Z88dNiMtRZLwujOID2J5vfC9BM2+hEJrG+Vezj6K307PDiBybDPBauBRmx9llXIh6C
-	 Tq8MB53S+GIYy8mBWn6sbzhNjkOA4x9v+UkIN/Dg8TmT8IsZKq9C75tbMDGcKTyh/L
-	 CMXGAFjG7NwxGnuwn5J7JDwwoidZljXi0x67Oz6BnahBS4K7oSP2KCkIvfAdYT8w23
-	 FzYNpEj5v3X5gFH+BtzFbZvJgj7akBWf/bEp7dWrIxjAAuan+KkodCi6ao00UOuPOQ
-	 /xsey53jh72ZQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sCLmz-000000004KZ-0YvL;
-	Wed, 29 May 2024 18:04:33 +0200
-Date: Wed, 29 May 2024 18:04:33 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Cc: andersson@kernel.org, andy.shevchenko@gmail.com, broonie@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	johan+linaro@kernel.org, konrad.dybcio@linaro.org,
-	krzk+dt@kernel.org, lee@kernel.org, lgirdwood@gmail.com,
-	linus.walleij@linaro.org, linux-arm-msm@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_c_skakit@quicinc.com, quic_gurus@quicinc.com, robh@kernel.org,
-	swboyd@chromium.org
-Subject: Re: [PATCH 12/13] regulator: add pm8008 pmic regulator driver
-Message-ID: <ZldSEZKusSVIHZJ3@hovoldconsulting.com>
-References: <ZjpMeVk_HiixZUEu@hovoldconsulting.com>
- <20240514134317.691887-1-quic_skakitap@quicinc.com>
+	s=arc-20240116; t=1716998744; c=relaxed/simple;
+	bh=gwX2kkdkZRLairWU2xTI1d16ODW2DyEZw3WNUACnlWk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=m8bO8LtcDcMfnQMSvrKhCHvnwKC5jCkYVqBTNLVC46lDyawj2fDNDsvn6Nfz0sqd4VTrpNbSrzcdsTuS89POGWeht/je7CtuR/x9b9MAyczbC8+VQkUlhkTTz15e/8X+asnoMHPryUAFNeuaJjNCdxxJD+d8UPJqWNbfDml46Kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=ASnKYqZX; arc=none smtp.client-ip=185.136.65.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 202405291605331f8a659e788c9185a7
+        for <devicetree@vger.kernel.org>;
+        Wed, 29 May 2024 18:05:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=0Y8mqvn+ASO0qgqEBYkV7o/QyQw+Qg4BOBuSdQRySBU=;
+ b=ASnKYqZXzj31Ew5QmPDwoTZ2XUPiW8iQq1pA7F+DQoOViQJ6Gje+tA1/PTnJYeCSut2YVM
+ qxiHD1L+r8D24Lu06fGqQSwL80xB/eT8Vpe9PX87fbSVGlOJoFsFzJXKFB37bH4HtVCX46iF
+ WpqlFu0u0FN2CH8Uzw8HQLVWLWns8=;
+From: Diogo Ivo <diogo.ivo@siemens.com>
+Subject: [PATCH 0/3] Enable PTP timestamping/PPS for AM65x SR1.0 devices
+Date: Wed, 29 May 2024 17:05:09 +0100
+Message-Id: <20240529-iep-v1-0-7273c07592d3@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240514134317.691887-1-quic_skakitap@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADVSV2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDUyNL3czUAl2LpCSTROPkJEsDMwsloMqCotS0zAqwKdGxtbUAvyR4M1U
+ AAAA=
+To: MD Danish Anwar <danishanwar@ti.com>, Roger Quadros <rogerq@kernel.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Richard Cochran <richardcochran@gmail.com>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>
+Cc: linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Diogo Ivo <diogo.ivo@siemens.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1716998732; l=2334;
+ i=diogo.ivo@siemens.com; s=20240529; h=from:subject:message-id;
+ bh=gwX2kkdkZRLairWU2xTI1d16ODW2DyEZw3WNUACnlWk=;
+ b=p8e2carzdqE3em6oz7uTTHcMm8aNDjPGFGRJ3Bo2Zb2h9cFywKIi20rkffqeBDCUVtOF9/xPQ
+ Gc/l9HZbxmFBp2EKuJyuwknWSs6/LHkP8W2f0PQAhwd3Jkw34/pX/rx
+X-Developer-Key: i=diogo.ivo@siemens.com; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-On Tue, May 14, 2024 at 07:13:17PM +0530, Satya Priya Kakitapalli wrote:
-> > On Tue, May 07, 2024 at 01:48:30PM +0200, Konrad Dybcio wrote:
-> > > On 5/6/24 17:08, Johan Hovold wrote:
-> > > > From: Satya Priya <quic_c_skakit@quicinc.com>
-> > > > 
-> > > > Qualcomm Technologies, Inc. PM8008 is an I2C-controlled PMIC containing
-> > > > seven LDO regulators. Add a PM8008 regulator driver to support PMIC
-> > > > regulator management via the regulator framework.
-> > > > 
-> > > > Note that this driver, originally submitted by Satya Priya [1], has been
-> > > > reworked to match the new devicetree binding which no longer describes
-> > > > each regulator as a separate device.
+This patch series enables support for PTP in AM65x SR1.0 devices.
 
-> > > > [1] https://lore.kernel.org/r/1655200111-18357-8-git-send-email-quic_c_skakit@quicinc.com
-> > > > 
-> > > > Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> 
-> This is my old email which is discontinued, please use <quic_skakitap@quicinc.com>
+This feature relies heavily on the Industrial Ethernet Peripheral
+(IEP) hardware module, which implements a hardware counter through
+which time is kept. This hardware block is the basis for exposing
+a PTP hardware clock to userspace and for issuing timestamps for
+incoming/outgoing packets, allowing for time synchronization.
 
-I've cleaned up and reworked the driver for v2 and changed the
-authorship to myself in the process, but I'll make sure to CC your new
-address when submitting.
+The IEP also has compare registers that fire an interrupt when the
+counter reaches the value stored in a compare register. This feature
+allows us to support PPS events in the kernel.
 
-You should add an alias as Konrad suggested as you apparently have
-commits that use your old address.
+The changes are separated into three patches:
+ - PATCH 01/03: Register SR1.0 devices with the IEP infrastructure to
+		expose a PHC clock to userspace, allowing time to be
+		adjusted using standard PTP tools. The code for issuing/
+		collecting packet timestamps is already present in the
+		current state of the driver, so only this needs to be
+		done.
+ - PATCH 02/03: Add support for IEP compare event/interrupt handling
+		to enable PPS events.
+ - PATCH 03/03: Add the interrupts to the IOT2050 device tree.
 
-> > > > Cc: Stephen Boyd <swboyd@chromium.org>
-> > > > [ johan: rework probe to match new binding, amend commit message and
-> > > >           Kconfig entry]
-> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > > ---
-> > > 
-> > > I'm a bit lukewarm on calling this qcom-pm8008-regulator.. But then
-> > > qcom-i2c-regulator or qpnp-i2c-regulator may bite due to being overly
-> > > generic.. Would you know whether this code will also be used for e.g.
-> > > PM8010?
-> > 
-> > Yes, for any sufficiently similar PMICs, including SPMI ones. So
-> > 'qpnp-regulator' would be a generic name, but only Qualcomm knows what
-> > PMICs they have and how they are related -- the rest of us is left doing
-> > tedious code forensics to try to make some sense of this.
-> > 
-> > So just like for compatible strings, letting the first supported PMIC
-> > name the driver makes sense as we don't know when we'll want to add a
-> > second one for another set of devices (and we don't want to call that
-> > one 'qpnp-regulator-2'). On the other hand, these names are now mostly
-> > internal and can more easily be renamed later.
-> 
-> There is a PMIC called PM8010 which also is implemented over I2C,
-> which could use the same pm8008 regulator driver.
-> Hence it is better to use device_id instead of a MODULE_ALIAS().
+Currently every compare event generates two interrupts, the first
+corresponding to the actual event and the second being a spurious
+but otherwise harmless interrupt. The root cause of this has been
+identified and has been solved in the platform's SDK. A forward port
+of the SDK's patches also fixes the problem in upstream but is not
+included here since it's upstreaming is out of the scope of this
+series. If someone from TI would be willing to chime in and help
+get the interrupt changes upstream that would be great!
 
-Right, I've had PM8010 in mind all along, but it's hard to tell whether
-it will be using the same (sub)driver until code is submitted since you
-guys (Qualcomm) don't publish any documentation.
+Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+---
+Diogo Ivo (3):
+      net: ti: icssg-prueth: Enable PTP timestamping support for SR1.0 devices
+      net: ti: icss-iep: Enable compare events
+      arm64: dts: ti: iot2050: Add IEP interrupts for SR1.0 devices
 
-I've changed the regulator (and GPIO) drivers to use platform device id
-matching for now either way.
+ .../boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 12 ++++
+ drivers/net/ethernet/ti/icssg/icss_iep.c           | 71 ++++++++++++++++++++++
+ drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c   | 49 ++++++++++++++-
+ 3 files changed, 131 insertions(+), 1 deletion(-)
+---
+base-commit: 2f0e3f6a6824dfda2759225326d9c69203c06bc8
+change-id: 20240529-iep-8bb4a3cb9068
 
-Johan
+Best regards,
+-- 
+Diogo Ivo <diogo.ivo@siemens.com>
+
 
