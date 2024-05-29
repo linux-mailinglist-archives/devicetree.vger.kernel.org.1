@@ -1,99 +1,321 @@
-Return-Path: <devicetree+bounces-70409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882728D3437
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:14:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 456C68D343A
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:14:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFB951C20CB2
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:14:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5392B24EEB
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE30217B400;
-	Wed, 29 May 2024 10:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF8AB17B50C;
+	Wed, 29 May 2024 10:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="dAJb4wkw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [195.130.132.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99A717F370
-	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 10:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C024617BB07
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 10:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716977511; cv=none; b=lCBa8rG2K/AQ8govozZ5FlxYIezWcCn6i6f5nWnN09hmc+1IC28MpIUV3C9H7SCWRiuTPwlC4/2B0CM+cRQxjz0xT3rBl5Q/V2qIGv83SujL8wQ3nNvqYhZqN4pY61hOW19MwgVf9DaGf4J50toT+7dtDmw/UdZg18Ps9zCgn8g=
+	t=1716977580; cv=none; b=lM3wMN1fD5zEYWkLmYillzSJk5g1/Fd38HSSNGPnty2S71e0xPZs15faoxFnUccdJE7cUA/HisXCsw3XNDmBxubq8ChFgfKZjC6JzNNKSlThb1bxOiixLxEOf/kW6sGTFnbn4ViYnOLXNLh9jbFdLPUi2927G1iFU3qoVEuFgE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716977511; c=relaxed/simple;
-	bh=sVB+9TMFCEcDim7/Yb1MlDJ9tlcLczHpvt8pmfreGFA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=h2e+UBBhKXqR2Jd1nRPif38Y+/4wePuHfgDkyki8xvs9BM0HGpeC1rXKVug/9PvmJBhN5HFZGD094YEB+Zl6PpKCJt5yvOSm7cinCm7aLX9J+OL7wche3k5OUZhLJKUM+8dLVsmCcaYjgYGCMNRC3ROYiOCQIOnc7MEnjqUmAF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:1b01:1838:131c:4de4])
-	by xavier.telenet-ops.be with bizsmtp
-	id UyBn2C00c3VPV9V01yBnlg; Wed, 29 May 2024 12:11:48 +0200
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sCGGf-00GMjF-9F;
-	Wed, 29 May 2024 12:11:47 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sCGHb-0091fz-LJ;
-	Wed, 29 May 2024 12:11:47 +0200
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] fdtoverlay: Remove bogus type info from help text
-Date: Wed, 29 May 2024 12:11:38 +0200
-Message-Id: <a770cb5acb708e6d65570a4037a376321c9e8bb0.1716977322.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1716977580; c=relaxed/simple;
+	bh=XK7lp1SRCjNNrrjcYhfn3RUUicNzAJo0YOsPL1QuCT4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=pWM4t7WWlDvQDk0/bCt/B0BAVurVBGSBkcTVuYsRe2k1vrLbJ3KfI/5Qwuhk/274duaJ5+5jod+UHTEM0Pc3XFcBO8fCWCgjGrymtPmEAreD8P68UyR+3eaFNm8t5c8Ig/fxwPsPmFoiGYFg8DWWz4R3LUmgkUL8Btp1+HjbNRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dAJb4wkw; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20240529101247euoutp010c7217ab403a36f24b48e5b8d9571112~T7gAusVPl1216712167euoutp01T
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 10:12:47 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20240529101247euoutp010c7217ab403a36f24b48e5b8d9571112~T7gAusVPl1216712167euoutp01T
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1716977567;
+	bh=HO+7UjuoRlc/thxjUXP4kSGkQyoPYs9fPA2mfjX8yE0=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=dAJb4wkwQqAV9GACs90ykfTM8ECXAE1mYODFWOMH4zBqh3zlW43KZpjUCV5jiWRFv
+	 Q+cWZs8Jhvsk+3xkvawgpITG3680TtO7XPIFabNMsGfXAdf/7dR6t1RnCrclc51xea
+	 0o3RWvpvuow8QjRUklQ82rQT6IeeW0ljsFgZHQtE=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20240529101246eucas1p24567ec7825b549dabbbaad3476478acc~T7f-5Ms130983809838eucas1p2F;
+	Wed, 29 May 2024 10:12:46 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id D6.85.09875.E9FF6566; Wed, 29
+	May 2024 11:12:46 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20240529101246eucas1p1266853c07f5178c7e3e4b8a264eb436e~T7f-ewj_Q0581405814eucas1p1S;
+	Wed, 29 May 2024 10:12:46 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240529101246eusmtrp20f71868899ba885bcd2c7cb539f29ce2~T7f-eLpAK0458604586eusmtrp2f;
+	Wed, 29 May 2024 10:12:46 +0000 (GMT)
+X-AuditID: cbfec7f4-11bff70000002693-74-6656ff9e9de0
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 70.55.09010.D9FF6566; Wed, 29
+	May 2024 11:12:46 +0100 (BST)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240529101245eusmtip1ff2b0736c6db55ceb4b5b216276c55b6~T7f_5cD8j0638506385eusmtip1f;
+	Wed, 29 May 2024 10:12:45 +0000 (GMT)
+Message-ID: <8d95757c-fd05-4a48-ae9d-24d78d04d663@samsung.com>
+Date: Wed, 29 May 2024 12:12:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH][next] of: property: Remove calls to of_node_put
+To: Shresth Prasad <shresthprasad7@gmail.com>, robh@kernel.org,
+	saravanak@google.com, DRI mailing list <dri-devel@lists.freedesktop.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	skhan@linuxfoundation.org, javier.carrasco.cruz@gmail.com,
+	julia.lawall@inria.fr
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20240515202915.16214-3-shresthprasad7@gmail.com>
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPKsWRmVeSWpSXmKPExsWy7djP87rz/oelGdy4L2cx/8g5VosrX9+z
+	Wczae5jRomlVP7PF5V1z2Cz+79nBbtF16C+bxcLXDYwWe6cvY3Xg9Ng56y67x4JNpR6TXhxi
+	8di0qpPNY//cNewe97uPM3l83iQXwB7FZZOSmpNZllqkb5fAlXHpxhLGglN2FVc+/2FqYHxo
+	0sXIwSEhYCLx7LxnFyMXh5DACkaJWR1nmSGcL4wSM19OYIFwPjNKfH19j6mLkROsY9/pflaI
+	xHJGiVtrFzODJIQEPjJKdG3zAxnLK2AnsfJBOUiYRUBVYurHE4wgNq+AoMTJmU9YQGxRAXmJ
+	+7dmsIPYwgIuEicvrWcDsUUEuhgl+qcbg8xnFpjEKPGnsQusiFlAXOLWk/lgR7AJGEp0ve0C
+	a+AE2tV59jJUjbxE89bZzBCHNnNKnJ0gAmG7SBxvbYeKC0u8Or6FHcKWkfi/E2QmF5Ddziix
+	4Pd9KGcCo0TD81uMEFXWEnfO/WID+YxZQFNi/S59iLCjxPo1e9gh4cgnceOtIMQNfBKTtk1n
+	hgjzSnS0CUFUq0nMOr4Obu3BC5eYJzAqzUIKlllIvpyF5JtZCHsXMLKsYhRPLS3OTU8tNspL
+	LdcrTswtLs1L10vOz93ECExTp/8d/7KDcfmrj3qHGJk4GA8xSnAwK4nwnpkUmibEm5JYWZVa
+	lB9fVJqTWnyIUZqDRUmcVzVFPlVIID2xJDU7NbUgtQgmy8TBKdXAxFfvL2Rzxvcp29S2mBNs
+	7T4Xni180h5jL/hna7GzxdOHUiWz/zx6bh6u3LL/t/7B1Xs/3ZotvuX14kSzcpOPBYZV/Df9
+	DzZ1bFmbnW5mv3dRSMlq4R9xMloP2lV4pLeJCq/Vv+YaNLUh6ytD3p9v9xdq9F9e7iG33EjE
+	euP93Sn7n/inXrObVP+FwSf7bd+TSXbhocsTisueq80IM70mtO2p/cfr7/yb1tW7za6yEn1l
+	886De+HHe3ztW15+sI8+MP2GzVRWhbpCX4MtRy0vG/lIsc89wvwx/GKuTG1i1Zx38jE1H08x
+	rFh2wezikXsRmifV9/K+vyti+JivOMFx25MJFbvNtbkTpuleOvF8kxJLcUaioRZzUXEiAK2k
+	xTXCAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsVy+t/xu7rz/oelGWwIs5h/5ByrxZWv79ks
+	Zu09zGjRtKqf2eLyrjlsFv/37GC36Dr0l81i4esGRou905exOnB67Jx1l91jwaZSj0kvDrF4
+	bFrVyeaxf+4ado/73ceZPD5vkgtgj9KzKcovLUlVyMgvLrFVija0MNIztLTQMzKx1DM0No+1
+	MjJV0rezSUnNySxLLdK3S9DLuHRjCWPBKbuKK5//MDUwPjTpYuTkkBAwkdh3up8VxBYSWMoo
+	ceCTLERcRuLktAZWCFtY4s+1LrYuRi6gmveMEqtuLmbvYuTg4BWwk1j5oBykhkVAVWLqxxOM
+	IDavgKDEyZlPWEBsUQF5ifu3ZrCD2MICLhInL60HmyMi0MUo8fDNeiYQh1lgEqPE9OkXmEGG
+	CgnYSvx+agfSwCwgLnHryXwmEJtNwFCi6y3IEZwcnEB7O89eZoeoMZPo2trFCGHLSzRvnc08
+	gVFoFpI7ZiEZNQtJyywkLQsYWVYxiqSWFuem5xYb6RUn5haX5qXrJefnbmIExuW2Yz+37GBc
+	+eqj3iFGJg7GQ4wSHMxKIrxnJoWmCfGmJFZWpRblxxeV5qQWH2I0BQbGRGYp0eR8YGLIK4k3
+	NDMwNTQxszQwtTQzVhLn9SzoSBQSSE8sSc1OTS1ILYLpY+LglGpgqlx7ne/l9FMWlg8y1Bdf
+	XLXYvV1AKOy2s9NV3/u+vIy53kuOMps4+B7YuLZ+8f2lyy5d+qEeym+ary66/qh+T/hB9Zcb
+	quUafnUtuyC+wKZ8enpTGt8f3oc2UT3XLjitWLpE/IP7/OhngZ+6V747GjtJYueMhUKZaZf8
+	Xqj845jwiPH580ea0fraRyWe+sUvkD/Jel91/7wm87l/vZ+f573bvWVbwKRjbtc+GzM2PODs
+	6IrxrIxVnH/UJCkiZTazfzVnHKOzZo7yhqTCG20c5810zNXPcofyf9rH3FaT8+2Uf90Ua9EE
+	fptau73reXb+fKJ/qPMHh+Cpdf8evXd4mdgu5bf+zzbJy73PSsx4lViKMxINtZiLihMBwTAl
+	tVQDAAA=
+X-CMS-MailID: 20240529101246eucas1p1266853c07f5178c7e3e4b8a264eb436e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20240529101246eucas1p1266853c07f5178c7e3e4b8a264eb436e
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20240529101246eucas1p1266853c07f5178c7e3e4b8a264eb436e
+References: <20240515202915.16214-3-shresthprasad7@gmail.com>
+	<CGME20240529101246eucas1p1266853c07f5178c7e3e4b8a264eb436e@eucas1p1.samsung.com>
 
-"fdtoverlay -h" shows a.o.:
+On 15.05.2024 22:29, Shresth Prasad wrote:
+> Add __free cleanup handler to some variable initialisations, which
+> ensures that the resource is freed as soon as the variable goes out of
+> scope. Thus removing the need to manually free up the resource using
+> of_node_put.
+>
+> Suggested-by: Julia Lawall <julia.lawall@inria.fr>
+> Signed-off-by: Shresth Prasad <shresthprasad7@gmail.com>
+> ---
 
-    <type>	s=string, i=int, u=unsigned, x=hex
-	    Optional modifier prefix:
-		    hh or b=byte, h=2 byte, l=4 byte (default)
+This patch landed in today's linux-next as commit b94d24c08ee1 ("of: 
+property: Remove calls to of_node_put"). I found that it triggers the 
+following warning while booting of the Samsung Exynos5800 based Pi 
+Chromebook (arch/arm/boot/dts/samsung/exynos5800-peach-pi.dts):
 
-However, unlike fdtget and fdtput, fdtoverlay does not support the
-"-t"/"--type" option.
+OF: ERROR: of_node_release() detected bad of_node_put() on /panel
+CPU: 2 PID: 68 Comm: kworker/u36:1 Not tainted 
+6.10.0-rc1-00001-gb94d24c08ee1 #8619
+Hardware name: Samsung Exynos (Flattened Device Tree)
+Workqueue: events_unbound deferred_probe_work_func
+tps65090 20-0048: No cache defaults, reading back from HW
+Call trace:
+  unwind_backtrace from show_stack+0x10/0x14
+  show_stack from dump_stack_lvl+0x50/0x64
+  dump_stack_lvl from of_node_release+0x110/0x138
+  of_node_release from kobject_put+0x98/0x108
+  kobject_put from drm_of_find_panel_or_bridge+0x94/0xd8
+  drm_of_find_panel_or_bridge from exynos_dp_probe+0xf0/0x158 [exynosdrm]
+  exynos_dp_probe [exynosdrm] from platform_probe+0x80/0xc0
+  platform_probe from really_probe+0xc8/0x288
+  really_probe from __driver_probe_device+0x8c/0x190
+  __driver_probe_device from driver_probe_device+0x30/0xd0
+  driver_probe_device from __device_attach_driver+0x8c/0xbc
+  __device_attach_driver from bus_for_each_drv+0x74/0xc0
+  bus_for_each_drv from __device_attach+0xe8/0x184
+  __device_attach from bus_probe_device+0x88/0x8c
+  bus_probe_device from deferred_probe_work_func+0x7c/0xa8
+  deferred_probe_work_func from process_scheduled_works+0xe8/0x41c
+  process_scheduled_works from worker_thread+0x14c/0x35c
+  worker_thread from kthread+0xd0/0x104
+  kthread from ret_from_fork+0x14/0x28
+Exception stack(0xf0a81fb0 to 0xf0a81ff8)
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Upstream dtc has Uwe's commit 2cdf93a6d402a161 ("fdtoverlay: Fix usage
-string to not mention "<type>"").
+OF: ERROR: next of_node_put() on this node will result in a kobject 
+warning 'refcount_t: underflow; use-after-free.'
+------------[ cut here ]------------
+WARNING: CPU: 3 PID: 68 at lib/refcount.c:25 kobject_get+0xa0/0xa4
+refcount_t: addition on 0; use-after-free.
+Modules linked in: i2c_cros_ec_tunnel(+) cros_ec_keyb cros_ec_dev 
+cros_ec_spi cros_ec snd_soc_i2s snd_soc_idma snd_soc_max98090 
+snd_soc_snow snd_soc_s3c_dma snd_soc_core tpm_i2c_infineon ac97_bus 
+snd_pcm_dmaengine tpm exynosdrm libsha256 libaescfb snd_pcm analogix_dp 
+ecdh_generic samsung_dsim ecc snd_timer atmel_mxt_ts snd libaes 
+soundcore exynos_gsc s5p_jpeg s5p_mfc v4l2_mem2mem spi_s3c64xx 
+videobuf2_dma_contig exynos_adc pwm_samsung videobuf2_memops 
+videobuf2_v4l2 videodev phy_exynos_usb2 videobuf2_common ohci_exynos 
+ehci_exynos mc exynos_ppmu rtc_s3c exynos_rng s3c2410_wdt s5p_sss 
+phy_exynos_mipi_video phy_exynos_dp_video
+CPU: 3 PID: 68 Comm: kworker/u36:1 Not tainted 
+6.10.0-rc1-00001-gb94d24c08ee1 #8619
+Hardware name: Samsung Exynos (Flattened Device Tree)
+Workqueue: events_unbound deferred_probe_work_func
+Call trace:
+  unwind_backtrace from show_stack+0x10/0x14
+  show_stack from dump_stack_lvl+0x50/0x64
+  dump_stack_lvl from __warn+0x108/0x12c
+  __warn from warn_slowpath_fmt+0x118/0x17c
+  warn_slowpath_fmt from kobject_get+0xa0/0xa4
+  kobject_get from of_node_get+0x14/0x1c
+  of_node_get from of_get_next_parent+0x24/0x50
+  of_get_next_parent from of_graph_get_port_parent.part.1+0x58/0xa4
+  of_graph_get_port_parent.part.1 from 
+of_graph_get_remote_port_parent+0x1c/0x38
+  of_graph_get_remote_port_parent from of_graph_get_remote_node+0x10/0x6c
+  of_graph_get_remote_node from drm_of_find_panel_or_bridge+0x50/0xd8
+  drm_of_find_panel_or_bridge from exynos_dp_probe+0xf0/0x158 [exynosdrm]
+  exynos_dp_probe [exynosdrm] from platform_probe+0x80/0xc0
+  platform_probe from really_probe+0xc8/0x288
+  really_probe from __driver_probe_device+0x8c/0x190
+  __driver_probe_device from driver_probe_device+0x30/0xd0
+  driver_probe_device from __device_attach_driver+0x8c/0xbc
+  __device_attach_driver from bus_for_each_drv+0x74/0xc0
+  bus_for_each_drv from __device_attach+0xe8/0x184
+  __device_attach from bus_probe_device+0x88/0x8c
+  bus_probe_device from deferred_probe_work_func+0x7c/0xa8
+  deferred_probe_work_func from process_scheduled_works+0xe8/0x41c
+  process_scheduled_works from worker_thread+0x14c/0x35c
+  worker_thread from kthread+0xd0/0x104
+  kthread from ret_from_fork+0x14/0x28
+Exception stack(0xf0a81fb0 to 0xf0a81ff8)
 
-v2:
-  - Drop Fixes: tag referring to dtc repo.
----
- scripts/dtc/fdtoverlay.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
 
-diff --git a/scripts/dtc/fdtoverlay.c b/scripts/dtc/fdtoverlay.c
-index 5350af65679f7fbd..cac6b6576c289c18 100644
---- a/scripts/dtc/fdtoverlay.c
-+++ b/scripts/dtc/fdtoverlay.c
-@@ -23,9 +23,7 @@
- /* Usage related data. */
- static const char usage_synopsis[] =
- 	"apply a number of overlays to a base blob\n"
--	"	fdtoverlay <options> [<overlay.dtbo> [<overlay.dtbo>]]\n"
--	"\n"
--	USAGE_TYPE_MSG;
-+	"	fdtoverlay <options> [<overlay.dtbo> [<overlay.dtbo>]]";
- static const char usage_short_opts[] = "i:o:v" USAGE_COMMON_SHORT_OPTS;
- static struct option const usage_long_opts[] = {
- 	{"input",            required_argument, NULL, 'i'},
+If I got this right, this points to the drm_of_find_panel_or_bridge() 
+function. I briefly scanned it, but I don't see any obvious 
+of_node_put() related issue there.
+
+
+> I had submitted a similar patch a couple weeks ago addressing the same
+> issue, but as it turns out I wasn't thorough enough and had left a couple
+> instances.
+>
+> I hope this isn't too big an issue.
+> ---
+>   drivers/of/property.c | 27 +++++++++++----------------
+>   1 file changed, 11 insertions(+), 16 deletions(-)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 17b294e16c56..96a74f6a8d64 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -773,15 +773,14 @@ EXPORT_SYMBOL(of_graph_get_port_parent);
+>   struct device_node *of_graph_get_remote_port_parent(
+>   			       const struct device_node *node)
+>   {
+> -	struct device_node *np, *pp;
+> +	struct device_node *pp;
+>   
+>   	/* Get remote endpoint node. */
+> -	np = of_graph_get_remote_endpoint(node);
+> +	struct device_node *np __free(device_node) =
+> +			    of_graph_get_remote_endpoint(node);
+>   
+>   	pp = of_graph_get_port_parent(np);
+>   
+> -	of_node_put(np);
+> -
+>   	return pp;
+>   }
+>   EXPORT_SYMBOL(of_graph_get_remote_port_parent);
+> @@ -835,17 +834,18 @@ EXPORT_SYMBOL(of_graph_get_endpoint_count);
+>   struct device_node *of_graph_get_remote_node(const struct device_node *node,
+>   					     u32 port, u32 endpoint)
+>   {
+> -	struct device_node *endpoint_node, *remote;
+> +	struct device_node *endpoint_node __free(device_node) =
+> +			    of_graph_get_endpoint_by_regs(node, port, endpoint);
+> +
+> +	struct device_node *remote __free(device_node) =
+> +			    of_graph_get_remote_port_parent(endpoint_node);
+>   
+> -	endpoint_node = of_graph_get_endpoint_by_regs(node, port, endpoint);
+>   	if (!endpoint_node) {
+>   		pr_debug("no valid endpoint (%d, %d) for node %pOF\n",
+>   			 port, endpoint, node);
+>   		return NULL;
+>   	}
+>   
+> -	remote = of_graph_get_remote_port_parent(endpoint_node);
+> -	of_node_put(endpoint_node);
+>   	if (!remote) {
+>   		pr_debug("no valid remote node\n");
+>   		return NULL;
+> @@ -853,7 +853,6 @@ struct device_node *of_graph_get_remote_node(const struct device_node *node,
+>   
+>   	if (!of_device_is_available(remote)) {
+>   		pr_debug("not available for remote node\n");
+> -		of_node_put(remote);
+>   		return NULL;
+>   	}
+>   
+> @@ -1064,19 +1063,15 @@ static void of_link_to_phandle(struct device_node *con_np,
+>   			      struct device_node *sup_np,
+>   			      u8 flags)
+>   {
+> -	struct device_node *tmp_np = of_node_get(sup_np);
+> +	struct device_node *tmp_np __free(device_node) = of_node_get(sup_np);
+>   
+>   	/* Check that sup_np and its ancestors are available. */
+>   	while (tmp_np) {
+> -		if (of_fwnode_handle(tmp_np)->dev) {
+> -			of_node_put(tmp_np);
+> +		if (of_fwnode_handle(tmp_np)->dev)
+>   			break;
+> -		}
+>   
+> -		if (!of_device_is_available(tmp_np)) {
+> -			of_node_put(tmp_np);
+> +		if (!of_device_is_available(tmp_np))
+>   			return;
+> -		}
+>   
+>   		tmp_np = of_get_next_parent(tmp_np);
+>   	}
+
+Best regards
 -- 
-2.34.1
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
 
