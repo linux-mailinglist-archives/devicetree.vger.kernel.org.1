@@ -1,144 +1,162 @@
-Return-Path: <devicetree+bounces-70198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 541E58D2CFF
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:16:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41F368D2D0B
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 08:17:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F013B2591C
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:15:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2FE91F24AEE
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 06:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2E4415DBD6;
-	Wed, 29 May 2024 06:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9BB415EFB9;
+	Wed, 29 May 2024 06:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m0gsXUsf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IGTSurKp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0C415B141;
-	Wed, 29 May 2024 06:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CEC15B124;
+	Wed, 29 May 2024 06:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716963354; cv=none; b=ToP2r7xhFLUl0iNK2JCkvOTJLSgN4UgdufbkyZXpLL9MYcjcwXUEZi22n3+hv7/gaS5236YEDC7bT+dxNMwP1QLbnzJAdsSgU1A62BX9qj+ryVH4VHZmzww5iSXqPFSMT2wswBXeMbMJ2xS0g+9IVLTWxw0A5SZkxlz0SyMFhlg=
+	t=1716963443; cv=none; b=Lj4rjOLcbBgGX68YLNaHg9HCM3/6kNomYQlPc2TwkuS6mDIHbvGzHy4izvZX29TbhpPvfDAgcYny3J2X/2XtL0sk9Cd+qExVAHE402FLeX8AZNqKN7gnLonftLjppDic+x9Qdb5ilakWyhgJqv1gFZum1Pyk8X1XrfY4ieENifw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716963354; c=relaxed/simple;
-	bh=7UL5tAAEjUHcX7+hcSy9AlEexa/1+pvr7uBA+iBHPMw=;
+	s=arc-20240116; t=1716963443; c=relaxed/simple;
+	bh=wHvqAUeMGgo6S8SfrtOUu1hNJk5CbIEx1+ZZ5PXh9hM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hzOInP6puocw9Dw0IeVtZeahWZNU23gjDX24so9GubEJF/LyS/SLxXQw7TLFJ1qma4IGL/lJXvOx0vpkPxOxEVHaU33x2W4FN4rBbbsdV5GZDfy/P43XV8j9ae465phPS0cxuVuXm8hy0VnXmQ6ll9j9QU6qeo3Jl4fTFbFSy7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m0gsXUsf; arc=none smtp.client-ip=209.85.221.172
+	 To:Cc:Content-Type; b=DZbsPmMQjlsUb7ipfcOJ55t7q9PJyzYNb3TKrFH3x2zolkAzwbiI3tws4v5W/hMXHIpfX/n5eCH8G6B20R+vwHfMweHfT8dUTgclOqDS9rtGRJPftxeeVAMLVlY76tZst3pnFPbHVmxXyQy4NKyGjjblNcQIiheCp/r6royDMZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IGTSurKp; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-4e15ac35809so502075e0c.2;
-        Tue, 28 May 2024 23:15:52 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a59a609dd3fso99463666b.0;
+        Tue, 28 May 2024 23:17:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1716963352; x=1717568152; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1716963440; x=1717568240; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=L3R+ZHPYoSGUqMaWR0E46qOgK1Bg85/ubJnAG+H028Y=;
-        b=m0gsXUsf8dPiJB3Ruh+zifOIqfkoN1RKXTuBAe/4TKWrdydxYqbmKqhM1KLvDCu+a7
-         kSt7ww6AcJlC80+T8k54iQyCmVFgCVuReDEdGuC6fx2iFlX0mJSt1h3bqdwLBmX+5jpY
-         NN38JOGUQUMZtw5Fe65XSSUJT+quj/kEFEmvHR46JB/VLMvqSK/MDJQ5XI4R54rE/3um
-         WQV0+9CeuArtJ+dw00wGnAFLzuHF8Q4V8NqSGB5bpZBlgmBNQJ9bgdQFSQlnu2q4GKFJ
-         VX+I8v88fI3HBh3p+5OT1OpUHTs6+U9QVJ7Puz2H0JZT/Ef2rybRZnNuRAcUjIFh8RA6
-         r8dw==
+        bh=saVQL0reWoLiHVwsjX27qoU6xlrMeCDz+f6iomHsQmE=;
+        b=IGTSurKp9m/aThm+faMczdlgKDFx8/aq0Dhoewu1yUlbd81y8YCHsbqkefP4Ivqwp3
+         fQ5f4qFR5zHMyFLDh26UaKHs4mk7Zx1JWoldcQ3+eOQYMCd2feS69ToC5N1hNm6ONR/2
+         ydeztbPMhxSP85LHowjwh3KaqhUR/q7oycOHUPLAeV/BvZnsOoXOXHqX/etcLtqfpF3n
+         rcGhI9kiJw0qtxMMxXfHLlKL4MPvqCpvP0/qCLeYQW04YSnyXKOfLxYcN9Mg4R/zg+jR
+         Gy3TTSIii+QiL7WYqq9RRVZVN+btvt3h18tEyR3P7Ua2W3hJGT1hcX2T3astdYdlceZV
+         nxZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1716963352; x=1717568152;
+        d=1e100.net; s=20230601; t=1716963440; x=1717568240;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=L3R+ZHPYoSGUqMaWR0E46qOgK1Bg85/ubJnAG+H028Y=;
-        b=g0A2tYdFt8Lt82hJ+Sc8NqQuIoEbzmVX+DS/IHT8FG/OvJVmdeie2aBUuHIjfB3b9Z
-         5BiXsp7SIcbGDDvIEm1KAoLt4Z5IMmYuLBEQ8rVeixTIfPWLn9Ki55Ggg5ZatylfN3V2
-         BXVjLmceraO56DtpjdHXBhWfYGJqqKyIReuaPZMCCC/f6Zel6pQI/oh5fFdYbo/Pc7NR
-         Efg5AiiOghDbcucjkLxH7ALJfMLKI5hnfIlJlr8+dSPn3H6IPYCbxNbLkZjsixVRKuuP
-         lG+bw9DkJgB7/uOX1eA0k+6VGczXKWuJIJ3fMQbVj4fA1rLQk18diG8z8xD6lqK2a/zC
-         Nm2w==
-X-Forwarded-Encrypted: i=1; AJvYcCVd7+QES5QbmcWVCKxHjhsanC3UnySu9f7Yi2INq7/foTdRNsaSh8OwU5yX4F8cI0oDLJrJtabBnZvR1VC25EmqRUnaxuO9h5uAp23Hr5YLlOGU9v9kYFXraiIph5bVLvGpaZSrpiziphDj4/q9nobhylKE8gZnO+c1qB33FIGk3V8SyJtm9b6aJL98TN4vSJclTQn49PRcaqs6fFvU+2XKffAyimMHBCBr
-X-Gm-Message-State: AOJu0YxAz0m7dygPpOzPiFyeM/UwTg6YJIrZ53BGi5fENZg9pcagYtOY
-	EmqcVDM5elLGPmjyeFmqFZnhoCjybdyRe3w12TwRGGVobPs10SYQoGTUtu1puqXVpM5haeBCj/j
-	JUdsrmYDzLtzGTCj2zAzOZCJisWM=
-X-Google-Smtp-Source: AGHT+IGxKzOO4a6F70I0rFUbkqpZcal23aCdcbs7VzaqdTx7dCQeaRBwHMmX/dZwoneR9bkFVUJGsfqXYFNe05QHJrE=
-X-Received: by 2002:a05:6122:1798:b0:4df:1a3f:2ec1 with SMTP id
- 71dfb90a1353d-4e4f021b92emr14545453e0c.1.1716963350441; Tue, 28 May 2024
- 23:15:50 -0700 (PDT)
+        bh=saVQL0reWoLiHVwsjX27qoU6xlrMeCDz+f6iomHsQmE=;
+        b=AktKdOBrczAEpcGEif/l1UQzJd6nDtI/oEWD4ibP+IILWkHbxtZpgQ5sX7HWKHa0nq
+         AD3CAcsGPJzApBQvpirMA9cfeLU+DOx6wvoVK8OJ4oJEaEX/papCSSt78GKZ/JFbGba6
+         uIum8LegKNggMmtAHaw19g4mk58c/Wd9SuhMV7UmknjOwnPgoAPw6EJgWkE+OeGTnjIO
+         iBUGPBCSePkVE7cpvysSfI0/I5py+0wLBaOPFS995yyGeuylNA7ARYiPjTSJcnBw+lgf
+         zf0NtJ9V0jxhKpbtZKZ3fq4Jm+CtaC4zOHMmpg4rhyMApo2mzlVORhCIxchcxru3frYH
+         ViJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUA5SgXs3CzPAFRnpABBj9buZKlObH6IEC3+HMEl4AsSQOexMmklUG9BBLrcMi6qN2f8FbStstA3AIE7qd12yiRgYsT2zxY0xI/wgcZRz3v7ZeC5zw2VQHsWnPoTUewzg0W+GHJpy1QkpRh+gJYUlUZgJZRzZMmqkzpiIjNxPp28ek=
+X-Gm-Message-State: AOJu0YzExcPFapAuvswagy5QMcB62y3vuWK9uCJzpR1WFBG98ty+a0tT
+	5H1IF2ik7zGwy8RIG9aBofSCl4/Ah1rzGmPukurYceCeqJjMTRfIdPa3Frd472BgSffb/2PXx7W
+	/55K4rmvSH+gJlp/Lxsu4P7SMC6s=
+X-Google-Smtp-Source: AGHT+IECFXdOSBQ6/aZ4435KqpAo2/qcF1vE8EyUqs/8Q495km6FzJ+Hh4GC/X4E3l953YMk17jX7QDlTUI8rsWphKY=
+X-Received: by 2002:a17:906:3989:b0:a63:560d:fe0f with SMTP id
+ a640c23a62f3a-a642d37e307mr97014366b.14.1716963440200; Tue, 28 May 2024
+ 23:17:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240322144355.878930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 29 May 2024 07:15:23 +0100
-Message-ID: <CA+V-a8vQr2jxrW+C5VTcmEHmDgNp6S8=3KcAT1SzcKusFaP7Gw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/5] Add SCIF support for Renesas RZ/V2H(P) SoC
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240528190315.3865-1-laurent.pinchart@ideasonboard.com>
+ <20240528190315.3865-4-laurent.pinchart@ideasonboard.com> <ZlYyJpLeDLD_T5V6@surfacebook.localdomain>
+ <20240528202044.GB8500@pendragon.ideasonboard.com>
+In-Reply-To: <20240528202044.GB8500@pendragon.ideasonboard.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 29 May 2024 09:16:43 +0300
+Message-ID: <CAHp75Vc2-jOMybL7vwJHgrvb_434p094tgdLo1SyK4i_RXYiDw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] gpio: adp5585: Add Analog Devices ADP5585 support
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Haibo Chen <haibo.chen@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Greg,
+On Tue, May 28, 2024 at 11:20=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Tue, May 28, 2024 at 10:36:06PM +0300, Andy Shevchenko wrote:
 
-On Fri, Mar 22, 2024 at 2:45=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Hi All,
->
-> This patch series updates DT binding doc and scif driver to add support
-> for the Renesas RZ/V2H(P) SoC. RZ/V2H(P) SoC supports one channel SCIF
-> interface.
->
-> v3->v4
-> - patch 2/4 reverted back to version 2
-> - new patch 3/5 added
-> - Added new reg type for RZ/V2H
->
-> v2->v3
-> - Included DT validation patches
-> - Added a new compat string for RZ/V2H(P) SoC
-> - Added driver changes for RZ/V2H(P) SoC
-> - Listed interrupts and interrupt-names for every SoC in if check
->
-> Cheers,
-> Prabhakar
->
-> Lad Prabhakar (5):
->   dt-bindings: serial: renesas,scif: Move ref for serial.yaml at the end
->   dt-bindings: serial: renesas,scif: Validate 'interrupts' and
->     'interrupt-names'
->   dt-bindings: serial: renesas,scif: Make 'interrupt-names' property as
->     required
->   dt-bindings: serial: Add documentation for Renesas RZ/V2H(P)
->     (R9A09G057) SCIF support
->   serial: sh-sci: Add support for RZ/V2H(P) SoC
->
-Gentle ping.
+...
 
-All the patches have been Acked/Reviewed.
-
-Cheers,
-Prabhakar
-
->  .../bindings/serial/renesas,scif.yaml         | 136 +++++++++++++-----
->  drivers/tty/serial/sh-sci.c                   |  55 ++++++-
->  include/linux/serial_sci.h                    |   1 +
->  3 files changed, 154 insertions(+), 38 deletions(-)
+> > > +   bit =3D off * 2 + (off > 5 ? 4 : 0);
+> >
+> > Right, but can you use >=3D 6 here which immediately follows to the nex=
+t
+> > question, i.e. why not use bank in this conditional?
 >
-> --
-> 2.34.1
+> The ADP5585_BANK() macro is meant to be used with ADP5585_BIT(), for a
+> set of registers with the same layout. Here the layout is different, the
+> registers contain multi-bit fields. I can't use ADP5585_BIT(), so I'd
+> rather not use ADP5585_BANK() either. I have decided to use > 5 instead
+> of >=3D 6 to match the R5 field name in the comment above:
 >
+>         /*
+>          * The bias configuration fields are 2 bits wide and laid down in
+>          * consecutive registers ADP5585_RPULL_CONFIG_*, with a hole of 4=
+ bits
+>          * after R5.
+>          */
+
+First of all, the 5 sounds misleading as one needs to think about "how
+many are exactly per the register" and the answer AFAIU is 6. >=3D 6
+shows this. Second, I haven't mentioned _BANK(), what I meant is
+something to
+
+  unsigned int bank =3D ... >=3D 6 ? : ;
+
+...
+
+> > > +   struct adp5585_dev *adp5585 =3D dev_get_drvdata(pdev->dev.parent)=
+;
+> >
+> > (see below)
+> >
+> > > +   struct adp5585_gpio_dev *adp5585_gpio;
+> > > +   struct device *dev =3D &pdev->dev;
+> >
+> >       struct adp5585_dev *adp5585 =3D dev_get_drvdata(dev->parent);
+>
+> I prefer keeping the current ordering, with long lines first, I think
+> that's more readable.
+
+Does the compiler optimise these two?
+
+> > > +   struct gpio_chip *gc;
+> > > +   int ret;
+
+...
+
+> > > +   device_set_of_node_from_dev(dev, dev->parent);
+> >
+> > Why not device_set_node()?
+>
+> Because device_set_of_node_from_dev() is meant for this exact use case,
+> where the same node is used for multiple devices. It also puts any
+> previous dev->of_node, ensuring proper refcounting when devices are
+> unbound and rebound, without being deleted.
+
+When will the refcount be dropped (in case of removal of this device)?
+Or you mean it shouldn't?
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
