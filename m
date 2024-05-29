@@ -1,400 +1,108 @@
-Return-Path: <devicetree+bounces-70234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF9F8D2E97
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96DED8D2E9F
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 09:43:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 135DF286317
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:42:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F97128A916
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 07:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA83016A380;
-	Wed, 29 May 2024 07:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A989167D87;
+	Wed, 29 May 2024 07:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="Cbeti0Qi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZTJSoJTh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E66C5169ADA;
-	Wed, 29 May 2024 07:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.156.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898AC168C04
+	for <devicetree@vger.kernel.org>; Wed, 29 May 2024 07:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716968450; cv=none; b=Umm9JbZzB7eCCb87NRMM3skVCgJn4MGUtHl23prWjh06+OVLE2kZZZIplUbOOEzT7/3jO8JJRzNjtdKRY6ELqfqTyIEvZJ+RRgAf6XfgbEspy+YHF2OMQocokww9PYm9BeKmrTNdfwz+nWYfG80n3O8dLLdQc2ZG2rlxzKl7Dtc=
+	t=1716968558; cv=none; b=jUYNtB0M9qPGRYS3QLiAwm+/fbFXcQ6AAj4evZBEycoaYwGa7h23wPQsQGCZtFSvkoUkPnfHhY21Vz+rxftZwCTTofd52X8XzYBPyBE4l7TYBLvWYtRt/dmAXTjIFXVDNXeb6to/an6X5mQ/cckmtEGUU5Zx0YIO2eaXZpmD5cY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716968450; c=relaxed/simple;
-	bh=r/aE+f+SQbJG3ozKay0GlDI7/LC67ye9uc0/R7BeTd4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qkAKfq1wSfApPPQe2SSc5c0MNTeZ08UcYk5brAazTWqPuAyMz7qqq7ob9De5ERKZzORDX4MvdlqOZLNtCKtwghR0HKbanFzJQD/lkcKdr3yZyTWvBe41E8173A414X6E9gdjOzCyPfkA9YWYV95uA8fxNfgBHYn/jajXFQBcE1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=Cbeti0Qi; arc=none smtp.client-ip=67.231.156.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44T3mGtT007681;
-	Wed, 29 May 2024 00:40:44 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pfpt0220; bh=Z
-	I9+uU4quOo3lWwYZ/skqAd4eQQMLx6FgwuZHgq4ogE=; b=Cbeti0QiPcD+vL0YY
-	MRD73VARuckkUip5axRjOrLc0nJKc8dVixp8lvWNx9e80ADWCb2I6gbuAk18yK1I
-	qB0Nv59UHm3xBcZEIO9XfZKYla2EecGKRFZXdkFIwS0Ozq7zeD9j/lSZ+rNbgX+X
-	rOzByp9lh/En02ezyTkWpfHPhb6z2rLJVb/wgkb+hWTrUZC3PLvs7I5akwGaqTUf
-	Qds7VVmV8reCNgsZPV2VoT6wencLOmqqmr9d1g32iR4q07mq2yVDMye3qg3d903H
-	CbZq2sNlnEXCyMJH9f01i80idgAucpAKdTqRQ3QeYDYjg5hE27lPJjcVCFFx/8JM
-	dgxqg==
-Received: from dc5-exch05.marvell.com ([199.233.59.128])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3yddnvc79e-5
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 00:40:43 -0700 (PDT)
-Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
- DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Wed, 29 May 2024 00:40:42 -0700
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
- (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Wed, 29 May 2024 00:40:42 -0700
-Received: from Dell2s-9.sclab.marvell.com (unknown [10.110.150.250])
-	by maili.marvell.com (Postfix) with ESMTP id BA69F3F70AE;
-	Wed, 29 May 2024 00:40:41 -0700 (PDT)
-From: Witold Sadowski <wsadowski@marvell.com>
-To: <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <broonie@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <pthombar@cadence.com>, Witold Sadowski <wsadowski@marvell.com>
-Subject: [PATCH v6 5/5] spi: cadence: Add MRVL overlay xfer operation support
-Date: Wed, 29 May 2024 00:40:36 -0700
-Message-ID: <20240529074037.1345882-6-wsadowski@marvell.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240529074037.1345882-1-wsadowski@marvell.com>
-References: <20240529074037.1345882-1-wsadowski@marvell.com>
+	s=arc-20240116; t=1716968558; c=relaxed/simple;
+	bh=VaO3aHdjj7LC1VgBgX7JPhJKKz+gG9+KGKvv6CQHqWM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m7Mp/IrbdBrt3hjFQFV5JDCgIE/6nO/4A4UI2Uo/nsHIqwMbYKT/EClUEu1UebQ95K9Ed1LRtCXTcioOWT15YmhrFOzufef8uZNCQwsYdYmKyRdbJywEd/+19Hm6SJtins080xHK9VdbHYvDshiGO2H5eaKCkJlJNaIcaxadrsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZTJSoJTh; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dfa48f505a3so360688276.1
+        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 00:42:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1716968555; x=1717573355; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VaO3aHdjj7LC1VgBgX7JPhJKKz+gG9+KGKvv6CQHqWM=;
+        b=ZTJSoJThrQhp+SaoTm/739lhKfsnV8i5MbhXOQTGngoH8u68i0TC8kTs5ZcK0YgXjv
+         7QCfiznOirg+GGjiEyFyi//9LfPODRgNKZ5zl0CvdffdBExzcIBIZq8GfzcTMHxa4Xdk
+         5AZpDPTtJdjNlOezPKd8KVVy4lc5Zw+qP6MOva2wAt7Wl8lKaSIHhxtmybSAQNb2cr6F
+         BkoDH8yhWnjKCERTST1WnVZYyr6HdJTbOMRtEYO50xZ4dIwp/+fV4yU+MDsJ+O8MFucd
+         fet2GXJ5Mr4sXzLbZxLSn2mBuQ08hDEyjLxZwvoCywQ7G2bEfkIqrLGxkK4KL6SR99xZ
+         uZgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1716968555; x=1717573355;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VaO3aHdjj7LC1VgBgX7JPhJKKz+gG9+KGKvv6CQHqWM=;
+        b=vBng2oVP7MWaqB5pz1oyldW8RyRhs9s+b15JDIujs1Da2Gnm/thUO+alnB4Vkc5Uzr
+         6riu2J0dICj9n8JGDuqv40Uvym6/e23BsNol0C7FkKfGy64U16rYicusYY/ZlCKNgQbx
+         dNOwGO9LTTa94rzJyZI1tt2xzKKOfw206DKf/PntSEFyns36M2IJ6xCdgkyj1jwOTMt3
+         sqBrj/ZwMmZBPP6HGdnfeEHyhj+is/2hMhtCY2LOZHKQF6XLqkO4M2/uaeILAOvap3dP
+         w0X4m76tmMnyECrZc7yku7u2a1Vg3iVUxORzEq/JCPOwjYN62Z2+CBv89+uRhnv/V5bb
+         oBXw==
+X-Forwarded-Encrypted: i=1; AJvYcCXuNiaPoHSfchXTpsLDPyaHH9DGW7FnFv5yvDocRF8t62vo8CdFBo0+9YcG8hiW/d/LjV/5VHkDtZ5iHeNg8SHDJllkJNTeAE2R6Q==
+X-Gm-Message-State: AOJu0YxX+It3okqQ6ABgG46qrvmuLu7np8wKbz/a8xbH2CCEV+/hWxBn
+	YYMTXEDRvatDdhsh+eJF1mEmhLLdRAuQGaK5P9upiAEl1NLN4awEsXpQnNFW6+SxJvgIs8+GqYw
+	oEB+nFSXlposIGmyfiCk/WBVMwqgqBxabYQ95dw==
+X-Google-Smtp-Source: AGHT+IGFvz606hz3gC7JBXtHPotg3mTma00HFlofyRFsegTt///1sv0tQAk8wPQUbRZ5YVVVf8iIKVOpjk0LeEAjzLs=
+X-Received: by 2002:a25:7446:0:b0:dfa:4680:21eb with SMTP id
+ 3f1490d57ef6-dfa468034e8mr1388083276.43.1716968555460; Wed, 29 May 2024
+ 00:42:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: rv9PZCprqkiwUNQxswpS_Kyis6oSE-8T
-X-Proofpoint-ORIG-GUID: rv9PZCprqkiwUNQxswpS_Kyis6oSE-8T
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-28_14,2024-05-28_01,2024-05-17_01
+References: <20240527115933.7396-1-zajec5@gmail.com> <20240527115933.7396-2-zajec5@gmail.com>
+In-Reply-To: <20240527115933.7396-2-zajec5@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 29 May 2024 09:42:24 +0200
+Message-ID: <CACRpkda-egxVtP8Tan9T_EfQX6ekqQDf3LaVUu0by7aWY1Qmag@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add OpenWrt
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wenst@chromium.org>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Macpaul Lin <macpaul.lin@mediatek.com>, Heiko Stuebner <heiko.stuebner@cherry.de>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Chris Morgan <macromorgan@hotmail.com>, 
+	Sebastian Reichel <sre@kernel.org>, Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	openwrt-devel@lists.openwrt.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-MRVL Xfer overlay extends xSPI capabilities to support non-memory SPI
-operations. The Marvell overlay, combined with a generic command, allows
-for full-duplex SPI transactions. It also enables transactions with
-undetermined lengths using the cs_hold parameter and the ability to
-extend CS signal assertion, even if the xSPI block requests CS signal
-de-assertion.
+On Mon, May 27, 2024 at 2:00=E2=80=AFPM Rafa=C5=82 Mi=C5=82ecki <zajec5@gma=
+il.com> wrote:
 
-Signed-off-by: Witold Sadowski <wsadowski@marvell.com>
----
- drivers/spi/spi-cadence-xspi.c | 245 +++++++++++++++++++++++++++++++++
- 1 file changed, 245 insertions(+)
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> OpenWrt project (with the help of MediaTek and Banana Pi) has produced
+> its very first own hardware. It needs its own prefix.
+>
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 
-diff --git a/drivers/spi/spi-cadence-xspi.c b/drivers/spi/spi-cadence-xspi.c
-index 490bba7a0fc8..7279a73162ce 100644
---- a/drivers/spi/spi-cadence-xspi.c
-+++ b/drivers/spi/spi-cadence-xspi.c
-@@ -219,6 +219,7 @@
- #define CDNS_XSPI_DLL_RST_N BIT(24)
- #define CDNS_XSPI_DLL_LOCK  BIT(0)
- 
-+
- /* Marvell overlay registers - clock */
- #define MRVL_XSPI_CLK_CTRL_AUX_REG   0x2020
- #define MRVL_XSPI_CLK_ENABLE	     BIT(0)
-@@ -232,6 +233,22 @@
- #define MRVL_XSPI_SPIX_INTR_AUX	0x2000
- #define MRVL_MSIX_CLEAR_IRQ	0x01
- 
-+/* Marvell overlay registers - xfer */
-+#define MRVL_XFER_FUNC_CTRL		 0x210
-+#define MRVL_XFER_FUNC_CTRL_READ_DATA(i) (0x000 + 8 * (i))
-+#define MRVL_XFER_SOFT_RESET		 BIT(11)
-+#define MRVL_XFER_CS_N_HOLD		 GENMASK(9, 6)
-+#define MRVL_XFER_RECEIVE_ENABLE	 BIT(4)
-+#define MRVL_XFER_FUNC_ENABLE		 BIT(3)
-+#define MRVL_XFER_CLK_CAPTURE_POL	 BIT(2)
-+#define MRVL_XFER_CLK_DRIVE_POL		 BIT(1)
-+#define MRVL_XFER_FUNC_START		 BIT(0)
-+#define MRVL_XFER_QWORD_COUNT		 32
-+#define MRVL_XFER_QWORD_BYTECOUNT	 8
-+
-+#define MRVL_XSPI_POLL_TIMEOUT_US	1000
-+#define MRVL_XSPI_POLL_DELAY_US		10
-+
- enum cdns_xspi_stig_instr_type {
- 	CDNS_XSPI_STIG_INSTR_TYPE_0,
- 	CDNS_XSPI_STIG_INSTR_TYPE_1,
-@@ -256,6 +273,7 @@ struct cdns_xspi_dev {
- 	void __iomem *iobase;
- 	void __iomem *auxbase;
- 	void __iomem *sdmabase;
-+	void __iomem *xferbase;
- 
- 	int irq;
- 	int cur_cs;
-@@ -270,6 +288,9 @@ struct cdns_xspi_dev {
- 	const void *out_buffer;
- 
- 	u8 hw_num_banks;
-+
-+	bool xfer_in_progress;
-+	int current_xfer_qword;
- };
- 
- struct cdns_xspi_driver_data {
-@@ -836,6 +857,220 @@ static int cdns_xspi_setup(struct spi_device *spi_dev)
- 	return 0;
- }
- 
-+static int cdns_xspi_prepare_generic(int cs, const void *dout, int len, int glue, u32 *cmd_regs)
-+{
-+	u8 *data = (u8 *)dout;
-+	int i;
-+	int data_counter = 0;
-+
-+	memset(cmd_regs, 0x00, 6*4);
-+
-+	if (len > 7) {
-+		for (i = (len >= 10 ? 2 : len - 8); i >= 0 ; i--)
-+			cmd_regs[3] |= data[data_counter++] << (8*i);
-+	}
-+	if (len > 3) {
-+		for (i = (len >= 7 ? 3 : len - 4); i >= 0; i--)
-+			cmd_regs[2] |= data[data_counter++] << (8*i);
-+	}
-+	for (i = (len >= 3 ? 2 : len - 1); i >= 0 ; i--)
-+		cmd_regs[1] |= data[data_counter++] << (8 + 8*i);
-+
-+	cmd_regs[1] |= 96;
-+	cmd_regs[3] |= len << 24;
-+	cmd_regs[4] |= cs << 12;
-+
-+	if (glue == 1)
-+		cmd_regs[4] |= 1 << 28;
-+
-+	return 0;
-+}
-+
-+static unsigned char reverse_bits(unsigned char num)
-+{
-+	unsigned int count = sizeof(num) * 8 - 1;
-+	unsigned int reverse_num = num;
-+
-+	num >>= 1;
-+	while (num) {
-+		reverse_num <<= 1;
-+		reverse_num |= num & 1;
-+		num >>= 1;
-+		count--;
-+	}
-+	reverse_num <<= count;
-+	return reverse_num;
-+}
-+
-+static void cdns_xspi_read_single_qword(struct cdns_xspi_dev *cdns_xspi, u8 **buffer)
-+{
-+	u64 d = readq(cdns_xspi->xferbase +
-+		      MRVL_XFER_FUNC_CTRL_READ_DATA(cdns_xspi->current_xfer_qword));
-+	u8 *ptr = (u8 *)&d;
-+	int k;
-+
-+	for (k = 0; k < 8; k++) {
-+		u8 val = reverse_bits((ptr[k]));
-+		**buffer = val;
-+		*buffer = *buffer + 1;
-+	}
-+
-+	cdns_xspi->current_xfer_qword++;
-+	cdns_xspi->current_xfer_qword %= MRVL_XFER_QWORD_COUNT;
-+}
-+
-+static void cdns_xspi_finish_read(struct cdns_xspi_dev *cdns_xspi, u8 **buffer, u32 data_count)
-+{
-+	u64 d = readq(cdns_xspi->xferbase +
-+		      MRVL_XFER_FUNC_CTRL_READ_DATA(cdns_xspi->current_xfer_qword));
-+	u8 *ptr = (u8 *)&d;
-+	int k;
-+
-+	for (k = 0; k < data_count % MRVL_XFER_QWORD_BYTECOUNT; k++) {
-+		u8 val = reverse_bits((ptr[k]));
-+		**buffer = val;
-+		*buffer = *buffer + 1;
-+	}
-+
-+	cdns_xspi->current_xfer_qword++;
-+	cdns_xspi->current_xfer_qword %= MRVL_XFER_QWORD_COUNT;
-+}
-+
-+static int cdns_xspi_prepare_transfer(int cs, int dir, int len, u32 *cmd_regs)
-+{
-+	memset(cmd_regs, 0x00, 6*4);
-+
-+	cmd_regs[1] |= 127;
-+	cmd_regs[2] |= len << 16;
-+	cmd_regs[4] |= dir << 4; //dir = 0 read, dir =1 write
-+	cmd_regs[4] |= cs << 12;
-+
-+	return 0;
-+}
-+
-+static bool cdns_xspi_stig_ready(struct cdns_xspi_dev *cdns_xspi, bool sleep)
-+{
-+	u32 ctrl_stat;
-+
-+	return readl_relaxed_poll_timeout
-+		(cdns_xspi->iobase + CDNS_XSPI_CTRL_STATUS_REG,
-+		ctrl_stat,
-+		((ctrl_stat & BIT(3)) == 0),
-+		sleep ? MRVL_XSPI_POLL_DELAY_US : 0,
-+		sleep ? MRVL_XSPI_POLL_TIMEOUT_US : 0);
-+}
-+
-+static bool cdns_xspi_sdma_ready(struct cdns_xspi_dev *cdns_xspi, bool sleep)
-+{
-+	u32 ctrl_stat;
-+
-+	return readl_relaxed_poll_timeout
-+		(cdns_xspi->iobase + CDNS_XSPI_INTR_STATUS_REG,
-+		ctrl_stat,
-+		(ctrl_stat & CDNS_XSPI_SDMA_TRIGGER),
-+		sleep ? MRVL_XSPI_POLL_DELAY_US : 0,
-+		sleep ? MRVL_XSPI_POLL_TIMEOUT_US : 0);
-+}
-+
-+static int cdns_xspi_transfer_one_message_b0(struct spi_controller *controller,
-+					   struct spi_message *m)
-+{
-+	struct cdns_xspi_dev *cdns_xspi = spi_controller_get_devdata(controller);
-+	struct spi_device *spi = m->spi;
-+	struct spi_transfer *t = NULL;
-+
-+	const int max_len = MRVL_XFER_QWORD_BYTECOUNT * MRVL_XFER_QWORD_COUNT;
-+	int current_cycle_count;
-+	int cs = spi_get_chipselect(spi, 0);
-+	int cs_change = 0;
-+
-+	/* Enable xfer state machine */
-+	if (!cdns_xspi->xfer_in_progress) {
-+		u32 xfer_control = readl(cdns_xspi->xferbase + MRVL_XFER_FUNC_CTRL);
-+
-+		cdns_xspi->current_xfer_qword = 0;
-+		cdns_xspi->xfer_in_progress = true;
-+		xfer_control |= (MRVL_XFER_RECEIVE_ENABLE |
-+				 MRVL_XFER_CLK_CAPTURE_POL |
-+				 MRVL_XFER_FUNC_START |
-+				 MRVL_XFER_SOFT_RESET |
-+				 FIELD_PREP(MRVL_XFER_CS_N_HOLD, (1 << cs)));
-+		xfer_control &= ~(MRVL_XFER_FUNC_ENABLE | MRVL_XFER_CLK_DRIVE_POL);
-+		writel(xfer_control, cdns_xspi->xferbase + MRVL_XFER_FUNC_CTRL);
-+	}
-+
-+	list_for_each_entry(t, &m->transfers, transfer_list) {
-+		u8 *txd = (u8 *) t->tx_buf;
-+		u8 *rxd = (u8 *) t->rx_buf;
-+		u8 data[10];
-+		u32 cmd_regs[6];
-+
-+		if (!txd)
-+			txd = data;
-+
-+		cdns_xspi->in_buffer = txd + 1;
-+		cdns_xspi->out_buffer = txd + 1;
-+
-+		while (t->len) {
-+
-+			current_cycle_count = t->len > max_len ? max_len : t->len;
-+
-+			if (current_cycle_count < 10) {
-+				cdns_xspi_prepare_generic(cs, txd, current_cycle_count,
-+							  false, cmd_regs);
-+				cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
-+				if (cdns_xspi_stig_ready(cdns_xspi, true))
-+					return -EIO;
-+			} else {
-+				cdns_xspi_prepare_generic(cs, txd, 1, true, cmd_regs);
-+				cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
-+				cdns_xspi_prepare_transfer(cs, 1, current_cycle_count - 1,
-+							   cmd_regs);
-+				cdns_xspi_trigger_command(cdns_xspi, cmd_regs);
-+				if (cdns_xspi_sdma_ready(cdns_xspi, true))
-+					return -EIO;
-+				cdns_xspi_sdma_handle(cdns_xspi);
-+				if (cdns_xspi_stig_ready(cdns_xspi, true))
-+					return -EIO;
-+
-+				cdns_xspi->in_buffer += current_cycle_count;
-+				cdns_xspi->out_buffer += current_cycle_count;
-+			}
-+
-+			if (rxd) {
-+				int j;
-+
-+				for (j = 0; j < current_cycle_count / 8; j++)
-+					cdns_xspi_read_single_qword(cdns_xspi, &rxd);
-+				cdns_xspi_finish_read(cdns_xspi, &rxd, current_cycle_count);
-+			} else {
-+				cdns_xspi->current_xfer_qword += current_cycle_count /
-+								 MRVL_XFER_QWORD_BYTECOUNT;
-+				if (current_cycle_count % MRVL_XFER_QWORD_BYTECOUNT)
-+					cdns_xspi->current_xfer_qword++;
-+
-+				cdns_xspi->current_xfer_qword %= MRVL_XFER_QWORD_COUNT;
-+			}
-+			cs_change = t->cs_change;
-+			t->len -= current_cycle_count;
-+		}
-+	}
-+
-+	if (!cs_change) {
-+		u32 xfer_control = readl(cdns_xspi->xferbase + MRVL_XFER_FUNC_CTRL);
-+
-+		xfer_control &= ~(MRVL_XFER_RECEIVE_ENABLE |
-+				  MRVL_XFER_SOFT_RESET);
-+		writel(xfer_control, cdns_xspi->xferbase + MRVL_XFER_FUNC_CTRL);
-+		cdns_xspi->xfer_in_progress = false;
-+	}
-+
-+	m->status = 0;
-+	spi_finalize_current_message(controller);
-+
-+	return 0;
-+}
-+
- static int cdns_xspi_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -903,6 +1138,15 @@ static int cdns_xspi_probe(struct platform_device *pdev)
- 		return PTR_ERR(cdns_xspi->auxbase);
- 	}
- 
-+	if (cdns_xspi->mrvl_hw_overlay) {
-+		cdns_xspi->xferbase = devm_platform_ioremap_resource(pdev, 3);
-+		if (IS_ERR(cdns_xspi->xferbase)) {
-+			dev_info(dev, "XFER register base not found, set it\n");
-+			// For compatibility with older firmware
-+			cdns_xspi->xferbase = cdns_xspi->iobase + 0x8000;
-+		}
-+	}
-+
- 	cdns_xspi->irq = platform_get_irq(pdev, 0);
- 	if (cdns_xspi->irq < 0)
- 		return -ENXIO;
-@@ -917,6 +1161,7 @@ static int cdns_xspi_probe(struct platform_device *pdev)
- 	if (drv_data->mrvl_hw_overlay) {
- 		cdns_mrvl_xspi_setup_clock(cdns_xspi, MRVL_DEFAULT_CLK);
- 		cdns_xspi_configure_phy(cdns_xspi);
-+		host->transfer_one_message = cdns_xspi_transfer_one_message_b0;
- 	}
- 
- 	cdns_xspi_print_phy_config(cdns_xspi);
--- 
-2.43.0
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+Yours,
+Linus Walleij
 
