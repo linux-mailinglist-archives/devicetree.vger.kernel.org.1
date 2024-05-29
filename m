@@ -1,168 +1,154 @@
-Return-Path: <devicetree+bounces-70395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74368D33F8
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D341D8D33FD
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 12:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43FFC1F2413B
-	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:04:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9502A1F2480C
+	for <lists+devicetree@lfdr.de>; Wed, 29 May 2024 10:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8DA17B51D;
-	Wed, 29 May 2024 10:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eFXDvwtk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF40179970;
+	Wed, 29 May 2024 10:06:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9729D17B515;
-	Wed, 29 May 2024 10:03:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4CF31A60;
+	Wed, 29 May 2024 10:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1716977039; cv=none; b=Ic3O/rHe4AGKMdVQPeOWL93ht47U+FYZJ4Iz8oH9LuxxWlZh5M2vrn7q7KGjKf6cO39L1q7L6RUgS7x+hgFd7zwnCnzWB7rzrKk3r7S42kKxQjgttVY6lC+bhQqzC+UTTPz5tnabZVXscebi4VkEszpP4Xa/Qjxr3UPWPOJqlEE=
+	t=1716977187; cv=none; b=jExvA05/sTJWKShe426qj6C9+QZ2O0x+eZZgYmKauFCg2/O36antdn/+AO5UTjJr7pK3mnfkQBT0hBhCqSmbJmNTM7MAuqRfQMOKHVYhcy2Z53IPuqQATgo7jN+c/REXj5dOaTEYCpK/iSsvF10MEBT0v8n2v7j2gN8Qcmo0/GE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1716977039; c=relaxed/simple;
-	bh=aIhbGCLKEKawA+veL2J2Cf4s3YZU4to6a1pR6G5kiQU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IHacnCEcDfpbZRI8HRRc9avyGKQT4mYuUuZaF1le2ITTLvBmm+Qf89hXM6PZIsXrxsdQm2q/Jig1nHMMu2dNB8oyYvPbYyVRATw7TfC1uLdGQKjwQaxqhc/Ks91Nc4u/OO4b+vWy2cyAeL7TZkrBqurJuypF6R1Y9+acxZGzOmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eFXDvwtk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44SNCgSF016230;
-	Wed, 29 May 2024 10:03:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UjM7rl3jyup/xpx8QiUfFk2gRmr2418Ytr8XoGXrJoE=; b=eFXDvwtkeoOTKAzm
-	tb79fovHeYWi7FZHOeTpNP2SgjuD6GawuTAwg2zT4ruS6WZRpwu86JFCA/uxXLOx
-	l4wfAGD+t5OQChug2uoplb0d5bEmJTYAIg+dF+R8GzYJWYZj8hdLwwE49sXlV2rQ
-	GCsld0dvv08nPpIw3scNCpjQiuRjf+pBBAINxr4TyzYap9S2r8FI6HAmFM5QVmi3
-	4KtuH2Gp+ba0SXkrcGu5yEzlEXCn1Uj4K1JyCUDZ+PbA+Y2P/3YJFnfYT+RrDndb
-	x/QKCEzC9W2DW1xEvl5MOlfczJbkUpdZ1yCO2sYXgFFRe4qWLsq0rbYCO7BJyScC
-	dNDI6g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yb9yj8pay-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 10:03:52 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44TA3pT3009710
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 29 May 2024 10:03:51 GMT
-Received: from tengfan-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 29 May 2024 03:03:46 -0700
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Tengfei Fan
-	<quic_tengfan@quicinc.com>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sm8550: Remove usb default dr_mode
-Date: Wed, 29 May 2024 18:02:56 +0800
-Message-ID: <20240529100256.3158447-3-quic_tengfan@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240529100256.3158447-1-quic_tengfan@quicinc.com>
-References: <20240529100256.3158447-1-quic_tengfan@quicinc.com>
+	s=arc-20240116; t=1716977187; c=relaxed/simple;
+	bh=G1Rk+7kEkFD09wELNnRj53zJwtqDGrgnZU8T7fnfjek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KLQdI1tLIJE2JQiMec2wxw0VHutBTF3Yh0jmsoMNqKamK72U+/K2orPm5/A25o4QXcSg/oHCBvjy1FxIPcH23lUD8De6EtNboIidZmkskBwQ1zroQ7uXc5TADuI/9SkFFH58Zw4ciivK1YrS9/jw42UxVhpLgSygWFo/ciX+jG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
+Received: from [192.168.0.3] (ip5f5af7f7.dynamic.kabel-deutschland.de [95.90.247.247])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: pmenzel)
+	by mx.molgen.mpg.de (Postfix) with ESMTPSA id ABB5461E5FE01;
+	Wed, 29 May 2024 12:05:43 +0200 (CEST)
+Message-ID: <52ccf0c1-e5dd-412b-9e47-7829ca0f6ffc@molgen.mpg.de>
+Date: Wed, 29 May 2024 12:05:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] Bluetooth: btnxpuart: Update firmware names
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+Cc: marcel@holtmann.org, luiz.dentz@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-bluetooth@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amitkumar.karwar@nxp.com, rohit.fule@nxp.com,
+ sherry.sun@nxp.com, ziniu.wang_1@nxp.com, haibo.chen@nxp.com,
+ LnxRevLi@nxp.com, regressions@lists.linux.dev
+References: <20240529095347.22186-1-neeraj.sanjaykale@nxp.com>
+ <20240529095347.22186-3-neeraj.sanjaykale@nxp.com>
+Content-Language: en-US
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20240529095347.22186-3-neeraj.sanjaykale@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oKxPuE56XgmlG62pJqAnIaG47fk2m9uj
-X-Proofpoint-ORIG-GUID: oKxPuE56XgmlG62pJqAnIaG47fk2m9uj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-29_06,2024-05-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 mlxscore=0 phishscore=0 mlxlogscore=524 spamscore=0
- clxscore=1015 impostorscore=0 bulkscore=0 suspectscore=0 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405290067
 
-Otg is default usb dr_mode, so this property can be removed.
+[Cc: regressions@]
 
-Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 4 ----
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts                     | 4 ----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts                     | 4 ----
- arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts | 4 ----
- 4 files changed, 16 deletions(-)
+Dear Neeraj,
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-index 411de3451db8..e0dc03a97771 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-@@ -1253,10 +1253,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "otg";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_hs_in>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 84d16227ef80..26dfca0c3e05 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -946,10 +946,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "otg";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_hs_in>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index e20c6240f76d..d27820fb5fc0 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -1115,10 +1115,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "otg";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_hs_in>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-index 6dd5232da9f9..85d487ef80a0 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-@@ -737,10 +737,6 @@ &usb_1 {
- 	status = "okay";
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "otg";
--};
--
- &usb_1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_hs_in>;
- };
--- 
-2.25.1
 
+Am 29.05.24 um 11:53 schrieb Neeraj Sanjay Kale:
+> This updates the firmware names of 3 chipsets: w8987, w8997, w9098.
+> These changes are been done to standardize chip specific firmware
+> file names.
+
+Can you please describe the new naming schema in the commit message?
+
+> To allow user to use older firmware file names, a new device tree
+> property has been introduced called firmware-name, which will override
+> the hardcoded firmware names in the driver.
+
+So users updating the Linux kernel but not updating the devicetree with 
+the new property are going to see a regression, right? I think this 
+violates Linux’ no regression policy. If so, please implement a way to 
+support old and new names.
+
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+> v2: Remove "nxp/" from all firmware name definitions to be inline with
+> firware file name read from device tree file. (Krzysztof)
+
+fir*m*ware
+
+> ---
+>   drivers/bluetooth/btnxpuart.c | 28 +++++++++++++++++-----------
+>   1 file changed, 17 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/bluetooth/btnxpuart.c b/drivers/bluetooth/btnxpuart.c
+> index 0b93c2ff29e4..4442d911eba8 100644
+> --- a/drivers/bluetooth/btnxpuart.c
+> +++ b/drivers/bluetooth/btnxpuart.c
+> @@ -33,16 +33,16 @@
+>   /* NXP HW err codes */
+>   #define BTNXPUART_IR_HW_ERR		0xb0
+>   
+> -#define FIRMWARE_W8987		"nxp/uartuart8987_bt.bin"
+> -#define FIRMWARE_W8997		"nxp/uartuart8997_bt_v4.bin"
+> -#define FIRMWARE_W9098		"nxp/uartuart9098_bt_v1.bin"
+> -#define FIRMWARE_IW416		"nxp/uartiw416_bt_v0.bin"
+> -#define FIRMWARE_IW612		"nxp/uartspi_n61x_v1.bin.se"
+> -#define FIRMWARE_IW624		"nxp/uartiw624_bt.bin"
+> -#define FIRMWARE_SECURE_IW624	"nxp/uartiw624_bt.bin.se"
+> -#define FIRMWARE_AW693		"nxp/uartaw693_bt.bin"
+> -#define FIRMWARE_SECURE_AW693	"nxp/uartaw693_bt.bin.se"
+> -#define FIRMWARE_HELPER		"nxp/helper_uart_3000000.bin"
+> +#define FIRMWARE_W8987		"uart8987_bt_v0.bin"
+> +#define FIRMWARE_W8997		"uart8997_bt_v4.bin"
+> +#define FIRMWARE_W9098		"uart9098_bt_v1.bin"
+> +#define FIRMWARE_IW416		"uartiw416_bt_v0.bin"
+> +#define FIRMWARE_IW612		"uartspi_n61x_v1.bin.se"
+> +#define FIRMWARE_IW624		"uartiw624_bt.bin"
+> +#define FIRMWARE_SECURE_IW624	"uartiw624_bt.bin.se"
+> +#define FIRMWARE_AW693		"uartaw693_bt.bin"
+> +#define FIRMWARE_SECURE_AW693	"uartaw693_bt.bin.se"
+> +#define FIRMWARE_HELPER		"helper_uart_3000000.bin"
+>   
+>   #define CHIP_ID_W9098		0x5c03
+>   #define CHIP_ID_IW416		0x7201
+> @@ -685,13 +685,19 @@ static bool process_boot_signature(struct btnxpuart_dev *nxpdev)
+>   static int nxp_request_firmware(struct hci_dev *hdev, const char *fw_name)
+>   {
+>   	struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
+> +	const char *fw_name_dt;
+>   	int err = 0;
+>   
+>   	if (!fw_name)
+>   		return -ENOENT;
+>   
+>   	if (!strlen(nxpdev->fw_name)) {
+> -		snprintf(nxpdev->fw_name, MAX_FW_FILE_NAME_LEN, "%s", fw_name);
+> +		if (strcmp(fw_name, FIRMWARE_HELPER) &&
+> +		    !device_property_read_string(&nxpdev->serdev->dev,
+> +						 "firmware-name",
+> +						 &fw_name_dt))
+> +			fw_name = fw_name_dt;
+> +		snprintf(nxpdev->fw_name, MAX_FW_FILE_NAME_LEN, "nxp/%s", fw_name);
+>   
+>   		bt_dev_dbg(hdev, "Request Firmware: %s", nxpdev->fw_name);
+>   		err = request_firmware(&nxpdev->fw, nxpdev->fw_name, &hdev->dev);
+
+
+Kind regards,
+
+Paul
 
