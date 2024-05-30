@@ -1,274 +1,158 @@
-Return-Path: <devicetree+bounces-70748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4789A8D454E
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:11:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E218D4567
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:17:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9517AB21DD8
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 06:11:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAB62284A6A
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 06:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0094143739;
-	Thu, 30 May 2024 06:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FC1155336;
+	Thu, 30 May 2024 06:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="iqnipGLU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eeRdja3p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7A2DDA0;
-	Thu, 30 May 2024 06:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939F51552EC;
+	Thu, 30 May 2024 06:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717049510; cv=none; b=S42myYXjLSy1p6hWAs5wgzMG8CMX1kmw1M3Co1jpqM61aIto7oe1fvYs0qWoP8M4esxvF3WcLpdQQlANL/uDK793lL/q844huN2dDgjuU3cy03fM3GUV1iELyFX/hZsXiyeATxZqyRrdHERB/lBJk8G7lQVGqlBgFsey3PuM3OQ=
+	t=1717049872; cv=none; b=Uyu2h4E/KnHFOxBmTLOA4yBzL/mSX2OX0A/dZ+1TTjheg9mYCh2yasPG7GNHPLKMcJ6u72wWvvpmbYRTIbxOw3zBqXVPatqd7qTszf9WCxR+37ENBEV9g9Am+d1JTDf2vxoStP4K97lJdHIp5JcTpClRBMw+zl0RildN5KI4qOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717049510; c=relaxed/simple;
-	bh=NNuRGnCC/PwvYry4sTt4WxbSvgwyXHJP0+uo5/GHg94=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Z0GtF/fLa6ALqtM1aUTablUWHrkv4ycenx3I5OhAs78Z1oYuo+I3FFO3MPDZpFV/bsAWzpdrrUrihfBiiBe9G39x+p2+DEivUJiiRtYTyxA/KHxVZpqz1hVn6HJSOU3lHgwVL+PYF50sOmGwnpjqIdN8AVhHq8oYDOVAiCLJkfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=iqnipGLU; arc=none smtp.client-ip=212.227.15.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1717049479; x=1717654279; i=wahrenst@gmx.net;
-	bh=EsObzuDggZcPsAJCrYelSxDfb2ObF3xVT9aYpHF/x8o=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=iqnipGLUmAHOOWqDMe9hRcfpFCCpxhFLUkCe/fYExpavDdLid1imlEzKBqHZpsvW
-	 xl+SkXhnxzRcHcqbUdH4f9i9KgQywuvm1M7Wx3+9QLJrs0vNNwWTtgBoavp8j+QW4
-	 gUueQNl1mOrSPgzR+e3z7sGeJY3hKmSBpvAf28XtjUXb8lDzWiSMP6JTXZci9v/e7
-	 8aftExv2s2VmQtJFJKT2AQtSgnNa3pLgFO64cYBfPIqqwuDFBRa8iRa0RKvX0uO1R
-	 EGzmUBb8+q6Q2/ulh0zVNTCLaHBxb12s5MA71IowjWDzzZenGmi6KjYaULVLCywcA
-	 CvXJTgQT/yH5hrLIXg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MORAa-1rq4531Lw6-00MYLI; Thu, 30
- May 2024 08:11:19 +0200
-Message-ID: <f94cf0fb-a9a2-4447-9b32-7f09c2a37cf6@gmx.net>
-Date: Thu, 30 May 2024 08:11:18 +0200
+	s=arc-20240116; t=1717049872; c=relaxed/simple;
+	bh=mdgAiKbstfN1gUB5L/EsCiO3AyOoRXRVi2nIvdixAow=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aFcL3PrphYPOGYLjBDty6dB8rLnvW4Z1AF1qSzSEItYuaLf/KYeBpd7LppARYG0QYRd46luLHaXGymd9ZFjzOdkL2qztBY3KGhNWAQD/Ttrn4KjzG3XD58+YpZ93C+jPMFZH4c8H74yx5dvia6e85brnCewLFcc+MHwgJNgPzk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eeRdja3p; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-35dc0472b7eso500415f8f.2;
+        Wed, 29 May 2024 23:17:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1717049869; x=1717654669; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WSdHxLbmp97ia1G10K4CxsZgTHCb548EU1TzMRh6otw=;
+        b=eeRdja3prnSVoisVedZOOgZkPV9l9OgWbRrXGAyHVKS4Cnln19f6U5Lu4NtIN58lCI
+         VgWIo8gmAtYlhy6q6WQFRmytTl4H2W6a+LG672Y+Ui681A67i7eKCr86sjlw0PWolr6o
+         Xc7VyrH1M90r/elFypoJLIZ+gGFwRIv1nNVuSAUaVd+M4LUazMMK5jzsJlao5jMGWmHY
+         u6h05di0Sb0JAs6T2LvAaG3R2+iK0jKS8N+rb+7ZaMOicXJu9NaBCzUDmN/pIpBGybMy
+         BQScjDlrq1En1sw0V7KL9P7a0ygxkc8smQa6HrA/05inq4xw9Jg7WY5GW+6umE4s0S1w
+         P71A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717049869; x=1717654669;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WSdHxLbmp97ia1G10K4CxsZgTHCb548EU1TzMRh6otw=;
+        b=QKrHQI+b/B9Eq/XJsxYpVoH6fruJdq+DUnuvBXsSDELmQZsJbuOOzbbl1VHOPbXJnw
+         man98p4oNZKye2+N460izNwTGM5IJ56mVWnxdztBlYandnSoaHbl2Q0VIXlHa+zunNot
+         CHMhz8yTC5+xBD9LtEcAJvm2kYypdU8z37HENOC06Vh+N7dICNStEIxXfyUTV8qTwZy5
+         ws6bxhkYyDCHSgH2UBoD5RXPWtBy8Trj5uTNg3eClx3xIS1EF0ljNtapRtVssMV+Pc0c
+         D9rpIvo44/VnutEaKx3sXCEXZzvcnhP0VuI1uDZBWDwgiwrVTDchE8xpg3Rzg/U2NrE+
+         sNeA==
+X-Forwarded-Encrypted: i=1; AJvYcCX9xKd52CAgvJbDRbOZ5daXrkMcISy3F2t5a1JI/dhhBfMwICCpW8IgWtoGiXG2uJDFYe+mfExJHVYphSUD8bDzvZJ3XexfkuGBtPC7Tkxazgf02n+WPSsGpWgLg8DOcpeQJE+UpNRlUCgeJ9dU7JJwR6RsvXhlTtAiEQIRQ2ZB2phb4g==
+X-Gm-Message-State: AOJu0Yz4L+mSS/926RybyPWYa1XtsrGk4WhLU68/EffKTXWnZ44XQIAz
+	mwcAVeqz43V6qyGYadD/a0D4Q3NrP46BsCnTxBlKRFDcGLgJzdhd
+X-Google-Smtp-Source: AGHT+IEkvn6YatjYVdSD+3mc2CY6smDx1erwxzGTzsxu2qJeg0ghrQ208yqof63hV9b736/V0cIgdA==
+X-Received: by 2002:a05:6000:106:b0:354:f8a9:345 with SMTP id ffacd0b85a97d-35dc00845ebmr636222f8f.14.1717049868617;
+        Wed, 29 May 2024 23:17:48 -0700 (PDT)
+Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3557a08a88esm16397009f8f.41.2024.05.29.23.17.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 May 2024 23:17:48 -0700 (PDT)
+Message-ID: <3dc83aa5c1d138ef70dd64ba4154acb52b65a8a3.camel@gmail.com>
+Subject: Re: [PATCH v3 6/6] iio: adc: ad7173: Reduce device info struct size
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dumitru Ceclan <mitrutzceclan@gmail.com>
+Date: Thu, 30 May 2024 08:17:47 +0200
+In-Reply-To: <ec2ac6fb-0f08-4e8c-8907-83bd8f0976c8@baylibre.com>
+References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
+	 <20240527-ad4111-v3-6-7e9eddbbd3eb@analog.com>
+	 <2f26b72970be841279ca00c1b5eb91dcfffabdea.camel@gmail.com>
+	 <ec2ac6fb-0f08-4e8c-8907-83bd8f0976c8@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: broadcom: Add support for BCM2712
-To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mmc@vger.kernel.org
-References: <cover.1716899600.git.andrea.porta@suse.com>
- <8dd6997394a01317747ca11b4779f586752b4947.1716899600.git.andrea.porta@suse.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <8dd6997394a01317747ca11b4779f586752b4947.1716899600.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:wTYiOw3KxXiOy40hYJRqts+FSsstKKT4WxhXtd/QEojTR2X2ojL
- TySUwrIHVWRK3PLZ3br7lh9HWcvgqFq2Wsw6ETiv3sJukezwScTkBHYdP/3PM8UfTPdtmKG
- 4PnTCpPe//sivTIVv2K/20Lv58L+bv4arelOS6JPGh2oZW5HDWxTFz+P5yfPc9Faf5xmkRv
- AtJ9RlWQo0KXN4mclqdFw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:c7pe3KccDI8=;iYBiNMPDOng309BceoMXopUPaVf
- wnJd1FHtrLbgnE+aKZuojCZx19zPY+xm5Sr1HrY+8QY2JE4otngDh4f8+WEUgX0h/5kAUIYr0
- 5xeQK+lu93ucjWyBnUM+W9Clm4/bAP6k+znyoSe/yllkHhEB7rIf6lNB+FLrgRk4r0WGgQCik
- 70Wm8/xDZPJ1fevl80ItZ5AaOULyUUrKCnXN9ums/pzQcWkx0PHQlgJllXlUITDsAhtQrETRm
- S9gepccEx2efsRDN3ziRxdTuQ/kXe+Bi2P2cVlASD/e94++dKDpOEzAVLUcfSMnLGHx3WaNVW
- AOqbouezSuWZEF9RSP6VygGPoux36PMni+hPcGS6CjL9axWBCQ5zwGrws/CzyKW9QRisEV30l
- s09DMY9oosd6PEtfd9TQms3xAEqhu9EMHMAj5FiT5cno8+eRIPpgDZyUwmfs56sBOIjpASvOx
- 4LkRwTwBORL8OOaQO8HJSiFLKYct3/ZvpocLr3lWwOpC+imcDk2EZKW5svuBOSmqsAMWXrco9
- 0MBMIvO0xEORFqbG62E04VWvt4b8kv8ziJNy88Dc/d7ys0dZeqS0n0HV43nPhJa5x6XGLxEbw
- OJZFnankn0wnJTy+ORGZi9TmkOjCIbvk8LBrj/WN2XcjjsrLlfI69xjHatQsjt8plx5anT5py
- rwGl2ezvMFlRKTzDA20toUCIM8flQ99OJp/boL9gnvpx7eDNv8OwMSQp1OrepdQJkRFgNOVLv
- Xx51oZF7v5LEjaUY95FEDNX/kUiKBmsl0UjkOUqOH641g+/9lCPOmZOi9vVVGp1pvPRjva/TC
- S+R7WtrnsdDkIRs3CuiaT0gLswLgiB8iwIAkz7+7/70Xs=
 
-Hi Andrea,
+On Wed, 2024-05-29 at 15:32 -0500, David Lechner wrote:
+> On 5/29/24 7:23 AM, Nuno S=C3=A1 wrote:
+> > On Mon, 2024-05-27 at 20:02 +0300, Dumitru Ceclan via B4 Relay wrote:
+> > > From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> > >=20
+> > > Reduce the size used by the device info struct by packing the bool
+> > > =C2=A0fields within the same byte. This reduces the struct size from =
+52 bytes
+> > > =C2=A0to 44 bytes.
+> > >=20
+> > > Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> > > ---
+> > > =C2=A0drivers/iio/adc/ad7173.c | 16 ++++++++--------
+> > > =C2=A01 file changed, 8 insertions(+), 8 deletions(-)
+> > >=20
+> > > diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+> > > index 328685ce25e0..e8357a21d513 100644
+> > > --- a/drivers/iio/adc/ad7173.c
+> > > +++ b/drivers/iio/adc/ad7173.c
+> > > @@ -179,15 +179,15 @@ struct ad7173_device_info {
+> > > =C2=A0	unsigned int clock;
+> > > =C2=A0	unsigned int id;
+> > > =C2=A0	char *name;
+> > > -	bool has_current_inputs;
+> > > -	bool has_vcom_input;
+> > > -	bool has_temp;
+> > > +	bool has_current_inputs		:1;
+> > > +	bool has_vcom_input		:1;
+> > > +	bool has_temp			:1;
+> > > =C2=A0	/* ((AVDD1 =E2=88=92 AVSS)/5) */
+> > > -	bool has_common_input;
+> > > -	bool has_input_buf;
+> > > -	bool has_int_ref;
+> > > -	bool has_ref2;
+> > > -	bool higher_gpio_bits;
+> > > +	bool has_common_input		:1;
+> > > +	bool has_input_buf		:1;
+> > > +	bool has_int_ref		:1;
+> > > +	bool has_ref2			:1;
+> > > +	bool higher_gpio_bits		:1;
+> > > =C2=A0	u8 num_gpios;
+> > > =C2=A0};
+> > > =C2=A0
+> > >=20
+> >=20
+> > This is really a very micro optimization... I would drop it tbh but no =
+strong
+> > feelings about it.
+> >=20
+> > - Nuno S=C3=A1
+>=20
+> This only considers RAM size and not code size too. At least on ARM arch
+> every time we read or write to one of these fields, the code is now
+> implicitly `((field & 0x1) >> bits)` so two extra assembly instructions
+> for each read and write. This could be bigger than the size saved in
+> the structs.
+>=20
+>=20
 
-i think the following subject would be better:
+very good point...
 
-arm64: dts: broadcom: Add minimal support for Raspberry Pi 5
-
-because you also add the board file here.
-
-Am 28.05.24 um 15:32 schrieb Andrea della Porta:
-> The BCM2712 SoC family can be found on Raspberry Pi 5.
-> Add minimal SoC and board (Rpi5 specific) dts file to be able to
-> boot from SD card and use console on debug UART.
->
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->   arch/arm64/boot/dts/broadcom/Makefile         |   1 +
->   .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |  64 ++++
->   arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 292 ++++++++++++++++++
->   3 files changed, 357 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
->   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712.dtsi
->
-> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts=
-/broadcom/Makefile
-> index 8b4591ddd27c..92565e9781ad 100644
-> --- a/arch/arm64/boot/dts/broadcom/Makefile
-> +++ b/arch/arm64/boot/dts/broadcom/Makefile
-> @@ -6,6 +6,7 @@ DTC_FLAGS :=3D -@
->   dtb-$(CONFIG_ARCH_BCM2835) +=3D bcm2711-rpi-400.dtb \
->   			      bcm2711-rpi-4-b.dtb \
->   			      bcm2711-rpi-cm4-io.dtb \
-> +			      bcm2712-rpi-5-b.dtb \
->   			      bcm2837-rpi-3-a-plus.dtb \
->   			      bcm2837-rpi-3-b.dtb \
->   			      bcm2837-rpi-3-b-plus.dtb \
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm=
-64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> new file mode 100644
-> index 000000000000..2bdbb6780242
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-> @@ -0,0 +1,64 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "bcm2712.dtsi"
-> +
-> +/ {
-> +	compatible =3D "raspberrypi,5-model-b", "brcm,bcm2712";
-> +	model =3D "Raspberry Pi 5";
-> +
-> +	aliases {
-> +		serial10 =3D &uart10;
-> +	};
-> +
-> +	chosen: chosen {
-> +		stdout-path =3D "serial10:115200n8";
-> +	};
-> +
-> +	/* Will be filled by the bootloader */
-> +	memory@0 {
-> +		device_type =3D "memory";
-> +		reg =3D <0 0 0 0x28000000>;
-> +	};
-> +
-> +	sd_io_1v8_reg: sd-io-1v8-reg {
-> +		compatible =3D "regulator-gpio";
-> +		regulator-name =3D "vdd-sd-io";
-> +		regulator-min-microvolt =3D <1800000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		regulator-settling-time-us =3D <5000>;
-> +		gpios =3D <&gio_aon 3 GPIO_ACTIVE_HIGH>;
-> +		states =3D <1800000 1>,
-> +			 <3300000 0>;
-> +	};
-> +
-> +	sd_vcc_reg: sd-vcc-reg {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc-sd";
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		gpios =3D <&gio_aon 4 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +/* The Debug UART, on Rpi5 it's on JST-SH 1.0mm 3-pin connector
-> + * labeled "UART", i.e. the interface with the system console.
-> + */
-> +&uart10 {
-> +	status =3D "okay";
-> +};
-> +
-> +/* SDIO1 is used to drive the SD card */
-> +&sdio1 {
-> +	vqmmc-supply =3D <&sd_io_1v8_reg>;
-> +	vmmc-supply =3D <&sd_vcc_reg>;
-> +	bus-width =3D <4>;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-ddr50;
-> +	sd-uhs-sdr104;
-> +};
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot=
-/dts/broadcom/bcm2712.dtsi
-> new file mode 100644
-> index 000000000000..71b0fa6c9594
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> @@ -0,0 +1,292 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	compatible =3D "brcm,bcm2712";
-> +
-> +	#address-cells =3D <2>;
-> +	#size-cells =3D <2>;
-> +
-> +	interrupt-parent =3D <&gicv2>;
-> +
-> +	axi: axi@1000000000 {
-> +		compatible =3D "simple-bus";
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges =3D <0x10 0x00000000  0x10 0x00000000  0x01 0x00000000>;
-> +
-> +		sdio1: mmc@1000fff000 {
-> +			compatible =3D "brcm,bcm2712-sdhci",
-> +				     "brcm,sdhci-brcmstb";
-> +			reg =3D <0x10 0x00fff000  0x0 0x260>,
-> +			      <0x10 0x00fff400  0x0 0x200>;
-> +			reg-names =3D "host", "cfg";
-> +			interrupts =3D <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk_emmc2>;
-> +			clock-names =3D "sw_sdio";
-> +			mmc-ddr-3_3v;
-> +		};
-> +
-> +		gicv2: interrupt-controller@107fff9000 {
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <3>;
-> +			compatible =3D "arm,gic-400";
-> +			reg =3D <0x10 0x7fff9000  0x0 0x1000>,
-> +			      <0x10 0x7fffa000  0x0 0x2000>,
-> +			      <0x10 0x7fffc000  0x0 0x2000>,
-> +			      <0x10 0x7fffe000  0x0 0x2000>;
-Please move compatible and reg before the other properties (DTS coding
-style)
-> +		};
-> +	};
-> +
-> +	clocks {
-> +		/* The oscillator is the root of the clock tree. */
-> +		clk_osc: clk-osc {
-> +			compatible =3D "fixed-clock";
-> +			#clock-cells =3D <0>;
-> +			clock-output-names =3D "osc";
-> +			clock-frequency =3D <54000000>;
-> +		};
-> +
-> +		clk_vpu: clk-vpu {
-> +			#clock-cells =3D <0>;
-> +			compatible =3D "fixed-clock";
-> +			clock-frequency =3D <750000000>;
-> +			clock-output-names =3D "vpu-clock";
-> +		};
-Is the VPU clock really fixed or is it just a workaround for minimal
-boot support?
-
-Except of this, LGTM
+- Nuno S=C3=A1
 
