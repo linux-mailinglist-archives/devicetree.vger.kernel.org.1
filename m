@@ -1,386 +1,136 @@
-Return-Path: <devicetree+bounces-70866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860F48D4CDD
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:35:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBFB38D4CDB
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:34:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA06AB21C4C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:35:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA5A3B21BC9
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C167171E65;
-	Thu, 30 May 2024 13:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C4717D88E;
+	Thu, 30 May 2024 13:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g2Ew6wpH"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hFw0fZtr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5217F17CA0C;
-	Thu, 30 May 2024 13:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE21217CA16
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 13:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717076108; cv=none; b=Mg7Bw435ghZejdqt4a6chsfiEqlBgLzbf1vyo0dAusLd7gqfPIZ6oC7Tgj4WTr94t2M6KlrkgM1tTfE8iHfNV+pLKoo+p0UD33zuxkce+SKuBjfXXf6WRnOguZCOmeJJTLR8b5PNdOreCg7+LN3phzGuc/fukRXbNgNZGJIcNlU=
+	t=1717076086; cv=none; b=CcR/JXzZ/sGdoG4HFEhhE0z3PJMWF1ZPamczMat1j5IlSVMAtF6BVIWbS4Zs+pzW8XZxL8KyDmfuBuJkYKUbBmb/YIl0xURZQeWD5H51WS4KMhNa5aWlXjb8iK3HdpXDRzKoO7XXEH5TbtZate4iRpC4FAi1tyulcWsbEstdw1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717076108; c=relaxed/simple;
-	bh=3AnIdFj3lsHNNgl6yv0mA/L6OL0S21ZbcdFtYn1dTkk=;
+	s=arc-20240116; t=1717076086; c=relaxed/simple;
+	bh=iEY3TKMBR3VjMOO18gro7lwUoFToxzJsoKmK2rYmRAQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sHrFoU0d4wyMm2FjgbIqk6KkR4xRCAZuj7B3J9sbuctYF/+muqo4giHXgtJPNESQ8oGJJ8OLkaaSudvQJcQZEVL0QWNpcYir3Qd985VtVw+LtCkUSiesc1r5wRRcOY/M0yZjynqrm8/kWAicjq67LxpDzsY+hUGvemQgx9EIzW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g2Ew6wpH; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a5a89787ea4so75990766b.2;
-        Thu, 30 May 2024 06:35:06 -0700 (PDT)
+	 To:Cc:Content-Type; b=Ypky1rc8ELvMwK1h39L1A0KtqVi4QX6JmxlEX4mr9MWt/3fIApwmp+xfRLi4rTjv+mpafI11e/UcEf7hJR0k2Ys43tyyEJCoyFPIeXmlyUbvRC+EjeDkaeAwiafbIZb29mIkXe3Y7T1r4f96x3fUWP13Lx8+k9GdtOhJHx0KAl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hFw0fZtr; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6ae102523a4so3599166d6.1
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 06:34:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717076104; x=1717680904; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1717076082; x=1717680882; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6ityrTb+cN3E6zdWopkba23K4YFJ51mGn7zptESF64M=;
-        b=g2Ew6wpH6dM/XqI+8wTZANq97DhovcLk+XgeeVEE8KcG6XLAzq856AfBwQsZnaoC7v
-         9iTmDc/Xf2i602QIxKmJZ26y/oa1ppLRzkcJW4NnbJ7VusgNu45GjNwT1/nxxzfIkuWN
-         usAZvSjHAfs9nDH+QYXcs9tUET82pz54OSXKpXuPB4SMSArHBh+CLIRJJ+Oy/4bce2sD
-         auFwQysdS8D0CAFSeNFcmnDWq/+Ysx+plXsknrIMsqkW2TL9jqfc7h5/ezTrH36Yp/9Q
-         KFO+LmWYMco85oB4PtEGF4g9R9FLwRlG1tSgwIUgQh85sg+F7F6vpFCjlRs9x7SMV1qM
-         RQeQ==
+        bh=3ekpEHUCDsezH1RNk3+5n/lewOHNyOHOYkS0J9gidF8=;
+        b=hFw0fZtrh55o4r4qaF+xdJqDlw65tq3dZqjfgrwDeni+GyDvBGj20NdJSF/FGn0rFx
+         22PvxXOPCimcLuby7rR2Mwuf5S6Df8uGfc4RpNC0xlhyTS1rYn10/Z6KpfXztC7hZf//
+         hnoOERwoWKBRZkKTW/qrn33VHx74tq1OZ2sBA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717076104; x=1717680904;
+        d=1e100.net; s=20230601; t=1717076082; x=1717680882;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6ityrTb+cN3E6zdWopkba23K4YFJ51mGn7zptESF64M=;
-        b=tz4SQoxEOC9BpDr2HtHemzlDzRfyW0k5JwhJxrEyC98OCJjbloBANzQoCUtDYmnonQ
-         fYHuGww7mJCkn845RscoH/5PTRNpuLnJ8mncxNeeCUEoDlDWekGy3wxDm8BHv0XmIQtk
-         DavaO07mSk2bypGrZ+vRNJOKOBaaMdsB/BluVd2QdwaV8zgDoKfAVqNz2ifC2C3cBjp6
-         V1DI8AbRGbPWo5DsmPs4k+YeYnEpQgYK1utH8fcEY8z7/v4gpawS3qhMCzezRsSn8Fl8
-         y+v6b54ZUs5VoTfCbxUU3R1pS+WZ3pRQXfMJ5ba3gqjaE8rZZW1f1WSNdv/hzbRF/xqj
-         CzVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXhPQO5JsF6oCayE/4nNsoYshCCVs+6UU68+xObmHLM+ZYWE9qv5jpIKj9eklH+EJ28WSx5DroIwAizLFXfi32dlhIduSM9Y9Q+V/HDyJHnXUw3J9Cm7ICWuuryne8oIahZRWiS9EnlTB9hW5rCczMBOZNOVsEfdjFff0S1bfrvCjp4WQ==
-X-Gm-Message-State: AOJu0YwZkzbFqt6VF0QEA19Rni6Zg5QzQOMsEBo2ZVShEr90NyoOzGy8
-	rMV93lzUCKbT4gsV2P6t7eW0Z2HZrNESbIuaa/Yi9Juw55mAuqpe+TI7cZPlES0ZOf2CjQaMZG/
-	oJ+WYB5mqeAYpVdCHhJBEkNbB6Ps=
-X-Google-Smtp-Source: AGHT+IH7FtLH1XLeHqlHgAvWr9dzcasrfRvrJ3/m57OZQa4LKdwDt7riItXkQ11EXy8nI4WkwAdBQEESRzaKO1SQlGQ=
-X-Received: by 2002:a17:906:b3a0:b0:a5a:1562:5187 with SMTP id
- a640c23a62f3a-a65e924fd51mr115572766b.55.1717076104311; Thu, 30 May 2024
- 06:35:04 -0700 (PDT)
+        bh=3ekpEHUCDsezH1RNk3+5n/lewOHNyOHOYkS0J9gidF8=;
+        b=awJXN4p1e2xmqO9yjVPORkpL6fRDfNVv0YVn2f+RHaZJwbMhhiHQt6QOvok7V3T2Cd
+         GKFlvjxVoGlZG+otK8Uct0iIhQgFGw2DVPyiu3CdhCAXK8F7ATV4roHTBVuHx0syGYgA
+         xoLGlsJscBH74GzdMRDzx4/cTdrupTSR3ZgrCRj9pOMgzjMsPRE2Y5E02/w8qCYz7VbG
+         l8UZWpibIcfcY6eMtP2co2b3vIP+kHj7ewHmMXAsmz6m/ImZz8DZxDLxnS3UC/8J+KfO
+         Pxm/y9hrFhjXR4rBFWhejgjhMzBdWWPZSdInNFnRJvLmj4u6+AwxUP1T4T68Pdul+ury
+         CU/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUcEf94dPzgS8gBnENnatpUlI8KZrXdaHzxe61Rmy9DaOWQFvJ14o5reQZ8AL6mgbOGdAon+d/t+zETNu/cRw3MIyA71da3fpSaZA==
+X-Gm-Message-State: AOJu0YyJhxlTfEmEmzxMUSMEFg7YfKV+/q54XCSMsBTbjqlesub2YYeh
+	+1IWet4+0gVSz0WCT4l9Sgz7gojdv3dV3iAafTtvrZQqCCtpDZFxPrdYKLK4d+tt7ljvITL3UpU
+	=
+X-Google-Smtp-Source: AGHT+IE4lvuwN4WpS+brJ+DCeCnW/3c7mZXXFXtv+kJFqEEEv15oxBHWI7jrPPFol0/mVna7gp1TXA==
+X-Received: by 2002:a05:6214:4506:b0:6ad:7a07:fd89 with SMTP id 6a1803df08f44-6ae0cb548b4mr37968346d6.29.1717076081911;
+        Thu, 30 May 2024 06:34:41 -0700 (PDT)
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com. [209.85.160.176])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ae12306f5bsm4463786d6.118.2024.05.30.06.34.40
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 06:34:41 -0700 (PDT)
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-43f87dd6866so363081cf.0
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 06:34:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX4+ebrAJNhAq8vdbRbc0KlRDP96NLzce3iV631kdjtZV6byFnf4ULpw3zsYxMv4bHeJleGVYc4GfcituQzNYG3upiNYmuft8yf1A==
+X-Received: by 2002:a05:622a:410c:b0:437:b4d9:ddc6 with SMTP id
+ d75a77b69052e-43feb50e3a2mr2651001cf.27.1717076079721; Thu, 30 May 2024
+ 06:34:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240530093410.112716-1-angelogioacchino.delregno@collabora.com> <20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240530093410.112716-3-angelogioacchino.delregno@collabora.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 30 May 2024 16:34:27 +0300
-Message-ID: <CAHp75Vexddt1xUGogRDZA9pM1pFp2=ZtCQnCfXePahSCb+oKpg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] iio: adc: Add support for MediaTek MT6357/8/9
- Auxiliary ADC
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lee@kernel.org, andy@kernel.org, 
-	nuno.sa@analog.com, bigunclemax@gmail.com, dlechner@baylibre.com, 
-	marius.cristea@microchip.com, marcelo.schmitt@analog.com, fr0st61te@gmail.com, 
-	mitrutzceclan@gmail.com, mike.looijmans@topic.nl, marcus.folkesson@gmail.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, kernel@collabora.com
+References: <20240530082556.2960148-1-quic_kriskura@quicinc.com>
+In-Reply-To: <20240530082556.2960148-1-quic_kriskura@quicinc.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 30 May 2024 06:34:28 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UhrCKCv5R-LAAugrLXFp=cDcj2=Pp9-N3qk5pk2=sGEg@mail.gmail.com>
+Message-ID: <CAD=FV=UhrCKCv5R-LAAugrLXFp=cDcj2=Pp9-N3qk5pk2=sGEg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Disable SS instances in park mode for SC7180/ SC7280
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: cros-qcom-dts-watchers@chromium.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Matthias Kaehlcke <mka@chromium.org>, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, quic_ppratap@quicinc.com, quic_jackp@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 30, 2024 at 12:34=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+Hi,
+
+On Thu, May 30, 2024 at 1:26=E2=80=AFAM Krishna Kurapati
+<quic_kriskura@quicinc.com> wrote:
 >
-> Add a driver to support reading the Auxiliary ADC IP found in the
-> MediaTek MT6357, MT6358 and MT6359 Power Management ICs.
+> When working in host mode, in certain conditions, when the USB
+> host controller is stressed, there is a HC died warning that comes up.
+> Fix this up by disabling SS instances in park mode for SC7280 and SC7180.
 >
-> This driver provides multiple ADC channels for system monitoring,
-> such as battery voltage, PMIC temperature, PMIC-internal voltage
-> regulators temperature, and others.
-
-> ---
-
-Here is no explanation on how this is differ to any of the three
-existing drivers? I.o.w. why do we need a brand new one?
-
-...
-
-+ bits.h
-
-> +#include <linux/delay.h>
-
-> +#include <linux/kernel.h>
-
-Why?
-
-+ mod_devicetable.h
-> +#include <linux/module.h>
-
-> +#include <linux/of.h>
-
-Why?
-
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-
-+ types.h
-
-+ blank line
-
-> +#include <linux/iio/iio.h>
-
-+ Blank line
-
-> +#include <linux/mfd/mt6397/core.h>
-
-...
-
-> +#define PMIC_RG_RESET_VAL              (BIT(0) | BIT(3))
-
-In this form it requires a comment explaining each mentioned bit.
-
-> +#define PMIC_AUXADC_ADCx(x)            ((x) << 1)
-
-Seems like a useless macro, it occupies much more space than in-place shift=
-.
-
-...
-
-> +#define MT6358_IMP0_CLEAR              (BIT(14) | BIT(7))
-
-As per above.
-
-...
-
-> +/**
-> + * struct mtk_pmic_auxadc_chan - PMIC AUXADC channel data
-> + * @req_idx:       Request register number
-> + * @req_mask:      Bitmask to activate a channel
-> + * @num_samples:   Number of AUXADC samples for averaging
-> + * @r_numerator:   Resistance ratio numerator
-> + * @r_denominator: Resistance ratio denominator
-> + */
-> +struct mtk_pmic_auxadc_chan {
-> +       u8 req_idx;
-> +       u16 req_mask;
-> +       u16 num_samples;
-
-> +       u8 r_numerator;
-> +       u8 r_denominator;
-
-Can you add struct u8_fract to the math.h and use it? I will Ack/R the
-respective patch.
-
-> +};
-
-...
-
-> +struct mtk_pmic_auxadc_pdata {
-> +       const struct iio_chan_spec *channels;
-> +       int num_channels;
-
-Why signed?
-
-> +       const struct mtk_pmic_auxadc_chan *desc;
-> +       const u16 *regs;
-> +       u16 sec_unlock_key;
-> +       u8 imp_adc_num;
-> +       int (*read_imp)(struct mt6359_auxadc *adc_dev, int *vbat, int *ib=
-at);
-> +};
-
-...
-
-> +static const u16 mt6357_auxadc_regs[] =3D {
-> +       [PMIC_HK_TOP_RST_CON0]  =3D 0xf90,
-
-Can we use the fixed-width values so all of them will look nice and
-easy to parse?
-
-> +       [PMIC_AUXADC_DCM_CON]   =3D 0x122e,
-> +       [PMIC_AUXADC_ADC0]      =3D 0x1088,
-> +       [PMIC_AUXADC_IMP0]      =3D 0x119c,
-> +       [PMIC_AUXADC_IMP1]      =3D 0x119e,
-> +       [PMIC_AUXADC_RQST0]     =3D 0x110e,
-> +       [PMIC_AUXADC_RQST1]     =3D 0x1114,
-> +};
-
-...
-
-> +static const u16 mt6358_auxadc_regs[] =3D {
-
-Ditto.
-
-> +       [PMIC_HK_TOP_RST_CON0]  =3D 0xf90,
-> +       [PMIC_AUXADC_DCM_CON]   =3D 0x1260,
-> +       [PMIC_AUXADC_ADC0]      =3D 0x1088,
-> +       [PMIC_AUXADC_IMP0]      =3D 0x1208,
-> +       [PMIC_AUXADC_IMP1]      =3D 0x120a,
-> +       [PMIC_AUXADC_RQST0]     =3D 0x1108,
-> +       [PMIC_AUXADC_RQST1]     =3D 0x110a,
-> +};
-
-...
-
-> +static const u16 mt6359_auxadc_regs[] =3D {
-
-Ditto.
-
-> +       [PMIC_FGADC_R_CON0]     =3D 0xd88,
-> +       [PMIC_HK_TOP_WKEY]      =3D 0xfb4,
-> +       [PMIC_HK_TOP_RST_CON0]  =3D 0xf90,
-> +       [PMIC_AUXADC_RQST0]     =3D 0x1108,
-> +       [PMIC_AUXADC_RQST1]     =3D 0x110a,
-> +       [PMIC_AUXADC_ADC0]      =3D 0x1088,
-> +       [PMIC_AUXADC_IMP0]      =3D 0x1208,
-> +       [PMIC_AUXADC_IMP1]      =3D 0x120a,
-> +       [PMIC_AUXADC_IMP3]      =3D 0x120e,
-> +};
-
-...
-
-> +       ret =3D regmap_read_poll_timeout(adc_dev->regmap, pdata->regs[PMI=
-C_AUXADC_IMP0],
-> +                                      val, !!(val & MT6358_IMP0_IRQ_RDY)=
-,
-> +                                      IMP_POLL_DELAY_US, AUXADC_TIMEOUT_=
-US);
-> +       if (ret) {
-> +               mt6358_stop_imp_conv(adc_dev);
-
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-
-  if (ret)
-    foo()
-
-  return ret;
-
-
-...
-
-> +       int val_v, ret;
-
-Why is val_v signed?
-
-...
-
-> +       int val_v, val_i, ret;
-
-Ditto for all val_*.
-
-...
-
-> +       /* If it succeeded, wait for the registers to be populated */
-> +       usleep_range(IMP_STOP_DELAY_US, IMP_STOP_DELAY_US + 50);
-
-fsleep() ?
-
-...
-
-> +       /* Assert ADC reset */
-> +       regmap_set_bits(regmap, pdata->regs[PMIC_HK_TOP_RST_CON0], PMIC_R=
-G_RESET_VAL);
-
-No required delay in between?
-
-> +       /* De-assert ADC reset */
-> +       regmap_clear_bits(regmap, pdata->regs[PMIC_HK_TOP_RST_CON0], PMIC=
-_RG_RESET_VAL);
-
-...
-
-> +       /* Wait until all samples are averaged */
-> +       usleep_range(desc->num_samples * AUXADC_AVG_TIME_US,
-> +                    (desc->num_samples + 1) * AUXADC_AVG_TIME_US);
-
-fsleep()
-
-...
-
-> +       ret =3D regmap_read_poll_timeout(regmap,
-> +                                      (pdata->regs[PMIC_AUXADC_ADC0] +
-> +                                       PMIC_AUXADC_ADCx(chan->address)),
-
-Drop unneeded parentheses and possibly make it one line.
-
-> +                                      val, (val & PMIC_AUXADC_RDY_BIT),
-
-Unneeded parentheses.
-
-> +                                      AUXADC_POLL_DELAY_US, AUXADC_TIMEO=
-UT_US);
-> +       if (ret)
-> +               return ret;
-
-...
-
-> +       mutex_lock(&adc_dev->lock);
-
-Why not use cleanup.h?
-
-...
-
-> +static int mt6359_auxadc_probe(struct platform_device *pdev)
-> +{
-
-  struct device *dev =3D &pdev->dev;
-
-> +       struct device *mt6397_mfd_dev =3D pdev->dev.parent;
-
-  ... =3D dev->parent;
-
-> +       struct mt6359_auxadc *adc_dev;
-> +       struct iio_dev *indio_dev;
-> +       struct regmap *regmap;
-> +       int ret;
-> +
-> +       /* Regmap is from SoC PMIC Wrapper, parent of the mt6397 MFD */
-> +       regmap =3D dev_get_regmap(mt6397_mfd_dev->parent, NULL);
-> +       if (!regmap)
-> +               return dev_err_probe(&pdev->dev, -ENODEV, "Failed to get =
-regmap\n");
-> +
-> +       indio_dev =3D devm_iio_device_alloc(&pdev->dev, sizeof(*adc_dev))=
-;
-> +       if (!indio_dev)
-> +               return -ENOMEM;
-> +
-> +       adc_dev =3D iio_priv(indio_dev);
-> +       adc_dev->regmap =3D regmap;
-> +       adc_dev->dev =3D &pdev->dev;
-> +
-> +       adc_dev->pdata =3D device_get_match_data(&pdev->dev);
-> +       if (!adc_dev->pdata)
-> +               return -EINVAL;
-> +
-> +       mutex_init(&adc_dev->lock);
-> +
-> +       mt6359_auxadc_reset(adc_dev);
-> +
-> +       indio_dev->dev.parent =3D &pdev->dev;
-> +       indio_dev->name =3D dev_name(&pdev->dev);
-> +       indio_dev->info =3D &mt6359_auxadc_info;
-> +       indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +       indio_dev->channels =3D adc_dev->pdata->channels;
-> +       indio_dev->num_channels =3D adc_dev->pdata->num_channels;
-> +
-> +       ret =3D devm_iio_device_register(&pdev->dev, indio_dev);
-> +       if (ret < 0)
-
-Why  ' < 0' ?
-
-> +               return dev_err_probe(&pdev->dev, ret, "failed to register=
- iio device\n");
-> +
-> +       return 0;
-> +}
-
---=20
-With Best Regards,
-Andy Shevchenko
+> Krishna Kurapati (2):
+>   arm64: dts: qcom: sc7180: Disable SS instances in park mode
+>   arm64: dts: qcom: sc7280: Disable SS instances in park mode
+>
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
+>  2 files changed, 2 insertions(+)
+
+FWIW, the test case I used to reproduce this:
+
+1. Plug in a USB dock w/ Ethernet
+2. Plug a USB 3 SD card reader into the dock.
+3. Use lsusb -t to confirm both Ethernet and card reader are on USB3.
+4. From a shell, run for i in $(seq 5); do dd if=3D/dev/sdb of=3D/dev/null
+bs=3D4M; done to read from the card reader.
+5. At the same time, stress the Internet. If you've got a very fast
+Internet connection then running Google's "Internet speed test" did
+it, but I could also reproduce by just running this from a PC
+connected to the same network as my DUT: ssh ${DUT} "dd of=3D/dev/null"
+< /dev/zero
+
+I would also note that, though I personally reproduced this on sc7180
+and sc7280 boards and thus Krishna posted the patch for those boards,
+there's no reason to believe that this problem doesn't affect all of
+Qualcomm's SoCs. It would be nice if someone at Qualcomm could post a
+followup patch fixing this everywhere.
+
+-Doug
 
