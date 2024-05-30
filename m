@@ -1,284 +1,159 @@
-Return-Path: <devicetree+bounces-70846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A1858D4BC0
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:34:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB298D4BD8
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EDE81F22777
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:34:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4341E282246
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780EC13211C;
-	Thu, 30 May 2024 12:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B516F2F8;
+	Thu, 30 May 2024 12:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="zDqAP0zA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOApEJQs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9677318309F
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 12:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8181E492;
+	Thu, 30 May 2024 12:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717072480; cv=none; b=PPrxGSm6fQb8WuNF6fKly8vqjaYXIlFNHpEKIPTUdEdXh6LoZUBeDm6pPRxxUYWHR4KxE+FhZg/LVwO5rGFt52b4Yne1O6bBPUURbfTAVfHkVomwO3mlO+Gytp/tJGk9PL92wdZ7J+6+gUJepZZg5//4gURT6SVN5Auvt4Uohzw=
+	t=1717073146; cv=none; b=BAZOPFgcrXq1oEHpb0lh9cDSl3WDZZietdqnPHj9IU3MDhImcsEmzZgdVoNY4LbmOvirA2gASjwB7oJCUFLQ1S825uMU5vGmc+wQumKHuIvN9uH7PMj/UIusU7p+X7IbZI7BFtbzN+1R3EnRSwmSeOtoBiLGNRuLtUh2Vg1b87M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717072480; c=relaxed/simple;
-	bh=3EAc270GOisvCj8dYgrA44nXJyeUIV05uLrntE2kQXU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GLhF/ug4ADQVrnjT0kzKUb0/UgVugj2NAmGFX0y3KsFK80s22tlZIdeCqwtumW44vKmIv427TUDVeTXvdn52yBQXJIBAXv3yk/CZgQ2PPWq4oR+rHACyqdYZlYAa6C/wqx+zwJJKpKg9OqHYINXoCFXOL8V+4ZC/BdxIytIJxfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=zDqAP0zA; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4212a3e82b6so732965e9.0
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 05:34:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1717072475; x=1717677275; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ktVNsM22917dZAynxsv5GXb4hlZ/XE1ZLs9sHcQUXDo=;
-        b=zDqAP0zAcTzr6CTAoofdRqWVDFu3Jrcdl1wqlEt8NZEfh+xXlFGIyVBItseXkL3Ob/
-         NuOVZPE+rUqmpi57rFToKFSchcgtiwtAEQZYDQn6EUfTUBz1ABrNk4hp2kuGYgBr3XRn
-         CkHcaz+OwsQvSCWfVEJpG3MvqGoAmYbe7Zg3P242OXWpKq1mEUftg5ru2UMOztoWcKNM
-         IZSE5FFbBRPgQ0BiFdC+/S+k2TUfbGkX0uKOOJ6I1ykB2JeJ+TMXYhDimPanjd0U4HQG
-         UFj+imvidgFm90MPHrt1WJo/N2ng6mnwDPQxr56qrbLwGri2m8QOKZQk3m0C2H6/1897
-         R/ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717072475; x=1717677275;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ktVNsM22917dZAynxsv5GXb4hlZ/XE1ZLs9sHcQUXDo=;
-        b=hRLtjcHnLQEWwoLMXdWZHSSJpkLqtixO5O02Zwurm0zTeJxT9qpN1AVSTx+FSQZAZ5
-         xE67kGrtiXrf4yDdBvJPOhJtky73DT6I0McENs4uFreTxwEUJM2/6Q1lYzCp/jL0fAQl
-         PLbn3nbNRnV/PLpxsnHzw7BShbEUmHU2tOVjpK4c0dTSy0AdXpGtzDgUI2SpAB4V5z98
-         2KaCujpzfFSDel3iKEtBM7zamwMHy+nBV5AWoarA6FgwffPIRhHfVatyLqI4xhBIGc7B
-         keGVzUemzhO0sY/pfhU1KKEjCPoPIjrldOWwQTZkOOlXRgtbQLG7bbUc6lY6tiFUHUiT
-         Dq/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWq1NlsOCNCE6DigjJAnDWLDp+oCmtBjMxe4lMsn4cFQIErETpq2mDXVxi5+KBBI3GfyeVUGr3RGBZJYskPiu8n+jBu4fJgteEy1A==
-X-Gm-Message-State: AOJu0Yy72CBBKihkSXUVhkceit0K0eUygDbIWS25ZbhOX/pmT1DnOfIl
-	c35wiEo7P/P6zi/9Vu8Cvow2VG/tdqFsqAiVMiAGKJKyrNf1ZOGsy9O/4xL+Bok=
-X-Google-Smtp-Source: AGHT+IFYxtCK25sfSOiuY5nuDusYxlyyhmUuFZU6a1ke3427hoJXy7AAxN1yJwe6rPBG0CFk+gnyeg==
-X-Received: by 2002:a05:600c:3509:b0:418:f5a:580b with SMTP id 5b1f17b1804b1-4212811f675mr15479765e9.18.1717072474712;
-        Thu, 30 May 2024 05:34:34 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421270697b6sm24134475e9.24.2024.05.30.05.34.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 May 2024 05:34:34 -0700 (PDT)
-Message-ID: <40903165-c965-4c6c-a3bf-104b1088730b@freebox.fr>
-Date: Thu, 30 May 2024 14:34:33 +0200
+	s=arc-20240116; t=1717073146; c=relaxed/simple;
+	bh=xoXwZ15smUADprLqqulMhMKFFHjrjeZ9K2+p6YC1+Rg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=bS0caGtfyTyMyAQvSdNFp0WSCAV/hNIIxeYN7/c6IhWBIhTtEf9+qttx7Xc8uurNRgFBQ+CiA2nnO6fsp5cZiyeifNEcPn8PGg48BZDSaPwBlF4WHdziXj5g5aNbVYZNgHcGx3/2z72ic15gtPhrg65EG4o9IMHaRKct83tbkcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FOApEJQs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9828AC2BBFC;
+	Thu, 30 May 2024 12:45:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717073145;
+	bh=xoXwZ15smUADprLqqulMhMKFFHjrjeZ9K2+p6YC1+Rg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=FOApEJQs2hHMKxXHGrdoiYlgsX6GLgB4214MgH+NPEpdd0GtjCjSlalQkK+0mGdMj
+	 RNVMfU3fs3+gI2QAn2cAD8+JrVAEjDBqm2L03X9dJcwUX6Kb1CO4rG3fPduOP7w/SR
+	 iidY/r1I1FYZv63t2JCd5MdpfU4XYgodNAsSsSHs3XgwhJmsQyWKlGDEIm9+r1WPwO
+	 uIpC878tWZM4076plTEeaRUdSEafv1GDJlvX1M24f8H5+SHkSpnVAuCkzW4DaEvslk
+	 Cmo7wPzpJbAR/gugFqGc2WQevrZxwZ2I1yQUQ22gaEGH0EMtsNZpID+pjj9XSd+wJH
+	 UE3dlObiaKmWA==
+Date: Thu, 30 May 2024 07:45:44 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: qcom: msm8998: add HDMI GPIOs
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>, MSM <linux-arm-msm@vger.kernel.org>,
- DT <devicetree@vger.kernel.org>,
- Bryan O Donoghue <bryan.odonoghue@linaro.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>
-References: <8cc61db5-2920-4dd1-8132-5af434fb05b1@freebox.fr>
- <o6wwzb4qblelfpfsrmqhoovjnyvymf42p2ilv4bzn4le3nklbv@kj3qklez7izy>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <o6wwzb4qblelfpfsrmqhoovjnyvymf42p2ilv4bzn4le3nklbv@kj3qklez7izy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Caleb Connolly <caleb.connolly@linaro.org>
+Cc: devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-kernel@vger.kernel.org, Caleb Connolly <caleb@postmarketos.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexander Martinz <amartinz@shiftphones.com>, linux-arm-msm@vger.kernel.org
+In-Reply-To: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
+References: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
+Message-Id: <171707307103.1811716.12806393621772090873.robh@kernel.org>
+Subject: Re: [PATCH v3 0/2] qcom: initial support for the SHIFTphone 8
 
-On 28/05/2024 02:45, Dmitry Baryshkov wrote:
 
-> While I don't see anything wrong with this patch, maybe it's better to
-> include it into the patchset that adds all HDMI nodes to the msm8998.dtsi.
+On Thu, 30 May 2024 01:39:15 +0200, Caleb Connolly wrote:
+> The SHIFTphone 8 is an upcoming QCM6490 smartphone, it has the following
+> features:
+> 
+> * 12GB of RAM, 512GB UFS storage
+> * 1080p display.
+> * Hardware kill switches for cameras and microphones
+> * UART access via type-c SBU pins (enabled by an internal switch)
+> 
+> Initial support includes:
+> 
+> * Framebuffer display
+> * UFS and sdcard storage
+> * Battery monitoring and USB role switching via pmic glink
+> * Bluetooth
+> * Thermals
+> 
+> Wifi works but requires some commits to be reverted to prevent a
+> firmware crash.
+> 
+> The serial port on the device can be accessed via the usb-cereal
+> adapter, it must first be enabled by flipping the switch under the
+> display. Additional info can be found on the postmarketOS wiki page.
+> 
+> https://wiki.postmarketos.org/wiki/SHIFT_SHIFTphone_8_(shift-otter)
+> 
+> ---
+> Changes in v3:
+> - Enable wifi
+> - Fix protected-clocks indentation in gcc
+> - Link to v2: https://lore.kernel.org/r/20240520-otter-bringup-v2-0-d717d1dab6b8@linaro.org
+> 
+> Changes in v2:
+> - Fix authorship
+> - Address Luca's feedback
+> - Link to v1: https://lore.kernel.org/r/20240508-otter-bringup-v1-0-c807d3d931f6@linaro.org
+> 
+> ---
+> Caleb Connolly (2):
+>       dt-bindings: arm: qcom: Add QCM6490 SHIFTphone 8
+>       arm64: dts: qcom: add QCM6490 SHIFTphone 8
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml  |   1 +
+>  arch/arm64/boot/dts/qcom/Makefile                |   1 +
+>  arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 926 +++++++++++++++++++++++
+>  3 files changed, 928 insertions(+)
+> ---
+> change-id: 20240507-otter-bringup-388cf3aa7ca5
+> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+> 
+> // Caleb (they/them)
+> 
+> 
+> 
 
-Here is my current diff:
-Do I just need to split it up, and it's good to go?
-(Doubtful++)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
-index 83fe4b39b56f4..78607ee3e2e84 100644
---- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
-@@ -14,6 +14,7 @@ properties:
-   compatible:
-     enum:
-       - qcom,hdmi-phy-8996
-+      - qcom,hdmi-phy-8998
- 
-   reg:
-     maxItems: 6
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index e5f051f5a92de..182d80c2ab942 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1434,6 +1434,34 @@ blsp2_spi6_default: blsp2-spi6-default-state {
- 				drive-strength = <6>;
- 				bias-disable;
- 			};
-+
-+			hdmi_cec_default: hdmi-cec-default-state {
-+				pins = "gpio31";
-+				function = "hdmi_cec";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			hdmi_ddc_default: hdmi-ddc-default-state {
-+				pins = "gpio32", "gpio33";
-+				function = "hdmi_ddc";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			hdmi_hpd_default: hdmi-hpd-default-state {
-+				pins = "gpio34";
-+				function = "hdmi_hot";
-+				drive-strength = <16>;
-+				bias-pull-down;
-+			};
-+
-+			hdmi_hpd_sleep: hdmi-hpd-sleep-state {
-+				pins = "gpio34";
-+				function = "hdmi_hot";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
- 		};
- 
- 		remoteproc_mss: remoteproc@4080000 {
-@@ -2757,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
- 				 <&mdss_dsi0_phy 0>,
- 				 <&mdss_dsi1_phy 1>,
- 				 <&mdss_dsi1_phy 0>,
--				 <0>,
-+				 <&hdmi_phy 0>,
- 				 <0>,
- 				 <0>,
- 				 <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
-@@ -2862,6 +2890,14 @@ dpu_intf2_out: endpoint {
- 							remote-endpoint = <&mdss_dsi1_in>;
- 						};
- 					};
-+
-+					port@2 {
-+						reg = <2>;
-+
-+						dpu_intf3_out: endpoint {
-+							remote-endpoint = <&hdmi_in>;
-+						};
-+					};
- 				};
- 			};
- 
-@@ -3017,6 +3053,103 @@ mdss_dsi1_phy: phy@c996400 {
- 
- 				status = "disabled";
- 			};
-+
-+			hdmi: hdmi-tx@c9a0000 {
-+				compatible = "qcom,hdmi-tx-8998";
-+				reg =	<0x0c9a0000 0x50c>,
-+					<0x00780000 0x6220>,
-+					<0x0c9e0000 0x2c>;
-+				reg-names = "core_physical",
-+					    "qfprom_physical",
-+					    "hdcp_physical";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				clocks = <&mmcc MDSS_MDP_CLK>,
-+					 <&mmcc MNOC_AHB_CLK>,
-+					 <&mmcc MDSS_AHB_CLK>,
-+					 <&mmcc MDSS_AXI_CLK>,
-+					 <&mmcc MISC_AHB_CLK>,
-+					 <&mmcc MDSS_HDMI_CLK>,
-+					 <&mmcc MDSS_HDMI_DP_AHB_CLK>,
-+					 <&mmcc MDSS_EXTPCLK_CLK>;
-+				clock-names =
-+					"mdp_core",
-+					"mnoc",
-+					"iface",
-+					"bus",
-+					"iface_mmss",
-+					"core",
-+					"alt_iface",
-+					"extp";
-+
-+				phys = <&hdmi_phy>;
-+				phy-names = "hdmi_phy";
-+
-+				pinctrl-names = "default", "sleep";
-+				pinctrl-0 = <&hdmi_hpd_default
-+					     &hdmi_ddc_default
-+					     &hdmi_cec_default>;
-+				pinctrl-1 = <&hdmi_hpd_sleep
-+					     &hdmi_ddc_default
-+					     &hdmi_cec_default>;
-+
-+				power-domains = <&rpmpd MSM8998_VDDCX>;
-+
-+				#sound-dai-cells = <1>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						hdmi_in: endpoint {
-+							remote-endpoint = <&dpu_intf3_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						hdmi_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			hdmi_phy: hdmi-phy@c9a0600 {
-+				compatible = "qcom,hdmi-phy-8998";
-+				reg = <0x0c9a0600 0x18b>,
-+				      <0x0c9a0a00 0x38>,
-+				      <0x0c9a0c00 0x38>,
-+				      <0x0c9a0e00 0x38>,
-+				      <0x0c9a1000 0x38>,
-+				      <0x0c9a1200 0x0e8>;
-+				reg-names = "hdmi_pll",
-+					    "hdmi_tx_l0",
-+					    "hdmi_tx_l1",
-+					    "hdmi_tx_l2",
-+					    "hdmi_tx_l3",
-+					    "hdmi_phy";
-+
-+				#clock-cells = <0>;
-+				#phy-cells = <0>;
-+
-+				clocks =
-+					<&mmcc MDSS_AHB_CLK>,
-+					<&gcc GCC_HDMI_CLKREF_CLK>,
-+					<&xo>;
-+				clock-names =
-+					"iface",
-+					"ref",
-+					"xo";
-+				power-domains = <&rpmpd MSM8998_VDDMX>;
-+
-+				status = "disabled";
-+			};
- 		};
- 
- 		venus: video-codec@cc00000 {
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y qcom/qcm6490-shift-otter.dtb' for 20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org:
+
+arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: pcie@1c08000: interrupts: [[0, 307, 4], [0, 308, 4], [0, 309, 4], [0, 312, 4], [0, 313, 4], [0, 314, 4], [0, 374, 4], [0, 375, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sc7280.yaml#
+arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: pcie@1c08000: interrupt-names:0: 'msi' was expected
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sc7280.yaml#
+arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: pcie@1c08000: interrupt-names: ['msi0', 'msi1', 'msi2', 'msi3', 'msi4', 'msi5', 'msi6', 'msi7'] is too long
+	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sc7280.yaml#
+arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: phy@88e3000: 'orientation-switch' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/phy/qcom,usb-snps-femto-v2.yaml#
+arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: usb@8cf8800: interrupt-names: ['pwr_event', 'hs_phy_irq', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dtb: video-codec@aa00000: iommus: [[65, 8576, 32]] is too short
+	from schema $id: http://devicetree.org/schemas/media/qcom,sc7280-venus.yaml#
+
+
+
+
 
 
