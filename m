@@ -1,111 +1,114 @@
-Return-Path: <devicetree+bounces-70880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D059C8D4D41
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:53:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D28A8D4D49
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:54:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CDEE282D4C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:52:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 137AE1F23292
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4848D186E3D;
-	Thu, 30 May 2024 13:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86317186E2B;
+	Thu, 30 May 2024 13:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g61V7Een"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D019B186E3B;
-	Thu, 30 May 2024 13:52:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8513D68;
+	Thu, 30 May 2024 13:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717077134; cv=none; b=pDuW37QvOr9AtI6mXCZQJLAR9qnYsJcLUdUOrcLN9HAbaf53Gi8+nM42ZmJqtbwPWd4rkyojBHm6DiJcyDfdfgOVFdD9kdkIaHwqXmuq53zFQvuFzciH3VZdDSzkrH7QxjFZ9WfM/lZbsZFKodoF/ucTND1dD/epjQsTzuZlZxQ=
+	t=1717077288; cv=none; b=UF4CwdHU7Mug6BUzB/Zkf1zffTpK2dcqAKB7fC2jrzZTbAikNqSRSCw17aSGdbeE/MTH6stI5bAhH+SJZdvVnL5XWDt8k8B6eJt8KeHf+8lfcp91YorttR1unCyb6GnAP5WWTD/v2XD9082hvx1Eon3cH41BXMOv7dPAOqr+1A4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717077134; c=relaxed/simple;
-	bh=GHE1EL6MHnqe/31WsFV6zBz1mm7AL9MVE/m3nlEW6/E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cmKa4FpzrqY3S4vLLzlq3UydH6dtsR4G5Dy8HUdQY7x5UnHd1+E9Oq2vfeQFGyPtZfpZ6Spxcy6McAWOkwze24z+P9vDu+nBgvfmRG/xKaXdiEsZ2Vc9VL7wfEJWnqJGqg/8jVTGzU+Blcic8i8KvmdXym280jPAamYjOfdWgTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-62a2424ecb8so9896147b3.1;
-        Thu, 30 May 2024 06:52:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717077131; x=1717681931;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GP1KhiC6F/2HojFBJNH7yktUkTnEzhuECM6OWCHaHRw=;
-        b=tYm3oM87wGgcecaJG/ecCKIexN6ZBNNdwb0KgM9dOwfW8nBqLs7SzUlTh5Fw9aMydk
-         fnRS54AGyqe8K+WeA1nXMYSuezrZ7zQLZkCTbnwOMndmaASxBrwlqUe9pJtKyuYUKRiP
-         GRPeFc5Ecdgo11NgqeUFMytFSIJ65vRLrO0r/VVdnZNZlJNVphgHZ8kpD/HAAopQaOsH
-         uK0DEZq3DqrTEiCpBIkvlrY3rQjww4fmfSo1ypaTM8bzQfm01Nir4omWRFL5XAf5LZis
-         iOX6j5CVSTWLzReliheX2C3q0HtP63hYJhrquQys/xGYLl+uPItAHTr+5QMzCxBUQmT/
-         f/ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVO7K9qjGwfiacM+YV7KHl+pXtqIbeULumZiUxvLhWVnWqCRoy7o0I/TlpeNY6WG2FXcqj51/aSTqtJ/T9FEwVIMNJXGAbnhcRTnUf1cGb0cEd8FTG0E74MtEOBnLJ4TevMO24NAcvPKat3aMENaFVwFuY4IAo0nvscymnoGBCZNTRIlU0VwgZa5wL/zNAw1jfMuuTYazi7zs1R5sN34N+D5F06OFXCg==
-X-Gm-Message-State: AOJu0YwAzNZDk8toUSU1KMPRBu8qopOSyLJb5b0ItuRjLz4Bb5H/MalI
-	NzNg59P+CzCMvPFgRdaOiK/D2mxiAO/lGMzGzacviswmH0I2z60xu9N+RkOi
-X-Google-Smtp-Source: AGHT+IEp1qEDlKkpqqMqzMk0gmCZfSZkY6m90lEJqg4qvohnEUi3t82J/L3B15k+ns0r+wvUlIhhGg==
-X-Received: by 2002:a81:f003:0:b0:615:225e:ac13 with SMTP id 00721157ae682-62c6bbf99e7mr21406467b3.18.1717077131260;
-        Thu, 30 May 2024 06:52:11 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-62a0a56f409sm27793837b3.139.2024.05.30.06.52.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 May 2024 06:52:10 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-df771db8b24so881434276.3;
-        Thu, 30 May 2024 06:52:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWsYVxL9SOY4VJkNyA00P6l/xcLPTklwRZKL71Ose5zYv5/tjPhsMgUmJsBhEHcaRBO6E88C/I67pUrQz2iRhDQ5XI7MaDrr4O6cx9QnQU5f5SH3UdiFhnvZLTsPZeYnJyxJxKiEztD0jj9KVQ8ljKc6ofjayi6RQGABC2orzyJSPj4kTQaNJs/3lYvlODxCbQ+M7LgYO5D+Of9NRt4cyuQvV0vgYzP0A==
-X-Received: by 2002:a25:cecf:0:b0:df7:887b:abfb with SMTP id
- 3f1490d57ef6-dfa5a5dec31mr2492369276.15.1717077130579; Thu, 30 May 2024
- 06:52:10 -0700 (PDT)
+	s=arc-20240116; t=1717077288; c=relaxed/simple;
+	bh=q3qGYkWoISiLK4CH2M4GGiP+fm0cRhpFmjJb9qqJnno=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=giu1KYgkJBfwtdYNxHpLOQQJMHIeSSyqWjuWQRyd8PcS1Ln/VSUCOBgIPEY/FGEQ13lkt5HGkLr5iUkUzKT0PfLxxJpJG6GR8P6s4svxkiECfe9lgywyk94PLDiM1ZnNmODLziHcERwV4C2NOxOFKQdCJKbWysgv7t5rj9kYLX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g61V7Een; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D09E0C2BBFC;
+	Thu, 30 May 2024 13:54:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717077287;
+	bh=q3qGYkWoISiLK4CH2M4GGiP+fm0cRhpFmjJb9qqJnno=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=g61V7EenqhG+KV90gKh5/eSORsAYlgXDU9Kzj8sTwRLAJy4tEWHgtFONYSK8oh9+5
+	 k4LdLjFbsZbUBUUVkgVoZtE6/K8Dm9DWYivHvowfBy1PryJvZezS1BpVtRGdhI2K5n
+	 k6ZJDalpk5MBwWzwU+zpZVCHCAYT9k/wazHsUDowSP7/U6CNvnjLtinmE5hxlVuq/1
+	 5dwZBDqN4HwhpUjMTcwibhbpi2xfVPCqitLVfcz4XuaRbYJx71dolggH3RfaOO5V2w
+	 pBcaX4xGpwrEkpU8vZdf27Cr6hUUD8bYVZ520YwyfTtIF3PdYILK3dFvZoktgd/wUK
+	 uC4xBcvqBfMIQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1sCgEv-00GuVb-Le;
+	Thu, 30 May 2024 14:54:45 +0100
+Date: Thu, 30 May 2024 14:54:44 +0100
+Message-ID: <86wmnbl80r.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Anup Patel <apatel@ventanamicro.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 0/2] of: Fix interrupt-map for fw_devlink
+In-Reply-To: <20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org>
+References: <20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240524094603.988-1-paul.barker.ct@bp.renesas.com> <20240524094603.988-10-paul.barker.ct@bp.renesas.com>
-In-Reply-To: <20240524094603.988-10-paul.barker.ct@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 30 May 2024 15:51:58 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVaOZjr6kUO2TebD6=x5wogE1=xyzFty0Jy8=8fSsU-7A@mail.gmail.com>
-Message-ID: <CAMuHMdVaOZjr6kUO2TebD6=x5wogE1=xyzFty0Jy8=8fSsU-7A@mail.gmail.com>
-Subject: Re: [PATCH 9/9] arm64: dts: renesas: rzg2ul: Set Ethernet PVDD to 1.8V
-To: Paul Barker <paul.barker.ct@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: robh@kernel.org, saravanak@google.com, apatel@ventanamicro.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Fri, May 24, 2024 at 11:47=E2=80=AFAM Paul Barker
-<paul.barker.ct@bp.renesas.com> wrote:
-> On the RZ/G2UL & RZ/Five SMARC SOMs, the RGMII interface between the SoC
-> and the Ethernet PHY operates at 1.8V.
->
-> The power supply for this interface may be correctly configured in
-> u-boot, but the kernel should not be relying on this. Now that the
-> RZ/G2L pinctrl driver supports configuring the Ethernet power supply
-> voltage, we can simply specify the desired voltage in the device tree.
->
-> Signed-off-by: Paul Barker <paul.barker.ct@bp.renesas.com>
+On Wed, 29 May 2024 20:59:19 +0100,
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
+> 
+> The duplicated parsing continued to bother me, so I've refactored things 
+> to avoid that for parsing the interrupt parent and args in the 
+> interrupt-map.
+> 
+> It passes testing with unittests on QEMU virt platform, but I don't 
+> think that catches the problematic cases. So please test.
+> 
+> v1: https://lore.kernel.org/all/20240528164132.2451685-1-maz@kernel.org/
+>  - Refactor existing interrupt-map parsing code and use it for 
+>    fw_devlink
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+> Marc Zyngier (1):
+>       of: property: Fix fw_devlink handling of interrupt-map
+> 
+> Rob Herring (Arm) (1):
+>       of/irq: Factor out parsing of interrupt-map parent phandle+args from of_irq_parse_raw()
+> 
+>  drivers/of/irq.c        | 127 +++++++++++++++++++++++++++++-------------------
+>  drivers/of/of_private.h |   3 ++
+>  drivers/of/property.c   |  30 ++++--------
+>  3 files changed, 89 insertions(+), 71 deletions(-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I've just gave it a go on an M1 and as a kvmtool guest, and nothing
+caught fire. Must be perfect.
 
-Gr{oetje,eeting}s,
+Tested-by: Marc Zyngier <maz@kernel.org>
 
-                        Geert
+	M.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Without deviation from the norm, progress is not possible.
 
