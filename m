@@ -1,119 +1,130 @@
-Return-Path: <devicetree+bounces-70894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45318D4E61
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBCCD8D4E6D
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:52:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5857A1F22980
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:49:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A00431F2273C
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 704A617C9FE;
-	Thu, 30 May 2024 14:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2B017D88E;
+	Thu, 30 May 2024 14:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NEiRWGzA"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="j9V9qBoO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B310F143C40;
-	Thu, 30 May 2024 14:49:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B186186E38
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 14:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717080592; cv=none; b=QD6CePrAiv0o5mF28TlZCUIrj02llQsfCe2HavoRriRctk0f61sruAbXI0CPAHpBSj6kxTjL1SktJgNU2/KmNuC4uT5lbd+W9Z3qyL/oaZOHmWMoYBvDFLzSe3G9GGaLm+iocC7KGZA1tXBdmwzEjNAkcCsAZTNDZVpBlc7YOEE=
+	t=1717080759; cv=none; b=ANUsSr4/jdvrppVbLyZzwqnKmjyH7rDlgqMPhn8GzjntdkBtgD4dNiB0jGIpkEi3Un6lZq9pDlwebeFWqITE2bNav7tCTMIwGOT2kSRNVX6hdYPW9nEIUtOAgI/ufFPFG7/Jh7kxt4mRdsUQzEPCMqcJDciPLaDEPNQ0M6XgT0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717080592; c=relaxed/simple;
-	bh=hi5q5eR3luXu0JMBSCQpSKn2pC1+yDtt03BNLMulJM0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ocHkHR0ER51wpOVJ/eC7I2XHcankHZBSeh0ATND9eKpnbGxyKTPDxFIUHvTUCrJ+v/RlD0pEMlcQRM0fI79fkANbINEVrXvXixTrtm1R4gbPggQGKyLAmF9DBzcePpLUX3bKgficagpGiNjFY6+8HLey2wPyOvckcMTtWplRkKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NEiRWGzA; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a673a60f544so23441766b.3;
-        Thu, 30 May 2024 07:49:50 -0700 (PDT)
+	s=arc-20240116; t=1717080759; c=relaxed/simple;
+	bh=qCr2fwCZCC0sZAtQMrr7v5keGCDnI6ZBVcUAOfpdlSo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F3/XLKHHvYVx/KhKIk7P03QGnjIkC1HoCNOyMwvc16MdVHLNHgykFyyTveinmnKEcW/wIr8weUSGzWS7uhihFmCUOLIKpXxZ/lF/UYv4JzFrFr9EWDxdy763d247JzSea+0Pyms1n1vaMADlDB9aHy/7K6xLekLRlMgcoKV5x8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=j9V9qBoO; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2e96f298fbdso10181681fa.1
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 07:52:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717080589; x=1717685389; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+        d=ventanamicro.com; s=google; t=1717080755; x=1717685555; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IFZxm9XZ09eTU3EN3teoJoprrvy9B6+gk/P+tYdPxNs=;
-        b=NEiRWGzAst3mqbe5+4waZhP4XK1YKIYyE83FbMHAE9sSzNM30yPyBpzTvO7x7/gp/P
-         PEiAGcYm+fynaxRuEOkiSnMcarVpSqrpuwG2Z39RPa4qARsAR1lnXAFZR+qYDQdzTNYh
-         yYQQ6RXV4XfPnjdCH8pT1cDDpEPZc6DtsN+kqPFkhhEu1D6TwooFI9JZuJyXju6T69N1
-         ebODmnF3WuyTFI487t7wzu0pD7nL6Mw0ejwABUNm5VzJysHzOMVwyA8qGZlhBftRT81c
-         GGcHaWpNNG8sVKr1WA/IFtgP13sd9NoIzbZD6SBmV8E9gARCDVSZXnIKx+koMLz5YmSf
-         cxDw==
+        bh=8xju9nW5aEF63Pcv0lMb3cbBthG2ZJ9khtPEmPPr3uI=;
+        b=j9V9qBoORQqeS3GKArPqvCwjBurBaovpjLhdWtece1aT1WlBuhmztHTGSAemZaMT2X
+         F8mWXa8evU4eSXTREfPIXJJsluCy14HXoVNVZncmRzX2Km0KOM0EJ8SZ1rXOWYUsUJhX
+         d9ErEkms/QWb3z9Z+ddqFeJHIgn1a5+U1ljG1fInmJaQCOP/ZZV7bE5hosRmZoJoJlWx
+         ZYanWnoF0KN62fT6m7pz4l+LEeI6ca5Gsb4ykrfLJ78LLITxvCUtOhJOPU/Ihb2p2fpI
+         Qq745Jl79/LpPpg7jC6a/U8XhXJU/+HX7BSV9lg9jY5rPwJ4LIeco8MGHnO7L9LYKnH0
+         uipw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717080589; x=1717685389;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1717080755; x=1717685555;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IFZxm9XZ09eTU3EN3teoJoprrvy9B6+gk/P+tYdPxNs=;
-        b=VY3ZzYTVdUXV/AeUtn5rhAP6vKvieJMi1I/VfOv786W0sjg27MEabnY8HppRe3aT/V
-         QOyE/2exLH/38hxUenIR/+SH0GhNrTHlBKm0WTUFnSkwAP42iovykLqp/S9Uj9+/Np53
-         lsQ1FnPpMTbh9mjM1I+S8v0hrFxRmyTGVZuYkI5OdL9CVcCMmE9DXPqnxCrlL0i8a9MQ
-         i5ymlFk68u6SIaAuJXLH0woE1ru4AH/tZUwJO8xpLQgfORMru06FNJZbbEUMp4e1sHOu
-         jlW3SmRrz71IVEoVI1U+tnr1wKRI4jROvab7PsBhEjUxpRB3tQTpPvyq+Eh4gkoE1Jjr
-         KDsA==
-X-Forwarded-Encrypted: i=1; AJvYcCWsLHPNo2pX/UURUnXa9DTmZq8ynvFs9yBwZcFTMaPM2gpc66ihp1lg9dKvgokt/lix7yHvSCJzxSRoMoaP1cJCYRifGARcXLc4l/A8m+GhDjJgOW73Q/hWsv6CAeCtKUVoFYFATNXtkl+C1C7vbGoCtj9Wir1lrpoSQzurdeDJP6gIF0bsxCM=
-X-Gm-Message-State: AOJu0YwPDN8C9tK02XogT2zZ+v53fT1bSYKxrw7XSJmz6RNhvGHzkyiW
-	0MWg4j4RHOCL7PdFqG4ul9A6T+h/kO9UbujxQSRSq6lvMlQ/G3cu
-X-Google-Smtp-Source: AGHT+IEjTFZLB1C4nSOWFYxlPMd96XW7noVUv2mE3O+pRtIwQ0MefglECcJHcYxto5VQTRAUD9SZvA==
-X-Received: by 2002:a17:906:845:b0:a59:ba2b:590e with SMTP id a640c23a62f3a-a65e9100ea0mr147055766b.48.1717080588763;
-        Thu, 30 May 2024 07:49:48 -0700 (PDT)
-Received: from pevik ([37.48.49.148])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a637f1349efsm210047866b.210.2024.05.30.07.49.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 07:49:48 -0700 (PDT)
-Date: Thu, 30 May 2024 16:49:45 +0200
-From: Petr Vorel <petr.vorel@gmail.com>
-To: Alexander Reimelt <alexander.reimelt@posteo.de>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Add LG G4 (h815)
-Message-ID: <20240530144945.GA513050@pevik>
-Reply-To: Petr Vorel <petr.vorel@gmail.com>
-References: <20240403104415.30636-1-alexander.reimelt@posteo.de>
- <20240530135922.23326-1-alexander.reimelt@posteo.de>
- <20240530135922.23326-2-alexander.reimelt@posteo.de>
+        bh=8xju9nW5aEF63Pcv0lMb3cbBthG2ZJ9khtPEmPPr3uI=;
+        b=r5zlnGIZRIVpIOsVSb3hg9MkJKJtL++qlL/vCeHXr0wu7LCycl63eDIAFxOIpmUkSP
+         yDRak1LKA968V8s26+fitdaYROk8fvaitExdiQIf/VEBwmbsuqF0IW60Yc6JPkIqQj4D
+         Evw6i+xU3UuRtvZJhW7t/q1NeTyl7rCAG3RRLqPMjy0Yk27WEoFZDeWNQNO2ocTOn+fj
+         20LIZ/fTEswX9IscpznflqvaYUlz98XsTSAgtAS0/AWmdeSxfYsir0/WRxL0J+sCyRad
+         IHe/PsABYE7P2iczrqmz4hxSsgxaBxf/AgijWO2jsdDoikR92IqbWs4cocxBNrMsGaZT
+         GNfA==
+X-Forwarded-Encrypted: i=1; AJvYcCUPDOCCWdZgKQVWV+CjCPYezNAFXaf9fJyX4Q3uw1v0nTz4E7Tinaw9eUdzKaKKHeHZLdJB2FQ1cAEB+XPkdzDn3Y72FHAD9QV/yg==
+X-Gm-Message-State: AOJu0YypgoA/9mTYt1r4BQC2nYfsrtoCvX29nRab/6biFxoUpKcfppot
+	ESereCm8uqFafJXHkhaBy3IjuiB06h3Vh/uNe41RvxalFWnIoL2EhwSNYReq4HH+aUntfDysaOM
+	7NMaNtYzOayGX2FPu5dpbqWJkmmw9C8dFso/gHw==
+X-Google-Smtp-Source: AGHT+IHf8TmrUvKHY3tZVeP9T/NeHo/+xLt+IhXkdMwRroWcQhly/ewRsUPfk31Cc9BSWLvx0W2D6Ia7qNisp/t3DcU=
+X-Received: by 2002:a05:651c:224:b0:2ea:8e94:a2f4 with SMTP id
+ 38308e7fff4ca-2ea8e94a54emr2778791fa.21.1717080755423; Thu, 30 May 2024
+ 07:52:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240530135922.23326-2-alexander.reimelt@posteo.de>
+References: <20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org>
+In-Reply-To: <20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Thu, 30 May 2024 20:22:23 +0530
+Message-ID: <CAK9=C2WvmXujHT-PpvhcHgg1Tck3k_K_BmLVp-=1Z71Y385Cbw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] of: Fix interrupt-map for fw_devlink
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-
-> International variant of the LG G4 from 2015.
-
-> Signed-off-by: Alexander Reimelt <alexander.reimelt@posteo.de>
+On Thu, May 30, 2024 at 1:29=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+> The duplicated parsing continued to bother me, so I've refactored things
+> to avoid that for parsing the interrupt parent and args in the
+> interrupt-map.
+>
+> It passes testing with unittests on QEMU virt platform, but I don't
+> think that catches the problematic cases. So please test.
+>
+> v1: https://lore.kernel.org/all/20240528164132.2451685-1-maz@kernel.org/
+>  - Refactor existing interrupt-map parsing code and use it for
+>    fw_devlink
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Marc Zyngier (1):
+>       of: property: Fix fw_devlink handling of interrupt-map
+>
+> Rob Herring (Arm) (1):
+>       of/irq: Factor out parsing of interrupt-map parent phandle+args fro=
+m of_irq_parse_raw()
+>
+>  drivers/of/irq.c        | 127 +++++++++++++++++++++++++++++-------------=
+------
+>  drivers/of/of_private.h |   3 ++
+>  drivers/of/property.c   |  30 ++++--------
+>  3 files changed, 89 insertions(+), 71 deletions(-)
+> ---
+> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+> change-id: 20240529-dt-interrupt-map-fix-a37b9aff5ca0
+>
+> Best regards,
+> --
+> Rob Herring (Arm) <robh@kernel.org>
+>
 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 66beaac60e1d..76aefd4aac67 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -237,6 +237,7 @@ properties:
->        - items:
->            - enum:
->                - lg,bullhead
-> +              - lg,h815
->                - microsoft,talkman
->                - xiaomi,libra
->            - const: qcom,msm8992
+Works well for RISC-V, Thanks!
 
-Reviewed-by: Petr Vorel <petr.vorel@gmail.com>
+Tested-by: Anup Patel <apatel@ventanamicro.com>
 
-Kind regards,
-Petr
+Regards,
+Anup
 
