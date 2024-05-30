@@ -1,237 +1,366 @@
-Return-Path: <devicetree+bounces-70804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0842C8D47F5
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 11:04:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A2D18D4816
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 11:06:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 735441F24AE4
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:04:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98EEA2866C7
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155B2153836;
-	Thu, 30 May 2024 09:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b="2b6QKzoV";
-	dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b="2b6QKzoV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843F818396B;
+	Thu, 30 May 2024 09:06:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ZRZP278CU001.outbound.protection.outlook.com (mail-switzerlandnorthazon11021011.outbound.protection.outlook.com [52.101.186.11])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CF26F301;
-	Thu, 30 May 2024 09:00:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.186.11
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717059640; cv=fail; b=dZ6FuYQ+yuwM9HQG55vrc1/MAmgbiKBMRqaSBzWpTSlJqevPvFLrksantWR8Ez9jMV/9ndLdArWpOPzVYGgUrrF0HtkkTijze9s1Bg5t9drJ3OTFRGt/cNTV1I/Mmy9HfMCFXftZbvsHypbX4Wz3OK+cr1FcR1PDcaCtHan6ELg=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717059640; c=relaxed/simple;
-	bh=jC9/lvyNpqarj+9sm1AIrlfJ0UhUWK6dVG6aAQUOJMU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MwEEdNvmWAYXaXbBeRuD+RtJEyPpyx20qloKi8+WlkHmCbdIBOinxz47K4YprIDWX6JSHWv+hrX3ezGOco+utuu66+tMBG3341e+at+9P3flQhgA/sxPnqcvPZifpw7Aw0O/2T/FJRAEUH1uLQkiDI0rXVqjs3YBv7e3BgLE1m8=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sentec.com; spf=pass smtp.mailfrom=sentec.com; dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b=2b6QKzoV; dkim=pass (1024-bit key) header.d=sentec.com header.i=@sentec.com header.b=2b6QKzoV; arc=fail smtp.client-ip=52.101.186.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sentec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sentec.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=mwzmyguTDO0eM8hnnvwU2Ny0Bqv9FH4h9An165npAWW+0x/g0bBhpZ+xJ8rLU9BMe5aG21FbwyHYJrd9J6MkvaFDBAmtsQ/OVmiL2fvXdA7p8u+8mFNi3BfyM1boXL08ifBRD+9RJTkbj7ToWHHJ+RarCRaHy5Ebe90C7JUAdsAi2nwDRazN7rTI56NzEwZvtcSQlKy/V9CMIYOkCiBF/C9Wj/Sbpc3dtJaqKGUr6kAB8H7N9BpH3kjWDnNl35HeDi+lDv+wgr0d9Yi0U7iuf5zH6NxI+gvo0N2vNhPW50OApu33UiMzwFCY7htuleYT/HLlriUYGbNJePajscgPoQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jC9/lvyNpqarj+9sm1AIrlfJ0UhUWK6dVG6aAQUOJMU=;
- b=Uxm5wWkUES5De61VZhfYtokLBxLFNeIo1KZR9GaxIJLJPQwTnSzilFfJh7a0s0JTrXHmGShqdWOA+2w0LulPtj2KazUKuXsjcdOc1UlLAZHvqF2faJzOEo6XmOljVxXfWO7t8WrtaN++Go1j81axOr3RCOsJZn3InplRlwRwxZGQMzZ/JtBvS9/yNzrZcErfQmId9A2FJcvHOKBhE1blxNkefV3+tgg/AHLf1O4B9RQc7KQGFIgF19ruDRffOkCz5apEbPz2rcREsJvm3UGqCRXLVzCwQ2/Y6J2OjubddzsFURSH0ycDOz3Q0FfBH2WC7weqSR456OYKYG4PX+45lA==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 52.138.216.130) smtp.rcpttodomain=kernel.org smtp.mailfrom=sentec.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=sentec.com;
- dkim=pass (signature was verified) header.d=sentec.com; arc=pass (0 oda=1
- ltdi=1 spf=[1,1,smtp.mailfrom=sentec.com] dkim=[1,1,header.d=sentec.com]
- dmarc=[1,1,header.from=sentec.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sentec.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jC9/lvyNpqarj+9sm1AIrlfJ0UhUWK6dVG6aAQUOJMU=;
- b=2b6QKzoVIX9yqXU7QqrlnxFfACrz/S9Gbf/n84dfeUoMjC9Aa+HH+ZfBP1mvhywqr5FGxjJnoW8vX1KJxSKk8peMuc4vEovjXpqxqqljo8fjPhQ9EKgeqXyU0xjeEwNVj4AVeKYNEvsudtcmm54/+qmTD5KnGGhQL5cgvOwJ82Y=
-Received: from AM6P192CA0041.EURP192.PROD.OUTLOOK.COM (2603:10a6:209:82::18)
- by ZR0P278MB0776.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:42::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Thu, 30 May
- 2024 09:00:34 +0000
-Received: from AM1PEPF000252DD.eurprd07.prod.outlook.com
- (2603:10a6:209:82:cafe::e8) by AM6P192CA0041.outlook.office365.com
- (2603:10a6:209:82::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21 via Frontend
- Transport; Thu, 30 May 2024 09:00:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 52.138.216.130)
- smtp.mailfrom=sentec.com; dkim=pass (signature was verified)
- header.d=sentec.com;dmarc=pass action=none header.from=sentec.com;
-Received-SPF: Pass (protection.outlook.com: domain of sentec.com designates
- 52.138.216.130 as permitted sender) receiver=protection.outlook.com;
- client-ip=52.138.216.130; helo=eu22-emailsignatures-cloud.codetwo.com; pr=C
-Received: from eu22-emailsignatures-cloud.codetwo.com (52.138.216.130) by
- AM1PEPF000252DD.mail.protection.outlook.com (10.167.16.55) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7633.15 via Frontend Transport; Thu, 30 May 2024 09:00:33 +0000
-Received: from ZRAP278CU002.outbound.protection.outlook.com (40.93.85.1) by eu22-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Thu, 30 May 2024 09:00:32 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HsoNDfLyvuU2Fs1aMPCk/K6nAHZr2y7XdVPYGD4J9ZYLzDf+tGeNyxf3jy2BW/5bnSgvemp+B4hISiz0ITTBGR8KZMY+AQsKc3x3hCW0f7E/nF9jnsnzht1K6vSTSqaE5eSKgJUrJ1U5cCQqGsyVECWmMQBVUdnsS1nSxa2Iu+gSdDlsCldZntJdYLgHzhrabq8IkfSqO05XMln72Znr0Qn2pQPD/YdCF2OUQLFfVvoqWh9yZ2aNBN393q6iEIoeS12IFdV6517shmUF7JyALUXFIfRgcEV+fYxN0lK0zXV2MX5voo5mWRMK8avLuCQP0V4AFjsVG8avX25WAkz+Ow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jC9/lvyNpqarj+9sm1AIrlfJ0UhUWK6dVG6aAQUOJMU=;
- b=VTcpFVGuDPs6i2skAh6Za6tJNTQ0XWfdyyJX7bzrfS6LwFYet6H3m5hHuR/FERNzL4EQZaUmuh/yWnexWr8v/LIkE2LDNn9+mKNozRiZ29DnGojhhhPYXNSfVZLeVnu2w05yxvpWnzQz9IZ3wZgTK78e+m1JeEBMr7fMLF/fLIT1oZdpn1yp55Dcw8u7vNJo8UYgIDfvqCoYv+lboOr5MOTHDHR0vIVPtuZurRNJ6LJLqBGp4FNafquHIZ5mxcG4fNjlHWX3z2OEPS2NZ3wgTKl9kTfN7XcYxkPDS5E9+JcKLE6ItV76Oclm+OoVboJnm3oZPCtODkebeQ4apZ/neg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sentec.com; dmarc=pass action=none header.from=sentec.com;
- dkim=pass header.d=sentec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sentec.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jC9/lvyNpqarj+9sm1AIrlfJ0UhUWK6dVG6aAQUOJMU=;
- b=2b6QKzoVIX9yqXU7QqrlnxFfACrz/S9Gbf/n84dfeUoMjC9Aa+HH+ZfBP1mvhywqr5FGxjJnoW8vX1KJxSKk8peMuc4vEovjXpqxqqljo8fjPhQ9EKgeqXyU0xjeEwNVj4AVeKYNEvsudtcmm54/+qmTD5KnGGhQL5cgvOwJ82Y=
-Received: from ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:58::13)
- by ZR1P278MB1592.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:9a::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Thu, 30 May
- 2024 09:00:30 +0000
-Received: from ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM
- ([fe80::44a0:22a7:f760:f8f]) by ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM
- ([fe80::44a0:22a7:f760:f8f%6]) with mapi id 15.20.7611.025; Thu, 30 May 2024
- 09:00:30 +0000
-From: Arthur Becker <arthur.becker@sentec.com>
-To: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Cameron
-	<jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add
- VEML6040 RGBW-LS bindings
-Thread-Topic: [EXTERNAL]Re: [PATCH v3 2/2] dt-bindings: iio: light: add
- VEML6040 RGBW-LS bindings
-Thread-Index: AQHasFNmHVhgVh1W90aWHgpQzkaiXLGsPRnngAB73wCAAsClxQ==
-Date: Thu, 30 May 2024 09:00:30 +0000
-Message-ID: <ZR1P278MB11174B67019F7ABDB7F7B1B881F32@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
-References: <20240527-veml6040-v3-0-6f3bbfd42960@sentec.com>
- <20240527-veml6040-v3-2-6f3bbfd42960@sentec.com>
- <e47de936-8cb4-4cef-a346-74835767e203@kernel.org>
- <ZR1P278MB111779FE0C84DB465C54EEFF81F12@ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM>
- <20240528143914.GA139191-robh@kernel.org>
-In-Reply-To: <20240528143914.GA139191-robh@kernel.org>
-Accept-Language: en-GB, de-DE, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=sentec.com;
-x-ms-traffictypediagnostic:
-	ZR1P278MB1117:EE_|ZR1P278MB1592:EE_|AM1PEPF000252DD:EE_|ZR0P278MB0776:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88f9ec39-e50b-4dd3-010b-08dc8086f707
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230031|1800799015|366007|376005|38070700009;
-X-Microsoft-Antispam-Message-Info-Original:
- =?iso-8859-1?Q?736myLD/sqalCAkviiRnukGt0r3Erb62+EXdrv25DC44QnSBh6MXjwGTgZ?=
- =?iso-8859-1?Q?uzSU4cdw6CN/H24hTMyHPe4rX1JwwnJncJ8e858rJu5k9FNhFse6epJq3I?=
- =?iso-8859-1?Q?7U1Iw/G/judHEdV3Fy9+1roVtYmqTeYDAnlPX/Cq0oU3xLF9mkTLNdmws6?=
- =?iso-8859-1?Q?MLcOpzuA+Poqwz8xfgUi39KQz0FCKLs3jvoH27uisjsr3sdsZAzbxx2st8?=
- =?iso-8859-1?Q?EnHdAS0O02Zm6WK0z68zRyURWEE7YWt+3LB7XfRFiz0FxvnGScK0CeTP99?=
- =?iso-8859-1?Q?aNcjreczxw5PW5IKKN6aZmRRMcEYHvvtna4WuRSNeLrLfk+rpBhqnfZVRY?=
- =?iso-8859-1?Q?zFnataxiycXPpkDfwZzHEQyBqtTMi8OySfHi8q85UY5ZlHtFgnmkw6NVLV?=
- =?iso-8859-1?Q?lEERhncbjqCDGdyoXNYIKEJdWhSwfTzbZceprCUv60L/DeLKq0lsZLhRES?=
- =?iso-8859-1?Q?2Uig3aX1Apd+1wLEy0ua9+AAgxyugfVoEIHAg5Jqu8wcqVfm4MG9leidBU?=
- =?iso-8859-1?Q?uCL3f4gFrIK6188vmWaSH/H9rFrefjurZ/4lZPnuic9ei7vaKt1SZPA2Qc?=
- =?iso-8859-1?Q?/6mBGvhVdwKon8a0EJGbiu+Bs8ctzY/88zHfL7IuHqlT1mFc3+y3+Mjuc9?=
- =?iso-8859-1?Q?KTvuQ39g7IvlJNEnGhlhUYDYPfMPghscou5EfjV9DxCRLOPB2G/qjVWDCJ?=
- =?iso-8859-1?Q?zfgXf1DXbIqoVJiEJe1tERzLtCHE4m8nN889++YS5t3Kxv7ac6M4yU5hH4?=
- =?iso-8859-1?Q?DybUwowmgprvgWz1W3PUjp0zBlVoJLIaA1HVejE4dXIW5MaCmA5ak7vYUz?=
- =?iso-8859-1?Q?DGE8lhROwjg6Xwj6FJQUMdsmliIm1OLXngX5nkDA7R92g23MlCXZSIvXFn?=
- =?iso-8859-1?Q?w2Zawql280HvWMQBCfoqW46Nj33e8FnxcApANr2RIvGy3Y+bVNKRN25vui?=
- =?iso-8859-1?Q?mSTwEJNMIUklgzcQfMqfY9ugdWumj4MnxgY0hrjDxh/bFDvHRAEKxGRglG?=
- =?iso-8859-1?Q?TC996mEQykZJpQxBk1r734rk98GbIIEd0tw4qJI1zPs9Ce5xggI1siRomv?=
- =?iso-8859-1?Q?1F7EDf0GXionaeQWYcTPANbpp+tlgkkNVfDcXpPzW2bkmooubKH5ARzPjV?=
- =?iso-8859-1?Q?N/Nh8YJ2+N22mLjDw9iPmb2inmvHQ1o/isuNnBGsQgh0BXMpDix6PvnHq9?=
- =?iso-8859-1?Q?2/zDDPgVrINrd9QINuUCEtZHvjuWtP1gOBG8kf1sdQVtP42Ua6TeL+nnrH?=
- =?iso-8859-1?Q?qfclPyVy5mKlerG6C6YBN0utW4SpxcyK2CkOgiuCzVzhuJNUlSJB5xqWaP?=
- =?iso-8859-1?Q?ehvJiiNuH7G9K3O6DcndIJlN//44vCCHMMv0PDqsZ7zxy4SMyHg4v6X/Ck?=
- =?iso-8859-1?Q?o8V8wt6+yj4e9GX0IIsyI235r1+lzUNA=3D=3D?=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR1P278MB1117.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(366007)(376005)(38070700009);DIR:OUT;SFP:1102;
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA1B6183963
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 09:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717059977; cv=none; b=dN8Ujh0MBQ/pIwvL8M3saciknZafIpujxxknZCDMG3raEq8ukmyzp6eNa8+37ZlhhuSD72K0hpywHthft1GvIzkNB0wL4vUXkJOayyvgUMpOrNufHkkcOZ6IQ+18/ivi/xpS3ytK+c8hhixsWsQ4YWRznQcW5S0eSCVPLzx/aQo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717059977; c=relaxed/simple;
+	bh=j879v3knqvytxXz7DWl2Ufn9Fu7PF9YwKCUZ0eX9xBY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f1OPw8JZh0A3MUDXMIfD4FY3bPbm8hbWpsfrGAQ/IBG2+8H64tuhcpWeaqsakyvO50GEIzpu5vAQ3iPYytmo1vgqdpXYqhgeMBJ7gfAyc1Ey52E0wE9ulfsBBOCoYaxiPR+5fxt6v9FCc0N8B9fG4OT/eRMgvTcSKOpD1WKbXZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sCbjS-0000lO-Kl; Thu, 30 May 2024 11:05:58 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sCbjS-003ZoP-5V; Thu, 30 May 2024 11:05:58 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sCbjS-0003T0-0D;
+	Thu, 30 May 2024 11:05:58 +0200
+Date: Thu, 30 May 2024 11:05:58 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: p.zabel@pengutronix.de, abelvesa@kernel.org, peng.fan@nxp.com,
+	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
+Subject: Re: [PATCH v6 3/5] reset: imx-aux: Add i.MX auxiliary reset driver
+Message-ID: <20240530090558.53reobf2zea22oi2@pengutronix.de>
+References: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
+ <1717036278-3515-4-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR1P278MB1592
-X-CodeTwo-MessageID: 05976a12-f7fb-471b-97e7-87e50561931d.20240530090032@eu22-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- AM1PEPF000252DD.eurprd07.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	5dc865f4-047e-4b6b-e224-08dc8086f518
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230031|35042699013|82310400017|36860700004|376005|1800799015;
-X-Microsoft-Antispam-Message-Info:
-	=?iso-8859-1?Q?i3qLSVmvBmtPBK8el6Tis6t8KLjsv3aHUwW22rd6cT6PdYddvuCP7jchN4?=
- =?iso-8859-1?Q?b1SJeL52hFtr4hH03Gn6zBPMGg6B/PQ/IE7jhXCKX+aHRi+egkqBGlDnzM?=
- =?iso-8859-1?Q?4NGpdPCb19SE5AHxS7fZ4h57qyNw81ofCW65Ed/J5AwK02NLdWYJNE0eTt?=
- =?iso-8859-1?Q?cehyXhA3WjU0pAKfaroXLrVCaiurN3yIlF8exnkDVPrM6Ctyznro4sR2po?=
- =?iso-8859-1?Q?28wnzOg719iXETxoNEc1iQYgTRBl66NPvzBUIlZrasxZo8P2/BK+gKDaMS?=
- =?iso-8859-1?Q?MDjrD/DOoZBYxdoYctpjzVJtl7zHeYaacQ2WsG0lyqYfRQvF63DRYQfn6f?=
- =?iso-8859-1?Q?AqE/DtTkoYg9+lGO/2Zls0U8qD3fLTx61W0eZwlmeRPC58hIWYw2SnfFB7?=
- =?iso-8859-1?Q?QxGFLY3e5ilPKXl7+L7rJWMe7tiqx2J/Sx+rEPS8fRgyGEQ1U1F7uQaict?=
- =?iso-8859-1?Q?1TIK6PnHXkaRpmEKAokgwDClzARUKU5Ue+oPW4Wa4vOPlgcg0qWnx2LNA+?=
- =?iso-8859-1?Q?slL3B3c24WCL+5L+dvAeRhiF9x4drdnytn073hf+1PbL0vONThiZO6TC5m?=
- =?iso-8859-1?Q?fpDdPzdO1RvVtFQgD9hOZEEQTrF8j3/ktQwdklmj8b3nF3XqqY7LLuIE5P?=
- =?iso-8859-1?Q?ne7Z0+Z7DSM7xP9w/i9kv6dSGZO/ti/WxbXz7KInTI7dvmWPOXt7CV2ObL?=
- =?iso-8859-1?Q?4s+D1ebXMynCPUOigZFecKrqadYZjXXDfJSnXhmAkKmmUz1CODoWexW0qs?=
- =?iso-8859-1?Q?tUHMc7uNlWqGK5SAkWRTJ5DBxjiNvNzkFVDyfG/z67KJ9bnfoFrkjRM99u?=
- =?iso-8859-1?Q?710BxNPzM34TAjclroeYxPFmvI44Qm5JOMnrHY/ofEN1T5JX6GzWxSp/nH?=
- =?iso-8859-1?Q?xhaUe/k14KsGKZLzuEMcF/3eASLnVtZOel+SWcnPYXpBt+VongibpsXaxs?=
- =?iso-8859-1?Q?W4NsdgoYUJ4O0KnBCYf+fPJCS5wl0UqEUa3N38BFDRmRI3RzYrX4d+yEMF?=
- =?iso-8859-1?Q?kEZzIvcY1mlc7F9kT5Iq29478uxNf20C7HUI2NkxaXXkPNR8UeJB6bD0Vj?=
- =?iso-8859-1?Q?v/eGcn6tx2mVBtNiMkLJnWT6ITl25vyvOk8tBZjWKpL9Kg33y2JvH/m1to?=
- =?iso-8859-1?Q?67x5nOFdNI+7w4ysTXwZsmM6mWPl4zmp5vXUEjP3s4qtW7EFn15/BHczZt?=
- =?iso-8859-1?Q?PYiimfCaKFtJ6q3yDXB9sgd9Hdt13+uyyiiuwheiYtS+4g2nWYQjg6iHzB?=
- =?iso-8859-1?Q?OUhV781tpKj998s98Jho1Js2H3K5gcDFl/+T9igko5j+sU+pbWvDQePys8?=
- =?iso-8859-1?Q?YwG1OWJf8hVLGHlbHFeBfL2wj18sLdXIMrsSgTap+Sh4MZcZHl5rF5sqCx?=
- =?iso-8859-1?Q?kGYk0T/sK4h2Sds9AhsNNPr/0cSJYrlVCb8D3+guW7H/AtHc/UHztHRdnp?=
- =?iso-8859-1?Q?Vrdv8UlbaHKo3Fhw?=
-X-Forefront-Antispam-Report:
-	CIP:52.138.216.130;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eu22-emailsignatures-cloud.codetwo.com;PTR:eu22-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230031)(35042699013)(82310400017)(36860700004)(376005)(1800799015);DIR:OUT;SFP:1102;
-X-OriginatorOrg: sentec.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 09:00:33.6453
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88f9ec39-e50b-4dd3-010b-08dc8086f707
-X-MS-Exchange-CrossTenant-Id: 0cfe5cb4-0f5d-4077-ac2f-a1a82ad165a3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0cfe5cb4-0f5d-4077-ac2f-a1a82ad165a3;Ip=[52.138.216.130];Helo=[eu22-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM1PEPF000252DD.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR0P278MB0776
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1717036278-3515-4-git-send-email-shengjiu.wang@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
->On Tue, May 28, 2024 at 07:23:03AM +0000, Arthur Becker wrote:=0A=
->> Thanks for the Review!=0A=
->> Right, I wasn't sure if and how to add the veml6040 to the veml6075 dt-b=
-inding file.=0A=
->> I'll modify that the next time I make adjustments to the driver.=0A=
->=0A=
->Please don't top post, quote replies correctly, and fix your mail setup=0A=
->to not add 'EXTERNAL' to the subject.=0A=
->=0A=
->Rob=0A=
-=0A=
-Hello Rob,=0A=
-=0A=
-Sorry about that, I'll keep that in mind in the future. Having to work with=
- oulook can be a bit frustrating.=0A=
-=0A=
-Kind Regards,=0A=
-Arthur=
+Hi,
+
+On 24-05-30, Shengjiu Wang wrote:
+> Add support for the resets on i.MX8MP Audio Block Control module,
+> which includes the EARC PHY software reset and EARC controller
+> software reset. The reset controller is created using the auxiliary
+> device framework and set up in the clock driver.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  drivers/reset/Kconfig         |   8 ++
+>  drivers/reset/Makefile        |   1 +
+>  drivers/reset/reset-imx-aux.c | 217 ++++++++++++++++++++++++++++++++++
+			    ^
+You make use of the auxiliary bus but this isn't a aux driver, it's the
+i.MX8MP EARC reset driver. According the TRM only the EARC reset bits
+are covered by the AUDIOMIX blk-ctrl.
+
+>  3 files changed, 226 insertions(+)
+>  create mode 100644 drivers/reset/reset-imx-aux.c
+> 
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 7112f5932609..38fdf05b326b 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -91,6 +91,14 @@ config RESET_IMX7
+>  	help
+>  	  This enables the reset controller driver for i.MX7 SoCs.
+>  
+> +config RESET_IMX_AUX
+> +	tristate "i.MX Auxiliary Reset Driver"
+			^
+              Same applies here
+
+> +	depends on CLK_IMX8MP
+> +	select AUXILIARY_BUS
+> +	default CLK_IMX8MP
+> +	help
+> +	  This enables the auxiliary reset controller driver for i.MX.
+> +
+>  config RESET_INTEL_GW
+>  	bool "Intel Reset Controller Driver"
+>  	depends on X86 || COMPILE_TEST
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index fd8b49fa46fc..f078da14c327 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -14,6 +14,7 @@ obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
+>  obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
+>  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
+>  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
+> +obj-$(CONFIG_RESET_IMX_AUX) += reset-imx-aux.o
+>  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
+>  obj-$(CONFIG_RESET_K210) += reset-k210.o
+>  obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
+> diff --git a/drivers/reset/reset-imx-aux.c b/drivers/reset/reset-imx-aux.c
+> new file mode 100644
+> index 000000000000..61c353abc84e
+> --- /dev/null
+> +++ b/drivers/reset/reset-imx-aux.c
+> @@ -0,0 +1,217 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset-controller.h>
+> +
+> +/*
+> + * The reset does not support the feature and corresponding
+> + * values are not valid
+> + */
+> +#define ASSERT_NONE     BIT(0)
+> +#define DEASSERT_NONE   BIT(1)
+> +#define STATUS_NONE     BIT(2)
+> +
+> +/* When set this function is activated by setting(vs clearing) this bit */
+> +#define ASSERT_SET      BIT(3)
+> +#define DEASSERT_SET    BIT(4)
+> +#define STATUS_SET      BIT(5)
+> +
+> +/* The following are the inverse of the above and are added for consistency */
+> +#define ASSERT_CLEAR    (0 << 3)
+> +#define DEASSERT_CLEAR  (0 << 4)
+> +#define STATUS_CLEAR    (0 << 5)
+> +
+> +/**
+> + * struct imx_reset_ctrl - reset control structure
+> + * @assert_offset: reset assert control register offset
+> + * @assert_bit: reset assert bit in the reset assert control register
+> + * @deassert_offset: reset deassert control register offset
+> + * @deassert_bit: reset deassert bit in the reset deassert control register
+> + * @status_offset: reset status register offset
+> + * @status_bit: reset status bit in the reset status register
+> + * @flags: reset flag indicating how the (de)assert and status are handled
+> + */
+> +struct imx_reset_ctrl {
+> +	u32 assert_offset;
+> +	u32 assert_bit;
+> +	u32 deassert_offset;
+> +	u32 deassert_bit;
+> +	u32 status_offset;
+> +	u32 status_bit;
+> +	u32 flags;
+> +};
+
+Why do we make it this compicated for an simple EARC module reset? I
+understand that you want to provide a generic driver which can be
+re-used but there is actual no other user and may will get no other user
+in the future too. Therefore I would like to keep it simple at the
+begin and adapt the code on-demand.
+
+Regards,
+  Marco
+
+> +struct imx_reset_data {
+> +	const struct imx_reset_ctrl *rst_ctrl;
+> +	size_t rst_ctrl_num;
+> +};
+> +
+> +struct imx_aux_reset_priv {
+> +	struct reset_controller_dev rcdev;
+> +	void __iomem *base;
+> +	const struct imx_reset_data *data;
+> +};
+> +
+> +static int imx_aux_reset_assert(struct reset_controller_dev *rcdev,
+> +				unsigned long id)
+> +{
+> +	struct imx_aux_reset_priv *priv = container_of(rcdev,
+> +					struct imx_aux_reset_priv, rcdev);
+> +	const struct imx_reset_data *data = priv->data;
+> +	void __iomem *reg_addr = priv->base;
+> +	const struct imx_reset_ctrl *ctrl;
+> +	unsigned int mask, value, reg;
+> +
+> +	if (id >= data->rst_ctrl_num)
+> +		return -EINVAL;
+> +
+> +	ctrl = &data->rst_ctrl[id];
+> +
+> +	/* assert not supported for this reset */
+> +	if (ctrl->flags & ASSERT_NONE)
+> +		return -EOPNOTSUPP;
+> +
+> +	mask = BIT(ctrl->assert_bit);
+> +	value = (ctrl->flags & ASSERT_SET) ? mask : 0x0;
+> +
+> +	reg = readl(reg_addr + ctrl->assert_offset);
+> +	writel(reg | value, reg_addr + ctrl->assert_offset);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx_aux_reset_deassert(struct reset_controller_dev *rcdev,
+> +				  unsigned long id)
+> +{
+> +	struct imx_aux_reset_priv *priv = container_of(rcdev,
+> +					struct imx_aux_reset_priv, rcdev);
+> +	const struct imx_reset_data *data = priv->data;
+> +	void __iomem *reg_addr = priv->base;
+> +	const struct imx_reset_ctrl *ctrl;
+> +	unsigned int mask, value, reg;
+> +
+> +	if (id >= data->rst_ctrl_num)
+> +		return -EINVAL;
+> +
+> +	ctrl = &data->rst_ctrl[id];
+> +
+> +	/* deassert not supported for this reset */
+> +	if (ctrl->flags & DEASSERT_NONE)
+> +		return -EOPNOTSUPP;
+> +
+> +	mask = BIT(ctrl->deassert_bit);
+> +	value = (ctrl->flags & DEASSERT_SET) ? mask : 0x0;
+> +
+> +	reg = readl(reg_addr + ctrl->deassert_offset);
+> +	writel(reg | value, reg_addr + ctrl->deassert_offset);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx_aux_reset_status(struct reset_controller_dev *rcdev,
+> +				unsigned long id)
+> +{
+> +	struct imx_aux_reset_priv *priv = container_of(rcdev,
+> +					struct imx_aux_reset_priv, rcdev);
+> +	const struct imx_reset_data *data = priv->data;
+> +	void __iomem *reg_addr = priv->base;
+> +	const struct imx_reset_ctrl *ctrl;
+> +	unsigned int reset_state;
+> +
+> +	if (id >= data->rst_ctrl_num)
+> +		return -EINVAL;
+> +
+> +	ctrl = &data->rst_ctrl[id];
+> +
+> +	/* status not supported for this reset */
+> +	if (ctrl->flags & STATUS_NONE)
+> +		return -EOPNOTSUPP;
+> +
+> +	reset_state = readl(reg_addr + ctrl->status_offset);
+> +
+> +	return !(reset_state & BIT(ctrl->status_bit)) ==
+> +		!(ctrl->flags & STATUS_SET);
+> +}
+> +
+> +static const struct reset_control_ops imx_aux_reset_ops = {
+> +	.assert   = imx_aux_reset_assert,
+> +	.deassert = imx_aux_reset_deassert,
+> +	.status	  = imx_aux_reset_status,
+> +};
+> +
+> +static int imx_aux_reset_probe(struct auxiliary_device *adev,
+> +			       const struct auxiliary_device_id *id)
+> +{
+> +	struct imx_reset_data *data = (struct imx_reset_data *)(id->driver_data);
+> +	struct imx_aux_reset_priv *priv;
+> +	struct device *dev = &adev->dev;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->rcdev.owner     = THIS_MODULE;
+> +	priv->rcdev.nr_resets = data->rst_ctrl_num;
+> +	priv->rcdev.ops       = &imx_aux_reset_ops;
+> +	priv->rcdev.of_node   = dev->parent->of_node;
+> +	priv->rcdev.dev	      = dev;
+> +	priv->rcdev.of_reset_n_cells = 1;
+> +	priv->base            = of_iomap(dev->parent->of_node, 0);
+> +	priv->data            = data;
+> +
+> +	return devm_reset_controller_register(dev, &priv->rcdev);
+> +}
+> +
+> +#define EARC  0x200
+> +
+> +static const struct imx_reset_ctrl imx8mp_audiomix_rst_ctrl[] = {
+> +	{
+> +		.assert_offset = EARC,
+> +		.assert_bit = 0,
+> +		.deassert_offset = EARC,
+> +		.deassert_bit = 0,
+> +		.flags  = ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
+> +	},
+> +	{
+> +		.assert_offset = EARC,
+> +		.assert_bit = 1,
+> +		.deassert_offset = EARC,
+> +		.deassert_bit = 1,
+> +		.flags  = ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
+> +	},
+> +};
+> +
+> +static const struct imx_reset_data imx8mp_audiomix_rst_data = {
+> +	.rst_ctrl = imx8mp_audiomix_rst_ctrl,
+> +	.rst_ctrl_num = ARRAY_SIZE(imx8mp_audiomix_rst_ctrl),
+> +};
+> +
+> +static const struct auxiliary_device_id imx_aux_reset_ids[] = {
+> +	{
+> +		.name = "clk_imx8mp_audiomix.reset",
+> +		.driver_data = (kernel_ulong_t)&imx8mp_audiomix_rst_data,
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(auxiliary, imx_aux_reset_ids);
+> +
+> +static struct auxiliary_driver imx_aux_reset_driver = {
+> +	.probe		= imx_aux_reset_probe,
+> +	.id_table	= imx_aux_reset_ids,
+> +};
+> +
+> +module_auxiliary_driver(imx_aux_reset_driver);
+> +
+> +MODULE_AUTHOR("Shengjiu Wang <shengjiu.wang@nxp.com>");
+> +MODULE_DESCRIPTION("Freescale i.MX auxiliary reset driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.34.1
+> 
+> 
+> 
 
