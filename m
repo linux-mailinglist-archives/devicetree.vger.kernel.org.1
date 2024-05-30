@@ -1,165 +1,179 @@
-Return-Path: <devicetree+bounces-70889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 649978D4DC7
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:23:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAEEA8D4E1C
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:37:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1965E284370
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:23:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48C151F23E3D
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D4F17623D;
-	Thu, 30 May 2024 14:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748B417C22B;
+	Thu, 30 May 2024 14:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="y2/YJ0oD"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="XNpmgt/O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D440817623B;
-	Thu, 30 May 2024 14:23:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093A6169AC6
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 14:37:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717079019; cv=none; b=W9Ut/MtcXewg7OvEiM8YlmhAHPRkHrWh+U2TrgIsttpx1e7+DFvW2E6h+hO0hpvcASa7Ea6tDhYaGcWdn0mn78pKTl5YNvzUyGh1adSlzJ4ZtM5w3cewsCUJbNvy+K+oPKWM1TSPuEo3ildLoPGXR9XZkCs+aUK8xs5Tq4bbvU4=
+	t=1717079863; cv=none; b=pGogN79tOhUPVtnsBWqr1mU0It61vrjlVFfpSOPS0PYQtAx5y/3lXb39cN6Z1TCqaWzxAmfZrkaFAt4EccKOhrWMok68FuZPmIR24xNxAYKIm7VWV4sXiSvkFN+DvwQ0dpCN/lMEm47XKBClXDJu1FDGDb+MivgtC4CsyUhak0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717079019; c=relaxed/simple;
-	bh=rBAOffgbAamuOBpZB11BYdUzR1zoLfsWLjuxRiZ8a18=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Y4qOHI+7+za6xU0eGBZsv6tzc3KpdQeYtGM4waIZGWEBiuMFqxeU/e0ienxTAbqvn6w8nuwp875us1wN2w9qw7kkEDlejhLV04OsM/Cg1IJEobvkw/Di+YzMR4PwY0ZkH+sW3q5AccylDSJLxdE1n4efMtSJozlGtJWGyym0L6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=y2/YJ0oD; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References; bh=UfJam6jJgDMUma9IbeP8W8ZatgiZnuZGFX5AOvEBySE=; b=y2
-	/YJ0oD1wUGuKD56sIIayH+NUovPwjWC3mPtP+WiTkr+H19FZEiBziqt1EdwIZnop6iefk4S/XIUgX
-	Q54tzMHCKbxF2v2Y8N5TAMQGvcuRNfkl3+e7zI/N/w0GFlLVRKRQwOClgWtAWTDCsWKAn6bMcpMp0
-	V12vmiSH+1s+8LGO+PieKfKxwb1rZdCcyPBtsJEIL1uVxPVCmwKo9+DEmY+k28JvtxmgBZgjR0ZDh
-	xTzgZjBsPdS086bq/KAKMNyNFtAVpF1R32C9wAsknGTO15ZY7Rsoy7cWC8hjqw9jJpH1fCMvsB7+T
-	zRO8/s0XIdLR40vMLh7+TSw2jpJ4l1Nw==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <esben@geanix.com>)
-	id 1sCggm-00093J-WC; Thu, 30 May 2024 16:23:33 +0200
-Received: from [185.17.218.86] (helo=localhost)
-	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <esben@geanix.com>)
-	id 1sCggm-0005k0-2k;
-	Thu, 30 May 2024 16:23:32 +0200
-From: Esben Haabendal <esben@geanix.com>
-Date: Thu, 30 May 2024 16:22:54 +0200
-Subject: [PATCH] ARM: dts: ls1021a: add QUICC Engine node
+	s=arc-20240116; t=1717079863; c=relaxed/simple;
+	bh=U3LbKVgqL/u1hQeuo5yC32Kn/VinvVfWfYKY8hhTfFI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OVMZaHgVO8RXAMKdxr4W/DMqaYhhyMfGhVjL2uj1Z/bx6PiH8nx6hRviR20dUXI1tUqFqbFENtfoQ3pgHvfN6nFKeDpH6+sMoaPKqfBQQ24FeJUuDJtpEnOw6dWD/1tzP95tWgOJ28W+R65hnY/kOlcByBvXYrNLyFzd8DDz9mA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=XNpmgt/O; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1f4c7b022f8so8686135ad.1
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 07:37:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1717079860; x=1717684660; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Dr7MGcIZCht+4Sl3Mt64k5vSbdLUfxkiP98jMWV/Dt8=;
+        b=XNpmgt/OCJUPuhZl+INdzQay53hz0AM0dPZfBA7y6E0fMenHxBAnyL63Q+sO5YHZ0c
+         N13gj8ia4eCgTy42l1C/c0/qJnzE/p2bZ+PktrFA5bmpTmKG4pris905n5c/cvx1T5Qq
+         aDZbrBT9r5d6/r4yWEO0rAgmlwMXFXrjFEuQD1/sQiu2pROLCVrDPGraSJTdnWuNAM/M
+         jC1UJJZfLLLmRj1f2Y3cCdRrkVpM9Mu3VlrvGyuBWIFhDeYI80Dhgtg/NcpnrrOGzYlH
+         fwkwj+DeS/UQ6q/NA6+pa7NIzjRGOdXxhbHUh2C645X+cozIdbI6QgL6lrIbVzKRWsHq
+         1Fig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717079860; x=1717684660;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dr7MGcIZCht+4Sl3Mt64k5vSbdLUfxkiP98jMWV/Dt8=;
+        b=j8PH2vsnjSQixofmr+Hta+2IWr3kD7bkHjAjw7mgfHMDn9xmbmYxkWuDQvZulCueoV
+         x7UOfhP1Q8hOvCYYjCB6MS3sZ1b4qHJBEXYVxqcC+wprn5Ov7RAM0Z5jNxkwijq4ieWa
+         GMDlS5UhZdieaM4REvJEPgVR67ilNWhRolfh6heSd4GE28g9IEf9n0FfbakEr5wy/3Lg
+         i+ryxZ6/K1yeF7i7ldTcL4iWKFiYmpcTfBzWegYE7KjuN31sJPl4aYgnxRzK4IG3HJnu
+         /twkmludWzdmykGHzrggrfJJ07yvc/mjEjfOU8ujZOkdy/WYVCVaqbVVl0rebdqbWG0P
+         vjIg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMmrWKOU0qkZw3OC/crT6SC9JvCubAe6RwPNvkFx2xu6+9JsKXA4oY07i5tc4W2/NFBl5MjH2BiLevcOAIWfdeSBeHjHvGzFzOWA==
+X-Gm-Message-State: AOJu0Yya5s5Mc+3I3joC+f5Tmmt0dK1CLPhhki+NG3Y0bsUdnnV3dlNl
+	UQCUwfXsQbBCp2w0hxHNdVCVwpH8J4imhjofUXLtsL2ReA0mqb91zJlA1BiHg2g=
+X-Google-Smtp-Source: AGHT+IG+P79rec/1kndzK6QyUvlapORFmbEhzvdcFqf7CsaBcI6jLUT7w4JzgE6GE/lZheH1bs1ucw==
+X-Received: by 2002:a17:903:2307:b0:1f4:98f4:4763 with SMTP id d9443c01a7336-1f619932a97mr28337145ad.53.1717079860232;
+        Thu, 30 May 2024 07:37:40 -0700 (PDT)
+Received: from ghost (mobile-166-137-160-039.mycingular.net. [166.137.160.39])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f466d30277sm103103765ad.63.2024.05.30.07.37.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 May 2024 07:37:39 -0700 (PDT)
+Date: Thu, 30 May 2024 07:37:35 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v5 02/16] riscv: add ISA extension parsing for Zimop
+Message-ID: <ZliPL4yXBAir5pr2@ghost>
+References: <20240517145302.971019-1-cleger@rivosinc.com>
+ <20240517145302.971019-3-cleger@rivosinc.com>
+ <ZlenZ+NvXxOxvqEO@ghost>
+ <ZleqVUhDW+xgiTwu@ghost>
+ <4d23f17e-cc1e-45e3-9ca2-a884baacf207@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240530-arm-ls1021a-qe-dts-v1-1-2eda23bdf8c5@geanix.com>
-X-B4-Tracking: v=1; b=H4sIAL2LWGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDU2MD3cSiXN2cYkMDI8NE3cJU3ZSSYl0DS2NjC0NDQwNzS2MloMaCotS
- 0zAqwodGxtbUAO1PuXGQAAAA=
-To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Esben Haabendal <esben@geanix.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717079012; l=2068;
- i=esben@geanix.com; s=20240523; h=from:subject:message-id;
- bh=rBAOffgbAamuOBpZB11BYdUzR1zoLfsWLjuxRiZ8a18=;
- b=WCcqt0yhrq70I9kt82LvvpMG/EdU+MMZfi1yBiNY+PAZ1A6eQZ1sV2l5g+U3Kf3cNvy4N4aSP
- ihYoGuQTUwrBdz7jC+8TQSw9o4qPjGDIfPxggukd7NU/9MBByRs2oeI
-X-Developer-Key: i=esben@geanix.com; a=ed25519;
- pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
-X-Authenticated-Sender: esben@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27291/Thu May 30 10:29:52 2024)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4d23f17e-cc1e-45e3-9ca2-a884baacf207@rivosinc.com>
 
-The LS1021A contains a QUICC Engine Block, so add a node to device
-tree describing that.
+On Thu, May 30, 2024 at 10:12:39AM +0200, Clément Léger wrote:
+> 
+> 
+> On 30/05/2024 00:21, Charlie Jenkins wrote:
+> > On Wed, May 29, 2024 at 03:08:39PM -0700, Charlie Jenkins wrote:
+> >> On Fri, May 17, 2024 at 04:52:42PM +0200, Clément Léger wrote:
+> >>> Add parsing for Zimop ISA extension which was ratified in commit
+> >>> 58220614a5f of the riscv-isa-manual.
+> >>>
+> >>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+> >>> ---
+> >>>  arch/riscv/include/asm/hwcap.h | 1 +
+> >>>  arch/riscv/kernel/cpufeature.c | 1 +
+> >>>  2 files changed, 2 insertions(+)
+> >>>
+> >>> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> >>> index 1f2d2599c655..b1896dade74c 100644
+> >>> --- a/arch/riscv/include/asm/hwcap.h
+> >>> +++ b/arch/riscv/include/asm/hwcap.h
+> >>> @@ -80,6 +80,7 @@
+> >>>  #define RISCV_ISA_EXT_ZFA		71
+> >>>  #define RISCV_ISA_EXT_ZTSO		72
+> >>>  #define RISCV_ISA_EXT_ZACAS		73
+> >>> +#define RISCV_ISA_EXT_ZIMOP		74
+> >>
+> >> Since my changes for removing xandespmu haven't landed here yet I think
+> >> you should keep RISCV_ISA_EXT_XANDESPMU in the diff here and make
+> >> RISCV_ISA_EXT_ZIMOP have a key of 75. Palmer can probably resolve the
+> >> conflicting keys when these two series are merged.
+> >>
+> >> - Charlie
+> > 
+> > I missed that other patches in this series were based off my
+> > xtheadvector changes. It's not in the cover letter that there is a
+> > dependency though. What do you need from that series for this series to
+> > work?
+> 
+> Hey Charlie, I'm not based directly on any of your series, but on
+> riscv/for-next which probably already contains your patches.
+> 
+> Clément
 
-Signed-off-by: Esben Haabendal <esben@geanix.com>
----
- arch/arm/boot/dts/nxp/ls/ls1021a.dtsi | 51 +++++++++++++++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+There was some churn here so I didn't expect those to be merged, it
+looks like a subset of the patches were added to riscv/for-next, sorry
+for the confusion!
 
-diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-index e86998ca77d6..ff7be69acdd5 100644
---- a/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/nxp/ls/ls1021a.dtsi
-@@ -460,6 +460,57 @@ gpio3: gpio@2330000 {
- 			#interrupt-cells = <2>;
- 		};
- 
-+		uqe: uqe@2400000 {
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			device_type = "qe";
-+			compatible = "fsl,qe", "simple-bus";
-+			ranges = <0x0 0x0 0x2400000 0x40000>;
-+			reg = <0x0 0x2400000 0x0 0x480>;
-+			brg-frequency = <150000000>;
-+			bus-frequency = <300000000>;
-+
-+			fsl,qe-num-riscs = <1>;
-+			fsl,qe-num-snums = <28>;
-+
-+			qeic: qeic@80 {
-+				compatible = "fsl,qe-ic";
-+				reg = <0x80 0x80>;
-+				#address-cells = <0>;
-+				interrupt-controller;
-+				#interrupt-cells = <1>;
-+				interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH
-+					      GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
-+			ucc@2000 {
-+				cell-index = <1>;
-+				reg = <0x2000 0x200>;
-+				interrupts = <32>;
-+				interrupt-parent = <&qeic>;
-+			};
-+
-+			ucc@2200 {
-+				cell-index = <3>;
-+				reg = <0x2200 0x200>;
-+				interrupts = <34>;
-+				interrupt-parent = <&qeic>;
-+			};
-+
-+			muram@10000 {
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				compatible = "fsl,qe-muram", "fsl,cpm-muram";
-+				ranges = <0x0 0x10000 0x6000>;
-+
-+				data-only@0 {
-+					compatible = "fsl,qe-muram-data",
-+					"fsl,cpm-muram-data";
-+					reg = <0x0 0x6000>;
-+				};
-+			};
-+		};
-+
- 		lpuart0: serial@2950000 {
- 			compatible = "fsl,ls1021a-lpuart";
- 			reg = <0x0 0x2950000 0x0 0x1000>;
+Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
 
----
-base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-change-id: 20240530-arm-ls1021a-qe-dts-093381110793
-
-Best regards,
--- 
-Esben Haabendal <esben@geanix.com>
-
+> 
+> > 
+> > - Charlie
+> > 
+> >>
+> >>>  
+> >>>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+> >>>  
+> >>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> >>> index 2993318b8ea2..41f8ae22e7a0 100644
+> >>> --- a/arch/riscv/kernel/cpufeature.c
+> >>> +++ b/arch/riscv/kernel/cpufeature.c
+> >>> @@ -241,6 +241,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+> >>>  	__RISCV_ISA_EXT_DATA(zihintntl, RISCV_ISA_EXT_ZIHINTNTL),
+> >>>  	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
+> >>>  	__RISCV_ISA_EXT_DATA(zihpm, RISCV_ISA_EXT_ZIHPM),
+> >>> +	__RISCV_ISA_EXT_DATA(zimop, RISCV_ISA_EXT_ZIMOP),
+> >>>  	__RISCV_ISA_EXT_DATA(zacas, RISCV_ISA_EXT_ZACAS),
+> >>>  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
+> >>>  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
+> >>> -- 
+> >>> 2.43.0
+> >>>
+> >>>
+> >>> _______________________________________________
+> >>> linux-riscv mailing list
+> >>> linux-riscv@lists.infradead.org
+> >>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> >>
 
