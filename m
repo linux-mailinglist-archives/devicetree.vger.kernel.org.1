@@ -1,156 +1,205 @@
-Return-Path: <devicetree+bounces-70787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55658D476F
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:47:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F03448D4785
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:51:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 703F61F2361E
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:47:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C728B2226F
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A15A7406F;
-	Thu, 30 May 2024 08:46:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mHxAtcWw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9BA6F305;
+	Thu, 30 May 2024 08:51:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D8B6F313;
-	Thu, 30 May 2024 08:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC2F6F2F1
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717058812; cv=none; b=abtpfXGM1vWa9UrizL0hEH8Cy69SgKhwuwaNV+aq4DOKCe7R1SywS6Q+lR7DWZhW4cSn5c+MYa1JWi+ueE+Uuj9kek7i7yI4jenlaUQCBUjQv0Sl9RTjAbALZBuQAaEPH6BIXuJo6OH3uPSnmzappziDdIPWfko3VivKgn6ZsnQ=
+	t=1717059104; cv=none; b=Yma3WWreD684clBjNAqUyTq8CBRsV+kS5bIhuStc8jj1w2l3Y7Nx+hGezBIOTDwCGIeKnfBkcO8qAUAW8xcIn18IBgNQG4fygB23NGhO/JVm5YBaJwY86USe7eG9RrUaFse0PZFMREpi5XQshpwE8hkYK0B/LeiV7O+hcqJLrs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717058812; c=relaxed/simple;
-	bh=dbK4t3fcfO5MCPpp7yG+qUDyTmsM+unfwZsYS1LnJQs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ebh/jTk+JG9pSaD+gEONV/1kxjynBVkfG8/9QPd+RiAWTrcrm5exhYNQMB9NknQEY0keZ5puX+vUS6/qEFwq0L3AJ71JpGNN430ARJmcMYNTol+5HGZdoW1T1e3pDHBQi1efz4M/rSbsaV3irbeftOXLfsI9lFjqS0p9Lk5KQLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mHxAtcWw; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5785eab8d5dso623232a12.3;
-        Thu, 30 May 2024 01:46:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717058809; x=1717663609; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4bhN+9CMSJhPBVcatrdGXA5dYbFmER5HACIQLCV17l8=;
-        b=mHxAtcWwObhM9gv3Q/7MiK+o2wyyJiTaA0qpyyOoBGbeph0T3EaFZA7rARbMjNmfO1
-         03yxVyJhCMJUzKyC8PYPtFiF3snxPNGmL4fLY8fYFnBUWn1CIzkVYMPp3wxG6iBix8JO
-         b43kjuowOtGV18HI41r6htSvwZn2l/gH4a5aIxlJR9cUFnxywMIdzj8e84FYKQgbqVgR
-         ix6JLlG+GzMmwLYrMrbBJmsNVZ4LbWq6C15SBPPA7xG6z9ubXYVQCJAXOkjReFfbnx5y
-         CyfhozYjbX71U/tsaZaXWTPuiQqYXEOm0rDmwcTiGmj36uh+27n+2LV6/8hltmjOOZGZ
-         q+cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717058809; x=1717663609;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4bhN+9CMSJhPBVcatrdGXA5dYbFmER5HACIQLCV17l8=;
-        b=AJL0GzP3PT6nmuRNzwaHvXq0/D1OtzSHyr4ET2p7B9uQJrgr55dHSflUq2JP8p4ar0
-         DG2RUwS5HIn3e2dfYDzV3pIkfVyjQ/0xC/Fzt4sUGV91Udk1YaNqMMoZ9bttea7Cjr1u
-         Uq+wxTmfj8xTqQuB4Sqpt+WmfBJDM3ZADwLc470YNmyy4yKLwFlUlqk6jyBW+pIM+iZN
-         Hw7Dn8DDTABzCy+ucNBcEH82fErlbqoTBd87RQNTgQz1A+EdDdFzSGQf+Teiy0M92rP0
-         0bGbjy6+46umunqXrG1L/njDqiQn8H1CFV2IQUiMqEjwvkAYCy7z5BbL3BOEEc3lSCSr
-         q+zg==
-X-Forwarded-Encrypted: i=1; AJvYcCVh6YDp8YKcu2CPmhU6nIsYKaWILTT4BkNFc/DuOFel5LJfa/lZir0nJScixxa5I3Ag9vVNWhsEjMBxW3me6EZ/Ss5JmZM/yPBV9kjxD4G+fsra0HLfyuz9Nz8N78q3pCTT7Nupyo4yfDeEMBcFRauVaGdQ4vQZKQknMZ5jnF2MiND+C2DZ1MRxEyYNvKjAfRjRVaqtEOL4c3Rfjyr69TI5T1T4
-X-Gm-Message-State: AOJu0YwfboMSX5gzVegiJSqpbSSw6wPhF2bIX7x6SkPwqyMyXE4oiGhe
-	dWJlmi01T6xv1O64iqg1qG9ddv7m4wjYvj/9wK6JXJ//xkqJOxl6QNLLqupt61iUxUKMmEhU5nA
-	LteExpvDkQzOk3cRlJHYObEiRzEM=
-X-Google-Smtp-Source: AGHT+IGhZ222SnMQhbyry0HvJsj0ueGZeaBYgylnVGd8CghV9Z2CLJAbhqXu1kJEO+fB5jS3vjmgtGOM8H/CKvZBbsU=
-X-Received: by 2002:a17:906:d92:b0:a59:a64c:9a26 with SMTP id
- a640c23a62f3a-a65e8e507d8mr83036566b.23.1717058808692; Thu, 30 May 2024
- 01:46:48 -0700 (PDT)
+	s=arc-20240116; t=1717059104; c=relaxed/simple;
+	bh=ldijqlRHr9EX+84TGvk38cU+KkmKKfH4BPsMyQjQM7U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XPkoXiNVzEBmCGscHyRgckG4tfyv4a+dS58fhOG6y0mut8G67q7GUPGjhQUxZAkvfBp5pn0jk7O6BqzN3AOwIm9hjVNh3j+1vEeN+2PSM1/lSRvePu4TTas/MXRYbZpMv8yuddCiIAxpxI79G/GKWMC5kRDMuqOFQcoJU1N8Xas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sCbVE-0006tG-Ko; Thu, 30 May 2024 10:51:16 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sCbVD-003Zad-T7; Thu, 30 May 2024 10:51:15 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1sCbVD-00039q-2Z;
+	Thu, 30 May 2024 10:51:15 +0200
+Date: Thu, 30 May 2024 10:51:15 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: p.zabel@pengutronix.de, abelvesa@kernel.org, peng.fan@nxp.com,
+	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
+Subject: Re: [PATCH v6 2/5] clk: imx: clk-audiomix: Add reset controller
+Message-ID: <20240530085115.ttmzx4dve4x6nep2@pengutronix.de>
+References: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
+ <1717036278-3515-3-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240529162958.18081-1-johan+linaro@kernel.org>
- <20240529162958.18081-14-johan+linaro@kernel.org> <CAHp75VcC5t1FynFeHGd+57=AeXKE8u0uduzOfozsG3MEzCPpDQ@mail.gmail.com>
- <Zlg1bGOs3V3TkHck@hovoldconsulting.com>
-In-Reply-To: <Zlg1bGOs3V3TkHck@hovoldconsulting.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 30 May 2024 11:46:12 +0300
-Message-ID: <CAHp75VeiVSxJwjxXyNueinudOfj-WHZEUg32VBTW4PfCfB9Q+g@mail.gmail.com>
-Subject: Re: [PATCH v2 13/14] regulator: add pm8008 pmic regulator driver
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, Stephen Boyd <swboyd@chromium.org>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1717036278-3515-3-git-send-email-shengjiu.wang@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, May 30, 2024 at 11:14=E2=80=AFAM Johan Hovold <johan@kernel.org> wr=
-ote:
-> On Wed, May 29, 2024 at 11:02:57PM +0300, Andy Shevchenko wrote:
-> > On Wed, May 29, 2024 at 7:30=E2=80=AFPM Johan Hovold <johan+linaro@kern=
-el.org> wrote:
+On 24-05-30, Shengjiu Wang wrote:
+> Audiomix block control can be a reset controller for
+> Enhanced Audio Return Channel (EARC), which is one of
+> modules in this audiomix subsystem.
+> 
+> The reset controller is supported by the auxiliary device
+> framework.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/clk/imx/Kconfig               |  1 +
+>  drivers/clk/imx/clk-imx8mp-audiomix.c | 60 +++++++++++++++++++++++++++
+>  2 files changed, 61 insertions(+)
+> 
+> diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
+> index 6da0fba68225..9edfb030bea9 100644
+> --- a/drivers/clk/imx/Kconfig
+> +++ b/drivers/clk/imx/Kconfig
+> @@ -81,6 +81,7 @@ config CLK_IMX8MP
+>  	tristate "IMX8MP CCM Clock Driver"
+>  	depends on ARCH_MXC || COMPILE_TEST
+>  	select MXC_CLK
+> +	select AUXILIARY_BUS
+>  	help
+>  	    Build the driver for i.MX8MP CCM Clock Driver
+>  
+> diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
+> index b381d6f784c8..a3dc2f3606ee 100644
+> --- a/drivers/clk/imx/clk-imx8mp-audiomix.c
+> +++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (C) 2022 Marek Vasut <marex@denx.de>
+>   */
+>  
+> +#include <linux/auxiliary_bus.h>
+>  #include <linux/clk-provider.h>
+>  #include <linux/device.h>
+>  #include <linux/io.h>
+> @@ -13,6 +14,7 @@
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+>  
+>  #include <dt-bindings/clock/imx8mp-clock.h>
+>  
+> @@ -217,6 +219,60 @@ struct clk_imx8mp_audiomix_priv {
+>  	struct clk_hw_onecell_data clk_data;
+>  };
+>  
+> +#if IS_ENABLED(CONFIG_RESET_CONTROLLER)
+> +
+> +static void clk_imx8mp_audiomix_reset_unregister_adev(void *_adev)
+> +{
+> +	struct auxiliary_device *adev = _adev;
+> +
+> +	auxiliary_device_delete(adev);
+> +	auxiliary_device_uninit(adev);
+> +}
+> +
+> +static void clk_imx8mp_audiomix_reset_adev_release(struct device *dev)
+> +{
+> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
+> +
+> +	kfree(adev);
+> +}
+> +
+> +static int clk_imx8mp_audiomix_reset_controller_register(struct device *dev,
+> +							 struct clk_imx8mp_audiomix_priv *priv)
+> +{
+> +	struct auxiliary_device *adev __free(kfree) = NULL;
+> +	int ret;
 
-...
+Since the reset-controller is optional you need to check the existence
+of the '#reset-cells' property before you register it.
 
-> > > +#include <linux/array_size.h>
-> > > +#include <linux/bits.h>
-> > > +#include <linux/device.h>
-> > > +#include <linux/math.h>
-> > > +#include <linux/module.h>
-> >
-> > > +#include <linux/of.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <linux/regulator/driver.h>
-> >
-> > + types.h
->
-> This one is already pulled in indirectly and I'm not going to respin for
-> this.
->
-> > + asm/byteorder.h
->
-> Already explicitly included in the code you left out.
+Regards,
+  Marco
 
-Is there any guarantee it will be like this? I don't think so. That's
-why there is an IWYU principle to give more flexibility of reshuffling
-the (core) headers. And I believe you know that we have way too far
-dependency hell in the headers in the kernel. Have you seen what Ingo
-tried to do and what the potential achievements are?
-
-...
-
-> > > +               rdev =3D devm_regulator_register(dev, desc, &config);
-> > > +               if (IS_ERR(rdev)) {
-> > > +                       ret =3D PTR_ERR(rdev);
-> > > +                       dev_err(dev, "failed to register regulator %s=
-: %d\n",
-> > > +                                       desc->name, ret);
-> > > +                       return ret;
-> >
-> > It's possible to use
-> >
-> >   return dev_err_probe(...);
-> >
-> > even for non-probe functions.
-
-(this should be "non-probe deferred functions")
-
-> This is a probe function(), but as I've told you repeatedly I'm not
-> going to use dev_err_probe() here.
-
-Yeah, I got it, some developers are leaving in the previous decades to
-make code very verbose for no benefit, no problem.
-
---=20
-With Best Regards,
-Andy Shevchenko
+> +
+> +	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+> +	if (!adev)
+> +		return -ENOMEM;
+> +
+> +	adev->name = "reset";
+> +	adev->dev.parent = dev;
+> +	adev->dev.release = clk_imx8mp_audiomix_reset_adev_release;
+> +
+> +	ret = auxiliary_device_init(adev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = auxiliary_device_add(adev);
+> +	if (ret) {
+> +		auxiliary_device_uninit(adev);
+> +		return ret;
+> +	}
+> +
+> +	return devm_add_action_or_reset(dev, clk_imx8mp_audiomix_reset_unregister_adev,
+> +					no_free_ptr(adev));
+> +}
+> +
+> +#else /* !CONFIG_RESET_CONTROLLER */
+> +
+> +static int clk_imx8mp_audiomix_reset_controller_register(struct clk_imx8mp_audiomix_priv *priv)
+> +{
+> +	return 0;
+> +}
+> +
+> +#endif /* !CONFIG_RESET_CONTROLLER */
+> +
+>  static void clk_imx8mp_audiomix_save_restore(struct device *dev, bool save)
+>  {
+>  	struct clk_imx8mp_audiomix_priv *priv = dev_get_drvdata(dev);
+> @@ -337,6 +393,10 @@ static int clk_imx8mp_audiomix_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto err_clk_register;
+>  
+> +	ret = clk_imx8mp_audiomix_reset_controller_register(dev, priv);
+> +	if (ret)
+> +		goto err_clk_register;
+> +
+>  	pm_runtime_put_sync(dev);
+>  	return 0;
+>  
+> -- 
+> 2.34.1
+> 
+> 
+> 
 
