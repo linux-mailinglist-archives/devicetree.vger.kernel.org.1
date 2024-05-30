@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-70915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CAA8D4F89
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 18:01:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19C18D4F8C
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 18:03:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DDC9B24197
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:01:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F3E91F22256
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3AEC18E10;
-	Thu, 30 May 2024 16:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C211CABA;
+	Thu, 30 May 2024 16:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pL7bmRgE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFEzzJSn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF40A1CFB5
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 16:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F481CFB5
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 16:03:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717084905; cv=none; b=REeOTpQi2rE0whZ5d8rCytytWmfTbpTmQ9e2uurxXW/X/yFRHz2U8QuU035CG5uSNCN7YkcucfsQbpC005/aChfc/7YmClAQLGBOX/20UYZHEAucjrDKnGD/tzYarDP4pZqCkqKZb8AZBc65scM/SRGswTG2lUCcEp3uMNcnWSk=
+	t=1717085019; cv=none; b=pgPUFUgjpRgkdva4eT1AERV0B63rQ5x6Qq2Q7kaObM3rl28k+mN80TeKENPxpqBgQSphInjbB6/7w7qjdIsRablGMgcwHzlpI5xoiok0jmGNfsfb2y8TEBSC6a5GXZlyR9RngPmy/5GnnOJRVfiScxy/iqIAOuojojTAUAuzxfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717084905; c=relaxed/simple;
-	bh=FP8/5FQncnWsBLeEJyks6gInPyOgSPm7Rv5Zub73SAs=;
+	s=arc-20240116; t=1717085019; c=relaxed/simple;
+	bh=QedpZOUtub6b2uP1dAyZa8uMB11yxZb4Topvy1A3AG4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V6Hb7lmy8ydmVoVCcHNx7QxoZ4LGljxYynVmmdBuJHuLwsWyUsSBv2SrSuXITZh9Cb8QoQ1uTH3agbNlLLu/rmsFZf9EIuQvV2Y35qiJcpfTy+WuX0c16bPRrljVI1/dmHQYL4JPNSG3DTNN3ibQeWaZorV75SC3p8+o63nu3gY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pL7bmRgE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B77EAC2BBFC;
-	Thu, 30 May 2024 16:01:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eyVBgj8XgbpenQgS06SB9RXz8CttqAqBHYb5IOfurQxbpg0DOl4UQsY5f24FhneurnIe6jbfFmMTifDfCP39lVPysMs6I+KpMIKLNCCvm1qLldOeumNv14z9/uyP4K5srE1adq8luIzHVLwxPUtSGMZ+KZTYyNSXiUM7Dy6zbMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFEzzJSn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBFFCC2BBFC;
+	Thu, 30 May 2024 16:03:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717084905;
-	bh=FP8/5FQncnWsBLeEJyks6gInPyOgSPm7Rv5Zub73SAs=;
+	s=k20201202; t=1717085018;
+	bh=QedpZOUtub6b2uP1dAyZa8uMB11yxZb4Topvy1A3AG4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pL7bmRgEb0J9tWmaHfOnM5mHqxmnFxqsysjHbNYmA/k9sbVt7KqH0VIr+Ul43l1qX
-	 1jDsrvGerBPUbumUczNEl6EFTJrGdHdNjOY88DfRVpqKKCSrOqD7s+4Z+hMql7lkGL
-	 mlrs4QzQZPC3heBY85/UvLvu8JS78L/MqWQzlSoMmS5YOhX1peBiaOTmliP2feDBj4
-	 Yvhzgzy0Qu9HWRfxhy2lTz/1nhCN3817T+aY7ePSF5+xszH1i/QMCOyI/FSIthFduX
-	 wcaOAQKE5qN9NluLT1oyqsPf9IQNBEHvNoAEXKy9LdfVmdxNdI+QWgMU4yCV8QMoSR
-	 m5lkFgMBjMEVQ==
-Date: Thu, 30 May 2024 17:01:39 +0100
+	b=BFEzzJSnC+e8gLcDobEpQdKZ7COOI2E6MtYwiDOmxa0DtvyWCHsqh8++WO4/ZL8Hs
+	 Re7tlTPBI9AnFwUd8an9asWn+JsLHO23VzxA6ikMBuPdGRzja0meeoEJgRXQp2MUEf
+	 MTbH2fF34sBk8RWCxP8b3qFMiLgk4yWEjsHlBbDT/NhE85UueG14p7GAZDWxl0b/QS
+	 BOiVIekKsKdO60dWasVCrxc9zXjaMSVMY37UNCP5/wLEt5/BZV+2DDHb4wqEU2riUi
+	 xVBuzz/J4A8EPRy2G1qzIRPijo5Lp8WGSSqIPbso8Bl4oQJLYC4WYwZHG94Nbv2Rsp
+	 GdM4JjEPHXCLQ==
+Date: Thu, 30 May 2024 17:03:32 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Ryan Walklin <ryan@testtoast.com>
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
@@ -61,7 +61,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
 	John Watts <contact@jookia.org>
 Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Add WL-355608-A8
  panel
-Message-ID: <20240530-satchel-playgroup-e8aa6937b8b9@spud>
+Message-ID: <20240530-kinship-lucid-71610ff9cd93@spud>
 References: <20240530082318.40516-1-ryan@testtoast.com>
  <20240530082318.40516-3-ryan@testtoast.com>
 Precedence: bulk
@@ -71,43 +71,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="02T0Ro5vIUzEWiAz"
+	protocol="application/pgp-signature"; boundary="xDGbntgEI+ewx1OI"
 Content-Disposition: inline
 In-Reply-To: <20240530082318.40516-3-ryan@testtoast.com>
 
 
---02T0Ro5vIUzEWiAz
+--xDGbntgEI+ewx1OI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 On Thu, May 30, 2024 at 08:22:22PM +1200, Ryan Walklin wrote:
-> The WL-355608-A8 is a 3.5" 640x480@60Hz RGB LCD display used in a
-> number of handheld gaming devices made by Anbernic.
 
-> By consensus a
-> vendor prefix is not provided as the panel OEM is unknown.
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi_lcd: spi {
-
-The "spi_lcd" label is not used and can be dropped.
+> +            port {
+> +            	endpoint {
+               ^
+You accidentally added a tab here:
+/stuff/linux/.git/worktrees/linux-dt/rebase-apply/patch:71: space before tab in indent.
+            	endpoint {
+warning: 1 line adds whitespace errors.
 
 
---02T0Ro5vIUzEWiAz
+
+--xDGbntgEI+ewx1OI
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlii4wAKCRB4tDGHoIJi
-0nVMAPsE4m1GYmW/3mLp51oYhB61w4I2oTPHFg9asROk00Hi2QD/cjtW6i4X3Okx
-wqk1H8O9+xjsQ/5gspA7xFcIHQCQNQU=
-=YXkF
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlijVAAKCRB4tDGHoIJi
+0hB3AP0QOFPwMF0B78COvjak+gYYwyU54j/GgCbmc0iIUt3PIwEA9yE+E//XfLzE
+luCPROuxrnU85ncZmVfF+e+6bQdLng0=
+=bQn5
 -----END PGP SIGNATURE-----
 
---02T0Ro5vIUzEWiAz--
+--xDGbntgEI+ewx1OI--
 
