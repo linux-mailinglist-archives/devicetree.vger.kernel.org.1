@@ -1,130 +1,182 @@
-Return-Path: <devicetree+bounces-70895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCCD8D4E6D
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:52:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80B518D4E93
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:02:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A00431F2273C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:52:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4B811C238DC
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2B017D88E;
-	Thu, 30 May 2024 14:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10D3D1474C3;
+	Thu, 30 May 2024 15:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="j9V9qBoO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YBSAZJme"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B186186E38
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 14:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D20931E532;
+	Thu, 30 May 2024 15:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717080759; cv=none; b=ANUsSr4/jdvrppVbLyZzwqnKmjyH7rDlgqMPhn8GzjntdkBtgD4dNiB0jGIpkEi3Un6lZq9pDlwebeFWqITE2bNav7tCTMIwGOT2kSRNVX6hdYPW9nEIUtOAgI/ufFPFG7/Jh7kxt4mRdsUQzEPCMqcJDciPLaDEPNQ0M6XgT0A=
+	t=1717081315; cv=none; b=fGKyWA5PFpbwyi5XOTFYz60/eQQRU+RrgLcXFUTDB0WENWCwclRaMBd7ajXmSu7qs4PUHEiHJSx72crAGaJ1/2COYr6cyuVnIjSKk6NZu6QB/DtgoOsyqI9eRY7OSz139A+D2aptqc29xmSNyW3LQg3928ksx4p5rom6pYBXAG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717080759; c=relaxed/simple;
-	bh=qCr2fwCZCC0sZAtQMrr7v5keGCDnI6ZBVcUAOfpdlSo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F3/XLKHHvYVx/KhKIk7P03QGnjIkC1HoCNOyMwvc16MdVHLNHgykFyyTveinmnKEcW/wIr8weUSGzWS7uhihFmCUOLIKpXxZ/lF/UYv4JzFrFr9EWDxdy763d247JzSea+0Pyms1n1vaMADlDB9aHy/7K6xLekLRlMgcoKV5x8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=j9V9qBoO; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2e96f298fbdso10181681fa.1
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 07:52:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1717080755; x=1717685555; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8xju9nW5aEF63Pcv0lMb3cbBthG2ZJ9khtPEmPPr3uI=;
-        b=j9V9qBoORQqeS3GKArPqvCwjBurBaovpjLhdWtece1aT1WlBuhmztHTGSAemZaMT2X
-         F8mWXa8evU4eSXTREfPIXJJsluCy14HXoVNVZncmRzX2Km0KOM0EJ8SZ1rXOWYUsUJhX
-         d9ErEkms/QWb3z9Z+ddqFeJHIgn1a5+U1ljG1fInmJaQCOP/ZZV7bE5hosRmZoJoJlWx
-         ZYanWnoF0KN62fT6m7pz4l+LEeI6ca5Gsb4ykrfLJ78LLITxvCUtOhJOPU/Ihb2p2fpI
-         Qq745Jl79/LpPpg7jC6a/U8XhXJU/+HX7BSV9lg9jY5rPwJ4LIeco8MGHnO7L9LYKnH0
-         uipw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717080755; x=1717685555;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8xju9nW5aEF63Pcv0lMb3cbBthG2ZJ9khtPEmPPr3uI=;
-        b=r5zlnGIZRIVpIOsVSb3hg9MkJKJtL++qlL/vCeHXr0wu7LCycl63eDIAFxOIpmUkSP
-         yDRak1LKA968V8s26+fitdaYROk8fvaitExdiQIf/VEBwmbsuqF0IW60Yc6JPkIqQj4D
-         Evw6i+xU3UuRtvZJhW7t/q1NeTyl7rCAG3RRLqPMjy0Yk27WEoFZDeWNQNO2ocTOn+fj
-         20LIZ/fTEswX9IscpznflqvaYUlz98XsTSAgtAS0/AWmdeSxfYsir0/WRxL0J+sCyRad
-         IHe/PsABYE7P2iczrqmz4hxSsgxaBxf/AgijWO2jsdDoikR92IqbWs4cocxBNrMsGaZT
-         GNfA==
-X-Forwarded-Encrypted: i=1; AJvYcCUPDOCCWdZgKQVWV+CjCPYezNAFXaf9fJyX4Q3uw1v0nTz4E7Tinaw9eUdzKaKKHeHZLdJB2FQ1cAEB+XPkdzDn3Y72FHAD9QV/yg==
-X-Gm-Message-State: AOJu0YypgoA/9mTYt1r4BQC2nYfsrtoCvX29nRab/6biFxoUpKcfppot
-	ESereCm8uqFafJXHkhaBy3IjuiB06h3Vh/uNe41RvxalFWnIoL2EhwSNYReq4HH+aUntfDysaOM
-	7NMaNtYzOayGX2FPu5dpbqWJkmmw9C8dFso/gHw==
-X-Google-Smtp-Source: AGHT+IHf8TmrUvKHY3tZVeP9T/NeHo/+xLt+IhXkdMwRroWcQhly/ewRsUPfk31Cc9BSWLvx0W2D6Ia7qNisp/t3DcU=
-X-Received: by 2002:a05:651c:224:b0:2ea:8e94:a2f4 with SMTP id
- 38308e7fff4ca-2ea8e94a54emr2778791fa.21.1717080755423; Thu, 30 May 2024
- 07:52:35 -0700 (PDT)
+	s=arc-20240116; t=1717081315; c=relaxed/simple;
+	bh=f9rXrmt7+8lC/knKP497JPEr1C/VriBpknTuw33hit0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JSglGRp2lwxSamjQccoDHG7+g9BNNPhJF1fKNDpzrFjUNV/FmbpsPZsM783Su5SX9EHY64aT4TE0c6ZkWCiA7y3/GowW4HqmnOVS0V7SLFZNnPtmlS6tr09g9Xhk0WOdbRqEerbQUfFVsEUF7OD6qrCxgWsKQ/qkoaFKsY+RY4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YBSAZJme; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E64C4C2BBFC;
+	Thu, 30 May 2024 15:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717081314;
+	bh=f9rXrmt7+8lC/knKP497JPEr1C/VriBpknTuw33hit0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YBSAZJmeLFUhs3Jcwhyp3/kZBkI/0GUWOjTf2m6GbQUWtJ7l8TGe6p7+ZasXZ5xEH
+	 dNiQW5VBgWpgu3R1pc05d7kqdmfT/8Dgv5dKot+NAqENkYOfCfTwe6I1jfG0twfVGR
+	 mqe5MNfQOmD8R1V6TPUJwzjleX1FwVnCDZZvs+b5fj/Tem9lDRr5AwwuExXfYZDEd9
+	 df/EjXzziWNKngavXZOR6W0jQvQZNgfhTzdnbt2BToaYRsO79+ZMJmVpoRh4XMa0Wm
+	 xq+2aTJEqG6jeiCmkjrhh9azTF4ik/jQrpOPaiP1bvEwHG7mnBC28voatWR8zGU0Le
+	 pZsaA+1PKvCiQ==
+Date: Thu, 30 May 2024 17:01:51 +0200
+From: "mripard@kernel.org" <mripard@kernel.org>
+To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	Singo Chang =?utf-8?B?KOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>, 
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>, "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"jason-jh.lin@mediatek.corp-partner.google.com" <jason-jh.lin@mediatek.corp-partner.google.com>, 
+	Jason-ch Chen =?utf-8?B?KOmZs+W7uuixqik=?= <Jason-ch.Chen@mediatek.com>, 
+	Shawn Sung =?utf-8?B?KOWui+WtneismSk=?= <Shawn.Sung@mediatek.com>, Nancy Lin =?utf-8?B?KOael+aso+ieoik=?= <Nancy.Lin@mediatek.com>, 
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "jkardatzke@google.com" <jkardatzke@google.com>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, "airlied@gmail.com" <airlied@gmail.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v6 0/7] Add mediate-drm secure flow for SVP
+Message-ID: <20240530-inventive-nippy-bee-bb6fa6@houat>
+References: <20240525232928.5524-1-jason-jh.lin@mediatek.com>
+ <20240527-determined-sage-piculet-bfec4a@houat>
+ <4828461fa10101eec29e2885bc1aa0e2b7114e7c.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org>
-In-Reply-To: <20240529-dt-interrupt-map-fix-v2-0-ef86dc5bcd2a@kernel.org>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Thu, 30 May 2024 20:22:23 +0530
-Message-ID: <CAK9=C2WvmXujHT-PpvhcHgg1Tck3k_K_BmLVp-=1Z71Y385Cbw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] of: Fix interrupt-map for fw_devlink
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="bsilt325yu2nqtmw"
+Content-Disposition: inline
+In-Reply-To: <4828461fa10101eec29e2885bc1aa0e2b7114e7c.camel@mediatek.com>
+
+
+--bsilt325yu2nqtmw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 30, 2024 at 1:29=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
-> The duplicated parsing continued to bother me, so I've refactored things
-> to avoid that for parsing the interrupt parent and args in the
-> interrupt-map.
->
-> It passes testing with unittests on QEMU virt platform, but I don't
-> think that catches the problematic cases. So please test.
->
-> v1: https://lore.kernel.org/all/20240528164132.2451685-1-maz@kernel.org/
->  - Refactor existing interrupt-map parsing code and use it for
->    fw_devlink
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Marc Zyngier (1):
->       of: property: Fix fw_devlink handling of interrupt-map
->
-> Rob Herring (Arm) (1):
->       of/irq: Factor out parsing of interrupt-map parent phandle+args fro=
-m of_irq_parse_raw()
->
->  drivers/of/irq.c        | 127 +++++++++++++++++++++++++++++-------------=
-------
->  drivers/of/of_private.h |   3 ++
->  drivers/of/property.c   |  30 ++++--------
->  3 files changed, 89 insertions(+), 71 deletions(-)
-> ---
-> base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-> change-id: 20240529-dt-interrupt-map-fix-a37b9aff5ca0
->
-> Best regards,
-> --
-> Rob Herring (Arm) <robh@kernel.org>
->
+On Tue, May 28, 2024 at 07:15:34AM GMT, Jason-JH Lin (=E6=9E=97=E7=9D=BF=E7=
+=A5=A5) wrote:
+> Hi Maxime,
+>=20
+> On Mon, 2024-05-27 at 16:06 +0200, Maxime Ripard wrote:
+> > Hi,
+> >=20
+> > On Sun, May 26, 2024 at 07:29:21AM GMT, Jason-JH.Lin wrote:
+> > > From: Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
+> > >=20
+> > > Memory Definitions:
+> > > secure memory - Memory allocated in the TEE (Trusted Execution
+> > > Environment) which is inaccessible in the REE (Rich Execution
+> > > Environment, i.e. linux kernel/userspace).
+> > > secure handle - Integer value which acts as reference to 'secure
+> > > memory'. Used in communication between TEE and REE to reference
+> > > 'secure memory'.
+> > > secure buffer - 'secure memory' that is used to store decrypted,
+> > > compressed video or for other general purposes in the TEE.
+> > > secure surface - 'secure memory' that is used to store graphic
+> > > buffers.
+> > >=20
+> > > Memory Usage in SVP:
+> > > The overall flow of SVP starts with encrypted video coming in from
+> > > an
+> > > outside source into the REE. The REE will then allocate a 'secure
+> > > buffer' and send the corresponding 'secure handle' along with the
+> > > encrypted, compressed video data to the TEE. The TEE will then
+> > > decrypt
+> > > the video and store the result in the 'secure buffer'. The REE will
+> > > then allocate a 'secure surface'. The REE will pass the 'secure
+> > > handles' for both the 'secure buffer' and 'secure surface' into the
+> > > TEE for video decoding. The video decoder HW will then decode the
+> > > contents of the 'secure buffer' and place the result in the 'secure
+> > > surface'. The REE will then attach the 'secure surface' to the
+> > > overlay
+> > > plane for rendering of the video.
+> > >=20
+> > > Everything relating to ensuring security of the actual contents of
+> > > the
+> > > 'secure buffer' and 'secure surface' is out of scope for the REE
+> > > and
+> > > is the responsibility of the TEE.
+> > >=20
+> > > DRM driver handles allocation of gem objects that are backed by a
+> > > 'secure
+> > > surface' and for displaying a 'secure surface' on the overlay
+> > > plane.
+> > > This introduces a new flag for object creation called
+> > > DRM_MTK_GEM_CREATE_RESTRICTED which indicates it should be a
+> > > 'secure
+> > > surface'. All changes here are in MediaTek specific code.
+> > > ---
+> > > TODO:
+> > > 1) Drop MTK_DRM_IOCTL_GEM_CREATE and use DMA_HEAP_IOCTL_ALLOC in
+> > > userspace
+> > > 2) DRM driver use secure mailbox channel to handle normal and
+> > > secure flow
+> > > 3) Implement setting mmsys routing table in the secure world series
+> >=20
+> > I'm not sure what you mean here. Why are you trying to upstream
+> > something that still needs to be removed from your patch series?
+> >=20
+> Because their is too much patches need to be fixed in this series, so I
+> list down the remaining TODO items and send to review for the other
+> patches.
+>=20
+> Sorry for the bothering, I'll drop this at the next version.
 
-Works well for RISC-V, Thanks!
+If you don't intend to use it, we just shouldn't add it. Removing the
+TODO item doesn't make sense, even more so if heaps should be the way
+you handle this.
 
-Tested-by: Anup Patel <apatel@ventanamicro.com>
+> > Also, I made some comments on the previous version that have been
+> > entirely ignored and still apply on this version:
+> >=20
+> https://lore.kernel.org/dri-devel/20240415-guppy-of-perpetual-current-3a7=
+974@houat/
+> >=20
+>=20
+> I lost that mail in my mailbox, so I didn't reply at that time.
+> I have imported that mail and replied to you. Hope you don't mind :)
 
-Regards,
-Anup
+I haven't received that answer
+
+Maxime
+
+--bsilt325yu2nqtmw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZliU3wAKCRAnX84Zoj2+
+dvrxAX0XabP7ScLHGhP6JhXAY0/kO0KsAhJ6bXLTnMOtM9E/W4y4qvPNP4LCV3Mo
+XV4YepABgM/zYB5oYrwydUNYU7q9S94P/MmmLhGyY8VJb52Xv+ugqz9UT6kvA1I0
+w0SqyRcoag==
+=wGDo
+-----END PGP SIGNATURE-----
+
+--bsilt325yu2nqtmw--
 
