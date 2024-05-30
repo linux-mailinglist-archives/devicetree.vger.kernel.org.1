@@ -1,112 +1,126 @@
-Return-Path: <devicetree+bounces-70863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2E18D4CCC
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:31:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 351148D4CD3
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A4DB1F22D63
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:31:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9B279B22B59
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8955917107B;
-	Thu, 30 May 2024 13:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="TBKBEiiV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 963F827457;
+	Thu, 30 May 2024 13:32:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EBC317C23E
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 13:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8843117C23E
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 13:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717075891; cv=none; b=EsLuu5qkrgk1gMFfWeTdBBUqjlL3cMWh5P5/Sc0f14OUWrJvJU/Yan8QEGEvaTNyjxZsGujWAra2Fgrkgo/AGKPqN5J8aZfe+zSLGTzAaX5XiiAYIYUkDMKYBaoJDEuHPN9gpSCurhiS0KYGcoXN1VA9FXqWfxZjZ6h+KgXvWDI=
+	t=1717075930; cv=none; b=Nh6PPqspXu2kjsxnCKXVs397/LlQfobgF5vs/OVGQLdc5rZ4v4MCwV+AlmuI10+h0AMWHeVnkAJsIHrhpNq9bVUJhw+2a7fG9BkVlmspfvh04zgjBGEcFODRmT8y4HEAyI8Ur09ZVbYuJ+0VjCF98nYxqibvfUk/cU/hhKJZy84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717075891; c=relaxed/simple;
-	bh=za8s+s2uJbZOSdj13C3IhHmUpLzEjcZ7OcoTUDKC288=;
+	s=arc-20240116; t=1717075930; c=relaxed/simple;
+	bh=88IKigFe0kD8jlRvVKkAUZSX2j16VH3M+2GkqXzEFKM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MgoRdxlVKyN5scMEsq2j3qAQvEDhXxw3lzP1Uk5PP61RmSEbBbLWF+looIMzBzw2Ud6J+CMhlzQzZRNikBiMUKEUGIaUhZyVvvGCT5cQ2IgtBOdGMXd8aUk9jKWvCdzIXBTz2GzLVnwT9xL/5zMHNBkBqS2bl8U1VP4ivoMV/f0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=TBKBEiiV; arc=none smtp.client-ip=209.85.160.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-43dfe020675so342421cf.0
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 06:31:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1717075889; x=1717680689; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9b/VYjIxK8D43eybKKjV+I+zdKvJjn3UjDADVprzxpY=;
-        b=TBKBEiiVbrkEn1fE85S6Xaf1w0FhpRnOlci/6k1xmpfH22Za921ytuXSnVmtfNxXAs
-         sL3UbGTFOodZlqPD6IcOmUQBL+Bb9LtGhXBHXNYSki6jF1mVOuN9vhu48GJHv09RLNt2
-         JZNugeNIeHcBrnwEiebDtVbRrlzYuP22MMZoAk3VoGfbeD1Q6FdykdfdUqgx688RE+Ub
-         JIXzlPQUaM2tI6GKLGte/UJnlLEHQBWn9gAhSl7dclezAkPiz7dQrvvVXtEGpf3vWTM+
-         nBQ5k4bbJMKvQagYT6NHYKkA41x7m+/ka0cRoCVcO/KELXNVtnyk3RLXe5R7qdFrMeVX
-         L0BQ==
+	 To:Cc:Content-Type; b=cpwjAK8Gudg4G++E1zt1PBYbz/ViEJWBLrI2dxnuFP3Rt6iR65xEEnkKI5BWzcT52hvop1mn8rLzMZqQVYBmA9GxCbSzDFJc9HG3kcAq+Pouqmkcjcx7PCVLXHYnnKY71j2uk1XcQcr7h+A0tnUjGqy4Gd6jJ0ysFAWvDuR3Dzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-62c6dc63880so6461507b3.2
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 06:32:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717075889; x=1717680689;
+        d=1e100.net; s=20230601; t=1717075927; x=1717680727;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9b/VYjIxK8D43eybKKjV+I+zdKvJjn3UjDADVprzxpY=;
-        b=Y04dOxVdYCY8hN1g7dk4dh5nlliaNDLWLQTgIUPL27FUHkBr3dkmS20Ugc37LCuNWq
-         NUQ5oe5fbWDoKIy9NnrR7rFowC1w5GB/HgP0wOAMoLiEk2ZVgFKPVHvmYALrsOg8U3Rv
-         T6+rZmy8RXmhF3aF+dTF9NNaGf4Y2ctyLfIiLZhfQhGEm+urdXocrhQPQ6lvlKUK3Uj7
-         gWmizJ1fBzivFY2uUkDWjQKrsXVDoHiplmOnItzf9tqY3P/zCNLTA2M1GO5YsNUCY0Uy
-         v7v4dGKlu63FKtChX4RZVrz8fa1mf0wQpvD8UwZ/ncrtlrmPk5ryC/Fgd8dq4M/otLF2
-         0fSg==
-X-Forwarded-Encrypted: i=1; AJvYcCXqcrcVO0BBU8Qmej/DX+59WQ5Qn2NtGY3c6OcAG+5XRfLN24q4wNkQOvAl2rL3N7j2nrnyIuJt7D5E1YbzZEXvdKe8bfs62cZk7w==
-X-Gm-Message-State: AOJu0YwsbflovVFLTw/yNfpmLGshUlY12cJo5U80Bwc/7Gr/nUL00RUC
-	GiD4K11R/7Vrw8ci9HFaZDphnKMrTkVrpU1l/l52CbNAXMk57+MGZs4FO2nOdh0F1Pj8EfAQRuo
-	utYp5CvhCvD+gYW4ZKAqwNiX7sVGTN99sVTgM
-X-Google-Smtp-Source: AGHT+IEVljc/WNG1/2DxI5ja4dVMaBKAFoMh5+9eC9gGh7kw60wj1iEuNd/k/FrPaC+845BlBleYXcCYvwumc81T37Q=
-X-Received: by 2002:a05:622a:4d4b:b0:43f:bb44:bbb7 with SMTP id
- d75a77b69052e-43fe8e3bf56mr3679761cf.8.1717075888864; Thu, 30 May 2024
- 06:31:28 -0700 (PDT)
+        bh=a0l9sFJjS6sP7lJTdw7DR/BV0/eiNnlWKEDLn6RNxsk=;
+        b=UMz5aEH4FnP4u553bt0XCGuR+BbsbGKb266IgYLLHUk73bJqvq04Q/VK5qsR0mbKb3
+         +I+exaqvjR6dHU764pFRDve2w/JTOOlPRtjn0SW4er6kRw/btn+ahFk7OkEXKmVZRLVI
+         K4h7Ag+dDlk7tiaqok7fX8v3BylX8NQ2NX2M+A0wq/oih7uACckHStOIETuRlAHFezIh
+         GE7FzwNzLEsZLp8iFO3UamHMl/hTCR7YO1ddhJ4L/jRS+dBT+Q62O6VSqWQdadfmR0S8
+         NQXCqnrYIkJjGP+1HUYRsXBvOUs8u2QxnntSWGLX2zR8oaKZUF4jpLdJ9I2iDc4grf7u
+         sMVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUnT6EI5XLTf/4LHPaHA5FV87TYLE/b4CjuQ/lygS0mWm5gp+RYs0elku9RVJU2jFnPVRLk6EcA62l4wEQgFy6p4iWJupBP+ruQCA==
+X-Gm-Message-State: AOJu0Yx6RWF5L5fs0ZvRzrhbvHygZ4Inalqe6Nj1QF3vzqRO4a4f6BDd
+	Bshe+b7cWgaEGgSVGZiFzPGlfUU36w7bDpBHLdk045sEMx1Y+lWfnjV6h18V
+X-Google-Smtp-Source: AGHT+IH87L2qZgDmYQ2G7lAHJFQ4qjHXYyPzOQgJ65zmcBp1i1/oGNwveo4ziVGnXuy/PPUtLomxUQ==
+X-Received: by 2002:a0d:ead5:0:b0:618:2381:2404 with SMTP id 00721157ae682-62c6bcf9008mr25020747b3.44.1717075927120;
+        Thu, 30 May 2024 06:32:07 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62a0a56fbe9sm27564097b3.143.2024.05.30.06.32.06
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 06:32:06 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-628c1f09f5cso7857327b3.1
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 06:32:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWJ+aTp6kMcKmxlORNG5hEkrqkPUebX86LognIx4zZJROkfcXXsFbH6TE9Zouhr0SbDqUM+5RxLcsnfScxy19ryTEUGreKbjXQOYg==
+X-Received: by 2002:a25:bcc6:0:b0:df7:93e1:a130 with SMTP id
+ 3f1490d57ef6-dfa5a61299bmr3155843276.36.1717075926652; Thu, 30 May 2024
+ 06:32:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240530082556.2960148-1-quic_kriskura@quicinc.com> <20240530082556.2960148-3-quic_kriskura@quicinc.com>
-In-Reply-To: <20240530082556.2960148-3-quic_kriskura@quicinc.com>
-From: Doug Anderson <dianders@google.com>
-Date: Thu, 30 May 2024 06:31:17 -0700
-Message-ID: <CAD=FV=X8kicS0Y0r=eNwLGvkzVqCPMmjRdjqjxEy33-k5hQk7A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Disable SS instances in
- park mode
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <swboyd@chromium.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Matthias Kaehlcke <mka@chromium.org>, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, quic_ppratap@quicinc.com, quic_jackp@quicinc.com, 
-	stable@vger.kernel.org
+References: <a770cb5acb708e6d65570a4037a376321c9e8bb0.1716977322.git.geert+renesas@glider.be>
+ <CAL_JsqLL3g4+nfu2NmC0drR-m5u287EBvK9jbY43XC=bSSVSpQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqLL3g4+nfu2NmC0drR-m5u287EBvK9jbY43XC=bSSVSpQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 30 May 2024 15:31:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWxxDu-V_drs+dMdycQHY_+v0sPH7bVO_2-ixGWQkdTjg@mail.gmail.com>
+Message-ID: <CAMuHMdWxxDu-V_drs+dMdycQHY_+v0sPH7bVO_2-ixGWQkdTjg@mail.gmail.com>
+Subject: Re: [PATCH v2] fdtoverlay: Remove bogus type info from help text
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Rob,
 
-On Thu, May 30, 2024 at 1:26=E2=80=AFAM Krishna Kurapati
-<quic_kriskura@quicinc.com> wrote:
+On Thu, May 30, 2024 at 2:31=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Wed, May 29, 2024 at 5:11=E2=80=AFAM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> >
+> > "fdtoverlay -h" shows a.o.:
+> >
+> >     <type>      s=3Dstring, i=3Dint, u=3Dunsigned, x=3Dhex
+> >             Optional modifier prefix:
+> >                     hh or b=3Dbyte, h=3D2 byte, l=3D4 byte (default)
+> >
+> > However, unlike fdtget and fdtput, fdtoverlay does not support the
+> > "-t"/"--type" option.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > Upstream dtc has Uwe's commit 2cdf93a6d402a161 ("fdtoverlay: Fix usage
+> > string to not mention "<type>"").
 >
-> On SC7280, in host mode, it is observed that stressing out controller
-> in host mode results in HC died error and only restarting the host
-> mode fixes it. Disable SS instances in park mode for these targets to
-> avoid host controller being dead.
->
-> Reported-by: Doug Anderson <dianders@google.com>
-> Cc: <stable@vger.kernel.org>
-> Fixes: bb9efa59c665 ("arm64: dts: qcom: sc7280: Add USB related nodes")
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+> So you want me to sync upstream? That's how upstream commits get into
+> the kernel. I don't take patches (unless there's some urgent
+> breakage).
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+If that's the policy, then yes please ;-)
+
+Apparently it's been +2.5y since last sync...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
