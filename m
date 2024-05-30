@@ -1,126 +1,95 @@
-Return-Path: <devicetree+bounces-70744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468E08D43D6
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 04:48:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5D5F8D4415
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 05:27:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 013E5283E5C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 02:48:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51AD728673B
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 03:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895BD2E417;
-	Thu, 30 May 2024 02:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50ACF548E0;
+	Thu, 30 May 2024 03:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="prGN8qBe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBA422F1C;
-	Thu, 30 May 2024 02:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250A2256A;
+	Thu, 30 May 2024 03:27:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717037254; cv=none; b=qO//XQQdo7JOYOSbFxKdEWCmFRdLMriIwTd5pEY0RHl+p601cik8gAYWV3+BWwxjd7fDewT/gwFmOfqF1dpcpp3wLM6synE7bN/mJcR2tliKghuyc0jp5sY2+hABL9tGLr4H+xbAfgBR2UaiDkzD7eU7f0wxr5KPgvah4xlqVOc=
+	t=1717039624; cv=none; b=mX+tRyBbUVz+w1uOkH5oj2d/AdnFk9VUGa9oRjAfM7QLrYT6sqTx9Jr10+lbjdqueu0tr47zA7T62hbiTKftbVEU26a4JX70yGkMVm4EDwLCZG0wgnlr++aTOV2l/NE9BQxB06EE2t+gQJYUi2w2uw5XUFxDuF8Ejp2+le/4dEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717037254; c=relaxed/simple;
-	bh=w8xAIUi83lsZKRL5bpSZiBIuQ3x6BmRhIORMqXVYgZ8=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References; b=XyAYyb+dZEtzAgSxbWl27Z7I4uyI0x2G/46Iyd5zcNkjbhBLqMR/Aqdc0DTgvhKEdTaS+67jq+uguVbK5IskCJDxEgpUq1fNtNft4wNJqX9tk18syzYh8TLZ3dVcrJO5mXATbnFlKvPX8y3WOHk3Qh0gyt0DiYDVgp46417U59E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5BC1D2017F3;
-	Thu, 30 May 2024 04:47:31 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 198462017F2;
-	Thu, 30 May 2024 04:47:31 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id BE4B41820F77;
-	Thu, 30 May 2024 10:47:28 +0800 (+08)
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: p.zabel@pengutronix.de,
-	abelvesa@kernel.org,
-	peng.fan@nxp.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	marex@denx.de,
-	linux-clk@vger.kernel.org,
-	imx@lists.linux.dev,
+	s=arc-20240116; t=1717039624; c=relaxed/simple;
+	bh=DnkSvGggy9P21X2SwYE7P25c9/iaDSrDHC4Zl5Wh+mQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Os8WXIM/Rxb+t9KHhoLs227ue02hsG5r9/PXCdj5bsqHUhrr2ZpOBQAJN9H9M7bJw8vn5C3Dl/A+gjWuNK+yWMbW2Wx96Aixz57aPBm0JlCob3ziZYPENb8Cm6YEbt8oiuFKy5Nl2IyYhDLHJZ7/hT5Po8l6rFbtz66TvkktT5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=prGN8qBe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3C9C116B1;
+	Thu, 30 May 2024 03:27:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717039623;
+	bh=DnkSvGggy9P21X2SwYE7P25c9/iaDSrDHC4Zl5Wh+mQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=prGN8qBeY1RGuVbw5gFxJtwNcLFYYCUL9463Erys0MTGsTnPFFBMlbCzPxUZXmhpD
+	 r941MIWSGzopgHreCBCR2JJzvndTmN0X0LKqVQEV6CpwCIKRiF7+vULLO3csCABq6d
+	 NSzK3eI4bIkO09ALJFholMXQfz+MQWG3wO2CtxgOgw2hN4O6F3xJ1EwIKoCCS5kzko
+	 23vU6fRHe7er+U+2dNlDTD70n8gCM5N+aNeEa6VrmgtcDJ7atp4uQxdQod3tZcbofc
+	 IG6HmVZfLwalve60y39JWt7sM+XYee4n0gtET48C/CVO9wRTG71aYl4mcfuIHs/22K
+	 ALRG23oQff83Q==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Caleb Connolly <caleb.connolly@linaro.org>
+Cc: Alexander Martinz <amartinz@shiftphones.com>,
+	Luca Weiss <luca.weiss@fairphone.com>,
+	~postmarketos/upstreaming@lists.sr.ht,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: [PATCH v6 5/5] clk: imx: clk-audiomix: Correct parent clock for earc_phy and audpll
-Date: Thu, 30 May 2024 10:31:18 +0800
-Message-Id: <1717036278-3515-6-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	Caleb Connolly <caleb@postmarketos.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 0/2] qcom: initial support for the SHIFTphone 8
+Date: Wed, 29 May 2024 22:26:58 -0500
+Message-ID: <171703961681.615222.1022457801034628056.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
+References: <20240530-otter-bringup-v3-0-79e7a28c1b08@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-According to Reference Manual of i.MX8MP
-The parent clock of "earc_phy" is "sai_pll_out_div2",
-The parent clock of "audpll" is "osc_24m".
 
-Add CLK_GATE_PARENT() macro for usage of specifying parent clock.
+On Thu, 30 May 2024 01:39:15 +0200, Caleb Connolly wrote:
+> The SHIFTphone 8 is an upcoming QCM6490 smartphone, it has the following
+> features:
+> 
+> * 12GB of RAM, 512GB UFS storage
+> * 1080p display.
+> * Hardware kill switches for cameras and microphones
+> * UART access via type-c SBU pins (enabled by an internal switch)
+> 
+> [...]
 
-Fixes: 6cd95f7b151c ("clk: imx: imx8mp: Add audiomix block control")
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/clk/imx/clk-imx8mp-audiomix.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+Applied, thanks!
 
-diff --git a/drivers/clk/imx/clk-imx8mp-audiomix.c b/drivers/clk/imx/clk-imx8mp-audiomix.c
-index ad6eceb419cc..d8678b3230e4 100644
---- a/drivers/clk/imx/clk-imx8mp-audiomix.c
-+++ b/drivers/clk/imx/clk-imx8mp-audiomix.c
-@@ -156,6 +156,15 @@ static const struct clk_parent_data clk_imx8mp_audiomix_pll_bypass_sels[] = {
- 		PDM_SEL, 2, 0						\
- 	}
- 
-+#define CLK_GATE_PARENT(gname, cname, pname)						\
-+	{								\
-+		gname"_cg",						\
-+		IMX8MP_CLK_AUDIOMIX_##cname,				\
-+		{ .fw_name = pname, .name = pname }, NULL, 1,		\
-+		CLKEN0 + 4 * !!(IMX8MP_CLK_AUDIOMIX_##cname / 32),	\
-+		1, IMX8MP_CLK_AUDIOMIX_##cname % 32			\
-+	}
-+
- struct clk_imx8mp_audiomix_sel {
- 	const char			*name;
- 	int				clkid;
-@@ -173,14 +182,14 @@ static struct clk_imx8mp_audiomix_sel sels[] = {
- 	CLK_GATE("earc", EARC_IPG),
- 	CLK_GATE("ocrama", OCRAMA_IPG),
- 	CLK_GATE("aud2htx", AUD2HTX_IPG),
--	CLK_GATE("earc_phy", EARC_PHY),
-+	CLK_GATE_PARENT("earc_phy", EARC_PHY, "sai_pll_out_div2"),
- 	CLK_GATE("sdma2", SDMA2_ROOT),
- 	CLK_GATE("sdma3", SDMA3_ROOT),
- 	CLK_GATE("spba2", SPBA2_ROOT),
- 	CLK_GATE("dsp", DSP_ROOT),
- 	CLK_GATE("dspdbg", DSPDBG_ROOT),
- 	CLK_GATE("edma", EDMA_ROOT),
--	CLK_GATE("audpll", AUDPLL_ROOT),
-+	CLK_GATE_PARENT("audpll", AUDPLL_ROOT, "osc_24m"),
- 	CLK_GATE("mu2", MU2_ROOT),
- 	CLK_GATE("mu3", MU3_ROOT),
- 	CLK_PDM,
+[1/2] dt-bindings: arm: qcom: Add QCM6490 SHIFTphone 8
+      commit: f51df82d984838b960592ec83d9ec92de8d8c094
+[2/2] arm64: dts: qcom: add QCM6490 SHIFTphone 8
+      commit: 249666e34c24aba3f12a201c79d19ab2a3ca3e17
+
+Best regards,
 -- 
-2.34.1
-
+Bjorn Andersson <andersson@kernel.org>
 
