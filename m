@@ -1,272 +1,220 @@
-Return-Path: <devicetree+bounces-70757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576D08D466A
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:49:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C8088D4671
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:51:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8004AB22C1C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 07:49:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F74B1C210BC
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 07:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1BA3142E94;
-	Thu, 30 May 2024 07:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C471B7406F;
+	Thu, 30 May 2024 07:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="mXFr9zQz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="crls+Zf2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCBF07405C
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 07:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00AF520322;
+	Thu, 30 May 2024 07:50:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717055326; cv=none; b=RwSQxOZFk1NFXFFnXkTxbdXbhyE5uVVExqjfVMeQwtmzlqdnvCV1sj2WGSLIP4ueI94kv8FFusLPTvLB4Xu8abKpnqiHWxK0AJ441qRCYUD5+c1e2uU1oV1G+B08XxOCBocvBJTp13fnYZverBXchH8xkvqtsIiMmZcMbWNRuXU=
+	t=1717055456; cv=none; b=jxIQ3YGAVqGUqMubIVL+MBWIINFe0Gv5CRAwz+VTb58vMUMYxixFflfclc2IeEfSX9o7zgOAUScj2s0DfzMQtUjavhINeIhvdaONxIF6uQVrTB/099tF5+3sq4qNxNf6D5uymJVUaLOYDbwzIk2LzBwVfYh/HFJr1phP0WNR/pI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717055326; c=relaxed/simple;
-	bh=WUopOfGXgTPLOpthZYvse5p/tqQTnvAJv7+FdqfK54M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EfHhNdIEkfuWc2kzOhhPKm2Dy0GtGDn9wmRMtcP2Ub2nfT8ojGJvEGeNaPmlPLOyEnuwSVpQYRnHTKYOHOggV9c3TBa5AQ2JYDL4ryFO3pskynR7n1JArNp7Dqo6uwyHRCxQSXs1OE6nhJ/TNzPpcTABXPlNb8nMiBZ4RKpRppI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=mXFr9zQz; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5755fafa5a7so587470a12.1
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 00:48:43 -0700 (PDT)
+	s=arc-20240116; t=1717055456; c=relaxed/simple;
+	bh=T8xl6dkKmEDZUxLjgDs9SDEVtYPGWxwHHjLalcQCz+A=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=eCEX2asc8bArSW1wmgqTmArz55twpSuR6U3ehY7ml7v3OmXa4HmrXAhqvqJgLxnzy1eIk40vFe5lcF++WwxC5DQU9QTfcJRvR1XqwME9eOD0jEOGAmIC512Os18iLb9gzOkNNc94gXfg0hrhM5dUbKt/AhloVUCy28/Jl5HJjeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=crls+Zf2; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-57a033c2e8eso530498a12.3;
+        Thu, 30 May 2024 00:50:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1717055322; x=1717660122; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cf2qIpLDeZcLL2J3hXdH1LJF5JZXb9FIa3/ZwN9zeWQ=;
-        b=mXFr9zQzRnJv0W3uh2NtrJZkdlBX3PzqDng5L09p/WAh6QlZ3u2sebgLMeCCj5gnlo
-         T5l5dnn/HcFL9H2Qqng0O2CXbQ020krEfVsHI7YfiwtMZH6bp7RbhvEPH1fehFEBS8wD
-         rYSWnDY4DhkR7XzKl2Q4Mh8ASqAfAaP+nOx6uhxInqFOk/wYUCVrJPy9vimlo9QCf8Qs
-         BKcEy19FoZTUGCMhkMNvo2CFzQhqwGg8R7RnLrl7N6r6Je/V3/vHi+nTLoYNXP4MNvjy
-         XiJNZQdveIYQlOigs3IQSKmAjyC2zeJQbmeqR+uhokG6j49cPbuGZ+C9r3nV0XPUlPYS
-         wQ3Q==
+        d=gmail.com; s=20230601; t=1717055453; x=1717660253; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vuhKwhsToXT3l/R6AlWw5K5GSmHL8Yl/mYkI6e8/s/0=;
+        b=crls+Zf2D6OWA87pT2TP49QJDjRKjFGL1R3hhDXKSi772oWZUhPutB3p5sLTWNJ9i0
+         +wp5mT6V4aWwSNacaP7tWzSC5u0d+g7ggta3IMIjm+XKFfRa/VXuw+JOiGXELZPd9x09
+         3YgV3qoixfI6q9ODxQ566W9NzpM3FXqGhSu3G8iiLURJBA09jWbzvNk3eFbq4YMvjFnP
+         jhGlv/uzs7oUt3nUlY++hAanXj0VDLaYWnbighLtzCR/nuED8kHGofJ4cPhtayLwsAH7
+         9u/hJMUlgoQ281oLgp8QO0rFL7EbXj0zrFH0CiVTQLowWYTtJqqEBIdfHer+Z5fX6qtb
+         7WrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717055322; x=1717660122;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cf2qIpLDeZcLL2J3hXdH1LJF5JZXb9FIa3/ZwN9zeWQ=;
-        b=WuyGPu9ScqvaiBWefqPIf9tM6NagjV/eiimsx2KO5OoTBwRxBWhF/ydSsJAO8KUtd/
-         r/wE3JAphiqDniXLOwuztHbEt9WmbWuo378nnG/zE/98phn/yQrC4shGXXeetjb+/jVM
-         BkSIG9trxjDaVQGIKiclpYnBHLqyGcHU9RSZq+dWPrfhqFc5cM8G6ssKidla0evzej2A
-         BMu3d2fRj+3uKRRa/BiaO0Ro7QKO78JyVaTl2GQl3/LZM0byD/aEMxQVVRYZCQvAMBqU
-         uzSEnGB4VBgmwRR/L+6rQ3XLG5ey0crPuqHGl8iKFrZRGlSyZ9yaS5uAv5IYGL5URmpP
-         Crbg==
-X-Forwarded-Encrypted: i=1; AJvYcCVnuIUjb1H0LbIo1zxNtPA1xs1RsilwIBfPCKQqvxvlyO0Md/YihQS+ZDNYku0x8QPzI2hcmeZEtOpr2IBoWQ/Nue/VBvT/2p78FA==
-X-Gm-Message-State: AOJu0YxXeT5mDiT59mJoxdvlLTATlrukIDydFspl9NC/XbysfQdlj0lq
-	iH8vmGgyuWR1TzAwyFv/ENQmfLak8T4glfTVwVfXY0/MwnlJxAgbThSRFH7nqFE=
-X-Google-Smtp-Source: AGHT+IFIeanpx5enxM2FTVYmjkv113mgaIe8FHzjBzKNk+0WMcY8HVdoc+0Tq0Oi2QHF4QvHRs4aOg==
-X-Received: by 2002:a50:d4d7:0:b0:578:656b:d287 with SMTP id 4fb4d7f45d1cf-57a177b369fmr651380a12.17.1717055321817;
-        Thu, 30 May 2024 00:48:41 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.124])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5785b2c4d97sm9061915a12.56.2024.05.30.00.48.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 May 2024 00:48:41 -0700 (PDT)
-Message-ID: <862d7d16-367b-492e-b7be-e2fe71b904c2@tuxon.dev>
-Date: Thu, 30 May 2024 10:48:39 +0300
+        d=1e100.net; s=20230601; t=1717055453; x=1717660253;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vuhKwhsToXT3l/R6AlWw5K5GSmHL8Yl/mYkI6e8/s/0=;
+        b=NQeaZ/esYCdaqgD7Y6chu3PrgrJaZBVvO8hVvjpk9g+DLtcCPbsGcH94c7TDABPXDK
+         a1wXv5IUODbbX4/zMzLow7mT/U5TAhfpkhKMcaQRBNq/eT23NbpS2blHwW+8w7p4V0Yq
+         akmJzpG5TfRCeSUMMkoDDbeuwldk+N/99Fdb6R91zzDr3AxgF5tAYoO0JaZphMAf3Qr/
+         6ILJgN4Xlipx3a+iwo6W1Kh3KtQiaVo2lNLKBcnI0gSuKzxS8FZVtOW8JPGCTvWn2hdv
+         yMr4RZNMLInulv3hgYp/3avR+G+15/ivoIqbMaUiXwOgBLonM5S4abhADtgVhCGxmFPm
+         n2fg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkPNa9sF8W6BLICYWwMfnzkZZgjWAa5kQnRUlmBj87Gv2NzzeQNgJFohS4QF07dXQClT0r4yMGqART+OeesHTV9BlkhfzzMWFAKG1VmEcmBkUHy6glDrzxtYQNB5QCTKECBqSW3DfrXSnzMhOIeOqUcoDW+xxr4cU1dE2FlIIAV1BFQA==
+X-Gm-Message-State: AOJu0Yx3mb7xv7+Yx45H/tBDBLlxANmm7uQwTelf1de6ow9n/WEs2nw1
+	ZCDae/632VERasrkZlSE484FNh1mP7neT+hcgysqla51e4yKMXFB
+X-Google-Smtp-Source: AGHT+IGmMOjzzdnXJvyzloxYKsyaVIexJ39/I1CvMB3KjQgntAf3iXd9SPAN5vvgOx0dpENpMfWP+A==
+X-Received: by 2002:a50:9f2f:0:b0:57a:23eb:13b3 with SMTP id 4fb4d7f45d1cf-57a23eb1421mr325242a12.12.1717055453025;
+        Thu, 30 May 2024 00:50:53 -0700 (PDT)
+Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579b63ad3b2sm6964476a12.0.2024.05.30.00.50.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 May 2024 00:50:52 -0700 (PDT)
+Message-ID: <e0be3356bf809035963c4801f05b9db2675c111e.camel@gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: adc: ad7173: add support for ad411x
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>, "Ceclan, Dumitru"
+ <mitrutzceclan@gmail.com>
+Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron
+ <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 30 May 2024 09:50:51 +0200
+In-Reply-To: <20240529-slit-verse-0fb06f3556fb@spud>
+References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
+	 <20240527-ad4111-v3-1-7e9eddbbd3eb@analog.com>
+	 <20240527-arguably-said-361184ad848e@spud>
+	 <d87ae6ef-090d-4e47-bde4-4d08fd445ac1@gmail.com>
+	 <20240528-filtrate-cloning-b9152322a3da@spud>
+	 <a1c75105-6447-4b67-b7d2-326ad9b19b82@gmail.com>
+	 <20240529-slit-verse-0fb06f3556fb@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/13] pinctrl: renesas: pinctrl-rzg2l: Add support to
- set pulling up/down the pins
-Content-Language: en-US
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- linux-renesas-soc@vger.kernel.org
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240423175900.702640-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240423175900.702640-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240423175900.702640-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-Hi, Prabhakar,
+On Wed, 2024-05-29 at 17:04 +0100, Conor Dooley wrote:
+> On Wed, May 29, 2024 at 04:38:53PM +0300, Ceclan, Dumitru wrote:
+> > On 28/05/2024 20:52, Conor Dooley wrote:
+> > > On Tue, May 28, 2024 at 03:16:07PM +0300, Ceclan, Dumitru wrote:
+> > > > On 27/05/2024 20:48, Conor Dooley wrote:
+> > > > > On Mon, May 27, 2024 at 08:02:34PM +0300, Dumitru Ceclan via B4 R=
+elay
+> > > > > wrote:
+> > > > > > From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,channel-type:
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description:
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Used to=
+ differentiate between different channel types as the
+> > > > > > device
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r=
+egister configurations are the same for all usage types.
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Both ps=
+eudo-differential and single-ended channels will use
+> > > > > > the
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s=
+ingle-ended specifier.
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/type=
+s.yaml#/definitions/string
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - singl=
+e-ended
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - diffe=
+rential
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default: differenti=
+al
+> > > > >=20
+> > > > > I dunno if my brain just ain't workin' right today, or if this is=
+ not
+> > > > > sufficiently explained, but why is this property needed? You've g=
+ot
+> > > > > diff-channels and single-channels already, why can you not infer =
+the
+> > > > > information you need from them? What should software do with this
+> > > > > information?
+> > > > > Additionally, "pseudo-differential" is not explained in this bind=
+ing.
+> > > >=20
+> > > > In previous thread we arrived to the conclusion single-ended and
+> > > > pseudo-differential channels should be marked with the flag
+> > > > "differential=3Dfalse" in the IIO channel struct. This cannot
+> > > > really be inferred as any input pair could be used in that
+> > > > manner and the only difference would be in external wiring.
+> > > >=20
+> > > > Single-channels cannot be used to define such a channel as
+> > > > two voltage inputs need to be selected. Also, we are already
+> > > > using single-channel to define the current channels.
+> > >=20
+> > > If I understand correctly, the property could be simplified to a flag
+> > > then, since it's only the pseudo differential mode that you cannot be
+> > > sure of?
+> > > You know when you're single-ended based on single-channel, so the
+> > > additional info you need is only in the pseudo-differential case.
+> > >=20
+> > Yes, it could just be a boolean flag. The only thing I have against
+> > that is the awkwardness of having both diff-channels and
+> > differential=3Dfalse within a channel definition.
+>=20
+> What I was suggesting was more like "adi,pseudo-differential" (you don't
+> need to set the =3Dfalse or w/e, flag properties work based on present/no=
+t
+> present). I think that would avoid the awkwardness?
+>=20
 
-On 23.04.2024 20:58, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Add support to configure bias-disable, bias-pull-up and bias-pull-down
-> properties of the pin.
-> 
-> Two new function pointers get_bias_param() and get_bias_val() are
-> introduced as the values in PUPD register differ when compared to
-> RZ/G2L family and RZ/V2H(P) SoC,
-> 
-> Value | RZ/G2L        | RZ/V2H
-> ---------------------------------
-> 00b:  | Bias Disabled | Pull up/down disabled
-> 01b:  | Pull-up       | Pull up/down disabled
-> 10b:  | Pull-down     | Pull-down
-> 11b:  | Prohibited    | Pull-up
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> RFC->v2
-> - New patch
-> ---
->  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 73 +++++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> index 102fa75c71d3..c144bf43522b 100644
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> @@ -122,6 +122,7 @@
->  #define IOLH(off)		(0x1000 + (off) * 8)
->  #define SR(off)			(0x1400 + (off) * 8)
->  #define IEN(off)		(0x1800 + (off) * 8)
-> +#define PUPD(off)		(0x1C00 + (off) * 8)
->  #define ISEL(off)		(0x2C00 + (off) * 8)
->  #define SD_CH(off, ch)		((off) + (ch) * 4)
->  #define ETH_POC(off, ch)	((off) + (ch) * 4)
-> @@ -140,6 +141,7 @@
->  #define IEN_MASK		0x01
->  #define IOLH_MASK		0x03
->  #define SR_MASK			0x01
-> +#define PUPD_MASK		0x03
->  
->  #define PM_INPUT		0x1
->  #define PM_OUTPUT		0x2
-> @@ -265,6 +267,8 @@ struct rzg2l_pinctrl_data {
->  	void (*pmc_writeb)(struct rzg2l_pinctrl *pctrl, u8 val, void __iomem *addr);
->  	u32 (*read_oen)(struct rzg2l_pinctrl *pctrl, u32 caps, u32 offset, u8 pin);
->  	int (*write_oen)(struct rzg2l_pinctrl *pctrl, u32 caps, u32 offset, u8 pin, u8 oen);
-> +	int (*get_bias_param)(u8 val);
-> +	int (*get_bias_val)(enum pin_config_param param);
->  };
->  
->  /**
-> @@ -1081,6 +1085,38 @@ static int rzg2l_write_oen(struct rzg2l_pinctrl *pctrl, u32 caps, u32 offset, u8
->  	return 0;
->  }
->  
-> +static int rzg2l_get_bias_param(u8 val)
-> +{
-> +	switch (val) {
-> +	case 0:
-> +		return PIN_CONFIG_BIAS_DISABLE;
-> +	case 1:
-> +		return PIN_CONFIG_BIAS_PULL_UP;
-> +	case 2:
-> +		return PIN_CONFIG_BIAS_PULL_DOWN;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int rzg2l_get_bias_val(enum pin_config_param param)
-> +{
-> +	switch (param) {
-> +	case PIN_CONFIG_BIAS_DISABLE:
-> +		return 0;
-> +	case PIN_CONFIG_BIAS_PULL_UP:
-> +		return 1;
-> +	case PIN_CONFIG_BIAS_PULL_DOWN:
-> +		return 2;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
->  static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
->  				     unsigned int _pin,
->  				     unsigned long *config)
-> @@ -1139,6 +1175,25 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
->  		arg = rzg2l_read_pin_config(pctrl, SR(off), bit, SR_MASK);
->  		break;
->  
-> +	case PIN_CONFIG_BIAS_DISABLE:
-> +	case PIN_CONFIG_BIAS_PULL_UP:
-> +	case PIN_CONFIG_BIAS_PULL_DOWN: {
+Yeah, that was also my understanding of your reply...=C2=A0But I think you'=
+re also
+mentioning to have this flag together with the single-channel property?=C2=
+=A0
 
-Block { } can be removed here.
+I'm a bit confused because it seems to me that single-channel only gets one=
+ input
+while we need to select two for pseudo-differential/single-ended. Is this c=
+orrect
+Dumitru?
 
-> +		if (!(cfg & PIN_CFG_PUPD))
-> +			return -EINVAL;
-> +
-> +		ret = pctrl->data->get_bias_param(rzg2l_read_pin_config(pctrl,
-> +									PUPD(off),
-> +									bit, PUPD_MASK));
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		if (ret != param)
-> +			return -EINVAL;
+FWIW, I think we already have that awkwardness in the current form. If I'm =
+not
+missing anything, what we have in the driver is pretty much:
 
-Can this happen? Otherwise it can be removed.
+if (not diff && single-channel)
+	// then current channel
+else
+	// relies on the channel-type stuff
 
-> +		/* for PIN_CONFIG_BIAS_PULL_UP/DOWN when enabled we just return 1 */
+So, effectively with the above we have
 
-What about bias disable? I haven't checked in detail, is it OK to do
-arg = 1 here?
+diff-channels =3D <1 0>;
 
-> +		arg = 1;
-> +		break;
-> +	}
-> +
->  	case PIN_CONFIG_DRIVE_STRENGTH: {
->  		unsigned int index;
->  
-> @@ -1254,6 +1309,20 @@ static int rzg2l_pinctrl_pinconf_set(struct pinctrl_dev *pctldev,
->  			rzg2l_rmw_pin_config(pctrl, SR(off), bit, SR_MASK, arg);
->  			break;
->  
-> +		case PIN_CONFIG_BIAS_DISABLE:
-> +		case PIN_CONFIG_BIAS_PULL_UP:
-> +		case PIN_CONFIG_BIAS_PULL_DOWN: {
+but then wait, not so fast
 
-Block { } can be removed in this case.
+adi,channel-type =3D "single-ended"
 
-> +			if (!(cfg & PIN_CFG_PUPD))
-> +				return -EINVAL;
-> +
-> +			ret = pctrl->data->get_bias_val(param);
-> +			if (ret < 0)
-> +				return ret;
-> +
-> +			rzg2l_rmw_pin_config(pctrl, PUPD(off), bit, PUPD_MASK, ret);
-> +			break;
-> +		}
-> +
->  		case PIN_CONFIG_DRIVE_STRENGTH:
->  			arg = pinconf_to_config_argument(_configs[i]);
->  
-> @@ -2746,6 +2815,8 @@ static struct rzg2l_pinctrl_data r9a07g044_data = {
->  	.pmc_writeb = &rzg2l_pmc_writeb,
->  	.read_oen = &rzg2l_read_oen,
->  	.write_oen = &rzg2l_write_oen,
-> +	.get_bias_param = &rzg2l_get_bias_param,
-> +	.get_bias_val = &rzg2l_get_bias_val,
->  };
->  
->  static struct rzg2l_pinctrl_data r9a08g045_data = {
-> @@ -2761,6 +2832,8 @@ static struct rzg2l_pinctrl_data r9a08g045_data = {
->  	.pmc_writeb = &rzg2l_pmc_writeb,
->  	.read_oen = &rzg2l_read_oen,
->  	.write_oen = &rzg2l_write_oen,
-> +	.get_bias_param = &rzg2l_get_bias_param,
-> +	.get_bias_val = &rzg2l_get_bias_val,
->  };
->  
->  static const struct of_device_id rzg2l_pinctrl_of_table[] = {
+To me the above is equally awkward (not sure if there's any precedence in u=
+sing diff-
+channels like this though)...
+
+I would like for this to be explicit... If we have diff-channels, then it's=
+ surely
+differential.
+
+If not we could use the single-channel property and instead of using an ext=
+ra flag we
+could make the property having either 1 or 2 items. If we have 1, then it's=
+ a current
+channel. If we have 2, then it's voltage single-ended/pseudo-differential.=
+=20
+
+David's suggestion is also pretty good (and I like it's more explicit about=
+ what's
+going on) so I would likely go with it...
+
+- Nuno S=C3=A1
+
+
+> > > >=20
+
 
