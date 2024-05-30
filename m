@@ -1,366 +1,126 @@
-Return-Path: <devicetree+bounces-70805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A2D18D4816
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 11:06:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 028A28D4822
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 11:08:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98EEA2866C7
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:06:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 338AF1C228C2
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843F818396B;
-	Thu, 30 May 2024 09:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D52318396D;
+	Thu, 30 May 2024 09:08:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="JJ/ooLuq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA1B6183963
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 09:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B129515666B;
+	Thu, 30 May 2024 09:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717059977; cv=none; b=dN8Ujh0MBQ/pIwvL8M3saciknZafIpujxxknZCDMG3raEq8ukmyzp6eNa8+37ZlhhuSD72K0hpywHthft1GvIzkNB0wL4vUXkJOayyvgUMpOrNufHkkcOZ6IQ+18/ivi/xpS3ytK+c8hhixsWsQ4YWRznQcW5S0eSCVPLzx/aQo=
+	t=1717060104; cv=none; b=SdSyfdTNwk+AhJ1rNzruqf+DYY8NeM4fv0hsPB35sZXDRMnjZ0FBWUNnakb7vxjMa9lzoBK2OQPJ8T/z2Qjy194GkdQM1NcFjPZnEVNyzJG5HasbLER4KLJZ4fdbGAoMIHh24dajR5K7gAi1o4jwEhbwumsaQdeO8Y1K4UKQ5ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717059977; c=relaxed/simple;
-	bh=j879v3knqvytxXz7DWl2Ufn9Fu7PF9YwKCUZ0eX9xBY=;
+	s=arc-20240116; t=1717060104; c=relaxed/simple;
+	bh=EJpiJuLnLplPlSX97jzmByJ0QFWruhAlXtw+kfZ0+Bw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f1OPw8JZh0A3MUDXMIfD4FY3bPbm8hbWpsfrGAQ/IBG2+8H64tuhcpWeaqsakyvO50GEIzpu5vAQ3iPYytmo1vgqdpXYqhgeMBJ7gfAyc1Ey52E0wE9ulfsBBOCoYaxiPR+5fxt6v9FCc0N8B9fG4OT/eRMgvTcSKOpD1WKbXZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sCbjS-0000lO-Kl; Thu, 30 May 2024 11:05:58 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sCbjS-003ZoP-5V; Thu, 30 May 2024 11:05:58 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1sCbjS-0003T0-0D;
-	Thu, 30 May 2024 11:05:58 +0200
-Date: Thu, 30 May 2024 11:05:58 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: p.zabel@pengutronix.de, abelvesa@kernel.org, peng.fan@nxp.com,
-	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	marex@denx.de, linux-clk@vger.kernel.org, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
-Subject: Re: [PATCH v6 3/5] reset: imx-aux: Add i.MX auxiliary reset driver
-Message-ID: <20240530090558.53reobf2zea22oi2@pengutronix.de>
-References: <1717036278-3515-1-git-send-email-shengjiu.wang@nxp.com>
- <1717036278-3515-4-git-send-email-shengjiu.wang@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=vBjEXC9JM1O7w3ceC59lOyG8ht46gyTMInQmtuzaS+kZ8kQOxEoQEHWRE4kOsPPER9Y4+xFJJ1REu/8D/U/+x1H9887AaIyURl5iwwYtt/NrhyTN47m5bwevjllfISMNjdyiciAWy3/aF4mYPjQ+/muaH51Pj2pLnK2SfZpnWqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de; spf=pass smtp.mailfrom=t-8ch.de; dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b=JJ/ooLuq; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-8ch.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
+	t=1717060092; bh=EJpiJuLnLplPlSX97jzmByJ0QFWruhAlXtw+kfZ0+Bw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JJ/ooLuqra1+kbE6aNHdyuEQd5hWdBzjUrtkT/ol+JITu/NLqv5OmCVEvABgx1T24
+	 bh/cyiMMwgWkOYG7LF9wHYxwKCUcNsCTccrck4NlgGnVhnn4VyTftTsGhbVn027/Yg
+	 ZlMwGZALU61ALxRoesPAWPwBVRStkjjQhAR7kQU8=
+Date: Thu, 30 May 2024 11:08:12 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: linux-hwmon@vger.kernel.org, Hristo Venev <hristo@venev.name>, 
+	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>
+Subject: Re: [PATCH 2/3] hwmon: Add support for SPD5118 compliant temperature
+ sensors
+Message-ID: <45396bd5-adb8-485a-98d0-eecfb7439bfa@t-8ch.de>
+References: <20240529205204.81208-1-linux@roeck-us.net>
+ <20240529205204.81208-3-linux@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1717036278-3515-4-git-send-email-shengjiu.wang@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240529205204.81208-3-linux@roeck-us.net>
 
-Hi,
-
-On 24-05-30, Shengjiu Wang wrote:
-> Add support for the resets on i.MX8MP Audio Block Control module,
-> which includes the EARC PHY software reset and EARC controller
-> software reset. The reset controller is created using the auxiliary
-> device framework and set up in the clock driver.
+On 2024-05-29 13:52:03+0000, Guenter Roeck wrote:
+> Add support for SPD5118 (Jedec JESD300-5B.01) compliant temperature
+> sensors. Such sensors are typically found on DDR5 memory modules.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Cc: René Rebe <rene@exactcode.de>
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
 > ---
->  drivers/reset/Kconfig         |   8 ++
->  drivers/reset/Makefile        |   1 +
->  drivers/reset/reset-imx-aux.c | 217 ++++++++++++++++++++++++++++++++++
-			    ^
-You make use of the auxiliary bus but this isn't a aux driver, it's the
-i.MX8MP EARC reset driver. According the TRM only the EARC reset bits
-are covered by the AUDIOMIX blk-ctrl.
 
->  3 files changed, 226 insertions(+)
->  create mode 100644 drivers/reset/reset-imx-aux.c
-> 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 7112f5932609..38fdf05b326b 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -91,6 +91,14 @@ config RESET_IMX7
->  	help
->  	  This enables the reset controller driver for i.MX7 SoCs.
->  
-> +config RESET_IMX_AUX
-> +	tristate "i.MX Auxiliary Reset Driver"
-			^
-              Same applies here
+<snip>
 
-> +	depends on CLK_IMX8MP
-> +	select AUXILIARY_BUS
-> +	default CLK_IMX8MP
-> +	help
-> +	  This enables the auxiliary reset controller driver for i.MX.
-> +
->  config RESET_INTEL_GW
->  	bool "Intel Reset Controller Driver"
->  	depends on X86 || COMPILE_TEST
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index fd8b49fa46fc..f078da14c327 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -14,6 +14,7 @@ obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
->  obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
->  obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
->  obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
-> +obj-$(CONFIG_RESET_IMX_AUX) += reset-imx-aux.o
->  obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
->  obj-$(CONFIG_RESET_K210) += reset-k210.o
->  obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
-> diff --git a/drivers/reset/reset-imx-aux.c b/drivers/reset/reset-imx-aux.c
-> new file mode 100644
-> index 000000000000..61c353abc84e
-> --- /dev/null
-> +++ b/drivers/reset/reset-imx-aux.c
-> @@ -0,0 +1,217 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
-> +
-> +/*
-> + * The reset does not support the feature and corresponding
-> + * values are not valid
-> + */
-> +#define ASSERT_NONE     BIT(0)
-> +#define DEASSERT_NONE   BIT(1)
-> +#define STATUS_NONE     BIT(2)
-> +
-> +/* When set this function is activated by setting(vs clearing) this bit */
-> +#define ASSERT_SET      BIT(3)
-> +#define DEASSERT_SET    BIT(4)
-> +#define STATUS_SET      BIT(5)
-> +
-> +/* The following are the inverse of the above and are added for consistency */
-> +#define ASSERT_CLEAR    (0 << 3)
-> +#define DEASSERT_CLEAR  (0 << 4)
-> +#define STATUS_CLEAR    (0 << 5)
-> +
-> +/**
-> + * struct imx_reset_ctrl - reset control structure
-> + * @assert_offset: reset assert control register offset
-> + * @assert_bit: reset assert bit in the reset assert control register
-> + * @deassert_offset: reset deassert control register offset
-> + * @deassert_bit: reset deassert bit in the reset deassert control register
-> + * @status_offset: reset status register offset
-> + * @status_bit: reset status bit in the reset status register
-> + * @flags: reset flag indicating how the (de)assert and status are handled
-> + */
-> +struct imx_reset_ctrl {
-> +	u32 assert_offset;
-> +	u32 assert_bit;
-> +	u32 deassert_offset;
-> +	u32 deassert_bit;
-> +	u32 status_offset;
-> +	u32 status_bit;
-> +	u32 flags;
-> +};
-
-Why do we make it this compicated for an simple EARC module reset? I
-understand that you want to provide a generic driver which can be
-re-used but there is actual no other user and may will get no other user
-in the future too. Therefore I would like to keep it simple at the
-begin and adapt the code on-demand.
-
-Regards,
-  Marco
-
-> +struct imx_reset_data {
-> +	const struct imx_reset_ctrl *rst_ctrl;
-> +	size_t rst_ctrl_num;
-> +};
-> +
-> +struct imx_aux_reset_priv {
-> +	struct reset_controller_dev rcdev;
-> +	void __iomem *base;
-> +	const struct imx_reset_data *data;
-> +};
-> +
-> +static int imx_aux_reset_assert(struct reset_controller_dev *rcdev,
-> +				unsigned long id)
+> +/* Return 0 if detection is successful, -ENODEV otherwise */
+> +static int spd5118_detect(struct i2c_client *client, struct i2c_board_info *info)
 > +{
-> +	struct imx_aux_reset_priv *priv = container_of(rcdev,
-> +					struct imx_aux_reset_priv, rcdev);
-> +	const struct imx_reset_data *data = priv->data;
-> +	void __iomem *reg_addr = priv->base;
-> +	const struct imx_reset_ctrl *ctrl;
-> +	unsigned int mask, value, reg;
+> +	struct i2c_adapter *adapter = client->adapter;
+> +	int regval;
 > +
-> +	if (id >= data->rst_ctrl_num)
-> +		return -EINVAL;
+> +	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA |
+> +				     I2C_FUNC_SMBUS_WORD_DATA))
+> +		return -ENODEV;
 > +
-> +	ctrl = &data->rst_ctrl[id];
+> +	regval = i2c_smbus_read_word_swapped(client, SPD5118_REG_TYPE);
+> +	if (regval != 0x5118)
+> +		return -ENODEV;
 > +
-> +	/* assert not supported for this reset */
-> +	if (ctrl->flags & ASSERT_NONE)
-> +		return -EOPNOTSUPP;
+> +	regval = i2c_smbus_read_word_data(client, SPD5118_REG_VENDOR);
+> +	if (regval < 0 || !spd5118_vendor_valid(regval & 0xff, regval >> 8))
+> +		return -ENODEV;
 > +
-> +	mask = BIT(ctrl->assert_bit);
-> +	value = (ctrl->flags & ASSERT_SET) ? mask : 0x0;
+> +	regval = i2c_smbus_read_byte_data(client, SPD5118_REG_CAPABILITY);
+> +	if (regval < 0)
+> +		return -ENODEV;
 > +
-> +	reg = readl(reg_addr + ctrl->assert_offset);
-> +	writel(reg | value, reg_addr + ctrl->assert_offset);
+> +	regval = i2c_smbus_read_byte_data(client, SPD5118_REG_TEMP_CLR);
+> +	if (regval)
+> +		return -ENODEV;
+> +	regval = i2c_smbus_read_byte_data(client, SPD5118_REG_ERROR_CLR);
+> +	if (regval)
+> +		return -ENODEV;
 > +
+> +	if (!(regval & SPD5118_CAP_TS_SUPPORT) || (regval & 0xfc))
+> +		return -ENODEV;
+
+This breaks automatic detection for me.
+
+I think the test should after the read of SPD5118_REG_CAPABILITY and
+test that register, similar on how it is done in _probe().
+
+> +
+> +	regval = i2c_smbus_read_byte_data(client, SPD5118_REG_REVISION);
+> +	if (regval < 0 || (regval & 0xc1))
+> +		return -ENODEV;
+> +
+> +	regval = i2c_smbus_read_byte_data(client, SPD5118_REG_TEMP_CONFIG);
+> +	if (regval < 0)
+> +		return -ENODEV;
+> +	if (regval & ~SPD5118_TS_DISABLE)
+> +		return -ENODEV;
+> +
+> +	strscpy(info->type, "spd5118", I2C_NAME_SIZE);
 > +	return 0;
 > +}
-> +
-> +static int imx_aux_reset_deassert(struct reset_controller_dev *rcdev,
-> +				  unsigned long id)
-> +{
-> +	struct imx_aux_reset_priv *priv = container_of(rcdev,
-> +					struct imx_aux_reset_priv, rcdev);
-> +	const struct imx_reset_data *data = priv->data;
-> +	void __iomem *reg_addr = priv->base;
-> +	const struct imx_reset_ctrl *ctrl;
-> +	unsigned int mask, value, reg;
-> +
-> +	if (id >= data->rst_ctrl_num)
-> +		return -EINVAL;
-> +
-> +	ctrl = &data->rst_ctrl[id];
-> +
-> +	/* deassert not supported for this reset */
-> +	if (ctrl->flags & DEASSERT_NONE)
-> +		return -EOPNOTSUPP;
-> +
-> +	mask = BIT(ctrl->deassert_bit);
-> +	value = (ctrl->flags & DEASSERT_SET) ? mask : 0x0;
-> +
-> +	reg = readl(reg_addr + ctrl->deassert_offset);
-> +	writel(reg | value, reg_addr + ctrl->deassert_offset);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_aux_reset_status(struct reset_controller_dev *rcdev,
-> +				unsigned long id)
-> +{
-> +	struct imx_aux_reset_priv *priv = container_of(rcdev,
-> +					struct imx_aux_reset_priv, rcdev);
-> +	const struct imx_reset_data *data = priv->data;
-> +	void __iomem *reg_addr = priv->base;
-> +	const struct imx_reset_ctrl *ctrl;
-> +	unsigned int reset_state;
-> +
-> +	if (id >= data->rst_ctrl_num)
-> +		return -EINVAL;
-> +
-> +	ctrl = &data->rst_ctrl[id];
-> +
-> +	/* status not supported for this reset */
-> +	if (ctrl->flags & STATUS_NONE)
-> +		return -EOPNOTSUPP;
-> +
-> +	reset_state = readl(reg_addr + ctrl->status_offset);
-> +
-> +	return !(reset_state & BIT(ctrl->status_bit)) ==
-> +		!(ctrl->flags & STATUS_SET);
-> +}
-> +
-> +static const struct reset_control_ops imx_aux_reset_ops = {
-> +	.assert   = imx_aux_reset_assert,
-> +	.deassert = imx_aux_reset_deassert,
-> +	.status	  = imx_aux_reset_status,
-> +};
-> +
-> +static int imx_aux_reset_probe(struct auxiliary_device *adev,
-> +			       const struct auxiliary_device_id *id)
-> +{
-> +	struct imx_reset_data *data = (struct imx_reset_data *)(id->driver_data);
-> +	struct imx_aux_reset_priv *priv;
-> +	struct device *dev = &adev->dev;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->rcdev.owner     = THIS_MODULE;
-> +	priv->rcdev.nr_resets = data->rst_ctrl_num;
-> +	priv->rcdev.ops       = &imx_aux_reset_ops;
-> +	priv->rcdev.of_node   = dev->parent->of_node;
-> +	priv->rcdev.dev	      = dev;
-> +	priv->rcdev.of_reset_n_cells = 1;
-> +	priv->base            = of_iomap(dev->parent->of_node, 0);
-> +	priv->data            = data;
-> +
-> +	return devm_reset_controller_register(dev, &priv->rcdev);
-> +}
-> +
-> +#define EARC  0x200
-> +
-> +static const struct imx_reset_ctrl imx8mp_audiomix_rst_ctrl[] = {
-> +	{
-> +		.assert_offset = EARC,
-> +		.assert_bit = 0,
-> +		.deassert_offset = EARC,
-> +		.deassert_bit = 0,
-> +		.flags  = ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
-> +	},
-> +	{
-> +		.assert_offset = EARC,
-> +		.assert_bit = 1,
-> +		.deassert_offset = EARC,
-> +		.deassert_bit = 1,
-> +		.flags  = ASSERT_CLEAR | DEASSERT_SET | STATUS_NONE,
-> +	},
-> +};
-> +
-> +static const struct imx_reset_data imx8mp_audiomix_rst_data = {
-> +	.rst_ctrl = imx8mp_audiomix_rst_ctrl,
-> +	.rst_ctrl_num = ARRAY_SIZE(imx8mp_audiomix_rst_ctrl),
-> +};
-> +
-> +static const struct auxiliary_device_id imx_aux_reset_ids[] = {
-> +	{
-> +		.name = "clk_imx8mp_audiomix.reset",
-> +		.driver_data = (kernel_ulong_t)&imx8mp_audiomix_rst_data,
-> +	},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(auxiliary, imx_aux_reset_ids);
-> +
-> +static struct auxiliary_driver imx_aux_reset_driver = {
-> +	.probe		= imx_aux_reset_probe,
-> +	.id_table	= imx_aux_reset_ids,
-> +};
-> +
-> +module_auxiliary_driver(imx_aux_reset_driver);
-> +
-> +MODULE_AUTHOR("Shengjiu Wang <shengjiu.wang@nxp.com>");
-> +MODULE_DESCRIPTION("Freescale i.MX auxiliary reset driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.34.1
-> 
-> 
-> 
+
+<snip>
 
