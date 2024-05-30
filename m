@@ -1,208 +1,202 @@
-Return-Path: <devicetree+bounces-70943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E22DF8D5088
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 19:07:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDF858D5091
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 19:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 117CB1C223BB
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:07:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A0061F25B5D
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60824436A;
-	Thu, 30 May 2024 17:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90B14436A;
+	Thu, 30 May 2024 17:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="deA1kXVY"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="aAj+TQZX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC49346544;
-	Thu, 30 May 2024 17:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9CD433DF
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 17:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717088862; cv=none; b=ZIELqDCoAl+INNYpwnYMm13pjlIjYmD3ioSOIAuTiqITYtaE9qt4++uP67HjrYBJKqa91pREeEumeZ6dRHk73tdeQivuQJLO9hz5VFusxmbYJk2+McjQwY7nM6/YX+7eqyWPTCEdlWSpGklSz2Ji+HW0/rI5NGIZHMGmWwdVDZo=
+	t=1717088910; cv=none; b=RIRFeunbnsAggTFnjPrLcSPmmOOLqcHTrqXcWY8PAiJ7CsDSB7ItoGHMzlNJBjtj05re6NlDhOauiVYo6pAmvqWGd9kMKZb4vToM83Dt37aKMMTW9Z8GiuI2zydxAOIPUgcRAiYxhx54QjEVacLQgj0TniwV2bXTCQ+bl8OvhzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717088862; c=relaxed/simple;
-	bh=MJ2wuaCd/2ZiUIPAA4eoz+c/Cwyu0XqjDw22ygKEx5s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JdK09GybHJ22N1//J8w5pqrGoebA6QYXaCPT/nnoTjMnMCDu6jZ19chm7iB5U3nXjegg8wu3n97tg/yvZUOvIVZj7A5Ipju7CFETU7XPcjqTT9F9OdAoeCkdqMjuRg/MGeeJw5IWk+oAiPIiLw7g7QpwoWFQK6T8U1+OkxpkwiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=deA1kXVY; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44U4xJXV021359;
-	Thu, 30 May 2024 12:07:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=+9ZyUc5MMmPZs6k5uP+TG3Et3UMyDITZlWUysquJE+k=; b=
-	deA1kXVY3kVDo4/abGabWIPCgnjSq7x0XnHoVvddsGi8Js72NpyMwztv1KG0bgKP
-	plRCPZMsyLDvZb+MctmqISZMc2IQslS8McPodAiLwTUQlYLzdklwxWoLSWfQihrN
-	po2ogelgXrQiFxla46iNfTByXTgYsjr0yui61cc3rw/G98wRhzjKbs7espX/U7Ey
-	2dw4tGNbAbknUztLVokwHG2MW2rHDv9Ei4mnxTBbvYdBXKEUsuuS7SOJ5LEOG2Bt
-	Eru4l4iqFMQ9KVFuIvhSmx3NXyV5FMlMQSe3BFOe6CSqhMyD4kj71jEpylO1lFB8
-	0BXER34DXRcsDmGS4Ej3Lg==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ybdcww1ad-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 May 2024 12:07:20 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 30 May
- 2024 18:07:18 +0100
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1544.9 via Frontend Transport; Thu, 30 May 2024 18:07:18 +0100
-Received: from [141.131.156.155] (macC02FN0GLMD6T.ad.cirrus.com [141.131.156.155])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 3EF6982F2A4;
-	Thu, 30 May 2024 17:07:16 +0000 (UTC)
-Message-ID: <abf5d0d6-30f4-44f4-b01b-ad9e4321db58@opensource.cirrus.com>
-Date: Thu, 30 May 2024 12:07:15 -0500
+	s=arc-20240116; t=1717088910; c=relaxed/simple;
+	bh=axAu5FB6oF/a31axn3i0S5B3VLMnmWlh6gWO546FsOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EpWW2nr5aqKcqgWOhAkIrxYuluuL5Fs8Q2xyfB6MEcJM22lz7DTRTdORFbrILhsvenCafT7HWqjH+Vwph0Kky9YMBRzkgm91PcMprzWAFsdJTa0zl85CdSQUnr4444dxPTlcaDxDVuasLTINzZAJDAI3NPXbJuMOUjs5zELRPRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=aAj+TQZX; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Envelope-To: linus.walleij@linaro.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1717088906;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FBh+z6/yWJorKMpQpXCLn6sR3W5MP5Dz7vo6P7gzhF8=;
+	b=aAj+TQZXMbCj/68/EOx9VjszJzO4L1tmYYpDzuj4yKfaj30lTBYxoUuaa9Yr0wTfajdgbv
+	URn9I+u8nX0PemlZ2aubI7b9BGULtPT49pqvwYJKE4fFdBute9CjKyu5uq4lYM75nmEgCO
+	xmHpVIy18JXS9KdF9RGGj/zP1mSeDrA=
+X-Envelope-To: michal.simek@amd.com
+X-Envelope-To: linux-gpio@vger.kernel.org
+X-Envelope-To: sai.krishna.potthuri@amd.com
+X-Envelope-To: linux-kernel@vger.kernel.org
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+X-Envelope-To: conor+dt@kernel.org
+X-Envelope-To: krzk+dt@kernel.org
+X-Envelope-To: robh@kernel.org
+X-Envelope-To: devicetree@vger.kernel.org
+Message-ID: <e4972a07-18d6-4a8b-bb5a-4b832aa2d20e@linux.dev>
+Date: Thu, 30 May 2024 13:08:23 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v10 5/5] ASoC: cs40l50: Support I2S streaming to
- CS40L50
-To: James Ogletree <jogletre@opensource.cirrus.com>,
-        <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
-CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        David Rhodes
-	<drhodes@opensource.cirrus.com>
-References: <20240408153214.42368-1-jogletre@opensource.cirrus.com>
- <20240408153214.42368-6-jogletre@opensource.cirrus.com>
+Subject: Re: [PATCH 0/2] pinctrl: zynqmp: Support muxing individual pins
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Michal Simek <michal.simek@amd.com>, linux-gpio@vger.kernel.org,
+ Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20240503162217.1999467-1-sean.anderson@linux.dev>
+ <CACRpkdbOAoSDNFhXfz3djUZh1_MQ_T75CC+-LmojRXvyCbUusA@mail.gmail.com>
+ <06a4e5fd-3d26-4923-bcbf-0bdd66d756c4@linux.dev>
+ <CACRpkdbSsgxtKqF6ORXubufTaegjysHU7zH-tJfDfKNd=Kdoeg@mail.gmail.com>
+ <51d984f5-896e-469f-914d-2c902be91748@linux.dev>
+ <CACRpkdZ19+zUCEBCJJ+MBnnaF+caZKFTDxYiWZ0BRGx+PxN3bw@mail.gmail.com>
 Content-Language: en-US
-From: "Rivera-Matos, Ricardo" <rriveram@opensource.cirrus.com>
-In-Reply-To: <20240408153214.42368-6-jogletre@opensource.cirrus.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: nlHNiblfpo6Och6cb1w5RqC1P5Fkj7aO
-X-Proofpoint-ORIG-GUID: nlHNiblfpo6Och6cb1w5RqC1P5Fkj7aO
-X-Proofpoint-Spam-Reason: safe
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <CACRpkdZ19+zUCEBCJJ+MBnnaF+caZKFTDxYiWZ0BRGx+PxN3bw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
+On 5/29/24 04:38, Linus Walleij wrote:
+> On Tue, May 28, 2024 at 4:28 PM Sean Anderson <sean.anderson@linux.dev> wrote:
+> 
+>> Well, perhaps you should have reviewed the original driver more
+>> closely.
+> 
+> Do you want to push me down and increase my work related
+> stress? Because that is the effect of such statements.
+> 
+> It looks like criticism of me as a person, so explain yourself.
+> 
+> Writing this kind of things looks to me like some kind of abusive way
+> to express your desire and that is what burns maintainers out, so
+> if that is what you are doing, stop doing that, adjust your behaviour
+> and focus on technical issues.
 
-On 4/8/24 10:32 AM, James Ogletree wrote:
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
->
-> The ASoC driver enables I2S streaming to the device.
->
-> Reviewed-by: David Rhodes <drhodes@opensource.cirrus.com>
-> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
-> ---
->   MAINTAINERS                      |   1 +
->   sound/soc/codecs/Kconfig         |  11 ++
->   sound/soc/codecs/Makefile        |   2 +
->   sound/soc/codecs/cs40l50-codec.c | 308 +++++++++++++++++++++++++++++++
->   4 files changed, 322 insertions(+)
->   create mode 100644 sound/soc/codecs/cs40l50-codec.c
->
-<cut>
-> diff --git a/sound/soc/codecs/cs40l50-codec.c b/sound/soc/codecs/cs40l50-codec.c
-> new file mode 100644
-> index 000000000000..6d4a0970b219
-> --- /dev/null
-> +++ b/sound/soc/codecs/cs40l50-codec.c
-> @@ -0,0 +1,308 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// CS40L50 Advanced Haptic Driver with waveform memory,
-> +// integrated DSP, and closed-loop algorithms
-> +//
-> +// Copyright 2024 Cirrus Logic, Inc.
-> +//
-> +// Author: James Ogletree <james.ogletree@cirrus.com>
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/mfd/cs40l50.h>
-> +#include <linux/pm_runtime.h>
-Is pm_runtime.h being used in the context of the codec driver? If not, 
-you should drop it.
-> +#include <sound/pcm_params.h>
-> +#include <sound/soc.h>
-> +
-<cut>
-> +
-> +static const struct cs40l50_pll_config cs40l50_pll_cfg[] = {
-> +	{ 32768, 0x00 },
-> +	{ 1536000, 0x1B },
-> +	{ 3072000, 0x21 },
-> +	{ 6144000, 0x28 },
-> +	{ 9600000, 0x30 },
-> +	{ 12288000, 0x33 },
-> +};
-> +
-> +static int cs40l50_get_clk_config(unsigned int freq, unsigned int *cfg)
-You could constify freq.
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(cs40l50_pll_cfg); i++) {
-> +		if (cs40l50_pll_cfg[i].freq == freq) {
-> +			*cfg = cs40l50_pll_cfg[i].cfg;
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int cs40l50_swap_ext_clk(struct cs40l50_codec *codec, unsigned int clk_src)
-You could constify clk_src.
-> +{
-> +	unsigned int cfg;
-> +	int ret;
-> +
-> +	switch (clk_src) {
-> +	case CS40L50_PLL_REFCLK_BCLK:
-> +		ret = cs40l50_get_clk_config(codec->bclk_ratio * codec->rate, &cfg);
-> +		if (ret)
-> +			return ret;
-> +		break;
-> +	case CS40L50_PLL_REFCLK_MCLK:
-> +		cfg = CS40L50_PLL_REEFCLK_MCLK_CFG;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-> +				 CS40L50_PLL_REFCLK_LOOP_MASK,
-> +				 CS40L50_PLL_REFCLK_OPEN_LOOP <<
-> +				 CS40L50_PLL_REFCLK_LOOP_SHIFT);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-> +				 CS40L50_PLL_REFCLK_FREQ_MASK |
-> +				 CS40L50_PLL_REFCLK_SEL_MASK,
-> +				 (cfg << CS40L50_PLL_REFCLK_FREQ_SHIFT) | clk_src);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
-> +				  CS40L50_PLL_REFCLK_LOOP_MASK,
-> +				  CS40L50_PLL_REFCLK_CLOSED_LOOP <<
-> +				  CS40L50_PLL_REFCLK_LOOP_SHIFT);
-> +}
-> +
-<cut>
-> +
-> +MODULE_DESCRIPTION("ASoC CS40L50 driver");
-> +MODULE_AUTHOR("James Ogletree <james.ogletree@cirrus.com>");
-> +MODULE_LICENSE("GPL");
+The technical issue is that the driver does not match the hardware. We
+must maintain the existing set of groups for backwards-compatibility.
+But this should not prevent improvement.
 
-This gets my Reviewed-by pending these edits.
+Saying that we cannot have both group styles means that the driver is
+permanently stuck with whatever was picked when it was submitted. Hence,
+if you want to have only one style you had better review new drivers
+very carefully.
 
-Ricardo
+>> > If you want to mux individual pins instead of groups and functions, by
+>> > all means, but please do not mix the two approaches in the same
+>> > driver, I'm just trying to save Xilinx from themselves here.
+>>
+>> I see no point in creating thousands of groups
+> 
+> Please share your calculations for figures like "thousands".
+> 
+> In my experience, groups are usually in the tens, perhaps
+> hundreds, physically restricted by the number of pins
+> underneath a BGA. A Micro-FCBGA has 479 balls and many
+> are GND and power, so that sets a ballpark figure.
 
+There are 78 muxable pins on this hardware, and around 40 groups, each
+with signals that can be muxed to each pin. If we were to create groups
+for each combination of signals and pins, there would literally be
+thousands of groups.
+
+>> for every combination of pin musings
+> 
+> It is clear from the documentation that the point if the pinmux
+> groups and pins are not to present all possible options (known as
+> a "phone exchange" solution) but those that are used in practice,
+> i.e. these representing real world use cases. See below.
+> 
+>> when we could just switch to the solution in this (or v2 of)
+>> patch. For compatibility we cannot be rid of the old situation, but we
+>> can at least fix it. There is no technical problem with them coexisting.
+> 
+> Historically there are  ~2 camps:
+> 
+> - One camp want to use groups and
+> functions to combine pins in groups with functions to form usecases.
+> 
+> In some cases (such as pinctrl-gemini.c or the very latest
+> pinctrl-scmi.c merged for v6.10) this reflects how the hardware
+> actually looks: it does not make individual pins available for muxing,
+> but you poke bits or send messages to change entire
+> groups-to-function mappings, so it is necessary for some hardware.
+> 
+> So when you write that "groups are a Linux-only concept" this
+> is because you probably haven't seen this part of the world.
+> Groups exist in hardware, and in the SCMI specification.
+
+What I mean is that, for this hardware, groups are a Linux only concept.
+Neither the firmware nor the hardware itself has a concept of groups.
+While other hardware may have this concept, it does not apply here.
+
+I do not object to groups where that is the hardware reality, but they
+are unnecessarily constraining for this part.
+
+> There are systems with individual control of the muxing
+> of every pin, such that e.g. every pin has a muxing register.
+> 
+> These are again not really phone exchanges: I am yet to see
+> a system where any function can be mapped to any pin. These
+> just do not exist.
+
+Canaan K210.
+
+> What exists in practice is that each pin can be mapped to 2-4
+> functions, in extreme cases some more. Often these functions are
+> mapped to adjacent pins, and the "chessboard" picture in the
+> documentation for the subsystem reflects this.
+> 
+> For this reason, it is often helpful for driver writers to group
+> adjacent pins into groups, so an iterator can walk over the
+> pins and poke their registers in order, instead of treating each
+> pin as a unique entity.
+> 
+> - Then there is the camp that just by habit *want* to control
+> each pin individually. The extreme example is pinctrl-single.c
+> which is named like such because each pin is controlled by
+> a single register. TI wanted this solution mainly because their
+> hardware wasn't described in manuals, but in other HW
+> description files, and they needed to process large volumes
+> of data into DT-form.
+> 
+> I didn't like this solution initially because it makes it hard for
+> people without datasheets to understand what is going on.
+> But I was convinced to let this coexist with the group and function
+> mapping, which is fine: maybe one size doesn't fit all.
+> 
+> i.MX and others also do this approach but with large sets of
+> defines in the <dt-bindings/*> files.
+> 
+> Combining these two approaches is not something I recommend.
+
+Well, the former approach is wrong for this hardware, but we must
+support it for backwards-compatibility. A combination is the obvious
+solution.
+
+--Sean
 
