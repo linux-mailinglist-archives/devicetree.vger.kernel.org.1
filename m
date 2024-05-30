@@ -1,128 +1,122 @@
-Return-Path: <devicetree+bounces-70947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 504B48D50C6
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 19:15:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6AF8D50F5
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 19:25:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA30DB242B7
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:15:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E008E1F244EF
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 311CF4653C;
-	Thu, 30 May 2024 17:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96FB145BF1;
+	Thu, 30 May 2024 17:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M+fVHIQp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQUhxd5P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABED46B83;
-	Thu, 30 May 2024 17:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680253BB2E;
+	Thu, 30 May 2024 17:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717089307; cv=none; b=O9PuDTxAynvSCMvCASyaYo1I3RecJtwTgVkpc1WmGIn52TdB8+JAU+wIF44SrGb+qE7zc93+E+boOwjL9uzO4/MMUhEIVcO4l4/yjMsMOwj4J5BNjbFTbXxnhmNfVL6VJ//ZuUT4Ifhxtr8sZ/Eu80ucEUqJ12Xk5s0t4Qt1kT8=
+	t=1717089916; cv=none; b=QtJgeK0mxPDDv0/9dID8do9XJ6gI/87FdL7od1bu3hbcIJnQ0Jb8NZs0tMMnYtykwIBXVARSesyqVzwbH0NAbhpfJ9S5dkTwUdY4hwhB50zWPLK+DvTwQ6htL2uBs98xLHDRGiMAGen13M/J5H8DNM6AraYrFvptm/Eq9dKz1jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717089307; c=relaxed/simple;
-	bh=URqPQnPy5FP44S2DmmqfTAsVuS00f5pQbyJiST5YKkM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=r1JkxNiOKNdJKCu1HHPrc48g0xt8DByT/2s2sk8nE8PMwKSPg/9BShmVGoB9XdtKkeqi2milVLBGy55aYG6PEu+bPSipYu2XBKLMgXmkVWMhatz3kUJoGouJN5rys4EinJkzfQLY3KIoJDjmYo6FmlLeWj5n8dZOPQK2lEbtjjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M+fVHIQp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8289C32782;
-	Thu, 30 May 2024 17:15:05 +0000 (UTC)
+	s=arc-20240116; t=1717089916; c=relaxed/simple;
+	bh=pboA1hBIpcHcKlGoMIXYiUxcorVrN0SMLl0WvkRYb4E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CowjV3Dd8nrWlowTktB/te2uB+lsgr7q6KHi81Ft5Bvv6nXstbnkctn6vXukNwfB6HFT07hnAE+ox31exCHqCoh9fZ+XveXqnA2ntA166YB6F7EmARJnffsUShr1GBTF0T1ankCmWvD7iKf0Uq9TJpAm8n+ILmcR0Db7bvwuayg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQUhxd5P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19598C2BBFC;
+	Thu, 30 May 2024 17:25:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717089306;
-	bh=URqPQnPy5FP44S2DmmqfTAsVuS00f5pQbyJiST5YKkM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=M+fVHIQpg0T/3eHcd7tocoywDYwP17uK8cfkJ9zDeNZG04tV2jk609zvJsgA4Hw5k
-	 JWHPG8Rl9ABZDwBSelkCaspwJo+IzT70B44yyNeUkgNAcbfkvtnET3NeL2SpjlSA1F
-	 hHBHeenJ3skGKNDm2yi5jpgB37DFn2OOSXSyx5TQy8VZIEfoVo195wBfpt5pQKaklJ
-	 HWffN+mjUuHC0vpZiAQsmgeW2cNOaLYDhsqv0Gl3kRlhQ75j5lF3kjyN0p+zZ2LykL
-	 8JZbuS9JYpvHpH2Ms4zZSpwAOi2BnRmi0dEEztlj2vh8seGJcK1FRaLwKJspFOkLwL
-	 5ATVzGSbzf5sA==
-Date: Thu, 30 May 2024 12:15:03 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1717089916;
+	bh=pboA1hBIpcHcKlGoMIXYiUxcorVrN0SMLl0WvkRYb4E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lQUhxd5PNM/15CU7pteQgxbwJLw07SUIwItr650NQrDeK8ct+/gcsW/sdGtrUCVBz
+	 x4DyI0kc6lFyc7Lf7IiV61AnfNkxFYIMHVIQNK/9xbTLEnVnVBpA3lMTGxxKifmGu1
+	 IWnON8+LE08bPC1MY1OCRjic+qeYWVaqm5K7eiXZJq//Ti+FQ3yiCWn5kPUjTY3W0Y
+	 ypa9B+AUYPmi6Nm/IUFtpELH+6LvL66oRxHnBstPZkOcTas0F3Jb85qrMc/I68SD4x
+	 NzsQwQ5M2JL8jSS4kgtDK25CPZLDfblt3nIX/wgUDfqTehwGMZJ/8NqPwvdJCYP1F8
+	 JtYiTyu6tF1sg==
+Date: Thu, 30 May 2024 18:25:10 +0100
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Rich Felker <dalias@libc.org>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Lee Jones <lee@kernel.org>, Helge Deller <deller@gmx.de>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Masahiro Yamada <masahiroy@kernel.org>, Baoquan He <bhe@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Kefeng Wang <wangkefeng.wang@huawei.com>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
-	Azeem Shaikh <azeemshaikh38@gmail.com>, Guo Ren <guoren@kernel.org>,
-	Max Filippov <jcmvbkbc@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Anup Patel <apatel@ventanamicro.com>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Sergey Shtylyov <s.shtylyov@omp.ru>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [DO NOT MERGE v8 00/36] Device Tree support for SH7751 based
- board
-Message-ID: <20240530171503.GA551834@bhelgaas>
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH RFC v2 1/8] spi: dt-bindings: spi-peripheral-props: add
+ spi-offloads property
+Message-ID: <20240530-unaltered-thong-a6e52519f101@spud>
+References: <20240514-aspire-ascension-449556da3615@spud>
+ <CAMknhBFFpEGcMoLo5gsC11Syv+CwUM0mnq1yDMUzL1uutUtB+Q@mail.gmail.com>
+ <20240516-rudder-reburial-dcf300504c0a@spud>
+ <CAMknhBF_s0btus4yqPe-T=F3z7Asi9KkRGsGr7FHDFi=k4EQjw@mail.gmail.com>
+ <20240519-abreast-haziness-096a57ef57d3@spud>
+ <CAMknhBHvEse2FyDoBXR1PvymGpSGq8dotKfm+8XH+0+k+xKtQw@mail.gmail.com>
+ <20240522-gullible-ibuprofen-cf9111c25f6f@spud>
+ <59df2cc3-5a62-45be-a0aa-5bbff13c2ae4@baylibre.com>
+ <20240526-stylized-preaching-d0b15a95fe19@spud>
+ <baa286ca-3388-4604-9bc3-233c1fc77c42@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="nlIBklSo3KTqCWIO"
+Content-Disposition: inline
+In-Reply-To: <baa286ca-3388-4604-9bc3-233c1fc77c42@baylibre.com>
+
+
+--nlIBklSo3KTqCWIO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1716965617.git.ysato@users.sourceforge.jp>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 29, 2024 at 05:00:46PM +0900, Yoshinori Sato wrote:
-> This is an updated version of something I wrote about 7 years ago.
-> Minimum support for R2D-plus and LANDISK.
-> I think R2D-1 will work if you add AX88796 to dts.
-> And board-specific functions and SCI's SPI functions are not supported.
+On Wed, May 29, 2024 at 03:10:54PM -0500, David Lechner wrote:
+> On 5/26/24 10:45 AM, Conor Dooley wrote:
+> > On Thu, May 23, 2024 at 09:28:54AM -0500, David Lechner wrote:
+>=20
+>=20
+> >> * A is the one we need to figure out. I'm proposing that the PWM consu=
+mer
+> >>   should be whatever kind of composite device node we come up with that
+> >>   also solves the issue described below about where does the CRC check=
+er
+> >>   (or whatever) go. I think we are in agreement here at least on the p=
+oint
+> >>   that it doesn't belong in the SPI controller node?
+> >=20
+> > To be clear, you're saying that we agree that the CRC checker doesnt
+> > belong in the SPI controller node, right?
+>=20
+> Yes.=20
 
-I don't understand the point of this.  It's marked "DO NOT MERGE", so
-what do you want me to do?  I've posted comments several times and
-they've never been addressed, so I don't think there's any point in
-looking at this again:
+Okay, ye. We're on the same page then about that part.
 
-  https://lore.kernel.org/r/20240404134652.GA1910402@bhelgaas
 
-Bjorn
+--nlIBklSo3KTqCWIO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZli2dgAKCRB4tDGHoIJi
+0pjHAQCA1My+hayttX0Rfvpc9/Yovyg3HVsBE4YZTTK4+pNrmAEAlmsqE+T4GClt
+SZyq1aNDCiMpi/6NTsWEf1+r0blkpgI=
+=CHF9
+-----END PGP SIGNATURE-----
+
+--nlIBklSo3KTqCWIO--
 
