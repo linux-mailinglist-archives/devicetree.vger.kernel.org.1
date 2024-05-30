@@ -1,124 +1,173 @@
-Return-Path: <devicetree+bounces-71006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-71007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C12D8D55A0
-	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 00:44:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE6A08D55C0
+	for <lists+devicetree@lfdr.de>; Fri, 31 May 2024 00:49:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84CE31C21E9C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 22:44:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 896831F23BCA
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 22:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ACB8182D25;
-	Thu, 30 May 2024 22:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240B515B0E8;
+	Thu, 30 May 2024 22:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ujeEjavI"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="P3OkpweB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8942F335A7;
-	Thu, 30 May 2024 22:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A9F17545;
+	Thu, 30 May 2024 22:48:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717109066; cv=none; b=GErR+MBIKbJd+7gQzndxUUHk6J+9NYReyfVNWXaWk0IXGENg+tPbA+gA8EUFyKfYcy4u374IGvNHBof0cqOTGEWjjUjnJ23I446tmVIDS5HZ6hqhC7/nVgUhSLB52r8to+9TJkpjNirMj7PYZBq4ZgUuYEayOiN1bAblxox0EIM=
+	t=1717109337; cv=none; b=PUoLKhHvt6RL+EHSFmkRz6TatRYaaIlHRpSN43O6ADdalouYENDFnrUlxJu8qTgOQI+JsR40s3/H3GqaIpbyPnjGy5yxXJuv//gKwnweMK7Z6lvDROQMZKpB+GivoB8d3V0niAkspRFC0UQpN+esdERhI9V3kWtLttkoVj7R7ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717109066; c=relaxed/simple;
-	bh=7eQ4T0d4GZghzegyT9pYGf0P5IQCz6lfjyuhL/05DMQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=InOeDORRv+WIWUiiy2pWLjrEVkA5TvjR+tgMhBrndrZuUPvhgVnXTm4BvHu0FV/RSlpnO97LD1XsXWeMJtr1nEiVKbYO8yYYH9+DqvX5pkLNgK/IaQkUVHcXRdl8I06c17KHTo6ld569mHHsHk/LaLuSRVDoG0dP4tSt8r+5iQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ujeEjavI; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2E66CA06;
-	Fri, 31 May 2024 00:44:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1717109058;
-	bh=7eQ4T0d4GZghzegyT9pYGf0P5IQCz6lfjyuhL/05DMQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ujeEjavIwmVW23/Km1zHWP8SDyN2ItU5E0BNd4FoMFRpmEiVmK0h3vyVdWaclBFOs
-	 aL28UchwVDn4WMfHrKjOHMI6t2nfBjvhdYzU8TXVoICu7yypbQbmee0duIxYgtHXhG
-	 MyXMP54gh8mDSYWXAg0ObO305klOs/EU2hoel3bo=
-Date: Fri, 31 May 2024 01:44:09 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	sakari.ailus@iki.fi
-Subject: Re: [PATCH v5 13/16] media: mali-c55: Add image formats for Mali-C55
- parameters buffer
-Message-ID: <20240530224409.GE5213@pendragon.ideasonboard.com>
-References: <20240529152858.183799-1-dan.scally@ideasonboard.com>
- <20240529152858.183799-14-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1717109337; c=relaxed/simple;
+	bh=HiHXy0I7U8DlwKjgXTlVmHkKsdDBwRXVxNpeHcKqPMk=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=fpELeU/CTkbFaCQYT37SZbKHfF5cQOTwLElwAzoU1M1r715DkXlrpwJI2PrysoDg/XAsLMuftOI4gBTdqDTPb3s9bGFjOp1MReDDKvQwdv51Jnj7pW75NF9X6R1BrW3zXZOCrdqSdhkoz6bCi2lsoc0pUVCJnnGoTYQPdxe1Bcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=P3OkpweB; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240529152858.183799-14-dan.scally@ideasonboard.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1717109326;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=K4sL/egTIeR1PknoeeFf007Kuv86Tkpmgtv7gnFj3Hg=;
+	b=P3OkpweBrC8m/LrCu9VrgJnpgFUdSVz/hgR9onAHwrwdUCVR3aR9WX2eqd7dLp9NkDS4DG
+	zfmRA9yNPGTdiAZe+2IWEU32W5O5bl94y5pEX+Ed1h/8QcPjSVHsESGEGZAnwCqFOeMpTu
+	V31t2e2IzYZhn/Yi1VP9TZzaxhtoRPqdeVclnYA0AEUU515VCIhMvUKED9AT8ksq/vatEi
+	XSU5Q5fORj5ZSn3xPrTkIdXYNJGMA+1SBPG7b0cHdCICoVqPmChdvollvYF4miJrCvaqdh
+	stFEgm8PrUUm0mtOSKB1vrJZvY2Z4fbrVOpe73xx/lzgBV6PRNyKbb6xDmx3lw==
+Date: Fri, 31 May 2024 00:48:45 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: wens@kernel.org
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, Diederik de Haas
+ <didi.debian@cknow.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix the DCDC_REG2 minimum voltage
+ on Quartz64 Model B
+In-Reply-To: <CAGb2v66DPvvRcq+98vF2mCF8URW_qys1+B_FM9kcm6ppuPvyeg@mail.gmail.com>
+References: <e70742ea2df432bf57b3f7de542d81ca22b0da2f.1716225483.git.dsimic@manjaro.org>
+ <CAGb2v66DPvvRcq+98vF2mCF8URW_qys1+B_FM9kcm6ppuPvyeg@mail.gmail.com>
+Message-ID: <20cf041dcd6f752174bf29d2a53c61b3@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Dan,
+Hello Chen-Yu,
 
-Thank you for the patch.
-
-On Wed, May 29, 2024 at 04:28:55PM +0100, Daniel Scally wrote:
-> From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+On 2024-05-29 18:27, Chen-Yu Tsai wrote:
+> On Tue, May 21, 2024 at 1:20 AM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> 
+>> Correct the specified regulator-min-microvolt value for the buck 
+>> DCDC_REG2
+>> regulator, which is part of the Rockchip RK809 PMIC, in the Pine64 
+>> Quartz64
+>> Model B board dts.  According to the RK809 datasheet, version 1.01, 
+>> this
+>> regulator is capable of producing voltages as low as 0.5 V on its 
+>> output,
+>> instead of going down to 0.9 V only, which is additionally confirmed 
+>> by the
+>> regulator-min-microvolt values found in the board dts files for the 
+>> other
+>> supported boards that use the same RK809 PMIC.
+>> 
+>> This allows the DVFS to clock the GPU on the Quartz64 Model B below 
+>> 700 MHz,
+>> all the way down to 200 MHz, which saves some power and reduces the 
+>> amount of
+>> generated heat a bit, improving the thermal headroom and possibly 
+>> improving
+>> the bursty CPU and GPU performance on this board.
+>> 
+>> This also eliminates the following warnings in the kernel log:
+>> 
+>>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, 
+>> not supported by regulator
+>>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators 
+>> (200000000)
+>>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, 
+>> not supported by regulator
+>>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators 
+>> (300000000)
+>>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, 
+>> not supported by regulator
+>>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators 
+>> (400000000)
+>>   core: _opp_supported_by_regulators: OPP minuV: 825000 maxuV: 825000, 
+>> not supported by regulator
+>>   panfrost fde60000.gpu: _opp_add: OPP not supported by regulators 
+>> (600000000)
+>> 
+>> Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B 
+>> device tree")
+>> Cc: stable@vger.kernel.org
+>> Reported-By: Diederik de Haas <didi.debian@cknow.org>
+>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts 
+>> b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+>> index 26322a358d91..b908ce006c26 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+>> @@ -289,7 +289,7 @@ vdd_gpu: DCDC_REG2 {
+>>                                 regulator-name = "vdd_gpu";
+>>                                 regulator-always-on;
+>>                                 regulator-boot-on;
+>> -                               regulator-min-microvolt = <900000>;
+>> +                               regulator-min-microvolt = <500000>;
 > 
-> Add a new V4L2 meta format code for the Mali-C55 parameters
-
-s/$/./
-
-> Acked-by: Nayden Kanchev  <nayden.kanchev@arm.com>
-> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
-> Changes in v5:
+> The constraints here are supposed to be the constraints of the 
+> consumer,
+> not the provider. The latter is already known by the implementation.
 > 
-> 	- New patch
+> So if the GPU can go down to 0.825V or 0.81V even (based on the 
+> datasheet),
+> this should say the corresponding value. Surely the GPU can't go down 
+> to
+> 0.5V?
 > 
->  drivers/media/v4l2-core/v4l2-ioctl.c | 1 +
->  include/uapi/linux/videodev2.h       | 1 +
->  2 files changed, 2 insertions(+)
-> 
-> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
-> index 0d00b0476762..4e3b5e16571c 100644
-> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
-> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-> @@ -1456,6 +1456,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
->  	case V4L2_META_FMT_VIVID:       descr = "Vivid Metadata"; break;
->  	case V4L2_META_FMT_RK_ISP1_PARAMS:	descr = "Rockchip ISP1 3A Parameters"; break;
->  	case V4L2_META_FMT_RK_ISP1_STAT_3A:	descr = "Rockchip ISP1 3A Statistics"; break;
-> +	case V4L2_META_FMT_MALI_C55_PARAMS:	descr = "ARM Mali-C55 ISP Parameters"; break;
->  	case V4L2_META_FMT_MALI_C55_3A_STATS:	descr = "ARM Mali-C55 ISP 3A Statistics"; break;
->  	case V4L2_PIX_FMT_NV12_8L128:	descr = "NV12 (8x128 Linear)"; break;
->  	case V4L2_PIX_FMT_NV12M_8L128:	descr = "NV12M (8x128 Linear)"; break;
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> index 021424fdaf68..e63d5e76d21e 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -841,6 +841,7 @@ struct v4l2_pix_format {
->  #define V4L2_META_FMT_RK_ISP1_PARAMS	v4l2_fourcc('R', 'K', '1', 'P') /* Rockchip ISP1 3A Parameters */
->  #define V4L2_META_FMT_RK_ISP1_STAT_3A	v4l2_fourcc('R', 'K', '1', 'S') /* Rockchip ISP1 3A Statistics */
->  
-> +#define V4L2_META_FMT_MALI_C55_PARAMS	v4l2_fourcc('C', '5', '5', 'P') /* ARM Mali-C55 Parameters */
->  #define V4L2_META_FMT_MALI_C55_3A_STATS	v4l2_fourcc('C', '5', '5', 'S') /* ARM Mali-C55 3A Statistics */
->  
->  #ifdef __KERNEL__
+> Can you send another fix for it?
 
--- 
-Regards,
+I can confirm that the voltage of the power supply of GPU found inside
+the RK3566 can be as low as 0.81 V, according to the datasheet, or as
+low as 0.825 V, according to the GPU OPPs found in rk356x.dtsi.
 
-Laurent Pinchart
+If we want the regulator-min-microvolt parameter to reflect the 
+contraint
+of the GPU as the consumer, which I agree with, we should do that for 
+other
+RK3566-based boards as well, and almost surely for the boards based on 
+the
+RK3568, too.
+
+This would ensure consistency, but I'd like to know are all those 
+resulting
+patches going to be accepted before starting to prepare them?  There 
+will
+be a whole bunch of small patches.
+
+>>                                 regulator-max-microvolt = <1350000>;
+>>                                 regulator-ramp-delay = <6001>;
 
