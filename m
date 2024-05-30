@@ -1,217 +1,299 @@
-Return-Path: <devicetree+bounces-70854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA5C8D4C1C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:55:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB728D4C43
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:06:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1A481C21789
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:55:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28EDF1F21B46
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:06:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B1B17C9F6;
-	Thu, 30 May 2024 12:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955C91822E4;
+	Thu, 30 May 2024 13:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ac141h56"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sp09dpKq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A7A17C9E5;
-	Thu, 30 May 2024 12:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5A317FACF
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 13:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717073755; cv=none; b=F5uoA4sTeXewxxHVXooylI+qMpx62MfQSEx2SifXMeMta0+y3mQq7e1NhlrQsyKN1tImMPnXGzrMZ6BcX//wY8IiiRh5VX/1tEoiZJhQv4Wf2s9wKQF8PrkkFNhKwAk/CDcD3UBpsT2PQQWtTFXV3jfOqBuUOUoGinqFWgbcUOE=
+	t=1717074395; cv=none; b=AKR9BK8MVOxFncdLg7IHi7W8q+wIXSrD3HRl2eeQzlVc9NLtnOdOqNsdfMzkyQSXzcj661wNkYZEdVeElCVUnc+zSsH4ccF+jBtdz6lb9mk5mXrKqoSVqwHo1648+7w6WWO70EhS2QmcQq4XfQ+uY601CG3OiU6Ev9WzMXVKLjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717073755; c=relaxed/simple;
-	bh=0X4fg4iFYKDndZ2Iqm/1AYkChQqhNk/LkEu9yRES+Ns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JQ0NbegRB26XU7/6gIEMxSN+O8W5N1yugeUWlSWxOgP134vPbBAhwYyy+Sd1P+UPIQKdSWB7Hp092dj7eNhsWyGXtdRw9rjzQXiB9GA7BPRX69DqRuKT1MQ1bSCqmrXJzFBqoJWHhqrYCNChmBoEWbddOfQSYNghs8p0j2EvZJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ac141h56; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717073755; x=1748609755;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0X4fg4iFYKDndZ2Iqm/1AYkChQqhNk/LkEu9yRES+Ns=;
-  b=ac141h56o0hK82QKcIq228m3sO1V6d8R0Oz65gXXZUr55dH6PW+RJ81c
-   C5VXEsbruymAiWuYKCcKP6fpB5sckBBHTJM2wseRGaADItX0fdzZN5Aam
-   x6zE1LuE+Eq0ybiZhZeOQLL62QE1n8h2LrWZKCroDMNqIvMG8kPSXrQtm
-   pdpBWmgI9n+0MIgTUP6tPSDC8ip9UU1wirxbVypcSoy0e4vZ8xG74WmSB
-   yqbQOPo7uaZJfWXBIB+7LPfXrcw5G9WFZTkizZZyKhSwO+VBlPrzDr3em
-   EN7ZNqoQ2bQAATXPwED8bEU1tCokhIGcrUw8X/MLfJstWvNd5ffoFoyss
-   g==;
-X-CSE-ConnectionGUID: tqHujd/tQPKRx+cuPbtI1g==
-X-CSE-MsgGUID: iuKrTuw+RHmHbOQ5GE3jZQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11088"; a="24212936"
-X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; 
-   d="scan'208";a="24212936"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2024 05:55:54 -0700
-X-CSE-ConnectionGUID: nGh0ZSuIRT+n4SJAOnAjEQ==
-X-CSE-MsgGUID: sNkZZY+dSvO9LH+0m+cs+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,201,1712646000"; 
-   d="scan'208";a="35786717"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by fmviesa008.fm.intel.com with ESMTP; 30 May 2024 05:55:49 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sCfJq-000FLN-2l;
-	Thu, 30 May 2024 12:55:46 +0000
-Date: Thu, 30 May 2024 20:54:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-	dan.scally@ideasonboard.com
-Subject: Re: [PATCH v5 15/16] media: platform: Add mali-c55 parameters video
- node
-Message-ID: <202405302048.Twi0r71r-lkp@intel.com>
-References: <20240529152858.183799-16-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1717074395; c=relaxed/simple;
+	bh=Nw0C7nJcyUywfnIdk5x6lVQBDyyMPTOBhrJFjwkBj5o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZsijMGFGC0mXL5bOlpanizLdai05r5IBkWPQEphguaufmMOhJpj4pbeLvOGUf4FPWZfRD+j17I/Rz1CYG6xyOTAkDwkjr99O3gtV9Os8HTVwYNergL/ib3dT9nLi0/eGqGRfLaipkx+ahpV82is8RW/rR/2QZz8T29q6r1bkHpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sp09dpKq; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dfa48f505dfso827799276.3
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 06:06:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1717074393; x=1717679193; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=c6esGYOm6PWwF6+ztUwretfZOooGDQ0PyXFzrTPWScg=;
+        b=sp09dpKq1D0jfY1qpvqcDYPiH93ZGQjkLBEzUo7SwMQXeJsfEiNf86tmcrIVESqzJ8
+         U0xc0SgHdZt2uRo1IxQAfurvih0GtKXzctXI+YS4hGyeRBC54iLq/H6ZZ5c+swKRX/iN
+         oaSSNh89Sr3O9yTq55vWsufe5WjCuiw1hkq1/kdGKQ+MmUl2WzVB8UuxxhwAms/UI8p6
+         kMFtPiebfFinuD8BuGQqiHwecnWuk82KoBeKMPG/qyc1R2KWMhP2n6uau6MSkrQtfhdH
+         OvgxcbxO9C+rZFxSPuvp2ZSc1ASgQC/2STOsoEb6ATf04cenRHS05N/QLFgVgxQEvf6l
+         RosQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717074393; x=1717679193;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c6esGYOm6PWwF6+ztUwretfZOooGDQ0PyXFzrTPWScg=;
+        b=QWcSEVj3W8t1Xq5Cqfg2UPe9LzKHYOpba3W/FoDWvOa3LGMlIwGPUutZZJ18P+ESgt
+         xCZXDsBcXGdLH1vj7Dhbn1aDdbMqw0yE45NT76fPzj2YUft/NEgJICnxRbDGoNr69DUm
+         HWQlvtE8SeyImcPClfxccX7yKi5/ShzJYaVa7EWtPL/kyDvHXGf2iuJPTVwY5/nZFgl7
+         lCAeEQAT/UtN2hFSt15gO9PhhiOHz60emoKnJGC+n6hoOl1g9hvIyurvBmSE5N4V4k/G
+         UV6J6XzbibGD6bHnRv4Vf554cZXkJ566R013+qiHJ31KPcmexJOQLBG0KxCIGzh6HV4c
+         poNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXRvLo3BiSfpeH+08rBCKK6uqi8A5QLmRiLFOcFKwgIDKBuAZVh6KZKb9S7NlKXZ6RIWkZTeBXdHWt3HOasmWVryp93DIqqwJBaNA==
+X-Gm-Message-State: AOJu0YzzdMniKU0dnFpZfmZSvYxwOtvjGLmcGwrlFxVqnHHO/ysxJRVs
+	8/7AH180UOOT3xM6ndSiwlvwKmSEgsWdQZVJ7+Hebz8+Hd9CwCCaXcu11DrNVQCNmjgbQgm8pQw
+	BcdRxS6XdA5Xco/bQ9FQLpb4Q95ZS+dKI5/4fLQ==
+X-Google-Smtp-Source: AGHT+IFT6pgQIgXCcXr5rSzAh+MQxyaTahQt5/PdQ4obFkNsrqbdk3YkEI5qrwZxs1AJ0akRdan8JTXioBuyH18Zj3U=
+X-Received: by 2002:a25:b947:0:b0:df4:e704:ea10 with SMTP id
+ 3f1490d57ef6-dfa5a8026e4mr1861377276.63.1717074391881; Thu, 30 May 2024
+ 06:06:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240529152858.183799-16-dan.scally@ideasonboard.com>
+References: <8cc61db5-2920-4dd1-8132-5af434fb05b1@freebox.fr>
+ <o6wwzb4qblelfpfsrmqhoovjnyvymf42p2ilv4bzn4le3nklbv@kj3qklez7izy> <40903165-c965-4c6c-a3bf-104b1088730b@freebox.fr>
+In-Reply-To: <40903165-c965-4c6c-a3bf-104b1088730b@freebox.fr>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 30 May 2024 16:06:19 +0300
+Message-ID: <CAA8EJppg9ftnQVrZhEO9Ro2Ji6whCgQLaJrr0yCzV-2hF2HEtQ@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: msm8998: add HDMI GPIOs
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Jeffrey Hugo <quic_jhugo@quicinc.com>, MSM <linux-arm-msm@vger.kernel.org>, 
+	DT <devicetree@vger.kernel.org>, Bryan O Donoghue <bryan.odonoghue@linaro.org>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Daniel,
+On Thu, 30 May 2024 at 15:34, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+>
+> On 28/05/2024 02:45, Dmitry Baryshkov wrote:
+>
+> > While I don't see anything wrong with this patch, maybe it's better to
+> > include it into the patchset that adds all HDMI nodes to the msm8998.dtsi.
+>
+> Here is my current diff:
+> Do I just need to split it up, and it's good to go?
+> (Doubtful++)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+> index 83fe4b39b56f4..78607ee3e2e84 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+> @@ -14,6 +14,7 @@ properties:
+>    compatible:
+>      enum:
+>        - qcom,hdmi-phy-8996
+> +      - qcom,hdmi-phy-8998
+>
+>    reg:
+>      maxItems: 6
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index e5f051f5a92de..182d80c2ab942 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -1434,6 +1434,34 @@ blsp2_spi6_default: blsp2-spi6-default-state {
+>                                 drive-strength = <6>;
+>                                 bias-disable;
+>                         };
+> +
+> +                       hdmi_cec_default: hdmi-cec-default-state {
+> +                               pins = "gpio31";
+> +                               function = "hdmi_cec";
+> +                               drive-strength = <2>;
+> +                               bias-pull-up;
+> +                       };
+> +
+> +                       hdmi_ddc_default: hdmi-ddc-default-state {
+> +                               pins = "gpio32", "gpio33";
+> +                               function = "hdmi_ddc";
+> +                               drive-strength = <2>;
+> +                               bias-pull-up;
+> +                       };
+> +
+> +                       hdmi_hpd_default: hdmi-hpd-default-state {
+> +                               pins = "gpio34";
+> +                               function = "hdmi_hot";
+> +                               drive-strength = <16>;
+> +                               bias-pull-down;
+> +                       };
+> +
+> +                       hdmi_hpd_sleep: hdmi-hpd-sleep-state {
+> +                               pins = "gpio34";
+> +                               function = "hdmi_hot";
+> +                               drive-strength = <2>;
+> +                               bias-pull-down;
+> +                       };
+>                 };
+>
+>                 remoteproc_mss: remoteproc@4080000 {
+> @@ -2757,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
+>                                  <&mdss_dsi0_phy 0>,
+>                                  <&mdss_dsi1_phy 1>,
+>                                  <&mdss_dsi1_phy 0>,
+> -                                <0>,
+> +                                <&hdmi_phy 0>,
+>                                  <0>,
+>                                  <0>,
+>                                  <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
+> @@ -2862,6 +2890,14 @@ dpu_intf2_out: endpoint {
+>                                                         remote-endpoint = <&mdss_dsi1_in>;
+>                                                 };
+>                                         };
+> +
+> +                                       port@2 {
+> +                                               reg = <2>;
+> +
+> +                                               dpu_intf3_out: endpoint {
+> +                                                       remote-endpoint = <&hdmi_in>;
+> +                                               };
+> +                                       };
+>                                 };
+>                         };
+>
+> @@ -3017,6 +3053,103 @@ mdss_dsi1_phy: phy@c996400 {
+>
+>                                 status = "disabled";
+>                         };
+> +
+> +                       hdmi: hdmi-tx@c9a0000 {
+> +                               compatible = "qcom,hdmi-tx-8998";
+> +                               reg =   <0x0c9a0000 0x50c>,
+> +                                       <0x00780000 0x6220>,
+> +                                       <0x0c9e0000 0x2c>;
+> +                               reg-names = "core_physical",
+> +                                           "qfprom_physical",
+> +                                           "hdcp_physical";
+> +
+> +                               interrupt-parent = <&mdss>;
+> +                               interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
 
-kernel test robot noticed the following build warnings:
+Just <8>. MDSS doesn't have IRQ types.
 
-[auto build test WARNING on media-tree/master]
-[cannot apply to linuxtv-media-stage/master sailus-media-tree/master linus/master sailus-media-tree/streams v6.10-rc1 next-20240529]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +
+> +                               clocks = <&mmcc MDSS_MDP_CLK>,
+> +                                        <&mmcc MNOC_AHB_CLK>,
+> +                                        <&mmcc MDSS_AHB_CLK>,
+> +                                        <&mmcc MDSS_AXI_CLK>,
+> +                                        <&mmcc MISC_AHB_CLK>,
+> +                                        <&mmcc MDSS_HDMI_CLK>,
+> +                                        <&mmcc MDSS_HDMI_DP_AHB_CLK>,
+> +                                        <&mmcc MDSS_EXTPCLK_CLK>;
+> +                               clock-names =
+> +                                       "mdp_core",
+> +                                       "mnoc",
+> +                                       "iface",
+> +                                       "bus",
+> +                                       "iface_mmss",
+> +                                       "core",
+> +                                       "alt_iface",
+> +                                       "extp";
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Scally/media-uapi-Add-MEDIA_BUS_FMT_RGB202020_1X60-format-code/20240529-233239
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20240529152858.183799-16-dan.scally%40ideasonboard.com
-patch subject: [PATCH v5 15/16] media: platform: Add mali-c55 parameters video node
-config: nios2-allyesconfig (https://download.01.org/0day-ci/archive/20240530/202405302048.Twi0r71r-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240530/202405302048.Twi0r71r-lkp@intel.com/reproduce)
+This device was neither validated nor described properly in the DT
+schema. There are several other issues here.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405302048.Twi0r71r-lkp@intel.com/
+> +
+> +                               phys = <&hdmi_phy>;
+> +                               phy-names = "hdmi_phy";
+> +
+> +                               pinctrl-names = "default", "sleep";
+> +                               pinctrl-0 = <&hdmi_hpd_default
+> +                                            &hdmi_ddc_default
+> +                                            &hdmi_cec_default>;
+> +                               pinctrl-1 = <&hdmi_hpd_sleep
+> +                                            &hdmi_ddc_default
+> +                                            &hdmi_cec_default>;
+> +
+> +                               power-domains = <&rpmpd MSM8998_VDDCX>;
 
-All warnings (new ones prefixed by >>):
+Is it? I don't see this in msm-4.4
 
-   In file included from include/linux/printk.h:566,
-                    from include/asm-generic/bug.h:22,
-                    from ./arch/nios2/include/generated/asm/bug.h:1,
-                    from include/linux/bug.h:5,
-                    from include/media/media-entity.h:15,
-                    from drivers/media/platform/arm/mali-c55/mali-c55-params.c:9:
-   drivers/media/platform/arm/mali-c55/mali-c55-params.c: In function 'mali_c55_params_write_config':
->> drivers/media/platform/arm/mali-c55/mali-c55-params.c:504:40: warning: format '%lu' expects argument of type 'long unsigned int', but argument 4 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
-     504 |                 dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
-         |                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:224:29: note: in definition of macro '__dynamic_func_call_cls'
-     224 |                 func(&id, ##__VA_ARGS__);                       \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:250:9: note: in expansion of macro '_dynamic_func_call_cls'
-     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:273:9: note: in expansion of macro '_dynamic_func_call'
-     273 |         _dynamic_func_call(fmt, __dynamic_dev_dbg,              \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:155:9: note: in expansion of macro 'dynamic_dev_dbg'
-     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:155:30: note: in expansion of macro 'dev_fmt'
-     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                              ^~~~~~~
-   drivers/media/platform/arm/mali-c55/mali-c55-params.c:504:17: note: in expansion of macro 'dev_dbg'
-     504 |                 dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
-         |                 ^~~~~~~
-   drivers/media/platform/arm/mali-c55/mali-c55-params.c:504:74: note: format string is defined here
-     504 |                 dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
-         |                                                                        ~~^
-         |                                                                          |
-         |                                                                          long unsigned int
-         |                                                                        %u
+> +
+> +                               #sound-dai-cells = <1>;
+> +
+> +                               status = "disabled";
+> +
+> +                               ports {
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +
+> +                                       port@0 {
+> +                                               reg = <0>;
+> +                                               hdmi_in: endpoint {
+> +                                                       remote-endpoint = <&dpu_intf3_out>;
+> +                                               };
+> +                                       };
+> +
+> +                                       port@1 {
+> +                                               reg = <1>;
+> +                                               hdmi_out: endpoint {
+> +                                               };
+> +                                       };
+> +                               };
+> +                       };
+> +
+> +                       hdmi_phy: hdmi-phy@c9a0600 {
+> +                               compatible = "qcom,hdmi-phy-8998";
+> +                               reg = <0x0c9a0600 0x18b>,
+> +                                     <0x0c9a0a00 0x38>,
+> +                                     <0x0c9a0c00 0x38>,
+> +                                     <0x0c9a0e00 0x38>,
+> +                                     <0x0c9a1000 0x38>,
+> +                                     <0x0c9a1200 0x0e8>;
+> +                               reg-names = "hdmi_pll",
+> +                                           "hdmi_tx_l0",
+> +                                           "hdmi_tx_l1",
+> +                                           "hdmi_tx_l2",
+> +                                           "hdmi_tx_l3",
+> +                                           "hdmi_phy";
+> +
+> +                               #clock-cells = <0>;
+> +                               #phy-cells = <0>;
+> +
+> +                               clocks =
+> +                                       <&mmcc MDSS_AHB_CLK>,
+> +                                       <&gcc GCC_HDMI_CLKREF_CLK>,
+> +                                       <&xo>;
 
+This is most likely RPM_SMD_XO_CLK_SRC or maybe RPM_SMD_LN_BB_CLK1
 
-vim +504 drivers/media/platform/arm/mali-c55/mali-c55-params.c
+> +                               clock-names =
+> +                                       "iface",
+> +                                       "ref",
+> +                                       "xo";
+> +                               power-domains = <&rpmpd MSM8998_VDDMX>;
 
-   480	
-   481	void mali_c55_params_write_config(struct mali_c55 *mali_c55)
-   482	{
-   483		struct mali_c55_params *params = &mali_c55->params;
-   484		enum vb2_buffer_state state = VB2_BUF_STATE_DONE;
-   485		struct mali_c55_params_buffer *config;
-   486		struct mali_c55_buffer *buf;
-   487		size_t block_offset = 0;
-   488	
-   489		spin_lock(&params->buffers.lock);
-   490	
-   491		buf = list_first_entry_or_null(&params->buffers.queue,
-   492					       struct mali_c55_buffer, queue);
-   493		if (buf)
-   494			list_del(&buf->queue);
-   495		spin_unlock(&params->buffers.lock);
-   496	
-   497		if (!buf)
-   498			return;
-   499	
-   500		buf->vb.sequence = mali_c55->isp.frame_sequence;
-   501		config = vb2_plane_vaddr(&buf->vb.vb2_buf, 0);
-   502	
-   503		if (config->total_size > MALI_C55_PARAMS_MAX_SIZE) {
- > 504			dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
-   505				config->total_size);
-   506			state = VB2_BUF_STATE_ERROR;
-   507			goto err_buffer_done;
-   508		}
-   509	
-   510		/* Walk the list of parameter blocks and process them. */
-   511		while (block_offset < config->total_size) {
-   512			const struct mali_c55_block_handler *block_handler;
-   513			struct mali_c55_params_block_header *block;
-   514	
-   515			block = (struct mali_c55_params_block_header *)
-   516				 &config->data[block_offset];
-   517	
-   518			if (block->type >= MALI_C55_PARAM_BLOCK_SENTINEL) {
-   519				dev_dbg(mali_c55->dev, "Invalid parameters block type\n");
-   520				state = VB2_BUF_STATE_ERROR;
-   521				goto err_buffer_done;
-   522			}
-   523	
-   524			block_handler = &mali_c55_block_handlers[block->type];
-   525			if (block->size != block_handler->size) {
-   526				dev_dbg(mali_c55->dev, "Invalid parameters block size\n");
-   527				state = VB2_BUF_STATE_ERROR;
-   528				goto err_buffer_done;
-   529			}
-   530	
-   531			block_handler->handler(mali_c55, block);
-   532	
-   533			block_offset += block->size;
-   534		}
-   535	
-   536	err_buffer_done:
-   537		vb2_buffer_done(&buf->vb.vb2_buf, state);
-   538	}
-   539	
+Is it?
+
+> +
+> +                               status = "disabled";
+> +                       };
+>                 };
+>
+>                 venus: video-codec@cc00000 {
+>
+
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
