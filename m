@@ -1,230 +1,208 @@
-Return-Path: <devicetree+bounces-70941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52CD48D5082
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 19:07:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E22DF8D5088
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 19:07:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75E9A1C21999
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:07:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 117CB1C223BB
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5A3405F7;
-	Thu, 30 May 2024 17:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60824436A;
+	Thu, 30 May 2024 17:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="r1cAix2s"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="deA1kXVY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17661224DE;
-	Thu, 30 May 2024 17:07:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC49346544;
+	Thu, 30 May 2024 17:07:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717088842; cv=none; b=jdq54Vs1KkMpJzEysoagBMAUtWLBM3zUyDJOFx4xpceiwLRCqAo/0WhBsQP5pI2T+w0PSGhHRC5KZdFF+VbVanV2Hmay+klATJ7YXXa69tfvDZ8dvSFXCMRyylsERV5gstKBGZG/kPpAG60DS7yrkY24yH8iv/L7q3VnuaWvi3o=
+	t=1717088862; cv=none; b=ZIELqDCoAl+INNYpwnYMm13pjlIjYmD3ioSOIAuTiqITYtaE9qt4++uP67HjrYBJKqa91pREeEumeZ6dRHk73tdeQivuQJLO9hz5VFusxmbYJk2+McjQwY7nM6/YX+7eqyWPTCEdlWSpGklSz2Ji+HW0/rI5NGIZHMGmWwdVDZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717088842; c=relaxed/simple;
-	bh=2iVwbMMUbOM9n/CFhJHEkyhA69N23s8LiCcG1LOOwMk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iNTHR+zRNGt98zVbb3sozRL/tXKAo7/qwVEdMz7cGRm9qY+LBhLomASyNcRrbU9M8zSIA3e61zIKJLsliePkF5FJ/wndBfIt2BztHzX7I0MdGZrvX9svwCjSjB50CtPNbhBhppVAbifKGLyoGzG7G+0cCRN18Eub6fpVvJ1TuO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=r1cAix2s; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44UH7BZq086432;
-	Thu, 30 May 2024 12:07:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717088832;
-	bh=pDXaFrZNsFbzg111mB1tj844P1eOk1scANJi1dNprZU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=r1cAix2s0CRqtSl8gNb2jLlUmONrAt31qwgujEwbjpAKcLMFHvJBpI3brkhdw8ZYV
-	 emWVt+L+f/jY2FNbkw16SoW3l4wFrTbw6JqiSZGGwJPA30BqYPeB07Ls+UtjiKsEz3
-	 LbpfPj/KhggkDTfbFRWpIPI7TA1V9QMoec58cZF0=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44UH7Bw3124816
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 30 May 2024 12:07:11 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 30
- May 2024 12:07:11 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 30 May 2024 12:07:11 -0500
-Received: from localhost (ti.dhcp.ti.com [172.24.227.95] (may be forged))
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44UH7AwG048811;
-	Thu, 30 May 2024 12:07:11 -0500
-From: Devarsh Thakkar <devarsht@ti.com>
-To: <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <benjamin.gaignard@collabora.com>, <sebastian.fricke@collabora.com>
-CC: <laurent.pinchart@ideasonboard.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
-        <vijayp@ti.com>, <andrzej.p@collabora.com>, <nicolas@ndufresne.ca>
-Subject: [PATCH v10 01/11] media: dt-bindings: Add Imagination E5010 JPEG Encoder
-Date: Thu, 30 May 2024 22:37:10 +0530
-Message-ID: <20240530170710.2735503-1-devarsht@ti.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20240530165925.2715837-1-devarsht@ti.com>
-References: <20240530165925.2715837-1-devarsht@ti.com>
+	s=arc-20240116; t=1717088862; c=relaxed/simple;
+	bh=MJ2wuaCd/2ZiUIPAA4eoz+c/Cwyu0XqjDw22ygKEx5s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JdK09GybHJ22N1//J8w5pqrGoebA6QYXaCPT/nnoTjMnMCDu6jZ19chm7iB5U3nXjegg8wu3n97tg/yvZUOvIVZj7A5Ipju7CFETU7XPcjqTT9F9OdAoeCkdqMjuRg/MGeeJw5IWk+oAiPIiLw7g7QpwoWFQK6T8U1+OkxpkwiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=deA1kXVY; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44U4xJXV021359;
+	Thu, 30 May 2024 12:07:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	PODMain02222019; bh=+9ZyUc5MMmPZs6k5uP+TG3Et3UMyDITZlWUysquJE+k=; b=
+	deA1kXVY3kVDo4/abGabWIPCgnjSq7x0XnHoVvddsGi8Js72NpyMwztv1KG0bgKP
+	plRCPZMsyLDvZb+MctmqISZMc2IQslS8McPodAiLwTUQlYLzdklwxWoLSWfQihrN
+	po2ogelgXrQiFxla46iNfTByXTgYsjr0yui61cc3rw/G98wRhzjKbs7espX/U7Ey
+	2dw4tGNbAbknUztLVokwHG2MW2rHDv9Ei4mnxTBbvYdBXKEUsuuS7SOJ5LEOG2Bt
+	Eru4l4iqFMQ9KVFuIvhSmx3NXyV5FMlMQSe3BFOe6CSqhMyD4kj71jEpylO1lFB8
+	0BXER34DXRcsDmGS4Ej3Lg==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ybdcww1ad-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 30 May 2024 12:07:20 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 30 May
+ 2024 18:07:18 +0100
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.9 via Frontend Transport; Thu, 30 May 2024 18:07:18 +0100
+Received: from [141.131.156.155] (macC02FN0GLMD6T.ad.cirrus.com [141.131.156.155])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 3EF6982F2A4;
+	Thu, 30 May 2024 17:07:16 +0000 (UTC)
+Message-ID: <abf5d0d6-30f4-44f4-b01b-ad9e4321db58@opensource.cirrus.com>
+Date: Thu, 30 May 2024 12:07:15 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v10 5/5] ASoC: cs40l50: Support I2S streaming to
+ CS40L50
+To: James Ogletree <jogletre@opensource.cirrus.com>,
+        <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
+CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        David Rhodes
+	<drhodes@opensource.cirrus.com>
+References: <20240408153214.42368-1-jogletre@opensource.cirrus.com>
+ <20240408153214.42368-6-jogletre@opensource.cirrus.com>
+Content-Language: en-US
+From: "Rivera-Matos, Ricardo" <rriveram@opensource.cirrus.com>
+In-Reply-To: <20240408153214.42368-6-jogletre@opensource.cirrus.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: nlHNiblfpo6Och6cb1w5RqC1P5Fkj7aO
+X-Proofpoint-ORIG-GUID: nlHNiblfpo6Och6cb1w5RqC1P5Fkj7aO
+X-Proofpoint-Spam-Reason: safe
 
-Add dt-bindings for Imagination E5010 JPEG Encoder [1] which is implemented
-as stateful V4L2 M2M driver.
 
-The device supports baseline encoding with two different quantization
-tables and compression ratio as demanded.
+On 4/8/24 10:32 AM, James Ogletree wrote:
+> Introduce support for Cirrus Logic Device CS40L50: a
+> haptic driver with waveform memory, integrated DSP,
+> and closed-loop algorithms.
+>
+> The ASoC driver enables I2S streaming to the device.
+>
+> Reviewed-by: David Rhodes <drhodes@opensource.cirrus.com>
+> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
+> ---
+>   MAINTAINERS                      |   1 +
+>   sound/soc/codecs/Kconfig         |  11 ++
+>   sound/soc/codecs/Makefile        |   2 +
+>   sound/soc/codecs/cs40l50-codec.c | 308 +++++++++++++++++++++++++++++++
+>   4 files changed, 322 insertions(+)
+>   create mode 100644 sound/soc/codecs/cs40l50-codec.c
+>
+<cut>
+> diff --git a/sound/soc/codecs/cs40l50-codec.c b/sound/soc/codecs/cs40l50-codec.c
+> new file mode 100644
+> index 000000000000..6d4a0970b219
+> --- /dev/null
+> +++ b/sound/soc/codecs/cs40l50-codec.c
+> @@ -0,0 +1,308 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// CS40L50 Advanced Haptic Driver with waveform memory,
+> +// integrated DSP, and closed-loop algorithms
+> +//
+> +// Copyright 2024 Cirrus Logic, Inc.
+> +//
+> +// Author: James Ogletree <james.ogletree@cirrus.com>
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/mfd/cs40l50.h>
+> +#include <linux/pm_runtime.h>
+Is pm_runtime.h being used in the context of the codec driver? If not, 
+you should drop it.
+> +#include <sound/pcm_params.h>
+> +#include <sound/soc.h>
+> +
+<cut>
+> +
+> +static const struct cs40l50_pll_config cs40l50_pll_cfg[] = {
+> +	{ 32768, 0x00 },
+> +	{ 1536000, 0x1B },
+> +	{ 3072000, 0x21 },
+> +	{ 6144000, 0x28 },
+> +	{ 9600000, 0x30 },
+> +	{ 12288000, 0x33 },
+> +};
+> +
+> +static int cs40l50_get_clk_config(unsigned int freq, unsigned int *cfg)
+You could constify freq.
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(cs40l50_pll_cfg); i++) {
+> +		if (cs40l50_pll_cfg[i].freq == freq) {
+> +			*cfg = cs40l50_pll_cfg[i].cfg;
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int cs40l50_swap_ext_clk(struct cs40l50_codec *codec, unsigned int clk_src)
+You could constify clk_src.
+> +{
+> +	unsigned int cfg;
+> +	int ret;
+> +
+> +	switch (clk_src) {
+> +	case CS40L50_PLL_REFCLK_BCLK:
+> +		ret = cs40l50_get_clk_config(codec->bclk_ratio * codec->rate, &cfg);
+> +		if (ret)
+> +			return ret;
+> +		break;
+> +	case CS40L50_PLL_REFCLK_MCLK:
+> +		cfg = CS40L50_PLL_REEFCLK_MCLK_CFG;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
+> +				 CS40L50_PLL_REFCLK_LOOP_MASK,
+> +				 CS40L50_PLL_REFCLK_OPEN_LOOP <<
+> +				 CS40L50_PLL_REFCLK_LOOP_SHIFT);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
+> +				 CS40L50_PLL_REFCLK_FREQ_MASK |
+> +				 CS40L50_PLL_REFCLK_SEL_MASK,
+> +				 (cfg << CS40L50_PLL_REFCLK_FREQ_SHIFT) | clk_src);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_update_bits(codec->regmap, CS40L50_REFCLK_INPUT,
+> +				  CS40L50_PLL_REFCLK_LOOP_MASK,
+> +				  CS40L50_PLL_REFCLK_CLOSED_LOOP <<
+> +				  CS40L50_PLL_REFCLK_LOOP_SHIFT);
+> +}
+> +
+<cut>
+> +
+> +MODULE_DESCRIPTION("ASoC CS40L50 driver");
+> +MODULE_AUTHOR("James Ogletree <james.ogletree@cirrus.com>");
+> +MODULE_LICENSE("GPL");
 
-Minimum resolution supported is 64x64 and Maximum resolution supported is
-8192x8192.
+This gets my Reviewed-by pending these edits.
 
-[1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
-Link: https://www.ti.com/lit/pdf/spruj16
-
-Co-developed-by: David Huang <d-huang@ti.com>
-Signed-off-by: David Huang <d-huang@ti.com>
-Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-V10:
- - No change
-V9:
- - No change
-V8:
- - No change
-V7:
- - No change
-V6:
- - No change
-V5:
- - Add Reviewed-By tag
-V4:
- - Use ti-specific compatible ti,am62a-jpeg-enc as secondary one
- - Update commit message and title
- - Remove clock-names as only single clock
-V3:
-- Add vendor specific compatible
-- Update reg names
-- Update clocks to 1
-- Fix dts example with proper naming
-V2: No change
----
- .../bindings/media/img,e5010-jpeg-enc.yaml    | 75 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 80 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-new file mode 100644
-index 000000000000..085020cb9e61
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Imagination E5010 JPEG Encoder
-+
-+maintainers:
-+  - Devarsh Thakkar <devarsht@ti.com>
-+
-+description: |
-+  The E5010 is a JPEG encoder from Imagination Technologies implemented on
-+  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
-+  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
-+  8Kx8K resolution.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: ti,am62a-jpeg-enc
-+          - const: img,e5010-jpeg-enc
-+      - const: img,e5010-jpeg-enc
-+
-+  reg:
-+    items:
-+      - description: The E5010 core register region
-+      - description: The E5010 mmu register region
-+
-+  reg-names:
-+    items:
-+      - const: core
-+      - const: mmu
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+      jpeg-encoder@fd20000 {
-+          compatible = "img,e5010-jpeg-enc";
-+          reg = <0x00 0xfd20000 0x00 0x100>,
-+                <0x00 0xfd20200 0x00 0x200>;
-+          reg-names = "core", "mmu";
-+          clocks = <&k3_clks 201 0>;
-+          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
-+          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dbc5d9ec3d20..f68e1a5757b5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10767,6 +10767,11 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
- F:	drivers/auxdisplay/img-ascii-lcd.c
- 
-+IMGTEC JPEG ENCODER DRIVER
-+M:	Devarsh Thakkar <devarsht@ti.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-+
- IMGTEC IR DECODER DRIVER
- S:	Orphan
- F:	drivers/media/rc/img-ir/
--- 
-2.39.1
+Ricardo
 
 
