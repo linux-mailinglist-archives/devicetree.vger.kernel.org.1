@@ -1,134 +1,159 @@
-Return-Path: <devicetree+bounces-70752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BA228D45C2
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:08:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE328D45CD
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:12:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 334B02846DF
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 07:08:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B4D91F22D25
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 07:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4CF4D8AA;
-	Thu, 30 May 2024 07:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AkYe9U7o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01BC4D8AF;
+	Thu, 30 May 2024 07:12:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC64A4D8A5;
-	Thu, 30 May 2024 07:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2994D8A1;
+	Thu, 30 May 2024 07:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717052899; cv=none; b=tuhwIaMJf6T9j+j+vM11dvG7vd8PDX56YsejrGj0q6G+kJmjP63TpmJ2EnqLGmRZ4k2oT9ImkrQzckgERKU2t6emmOjL2NrIqaJgV+KH1R81KixLRBgDqxNreCz+CsVZmEk1kH3hh5WDSjbVOGD1avjogNzR57UQ/wFaNO+qmLw=
+	t=1717053142; cv=none; b=jNbhOxTGB/S527FLvabvL+ZnV39yDpXnBg9z/DPKPpd7YIsCLISbEO/JpYfSwciN4UMsCCxXOR0mEQ96kjbeUBR57D6ECM02804Rxz7Edb1spzffX3+7rYuMPDv2fgO3CDp1oyK7Cnip13jCvAMdJB2p7cPNjySguKASEUbIhgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717052899; c=relaxed/simple;
-	bh=eOngNfBO9IKpFWiJMqi7+bzLez8+6qCGdcv78JuukBo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aOO4DRj1Mg2jfz2p3JaGvhaNoPUuLDssJNH15gGRPZ9AzVUMFq58+YSQ7KQOd7QZd+I+5rRPm4NBxbOfKndxcIc64/wLq0xb/prgmq8jNtrwWn3BKMT/XYz5YysOkSTBQzp5V+bNHn9oJGEGG3vqOUatIdwc1v92uUXqg8GPreE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AkYe9U7o; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717052898; x=1748588898;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eOngNfBO9IKpFWiJMqi7+bzLez8+6qCGdcv78JuukBo=;
-  b=AkYe9U7o/Z5ja/lx45UxnKZqCra19pEC4ZOZpE7nhmeI9k/NNWO4guKB
-   gRB/YSHkuK0b3WCJ7CY3MGxFCLQSrDvLQoK8zWciwi1whOh2i9mZbc+eA
-   WU5WsDaIaqEZUMvDRzEJuEkn5/LP3QsYB6b/hxMjKZ/8qzmK+oCLUgKXt
-   8o66VJH39cs/vCqYwJfypUnZkbf9BX+PVQNyO1L+V1d3riucbgYRtTkKZ
-   K75y5sIKKMMpNwOQsrncK6nkAfmGBMRcskkSopSJbgyr5xH57/C/nesQr
-   siW9hae4nAwDjH/h+aKFzpLMd+pQSrYW+GeLQfUoB9XDjwN+p+ElIZIHr
-   A==;
-X-CSE-ConnectionGUID: yVTs1YvWS2q4gp8Y7v0uMg==
-X-CSE-MsgGUID: 5l8NWxn6TxGj7Chk1dmDQw==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13638619"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
-   d="scan'208";a="13638619"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2024 00:08:17 -0700
-X-CSE-ConnectionGUID: RZGGqg3cRNy4RUOr84x2jw==
-X-CSE-MsgGUID: b5sveOJEQ/SdioM/0Vi7qA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
-   d="scan'208";a="35697008"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by fmviesa008.fm.intel.com with ESMTP; 30 May 2024 00:08:13 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sCZtS-000Evu-27;
-	Thu, 30 May 2024 07:08:10 +0000
-Date: Thu, 30 May 2024 15:08:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
-	robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-	dan.scally@ideasonboard.com
-Subject: Re: [PATCH v5 14/16] media: uapi: Add parameters structs to
- mali-c55-config.h
-Message-ID: <202405301513.etiNs24g-lkp@intel.com>
-References: <20240529152858.183799-15-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1717053142; c=relaxed/simple;
+	bh=PKz1EZxwe0Xxg+9SZOqevI59oQ7sI56fbUrrtSgK6rc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y69DB44LDYgK99vqDGf9I3nrjPUvu/Td1nwfN6AWKwagqpxm9DVjYPIc0rfsN/ouTGjWN6MHH4VIFxcVJ2SI205wsEdli10zYUPSuYVmZQdxxGkOjUUEbNaKCesQOJzCS4InVQYT2JiCgC3faI2BRM9Y8vx4ScyMlFvzzheuyAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-627efad69b4so4947227b3.3;
+        Thu, 30 May 2024 00:12:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717053139; x=1717657939;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZyNSHj0o/RWVtaOY8gZmEcLnBSvcNumfCPoamhSWsi4=;
+        b=aeRetxgko57Zk3WkbP6YB+m8Iwap5d6AEOi3xqxfedsv3krTAb6CgWRKq1mCWYB1U9
+         Yy+rO+kL6RN5rjAj0aM2EfzrIZPSq4VLLH12MxoicSasrYXI3/RQhcpKnGMnYrZAtTww
+         dyxmtvXGirC68UXgEkgc811ArcJNjagFafqTr3e4uWK/gd7T33IjYpLMv09oVJnEL7hR
+         sIqbFpWcT+fh2DH79GWmQJdunq7wxIx9EKwVyCwQrBBXhTUyse+nPZs57oZYPmn0LxR8
+         JqPirTOSvn0WBM6h2SEClifszqsQoN+DRMVxCORFQTfzYKEwfYmuHfgZh2hC4AFmWfjg
+         K14A==
+X-Forwarded-Encrypted: i=1; AJvYcCWjNyK5Vg9v1s4S/l/Pe/tcz1V6HUvsjuPA4QyX7ooB2wYCSO6kQ5kpMJxb4trLYtiIhT1vLgEN8APEm2BiOgFYoxFVbIINexwERJINJWMRXN4+eoe1JmRwXyS80BBVZB2WovQ3o8GYTkdeaH0YxREt3RX9bIjbNaeEb778BMYQaYDSdXh2iRD4yDisT9m3GomFyD/t9xOV6Qxt5F5q7BItSehwAmM3
+X-Gm-Message-State: AOJu0YyCdVgcycobxrg2dk6W0jn20Ou73W2xbQaWG8jD16hGJtaT3KHZ
+	jq3XdEbMQthdUsjROwMF1zohIWPaAxcOX8yuMHhMu18fJ7pI37atHJX8HtO4
+X-Google-Smtp-Source: AGHT+IFB9qeO+NXrL5ryUPVnOe/WpYBwOYpUmK240metnJSPPUQLGkfoKGiQu6RXlvek439bEbxW4g==
+X-Received: by 2002:a81:8046:0:b0:627:dfbb:9b81 with SMTP id 00721157ae682-62c6bc13543mr13117477b3.24.1717053138615;
+        Thu, 30 May 2024 00:12:18 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62a0a56e642sm27077897b3.135.2024.05.30.00.12.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 00:12:18 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dfa49a90146so493106276.1;
+        Thu, 30 May 2024 00:12:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW7c7bDMccFYoG73jvAuG7weDZOJCShw1nBtgjLvzRWbbgZQvyzI8Az185t7VgoM1FlGxgilq2QwJY/7M8lo/3pFpnQgrZ4eOU1BIM2qsmCOYleoac6RPuzVTEeHQllP8oO7nP4bG+9CqMqc0Cw2cgg7MmEhSBbjvS2eskfWSwywnzWb49OtN0pSLOemb7KCW7GUzLGQRPQpfPyrZmmh6i2GT9aoFYd
+X-Received: by 2002:a25:b11f:0:b0:de6:17e7:ddd1 with SMTP id
+ 3f1490d57ef6-dfa5a60f54dmr1404276276.34.1717053137821; Thu, 30 May 2024
+ 00:12:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240529152858.183799-15-dan.scally@ideasonboard.com>
+References: <20240524082800.333991-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240524082800.333991-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWzZP2d6kRw1oTkMYgzS46J68gR_bg14==HCvVpkp0sJA@mail.gmail.com> <CA+V-a8uxwiof-hLPRpYCnDkVs8tj+-+v8GQLSSkMFUP13cuoXQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8uxwiof-hLPRpYCnDkVs8tj+-+v8GQLSSkMFUP13cuoXQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 30 May 2024 09:12:06 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWEKCB3XdwQeK_MOUm3wyrhLtVXE+96vAVLv2iurmGbJQ@mail.gmail.com>
+Message-ID: <CAMuHMdWEKCB3XdwQeK_MOUm3wyrhLtVXE+96vAVLv2iurmGbJQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: clock: Add R9A09G057 CPG Clock and Reset Definitions
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Daniel,
+Hi Prabhakar,
 
-kernel test robot noticed the following build errors:
+On Wed, May 29, 2024 at 11:10=E2=80=AFPM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Mon, May 27, 2024 at 10:18=E2=80=AFAM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Fri, May 24, 2024 at 10:29=E2=80=AFAM Prabhakar <prabhakar.csengg@gm=
+ail.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Define RZ/V2H(P) (R9A09G057) Clock Pulse Generator module clock outpu=
+ts
+> > > (CPG_CLK_ON* registers), and reset definitions (CPG_RST_* registers)
+> > > in Section 4.4.2 and 4.4.3 ("List of Clock/Reset Signals") of the RZ/=
+V2H(P)
+> > > Hardware User's Manual (Rev.1.01, Feb. 2024).
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> >
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/clock/r9a09g057-cpg.h
+> > > @@ -0,0 +1,644 @@
+> > > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > + *
+> > > + * Copyright (C) 2024 Renesas Electronics Corp.
+> > > + */
+> > > +#ifndef __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
+> > > +#define __DT_BINDINGS_CLOCK_R9A09G057_CPG_H__
+> > > +
+> > > +#include <dt-bindings/clock/renesas-cpg-mssr.h>
+> > > +
+> > > +/* Clock list */
+> >
+> > No distinction between Core and Module clocks?
+> >
+> I was in two minds here. Would you prefer clocks with no CGC support
+> to be listed as core clocks?
 
-[auto build test ERROR on media-tree/master]
-[cannot apply to linuxtv-media-stage/master sailus-media-tree/master linus/master sailus-media-tree/streams v6.10-rc1 next-20240529]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+What's CGC support? (Obviously I need some more reading before
+I can tackle the rest of this series :-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Scally/media-uapi-Add-MEDIA_BUS_FMT_RGB202020_1X60-format-code/20240529-233239
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20240529152858.183799-15-dan.scally%40ideasonboard.com
-patch subject: [PATCH v5 14/16] media: uapi: Add parameters structs to mali-c55-config.h
-config: i386-buildonly-randconfig-004-20240530 (https://download.01.org/0day-ci/archive/20240530/202405301513.etiNs24g-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240530/202405301513.etiNs24g-lkp@intel.com/reproduce)
+My comments are due to the bindings saying:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405301513.etiNs24g-lkp@intel.com/
+  '#clock-cells':
+    description: |
+      - For CPG core clocks, the two clock specifier cells must be "CPG_COR=
+E"
+        and a core clock reference, as defined in
+        <dt-bindings/clock/r9a09g057-cpg.h>,
+      - For module clocks, the two clock specifier cells must be "CPG_MOD" =
+and
+        a module number, as defined in <dt-bindings/clock/r9a09g057-cpg.h>.
+    const: 2
 
-All errors (new ones prefixed by >>):
+while the header file does not make it obvious whether a clock needs
+CPG_CORE or CPG_MOD.
 
-   In file included from <built-in>:1:
->> ./usr/include/linux/media/arm/mali-c55-config.h:308:2: error: unknown type name 'bool'
-     308 |         bool enabled;
-         |         ^
->> ./usr/include/linux/media/arm/mali-c55-config.h:309:2: error: unknown type name 'size_t'
-     309 |         size_t size;
-         |         ^
-   ./usr/include/linux/media/arm/mali-c55-config.h:698:2: error: unknown type name 'bool'
-     698 |         bool mesh_show;
-         |         ^
-   ./usr/include/linux/media/arm/mali-c55-config.h:847:2: error: unknown type name 'size_t'
-     847 |         size_t total_size;
-         |         ^
-   4 errors generated.
+Gr{oetje,eeting}s,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
