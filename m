@@ -1,141 +1,138 @@
-Return-Path: <devicetree+bounces-70770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6C08D46EC
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:20:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 297C58D46F4
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0C291C21E4C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:20:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C52501F23148
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D951B14AD25;
-	Thu, 30 May 2024 08:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661591474DA;
+	Thu, 30 May 2024 08:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="X4MGssAO"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="R4koJsgD";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="cmwSW2nD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from wfhigh2-smtp.messagingengine.com (wfhigh2-smtp.messagingengine.com [64.147.123.153])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4775C14387F
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A407F14387F
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717057222; cv=none; b=Atjyr4O+B9AlCCmXcCutyCDb1CIsHoW6+2fso8h0Oyp+qt1WEjcTKAWo1un6lEoghsRh6O0wK7VWzHLI3yiy5dX8O02i5h6dqZXgvTDNIM4stEkIth/56rmV/b0EjxZYFrIQRH8/7GgRk3WqwnqoqtNun6qRJTgbTOoqqNowD70=
+	t=1717057413; cv=none; b=pJ9YUYwnozhVuyf5NzIjrwEDYsSni9W9f69s/iXcfE7ypVaID9AAHM95qmidqUd+prrqkl4qybB1joXcMvAGAe1Kf7LWPl9I1o5GJTYfPA9lZ3UJ74wD/nJk8e5LbxXSqTLF9akN7MVSgp6pDTk9XUTA03V5MMnjJsbPGh38ZmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717057222; c=relaxed/simple;
-	bh=9hQvbxkraGoQByyfnB/SKIQRAxtxMniFpbudb4R8J+8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WJbsK4Oi7Wv71mKLx3rgERROoSPTD5IC5ZCYjG/9KTXELZISNjlbO49bAYcRukb4H7bdpIWVR/UNYjMnimI0tBsy7jddNdEJSS7rSuE2C/cJ/QCdxoY1kho+yiF1gul2+KnpynKzCf6cbguCIEQJFY6EEU0MJpG3bkYtO6lQIww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=X4MGssAO; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-421124a0b37so3465585e9.1
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 01:20:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1717057219; x=1717662019; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=xAFqwlnprskdijXg0+qVMxiHshvm9v4VwBvMivw4hqg=;
-        b=X4MGssAOpP+ReUDeAySTOFHDO/FubL+QJxHVcC+a5OJ58ZwzkJT342ezkeV7bDetn8
-         SVKOa2Is89YHjf8phSxz5TL66YMcs4GmIV2U7LzYpFptW+BZJX5eI36LX9nSCBuA4ofQ
-         pRVlIr2VXuD9g7Pr2TWAcPxCZQ4RW7hMysILLojJ4SBHhKgasjYgjVwEsiaEq/1nEYrw
-         vCy55gf0GJlHYukEXivVpxZ3Y84qni1uyOiSiK5M6bK+81FkBIPlS/ts+ljn/3N7TMa0
-         +2JfLy3MuuetTFjE2Vb6sF49E4WdJ4yqEe7oj5228Pw2x57UHZpMCjEQRYTwYUq/4XGw
-         vWiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717057219; x=1717662019;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xAFqwlnprskdijXg0+qVMxiHshvm9v4VwBvMivw4hqg=;
-        b=eZ3FvE9Au4jQh09IgxCMBpyi6x8hTBbdiazgM8FnEQK4kGmJp9my//feTrQoo9e+r1
-         62/r5yVbSFRBrLT1RskACpExm6weOXINVMj3ePLJN6dquwkxISDxEaN3i1IH5RXoU62k
-         TQ3KZ3J8ghNSNB9uWM3mDvdQZR9hJNVL6jvGr28e+yfhEk+XCnHrXL+pga8qgYcpF9O6
-         +uR2ulmWXuq9D38r1YRVPGTZlro81ItX50SkQUDRcvLqwgzKgVouCyujG+x5prIBVgKq
-         9a9bdAl2jaFMC9BeG1qkaHpegMg2bZgPQVbutNJ8dJLwRFD1KYe0mC4MNjcQkdmzwy47
-         nNWA==
-X-Forwarded-Encrypted: i=1; AJvYcCXk3J9FY5+r9Duo4woPQohJJv55s8L/0cZ8H3BoSr8H37waVeMpIYylUQUkGfnCxPH0rIlPSak11apoyXbPvd4lqqF//4xNv1Hpqg==
-X-Gm-Message-State: AOJu0YztIkqa1kEpHuG7NA/6cHRH8I9zAaq1FxcnWL8mFlwOz9eqOqiJ
-	ybME1hBTofzHZZpEP7ADOhRDm5UjJTBNH2D0D+qL9Hzy+Q8n0T+lp4O48ZfseZY=
-X-Google-Smtp-Source: AGHT+IG1keazYzeuDlTEJWYo0DNz5z0le/1L4QF2tlIZz4H3UjAuU4J130ihkcGjOo2htfDSVAmo6A==
-X-Received: by 2002:a05:600c:45d4:b0:421:2241:5be3 with SMTP id 5b1f17b1804b1-4212780a865mr16402325e9.5.1717057219466;
-        Thu, 30 May 2024 01:20:19 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212708a6fbsm17283305e9.44.2024.05.30.01.20.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 01:20:19 -0700 (PDT)
-Date: Thu, 30 May 2024 10:20:18 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Tomasz Jeznach <tjeznach@rivosinc.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, 
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: Re: [PATCH v6 2/7] iommu/riscv: Add RISC-V IOMMU platform device
- driver
-Message-ID: <20240530-af20943d2b372faa7b11ed41@orel>
-References: <cover.1716578450.git.tjeznach@rivosinc.com>
- <7dcd9a154625704cbf9adc4b4ac07ca0b9753b31.1716578450.git.tjeznach@rivosinc.com>
- <20240529-08fd52a8e703418142bdfa84@orel>
- <CAH2o1u7DmywajQWRnQEW2Zjw95EzruM3_Mb5Z-K4zJChh8pGLQ@mail.gmail.com>
+	s=arc-20240116; t=1717057413; c=relaxed/simple;
+	bh=JSRSay5EhTeWG044GMdO+MLOg273FYO7vdGB05gCxWk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uPBStYyIvyTsqoc8cp9CpZPUHxEGjrif4zfxeJ/bBXIMVfHLy4bXNPYCmXyje96503tjFghEItSvG00H/Nw5HJrjPCWyfdW+rbZtPOUbBqxw2V6jZElKATw60Jfeb98QYTom5erFU2vr8WGxOfLL6ww+rdFBXhIeaB7Fx1QIQBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=R4koJsgD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=cmwSW2nD; arc=none smtp.client-ip=64.147.123.153
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from compute7.internal (compute7.nyi.internal [10.202.2.48])
+	by mailfhigh.west.internal (Postfix) with ESMTP id 9A4C41800144;
+	Thu, 30 May 2024 04:23:29 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute7.internal (MEProxy); Thu, 30 May 2024 04:23:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm1; t=1717057409; x=1717143809; bh=1nD+zEVZEi
+	FmMKsUN9POQ9akkpV8PDc9ZBtuTWX1uLI=; b=R4koJsgDBm1WuAOrgZij8t/FFE
+	iA1XL6q+kOXLO4502tXdbSI3LOpzpimkIBwIcfU8QvUzn5nELN7dIrzF6yuRVFqf
+	YCQNOnywwCqDx4elqU18NWoW2warEd2W4Kn+8rfEvRSCi64rUsIdPr9lmzqyVkh9
+	6pDDmAz4S/oLX+8Ca8wgVmQ2TFf7JXDiqZPidH7mqWxOznM70O/rDIuF0nykYhn6
+	lavTuI06DQlMX5L5r5dmYcfdi6YLdtApPklaM+7GuPVLzvrdX6f24FNzrb5gk6/o
+	6O3Kd4CG+Hz9xzYXlJT57coAXVTsri98wYkwo/FtgewrrDYuwvLh+gQXPa/w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1717057409; x=1717143809; bh=1nD+zEVZEiFmMKsUN9POQ9akkpV8
+	PDc9ZBtuTWX1uLI=; b=cmwSW2nD+NUU3U5d/ZBkSNSrHBDafSid9XycsJ5p6nrM
+	PzBCzSCr9Cafv1V2LYiQQQZwTW3mvLLEEKp7lq3KPHEW9ABZ7DECAhN7WkyM4fc1
+	I+QBFZjwEhpF1QIIMOFGN8GgklQDUzL1S3jcJ063YxfdFEYXw6P5csDn+1WX5mhS
+	Y4IkqsaBAvTVBXZ5jB3d5pLGyU60tn7TjxF15wsjSUf47KOiZyY7w34pHPAyH0Lw
+	IzGTl+a3fxEYIHQMKF3aMoXfNMJio0GXxtOL8naQgI2h08D0XVnX/oesJF46FqyC
+	4IYQEtjDEPJNR/tUP5YhayYgDIugO3fOIFnc8L+eRg==
+X-ME-Sender: <xms:gDdYZiyVG2p6pqXYNCGxPRMGkLiurFolCwB6B_dDwO3ZjOEho075VQ>
+    <xme:gDdYZuQnSursPEsL2XrKi7J295OTi4suzrlXcqyQImDkVs4f410dXBIWcRgsBWe-b
+    pJX8WDK6CFisquQlw>
+X-ME-Received: <xmr:gDdYZkUs-tYZmP9TkJ0vsLmrhVyRbU1Qa089je4jVSMfQVWrVkPq47MfmGrmSsV_-i6WQ2g733DpLewaNzcd1YprrTSNd9fWVvDRzNfbrRJtsvIe>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdekgedgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfihrghnucgh
+    rghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrdgtohhmqeenucggtffrrghtth
+    gvrhhnpeduvdeuudeugedtueffteevveegheehvdfhfeduudevkefggfeftdehgeethffh
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrhi
+    grnhesthgvshhtthhorghsthdrtghomh
+X-ME-Proxy: <xmx:gDdYZohDyjZEMUAn_vMyVRlIgD-K-4IOdW4c5bDkZuXbGlqscORdkA>
+    <xmx:gDdYZkC1bnp5EEGwwc1aIhW7xLhhPv13c0KFfL2Cr8fawqeol_sqeQ>
+    <xmx:gDdYZpJI4a8Md5tod46oO-BZneUgHBBCcJkDH1v-yWpkkqhL1hQmzw>
+    <xmx:gDdYZrCjVD9kfLfs-AGLw71nbojffjFNgYoBJHkRxQ0zV-F2cmFwvw>
+    <xmx:gTdYZs4sfH6pf6WhrazwWC3S5RkjqK8vgSXLVGzt5AupTnTFe3EPhRHi>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 30 May 2024 04:23:23 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Andre Przywara <andre.przywara@arm.com>,
+	John Watts <contact@jookia.org>,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v2 0/2] Add WL-355608-A8 panel
+Date: Thu, 30 May 2024 20:22:20 +1200
+Message-ID: <20240530082318.40516-1-ryan@testtoast.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAH2o1u7DmywajQWRnQEW2Zjw95EzruM3_Mb5Z-K4zJChh8pGLQ@mail.gmail.com>
 
-On Wed, May 29, 2024 at 10:59:58AM GMT, Tomasz Jeznach wrote:
-> On Wed, May 29, 2024 at 8:15 AM Andrew Jones <ajones@ventanamicro.com> wrote:
-> >
-> > Hi Tomasz,
-> >
-> > I reviewed iommu-bits.h to the spec. Most naming matches exactly, which
-> > is nice, but I've pointed out a few which don't.
-> >
-> > Thanks,
-> > drew
-> >
-> 
-> Thanks for looking into this a bit boring file.
+Hello,
 
-No problem. I also meant to point out that I checked all bits/offsets as
-well. They all looked good to me.
+V2 of this patch with discussed and recommended compatible string fixes and updates to DT binding example code.
 
-...
-> > > +enum riscv_iommu_fq_ttypes {
-> > > +     RISCV_IOMMU_FQ_TTYPE_NONE = 0,
-> > > +     RISCV_IOMMU_FQ_TTYPE_UADDR_INST_FETCH = 1,
-> > > +     RISCV_IOMMU_FQ_TTYPE_UADDR_RD = 2,
-> > > +     RISCV_IOMMU_FQ_TTYPE_UADDR_WR = 3,
-> > > +     RISCV_IOMMU_FQ_TTYPE_TADDR_INST_FETCH = 5,
-> > > +     RISCV_IOMMU_FQ_TTYPE_TADDR_RD = 6,
-> > > +     RISCV_IOMMU_FQ_TTYPE_TADDR_WR = 7,
-> > > +     RISCV_IOMMU_FQ_TTYPE_PCIE_ATS_REQ = 8,
-> > > +     RISCV_IOMMU_FW_TTYPE_PCIE_MSG_REQ = 9,
-> > > +};
-> >
-> > RISCV_IOMMU_FW_TTYP_* for all above
-> >
-> 
-> I guess RISCV_IOMMU_FQ_TTYP_* to match _FQ_ acronym.
+Original cover below.
+--
 
-Oh yeah. I guess my eyes had glazed over at this point because I didn't
-notice the 'FW' vs. 'FQ'. So, yeah, we want RISCV_IOMMU_FQ_TTYP_* for all
-above, including RISCV_IOMMU_FQ_TTYP_PCIE_MSG_REQ.
+The WL_355608_A8 panel is a VGA LCD display with an NV3052C-compatible driver IC, used in a number of Anbernic handheld gaming devices. This patch adds a device tree binding, and support for the display timings and init sequence to the NV3052C SPI/RGB driver.
 
-Thanks,
-drew
+Regards,
+
+Ryan
+
+
+Ryan Walklin (2):
+  dt-bindings: display: panel: Add WL-355608-A8 panel
+  drm: panel: nv3052c: Add WL-355608-A8 panel
+
+ .../bindings/display/panel/wl-355608-a8.yaml  |  60 +++++
+ .../gpu/drm/panel/panel-newvision-nv3052c.c   | 225 ++++++++++++++++++
+ 2 files changed, 285 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/wl-355608-a8.yaml
+
+-- 
+2.45.1
+
 
