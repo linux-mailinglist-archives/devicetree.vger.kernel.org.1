@@ -1,266 +1,85 @@
-Return-Path: <devicetree+bounces-70713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1142E8D422C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 02:02:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC888D4233
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 02:08:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D8321C2133D
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 00:02:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 577B4B21646
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 00:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44D5628FC;
-	Thu, 30 May 2024 00:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE6D367;
+	Thu, 30 May 2024 00:08:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="To1nz5KE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kdQEXfv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1D728E7
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 00:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB4BD7F;
+	Thu, 30 May 2024 00:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717027337; cv=none; b=BkOj3OGvxD0IN/WOdxmab40rgvAVhoUU9Qc2zBEPKcavD9IfySVeog9r2Hq8sJ/EHu3urxzlqgvZTUHr9TmWuvr1H2zllroY2P6NK74PH7PV6g5PeQH6tWQ92BumpRw1yAsR2sxRImYHgldCs+OwVjpr7I6/AVKD17ONhGmH5bE=
+	t=1717027713; cv=none; b=AEIJuWqpItH/TWkq1Yp9hfTKnmDfCj4ro9Alru0YZGB5Bxuz3eA6u0b5KQHy6DKQOz6OXs2rwa0NMgFH4uyI+pvbroiikEYvYyXbCOzZ3YndrCDUg/BrIAAOEO6g7whc8SlJNbUsfBOY0BJCtahOpguvL/CC/sg07+o9h5se1dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717027337; c=relaxed/simple;
-	bh=MmkvbFt5mJkF3EVP93fmh4Jeuway4BDl8U3lsCSSPyc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SEq3YbRgbxWReAeK1hwbAo5hSGiOHZQHRC03KWBXHqD59NYTdmtPNwfLc+HaCZvTd1dE1y992f5SQyALFJtSwkbWa307z3LaFsws2NXoiKhA2ueNjPHfjWcXJl6XKy731usPBd47QwJUjMZTkhyTlwWDIjruapeBkHlp4/40EHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=To1nz5KE; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-df4eb08fd9eso252753276.2
-        for <devicetree@vger.kernel.org>; Wed, 29 May 2024 17:02:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717027333; x=1717632133; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NvCvENUTAje0d0xqX/6uhzjSsEvx44+QZd9MHY//obs=;
-        b=To1nz5KEaim0FT7wi8xzs6AWbzf/rghelmsdKdZ6ATwBtlH9JRXqQlm7Zp0S2HS97U
-         lCwI6hv1HaQfv9PUPZxjsMlj2duVdVdlHGkki8RrAtDhtUG1spoNImpkKKIMZ3mBwoWb
-         bkzqCpiQUTFH/VBXQP0q7YIrpO/KXlAIL8chG+LykQUWj7T86wEISrncIGs/jf1d3DzH
-         4fM9hQvho1YgkDZ203/6aJZ7/e9Znpq2jOM+hiNbqn19aABfkXqzR7fiW4/5LAh0Ny+s
-         KUrla6wd4WIs90M9UDe2UfZkkPwE7BuxQuX3qbt1rjwteCOh3cgLawaXtxAM6j3tbklc
-         bE1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717027333; x=1717632133;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NvCvENUTAje0d0xqX/6uhzjSsEvx44+QZd9MHY//obs=;
-        b=KOLnV1tFFcomMEcD2JUlXxBSMAAWkS6PinLr68ZV5z+6kDSZoLcmQRI4fAJFkoM46n
-         +fIuREm+YQF+p50Fa+H4+1uKvW3+ZGUTYKydWnYXOt+HtANxRX1bB4WbXB72YJo0KZFf
-         61ThQuXx0AsXSh+QQl2J/chCdmViXGcHLYS/7umViLvOUl/M4hK4azgP7S6lEWo5Bgmn
-         fp8ZSJ4NySSINREGuqvfMAryfTJR56xLPo8MCMy3sauB5v723qEq1zRn7yB6JB2TOOWM
-         M+HI7ITm8h88rMLTqitjAIMjsFZvemVnsA/mGeybl97jv6svfTaig7kVnXpHyZ3d1B4X
-         mieQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWdMQJNUCwJNeQYzq0XgCnjESwsDiq2sAjN5U7vAiZ7/RdxHHo/PofUYPaDYzPASv1gWeo9+FMIrzw4gslb1BmEhAsysLJh79o6BQ==
-X-Gm-Message-State: AOJu0Yxr7PIYemKCQ2Edloae0givcMEboA3SUwuo6x9pnfMadRBJVUZN
-	CqjiAi5usgNSYGRt4j0mm88mK9JpPiYjClVwj9X651+f6v0nSMvbSmqitWgDndTnQzVeYbxFBKG
-	7Taxci6MFCt/8z5n1u91zPT0OnQ/+53lsUMgSgw==
-X-Google-Smtp-Source: AGHT+IFYdmWW4XyzEhR7RCeL4FHY44Ivo2xAE6JFSy0L1b8dhxbY9b8I0NwrBrauh28gxmwFWEo6F4Fb0cO/TGYIWIU=
-X-Received: by 2002:a25:838c:0:b0:df7:7065:24c5 with SMTP id
- 3f1490d57ef6-dfa5a7ce236mr684804276.62.1717027333333; Wed, 29 May 2024
- 17:02:13 -0700 (PDT)
+	s=arc-20240116; t=1717027713; c=relaxed/simple;
+	bh=tRVcRLe/NAe2iqLzNI6Vxhtmb2QMttz2Foz7NM1jQwA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pozOENvOqZQHeqgZk3IdSvS5vUDi4Cr/TzIyS0QrdPB62T9Ag3FRyljKzcWUqJioAbWOoWydqLlfY5shQlFfMscVRIpP0jBKLbcseY85aFI3L9+Nu2NyzZi34QNb5+zdPRMkTX2iTLNi6WC9AbiS9HBXK7OrmL5ugB9UHUvOUn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kdQEXfv3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA809C32781;
+	Thu, 30 May 2024 00:08:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717027712;
+	bh=tRVcRLe/NAe2iqLzNI6Vxhtmb2QMttz2Foz7NM1jQwA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=kdQEXfv3MfkDcz0mLh9FfPe7IlgWRYUqAHSoCNN3Y9IOxEJEEz1dKO6ArQVH4+OZ1
+	 e+JH4rJHQfnMGsLp/efaugIehrF3Qn8C3bXU9hIM+aY+7jd9c1dNfxus2rLVq4J7L7
+	 a3RQQQHuSgyQrUBUJIftQy4vGbhPsJtJyVpyBCFGt0hZJFJE2JeLCbppk3Nx2q4NVq
+	 RCMpm1+136EN5/oJP4oCUIQbsyoELXaHKBY5ALd642xs+W9Y/h8h0oi1Bxhzey2/GE
+	 hEi7zXSxaywhMsEUbRlP7CQKfHlH98BBopVHbF/zD9oCHWAXHVPkOOBUPrEfzKKM+9
+	 7eyBXshmzlyuw==
+Date: Wed, 29 May 2024 17:08:29 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Simon Horman <horms@kernel.org>, Sai Krishna Gajula
+ <saikrishnag@marvell.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Lee Jones
+ <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, UNGLinuxDriver@microchip.com, Andrew Lunn
+ <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Saravana Kannan <saravanak@google.com>, Bjorn
+ Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars
+ Povlsen <lars.povlsen@microchip.com>, Steen Hegelund
+ <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Allan
+ Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 00/19] Add support for the LAN966x PCI device using a
+ DT overlay
+Message-ID: <20240529170829.01c3c433@kernel.org>
+In-Reply-To: <20240527161450.326615-1-herve.codina@bootlin.com>
+References: <20240527161450.326615-1-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240520-dpu-handle-te-signal-v1-0-f273b42a089c@linaro.org>
- <20240520-dpu-handle-te-signal-v1-1-f273b42a089c@linaro.org>
- <224fa477-07ba-e7b2-2f7d-8f7d21f4a0c7@quicinc.com> <CAA8EJpp8kRPKboHNHwD+R5f1AcndjaQdGG=Q4ygmRE9VMNievQ@mail.gmail.com>
- <5cde2f43-89ab-d2d4-d68e-605f8f5d1da7@quicinc.com> <CAA8EJpoMtr6OGjL8qq-cHadQSOVyDAaL8=2TLvOjBbYV2Z7+Mg@mail.gmail.com>
- <d1a9be5d-b0a0-73bc-c66f-6d45049fbaf1@quicinc.com>
-In-Reply-To: <d1a9be5d-b0a0-73bc-c66f-6d45049fbaf1@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 30 May 2024 02:02:02 +0200
-Message-ID: <CAA8EJppFZQTghtyweGG_8zSqqZpEp=ho0bXuRxgyU2qGL4+ppA@mail.gmail.com>
-Subject: Re: [PATCH 1/7] dt-bindings: display/msm/dsi: allow specifying TE source
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, 30 May 2024 at 00:57, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
->
->
->
-> On 5/23/2024 2:58 AM, Dmitry Baryshkov wrote:
-> > On Thu, 23 May 2024 at 02:57, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 5/22/2024 1:05 PM, Dmitry Baryshkov wrote:
-> >>> On Wed, 22 May 2024 at 21:38, Abhinav Kumar <quic_abhinavk@quicinc.com> wrote:
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 5/20/2024 5:12 AM, Dmitry Baryshkov wrote:
-> >>>>> Command mode panels provide TE signal back to the DSI host to signal
-> >>>>> that the frame display has completed and update of the image will not
-> >>>>> cause tearing. Usually it is connected to the first GPIO with the
-> >>>>> mdp_vsync function, which is the default. In such case the property can
-> >>>>> be skipped.
-> >>>>>
-> >>>>
-> >>>> This is a good addition overall. Some comments below.
-> >>>>
-> >>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>>>> ---
-> >>>>>     .../bindings/display/msm/dsi-controller-main.yaml        | 16 ++++++++++++++++
-> >>>>>     1 file changed, 16 insertions(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> >>>>> index 1fa28e976559..c1771c69b247 100644
-> >>>>> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> >>>>> @@ -162,6 +162,21 @@ properties:
-> >>>>>                     items:
-> >>>>>                       enum: [ 0, 1, 2, 3 ]
-> >>>>>
-> >>>>> +              qcom,te-source:
-> >>>>> +                $ref: /schemas/types.yaml#/definitions/string
-> >>>>> +                description:
-> >>>>> +                  Specifies the source of vsync signal from the panel used for
-> >>>>> +                  tearing elimination. The default is mdp_gpio0.
-> >>>>
-> >>>> panel --> command mode panel?
-> >>>>
-> >>>>> +                enum:
-> >>>>> +                  - mdp_gpio0
-> >>>>> +                  - mdp_gpio1
-> >>>>> +                  - mdp_gpio2
-> >>>>
-> >>>> are gpio0, gpio1 and gpio2 referring to the vsync_p, vsync_s and vsync_e
-> >>>> sources?
-> >>>
-> >>> No idea, unfortunately. They are gpioN or just mdp_vsync all over the
-> >>> place. For the reference, in case of the SDM845 and Pixel3 the signal
-> >>> is routed through SoC GPIO12.
-> >>>
-> >>
-> >> GPIO12 on sdm845 is mdp_vsync_e.
-> >>
-> >> Thats why I think its better we use mdp_vsync_p/s/e instead of mdp_gpio0/1/2
-> >
-> > Sure. This matches pins description. Are you fine with changing
-> > defines in DPU driver to VSYNC_P / _S / _E too ?
-> >
->
-> Sorry for the delay in responding.
->
-> As per the software docs, the registers still use GPIO0/1/2.
->
-> Only the pin descriptions use vsync_p/s/e.
->
-> Hence I think we can make DPU driver to use 0/1/2.
+On Mon, 27 May 2024 18:14:27 +0200 Herve Codina wrote:
+>  - Patches 6 and 7 to be taken by network driver maintainers
 
-OK, what about the DT? I like the vsync_p/_s/_e idea.
-
->
-> >>
-> >>>> In that case wouldnt it be better to name it like that?
-> >>>>
-> >>>>> +                  - timer0
-> >>>>> +                  - timer1
-> >>>>> +                  - timer2
-> >>>>> +                  - timer3
-> >>>>> +                  - timer4
-> >>>>> +
-> >>>>
-> >>>> These are indicating watchdog timer sources right?
-> >>>
-> >>> Yes.
-> >>>
->
-> ack.
->
-> >>>>
-> >>>>>         required:
-> >>>>>           - port@0
-> >>>>>           - port@1
-> >>>>> @@ -452,6 +467,7 @@ examples:
-> >>>>>                               dsi0_out: endpoint {
-> >>>>>                                        remote-endpoint = <&sn65dsi86_in>;
-> >>>>>                                        data-lanes = <0 1 2 3>;
-> >>>>> +                                   qcom,te-source = "mdp_gpio2";
-> >>>>
-> >>>> I have a basic doubt on this. Should te-source should be in the input
-> >>>> port or the output one for the controller? Because TE is an input to the
-> >>>> DSI. And if the source is watchdog timer then it aligns even more as a
-> >>>> property of the input endpoint.
-> >>>
-> >>> I don't really want to split this. Both data-lanes and te-source are
-> >>> properties of the link between the DSI and panel. You can not really
-> >>> say which side has which property.
-> >>>
-> >>
-> >> TE is an input to the DSI from the panel. Between input and output port,
-> >> I think it belongs more to the input port.
-> >
-> > Technically we don't have in/out ports. There are two ports which
-> > define a link between two instances. For example, if the panel
-> > supports getting information through DCS commands, then "panel input"
-> > also becomes "panel output".
-> >
->
-> The ports are labeled dsi0_in and dsi0_out. Putting te source in
-> dsi0_out really looks very confusing to me.
-
-dsi0_in is a port that connects DSI and DPU, so we should not be
-putting panel-related data there.
-
-I see two ports: mdss_dsi0_out and panel_in. Neither of them is
-logical from this point of view. The TE source likewise isn't an input
-to the panel, so we should not be using the panel_in port.
-
->
-> >>
-> >> I didnt follow why this is a link property. Sorry , I didnt follow the
-> >> split part.
-> >
-> > There is a link between the DSI host and the panel. I don't want to
-> > end up in a situation when the properties of the link are split
-> > between two different nodes.
-> >
->
-> It really depends on what the property denotes. I do not think this
-> should be the reason to do it this way.
-
-It denotes how the panel signals DPU that it finished processing the
-data (please excuse me for possibly inaccurate description). However
-there is no direct link between the panel and the DPU. So we should be
-using a link between DSI host and the panel.
-
->
-> >>
-> >> If we are unsure about input vs output port, do you think its better we
-> >> make it a property of the main dsi node instead?
-> >
-> > No, it's not a property of the DSI node at all. If the vendor rewires
-> > the panel GPIOs or (just for example regulators), it has nothing to do
-> > with the DSI host.
->
-> Ack to this.
->
-> >
-> > --
-> > With best wishes
-> > Dmitry
-
-
-
--- 
-With best wishes
-Dmitry
+Could you repost these two separately and address the nit from
+Krzysztof? Easier for us to apply that way.
 
