@@ -1,162 +1,147 @@
-Return-Path: <devicetree+bounces-70897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DBF58D4E98
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:02:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C608D4EA4
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EB9628397F
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:02:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAF30B20CDE
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D66B17C201;
-	Thu, 30 May 2024 15:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039BD17F51B;
+	Thu, 30 May 2024 15:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dXfQFfHV"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="AzT19l+8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08B613212E;
-	Thu, 30 May 2024 15:02:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 358D717D89D
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 15:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717081335; cv=none; b=XCuwW0NI683nDt7KhVd9JNgBITYr5M7jhfSLy8+BWG4wX+WKLF74tTaqLiaTzIWN9Hzd6IQDm//4gvDoABeKUbxfvpoIodKhKJpD0/3V16QIXdFMVSPOYZdpTxXSDHlLXGrlsZzQheLg5chCqK9DlGVAM0GrwIBoMsiYJvd+uD8=
+	t=1717081577; cv=none; b=XV22OJqs+fhFnhwqjd+7SvFg1S8aq5KDt6Xthdw2zywzBbnvdT4WLevRgbDEGbTd8sYb3BnHWpRGa1pCyHZXu6zUAvj9hT15d4524dE4cMUEMWyt/zb4AdpsNDz98uvwOdAUlXoQf8J36P/h0Hn+kXX61lsng4ixjqbTaSyjO+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717081335; c=relaxed/simple;
-	bh=Gh9cbHiV0vQlIQ0Ybp3Zq7HDBJmoleGPJjiVwVpWMcY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V+Bbu3E3EoZ2VbXv/+pdUZ/CJt/LGTt/Orvs5+MlzIrPm1fzfLy4ih9JNSMyW01mCnm82a/oV1cQlqq0oc10G0PV0ETe04dxifGIX4lbFK8dKz+yHSYIOefUCgqUessFjFvJs3QDiBxh6h74RsKCCEoxnt2tblxABOJYI5eCn6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dXfQFfHV; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4201986d60aso10184715e9.3;
-        Thu, 30 May 2024 08:02:13 -0700 (PDT)
+	s=arc-20240116; t=1717081577; c=relaxed/simple;
+	bh=Bu3eUC4zXNscfdIOpLA9uD5yFC8DKBu6iITNVsT2m74=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gsNsE+9fHR+CTv/cQuKBs7lHhX+kwjee0v0ET+D7Ze0OZG3Q5Z9G8LBvBp8dI5EjMYdvvRlg3nOU28+f3EnIe1l8JHR3i576Ri5T63pNkfz2vhxHise39GyE4nlUoCN11ZAtfNBVGNZpyt7m3F2wvVAo8RNAgEjDuc0xWxBGPkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=AzT19l+8; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a59cc765c29so97052966b.3
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717081332; x=1717686132; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=giZRcSqmVr6pTJj0L38lY8BgbAhYw8xa4kQEZAhZtZw=;
-        b=dXfQFfHV8rNNADGRQawC68BCZOHHSxknXds9ZOJEtExlFac9qXLfoyUN3h+3H9Tnbe
-         CKYoy7IpE229cV3lNS3NxLqLVecZVSikBGstLdvR1vUJIErYncGr4xPDOxkble+LuHy/
-         22ORlMqOwHaZagfZM1DyBysK6yUSxZcf2NZxoS6IPw5Xd2XbAE7LWmXho8JADi6wB77O
-         DFNu4Rgq3CA33KFyfzebRW5xX5Luioj5QdG+dfMfm32rt0lVWqVb9jacituDKbPXthJX
-         n3pFMDLF0akvyZtK4G03xbWkrM/RLgEeRmqTTit3CknBYt08HRD3OXOGmc3U99jTtIH2
-         zlcQ==
+        d=fairphone.com; s=fair; t=1717081573; x=1717686373; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JJnwAaQpjN82Mm77xT5tgcdbB47RO3jR/e4Zn+cYjI0=;
+        b=AzT19l+8ierwARZnUaIEf69F7kJdej2heAFi+vqc8p54WUHudOizBczffnFW++TyO8
+         Bkp+KY8OajyilnDa9WibzEXkm/y4qbBCJiDX9EveIJe66xcUpEiP/ng+wbPWoCBpIm3X
+         RJh0AP07Ni2TdJe4yEwM1vVdYhUy/Ut3fdI8y0LYp1qjnYkThvuGkMhC5jszHRf+2ixx
+         ZG/UpOq21GgWrXYtmcwAXSc26+l175zVO1Yd6mjplUYo5dWDFMwiBhS5Lvi9Wtc2YekS
+         7eCVAz667C28HwHU4ynFJvSqnXO2RT2PZb8QMddyaC9plEB2vlUS3449T3MWM1sS7K/B
+         jWtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717081332; x=1717686132;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=giZRcSqmVr6pTJj0L38lY8BgbAhYw8xa4kQEZAhZtZw=;
-        b=V/35V5Y8RaFMAWD2xSDK8VnOCx7+QGugtTKG6ouh9WQZnSBrLyzydvMwC+2ELOI3Dh
-         TSXLuCW8WMoV+lvQ4HdIC6m4ikwP+5TomO3s2as4zZNPVJFwptfJxoPiecjulOFZzVds
-         UQOZI9/f67IGGuZdi54+3gFIxPftrm9w1LO2Ls6xKc/ULuAdEdmNJ+MsJ/TfBoAM4TU9
-         nXpJtUyHETBRBHcWYWZT7lJLiRDi8H58n5LWAY5HLiDdTw4c2gPjIlPv/m4RxMf95itA
-         1AMeCDuUryh/OFpgy232RaAQp1KhHScELKcbhBRplu2zwKOcos09KSKtCYlgjfKUUJbq
-         Blcw==
-X-Forwarded-Encrypted: i=1; AJvYcCWt4rsfgMpezIibizUXm40jgGEHppljPvIAqmttO7bMKQP61fOBRaWsAM0cZoIxlKS2vTycILnRseSbEryK983AOGwHSOZDvLQH9hPEWS1VSD12q3emGmqVbyMbNoyhe0YxC90QJ/4KusAuaPu/UXWgpfmoOoAkk/2eMDZlmkCYtV0Wyg==
-X-Gm-Message-State: AOJu0Yygx36pcZP5bCIxJiPjeIre93YfBUI0IRMSqzWyZQe0pe+3SFu2
-	AichiijXMAKUDclhDd52sxTmc7XDDGAcfVPdgH9unccWyhHEYYcOQ9zMsTR4
-X-Google-Smtp-Source: AGHT+IFjQF/lcM7ZPr6DlNqP24gQj5UIxSjOg0Yx8aoFMh9AlWjbAddylnUOhdKXlfOwpdRpBPxpGA==
-X-Received: by 2002:a05:600c:4ba4:b0:421:15f:186a with SMTP id 5b1f17b1804b1-42127932790mr20985215e9.39.1717081331646;
-        Thu, 30 May 2024 08:02:11 -0700 (PDT)
-Received: from skbuf ([188.25.55.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421270662bfsm27600385e9.15.2024.05.30.08.02.10
+        d=1e100.net; s=20230601; t=1717081573; x=1717686373;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JJnwAaQpjN82Mm77xT5tgcdbB47RO3jR/e4Zn+cYjI0=;
+        b=lcY3YGX/PUaebf3CC+9tHtteiFyiAiurqdo122PxdnQ9Jgf71AD3ehNDu2gZh8yvGC
+         TrwDlkrDTLxECbGS9mZmIXA85mwIB9gQ8GIicmsS6G7NTc5e1CDyE0qX5iAODcOyW6v8
+         hDin1fhqwUbz9OlvUhOgXEYOxh2s3Y7bxG5rx9l37L+iQQqe12k6idgJ40BEdx8HHzn4
+         GduNIQ65s80Tue6h4MnHw4NA6I5CAbOfzVBYKP2vbH9BgQstw7QYHnSUyffMsOQoLkxY
+         Gt1HeEd0M+KqtsRstA3xOyvrxTWijocrAkl6rmymKK77MB8o6xFpDK20kRTbl0Gs0HF0
+         82lw==
+X-Forwarded-Encrypted: i=1; AJvYcCXGTubaVLBgnyFDPwOt2OyZ8kqTx/vw+RWB5qHES26F5S7veefsYOdpcDKl+dFk+/pzjT9AVXb1jW7BMWWlagxleVh/lLK1+Kx2rA==
+X-Gm-Message-State: AOJu0YwQWX1Y9jzFo5AiclRwMiVGo/bP6GBmb/IuSVYUms/qBS8LIe3i
+	QtdlTtFzDdyNcqeXC9wBZWf+fRxE+9SmSUwPyqGgTg9LbPGt87Mh/CNtFpfnHkg=
+X-Google-Smtp-Source: AGHT+IFwM84B436/a3wmQnrKDqwgfU8pKRsAVsHO3PtYHV7JTyw3SgobDAJDf7LdUwKjvwM6hBtLMA==
+X-Received: by 2002:a17:906:5694:b0:a5a:1b47:dab3 with SMTP id a640c23a62f3a-a65e8e5d4a5mr173703866b.25.1717081573409;
+        Thu, 30 May 2024 08:06:13 -0700 (PDT)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a67430f8457sm13531066b.122.2024.05.30.08.06.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 08:02:10 -0700 (PDT)
-Date: Thu, 30 May 2024 18:02:08 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] spi: dt-bindings: fsl-dspi: Convert to yaml format
-Message-ID: <20240530150208.k3xdobbxznaqchch@skbuf>
-References: <20240529193651.1029840-1-Frank.Li@nxp.com>
- <20240529193651.1029840-1-Frank.Li@nxp.com>
+        Thu, 30 May 2024 08:06:13 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v3 0/3] Add TCPM support for PM7250B and Fairphone 4
+Date: Thu, 30 May 2024 17:05:46 +0200
+Message-Id: <20240530-fp4-tcpm-v3-0-612d4bbd5e09@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240529193651.1029840-1-Frank.Li@nxp.com>
- <20240529193651.1029840-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMqVWGYC/22Myw6DIBQFf8WwLg0CFx+r/kfTheVR70IhYEgb4
+ 78XXZmmyzk5MytJNqJNpK9WEm3GhH4uIC4V0eMwvyxFU5hwxiUTnFMXJF10mCgfjGqtAxBSkXI
+ P0Tp8H6n7o/CIafHxc5Rzva9/IrmmjGpQUrKuM9A8b27AGEY/26v2E9lDmZ/l7iTzIpvGtdrUC
+ gTAr7xt2xcJ/CwE4QAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+X-Mailer: b4 0.13.0
 
-Hi Frank,
+This series adds support for Type-C Port Management on the Fairphone 4
+which enables USB role switching and orientation switching.
 
-On Wed, May 29, 2024 at 03:36:50PM -0400, Frank Li wrote:
-> Convert dt-binding spi-fsl-dspi.txt to yaml format.
-> 
-> Addtional changes during convert:
-> - compatible string "fsl,ls1028a-dspi" can be followed by
-> fsl,ls1021a-v1.0-dspi
-> - Change "dspi0@4002c000" to "spi@4002c000" in example
-> - Reorder properties in example
-> - Use GIC include in example
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> 
-> Notes:
->     pass dt_binding_check
->     
->     make dt_binding_check DT_SCHEMA_FILES=fsl,dspi.yaml
->       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->       CHKDT   Documentation/devicetree/bindings
->       LINT    Documentation/devicetree/bindings
->       DTEX    Documentation/devicetree/bindings/spi/fsl,dspi.example.dts
->       DTC_CHK Documentation/devicetree/bindings/spi/fsl,dspi.example.dtb
-> 
->  .../devicetree/bindings/spi/fsl,dspi.yaml     | 126 ++++++++++++++++++
->  .../devicetree/bindings/spi/spi-fsl-dspi.txt  |  65 ---------
->  2 files changed, 126 insertions(+), 65 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/fsl,dspi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-fsl-dspi.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/fsl,dspi.yaml b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-> new file mode 100644
-> index 0000000000000..12a67b2cc25c8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/fsl,dspi.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/fsl,dspi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Freescale DSPI controller
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  fsl,spi-cs-sck-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      a delay in nanoseconds between activating chip
-> +      select and the start of clock signal, at the start of a transfer.
-> +  fsl,spi-sck-cs-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      a delay in nanoseconds between stopping the clock
-> +      signal and deactivating chip select, at the end of a transfer.
+This enables a user for example to plug in a USB stick or a USB keyboard
+to the Type-C port.
 
-Thanks for this patch and for picking up on this task.
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: phone-devel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 
-But fsl,spi-cs-sck-delay and fsl,spi-sck-cs-delay are not controller
-properties as this schema makes them appear, but rather, child node
-properties.
+Changes in v3:
+- Disable pm7250b typec node by default since on some platforms the ADSP
+  firmware will manage it and not Linux (Bjorn)
+- Move usb-role-switch and orientation-switch to dtsi (Konrad) - update
+  sony-lena also as per https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?id=dad66630a083263b513448426523a3b52a959c79
+- Link to v2: https://lore.kernel.org/r/20240329-fp4-tcpm-v2-0-d7f8cd165355@fairphone.com
 
-Could you try and take a look at how the previous attempt went, and
-incorporate some of its good parts?
-https://lore.kernel.org/linux-spi/20221111224651.577729-1-vladimir.oltean@nxp.com/
+Changes in v2:
+- Move disabled as last property for pm7250b_vbus
+- Update USB graph to newer version, connect both HS and SS signals
+- Update FP4 Type-C properties, try to keep phone charging intact by
+  disabling USB PD for now
+- Pick up tags
+- Drop patches that landed in linux-next already
+- Link to v1: https://lore.kernel.org/r/20240322-fp4-tcpm-v1-0-c5644099d57b@fairphone.com
+
+---
+Luca Weiss (3):
+      arm64: dts: qcom: pm7250b: Add node for PMIC VBUS booster
+      arm64: dts: qcom: pm7250b: Add a TCPM description
+      arm64: dts: qcom: sm7225-fairphone-fp4: Enable USB role switching
+
+ arch/arm64/boot/dts/qcom/pm7250b.dtsi              | 46 +++++++++++++++++
+ .../dts/qcom/sm6350-sony-xperia-lena-pdx213.dts    |  1 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 50 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 58 +++++++++++++++++++++-
+ 4 files changed, 154 insertions(+), 1 deletion(-)
+---
+base-commit: 4adcd8f0525c79f058c10e3ecaaba74932f6ffff
+change-id: 20240322-fp4-tcpm-2ad68ef55346
+
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
+
 
