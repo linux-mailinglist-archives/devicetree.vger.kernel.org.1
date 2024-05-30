@@ -1,61 +1,74 @@
-Return-Path: <devicetree+bounces-70845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4CC68D4BBD
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:33:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A1858D4BC0
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0C59B22AB2
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:33:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EDE81F22777
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E9C132112;
-	Thu, 30 May 2024 12:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780EC13211C;
+	Thu, 30 May 2024 12:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="KxIG3iXU"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="zDqAP0zA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3EB0132108;
-	Thu, 30 May 2024 12:33:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9677318309F
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 12:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717072417; cv=none; b=uFH+Wd15BWrIxScUwvgy2iFGVkdmNZ9o3x8Vl34zldkM7+x1P2IUNaC1YquCSW50Ou9hcpjsJRwnpdbKF6iQ4zP3Ab5UfAufYxqtQ3M/I+94myg7D+UyNh/XdAZ+1HFJn2B5/QBTW2rScV41sxdoLwwOrH0VbKc3JmKCM5xthc0=
+	t=1717072480; cv=none; b=PPrxGSm6fQb8WuNF6fKly8vqjaYXIlFNHpEKIPTUdEdXh6LoZUBeDm6pPRxxUYWHR4KxE+FhZg/LVwO5rGFt52b4Yne1O6bBPUURbfTAVfHkVomwO3mlO+Gytp/tJGk9PL92wdZ7J+6+gUJepZZg5//4gURT6SVN5Auvt4Uohzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717072417; c=relaxed/simple;
-	bh=dW4bcjlcOrtKrwSH6Xhx6UyOur/wI1upPgMKli7Ak5A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=h/XolkTKiUk76H84MCcOYdUv09Ju62qhHzkbdTi+TjQHFlwUYfY96F4zx8tUmG1gdKQGqGFQgS/n9RP4LzszIDu6mEcjaEkVRoyEO0fQoxoeQTEogHK6CoMvuDp8Hh2d2ARBSS4M1vRKEa+kpOyuk3x1JT6+FPZj58TUhudT3fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=KxIG3iXU; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 246D8100076;
-	Thu, 30 May 2024 15:33:24 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 246D8100076
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1717072404;
-	bh=Xn/eklJidr8sBeXDY6IWBvMAWwt7sfTy9eksj5XyJvU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
-	b=KxIG3iXUl3iiOhQmBUtEL/wJ7WR5xReJ76YtQHimNvUy8OXYofFzwAtpRtQtwXpa1
-	 6v/rwKnpFJ992GFzxsEOEhD9alaWG58FIw9CcYn+xCPy6lMVciPVBHLwUwy+0CMZ+g
-	 QUJ4cqUCYkrUe7a5BqvemIQfL4EqVIt2FoaGRWpw31G6RLBlwDwvR1PABDHg/7jvQj
-	 9iuxdZAFAggKpCXkbgkfw0+/9Gzj/fWNNiVz9cpZzcc4U8owBhb8YXp7hYHIsiWQEq
-	 w0KTrWpyKwm3DDcC+Ew3Hte77RLgEHgSozCACEWD6uiZkT4dGNWIDGtDDMEyovLY2M
-	 aQJRR1cvpPzdw==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Thu, 30 May 2024 15:33:23 +0300 (MSK)
-Received: from [192.168.1.143] (100.64.160.123) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 30 May 2024 15:33:23 +0300
-Message-ID: <81bf75e9-6aac-4c18-aac7-3cb127d9a7b8@salutedevices.com>
-Date: Thu, 30 May 2024 15:33:23 +0300
+	s=arc-20240116; t=1717072480; c=relaxed/simple;
+	bh=3EAc270GOisvCj8dYgrA44nXJyeUIV05uLrntE2kQXU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GLhF/ug4ADQVrnjT0kzKUb0/UgVugj2NAmGFX0y3KsFK80s22tlZIdeCqwtumW44vKmIv427TUDVeTXvdn52yBQXJIBAXv3yk/CZgQ2PPWq4oR+rHACyqdYZlYAa6C/wqx+zwJJKpKg9OqHYINXoCFXOL8V+4ZC/BdxIytIJxfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=zDqAP0zA; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4212a3e82b6so732965e9.0
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 05:34:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1717072475; x=1717677275; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ktVNsM22917dZAynxsv5GXb4hlZ/XE1ZLs9sHcQUXDo=;
+        b=zDqAP0zAcTzr6CTAoofdRqWVDFu3Jrcdl1wqlEt8NZEfh+xXlFGIyVBItseXkL3Ob/
+         NuOVZPE+rUqmpi57rFToKFSchcgtiwtAEQZYDQn6EUfTUBz1ABrNk4hp2kuGYgBr3XRn
+         CkHcaz+OwsQvSCWfVEJpG3MvqGoAmYbe7Zg3P242OXWpKq1mEUftg5ru2UMOztoWcKNM
+         IZSE5FFbBRPgQ0BiFdC+/S+k2TUfbGkX0uKOOJ6I1ykB2JeJ+TMXYhDimPanjd0U4HQG
+         UFj+imvidgFm90MPHrt1WJo/N2ng6mnwDPQxr56qrbLwGri2m8QOKZQk3m0C2H6/1897
+         R/ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717072475; x=1717677275;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ktVNsM22917dZAynxsv5GXb4hlZ/XE1ZLs9sHcQUXDo=;
+        b=hRLtjcHnLQEWwoLMXdWZHSSJpkLqtixO5O02Zwurm0zTeJxT9qpN1AVSTx+FSQZAZ5
+         xE67kGrtiXrf4yDdBvJPOhJtky73DT6I0McENs4uFreTxwEUJM2/6Q1lYzCp/jL0fAQl
+         PLbn3nbNRnV/PLpxsnHzw7BShbEUmHU2tOVjpK4c0dTSy0AdXpGtzDgUI2SpAB4V5z98
+         2KaCujpzfFSDel3iKEtBM7zamwMHy+nBV5AWoarA6FgwffPIRhHfVatyLqI4xhBIGc7B
+         keGVzUemzhO0sY/pfhU1KKEjCPoPIjrldOWwQTZkOOlXRgtbQLG7bbUc6lY6tiFUHUiT
+         Dq/w==
+X-Forwarded-Encrypted: i=1; AJvYcCWq1NlsOCNCE6DigjJAnDWLDp+oCmtBjMxe4lMsn4cFQIErETpq2mDXVxi5+KBBI3GfyeVUGr3RGBZJYskPiu8n+jBu4fJgteEy1A==
+X-Gm-Message-State: AOJu0Yy72CBBKihkSXUVhkceit0K0eUygDbIWS25ZbhOX/pmT1DnOfIl
+	c35wiEo7P/P6zi/9Vu8Cvow2VG/tdqFsqAiVMiAGKJKyrNf1ZOGsy9O/4xL+Bok=
+X-Google-Smtp-Source: AGHT+IFYxtCK25sfSOiuY5nuDusYxlyyhmUuFZU6a1ke3427hoJXy7AAxN1yJwe6rPBG0CFk+gnyeg==
+X-Received: by 2002:a05:600c:3509:b0:418:f5a:580b with SMTP id 5b1f17b1804b1-4212811f675mr15479765e9.18.1717072474712;
+        Thu, 30 May 2024 05:34:34 -0700 (PDT)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-421270697b6sm24134475e9.24.2024.05.30.05.34.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 05:34:34 -0700 (PDT)
+Message-ID: <40903165-c965-4c6c-a3bf-104b1088730b@freebox.fr>
+Date: Thu, 30 May 2024 14:34:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,142 +76,209 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [DMARC error][DKIM error] [PATCH v6 1/2] pwm: meson: Add support
- for Amlogic S4 PWM
-To: <kelvin.zhang@amlogic.com>
-CC: Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>, Jerome
- Brunet <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>,
-	=?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, Conor
- Dooley <conor+dt@kernel.org>, <linux-pwm@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Junyi Zhao <junyi.zhao@amlogic.com>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, "kernel@salutedevices.com"
-	<kernel@salutedevices.com>
-References: <20240529-s4-pwm-v6-0-270f63049f20@amlogic.com>
- <20240529-s4-pwm-v6-1-270f63049f20@amlogic.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: msm8998: add HDMI GPIOs
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>, MSM <linux-arm-msm@vger.kernel.org>,
+ DT <devicetree@vger.kernel.org>,
+ Bryan O Donoghue <bryan.odonoghue@linaro.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>, Arnaud Vrac <avrac@freebox.fr>
+References: <8cc61db5-2920-4dd1-8132-5af434fb05b1@freebox.fr>
+ <o6wwzb4qblelfpfsrmqhoovjnyvymf42p2ilv4bzn4le3nklbv@kj3qklez7izy>
 Content-Language: en-US
-From: George Stark <gnstark@salutedevices.com>
-In-Reply-To: <20240529-s4-pwm-v6-1-270f63049f20@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <o6wwzb4qblelfpfsrmqhoovjnyvymf42p2ilv4bzn4le3nklbv@kj3qklez7izy>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 185615 [May 30 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/05/30 07:25:00
-X-KSMG-LinksScanning: Clean, bases: 2024/05/30 07:25:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/30 07:20:00 #25352518
-X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hello Kelvin, Junyi
+On 28/05/2024 02:45, Dmitry Baryshkov wrote:
 
-On 5/29/24 13:00, Kelvin Zhang via B4 Relay wrote:
-> From: Junyi Zhao <junyi.zhao@amlogic.com>
-> 
-> Add support for Amlogic S4 PWM.
-> 
-> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
-> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
-> ---
->   drivers/pwm/pwm-meson.c | 49 +++++++++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 49 insertions(+)
-> 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index b2f97dfb01bb..a513ebbb5666 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -460,6 +460,47 @@ static int meson_pwm_init_channels_meson8b_v2(struct pwm_chip *chip)
->   	return meson_pwm_init_clocks_meson8b(chip, mux_parent_data);
->   }
->   
-> +static void meson_pwm_s4_put_clk(void *data)
-> +{
-> +	struct meson_pwm *meson = (struct meson_pwm *)data;
-There's no need for type-casting. Here is maintainers' request for a 
-similar case:
-https://lore.kernel.org/lkml/CAHp75VeNijg6sXyW_frwD4siJ-LWBLBfVCmMDug8jYAVVg9Bmw@mail.gmail.com/
+> While I don't see anything wrong with this patch, maybe it's better to
+> include it into the patchset that adds all HDMI nodes to the msm8998.dtsi.
 
-> +	int i;
-> +
-> +	for (i = 0; i < MESON_NUM_PWMS; i++)
-> +		clk_put(meson->channels[i].clk);
-> +}
-> +
-> +static int meson_pwm_init_channels_s4(struct pwm_chip *chip)
-> +{
-> +	struct device *dev = pwmchip_parent(chip);
-> +	struct device_node *np = dev->of_node;
-> +	struct meson_pwm *meson = to_meson_pwm(chip);
-> +	struct meson_pwm_channel *channel;
-> +	int i, ret;
-> +
-> +	for (i = 0; i < MESON_NUM_PWMS; i++) {
-> +		channel = &meson->channels[i];
-> +		channel->clk = of_clk_get(np, i);
-> +		if (IS_ERR(channel->clk)) {
-> +			ret = PTR_ERR(channel->clk);
-> +			dev_err_probe(dev, ret, "Failed to get clk\n");
-> +			goto err;
-> +		}
-> +	}
-> +	ret = devm_add_action_or_reset(dev, meson_pwm_s4_put_clk, meson);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +
-> +err:
-> +	while (--i >= 0) {
-> +		channel = &meson->channels[i];
-> +		clk_put(channel->clk);
-> +	}
-Just as in meson_pwm_s4_put_clk() you can write it shorter:
-	while (--i >= 0)
-		clk_put(meson->channels[i].clk);
+Here is my current diff:
+Do I just need to split it up, and it's good to go?
+(Doubtful++)
 
-> +
-> +	return ret;
-> +}
-> +
->   static const struct meson_pwm_data pwm_meson8b_data = {
->   	.parent_names = { "xtal", NULL, "fclk_div4", "fclk_div3" },
->   	.channels_init = meson_pwm_init_channels_meson8b_legacy,
-> @@ -498,6 +539,10 @@ static const struct meson_pwm_data pwm_meson8_v2_data = {
->   	.channels_init = meson_pwm_init_channels_meson8b_v2,
->   };
->   
-> +static const struct meson_pwm_data pwm_s4_data = {
-> +	.channels_init = meson_pwm_init_channels_s4,
-> +};
-> +
->   static const struct of_device_id meson_pwm_matches[] = {
->   	{
->   		.compatible = "amlogic,meson8-pwm-v2",
-> @@ -536,6 +581,10 @@ static const struct of_device_id meson_pwm_matches[] = {
->   		.compatible = "amlogic,meson-g12a-ao-pwm-cd",
->   		.data = &pwm_g12a_ao_cd_data
->   	},
-> +	{
-> +		.compatible = "amlogic,meson-s4-pwm",
-> +		.data = &pwm_s4_data
-> +	},
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, meson_pwm_matches);
-> 
+diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+index 83fe4b39b56f4..78607ee3e2e84 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,hdmi-phy-8996
++      - qcom,hdmi-phy-8998
+ 
+   reg:
+     maxItems: 6
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index e5f051f5a92de..182d80c2ab942 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -1434,6 +1434,34 @@ blsp2_spi6_default: blsp2-spi6-default-state {
+ 				drive-strength = <6>;
+ 				bias-disable;
+ 			};
++
++			hdmi_cec_default: hdmi-cec-default-state {
++				pins = "gpio31";
++				function = "hdmi_cec";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_ddc_default: hdmi-ddc-default-state {
++				pins = "gpio32", "gpio33";
++				function = "hdmi_ddc";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
++
++			hdmi_hpd_default: hdmi-hpd-default-state {
++				pins = "gpio34";
++				function = "hdmi_hot";
++				drive-strength = <16>;
++				bias-pull-down;
++			};
++
++			hdmi_hpd_sleep: hdmi-hpd-sleep-state {
++				pins = "gpio34";
++				function = "hdmi_hot";
++				drive-strength = <2>;
++				bias-pull-down;
++			};
+ 		};
+ 
+ 		remoteproc_mss: remoteproc@4080000 {
+@@ -2757,7 +2785,7 @@ mmcc: clock-controller@c8c0000 {
+ 				 <&mdss_dsi0_phy 0>,
+ 				 <&mdss_dsi1_phy 1>,
+ 				 <&mdss_dsi1_phy 0>,
+-				 <0>,
++				 <&hdmi_phy 0>,
+ 				 <0>,
+ 				 <0>,
+ 				 <&gcc GCC_MMSS_GPLL0_DIV_CLK>;
+@@ -2862,6 +2890,14 @@ dpu_intf2_out: endpoint {
+ 							remote-endpoint = <&mdss_dsi1_in>;
+ 						};
+ 					};
++
++					port@2 {
++						reg = <2>;
++
++						dpu_intf3_out: endpoint {
++							remote-endpoint = <&hdmi_in>;
++						};
++					};
+ 				};
+ 			};
+ 
+@@ -3017,6 +3053,103 @@ mdss_dsi1_phy: phy@c996400 {
+ 
+ 				status = "disabled";
+ 			};
++
++			hdmi: hdmi-tx@c9a0000 {
++				compatible = "qcom,hdmi-tx-8998";
++				reg =	<0x0c9a0000 0x50c>,
++					<0x00780000 0x6220>,
++					<0x0c9e0000 0x2c>;
++				reg-names = "core_physical",
++					    "qfprom_physical",
++					    "hdcp_physical";
++
++				interrupt-parent = <&mdss>;
++				interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++
++				clocks = <&mmcc MDSS_MDP_CLK>,
++					 <&mmcc MNOC_AHB_CLK>,
++					 <&mmcc MDSS_AHB_CLK>,
++					 <&mmcc MDSS_AXI_CLK>,
++					 <&mmcc MISC_AHB_CLK>,
++					 <&mmcc MDSS_HDMI_CLK>,
++					 <&mmcc MDSS_HDMI_DP_AHB_CLK>,
++					 <&mmcc MDSS_EXTPCLK_CLK>;
++				clock-names =
++					"mdp_core",
++					"mnoc",
++					"iface",
++					"bus",
++					"iface_mmss",
++					"core",
++					"alt_iface",
++					"extp";
++
++				phys = <&hdmi_phy>;
++				phy-names = "hdmi_phy";
++
++				pinctrl-names = "default", "sleep";
++				pinctrl-0 = <&hdmi_hpd_default
++					     &hdmi_ddc_default
++					     &hdmi_cec_default>;
++				pinctrl-1 = <&hdmi_hpd_sleep
++					     &hdmi_ddc_default
++					     &hdmi_cec_default>;
++
++				power-domains = <&rpmpd MSM8998_VDDCX>;
++
++				#sound-dai-cells = <1>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						hdmi_in: endpoint {
++							remote-endpoint = <&dpu_intf3_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						hdmi_out: endpoint {
++						};
++					};
++				};
++			};
++
++			hdmi_phy: hdmi-phy@c9a0600 {
++				compatible = "qcom,hdmi-phy-8998";
++				reg = <0x0c9a0600 0x18b>,
++				      <0x0c9a0a00 0x38>,
++				      <0x0c9a0c00 0x38>,
++				      <0x0c9a0e00 0x38>,
++				      <0x0c9a1000 0x38>,
++				      <0x0c9a1200 0x0e8>;
++				reg-names = "hdmi_pll",
++					    "hdmi_tx_l0",
++					    "hdmi_tx_l1",
++					    "hdmi_tx_l2",
++					    "hdmi_tx_l3",
++					    "hdmi_phy";
++
++				#clock-cells = <0>;
++				#phy-cells = <0>;
++
++				clocks =
++					<&mmcc MDSS_AHB_CLK>,
++					<&gcc GCC_HDMI_CLKREF_CLK>,
++					<&xo>;
++				clock-names =
++					"iface",
++					"ref",
++					"xo";
++				power-domains = <&rpmpd MSM8998_VDDMX>;
++
++				status = "disabled";
++			};
+ 		};
+ 
+ 		venus: video-codec@cc00000 {
 
--- 
-Best regards
-George
 
