@@ -1,228 +1,122 @@
-Return-Path: <devicetree+bounces-70849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60BF68D4BDE
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:46:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB848D4BEF
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:48:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F00CB2231C
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:45:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53C661F21FEF
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 12:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1D517107B;
-	Thu, 30 May 2024 12:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Afups1Pj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C117913211F;
+	Thu, 30 May 2024 12:48:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C561527B3;
-	Thu, 30 May 2024 12:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DADBA1E515;
+	Thu, 30 May 2024 12:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717073147; cv=none; b=TbME9yM+j/Lyj0dpSp9hs9PLxfMMutDZWhljvqigeypysLlHeAx14t7/QaRw9eIKsGmeOgadvobQ1RH1aionr6orHHlmioNkzABdivAw22+WMgBAAk4MMxeCohYOLfsdeHynqjzu0M/y/nFupO8ExE1SKWhGlMUlN0O8J2k3vZQ=
+	t=1717073291; cv=none; b=MQmrE3+3o5CoZiNXqIPVCKeYtsK/A2QIQ1r+6vIgXHLxZUs8fvCilwR+EEKUDVJH3gKH++1iB4kCjIdvGynR20IcuxW1GhutTr9DddNUnaYGGrsbDxKJW8ZbhpigiBqC3CaGgl24tvNM/DxiatDgP/NGLhA44w/w0j1dZpmM7m8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717073147; c=relaxed/simple;
-	bh=CF6wj9uwwxJ7t4T/CRYfBis0J60Ov5IUPcDshFPFLlc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=TqVksg2wWfKg9QPj8HMCwSq1uj9Jow41/IdxKRUYjy5SbeS2oYVrGKGSYvrdQfd/sV+aqpZN8ztjKa3K5F6/fGsSANEp5UYW8aoyHmpzWdpCPZZcONVHAd2w9NyRWYx549Z1DzXgR/3ypsUtFeMsIp4tbPs7X0v3RpBSMtRyTf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Afups1Pj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB69BC32786;
-	Thu, 30 May 2024 12:45:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717073147;
-	bh=CF6wj9uwwxJ7t4T/CRYfBis0J60Ov5IUPcDshFPFLlc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Afups1Pj8vrizdavbZTHDdY8jqH5BqXfqq/LTJqLi2FbeFO6l1/N4uSMbTfqxWiRG
-	 V5suGxISt8I6blPriTNfVuQ/I6Pmr9yDrulVKbqGKPndn+JIKkmA8tzb0s7uN1vQvV
-	 kV5+PDfakVUpF9E7mYnyBHcDkK57maHJKwe7IC5kk4ihspNN1OWY07i/rNRrLcHq7G
-	 Y40CjmHvRESAd+gPkx+t5P82PGaxVMjuo0zNxFP9zx414sQHJPHyeATEIAPv2m+95g
-	 eRjgcqGAp/6QRHdBGSihhfXQlMHiJekrU0nvmO3PcO+wEmGuMA8DvO6Gn5kIyoyp4V
-	 p0mLFEOLjkgHQ==
-Date: Thu, 30 May 2024 07:45:46 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1717073291; c=relaxed/simple;
+	bh=8Tpa2UifMKplXpTbrMd4Foz89z0hWoO5ZMVosaocsac=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=amEQFJSib7W+cAaxbWAFZBWA/Ojen/xCKJoVmpca/XVlPDBjKN5UqYaoaTGRtksVXZ+Y4vf9HqyAVacAnEXdzOj7v/VIQ5oUHH2o2Pnujs5/dBD6J1kLK9yOtcQ23FYc3mms5bAc4zoPboQ8z6nOleob52jrbyeypv4z0e7zDXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-628c1f09f5cso7284477b3.1;
+        Thu, 30 May 2024 05:48:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717073288; x=1717678088;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9bjFTQ5FA0ZUbYPMdPEv9X789dR7gzTPPFD376qEwI0=;
+        b=Hllr2KNgDhRg3HYkmPNBr2qenZSZ+as5hlSB3JV7SUyld95dLCRZA526dVRhJ/1HBL
+         xphXNTpqDB0qBLFk0gcxa4YgkGeFiY3jYSKWZm0lw+SegYLG9k9xzcJw8f92u9EcfSqV
+         yS7YDvZYJnx5jibsMpEik4BQLVxwNRQ9ClbDKow5w2grjkWwxYYIF0GY21BePn6uJh+v
+         MWobtzzD6KKv/1o9jk2gk29wsf89pDtMWh852mPGME+RiqzQ2FyzoucnuLT+7RGspNDG
+         29vUb9HOwbldo3AW2ZfIJTz3WMOXv9QMTGQgweHhHwwq9Z72ixSRoKWoXMV52SwM4fue
+         01wg==
+X-Forwarded-Encrypted: i=1; AJvYcCVWzyiR8InXS+iqKulYToIfOm8XMBcLHzS2XuvgfYD/K30r1lMSkyF3q1zMWsnWhPkRw4IpfUu+hWwvDfFyMdu5FhFKzqs1tpkYgRCPe4cVy3CEaQk8IM5bOD47C+KCS2uX5Kay539QejtAdqLVgJRX7gYVsq+jViAWJidhsD17fYzOVjwmlY/kaT9tPPaPHl70C7v7bGjM2mlvhBcLzhJ01pq7Gpeqlw==
+X-Gm-Message-State: AOJu0Yxq69WzvEfPA11GH5OHs+eOL2kp2NAqlJCk2KNluxhZPCek4tka
+	K3fWYm8HLEupFRxlWoT+ik4/RpgInguJWaqsEwaTei9cZGTTBerT478ekx8T
+X-Google-Smtp-Source: AGHT+IEoB0l42AYow5tt9IPmrAizPvxsL5NMzau0vtSu5rLDi9410qmliT7bRKUfw+M5+AyYwhlQqw==
+X-Received: by 2002:a0d:e650:0:b0:627:74ee:931b with SMTP id 00721157ae682-62c6bbc8b42mr27447877b3.6.1717073288384;
+        Thu, 30 May 2024 05:48:08 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-62a0a3bf74esm28034217b3.37.2024.05.30.05.48.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 05:48:08 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-62c6dc63880so5931127b3.2;
+        Thu, 30 May 2024 05:48:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUx8giaVFolIdWrAVGpAgJpL+vZJex/RFFoIEG9+set5TpCxzQ4+4ooGids48KQ0/UhC+BsB1z7dKfqL4eiN7Pugt4nJGPyHJFY+7KzTCYNlm0yG1FNTKJVM037GgJ+IQhs6VC6jePRQKISsJR39s0xVWT94GdzXmUq2/+pE3QeU5etBYUCQtfWzZs1sOqgifccaxiOey1RBbT9Kniq10S6nd200yd4jw==
+X-Received: by 2002:a5b:d0e:0:b0:de6:1a66:3e4d with SMTP id
+ 3f1490d57ef6-dfa5a7cd26amr2691878276.59.1717073287803; Thu, 30 May 2024
+ 05:48:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Scott Branden <sbranden@broadcom.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Conor Dooley <conor+dt@kernel.org>, Al Cooper <alcooperx@gmail.com>, 
- Ray Jui <rjui@broadcom.com>, Stefan Wahren <wahrenst@gmx.net>, 
- devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Kamal Dasu <kamal.dasu@broadcom.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Adrian Hunter <adrian.hunter@intel.com>
-In-Reply-To: <cover.1717061147.git.andrea.porta@suse.com>
-References: <cover.1717061147.git.andrea.porta@suse.com>
-Message-Id: <171707307136.1811771.156652831565902028.robh@kernel.org>
-Subject: Re: [PATCH v5 0/4] Add minimal boot support for Raspberry Pi 5
+References: <20240524094603.988-1-paul.barker.ct@bp.renesas.com> <20240524094603.988-2-paul.barker.ct@bp.renesas.com>
+In-Reply-To: <20240524094603.988-2-paul.barker.ct@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 30 May 2024 14:47:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUkmMGU=S_6B=h+TLH3E=M0BhVCJn03axGsq_FPOKiDJQ@mail.gmail.com>
+Message-ID: <CAMuHMdUkmMGU=S_6B=h+TLH3E=M0BhVCJn03axGsq_FPOKiDJQ@mail.gmail.com>
+Subject: Re: [PATCH 1/9] pinctrl: renesas: rzg2l: Fix variable names in OEN functions
+To: Paul Barker <paul.barker.ct@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Paul,
 
-On Thu, 30 May 2024 12:11:57 +0200, Andrea della Porta wrote:
-> Hi,
-> 
-> This patchset adds minimal support for the Broadcom BCM2712 SoC and for
-> the on-board SDHCI controller on Broadcom BCM2712 in order to make it
-> possible to boot (particularly) a Raspberry Pi 5 from SD card and get a
-> console through uart.
-> Changes to arm64/defconfig are not needed since the actual options work
-> as they are.
-> This work is heavily based on downstream contributions.
-> 
-> Tested on Tumbleweed substituting the stock kernel with upstream one,
-> either chainloading uboot+grub+kernel or directly booting the kernel
-> from 1st stage bootloader. Steps to reproduce:
-> - prepare an SD card from a Raspberry enabled raw image, mount the first
->   FAT partition.
-> - make sure the FAT partition is big enough to contain the kernel,
->   anything bigger than 64Mb is usually enough, depending on your kernel
->   config options.
-> - build the kernel and dtbs making sure that the support for your root
->   fs type is compiled as builtin.
-> - copy the kernel image in your FAT partition overwriting the older one
->   (e.g. kernel*.img for Raspberry Pi OS or u-boot.bin for Tumbleweed).
-> - copy arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb on FAT partition.
-> - make sure you have a cmdline.txt file in FAT partition with the
->   following content:
->   # cat /boot/efi/cmdline.txt
->   root=/dev/mmcblk0p3 rootwait rw console=tty ignore_loglevel earlycon
->   console=ttyAMA10,115200
-> - if you experience random SD issues during boot, try to set
->   initial_turbo=0 in config.txt.
-> 
-> 
-> Changes in V5:
-> 
-> DTS:
-> - axi node merged into soc node
-> - redefined the mapping ranges of the soc node to have proper translation,
->   and a narrower address and size cell number for child nodes.Child nodes
->   reg properties adjusted accordingly
-> - augemented the comment in 'gio_aon' node
-> 
-> sdhci-brcmstb.c:
-> - removed unused 'base_clk_mhz' variable
-> 
-> 
-> Changes in V4:
-> 
-> sdhci-brcmstb.c:
-> - dropped the last 4 lines of sdhci_brcmstb_cfginit_2712() function
->   to avoid setting the SDIO_CFG_CQ_CAPABILITY register. The rationale
->   behind this can be found in [4] and subsequent comments
-> 
-> DT-bindings:
-> - simplified the compatible item list for 'brcm,bcm2712-sdhci' as per [5]
-> 
-> 
-> Changes in V3:
-> 
-> DTS:
-> - uart0 renamed to uart10 to reflect the current indexing (ttyAMA10
->   and serial10)
-> - updated the license to (GPL-2.0 OR MIT)
-> - sd_io_1v8_reg 'states' property have second cells as decimal instead
->   of hex.
-> - root node has size-cells=<2> now to accommodate for the DRAM controller
->   and the address bus mapping that goes beyond 4GB. As a consequence,
->   memory, axi and reserved-memory nodes have also size-cells=<2> and
->   subnodes reg and ranges properties have been updated accordingly
-> - ranges property in 'axi' node has been fixed, reg properties of sdio1
->   and gicv2 subnodes have been adjusted according to the new mapping
-> - 'interrupt-controller@7d517000' node is now enabled by default
-> - dropped 'arm,cpu-registers-not-fw-configured' as it is no longer
->   relevant on A76 core
-> - l2 cache nodes moved under respective cpus, since they are per-cpu
-> - dropped psci cpu functions properties
-> - added the hypervisor EL2 virtual timer interrupt to the 'timer' node
-> - splitted-lines url are now on a single line
-> 
-> sdhci-brcmstb.c:
-> - simplified MMC_CAP_HSE_MASK leveraging already existing definitions
-> - MMC_CAP_UHS_MASK renamed to MMC_CAP_UHS_I_SDR_MASK to better reflect
->   its purpose. Added also a comment.
-> - sdhci_brcmstb_set_power() replaced with the already existing (and
->   equivalent) sdhci_set_power_and_bus_voltage()
-> 
-> DT-bindings:
-> - removed the BCM2712 specific example, as per Rob's request
-> 
-> 
-> Changes in V2:
-> 
-> - the patchshet has been considerably simplified, both in terms of dts and
->   driver code. Notably, the pinctrl/pinmux driver (and associated binding)
->   was not strictly needed to use the SD card so it has been dropped
-> - dropped the optional SD express support patch
-> - the patches order has been revisited
-> - pass all checks (binding, dtb, checkpatch)
-> 
-> 
-> Many thanks,
-> Andrea
-> 
-> References:
-> [1] - Link to V1: https://lore.kernel.org/all/cover.1713036964.git.andrea.porta@suse.com/
-> [2] - Link to V2: https://lore.kernel.org/all/cover.1715332922.git.andrea.porta@suse.com/
-> [3] - Link to V3: https://lore.kernel.org/all/cover.1716277695.git.andrea.porta@suse.com/
-> [4] - https://lore.kernel.org/all/ZlF5dQbNpZ921e66@apocalypse/
-> [5] - https://lore.kernel.org/all/bc1eb98c-9d49-4424-ab89-16be6c67c3f5@gmx.net/#t
-> 
-> Andrea della Porta (4):
->   dt-bindings: arm: bcm: Add BCM2712 SoC support
->   dt-bindings: mmc: Add support for BCM2712 SD host controller
->   mmc: sdhci-brcmstb: Add BCM2712 support
->   arm64: dts: broadcom: Add minimal support for Raspberry Pi 5
-> 
->  .../devicetree/bindings/arm/bcm/bcm2835.yaml  |   6 +
->  .../bindings/mmc/brcm,sdhci-brcmstb.yaml      |   1 +
->  arch/arm64/boot/dts/broadcom/Makefile         |   1 +
->  .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |  64 ++++
->  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 283 ++++++++++++++++++
->  drivers/mmc/host/sdhci-brcmstb.c              |  60 ++++
->  6 files changed, 415 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
->  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> 
-> --
-> 2.35.3
-> 
-> 
-> 
+On Fri, May 24, 2024 at 11:46=E2=80=AFAM Paul Barker
+<paul.barker.ct@bp.renesas.com> wrote:
+> The variable naming in the various OEN functions has been confusing. We
+> were passing the _pin variable from rzg2l_pinctrl_pinconf_get() and
+> rzg2l_pinctrl_pinconf_set() as the offset argument to rzg2l_read_oen()
+> and rzg2l_write_oen(), when this is not a register offset.
+>
+> What we actually need here is the port index, so that we can compare
+> this to oen_max_port.
+>
+> We can also clean up rzg2l_pin_to_oen_bit(), removing an unnecessary
+> branch and clarifying the variable naming.
+>
+> Signed-off-by: Paul Barker <paul.barker.ct@bp.renesas.com>
 
+I think this makes sense.
+It will impact Prabhakar's RZ/V2H series, which demultiplexes
+these for RZ/V2H vs. RZ/G2L (G3S).
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Gr{oetje,eeting}s,
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+                        Geert
 
-  pip3 install dtschema --upgrade
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
-New warnings running 'make CHECK_DTBS=y broadcom/bcm2712-rpi-5-b.dtb' for cover.1717061147.git.andrea.porta@suse.com:
-
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: /soc@107c000000/timer@7c003000: failed to match any schema with compatible: ['brcm,bcm2835-system-timer']
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: /soc@107c000000/local-intc@7cd00000: failed to match any schema with compatible: ['brcm,bcm2836-l1-intc']
-
-
-
-
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
