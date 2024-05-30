@@ -1,102 +1,169 @@
-Return-Path: <devicetree+bounces-70766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DCE38D46BA
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:09:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F688D46CD
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:13:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BE201C21101
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:09:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E71F2B238F8
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02741482F6;
-	Thu, 30 May 2024 08:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF2F152169;
+	Thu, 30 May 2024 08:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e5dDGIVS"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="jrGn5udO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A7D147C71;
-	Thu, 30 May 2024 08:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B0D14B967
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:12:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717056555; cv=none; b=gkLPWakPl8zrYRSsskLN8koiYs4iYMzyhKinfkS7jgAznWCJnTS46Q5rRzJnpp/Ryugqpf/gwfNmAjuRHZXF75YqhZlRlhfjJDSVTkZrip5uUOjs+RFQ6RUMSNDLrPlSCbthbzL9meyf/012rbKfN692evM3nF8DdYUEisaF/4M=
+	t=1717056766; cv=none; b=u61a7WCP4k/qzAv00UyGCgeGZggEOeFQGiHPooyZU1Drd7QHNUuQtlCyjXSI7Esso+Pn2UUSe2xR5dtZWFTF+rQR3h0S//QeGW1tUpBTN2t68I/IePy9goJv7zR3WXVXn/dt9YNLgSYgLxYOD0WwtH7nA4P2EplpzXltSXgQvFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717056555; c=relaxed/simple;
-	bh=hKn7oFMCnOZVKPyympTibzQkvUmq/EUgiG5cwPu4Avc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DyYfSJU7Xt29vBUfEE54Pxm5ud9vwIyV1QBbpA444waaDAg9KjQOjQi2ndEdzbN+GYuK0XETPHnElnHq4jvjvOV85K+7MQ70GqMYxNnC/Xn3OThSL1c/m2LFlz4iFdukvX1apsG8tj6qwkJXh4cZqTgStLHnmOpctjQlwVT+//A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e5dDGIVS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C8E2C2BBFC;
-	Thu, 30 May 2024 08:09:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1717056555;
-	bh=hKn7oFMCnOZVKPyympTibzQkvUmq/EUgiG5cwPu4Avc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e5dDGIVSsyafnDcC1uJFPdZbdKM5Hw9oPJSfySKJ4D/FNIQUzL4RydD+vGp+xRMgP
-	 sQVsKY1BVJjQ4j3mbUc4MDCvrF+J5C+xXHgMpgbamhxByzUqsup6yHkyg3aAqTIh/P
-	 njSCf/r0oNxMGo6V9Bq79HGUammLhszPTvUaVSDXkU7uuCo+kGs1/cL6PupwdaMoRI
-	 lOa+bmzZ7bD6h/OOdKFp3t6etPn9M5jkvupGrFj88IpnhXsNtI8By1gGh9XLNVJYTL
-	 BJyFNhbioB1h7GW8eTA+nOlGGMJ8X6MKDyOXiz90h3QI6zTYKxbcp4GzyIXEQS9uL1
-	 fkQvhh+sS2Bgg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sCaqY-0000000042S-3YHu;
-	Thu, 30 May 2024 10:09:14 +0200
-Date: Thu, 30 May 2024 10:09:14 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Das Srinagesh <quic_gurus@quicinc.com>,
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-	Stephen Boyd <swboyd@chromium.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 12/14] mfd: pm8008: rework driver
-Message-ID: <Zlg0Kn8gI1zKhPct@hovoldconsulting.com>
-References: <20240529162958.18081-1-johan+linaro@kernel.org>
- <20240529162958.18081-13-johan+linaro@kernel.org>
- <CAHp75Vcww07EkUDVSMSd+RviQ9_uku=w4pkCWUt8iGTW580eXg@mail.gmail.com>
+	s=arc-20240116; t=1717056766; c=relaxed/simple;
+	bh=mwYATlGqSRRpITnG8BIh7RCuTwAeiIWonLTkywmLt9Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TvFQtNbcf0Z4lLx4uvAI5uKSeg0wtq0luk/dDZYdFJ2URorIN8fcUYK8YPU2rcj/C+gRHrcp1wPtqZL/HQkmA/LfDQ/KXzuAdHuUspGY6QB22yz4QLXNnUKDFpFbXY07j+VADzDoYvkO8Y9BdoMn8R4n3YjfoRXNzBFkHvkopQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=jrGn5udO; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52a6f05503aso46494e87.0
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 01:12:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1717056762; x=1717661562; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0RoFCn1cKvd1zoXQP5ZuJdh9HnrCwhzMajErjx8js2Q=;
+        b=jrGn5udOweDMzlyebgYMx5PKm98he5FC/bTVeFYtsgyL+SaQCkL6TIWKSd2Q8/if6T
+         bWG4M8OADBdjA1z2e56hNf81cCRwrtpJi+ZKXgUpv+sj4psmxkZsI60HUXQw+1A/qnAv
+         WpzSUOyUsYQZBW9luY2gwVOJIXm0ZJsiDqSzXMrBBbnzGOoFVFJkY7J3blQp0ffdd39i
+         eguFyN3R6XdU7P1UC1U1xGEJ5QursoDqQDZ8PmQbge1AvDeEP5wfv26O2i+uZhAo5Fyo
+         p8rvE7gsQjk5el9aUTLffp5IY0XxijSa7zzqdeDeFGirHHci69yIHawoA+UUcXK43QOa
+         I3wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717056762; x=1717661562;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0RoFCn1cKvd1zoXQP5ZuJdh9HnrCwhzMajErjx8js2Q=;
+        b=N4W8XTOEN1UElk3+hp0VmwhqKtRqD+7v83zwpWX9UWYiP7Mfi78xK5ibPN/Jsckwt+
+         FzOxwVppMNYtxuhycjVuS/UioEF3D7crGCPhUHVN9va2ip0aRnoEET8o3iWbQGATW65R
+         ZG/QCwmh6fdGIuN8Ki44VJ5jWCRHeS8+HFBYZiG4YMa+911l6guNZ0zMgAZ5BGgJqhA4
+         KHz3tFfJvwxGdNcNqt1is71oWTDrvR1yUo6KjU9LKFnCR4cJv2UdOMKZrrtK1KCX+N4a
+         Y534xu6O2OiDc5Y6LM2Mm4tupnknxGdb3FblCypltkuKw1N4PawY96j6pdrmZIt6ReDq
+         VUWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVk8mxTxLZHYCBds/mOkAoPbMD9saYGJBZ+RXEpaPIypVlfHXd5bcqVCJXZC9yqgfJEtmqZGkSZQA0bwHS9N/L5TIsEXC0sH02lqA==
+X-Gm-Message-State: AOJu0YycCukbfXK6L9Wk8wcOc1q5b4Eoe8F5NoHqWxcihhUlOUoGGXVi
+	9+S6yK4f5VRbPX3VfqHuHJtKZtlYwdA4ZpqaVNsK4n2AgKNXjSDn6G1fOiQQjkI=
+X-Google-Smtp-Source: AGHT+IFDH/BtR0IqfU1MMNNRmaYz2QjK/JKuYYRlqhpvwnINHfFSvpEeQs/Qm8e5sz1sHPGcXd9sFQ==
+X-Received: by 2002:a05:6512:1111:b0:51f:1bf8:3ea9 with SMTP id 2adb3069b0e04-52b7d49951fmr1181406e87.3.1717056761685;
+        Thu, 30 May 2024 01:12:41 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:a3c2:7707:741:7c5c? ([2a01:e0a:999:a3a0:a3c2:7707:741:7c5c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42126fea343sm17505945e9.0.2024.05.30.01.12.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 May 2024 01:12:41 -0700 (PDT)
+Message-ID: <4d23f17e-cc1e-45e3-9ca2-a884baacf207@rivosinc.com>
+Date: Thu, 30 May 2024 10:12:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 02/16] riscv: add ISA extension parsing for Zimop
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+ Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kvm@vger.kernel.org,
+ kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+References: <20240517145302.971019-1-cleger@rivosinc.com>
+ <20240517145302.971019-3-cleger@rivosinc.com> <ZlenZ+NvXxOxvqEO@ghost>
+ <ZleqVUhDW+xgiTwu@ghost>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <ZleqVUhDW+xgiTwu@ghost>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75Vcww07EkUDVSMSd+RviQ9_uku=w4pkCWUt8iGTW580eXg@mail.gmail.com>
 
-On Wed, May 29, 2024 at 10:53:09PM +0300, Andy Shevchenko wrote:
-> On Wed, May 29, 2024 at 7:30 PM Johan Hovold <johan+linaro@kernel.org> wrote:
 
-> > +       ret = devm_regmap_add_irq_chip_fwnode(dev, fwnode, regmap, client->irq,
-> >                                 IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
-> > +       if (ret) {
-> > +               dev_err(dev, "failed to add IRQ chip: %d\n", ret);
-> > +               return ret;
-> >         }
+
+On 30/05/2024 00:21, Charlie Jenkins wrote:
+> On Wed, May 29, 2024 at 03:08:39PM -0700, Charlie Jenkins wrote:
+>> On Fri, May 17, 2024 at 04:52:42PM +0200, Clément Léger wrote:
+>>> Add parsing for Zimop ISA extension which was ratified in commit
+>>> 58220614a5f of the riscv-isa-manual.
+>>>
+>>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+>>> ---
+>>>  arch/riscv/include/asm/hwcap.h | 1 +
+>>>  arch/riscv/kernel/cpufeature.c | 1 +
+>>>  2 files changed, 2 insertions(+)
+>>>
+>>> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+>>> index 1f2d2599c655..b1896dade74c 100644
+>>> --- a/arch/riscv/include/asm/hwcap.h
+>>> +++ b/arch/riscv/include/asm/hwcap.h
+>>> @@ -80,6 +80,7 @@
+>>>  #define RISCV_ISA_EXT_ZFA		71
+>>>  #define RISCV_ISA_EXT_ZTSO		72
+>>>  #define RISCV_ISA_EXT_ZACAS		73
+>>> +#define RISCV_ISA_EXT_ZIMOP		74
+>>
+>> Since my changes for removing xandespmu haven't landed here yet I think
+>> you should keep RISCV_ISA_EXT_XANDESPMU in the diff here and make
+>> RISCV_ISA_EXT_ZIMOP have a key of 75. Palmer can probably resolve the
+>> conflicting keys when these two series are merged.
+>>
+>> - Charlie
 > 
-> I believe there is no harm to use
-> 
->   return dev_err_probe(...);
-> 
-> for these. But it seems you don't like that API. Whatever, no-one will
-> die, just additional work for the future :-)
+> I missed that other patches in this series were based off my
+> xtheadvector changes. It's not in the cover letter that there is a
+> dependency though. What do you need from that series for this series to
+> work?
 
-Correct. And there's no additional work for the future here either.
+Hey Charlie, I'm not based directly on any of your series, but on
+riscv/for-next which probably already contains your patches.
 
-Johan
+Clément
+
+> 
+> - Charlie
+> 
+>>
+>>>  
+>>>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>>>  
+>>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+>>> index 2993318b8ea2..41f8ae22e7a0 100644
+>>> --- a/arch/riscv/kernel/cpufeature.c
+>>> +++ b/arch/riscv/kernel/cpufeature.c
+>>> @@ -241,6 +241,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+>>>  	__RISCV_ISA_EXT_DATA(zihintntl, RISCV_ISA_EXT_ZIHINTNTL),
+>>>  	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
+>>>  	__RISCV_ISA_EXT_DATA(zihpm, RISCV_ISA_EXT_ZIHPM),
+>>> +	__RISCV_ISA_EXT_DATA(zimop, RISCV_ISA_EXT_ZIMOP),
+>>>  	__RISCV_ISA_EXT_DATA(zacas, RISCV_ISA_EXT_ZACAS),
+>>>  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
+>>>  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
+>>> -- 
+>>> 2.43.0
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-riscv mailing list
+>>> linux-riscv@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>>
 
