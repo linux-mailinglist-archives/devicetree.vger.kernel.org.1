@@ -1,150 +1,137 @@
-Return-Path: <devicetree+bounces-70720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6ACE8D425A
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 02:27:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3368D8D4279
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 02:48:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C655B22BC5
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 00:27:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2F051F2411C
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 00:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE688495;
-	Thu, 30 May 2024 00:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F65C142;
+	Thu, 30 May 2024 00:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fUIFXrAF"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="DcdFYA/Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76AD63C8;
-	Thu, 30 May 2024 00:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0ECC12C;
+	Thu, 30 May 2024 00:48:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717028842; cv=none; b=XeTiKYuziSvslzlS5RTHF+zLHzQYx2yddIDok5Um8sjYd4c5LfdeiELpO5myIW/K2CvNWL5BMDAlg+RRlopWO/Lud0S5brXsaezc9PbldUEH/vr3DiPpJqncmEVtQdfEz/oaqNfAVSBxtthcDAQd4xJTNPUJyNN+GygZ7/36Nkw=
+	t=1717030105; cv=none; b=uy3KJtfeXS4o6AsR8GB3WLLYagTEDGRIPZuVy2tG3jbJgF4EYmEY4uPsToHIgt0C2KmndcteldP2/ugK94LOxX0kMhoPFgX51GqJms4x5i1tFw8fb8mX+PXG1JqDOxcdyIiWz4ISt2xiFVK6WlpiyjwrbUAl6vMM/ICtKBLCW6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717028842; c=relaxed/simple;
-	bh=+6EPYmKGyoyRV8EiUgDxR4sedEsy1EMQvxzPIcuckBs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OrkCLduP3LZBTxGuvytbATnOPPgI8wVoAJyKEmYPrkjatC9j8raKbsaXQZ8FOGZTgnLYe9iOQ9hoRLyO2nnTf30I0xQlF6vr5hMNtizBUPVpRl78C+7Mw6n6sy89Kg1GrvHsjS9G3bcS51/i6uWA4xtD42Hsn+5/qH+xeMzjg+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fUIFXrAF; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44TJoZHH015403;
-	Thu, 30 May 2024 00:27:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TZUQMrFChqsVAkth/SSgOxyJdVJr7osn4a/rCGflFyU=; b=fUIFXrAF8kWCGhFp
-	OFBPZQH8c2KRWhvSfp548ZOP81asVAZhoD301A9f08sHkR7M8iK9pw+10uKIxAb5
-	3HDR2kGCOh1hOitBTdQcmgvMP5gPqDDdMWh4607l132UUZd21pbKQfPjSDi7gtbD
-	ODZDgRDz2BLJByTgHlrKRrdACtqg6Ot2pvO4sE5gyz2ZLFGyG+bjiPJHreyAUUzB
-	cf5d8jh1exg/IkLKSwhCEIMNQp/cP4FfLaYrxiZo9YWvqPuYXsY01OJIrS72mTKe
-	ZQZ0lhQ+wk08YBdgERKtqkbCiYDUvV8l5ITdyMqT/M24lbxzvUXoweUud7zxGcb2
-	+PF48w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yba0gatha-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 May 2024 00:27:16 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44U0RFnq028416
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 30 May 2024 00:27:15 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 29 May
- 2024 17:27:10 -0700
-Message-ID: <4039d0b0-8f75-46b1-8430-fe2f38ee4e38@quicinc.com>
-Date: Thu, 30 May 2024 08:27:07 +0800
+	s=arc-20240116; t=1717030105; c=relaxed/simple;
+	bh=C0dhth9kpR94j1l7Mfkz8buHZB7swFp/TtH4qXE8Ig4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=sQmNuoPzZc2seh82LfdwlT/tLaNsztUdlHwUCxw7rp3z6GLO46lcYBstCZYlZN1X55W8ojjGPwBXXYQyMkjjiLDHQNcUFNiITqICFfWjXbNIfkoR7qLbhoDfoO3uEPf/29zAYZFQzIT38t0DskgSfuknEJJ2qbYC6+zHgRm237g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=DcdFYA/Z; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp118-210-171-248.adl-adc-lon-bras34.tpg.internode.on.net [118.210.171.248])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id A76CF2012A;
+	Thu, 30 May 2024 08:48:11 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1717030094;
+	bh=BL3VSBZFjB9LfmhW9pMux5iQFs+tV59KattgzjY68gk=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=DcdFYA/ZptlfMYfcV4NO4o+KF/gifV+wKQ4sSxRqP95G0dKtp6DtmTY41Wz+SekIB
+	 zftLO4U3716/mBRT/9X8IImKRWNy04vYIW+Y/0sz3vRYh5qEJqHBimFY7UOUsOIino
+	 XNu+eOmv869hLH0yeykwSsFuOdcjqZ4JB7rWds0rVlB79n6pTjqTZ7pfbaisT6MI30
+	 cb95f+y96/sp3CGwy7yyGJ2II3Um1HJQFjDYHLgq5sbUOZb+BUkom92ufY+eIVG11E
+	 2Si31f036oeodXxYnt82tZwX+adjOU11ZohZFf9MjlQIfcU5PB9Yavnz9DK+z0353e
+	 Vh5I59nlhomyg==
+Message-ID: <1bcaba5063820df7fd87d887835c42e2faad9d86.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/4] dt-bindings: gpio: aspeed,sgpio: Order properties
+ by DTS style
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Thu, 30 May 2024 10:18:10 +0930
+In-Reply-To: <080c4c05-e795-49d8-a547-d39d10ed8333@kernel.org>
+References: 
+	<20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-0-91c42976833b@codeconstruct.com.au>
+	 <20240529-dt-warnings-gpio-sgpio-interrupt-cells-v1-1-91c42976833b@codeconstruct.com.au>
+	 <080c4c05-e795-49d8-a547-d39d10ed8333@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sa8775p: Add IMEM and PIL info
- region
-To: Mukesh Ojha <quic_mojha@quicinc.com>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20240529101929.3167610-1-quic_tengfan@quicinc.com>
- <20240529101929.3167610-3-quic_tengfan@quicinc.com>
- <8c317b50-c6c0-95e4-7d85-76516a387f85@quicinc.com>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <8c317b50-c6c0-95e4-7d85-76516a387f85@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ahZW1ngzhHxmFTAZgaIFWnYVlfvh_GSz
-X-Proofpoint-ORIG-GUID: ahZW1ngzhHxmFTAZgaIFWnYVlfvh_GSz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.12.28.16
- definitions=2024-05-29_16,2024-05-28_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- priorityscore=1501 bulkscore=0 phishscore=0 adultscore=0 spamscore=0
- mlxlogscore=637 malwarescore=0 lowpriorityscore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2405300001
 
+On Wed, 2024-05-29 at 09:26 +0200, Krzysztof Kozlowski wrote:
+> On 29/05/2024 07:13, Andrew Jeffery wrote:
+> > Tidy up the list of required properties and the example node by orderin=
+g
+> > the properties in terms of the DTS coding style.
+> >=20
+> > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> > ---
+> >  Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml | 12 ++++++--=
+----
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml b=
+/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> > index 46bb121360dc..6b15a3a3fb66 100644
+> > --- a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> > +++ b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> > @@ -51,12 +51,12 @@ properties:
+> >  required:
+> >    - compatible
+> >    - reg
+> > -  - gpio-controller
+> > -  - '#gpio-cells'
+> > +  - clocks
+> >    - interrupts
+> >    - interrupt-controller
+> > +  - gpio-controller
+> > +  - '#gpio-cells'
+> >    - ngpios
+> > -  - clocks
+> >    - bus-frequency
+>=20
+> No, this should have the same order as properties are listed.
+>=20
+> Don't change it.
 
+Ack.
 
-On 5/29/2024 8:36 PM, Mukesh Ojha wrote:
-> 
-> 
-> On 5/29/2024 3:49 PM, Tengfei Fan wrote:
->> Add a simple-mfd representing IMEM on SA8775p and define the PIL
->> relocation info region, so that post mortem tools will be able
->> to locate the loaded remoteprocs.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 15 +++++++++++++++
->>   1 file changed, 15 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi 
->> b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 5632fa896b93..eb33b1587802 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -3025,6 +3025,21 @@ tlmm: pinctrl@f000000 {
->>               wakeup-parent = <&pdc>;
->>           };
->> +        sram: sram@146d8000 {
->> +            compatible = "qcom,sa8775p-imem", "syscon", "simple-mfd";
->> +            reg = <0x0 0x146d8000 0x0 0x1000>;
->> +
->> +            #address-cells = <1>;
->> +            #size-cells = <1>;
->> +
->> +            ranges = <0x0 0x0 0x146d8000 0x1000>;
-> 
-> This could be moved up along with reg region.
-> 
-> -Mukesh
+>=20
+> > =20
+> >  additionalProperties: false
+> > @@ -65,13 +65,13 @@ examples:
+> >    - |
+> >      #include <dt-bindings/clock/aspeed-clock.h>
+> >      sgpio: sgpio@1e780200 {
+> > -        #gpio-cells =3D <2>;
+> >          compatible =3D "aspeed,ast2500-sgpio";
+> > -        gpio-controller;
+> > -        interrupts =3D <40>;
+> >          reg =3D <0x1e780200 0x0100>;
+> >          clocks =3D <&syscon ASPEED_CLK_APB>;
+> > +        interrupts =3D <40>;
+> >          interrupt-controller;
+> > +        gpio-controller;
+> > +        #gpio-cells =3D <2>;
+>=20
+> That's just example. I don't find this change useful but churn.
 
-Sure, I will move up along with reg region in the next version patch series.
+Sure, I'll drop the patch.
 
-> 
->> +
->> +            pil-reloc@94c {
->> +                compatible = "qcom,pil-reloc-info";
->> +                reg = <0x94c 0xc8>;
->> +            };
->> +        };
->> +
->>           apps_smmu: iommu@15000000 {
->>               compatible = "qcom,sa8775p-smmu-500", "qcom,smmu-500", 
->> "arm,mmu-500";
->>               reg = <0x0 0x15000000 0x0 0x100000>;
+Thanks,
 
--- 
-Thx and BRs,
-Tengfei Fan
+Andrew
 
