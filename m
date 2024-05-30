@@ -1,150 +1,148 @@
-Return-Path: <devicetree+bounces-70802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB0E98D47C2
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:59:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFCA18D478D
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECC521C21F8F
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:59:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29E351C215EB
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D971822C7;
-	Thu, 30 May 2024 08:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A724A6F310;
+	Thu, 30 May 2024 08:56:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ti6CjaFm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MrDPeC2x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 757D517FAB5;
-	Thu, 30 May 2024 08:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72BB76F301;
+	Thu, 30 May 2024 08:56:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717059404; cv=none; b=KSl5/Xq4P3Da2VBk12vUOaDIxDvgwGd4CNzP/CxAc+APgmufc6/h7m6mRhtpodCfFcwWUMz+fgTKVIvm0DyyeeM9Y1cyHoO+ssXACxVe+DXGGsFX495Fc3de/1TVRsMJEiKY/iK20tnBUb55METClPVbYFJw/f8e3yInCH8URNs=
+	t=1717059388; cv=none; b=VcVybITCTwQgDal5FhlCFXx3rguDG3Pq3KIMziBMArBd94PyjXXbFzw2SKkT0wgMMwZUWLYWOKKAZH+e8Q/3nrJbeAvrszJZWFkgjxHoZOC/GaTWsoQ14EkVf0rYQvkasn4q/m22s839HFLd1VEROKIX5CfCg7FtXAenOnNBPfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717059404; c=relaxed/simple;
-	bh=fjOh0MJjj/plDrKA9K0KZ/bX8+GSDBRzqIWJ4jir1Tw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cbW7X6aQggG+ROHkpI70RWhOlXjaIIxDUHdAFiv4RGCan/RV3LbQlcq8n+lkuKsFxiS1hg0U/dwsNhFnip3uGemqJBz72z77Ek3QOaqqEck5BgdLkuaQ/zZ3Q3o8SQcT7t9TSa84nxPoMMfTJlU64jUXjb9DZM5XX7LN5nX+V+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ti6CjaFm; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a63036f2daaso54458666b.1;
-        Thu, 30 May 2024 01:56:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717059401; x=1717664201; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a/bTfxUDpLBsxqobZuUMzQ5F6E7SsMJqv3Sv+i++EIs=;
-        b=Ti6CjaFm6P9+5+gad6CC/QW76oeCB8SNhctDdBZLUTQc8qjyMY99ER2N65HWg1AbBl
-         4GTNRBqZsmCBvea3jwCiibtXnah7n1QBffUTMerJIt6z8iciw01fxZSVHkyV7lrwjW0c
-         PJ7dybdo/wYwjDMTEtyno+PGmr9UBGyoDH2CXpTrPWxNfvO8ACJGS/EMww1ZY+ZCBqBc
-         IHdpQRQ1r7azRQ2KS3T0YrXCzRW5gpP63fK1lJ3sLWxNHA/NKx+aG+/6XqkKs5krQ7Cd
-         eg7r5RbrPoBqgRmEOrPa8LSsej5AxA1BDXqmME86eAdIAq8ImWkqRN6aTVXboGCVhXLL
-         dadw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717059401; x=1717664201;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a/bTfxUDpLBsxqobZuUMzQ5F6E7SsMJqv3Sv+i++EIs=;
-        b=Tx9E+tMzbakL85sny14vjRyVUjOdRhJn9sxsu98oGoqqTk8zTNFJ04SmTzVf4hhDI4
-         /whaVv+Ob0tsxZ7gHJNbT545XquwHHUfwnzrlK1flRaIn1cTPlVVpnmHYzyw7FtcfbRT
-         Nb10d5re8sGpFaxKu1wlEIzBr+vQpN9HdYIJxQGI1an+Ptfn9Q/9qY7xC5YG5zy7iGtk
-         tzAEzO1cehptPcCoBqS32sLjabviCpO+1esFOnz0PPec7BVD+jBMhi1QyOfmjsNxUbwW
-         U+84jGliNFUXKMhMRqfcvKmaYOQPsD5/31q8YA9b6EDxdEt6UllFSWRClmCCuakD8J7I
-         lpkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWcCkk+OErXo8CeOpcteLdu+mSWzQ1WATjlUT4dYQ8T3CXDLeLJxtxxm9XDeSJPSlRmt1KeRcrqOyxSTzF2ADDBPJJ+wA9GkJZ/LzXIdeBgHMjN0qzNYCTVCyvpn1D1XVwXlMSOL2Ub0uu5Rhchl/7yHxiKRXCyYMQ3RVBJBBquVGu9+6vuYEbqZPKQ5JcV54xrdFUPZ0AqjOwWoTohywYbQ+sfWoU=
-X-Gm-Message-State: AOJu0Ywghz9qOiahOIbfgOHWJzfFNoKZKPflSZPy5rbxxSr4ACWJoO1s
-	3ykbJQXkU4cxAUQjpMXJ0qDrg1QhUMevm2L0QP5GXiVEIHPs1jK7Zttsmw==
-X-Google-Smtp-Source: AGHT+IG573BZMS5XVV6j5fgOeiWkxgpjXNFMSLM5231icRj+AWqiNBcvUSNKCU/IRhzaVgsi5S3G1g==
-X-Received: by 2002:a17:906:4087:b0:a5a:896e:d0b4 with SMTP id a640c23a62f3a-a65e8e5d2e3mr98732566b.26.1717059400816;
-        Thu, 30 May 2024 01:56:40 -0700 (PDT)
-Received: from hex.my.domain (83.8.128.191.ipv4.supernova.orange.pl. [83.8.128.191])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a626cc500a1sm798430166b.125.2024.05.30.01.56.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 01:56:40 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Thu, 30 May 2024 10:56:01 +0200
-Subject: [PATCH RFC 11/11] ARM: dts: samsung: exynos4212-tab3: Add USB
- connector node
+	s=arc-20240116; t=1717059388; c=relaxed/simple;
+	bh=fum/BPvWuDHoboZhfPtwEwo9cUCkLkyCgJcO+Gf/NjA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pwi6T4Jb12nZ0Xrz8CyaasEanfmkrQLXYPMuPs6hrDzjpYHbPFcw62KSgu9cruCv4AJjogdbqmfiZqG8c5+KfzLTZFD0FLye65RRhWY/xZKzj/wF5WsdwKki151BUb/bskXIY8B5E6Tiiz4zzMo7wAPdfTKIj+TevZtPsinLkaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MrDPeC2x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED5B2C32786;
+	Thu, 30 May 2024 08:56:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717059388;
+	bh=fum/BPvWuDHoboZhfPtwEwo9cUCkLkyCgJcO+Gf/NjA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MrDPeC2xAruMf0dsLELM9FoeYWMHVJCNCBGH8lb4co9Con9cFEHZl3zEt26HxOX8T
+	 wv5V3SUq47QQghlMVGMwD8CnghcgGDPdi4zmEr9c8WuXg+Lln3jXBRoQipd/aGL8ZP
+	 eJoNUKhq1dJZIPdSRcI3plFu8KT/4nF7XHpDS6lgqYAfmARlrH7Eic/3Bwb4nq5PPE
+	 y5vEzRHuvWd49tf3Qhq7Qv68aDHDVq8RIXizIQqPSxm0Q0oXvE2VZSIih4F0VgfgCB
+	 MU5L1amHuAmAPgNUsKyEi88dsPNotrHJwnerM5k+0fwZy6TOXzgQzXdI4xW6fMZ1eA
+	 gafO4//xKUfIg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sCbaG-000000004kF-0kIr;
+	Thu, 30 May 2024 10:56:28 +0200
+Date: Thu, 30 May 2024 10:56:28 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 13/14] regulator: add pm8008 pmic regulator driver
+Message-ID: <Zlg_PP3PomxYGJ8A@hovoldconsulting.com>
+References: <20240529162958.18081-1-johan+linaro@kernel.org>
+ <20240529162958.18081-14-johan+linaro@kernel.org>
+ <CAHp75VcC5t1FynFeHGd+57=AeXKE8u0uduzOfozsG3MEzCPpDQ@mail.gmail.com>
+ <Zlg1bGOs3V3TkHck@hovoldconsulting.com>
+ <CAHp75VeiVSxJwjxXyNueinudOfj-WHZEUg32VBTW4PfCfB9Q+g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240530-max77693-charger-extcon-v1-11-dc2a9e5bdf30@gmail.com>
-References: <20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com>
-In-Reply-To: <20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>, 
- Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>, 
- Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1717059384; l=1216;
- i=aweber.kernel@gmail.com; s=20231030; h=from:subject:message-id;
- bh=fjOh0MJjj/plDrKA9K0KZ/bX8+GSDBRzqIWJ4jir1Tw=;
- b=iWckinN8kfDKXZyUp93fjpuNF22RQGJf7qyhBbbG9wnGN5Ei88ykYtNMZdQQU+5qTudvzUHn/
- E8JEI13qHidDkix15SP7eOCW4aOpuH5PjY/ei03qHHTzr6K9AX3aMG+
-X-Developer-Key: i=aweber.kernel@gmail.com; a=ed25519;
- pk=RhDBfWbJEHqDibXbhNEBAnc9FMkyznGxX/hwfhL8bv8=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VeiVSxJwjxXyNueinudOfj-WHZEUg32VBTW4PfCfB9Q+g@mail.gmail.com>
 
-Add a subnode to the MAX77693 MFD for the MUIC and connect the USB
-connector node to the charger to allow for charger type/OTG cable
-detection.
+On Thu, May 30, 2024 at 11:46:12AM +0300, Andy Shevchenko wrote:
+> On Thu, May 30, 2024 at 11:14 AM Johan Hovold <johan@kernel.org> wrote:
+> > On Wed, May 29, 2024 at 11:02:57PM +0300, Andy Shevchenko wrote:
+> > > On Wed, May 29, 2024 at 7:30 PM Johan Hovold <johan+linaro@kernel.org> wrote:
+> 
+> ...
+> 
+> > > > +#include <linux/array_size.h>
+> > > > +#include <linux/bits.h>
+> > > > +#include <linux/device.h>
+> > > > +#include <linux/math.h>
+> > > > +#include <linux/module.h>
+> > >
+> > > > +#include <linux/of.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/regmap.h>
+> > > > +#include <linux/regulator/driver.h>
+> > >
+> > > + types.h
+> >
+> > This one is already pulled in indirectly and I'm not going to respin for
+> > this.
+> >
+> > > + asm/byteorder.h
+> >
+> > Already explicitly included in the code you left out.
+> 
+> Is there any guarantee it will be like this? I don't think so. That's
+> why there is an IWYU principle to give more flexibility of reshuffling
+> the (core) headers. And I believe you know that we have way too far
+> dependency hell in the headers in the kernel. Have you seen what Ingo
+> tried to do and what the potential achievements are?
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
- arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+The driver is using cpu_to_le16() from asm/byteorder.h so the __le16
+type definition will be pulled in.
 
-diff --git a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-index b13c135bd944..2e7f7e8f6c3b 100644
---- a/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-+++ b/arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi
-@@ -151,6 +151,17 @@ charger_reg: CHARGER {
- 				};
- 			};
- 
-+			muic {
-+				compatible = "maxim,max77693-muic";
-+
-+				usb_conn: connector {
-+					compatible = "samsung,usb-connector-11pin",
-+						     "usb-b-connector";
-+					label = "micro-USB";
-+					type = "micro";
-+				};
-+			};
-+
- 			charger {
- 				compatible = "maxim,max77693-charger";
- 
-@@ -160,6 +171,8 @@ charger {
- 				maxim,battery-overcurrent-microamp = <3500000>;
- 				maxim,fast-charge-current-microamp = <1800000>;
- 				maxim,charge-input-threshold-microvolt = <4300000>;
-+
-+				maxim,usb-connector = <&usb_conn>;
- 			};
- 		};
- 	};
+> 
+> ...
+> 
+> > > > +               rdev = devm_regulator_register(dev, desc, &config);
+> > > > +               if (IS_ERR(rdev)) {
+> > > > +                       ret = PTR_ERR(rdev);
+> > > > +                       dev_err(dev, "failed to register regulator %s: %d\n",
+> > > > +                                       desc->name, ret);
+> > > > +                       return ret;
+> > >
+> > > It's possible to use
+> > >
+> > >   return dev_err_probe(...);
+> > >
+> > > even for non-probe functions.
+> 
+> (this should be "non-probe deferred functions")
+> 
+> > This is a probe function(), but as I've told you repeatedly I'm not
+> > going to use dev_err_probe() here.
+> 
+> Yeah, I got it, some developers are leaving in the previous decades to
+> make code very verbose for no benefit, no problem.
 
--- 
-2.45.1
+And some developers write unreadable code just to save a few lines of
+code. I prefer clarity.
 
+Johan
 
