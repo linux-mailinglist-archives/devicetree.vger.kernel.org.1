@@ -1,279 +1,144 @@
-Return-Path: <devicetree+bounces-70911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD31F8D4F5A
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:44:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4CFD8D4F61
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 17:48:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20198B27E92
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:44:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 525391F23C50
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 15:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C551862BA;
-	Thu, 30 May 2024 15:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636941F941;
+	Thu, 30 May 2024 15:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MOSw0XBF"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="WVdSqWHi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1541618628D
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 15:43:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C977B1DA4D
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 15:48:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717083837; cv=none; b=ERPtDe0iUUFZe/+Dt+Dgn5kfOrT1vrudAsp7L7sxzr49kvzwK5+5P2OiWpr2XsvS2bxEC5aCT2xJwIyUaP0N/us6fMNiyIC/N8I3c0oOqRqAxtnstggqy4HS3r2Qxt2gAaoPsZzZSEbphqrnbyS5uHlf30O11L0snhZE0sFDLOo=
+	t=1717084099; cv=none; b=pbjc41421k4kD70Rkr2p+NC+Lin8UCWzAMlWtzvIIhSR572Og0oRRfR+YeOqGzM2IDdaUO4aDGaVe38w7+BO33sGHXorYsBxyoBbvCTnmny2F9StVbzOZCjBlbbF+Ur0JbK5Tdj4DhO3O3Uqq5p22+9goyBNUowRNTjFqTJxk6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717083837; c=relaxed/simple;
-	bh=1LTJ1ZbHYVIiunTosxnkif5rOzcNdAVdISpvTDGmP+4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s3DF+Iwvp1KwgIEroJP12Bf+mWKvIcqk79zaJq5oIv43RRbQ7OWmZD+6E9LbnD3eifJOmOmT3Ed/n/voYpCL+kjxLO2zNKekVjiEePu7I0F3pKUv1pn3xk66ALWtLuZlh6bHlK1pRhdod0+L79ERl83u/YyRcDGgP1ccy/e0S+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MOSw0XBF; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52a6ef5e731so1607360e87.0
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:43:55 -0700 (PDT)
+	s=arc-20240116; t=1717084099; c=relaxed/simple;
+	bh=uiGOFfneORywVqa7KwbGbVLdPn3xrlFWKiXYGWlSZWw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hG6pMT3VlrluCeva59wVObgPESfuEDAKCmwWZa9R+yM3OtD3TwxkRkkZafgdGkQR/o1uw9afr4XioFLESZee9UfXTfn6rtdKNWllacpGe/66npiFWrThPHfOJA1SdqOBJ/6B98g8QhyT0jULp3SwJwOv+Q51BSZraXcBjjMs0Po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=WVdSqWHi; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1f48e9414e9so10205075ad.0
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:48:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717083834; x=1717688634; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EB2qCn5UGV9aqEQdkg+7453N3Kl73IeR9N5SJgjDlZA=;
-        b=MOSw0XBFxKosNI7CmEuiyqnisXNwCoPWoY1+ypwgQg5f6RwCvGAiEsBPzLc9SnMHyW
-         3UXC+SEeXmM9/g19zIMVF06tfj22G2/XJEEkc/bKUkjejGJXk3gto0winJ+1t/NYVEH9
-         ushOzckZQOnkDqbRBAWMQbNMecuIIwsPx3FreQqigppjCHumdOcbVubVdjb1Rv3psZQf
-         lhcb4U8La6NZA99YXK2KtdvOObN5dGxSWRkmHI6Alw+G1nHZL6ZctKJI5wxokeLFTV+y
-         Th4OWaQzjn3E4z2s5kEWKLc5BrzwMcieQ4x69SX4rOXLhjLQoNTYFjVa71EyVslLztme
-         +SGA==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1717084097; x=1717688897; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=z2/9YXup/8RbMNmyLIVK+PNdaz2WPXgvrHbc/uuCS+s=;
+        b=WVdSqWHiu5sKaDLWZCxaBXUV31ZBsthCdZZZutKEkDcX0e61rFlvsCJTLb3B04m05m
+         dAIH+HyiM647olGbM+CDjUCzUmEg/4RI2zyqBxMj+yoqLTxMhXWbYt9bSf7YKAAtZ/8q
+         1HO5hyaXQilQrcmuveR7lGVHRGN20WpXFNlyoFsjJE0heqSPm1sB+d54c6GmwhKAIfk2
+         G3SHZNVzMW9nmYz1Ah4ZfpOylk9AsCrkiceqrqohFTErQ2RHMvO3JQ445W7+8jY/szIZ
+         b0c3UV0yO7SK/xyD6NBOgb7iuVJC+7Dd4XPGCQsEnGfkEDIUwASlnGrfRigBExCYzm70
+         PKmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717083834; x=1717688634;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EB2qCn5UGV9aqEQdkg+7453N3Kl73IeR9N5SJgjDlZA=;
-        b=PZaTol2ES/ZlnJDu9oV6KbmhzYwv+or2DCb9KhPlroO+xSw5MNg8Z0jgX8zvN/mSVR
-         xPGM2DQuoMrAThqspWw19bF+NZaRPcKNJrza4QW09JWnczRg+nvUv53Vy6kDA9bGtGPm
-         AbFgNZKGKp8wUyPhPlwMaL3Xma8ebnQuPfpDLbDIYkByaOS6VKcFqo7aOjEFw0RG5fOK
-         pX+owOMAeyaWR4YVHSScsuHURXvpFriwqTViTrGnRFcRVZP4dhANfX2qZecQtuhOBjuw
-         7YSTc67Q24jvL3Dw4L80TmxPmTgejFYjIiZh2iV0Iex+Uh6j5ioKo7amN8+xvSZFXHwW
-         L+7g==
-X-Forwarded-Encrypted: i=1; AJvYcCXtcqKfNg+v+yX+RgCadjcd+2CV5Aj/kKuQ1wtAjj9fJhiGEgEYglSuUjbGpRv4qggOHUj+FPwsGWM0+KT0tGCrXxuosjMjMiPZ9g==
-X-Gm-Message-State: AOJu0Yy/cscAwVARnEaEws+b3FINm1KTz67xV5uJVaMb02oZpyfGq8ft
-	lYkz2gimDwIISopa1Ciay00BdsdYkejMyhm9Pi0fBVHk5IXiU2HynvdH0R+/ekGdibVcls6XDdI
-	s
-X-Google-Smtp-Source: AGHT+IE9RqDBgAa9w5lbGC/woJK3bS0VJZz4UwnYIRaetdKK7Bsv/24VfWtedXzFLf8LE6feJRopIA==
-X-Received: by 2002:a19:9107:0:b0:52b:8435:8f22 with SMTP id 2adb3069b0e04-52b84358fb1mr159455e87.36.1717083833902;
-        Thu, 30 May 2024 08:43:53 -0700 (PDT)
-Received: from [127.0.1.1] ([188.27.161.69])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-579deb8f406sm4879700a12.34.2024.05.30.08.43.52
+        d=1e100.net; s=20230601; t=1717084097; x=1717688897;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z2/9YXup/8RbMNmyLIVK+PNdaz2WPXgvrHbc/uuCS+s=;
+        b=alKua77KCdQK3q69+XE3pT/JpiomrqUAvAwOWUsYZV7gG86mjZYGrR9O+WnqBkiYm8
+         ps6x7c1FQXwMVB4zniS4rCHrdItu+Cgpxor0iMaDk/xQ78I6GEk44N9xU6G97HbFjLE8
+         495Q1ZG6Gc349s2+30Y8XuKJSrirTtw72l8nUcUs1RSpnOSvj8EvQ9m5Mt7uho+iw174
+         zeyZ5fpa9pizQuGQA0pWn+l1en7d+a8IA98fA/QB8A30xggFAdSJ2GCY55+WKrnEM6jA
+         nHIGGJE+tlU8Ws/m/uXAV6mzQYNaEL6KW9Nk4HrlHSx2RXLQTgrrD4iU3nJ0EMsfx46W
+         k40A==
+X-Forwarded-Encrypted: i=1; AJvYcCXipz0sLSQpCdZnbSRsJp8Ba7E+hiy1/dCFLG4tckVXnXIyJreVWjlAVAcVQObw1xYQlDmaZeWZf3LpZlYCW06XD8ZnAomH/HJ5YA==
+X-Gm-Message-State: AOJu0Yz61hfPUxIowSWA8ZQ1X01SonTUagcajEE3Vy7VeTbGjFjffQiJ
+	h4nFlktv04JQHHPg5p/EYWGXOwUIccRZ+KIEyO4FMeIkNLLm1fvlE06ZBMcm6zo=
+X-Google-Smtp-Source: AGHT+IFEoPjpm6Eoux4dPoJuolosadGpX2I41dVnCKtavoFPe5puywtXMZkqH8FzHI7me3wq7SDgqA==
+X-Received: by 2002:a17:902:db09:b0:1f4:9468:38b6 with SMTP id d9443c01a7336-1f61c1ba67dmr29549475ad.34.1717084096975;
+        Thu, 30 May 2024 08:48:16 -0700 (PDT)
+Received: from ghost ([50.145.13.30])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1f4d6fe4775sm49803095ad.257.2024.05.30.08.48.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 08:43:53 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 30 May 2024 18:43:41 +0300
-Subject: [PATCH 3/3] arm64: dts: qcom: x1e80100: Describe the PCIe 6a
- resources
+        Thu, 30 May 2024 08:48:16 -0700 (PDT)
+Date: Thu, 30 May 2024 08:48:13 -0700
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v5 13/16] riscv: add ISA extension parsing for Zcmop
+Message-ID: <ZlifvXUiHeNnEJqq@ghost>
+References: <20240517145302.971019-1-cleger@rivosinc.com>
+ <20240517145302.971019-14-cleger@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240530-x1e80100-dts-pcie6a-v1-3-ee17a9939ba5@linaro.org>
-References: <20240530-x1e80100-dts-pcie6a-v1-0-ee17a9939ba5@linaro.org>
-In-Reply-To: <20240530-x1e80100-dts-pcie6a-v1-0-ee17a9939ba5@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3861; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=1LTJ1ZbHYVIiunTosxnkif5rOzcNdAVdISpvTDGmP+4=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmWJ6zBz/myBiTnzwAi5HLTb6p8fI3Q7PU4Wm4R
- KK7hJ76asSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZlieswAKCRAbX0TJAJUV
- VnGaD/9Ia2Vi5BnGohM0XdArqmAz+X5XQeQ0Mqd3Cljv5YYfZVhAwscEanXwSYbDMZf2ZXpnHrs
- suNKoS3MtEgCLYxirTIMG427DOxCk1EVlzj8gv1I8EY9/4hQ6LfYSoK59w4033YiVHZw+Ay0RKN
- IoOhPP5bEu/gM17W5nY5fMY9boFYSWIEM53WyCyzz6HmirklhjzBJW5ouIG16hAyE5jBKo6E7G4
- siFPLQWqEfcFiSENAu1qqvH0hOfWDxBsvcDVXxGbyRETIRNbOVMVyiMIttbwYSUvUTC5bvTnft2
- Pgv1AVP3DtxxHkCyF/205qNUe1TsA6JtuYOAUCXkE5YIjysucznE5ARODt8ZlKvpP8jbIDQco3r
- 36QZ3vdEX8+jPllbll934E8PcYHkG++DsyhMG26VOZLoCexx3nM7SoGQyAnKH8/zD8Si1p3ZThE
- 1E2/86D2unl3PmduOSPy3QeYX4gy2UH7QmZ5W27k8yL6o+LDuRpvESpwvt1zTsIwztOVIHM9ODS
- yqGXYGKJzB/3ZPSOPDcuuNRuxVI0bbkkFuzZKzgDfYp6sUOVFpq/KmPq4TqT+5yL4FTB8Hc8JIJ
- 5vc6P7zvIFN7F2WeYA3QTrCfclVvt309NxKcEbOiNMmrL3Kppdi1mIn2vEiTlgfkIKZQlojIg2W
- LW3uIDxWnIQ4k1Q==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240517145302.971019-14-cleger@rivosinc.com>
 
-On both the CRD and QCP, on PCIe 6a sits the NVMe. Add the 3.3V
-gpio-controlled regulator and the clkreq, perst and wake gpios as
-resources for the PCIe 6a.
+On Fri, May 17, 2024 at 04:52:53PM +0200, Clément Léger wrote:
+> Add parsing for Zcmop ISA extension which was ratified in commit
+> b854a709c00 ("Zcmop is ratified/1.0") of the riscv-isa-manual.
+> 
+> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/hwcap.h | 1 +
+>  arch/riscv/kernel/cpufeature.c | 1 +
+>  2 files changed, 2 insertions(+)
+> 
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> index a5836fa6b998..aaaf23f204ac 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -85,6 +85,7 @@
+>  #define RISCV_ISA_EXT_ZCB		76
+>  #define RISCV_ISA_EXT_ZCD		77
+>  #define RISCV_ISA_EXT_ZCF		78
+> +#define RISCV_ISA_EXT_ZCMOP		79
+>  
+>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>  
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 3bb2ef52a38b..0a40fa1faa04 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -290,6 +290,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+>  	__RISCV_ISA_EXT_DATA_VALIDATE(zcb, RISCV_ISA_EXT_ZCB, riscv_ext_zca_depends),
+>  	__RISCV_ISA_EXT_DATA_VALIDATE(zcd, RISCV_ISA_EXT_ZCD, riscv_ext_zcd_validate),
+>  	__RISCV_ISA_EXT_DATA_VALIDATE(zcf, RISCV_ISA_EXT_ZCF, riscv_ext_zcf_validate),
+> +	__RISCV_ISA_EXT_DATA_VALIDATE(zcmop, RISCV_ISA_EXT_ZCMOP, riscv_ext_zca_depends),
+>  	__RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
+>  	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
+>  	__RISCV_ISA_EXT_DATA(zbc, RISCV_ISA_EXT_ZBC),
+> -- 
+> 2.43.0
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 52 +++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 52 +++++++++++++++++++++++++++++++
- 2 files changed, 104 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-index 3ce2c8a841ec..10ec40a193fb 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-@@ -173,6 +173,20 @@ vreg_edp_3p3: regulator-edp-3p3 {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	vreg_nvme: regulator-nvme {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_NVME_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 18 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&nvme_reg_en>;
-+	};
- };
- 
- &apps_rsc {
-@@ -655,6 +669,14 @@ &pcie4_phy {
- };
- 
- &pcie6a {
-+	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+
-+	vddpe-3v3-supply = <&vreg_nvme>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie6a_default>;
-+
- 	status = "okay";
- };
- 
-@@ -804,6 +826,36 @@ kybd_default: kybd-default-state {
- 		bias-disable;
- 	};
- 
-+	nvme_reg_en: nvme-reg-en-state {
-+		pins = "gpio18";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	pcie6a_default: pcie2a-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio153";
-+			function = "pcie6a_clk";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio152";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		wake-n-pins {
-+		       pins = "gpio154";
-+		       function = "gpio";
-+		       drive-strength = <2>;
-+		       bias-pull-up;
-+	       };
-+	};
-+
- 	tpad_default: tpad-default-state {
- 		pins = "gpio3";
- 		function = "gpio";
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index e1b19177523f..ab02a6e35eb6 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -59,6 +59,20 @@ vreg_edp_3p3: regulator-edp-3p3 {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	vreg_nvme: regulator-nvme {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_NVME_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 18 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&nvme_reg_en>;
-+	};
- };
- 
- &apps_rsc {
-@@ -466,6 +480,14 @@ &pcie4_phy {
- };
- 
- &pcie6a {
-+	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-+
-+	vddpe-3v3-supply = <&vreg_nvme>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie6a_default>;
-+
- 	status = "okay";
- };
- 
-@@ -528,6 +550,36 @@ edp_reg_en: edp-reg-en-state {
- 		drive-strength = <16>;
- 		bias-disable;
- 	};
-+
-+	nvme_reg_en: nvme-reg-en-state {
-+		pins = "gpio18";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	pcie6a_default: pcie2a-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio153";
-+			function = "pcie6a_clk";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio152";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		wake-n-pins {
-+		       pins = "gpio154";
-+		       function = "gpio";
-+		       drive-strength = <2>;
-+		       bias-pull-up;
-+	       };
-+	};
- };
- 
- &uart21 {
-
--- 
-2.34.1
+Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
 
 
