@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-70891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD218D4E27
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:38:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2D18D4E42
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 16:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 340D81F22CA7
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:38:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 119101F22DFE
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 14:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF4C17D888;
-	Thu, 30 May 2024 14:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C49C5176233;
+	Thu, 30 May 2024 14:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="sInuQO+n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y15W4OkV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2839D17C22D
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 14:38:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587B9441F;
+	Thu, 30 May 2024 14:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717079916; cv=none; b=OtlSRjWGHFSQM0DXI44+MUxzfi7HOp6Q0G4oA5ntlvOzvjioTvLykrm/Bsz0zy6yRJ0DaPkJHfi9E/NSx+I8217op1SNbPBFgNwwgQrxikC09WffeHdvjgSfV607ysjNy/0uww15ajLJSRghaT7y2n5uWNC567xL+Jht9eScdVI=
+	t=1717080337; cv=none; b=BUAr0UEFHJ47zJ8A2nXx+prAUxDA/aSQGBMXnfUW4YjQyo0UzCrqUvyv2lFhs40PnNjrjCceYjkfpn2J2PL7gOJGDp7hY0Y97+G8DvA2vTe/NakQIwjni7TqzItPuGsZVoANBVe0ZWW4tP0vZIjcoCVunXIXuOM10GbeqtGcrfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717079916; c=relaxed/simple;
-	bh=H6kbJAMgSyiK2Mm362YL1uVRFh8mkzI+q2iR1ROJpTg=;
+	s=arc-20240116; t=1717080337; c=relaxed/simple;
+	bh=HxzS0b0qqJevaZ/UZ5nL3/LnUN7ON1g88Gtn9Rz3ZEw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NYN1q3p3ZMuDRuHhMTDmlsdH9jIBcR+lChXjoTDo2IMAhwLS80lwWloIMfQkeQdKrbrbfi+JXfJbu3E128o7c21HvPHizMPsvF901UnX5z5QL0Jjqdlr2FwGrRF2s/0TpILG6NjQc8vS6mjWhrb7ZNzrC5V/xXG1WOyw7iTxb1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=sInuQO+n; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42115de211aso1169945e9.2
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 07:38:34 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=kpaGF0u1+kghON4MQjIOmjQlgVtIoObo+mD9HnYcQukDZldI1kW5cm5l3ExYPJ9QdE0x3kpxgLzA1MDu6gQG4uc1DaDviWLb9vxo0mvDTw0yu6Lzb3v8lNfcZh6UBhZY8tvkFBgwwge8xP4w56tVkmyj+YHmWk1xeao9Ga1k8cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y15W4OkV; arc=none smtp.client-ip=209.85.160.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-43fe3505abbso9852711cf.1;
+        Thu, 30 May 2024 07:45:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1717079913; x=1717684713; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1717080335; x=1717685135; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lCqk0Wbl0C/qkffAR5D1GSnGrOBHuEfWLT6qcnFKC74=;
-        b=sInuQO+nBoq3aLpAlYrsQgUkiQrAbbqRyB+9VZ5PVCRag4oWSgZv+NOkyfId//4HDc
-         cjdtbQUp7iXJGaGgYIF2wmPNpjcwhsNVBTUbUWAINectGTciOeBRYx0fNQL/Kx7ZhxRE
-         n7hmKwo7wJdMhyAVdXmKms1mqcELViZZrBA9GpaMn8HkDV9y6EqrS6j8m4RwmEWsS86V
-         iSTnp01nITZoHQ6uIuIfudWS4nnkkWZKnpBKSMhALvDrEitrvSLPN37R6zZQgI+FrQ0L
-         A1ZHU4f8yMXh9hJsPBTLpFSgwWXLSM0A/MK7DF6mbV5dBIzcY0EhA2Z1s0ULeXhyc50Z
-         FisQ==
+        bh=RB9iJT3M7oalHwJVs27bPG9EyFP6/UDFrKyVApA2LyE=;
+        b=Y15W4OkVBXRcVQZhplnOaAE9mJTRCN19s4vGfv69mtrg2B+8fJOHi3UxxP+++iNNt6
+         MAkFYoqtdb5cDBdkcG45Cmzb9v1Cj+UhkELOhi6MIyI1HPwyp0jxqsb+2rzQYRqbNg1g
+         1jlE72d7OdMRELda1MIvISrlnYGiU6Lejl26O6cYFaQ/acKja09W0BtOUwig7BLnduER
+         +ikK0ZH6LegmmNSwc8EYI1iSkY9wx01JZzX6y7xphFiS6fQZLk4o94gFJOowf8LfFojI
+         jG/is4nxVsHvfQ277h248ZH+PhQffNhgKJW/fYHcjWihqJpFBLOPI/PgV5ycqe6MA495
+         7HQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717079913; x=1717684713;
+        d=1e100.net; s=20230601; t=1717080335; x=1717685135;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lCqk0Wbl0C/qkffAR5D1GSnGrOBHuEfWLT6qcnFKC74=;
-        b=DA6C+aCZaw0EGT9XbqcRmtxd7MNpaIs3Cumq56PptrdpZ/jrwAgcbiscm/nUan8n5q
-         oevCxmrSpIs8S94v25odtdLOzEafCr7SCOhmyP8dSTaHqEtWgIAcn7LusPHQunrLhz6n
-         S0Wj5w+egvhgrCd8A+b+nFRuv+pNU9h/Nfx35r3CQxILqC3coQsZOfTFu5UP64K6DVtB
-         78rwJ/55iO3lPs1VYKAxatRgQF/Vx6hg3sYL2lB5pT5QKll6v1QHOdseNTAUD+6FGT3k
-         tSslMOxZNififqKlB2KYMVzkIuYeMHB+Ap1WgmM2cQZcd0n6CGohcivBW0vWkJQaLqs4
-         ogFw==
-X-Forwarded-Encrypted: i=1; AJvYcCXCiDr6S4vENrMgeyBdXKG/wh6WlN9eWDh84aZvTFZdyB47hHAbIljxlo4yUmhKJHh7SeAf4RgD3+IChNRcyDq9sF5jyVF/6H++UQ==
-X-Gm-Message-State: AOJu0YyXgQiDAlUhR9gfM1de2aUdI/X0c1mzavhMbVEwCII+KIE2VdHy
-	sL86BL9lo+bRFlHp2ufqThCwuWUz64n/fnC7hSN9zzReyitv9J+5zM1L0qu74Nc=
-X-Google-Smtp-Source: AGHT+IFlbatkP5YNI0+cCdIM7/+OIHMvdLvagld1bA6xjJeK+Uh1NabWQhxIBQr5mw7eUxpTgrJABw==
-X-Received: by 2002:a05:600c:3b99:b0:418:1303:c3d1 with SMTP id 5b1f17b1804b1-4212793612bmr20925615e9.3.1717079913490;
-        Thu, 30 May 2024 07:38:33 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:999:a3a0:1c45:973a:b74b:ef3c? ([2a01:e0a:999:a3a0:1c45:973a:b74b:ef3c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212706ea02sm27143985e9.30.2024.05.30.07.38.32
+        bh=RB9iJT3M7oalHwJVs27bPG9EyFP6/UDFrKyVApA2LyE=;
+        b=MjlfHkMzAT7WthWDIDVHqRCy/F8DO3H/RiOtz1Qdq7beyQ6uWxsZIK09uvA8HgN+cw
+         CV9GpaOgp7ItRRta5CTfRqEzzrUrcUFiLQPGMVJFetIOuggRWVXPgoAsnw/at16K7Mu1
+         jra8Y7BO+pI7Nj3A15x0dghgTzGhafdwQ9D7r4kNKcXRr1bRDhg0K9D49L4MDufHob/h
+         sCVoMaRs8qFtjcsiR201efhobJE8t8nkuspg1FYRKMwD+Qon+UWhaQ1C3kCkK0/aMFmu
+         NL5neUBwfgB/S7uwtFlD2LMx8BVq8HCjFEZl9XI+1EQHUs7G1/hFN7almC9CU7g0Efhf
+         Hlhg==
+X-Forwarded-Encrypted: i=1; AJvYcCV5zWfdbUH6zomdjWmRT9QAS7RjXrmR1P/kMCtJgyTbeqKSAradfG5eqfIzlGFIVpZ7teH16eXNWrLmStFywIF1xTvtzzRRWxuwHfXDVeoMeQV59um76gC70nrkPcGVm6gNwXmjPQEVWqsOOjuYsVezcg48d963VizfMy3A3kGr9RnbuA==
+X-Gm-Message-State: AOJu0Yx9BD3rXUwROfZh0e7AoxhPxK/5rJ+O5xNLe1GIic5RjiOmblp7
+	yB1pGZimB0rA/5UNpAGUTssO/OCWGf7UltRsGfJ5dFx+GjPfP5k4
+X-Google-Smtp-Source: AGHT+IE5JBT8PErngIbt9sfKo/Khb+GPD9NOkKVJ9Qt8nCjJW0g1J6UKdp+uHOEwnHhTmI7GLlwfxA==
+X-Received: by 2002:a05:622a:201:b0:43b:173e:ce1b with SMTP id d75a77b69052e-43febff5acbmr29916671cf.32.1717080335137;
+        Thu, 30 May 2024 07:45:35 -0700 (PDT)
+Received: from [10.76.84.175] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-43fb18af564sm66255591cf.70.2024.05.30.07.45.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 May 2024 07:38:33 -0700 (PDT)
-Message-ID: <920cc061-f5bf-4eae-88b9-7b7c2b32ed53@rivosinc.com>
-Date: Thu, 30 May 2024 16:38:31 +0200
+        Thu, 30 May 2024 07:45:34 -0700 (PDT)
+Message-ID: <d2f4e6da-75b1-4450-b295-45772dfb3f33@gmail.com>
+Date: Thu, 30 May 2024 17:45:31 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,113 +76,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/16] riscv: add ISA extension parsing for Zimop
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 3/6] iio: adc: ad7173: refactor ain and vref selection
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ dumitru.ceclan@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Anup Patel <anup@brainfault.org>, Shuah Khan <shuah@kernel.org>,
- Atish Patra <atishp@atishpatra.org>, linux-doc@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kvm@vger.kernel.org,
- kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org
-References: <20240517145302.971019-1-cleger@rivosinc.com>
- <20240517145302.971019-3-cleger@rivosinc.com> <ZlenZ+NvXxOxvqEO@ghost>
- <ZleqVUhDW+xgiTwu@ghost> <4d23f17e-cc1e-45e3-9ca2-a884baacf207@rivosinc.com>
- <ZliPL4yXBAir5pr2@ghost>
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
+ <20240527-ad4111-v3-3-7e9eddbbd3eb@analog.com>
+ <71452f6882efe6a181d477914488617d28a38e2f.camel@gmail.com>
+ <4b704b553282c0689dfef714c49ba97a33198898.camel@gmail.com>
 Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <ZliPL4yXBAir5pr2@ghost>
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <4b704b553282c0689dfef714c49ba97a33198898.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
+On 29/05/2024 15:49, Nuno Sá wrote:
+> On Wed, 2024-05-29 at 14:27 +0200, Nuno Sá wrote:
+>> On Mon, 2024-05-27 at 20:02 +0300, Dumitru Ceclan via B4 Relay wrote:
+>>> From: Dumitru Ceclan <dumitru.ceclan@analog.com>
 
+...
 
-On 30/05/2024 16:37, Charlie Jenkins wrote:
-> On Thu, May 30, 2024 at 10:12:39AM +0200, Clément Léger wrote:
->>
->>
->> On 30/05/2024 00:21, Charlie Jenkins wrote:
->>> On Wed, May 29, 2024 at 03:08:39PM -0700, Charlie Jenkins wrote:
->>>> On Fri, May 17, 2024 at 04:52:42PM +0200, Clément Léger wrote:
->>>>> Add parsing for Zimop ISA extension which was ratified in commit
->>>>> 58220614a5f of the riscv-isa-manual.
->>>>>
->>>>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
->>>>> ---
->>>>>  arch/riscv/include/asm/hwcap.h | 1 +
->>>>>  arch/riscv/kernel/cpufeature.c | 1 +
->>>>>  2 files changed, 2 insertions(+)
->>>>>
->>>>> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
->>>>> index 1f2d2599c655..b1896dade74c 100644
->>>>> --- a/arch/riscv/include/asm/hwcap.h
->>>>> +++ b/arch/riscv/include/asm/hwcap.h
->>>>> @@ -80,6 +80,7 @@
->>>>>  #define RISCV_ISA_EXT_ZFA		71
->>>>>  #define RISCV_ISA_EXT_ZTSO		72
->>>>>  #define RISCV_ISA_EXT_ZACAS		73
->>>>> +#define RISCV_ISA_EXT_ZIMOP		74
->>>>
->>>> Since my changes for removing xandespmu haven't landed here yet I think
->>>> you should keep RISCV_ISA_EXT_XANDESPMU in the diff here and make
->>>> RISCV_ISA_EXT_ZIMOP have a key of 75. Palmer can probably resolve the
->>>> conflicting keys when these two series are merged.
->>>>
->>>> - Charlie
->>>
->>> I missed that other patches in this series were based off my
->>> xtheadvector changes. It's not in the cover letter that there is a
->>> dependency though. What do you need from that series for this series to
->>> work?
->>
->> Hey Charlie, I'm not based directly on any of your series, but on
->> riscv/for-next which probably already contains your patches.
->>
->> Clément
+>>> +static int ad7173_validate_voltage_ain_inputs(struct ad7173_state *st,
+>>> +					      unsigned int ain[2])
 > 
-> There was some churn here so I didn't expect those to be merged, it
-> looks like a subset of the patches were added to riscv/for-next, sorry
-> for the confusion!
+> Pass the pointer and size of it... Also, it should be made 'const'
+>
 
-No worries, it seems strange indeed that some of them were merged but
-not the other :/
+I'm learning here: what is the purpose of passing the size of it?
+This is a specific case where the size will always be 2
 
+Also, this will make it awkward in the following patch where I'm using
+the assumption of size 2 to check if both inputs have a voltage divider
+                                                          ain[(i+1) %2]
+
+>>> +{
+>>> +	struct device *dev = &st->sd.spi->dev;
+>>> +
+>>> +	for (int i = 0; i < 2; i++) {
 > 
-> Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
-
-Thanks !
-
+> Use the size in here... At the very least, ARRAY_SIZE() if you keep it like this.
 > 
->>
->>>
->>> - Charlie
->>>
->>>>
->>>>>  
->>>>>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
->>>>>  
->>>>> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
->>>>> index 2993318b8ea2..41f8ae22e7a0 100644
->>>>> --- a/arch/riscv/kernel/cpufeature.c
->>>>> +++ b/arch/riscv/kernel/cpufeature.c
->>>>> @@ -241,6 +241,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->>>>>  	__RISCV_ISA_EXT_DATA(zihintntl, RISCV_ISA_EXT_ZIHINTNTL),
->>>>>  	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
->>>>>  	__RISCV_ISA_EXT_DATA(zihpm, RISCV_ISA_EXT_ZIHPM),
->>>>> +	__RISCV_ISA_EXT_DATA(zimop, RISCV_ISA_EXT_ZIMOP),
->>>>>  	__RISCV_ISA_EXT_DATA(zacas, RISCV_ISA_EXT_ZACAS),
->>>>>  	__RISCV_ISA_EXT_DATA(zfa, RISCV_ISA_EXT_ZFA),
->>>>>  	__RISCV_ISA_EXT_DATA(zfh, RISCV_ISA_EXT_ZFH),
->>>>> -- 
->>>>> 2.43.0
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> linux-riscv mailing list
->>>>> linux-riscv@lists.infradead.org
->>>>> http://lists.infradead.org/mailman/listinfo/linux-riscv
->>>>
+
 
