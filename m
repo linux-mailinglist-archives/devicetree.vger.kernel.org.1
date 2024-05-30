@@ -1,398 +1,256 @@
-Return-Path: <devicetree+bounces-70754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7608D45D2
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:12:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D83548D45EC
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 09:19:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50A89B24648
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 07:12:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66E021F22C7A
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 07:19:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2494D8CB;
-	Thu, 30 May 2024 07:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F356482FF;
+	Thu, 30 May 2024 07:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MyqD/HGq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q83v1VUs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73EB64D8BC;
-	Thu, 30 May 2024 07:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C561B7E9;
+	Thu, 30 May 2024 07:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717053147; cv=none; b=QSG3gZnRwM0EJRSF1+5fAqIRzrPVvbS6ZANfDkRnl2O9/CyZxqfpHwNJzN4N7v7rtcL8ySdAFylwBLKMgLd9HXHWDacTxfVK6Bfnji9mLDTOjO/ZXhdi8+YHCnGoYeq1VEUnN3FTlEFJdWuKKfrz4ta2xds8suE012rxvBqrb1E=
+	t=1717053541; cv=none; b=sOL81fkf8uzneO6x8mjyriDtflomeFqjdf4lfV3XQpd7WMPabazWoVXuzPweZZqMEA26UNvgkRv+NwmZ/TeJdo1gJdhlI7MHXf7ajg0tT93cAzPEx4wNe4oyCHO2q5ne6bvugBLKdq+yhO4RBmpXoFoaIQqp75SAsaH9vtSuZlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717053147; c=relaxed/simple;
-	bh=giRoWFP/dK6yBYYrKO1WByFz+guxxPBaXEYqITRH9+8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tqXk07YNtvDx60FrHNV9dto7wHp8o/BGu4zlny1PvrIsnqSrUreegzH3bw5bSX3u9onf/z89FDM+ZI94UhdVkxEZG8oP+gQuv0IF9dPYlgUOWGB/a3ha0WP/BjlAaMGZMz1o/BrKZd60Q7FEqhCsrFee5mIgS8QlrTC6t0DnGng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MyqD/HGq; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5295e488248so503487e87.2;
-        Thu, 30 May 2024 00:12:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1717053143; x=1717657943; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=AtuMkBV5/fN1Y5ikAUBcbyyc1HbEdNZWiWlekP60Y7M=;
-        b=MyqD/HGqW8epxFgo15/gVBcpMubfLJOgKtXrlQJOee660j0O9wr3vmhQ36+RGgN19R
-         ej0FHqGbSYSb2OJrfkhLy1TM/i2W0H3mxKP8jGkTXcytCyfCVJ3apdNLNCYcdaOO9izt
-         0dOk6fyltznFV/rACBAnYXCL/uIgz80MTE49WR3yUbNa35u3NQQW6w4UPq4ikrVHt4U3
-         zysvCOrZnJ3/FidpMhrMfaJDosuMbV9I6HRYSwQdDQuB8vGIlqVNIfvBLZhtXObzhxvW
-         9Y/UKHZGGPuPhSxXP7wMcthXfGFnA5F81m7oydooQMNeY443h0Auamz6P6AIBqTgKjXP
-         gv3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717053143; x=1717657943;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AtuMkBV5/fN1Y5ikAUBcbyyc1HbEdNZWiWlekP60Y7M=;
-        b=rKSyT57Zy1xjmE2fZygxraDs/dfD7Vf4kJAiLOP3uxw/33Y0Ebqby8nyRaLcGJScyN
-         5uUTqLzYL3Nwr0dXFxjT5NMmz30HdrJ6+nNYAA0cEAfL5tP0pNFFLmt7fk++9LEBgz7G
-         nxWYN5zFKXMS6b7pzbZLVekOKe9cOrUxImrIbSR9lEe7dcHO9kmrOAZwTPZVd7X5gQL/
-         zHdb2SOM50l4UXYmnCSdQNrhtsqoLZgzw4N+X/CIfEb3ftO2DJIeO6+BJ5SrvRZYmdQl
-         +j2CfzGM2hXqps3bH5fc5+2fogsOydsZkiglq/ai0hac0epiMPRcx5AXc713+sIMhXoI
-         /8Uw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdS2+PH29crp7ZMvai1BvCR9r2yGdWC+8svKxZdSz63EciNaJq0LQr5i/TRaBSvYWJAK6Vr/Uuuwpo1x+0Zugkha6AThKI122hWqqKuanQhnOcSG9LZIGfIJHoPByh1xsVDlr91jzB2p1/HVsSqzHJdzLVUK6YgD8JEs/gHLiJUl6g7Q==
-X-Gm-Message-State: AOJu0YxVRDXfRfWE4GzMdLgcuCYC2kViiGsL5Fj9k4m9v4O91DgDY5lH
-	RsM+xKVe3mBTomvM32ftEZv1pHpeO1l5cpyUHUTbYYzWXcYpxeFj
-X-Google-Smtp-Source: AGHT+IGlbJ6SgkXTgsdRMdKoETLyUQli4nBpb8o60i2HyKVHmMf5vMGkASllfGkOEwjvm7DV4jsRdw==
-X-Received: by 2002:a19:521a:0:b0:51d:9e17:29ea with SMTP id 2adb3069b0e04-52b7d422099mr633102e87.15.1717053143282;
-        Thu, 30 May 2024 00:12:23 -0700 (PDT)
-Received: from ?IPv6:2001:a61:35f9:9001:40df:88bb:5090:7ab6? ([2001:a61:35f9:9001:40df:88bb:5090:7ab6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-356c8daef27sm14554592f8f.115.2024.05.30.00.12.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 00:12:22 -0700 (PDT)
-Message-ID: <218737c70a9215e1ed49874f075a616bc9cf1de9.camel@gmail.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: adc: ad7173: add support for ad411x
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, "Ceclan, Dumitru"
-	 <mitrutzceclan@gmail.com>, Conor Dooley <conor@kernel.org>
-Cc: dumitru.ceclan@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 30 May 2024 09:12:22 +0200
-In-Reply-To: <362e006f-7856-46e3-90fa-b1610784ee9d@baylibre.com>
-References: <20240527-ad4111-v3-0-7e9eddbbd3eb@analog.com>
-	 <20240527-ad4111-v3-1-7e9eddbbd3eb@analog.com>
-	 <20240527-arguably-said-361184ad848e@spud>
-	 <d87ae6ef-090d-4e47-bde4-4d08fd445ac1@gmail.com>
-	 <20240528-filtrate-cloning-b9152322a3da@spud>
-	 <a1c75105-6447-4b67-b7d2-326ad9b19b82@gmail.com>
-	 <362e006f-7856-46e3-90fa-b1610784ee9d@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1 (3.52.1-1.fc40) 
+	s=arc-20240116; t=1717053541; c=relaxed/simple;
+	bh=Z0xan/ivmoAPz+DU5pt3583E8qR7Fl6rcusxJ3qoYlQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sqd+ddqVAFAHel5oTDxQV9CUjx05V1KDQSAgty590EwLLQol+iAneVfcZ5fNYlKB29w2qxT9zm5ywTGy7JKQAGE+p8IBlrXd87VZQUrD6m34gp2F/hqoPF9rqYJka5NRr+2pxoS0mFuWrAHs/Q+BnT+EWpL4FY+xzaJTuLlOxfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q83v1VUs; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1717053539; x=1748589539;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Z0xan/ivmoAPz+DU5pt3583E8qR7Fl6rcusxJ3qoYlQ=;
+  b=Q83v1VUsL2gXB9RxHIA+F61CX2PkB5Qav3YTPgEyNiBYh0DnSEB44CHs
+   KCWspC2dalrddjHUzA06yurfl44K8zwQ/FOUsW+Y3rO87aGhWyvKBRXGT
+   vm+HqC8vVQR01M/Hi8S04qeS9Q0bJlfSDVinnQoQtPvdWOwxP/GQN0yXz
+   8Eh65rKURt0VNuZ/EDJ+1aV+v7Txuv7T/SwOnx0sqsIFFZB5f78tCB+W/
+   4MscSLmekUE7TbLHZqZISicuwRg2axxH38J87qV3LRH/pOMyFQ1Bu9SuR
+   In2Km5zdur+My2eZsEOgy/Db2c9t1dq9wr4lufTkRAqEz476WjqHkodBW
+   A==;
+X-CSE-ConnectionGUID: rgFBuyShSPa2QznCQMVY6g==
+X-CSE-MsgGUID: DaTWssjwSjq3cRuVJOk+Ew==
+X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13456969"
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
+   d="scan'208";a="13456969"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2024 00:18:59 -0700
+X-CSE-ConnectionGUID: g49QkoMFTdGWZ4Azzcrr/Q==
+X-CSE-MsgGUID: m6TjW4d7TYSZL/krcAFKKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
+   d="scan'208";a="35665727"
+Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 30 May 2024 00:18:54 -0700
+Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sCa3o-000EwX-0L;
+	Thu, 30 May 2024 07:18:52 +0000
+Date: Thu, 30 May 2024 15:18:48 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
+	robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
+	dan.scally@ideasonboard.com
+Subject: Re: [PATCH v5 15/16] media: platform: Add mali-c55 parameters video
+ node
+Message-ID: <202405301558.no1nWGU1-lkp@intel.com>
+References: <20240529152858.183799-16-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240529152858.183799-16-dan.scally@ideasonboard.com>
 
-On Wed, 2024-05-29 at 17:04 -0500, David Lechner wrote:
-> On 5/29/24 8:38 AM, Ceclan, Dumitru wrote:
-> > On 28/05/2024 20:52, Conor Dooley wrote:
-> > > On Tue, May 28, 2024 at 03:16:07PM +0300, Ceclan, Dumitru wrote:
-> > > > On 27/05/2024 20:48, Conor Dooley wrote:
-> > > > > On Mon, May 27, 2024 at 08:02:34PM +0300, Dumitru Ceclan via B4 R=
-elay
-> > > > > wrote:
-> > > > > > From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> > > > > >=20
-> > > > > > Add support for: AD4111, AD4112, AD4114, AD4115, AD4116.
-> > > > > >=20
-> > > > > > AD411x family ADCs support a VCOM pin, dedicated for single-end=
-ed usage.
-> > > > > > AD4111/AD4112 support current channels, usage is implemented by
-> > > > > > =C2=A0specifying channel reg values bigger than 15.
-> > > > > >=20
-> > > > > > Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
-> > > > > > ---
-> > > > > > =C2=A0.../devicetree/bindings/iio/adc/adi,ad7173.yaml=C2=A0=C2=
-=A0=C2=A0 | 122
-> > > > > > ++++++++++++++++++++-
-> > > > > > =C2=A01 file changed, 120 insertions(+), 2 deletions(-)
-> > > > > >=20
-> > > > > > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad71=
-73.yaml
-> > > > > > b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> > > > > > index ea6cfcd0aff4..5b1af382dad3 100644
-> > > > > > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> > > > > > @@ -19,7 +19,18 @@ description: |
-> > > > > > =C2=A0=C2=A0 primarily for measurement of signals close to DC b=
-ut also delivers
-> > > > > > =C2=A0=C2=A0 outstanding performance with input bandwidths out =
-to ~10kHz.
-> > > > > > =C2=A0
-> > > > > > +=C2=A0 Analog Devices AD411x ADC's:
-> > > > > > +=C2=A0 The AD411X family encompasses a series of low power, lo=
-w noise, 24-
-> > > > > > bit,
-> > > > > > +=C2=A0 sigma-delta analog-to-digital converters that offer a v=
-ersatile range
-> > > > > > of
-> > > > > > +=C2=A0 specifications. They integrate an analog front end suit=
-able for
-> > > > > > processing
-> > > > > > +=C2=A0 fully differential/single-ended and bipolar voltage inp=
-uts.
-> > > > > > +
-> > > > > > =C2=A0=C2=A0 Datasheets for supported chips:
-> > > > > > +=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD4111.pdf
-> > > > > > +=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD4112.pdf
-> > > > > > +=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD4114.pdf
-> > > > > > +=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD4115.pdf
-> > > > > > +=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD4116.pdf
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD7172-2.pdf
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD7172-4.pdf
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > > https://www.analog.com/media/en/technical-documentation/data-sh=
-eets/AD7173-8.pdf
-> > > > > > @@ -31,6 +42,11 @@ description: |
-> > > > > > =C2=A0properties:
-> > > > > > =C2=A0=C2=A0 compatible:
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad4111
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad4112
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad4114
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad4115
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad4116
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad7172-2
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad7172-4
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad7173-8
-> > > > > > @@ -129,10 +145,36 @@ patternProperties:
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 15
-> > > > > > =C2=A0
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 diff-channels:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 For usi=
-ng current channels specify select the current inputs
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 a=
-nd enable the adi,current-channel property.
-> > > > > > +
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Family =
-AD411x supports a dedicated VINCOM voltage input.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 To sele=
-ct it set the second channel to 16.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 (VIN2, VINCOM) -> diff-channels =3D <2 16>
-> > > > > > +
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 There a=
-re special values that can be selected besides the
-> > > > > > voltage
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 analog =
-inputs:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 21: REF+
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 22: REF=E2=88=92
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Support=
-ed only by AD7172-2, AD7172-4, AD7175-2, AD7175-8,
-> > > > > > AD7177-2:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 19: ((AVDD1 =E2=88=92 AVSS)/5)+
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 20: ((AVDD1 =E2=88=92 AVSS)/5)=E2=88=92
-> > > > > > +
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mi=
-nimum: 0
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ma=
-ximum: 31
-> > > > > > =C2=A0
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 single-channel:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Models =
-AD4111 and AD4112 support single-ended current
-> > > > > > channels.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 To sele=
-ct the desired current input, specify the desired input
-> > > > > > pair:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 (IIN2+, IIN2=E2=88=92) -> single-channel =3D <2>
-> > > > > > +
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 items:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minimum=
-: 1
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum=
-: 16
-> > > > > > +
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,reference-select:
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Se=
-lect the reference source to use when converting on
-> > > > > > @@ -154,9 +196,26 @@ patternProperties:
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - =
-avdd
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default: refou=
-t-avss
-> > > > > > =C2=A0
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,current-channel:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: |
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Signal =
-that the selected inputs are current channels.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Only av=
-ailable on AD4111 and AD4112.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 type: boolean
-> > > > > > +
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,channel-type:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Used to=
- differentiate between different channel types as the
-> > > > > > device
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r=
-egister configurations are the same for all usage types.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Both ps=
-eudo-differential and single-ended channels will use
-> > > > > > the
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s=
-ingle-ended specifier.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/type=
-s.yaml#/definitions/string
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - singl=
-e-ended
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - diffe=
-rential
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 default: differenti=
-al
-> > > > >=20
-> > > > > I dunno if my brain just ain't workin' right today, or if this is=
- not
-> > > > > sufficiently explained, but why is this property needed? You've g=
-ot
-> > > > > diff-channels and single-channels already, why can you not infer =
-the
-> > > > > information you need from them? What should software do with this
-> > > > > information?
-> > > > > Additionally, "pseudo-differential" is not explained in this bind=
-ing.
-> > > >=20
-> > > > In previous thread we arrived to the conclusion single-ended and
-> > > > pseudo-differential channels should be marked with the flag
-> > > > "differential=3Dfalse" in the IIO channel struct. This cannot
-> > > > really be inferred as any input pair could be used in that
-> > > > manner and the only difference would be in external wiring.
-> > > >=20
-> > > > Single-channels cannot be used to define such a channel as
-> > > > two voltage inputs need to be selected. Also, we are already
-> > > > using single-channel to define the current channels.
-> > >=20
-> > > If I understand correctly, the property could be simplified to a flag
-> > > then, since it's only the pseudo differential mode that you cannot be
-> > > sure of?
-> > > You know when you're single-ended based on single-channel, so the
-> > > additional info you need is only in the pseudo-differential case.
-> > >=20
-> > Yes, it could just be a boolean flag. The only thing I have against
-> > that is the awkwardness of having both diff-channels and
-> > differential=3Dfalse within a channel definition.
-> >=20
-> > No, there is no uncertainty regarding pseudo-differential, it's
-> > basically single-ended.
-> >=20
-> > We cannot use single-channel for voltage channels, two voltage
-> > inputs need to be specified. And again, single-channel will be
-> > used here for the current channels.=20
->=20
-> Instead of using diff-channels for single-ended/pseudo-differential
-> plus a property that says "actually not differential" could we just
-> add a second common-mode-channel property to specify the second
-> input pin that is connected to the common mode voltage source?
->=20
+Hi Daniel,
 
-Yeah, I definitely don't like having diff-channels and then go "oh, not rea=
-lly a
-differential channel". So, if could avoid that, it would be great!
+kernel test robot noticed the following build warnings:
 
-> Just to make sure I'm understanding, single-ended means common mode
-> voltage is 0V (or AVSS for this chip, I guess) and pseudo-differential
-> means the common mode voltage is something else other than that.
-> In other words, single-ended is just a special case of pseudo-differentia=
-l.
-> So effectively, no difference that we need to describe?
->=20
-> So something like this could work?
->=20
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* a fully differential voltag=
-e input channel */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 channel@0 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bipolar;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 diff-channels =3D =
-<0 1>; /* VIN0 is +, VIN1 is - */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,reference-sele=
-ct =3D "vref";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* a single-ended voltage inpu=
-t channel */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 channel@1 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <1>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* no bipolar sinc=
-e common mode is 0V */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 single-channel =3D=
- <2>; /* VIN2 is input */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 common-mode-channe=
-l =3D <3>; /* VIN3 connected to 0V */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* a pseudo-differential volta=
-ge input channel */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 channel@2 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <2>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bipolar; /* since =
-common mode is not 0V */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 single-channel =3D=
- <4>; /* VIN4 is input */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 common-mode-channe=
-l =3D <5>; /* VIN5 connected to Vref / 2 */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,reference-sele=
-ct =3D "vref";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
->=20
-> 	/* a current input channel */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 channel@3 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <3>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bipolar;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* 0 is not the sa=
-me pin as channel@0 because of
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * the adi,cu=
-rrent-channel flag */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 single-channel =3D=
- <0>; /* using IIN0+ and IIN0- pins */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,current-channe=
-l;
+[auto build test WARNING on media-tree/master]
+[cannot apply to linuxtv-media-stage/master sailus-media-tree/master linus/master sailus-media-tree/streams v6.10-rc1 next-20240529]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Unless I'm missing something, this flag is also not being used anywhere in =
-the
-current series?
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Scally/media-uapi-Add-MEDIA_BUS_FMT_RGB202020_1X60-format-code/20240529-233239
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240529152858.183799-16-dan.scally%40ideasonboard.com
+patch subject: [PATCH v5 15/16] media: platform: Add mali-c55 parameters video node
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20240530/202405301558.no1nWGU1-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project bafda89a0944d947fc4b3b5663185e07a397ac30)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240530/202405301558.no1nWGU1-lkp@intel.com/reproduce)
 
-- Nuno S=C3=A1
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202405301558.no1nWGU1-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/media/platform/arm/mali-c55/mali-c55-params.c:14:
+   In file included from include/media/videobuf2-core.h:18:
+   In file included from include/linux/dma-buf.h:16:
+   In file included from include/linux/iosys-map.h:10:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     547 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/media/platform/arm/mali-c55/mali-c55-params.c:14:
+   In file included from include/media/videobuf2-core.h:18:
+   In file included from include/linux/dma-buf.h:16:
+   In file included from include/linux/iosys-map.h:10:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/media/platform/arm/mali-c55/mali-c55-params.c:14:
+   In file included from include/media/videobuf2-core.h:18:
+   In file included from include/linux/dma-buf.h:16:
+   In file included from include/linux/iosys-map.h:10:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     584 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   In file included from drivers/media/platform/arm/mali-c55/mali-c55-params.c:14:
+   In file included from include/media/videobuf2-core.h:18:
+   In file included from include/linux/dma-buf.h:19:
+   In file included from include/linux/scatterlist.h:8:
+   In file included from include/linux/mm.h:2208:
+   include/linux/vmstat.h:522:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     522 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/media/platform/arm/mali-c55/mali-c55-params.c:505:4: warning: format specifies type 'unsigned long' but the argument has type 'size_t' (aka 'unsigned int') [-Wformat]
+     504 |                 dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
+         |                                                                        ~~~
+         |                                                                        %zu
+     505 |                         config->total_size);
+         |                         ^~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:155:39: note: expanded from macro 'dev_dbg'
+     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                      ~~~     ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:274:19: note: expanded from macro 'dynamic_dev_dbg'
+     274 |                            dev, fmt, ##__VA_ARGS__)
+         |                                 ~~~    ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:250:59: note: expanded from macro '_dynamic_func_call'
+     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |                                                                  ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:248:65: note: expanded from macro '_dynamic_func_call_cls'
+     248 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
+         |                                                                        ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:224:15: note: expanded from macro '__dynamic_func_call_cls'
+     224 |                 func(&id, ##__VA_ARGS__);                       \
+         |                             ^~~~~~~~~~~
+   8 warnings generated.
 
 
+vim +505 drivers/media/platform/arm/mali-c55/mali-c55-params.c
+
+   480	
+   481	void mali_c55_params_write_config(struct mali_c55 *mali_c55)
+   482	{
+   483		struct mali_c55_params *params = &mali_c55->params;
+   484		enum vb2_buffer_state state = VB2_BUF_STATE_DONE;
+   485		struct mali_c55_params_buffer *config;
+   486		struct mali_c55_buffer *buf;
+   487		size_t block_offset = 0;
+   488	
+   489		spin_lock(&params->buffers.lock);
+   490	
+   491		buf = list_first_entry_or_null(&params->buffers.queue,
+   492					       struct mali_c55_buffer, queue);
+   493		if (buf)
+   494			list_del(&buf->queue);
+   495		spin_unlock(&params->buffers.lock);
+   496	
+   497		if (!buf)
+   498			return;
+   499	
+   500		buf->vb.sequence = mali_c55->isp.frame_sequence;
+   501		config = vb2_plane_vaddr(&buf->vb.vb2_buf, 0);
+   502	
+   503		if (config->total_size > MALI_C55_PARAMS_MAX_SIZE) {
+   504			dev_dbg(mali_c55->dev, "Invalid parameters buffer size %lu\n",
+ > 505				config->total_size);
+   506			state = VB2_BUF_STATE_ERROR;
+   507			goto err_buffer_done;
+   508		}
+   509	
+   510		/* Walk the list of parameter blocks and process them. */
+   511		while (block_offset < config->total_size) {
+   512			const struct mali_c55_block_handler *block_handler;
+   513			struct mali_c55_params_block_header *block;
+   514	
+   515			block = (struct mali_c55_params_block_header *)
+   516				 &config->data[block_offset];
+   517	
+   518			if (block->type >= MALI_C55_PARAM_BLOCK_SENTINEL) {
+   519				dev_dbg(mali_c55->dev, "Invalid parameters block type\n");
+   520				state = VB2_BUF_STATE_ERROR;
+   521				goto err_buffer_done;
+   522			}
+   523	
+   524			block_handler = &mali_c55_block_handlers[block->type];
+   525			if (block->size != block_handler->size) {
+   526				dev_dbg(mali_c55->dev, "Invalid parameters block size\n");
+   527				state = VB2_BUF_STATE_ERROR;
+   528				goto err_buffer_done;
+   529			}
+   530	
+   531			block_handler->handler(mali_c55, block);
+   532	
+   533			block_offset += block->size;
+   534		}
+   535	
+   536	err_buffer_done:
+   537		vb2_buffer_done(&buf->vb.vb2_buf, state);
+   538	}
+   539	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
