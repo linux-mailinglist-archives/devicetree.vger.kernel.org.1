@@ -1,419 +1,138 @@
-Return-Path: <devicetree+bounces-70997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E8A38D54E1
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 23:53:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DFE8D54E4
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 23:55:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 150CC1F24D5E
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 21:53:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FB221C22C96
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 21:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113C4183095;
-	Thu, 30 May 2024 21:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085EB17F4E0;
+	Thu, 30 May 2024 21:55:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LTFcpd8j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kZQ4mxtP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509AA183974
-	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 21:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE94B1F947;
+	Thu, 30 May 2024 21:55:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717106001; cv=none; b=Kd8myGHSqfuX+MmAr97QRHYwiDBjesU0OVCW+2jWZNaCFQl8aKQZDutN4Hn3r9aLQDrAOgTZKjOlXeAhWqBW6G5hESj6HjfPjXibYeVK/8h2TGWTqDmJI683kOZgMYC5UfSrHujHOz7Qde4zW11AFqCW0ootKUoqPbE5heXuqGo=
+	t=1717106110; cv=none; b=UAQg7JyL5R1sf0y3+1bN8vaHBtZDGGZjcAmY17cGXD5wVHCA3Vku44i6Pf2Ic0dkFg0CRvTGbtnVxcPvzYTnToLeto2vbvhitvncZcfTm/wvLsic/CEZ2FrNxkYLApYZzm/PviteaJPD+h8q2u2FktOFuTMg6HtuXxoeYbuTBNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717106001; c=relaxed/simple;
-	bh=JERaJpaM8OjMD5Y9f+mQQmsUUGJl0Ce9rp2zn2zz8EA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kzUgtm/JVpjNvuKg7cstRzILQt6X7vfAiGjq0UYJJGa6DE5bdaHeBLWJTdve+B3T07x/w0+lK9LB9nIushjwiMmRRbGA5F57ymUPyz/sTsCHjMhioGSs4jTbxx3Q+ZUoXb2q/Nec2D9TE4Hcbv8POf7OXPIOnT8m291h0NE5u5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LTFcpd8j; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ea80a18094so15121791fa.0
-        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 14:53:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1717105996; x=1717710796; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6L7CJk8y7uxjPPzXJtWTSWLVeKZoEtck7qZWUqtY9fI=;
-        b=LTFcpd8jD34FOu6pbWkNMzK/ZILZiv8sTDYOSN7dIVJn/0Qrdo7I9GCJc4M7gpu9B+
-         hfQniERAelxTk/p9HSqVB8lrpGWWY589grXmlnYdMnljPSB/8Px4+6CN/kHcJLCdcto0
-         JJSacURIm5ToXxy57dtZYLtG8Kmt8L/dEOgk+3jTS2rU4gemSWyRW+fr1sSeaidgVWWW
-         LSicQco/w5rgX1TtnqXJfEXqmH0psmuLWfec1PjVR3K9ZuBCwJMP8l4WDJYoXQ3dfcY0
-         cG7EAvC8FejBWk/vQbjBN0GJCpl2hd2cTWueiJRF5aZ/7WYv7lNv8p+k0l4X0XLcSZxp
-         AaTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1717105996; x=1717710796;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6L7CJk8y7uxjPPzXJtWTSWLVeKZoEtck7qZWUqtY9fI=;
-        b=k1hMa8vSDZX6nE4D0ndUi67eBlsdhqAe3bpn8LUmGig6ETMQZsUtoVLArPJk/7/Mvq
-         7w8nZh5xqFc3UzVV8FzAxHjxOMUMvoTJyCJPnDQistuKl4EzVVIM7nktnZlQXMvZTqHq
-         0Ape4RBvst2e3n0SJ9wkps0fT+NOj8Kk2KISmDkffBLPzGzyTwIIhFicMuscfgNq1OFB
-         fKEHt8e23qUSWSqppFMv1LwwQ6TNP21+AyAScR4e97cz4MSEb14d3gjRWJInzTPiwzOr
-         W5wgd/+BpX5VSQiNKHAML8fmVyyvleInrr2V9Ulvh33rv52MXaBVEXGidTluTh1ui8M0
-         bi+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUOU5TAIDpnHK3UFGfYnp/AHgCfKV7PxS6m7JiRU5RUOnMYL0k5byul1b3DNWebx5PlViElHOjFPNs+/f8tyG1GLncmAtqdpwdLaA==
-X-Gm-Message-State: AOJu0Yx8GvnpQfz2kF50b573hFlZpeErJQnnMrawLsHvtkVhggSryqhw
-	W5BlVZjb22xP8SMLfcaG5GCPd6Jmn9tBKi5DQC5uQzrxwp4Kq2csZWcOaJBW8vU=
-X-Google-Smtp-Source: AGHT+IHlP+TH7Z9To/RNIyj4xlimApxVfmb86NNGIyENpMij6cepHKd6loBcqhMO/wgRQcgWncX0Zg==
-X-Received: by 2002:a19:5504:0:b0:52b:6a18:5b00 with SMTP id 2adb3069b0e04-52b8878cc6bmr54785e87.34.1717105996039;
-        Thu, 30 May 2024 14:53:16 -0700 (PDT)
-Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-52b84d75d59sm103944e87.175.2024.05.30.14.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 May 2024 14:53:15 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 30 May 2024 23:53:07 +0200
-Subject: [PATCH] dt-bindings: dsa: Rewrite Vitesse VSC73xx in schema
+	s=arc-20240116; t=1717106110; c=relaxed/simple;
+	bh=/VfaV/85ip1/Lj37F3db092taXFOC4P5Olaax8eSKGA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uK5PSkgJXNyq4oItEe3JlvGil6Gh4lW1w8mJXEH2tZVoWRisRPlA+d9KGy1PlMazf8UF8vGRAu7OrPcQbcqMqwwTztH7R+Skv0Bz99HQledrTM4/FGoByq5glxusuq0EGfX+iWBCrZ0P5ypamj1jKOenUsGvubzADNEFx19dhzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kZQ4mxtP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9753CC2BBFC;
+	Thu, 30 May 2024 21:55:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1717106109;
+	bh=/VfaV/85ip1/Lj37F3db092taXFOC4P5Olaax8eSKGA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kZQ4mxtPBvXvCeNYWUR960jdhWfNHrKSc6bPcA7sMKru1eZHTHDJKG3aKjH6LKfRq
+	 BZDEpq8uhdWWPRDT1eD7klYULUHB4lKNmmn32sNNNF00rPzBYMPrCo9UO0EZKwqVNR
+	 C7YrmeptnX5uuJD1i6wlO7W5l6P08k8ii8xOwC8Q/SfjdnSrxqt2fJjgtmtzmHcjO4
+	 gmHytnkZ3BygZJQM+iLZdI3X19qMira65xrhpnNU1o+1bQRaPII/3npFey5IGcZWg5
+	 fTcHGst5oHyNEcR897cFnzW+SF8JIF/wCALlcQB3qQMIusaYlEao9vDCA81l6iQzpG
+	 8MbaiarDzZidg==
+Date: Thu, 30 May 2024 22:55:03 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+Cc: andy.chiu@sifive.com, Paul Walmsley <paul.walmsley@sifive.com>,
+	aou@eecs.berkeley.edu, Conor Dooley <conor.dooley@microchip.com>,
+	Heiko Stuebner <heiko@sntech.de>, guoren@kernel.org,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net,
+	Evan Green <evan@rivosinc.com>, cleger@rivosinc.com,
+	shuah@kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, vincent.chen@sifive.com,
+	greentime.hu@sifive.com, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v5 6/8] riscv: hwprobe: add zve Vector subextensions into
+ hwprobe interface
+Message-ID: <20240530-daylong-pelican-74ccadb9811f@spud>
+References: <20240510-zve-detection-v5-6-0711bdd26c12@sifive.com>
+ <mhng-0679629d-d115-44ae-a33a-bf42980c7686@palmer-ri-x1c9a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240530-vitesse-schema-v1-1-8509ad9b03f8@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAEL1WGYC/x3MSwqAIBRG4a3EHSeopFFbiQaif3UHPfBGBNHek
- 4bf4JyHBJkh1FcPZVwsvG8Fpq4oLmGboTgVk9W20c526uITIlASF6xBOQ/Xad9qYxOV6MiY+P6
- Hw/i+H27PhntgAAAA
-To: Pawel Dembicki <paweldembicki@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Florian Fainelli <f.fainelli@gmail.com>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.13.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="54amDOCv5zaovVhC"
+Content-Disposition: inline
+In-Reply-To: <mhng-0679629d-d115-44ae-a33a-bf42980c7686@palmer-ri-x1c9a>
 
-This rewrites the Vitesse VSC73xx DSA switches DT binding in
-schema.
 
-It was a bit tricky since I needed to come up with some way
-of applying the SPI properties only on SPI devices and not
-platform devices, but I figured something out that works.
+--54amDOCv5zaovVhC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/net/dsa/vitesse,vsc73xx.txt           | 129 ----------------
- .../bindings/net/dsa/vitesse,vsc73xx.yaml          | 162 +++++++++++++++++++++
- 2 files changed, 162 insertions(+), 129 deletions(-)
+On Thu, May 30, 2024 at 02:35:51PM -0700, Palmer Dabbelt wrote:
+> On Thu, 09 May 2024 09:26:56 PDT (-0700), andy.chiu@sifive.com wrote:
+> > diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hw=
+probe.c
+> > index 969ef3d59dbe..35390b4a5a17 100644
+> > --- a/arch/riscv/kernel/sys_hwprobe.c
+> > +++ b/arch/riscv/kernel/sys_hwprobe.c
+> > @@ -114,6 +114,11 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe =
+*pair,
+> >  		EXT_KEY(ZIHINTPAUSE);
+> >=20
+> >  		if (has_vector()) {
+> > +			EXT_KEY(ZVE32X);
+> > +			EXT_KEY(ZVE32F);
+> > +			EXT_KEY(ZVE64X);
+> > +			EXT_KEY(ZVE64F);
+> > +			EXT_KEY(ZVE64D);
+> >  			EXT_KEY(ZVBB);
+> >  			EXT_KEY(ZVBC);
+> >  			EXT_KEY(ZVKB);
+>=20
+> Conor left a comment over here <https://lore.kernel.org/all/20240510-zve-=
+detection-v5-6-0711bdd26c12@sifive.com/>.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
-deleted file mode 100644
-index 258bef483673..000000000000
---- a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
-+++ /dev/null
-@@ -1,129 +0,0 @@
--Vitesse VSC73xx Switches
--========================
--
--This defines device tree bindings for the Vitesse VSC73xx switch chips.
--The Vitesse company has been acquired by Microsemi and Microsemi has
--been acquired Microchip but retains this vendor branding.
--
--The currently supported switch chips are:
--Vitesse VSC7385 SparX-G5 5+1-port Integrated Gigabit Ethernet Switch
--Vitesse VSC7388 SparX-G8 8-port Integrated Gigabit Ethernet Switch
--Vitesse VSC7395 SparX-G5e 5+1-port Integrated Gigabit Ethernet Switch
--Vitesse VSC7398 SparX-G8e 8-port Integrated Gigabit Ethernet Switch
--
--This switch could have two different management interface.
--
--If SPI interface is used, the device tree node is an SPI device so it must
--reside inside a SPI bus device tree node, see spi/spi-bus.txt
--
--When the chip is connected to a parallel memory bus and work in memory-mapped
--I/O mode, a platform device is used to represent the vsc73xx. In this case it
--must reside inside a platform bus device tree node.
--
--Required properties:
--
--- compatible: must be exactly one of:
--	"vitesse,vsc7385"
--	"vitesse,vsc7388"
--	"vitesse,vsc7395"
--	"vitesse,vsc7398"
--- gpio-controller: indicates that this switch is also a GPIO controller,
--  see gpio/gpio.txt
--- #gpio-cells: this must be set to <2> and indicates that we are a twocell
--  GPIO controller, see gpio/gpio.txt
--
--Optional properties:
--
--- reset-gpios: a handle to a GPIO line that can issue reset of the chip.
--  It should be tagged as active low.
--
--Required subnodes:
--
--See net/dsa/dsa.txt for a list of additional required and optional properties
--and subnodes of DSA switches.
--
--Examples:
--
--SPI:
--switch@0 {
--	compatible = "vitesse,vsc7395";
--	reg = <0>;
--	/* Specified for 2.5 MHz or below */
--	spi-max-frequency = <2500000>;
--	gpio-controller;
--	#gpio-cells = <2>;
--
--	ports {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		port@0 {
--			reg = <0>;
--			label = "lan1";
--		};
--		port@1 {
--			reg = <1>;
--			label = "lan2";
--		};
--		port@2 {
--			reg = <2>;
--			label = "lan3";
--		};
--		port@3 {
--			reg = <3>;
--			label = "lan4";
--		};
--		vsc: port@6 {
--			reg = <6>;
--			ethernet = <&gmac1>;
--			phy-mode = "rgmii";
--			fixed-link {
--				speed = <1000>;
--				full-duplex;
--				pause;
--			};
--		};
--	};
--};
--
--Platform:
--switch@2,0 {
--	#address-cells = <1>;
--	#size-cells = <1>;
--	compatible = "vitesse,vsc7385";
--	reg = <0x2 0x0 0x20000>;
--	reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
--
--	ports {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		port@0 {
--			reg = <0>;
--			label = "lan1";
--		};
--		port@1 {
--			reg = <1>;
--			label = "lan2";
--		};
--		port@2 {
--			reg = <2>;
--			label = "lan3";
--		};
--		port@3 {
--			reg = <3>;
--			label = "lan4";
--		};
--		vsc: port@6 {
--			reg = <6>;
--			ethernet = <&enet0>;
--			phy-mode = "rgmii";
--			fixed-link {
--				speed = <1000>;
--				full-duplex;
--				pause;
--			};
--		};
--	};
--
--};
-diff --git a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-new file mode 100644
-index 000000000000..b99d7a694b70
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml
-@@ -0,0 +1,162 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/vitesse,vsc73xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Vitesse VSC73xx DSA Switches
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  The Vitesse DSA Switches were produced in the early-to-mid 2000s.
-+
-+  The Vitesse company has been acquired by Microsemi and Microsemi has
-+  been acquired Microchip but the new owner retains this vendor branding.
-+
-+  The currently supported switch chips are
-+  Vitesse VSC7385 SparX-G5 5+1-port Integrated Gigabit Ethernet Switch
-+  Vitesse VSC7388 SparX-G8 8-port Integrated Gigabit Ethernet Switch
-+  Vitesse VSC7395 SparX-G5e 5+1-port Integrated Gigabit Ethernet Switch
-+  Vitesse VSC7398 SparX-G8e 8-port Integrated Gigabit Ethernet Switch
-+
-+  This switch can use one of two different management interfaces.
-+
-+  If SPI interface is used, the device tree node is an SPI device so it must
-+  reside inside a SPI bus device tree node, see spi/spi-bus.txt
-+
-+  When the chip is connected to a parallel memory bus and work in memory-mapped
-+  I/O mode, a platform device is used to represent the vsc73xx. In this case it
-+  must reside inside a platform bus device tree node.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - vitesse,vsc7385
-+      - vitesse,vsc7388
-+      - vitesse,vsc7395
-+      - vitesse,vsc7398
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+  "#gpio-cells":
-+    const: 2
-+
-+  reset-gpios:
-+    description: GPIO to be used to reset the whole device
-+    maxItems: 1
-+
-+allOf:
-+  - $ref: dsa.yaml#/$defs/ethernet-ports
-+
-+# This checks if reg is a chipselect so the device is on an SPI
-+# bus, the if-clause will fail if reg is a tuple such as for a
-+# platform device.
-+if:
-+  properties:
-+    reg:
-+      minimum: 0
-+      maximum: 256
-+then:
-+  $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      ethernet-switch@0 {
-+        compatible = "vitesse,vsc7395";
-+        reg = <0>;
-+        spi-max-frequency = <2500000>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+
-+        ethernet-ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          ethernet-port@0 {
-+            reg = <0>;
-+            label = "lan1";
-+          };
-+          ethernet-port@1 {
-+            reg = <1>;
-+            label = "lan2";
-+          };
-+          ethernet-port@2 {
-+            reg = <2>;
-+            label = "lan3";
-+          };
-+          ethernet-port@3 {
-+            reg = <3>;
-+            label = "lan4";
-+          };
-+          ethernet-port@6 {
-+            reg = <6>;
-+            ethernet = <&gmac1>;
-+            phy-mode = "rgmii";
-+            fixed-link {
-+              speed = <1000>;
-+              full-duplex;
-+              pause;
-+            };
-+          };
-+        };
-+      };
-+    };
-+
-+    bus {
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+
-+      ethernet-switch@10000000 {
-+        compatible = "vitesse,vsc7385";
-+        reg = <0x10000000 0x20000>;
-+        reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
-+
-+        ethernet-ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          ethernet-port@0 {
-+            reg = <0>;
-+            label = "lan1";
-+          };
-+          ethernet-port@1 {
-+            reg = <1>;
-+            label = "lan2";
-+          };
-+          ethernet-port@2 {
-+            reg = <2>;
-+            label = "lan3";
-+          };
-+          ethernet-port@3 {
-+            reg = <3>;
-+            label = "lan4";
-+          };
-+          ethernet-port@6 {
-+            reg = <6>;
-+            ethernet = <&enet0>;
-+            phy-mode = "rgmii";
-+            fixed-link {
-+              speed = <1000>;
-+              full-duplex;
-+              pause;
-+            };
-+          };
-+        };
-+      };
-+    };
+This link is to the patch you're replying to, not anything from me.
+I commented on a bunch of stuff in v4, but not this patch - generally I
+ignore hwprobe to be honest...
 
----
-base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-change-id: 20240529-vitesse-schema-56e59067012d
+> I think the best bet is to just merge this v5 on for-next now, though --
+> there's a bunch of patch sets touching ISA string parsing and IIUC that
+> sub-extension parsing stuff is a pre-existing issue, and Clement's patch =
+set
+> still has some outstanding feedback to address.
+>=20
+> So I think if we just go with this we're not regressing anything, we just
+> have a bit more to clean up.  Maybe it's a little uglier now that userspa=
+ce
+> can see the sub-extensions, but I'd bet wacky ISA strings will be able to
+> confuse us for a while.
 
-Best regards,
--- 
-Linus Walleij <linus.walleij@linaro.org>
+I wanna do some cleanup stuff w/ Clements series applied, if that's what
+you were talking about, but I don't see much point starting that until
+the cpufeature stuff has calmed down - Charlie's and Clement's series
+really need to be in for-next for it to be worth doing.
 
+> I staged this so I can throw it at the tester, LMK if anyone has issues
+> otherwise it'll show up on for-next.
+
+--54amDOCv5zaovVhC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZlj1twAKCRB4tDGHoIJi
+0m7+AQCuLCvXdrPloK2ge546WprTaktc5AJayKqwle2CbRg+qAEAimwmspM+d7gX
+w2SCZjy28pKq6A7bDCxZ9Jlu+kWWdwM=
+=N8Bg
+-----END PGP SIGNATURE-----
+
+--54amDOCv5zaovVhC--
 
