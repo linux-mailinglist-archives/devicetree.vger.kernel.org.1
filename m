@@ -1,249 +1,141 @@
-Return-Path: <devicetree+bounces-70769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3D68D46DE
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:18:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6C08D46EC
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 10:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54B0E28400F
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:18:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0C291C21E4C
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555A91487F1;
-	Thu, 30 May 2024 08:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D951B14AD25;
+	Thu, 30 May 2024 08:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="qGFo9G7c"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="X4MGssAO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2075.outbound.protection.outlook.com [40.107.8.75])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D29DDA1;
-	Thu, 30 May 2024 08:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.75
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717057096; cv=fail; b=R/EyzH+69fYjCpei6gUBiTjfK5haZbrFWGM8/Hy49F3nbtUohHaRv1TaixJ+MKzkBlS0UzrUVT3fubTMVQS2vwaX2PLRDkjGzxtT7/FHcuncwSgGOEIN6+7boGo4hu4rGCHNTIWMtEWtPf9gv9MfIqe9ILLtZkR8OlWp+Foj0SE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717057096; c=relaxed/simple;
-	bh=7zQIxZJ3NCWUUlWkpYqYk5NkODFwyEUvPUHzTuJJMiU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ml3LIsB0uo2aPvjU+pI4rEPpJnv9kwTUBYPC/uAjE1r91V4JxN0el5Sa0o39bueYHDzLpw2m+6fETiVCPTr03Cv1dxufaklbq6zTnUv2LC4KS53FFjUFuTNiVOOncDYZkgYlMRdvdiQv+PK0Nnn8H2tA9AqslWhTQYVm/lpOf14=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=qGFo9G7c; arc=fail smtp.client-ip=40.107.8.75
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XsgsyhujJ8Xz5j96pV8s3Yc1PUtjxnQhdCasFFJEAW1agrUvc8RpGgG6QPLrN2SQdcva/5Lhof9lJlvIhhf6tikH2v1o2t3TIsnwmdTvLokJd90VuD2NZaiPHr+mHAY+nTlM8k4NxlRL5m5zmJINTf0iJfzSkr4IMRlYUtz4Y4XtxZB6Hhn/008GC2rxgbdVII/d0FHc4HeopoPxraxR25wu9TJNasnIJEGlKUm4ZGBi4+9iZIFMxYRQhaGUEh3OznqmcOgjucvtnE1OOUQeFXrbU7p3QLXHxaV7m3MWPEzuS9PomZlftdsyLUcTRx0BHvCRZ77mfxlsJIt00v9pTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hsOdDpuDO7fgXupti3q5PdZCXWrgXoqhEH3BVQ9S2TI=;
- b=lt9bB7fAvXXiVyYc3A/GKamZ5byPi6w8cgo/0dKEy0IKsF25JDM0aPCC0ZbL8VeDXtmg/VelTi1leB0dtH+nBKl1yZP8cBbpoeOF2wrtP0y0unoy8Xf3MGIX4HRqJN37FE7tqxC7HEEJd3hKJNQXG9/jIJslGMgeiMxPk52ST6X2jvP5W+nJalpafoYNwodNqpxhEoHGkv3OfLKUjKDZ2T+E5+pZlJ66GPHbyTHBERdbDRJaq7C20kEuwbuHa3eIrdOnu8hJZOQi6u4bfCftWGxkhAyW2nvz/xvwxqH0X8RAewanmeJv14Th57vDOXQq/qIAfqb6Lr8Le+/KE0wBPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axis.com; dmarc=pass action=none header.from=axis.com;
- dkim=pass header.d=axis.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hsOdDpuDO7fgXupti3q5PdZCXWrgXoqhEH3BVQ9S2TI=;
- b=qGFo9G7c/dtqxZbJQRmBoH3YoO78B0xiCmxDMKi3mhkcAb1fpFDM+s8QbiWHdwF9VgdGKBrZ/3BddHKRPMvLSOTQmPKj5OMTKHUCjyJHy5L4nDIYt96II/mZf5nP6TJ4aoLGbstRAlU4lOiKqE3G0I8Na4Nik0V2e3ZGsILiR0I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axis.com;
-Received: from DB9PR02MB9994.eurprd02.prod.outlook.com (2603:10a6:10:462::8)
- by VI1PR02MB6109.eurprd02.prod.outlook.com (2603:10a6:800:18c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Thu, 30 May
- 2024 08:18:10 +0000
-Received: from DB9PR02MB9994.eurprd02.prod.outlook.com
- ([fe80::f9a2:77a1:a5aa:8f8b]) by DB9PR02MB9994.eurprd02.prod.outlook.com
- ([fe80::f9a2:77a1:a5aa:8f8b%4]) with mapi id 15.20.7633.018; Thu, 30 May 2024
- 08:18:10 +0000
-Message-ID: <c936db6e-58cd-4445-92a2-9d53ba7f6b8c@axis.com>
-Date: Thu, 30 May 2024 10:18:08 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: ti,ina2xx: Add alert-polarity
- property
-To: Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
- <krzk@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@axis.com
-References: <20240529-apol-ina2xx-fix-v1-0-77b4b382190f@axis.com>
- <20240529-apol-ina2xx-fix-v1-1-77b4b382190f@axis.com>
- <1ae97b90-ff20-4238-abe2-f2e5d87fc344@kernel.org>
- <76dd5c0e-cc67-4ad1-8733-d8efdb8a172b@roeck-us.net>
-Content-Language: en-US
-From: Amna Waseem <Amna.Waseem@axis.com>
-In-Reply-To: <76dd5c0e-cc67-4ad1-8733-d8efdb8a172b@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MM0P280CA0023.SWEP280.PROD.OUTLOOK.COM (2603:10a6:190:a::9)
- To DB9PR02MB9994.eurprd02.prod.outlook.com (2603:10a6:10:462::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4775C14387F
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 08:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717057222; cv=none; b=Atjyr4O+B9AlCCmXcCutyCDb1CIsHoW6+2fso8h0Oyp+qt1WEjcTKAWo1un6lEoghsRh6O0wK7VWzHLI3yiy5dX8O02i5h6dqZXgvTDNIM4stEkIth/56rmV/b0EjxZYFrIQRH8/7GgRk3WqwnqoqtNun6qRJTgbTOoqqNowD70=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717057222; c=relaxed/simple;
+	bh=9hQvbxkraGoQByyfnB/SKIQRAxtxMniFpbudb4R8J+8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WJbsK4Oi7Wv71mKLx3rgERROoSPTD5IC5ZCYjG/9KTXELZISNjlbO49bAYcRukb4H7bdpIWVR/UNYjMnimI0tBsy7jddNdEJSS7rSuE2C/cJ/QCdxoY1kho+yiF1gul2+KnpynKzCf6cbguCIEQJFY6EEU0MJpG3bkYtO6lQIww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=X4MGssAO; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-421124a0b37so3465585e9.1
+        for <devicetree@vger.kernel.org>; Thu, 30 May 2024 01:20:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1717057219; x=1717662019; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xAFqwlnprskdijXg0+qVMxiHshvm9v4VwBvMivw4hqg=;
+        b=X4MGssAOpP+ReUDeAySTOFHDO/FubL+QJxHVcC+a5OJ58ZwzkJT342ezkeV7bDetn8
+         SVKOa2Is89YHjf8phSxz5TL66YMcs4GmIV2U7LzYpFptW+BZJX5eI36LX9nSCBuA4ofQ
+         pRVlIr2VXuD9g7Pr2TWAcPxCZQ4RW7hMysILLojJ4SBHhKgasjYgjVwEsiaEq/1nEYrw
+         vCy55gf0GJlHYukEXivVpxZ3Y84qni1uyOiSiK5M6bK+81FkBIPlS/ts+ljn/3N7TMa0
+         +2JfLy3MuuetTFjE2Vb6sF49E4WdJ4yqEe7oj5228Pw2x57UHZpMCjEQRYTwYUq/4XGw
+         vWiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717057219; x=1717662019;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xAFqwlnprskdijXg0+qVMxiHshvm9v4VwBvMivw4hqg=;
+        b=eZ3FvE9Au4jQh09IgxCMBpyi6x8hTBbdiazgM8FnEQK4kGmJp9my//feTrQoo9e+r1
+         62/r5yVbSFRBrLT1RskACpExm6weOXINVMj3ePLJN6dquwkxISDxEaN3i1IH5RXoU62k
+         TQ3KZ3J8ghNSNB9uWM3mDvdQZR9hJNVL6jvGr28e+yfhEk+XCnHrXL+pga8qgYcpF9O6
+         +uR2ulmWXuq9D38r1YRVPGTZlro81ItX50SkQUDRcvLqwgzKgVouCyujG+x5prIBVgKq
+         9a9bdAl2jaFMC9BeG1qkaHpegMg2bZgPQVbutNJ8dJLwRFD1KYe0mC4MNjcQkdmzwy47
+         nNWA==
+X-Forwarded-Encrypted: i=1; AJvYcCXk3J9FY5+r9Duo4woPQohJJv55s8L/0cZ8H3BoSr8H37waVeMpIYylUQUkGfnCxPH0rIlPSak11apoyXbPvd4lqqF//4xNv1Hpqg==
+X-Gm-Message-State: AOJu0YztIkqa1kEpHuG7NA/6cHRH8I9zAaq1FxcnWL8mFlwOz9eqOqiJ
+	ybME1hBTofzHZZpEP7ADOhRDm5UjJTBNH2D0D+qL9Hzy+Q8n0T+lp4O48ZfseZY=
+X-Google-Smtp-Source: AGHT+IG1keazYzeuDlTEJWYo0DNz5z0le/1L4QF2tlIZz4H3UjAuU4J130ihkcGjOo2htfDSVAmo6A==
+X-Received: by 2002:a05:600c:45d4:b0:421:2241:5be3 with SMTP id 5b1f17b1804b1-4212780a865mr16402325e9.5.1717057219466;
+        Thu, 30 May 2024 01:20:19 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4212708a6fbsm17283305e9.44.2024.05.30.01.20.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 May 2024 01:20:19 -0700 (PDT)
+Date: Thu, 30 May 2024 10:20:18 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Tomasz Jeznach <tjeznach@rivosinc.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Anup Patel <apatel@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Nick Kossifidis <mick@ics.forth.gr>, Sebastien Boeuf <seb@rivosinc.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux@rivosinc.com, 
+	Lu Baolu <baolu.lu@linux.intel.com>
+Subject: Re: [PATCH v6 2/7] iommu/riscv: Add RISC-V IOMMU platform device
+ driver
+Message-ID: <20240530-af20943d2b372faa7b11ed41@orel>
+References: <cover.1716578450.git.tjeznach@rivosinc.com>
+ <7dcd9a154625704cbf9adc4b4ac07ca0b9753b31.1716578450.git.tjeznach@rivosinc.com>
+ <20240529-08fd52a8e703418142bdfa84@orel>
+ <CAH2o1u7DmywajQWRnQEW2Zjw95EzruM3_Mb5Z-K4zJChh8pGLQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR02MB9994:EE_|VI1PR02MB6109:EE_
-X-MS-Office365-Filtering-Correlation-Id: e25eb5b6-bd9d-4419-45e0-08dc80810b1d
-X-LD-Processed: 78703d3c-b907-432f-b066-88f7af9ca3af,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230031|1800799015|376005|366007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UlNXWisvc2NSRHRHSnVNUkp6R0l1Sm84RElEUEFrY1hxZEtJT1EwaENCVzVZ?=
- =?utf-8?B?TnAwU2hzZHdjN2NGYlVxOVpSV2lkNmpHaWhRL3poaXM2dDBWTkFCRVlUVWJy?=
- =?utf-8?B?OWJBckFPeG93UU8wQ3QxT2Q5VThBUFl6V2oydjNPY2xLU05oMGFmaU1nSEll?=
- =?utf-8?B?RlNVZ29PTG5BOTVvMk9KYXJ2SEtuaVhqblgwVFE4NmU5WFpYRWVITlN6ZmFs?=
- =?utf-8?B?b2tHa1d6Y0ZQRWF5a2J4cnA2MXp2RUgycnpLd0J2TUlrNFZsZDA1TG5rSTFm?=
- =?utf-8?B?a2NuNllDSEFPSi9yN2MyOGpxdUZtMVdLRm1Oa1pGcjVkSkErNTBCdUJrN1Nh?=
- =?utf-8?B?L2Fhc2RxZVJ1K3ZObk0xT1plK0VsUUtKcGwvUlhYMDlTbjhKUzVZZEFLU1BG?=
- =?utf-8?B?Y08wUVdkanFTVzY3alFkb05zRDVidUxQMWtHY1BabkVwYXI4S2c0d25tWWpT?=
- =?utf-8?B?N1RNT0lOcHNTSFQ0cjlhSWJxOWM3ZUI3T2RyUVhUTjNranhhN3hVcCtlcjE4?=
- =?utf-8?B?eFhHd0VBaUNnTmN2enlwVTRJd0ZYRm1BTUVCak5OZjZFSzhsV3BlRXhPaVgv?=
- =?utf-8?B?LzFCbGJmNkVTbWdHVXZTdWNQek1nak8wS0ZQaU1QOVRtMGNxd1UzQkdHY25R?=
- =?utf-8?B?UXZWbnJwdnQvMExKSUh6VnQ4YlFzREJjL0JWL2trbzRWQWF2SFFLQXdUbzdv?=
- =?utf-8?B?Y002c1BlMTBDMzB5UklMWDRuRnFGTFRiNTcyc3VQeHdjdUhjWVUvU0VCVnhU?=
- =?utf-8?B?eHh5aGNjTUd6YXdUb2owWVM0WXJXczJxcXF1QmxMZWM0TlVNcUZSSitrV3Zq?=
- =?utf-8?B?ankwSkV1a1dWOVBWUjNhOTBDK3U5V0J1VGdoNy9POXQyYTlDemh3OFdsSmZF?=
- =?utf-8?B?Qi9kejgwZDNaSzUvUUpoZkpBWTNmVGhOdU8xdEFwT3o5NVhyejUxQS9EcFR6?=
- =?utf-8?B?ZWk5RHd2YzVCeFBhMGJKVlh4RTNTK1MrY1lZYzBkSVEwZGFqREtodlFDQVE2?=
- =?utf-8?B?Rm5KTjZtUzlSak9aM1VnZGZpTDdVTG01UUhMbi8rUXhBZmdubXpGdXVHRHpJ?=
- =?utf-8?B?UWx6ZWtGTE93SDZabUhmNTkyWkdQZFU0ZWlsVUJkYzRKNVhmRkhJZktIdGVS?=
- =?utf-8?B?OGVaRjg1U1NocysvZVgwSlJZWEJseVFrRlgwRFRsQzgxdlMyZytOUVphVjQw?=
- =?utf-8?B?OUJRc1RxMXBNNDZ4bDE4TkIrNnVVdmYwMkNya2tqOGhaV010aFl6Q0EwemI2?=
- =?utf-8?B?WUJUdWJ5M0g5amMxTkZMby9hVzBlNW9KSTRlNTlVRVBteWRzNFcrRzBtZTVF?=
- =?utf-8?B?M1FYanRKTDNiU1prR2l4Y3dzZ0NpODBhVlN2NU9hWERFb2RSZStuOE82V0k4?=
- =?utf-8?B?UlVtYmhFVFlkOUlYR0JzZ3dneWV0T3VVM1N4Q2JPOWVZMzhweFhpR3BZS2ZJ?=
- =?utf-8?B?WUdmSEhFZWdZYjZ6bEdoOHlvTHZyaXpqYnYrU1R0eUdNYWpHYkhjRWJjblpM?=
- =?utf-8?B?TXVwZ3pJaDlXZFBoOWtET1g5a29pcnpBWTUrRWthSkloYUZjSlVLd3dHTHVy?=
- =?utf-8?B?QklUaWN0UHFkRThlL0l5YmZGU2RDQ2FMUFFyeDJGRUxaWFp1anFHa3AxNzk0?=
- =?utf-8?B?V1hTQUlOWXZ4N3ZSTWluQzhhbXltTmltTGUydVhVZGg5WWNqYUtsK2Q5R1Rp?=
- =?utf-8?B?aURGZ1FsNGFtOUhzS2ptVzBtL0Vkbmg5NHBFcWhVQmZSQWVlMnRTMmN3PT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR02MB9994.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(366007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OEhmNXUzWjNVREViQ0RaVU4wdXdFTG9FNVFBWVQyWStnVUEzaDJhbWYrdDhj?=
- =?utf-8?B?R0R2YWlOWlF2RnV4cG01eWo3VUZrVFVvMmZFc09sSWd3SnBYU3VqczBmOC9a?=
- =?utf-8?B?L0JJdWxYMjhrWTNnYUQ2elplMFB5WWJFOCtoOWJJRi9iRWNxRFhEYjJqdUxE?=
- =?utf-8?B?amR6V0c4amx4SHY1VnJXL0Q2SlhDOEdjSWk3RjhKWXhKaG1JQ2JGbmtxblhY?=
- =?utf-8?B?VWZYZjZXajNDZk5ZWmpoeXRxRUV4VHU5Rm82d2lDSkU4bHcwY3dOWXc3TFVi?=
- =?utf-8?B?b1RyL0pDUWFleFFRUnhEZmtnZXVXck53T0ZWUnFPWkIvc2VxVkkvSFBXNkpO?=
- =?utf-8?B?TXBxTXQvTVVVcVlvSGRIWDJSRm1Sbm8yOEVraGZqOHI4RFpKOUlid0txTlBt?=
- =?utf-8?B?TEUzSUIrZXc2OWFCWDF0OWVHMmJ6RlVWc3lhVEZKNWEvbWViQjN1L3FCWHVD?=
- =?utf-8?B?TjV5amgweGNDUmVGam1SMDJNZ0lrQmxRTGR5Q1JiTkk0S2pHZUpKYzNhaVRh?=
- =?utf-8?B?cW1yK2MzaXlaV3B1MnJSVk9LOVJqMUsrWHBCK2dtbTJWTUczUnlhMDlXZzha?=
- =?utf-8?B?QkR6UGFZQ3Y2WVVFZkNvemt3cnhiL0NCZXF5dzMxd2xLNktWTUkzL1Q0TXNF?=
- =?utf-8?B?VEZ2ZTZnN2EwemFNR2lCK3FaOVA2T1pUV3dYMXFXNVZ6SGtpREY4SCtvbU9C?=
- =?utf-8?B?ZVZtak45WTkzMzVuRG9lZmJhaUpwek52dDBYNk9JaDAzQ2VaTmhzOHA1ZWZF?=
- =?utf-8?B?dnd3anZKaUwvdGlGanJJMDdNWnE5TXdqU0Z4SHVDakErdzQrZnZ6aHo4S2dV?=
- =?utf-8?B?VkVjdUJxcHdnYk1JdjFlaC9yR1FmRkFCN0paRjAvYlF6UFBXQzhjS2pWbUFn?=
- =?utf-8?B?clo5dEJ2ZUxOTUt4SlY4dFZETFZPa1hkS1Rrb2hCdFgrck5EN0wxREpub2RU?=
- =?utf-8?B?V1VQVHVESndxaG9JTjBRNVFPNUNMYk9SWDhMakVkR0hKeFRJUllGWlc0eUVN?=
- =?utf-8?B?T3Z3NFRWbUdFMlUxTzZOOEQreVI0NDcxOE5PZ0hqdVRVVWVsYms3dFJaeXpJ?=
- =?utf-8?B?RnRKMmJiWlVhdXZrbU5PcWhIY3EwWFNLTDdyQUNmd3FLbGxMUUFic1RoWVdR?=
- =?utf-8?B?VVZKWi9FQ1BiS3N4Vjc0MnBNVEtSQ0RObnUwdTB1LzJsc0hSZTBRb2tabS92?=
- =?utf-8?B?djlUQUU0RDFIVFZ1WTA0L3dnU1o1ZXpIdEVOZ0VXdEtNaU9yYzRWdmJ1UVpK?=
- =?utf-8?B?VzlxY1lhQ1Zqcm5tb1A4cktoMWFwczRtelNuSlBDS1FPUjVMUFNubDRnaDJZ?=
- =?utf-8?B?TlJiZDV3VnJmQThZV2dBcjkrWjlveDI0MCtEckdqdmIrV0xoS1dBam1meUg0?=
- =?utf-8?B?Ynk4YWMrY1V4WkF1QTIvaXE0QWJlY1NPUVIxUWozbkpoSVR0MWpiQ05naVB0?=
- =?utf-8?B?WUNTNkUvSGNPNm10OGY0cE11dlpHT3F6MElya3UrQjY3NFlBSk01WlhZTHBJ?=
- =?utf-8?B?NHNkQUdpT1l4d3ZTcFo1UGxCU3J4SVIvVG5XQS9uWEo4UDJZeVpaaU83UUdz?=
- =?utf-8?B?TVB3bDVpb3lrZ21MYjR1SnhWRFQrMTA5VFBqdjJTOWN6NEpidlYwWm5hTVA2?=
- =?utf-8?B?STBLMWxqSU5qSkNuYlUrMXZ2anRRd1dyajRkb0I1MjFaSWxhQmEyZFR3eDBw?=
- =?utf-8?B?MjkxY1JET21wMXUrRmpKOUQ3MGFYOURZdE9veGJhL2xleDEzTE9nbDBVL2pJ?=
- =?utf-8?B?aXp6dVJuaGd5VE9TS0pTamZocUZrcWgyN1Bvc3djSDFLRzJ1bVRoY3FHKzIz?=
- =?utf-8?B?MTJNb0RNM1NGTWNGZkllamNBcXd6d25zdUJPNExqekUzY1RkN2V0RTh6cUEw?=
- =?utf-8?B?Z1pNTlZHSUlrdE1oUE9KVlV1L3FES0gxeVJjUUxVZEJHeVlxSmQ1ZThKRDhy?=
- =?utf-8?B?aUwvb0ZDRjYvdjFzOGxIN0xnUFhhbUo4WTdzOUN2VEtSMmo5VzA5NkFWeGNX?=
- =?utf-8?B?S0gyU3RuYnBCOXdnd3FWYWJYdDROVFg5RHIxZlI2WFNMOXo0MGxJQUp0WDE0?=
- =?utf-8?B?OG1nME04NDZZMUpiMGRHVERnUkwvMXNxUUdwSmZQWHBwVy96VSswNzIwSFdi?=
- =?utf-8?Q?003Q=3D?=
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e25eb5b6-bd9d-4419-45e0-08dc80810b1d
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR02MB9994.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 08:18:10.6282
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AZuPRv75VxEDgF6xqQdVYHQCDwNQ44RF9kOsYo03eLhp+ygqitVEJHZpNI6VMT8p
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR02MB6109
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH2o1u7DmywajQWRnQEW2Zjw95EzruM3_Mb5Z-K4zJChh8pGLQ@mail.gmail.com>
 
-On 5/29/24 16:01, Guenter Roeck wrote:
-> On 5/29/24 00:07, Krzysztof Kozlowski wrote:
->> On 29/05/2024 08:07, Amna Waseem wrote:
->>> Add a property to the binding to configure the Alert Polarity.
->>> Alert pin is asserted based on the value of Alert Polarity bit of
->>> Mask/Enable register. It is by default 0 which means Alert pin is
->>> configured to be active low. To configure it to active high, set
->>> alert-polarity property value to 1.
->>>
->>> Signed-off-by: Amna Waseem <Amna.Waseem@axis.com>
->>> ---
->>>   Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 9 +++++++++
->>>   1 file changed, 9 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml 
->>> b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->>> index df86c2c92037..a3f0fd71fcc6 100644
->>> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->>> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
->>> @@ -66,6 +66,14 @@ properties:
->>>       description: phandle to the regulator that provides the VS 
->>> supply typically
->>>         in range from 2.7 V to 5.5 V.
->>>   +  alert-polarity:
->>
->> Missing vendor prefix.
->>
->
-> Are you sure you want a vendor prefix here ? Reason for asking is that
-> many hardware monitoring chips have configurable alert or interrupt 
-> polarity,
-> only the name is different. Some examples are the JC42.4 standard ("event
-> polarity"), adt7410/adt7420 "interrupt polarity", MAX31827 ("alarm 
-> polarity"),
-> or DS1621 ("output polarity"). We even have a vendor property, 
-> "adi,alarm-pol",
-> used for MAX31827.
->
-> Secondary problem is that not all chips of the series support this
-> configuration. INA209 has a configurable "warning polarity", but the
-> warning pin and the smbus alert pin are two different pins.
-> INA219 and INA220 do not have alert or interrupt output pins.
-> Only INA226, INA230, INA231, INA238, and INA260 support configurable
-> alert polarity.
->
-> Thanks,
-> Guenter
+On Wed, May 29, 2024 at 10:59:58AM GMT, Tomasz Jeznach wrote:
+> On Wed, May 29, 2024 at 8:15 AM Andrew Jones <ajones@ventanamicro.com> wrote:
+> >
+> > Hi Tomasz,
+> >
+> > I reviewed iommu-bits.h to the spec. Most naming matches exactly, which
+> > is nice, but I've pointed out a few which don't.
+> >
+> > Thanks,
+> > drew
+> >
+> 
+> Thanks for looking into this a bit boring file.
 
-I agree with not using vendor prefix with alert-polarity property. 
-@Krzysztof Kozlowski what do you suggest?
+No problem. I also meant to point out that I checked all bits/offsets as
+well. They all looked good to me.
 
-Amna
+...
+> > > +enum riscv_iommu_fq_ttypes {
+> > > +     RISCV_IOMMU_FQ_TTYPE_NONE = 0,
+> > > +     RISCV_IOMMU_FQ_TTYPE_UADDR_INST_FETCH = 1,
+> > > +     RISCV_IOMMU_FQ_TTYPE_UADDR_RD = 2,
+> > > +     RISCV_IOMMU_FQ_TTYPE_UADDR_WR = 3,
+> > > +     RISCV_IOMMU_FQ_TTYPE_TADDR_INST_FETCH = 5,
+> > > +     RISCV_IOMMU_FQ_TTYPE_TADDR_RD = 6,
+> > > +     RISCV_IOMMU_FQ_TTYPE_TADDR_WR = 7,
+> > > +     RISCV_IOMMU_FQ_TTYPE_PCIE_ATS_REQ = 8,
+> > > +     RISCV_IOMMU_FW_TTYPE_PCIE_MSG_REQ = 9,
+> > > +};
+> >
+> > RISCV_IOMMU_FW_TTYP_* for all above
+> >
+> 
+> I guess RISCV_IOMMU_FQ_TTYP_* to match _FQ_ acronym.
 
->>> +    description: |
->>
->> Do not need '|' unless you need to preserve formatting.
->>
->>> +      Alert polarity bit value of Mask/Enable register. Alert pin 
->>> is asserted
->>> +      based on the value of Alert polarity Bit. Default value is 
->>> active low.
->>> +      0 selects active low, 1 selects active high.
->>
->> Just use string, easier to read. But for sure do not introduce different
->> values than we already have - GPIO HIGH is 0, not 1.
->>
->>
->>
->> Best regards,
->> Krzysztof
->>
->
+Oh yeah. I guess my eyes had glazed over at this point because I didn't
+notice the 'FW' vs. 'FQ'. So, yeah, we want RISCV_IOMMU_FQ_TTYP_* for all
+above, including RISCV_IOMMU_FQ_TTYP_PCIE_MSG_REQ.
 
+Thanks,
+drew
 
