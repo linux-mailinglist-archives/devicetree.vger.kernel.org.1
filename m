@@ -1,237 +1,355 @@
-Return-Path: <devicetree+bounces-70832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D1A8D4A51
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:20:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 440848D4B02
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 13:50:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E0602826AB
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 11:20:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C34BB1F22CF5
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 11:50:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 551ED172BA2;
-	Thu, 30 May 2024 11:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132461761B8;
+	Thu, 30 May 2024 11:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="PD4ux0nO"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="uwT3vHvd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2069.outbound.protection.outlook.com [40.92.19.69])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F34177992;
-	Thu, 30 May 2024 11:18:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.19.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717067940; cv=fail; b=Vkl900UoYt/hzXxcmKCDZKISvZ7J1QU2WEJU2XghVy9PENmZzcxyrA9zPhRnVo58cLWVf/djVpirudlYvruUNBW8t8cSLM+v1osHD/J/bM6GN94fdQ13Mm+sQeb0r9Zi5YPcMN777BBasaRjKRirSIW91sBJQJKQCWtnPuxXlnc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717067940; c=relaxed/simple;
-	bh=plexqSYVeCU70nZK2wY2GUWJYNmc3QyenGr2Sz+az0Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=AwicogPzuOTDf4sgGsYtWGaKr/Sf97+5nrGDcshv+8dNU5jsPlAmjGei7SI83wDbEK3uczzAmQ7WcGTUcV0G1oNIXLj1zfUem/W99QRtxBASZKtpZ9I29ueOJPN5xAKj0yc8fnWqtwsX1s5UaVdCEEi64POs7fAwbnWZYzb6v+k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=PD4ux0nO; arc=fail smtp.client-ip=40.92.19.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X9G8bValoywm89fbKdMFkjniOvaYUBkzEtkNw69fQfPxgURpa9EDxqRuZezF54co5J8CwhOmhUqaRzLPvgAZ+i5Al2rvALJxRApkB2b5rFJzkN8V1AncSWCvcSf3UN85rz3gj/wskSK1isYa1wDQKt38GbTCqxdRqcyIMy9WSqK5GP3sHAlXI4oCWv9GeuchNghwMGca4DkZdy/HllniDVb8M4GOZlHlUmrcYQ3u7w+WZAHpVe0/Z6y3sMNeStcCTk8J2hnxCz+/vsjd2HQjLAIhRtLVGmkbnXpqIpBhlCBB26KZHQ7JjjIMTpQMmv7icDVrLss6+/Xe6FmqHT1Pcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c1g3dcYVIGes9Pbp4hU9DcM/1/dmc5+Ay2jCxUQHq08=;
- b=az3Lq4BZcFQQhPwLvexqoqyE0zAZ4z9JXPq8slkEed9TZbbm0Ptw8Cky5Ot46lpUKzy3Iu8W/chuW1C7ilPSxq/B8xaUEra9SWjd6e1f+3Pp7gOm2Jrd7kMwLmuCqT8ec4wJAO4nwvEqrn7YvU8YuzIOPMCzg1uYP0EhwrHJk6aIWTepH/1bgXTfdLW8OxM6b/GF+vPrqtewW4YKh7ZZ/TT94PBV7/2FWxR0KS7iPBEP/C4oWGajShT7c2SJMknVsMwyhUfkiRcDyyJG8I3yOcrFymk0s59jqh+2DhUVcEepOzVnPcqNzhgyLrMD0rFdWLL+24HI7ZZjPBMjkZoHkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c1g3dcYVIGes9Pbp4hU9DcM/1/dmc5+Ay2jCxUQHq08=;
- b=PD4ux0nOzYGSZi497ao/x+wqg4Qa2PUGS58TWKc4bnKA5QWIkY5GfLOO/IdFJEjydgiKXKxOUUsNmaZIWVdbVFdAvm+EONFmnQ/TQGtLxljU+jDqSkJQVYUjkEqW6uBFJpTqQORAE2NjPSZzMFOxnFzf5oXaVdCWMa3vFs2x3n7BiY0eWG8Kq1PmjwPYzwPH+N/QyGRJnWzRvbb5k0dU3XcaQ5H8ttlk17FJ41uWLFaqgRYHjtinDR9zWTuBxc4rZ0AuXiegsXT4y+DSBF2xMprgfWXA6C0gMvm9e0KGIuGSPrhzWalxtmyvSLsZ+sb8N/xewuSF/DzRm9SCiywO1w==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by CH0PR20MB6420.namprd20.prod.outlook.com (2603:10b6:610:191::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.21; Thu, 30 May
- 2024 11:18:56 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::ab0b:c0d3:1f91:d149%5]) with mapi id 15.20.7611.030; Thu, 30 May 2024
- 11:18:56 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Jisheng Zhang <jszhang@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] riscv: dts: thead: th1520: Add PMU event node
-Date: Thu, 30 May 2024 19:18:35 +0800
-Message-ID:
- <IA1PR20MB4953BA3638A0839FCB0EF86BBBF32@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.45.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [Ybx/Ue/KoV28DTWdmY2k1N2+n6V1EsDwYJn3psc3r/Y=]
-X-ClientProxiedBy: TYAPR01CA0007.jpnprd01.prod.outlook.com (2603:1096:404::19)
- To IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240530111836.297712-1-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7417183964;
+	Thu, 30 May 2024 11:50:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1717069820; cv=none; b=CBtCjlJZB5nfV5iySWWwUWC8Zbes99cRxY5OafblvJGnA5lO+lg8M3/+L5gpVA+iSyrseyMoz6T41wuOWT4hA0v7SP1qmc5TiiJvaAxYJiLwmRmAnduP1exshEPT+tNDOMS61Y8NO3yiAgwKPe09xce0bIj0ZfzRUM/NBFRrHpM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1717069820; c=relaxed/simple;
+	bh=VrYT1OEB6ocFlr6hvtBUzSwJ47Co1zYWFR3HE7zzLsw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qIZue+8gSu5X/8Rf/ThePK128QtkZuyLEYs/tLG45Bdlm1EdPfNxIN7I4UrVIBgjUMyQPOgwiyw4KquLCi6tXIBjFS3bar7P+oJmFdMhIPPCI5uB7Ofe7hbkFzUYGFTYg35YjCC7nGSVz4ot48t4Jdxs6f8sPzorW9fI7McRo4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=uwT3vHvd; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 3C38F120003;
+	Thu, 30 May 2024 14:50:05 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3C38F120003
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1717069805;
+	bh=xhZ0LuzpL57JCIpP9rLdpiSgKgNXZfSC8qE7zYal93Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=uwT3vHvdaZTnWKPz++UZ0FvWeM1zcQNvm3+q4Gprab2eR/VLeYQ83HVH+y1/QMe1n
+	 BBStF1+XHoMT8346FWJ6OL38z8WjsmtmgrK6c2VEwnkz6AWvG7kWlElQ5Ii76iMI/c
+	 sIQ/ezzQPu1nMAv9kLILZlwk6CsDGvMXey+cIXvzCXN3UkfPpO+6bmhUf8Cio6LAxp
+	 HItFD3CF732bqeDWIy7yzUAW/gk9HvD71FrMVrEkBt3wSUn2vamjJJX1sseXEzU68z
+	 8ALpW/4n/aE4iAEw7DTqax/j6h7CrRhV3NPTTcTRvjLdcJ1hINCZiW1AKOVIEJRSXl
+	 WXAx8O9yq7f5g==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 30 May 2024 14:50:05 +0300 (MSK)
+Received: from [192.168.1.143] (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 30 May 2024 14:50:04 +0300
+Message-ID: <4cc234db-b795-4cfc-8e47-e89642f932f5@salutedevices.com>
+Date: Thu, 30 May 2024 14:50:03 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|CH0PR20MB6420:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71d15887-b981-4235-1584-08dc809a4ba4
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|461199019|440099019|3412199016|1602099003|1710799017;
-X-Microsoft-Antispam-Message-Info:
-	hIId+rXnGJGDh9GNR+pu/JuIJShmIaFhXi1iGqj1e85J5K7YUA/HI7al0oNjYCJXU1zh07f7nPuX9v4O4OAyGakxT8etqmTlvTWq+mbv2A8MYUOryC1cHJf2wKxQ/+WwoSDyCkPAzGbhAK9yzSHNh7FDKnTq9q8jjYTR+K85tEex9PHKs1OjG2ePn9AxQ+cmo84dvKl3NHayMqJ/Ua3Rr8fz3jXR3CjvsvLN3wIjymPGPtYh90jq0rO0vBJqthGvVhMqexSx45zB69SGIPg12tPqTZVEB9xnkpfA7R133AS9w2Vw3P/g6abtUY2WioCqjJUw/PYl2YSdNBQQ4Q39lNKWQn/tvWhYmO/7owRKbIrbtLcctHjNzZynmM1Kk87YaHJ9+MdA9tdNt/TccwJdXx5bkgKSc+NKiAQgh+ev34xr17jgbPdvBFbt1IYc/orgfeRAvNqYf/coDxBsfMFo4AzhQR+HfkElKUBGM/Q30U98JJzsEsi9P+DxGkOgUi+X4J+ZkmDrDHcUKkHMfOT7WlNSZU1HT+CnCdmUWcCyfsd2C+Mnka/+chPqi93jrrlxbMfqIK6hYdXlcoG39R/DJ9f6W0QHBZdGq/ybXYIVEGLbOQFT6ZUlexRGxlJGi1bF62fGvLwB4XLUt+bpdmhj0hV3HaYgWH1PuPUEVkpzADnQjZB/MyOvxt7vTG0W30aA
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?A/SBS4HDsYcrWpuysI2HVpn+aSbfGuCBhO/b2c+vU5ZLzYT87o489cBWMAI4?=
- =?us-ascii?Q?KJFg0jVKlT8j2Blh6O504Mmri0vWIX8MWurRujAuAME7wOWP+DZOOucqY3AK?=
- =?us-ascii?Q?BFORUvMZGDU3/rAy1D/QBV+XeXrwW1SBdq0onlnpwMsurgt6tlU1iE/iqdbc?=
- =?us-ascii?Q?17hibpqn1AezU4ztefpEuwCIFnbr2VEIJ5/R3tb0QXOCqDteSc+OW0gaymO0?=
- =?us-ascii?Q?m3fOuUoCfPZUV5w6hvXuGWQ7ENZJmOIDKt60CiEFZ3C3QFJC9egQyRt1bfeh?=
- =?us-ascii?Q?3FWmm4014c+V2kk8nNzaT11La7IHl5uiphXjVsdQ/fYkIpND5+LbdTuPYk/h?=
- =?us-ascii?Q?L+bl3QjueKDXsfQdKS4CJmUS+Fmw9WMsSL3QhFdWLCvHps0GNcaJCHg7WStf?=
- =?us-ascii?Q?4Qy3bkYcvq0bOQmvS/dTi2NhFDXMVzizRHyVltq7BKdYEUVZBo3xO5lk5jo7?=
- =?us-ascii?Q?2zz+W4oGn1iXRyBVh8HJF/oUWA0IMoewRiSmGGZAD56rSJzO/4RmDufkdrLs?=
- =?us-ascii?Q?FRr+DyVoQRDqLNO87P5opUb+ddBaxfsooK7u/tTAAOO625RyLZ40nR0uXVm7?=
- =?us-ascii?Q?NQSkjtC683aKFKV5gPxDBdEmrAuS7hL0grdgT0h4N8w/LkCEUXyKR8+Fcgs8?=
- =?us-ascii?Q?AsLvtdTu1BzwKrtSDgbLWPMvpH1SRU0cE0Y51IKb48MDJaQiO7Qld1j0KhVW?=
- =?us-ascii?Q?7I960oHs2F7sqY4M2rvi6NWR3fDc0isw1UnGxwW1ppW1yBvmCGs4MrbsXb61?=
- =?us-ascii?Q?75zziuVPnYoQyZg95q/r4QJIkNFZt67Z+oDhiSL/SByf3fY/FCHMNqX9rQ3H?=
- =?us-ascii?Q?jfSc95/ULxSxd+MrS3IvA8eYY943FB5nEO1GxFvP063If71ZutV2TDq4TV4c?=
- =?us-ascii?Q?WLFgEvN+iiewmXUFakup3B2e0J4Io76ZZwKNnL1RUCzNVDQCCy1BvJ37+S4g?=
- =?us-ascii?Q?iEUwgaz03DhNB2D3R71vN+0DGOthg6DvU3S6EaQGobl7M8t6N5kBoc44pwWu?=
- =?us-ascii?Q?fxvvVJICpDZJhbH+wmnHGSvC04FvggRekcBpl+CFd1qOEG3qB9w6VMsWSIs0?=
- =?us-ascii?Q?Htsd46ssAcGx9jP1KLilqg9RTqRszeHdFg9LrkmdKWNLnDbch752H1EPG8pz?=
- =?us-ascii?Q?S29Pgw+hBvPbhp1LCaCeMjx1LVZWSpEs5wnCZjpk4fNtlSp9OOaSPxOrmHkx?=
- =?us-ascii?Q?dE1HsjlPI9zAnoXXT8DyfdkhDL39V8guWY73kRffipQK66xr5L/pxsGAWbe6?=
- =?us-ascii?Q?PKTlJCqNKbcHysNALEzq?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71d15887-b981-4235-1584-08dc809a4ba4
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2024 11:18:56.5347
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR20MB6420
+User-Agent: Mozilla Thunderbird
+Subject: Re: [DMARC error][DKIM error] [PATCH v6 2/2] arm64: dts: amlogic: Add
+ Amlogic S4 PWM
+To: <kelvin.zhang@amlogic.com>
+CC: Jerome Brunet <jbrunet@baylibre.com>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-pwm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+	<devicetree@vger.kernel.org>, Junyi Zhao <junyi.zhao@amlogic.com>, Rob
+ Herring <robh@kernel.org>, "kernel@salutedevices.com"
+	<kernel@salutedevices.com>
+References: <20240529-s4-pwm-v6-0-270f63049f20@amlogic.com>
+ <20240529-s4-pwm-v6-2-270f63049f20@amlogic.com>
+Content-Language: en-US
+From: George Stark <gnstark@salutedevices.com>
+In-Reply-To: <20240529-s4-pwm-v6-2-270f63049f20@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 185613 [May 30 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: gnstark@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 20 0.3.20 743589a8af6ec90b529f2124c2bbfc3ce1d2f20f, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/05/30 07:20:00 #25352518
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-T-HEAD th1520 uses standard C910 chip and its pmu is already supported
-by OpenSBI.
 
-Add the pmu event description for T-HEAD th1520 SoC.
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-Link: https://www.xrvm.com/product/xuantie/4240217381324001280?spm=xrvm.27140568.0.0.7f979b29nzIa1m
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 81 +++++++++++++++++++++++++++
- 1 file changed, 81 insertions(+)
+On 5/29/24 13:00, Kelvin Zhang via B4 Relay wrote:
+> From: Junyi Zhao <junyi.zhao@amlogic.com>
+> 
+> Add device nodes for PWM_AB, PWM_CD, PWM_EF, PWM_GH and PWM_IJ
+> along with GPIO PIN configs of each channel.
+> 
+> Signed-off-by: Junyi Zhao <junyi.zhao@amlogic.com>
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 207 ++++++++++++++++++++++++++++++
+>   1 file changed, 207 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index 10896f9df682..98f554577bae 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -312,6 +312,168 @@ mux {
+>   					};
+>   				};
+>   
+> +				pwm_a_pins1: pwm-a-pins1 {
+> +					mux {
+> +						groups = "pwm_a_d";
+> +						function = "pwm_a";
+> +					};
+> +				};
+> +
+> +				pwm_a_pins2: pwm-a-pins2 {
+> +					mux {
+> +						groups = "pwm_a_x";
+> +						function = "pwm_a";
+> +					};
+> +				};
+> +
+> +				pwm_a_pins: pwm-a-pins {
+> +					mux {
+> +						groups = "pwm_a_d";
+> +						function = "pwm_a";
+> +					};
+> +				};
+pwm_a_pins is just a copy of pwm_a_pins1 node
+> +
+> +				pwm_b_pins1: pwm-b-pins1 {
+> +					mux {
+> +						groups = "pwm_b_d";
+> +						function = "pwm_b";
+> +					};
+> +				};
+> +
+> +				pwm_b_pins2: pwm-b-pins2 {
+> +					mux {
+> +						groups = "pwm_b_x";
+> +						function = "pwm_b";
+> +					};
+> +				};
+> +
+> +				pwm_c_pins1: pwm-c-pins1 {
+> +					mux {
+> +						groups = "pwm_c_d";
+> +						function = "pwm_c";
+> +					};
+> +				};
+> +
+> +				pwm_c_pins2: pwm-c-pins2 {
+> +					mux {
+> +						groups = "pwm_c_x";
+> +						function = "pwm_c";
+> +					};
+> +				};
+> +
+> +				pwm_d_pins1: pwm-d-pins1 {
+> +					mux {
+> +						groups = "pwm_d_d";
+> +						function = "pwm_d";
+> +					};
+> +				};
+> +
+> +				pwm_d_pins2: pwm-d-pins2 {
+> +					mux {
+> +						groups = "pwm_d_h";
+> +						function = "pwm_d";
+> +					};
+> +				};
+> +
+> +				pwm_e_pins1: pwm-e-pins1 {
+> +					mux {
+> +						groups = "pwm_e_x";
+> +						function = "pwm_e";
+> +						drive-strength-microamp = <500>;
+AFAIU GPIOX_16 (groups = "pwm_e_x") is frequently used to generate
+clock for wifi module and drive-strength-microamp property here is 
+needed only for that special case. If so then should that property be 
+put in board dts file instead?
+> +					};
+> +				};
+> +
+> +				pwm_e_pins2: pwm-e-pins2 {
+> +					mux {
+> +						groups = "pwm_e_z";
+> +						function = "pwm_e";
+> +					};
+> +				};
+> +
+> +				pwm_f_pins1: pwm-f-pins1 {
+> +					mux {
+> +						groups = "pwm_f_x";
+> +						function = "pwm_f";
+> +					};
+> +				};
+> +
+> +				pwm_f_pins2: pwm-f-pins2 {
+> +					mux {
+> +						groups = "pwm_f_z";
+> +						function = "pwm_f";
+> +					};
+> +				};
+> +
+> +				pwm_g_pins1: pwm-g-pins1 {
+> +					mux {
+> +						groups = "pwm_g_d";
+> +						function = "pwm_g";
+> +					};
+> +				};
+> +
+> +				pwm_g_pins2: pwm-g-pins2 {
+> +					mux {
+> +						groups = "pwm_g_z";
+> +						function = "pwm_g";
+> +					};
+> +				};
+> +
+> +				pwm_h_pins: pwm-h-pins {
+> +					mux {
+> +						groups = "pwm_h";
+> +						function = "pwm_h";
+> +					};
+> +				};
+> +
+> +				pwm_i_pins1: pwm-i-pins1 {
+> +					mux {
+> +						groups = "pwm_i_d";
+> +						function = "pwm_i";
+> +					};
+> +				};
+> +
+> +				pwm_i_pins2: pwm-i-pins2 {
+> +					mux {
+> +						groups = "pwm_i_h";
+> +						function = "pwm_i";
+> +					};
+> +				};
+> +
+> +				pwm_j_pins: pwm-j-pins {
+> +					mux {
+> +						groups = "pwm_j";
+> +						function = "pwm_j";
+> +					};
+> +				};
+> +
+> +				pwm_a_hiz_pins: pwm-a-hiz-pins {
+> +					mux {
+> +						groups = "pwm_a_hiz";
+> +						function = "pwm_a_hiz";
+> +					};
+> +				};
+> +
+> +				pwm_b_hiz_pins: pwm-b-hiz-pins {
+> +					mux {
+> +						groups = "pwm_b_hiz";
+> +						function = "pwm_b_hiz";
+> +					};
+> +				};
+> +
+> +				pwm_c_hiz_pins: pwm-c-hiz-pins {
+> +					mux {
+> +						groups = "pwm_c_hiz";
+> +						function = "pwm_b_hiz";
+Should it be function = "pwm_c_hiz"?
+> +					};
+> +				};
+> +
+> +				pwm_g_hiz_pins: pwm-g-hiz-pins {
+> +					mux {
+> +						groups = "pwm_g_hiz";
+> +						function = "pwm_g_hiz";
+> +					};
+> +				};
+> +
+>   				spicc0_pins_x: spicc0-pins_x {
+>   					mux {
+>   						groups = "spi_a_mosi_x",
+> @@ -399,6 +561,51 @@ spicc0: spi@50000 {
+>   				status = "disabled";
+>   			};
+>   
+> +			pwm_ab: pwm@58000 {
+> +				compatible = "amlogic,meson-s4-pwm";
+> +				reg = <0x0 0x58000 0x0 0x24>;
+> +				clocks = <&clkc_periphs CLKID_PWM_A>,
+> +						<&clkc_periphs CLKID_PWM_B>;
+> +				#pwm-cells = <3>;
+> +				status = "disabled";
+> +			};
+> +
+> +			pwm_cd: pwm@5a000 {
+> +				compatible = "amlogic,meson-s4-pwm";
+> +				reg = <0x0 0x5a000 0x0 0x24>;
+> +				clocks = <&clkc_periphs CLKID_PWM_C>,
+> +						<&clkc_periphs CLKID_PWM_D>;
+> +				#pwm-cells = <3>;
+> +				status = "disabled";
+> +			};
+> +
+> +			pwm_ef: pwm@5c000 {
+> +				compatible = "amlogic,meson-s4-pwm";
+> +				reg = <0x0 0x5c000 0x0 0x24>;
+> +				clocks = <&clkc_periphs CLKID_PWM_E>,
+> +						<&clkc_periphs CLKID_PWM_F>;
+> +				#pwm-cells = <3>;
+> +				status = "disabled";
+> +			};
+> +
+> +			pwm_gh: pwm@5e000 {
+> +				compatible = "amlogic,meson-s4-pwm";
+> +				reg = <0x0 0x5e000 0x0 0x24>;
+> +				clocks = <&clkc_periphs CLKID_PWM_G>,
+> +						<&clkc_periphs CLKID_PWM_H>;
+> +				#pwm-cells = <3>;
+> +				status = "disabled";
+> +			};
+> +
+> +			pwm_ij: pwm@60000 {
+> +				compatible = "amlogic,meson-s4-pwm";
+> +				reg = <0x0 0x60000 0x0 0x24>;
+> +				clocks = <&clkc_periphs CLKID_PWM_I>,
+> +						<&clkc_periphs CLKID_PWM_J>;
+> +				#pwm-cells = <3>;
+> +				status = "disabled";
+> +			};
+> +
+>   			i2c0: i2c@66000 {
+>   				compatible = "amlogic,meson-axg-i2c";
+>   				reg = <0x0 0x66000 0x0 0x20>;
+> 
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index d2fa25839012..3c9974062c20 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -122,6 +122,87 @@ l2_cache: l2-cache {
- 		};
- 	};
-
-+	pmu {
-+		compatible = "riscv,pmu";
-+		riscv,event-to-mhpmcounters =
-+			<0x00003 0x00003 0x0007fff8>,
-+			<0x00004 0x00004 0x0007fff8>,
-+			<0x00005 0x00005 0x0007fff8>,
-+			<0x00006 0x00006 0x0007fff8>,
-+			<0x00007 0x00007 0x0007fff8>,
-+			<0x00008 0x00008 0x0007fff8>,
-+			<0x00009 0x00009 0x0007fff8>,
-+			<0x0000a 0x0000a 0x0007fff8>,
-+			<0x10000 0x10000 0x0007fff8>,
-+			<0x10001 0x10001 0x0007fff8>,
-+			<0x10002 0x10002 0x0007fff8>,
-+			<0x10003 0x10003 0x0007fff8>,
-+			<0x10010 0x10010 0x0007fff8>,
-+			<0x10011 0x10011 0x0007fff8>,
-+			<0x10012 0x10012 0x0007fff8>,
-+			<0x10013 0x10013 0x0007fff8>;
-+		riscv,event-to-mhpmevent =
-+			<0x00003 0x00000000 0x00000001>,
-+			<0x00004 0x00000000 0x00000002>,
-+			<0x00006 0x00000000 0x00000006>,
-+			<0x00005 0x00000000 0x00000007>,
-+			<0x00007 0x00000000 0x00000008>,
-+			<0x00008 0x00000000 0x00000009>,
-+			<0x00009 0x00000000 0x0000000a>,
-+			<0x0000a 0x00000000 0x0000000b>,
-+			<0x10000 0x00000000 0x0000000c>,
-+			<0x10001 0x00000000 0x0000000d>,
-+			<0x10002 0x00000000 0x0000000e>,
-+			<0x10003 0x00000000 0x0000000f>,
-+			<0x10010 0x00000000 0x00000010>,
-+			<0x10011 0x00000000 0x00000011>,
-+			<0x10012 0x00000000 0x00000012>,
-+			<0x10013 0x00000000 0x00000013>;
-+		riscv,raw-event-to-mhpmcounters =
-+			<0x00000000 0x00000001 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000002 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000003 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000004 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000005 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000006 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000007 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000008 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000009 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000000a 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000000b 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000000c 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000000d 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000000e 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000000f 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000010 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000011 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000012 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000013 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000014 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000015 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000016 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000017 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000018 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000019 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000001a 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000001b 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000001c 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000001d 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000001e 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000001f 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000020 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000021 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000022 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000023 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000024 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000025 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000026 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000027 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000028 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x00000029 0xffffffff 0xffffffff 0x0007fff8>,
-+			<0x00000000 0x0000002a 0xffffffff 0xffffffff 0x0007fff8>;
-+	};
-+
- 	osc: oscillator {
- 		compatible = "fixed-clock";
- 		clock-output-names = "osc_24m";
---
-2.45.1
-
+-- 
+Best regards
+George
 
