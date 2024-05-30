@@ -1,127 +1,274 @@
-Return-Path: <devicetree+bounces-70747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E709F8D447F
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 06:28:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4789A8D454E
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 08:11:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93B191F22293
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 04:28:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9517AB21DD8
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 06:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D88C3143882;
-	Thu, 30 May 2024 04:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0094143739;
+	Thu, 30 May 2024 06:11:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C4OOGqum"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="iqnipGLU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A289414387B;
-	Thu, 30 May 2024 04:28:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7A2DDA0;
+	Thu, 30 May 2024 06:11:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717043304; cv=none; b=sIQxPoKeVea6FLkxedvQNwKu0sdXSQR9BI87ZrAL5KxLiAtUAlrb4NZXpr+zyGUxgY8uF+LmZG/Hejkyl+Xm9jFwlBJizAu3ZwZfPL/EzymsIWUADQEAXcoH6qdBaLPbdhOCszN4402IW0v5eiXKJmu+wiCTDsQpg6XV37cV3z4=
+	t=1717049510; cv=none; b=S42myYXjLSy1p6hWAs5wgzMG8CMX1kmw1M3Co1jpqM61aIto7oe1fvYs0qWoP8M4esxvF3WcLpdQQlANL/uDK793lL/q844huN2dDgjuU3cy03fM3GUV1iELyFX/hZsXiyeATxZqyRrdHERB/lBJk8G7lQVGqlBgFsey3PuM3OQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717043304; c=relaxed/simple;
-	bh=Vb4DzHQMDZ+bIB/aeLBPJz+U1QFjkT+JOnZ0SfhbWFQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rm7KqOCev7Q3kqXm6qzs7A2YYK51a5VpR7YmKnp3w8QvNuPlbHxCdhz71PFGXCOHzE4LgYiVbIUIQZ02zVOFoCp+noTRkahpFbpjlRvSu69v1+Zu+oUGdhz+SM9kJ1ygO/HltGjK00R+8cPHopd9HEpUm/5mtoACM4iLYNzIF4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C4OOGqum; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1717043303; x=1748579303;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Vb4DzHQMDZ+bIB/aeLBPJz+U1QFjkT+JOnZ0SfhbWFQ=;
-  b=C4OOGqumpyP8gzlFGZL+SQWm9yUU5sYpbzuCVekfYh0gAQgTVkoevyID
-   HnIVeJDrPk1cEaobQ2aEQDXAteSx0uj0rEy0a6pKsbo8Ptidbrbf2s1Ff
-   9IktTsUO9h0WItfdnE5QiZpdES2HcS/g+PEpf7J2SaKVAGvMxM0cKiHBB
-   W0FpMqMPCVp7KYh5oCw/oSPyQxbakmoEbWutqr4yTYspNMflNbIIeflPI
-   fFzIHbZl2t3jiXvNs8dnafw8RLdUMXSOU67hh2JP/VozJ7mtx1G8LCZ0k
-   vm8P7dE2KxW4j1i6XpzkdnXFgLpsDQ+5E1G68PlIubySAJkJQk6bpwYPx
-   Q==;
-X-CSE-ConnectionGUID: nFcj2GjHQrOgRNcoF+w9wA==
-X-CSE-MsgGUID: wRWlJ8aMTMSYTY8bL0JVxQ==
-X-IronPort-AV: E=McAfee;i="6600,9927,11087"; a="13442423"
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
-   d="scan'208";a="13442423"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2024 21:28:22 -0700
-X-CSE-ConnectionGUID: 92ghtZRYTR+XzmHPUJooHA==
-X-CSE-MsgGUID: aPFn0MmTRICJCa7EMg/lOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,199,1712646000"; 
-   d="scan'208";a="36314791"
-Received: from unknown (HELO 0610945e7d16) ([10.239.97.151])
-  by orviesa007.jf.intel.com with ESMTP; 29 May 2024 21:28:19 -0700
-Received: from kbuild by 0610945e7d16 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sCXOi-000Eny-37;
-	Thu, 30 May 2024 04:28:16 +0000
-Date: Thu, 30 May 2024 12:27:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: wangshuaijie@awinic.com, dmitry.torokhov@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, jeff@labundy.com,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, wangshuaijie@awinic.com,
-	liweilei@awinic.com, kangjiajun@awinic.com
-Subject: Re: [PATCH V1 5/5] Add support for Awinic sar sensor.
-Message-ID: <202405301244.1ZqAu1Pf-lkp@intel.com>
-References: <20240529130608.783624-6-wangshuaijie@awinic.com>
+	s=arc-20240116; t=1717049510; c=relaxed/simple;
+	bh=NNuRGnCC/PwvYry4sTt4WxbSvgwyXHJP0+uo5/GHg94=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Z0GtF/fLa6ALqtM1aUTablUWHrkv4ycenx3I5OhAs78Z1oYuo+I3FFO3MPDZpFV/bsAWzpdrrUrihfBiiBe9G39x+p2+DEivUJiiRtYTyxA/KHxVZpqz1hVn6HJSOU3lHgwVL+PYF50sOmGwnpjqIdN8AVhHq8oYDOVAiCLJkfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=iqnipGLU; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1717049479; x=1717654279; i=wahrenst@gmx.net;
+	bh=EsObzuDggZcPsAJCrYelSxDfb2ObF3xVT9aYpHF/x8o=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=iqnipGLUmAHOOWqDMe9hRcfpFCCpxhFLUkCe/fYExpavDdLid1imlEzKBqHZpsvW
+	 xl+SkXhnxzRcHcqbUdH4f9i9KgQywuvm1M7Wx3+9QLJrs0vNNwWTtgBoavp8j+QW4
+	 gUueQNl1mOrSPgzR+e3z7sGeJY3hKmSBpvAf28XtjUXb8lDzWiSMP6JTXZci9v/e7
+	 8aftExv2s2VmQtJFJKT2AQtSgnNa3pLgFO64cYBfPIqqwuDFBRa8iRa0RKvX0uO1R
+	 EGzmUBb8+q6Q2/ulh0zVNTCLaHBxb12s5MA71IowjWDzzZenGmi6KjYaULVLCywcA
+	 CvXJTgQT/yH5hrLIXg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MORAa-1rq4531Lw6-00MYLI; Thu, 30
+ May 2024 08:11:19 +0200
+Message-ID: <f94cf0fb-a9a2-4447-9b32-7f09c2a37cf6@gmx.net>
+Date: Thu, 30 May 2024 08:11:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240529130608.783624-6-wangshuaijie@awinic.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] arm64: dts: broadcom: Add support for BCM2712
+To: Andrea della Porta <andrea.porta@suse.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Kamal Dasu <kamal.dasu@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org
+References: <cover.1716899600.git.andrea.porta@suse.com>
+ <8dd6997394a01317747ca11b4779f586752b4947.1716899600.git.andrea.porta@suse.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <8dd6997394a01317747ca11b4779f586752b4947.1716899600.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:wTYiOw3KxXiOy40hYJRqts+FSsstKKT4WxhXtd/QEojTR2X2ojL
+ TySUwrIHVWRK3PLZ3br7lh9HWcvgqFq2Wsw6ETiv3sJukezwScTkBHYdP/3PM8UfTPdtmKG
+ 4PnTCpPe//sivTIVv2K/20Lv58L+bv4arelOS6JPGh2oZW5HDWxTFz+P5yfPc9Faf5xmkRv
+ AtJ9RlWQo0KXN4mclqdFw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:c7pe3KccDI8=;iYBiNMPDOng309BceoMXopUPaVf
+ wnJd1FHtrLbgnE+aKZuojCZx19zPY+xm5Sr1HrY+8QY2JE4otngDh4f8+WEUgX0h/5kAUIYr0
+ 5xeQK+lu93ucjWyBnUM+W9Clm4/bAP6k+znyoSe/yllkHhEB7rIf6lNB+FLrgRk4r0WGgQCik
+ 70Wm8/xDZPJ1fevl80ItZ5AaOULyUUrKCnXN9ums/pzQcWkx0PHQlgJllXlUITDsAhtQrETRm
+ S9gepccEx2efsRDN3ziRxdTuQ/kXe+Bi2P2cVlASD/e94++dKDpOEzAVLUcfSMnLGHx3WaNVW
+ AOqbouezSuWZEF9RSP6VygGPoux36PMni+hPcGS6CjL9axWBCQ5zwGrws/CzyKW9QRisEV30l
+ s09DMY9oosd6PEtfd9TQms3xAEqhu9EMHMAj5FiT5cno8+eRIPpgDZyUwmfs56sBOIjpASvOx
+ 4LkRwTwBORL8OOaQO8HJSiFLKYct3/ZvpocLr3lWwOpC+imcDk2EZKW5svuBOSmqsAMWXrco9
+ 0MBMIvO0xEORFqbG62E04VWvt4b8kv8ziJNy88Dc/d7ys0dZeqS0n0HV43nPhJa5x6XGLxEbw
+ OJZFnankn0wnJTy+ORGZi9TmkOjCIbvk8LBrj/WN2XcjjsrLlfI69xjHatQsjt8plx5anT5py
+ rwGl2ezvMFlRKTzDA20toUCIM8flQ99OJp/boL9gnvpx7eDNv8OwMSQp1OrepdQJkRFgNOVLv
+ Xx51oZF7v5LEjaUY95FEDNX/kUiKBmsl0UjkOUqOH641g+/9lCPOmZOi9vVVGp1pvPRjva/TC
+ S+R7WtrnsdDkIRs3CuiaT0gLswLgiB8iwIAkz7+7/70Xs=
 
-Hi,
+Hi Andrea,
 
-kernel test robot noticed the following build warnings:
+i think the following subject would be better:
 
-[auto build test WARNING on e0cce98fe279b64f4a7d81b7f5c3a23d80b92fbc]
+arm64: dts: broadcom: Add minimal support for Raspberry Pi 5
 
-url:    https://github.com/intel-lab-lkp/linux/commits/wangshuaijie-awinic-com/dt-bindings-input-Add-YAML-to-Awinic-sar-sensor/20240529-211303
-base:   e0cce98fe279b64f4a7d81b7f5c3a23d80b92fbc
-patch link:    https://lore.kernel.org/r/20240529130608.783624-6-wangshuaijie%40awinic.com
-patch subject: [PATCH V1 5/5] Add support for Awinic sar sensor.
-config: xtensa-randconfig-r064-20240530 (https://download.01.org/0day-ci/archive/20240530/202405301244.1ZqAu1Pf-lkp@intel.com/config)
-compiler: xtensa-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240530/202405301244.1ZqAu1Pf-lkp@intel.com/reproduce)
+because you also add the board file here.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202405301244.1ZqAu1Pf-lkp@intel.com/
+Am 28.05.24 um 15:32 schrieb Andrea della Porta:
+> The BCM2712 SoC family can be found on Raspberry Pi 5.
+> Add minimal SoC and board (Rpi5 specific) dts file to be able to
+> boot from SD card and use console on debug UART.
+>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>   arch/arm64/boot/dts/broadcom/Makefile         |   1 +
+>   .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |  64 ++++
+>   arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 292 ++++++++++++++++++
+>   3 files changed, 357 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+>   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts=
+/broadcom/Makefile
+> index 8b4591ddd27c..92565e9781ad 100644
+> --- a/arch/arm64/boot/dts/broadcom/Makefile
+> +++ b/arch/arm64/boot/dts/broadcom/Makefile
+> @@ -6,6 +6,7 @@ DTC_FLAGS :=3D -@
+>   dtb-$(CONFIG_ARCH_BCM2835) +=3D bcm2711-rpi-400.dtb \
+>   			      bcm2711-rpi-4-b.dtb \
+>   			      bcm2711-rpi-cm4-io.dtb \
+> +			      bcm2712-rpi-5-b.dtb \
+>   			      bcm2837-rpi-3-a-plus.dtb \
+>   			      bcm2837-rpi-3-b.dtb \
+>   			      bcm2837-rpi-3-b-plus.dtb \
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm=
+64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> new file mode 100644
+> index 000000000000..2bdbb6780242
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
+> @@ -0,0 +1,64 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "bcm2712.dtsi"
+> +
+> +/ {
+> +	compatible =3D "raspberrypi,5-model-b", "brcm,bcm2712";
+> +	model =3D "Raspberry Pi 5";
+> +
+> +	aliases {
+> +		serial10 =3D &uart10;
+> +	};
+> +
+> +	chosen: chosen {
+> +		stdout-path =3D "serial10:115200n8";
+> +	};
+> +
+> +	/* Will be filled by the bootloader */
+> +	memory@0 {
+> +		device_type =3D "memory";
+> +		reg =3D <0 0 0 0x28000000>;
+> +	};
+> +
+> +	sd_io_1v8_reg: sd-io-1v8-reg {
+> +		compatible =3D "regulator-gpio";
+> +		regulator-name =3D "vdd-sd-io";
+> +		regulator-min-microvolt =3D <1800000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		regulator-settling-time-us =3D <5000>;
+> +		gpios =3D <&gio_aon 3 GPIO_ACTIVE_HIGH>;
+> +		states =3D <1800000 1>,
+> +			 <3300000 0>;
+> +	};
+> +
+> +	sd_vcc_reg: sd-vcc-reg {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "vcc-sd";
+> +		regulator-min-microvolt =3D <3300000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +		gpios =3D <&gio_aon 4 GPIO_ACTIVE_HIGH>;
+> +	};
+> +};
+> +
+> +/* The Debug UART, on Rpi5 it's on JST-SH 1.0mm 3-pin connector
+> + * labeled "UART", i.e. the interface with the system console.
+> + */
+> +&uart10 {
+> +	status =3D "okay";
+> +};
+> +
+> +/* SDIO1 is used to drive the SD card */
+> +&sdio1 {
+> +	vqmmc-supply =3D <&sd_io_1v8_reg>;
+> +	vmmc-supply =3D <&sd_vcc_reg>;
+> +	bus-width =3D <4>;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-ddr50;
+> +	sd-uhs-sdr104;
+> +};
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot=
+/dts/broadcom/bcm2712.dtsi
+> new file mode 100644
+> index 000000000000..71b0fa6c9594
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+> @@ -0,0 +1,292 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	compatible =3D "brcm,bcm2712";
+> +
+> +	#address-cells =3D <2>;
+> +	#size-cells =3D <2>;
+> +
+> +	interrupt-parent =3D <&gicv2>;
+> +
+> +	axi: axi@1000000000 {
+> +		compatible =3D "simple-bus";
+> +		#address-cells =3D <2>;
+> +		#size-cells =3D <2>;
+> +		ranges =3D <0x10 0x00000000  0x10 0x00000000  0x01 0x00000000>;
+> +
+> +		sdio1: mmc@1000fff000 {
+> +			compatible =3D "brcm,bcm2712-sdhci",
+> +				     "brcm,sdhci-brcmstb";
+> +			reg =3D <0x10 0x00fff000  0x0 0x260>,
+> +			      <0x10 0x00fff400  0x0 0x200>;
+> +			reg-names =3D "host", "cfg";
+> +			interrupts =3D <GIC_SPI 273 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&clk_emmc2>;
+> +			clock-names =3D "sw_sdio";
+> +			mmc-ddr-3_3v;
+> +		};
+> +
+> +		gicv2: interrupt-controller@107fff9000 {
+> +			interrupt-controller;
+> +			#interrupt-cells =3D <3>;
+> +			compatible =3D "arm,gic-400";
+> +			reg =3D <0x10 0x7fff9000  0x0 0x1000>,
+> +			      <0x10 0x7fffa000  0x0 0x2000>,
+> +			      <0x10 0x7fffc000  0x0 0x2000>,
+> +			      <0x10 0x7fffe000  0x0 0x2000>;
+Please move compatible and reg before the other properties (DTS coding
+style)
+> +		};
+> +	};
+> +
+> +	clocks {
+> +		/* The oscillator is the root of the clock tree. */
+> +		clk_osc: clk-osc {
+> +			compatible =3D "fixed-clock";
+> +			#clock-cells =3D <0>;
+> +			clock-output-names =3D "osc";
+> +			clock-frequency =3D <54000000>;
+> +		};
+> +
+> +		clk_vpu: clk-vpu {
+> +			#clock-cells =3D <0>;
+> +			compatible =3D "fixed-clock";
+> +			clock-frequency =3D <750000000>;
+> +			clock-output-names =3D "vpu-clock";
+> +		};
+Is the VPU clock really fixed or is it just a workaround for minimal
+boot support?
 
-All warnings (new ones prefixed by >>):
-
->> drivers/input/misc/aw_sar/aw_sar.c:1992:34: warning: 'aw_sar_dt_match' defined but not used [-Wunused-const-variable=]
-    1992 | static const struct of_device_id aw_sar_dt_match[] = {
-         |                                  ^~~~~~~~~~~~~~~
-
-
-vim +/aw_sar_dt_match +1992 drivers/input/misc/aw_sar/aw_sar.c
-
-  1991	
-> 1992	static const struct of_device_id aw_sar_dt_match[] = {
-  1993		{ .compatible = "awinic,aw96103" },
-  1994		{ .compatible = "awinic,aw96105" },
-  1995		{ .compatible = "awinic,aw96303" },
-  1996		{ .compatible = "awinic,aw96305" },
-  1997		{ .compatible = "awinic,aw96308" },
-  1998	};
-  1999	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Except of this, LGTM
 
