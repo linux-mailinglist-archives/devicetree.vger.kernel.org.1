@@ -1,54 +1,69 @@
-Return-Path: <devicetree+bounces-70983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-70984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06CC8D53AC
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 22:23:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED6A8D53DC
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 22:28:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D02B01C24468
-	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 20:23:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B2A31F26D17
+	for <lists+devicetree@lfdr.de>; Thu, 30 May 2024 20:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B752C158A14;
-	Thu, 30 May 2024 20:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F06B7316F;
+	Thu, 30 May 2024 20:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="MvOptH8Y"
+	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="iISsR6bi";
+	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="npM9s9pq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+Received: from mailrelay6-1.pub.mailoutpod3-cph3.one.com (mailrelay6-1.pub.mailoutpod3-cph3.one.com [46.30.211.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498EC142E8C;
-	Thu, 30 May 2024 20:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CD347A48
+	for <devicetree@vger.kernel.org>; Thu, 30 May 2024 20:28:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1717100442; cv=none; b=kBIPHTFWY9J0Jh3/AZwIffrWoEYmOabN7jwS8McEIrygmADZjaE94iFnFLwfozheXQETD+w7EvG9RkGuWUMnTOyt5k+XWAszSB9JrXqmeUjej++Xl9MTUExlyksa7BXBZ0hU0LAqamGpYP5Hf/7+1uAW+wi2bX4ObK9a0q22iRM=
+	t=1717100915; cv=none; b=g07EGhgL9wMqojItIElKez/WzKZMy8GCNVcwynGLvNj3j23zi/lgV4cvjJ4ftwCmgVHt80n6TsqoaHv1ZqcPxz3bWnggmHRzqOWILMLh0dulnIUUyAh4qNAzIz1BAzFYdeRzh2rN3R5RE1OLSTkiaK5Aq+etourwROSUeXDvyzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1717100442; c=relaxed/simple;
-	bh=y6fti8cQCakDlZoQdI4Hnd2ga5rtZg6++Y1ecr+x4PU=;
+	s=arc-20240116; t=1717100915; c=relaxed/simple;
+	bh=J4KBa91vTwvjKyQ32cxhENIxuhAvRMoEF4xMj9S4DD0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q9fzLU2pAv/1PtfnYgDCqcD3bR1zhyAhy+NFfa4bJ8R+id/TbHdmMQ4jGSc+Mh2oSqi3eAyel+Ght4+E3ceb38jBgY5u0Em/+FCU/LS/lE1xxQ3cPUKoPOtZqRaOgD61HCvhRt+mtf8zBGS8KCInzLMg9wCS034be1a1JYX/EUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de; spf=pass smtp.mailfrom=t-8ch.de; dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b=MvOptH8Y; arc=none smtp.client-ip=159.69.126.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-8ch.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
-	t=1717100438; bh=y6fti8cQCakDlZoQdI4Hnd2ga5rtZg6++Y1ecr+x4PU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MvOptH8Yqs4v/aeQheehKOxAxA07XHqfhsvNCkHuG/vo86HD8kurE7pOCG9q3d1Cz
-	 GdVUoduzH6sbBi1ZnZnONzBCCqM4U3FoYVc7Q4NQtZ5eyTPqeguNSYwZWUDFhnOtiC
-	 aIshfFYXvxO9FjyJnWzQiK75owXNNCIr6LrbzxeE=
-Date: Thu, 30 May 2024 22:20:37 +0200
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: linux-hwmon@vger.kernel.org, Hristo Venev <hristo@venev.name>, 
-	=?utf-8?B?UmVuw6k=?= Rebe <rene@exactcode.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>
-Subject: Re: [PATCH 2/3] hwmon: Add support for SPD5118 compliant temperature
- sensors
-Message-ID: <34a4292e-c4db-4b40-822e-b892e1444045@t-8ch.de>
-References: <20240529205204.81208-1-linux@roeck-us.net>
- <20240529205204.81208-3-linux@roeck-us.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TTgucsLQewob+YdjPZzyxMta+H6f1Z2/INPWvc95xWkBO7rLUnpvi2V2lZbwxGIt5pDDuyH13XAJGpwuuv6kDALAS2VG5f2jzTG4YyY9ZJxjljy42g7b9TXVuajWSG0rnafGlMXpwTfrCyYMqK9oHWIQpVzhKiQ+L2SCffcW4nI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=iISsR6bi; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=npM9s9pq; arc=none smtp.client-ip=46.30.211.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=rsa1;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=A9v8zIG2nO6qcSOd8DMaTxsgywGvI2zqZhB8aRF0VXo=;
+	b=iISsR6biyfqy471hHRm4DcrNBvLRjGn6Rrlbq3LLjWeWegmckdRQ7ry1JBB7Vj7a6C608YKq/4gzV
+	 GhnTDBMWdJX3H7ZbtPcaCyYrLeKyvl4dj9vcUVowseqybeN4TSAnIKs//2e79NYPYpRroXOO5oRcwC
+	 Km9d9jNyeLezx+BYjNQ+OUhWvuG4imtAS7XUnu/P1cAo9lAzSk7R26jbq6aFBW71lXThwYMBA+tnxE
+	 FQJH2zDbVfopF8YvDr5wVZWjShv0YNUQK82VrCOtJSKQtHcIAmweEydYnJqZAPnJyekswHejAN5FWd
+	 t5Vi+dSBIiahJZHVGGbgur6q+eZnfPg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=ed1;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=A9v8zIG2nO6qcSOd8DMaTxsgywGvI2zqZhB8aRF0VXo=;
+	b=npM9s9pqoihScimHGnN8anoeoASHuow7Z4UzFsgkJiRkYLCiikfF/CQiv3D5PdqbVNi9OYlVZjlHX
+	 Kj6jhpyDQ==
+X-HalOne-ID: 03b25ac3-1ec3-11ef-bda0-83bcbd00a978
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+	by mailrelay6.pub.mailoutpod3-cph3.one.com (Halon) with ESMTPSA
+	id 03b25ac3-1ec3-11ef-bda0-83bcbd00a978;
+	Thu, 30 May 2024 20:27:21 +0000 (UTC)
+Date: Thu, 30 May 2024 22:27:20 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Andreas Larsson <andreas@gaisler.com>, sparclinux@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: WARN on using default root node
+ #address-cells/#size-cells
+Message-ID: <20240530202720.GA1656150@ravnborg.org>
+References: <20240530185049.2851617-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,72 +72,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240529205204.81208-3-linux@roeck-us.net>
+In-Reply-To: <20240530185049.2851617-1-robh@kernel.org>
 
-On 2024-05-29 13:52:03+0000, Guenter Roeck wrote:
-> Add support for SPD5118 (Jedec JESD300-5B.01) compliant temperature
-> sensors. Such sensors are typically found on DDR5 memory modules.
+Hi Rob.
 
-I can get the module to automatically probe with this change:
+On Thu, May 30, 2024 at 01:50:48PM -0500, Rob Herring (Arm) wrote:
+> While OpenFirmware originally allowed default values of #address-cells
+> and #size-cells, FDT has long required explicit values. It's been a
+> warning in dtc for the root node since the beginning (2005) and for
+> any parent node since 2007. Of course, not all FDT uses dtc, but that
+> should be the majority by far. The various extracted OF devicetrees I
+> have dating back to the 1990s (various PowerMac, OLPC, PASemi Nemo)
+> all have explicit root node properties.
+> 
+> I have no idea what exists for Sparc, so disabling the warning for it.
+> If any other platforms hit the warning, then the warning can be
+> disabled for them.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+> Sparc folks, If anyone can dump DTs from some Sparc systems it would be
+> helpful.
 
-diff --git a/drivers/i2c/i2c-smbus.c b/drivers/i2c/i2c-smbus.c
-index 97f338b123b1..8d9218f755d7 100644
---- a/drivers/i2c/i2c-smbus.c
-+++ b/drivers/i2c/i2c-smbus.c
-@@ -382,6 +386,10 @@ void i2c_register_spd(struct i2c_adapter *adap)
-        case 0x1E:      /* LPDDR4 */
-                name = "ee1004";
-                break;
-+       case 0x22:      /* DDR5 */
-+       case 0x23:      /* LPDDR5 */
-+               name = "spd5118";
-+               break;
-        default:
-                dev_info(&adap->dev,
-                         "Memory type 0x%02x not supported yet, not instantiating SPD\n",
+For sparc the format looks much different - see:
+git://git.kernel.org/pub/scm/linux/kernel/git/davem/prtconfs.git
 
-(Credits go to Paul Menzel [0])
+This is dumps from the prtconf tool found in Solaris.
 
-Maybe you can add that to your series.
+Looking at for example t1000 it looks like #size-cells, #address-cells
+are used properly.
 
-To also work with my PIIX4 I2C bus, I also need:
+Looking at the older ss20 I see no use of these.
+Looking at sb100 (old sparc64 machine) I see inconsistent use.
 
-diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-index fe6e8a1bb607..ff66e883b348 100644
---- a/drivers/i2c/busses/Kconfig
-+++ b/drivers/i2c/busses/Kconfig
-@@ -195,6 +195,7 @@ config I2C_ISMT
- config I2C_PIIX4
-        tristate "Intel PIIX4 and compatible (ATI/AMD/Serverworks/Broadcom/SMSC)"
-        depends on PCI && HAS_IOPORT
-+       select I2C_SMBUS
-        help
-          If you say yes to this option, support will be included for the Intel
-          PIIX4 family of mainboard I2C interfaces.  Specifically, the following
-diff --git a/drivers/i2c/busses/i2c-piix4.c b/drivers/i2c/busses/i2c-piix4.c
-index 6a0392172b2f..f8d81f8c0cb3 100644
---- a/drivers/i2c/busses/i2c-piix4.c
-+++ b/drivers/i2c/busses/i2c-piix4.c
-@@ -29,6 +29,7 @@
- #include <linux/stddef.h>
- #include <linux/ioport.h>
- #include <linux/i2c.h>
-+#include <linux/i2c-smbus.h>
- #include <linux/slab.h>
- #include <linux/dmi.h>
- #include <linux/acpi.h>
-@@ -982,6 +983,8 @@ static int piix4_add_adapter(struct pci_dev *dev, unsigned short smba,
-                return retval;
-        }
+My best guess is that sparc32 machines see little to no use of them.
+sparc64 use them, but on older machines the usage is inconsistent.
 
-+       i2c_register_spd(adap);
-+
-        *padap = adap;
-        return 0;
- }
-
-Though I guess it's not the right place to call i2c_register_sdp(),
-I'll look at it some more and then submit it.
-
-[0] https://lore.kernel.org/lkml/20240530183444.9312-2-pmenzel@molgen.mpg.de/
+	Sam
 
